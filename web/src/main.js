@@ -6,7 +6,8 @@
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { debounce } from 'lodash';
 
@@ -94,12 +95,16 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
+// TODO: Replace this with React Router DOM
+// `useHistory` hook after full migration to React.
+const history = createBrowserHistory();
+
 // Update Redux state with the URL search params initially and also
 // every time the URL change is triggered by a browser action to ensure
 // the URL -> Redux binding (the other direction is ensured by observing
 // the relevant state Redux entries and triggering the URL update below).
 dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
-window.addEventListener('popstate', () => {
+history.listen(() => {
   dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
@@ -133,13 +138,11 @@ let solarLayer;
 // Render DOM
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/">
-          <Main />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    {/* Switch to BrowserRouter once we don't need to manipulate */}
+    {/* the route history outside of React components anymore */}
+    <Router history={history}>
+      <Main />
+    </Router>
   </Provider>,
   document.querySelector('#app'),
   () => {
@@ -983,12 +986,12 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 // URL search params in Redux at all.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
 const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
-observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(history, state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {

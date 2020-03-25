@@ -2,7 +2,7 @@ import { isEmpty } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
 
-export function updateURLFromState(state) {
+export function updateURLFromState(history, state) {
   const {
     currentPage,
     customDate,
@@ -19,24 +19,21 @@ export function updateURLFromState(state) {
     useRemoteEndpoint ? { remote: useRemoteEndpoint } : {},
     windEnabled ? { wind: windEnabled } : {});
 
-  // Construct search string from the search params
-  const search = isEmpty(searchParams) ? '' : `?${(new URLSearchParams(searchParams)).toString()}`;
-
-  // Construct pathname from application state
-  let pathname = `/${currentPage}`;
+  // Build the URL string
+  let url = `/${currentPage}`;
   if (selectedZoneName) {
-    pathname += `/${selectedZoneName}`;
+    url += `/${selectedZoneName}`;
   }
-
-  // Build the final URL from all the parts
-  const url = `${window.location.origin}${pathname}${search}`;
+  if (!isEmpty(searchParams)) {
+    url += `?${(new URLSearchParams(searchParams)).toString()}`;
+  }
 
   // Push the new URL state to browser history and track
   // it only if the new URL differs from the current one
-  if (url !== window.location.href) {
+  if (url !== `${history.location.pathname}${history.location.search}`) {
     if (thirdPartyServices._ga) {
       thirdPartyServices._ga.config({ page_path: url });
     }
-    window.history.pushState({ pathname, search }, '', url);
+    history.push(url);
   }
 }
