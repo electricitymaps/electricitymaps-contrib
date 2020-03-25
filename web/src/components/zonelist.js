@@ -62,7 +62,7 @@ function zoneMatchesQuery(zone, queryString) {
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentPage: state.application.showPageState,
+  currentPage: state.application.currentPage,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
@@ -85,7 +85,7 @@ const ZoneList = ({
 
   // Click action
   const handleClick = (countryCode) => {
-    dispatchApplication('showPageState', 'zone');
+    dispatchApplication('currentPage', 'zone');
     dispatchApplication('selectedZoneName', countryCode);
     dispatchApplication('centeredZoneName', countryCode);
   };

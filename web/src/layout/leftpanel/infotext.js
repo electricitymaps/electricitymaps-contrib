@@ -65,7 +65,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
         tabIndex="0"
         onClick={() => {
           dispatchApplication('selectedZoneName', undefined);
-          dispatchApplication('showPageState', 'faq');
+          dispatchApplication('currentPage', 'faq');
         }}
       >
         {__('footer.faq')}

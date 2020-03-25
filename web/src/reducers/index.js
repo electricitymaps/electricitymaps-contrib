@@ -51,7 +51,7 @@ const initialApplicationState = {
   windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state
-  showPageState: 'map',
+  currentPage: 'map',
   pageToGoBackTo: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
@@ -66,11 +66,11 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
       // Disabled for now (see TODO in main.js)
       // if (key === 'selectedZoneName') {
-      //   newState.showPageState = value ? 'zone' : 'map';
+      //   newState.currentPage = value ? 'zone' : 'map';
       // }
-      if (key === 'showPageState'
-          && state.showPageState !== 'zone') {
-        newState.pageToGoBackTo = state.showPageState;
+      if (key === 'currentPage'
+          && state.currentPage !== 'zone') {
+        newState.pageToGoBackTo = state.currentPage;
       }
 
       if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
@@ -88,7 +88,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
         // TODO(olc): the page state should be inferred from selectedZoneName
         return Object.assign({}, state, {
           selectedZoneName: undefined,
-          showPageState: state.pageToGoBackTo || 'map',
+          currentPage: state.pageToGoBackTo || 'map',
         });
       }
       return state;
@@ -128,8 +128,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
         useRemoteEndpoint: searchParams.get('remote') === 'true',
         windEnabled: searchParams.get('wind') === 'true',
         // Prioritize route pathname but fall back to search params for backwards compatibility
+        currentPage: pathname.split('/')[1] || currentPageFallback || 'map', // Default to map view if page was not specified
         selectedZoneName: pathname.split('/')[2] || searchParams.get('countryCode') || null,
-        showPageState: pathname.split('/')[1] || currentPageFallback || 'map',  // Default to map view if page was not specified
       });
     }
 

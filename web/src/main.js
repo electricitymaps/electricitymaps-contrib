@@ -167,9 +167,9 @@ const app = {
   },
 
   onBack(e) {
-    if (getState().application.showPageState !== 'map') {
+    if (getState().application.currentPage !== 'map') {
       dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map');
+      dispatchApplication('currentPage', getState().application.pageToGoBackTo || 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -337,7 +337,7 @@ try {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
     dispatchApplication('webglsupported', false);
-    dispatchApplication('showPageState', 'ranking');
+    dispatchApplication('currentPage', 'ranking');
     document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
@@ -689,7 +689,7 @@ document.getElementById('left-panel-collapse-button').addEventListener('click', 
 if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
-      dispatchApplication('showPageState', 'map'); // TODO(olc): infer in reducer?
+      dispatchApplication('currentPage', 'map'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== null) {
         dispatch({
           type: 'UPDATE_SELECTED_ZONE',
@@ -700,7 +700,7 @@ if (typeof zoneMap !== 'undefined') {
     .onCountryClick((d) => {
       // Analytics
       dispatchApplication('isLeftPanelCollapsed', false);
-      dispatchApplication('showPageState', 'zone'); // TODO(olc): infer in reducer?
+      dispatchApplication('currentPage', 'zone'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== d.countryCode) {
         dispatch({
           type: 'UPDATE_SELECTED_ZONE',
@@ -716,7 +716,7 @@ if (typeof zoneMap !== 'undefined') {
 // Back button
 function goBackToZoneListFromZoneDetails() {
   dispatchApplication('selectedZoneName', undefined);
-  dispatchApplication('showPageState', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+  dispatchApplication('currentPage', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
 }
 
 d3.selectAll('.left-panel-back-button')
@@ -727,7 +727,7 @@ d3.selectAll('.left-panel-back-button')
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
-  const currentPage = getState().application.showPageState;
+  const { currentPage } = getState().application;
   if (currentPage === 'zone') {
     if (e.key === 'Backspace') {
       goBackToZoneListFromZoneDetails();
@@ -738,10 +738,10 @@ document.addEventListener('keyup', (e) => {
 });
 
 // Mobile toolbar buttons
-d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('showPageState', 'map'));
-d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
+d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('currentPage', 'map'));
+d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('currentPage', 'info'));
 d3.selectAll('.highscore-button')
-  .on('click touchend', () => dispatchApplication('showPageState', 'ranking'));
+  .on('click touchend', () => dispatchApplication('currentPage', 'ranking'));
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -877,8 +877,8 @@ observe(state => state.data.grid, (grid, state) => {
 });
 
 // Observe for page change
-observe(state => state.application.showPageState, (showPageState, state) => {
-  routeToPage(showPageState, state);
+observe(state => state.application.currentPage, (currentPage, state) => {
+  routeToPage(currentPage, state);
 
   // Analytics
   // Note: `selectedZoneName` will not yet be changed here
@@ -985,7 +985,7 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
 observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.showPageState, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });

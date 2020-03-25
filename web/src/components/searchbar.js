@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { noop } from 'lodash';
 
 const mapStateToProps = state => ({
-  currentPage: state.application.showPageState,
+  currentPage: state.application.currentPage,
 });
 
 const SearchBar = ({

@@ -4,9 +4,9 @@ import thirdPartyServices from '../services/thirdparty';
 
 export function updateURLFromState(state) {
   const {
+    currentPage,
     customDate,
     selectedZoneName,
-    showPageState,
     solarEnabled,
     useRemoteEndpoint,
     windEnabled,
@@ -23,7 +23,7 @@ export function updateURLFromState(state) {
   const search = isEmpty(searchParams) ? '' : `?${(new URLSearchParams(searchParams)).toString()}`;
 
   // Construct pathname from application state
-  let pathname = `/${showPageState}`;
+  let pathname = `/${currentPage}`;
   if (selectedZoneName) {
     pathname += `/${selectedZoneName}`;
   }
