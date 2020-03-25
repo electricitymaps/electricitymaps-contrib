@@ -337,7 +337,7 @@ try {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
     dispatchApplication('webglsupported', false);
-    dispatchApplication('showPageState', 'highscore');
+    dispatchApplication('showPageState', 'ranking');
     document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
@@ -741,14 +741,14 @@ document.addEventListener('keyup', (e) => {
 d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('showPageState', 'map'));
 d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('showPageState', 'info'));
 d3.selectAll('.highscore-button')
-  .on('click touchend', () => dispatchApplication('showPageState', 'highscore'));
+  .on('click touchend', () => dispatchApplication('showPageState', 'ranking'));
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
 
 function routeToPage(pageName, state) {
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'ranking');
 
   d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'zone' || pageName === 'faq');
 

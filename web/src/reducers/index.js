@@ -118,6 +118,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'UPDATE_STATE_FROM_URL': {
       const { pathname, searchParams } = new URL(action.payload.url);
+      const currentPageFallback = (searchParams.get('page') || '')
+        .replace('country', 'zone')
+        .replace('highscore', 'ranking');
+
       return Object.assign({}, state, {
         customDate: searchParams.get('datetime'),
         solarEnabled: searchParams.get('solar') === 'true',
@@ -125,7 +129,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
         windEnabled: searchParams.get('wind') === 'true',
         // Prioritize route pathname but fall back to search params for backwards compatibility
         selectedZoneName: pathname.split('/')[2] || searchParams.get('countryCode') || null,
-        showPageState: pathname.split('/')[1] || searchParams.get('page').replace('country', 'zone') || 'map',  // Default to map view if page was not specified
+        showPageState: pathname.split('/')[1] || currentPageFallback || 'map',  // Default to map view if page was not specified
       });
     }
 
