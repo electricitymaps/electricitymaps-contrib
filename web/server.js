@@ -106,7 +106,7 @@ function handleError(err) {
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/clientVersion', (req, res) => res.send(version));
 
-// Translation status API
+// Translation status
 app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG(locales));
@@ -114,7 +114,31 @@ app.get('/translationstatus/badges.svg', (req, res) => {
 app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
 app.get('/translationstatus/:language', (req, res) => res.json(getSingleTranslationStatusJSON(req.params.language)));
 
-app.get('/', (req, res) => {
+// API
+app.get('/v1/*', (req, res) =>
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v2/*', (req, res) =>
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+
+// Source maps
+app.all('/dist/*.map', (req, res, next) => {
+  // Allow sentry
+  if ([
+    '35.184.238.160',
+    '104.155.159.182',
+    '104.155.149.19',
+    '130.211.230.102',
+  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  return next();
+});
+
+// Static files
+app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
+
+// App routes (managed by React Router)
+app.get('/*', (req, res) => {
   // On electricitymap.tmrow.co,
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
@@ -195,25 +219,6 @@ app.get('/', (req, res) => {
     });
   }
 });
-app.get('/v1/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.get('/v2/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.all('/dist/*.map', (req, res, next) => {
-  // Allow sentry
-  if ([
-    '35.184.238.160',
-    '104.155.159.182',
-    '104.155.149.19',
-    '130.211.230.102',
-  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-  return next();
-});
-
-// Static routes (need to be declared at the end)
-app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
 // Start the application
 server.listen(process.env['PORT'], () => {

@@ -135,8 +135,6 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        {/* Only one active app route - the application state is */}
-        {/* currently fully managed through the URL search params */}
         <Route path="/">
           <Main />
         </Route>
