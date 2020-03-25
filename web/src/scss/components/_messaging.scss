@@ -79,7 +79,7 @@
 
 #loading.loading.overlay {
     /* That's the main loading overlay */
-    background-image: url('../images/loading/loading64_FA.gif'), url('../images/loading/electricitymap-text.svg');
+    background-image: url('/images/loading/loading64_FA.gif'), url('/images/loading/electricitymap-text.svg');
     background-position: calc(50% - 64px) center , center center;
     background-repeat: no-repeat, no-repeat; 
     background-size: 36px , 10rem;

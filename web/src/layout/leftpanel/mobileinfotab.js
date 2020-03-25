@@ -13,7 +13,7 @@ export default () => (
   <div className="mobile-info-tab large-screen-hidden">
     <div className="mobile-watermark brightmode">
       <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-        <img src="images/built-by-tomorrow.svg" alt="" />
+        <img src="/images/built-by-tomorrow.svg" alt="" />
       </a>
       <div className="socialicons">
         <div

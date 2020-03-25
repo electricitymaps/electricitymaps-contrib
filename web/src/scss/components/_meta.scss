@@ -14,7 +14,7 @@
 	}
 
 	&.brightmode #built-by-tomorrow{
-	    background-image: url(../images/built-by-tomorrow.svg)
+	    background-image: url(/images/built-by-tomorrow.svg)
 	}
 }
 
@@ -32,7 +32,7 @@
 }
 
 #built-by-tomorrow{
-    background-image: url(../images/built-by-tomorrow-white.svg);
+    background-image: url(/images/built-by-tomorrow-white.svg);
     background-size: cover;
     width: 154px;
     height: 24px;

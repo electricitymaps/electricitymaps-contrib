@@ -138,7 +138,7 @@ app.all('/dist/*.map', (req, res, next) => {
 app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
 // App routes (managed by React Router)
-app.get('/*', (req, res) => {
+app.use('/', (req, res) => {
   // On electricitymap.tmrow.co,
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
