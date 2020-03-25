@@ -117,14 +117,16 @@ const applicationReducer = (state = initialApplicationState, action) => {
     }
 
     case 'UPDATE_STATE_FROM_URL': {
-      const { searchParams } = new URL(action.payload.url);
+      const { pathname, searchParams } = new URL(action.payload.url);
+      console.log('blublu');
       return Object.assign({}, state, {
         customDate: searchParams.get('datetime'),
-        selectedZoneName: searchParams.get('countryCode'),
-        showPageState: searchParams.get('page') || 'map', // Default to map view if page was not specified
         solarEnabled: searchParams.get('solar') === 'true',
         useRemoteEndpoint: searchParams.get('remote') === 'true',
         windEnabled: searchParams.get('wind') === 'true',
+        // Prioritize route pathname but fall back to search params for backwards compatibility
+        selectedZoneName: pathname.split('/')[2] || searchParams.get('countryCode') || null,
+        showPageState: pathname.split('/')[1] || searchParams.get('page') || 'map',  // Default to map view if page was not specified
       });
     }
 
