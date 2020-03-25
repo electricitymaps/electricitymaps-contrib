@@ -66,10 +66,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
       // Disabled for now (see TODO in main.js)
       // if (key === 'selectedZoneName') {
-      //   newState.showPageState = value ? 'country' : 'map';
+      //   newState.showPageState = value ? 'zone' : 'map';
       // }
       if (key === 'showPageState'
-          && state.showPageState !== 'country') {
+          && state.showPageState !== 'zone') {
         newState.pageToGoBackTo = state.showPageState;
       }
 
@@ -118,7 +118,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
     case 'UPDATE_STATE_FROM_URL': {
       const { pathname, searchParams } = new URL(action.payload.url);
-      console.log('blublu');
       return Object.assign({}, state, {
         customDate: searchParams.get('datetime'),
         solarEnabled: searchParams.get('solar') === 'true',
@@ -126,7 +125,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
         windEnabled: searchParams.get('wind') === 'true',
         // Prioritize route pathname but fall back to search params for backwards compatibility
         selectedZoneName: pathname.split('/')[2] || searchParams.get('countryCode') || null,
-        showPageState: pathname.split('/')[1] || searchParams.get('page') || 'map',  // Default to map view if page was not specified
+        showPageState: pathname.split('/')[1] || searchParams.get('page').replace('country', 'zone') || 'map',  // Default to map view if page was not specified
       });
     }
 

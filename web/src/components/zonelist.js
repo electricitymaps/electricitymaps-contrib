@@ -85,7 +85,7 @@ const ZoneList = ({
 
   // Click action
   const handleClick = (countryCode) => {
-    dispatchApplication('showPageState', 'country');
+    dispatchApplication('showPageState', 'zone');
     dispatchApplication('selectedZoneName', countryCode);
     dispatchApplication('centeredZoneName', countryCode);
   };

@@ -700,7 +700,7 @@ if (typeof zoneMap !== 'undefined') {
     .onCountryClick((d) => {
       // Analytics
       dispatchApplication('isLeftPanelCollapsed', false);
-      dispatchApplication('showPageState', 'country'); // TODO(olc): infer in reducer?
+      dispatchApplication('showPageState', 'zone'); // TODO(olc): infer in reducer?
       if (getState().application.selectedZoneName !== d.countryCode) {
         dispatch({
           type: 'UPDATE_SELECTED_ZONE',
@@ -728,7 +728,7 @@ d3.selectAll('.left-panel-back-button')
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
   const currentPage = getState().application.showPageState;
-  if (currentPage === 'country') {
+  if (currentPage === 'zone') {
     if (e.key === 'Backspace') {
       goBackToZoneListFromZoneDetails();
     } else if (e.key === '/') {
@@ -750,13 +750,13 @@ d3.selectAll('.highscore-button')
 function routeToPage(pageName, state) {
   d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'highscore');
 
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'country' || pageName === 'faq');
+  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'zone' || pageName === 'faq');
 
   d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
 
   d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
 
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'country');
+  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'zone');
 
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
@@ -775,7 +775,7 @@ function routeToPage(pageName, state) {
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
   d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
-  if (pageName === 'country') {
+  if (pageName === 'zone') {
     d3.selectAll('#tab .highscore-button').classed('active', true);
   }
 }

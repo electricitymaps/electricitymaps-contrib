@@ -28,7 +28,7 @@ import SearchBar from '../../components/searchbar';
 import TimeSlider from '../../components/timeslider';
 
 const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
-  if (key === '/' && (currentPage === 'map' || currentPage === 'country')) {
+  if (key === '/' && (currentPage === 'map' || currentPage === 'zone')) {
     // Reset input and focus
     if (searchRef.current) {
       searchRef.current.value = '';
