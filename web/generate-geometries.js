@@ -908,7 +908,7 @@ function getZoneFeatures(zoneDefinitions, geos) {
 }
 
 const webGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos);
-const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USOriginalGeos);
+const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos); //should be changed back to USOriginalGeos
 
 const webZones = getZones(zoneDefinitions, webGeos);
 const backendZones = getZones(zoneDefinitions, backendGeos);
