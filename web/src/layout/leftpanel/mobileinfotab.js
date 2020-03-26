@@ -9,7 +9,7 @@ import React from 'react';
 import { __ } from '../../helpers/translation';
 import FAQ from '../../components/faq';
 
-export default () => (
+const MobileInfoTab = () => (
   <div className="mobile-info-tab large-screen-hidden">
     <div className="mobile-watermark brightmode">
       <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
@@ -82,3 +82,5 @@ export default () => (
     <FAQ className="mobile-faq" />
   </div>
 );
+
+export default MobileInfoTab;

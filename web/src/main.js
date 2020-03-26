@@ -173,10 +173,10 @@ const app = {
     const { currentPage, isMobile } = getState().application;
     if (currentPage === 'zone') {
       dispatchApplication('selectedZoneName', null);
-      dispatchApplication('currentPage', isMobile ? 'ranking' : 'map');
+      dispatchApplication('currentPage', 'map');
       e.preventDefault();
     } else if (currentPage === 'faq') {
-      dispatchApplication('currentPage', isMobile ? 'ranking' : 'map');
+      dispatchApplication('currentPage', 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -750,15 +750,9 @@ d3.selectAll('.highscore-button')
 // to state changes and cause a side-effect
 
 function routeToPage(pageName, state) {
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'ranking');
+  // d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'ranking');
 
-  d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'zone' || pageName === 'faq');
-
-  d3.selectAll('.left-panel .mobile-info-tab').classed('small-screen-hidden', pageName !== 'info');
-
-  d3.selectAll('.left-panel .faq-panel').classed('all-screens-hidden', pageName !== 'faq');
-
-  d3.selectAll('.left-panel .left-panel-zone-details').classed('all-screens-hidden', pageName !== 'zone');
+  // d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'zone' || pageName === 'faq');
 
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
