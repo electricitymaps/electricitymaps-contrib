@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { dispatchApplication } from '../store';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
+import { navigateToURL } from '../helpers/router';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -62,7 +63,6 @@ function zoneMatchesQuery(zone, queryString) {
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentPage: state.application.currentPage,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
@@ -70,7 +70,6 @@ const mapStateToProps = state => ({
 
 const ZoneList = ({
   colorBlindModeEnabled,
-  currentPage,
   electricityMixMode,
   gridZones,
   searchQuery,
@@ -85,9 +84,8 @@ const ZoneList = ({
 
   // Click action
   const handleClick = (countryCode) => {
-    dispatchApplication('currentPage', 'zone');
-    dispatchApplication('selectedZoneName', countryCode);
     dispatchApplication('centeredZoneName', countryCode);
+    navigateToURL(`/zone/${countryCode}`);
   };
 
   // Keyboard navigation
@@ -108,7 +106,7 @@ const ZoneList = ({
       }
     };
     const keyHandler = (e) => {
-      if (e.key && currentPage === 'map') {
+      if (e.key) {
         if (e.key === 'Enter' && zones[selectedItemIndex]) {
           handleClick(zones[selectedItemIndex].countryCode);
         } else if (e.key === 'ArrowUp') {

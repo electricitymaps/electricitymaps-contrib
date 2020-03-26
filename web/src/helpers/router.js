@@ -1,8 +1,23 @@
 import { isEmpty } from 'lodash';
+import { createBrowserHistory } from 'history';
 
 import thirdPartyServices from '../services/thirdparty';
+import { dispatch } from '../store';
 
-export function updateURLFromState(history, state) {
+// TODO: Replace this with React Router DOM
+// `useHistory` hook after full migration to React.
+export const history = createBrowserHistory();
+
+// Update Redux state with the URL search params initially and also
+// every time the URL change is triggered by a browser action to ensure
+// the URL -> Redux binding (the other direction is ensured by observing
+// the relevant state Redux entries and triggering the URL update below).
+dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
+history.listen(() => {
+  dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
+});
+
+export function updateURLFromState(state) {
   const {
     currentPage,
     customDate,
@@ -34,6 +49,13 @@ export function updateURLFromState(history, state) {
     if (thirdPartyServices._ga) {
       thirdPartyServices._ga.config({ page_path: url });
     }
+    history.push(url);
+  }
+}
+
+export function navigateToURL(pathname) {
+  if (pathname !== history.location.pathname) {
+    const url = `${pathname}${history.location.search}`;
     history.push(url);
   }
 }

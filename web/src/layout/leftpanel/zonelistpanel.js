@@ -9,14 +9,14 @@ import ZoneList from '../../components/zonelist';
 
 import InfoText from './infotext';
 
-const documentSearchKeyUpHandler = (key, currentPage, searchRef) => {
-  if (key === '/' && (currentPage === 'map' || currentPage === 'zone')) {
+const documentSearchKeyUpHandler = (key, searchRef) => {
+  if (key === '/') {
     // Reset input and focus
     if (searchRef.current) {
       searchRef.current.value = '';
       searchRef.current.focus();
     }
-  } else if (key && key.match(/^[A-z]$/) && currentPage === 'map') {
+  } else if (key && key.match(/^[A-z]$/)) {
     // If input is not focused, focus it and append the pressed key
     if (searchRef.current && searchRef.current !== document.activeElement) {
       searchRef.current.value += key;

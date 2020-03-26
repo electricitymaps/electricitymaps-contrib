@@ -6,7 +6,6 @@
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { debounce } from 'lodash';
@@ -27,6 +26,7 @@ import thirdPartyServices from './services/thirdparty';
 // Utils
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
+import { history, navigateToURL } from './helpers/router';
 
 import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
 
@@ -95,19 +95,6 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-// TODO: Replace this with React Router DOM
-// `useHistory` hook after full migration to React.
-const history = createBrowserHistory();
-
-// Update Redux state with the URL search params initially and also
-// every time the URL change is triggered by a browser action to ensure
-// the URL -> Redux binding (the other direction is ensured by observing
-// the relevant state Redux entries and triggering the URL update below).
-dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
-history.listen(() => {
-  dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
-});
-
 // Use local endpoint only if ALL of the following conditions are true:
 // 1. The app is running on localhost
 // 2. The `remote` search param hasn't been explicitly set to true
@@ -170,13 +157,8 @@ const app = {
   },
 
   onBack(e) {
-    const { currentPage, isMobile } = getState().application;
-    if (currentPage === 'zone') {
-      dispatchApplication('selectedZoneName', null);
-      dispatchApplication('currentPage', 'map');
-      e.preventDefault();
-    } else if (currentPage === 'faq') {
-      dispatchApplication('currentPage', 'map');
+    if (['zone', 'faq'].includes(getState().application.currentPage)) {
+      navigateToURL('/map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -258,7 +240,6 @@ function updateCo2Scale() {
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
-d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
 d3.select('#checkbox-colorblind').on('change', () => {
   dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
 });
@@ -344,7 +325,7 @@ try {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
     dispatchApplication('webglsupported', false);
-    dispatchApplication('currentPage', 'ranking');
+    navigateToURL('/ranking');
     document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
@@ -696,24 +677,12 @@ document.getElementById('left-panel-collapse-button').addEventListener('click', 
 if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
-      dispatchApplication('currentPage', 'map'); // TODO(olc): infer in reducer?
-      if (getState().application.selectedZoneName !== null) {
-        dispatch({
-          type: 'UPDATE_SELECTED_ZONE',
-          payload: { selectedZoneName: null },
-        });
-      }
+      navigateToURL('/map');
     })
     .onCountryClick((d) => {
       // Analytics
+      navigateToURL(`/zone/${d.countryCode}`);
       dispatchApplication('isLeftPanelCollapsed', false);
-      dispatchApplication('currentPage', 'zone'); // TODO(olc): infer in reducer?
-      if (getState().application.selectedZoneName !== d.countryCode) {
-        dispatch({
-          type: 'UPDATE_SELECTED_ZONE',
-          payload: { selectedZoneName: d.countryCode },
-        });
-      }
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
 }
@@ -722,15 +691,13 @@ if (typeof zoneMap !== 'undefined') {
 
 // Back button
 function goBackToZoneListFromZoneDetails() {
-  dispatchApplication('selectedZoneName', undefined);
-  dispatchApplication('currentPage', getState().application.isMobile ? 'ranking' : 'map');
+  navigateToURL(getState().application.isMobile ? '/ranking' : '/map');
 }
 
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {
   if (e.key == null) { return; }
-  const { currentPage } = getState().application;
-  if (currentPage === 'zone') {
+  if (getState().application.currentPage === 'zone') {
     if (e.key === 'Backspace') {
       goBackToZoneListFromZoneDetails();
     } else if (e.key === '/') {
@@ -740,10 +707,9 @@ document.addEventListener('keyup', (e) => {
 });
 
 // Mobile toolbar buttons
-d3.selectAll('.map-button').on('click touchend', () => dispatchApplication('currentPage', 'map'));
-d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('currentPage', 'info'));
-d3.selectAll('.highscore-button')
-  .on('click touchend', () => dispatchApplication('currentPage', 'ranking'));
+d3.selectAll('.map-button').on('click touchend', () => navigateToURL('/map'));
+d3.selectAll('.info-button').on('click touchend', () => navigateToURL('/info'));
+d3.selectAll('.highscore-button').on('click touchend', () => navigateToURL('/ranking'));
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -979,12 +945,12 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 // URL search params in Redux at all.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
 const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
-observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(history, state); });
-observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(history, state); });
-observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(history, state); });
-observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(history, state); });
-observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(history, state); });
-observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(history, state); });
+observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {

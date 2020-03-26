@@ -1,14 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
 import { noop } from 'lodash';
-
-const mapStateToProps = state => ({
-  currentPage: state.application.currentPage,
-});
 
 const SearchBar = ({
   className,
-  currentPage,
   documentKeyUpHandler,
   placeholder,
   searchHandler,
@@ -18,7 +12,7 @@ const SearchBar = ({
   // Set up global key up handlers that apply to this search bar
   useEffect(() => {
     const keyUpHandler = documentKeyUpHandler
-      ? ev => documentKeyUpHandler(ev.key, currentPage, ref)
+      ? ev => documentKeyUpHandler(ev.key, ref)
       : noop;
     document.addEventListener('keyup', keyUpHandler);
     return () => {
@@ -40,4 +34,4 @@ const SearchBar = ({
   );
 };
 
-export default connect(mapStateToProps)(SearchBar);
+export default SearchBar;

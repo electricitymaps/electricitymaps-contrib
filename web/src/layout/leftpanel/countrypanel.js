@@ -29,6 +29,11 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
+<<<<<<< HEAD
+=======
+import { navigateToURL } from '../../helpers/router';
+import { LOW_CARBON_INFO_TOOLTIP_KEY } from '../../helpers/constants';
+>>>>>>> Navigate more via history.push vs Redux state update
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags

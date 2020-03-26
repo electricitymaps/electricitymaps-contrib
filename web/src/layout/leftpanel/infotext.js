@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 // Modules
 import { __ } from '../../helpers/translation';
 import { updateApplication } from '../../actioncreators';
+import { navigateToURL } from '../../helpers/router';
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
@@ -63,10 +64,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
         className="faq-link"
         role="link"
         tabIndex="0"
-        onClick={() => {
-          dispatchApplication('selectedZoneName', undefined);
-          dispatchApplication('currentPage', 'faq');
-        }}
+        onClick={() => navigateToURL('/faq')}
       >
         {__('footer.faq')}
       </a>

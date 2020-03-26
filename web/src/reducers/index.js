@@ -77,7 +77,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName
         return Object.assign({}, state, {
-          selectedZoneName: undefined,
+          selectedZoneName: null,
           currentPage: 'map',
         });
       }
