@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
   countryCode: state.application.selectedZoneName || '',
   data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
+  isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
 });
 
@@ -76,6 +77,7 @@ const CountryPanel = ({
   countryCode,
   data,
   electricityMixMode,
+  isMobile,
   tableDisplayEmissions,
 }) => {
   const [tooltip, setTooltip] = useState(null);

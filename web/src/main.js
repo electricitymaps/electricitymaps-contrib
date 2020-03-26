@@ -170,9 +170,13 @@ const app = {
   },
 
   onBack(e) {
-    if (getState().application.currentPage !== 'map') {
-      dispatchApplication('selectedZoneName', undefined);
-      dispatchApplication('currentPage', getState().application.pageToGoBackTo || 'map');
+    const { currentPage, isMobile } = getState().application;
+    if (currentPage === 'zone') {
+      dispatchApplication('selectedZoneName', null);
+      dispatchApplication('currentPage', isMobile ? 'ranking' : 'map');
+      e.preventDefault();
+    } else if (currentPage === 'faq') {
+      dispatchApplication('currentPage', isMobile ? 'ranking' : 'map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -719,13 +723,8 @@ if (typeof zoneMap !== 'undefined') {
 // Back button
 function goBackToZoneListFromZoneDetails() {
   dispatchApplication('selectedZoneName', undefined);
-  dispatchApplication('currentPage', getState().application.pageToGoBackTo || 'map'); // TODO(olc): infer in reducer
+  dispatchApplication('currentPage', getState().application.isMobile ? 'ranking' : 'map');
 }
-
-d3.selectAll('.left-panel-back-button')
-  .on('click', () => {
-    goBackToZoneListFromZoneDetails();
-  });
 
 // Keyboard navigation
 document.addEventListener('keyup', (e) => {

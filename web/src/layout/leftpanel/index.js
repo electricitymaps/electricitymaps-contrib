@@ -11,7 +11,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Layout
 import CountryPanel from './countrypanel';
-import FAQLayout from './faq';
+import FAQPanel from './faqpanel';
 import InfoText from './infotext';
 import MobileInfoTab from './mobileinfotab';
 import ZoneList from '../../components/zonelist';
@@ -140,6 +140,6 @@ export default connect(mapStateToProps)(props => (
         </div>
       </div>
     </div>
-    <FAQLayout />
+    <FAQPanel />
   </div>
 ));

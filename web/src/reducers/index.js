@@ -52,7 +52,6 @@ const initialApplicationState = {
 
   // TODO(olc): refactor this state
   currentPage: 'map',
-  pageToGoBackTo: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -64,15 +63,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       const newState = Object.assign({}, state);
       newState[key] = value;
 
-      // Disabled for now (see TODO in main.js)
-      // if (key === 'selectedZoneName') {
-      //   newState.currentPage = value ? 'zone' : 'map';
-      // }
-      if (key === 'currentPage'
-          && state.currentPage !== 'zone') {
-        newState.pageToGoBackTo = state.currentPage;
-      }
-
       if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
         throw Error(`Unknown electricityMixMode "${value}"`);
       }
@@ -83,12 +73,12 @@ const applicationReducer = (state = initialApplicationState, action) => {
     case 'GRID_DATA': {
       const selectedZoneNameExists = Object.keys(action.payload.countries)
         .indexOf(state.selectedZoneName) !== -1;
-      if (state.selectedZoneName != null && !selectedZoneNameExists) {
+      if (state.selectedZoneName && !selectedZoneNameExists) {
         // The selectedZoneName doesn't exist anymore, we need to reset it
         // TODO(olc): the page state should be inferred from selectedZoneName
         return Object.assign({}, state, {
           selectedZoneName: undefined,
-          currentPage: state.pageToGoBackTo || 'map',
+          currentPage: 'map',
         });
       }
       return state;
