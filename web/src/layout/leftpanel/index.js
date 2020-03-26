@@ -35,7 +35,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => (
 
     {/* Render different content based on the current route */}
     <Switch>
-      <Redirect exact from='/' to='/map' />
+      <Redirect exact from="/" to="/map" />
       <Route path="/map" component={ZoneListPanel} />
       <Route path="/ranking" component={ZoneListPanel} />
       <Route path="/zone/:zoneId" component={ZoneDetailsPanel} />

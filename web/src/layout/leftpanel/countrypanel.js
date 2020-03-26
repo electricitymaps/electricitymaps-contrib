@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
@@ -71,6 +71,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
+  zones: state.data.grid.zones,
 });
 
 const CountryPanel = ({
@@ -79,8 +80,14 @@ const CountryPanel = ({
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
+  zones,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const { zoneId } = useParams();
+
+  if (!zones[zoneId]) {
+    return <Redirect to="/map" />;
+  }
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
@@ -195,11 +202,7 @@ const CountryPanel = ({
               <div className="loading overlay" />
               <span
                 className="country-history-title"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__(
-                  tableDisplayEmissions
-                    ? 'country-history.emissions24h'
-                    : 'country-history.carbonintensity24h'
-                ))}}
+                dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
               />
               <br />
               <small className="small-screen-hidden">
