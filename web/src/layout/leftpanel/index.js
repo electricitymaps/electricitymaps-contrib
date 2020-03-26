@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
@@ -35,11 +35,12 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => (
 
     {/* Render different content based on the current route */}
     <Switch>
-      <Route path="/faq" component={FAQPanel} />
-      <Route path="/info" component={MobileInfoTab} />
+      <Redirect exact from='/' to='/map' />
       <Route path="/map" component={ZoneListPanel} />
       <Route path="/ranking" component={ZoneListPanel} />
       <Route path="/zone/:zoneId" component={ZoneDetailsPanel} />
+      <Route path="/info" component={MobileInfoTab} />
+      <Route path="/faq" component={FAQPanel} />
     </Switch>
   </div>
 );

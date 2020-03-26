@@ -35,7 +35,10 @@ export function updateURLFromState(state) {
     windEnabled ? { wind: windEnabled } : {});
 
   // Build the URL string
-  let url = `/${currentPage}`;
+  let url = '';
+  if (currentPage) {
+    url += `/${currentPage}`;
+  }
   if (selectedZoneName) {
     url += `/${selectedZoneName}`;
   }
