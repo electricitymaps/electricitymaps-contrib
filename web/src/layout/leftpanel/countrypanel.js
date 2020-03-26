@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
@@ -29,11 +30,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-<<<<<<< HEAD
-=======
 import { navigateToURL } from '../../helpers/router';
-import { LOW_CARBON_INFO_TOOLTIP_KEY } from '../../helpers/constants';
->>>>>>> Navigate more via history.push vs Redux state update
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -70,7 +67,6 @@ const CountryRenewableGauge = connect((state) => {
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  countryCode: state.application.selectedZoneName || '',
   data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
@@ -79,13 +75,12 @@ const mapStateToProps = state => ({
 
 const CountryPanel = ({
   colorBlindModeEnabled,
-  countryCode,
   data,
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
 }) => {
-  const [tooltip, setTooltip] = useState(null);
+  const { zoneId } = useParams();
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
@@ -93,27 +88,23 @@ const CountryPanel = ({
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
-  
-  const toggleSource = () => {
-    dispatchApplication('tableDisplayEmissions', !tableDisplayEmissions);
-  };
 
   return (
     <div className="country-panel">
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
-          <span className="left-panel-back-button">
+          <span className="left-panel-back-button" onClick={() => navigateToURL(isMobile ? '/ranking' : '/map')}>
             <i className="material-icons" aria-hidden="true">arrow_back</i>
           </span>
           <div className="country-name-time">
             <div className="country-name-time-table">
               <div style={{ display: 'table-cell' }}>
-                <img id="country-flag" className="flag" alt="" src={countryCode && flagUri(countryCode, 24)} />
+                <img id="country-flag" className="flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
 
               <div style={{ display: 'table-cell' }}>
                 <div className="country-name">
-                  {getFullZoneName(countryCode)}
+                  {getFullZoneName(zoneId)}
                 </div>
                 <div className="country-time">
                   {datetime ? moment(datetime).format('LL LT') : ''}
@@ -173,14 +164,14 @@ const CountryPanel = ({
               <div className="menu">
                 <a
                   id="production"
-                  onClick={toggleSource}
+                  onClick={() => dispatchApplication('tableDisplayEmissions', false)}
                   className={!tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
                 />
                 |
                 <a
                   id="emissions"
-                  onClick={toggleSource}
+                  onClick={() => dispatchApplication('tableDisplayEmissions', true)}
                   className={tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
                 />
@@ -202,13 +193,14 @@ const CountryPanel = ({
             <hr />
             <div className="country-history">
               <div className="loading overlay" />
-              <span className="country-history-title">
-                {co2Sub(__(
+              <span
+                className="country-history-title"
+                dangerouslySetInnerHTML={{ __html: co2Sub(__(
                   tableDisplayEmissions
                     ? 'country-history.emissions24h'
                     : 'country-history.carbonintensity24h'
-                ))}
-              </span>
+                ))}}
+              />
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>

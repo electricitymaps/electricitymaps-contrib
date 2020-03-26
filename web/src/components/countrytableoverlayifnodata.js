@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 
 import { __ } from '../helpers/translation';
 import { getCurrentZoneData } from '../selectors';
+import { useParams } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   zoneData: getCurrentZoneData(state),
-  zoneName: state.application.selectedZoneName,
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryTableOverlayIfNoData = ({ zoneData, zoneName, zoneTimeIndex }) => {
+const CountryTableOverlayIfNoData = ({ zoneData, zoneTimeIndex }) => {
+  const { zoneId } = useParams();
+
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && zonesThatCanHaveZeroProduction.indexOf(zoneName) === -1;
+  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && !zonesThatCanHaveZeroProduction.includes(zoneId);
   const zoneIsMissingParser = !zoneData.hasParser;
   const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
   const isRealtimeData = zoneTimeIndex === null;

@@ -716,10 +716,6 @@ d3.selectAll('.highscore-button').on('click touchend', () => navigateToURL('/ran
 // to state changes and cause a side-effect
 
 function routeToPage(pageName, state) {
-  // d3.selectAll('.left-panel .left-panel-zone-list').classed('small-screen-hidden', pageName !== 'ranking');
-
-  // d3.selectAll('.left-panel .left-panel-zone-list').classed('large-screen-hidden', pageName === 'zone' || pageName === 'faq');
-
   // Hide map on small screens
   // It's important we show the map before rendering it to make sure
   // sizes are set properly

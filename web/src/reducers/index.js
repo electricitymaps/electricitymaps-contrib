@@ -98,14 +98,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       });
     }
 
-    case 'UPDATE_SELECTED_ZONE': {
-      const { selectedZoneName } = action.payload;
-      return Object.assign({}, state, {
-        selectedZoneName,
-        selectedZoneTimeIndex: null,
-      });
-    }
-
     case 'UPDATE_STATE_FROM_URL': {
       const { pathname, searchParams } = new URL(action.payload.url);
       const currentPageFallback = (searchParams.get('page') || '')
