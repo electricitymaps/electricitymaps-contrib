@@ -51,6 +51,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "emissions24h": "Emissions in the last 24 hours",
         "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "emissionsproduction24h": "Emissions produced in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
