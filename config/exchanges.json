@@ -2443,7 +2443,16 @@
     },
     "rotation": 180
   },
-
+  "US->US-CAL-CISO": {
+    "lonlat": [
+      -115.846,
+      35.962
+    ],
+    "parsers": {
+      "exchange": "US_CA.fetch_exchange"
+    },
+    "rotation": -135
+  },
   "US-CAL-BANC->US-NW-BPAT": {
     "lonlat": [
       -122.568137,
@@ -3190,7 +3199,7 @@
       40.21487
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_PJM.fetch_exchange"
     },
     "rotation": -84
   },
@@ -3320,7 +3329,7 @@
       40.67877481619715
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NY.fetch_exchange"
     },
     "rotation": -105
   },
