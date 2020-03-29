@@ -19,10 +19,27 @@ import requests
 from .lib.validation import validate
 from .ENTSOE import merge_production_outputs
 
+#Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
+REVERSE_EXCHANGES = [
+    'US-CA->MX-BC',
+    'MX-BC->US-CAL-CISO',
+    'CA-SK->US-CENT-SWPP',
+    'CA-MB->US-MIDW-MISO',
+    'CA-ON->US-MIDW-MISO',
+    'CA-QC->US-NE-ISNE',
+    'CA-NB->US-NE-ISNE',
+    'CA-BC->US-NW-BPAT',
+    'CA-AB->US-NW-NWMT',
+    'CA-QC->US-NY-NYIS',
+    'CA-ON->US-NY-NYIS',
+    'MX-NE->US-TEX-ERCO',
+    'MX-NO->US-TEX-ERCO'
+]
+
 EXCHANGES = {
 
 #Old exchanges with old zones, to be updated/removed once clients have had time to switch
-    'MX-BC->US-CA': 'EBA.CISO-CFE.ID.H',
+    'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
     'US-SPP->US-TX': 'SWPP.ID.H-EBA.ERCO',
     'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
@@ -31,18 +48,18 @@ EXCHANGES = {
     'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H',
 
 #Exchanges to non-US BAs
-    'US-CAL-CISO->MX-BC': 'EBA.CISO-CFE.ID.H', #Unable to verify if MX-BC is correct
-    'US-CENT-SWPP->CA-SK': 'EBA.SWPP-SPC.ID.H',
-    'US-MIDW-MISO->CA-MB': 'EBA.MISO-MHEB.ID.H',
-    'US-MIDW-MISO->CA-ON': 'EBA.MISO-IESO.ID.H',
-    'US-NE-ISNE->CA-QC': 'EBA.ISNE-HQT.ID.H',
-    'US-NE-ISNE->CA-NB': 'EBA.ISNE-NBSO.ID.H',
-    'US-NW-BPAT->CA-BC': 'EBA.BPAT-BCHA.ID.H',
-    'US-NW-NWMT->CA-AB': 'EBA.NWMT-AESO.ID.H',
-    'US-NY-NYIS->CA-QC': 'EBA.NYIS-HQT.ID.H',
-    'US-NY-NYIS->CA-ON': 'EBA.NYIS-IESO.ID.H',
-    'US-TEX-ERCO->MX-NE': 'EBA.ERCO-CEN.ID.H', #Unable to verify if MX-NE is correct
-    'US-TEX-ERCO->MX-NO': 'EBA.ERCO-CFE.ID.H', #Unable to verify if MX-NO is correct
+    'MX-BC->US-CAL-CISO': 'EBA.CISO-CFE.ID.H', #Unable to verify if MX-BC is correct
+    'CA-SK->US-CENT-SWPP': 'EBA.SWPP-SPC.ID.H',
+    'CA-MB->US-MIDW-MISO': 'EBA.MISO-MHEB.ID.H',
+    'CA-ON->US-MIDW-MISO': 'EBA.MISO-IESO.ID.H',
+    'CA-QC->US-NE-ISNE': 'EBA.ISNE-HQT.ID.H',
+    'CA-NB->US-NE-ISNE': 'EBA.ISNE-NBSO.ID.H',
+    'CA-BC->US-NW-BPAT': 'EBA.BPAT-BCHA.ID.H',
+    'CA-AB->US-NW-NWMT': 'EBA.NWMT-AESO.ID.H',
+    'CA-QC->US-NY-NYIS': 'EBA.NYIS-HQT.ID.H',
+    'CA-ON->US-NY-NYIS': 'EBA.NYIS-IESO.ID.H',
+    'MX-NE->US-TEX-ERCO': 'EBA.ERCO-CEN.ID.H', #Unable to verify if MX-NE is correct
+    'MX-NO->US-TEX-ERCO': 'EBA.ERCO-CFE.ID.H', #Unable to verify if MX-NO is correct
 
 #Exchanges to other US balancing authorities
     'US-CAL-BANC->US-NW-BPAT': 'EBA.BANC-BPAT.ID.H',
@@ -369,7 +386,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             'sortedZoneKeys': point.pop('zoneKey'),
             'netFlow': point.pop('value'),
         })
-        if sortedcodes == 'MX-BC->US-CA':
+        if sortedcodes in REVERSE_EXCHANGES:
             point['netFlow'] = -point['netFlow']
 
     return exchange

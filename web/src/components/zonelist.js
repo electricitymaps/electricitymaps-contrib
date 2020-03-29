@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
-import { themes } from '../helpers/themes';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';

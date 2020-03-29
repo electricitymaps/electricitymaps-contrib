@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
+import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissionsgraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
@@ -211,24 +212,24 @@ class Component extends React.PureComponent {
               <hr />
               <div className="country-history">
                 <div className="loading overlay" />
-                <span
-                  className="country-history-title"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-history.carbonintensity24h')) }}
-                />
+                <span className="country-history-title">
+                  {co2Sub(__(
+                    tableDisplayEmissions
+                      ? 'country-history.emissions24h'
+                      : 'country-history.carbonintensity24h'
+                  ))}
+                </span>
                 <br />
                 <small className="small-screen-hidden">
                   <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                   <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
                 </small>
 
-                <CountryHistoryCarbonGraph />
+                {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
 
                 <div className="loading overlay" />
-                <span
-                  className="country-history-title"
-                  id="country-history-electricity-carbonintensity"
-                >
-                  { tableDisplayEmissions
+                <span className="country-history-title">
+                  {tableDisplayEmissions
                     ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                     : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                   }
