@@ -965,7 +965,7 @@
     ],
     "capacity": {
       "hydro": 92
-    },
+    }
   },
   "CH": {
     "bounding_box": [
