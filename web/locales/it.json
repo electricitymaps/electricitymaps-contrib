@@ -1452,6 +1452,274 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "ERCOT"
         },
+        "US-CAL-BANC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Balancing Authority Of Northern California"
+        },
+        "US-CAL-CISO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "California Independent System Operator"
+        },
+        "US-CAL-IID": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Imperial Irrigation District"
+        },
+        "US-CAL-LDWP": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Los Angeles Department Of Water And Power"
+        },
+        "US-CAL-TIDC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Turlock Irrigation District"
+        },
+        "US-CAR-CPLE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Duke Energy Progress East"
+        },
+        "US-CAR-CPLW": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Duke Energy Progress West"
+        },
+        "US-CAR-DUK": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Duke Energy Carolinas"
+        },
+        "US-CAR-SC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "South Carolina Public Service Authority"
+        },
+        "US-CAR-SCEG": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "South Carolina Electric & Gas Company"
+        },
+        "US-CAR-YAD": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+        },
+        "US-CENT-SPA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Southwestern Power Administration"
+        },
+        "US-CENT-SWPP": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Southwest Power Pool"
+        },
+        "US-FLA-FMPP": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Florida Municipal Power Pool"
+        },
+        "US-FLA-FPC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Duke Energy Florida Inc"
+        },
+        "US-FLA-FPL": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Florida Power & Light Company"
+        },
+        "US-FLA-GVL": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Gainesville Regional Utilities"
+        },
+        "US-FLA-HST": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Città di Homestead"
+        },
+        "US-FLA-JEA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "JEA"
+        },
+        "US-FLA-NSB": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Utilities Commission Of New Smyrna Beach"
+        },
+        "US-FLA-SEC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Seminole Electric Cooperative"
+        },
+        "US-FLA-TAL": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Città di Tallahassee"
+        },
+        "US-FLA-TEC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Tampa Electric Company"
+        },
+        "US-MIDA-OVEC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Ohio Valley Electric Corporation"
+        },
+        "US-MIDA-PJM": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "PJM Interconnection, Llc"
+        },
+        "US-MIDW-AECI": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Associated Electric Cooperative, Inc."
+        },
+        "US-MIDW-EEI": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Electric Energy, Inc."
+        },
+        "US-MIDW-LGEE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+        },
+        "US-MIDW-MISO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+        },
+          "US-NE-ISNE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Iso New England Inc."
+          },
+          "US-NW-AVA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Avista Corporation"
+          },
+          "US-NW-AVRN": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Avangrid Renewables Cooperative"
+          },
+          "US-NW-BPAT": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Bonneville Power Administration"
+          },
+          "US-NW-CHPD": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "PUD No. 1 Of Chelan County"
+          },
+          "US-NW-DOPD": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "PUD No. 1 Of Douglas County"
+          },
+          "US-NW-GCPD": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "PUD No. 2 Of Grant County, Washington"
+          },
+          "US-NW-GRID": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Gridforce Energy Management, Llc"
+          },
+          "US-NW-GWA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Naturener Power Watch, Llc (Gwa)"
+          },
+        "US-NW-IPCO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Idaho Power Company"
+        },
+        "US-NW-NEVP": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Nevada Power Company"
+        },
+        "US-NW-NWMT": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Northwestern Energy"
+        },
+        "US-NW-PACE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Pacificorp East"
+        },
+        "US-NW-PACW": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Pacificorp West"
+        },
+        "US-NW-PGE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Portland General Electric Company"
+        },
+        "US-NW-PSCO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Public Service Company Of Colorado"
+        },
+        "US-NW-PSEI": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Puget Sound Energy"
+        },
+        "US-NW-SCL": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Seattle City Light"
+        },
+        "US-NW-TPWR": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Città di Tacoma, Department Of Public Utilities, Light Division"
+        },
+        "US-NW-WACM": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+        },
+        "US-NW-WAUW": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Western Area Power Administration UGP West"
+        },
+        "US-NW-WWA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Naturener Wind Watch, Llc"
+        },
+        "US-NY-NYIS": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "New York Independent System Operator"
+        },
+        "US-SE-AEC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Powersouth Energy Cooperative"
+        },
+        "US-SE-SEPA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Southeastern Power Administration"
+        },
+        "US-SE-SOCO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Southern Company Services, Inc. - Trans"
+        },
+        "US-SW-AZPS": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Arizona Public Service Company"
+        },
+        "US-SW-DEAA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Arlington Valley, LLC"
+        },
+        "US-SW-EPE": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "El Paso Electric Company"
+        },
+        "US-SW-GRIF": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Griffith Energy, LLC"
+        },
+        "US-SW-GRMA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Gila River Power, LLC"
+        },
+        "US-SW-HGMA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "New Harquahala Generating Company, LLC"
+        },
+        "US-SW-PNM": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Public Service Company Of New Mexico"
+        },
+        "US-SW-SRP": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Salt River Project"
+        },
+        "US-SW-TEPC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Tucson Electric Power Company"
+        },
+        "US-SW-WALC": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Western Area Power Administration - Desert Southwest Region"
+        },
+        "US-TEN-TVA": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Tennessee Valley Authority"
+        },
+        "US-TEX-ERCO": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Electric Reliability Council Of Texas, Inc."
+        },
         "UY": {
             "zoneName": "Uruguay"
         },
