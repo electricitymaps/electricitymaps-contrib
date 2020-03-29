@@ -208,6 +208,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Hydro, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Other: [ELIA](https://www.eliagroup.eu/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20190411_gri18_elia_en.pdf)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
+- Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):

@@ -640,16 +640,16 @@ const zoneDefinitions = [
   { zoneName: 'US-CAR-YAD', type: 'subZone', countryId: 'USA', id: 'US-CAR-YAD' }, //Alcoa Power Generating, Inc. - Yadkin Division
   { zoneName: 'US-CENT-SPA', type: 'subZone', countryId: 'USA', id: 'US-CENT-SPA' }, //Southwestern Power Administration
   { zoneName: 'US-CENT-SWPP', type: 'subZone', countryId: 'USA', id: 'US-CENT-SWPP' }, //Southwest Power Pool
-  { zoneName: 'US-FLA-FMPP', type: 'subZone', countryId: 'USA', id: 'US-FLA-FMPP', moreDetails: true }, //Florida Municipal Power Pool
-  { zoneName: 'US-FLA-FPC', type: 'subZone', countryId: 'USA', id: 'US-FLA-FPC', moreDetails: true }, //Duke Energy Florida Inc
-  { zoneName: 'US-FLA-FPL', type: 'subZone', countryId: 'USA', id: 'US-FLA-FPL', moreDetails: true }, //Florida Power & Light Company
-  { zoneName: 'US-FLA-GVL', type: 'subZone', countryId: 'USA', id: 'US-FLA-GVL', moreDetails: true }, //Gainesville Regional Utilities
-  { zoneName: 'US-FLA-HST', type: 'subZone', countryId: 'USA', id: 'US-FLA-HST', moreDetails: true }, //City Of Homestead
-  { zoneName: 'US-FLA-JEA', type: 'subZone', countryId: 'USA', id: 'US-FLA-JEA', moreDetails: true }, //Jea
-  { zoneName: 'US-FLA-NSB', type: 'subZone', countryId: 'USA', id: 'US-FLA-NSB', moreDetails: true }, //New Smyrna Beach, Utilities Commission Of
-  { zoneName: 'US-FLA-SEC', type: 'subZone', countryId: 'USA', id: 'US-FLA-SEC', moreDetails: true }, //Seminole Electric Cooperative
-  { zoneName: 'US-FLA-TAL', type: 'subZone', countryId: 'USA', id: 'US-FLA-TAL', moreDetails: true }, //City Of Tallahassee
-  { zoneName: 'US-FLA-TEC', type: 'subZone', countryId: 'USA', id: 'US-FLA-TEC', moreDetails: true }, //Tampa Electric Company
+  { zoneName: 'US-FLA-FMPP', type: 'subZone', countryId: 'USA', id: 'US-FLA-FMPP' }, //Florida Municipal Power Pool
+  { zoneName: 'US-FLA-FPC', type: 'subZone', countryId: 'USA', id: 'US-FLA-FPC' }, //Duke Energy Florida Inc
+  { zoneName: 'US-FLA-FPL', type: 'subZone', countryId: 'USA', id: 'US-FLA-FPL' }, //Florida Power & Light Company
+  { zoneName: 'US-FLA-GVL', type: 'subZone', countryId: 'USA', id: 'US-FLA-GVL' }, //Gainesville Regional Utilities
+  { zoneName: 'US-FLA-HST', type: 'subZone', countryId: 'USA', id: 'US-FLA-HST' }, //City Of Homestead
+  { zoneName: 'US-FLA-JEA', type: 'subZone', countryId: 'USA', id: 'US-FLA-JEA' }, //Jea
+  { zoneName: 'US-FLA-NSB', type: 'subZone', countryId: 'USA', id: 'US-FLA-NSB' }, //New Smyrna Beach, Utilities Commission Of
+  { zoneName: 'US-FLA-SEC', type: 'subZone', countryId: 'USA', id: 'US-FLA-SEC' }, //Seminole Electric Cooperative
+  { zoneName: 'US-FLA-TAL', type: 'subZone', countryId: 'USA', id: 'US-FLA-TAL' }, //City Of Tallahassee
+  { zoneName: 'US-FLA-TEC', type: 'subZone', countryId: 'USA', id: 'US-FLA-TEC' }, //Tampa Electric Company
   { zoneName: 'US-HI-HA', type: 'subZone', id: 'US-HI-HA'}, //Hawaii
   { zoneName: 'US-HI-KA', type: 'subZone', id: 'US-HI-KA'},
   { zoneName: 'US-HI-KH', type: 'subZone', id: 'US-HI-KH', moreDetails: true},
@@ -908,7 +908,7 @@ function getZoneFeatures(zoneDefinitions, geos) {
 }
 
 const webGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos);
-const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USOriginalGeos);
+const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos); //should be changed back to USOriginalGeos
 
 const webZones = getZones(zoneDefinitions, webGeos);
 const backendZones = getZones(zoneDefinitions, backendGeos);

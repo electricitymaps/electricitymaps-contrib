@@ -101,6 +101,10 @@
 
     .zone-name {
         font-size: 0.9rem;
+        margin-right: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .country-name {

@@ -1,6 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import { themes } from '../helpers/themes';
+
 export default class Map {
   _setupMapColor() {
     if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
@@ -105,19 +107,8 @@ export default class Map {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
-    const defaulttheme = {
-      strokeWidth: 0.3,
-      strokeColor: '#FAFAFA',
-      clickableFill: '#D4D9DE',
-      nonClickableFill: '#D4D9DE',
-      oceanColor: '#FAFAFA',
-      co2Scale: {
-        steps: [0, 150, 600, 750],
-        colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
-      },
-    };
 
-    this.theme = argConfig.theme || defaulttheme;
+    this.theme = argConfig.theme || themes.bright;
     this.userIsUsingTouch = false;
 
     this.center = undefined;
