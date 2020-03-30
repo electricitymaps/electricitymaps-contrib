@@ -10,6 +10,7 @@ const d3 = Object.assign(
   require('d3-request'),
 );
 var moment = require('moment');
+const { TIMESCALE } = require('../helpers/constants');
 
 // API
 function protectedJsonRequest(endpoint, path, callback) {
@@ -88,12 +89,18 @@ const fetchGfs = function(endpoint, key, datetime, callback) {
 const fetchNothing = function(callback) {
   return callback(null, null);
 }
-const fetchState = function(endpoint, datetime, callback) {
+const fetchState = function(endpoint, datetime, timescale, callback) {
   var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
+  if (timescale !== TIMESCALE.LIVE) {
+    path += `?timescale=${timescale}_${moment().startOf('month').format('YYYYMM')}`;
+  }
   return protectedJsonRequest(endpoint, path, callback);
 }
-const fetchHistory = function(endpoint, zone_name, callback) {
-  var path = '/v3/history?countryCode=' + zone_name;
+const fetchHistory = function(endpoint, zone_name, timescale, callback) {
+  let path = `/v3/history?countryCode=${zone_name}`;
+  if (timescale !== TIMESCALE.LIVE) {
+    path += `&timescale=${timescale}`;
+  }
   return protectedJsonRequest(endpoint, path, callback);
 }
 

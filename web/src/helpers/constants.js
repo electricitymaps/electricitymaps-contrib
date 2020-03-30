@@ -41,6 +41,11 @@ const PRICES_GRAPH_LAYER_KEY = 'price';
 
 const DEFAULT_FLAG_SIZE = 16;
 
+const TIMESCALE = {
+  LIVE: 'LIVE',
+  MONTHLY: 'MONTHLY',
+};
+
 module.exports = {
   modeColor,
   modeOrder,
@@ -53,4 +58,5 @@ module.exports = {
   MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
   DEFAULT_FLAG_SIZE,
+  TIMESCALE,
 };

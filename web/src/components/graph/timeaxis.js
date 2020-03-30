@@ -1,15 +1,18 @@
 import React from 'react';
-import moment from 'moment';
-import { range } from 'lodash';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 
 import { __ } from '../../helpers/translation';
+
+const moment = extendMoment(Moment);
 
 // If the tick represents a timestamp not more than 15 minutes in the past,
 // render it as "Now", otherwise render as localized time, i.e. "8:30 PM".
 const renderTickValue = v => (
   moment().diff(moment(v), 'minutes') <= 15
     ? __('country-panel.now')
-    : moment(v).format('LT')
+    // : moment(v).format('LT')
+    : moment(v).format('YYYY')
 );
 
 const roundUp = (number, base) => Math.ceil(number / base) * base;
@@ -17,8 +20,13 @@ const roundUp = (number, base) => Math.ceil(number / base) * base;
 // Return `count` timestamp values uniformly distributed within the scale
 // domain, including both ends, rounded up to 15 minutes precision.
 const getTicksValuesFromTimeScale = (scale, count) => {
-  const startTime = scale.domain()[0].valueOf();
-  const endTime = scale.domain()[1].valueOf();
+  // TODO: USE MOMENT RANGE INSTEAD
+  // TODO: Switch to timescale
+  const range = moment.range(
+    moment(scale.domain()[0]).startOf('year').add(1, 'year'),
+    scale.domain()[1]
+  );
+  return Array.from(range.by('year', { step: 1 }));
 
   const precision = moment.duration(15, 'minutes').valueOf();
   const step = (endTime - startTime) / (count - 1);
@@ -44,7 +52,7 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
       {getTicksValuesFromTimeScale(scale, 5).map(v => (
         <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
           <line stroke="currentColor" y2="6" />
-          <text fill="currentColor" y="9" x="5" dy="0.71em">{renderTickValue(v)}</text>
+          <text fill="currentColor" y="9" x="0" dy="0.71em">{renderTickValue(v)}</text>
         </g>
       ))}
     </g>

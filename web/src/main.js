@@ -589,7 +589,7 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate);
+  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate, getState().application.timescale);
 
   const now = getState().application.customDate || new Date();
 
@@ -801,12 +801,12 @@ function routeToPage(pageName, state) {
 }
 
 function tryFetchHistory(state) {
-  const { selectedZoneName } = state.application;
+  const { selectedZoneName, timescale } = state.application;
   if (state.application.customDate) {
     console.error('Can\'t fetch history when a custom date is provided!');
   } else if (!state.data.histories[selectedZoneName]) {
     LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(getEndpoint(), selectedZoneName, (err, obj) => {
+    DataService.fetchHistory(getEndpoint(), selectedZoneName, timescale, (err, obj) => {
       LoadingService.stopLoading('.country-history .loading');
       if (err) { return console.error(err); }
       if (!obj || !obj.data) {
@@ -922,6 +922,11 @@ observe(state => state.data.histories, (histories, state) => {
     tryFetchHistory(state);
   }
 });
+
+// Observe for timescale change
+observe(state => state.application.timescale, () =>
+  // Clear history (which will cause a refetch)
+  dispatch({ type: 'CLEAR_HISTORY_DATA' }));
 
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {

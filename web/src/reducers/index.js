@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import { getKey } from '../helpers/storage';
+import { TIMESCALE } from '../helpers/constants';
 
 import dataReducer from './dataReducer';
 
@@ -38,6 +39,7 @@ const initialApplicationState = {
   legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
+  timescale: TIMESCALE.MONTHLY,
   tooltipData: null,
   tooltipDisplayMode: null,
   tooltipPosition: { x: 0, y: 0 },

@@ -28,7 +28,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-import { LOW_CARBON_INFO_TOOLTIP_KEY } from '../../helpers/constants';
+import { LOW_CARBON_INFO_TOOLTIP_KEY, TIMESCALE } from '../../helpers/constants';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -83,6 +83,7 @@ const mapStateToProps = state => ({
   data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
+  timescale: state.application.timescale,
 });
 const mapDispatchToProps = disp => ({
   dispatchApplication: (k, v) => disp(updateApplication(k, v)),
@@ -100,6 +101,7 @@ class Component extends React.PureComponent {
       data,
       electricityMixMode,
       tableDisplayEmissions,
+      timescale,
     } = this.props;
 
     const { hasParser } = data;
@@ -108,6 +110,10 @@ class Component extends React.PureComponent {
     const co2Intensity = electricityMixMode === 'consumption'
       ? data.co2intensity
       : data.co2intensityProduction;
+
+    const timescaleTranslationKey = timescale === TIMESCALE.MONTHLY
+      ? 'monthly'
+      : '24h';
 
     return (
       <div className="country-panel">
@@ -215,8 +221,8 @@ class Component extends React.PureComponent {
                 <span className="country-history-title">
                   {co2Sub(__(
                     tableDisplayEmissions
-                      ? 'country-history.emissions24h'
-                      : 'country-history.carbonintensity24h'
+                      ? `country-history.emissions${timescaleTranslationKey}`
+                      : `country-history.carbonintensity${timescaleTranslationKey}`
                   ))}
                 </span>
                 <br />
@@ -230,8 +236,8 @@ class Component extends React.PureComponent {
                 <div className="loading overlay" />
                 <span className="country-history-title">
                   {tableDisplayEmissions
-                    ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
-                    : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
+                    ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}${timescaleTranslationKey}`)
+                    : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}${timescaleTranslationKey}`)
                   }
                 </span>
                 <br />
@@ -244,7 +250,7 @@ class Component extends React.PureComponent {
 
                 <div className="loading overlay" />
                 <span className="country-history-title">
-                  {__('country-history.electricityprices24h')}
+                  {__(`country-history.electricityprices${timescaleTranslationKey}`)}
                 </span>
 
                 <CountryHistoryPricesGraph />

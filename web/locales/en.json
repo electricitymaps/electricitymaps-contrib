@@ -57,6 +57,15 @@
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityproduction24h": "Electricity production in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
+
+        "carbonintensitymonthly": "Carbon intensity in the last 10 years",
+        "emissionsmonthly": "Emissions in the last 10 years",
+        "emissionsoriginmonthly": "Origin of emissions in the last 10 years",
+        "emissionsproductionmonthly": "Emissions produced in the last 10 years",
+        "electricityoriginmonthly": "Origin of electricity in the last 10 years",
+        "electricityproductionmonthly": "Electricity production in the last 10 years",
+        "electricitypricesmonthly": "Electricity prices in the last 10 years",
+
         "Getdata": "Get historical data, marginal and forecast API"
     },
     "footer": {
