@@ -26,7 +26,7 @@ const views = [{
   renderContent: () => (
     <React.Fragment>
       <div>
-        <h2>{co2Sub(__('onboarding-modal.view2.header'))}</h2>
+        <h2 dangerouslySetInnerHTML={{ __html: co2Sub(__('onboarding-modal.view2.header')) }} />
       </div>
       <div>{__('onboarding-modal.view2.text')}</div>
     </React.Fragment>
