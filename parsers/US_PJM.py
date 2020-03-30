@@ -353,6 +353,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     if sortedcodes == 'US-NY->US-PJM':
         flows = combine_NY_exchanges()
+    elif sortedcodes == 'US-MIDA-PJM->US-NY-NYIS':
+        flows = combine_NY_exchanges()
+        flows = [(-total, dt) for total,dt in flows]
     elif sortedcodes == 'US-MISO->US-PJM':
         flow = get_miso_exchange()
         exchange = {
@@ -362,7 +365,15 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             'source': 'pjm.com'
         }
         return exchange
-
+    elif sortedcodes == 'US-MIDA-PJM->US-MIDW-MISO':
+        flow = get_miso_exchange()
+        exchange = {
+            'sortedZoneKeys': sortedcodes,
+            'datetime': flow[1],
+            'netFlow': -flow[0],
+            'source': 'pjm.com'
+        }
+        return exchange
     else:
         raise NotImplementedError('This exchange pair is not implemented')
 

@@ -199,7 +199,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     s = session or requests.Session()
 
-    if sorted_zone_keys == 'MX-BC->US-CA':
+    if sorted_zone_keys == 'MX-BC->US-CA' or sorted_zone_keys == 'MX-BC->US-CAL-CISO':
         netflow = fetch_MX_exchange(s)
         exchange = {
           'sortedZoneKeys': sorted_zone_keys,
