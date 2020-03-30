@@ -19,8 +19,15 @@ import {
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
+import { dispatchApplication } from '../store';
 
+import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
+import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import AreaGraph from './graph/areagraph';
+
+// If in mobile mode, put the tooltip to the top of the screen for
+// readability, otherwise float it depending on the cursor position.
+const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const getValuesInfo = (historyData, displayByEmissions) => {
   const maxTotalValue = d3Max(historyData, d => (
@@ -76,7 +83,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
       });
     }
     // Keep a pointer to original data
-    obj._countryData = d;
+    obj.meta = d;
     return obj;
   });
 
@@ -86,7 +93,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
-      return d => co2ColorScale((d.data._countryData.exchangeCo2Intensities || {})[key]);
+      return d => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
     return modeColor[key];
@@ -123,6 +130,7 @@ const CountryHistoryMixGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -137,34 +145,73 @@ const CountryHistoryMixGraph = ({
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
-  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+    },
+    []
+  );
+  const backgroundMouseOutHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+    },
+    []
+  );
   const layerMouseMoveHandler = useMemo(
-    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
+    () => (timeIndex, layerIndex, getLayer, ev) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(layerIndex);
+      setTooltip({
+        mode: getLayer(layerIndex).key,
+        position: getTooltipPosition(isMobile, ev),
+        zoneData: getLayer(layerIndex).datapoints[timeIndex].data.meta,
+      });
+    },
+    [isMobile, setTooltip, setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
-    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
-    [setSelectedLayerIndex]
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+      setTooltip(null);
+    },
+    [setTooltip, setSelectedLayerIndex]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerFill={layerFill}
-      startTime={startTime}
-      endTime={endTime}
-      valueAxisLabel={valueAxisLabel}
-      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-      backgroundMouseOutHandler={backgroundMouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-      height="10em"
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerFill={layerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel={valueAxisLabel}
+        backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+        backgroundMouseOutHandler={backgroundMouseOutHandler}
+        layerMouseMoveHandler={layerMouseMoveHandler}
+        layerMouseOutHandler={layerMouseOutHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="10em"
+      />
+      {tooltip && (
+        exchangeKeys.includes(tooltip.mode) ? (
+          <CountryPanelExchangeTooltip
+            exchangeKey={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        ) : (
+          <CountryPanelProductionTooltip
+            mode={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        )
+      )}
+    </React.Fragment>
   );
 };
 
