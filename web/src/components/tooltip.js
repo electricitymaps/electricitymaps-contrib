@@ -1,13 +1,8 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
 
 import { useWidthObserver, useHeightObserver } from '../effects';
 
 const MARGIN = 16;
-
-const mapStateToProps = state => ({
-  // position: state.application.tooltipPosition,
-});
 
 const Tooltip = ({ id, children, position }) => {
   const ref = useRef(null);
@@ -51,4 +46,4 @@ const Tooltip = ({ id, children, position }) => {
   );
 };
 
-export default connect(mapStateToProps)(Tooltip);
+export default Tooltip;
