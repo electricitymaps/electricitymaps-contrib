@@ -6,7 +6,7 @@ import { useWidthObserver, useHeightObserver } from '../effects';
 const MARGIN = 16;
 
 const mapStateToProps = state => ({
-  position: state.application.tooltipPosition,
+  // position: state.application.tooltipPosition,
 });
 
 const Tooltip = ({ id, children, position }) => {
