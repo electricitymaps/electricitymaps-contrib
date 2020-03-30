@@ -77,7 +77,7 @@ jobs:
           name: Start environment
           command: |
             set -euo pipefail
-            docker-compose up -d
+            docker-compose up -d web mockserver
             sleep 20
             docker-compose logs web
       - run:
