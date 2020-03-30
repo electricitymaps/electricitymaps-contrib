@@ -88,7 +88,7 @@
         "hideSolarLayer": "Hide solar layer",
         "toggleDarkMode": "Toggle dark-mode",
         "noParserInfo": "No data available",
-        "temporaryDataOutage": "Data temporarily unavailable",
+        "temporaryDataOutage": "Live data temporarily unavailable",
         "production": "production",
         "consumption": "consumption",
         "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
