@@ -103,8 +103,9 @@
             margin-bottom: 1.2em;
         }
     }
+
     path {
-        /*shape-rendering: crispEdges;*/
+        transition: all 0.5s ease;
     }
     .vertical-line {
         stroke: lightgray;
