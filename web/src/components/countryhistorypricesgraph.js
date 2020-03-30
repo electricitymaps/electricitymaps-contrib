@@ -13,12 +13,6 @@ import {
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
-import {
-  createSingleLayerGraphBackgroundMouseMoveHandler,
-  createSingleLayerGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';

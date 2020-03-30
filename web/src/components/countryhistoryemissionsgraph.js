@@ -11,12 +11,6 @@ import {
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
-import {
-  createSingleLayerGraphBackgroundMouseMoveHandler,
-  createSingleLayerGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';

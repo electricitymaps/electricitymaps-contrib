@@ -13,12 +13,6 @@ import {
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
-import {
-  createGraphBackgroundMouseMoveHandler,
-  createGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';

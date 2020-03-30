@@ -9,12 +9,6 @@ import {
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
-import {
-  createSingleLayerGraphBackgroundMouseMoveHandler,
-  createSingleLayerGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
