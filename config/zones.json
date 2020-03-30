@@ -2386,6 +2386,22 @@
     },
     "timezone": null
   },
+  "IN-MH": {
+    "bounding_box": [
+      [72.799410, 15.613079],
+      [80.661984, 22.105644]
+    ],
+    "contributors": [
+      "https://github.com/GitMatze",
+      "https://github.com/alixunderplatz",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_MH.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IN-PB": {
     "bounding_box": [
       [
