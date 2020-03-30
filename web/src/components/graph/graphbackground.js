@@ -26,7 +26,7 @@ const GraphBackground = React.memo(({
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex, layers, ev, svgRef);
+      mouseMoveHandler(timeIndex, null, index => layers[index], ev);
     }
   };
   const handleRectMouseOut = () => {

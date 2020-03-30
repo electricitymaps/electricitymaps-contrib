@@ -15,7 +15,7 @@ export function createGraphBackgroundMouseOutHandler() {
   };
 }
 
-function setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef) {
+function setLayerTooltip(isMobile, timeIndex, layer, ev) {
   if (layer.datapoints[timeIndex]) {
     dispatch({
       type: 'SHOW_TOOLTIP',
@@ -25,7 +25,7 @@ function setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef) {
         // If in mobile mode, put the tooltip to the top of the screen for
         // readability, otherwise float it depending on the cursor position.
         position: !isMobile
-          ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
+          ? { x: ev.clientX - 7, y: ev.clientY - 7 }
           : { x: 0, y: 0 },
       },
     });
@@ -33,11 +33,11 @@ function setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef) {
 }
 
 export function createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex) {
-  return (timeIndex, layerIndex, layer, ev, svgRef) => {
+  return (timeIndex, layerIndex, getLayer, ev) => {
     if (setSelectedLayerIndex) {
       setSelectedLayerIndex(layerIndex);
     }
-    setLayerTooltip(isMobile, timeIndex, layer, ev, svgRef);
+    setLayerTooltip(isMobile, timeIndex, getLayer(layerIndex), ev);
     dispatchApplication('selectedZoneTimeIndex', timeIndex);
   };
 }
@@ -59,11 +59,11 @@ export function createGraphLayerMouseOutHandler(setSelectedLayerIndex) {
 //
 
 export function createSingleLayerGraphBackgroundMouseMoveHandler(isMobile, setSelectedLayerIndex) {
-  return (timeIndex, layers, ev, svgRef) => {
+  return (timeIndex, layerIndex, getLayer, ev) => {
     if (setSelectedLayerIndex) {
       setSelectedLayerIndex(0);
     }
-    setLayerTooltip(isMobile, timeIndex, layers[0], ev, svgRef);
+    setLayerTooltip(isMobile, timeIndex, getLayer(0), ev);
     dispatchApplication('selectedZoneTimeIndex', timeIndex);
   };
 }

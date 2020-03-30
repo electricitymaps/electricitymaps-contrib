@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { first } from 'lodash';
 
 import { PRICES_GRAPH_LAYER_KEY } from '../helpers/constants';
+import { dispatchApplication } from '../store';
 import {
   getSelectedZoneHistory,
   getZoneHistoryStartTime,
@@ -20,6 +21,11 @@ import {
 } from '../helpers/history';
 
 import AreaGraph from './graph/areagraph';
+import PriceTooltip from './tooltips/pricetooltip';
+
+// If in mobile mode, put the tooltip to the top of the screen for
+// readability, otherwise float it depending on the cursor position.
+const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
@@ -73,6 +79,7 @@ const CountryHistoryPricesGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -89,42 +96,53 @@ const CountryHistoryPricesGraph = ({
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
+  const mouseMoveHandler = useMemo(
+    () => (timeIndex, layerIndex, getLayer, ev) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(0);
+      setTooltip({
+        zoneData: getLayer(0).datapoints[timeIndex].data._countryData,
+        position: getTooltipPosition(isMobile, ev),
+      });
+    },
+    [isMobile, setTooltip, setSelectedLayerIndex]
   );
-  const backgroundMouseOutHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseOutHandler(setSelectedLayerIndex),
-    [setSelectedLayerIndex]
-  );
-  const layerMouseMoveHandler = useMemo(
-    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
-  );
-  const layerMouseOutHandler = useMemo(
-    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
-    [setSelectedLayerIndex]
+  const mouseOutHandler = useMemo(
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+      setTooltip(null);
+    },
+    [setTooltip, setSelectedLayerIndex]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerStroke={layerStroke}
-      layerFill={layerFill}
-      markerFill={markerFill}
-      startTime={startTime}
-      endTime={endTime}
-      valueAxisLabel={valueAxisLabel}
-      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-      backgroundMouseOutHandler={backgroundMouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-      height="6em"
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerStroke={layerStroke}
+        layerFill={layerFill}
+        markerFill={markerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel={valueAxisLabel}
+        backgroundMouseMoveHandler={mouseMoveHandler}
+        backgroundMouseOutHandler={mouseOutHandler}
+        layerMouseMoveHandler={mouseMoveHandler}
+        layerMouseOutHandler={mouseOutHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="6em"
+      />
+      {tooltip && (
+        <PriceTooltip
+          position={tooltip.position}
+          zoneData={tooltip.zoneData}
+        />
+      )}
+    </React.Fragment>
   );
 };
 

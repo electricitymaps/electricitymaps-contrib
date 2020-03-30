@@ -34,7 +34,7 @@ const AreaGraphLayers = React.memo(({
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
+      mouseMoveHandler(timeIndex, layerIndex, index => layers[index], ev);
     }
   };
   const handleLayerMouseOut = () => {
