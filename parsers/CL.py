@@ -3,6 +3,7 @@
 """Parser for the electricity grid of Chile"""
 
 import arrow
+import pandas as pd
 import logging
 import requests
 from collections import defaultdict
@@ -22,14 +23,10 @@ def timestamp_creator(date, hour):
 
     arr_date = arrow.get(date, "YYYY-MM-DD")
 
-    # NOTE in the data source each day starts on hour 1 and ends on 24!
-
-    if hour == 24:
-        arr_dt = arr_date.shift(days=+1)
-    else:
-        arr_dt = arr_date.replace(hour=hour)
-
-    dt = arr_dt.replace(tzinfo='Chile/Continental').datetime
+    hour -= 1
+    dt = pd.to_datetime(date, format='%Y-%m-%d').tz_localize('Chile/Continental')
+    dt = dt + pd.DateOffset(hours=hour)
+    dt = dt.tz_convert('UTC')
 
     return dt
 
@@ -94,10 +91,12 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
     """
 
     if target_datetime is None:
-        raise NotImplementedError('This parser is not yet able to parse real-time data, please specify a historical '
-                                  'date in YYYYMMDD format.')
-
-    arr_target_datetime = arrow.get(target_datetime, "YYYYMMDD")
+        target_datetime=arrow.now(tz='Chile/Continental')
+        logger.warning('The real-time data collected by the parser is incomplete for the latest datapoints/hours,'
+                       'so the last 3 datapoints were omitted.'
+                       'If desired, please specify a historical date in YYYYMMDD format.')
+    
+    arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
 
@@ -128,10 +127,12 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
         data.append(datapoint)
 
-    return data
-
+    return data[:-9]
+    """The last 9 datapoints should be omitted because they usually are incomplete and shouldn't appear on the map."""
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print('fetch_production() ->')
-    print(fetch_production(target_datetime="20190810"))
+    print(fetch_production())
+    # For fetching historical data instead, try:
+    ##print(fetch_procution(target_datetime=arrow.get("20200220", "YYYYMMDD"))

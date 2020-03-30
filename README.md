@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 You can [contribute](#contribute) by
 - **[helping us to add a new region on the map](#adding-a-new-region)**
-- correcting [data sources](#data-sources) and [capacities](#updating-country-capacities)
+- correcting [data sources](#data-sources) and [capacities](#updating-region-capacities)
 - [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
 - fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
 - submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
@@ -19,6 +19,11 @@ You can also see a list of missing data displayed as warnings in the developer c
 
 Check the [contributing](#contribute) section for more details.
 Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
+
+## Tomorrow is hiring!
+The company behind the electricityMap builds tech to empower organisations and individuals to understand and reduce their carbon footprint.
+
+We're hiring great people to join our team in Copenhagen. Head over to [our jobs page](https://www.tmrow.com/jobs) if you want to help out!
 
 ## Frequently asked questions
 
@@ -64,7 +69,7 @@ Each country has a CO<sub>2</sub> mass flow that depends on neighbouring countri
 
 
 ### Real-time electricity data sources
-Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers)
+Real-time electricity data is obtained using [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
@@ -81,11 +86,11 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
 - Belgium: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Brazil: [ONS](http://www.ons.org.br/pt/paginas/energia-agora/carga-e-geracao)
+- Brazil: [ONS](http://www.ons.org.br/paginas/energia-agora/carga-e-geracao)
 - Bulgaria: [TSO](http://tso.bg/default.aspx/page-707/bg)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet)
 - Canada (New Brunswick): [NB Power](https://tso.nbpower.com/Public/en/op/market/data.aspx)
-- Canada (Nova Scotia): [Nova Scotia Power](http://www.nspower.ca/en/home/about-us/todayspower.aspx)
+- Canada (Nova Scotia): [Nova Scotia Power](https://www.nspower.ca/clean-energy/todays-energy-stats)
 - Canada (Ontario): [IESO](http://www.ieso.ca/power-data)
 - Canada (Prince Edward Island): [Government of PEI](https://www.princeedwardisland.ca/en/feature/pei-wind-energy/)
 - Canada (Yukon): [Yukon Energy](http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption)
@@ -107,10 +112,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Guatemala : [AMM](http://www.amm.org.gt)
+- Guatemala: [AMM](http://www.amm.org.gt)
+- Honduras: [ENTE](https://www.enteoperador.org/flujos-regionales-en-tiempo-real/)
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Iceland: [LANDSNET](http://amper.landsnet.is/MapData/api/measurements)
+- Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)  
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
@@ -134,6 +141,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
 - Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
+- Kuwait: [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)  
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
@@ -180,13 +188,13 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - Southwest Variable Energy Resource Initiative: [SVERI](https://sveri.energy.arizona.edu/#generation-by-fuel-type)
   - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)
   - Seminole Electric Cooperative (Florida): [EIA](https://www.eia.gov/opendata/qb.php?category=2122629&sdid=EBA.SEC-ALL.NG.H), [SEC](https://www.seminole-electric.com/facilities/generation/)
-- Uruguay: [UTE](http://www.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
+- Uruguay: [UTE](https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx)
 &nbsp;</details>
 
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
-- Argentina: [Cammesa](http://portalweb.cammesa.com/Documentos%20compartidos/Noticias/Informe%20Anual%202016.pdf)
+- Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
    - Biomass, Hydro, Solar, Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ARM)
    - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
@@ -200,6 +208,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Hydro, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Other: [ELIA](https://www.eliagroup.eu/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20190411_gri18_elia_en.pdf)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
+- Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
 - Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
@@ -213,6 +222,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
+- Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2): [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (Bornholm)
@@ -226,12 +236,13 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
 - Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- France: [RTE](https://bilan-electrique-2018.rte-france.com/production-totale/)
+- France: [RTE](https://bilan-electrique-2019.rte-france.com/production-totale)
 - Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst.htm?year=2018&period=annual&type=power_inst)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
+- Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
 - Hungary
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=HUN)
   - Other[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -239,12 +250,17 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Ireland
   - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Biomass, Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=IRL)
+- Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)  
 - Italy
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - India: [mercomindia](https://mercomindia.com/solar-indias-installed-power-capacity/)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
+- India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
+- Kuwait 
+  - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
+  - Solar & wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=KWT)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
@@ -254,14 +270,20 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Namibia
   - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
   - Hydro, solar & wind: [African Energy](https://www.africa-energy.com/database)
+- Nepal
+  -List of PowerStations:[PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
+  - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
 - Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
-  - Hydro: [NVE](https://www.nve.no/energiforsyning-og-konsesjon/vannkraft/vannkraftdatabase/)
-  - Wind: [NVE](https://www.nve.no/energiforsyning-og-konsesjon/vindkraft/utbygde-vindkraftverk/)
+  - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
+  - Wind: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vindkraft/vindkraftdata/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Northern Ireland: [EIR Grid](http://www.eirgridgroup.com/site-files/library/EirGrid/Generation_Capacity_Statement_20162025_FINAL.pdf)
-- Poland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
+- Poland  
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1237695748147462144)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -269,14 +291,14 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Russia: [Minenergo](https://minenergo.gov.ru/node/532)
-- Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Singapore
   - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
   - Other: [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - South Korea: [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
-- Spain:
+- Spain:[REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
   - Hydro: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ESP)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=false&viewType=TABLE&areaType=BZN&atch=false&dateTime.dateTime=01.01.2017+00:00|UTC|YEAR&dateTime.endDateTime=01.01.2017+00:00|UTC|YEAR&area.values=CTY|10YES-REE------0!BZN|10YES-REE------0&productionType.values=B01&productionType.values=B02&productionType.values=B03&productionType.values=B04&productionType.values=B05&productionType.values=B06&productionType.values=B07&productionType.values=B08&productionType.values=B09&productionType.values=B10&productionType.values=B11&productionType.values=B12&productionType.values=B13&productionType.values=B14&productionType.values=B20&productionType.values=B15&productionType.values=B16&productionType.values=B17&productionType.values=B18&productionType.values=B19)
 - Spain (Canary Islands)
@@ -288,21 +310,26 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Sweden
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Switzerland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Switzerland
+  - Solar: [IREAN](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2019/Mar/IRENA_RE_Capacity_Statistics_2019.pdf)
+  - Nuclear: [BKW](https://www.bkw.ch/fr/le-groupe-bkw/notre-infrastructure/centrale-nucleaire-de-muehleberg/desaffectation/lapercu/#Home)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [TEİAŞ](https://www.teias.gov.tr/)
-- Ukraine: [wikipedia.org](https://uk.wikipedia.org/wiki/%D0%95%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B5%D0%BD%D0%B5%D1%80%D0%B3%D0%B5%D1%82%D0%B8%D0%BA%D0%B0_%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8)
+- Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
+    - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
   - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
-  - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2017.ashx?la=en)
+  - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
+- Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
 &nbsp;</details>
 
 ### Cross-border transmission capacity data sources
@@ -311,26 +338,30 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
-- Denmark (West) ⇄ Norway: [“Skaggerak”: 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
+- Denmark (West) ⇄ Norway: ["Skaggerak": 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
 - Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
 - Denmark (West) ⇄ Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
-- Estonia ⇄ Finnland: [“Estlink 1&2”: 1000 MW](https://en.wikipedia.org/wiki/Estlink)
-- Germany ⇄ Sweden: [“Baltic Cable”: 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
+- Denmark (West) ⇄ Netherlands: ["COBRAcable": 700 MW](https://en.wikipedia.org/wiki/COBRAcable)
+- Estonia ⇄ Finnland: ["Estlink 1&2": 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- Germany ⇄ Sweden: ["Baltic Cable": 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
 - Great Britain ⇄ Belgium: ["Nemo Link": 1000 MW](https://en.wikipedia.org/wiki/Nemo_Link)
-- Great Britain ⇄ North Ireland: [“Moyle”: 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
-- Great Britain ⇄ Ireland: [“East-West Interconnector”: 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
-- Great Britain ⇄ France: [“Cross-Channel”: 2000 MW](https://en.wikipedia.org/wiki/NorNed)
+- Great Britain ⇄ North Ireland: ["Moyle": 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
+- Great Britain ⇄ Ireland: ["East-West Interconnector": 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
+- Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/NorNed)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
-- Lithuania ⇄ Sweden: [“NordBalt”: 700 MW](https://en.wikipedia.org/wiki/NordBalt)
-- Lithuania ⇄ Poland: [“LitPol Link”: 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
-- Norway ⇄ Netherlands: [“NorNed”: 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
+- Lithuania ⇄ Sweden: ["NordBalt": 700 MW](https://en.wikipedia.org/wiki/NordBalt)
+- Lithuania ⇄ Poland: ["LitPol Link": 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- Malta ⇄ Italy Sicily: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
+- Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
+- Norway ⇄ Netherlands: ["NorNed": 700 MW](https://en.wikipedia.org/wiki/NorNed)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
-- Malta ⇄ Italy: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
 - Russia ⇉ Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](https://en.wikipedia.org/wiki/Cometa_(HVDC))
-- Sweden ⇄ Poland: [“SwePol”: 600 MW](https://en.wikipedia.org/wiki/SwePol)
+- Sweden ⇄ Poland: ["SwePol": 600 MW](https://en.wikipedia.org/wiki/SwePol)
+- Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)
 
 A ⇄ B: bidirectional operation, with power flow either "from A to B" or "from B to A"
 
@@ -369,18 +400,16 @@ To get started, [clone](https://help.github.com/articles/cloning-a-repository/) 
 
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
-docker-compose run --rm web npm run watch
-```
-This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed. For the next steps you will need to open a new terminal while this command keeps running.
-
-If you encounter any errors in the build process try the following command first:
-```
 docker-compose build
 ```
-Now that the frontend is compiled, you can run the application by running the following command in a new terminal:
+One you are done, you can start the application by running
 ```
-docker-compose up --build
+docker-compose up
 ```
+
+This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed.
+Note this only builds for the English language (which will be faster as not all languages need to be built).
+If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
 

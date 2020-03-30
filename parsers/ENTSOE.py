@@ -158,7 +158,10 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'DK-DK2->SE': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
-    'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
+    'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'],
+                  ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
+    'IT-CSO->ME': [ENTSOE_DOMAIN_MAPPINGS['IT'],
+                   ENTSOE_DOMAIN_MAPPINGS['ME']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'],
@@ -404,7 +407,11 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
-    params['securityToken'] = os.environ['ENTSOE_TOKEN']
+        
+    # Due to rate limiting, we need to spread our requests across different tokens
+    tokens = os.environ['ENTSOE_TOKEN'].split(',')
+    
+    params['securityToken'] = np.random.choice(tokens)
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 

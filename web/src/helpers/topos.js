@@ -1,5 +1,5 @@
-const topo = require('../world.json');
 const topojson = require('topojson');
+const topo = require('../world.json');
 
 const constructTopos = () => {
   const zones = {};

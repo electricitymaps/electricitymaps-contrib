@@ -72,7 +72,7 @@ module.exports = (state = initialDataState, action) => {
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
-        const zone = newGrid.zones[key];
+        const zone = Object.assign({}, newGrid.zones[key]);
         zone.co2intensity = undefined;
         zone.exchange = {};
         zone.production = {};
@@ -82,6 +82,7 @@ module.exports = (state = initialDataState, action) => {
         zone.dischargeCo2IntensitySources = {};
         zone.storage = {};
         zone.source = undefined;
+        newGrid.zones[key] = zone;
       });
       Object.keys(newGrid.exchanges).forEach((key) => {
         newGrid.exchanges[key].netFlow = undefined;
@@ -115,9 +116,9 @@ module.exports = (state = initialDataState, action) => {
             console.warn(`${key} has negative production of ${mode}`);
           }
           // Check load factors > 1
-          if (zone.production[mode] !== undefined &&
-            (zone.capacity || {})[mode] !== undefined &&
-            zone.production[mode] > zone.capacity[mode]) {
+          if (zone.production[mode] !== undefined
+            && (zone.capacity || {})[mode] !== undefined
+            && zone.production[mode] > zone.capacity[mode]) {
             console.warn(`${key} produces more than its capacity of ${mode}`);
           }
         });
@@ -152,11 +153,11 @@ module.exports = (state = initialDataState, action) => {
 
       const zoneHistory = action.payload.map((observation) => {
         const ret = Object.assign({}, observation);
-        
+
         ret.hasParser = true;
         if (observation.exchange && Object.keys(observation.exchange).length
           && (!observation.production || !Object.keys(observation.production).length)) {
-              // Exchange information is not shown in history observations without production data, as the percentages are incorrect
+          // Exchange information is not shown in history observations without production data, as the percentages are incorrect
           ret.exchange = {};
         }
 

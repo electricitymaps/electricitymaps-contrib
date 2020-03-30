@@ -92,7 +92,8 @@
         "production": "Produktion",
         "consumption": "Verbrauch",
         "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
-        "selectLanguage": "Sprache auswählen"
+        "selectLanguage": "Sprache auswählen",
+        "lowCarbDescription": "Beinhaltet regenerative Energie and Atomkraft"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
@@ -116,14 +117,14 @@
     "coal": "Kohle",
     "oil": "Öl",
     "unknown": "unbekannt",
-    "electricityComesFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "emissionsComeFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "electricityStoredUsing": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-    "emissionsStoredUsing": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-    "electricityExportedTo": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-    "emissionsExportedTo": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-    "electricityImportedFrom": "%1$s %% der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-    "emissionsImportedFrom": "%1$s %% der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+    "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "emissionsExportedTo": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+    "emissionsImportedFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
     "ofCO2eqPerMinute": "CO2äq pro Minute",
     "theMap": {
         "groupName": "Die Karte",
@@ -899,8 +900,7 @@
             "zoneName": "Marshallinseln"
         },
         "MK": {
-            "zoneName": "Mazedonien",
-            "countryName": "Republik Mazedonien"
+            "zoneName": "Nordmazedonien"
         },
         "ML": {
             "zoneName": "Mali"

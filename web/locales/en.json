@@ -17,7 +17,7 @@
         },
         "view2": {
             "header": "See how much CO2 is emitted to produce your electricity, in real-time.",
-            "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
+            "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. The greener the color, the more climate-friendly the electricity."
         },
         "view3": {
             "header": "Know where your electricity comes from",
@@ -51,6 +51,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "emissions24h": "Emissions in the last 24 hours",
         "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "emissionsproduction24h": "Emissions produced in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
@@ -91,7 +92,8 @@
         "production": "production",
         "consumption": "consumption",
         "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-        "selectLanguage": "Select language"
+        "selectLanguage": "Select language",
+        "lowCarbDescription": "Includes renewables and nuclear"
     },
     "misc": {
         "maintitle": "Live CO2 emissions of electricity consumption",
@@ -116,27 +118,27 @@
     "oil": "oil",
     "unknown": "unknown",
 
-    "electricityComesFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
-    "emissionsComeFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
-    "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-    "emissionsStoredUsing": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+    "electricityComesFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
 
-    "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "of CO2eq per minute",
     "theMap": {
         "groupName": "The map",
         "mapColors-question": "What do the colors on the map mean?",
-        "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Greener colours means more climate friendly electricity consumption.",
+        "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
         "mapArrows-question": "What do the arrows between areas on the map indicate?",
         "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
         "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
-        "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunsine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells also is dependent on many other factors.",
+        "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
         "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
-        "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
+        "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
         "mapColorBlind-question": "I am color blind. How can I read your map?",
         "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
     },
@@ -156,21 +158,21 @@
         "carbonIntensity-question": "What is \"carbon intensity\"?",
         "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO2eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO2 and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
         "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
-        "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas and then import the electricity from those areas.",
+        "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas, and then importing the electricity from those areas.",
         "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
-        "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine,  and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
+        "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
         "importsAndExports-question": "Do you take into account imports and exports of electricity?",
         "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
         "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
         "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
         "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
-        "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based, physical picture of the power grid, in order to empower consumers.",
+        "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
         "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
         "otherSources-answer": "This would be outside of the scope of this project. However, at Tomorrow we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
         "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
-        "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
+        "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
         "emissionsPerCapita-question": "Why don't you show emissions per capita?",
-        "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used in for manufacturing of physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, is driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+        "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
     },
     "data": {
         "groupName": "Our data",
@@ -988,8 +990,7 @@
             "zoneName": "Marshall Islands"
           },
           "MK": {
-            "countryName": "Rep. of Macedonia",
-            "zoneName": "FYROM"
+            "zoneName": "North Macedonia"
           },
           "ML": {
             "zoneName": "Mali"
@@ -1454,6 +1455,274 @@
           "US-TX": {
             "countryName": "United States of America",
             "zoneName": "ERCOT"
+          },
+          "US-CAL-BANC": {
+            "countryName": "United States of America",
+            "zoneName": "Balancing Authority Of Northern California"
+          },
+          "US-CAL-CISO": {
+            "countryName": "United States of America",
+            "zoneName": "California Independent System Operator"
+          },
+          "US-CAL-IID": {
+            "countryName": "United States of America",
+            "zoneName": "Imperial Irrigation District"
+          },
+          "US-CAL-LDWP": {
+            "countryName": "United States of America",
+            "zoneName": "Los Angeles Department Of Water And Power"
+          },
+          "US-CAL-TIDC": {
+            "countryName": "United States of America",
+            "zoneName": "Turlock Irrigation District"
+          },
+          "US-CAR-CPLE": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Progress East"
+          },
+          "US-CAR-CPLW": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Progress West"
+          },
+          "US-CAR-DUK": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Carolinas"
+          },
+          "US-CAR-SC": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina Public Service Authority"
+          },
+          "US-CAR-SCEG": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina Electric & Gas Company"
+          },
+          "US-CAR-YAD": {
+            "countryName": "United States of America",
+            "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+          },
+          "US-CENT-SPA": {
+            "countryName": "United States of America",
+            "zoneName": "Southwestern Power Administration"
+          },
+          "US-CENT-SWPP": {
+            "countryName": "United States of America",
+            "zoneName": "Southwest Power Pool"
+          },
+          "US-FLA-FMPP": {
+            "countryName": "United States of America",
+            "zoneName": "Florida Municipal Power Pool"
+          },
+          "US-FLA-FPC": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Florida Inc"
+          },
+          "US-FLA-FPL": {
+            "countryName": "United States of America",
+            "zoneName": "Florida Power & Light Company"
+          },
+          "US-FLA-GVL": {
+            "countryName": "United States of America",
+            "zoneName": "Gainesville Regional Utilities"
+          },
+          "US-FLA-HST": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Homestead"
+          },
+          "US-FLA-JEA": {
+            "countryName": "United States of America",
+            "zoneName": "JEA"
+          },
+          "US-FLA-NSB": {
+            "countryName": "United States of America",
+            "zoneName": "Utilities Commission Of New Smyrna Beach"
+          },
+          "US-FLA-SEC": {
+            "countryName": "United States of America",
+            "zoneName": "Seminole Electric Cooperative"
+          },
+          "US-FLA-TAL": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Tallahassee"
+          },
+          "US-FLA-TEC": {
+            "countryName": "United States of America",
+            "zoneName": "Tampa Electric Company"
+          },
+          "US-MIDA-OVEC": {
+            "countryName": "United States of America",
+            "zoneName": "Ohio Valley Electric Corporation"
+          },
+          "US-MIDA-PJM": {
+            "countryName": "United States of America",
+            "zoneName": "PJM Interconnection, Llc"
+          },
+          "US-MIDW-AECI": {
+            "countryName": "United States of America",
+            "zoneName": "Associated Electric Cooperative, Inc."
+          },
+          "US-MIDW-EEI": {
+            "countryName": "United States of America",
+            "zoneName": "Electric Energy, Inc."
+          },
+          "US-MIDW-LGEE": {
+            "countryName": "United States of America",
+            "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+          },
+          "US-MIDW-MISO": {
+            "countryName": "United States of America",
+            "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+          },
+          "US-NE-ISNE": {
+            "countryName": "United States of America",
+            "zoneName": "Iso New England Inc."
+          },
+          "US-NW-AVA": {
+            "countryName": "United States of America",
+            "zoneName": "Avista Corporation"
+          },
+          "US-NW-AVRN": {
+            "countryName": "United States of America",
+            "zoneName": "Avangrid Renewables Cooperative"
+          },
+          "US-NW-BPAT": {
+            "countryName": "United States of America",
+            "zoneName": "Bonneville Power Administration"
+          },
+          "US-NW-CHPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 1 Of Chelan County"
+          },
+          "US-NW-DOPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 1 Of Douglas County"
+          },
+          "US-NW-GCPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 2 Of Grant County, Washington"
+          },
+          "US-NW-GRID": {
+            "countryName": "United States of America",
+            "zoneName": "Gridforce Energy Management, Llc"
+          },
+          "US-NW-GWA": {
+            "countryName": "United States of America",
+            "zoneName": "Naturener Power Watch, Llc (Gwa)"
+          },
+          "US-NW-IPCO": {
+            "countryName": "United States of America",
+            "zoneName": "Idaho Power Company"
+          },
+          "US-NW-NEVP": {
+            "countryName": "United States of America",
+            "zoneName": "Nevada Power Company"
+          },
+          "US-NW-NWMT": {
+            "countryName": "United States of America",
+            "zoneName": "Northwestern Energy"
+          },
+          "US-NW-PACE": {
+            "countryName": "United States of America",
+            "zoneName": "Pacificorp East"
+          },
+          "US-NW-PACW": {
+            "countryName": "United States of America",
+            "zoneName": "Pacificorp West"
+          },
+          "US-NW-PGE": {
+            "countryName": "United States of America",
+            "zoneName": "Portland General Electric Company"
+          },
+          "US-NW-PSCO": {
+            "countryName": "United States of America",
+            "zoneName": "Public Service Company Of Colorado"
+          },
+          "US-NW-PSEI": {
+            "countryName": "United States of America",
+            "zoneName": "Puget Sound Energy"
+          },
+          "US-NW-SCL": {
+            "countryName": "United States of America",
+            "zoneName": "Seattle City Light"
+          },
+          "US-NW-TPWR": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+          },
+          "US-NW-WACM": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+          },
+          "US-NW-WAUW": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration UGP West"
+          },
+          "US-NW-WWA": {
+            "countryName": "United States of America",
+            "zoneName": "Naturener Wind Watch, Llc"
+          },
+          "US-NY-NYIS": {
+            "countryName": "United States of America",
+            "zoneName": "New York Independent System Operator"
+          },
+          "US-SE-AEC": {
+            "countryName": "United States of America",
+            "zoneName": "Powersouth Energy Cooperative"
+          },
+          "US-SE-SEPA": {
+            "countryName": "United States of America",
+            "zoneName": "Southeastern Power Administration"
+          },
+          "US-SE-SOCO": {
+            "countryName": "United States of America",
+            "zoneName": "Southern Company Services, Inc. - Trans"
+          },
+          "US-SW-AZPS": {
+            "countryName": "United States of America",
+            "zoneName": "Arizona Public Service Company"
+          },
+          "US-SW-DEAA": {
+            "countryName": "United States of America",
+            "zoneName": "Arlington Valley, LLC"
+          },
+          "US-SW-EPE": {
+            "countryName": "United States of America",
+            "zoneName": "El Paso Electric Company"
+          },
+          "US-SW-GRIF": {
+            "countryName": "United States of America",
+            "zoneName": "Griffith Energy, LLC"
+          },
+          "US-SW-GRMA": {
+            "countryName": "United States of America",
+            "zoneName": "Gila River Power, LLC"
+          },
+          "US-SW-HGMA": {
+            "countryName": "United States of America",
+            "zoneName": "New Harquahala Generating Company, LLC"
+          },
+          "US-SW-PNM": {
+            "countryName": "United States of America",
+            "zoneName": "Public Service Company Of New Mexico"
+          },
+          "US-SW-SRP": {
+            "countryName": "United States of America",
+            "zoneName": "Salt River Project"
+          },
+          "US-SW-TEPC": {
+            "countryName": "United States of America",
+            "zoneName": "Tucson Electric Power Company"
+          },
+          "US-SW-WALC": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration - Desert Southwest Region"
+          },
+          "US-TEN-TVA": {
+            "countryName": "United States of America",
+            "zoneName": "Tennessee Valley Authority"
+          },
+          "US-TEX-ERCO": {
+            "countryName": "United States of America",
+            "zoneName": "Electric Reliability Council Of Texas, Inc."
           },
           "UY": {
             "zoneName": "Uruguay"

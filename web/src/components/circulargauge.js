@@ -1,87 +1,52 @@
-const d3 = Object.assign(
-  {},
-  require('d3-selection'),
-  require('d3-transition'),
-  require('d3-shape'),
-  require('d3-interpolate'),
-);
+import React from 'react';
+import { Motion, spring } from 'react-motion';
+import { isFinite } from 'lodash';
+import { arc } from 'd3-shape';
 
-export default class CircularGauge {
-  constructor(selectorId, argConfig) {
-    const config = argConfig || {};
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+// TODO: re-enable rule
 
-    this.radius = config.radius || '32';
-    this.lineWidth = config.lineWidth || '6';
-    this.fontSize = config.fontSize || '1rem';
+const CircularGauge = React.memo(({
+  fontSize = '1rem',
+  onMouseMove,
+  onMouseOut,
+  onMouseOver,
+  percentage = 0,
+  radius = 32,
+  thickness = 6,
+}) => {
+  const percentageFill = p => arc()
+    .startAngle(0)
+    .outerRadius(radius)
+    .innerRadius(radius - thickness)
+    .endAngle((p / 100) * 2 * Math.PI)();
 
-    this.arc = d3.arc()
-      .startAngle(0)
-      .innerRadius(this.radius - this.lineWidth)
-      .outerRadius(this.radius);
+  return (
+    <div
+      onMouseOver={() => onMouseOver && onMouseOver()}
+      onMouseOut={() => onMouseOut && onMouseOut()}
+      onMouseMove={e => onMouseMove && onMouseMove(e.clientX, e.clientY)}
+    >
+      <svg width={radius * 2} height={radius * 2}>
+        <g transform={`translate(${radius},${radius})`}>
+          <g className="circular-gauge">
+            <path className="background" d={percentageFill(100)} />
+            <Motion
+              defaultStyle={{ percentage: 0 }}
+              style={{ percentage: spring(isFinite(percentage) ? percentage : 0) }}
+            >
+              {interpolated => (
+                <path className="foreground" d={percentageFill(interpolated.percentage)} />
+              )}
+            </Motion>
+            <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
+              {isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
+            </text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+});
 
-    this.prevPercentage = 0;
-
-    this.percentage = config.percentage || null;
-
-    // main gauge component
-
-    const gauge = d3.select(`#${selectorId}`).append('svg')
-      .attr('width', this.radius * 2)
-      .attr('height', this.radius * 2)
-      // .attr("width", '100%') // makes gauge auto-resize
-      // .attr("height", '100%') // makes gauge auto-resize
-    // .attr("viewBox", "0 0 " + (this.radius * 2) + " " + (this.radius * 2)) // makes resizable
-    // .attr("preserveAspectRatio", "xMidYMid meet") // makes gauge resizable
-      .append('g')
-      .attr('transform', `translate(${this.radius},${this.radius})`)
-      .append('g')
-      .attr('class', 'circular-gauge');
-
-    // background
-    this.background = gauge.append('path')
-      .attr('class', 'background')
-      .attr('d', this.arc.endAngle(2 * Math.PI));
-
-    // foreground
-    this.foreground = gauge.append('path')
-      .attr('class', 'foreground')
-      .attr('d', this.arc.endAngle(0)); // starts filling from 0
-
-    this.percentageText = gauge.append('text')
-      .style('text-anchor', 'middle')
-      .attr('dy', '0.4em')
-      .style('font-weight', 'bold')
-      .style('font-size', this.fontSize)
-      .text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');
-
-    this.draw();
-  }
-
-  draw() {
-    const arc = this.arc;
-    const prevPercentage = this.prevPercentage != null ? this.prevPercentage / 100 : 0;
-    const percentage = this.percentage != null ? this.percentage / 100 : 0;
-
-    const i = d3.interpolate(prevPercentage * 2 * Math.PI, 2 * Math.PI * (percentage));
-
-    this.foreground.transition()
-      .duration(500)
-      .attrTween(
-        'd',
-        () => t => arc.endAngle(i(t))(),
-      );
-  }
-
-  setPercentage(percentage) {
-    if (this.percentage === percentage) {
-      return;
-    }
-    if (Number.isNaN(percentage)) {
-      return;
-    }
-    this.prevPercentage = this.percentage;
-    this.percentage = percentage;
-    this.percentageText.text(this.percentage != null ? `${Math.round(this.percentage)}%` : '?');
-    this.draw();
-  }
-}
+export default CircularGauge;

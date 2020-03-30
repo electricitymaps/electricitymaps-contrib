@@ -1,0 +1,150 @@
+.flash-message {
+    position: absolute;
+    display: block;
+    left: 0;
+    transition: all 0.5s ease;
+    width: 100%;
+    top: -100px; /* hidden state */
+    z-index: 99;
+
+    .inner {
+	    display: block;
+	    margin: 0 auto;
+	    padding: 10px;
+	    text-align: center;
+	    color: $white;
+	    font-size: 0.8em;
+	    border-bottom-right-radius: 5px;
+	    border-bottom-left-radius: 5px;
+	    width: 100%;
+	    box-sizing: border-box;
+	}
+
+	&.active {
+		top: 0;
+	}
+
+    @include respond-to('medium-up') {
+        padding-left: 24rem; /* keep in sync with left-panel width */
+        box-sizing: border-box;
+    }
+}
+
+.no-data-overlay {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+
+    &.visible{
+        display: flex;
+    }
+}
+
+.no-data-overlay-background{
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.8;
+    background-color:$lighter-gray;
+}
+
+.no-data-overlay-message{
+    background-color: #33414A;
+    color: white;
+    margin: 1rem;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    z-index: 3;
+}
+
+.zone-details-no-parser-message{
+    display: block;
+    background-color: $lighter-gray;
+    height: 100%;
+    width: 100%;
+    padding-top: 80px;
+}
+
+#connection-warning .inner {
+    background-color: darkred;
+}
+
+#new-version .inner {
+    background-color: #3F51B5;
+}
+
+#loading.loading.overlay {
+    /* That's the main loading overlay */
+    background-image: url('../images/loading/loading64_FA.gif'), url('../images/loading/electricitymap-text.svg');
+    background-position: calc(50% - 64px) center , center center;
+    background-repeat: no-repeat, no-repeat; 
+    background-size: 36px , 10rem;
+    background-color: $lighter-gray;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    z-index: 500;
+}
+
+
+.referral-link {
+    color: inherit;
+}
+
+.referral {
+    margin: 24px 0;
+
+    &.barry {
+	    display: block;
+	    position: relative;
+	    border-radius: 8px;
+	    padding: 8px;
+	    color: white;
+	    background-image: linear-gradient(to bottom right, #FF4B9B, #EF7B40);
+	    text-decoration: none !important;
+	    margin: 0;
+	}
+
+	.barry-logo {
+	    position: absolute;
+	    width: 60px;
+	    bottom: 8px;
+	    right: 8px;
+	}
+
+	.external-link-icon {
+	    position: absolute;
+	    width: 14px;
+	    top: 4px;
+	    right: 4px;
+	}
+}
+
+.sponsored-message-text{
+    color: $black;
+    font-size: 7px;
+    opacity: 0.5;
+    margin: 0;
+    position: relative;
+    font-size: smaller;
+    top: 0;
+    left: 0;  
+    margin: 8px 0 2px 0;
+}
+
+.hide-referral{
+    font-weight: bold;
+}
+
+.referral-text {
+    font-size: 14px;
+    width: 75%;
+    font-weight: normal;
+    margin: 6px 0;
+}

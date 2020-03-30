@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 class GoogleAnalyticsThirdParty {
   constructor() {
     window.dataLayer = window.dataLayer || [];

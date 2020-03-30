@@ -59,15 +59,15 @@
     "oil": "石油",
     "unknown": "未知",
 
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的电力来自 %3$s",
-    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的排放量来自 %3$s",
-    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的电力使用 %3$s 储存",
-    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的排放量使用 %3$s 储存",
+    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力来自 %3$s",
+    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量来自 %3$s",
+    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力使用 %3$s 储存",
+    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 储存",
 
-    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的电力被汇出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的排放量被汇出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的电力从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
-    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> %1$s %% 的排放量从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
+    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力被汇出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量被汇出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
+    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
 
     "ofCO2eqPerMinute": "of CO2eq per minute",
 
@@ -259,7 +259,7 @@
             "zoneName": "黑山共和国"
           },
           "MK": {
-            "zoneName": "马其顿共和国"
+            "zoneName": "北马其顿"
           },
           "MT": {
             "zoneName": "马耳他"

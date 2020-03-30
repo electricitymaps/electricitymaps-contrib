@@ -1,5 +1,7 @@
 // This file was taken from https://github.com/esri/wind-js, and modified
 // TODO: Rewrite completely
+/* eslint-disable */
+// TODO: remove once refactored
 
 /*  Global class for simulating the movement of particle through a 1km wind grid
 
@@ -13,10 +15,12 @@
     interpolation and animation process.
 */
 
+const { windColor } = require('./scales');
+
 var Windy = function( params ){
   var VELOCITY_SCALE = 1/100000;//1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
   var INTENSITY_SCALE_STEP = 10;            // step size of particle intensity color scale
-  var MAX_WIND_INTENSITY = 15;              // wind velocity at which particle intensity is maximum (m/s)
+  var MAX_WIND_INTENSITY = 30;              // wind velocity at which particle intensity is maximum (m/s)
   var MAX_PARTICLE_AGE = 100;                // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = 2;              // line width of a drawn particle
   var PARTICLE_MULTIPLIER = 4;              // particle count scalar (completely arbitrary--this values looks nice)
@@ -25,9 +29,6 @@ var Windy = function( params ){
 
   var NULL_WIND_VECTOR = [NaN, NaN, null];  // singleton for no wind in the form: [u, v, magnitude]
   var TRANSPARENT_BLACK = [255, 0, 0, 0];
-
-  var τ = 2 * Math.PI;
-  var H = Math.pow(10, -5.2);
 
   // interpolation for vectors like wind (u,v,m)
   var bilinearInterpolateVector = function(x, y, g00, g10, g01, g11) {
@@ -228,9 +229,8 @@ var Windy = function( params ){
       var lowerRight = bounds[1];
       var x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
       var y = Math.max(Math.floor(upperLeft[1], 0), 0);
-      var xMax = Math.min(Math.ceil(lowerRight[0], width), width - 1);
       var yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
-      return {x: x, y: y, xMax: width, yMax: yMax, width: width, height: height};
+      return {x: x, y: y, yMax: yMax, width: width, height: height};
   };
 
   var deg2rad = function( deg ){
@@ -331,16 +331,7 @@ var Windy = function( params ){
           // "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 1.0 + ")",
           // "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 1.0 + ")",
           // "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 1.0 + ")"
-          'rgba(0,   255, 255, 1.0)',
-          'rgba(100, 240, 255, 1.0)',
-          'rgba(135, 225, 255, 1.0)',
-          'rgba(160, 208, 255, 1.0)',
-          'rgba(181, 192, 255, 1.0)',
-          'rgba(198, 173, 255, 1.0)',
-          'rgba(212, 155, 255, 1.0)',
-          'rgba(225, 133, 255, 1.0)',
-          'rgba(236, 109, 255, 1.0)',
-          'rgba(255,  30, 219, 1.0)'
+          ...windColor.range(),
         ]
         /*
         var result = [];
@@ -518,7 +509,7 @@ window.cancelAnimationFrame = (function(){
           window.oCancelAnimationFrame ||
           window.msCancelAnimationFrame ||
           function( callback ){
-            clearTimeout
+            window.clearTimeout(callback)
           };
 })();
 

@@ -1,6 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import { themes } from '../helpers/themes';
+
 export default class Map {
   _setupMapColor() {
     if (this.map.isStyleLoaded() && this.map.getLayer('clickable-zones-fill') && this.co2color) {
@@ -105,25 +107,15 @@ export default class Map {
 
   constructor(selectorId, argConfig) {
     const config = argConfig || {};
-    const defaulttheme = {
-      strokeWidth: 0.3,
-      strokeColor: '#FAFAFA',
-      clickableFill: '#D4D9DE',
-      nonClickableFill: '#D4D9DE',
-      oceanColor: '#FAFAFA',
-      co2Scale: {
-        steps: [0, 150, 600, 750],
-        colors: ['#2AA364', '#F5EB4D', '#9E293E', '#1B0E01'],
-      },
-    };
 
-    this.theme = argConfig.theme || defaulttheme;
+    this.theme = argConfig.theme || themes.bright;
     this.userIsUsingTouch = false;
 
     this.center = undefined;
     this.zoom = config.zoom;
 
     if (!mapboxgl.supported()) {
+      // eslint-disable-next-line no-throw-literal
       throw 'WebGL not supported';
     }
 
@@ -149,7 +141,9 @@ export default class Map {
       this._setupMapColor();
       // For some reason the mapboxgl-canvas element sometimes has
       // the wrong size, so we resize it here just in case.
-      this.map.resize();
+      setTimeout(() => {
+        this.map.resize();
+      }, 500);
     });
 
     // Set a timer to detect when the map has finished loading
@@ -322,7 +316,9 @@ export default class Map {
 
   setCo2color(arg, theme) {
     this.co2color = arg;
-    this.theme = theme;
+    if (theme) {
+      this.theme = theme;
+    }
     this._setupMapColor();
     return this;
   }
@@ -351,37 +347,37 @@ export default class Map {
 
   onSeaClick(arg) {
     if (!arg) return this.seaClickHandler;
-    else this.seaClickHandler = arg;
+    this.seaClickHandler = arg;
     return this;
   }
 
   onCountryClick(arg) {
     if (!arg) return this.countryClickHandler;
-    else this.countryClickHandler = arg;
+    this.countryClickHandler = arg;
     return this;
   }
 
   onCountryMouseOver(arg) {
     if (!arg) return this.countryMouseOverHandler;
-    else this.countryMouseOverHandler = arg;
+    this.countryMouseOverHandler = arg;
     return this;
   }
 
   onZoneMouseOut(arg) {
     if (!arg) return this.zoneMouseOutHandler;
-    else this.zoneMouseOutHandler = arg;
+    this.zoneMouseOutHandler = arg;
     return this;
   }
 
   onZoneMouseMove(arg) {
     if (!arg) return this.zoneMouseMoveHandler;
-    else this.zoneMouseMoveHandler = arg;
+    this.zoneMouseMoveHandler = arg;
     return this;
   }
 
   onMouseMove(arg) {
     if (!arg) return this.mouseMoveHandler;
-    else this.mouseMoveHandler = arg;
+    this.mouseMoveHandler = arg;
     return this;
   }
 

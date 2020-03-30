@@ -80,15 +80,15 @@
     "oil": "petróleo",
     "unknown": "desconocido",
 
-    "electricityComesFrom": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
-    "emissionsComeFrom": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
-    "electricityStoredUsing": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
-    "emissionsStoredUsing": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
+    "electricityComesFrom": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
 
-    "electricityExportedTo": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "of CO2eq por minuto",
 
@@ -874,8 +874,7 @@
             "zoneName": "Islas Marshall"
         },
         "MK": {
-            "countryName": "Rep. de Macedonia",
-            "zoneName": "FYROM"
+            "zoneName": "Macedonia del Norte"
         },
         "ML": {
             "zoneName": "Malí"

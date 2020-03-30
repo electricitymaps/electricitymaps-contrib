@@ -1,4 +1,5 @@
-'use strict';
+/* eslint-disable */
+// TODO: remove once refactored
 
 var d3 = require('d3-format');
 var translation = require('./translation');
@@ -23,3 +24,21 @@ module.exports.formatCo2 = function (d, numDigits) {
   else
     return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + co2Sub(translation.translate('ofCO2eqPerMinute'));
 };
+module.exports.scalePower = function (maxPower) {
+  // Assume MW input
+  if (maxPower < 1) 
+    return {
+      unit: "kW",
+      formattingFactor: 1e-3
+    }
+  if (maxPower < 1e3) 
+    return {
+      unit: "MW",
+      formattingFactor: 1
+    }
+  else return {
+      unit: "GW",
+      formattingFactor: 1e3
+    }
+};
+

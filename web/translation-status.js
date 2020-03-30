@@ -1,5 +1,4 @@
 const { reverse, flatMap, difference, size, sortBy } = require('lodash');
-const { LOCALES_LIST } = require('./src/helpers/translation');
 
 // Gets all deepest level keys from a JSON (they stand for concrete translated terms)
 function getDeepKeysFromJSON(data, prefix = '') {
@@ -23,7 +22,7 @@ function translationStatusFor(language) {
   const totalWords = getTermsForLanguage('en'); // the default language in locale settings
   const translatedWords = getTermsForLanguage(language);
   const untranslatedWords = difference(totalWords, translatedWords);
-  const legacyTerms = size(difference(translatedWords, totalWords));
+  const legacyTerms = difference(translatedWords, totalWords);
   const translated = 1 - (size(untranslatedWords) / size(totalWords));
   const color = getTranslationProgressColor(translated);
   return { language, translated, legacyTerms, color };
@@ -36,13 +35,13 @@ function toPercent(json) {
   };
 }
 
-function getTranslationStatusJSON(language) {
-  if (language) {
-    return toPercent(translationStatusFor(language));
+function getTranslationStatusJSON(languages) {
+  if (languages && languages.length) {
+    return toPercent(translationStatusFor(languages[0]));
   }
   // If the language is not specified, list statuses for all
   // locales in descending order by translation percentage.
-  return reverse(sortBy(LOCALES_LIST.map(translationStatusFor), 'translated')).map(toPercent);
+  return reverse(sortBy(languages.map(translationStatusFor), 'translated')).map(toPercent);
 }
 
 // A link to a custom generated badge (https://github.com/badges/shields) based on translation.

@@ -1,3 +1,6 @@
+/* eslint-disable */
+// TODO: remove once refactored
+
 const d3 = Object.assign(
   {},
   require('d3-array'),
@@ -58,7 +61,7 @@ class SolarLayer {
     });
   }
 
-  draw(now, argGrib1, argGrib2, solarColor, callback) {
+  draw(now, argGrib1, argGrib2, callback) {
     // Only redraw after 5min
     if (this.lastDraw && (this.lastDraw - new Date().getTime()) < 1000 * 60 * 5) {
       return callback(null);
@@ -81,7 +84,7 @@ class SolarLayer {
       moment(t_after).fromNow(),
       'made', moment(this.grib2.header.refTime).fromNow());
     if (moment(now) > moment(t_after)) {
-      return console.error('Error while interpolating solar because current time is out of bounds');
+      return callback(new Error('Error while interpolating solar because current time is out of bounds'));
     }
 
     this.k = (now - t_before) / (t_after - t_before);
