@@ -15,8 +15,14 @@ import {
   createGraphLayerMouseMoveHandler,
   createGraphLayerMouseOutHandler,
 } from '../helpers/history';
+import { dispatchApplication } from '../store';
 
+import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
+
+// If in mobile mode, put the tooltip to the top of the screen for
+// readability, otherwise float it depending on the cursor position.
+const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
@@ -28,7 +34,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
       : d.co2intensityProduction,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
-    _countryData: d,
+    meta: d,
   }));
   const layerKeys = [CARBON_GRAPH_LAYER_KEY];
   const layerFill = key => d => co2ColorScale(d.data[key]);
@@ -54,6 +60,7 @@ const CountryHistoryCarbonGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -63,40 +70,51 @@ const CountryHistoryCarbonGraph = ({
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
+  const mouseMoveHandler = useMemo(
+    () => (timeIndex, layerIndex, getLayer, ev) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(0);
+      setTooltip({
+        zoneData: getLayer(0).datapoints[timeIndex].data.meta,
+        position: getTooltipPosition(isMobile, ev),
+      });
+    },
+    [isMobile, setTooltip, setSelectedLayerIndex]
   );
-  const backgroundMouseOutHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseOutHandler(setSelectedLayerIndex),
-    [setSelectedLayerIndex]
-  );
-  const layerMouseMoveHandler = useMemo(
-    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
-  );
-  const layerMouseOutHandler = useMemo(
-    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
-    [setSelectedLayerIndex]
+  const mouseOutHandler = useMemo(
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+      setTooltip(null);
+    },
+    [setTooltip, setSelectedLayerIndex]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerFill={layerFill}
-      startTime={startTime}
-      endTime={endTime}
-      valueAxisLabel="g / kWh"
-      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-      backgroundMouseOutHandler={backgroundMouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-      height="8em"
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerFill={layerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel="g / kWh"
+        backgroundMouseMoveHandler={mouseMoveHandler}
+        backgroundMouseOutHandler={mouseOutHandler}
+        layerMouseMoveHandler={mouseMoveHandler}
+        layerMouseOutHandler={mouseOutHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="8em"
+      />
+      {tooltip && (
+        <MapCountryTooltip
+          position={tooltip.position}
+          zoneData={tooltip.zoneData}
+        />
+      )}
+    </React.Fragment>
   );
 };
 

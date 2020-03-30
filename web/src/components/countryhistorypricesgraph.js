@@ -42,7 +42,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
     [PRICES_GRAPH_LAYER_KEY]: d.price && d.price.value,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
-    _countryData: d,
+    meta: d,
   }));
 
   const layerKeys = [PRICES_GRAPH_LAYER_KEY];
@@ -101,7 +101,7 @@ const CountryHistoryPricesGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0);
       setTooltip({
-        zoneData: getLayer(0).datapoints[timeIndex].data._countryData,
+        zoneData: getLayer(0).datapoints[timeIndex].data.meta,
         position: getTooltipPosition(isMobile, ev),
       });
     },
