@@ -121,7 +121,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return Object.assign({}, state, {
         customDate: searchParams.get('datetime'),
         selectedZoneName: searchParams.get('countryCode'),
-        showPageState: searchParams.get('page'),
+        showPageState: searchParams.get('page') || 'map', // Default to map view if page was not specified
         solarEnabled: searchParams.get('solar') === 'true',
         useRemoteEndpoint: searchParams.get('remote') === 'true',
         windEnabled: searchParams.get('wind') === 'true',
