@@ -687,19 +687,6 @@ if (!getState().application.isMobile) {
   });
 }
 
-// Production/Consumption
-function toggleElectricityMixMode() {
-  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
-    ? 'production'
-    : 'consumption');
-}
-d3.select('.production-toggle').on('click', toggleElectricityMixMode);
-
-const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
-d3.select('.production-toggle-info').on('click', () => {
-  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
-});
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));

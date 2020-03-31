@@ -177,15 +177,6 @@
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     }
 
-    .arrow {
-        display:none;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 7.5px 0 7.5px 10px;
-        border-color: transparent transparent transparent $lighter-gray;
-    }
-
     &.hidden {
         visibility: hidden;
         opacity: 0;
@@ -197,10 +188,6 @@
     left: 4px;
     width: 204px;
     top: 49px;
-
-    .tooltip-text {
-        text-align: center;
-    }
 }
 
 #language-select-container {
