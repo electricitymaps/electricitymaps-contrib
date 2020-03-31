@@ -1009,11 +1009,6 @@
           "wind": 0.32594697326032185
         }
       },
-      "AZ": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=AZERBAIJAN&product=electricityandheat&year=2015",
-        "carbonIntensity": 470
-      },
       "BA": {
         "_source": "Tomorrow",
         "carbonIntensity": 541.8644831050644,
@@ -1158,11 +1153,6 @@
           "wind": 0.05751308606124606
         }
       },
-      "BY": {
-        "_source": "IEA yearly data for 2016",
-        "_url": "https://www.iea.org/statistics/?country=BELARUS&year=2016&category=Electricity&indicator=ElecGenByFuel",
-        "carbonIntensity": 488
-      },
       "CA-AB": {
         "_source": "Tomorrow",
         "carbonIntensity": 570.6050158576046,
@@ -1180,21 +1170,6 @@
           "unknown": 0.027200317140498656,
           "wind": 0.05323187854541755
         }
-      },
-      "CA-BC": {
-        "_comment": "Average carbon intensity using 2016 mean production per fuel source (88% hydro, 9% biomass, 1% wind, 1% gas) and IPCC 2014 default lifecycle emission factor",
-        "_source": "List of Generating Stations in BC (Wikipedia) / IPCC 2014 Emissions Factors By Source",
-        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
-        "carbonIntensity": 47
-      },
-      "CA-NB": {
-        "_source": "Canada NEB yearly data for 2016",
-        "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
-        "carbonIntensity": 300
-      },
-      "CA-NS": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 531.4750940946568
       },
       "CA-ON": {
         "_source": "Tomorrow",
@@ -1232,11 +1207,6 @@
           "wind": 0.9982474825220405
         }
       },
-      "CA-QC": {
-        "_comment": "see http://piorkowski.ca/rev/2017/06/canadian-electricity-co2-intensities/ and https://gist.github.com/jarek/bb06a7e1c5d9005b29c63562ac812ad7. not using NEB data here since the NEB resolution is 1% which makes a difference at these scales",
-        "_source": "StatCan CANSIM Table 127-0002 for 2011-2015",
-        "carbonIntensity": 30
-      },
       "CA-YT": {
         "_source": "Tomorrow",
         "carbonIntensity": 121.57363040033647,
@@ -1254,14 +1224,6 @@
           "unknown": 0.15258490420002668,
           "wind": 0.0
         }
-      },
-      "CL-SIC": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 394.01636569017154
-      },
-      "CL-SING": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 620.3386653823063
       },
       "CR": {
         "_source": "Tomorrow",
@@ -1551,10 +1513,6 @@
           "wind": 0.12818451192128813
         }
       },
-      "ES-IB": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 596.4540580062777
-      },
       "ES-IB-FO": {
         "_source": "Tomorrow",
         "carbonIntensity": 499.57475473331033,
@@ -1716,10 +1674,6 @@
           "unknown": 0.0010529022891172482,
           "wind": 0.2990550639051538
         }
-      },
-      "GB-ORK": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 72.7861448532713
       },
       "GE": {
         "_source": "Tomorrow",
@@ -1901,10 +1855,6 @@
           "wind": 0.0
         }
       },
-      "IN-GJ": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 612.1706534439026
-      },
       "IN-KA": {
         "_source": "Tomorrow",
         "carbonIntensity": 399.8176113274491,
@@ -1958,10 +1908,6 @@
           "unknown": 0.9500034678141287,
           "wind": 0.0
         }
-      },
-      "IN-UT": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 340.19599615538266
       },
       "IQ": {
         "_source": "Tomorrow",
@@ -2233,11 +2179,6 @@
           "wind": 0.022901266307552282
         }
       },
-      "MX-BC": {
-        "carbonIntensity": 453.0,
-        "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
-        "source": "Tomorrow & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
-      },
       "MY-WM": {
         "_source": "Tomorrow",
         "carbonIntensity": 661.1953663549518,
@@ -2291,10 +2232,6 @@
           "unknown": 0.002350834502174446,
           "wind": 0.17269143269667578
         }
-      },
-      "NKR": {
-        "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
-        "carbonIntensity": 24
       },
       "NL": {
         "_source": "Tomorrow",
@@ -2620,11 +2557,6 @@
           "wind": 2.949968773471882e-07
         }
       },
-      "RU-KGD": {
-        "_comment": "see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.",
-        "_source": "Energy security in Kaliningrad and geopolitics (2/2014)",
-        "carbonIntensity": 480
-      },
       "SE": {
         "_source": "Tomorrow",
         "carbonIntensity": 52.07454753016652,
@@ -2769,11 +2701,6 @@
           "wind": 0.014463236154672453
         }
       },
-      "US": {
-        "_comment": "Only for imports to California! Renewable ratio assumed as average 25% hydro with some wind/solar; low-carbon assumed as with average 20% nuclear; from information in Github issue we assume it is either mostly from source with hydro or from source with nuclear but not bot",
-        "_source": "https://github.com/tmrowco/electricitymap/issues/1497",
-        "carbonIntensity": 325
-      },
       "US-BPA": {
         "_source": "Tomorrow",
         "carbonIntensity": 92.5541703200337,
@@ -2864,14 +2791,6 @@
           "wind": 0.0993130853532999
         }
       },
-      "US-NEISO": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 240.00486210378685
-      },
-      "US-NY": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 212.54789978382524
-      },
       "US-PJM": {
         "_source": "Tomorrow",
         "carbonIntensity": 380.2023973381298,
@@ -2925,10 +2844,6 @@
           "unknown": 0.0009278127957284803,
           "wind": 0.2702008218819151
         }
-      },
-      "US-SVERI": {
-        "_source": "Tomorrow",
-        "carbonIntensity": 462.006385109754
       },
       "US-TN": {
         "_source": "Tomorrow",
@@ -2984,16 +2899,6 @@
           "wind": 0.2504298323549667
         }
       },
-      "ZA": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=SOUTHAFRIC&product=electricityandheat&year=2015",
-        "carbonIntensity": 750
-      },
-      "ZM": {
-        "_source": "IEA yearly data for 2015",
-        "_url": "https://www.iea.org/statistics/statisticssearch/report/?country=ZAMBIA&product=electricityandheat&year=2015",
-        "carbonIntensity": 50
-      }
     }
   }
 }
