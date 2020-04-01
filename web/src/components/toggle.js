@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { findIndex, isEmpty } from 'lodash';
 import styled, { css } from 'styled-components';
 
-const ToggleContainer = styled.div`
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  cursor: pointer;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-  height: 36px;
-  transition: all 0.4s;
-  display: flex;
-  justify-content: flex-end;
+import InfoTooltip from './infotooltip';
+
+const Wrapper = styled.div`
   align-content: center;
   background-color: #efefef;
+  border: none;
   border-radius: 18px;
-  transition: box-shadow 0.4s;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: flex-end;
+  outline: none;
+  transition: all 0.4s;
 
   &:hover {
     box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
@@ -23,19 +24,19 @@ const ToggleContainer = styled.div`
 `;
 
 const Options = styled.div`
+  align-content: center;
+  align-self: center;
   background: #efefef;
   border-radius: 14px;
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
   display: flex;
-  height: 28px;
   flex-direction: row;
+  height: 28px;
   justify-content: flex-end;
-  align-content: center;
-  align-self: center;
-  margin: 0 8px 0 4px;
+  margin: 0 4px;
 `;
 
-const Item = styled.div`
+const OptionItem = styled.div`
   border-radius: 14px 4px 4px 14px;
   font-size: 14px;
   line-height: 28px;
@@ -45,67 +46,31 @@ const Item = styled.div`
 
   ${props => props.active && css`
     background: #ffffff;
-    height: 28px;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
-    z-index: 8;
     border-radius: 14px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+    height: 28px;
+    z-index: 8;
   `}
 `;
 
 const InfoButton = styled.div`
-  height: 28px; 
-  width: 28px;
-  border-radius: 18px;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
   align-content: center;
   align-self: center;
-  margin: 0 4px;
+  background: #ffffff;
+  border-radius: 18px;
   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.1);
+  display: flex;
   font-weight: bold;
+  height: 28px;
+  justify-content: center;
   line-height: 28px;
+  margin: 0 4px;
   transition: all 0.4s;
+  width: 28px;
 
   &:hover {
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
   }
-`;
-
-const TooltipContainer = styled.div`
-  position: absolute;
-  left: -168px;
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  top: 4px;
-  transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
-
-  /* Position */
-  left: 4px;
-  width: 204px;
-  top: 49px;
-
-  ${props => (props.visible ? css`
-    opacity: 1;
-    transform: translateX(0px);
-    visibility: visible;
-  ` : css`
-    opacity: 0;
-    transform: translateX(10px);
-    visibility: hidden;
-  `)}
-`;
-
-const TooltipContent = styled.div`
-  color: black;
-  background-color: #efefef;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 5px 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
 `;
 
 const Toggle = ({
@@ -122,23 +87,25 @@ const Toggle = ({
   const nextValue = options[nextIndex].value;
 
   return (
-    <ToggleContainer className={className}>
+    <Wrapper className={className}>
       <Options onClick={() => onChange(nextValue)}>
         {options.map(o => (
-          <Item key={o.value} active={o.value === value}>
+          <OptionItem key={o.value} active={o.value === value}>
             {o.label}
-          </Item>
+          </OptionItem>
         ))}
       </Options>
       {!isEmpty(infoHTML) && (
         <React.Fragment>
           <InfoButton onClick={() => setTooltipVisible(!tooltipVisible)}>i</InfoButton>
-          <TooltipContainer visible={tooltipVisible}>
-            <TooltipContent dangerouslySetInnerHTML={{ __html: infoHTML }} />
-          </TooltipContainer>
+          <InfoTooltip
+            htmlContent={infoHTML}
+            style={{ left: 4, width: 204, top: 49 }}
+            visible={tooltipVisible}
+          />
         </React.Fragment>
       )}
-    </ToggleContainer>
+    </Wrapper>
   );
 };
 

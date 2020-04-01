@@ -69,8 +69,8 @@
 
 .production-consumption-toggle {
     position: absolute;
-    top: 10px;
-    right: 360px;
+    top: 70px;
+    right: 16px;
 
     @include respond-to('small') {
         top: 16px;
@@ -90,6 +90,11 @@
     transform: translateX(0px);
     transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
 
+    .tooltip-container {
+        display: flex;
+        align-items: center;
+    }
+
     .tooltip-text {
         background-color:$lighter-gray;
         color: black;
@@ -100,17 +105,20 @@
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
     }
 
+    .arrow {
+        display:none;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7.5px 0 7.5px 10px;
+        border-color: transparent transparent transparent $lighter-gray;
+    }
+
     &.hidden {
         visibility: hidden;
         opacity: 0;
         transform: translateX(10px);
     }
-}
-
-#production-toggle-tooltip {
-    left: 4px;
-    width: 204px;
-    top: 49px;
 }
 
 #language-select-container {

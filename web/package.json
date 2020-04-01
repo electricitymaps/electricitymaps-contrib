@@ -83,7 +83,7 @@
     "lint": "eslint --quiet src",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
-    "watch-en": "yarn install && webpack --watch --progress --mode development --config-name en",
+    "watch-en": "webpack --watch --progress --mode development --config-name en",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development"
   },
   "browserslist": [
