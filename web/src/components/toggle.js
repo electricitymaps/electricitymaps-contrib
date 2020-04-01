@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
 import { findIndex, isEmpty } from 'lodash';
-
-import { __ } from '../helpers/translation';
-import { dispatchApplication } from '../store';
+import styled, { css } from 'styled-components';
 
 const ToggleContainer = styled.div`
   border: none;
@@ -17,7 +13,7 @@ const ToggleContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-content: center;
-  background-color: $lighter-gray;
+  background-color: #efefef;
   border-radius: 18px;
   transition: box-shadow 0.4s;
 
@@ -47,7 +43,7 @@ const Item = styled.div`
   transition: all 0.4s;
   z-index: 9;
 
-  ${props => props.active && `
+  ${props => props.active && css`
     background: #ffffff;
     height: 28px;
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
@@ -84,9 +80,6 @@ const TooltipContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   top: 4px;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateX(10px);
   transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
 
   /* Position */
@@ -94,11 +87,15 @@ const TooltipContainer = styled.div`
   width: 204px;
   top: 49px;
 
-  ${props => props.visible && `
-    visibility: visible;
+  ${props => (props.visible ? css`
     opacity: 1;
     transform: translateX(0px);
-  `}
+    visibility: visible;
+  ` : css`
+    opacity: 0;
+    transform: translateX(10px);
+    visibility: hidden;
+  `)}
 `;
 
 const TooltipContent = styled.div`
@@ -145,21 +142,4 @@ const Toggle = ({
   );
 };
 
-const mapStateToProps = state => ({
-  electricityMixMode: state.application.electricityMixMode,
-});
-
-const ProdConsToggle = ({ electricityMixMode }) => (
-  <Toggle
-    className="prodcons-toggle-container"
-    infoHTML={__('tooltips.cpinfo')}
-    onChange={value => dispatchApplication('electricityMixMode', value)}
-    options={[
-      { value: 'production', label: __('tooltips.production') },
-      { value: 'consumption', label: __('tooltips.consumption') },
-    ]}
-    value={electricityMixMode}
-  />
-);
-
-export default connect(mapStateToProps)(ProdConsToggle);
+export default Toggle;
