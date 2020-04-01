@@ -35,6 +35,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "sprintf-js": "^1.1.2",
+    "styled-components": "^5.0.1",
     "topojson": "^3.0.2"
   },
   "devDependencies": {
@@ -82,7 +83,7 @@
     "lint": "eslint --quiet src",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
-    "watch-en": "webpack --watch --progress --mode development --config-name en",
+    "watch-en": "yarn install && webpack --watch --progress --mode development --config-name en",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development"
   },
   "browserslist": [
