@@ -11,12 +11,12 @@ import Header from './header';
 import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
-import ProdConsToggle from './prodconstoggle';
 import Tabs from './tabs';
 import Tooltips from './tooltips';
 
 // Modules
 import { __ } from '../helpers/translation';
+import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import Toggle from '../components/toggle';
 import { TIMESCALE } from '../helpers/constants';
@@ -26,6 +26,7 @@ import { TIMESCALE } from '../helpers/constants';
 
 const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
+  electricityMixMode: state.application.electricityMixMode,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   timescale: state.application.timescale,
   currentDate: (state.data.grid || {}).datetime,
@@ -51,7 +52,7 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed, tim
           <div id="zones" className="map-layer" />
           <canvas id="wind" className="map-layer" />
           <canvas id="solar" className="map-layer" />
-          <div id="watermark" className={`watermark small-screen-hidden ${props.brightModeEnabled ? 'brightmode' : ''}`}>
+          <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
             <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
               <div id="built-by-tomorrow" />
             </a>
@@ -112,7 +113,7 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed, tim
 
         <div
           id="left-panel-collapse-button"
-          className={`small-screen-hidden ${props.isLeftPanelCollapsed ? 'collapsed' : ''}`}
+          className={`small-screen-hidden ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
           role="button"
           tabIndex="0"
         >

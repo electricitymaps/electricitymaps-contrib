@@ -534,7 +534,7 @@
       49.016577
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "CA_AB.fetch_exchange"
     },
     "rotation": 0
   },
@@ -554,7 +554,7 @@
       49.044392
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "CA_BC.fetch_exchange"
     },
     "rotation": 0
   },
@@ -624,7 +624,7 @@
       46.139
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NEISO.fetch_exchange"
     },
     "rotation": 90
   },
@@ -674,7 +674,7 @@
       43.5523
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NY.fetch_exchange"
     },
     "rotation": -45
   },
@@ -694,7 +694,7 @@
       45.011
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NEISO.fetch_exchange"
     },
     "rotation": 0
   },
@@ -714,7 +714,7 @@
       45.004
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NY.fetch_exchange"
     },
     "rotation": 0
   },

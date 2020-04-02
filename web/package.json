@@ -36,6 +36,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "sprintf-js": "^1.1.2",
+    "styled-components": "^5.0.1",
     "topojson": "^3.0.2"
   },
   "devDependencies": {
