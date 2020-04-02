@@ -92,7 +92,7 @@ const fetchNothing = function(callback) {
 const fetchState = function(endpoint, datetime, timescale, callback) {
   var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
   if (timescale !== TIMESCALE.LIVE) {
-    path += `?timescale=${timescale}_${moment().startOf('month').format('YYYYMM')}`;
+    path += `?timescale=${timescale}_${moment().startOf('month').subtract(1, 'month').format('YYYYMM')}`;
   }
   return protectedJsonRequest(endpoint, path, callback);
 }

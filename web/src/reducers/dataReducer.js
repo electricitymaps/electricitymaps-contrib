@@ -74,6 +74,7 @@ module.exports = (state = initialDataState, action) => {
       Object.keys(newGrid.zones).forEach((key) => {
         const zone = Object.assign({}, newGrid.zones[key]);
         zone.co2intensity = undefined;
+        zone.co2intensityProduction = undefined;
         zone.exchange = {};
         zone.production = {};
         zone.productionCo2Intensities = {};
@@ -171,6 +172,14 @@ module.exports = (state = initialDataState, action) => {
       newState.histories = newHistories;
 
       return newState;
+    }
+
+    case 'CLEAR_HISTORY_DATA': {
+      // Clear
+      return {
+        ...state,
+        histories: {},
+      };
     }
 
     default:

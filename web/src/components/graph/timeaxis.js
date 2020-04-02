@@ -6,38 +6,32 @@ import { __ } from '../../helpers/translation';
 
 const moment = extendMoment(Moment);
 
-// If the tick represents a timestamp not more than 15 minutes in the past,
-// render it as "Now", otherwise render as localized time, i.e. "8:30 PM".
-const renderTickValue = v => (
-  moment().diff(moment(v), 'minutes') <= 15
+const renderTickValue = (v, format) => (
+  moment().diff(v, 'hours') < 1
     ? __('country-panel.now')
-    // : moment(v).format('LT')
-    : moment(v).format('YYYY')
+    : v.format(format)
 );
-
-const roundUp = (number, base) => Math.ceil(number / base) * base;
-
-// Return `count` timestamp values uniformly distributed within the scale
-// domain, including both ends, rounded up to 15 minutes precision.
-const getTicksValuesFromTimeScale = (scale, count) => {
-  // TODO: USE MOMENT RANGE INSTEAD
-  // TODO: Switch to timescale
-  const range = moment.range(
-    moment(scale.domain()[0]).startOf('year').add(1, 'year'),
-    scale.domain()[1]
-  );
-  return Array.from(range.by('year', { step: 1 }));
-
-  const precision = moment.duration(15, 'minutes').valueOf();
-  const step = (endTime - startTime) / (count - 1);
-
-  return range(count).map(ind => (
-    moment(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision)).toDate()
-  ));
-};
 
 const TimeAxis = React.memo(({ className, scale, transform }) => {
   const [x1, x2] = scale.range();
+
+  const startMoment = moment(scale.domain()[0]);
+  const endMoment = moment(scale.domain()[1]);
+  let interval;
+  if (endMoment.diff(startMoment, 'years') > 1) {
+    interval = 'year';
+  } else if (endMoment.diff(startMoment, 'months') > 1) {
+    interval = 'month';
+  } else {
+    interval = 'hour';
+  }
+  const range = moment.range(
+    startMoment.startOf(interval).add(1, interval), // add one at the end to make sure it includes NOW
+    endMoment,
+  );
+  const tickMoments = Array.from(range.by(interval, { step: interval === 'hour' ? 6 : 1 }));
+
+  const format = interval === 'year' ? 'YYYY' : 'LT';
   return (
     <g
       className={className}
@@ -49,10 +43,10 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
       style={{ pointerEvents: 'none' }}
     >
       <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
-      {getTicksValuesFromTimeScale(scale, 5).map(v => (
+      {tickMoments.map(v => (
         <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
           <line stroke="currentColor" y2="6" />
-          <text fill="currentColor" y="9" x="0" dy="0.71em">{renderTickValue(v)}</text>
+          <text fill="currentColor" y="9" x="0" dy="0.71em">{renderTickValue(v, format)}</text>
         </g>
       ))}
     </g>

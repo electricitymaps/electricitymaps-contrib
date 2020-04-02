@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 // Layout
 import Header from './header';
@@ -17,6 +18,8 @@ import Tooltips from './tooltips';
 // Modules
 import { __ } from '../helpers/translation';
 import OnboardingModal from '../components/onboardingmodal';
+import Toggle from '../components/toggle';
+import { TIMESCALE } from '../helpers/constants';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -24,9 +27,11 @@ import OnboardingModal from '../components/onboardingmodal';
 const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  timescale: state.application.timescale,
+  currentDate: (state.data.grid || {}).datetime,
 });
 
-export default connect(mapStateToProps)(props => (
+const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed, timescale, currentDate }) => (
   <React.Fragment>
     <div
       style={{
@@ -55,7 +60,31 @@ export default connect(mapStateToProps)(props => (
             </a>
           </div>
           <Legend />
-          <ProdConsToggle />
+          <div className="controls-container">
+            <Toggle
+              infoHTML={__('tooltips.cpinfo')}
+              onChange={value => dispatchApplication('electricityMixMode', value)}
+              options={[
+                { value: 'production', label: __('tooltips.production') },
+                { value: 'consumption', label: __('tooltips.consumption') },
+              ]}
+              value={electricityMixMode}
+            />
+            <br />
+            <Toggle
+              onChange={value => dispatchApplication('timescale', value)}
+              options={[TIMESCALE.MONTHLY, TIMESCALE.LIVE].map((k) => {
+                if (k === TIMESCALE.MONTHLY) {
+                  return { value: k, label: 'monthly historical' };
+                }
+                if (k === TIMESCALE.LIVE) {
+                  return { value: k, label: 'live' };
+                }
+                return { value: 'unknown', label: 'unknown' };
+              })}
+              value={timescale}
+            />
+          </div>
           <LayerButtons />
         </div>
 
@@ -96,5 +125,29 @@ export default connect(mapStateToProps)(props => (
     </div>
     <Tooltips />
     <OnboardingModal />
+    <div
+      style={{
+        position: 'absolute',
+        fontFamily: 'Catamaran',
+        top: 10,
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        padding: 18,
+        borderRadius: 3,
+        cursor: 'pointer',
+        color: brightModeEnabled ? '#000' : '#fff',
+        fontSize: '3em',
+        fontWeight: 'bold',
+        display: timescale !== TIMESCALE.LIVE ? undefined : 'none',
+        pointerEvents: 'none',
+      }}
+    >
+      {moment(currentDate).format('MMMM YYYY')}
+    </div>
   </React.Fragment>
-));
+);
+
+export default connect(mapStateToProps)(Main);

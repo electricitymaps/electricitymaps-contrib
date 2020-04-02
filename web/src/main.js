@@ -924,9 +924,12 @@ observe(state => state.data.histories, (histories, state) => {
 });
 
 // Observe for timescale change
-observe(state => state.application.timescale, () =>
+observe(state => state.application.timescale, () => {
   // Clear history (which will cause a refetch)
-  dispatch({ type: 'CLEAR_HISTORY_DATA' }));
+  dispatch({ type: 'CLEAR_HISTORY_DATA' });
+  // Refetch state
+  fetch();
+});
 
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
