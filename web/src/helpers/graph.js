@@ -14,6 +14,5 @@ export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgRef) =>
 };
 
 // If in mobile mode, put the tooltip to the top of the screen for
-// readability, otherwise float it depending on the cursor position.
-export const getTooltipPosition = (isMobile, marker) =>
-  (isMobile ? { x: 0, y: 0 } : { x: marker.x - 7, y: marker.y - 7 });
+// readability, otherwise float it depending on the marker position.
+export const getTooltipPosition = (isMobile, marker) => (isMobile ? { x: 0, y: 0 } : marker);

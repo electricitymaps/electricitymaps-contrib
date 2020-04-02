@@ -66,23 +66,33 @@ const CountryHistoryEmissionsGraph = ({
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex, getLayer, marker) => {
+    () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0);
-      setTooltip({
-        zoneData: getLayer(0).datapoints[timeIndex].data.meta,
-        position: getTooltipPosition(isMobile, marker),
-      });
     },
-    [isMobile, setTooltip, setSelectedLayerIndex]
+    [setSelectedLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
+    },
+    [setSelectedLayerIndex]
+  );
+  const markerUpdateHandler = useMemo(
+    () => (position, datapoint) => {
+      setTooltip({
+        position: getTooltipPosition(isMobile, position),
+        zoneData: datapoint.meta,
+      });
+    },
+    [setTooltip, isMobile]
+  );
+  const markerHideHandler = useMemo(
+    () => () => {
       setTooltip(null);
     },
-    [setTooltip, setSelectedLayerIndex]
+    [setTooltip]
   );
 
   return (
@@ -98,6 +108,8 @@ const CountryHistoryEmissionsGraph = ({
         backgroundMouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={mouseMoveHandler}
         layerMouseOutHandler={mouseOutHandler}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
         selectedTimeIndex={selectedTimeIndex}
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}

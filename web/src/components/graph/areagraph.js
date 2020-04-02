@@ -108,6 +108,7 @@ const AreaGraph = React.memo(({
   layerMouseMoveHandler,
   layerMouseOutHandler,
   markerUpdateHandler,
+  markerHideHandler,
   /*
     `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
   */
@@ -148,15 +149,21 @@ const AreaGraph = React.memo(({
   );
 
   useEffect(() => {
-    if (markerUpdateHandler) {
-      if (ref.current && selectedTimeIndex && selectedLayerIndex) {
-        markerUpdateHandler(index => layers[index], {
-          x: ref.current.getBoundingClientRect().left + timeScale(datetimes[selectedTimeIndex]),
-          y: ref.current.getBoundingClientRect().top + valueScale(layers[selectedLayerIndex].datapoints[selectedTimeIndex][1]),
-        });
-      } else {
-        markerUpdateHandler();
+    if (ref.current && isNumber(selectedTimeIndex) && isNumber(selectedLayerIndex)) {
+      if (markerUpdateHandler) {
+        const layer = layers[selectedLayerIndex];
+        const datapoint = layer.datapoints[selectedTimeIndex];
+        markerUpdateHandler(
+          {
+            x: ref.current.getBoundingClientRect().left + timeScale(datetimes[selectedTimeIndex]),
+            y: ref.current.getBoundingClientRect().top + valueScale(datapoint[1]),
+          },
+          datapoint.data,
+          layer.key
+        );
       }
+    } else if (markerHideHandler) {
+      markerHideHandler();
     }
   }, [ref.current, timeScale, valueScale, datetimes, layers, selectedTimeIndex, selectedLayerIndex]);
 
