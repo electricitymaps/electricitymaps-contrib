@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { findIndex, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import styled, { css } from 'styled-components';
 
 import InfoTooltip from './infotooltip';
@@ -74,7 +74,6 @@ const InfoButton = styled.div`
 `;
 
 export default ({
-  className,
   infoHTML,
   onChange,
   options,
@@ -83,7 +82,7 @@ export default ({
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
-    <Wrapper className={className}>
+    <Wrapper>
       <Options>
         {options.map(o => (
           <OptionItem key={o.value} active={o.value === value} onClick={() => onChange(o.value)}>
