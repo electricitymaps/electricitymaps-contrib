@@ -6,6 +6,7 @@ import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
+import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
   getSelectedZoneHistory,
@@ -18,10 +19,6 @@ import { dispatchApplication } from '../store';
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import AreaGraph from './graph/areagraph';
-
-// If in mobile mode, put the tooltip to the top of the screen for
-// readability, otherwise float it depending on the cursor position.
-const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const getValuesInfo = (historyData, displayByEmissions) => {
   const maxTotalValue = d3Max(historyData, d => (
@@ -152,12 +149,12 @@ const CountryHistoryMixGraph = ({
     []
   );
   const layerMouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex, getLayer, ev) => {
+    () => (timeIndex, layerIndex, getLayer, marker) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(layerIndex);
       setTooltip({
         mode: getLayer(layerIndex).key,
-        position: getTooltipPosition(isMobile, ev),
+        position: getTooltipPosition(isMobile, marker),
         zoneData: getLayer(layerIndex).datapoints[timeIndex].data.meta,
       });
     },

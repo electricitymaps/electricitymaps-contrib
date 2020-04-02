@@ -5,6 +5,7 @@ import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { EMISSIONS_GRAPH_LAYER_KEY } from '../helpers/constants';
+import { getTooltipPosition } from '../helpers/graph';
 import { getCo2Scale } from '../helpers/scales';
 import {
   getSelectedZoneHistory,
@@ -17,10 +18,6 @@ import { dispatchApplication } from '../store';
 
 import CountryPanelEmissionsTooltip from './tooltips/countrypanelemissionstooltip';
 import AreaGraph from './graph/areagraph';
-
-// If in mobile mode, put the tooltip to the top of the screen for
-// readability, otherwise float it depending on the cursor position.
-const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const prepareGraphData = (historyData) => {
   if (!historyData || !historyData[0]) return {};
@@ -69,12 +66,12 @@ const CountryHistoryEmissionsGraph = ({
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex, getLayer, ev) => {
+    () => (timeIndex, layerIndex, getLayer, marker) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0);
       setTooltip({
         zoneData: getLayer(0).datapoints[timeIndex].data.meta,
-        position: getTooltipPosition(isMobile, ev),
+        position: getTooltipPosition(isMobile, marker),
       });
     },
     [isMobile, setTooltip, setSelectedLayerIndex]

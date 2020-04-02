@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { CARBON_GRAPH_LAYER_KEY } from '../helpers/constants';
+import { getTooltipPosition } from '../helpers/graph';
 import { getCo2Scale } from '../helpers/scales';
 import {
   getSelectedZoneHistory,
@@ -13,10 +14,6 @@ import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
-
-// If in mobile mode, put the tooltip to the top of the screen for
-// readability, otherwise float it depending on the cursor position.
-const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
@@ -65,12 +62,12 @@ const CountryHistoryCarbonGraph = ({
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex, getLayer, ev) => {
+    () => (timeIndex, layerIndex, getLayer, marker) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0);
       setTooltip({
         zoneData: getLayer(0).datapoints[timeIndex].data.meta,
-        position: getTooltipPosition(isMobile, ev),
+        position: getTooltipPosition(isMobile, marker),
       });
     },
     [isMobile, setTooltip, setSelectedLayerIndex]
