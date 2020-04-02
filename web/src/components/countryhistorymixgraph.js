@@ -152,21 +152,29 @@ const CountryHistoryMixGraph = ({
     () => (timeIndex, layerIndex, getLayer, marker) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(layerIndex);
-      setTooltip({
-        mode: getLayer(layerIndex).key,
-        position: getTooltipPosition(isMobile, marker),
-        zoneData: getLayer(layerIndex).datapoints[timeIndex].data.meta,
-      });
     },
-    [isMobile, setTooltip, setSelectedLayerIndex]
+    [setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
-      setTooltip(null);
     },
-    [setTooltip, setSelectedLayerIndex]
+    [setSelectedLayerIndex]
+  );
+  const markerUpdateHandler = useMemo(
+    () => (getLayer, marker) => {
+      if (selectedLayerIndex && selectedTimeIndex) {
+        setTooltip({
+          mode: getLayer(selectedLayerIndex).key,
+          position: getTooltipPosition(isMobile, marker),
+          zoneData: getLayer(selectedLayerIndex).datapoints[selectedTimeIndex].data.meta,
+        });
+      } else {
+        setTooltip(null);
+      }
+    },
+    [isMobile, setTooltip, selectedLayerIndex, selectedTimeIndex]
   );
 
   return (
@@ -182,6 +190,7 @@ const CountryHistoryMixGraph = ({
         backgroundMouseOutHandler={backgroundMouseOutHandler}
         layerMouseMoveHandler={layerMouseMoveHandler}
         layerMouseOutHandler={layerMouseOutHandler}
+        markerUpdateHandler={markerUpdateHandler}
         selectedTimeIndex={selectedTimeIndex}
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}

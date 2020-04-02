@@ -107,6 +107,7 @@ const AreaGraph = React.memo(({
   backgroundMouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
+  markerUpdateHandler,
   /*
     `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
   */
@@ -145,6 +146,19 @@ const AreaGraph = React.memo(({
     () => getTimeScale(containerWidth, datetimes, startTime, endTime),
     [containerWidth, datetimes, startTime, endTime]
   );
+
+  useEffect(() => {
+    if (markerUpdateHandler) {
+      if (ref.current && selectedTimeIndex && selectedLayerIndex) {
+        markerUpdateHandler(index => layers[index], {
+          x: ref.current.getBoundingClientRect().left + timeScale(datetimes[selectedTimeIndex]),
+          y: ref.current.getBoundingClientRect().top + valueScale(layers[selectedLayerIndex].datapoints[selectedTimeIndex][1]),
+        });
+      } else {
+        markerUpdateHandler();
+      }
+    }
+  }, [ref.current, timeScale, valueScale, datetimes, layers, selectedTimeIndex, selectedLayerIndex]);
 
   // Don't render the graph at all if no layers are present
   if (isEmpty(layers)) return null;
