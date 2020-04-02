@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { findIndex, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import styled, { css } from 'styled-components';
 
 import InfoTooltip from './infotooltip';
@@ -73,8 +73,7 @@ const InfoButton = styled.div`
   }
 `;
 
-const Toggle = ({
-  className,
+export default ({
   infoHTML,
   onChange,
   options,
@@ -82,15 +81,11 @@ const Toggle = ({
 }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
-  const activeIndex = findIndex(options, { value });
-  const nextIndex = (activeIndex + 1) % options.length;
-  const nextValue = options[nextIndex].value;
-
   return (
-    <Wrapper className={className}>
-      <Options onClick={() => onChange(nextValue)}>
+    <Wrapper>
+      <Options>
         {options.map(o => (
-          <OptionItem key={o.value} active={o.value === value}>
+          <OptionItem key={o.value} active={o.value === value} onClick={() => onChange(o.value)}>
             {o.label}
           </OptionItem>
         ))}
@@ -108,5 +103,3 @@ const Toggle = ({
     </Wrapper>
   );
 };
-
-export default Toggle;
