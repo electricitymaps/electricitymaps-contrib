@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Portal } from 'react-portal';
 
 import { useWidthObserver, useHeightObserver } from '../effects';
 
@@ -40,9 +41,11 @@ const Tooltip = ({ id, children, position }) => {
   style.transform = `translate(${x}px,${y}px)`;
 
   return (
-    <div id={id} className="tooltip panel" style={style} ref={ref}>
-      {children}
-    </div>
+    <Portal>
+      <div id={id} className="tooltip panel" style={style} ref={ref}>
+        {children}
+      </div>
+    </Portal>
   );
 };
 
