@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
-import { isArray, isFinite } from 'lodash';
+import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
@@ -121,6 +121,7 @@ const Axis = ({ formatTick, height, scale }) => (
 const Row = ({
   children,
   index,
+  isMobile,
   label,
   onMouseOver,
   onMouseOut,
@@ -133,9 +134,11 @@ const Row = ({
       fill="transparent"
       width={width}
       height={ROW_HEIGHT + PADDING_Y}
-      onFocus={onMouseOver}
-      onMouseOver={onMouseOver}
-      onMouseMove={onMouseOver}
+      /* Support only click events in mobile mode, otherwise react to mouse hovers */
+      onClick={isMobile ? onMouseOver : noop}
+      onFocus={!isMobile ? onMouseOver : noop}
+      onMouseOver={!isMobile ? onMouseOver : noop}
+      onMouseMove={!isMobile ? onMouseOver : noop}
       onMouseOut={onMouseOut}
       onBlur={onMouseOut}
     />
@@ -254,6 +257,7 @@ const CountryCarbonEmissionsTable = React.memo(({
             width={width}
             onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
             onMouseOut={onProductionRowMouseOut}
+            isMobile={isMobile}
           >
             <HorizontalBar
               className="production"
@@ -277,6 +281,7 @@ const CountryCarbonEmissionsTable = React.memo(({
             width={width}
             onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
             onMouseOut={onExchangeRowMouseOut}
+            isMobile={isMobile}
           >
             <image
               style={{ pointerEvents: 'none' }}
@@ -357,6 +362,7 @@ const CountryElectricityProductionTable = React.memo(({
             width={width}
             onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
             onMouseOut={onProductionRowMouseOut}
+            isMobile={isMobile}
           >
             <HorizontalBar
               className="capacity"
@@ -386,6 +392,7 @@ const CountryElectricityProductionTable = React.memo(({
             width={width}
             onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
             onMouseOut={onExchangeRowMouseOut}
+            isMobile={isMobile}
           >
             <image
               style={{ pointerEvents: 'none' }}
