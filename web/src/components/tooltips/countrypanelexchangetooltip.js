@@ -17,9 +17,6 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKey: state.application.tooltipDisplayMode,
-  visible: getSelectedZoneExchangeKeys(state).includes(state.application.tooltipDisplayMode),
-  zoneData: state.application.tooltipData,
 });
 
 const CountryPanelExchangeTooltip = ({
@@ -27,10 +24,10 @@ const CountryPanelExchangeTooltip = ({
   displayByEmissions,
   electricityMixMode,
   exchangeKey,
-  visible,
+  position,
   zoneData,
 }) => {
-  if (!visible || !zoneData) return null;
+  if (!zoneData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = getExchangeCo2Intensity(exchangeKey, zoneData, electricityMixMode);
@@ -58,7 +55,7 @@ const CountryPanelExchangeTooltip = ({
   headline = headline.replace('id="country-exchange-flag"', `class="flag" src="${flagUri(exchangeKey)}"`);
 
   return (
-    <Tooltip id="countrypanel-exchange-tooltip">
+    <Tooltip id="countrypanel-exchange-tooltip" position={position}>
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
