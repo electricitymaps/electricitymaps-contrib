@@ -46,7 +46,6 @@ const initialApplicationState = {
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
-  useRemoteEndpoint: false,
   windColorbarMarker: null,
   windEnabled: cookieGetBool('windEnabled', false),
 
@@ -93,7 +92,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return Object.assign({}, state, {
         customDate: searchParams.get('datetime'),
         solarEnabled: searchParams.get('solar') === 'true',
-        useRemoteEndpoint: searchParams.get('remote') === 'true',
         windEnabled: searchParams.get('wind') === 'true',
         // Prioritize route pathname but fall back to search params for backwards compatibility
         currentPage: pathname.split('/')[1] || currentPageFallback || 'map', // Default to map view if page was not specified

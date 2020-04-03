@@ -26,7 +26,7 @@ import thirdPartyServices from './services/thirdparty';
 // Utils
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
-import { history, navigateToURL } from './helpers/router';
+import { history, isRemoteEndpoint, navigateToURL } from './helpers/router';
 
 import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
 
@@ -101,7 +101,7 @@ const REFRESH_TIME_MINUTES = 5;
 // 3. Document domain has a non-empty value
 const getEndpoint = () => ((
   getState().application.isLocalhost
-  && !getState().application.useRemoteEndpoint
+  && !isRemoteEndpoint()
   && document.domain !== ''
 ) ? LOCAL_ENDPOINT : REMOTE_ENDPOINT);
 
@@ -945,7 +945,6 @@ observe(state => state.application.customDate, (_, state) => { delayedUpdateURLF
 observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes

@@ -17,13 +17,17 @@ history.listen(() => {
   dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
+export function isRemoteEndpoint() {
+  const { searchParams } = new URL(window.location);
+  return searchParams.get('remote') === 'true';
+}
+
 export function updateURLFromState(state) {
   const {
     currentPage,
     customDate,
     selectedZoneName,
     solarEnabled,
-    useRemoteEndpoint,
     windEnabled,
   } = state.application;
 
@@ -31,7 +35,7 @@ export function updateURLFromState(state) {
   const searchParams = Object.assign({},
     customDate ? { datetime: customDate } : {},
     solarEnabled ? { solar: solarEnabled } : {},
-    useRemoteEndpoint ? { remote: useRemoteEndpoint } : {},
+    isRemoteEndpoint() ? { remote: isRemoteEndpoint() } : {},
     windEnabled ? { wind: windEnabled } : {});
 
   // Build the URL string
