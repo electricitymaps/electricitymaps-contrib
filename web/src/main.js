@@ -6,13 +6,12 @@
 import { event as currentEvent } from 'd3-selection';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { debounce } from 'lodash';
 
 // Components
-import OnboardingModal from './components/onboardingmodal';
 import ZoneMap from './components/map';
-import HorizontalColorbar from './components/horizontalcolorbar';
-import Tooltip from './components/tooltip';
 
 // Layer Components
 import ExchangeLayer from './components/layers/exchange';
@@ -31,6 +30,8 @@ import { getCo2Scale } from './helpers/scales';
 import {
   CARBON_GRAPH_LAYER_KEY,
   PRICES_GRAPH_LAYER_KEY,
+  MAP_EXCHANGE_TOOLTIP_KEY,
+  MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
 
 // Layout
@@ -63,10 +64,9 @@ const {
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
-const HistoryState = require('./helpers/historystate');
+const { updateURLFromState } = require('./helpers/router');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
-const tooltipHelper = require('./helpers/tooltip');
 const translation = require('./helpers/translation');
 const { themes } = require('./helpers/themes');
 
@@ -99,22 +99,24 @@ if (thirdPartyServices._ga) {
 // Constants
 const REFRESH_TIME_MINUTES = 5;
 
-// Set state depending on URL params
-HistoryState.parseInitial(window.location.search);
-
-const applicationState = HistoryState.getStateFromHistory();
-Object.keys(applicationState).forEach((k) => {
-  if (k === 'selectedZoneName'
-    && Object.keys(getState().data.grid.zones).indexOf(applicationState[k]) === -1) {
-    // The selectedZoneName doesn't exist, so don't update it
-    return;
-  }
-  dispatchApplication(k, applicationState[k]);
+// Update Redux state with the URL search params initially and also
+// every time the URL change is triggered by a browser action to ensure
+// the URL -> Redux binding (the other direction is ensured by observing
+// the relevant state Redux entries and triggering the URL update below).
+dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
+window.addEventListener('popstate', () => {
+  dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
-// TODO(olc): should be stored in redux?
-const ENDPOINT = getState().application.useRemoteEndpoint
-  ? REMOTE_ENDPOINT : LOCAL_ENDPOINT;
+// Use local endpoint only if ALL of the following conditions are true:
+// 1. The app is running on localhost
+// 2. The `remote` search param hasn't been explicitly set to true
+// 3. Document domain has a non-empty value
+const getEndpoint = () => ((
+  getState().application.isLocalhost
+  && !getState().application.useRemoteEndpoint
+  && document.domain !== ''
+) ? LOCAL_ENDPOINT : REMOTE_ENDPOINT);
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -132,12 +134,19 @@ LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
-let onboardingModal;
 
 // Render DOM
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <BrowserRouter>
+      <Switch>
+        {/* Only one active app route - the application state is */}
+        {/* currently fully managed through the URL search params */}
+        <Route path="/">
+          <Main />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.querySelector('#app'),
   () => {
@@ -150,21 +159,6 @@ ReactDOM.render(
 
 // Set standard theme
 let theme = themes.bright;
-
-// ** Create components
-const countryTableExchangeTooltip = new Tooltip('#countrypanel-exchange-tooltip');
-const countryTableProductionTooltip = new Tooltip('#countrypanel-production-tooltip');
-const countryTooltip = new Tooltip('#country-tooltip');
-const exchangeTooltip = new Tooltip('#exchange-tooltip');
-const priceTooltip = new Tooltip('#price-tooltip');
-
-const windColorbar = new HorizontalColorbar('.wind-potential-bar', scales.windColor)
-  .markerColor('black');
-const solarColorbarColor = d3.scaleLinear()
-  .domain([0, 0.5 * scales.maxSolarDSWRF, scales.maxSolarDSWRF])
-  .range(['black', 'white', 'gold']);
-const solarColorbar = new HorizontalColorbar('.solar-potential-bar', solarColorbarColor)
-  .markerColor('red');
 
 // Initialise mobile app (cordova)
 const app = {
@@ -218,14 +212,9 @@ const app = {
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
     universalLinks.subscribe(null, (eventData) => {
-      HistoryState.parseInitial(eventData.url.split('?')[1] || eventData.url);
       // In principle we should only do the rest of the app loading
-      // after this point, instead of dispating a new event
-      // eslint-disable-next-line no-shadow
-      const applicationState = HistoryState.getStateFromHistory();
-      Object.keys(applicationState).forEach((k) => {
-        dispatchApplication(k, applicationState[k]);
-      });
+      // after this point, instead of dispatcing a new event
+      dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: eventData.url } });
     });
   },
 
@@ -256,12 +245,6 @@ moment.locale(getState().application.locale.toLowerCase());
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
-// do not display onboarding when we've seen it or we're embedded
-if (!getState().application.onboardingSeen && !getState().application.isEmbedded) {
-  onboardingModal = new OnboardingModal('#main');
-  thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
-}
-
 // Display randomly alternating header campaign message
 const randomBoolean = Math.random() >= 0.5;
 
@@ -269,17 +252,10 @@ d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
 // Set up co2 scales
-let co2color;
-let co2Colorbars;
+let co2ColorScale;
 function updateCo2Scale() {
-  co2color = getCo2Scale(getState().application.colorBlindModeEnabled);
-  co2color.clamp(true);
-  co2Colorbars = co2Colorbars || [];
-  co2Colorbars.push(new HorizontalColorbar('.floating-legend-container .co2-colorbar', co2color, null, [0, 400, 800])
-    .markerColor('white')
-    .domain([0, scales.maxCo2])
-    .render());
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2color, theme);
+  co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
+  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
 d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
@@ -306,7 +282,7 @@ function finishLoading() {
 // Start initialising map
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
-    .setCo2color(co2color)
+    .setCo2color(co2ColorScale)
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -326,17 +302,23 @@ try {
 
       // Create exchange layer as a result
       exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
-        .onExchangeMouseOver((d) => {
-          tooltipHelper.showMapExchange(exchangeTooltip, d, co2color, co2Colorbars);
-        })
-        .onExchangeMouseMove(() => {
-          exchangeTooltip.update(currentEvent.clientX, currentEvent.clientY);
+        .onExchangeMouseMove((zoneData) => {
+          const { co2intensity } = zoneData;
+          if (co2intensity) {
+            dispatchApplication('co2ColorbarValue', co2intensity);
+          }
+          dispatch({
+            type: 'SHOW_TOOLTIP',
+            payload: {
+              data: zoneData,
+              displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
+              position: { x: currentEvent.clientX, y: currentEvent.clientY },
+            },
+          });
         })
         .onExchangeMouseOut((d) => {
-          if (d.co2intensity && co2Colorbars) {
-            co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-          }
-          exchangeTooltip.hide();
+          dispatchApplication('co2ColorbarValue', null);
+          dispatch({ type: 'HIDE_TOOLTIP' });
         })
         .onExchangeClick((d) => {
           console.log(d);
@@ -386,21 +368,22 @@ function mapMouseOver(lonlat) {
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
       const v = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      windColorbar.currentMarker(Math.sqrt(u * u + v * v));
+      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
     }
   } else {
-    windColorbar.currentMarker(undefined);
+    dispatchApplication('windColorbarValue', null);
   }
   if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
     const now = getState().application.customDate
       ? moment(getState().application.customDate) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      const val = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, solar.forecasts[0], solar.forecasts[1]);
-      solarColorbar.currentMarker(val);
+      dispatchApplication(
+        'solarColorbarValue',
+        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
+      );
     }
   } else {
-    solarColorbar.currentMarker(undefined);
+    dispatchApplication('solarColorbarValue', null);
   }
 }
 
@@ -458,7 +441,6 @@ function renderMap(state) {
         ? moment(getState().application.customDate) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
-      scales.solarColor,
       (err) => {
         if (err) {
           console.error(err.message);
@@ -520,30 +502,32 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
   if (typeof zoneMap !== 'undefined') {
     // Assign country map data
     zoneMap
-      .onCountryMouseOver((d) => {
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-      })
-      .onZoneMouseMove((d, i, clientX, clientY) => {
-        // TODO: Check that i changed before calling showMapCountry
-        tooltipHelper.showMapCountry(
-          countryTooltip, d, co2color, co2Colorbars,
-          getState().application.electricityMixMode,
-        );
-        const rect = node.getBoundingClientRect();
-        countryTooltip.update(clientX + rect.left, clientY + rect.top);
-      })
       .onMouseMove((lonlat) => {
         mapMouseOver(lonlat);
       })
+      .onZoneMouseMove((zoneData, i, clientX, clientY) => {
+        dispatchApplication(
+          'co2ColorbarValue',
+          getState().application.electricityMixMode === 'consumption'
+            ? zoneData.co2intensity
+            : zoneData.co2intensityProduction
+        );
+        dispatch({
+          type: 'SHOW_TOOLTIP',
+          payload: {
+            data: zoneData,
+            displayMode: MAP_COUNTRY_TOOLTIP_KEY,
+            position: {
+              x: node.getBoundingClientRect().left + clientX,
+              y: node.getBoundingClientRect().top + clientY,
+            },
+          },
+        });
+      })
       .onZoneMouseOut(() => {
-        if (co2Colorbars) {
-          co2Colorbars.forEach((c) => { c.currentMarker(undefined); });
-        }
+        dispatchApplication('co2ColorbarValue', null);
+        dispatch({ type: 'HIDE_TOOLTIP' });
         mapMouseOver(undefined);
-        countryTooltip.hide();
       });
   }
 
@@ -605,14 +589,14 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, ENDPOINT, getState().application.customDate);
+  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate);
 
   const now = getState().application.customDate || new Date();
 
   if (!getState().application.solarEnabled) {
     Q.defer(DataService.fetchNothing);
   } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'solar', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
   } else {
     Q.defer(cb => cb(null, solar));
   }
@@ -620,7 +604,7 @@ function fetch(showLoading, callback) {
   if (!getState().application.windEnabled || typeof windLayer === 'undefined') {
     Q.defer(DataService.fetchNothing);
   } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), ENDPOINT, 'wind', now);
+    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
   } else {
     Q.defer(cb => cb(null, wind));
   }
@@ -638,9 +622,6 @@ function fetch(showLoading, callback) {
   });
 }
 
-window.addEventListener('resize', () => {
-  co2Colorbars.forEach((d) => { d.render(); });
-});
 // Only for debugging purposes
 window.retryFetch = () => {
   d3.select('#connection-warning').classed('active', false);
@@ -706,19 +687,6 @@ if (!getState().application.isMobile) {
   });
 }
 
-// Production/Consumption
-function toggleElectricityMixMode() {
-  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
-    ? 'production'
-    : 'consumption');
-}
-d3.select('.production-toggle').on('click', toggleElectricityMixMode);
-
-const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
-d3.select('.production-toggle-info').on('click', () => {
-  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
-});
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -782,14 +750,6 @@ d3.selectAll('.info-button').on('click touchend', () => dispatchApplication('sho
 d3.selectAll('.highscore-button')
   .on('click touchend', () => dispatchApplication('showPageState', 'highscore'));
 
-// Onboarding modal
-if (onboardingModal) {
-  onboardingModal.onDismiss(() => {
-    saveKey('onboardingSeen', true);
-    dispatchApplication('onboardingSeen', true);
-  });
-}
-
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
@@ -815,17 +775,9 @@ function routeToPage(pageName, state) {
     renderMap(state);
     if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
     if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-    if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
-    if (state.application.windEnabled && windColorbar) windColorbar.render();
-    if (state.application.solarEnabled && solarColorbar) solarColorbar.render();
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
-    if (pageName === 'info') {
-      if (co2Colorbars) co2Colorbars.forEach((d) => { d.render(); });
-      if (state.application.windEnabled) if (windColorbar) windColorbar.render();
-      if (state.application.solarEnabled) if (solarColorbar) solarColorbar.render();
-    }
   }
 
   d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
@@ -841,7 +793,7 @@ function tryFetchHistory(state) {
     console.error('Can\'t fetch history when a custom date is provided!');
   } else if (!state.data.histories[selectedZoneName]) {
     LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(ENDPOINT, selectedZoneName, (err, obj) => {
+    DataService.fetchHistory(getEndpoint(), selectedZoneName, (err, obj) => {
       LoadingService.stopLoading('.country-history .loading');
       if (err) { return console.error(err); }
       if (!obj || !obj.data) {
@@ -908,87 +860,6 @@ function renderZones(state) {
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
   }
 }
-
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode) => {
-  if (!tooltipDisplayMode) {
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-  }
-});
-
-// TODO: Simplify this when moving the Tooltip component to React.
-function updateTooltip(state) {
-  if (!state.application.tooltipDisplayMode) {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-  } else if (state.application.tooltipDisplayMode === CARBON_GRAPH_LAYER_KEY) {
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-    countryTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showMapCountry(
-      countryTooltip,
-      state.application.tooltipZoneData,
-      co2color, co2Colorbars,
-      state.application.electricityMixMode,
-    );
-  } else if (state.application.tooltipDisplayMode === PRICES_GRAPH_LAYER_KEY) {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y,
-    );
-    tooltipHelper.showPrice(
-      priceTooltip,
-      state.application.tooltipZoneData,
-    );
-  } else if (modeOrder.includes(state.application.tooltipDisplayMode)) {
-    countryTooltip.hide();
-    countryTableExchangeTooltip.hide();
-    priceTooltip.hide();
-    countryTableProductionTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showProduction(
-      countryTableProductionTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
-  } else {
-    countryTooltip.hide();
-    countryTableProductionTooltip.hide();
-    priceTooltip.hide();
-    countryTableExchangeTooltip.update(
-      state.application.tooltipPosition.x,
-      state.application.tooltipPosition.y
-    );
-    tooltipHelper.showExchange(
-      countryTableExchangeTooltip,
-      state.application.tooltipDisplayMode,
-      state.application.tooltipZoneData,
-      state.application.tableDisplayEmissions,
-      co2color, co2Colorbars
-    );
-  }
-}
-
-observe(state => state.application.selectedZoneTimeIndex, (selectedZoneTimeIndex, state) => {
-  updateTooltip(state);
-});
-
-observe(state => state.application.tooltipDisplayMode, (tooltipDisplayMode, state) => {
-  updateTooltip(state);
-});
 
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
@@ -1066,7 +937,6 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 // Observe for solar settings change
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);
-  d3.select('.solar-potential-legend').classed('visible', solarEnabled);
   saveKey('solarEnabled', solarEnabled);
 
   solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
@@ -1074,7 +944,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   const now = state.customDate
     ? moment(state.customDate) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
-    solarColorbar.render();
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
     } else {
@@ -1088,7 +957,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // Observe for wind settings change
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
-  d3.select('.wind-potential-legend').classed('visible', windEnabled);
 
   windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
@@ -1097,7 +965,6 @@ observe(state => state.application.windEnabled, (windEnabled, state) => {
   const now = state.customDate
     ? moment(state.customDate) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
-    windColorbar.render();
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
     } else {
@@ -1114,12 +981,21 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
   }
 });
 
-// Observe for changes requiring an update of history
-Object.values(HistoryState.querystringMappings).forEach((k) => {
-  observe(state => state.application[k], (_, state) => {
-    HistoryState.updateHistoryFromState(state.application);
-  });
-});
+// Observe all the Redux state entries that reflect the URL to ensure the
+// Redux -> URL binding one-way binding (the other direction is ensured by
+// listening to the `popstate` event above). The call is being debounced to
+// make sure all the consecutive state changes get bundled together  under
+// a single URL state transition.
+// TODO: In order to get rid of the debounce, we should probably not keep
+// URL search params in Redux at all.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
+const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
+observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.showPageState, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.useRemoteEndpoint, (_, state) => { delayedUpdateURLFromState(state); });
+observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {

@@ -1,217 +1,83 @@
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-axis'),
-  require('d3-scale'),
-  require('d3-interpolate'),
-  require('d3-selection'),
-);
+import React, { useRef, useState } from 'react';
+import { range, isFinite } from 'lodash';
+import { scaleLinear } from 'd3-scale';
+import { extent } from 'd3-array';
 
-function HorizontalColorbar(selector, d3ColorScale, d3TickFormat, d3TickValues) {
-  this.PADDING_X = 13; // Inner padding allow place for the axis text
-  this.PADDING_Y = 10; // Inner padding allow place for the axis text
+import { getCo2Scale } from '../helpers/scales';
+import { useWidthObserver, useHeightObserver } from '../effects';
 
-  this.root = d3.select(selector);
-  this.root.selectAll('*').remove();
-  this.d3TickFormat = d3TickFormat;
-  this.d3TickValues = d3TickValues;
-  this.originalColorScale = d3ColorScale;
+const PADDING_X = 13;
+const PADDING_Y = 10;
 
-  this._setDomainAndRange(
-    d3ColorScale.domain(),
-    d3ColorScale.range ? d3ColorScale.range() : undefined,
+const spreadOverDomain = (scale, count) => {
+  const [x1, x2] = extent(scale.domain());
+  return range(count).map(v => x1 + (x2 - x1) * v / (count - 1));
+};
+
+const HorizontalColorbar = ({
+  colorScale,
+  currentValue,
+  id,
+  markerColor,
+  ticksCount = 5,
+}) => {
+  const ref = useRef(null);
+  const width = useWidthObserver(ref, 2 * PADDING_X);
+  const height = useHeightObserver(ref, 2 * PADDING_Y);
+
+  const linearScale = scaleLinear()
+    .domain(extent(colorScale.domain()))
+    .range([0, width]);
+
+  return (
+    <svg className={`${id} colorbar`} ref={ref}>
+      <g transform={`translate(${PADDING_X},0)`}>
+        <linearGradient id={`${id}-gradient`} x2="100%">
+          {spreadOverDomain(colorScale, 10).map((value, index) => (
+            <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
+          ))}
+        </linearGradient>
+        <rect
+          className="gradient"
+          fill={`url(#${id}-gradient)`}
+          width={width}
+          height={height}
+        />
+        {isFinite(currentValue) && (
+          <line
+            className="marker"
+            stroke={markerColor}
+            strokeWidth="2"
+            x1={linearScale(currentValue)}
+            x2={linearScale(currentValue)}
+            y2={height}
+          />
+        )}
+        <rect
+          className="border"
+          shapeRendering="crispEdges"
+          strokeWidth="1"
+          fill="none"
+          width={width}
+          height={height}
+        />
+        <g
+          className="x axis"
+          transform={`translate(0,${height})`}
+          fill="none"
+          fontSize="10"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+        >
+          {spreadOverDomain(linearScale, ticksCount).map(t => (
+            <g key={`tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
+              <text fill="currentColor" y="8" dy="0.81em">{Math.round(t)}</text>
+            </g>
+          ))}
+        </g>
+      </g>
+    </svg>
   );
-
-  this.gColorbar = this.root.append('g')
-    .attr('transform', `translate(${this.PADDING_X}, 0)`);
-
-  if (this.scale.ticks) {
-    // Linear scale
-
-    // Create gradient
-    this.gradientId = `${Math.random()}gradient`;
-    this.gGradient = this.gColorbar.append('linearGradient')
-      .attr('id', this.gradientId)
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', '100%')
-      .attr('y2', 0);
-
-    // Create fill
-    this.gColorbar.append('rect')
-      .attr('class', 'gradient')
-      .style('fill', `url(#${this.gradientId})`);
-
-    // Prepare an invisible marker
-    this.gColorbar.append('line')
-      .attr('class', 'marker')
-      .style('stroke', 'gray')
-      .style('stroke-width', 2)
-      .attr('y1', 0)
-      .style('display', 'none');
-  } else {
-    // Ordinal scale
-
-    // Prepare an invisible marker
-    this.gColorbar.append('rect')
-      .attr('class', 'marker')
-      .style('stroke', 'gray')
-      .style('stroke-width', 2)
-      .style('fill', 'none')
-      .attr('y', 0)
-      .style('display', 'none');
-  }
-
-  // Draw a container around the colorbar
-  this.gColorbar.append('rect')
-    .attr('class', 'border')
-    .attr('x', 0)
-    .attr('y', 0)
-    .style('fill', 'none')
-    .style('stroke-width', 1)
-    .attr('shape-rendering', 'crispEdges');
-
-  // Prepare axis
-  this.gColorbarAxis = this.gColorbar.append('g');
-
-  return this;
-}
-
-HorizontalColorbar.prototype.render = function render() {
-  const rootNode = this.root.node();
-  if (!rootNode) { return this; }
-  this.width = rootNode.getBoundingClientRect().width;
-  this.height = rootNode.getBoundingClientRect().height;
-  if (!this.width || !this.height) return this;
-
-  this.colorbarWidth = this.width - 2 * this.PADDING_X;
-  this.colorbarHeight = this.height - 2 * this.PADDING_Y;
-
-  const that = this;
-
-  if (this.scale.ticks) {
-    // Linear scale
-    const pixelRelativeScale = d3.scaleLinear()
-      .domain([d3.min(this._domain), d3.max(this._domain)])
-      .range([0, 1]);
-    this.scale
-      .range(this._domain.map((d, i) => pixelRelativeScale(d) * that.colorbarWidth));
-
-    // Place the colors on the gradient
-    const stops = this.gGradient.selectAll('stop')
-      .data(this.colors);
-    stops.enter()
-      .append('stop')
-      .merge(stops)
-      .attr('offset', (d, i) => i / (that.colors.length - 1))
-      .attr('stop-color', d => d);
-    // Add a rect with the gradient
-    this.gColorbar.select('rect.gradient')
-      .attr('width', this.colorbarWidth)
-      .attr('height', this.colorbarHeight);
-  } else {
-    // Ordinal scale
-    this.scale.rangeBands([0, this.colorbarWidth]);
-    this.deltaOrdinal = this.colorbarWidth / this.scale.range().length;
-    this.gColorbar.selectAll('rect')
-      .data(this.scale.range())
-      .enter()
-      .append('rect')
-      .attr('x', (d, i) => i * that.deltaOrdinal)
-      .attr('width', this.deltaOrdinal)
-      .attr('y', 0)
-      .attr('height', this.colorbarHeight)
-      .style('fill', (d, i) => that.colors[i]);
-  }
-
-  // Prepare an invisible marker
-  if (this.scale.ticks) {
-    this.gColorbar.select('line')
-      .attr('y2', this.colorbarHeight);
-  } else {
-    this.gColorbar.select('rect')
-      .attr('width', this.deltaOrdinal);
-  }
-
-  // Draw a container around the colorbar
-  this.gColorbar.select('rect.border')
-    .attr('width', this.colorbarWidth)
-    .attr('height', this.colorbarHeight);
-
-  // Draw the horizontal axis
-  const axis = d3.axisBottom(this.scale)
-    .tickSizeInner(this.colorbarHeight / 2.0)
-    .tickPadding(3).ticks(7);
-  if (this.d3TickFormat) { axis.tickFormat(this.d3TickFormat); }
-  if (this.d3TickValues) { axis.tickValues(this.d3TickValues); }
-
-  this.gColorbarAxis
-    .attr('class', 'x axis')
-    .attr('transform', `translate(0, ${this.colorbarHeight})`)
-    .call(axis);
-  this.gColorbarAxis.selectAll('.tick text');
-  this.gColorbarAxis.selectAll('.tick line')
-    .style('stroke-width', 1)
-    .attr('shape-rendering', 'crispEdges');
-  this.gColorbarAxis.select('path')
-    .style('fill', 'none')
-    .style('stroke', 'none');
-
-  return this;
-};
-
-HorizontalColorbar.prototype.currentMarker = function currentMarker(d) {
-  this.width = this.root.node().getBoundingClientRect().width;
-  this.height = this.root.node().getBoundingClientRect().height;
-  if (!this.width || !this.height) return this;
-
-  if (d !== undefined) {
-    if (this.scale.ticks) {
-      // Linear
-      this.gColorbar.select('.marker')
-        .attr('x1', this.scale(d))
-        .attr('x2', this.scale(d))
-        .style('display', 'block');
-    } else {
-      // Ordinal
-      this.gColorbar.select('.marker')
-        .attr('x', this.scale(d))
-        .attr('width', this.delta)
-        .style('display', 'block');
-    }
-  } else {
-    this.gColorbar.select('.marker')
-      .style('display', 'none');
-  }
-  return this;
-};
-
-HorizontalColorbar.prototype.markerColor = function markerColor(arg) {
-  this.gColorbar.select('.marker')
-    .style('stroke', arg);
-  return this;
-};
-
-HorizontalColorbar.prototype.domain = function domain(arg) {
-  if (!arg) return this._domain;
-  this._setDomainAndRange(arg, undefined);
-  return this;
-};
-
-HorizontalColorbar.prototype._setDomainAndRange = function _setDomainAndRange(d, r) {
-  const that = this;
-
-
-  this._domain = d;
-  this.colors = r || d3.range(10).map((i) => {
-    const e = d3.extent(that._domain);
-    const inter = d3.interpolate(e[0], e[1]);
-    const value = inter(i / (10 - 1));
-    return that.originalColorScale(value);
-  });
-  this.scale = d3.scaleLinear()
-    .range(this.colors)
-    .domain(this._domain);
 };
 
 export default HorizontalColorbar;

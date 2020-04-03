@@ -14,10 +14,12 @@ import { connect } from 'react-redux';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
+import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissionsgraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
-import Tooltip from '../../components/tooltip';
+
+import { dispatch } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
@@ -26,7 +28,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-import tooltipHelper from '../../helpers/tooltip';
+import { LOW_CARBON_INFO_TOOLTIP_KEY } from '../../helpers/constants';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -61,8 +63,19 @@ const CountryRenewableGauge = connect((state) => {
   };
 })(CircularGauge);
 
-// TODO: Move to a proper React component
-const lowcarbInfoTooltip = new Tooltip('#lowcarb-info-tooltip');
+const showLowCarbonInfoTooltip = (x, y) => {
+  dispatch({
+    type: 'SHOW_TOOLTIP',
+    payload: {
+      displayMode: LOW_CARBON_INFO_TOOLTIP_KEY,
+      position: { x, y },
+    },
+  });
+};
+
+const hideLowCarbonInfoTooltip = () => {
+  dispatch({ type: 'HIDE_TOOLTIP' });
+};
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
@@ -71,8 +84,8 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
 });
-const mapDispatchToProps = dispatch => ({
-  dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
+const mapDispatchToProps = disp => ({
+  dispatchApplication: (k, v) => disp(updateApplication(k, v)),
 });
 
 class Component extends React.PureComponent {
@@ -128,7 +141,7 @@ class Component extends React.PureComponent {
                   <div
                     id="country-emission-rect"
                     className="country-col-box emission-rect emission-rect-overview"
-                    style={{ backgroundColor: co2Intensity ? co2ColorScale(co2Intensity) : 'gray' }}
+                    style={{ backgroundColor: co2ColorScale(co2Intensity) }}
                   >
                     <div>
                       <span className="country-emission-intensity">
@@ -146,9 +159,8 @@ class Component extends React.PureComponent {
                 <div className="country-col country-lowcarbon-wrap">
                   <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                     <CountryLowCarbonGauge
-                      onMouseOver={() => tooltipHelper.showLowCarbonDescription(lowcarbInfoTooltip)}
-                      onMouseMove={(clientX, clientY) => lowcarbInfoTooltip.update(clientX, clientY)}
-                      onMouseOut={() => lowcarbInfoTooltip.hide()}
+                      onMouseMove={showLowCarbonInfoTooltip}
+                      onMouseOut={hideLowCarbonInfoTooltip}
                     />
                   </div>
                   <div
@@ -200,24 +212,24 @@ class Component extends React.PureComponent {
               <hr />
               <div className="country-history">
                 <div className="loading overlay" />
-                <span
-                  className="country-history-title"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-history.carbonintensity24h')) }}
-                />
+                <span className="country-history-title">
+                  {co2Sub(__(
+                    tableDisplayEmissions
+                      ? 'country-history.emissions24h'
+                      : 'country-history.carbonintensity24h'
+                  ))}
+                </span>
                 <br />
                 <small className="small-screen-hidden">
                   <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                   <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
                 </small>
 
-                <CountryHistoryCarbonGraph />
+                {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
 
                 <div className="loading overlay" />
-                <span
-                  className="country-history-title"
-                  id="country-history-electricity-carbonintensity"
-                >
-                  { tableDisplayEmissions
+                <span className="country-history-title">
+                  {tableDisplayEmissions
                     ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                     : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                   }

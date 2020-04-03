@@ -86,8 +86,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
-      return d => (d.data._countryData.exchangeCo2Intensities
-        ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
+      return d => co2ColorScale((d.data._countryData.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
     return modeColor[key];

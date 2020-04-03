@@ -22,16 +22,16 @@ function checkUntranslated(e, o, p) {
   if (typeof e === 'string') {
     if (o === undefined) {
       o = readline.question(p.slice(0, -1).blue + ' [' + e.green + ']: ');
-      if (o === '') {
-        o = e;
-      }
     }
   } else {
-    if (o === undefined) {
-      o = {};
-    }
     Object.keys(e).forEach(key => {
-      o[key] = checkUntranslated(e[key], o[key], p + key + '.');
+      const t = checkUntranslated(e[key], o !== undefined ? o[key]: undefined, p + key + '.');
+      if (t !== '') {
+        if (o === undefined) {
+          o = {};
+        }
+        o[key] = t;
+      }
     });
   }
   return o;
