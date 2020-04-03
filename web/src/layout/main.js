@@ -57,16 +57,17 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) =
             </a>
           </div>
           <Legend />
-          <Toggle
-            className="production-consumption-toggle"
-            infoHTML={__('tooltips.cpinfo')}
-            onChange={value => dispatchApplication('electricityMixMode', value)}
-            options={[
-              { value: 'production', label: __('tooltips.production') },
-              { value: 'consumption', label: __('tooltips.consumption') },
-            ]}
-            value={electricityMixMode}
-          />
+          <div className="controls-container">
+            <Toggle
+              infoHTML={__('tooltips.cpinfo')}
+              onChange={value => dispatchApplication('electricityMixMode', value)}
+              options={[
+                { value: 'production', label: __('tooltips.production') },
+                { value: 'consumption', label: __('tooltips.consumption') },
+              ]}
+              value={electricityMixMode}
+            />
+          </div>
           <LayerButtons />
         </div>
 
