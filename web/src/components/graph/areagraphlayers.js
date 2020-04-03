@@ -38,11 +38,9 @@ const AreaGraphLayers = React.memo(({
     }
   };
   const handleLayerMouseOut = () => {
-    mouseOutTimeout = setTimeout(() => {
-      if (mouseOutHandler) {
-        mouseOutHandler();
-      }
-    }, 20);
+    if (mouseOutHandler) {
+      mouseOutHandler();
+    }
   };
 
   return (

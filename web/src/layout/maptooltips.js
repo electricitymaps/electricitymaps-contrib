@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   position: state.application.tooltipPosition,
 });
 
-const Tooltips = ({ data, mode, position }) => (
+const MapTooltips = ({ data, mode, position }) => (
   <React.Fragment>
     {/* TODO: Put this into Map component once it's been moved to React. */}
     {/* See https://github.com/tmrowco/electricitymap-contrib/issues/2309. */}
@@ -27,4 +27,4 @@ const Tooltips = ({ data, mode, position }) => (
   </React.Fragment>
 );
 
-export default connect(mapStateToProps)(Tooltips);
+export default connect(mapStateToProps)(MapTooltips);

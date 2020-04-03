@@ -15,6 +15,7 @@ import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
 import { getCo2Scale } from '../helpers/scales';
+import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
 import { getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
@@ -32,10 +33,6 @@ const PADDING_X = 5;
 const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
-
-// If in mobile mode, put the tooltip to the top of the screen for
-// readability, otherwise float it depending on the cursor position.
-const getTooltipPosition = (isMobile, ev) => (isMobile ? { x: 0, y: 0 } : { x: ev.clientX - 7, y: ev.clientY - 7 });
 
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
@@ -448,7 +445,7 @@ const CountryTable = ({
 
   const handleProductionRowMouseOver = (mode, zoneData, ev) => {
     dispatchApplication('co2ColorbarValue', getProductionCo2Intensity(mode, zoneData));
-    setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, ev) });
+    setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
   };
 
   const handleProductionRowMouseOut = () => {
@@ -458,7 +455,7 @@ const CountryTable = ({
 
   const handleExchangeRowMouseOver = (mode, zoneData, ev) => {
     dispatchApplication('co2ColorbarValue', getExchangeCo2Intensity(mode, zoneData, electricityMixMode));
-    setExchangeTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, ev) });
+    setExchangeTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
   };
 
   const handleExchangeRowMouseOut = () => {
