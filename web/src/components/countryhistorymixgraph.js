@@ -162,6 +162,7 @@ const CountryHistoryMixGraph = ({
     },
     [setSelectedLayerIndex]
   );
+  // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint, layerKey) => {
       setTooltip({

@@ -34,10 +34,6 @@ const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d =
 const MAP_EXCHANGE_TOOLTIP_KEY = 'map-exchange';
 const MAP_COUNTRY_TOOLTIP_KEY = 'map-country';
 
-const CARBON_GRAPH_LAYER_KEY = MAP_COUNTRY_TOOLTIP_KEY;
-const EMISSIONS_GRAPH_LAYER_KEY = 'emissions';
-const PRICES_GRAPH_LAYER_KEY = 'price';
-
 const DEFAULT_FLAG_SIZE = 16;
 
 module.exports = {
@@ -45,9 +41,6 @@ module.exports = {
   modeOrder,
   PRODUCTION_MODES,
   STORAGE_MODES,
-  CARBON_GRAPH_LAYER_KEY,
-  EMISSIONS_GRAPH_LAYER_KEY,
-  PRICES_GRAPH_LAYER_KEY,
   MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
   DEFAULT_FLAG_SIZE,

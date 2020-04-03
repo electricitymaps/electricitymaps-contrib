@@ -4,7 +4,6 @@ import { noop } from 'lodash';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const GraphBackground = React.memo(({
-  layers,
   timeScale,
   valueScale,
   datetimes,

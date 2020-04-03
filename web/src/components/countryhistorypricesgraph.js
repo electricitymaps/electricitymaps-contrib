@@ -6,7 +6,6 @@ import { scaleLinear } from 'd3-scale';
 import { connect } from 'react-redux';
 import { first } from 'lodash';
 
-import { PRICES_GRAPH_LAYER_KEY } from '../helpers/constants';
 import { getTooltipPosition } from '../helpers/graph';
 import { dispatchApplication } from '../store';
 import {
@@ -30,13 +29,13 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
     .range(['yellow', 'red']);
 
   const data = historyData.map(d => ({
-    [PRICES_GRAPH_LAYER_KEY]: d.price && d.price.value,
+    price: d.price && d.price.value,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
     meta: d,
   }));
 
-  const layerKeys = [PRICES_GRAPH_LAYER_KEY];
+  const layerKeys = ['price'];
   const layerStroke = () => 'darkgray';
   const layerFill = () => '#616161';
   const markerFill = key => d => priceColorScale(d.data[key]);
@@ -90,7 +89,7 @@ const CountryHistoryPricesGraph = ({
   const mouseMoveHandler = useMemo(
     () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(0);
+      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
     [setSelectedLayerIndex]
   );
@@ -101,6 +100,7 @@ const CountryHistoryPricesGraph = ({
     },
     [setSelectedLayerIndex]
   );
+  // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
       setTooltip({

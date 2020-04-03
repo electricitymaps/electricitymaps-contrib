@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
   useRef,
   useMemo,
 } from 'react';
@@ -107,6 +106,9 @@ const AreaGraph = React.memo(({
   backgroundMouseOutHandler,
   layerMouseMoveHandler,
   layerMouseOutHandler,
+  /*
+    Marker hooks that get called when the marker selection gets updated or hidden
+  */
   markerUpdateHandler,
   markerHideHandler,
   /*
@@ -148,25 +150,6 @@ const AreaGraph = React.memo(({
     [containerWidth, datetimes, startTime, endTime]
   );
 
-  useEffect(() => {
-    if (ref.current && isNumber(selectedTimeIndex) && isNumber(selectedLayerIndex)) {
-      if (markerUpdateHandler) {
-        const layer = layers[selectedLayerIndex];
-        const datapoint = layer.datapoints[selectedTimeIndex];
-        markerUpdateHandler(
-          {
-            x: ref.current.getBoundingClientRect().left + timeScale(datetimes[selectedTimeIndex]),
-            y: ref.current.getBoundingClientRect().top + valueScale(datapoint[1]),
-          },
-          datapoint.data,
-          layer.key
-        );
-      }
-    } else if (markerHideHandler) {
-      markerHideHandler();
-    }
-  }, [ref.current, timeScale, valueScale, datetimes, layers, selectedTimeIndex, selectedLayerIndex]);
-
   // Don't render the graph at all if no layers are present
   if (isEmpty(layers)) return null;
 
@@ -184,7 +167,6 @@ const AreaGraph = React.memo(({
         height={containerHeight}
       />
       <GraphBackground
-        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
@@ -204,12 +186,15 @@ const AreaGraph = React.memo(({
         svgRef={ref}
       />
       <GraphHoverLine
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].markerFill}
-        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedLayerIndex={selectedLayerIndex}
         selectedTimeIndex={selectedTimeIndex}
+        svgRef={ref}
       />
     </svg>
   );

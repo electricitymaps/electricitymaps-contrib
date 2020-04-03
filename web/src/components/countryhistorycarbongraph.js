@@ -2,7 +2,6 @@ import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { CARBON_GRAPH_LAYER_KEY } from '../helpers/constants';
 import { getTooltipPosition } from '../helpers/graph';
 import { getCo2Scale } from '../helpers/scales';
 import {
@@ -20,14 +19,14 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const data = historyData.map(d => ({
-    [CARBON_GRAPH_LAYER_KEY]: electricityMixMode === 'consumption'
+    carbonIntensity: electricityMixMode === 'consumption'
       ? d.co2intensity
       : d.co2intensityProduction,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
     meta: d,
   }));
-  const layerKeys = [CARBON_GRAPH_LAYER_KEY];
+  const layerKeys = ['carbonIntensity'];
   const layerFill = key => d => co2ColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
@@ -64,7 +63,7 @@ const CountryHistoryCarbonGraph = ({
   const mouseMoveHandler = useMemo(
     () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(0);
+      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
     [setSelectedLayerIndex]
   );
@@ -75,6 +74,7 @@ const CountryHistoryCarbonGraph = ({
     },
     [setSelectedLayerIndex]
   );
+  // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
       setTooltip({

@@ -27,12 +27,7 @@ import thirdPartyServices from './services/thirdparty';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
 
-import {
-  CARBON_GRAPH_LAYER_KEY,
-  PRICES_GRAPH_LAYER_KEY,
-  MAP_EXCHANGE_TOOLTIP_KEY,
-  MAP_COUNTRY_TOOLTIP_KEY,
-} from './helpers/constants';
+import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
 
 // Layout
 import Main from './layout/main';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { MAP_COUNTRY_TOOLTIP_KEY } from '../../helpers/constants';
 import { __, getFullZoneName } from '../../helpers/translation';
 import { getCo2Scale } from '../../helpers/scales';
 import { co2Sub } from '../../helpers/formatting';

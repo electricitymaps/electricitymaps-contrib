@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
-import { EMISSIONS_GRAPH_LAYER_KEY } from '../helpers/constants';
 import { getTooltipPosition } from '../helpers/graph';
 import { getCo2Scale } from '../helpers/scales';
 import {
@@ -23,18 +22,18 @@ const prepareGraphData = (historyData) => {
   if (!historyData || !historyData[0]) return {};
 
   const data = historyData.map(d => ({
-    [EMISSIONS_GRAPH_LAYER_KEY]: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),
+    emissions: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
     meta: d,
   }));
 
-  const maxEmissions = d3Max(data.map(d => d[EMISSIONS_GRAPH_LAYER_KEY]));
+  const maxEmissions = d3Max(data.map(d => d.emissions));
   const emissionsColorScale = scaleLinear()
     .domain([0, maxEmissions])
     .range(['yellow', 'brown']);
 
-  const layerKeys = [EMISSIONS_GRAPH_LAYER_KEY];
+  const layerKeys = ['emissions'];
   const layerFill = key => d => emissionsColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
@@ -68,7 +67,7 @@ const CountryHistoryEmissionsGraph = ({
   const mouseMoveHandler = useMemo(
     () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(0);
+      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
     [setSelectedLayerIndex]
   );
@@ -79,6 +78,7 @@ const CountryHistoryEmissionsGraph = ({
     },
     [setSelectedLayerIndex]
   );
+  // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
       setTooltip({
