@@ -57,7 +57,8 @@
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
         "electricityproduction24h": "Erzeugte Elektrizität in den letzten 24 h",
         "electricityprices24h": "Strompreis in den letzten 24 h",
-        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
+        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
+        "emissions24h": "Emissionen in den letzten 24 Stunden"
     },
     "footer": {
         "likethisvisu": "Findest du die Visualisierung gut?",
@@ -1529,6 +1530,207 @@
         "US-HI-OA": {
             "countryName": "Vereinigte Staaten von Amerika",
             "zoneName": "Oahu"
+        },
+        "US-CAL-BANC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-CISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-IID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-LDWP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-TIDC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-DUK": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SCEG": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-YAD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SWPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FMPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-GVL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-HST": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-JEA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-NSB": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-SEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TAL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-OVEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-PJM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-AECI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-EEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-LGEE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-MISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NE-ISNE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVRN": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-BPAT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-CHPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-DOPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GCPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GRID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-IPCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NEVP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NWMT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PGE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-SCL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-TPWR": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WACM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WAUW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NY-NYIS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-AEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SEPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SOCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-AZPS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-DEAA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-EPE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRIF": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-HGMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-PNM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-SRP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-TEPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-WALC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEN-TVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEX-ERCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
         }
     },
     "mobile-info-tab": {
