@@ -3193,6 +3193,16 @@
     "parsers": {
       "production": "MX.fetch_production"
     },
+    "subZoneNames": [
+      "MX-BC",
+      "MX-CE",
+      "MX-NE",
+      "MX-NO",
+      "MX-NW",
+      "MX-OC",
+      "MX-OR",
+      "MX-PN",
+    ],
     "timezone": null
   },
   "MY-WM": {
