@@ -232,7 +232,6 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
     image = imread(url)
     image = Image.fromarray(image)  # create PIL image
 
-    labels = {}
     values = {}
 
     # read in label-value pairs from the image as specified in locations dict
@@ -241,7 +240,6 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
         # removing label recognition so parser does not timeout
         #label,_ = recognize(locs['label'], image, 'eng')
         value, _ = recognize(locs['value'], image, 'digits_comma')
-        #labels[type] = label
         values[type] = max( [float(value),0] )
 
         #assert (areEqual(label,type)), \
