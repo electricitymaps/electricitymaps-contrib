@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { dispatchApplication } from '../store';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
-import { navigateToPath } from '../helpers/router';
+import { history, navigateTo } from '../helpers/router';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -85,7 +85,7 @@ const ZoneList = ({
   // Click action
   const handleClick = (countryCode) => {
     dispatchApplication('centeredZoneName', countryCode);
-    navigateToPath(`/zone/${countryCode}`);
+    navigateTo({ pathname: `/zone/${countryCode}`, search: history.location.search });
   };
 
   // Keyboard navigation

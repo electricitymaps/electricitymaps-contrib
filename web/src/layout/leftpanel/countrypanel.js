@@ -1,15 +1,17 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
 // TODO: re-enable rules
 
-import React, { useState } from 'react';
-import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import {
+  Redirect,
+  Link,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import moment from 'moment';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
@@ -30,7 +32,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-import { navigateToPath } from '../../helpers/router';
+import { navigateTo } from '../../helpers/router';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -85,6 +87,24 @@ const CountryPanel = ({
   const [tooltip, setTooltip] = useState(null);
   const { zoneId } = useParams();
 
+  const backButtonLocation = {
+    pathname: isMobile ? '/ranking' : '/map',
+    search: useLocation().search,
+  };
+
+  // Back button keyboard navigation
+  useEffect(() => {
+    const keyHandler = (e) => {
+      if (e.key === 'Backspace' || e.key === '/') {
+        navigateTo(backButtonLocation);
+      }
+    };
+    document.addEventListener('keyup', keyHandler);
+    return () => {
+      document.removeEventListener('keyup', keyHandler);
+    };
+  });
+
   if (!zones[zoneId]) {
     return <Redirect to="/map" />;
   }
@@ -100,9 +120,11 @@ const CountryPanel = ({
     <div className="country-panel">
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
-          <span className="left-panel-back-button" onClick={() => navigateToPath(isMobile ? '/ranking' : '/map')}>
-            <i className="material-icons" aria-hidden="true">arrow_back</i>
-          </span>
+          <Link to={backButtonLocation}>
+            <span className="left-panel-back-button">
+              <i className="material-icons" aria-hidden="true">arrow_back</i>
+            </span>
+          </Link>
           <div className="country-name-time">
             <div className="country-name-time-table">
               <div style={{ display: 'table-cell' }}>

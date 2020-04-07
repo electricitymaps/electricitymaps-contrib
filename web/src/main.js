@@ -29,7 +29,7 @@ import {
   history,
   isRemoteEndpoint,
   isSolarEnabled,
-  navigateToPath,
+  navigateTo,
   setSolarEnabled,
   isWindEnabled,
   setWindEnabled,
@@ -167,7 +167,7 @@ const app = {
 
   onBack(e) {
     if (['zone', 'faq'].includes(getCurrentPage())) {
-      navigateToPath('/map');
+      navigateTo({ pathname: '/map', search: history.location.search });
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -329,7 +329,7 @@ try {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
     dispatchApplication('webglsupported', false);
-    navigateToPath('/ranking');
+    navigateTo({ pathname: '/ranking', search: history.location.search });
     document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
@@ -672,11 +672,11 @@ document.getElementById('left-panel-collapse-button').addEventListener('click', 
 if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
-      navigateToPath('/map');
+      navigateTo({ pathname: '/map', search: history.location.search });
     })
     .onCountryClick((d) => {
       // Analytics
-      navigateToPath(`/zone/${d.countryCode}`);
+      navigateTo({ pathname: `/zone/${d.countryCode}`, search: history.location.search });
       dispatchApplication('isLeftPanelCollapsed', false);
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
@@ -685,9 +685,9 @@ if (typeof zoneMap !== 'undefined') {
 // * Left panel *
 
 // Mobile toolbar buttons
-d3.selectAll('.map-button').on('click touchend', () => navigateToPath('/map'));
-d3.selectAll('.info-button').on('click touchend', () => navigateToPath('/info'));
-d3.selectAll('.highscore-button').on('click touchend', () => navigateToPath('/ranking'));
+d3.selectAll('.map-button').on('click touchend', () => navigateTo({ pathname: '/map', search: history.location.search }));
+d3.selectAll('.info-button').on('click touchend', () => navigateTo({ pathname: '/info', search: history.location.search }));
+d3.selectAll('.highscore-button').on('click touchend', () => navigateTo({ pathname: '/ranking', search: history.location.search }));
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react

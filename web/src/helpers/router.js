@@ -9,7 +9,8 @@ import { dispatch } from '../store';
 // `useHistory` hook after full migration to React.
 export const history = createBrowserHistory();
 
-function pushToHistory({ pathname, search }) {
+// TODO: Deprecate in favor of <Link /> and <Redirect />
+export function navigateTo({ pathname, search }) {
   // Push the new URL state to browser history and track
   // it only if the new URL differs from the current one
   const url = `${pathname}${search}`;
@@ -19,11 +20,6 @@ function pushToHistory({ pathname, search }) {
     }
     history.push(url);
   }
-}
-
-export function navigateToPath(pathname) {
-  // Preserve search params when navigating between pages
-  pushToHistory({ pathname, search: history.location.search });
 }
 
 //
@@ -91,7 +87,7 @@ function updateSearchParams(searchParams) {
     search = `?${search}`;
   }
   // Keep the pathname intact when updating search params
-  pushToHistory({ pathname: history.location.pathname, search });
+  navigateTo({ pathname: history.location.pathname, search });
 }
 
 // TODO: Move this logic in the solar button once the React component is there
