@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 import thirdPartyServices from '../services/thirdparty';
@@ -17,15 +18,85 @@ history.listen(() => {
   dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: window.location } });
 });
 
+function pushURL(url) {
+  // Push the new URL state to browser history and track
+  // it only if the new URL differs from the current one
+  if (url !== `${history.location.pathname}${history.location.search}`) {
+    if (thirdPartyServices._ga) {
+      thirdPartyServices._ga.config({ page_path: url });
+    }
+    history.push(url);
+  }
+}
+
+function useSearchParams() {
+  return new URLSearchParams(useLocation().search);
+}
+
+export function useSolarEnabled() {
+  return useSearchParams().get('solar') === 'true';
+}
+
+export function useWindEnabled() {
+  return useSearchParams().get('wind') === 'true';
+}
+
+function getSearchParams() {
+  return new URLSearchParams(history.location.search);
+}
+
+export function getCustomDatetime() {
+  return getSearchParams().get('datetime');
+}
+
 export function isRemoteEndpoint() {
-  const { searchParams } = new URL(window.location);
-  return searchParams.get('remote') === 'true';
+  return getSearchParams().get('remote') === 'true';
+}
+
+export function isSolarEnabled() {
+  return getSearchParams().get('solar') === 'true';
+}
+
+export function isWindEnabled() {
+  return getSearchParams().get('wind') === 'true';
+}
+
+function setSearchParams(searchParams) {
+  let search = searchParams.toString();
+  if (search) {
+    search = `?${search}`;
+  }
+  pushURL(`${history.location.pathname}${search}`);
+}
+
+export function setSolarEnabled(solarEnabled) {
+  const searchParams = getSearchParams();
+  if (solarEnabled) {
+    searchParams.set('solar', true);
+  } else {
+    searchParams.delete('solar');
+  }
+  setSearchParams(searchParams);
+}
+
+export function setWindEnabled(windEnabled) {
+  const searchParams = getSearchParams();
+  if (windEnabled) {
+    searchParams.set('wind', true);
+  } else {
+    searchParams.delete('wind');
+  }
+  setSearchParams(searchParams);
+}
+
+export function navigateToURL(pathname) {
+  pushURL(`${pathname}${history.location.search}`);
 }
 
 export function updateURLFromState(state) {
   const {
     currentPage,
-    customDate,
+    customDatetime,
     selectedZoneName,
     solarEnabled,
     windEnabled,
@@ -33,7 +104,7 @@ export function updateURLFromState(state) {
 
   // Build search params from application state, ignoring falsey values
   const searchParams = Object.assign({},
-    customDate ? { datetime: customDate } : {},
+    customDatetime ? { datetime: customDatetime } : {},
     solarEnabled ? { solar: solarEnabled } : {},
     isRemoteEndpoint() ? { remote: isRemoteEndpoint() } : {},
     windEnabled ? { wind: windEnabled } : {});
@@ -50,19 +121,6 @@ export function updateURLFromState(state) {
     url += `?${(new URLSearchParams(searchParams)).toString()}`;
   }
 
-  // Push the new URL state to browser history and track
-  // it only if the new URL differs from the current one
-  if (url !== `${history.location.pathname}${history.location.search}`) {
-    if (thirdPartyServices._ga) {
-      thirdPartyServices._ga.config({ page_path: url });
-    }
-    history.push(url);
-  }
-}
-
-export function navigateToURL(pathname) {
-  if (pathname !== history.location.pathname) {
-    const url = `${pathname}${history.location.search}`;
-    history.push(url);
-  }
+  // Push the URL to history
+  pushURL(url);
 }

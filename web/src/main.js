@@ -26,7 +26,16 @@ import thirdPartyServices from './services/thirdparty';
 // Utils
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
-import { history, isRemoteEndpoint, navigateToURL } from './helpers/router';
+import {
+  history,
+  isRemoteEndpoint,
+  isSolarEnabled,
+  navigateToURL,
+  setSolarEnabled,
+  isWindEnabled,
+  setWindEnabled,
+  getCustomDatetime,
+} from './helpers/router';
 
 import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
 
@@ -341,9 +350,9 @@ d3.select('.country-show-emissions-wrap a#production')
   .classed('selected', !getState().application.tableDisplayEmissions);
 
 function mapMouseOver(lonlat) {
-  if (getState().application.windEnabled && wind && lonlat && typeof windLayer !== 'undefined') {
-    const now = getState().application.customDate
-      ? moment(getState().application.customDate) : (new Date()).getTime();
+  if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
+    const now = getCustomDatetime()
+      ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       const u = grib.getInterpolatedValueAtLonLat(lonlat,
         now, wind.forecasts[0][0], wind.forecasts[1][0]);
@@ -354,9 +363,9 @@ function mapMouseOver(lonlat) {
   } else {
     dispatchApplication('windColorbarValue', null);
   }
-  if (getState().application.solarEnabled && solar && lonlat && typeof solarLayer !== 'undefined') {
-    const now = getState().application.customDate
-      ? moment(getState().application.customDate) : (new Date()).getTime();
+  if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
+    const now = getCustomDatetime()
+      ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       dispatchApplication(
         'solarColorbarValue',
@@ -389,50 +398,40 @@ function renderMap(state) {
   }
 
   // Render Wind
-  if (getState().application.windEnabled && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
+  if (isWindEnabled() && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
-    // Make sure to disable wind if the drawing goes wrong
-    saveKey('windEnabled', false);
     windLayer.draw(
-      getState().application.customDate
-        ? moment(getState().application.customDate) : moment(new Date()),
+      getCustomDatetime()
+        ? moment(getCustomDatetime()) : moment(new Date()),
       wind.forecasts[0],
       wind.forecasts[1],
       scales.windColor,
     );
-    if (getState().application.windEnabled) {
+    if (isWindEnabled()) {
       windLayer.show();
     } else {
       windLayer.hide();
     }
-    // Restore setting
-    saveKey('windEnabled', getState().application.windEnabled);
     LoadingService.stopLoading('#loading');
   } else if (typeof windLayer !== 'undefined') {
     windLayer.hide();
   }
 
   // Render Solar
-  if (getState().application.solarEnabled && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
+  if (isSolarEnabled() && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
     LoadingService.startLoading('#loading');
-    // Make sure to disable solar if the drawing goes wrong
-    saveKey('solarEnabled', false);
     solarLayer.draw(
-      getState().application.customDate
-        ? moment(getState().application.customDate) : moment(new Date()),
+      getCustomDatetime()
+        ? moment(getCustomDatetime()) : moment(new Date()),
       solar.forecasts[0],
       solar.forecasts[1],
       (err) => {
         if (err) {
           console.error(err.message);
+        } else if (isSolarEnabled()) {
+          solarLayer.show();
         } else {
-          if (getState().application.solarEnabled) {
-            solarLayer.show();
-          } else {
-            solarLayer.hide();
-          }
-          // Restore setting
-          saveKey('solarEnabled', getState().application.solarEnabled);
+          solarLayer.hide();
         }
         LoadingService.stopLoading('#loading');
       },
@@ -448,8 +447,8 @@ function renderMap(state) {
 
 // Inform the user the last time the map was updated.
 function setLastUpdated() {
-  currentMoment = getState().application.customDate
-    ? moment(getState().application.customDate)
+  currentMoment = getCustomDatetime()
+    ? moment(getCustomDatetime())
     : moment((getState().data.grid || {}).datetime);
   d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
   d3.selectAll('.current-datetime-from-now')
@@ -570,11 +569,11 @@ function fetch(showLoading, callback) {
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, getEndpoint(), getState().application.customDate);
+  Q.defer(DataService.fetchState, getEndpoint(), getCustomDatetime());
 
-  const now = getState().application.customDate || new Date();
+  const now = getCustomDatetime() || new Date();
 
-  if (!getState().application.solarEnabled) {
+  if (!isSolarEnabled()) {
     Q.defer(DataService.fetchNothing);
   } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
     Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
@@ -582,7 +581,7 @@ function fetch(showLoading, callback) {
     Q.defer(cb => cb(null, solar));
   }
 
-  if (!getState().application.windEnabled || typeof windLayer === 'undefined') {
+  if (!isWindEnabled() || typeof windLayer === 'undefined') {
     Q.defer(DataService.fetchNothing);
   } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
     Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
@@ -633,7 +632,7 @@ if (!getState().application.isMobile) {
 // Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
-  dispatchApplication('windEnabled', !getState().application.windEnabled);
+  setWindEnabled(!isWindEnabled());
 }
 d3.select('.wind-button').on('click', toggleWind);
 
@@ -652,7 +651,7 @@ if (!getState().application.isMobile) {
 // Solar
 function toggleSolar() {
   if (typeof solarLayer === 'undefined') { return; }
-  dispatchApplication('solarEnabled', !getState().application.solarEnabled);
+  setSolarEnabled(!isSolarEnabled());
 }
 d3.select('.solar-button').on('click', toggleSolar);
 
@@ -724,8 +723,8 @@ function routeToPage(pageName, state) {
   if (pageName === 'map') {
     d3.select('.left-panel').classed('small-screen-hidden', true);
     renderMap(state);
-    if (state.application.windEnabled && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (state.application.solarEnabled && typeof solarLayer !== 'undefined') { solarLayer.show(); }
+    if (isWindEnabled() && typeof windLayer !== 'undefined') { windLayer.show(); }
+    if (isSolarEnabled() && typeof solarLayer !== 'undefined') { solarLayer.show(); }
   } else {
     d3.select('.left-panel').classed('small-screen-hidden', false);
     d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
@@ -740,7 +739,7 @@ function routeToPage(pageName, state) {
 
 function tryFetchHistory(state) {
   const { selectedZoneName } = state.application;
-  if (state.application.customDate) {
+  if (getCustomDatetime()) {
     console.error('Can\'t fetch history when a custom date is provided!');
   } else if (!state.data.histories[selectedZoneName]) {
     LoadingService.startLoading('.country-history .loading');
@@ -886,14 +885,15 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 });
 
 // Observe for solar settings change
+// TODO: Remove this after solar layer is moved to React, so that this
+// bool can be removed from Redux and managed through the URL state.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   d3.selectAll('.solar-button').classed('active', solarEnabled);
-  saveKey('solarEnabled', solarEnabled);
 
   solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
 
-  const now = state.customDate
-    ? moment(state.customDate) : (new Date()).getTime();
+  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
@@ -906,15 +906,15 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 });
 
 // Observe for wind settings change
+// TODO: Remove this after wind layer is moved to React, so that this
+// bool can be removed from Redux and managed through the URL state.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   d3.selectAll('.wind-button').classed('active', windEnabled);
 
   windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
 
-  saveKey('windEnabled', windEnabled);
-
-  const now = state.customDate
-    ? moment(state.customDate) : (new Date()).getTime();
+  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
@@ -941,11 +941,8 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 // URL search params in Redux at all.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
 const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
-observe(state => state.application.customDate, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
 observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.solarEnabled, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.windEnabled, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {
@@ -976,7 +973,7 @@ observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions
 
 // Start a fetch and show loading screen
 fetch(true, () => {
-  if (!getState().application.customDate) {
+  if (!getCustomDatetime()) {
     // Further calls to `fetch` won't show loading screen
     setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
   }

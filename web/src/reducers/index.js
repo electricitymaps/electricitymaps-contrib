@@ -26,7 +26,7 @@ const initialApplicationState = {
   co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  customDate: null,
+  customDatetime: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
@@ -45,9 +45,9 @@ const initialApplicationState = {
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
-  solarEnabled: cookieGetBool('solarEnabled', false),
+  solarEnabled: false,
   windColorbarMarker: null,
-  windEnabled: cookieGetBool('windEnabled', false),
+  windEnabled: false,
 
   // TODO(olc): refactor this state
   currentPage: null,
@@ -90,7 +90,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
         .replace('highscore', 'ranking');
 
       return Object.assign({}, state, {
-        customDate: searchParams.get('datetime'),
+        customDatetime: searchParams.get('datetime'),
         solarEnabled: searchParams.get('solar') === 'true',
         windEnabled: searchParams.get('wind') === 'true',
         // Prioritize route pathname but fall back to search params for backwards compatibility

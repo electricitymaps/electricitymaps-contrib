@@ -5,6 +5,7 @@ import {
   sortBy,
   uniq,
 } from 'lodash';
+import { getCustomDatetime } from '../helpers/router';
 
 export function getSelectedZoneHistory(state) {
   return state.data.histories[state.application.selectedZoneName] || [];
@@ -24,7 +25,7 @@ export function getSelectedZoneHistoryDatetimes(state) {
 // as we want to make sure we account for the missing data at the end of
 // the graph (when not inferable from historyData timestamps).
 export function getZoneHistoryEndTime(state) {
-  return moment(state.application.customDate || (state.data.grid || {}).datetime).format();
+  return moment(getCustomDatetime() || (state.data.grid || {}).datetime).format();
 }
 
 // TODO: Likewise, we should be passing an explicit startTime set to 24h
