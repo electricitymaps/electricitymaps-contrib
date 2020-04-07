@@ -30,7 +30,7 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-import { navigateToURL } from '../../helpers/router';
+import { navigateToPath } from '../../helpers/router';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -100,7 +100,7 @@ const CountryPanel = ({
     <div className="country-panel">
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
-          <span className="left-panel-back-button" onClick={() => navigateToURL(isMobile ? '/ranking' : '/map')}>
+          <span className="left-panel-back-button" onClick={() => navigateToPath(isMobile ? '/ranking' : '/map')}>
             <i className="material-icons" aria-hidden="true">arrow_back</i>
           </span>
           <div className="country-name-time">

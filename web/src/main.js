@@ -8,7 +8,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { debounce } from 'lodash';
 
 // Components
 import ZoneMap from './components/map';
@@ -30,11 +29,13 @@ import {
   history,
   isRemoteEndpoint,
   isSolarEnabled,
-  navigateToURL,
+  navigateToPath,
   setSolarEnabled,
   isWindEnabled,
   setWindEnabled,
+  getCurrentPage,
   getCustomDatetime,
+  getZoneId,
 } from './helpers/router';
 
 import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
@@ -69,7 +70,6 @@ const {
 // Helpers
 const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
-const { updateURLFromState } = require('./helpers/router');
 const scales = require('./helpers/scales');
 const { saveKey } = require('./helpers/storage');
 const translation = require('./helpers/translation');
@@ -166,8 +166,8 @@ const app = {
   },
 
   onBack(e) {
-    if (['zone', 'faq'].includes(getState().application.currentPage)) {
-      navigateToURL('/map');
+    if (['zone', 'faq'].includes(getCurrentPage())) {
+      navigateToPath('/map');
       e.preventDefault();
     } else {
       navigator.app.exitApp();
@@ -202,11 +202,6 @@ const app = {
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
-    universalLinks.subscribe(null, (eventData) => {
-      // In principle we should only do the rest of the app loading
-      // after this point, instead of dispatcing a new event
-      dispatch({ type: 'UPDATE_STATE_FROM_URL', payload: { url: eventData.url } });
-    });
   },
 
   onResume() {
@@ -334,7 +329,7 @@ try {
   if (e === 'WebGL not supported') {
     // Set mobile mode, and disable maps
     dispatchApplication('webglsupported', false);
-    navigateToURL('/ranking');
+    navigateToPath('/ranking');
     document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
@@ -382,11 +377,12 @@ function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
-    const { selectedZoneName, callerLocation } = state.application;
-    if (selectedZoneName) {
-      console.log(`Centering on selectedZoneName ${selectedZoneName}`);
+    const { callerLocation } = state.application;
+    const zoneId = getZoneId();
+    if (zoneId) {
+      console.log(`Centering on zone ${zoneId}`);
       // eslint-disable-next-line no-use-before-define
-      dispatchApplication('centeredZoneName', selectedZoneName);
+      dispatchApplication('centeredZoneName', zoneId);
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
@@ -676,11 +672,11 @@ document.getElementById('left-panel-collapse-button').addEventListener('click', 
 if (typeof zoneMap !== 'undefined') {
   zoneMap
     .onSeaClick(() => {
-      navigateToURL('/map');
+      navigateToPath('/map');
     })
     .onCountryClick((d) => {
       // Analytics
-      navigateToURL(`/zone/${d.countryCode}`);
+      navigateToPath(`/zone/${d.countryCode}`);
       dispatchApplication('isLeftPanelCollapsed', false);
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
@@ -688,27 +684,10 @@ if (typeof zoneMap !== 'undefined') {
 
 // * Left panel *
 
-// Back button
-function goBackToZoneListFromZoneDetails() {
-  navigateToURL(getState().application.isMobile ? '/ranking' : '/map');
-}
-
-// Keyboard navigation
-document.addEventListener('keyup', (e) => {
-  if (e.key == null) { return; }
-  if (getState().application.currentPage === 'zone') {
-    if (e.key === 'Backspace') {
-      goBackToZoneListFromZoneDetails();
-    } else if (e.key === '/') {
-      goBackToZoneListFromZoneDetails();
-    }
-  }
-});
-
 // Mobile toolbar buttons
-d3.selectAll('.map-button').on('click touchend', () => navigateToURL('/map'));
-d3.selectAll('.info-button').on('click touchend', () => navigateToURL('/info'));
-d3.selectAll('.highscore-button').on('click touchend', () => navigateToURL('/ranking'));
+d3.selectAll('.map-button').on('click touchend', () => navigateToPath('/map'));
+d3.selectAll('.info-button').on('click touchend', () => navigateToPath('/info'));
+d3.selectAll('.highscore-button').on('click touchend', () => navigateToPath('/ranking'));
 
 // *** OBSERVERS ***
 // Declare and attach all listeners that will react
@@ -738,21 +717,21 @@ function routeToPage(pageName, state) {
 }
 
 function tryFetchHistory(state) {
-  const { selectedZoneName } = state.application;
+  const zoneId = getZoneId();
   if (getCustomDatetime()) {
     console.error('Can\'t fetch history when a custom date is provided!');
-  } else if (!state.data.histories[selectedZoneName]) {
+  } else if (!state.data.histories[zoneId]) {
     LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(getEndpoint(), selectedZoneName, (err, obj) => {
+    DataService.fetchHistory(getEndpoint(), zoneId, (err, obj) => {
       LoadingService.stopLoading('.country-history .loading');
       if (err) { return console.error(err); }
       if (!obj || !obj.data) {
-        return console.warn(`Empty history received for ${selectedZoneName}`);
+        return console.warn(`Empty history received for ${zoneId}`);
       }
       // Save to local cache
       return dispatch({
         payload: obj.data,
-        zoneName: selectedZoneName,
+        zoneName: zoneId,
         type: 'HISTORY_DATA',
       });
     });
@@ -838,7 +817,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
   routeToPage(currentPage, state);
 
   // Analytics
-  // Note: `selectedZoneName` will not yet be changed here
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
 });
 
@@ -854,8 +832,7 @@ observe(state => state.application.selectedZoneName, (selectedZoneName, state) =
 observe(state => state.data.histories, (histories, state) => {
   // If history was cleared by the grid data for the currently selected country,
   // try to refetch it.
-  const { selectedZoneName } = state.application;
-  if (selectedZoneName && !state.data.histories[selectedZoneName]) {
+  if (getZoneId() && !state.data.histories[getZoneId()]) {
     tryFetchHistory(state);
   }
 });
@@ -931,18 +908,6 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
     centerOnZoneName(state, centeredZoneName, 4);
   }
 });
-
-// Observe all the Redux state entries that reflect the URL to ensure the
-// Redux -> URL binding one-way binding (the other direction is ensured by
-// listening to the `popstate` event above). The call is being debounced to
-// make sure all the consecutive state changes get bundled together  under
-// a single URL state transition.
-// TODO: In order to get rid of the debounce, we should probably not keep
-// URL search params in Redux at all.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
-const delayedUpdateURLFromState = debounce(updateURLFromState, 20);
-observe(state => state.application.selectedZoneName, (_, state) => { delayedUpdateURLFromState(state); });
-observe(state => state.application.currentPage, (_, state) => { delayedUpdateURLFromState(state); });
 
 // Observe for datetime chanes
 observe(state => state.data.grid, (grid) => {

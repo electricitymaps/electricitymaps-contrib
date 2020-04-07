@@ -5,10 +5,10 @@ import {
   sortBy,
   uniq,
 } from 'lodash';
-import { getCustomDatetime } from '../helpers/router';
+import { getCustomDatetime, getZoneId } from '../helpers/router';
 
 export function getSelectedZoneHistory(state) {
-  return state.data.histories[state.application.selectedZoneName] || [];
+  return state.data.histories[getZoneId()] || [];
 }
 
 export function getSelectedZoneExchangeKeys(state) {
@@ -38,13 +38,13 @@ export function getZoneHistoryStartTime(state) {
 }
 
 export function getCurrentZoneData(state) {
-  const zoneName = state.application.selectedZoneName;
+  const zoneId = getZoneId();
   const zoneTimeIndex = state.application.selectedZoneTimeIndex;
-  if (!state.data.grid || !zoneName) {
+  if (!state.data.grid || !zoneId) {
     return null;
   }
   if (zoneTimeIndex === null) {
-    return state.data.grid.zones[zoneName];
+    return state.data.grid.zones[zoneId];
   }
   return getSelectedZoneHistory(state)[zoneTimeIndex];
 }

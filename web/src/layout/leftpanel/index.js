@@ -7,12 +7,35 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import { useSearchParams } from '../../helpers/router';
+
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
 import ZoneDetailsPanel from './zonedetailspanel';
 import ZoneListPanel from './zonelistpanel';
 
 // TODO: Move all styles from styles.css to here
+
+const HandleLegacyRoutes = () => {
+  const searchParams = useSearchParams();
+
+  const page = (searchParams.get('page') || 'map')
+    .replace('country', 'zone')
+    .replace('highscore', 'ranking');
+  searchParams.delete('page');
+
+  const zoneId = searchParams.get('countryCode');
+  searchParams.delete('countryCode');
+
+  return (
+    <Redirect
+      to={{
+        pathname: zoneId ? `/zone/${zoneId}` : `/${page}`,
+        search: searchParams.toString(),
+      }}
+    />
+  );
+};
 
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
@@ -35,12 +58,13 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => (
 
     {/* Render different content based on the current route */}
     <Switch>
-      <Redirect exact from="/" to="/map" />
+      <Route exact path="/" component={HandleLegacyRoutes} />
       <Route path="/map" component={ZoneListPanel} />
       <Route path="/ranking" component={ZoneListPanel} />
       <Route path="/zone/:zoneId" component={ZoneDetailsPanel} />
       <Route path="/info" component={MobileInfoTab} />
       <Route path="/faq" component={FAQPanel} />
+      {/* TODO: Add a 404 page  */}
     </Switch>
   </div>
 );

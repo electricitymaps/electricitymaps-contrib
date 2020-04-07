@@ -84,19 +84,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
     }
 
     case 'UPDATE_STATE_FROM_URL': {
-      const { pathname, searchParams } = new URL(action.payload.url);
-      const currentPageFallback = (searchParams.get('page') || '')
-        .replace('country', 'zone')
-        .replace('highscore', 'ranking');
-
-      return Object.assign({}, state, {
-        customDatetime: searchParams.get('datetime'),
-        solarEnabled: searchParams.get('solar') === 'true',
-        windEnabled: searchParams.get('wind') === 'true',
-        // Prioritize route pathname but fall back to search params for backwards compatibility
-        currentPage: pathname.split('/')[1] || currentPageFallback || 'map', // Default to map view if page was not specified
-        selectedZoneName: pathname.split('/')[2] || searchParams.get('countryCode') || null,
-      });
+      return Object.assign({}, state, action.payload);
     }
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
