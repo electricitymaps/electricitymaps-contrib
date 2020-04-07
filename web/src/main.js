@@ -27,12 +27,7 @@ import thirdPartyServices from './services/thirdparty';
 import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
 import { getCo2Scale } from './helpers/scales';
 
-import {
-  CARBON_GRAPH_LAYER_KEY,
-  PRICES_GRAPH_LAYER_KEY,
-  MAP_EXCHANGE_TOOLTIP_KEY,
-  MAP_COUNTRY_TOOLTIP_KEY,
-} from './helpers/constants';
+import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
 
 // Layout
 import Main from './layout/main';
@@ -686,19 +681,6 @@ if (!getState().application.isMobile) {
     solarLayerButtonTooltip.classed('hidden', true);
   });
 }
-
-// Production/Consumption
-function toggleElectricityMixMode() {
-  dispatchApplication('electricityMixMode', getState().application.electricityMixMode === 'consumption'
-    ? 'production'
-    : 'consumption');
-}
-d3.select('.production-toggle').on('click', toggleElectricityMixMode);
-
-const prodConsButtonTootltip = d3.select('#production-toggle-tooltip');
-d3.select('.production-toggle-info').on('click', () => {
-  prodConsButtonTootltip.classed('hidden', !prodConsButtonTootltip.classed('hidden'));
-});
 
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>

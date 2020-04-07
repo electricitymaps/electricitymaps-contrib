@@ -6,20 +6,16 @@ import { scaleLinear } from 'd3-scale';
 import { connect } from 'react-redux';
 import { first } from 'lodash';
 
-import { PRICES_GRAPH_LAYER_KEY } from '../helpers/constants';
+import { getTooltipPosition } from '../helpers/graph';
+import { dispatchApplication } from '../store';
 import {
   getSelectedZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
-import {
-  createSingleLayerGraphBackgroundMouseMoveHandler,
-  createSingleLayerGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
 
 import AreaGraph from './graph/areagraph';
+import PriceTooltip from './tooltips/pricetooltip';
 
 const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
@@ -33,13 +29,13 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
     .range(['yellow', 'red']);
 
   const data = historyData.map(d => ({
-    [PRICES_GRAPH_LAYER_KEY]: d.price && d.price.value,
+    price: d.price && d.price.value,
     datetime: moment(d.stateDatetime).toDate(),
     // Keep a pointer to original data
-    _countryData: d,
+    meta: d,
   }));
 
-  const layerKeys = [PRICES_GRAPH_LAYER_KEY];
+  const layerKeys = ['price'];
   const layerStroke = () => 'darkgray';
   const layerFill = () => '#616161';
   const markerFill = key => d => priceColorScale(d.data[key]);
@@ -73,6 +69,7 @@ const CountryHistoryPricesGraph = ({
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -89,42 +86,66 @@ const CountryHistoryPricesGraph = ({
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
-  );
-  const backgroundMouseOutHandler = useMemo(
-    () => createSingleLayerGraphBackgroundMouseOutHandler(setSelectedLayerIndex),
+  const mouseMoveHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
+    },
     [setSelectedLayerIndex]
   );
-  const layerMouseMoveHandler = useMemo(
-    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
-  );
-  const layerMouseOutHandler = useMemo(
-    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
+  const mouseOutHandler = useMemo(
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+    },
     [setSelectedLayerIndex]
+  );
+  // Graph marker callbacks
+  const markerUpdateHandler = useMemo(
+    () => (position, datapoint) => {
+      setTooltip({
+        position: getTooltipPosition(isMobile, position),
+        zoneData: datapoint.meta,
+      });
+    },
+    [setTooltip, isMobile]
+  );
+  const markerHideHandler = useMemo(
+    () => () => {
+      setTooltip(null);
+    },
+    [setTooltip]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerStroke={layerStroke}
-      layerFill={layerFill}
-      markerFill={markerFill}
-      startTime={startTime}
-      endTime={endTime}
-      valueAxisLabel={valueAxisLabel}
-      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-      backgroundMouseOutHandler={backgroundMouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-      height="6em"
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerStroke={layerStroke}
+        layerFill={layerFill}
+        markerFill={markerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel={valueAxisLabel}
+        backgroundMouseMoveHandler={mouseMoveHandler}
+        backgroundMouseOutHandler={mouseOutHandler}
+        layerMouseMoveHandler={mouseMoveHandler}
+        layerMouseOutHandler={mouseOutHandler}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="6em"
+      />
+      {tooltip && (
+        <PriceTooltip
+          position={tooltip.position}
+          zoneData={tooltip.zoneData}
+        />
+      )}
+    </React.Fragment>
   );
 };
 

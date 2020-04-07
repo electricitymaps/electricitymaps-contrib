@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
   useRef,
   useMemo,
 } from 'react';
@@ -108,6 +107,11 @@ const AreaGraph = React.memo(({
   layerMouseMoveHandler,
   layerMouseOutHandler,
   /*
+    Marker hooks that get called when the marker selection gets updated or hidden
+  */
+  markerUpdateHandler,
+  markerHideHandler,
+  /*
     `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
   */
   selectedTimeIndex,
@@ -163,7 +167,6 @@ const AreaGraph = React.memo(({
         height={containerHeight}
       />
       <GraphBackground
-        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
@@ -183,12 +186,15 @@ const AreaGraph = React.memo(({
         svgRef={ref}
       />
       <GraphHoverLine
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].markerFill}
-        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedLayerIndex={selectedLayerIndex}
         selectedTimeIndex={selectedTimeIndex}
+        svgRef={ref}
       />
     </svg>
   );

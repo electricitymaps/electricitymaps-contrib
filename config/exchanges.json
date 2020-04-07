@@ -534,9 +534,9 @@
       49.016577
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "CA_AB.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "CA-BC->US-BPA": {
     "lonlat": [
@@ -554,9 +554,9 @@
       49.044392
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "CA_BC.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "CA-MB->CA-ON": {
     "lonlat": [
@@ -576,7 +576,7 @@
     "parsers": {
       "exchange": "EIA.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "CA-NB->CA-NS": {
     "lonlat": [
@@ -624,9 +624,9 @@
       46.139
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NEISO.fetch_exchange"
     },
-    "rotation": 90
+    "rotation": -90
   },
   "CA-ON->CA-QC": {
     "lonlat": [
@@ -656,7 +656,7 @@
     "parsers": {
       "exchange": "EIA.fetch_exchange"
     },
-    "rotation": 35
+    "rotation": -145
   },
   "CA-ON->US-NY": {
     "lonlat": [
@@ -674,9 +674,9 @@
       43.5523
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NY.fetch_exchange"
     },
-    "rotation": -45
+    "rotation": 135
   },
   "CA-QC->US-NEISO": {
     "lonlat": [
@@ -694,9 +694,9 @@
       45.011
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NEISO.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "CA-QC->US-NY": {
     "lonlat": [
@@ -714,9 +714,9 @@
       45.004
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_NY.fetch_exchange"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "CA-SK->US-CENT-SWPP": {
     "lonlat": [

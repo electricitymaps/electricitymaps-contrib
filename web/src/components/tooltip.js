@@ -1,13 +1,9 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
+import { Portal } from 'react-portal';
 
 import { useWidthObserver, useHeightObserver } from '../effects';
 
 const MARGIN = 16;
-
-const mapStateToProps = state => ({
-  position: state.application.tooltipPosition,
-});
 
 const Tooltip = ({ id, children, position }) => {
   const ref = useRef(null);
@@ -45,10 +41,12 @@ const Tooltip = ({ id, children, position }) => {
   style.transform = `translate(${x}px,${y}px)`;
 
   return (
-    <div id={id} className="tooltip panel" style={style} ref={ref}>
-      {children}
-    </div>
+    <Portal>
+      <div id={id} className="tooltip panel" style={style} ref={ref}>
+        {children}
+      </div>
+    </Portal>
   );
 };
 
-export default connect(mapStateToProps)(Tooltip);
+export default Tooltip;

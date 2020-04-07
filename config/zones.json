@@ -945,7 +945,8 @@
   },
   "CA-YT": {
     "contributors": [
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -960,8 +961,11 @@
       [
         -123.31910336003193,
         70.15420156500005
-      ]
-    ]
+     ]
+    ],
+    "capacity": {
+      "hydro": 92
+    }
   },
   "CH": {
     "bounding_box": [
@@ -2381,6 +2385,22 @@
       "production": "IN_KA.fetch_production"
     },
     "timezone": null
+  },
+  "IN-MH": {
+    "bounding_box": [
+      [72.799410, 15.613079],
+      [80.661984, 22.105644]
+    ],
+    "contributors": [
+      "https://github.com/GitMatze",
+      "https://github.com/alixunderplatz",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_MH.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
   },
   "IN-PB": {
     "bounding_box": [
@@ -3921,9 +3941,10 @@
       "nuclear": 9100,
       "oil": 2251,
       "solar": 140,
-      "wind": 6120
+      "wind": 8984
     },
     "contributors": [
+      "https://github.com/RRyyas",
       "https://github.com/corradio"
     ],
     "parsers": {

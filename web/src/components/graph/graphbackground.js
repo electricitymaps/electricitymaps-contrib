@@ -4,7 +4,6 @@ import { noop } from 'lodash';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const GraphBackground = React.memo(({
-  layers,
   timeScale,
   valueScale,
   datetimes,
@@ -26,7 +25,7 @@ const GraphBackground = React.memo(({
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex, layers, ev, svgRef);
+      mouseMoveHandler(timeIndex);
     }
   };
   const handleRectMouseOut = () => {

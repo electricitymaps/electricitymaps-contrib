@@ -164,7 +164,8 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
     flows = {
         'CA-AB->CA-BC': df_exchanges[1][1]['British Columbia'],
         'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
-        'CA-AB->US-MT': df_exchanges[1][1]['Montana']
+        'CA-AB->US-MT': df_exchanges[1][1]['Montana'],
+        'CA-AB->US-NW-NWMT': df_exchanges[1][1]['Montana']
     }
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     if sortedZoneKeys not in flows:

@@ -77,7 +77,10 @@ jobs:
           name: Start environment
           command: |
             set -euo pipefail
-            docker-compose up -d
+            # Only start the `web` and `mockserver` containers
+            # and avoid the `watch` container from starting and compiling
+            # the already built frontend
+            docker-compose up -d web mockserver
             sleep 20
             docker-compose logs web
       - run:
