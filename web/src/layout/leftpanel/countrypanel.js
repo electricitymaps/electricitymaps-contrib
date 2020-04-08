@@ -32,7 +32,6 @@ import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 import { co2Sub } from '../../helpers/formatting';
-import { navigateTo } from '../../helpers/router';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -85,9 +84,10 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
+  const [pressedBackKey, setPressedBackKey] = useState(false);
   const { zoneId } = useParams();
 
-  const backButtonLocation = {
+  const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',
     search: useLocation().search,
   };
@@ -96,7 +96,7 @@ const CountryPanel = ({
   useEffect(() => {
     const keyHandler = (e) => {
       if (e.key === 'Backspace' || e.key === '/') {
-        navigateTo(backButtonLocation);
+        setPressedBackKey(true);
       }
     };
     document.addEventListener('keyup', keyHandler);
@@ -104,6 +104,10 @@ const CountryPanel = ({
       document.removeEventListener('keyup', keyHandler);
     };
   });
+
+  if (pressedBackKey) {
+    return <Redirect to={parentPage} />;
+  }
 
   if (!zones[zoneId]) {
     return <Redirect to="/map" />;
@@ -120,7 +124,7 @@ const CountryPanel = ({
     <div className="country-panel">
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
-          <Link to={backButtonLocation}>
+          <Link to={parentPage}>
             <span className="left-panel-back-button">
               <i className="material-icons" aria-hidden="true">arrow_back</i>
             </span>

@@ -134,7 +134,7 @@ let solarLayer;
 // Render DOM
 ReactDOM.render(
   <Provider store={store}>
-    {/* Switch to BrowserRouter once we don't need to manipulate */}
+    {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
     {/* the route history outside of React components anymore */}
     <Router history={history}>
       <Main />

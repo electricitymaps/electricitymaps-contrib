@@ -8,13 +8,12 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { useSearchParams } from '../../helpers/router';
+import { usePageViewsTracker } from '../../effects';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
 import ZoneDetailsPanel from './zonedetailspanel';
 import ZoneListPanel from './zonelistpanel';
-
-// TODO: Move all styles from styles.css to here
 
 const HandleLegacyRoutes = () => {
   const searchParams = useSearchParams();
@@ -37,36 +36,42 @@ const HandleLegacyRoutes = () => {
   );
 };
 
+// TODO: Move all styles from styles.css to here
+
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
 
-const LeftPanel = ({ isLeftPanelCollapsed }) => (
-  <div className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}>
+const LeftPanel = ({ isLeftPanelCollapsed }) => {
+  usePageViewsTracker();
 
-    <div id="mobile-header" className="large-screen-hidden brightmode">
-      <div className="header-content">
-        <div className="logo">
-          <div className="image" id="electricitymap-logo" />
-        </div>
-        <div className="right-header large-screen-hidden">
-          <span id="small-loading" className="loading" />
-          <span className="current-datetime-from-now" />
+  return (
+    <div className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}>
+
+      <div id="mobile-header" className="large-screen-hidden brightmode">
+        <div className="header-content">
+          <div className="logo">
+            <div className="image" id="electricitymap-logo" />
+          </div>
+          <div className="right-header large-screen-hidden">
+            <span id="small-loading" className="loading" />
+            <span className="current-datetime-from-now" />
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Render different content based on the current route */}
-    <Switch>
-      <Route exact path="/" component={HandleLegacyRoutes} />
-      <Route path="/map" component={ZoneListPanel} />
-      <Route path="/ranking" component={ZoneListPanel} />
-      <Route path="/zone/:zoneId" component={ZoneDetailsPanel} />
-      <Route path="/info" component={MobileInfoTab} />
-      <Route path="/faq" component={FAQPanel} />
-      {/* TODO: Add a 404 page  */}
-    </Switch>
-  </div>
-);
+      {/* Render different content based on the current route */}
+      <Switch>
+        <Route exact path="/" component={HandleLegacyRoutes} />
+        <Route path="/map" component={ZoneListPanel} />
+        <Route path="/ranking" component={ZoneListPanel} />
+        <Route path="/zone/:zoneId" component={ZoneDetailsPanel} />
+        <Route path="/info" component={MobileInfoTab} />
+        <Route path="/faq" component={FAQPanel} />
+        {/* TODO: Consider adding a 404 page  */}
+      </Switch>
+    </div>
+  );
+};
 
 export default connect(mapStateToProps)(LeftPanel);

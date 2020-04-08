@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
-import { history, navigateTo } from '../helpers/router';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -80,12 +80,17 @@ const ZoneList = ({
     .filter(z => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
+  const [enteredZone, setEnteredZone] = useState(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  // Click action
-  const handleClick = (countryCode) => {
-    dispatchApplication('centeredZoneName', countryCode);
-    navigateTo({ pathname: `/zone/${countryCode}`, search: history.location.search });
+  const zonePage = zone => ({
+    pathname: `/zone/${zone.countryCode}`,
+    search: useLocation().search,
+  });
+
+  const enterZone = (zone) => {
+    dispatchApplication('centeredZoneName', zone.countryCode);
+    setEnteredZone(zone);
   };
 
   // Keyboard navigation
@@ -108,7 +113,7 @@ const ZoneList = ({
     const keyHandler = (e) => {
       if (e.key) {
         if (e.key === 'Enter' && zones[selectedItemIndex]) {
-          handleClick(zones[selectedItemIndex].countryCode);
+          enterZone(zones[selectedItemIndex]);
         } else if (e.key === 'ArrowUp') {
           const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
           scrollToItemIfNeeded(prevItemIndex);
@@ -130,13 +135,18 @@ const ZoneList = ({
     };
   });
 
+  if (enteredZone) {
+    return <Redirect to={zonePage(enteredZone)} />;
+  }
+
   return (
     <div className="zone-list" ref={ref}>
       {zones.map((zone, ind) => (
-        <a
-          key={zone.shortname}
+        <Link
+          to={zonePage(zone)}
+          onClick={() => enterZone(zone)}
           className={selectedItemIndex === ind ? 'selected' : ''}
-          onClick={() => handleClick(zone.countryCode)}
+          key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
           <img className="flag" src={flagUri(zone.countryCode, 32)} />
@@ -148,7 +158,7 @@ const ZoneList = ({
             className="co2-intensity-tag"
             style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
           />
-        </a>
+        </Link>
       ))}
     </div>
   );

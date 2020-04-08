@@ -1,8 +1,6 @@
-import { isEmpty } from 'lodash';
 import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import thirdPartyServices from '../services/thirdparty';
 import { dispatch } from '../store';
 
 // TODO: Replace this with React Router DOM
@@ -11,13 +9,10 @@ export const history = createBrowserHistory();
 
 // TODO: Deprecate in favor of <Link /> and <Redirect />
 export function navigateTo({ pathname, search }) {
-  // Push the new URL state to browser history and track
-  // it only if the new URL differs from the current one
+  // Push the new URL state to browser history only
+  // if the new URL differs from the current one.
   const url = `${pathname}${search}`;
   if (url !== `${history.location.pathname}${history.location.search}`) {
-    if (thirdPartyServices._ga) {
-      thirdPartyServices._ga.config({ page_path: url });
-    }
     history.push(url);
   }
 }
@@ -81,6 +76,7 @@ export function isWindEnabled() {
   return getSearchParams().get('wind') === 'true';
 }
 
+// TODO: Deprecate in favor of using <Link /> and <Redirect /> directly
 function updateSearchParams(searchParams) {
   let search = searchParams.toString();
   if (search) {
@@ -118,6 +114,8 @@ export function setWindEnabled(windEnabled) {
 // Redux state sync
 //
 
+// TODO: Remove once we don't need the copy of URL state in the Redux state anymore
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2296.
 function updateStateFromURL() {
   dispatch({
     type: 'UPDATE_STATE_FROM_URL',
