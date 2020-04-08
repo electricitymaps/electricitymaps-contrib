@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-# This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (assumed to be equal to electricity production)
+# This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (only consumption, production data is not available)
 # Kuwait has a good data source and parser of its own, but should it become unavailable this parser can return data for Kuwait as well
 # Source: Gulf Cooperation Council Interconnection Authority
 # URL: https://www.gccia.com.sa/
@@ -32,7 +32,7 @@ TIME_ZONE_MAPPING = {
   'SA': 'Asia/Riyadh',
 }
 
-def fetch_production(zone_key, session=None, logger=None):
+def fetch_consumption(zone_key, session=None, logger=None):
     r = session or requests.session()
     url = 'https://www.gccia.com.sa/'
     response = r.get(url)
@@ -41,13 +41,13 @@ def fetch_production(zone_key, session=None, logger=None):
 
     load = re.findall(pattern, response.text)
     load = int(load[0])
-    production = {}
-    production['unknown'] = load
+    consumption = {}
+    consumption['unknown'] = load
 
     datapoint = {
         'zoneKey': zone_key,
         'datetime': arrow.now(TIME_ZONE_MAPPING[zone_key]).datetime,
-        'production': production,
+        'consumption': consumption,
         'source': 'www.gccia.com.sa' # URL won't work without WWW
     }
 
@@ -57,11 +57,10 @@ if __name__ == '__main__':
     """Main method, never used by the electricityMap backend, but handy for testing."""
 
     for i in COUNTRY_CODE_MAPPING:
-      print('fetch_production(\'{0}\') ->'.format(i))
+      print('fetch_consumption(\'{0}\') ->'.format(i))
       try:
-        print(fetch_production(i))
+        print(fetch_consumption(i))
       except IndexError as error:
-        print("Could not fetch production data for {0}".format(i), file=stderr)
+        print("Could not fetch consumption data for {0}".format(i), file=stderr)
         print(type(error), ":", error, file=stderr)
       print("\n")
-
