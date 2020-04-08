@@ -16,9 +16,11 @@ const mapStateToProps = state => ({
 });
 
 const MobileInfoTab = ({ isMobile }) => {
-  // Navigate to the map page if not on mobile (anymore)
+  const location = useLocation();
+
+  // If not on mobile, redirect to the /map page
   if (!isMobile) {
-    return <Redirect to={{ pathname: '/map', search: useLocation().search }} />;
+    return <Redirect to={{ pathname: '/map', search: location.search }} />;
   }
 
   return (

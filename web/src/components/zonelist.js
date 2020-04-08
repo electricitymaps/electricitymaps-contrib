@@ -80,12 +80,13 @@ const ZoneList = ({
     .filter(z => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
+  const location = useLocation();
   const [enteredZone, setEnteredZone] = useState(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   const zonePage = zone => ({
     pathname: `/zone/${zone.countryCode}`,
-    search: useLocation().search,
+    search: location.search,
   });
 
   const enterZone = (zone) => {
@@ -135,6 +136,8 @@ const ZoneList = ({
     };
   });
 
+  // Redirect to the zone details page if Enter key
+  // has been pressed over the zone in the list.
   if (enteredZone) {
     return <Redirect to={zonePage(enteredZone)} />;
   }

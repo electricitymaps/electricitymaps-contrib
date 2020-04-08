@@ -85,11 +85,12 @@ const CountryPanel = ({
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [pressedBackKey, setPressedBackKey] = useState(false);
+  const location = useLocation();
   const { zoneId } = useParams();
 
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',
-    search: useLocation().search,
+    search: location.search,
   };
 
   // Back button keyboard navigation
@@ -105,12 +106,10 @@ const CountryPanel = ({
     };
   });
 
-  if (pressedBackKey) {
+  // Redirect to the parent page if the zone is invalid
+  // or if the back navigation key has been pressed.
+  if (!zones[zoneId] || pressedBackKey) {
     return <Redirect to={parentPage} />;
-  }
-
-  if (!zones[zoneId]) {
-    return <Redirect to="/map" />;
   }
 
   const { hasParser } = data;
