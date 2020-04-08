@@ -3968,12 +3968,13 @@
       "biomass": 4800,
       "gas": 698,
       "hydro": 15945,
-      "nuclear": 9100,
+      "nuclear": 7801,
       "oil": 2251,
       "solar": 140,
       "wind": 8984
     },
     "contributors": [
+      "https://github.com/augustekman",
       "https://github.com/RRyyas",
       "https://github.com/corradio"
     ],
