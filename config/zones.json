@@ -12,6 +12,15 @@
     ],
     "timezone": null
   },
+  "AE": {
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Dubai"
+  },
   "AL": {
     "bounding_box": [
       [
@@ -492,6 +501,15 @@
       "production": "BG.fetch_production"
     },
     "timezone": null
+  },
+  "BH": {
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Bahrain"
   },
   "BO": {
     "capacity": {
@@ -3590,6 +3608,15 @@
     },
     "timezone": null
   },
+  "OM": {
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Muscat"
+  },
   "PA": {
     "bounding_box": [
       [
@@ -3741,6 +3768,15 @@
     ],
     "flag_file_name": "pt.png",
     "timezone": null
+  },
+  "QA": {
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Qatar"
   },
   "RE": {
     "bounding_box": [
@@ -3952,6 +3988,15 @@
     ],
     "flag_file_name": "ru.png",
     "timezone": null
+  },
+  "SA": {
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Riyadh"
   },
   "SE": {
     "bounding_box": [
