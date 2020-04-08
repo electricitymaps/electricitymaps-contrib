@@ -3193,6 +3193,36 @@
     ],
     "timezone": null
   },
+  "MX": {
+    "bounding_box": [
+      [
+        -117.12776,
+        14.5388286402
+      ],
+      [
+        -86.811982388,
+        32.72083
+      ]
+    ],
+    "capacity": {},
+    "contributors": [
+      "https://github.com/scriptator"
+    ],
+    "parsers": {
+      "production": "MX.fetch_production"
+    },
+    "subZoneNames": [
+      "MX-BC",
+      "MX-CE",
+      "MX-NE",
+      "MX-NO",
+      "MX-NW",
+      "MX-OC",
+      "MX-OR",
+      "MX-PN"
+    ],
+    "timezone": null
+  },
   "MY-WM": {
     "bounding_box": [
       [
@@ -3983,12 +4013,13 @@
       "biomass": 4800,
       "gas": 698,
       "hydro": 15945,
-      "nuclear": 9100,
+      "nuclear": 7801,
       "oil": 2251,
       "solar": 140,
       "wind": 8984
     },
     "contributors": [
+      "https://github.com/augustekman",
       "https://github.com/RRyyas",
       "https://github.com/corradio"
     ],
