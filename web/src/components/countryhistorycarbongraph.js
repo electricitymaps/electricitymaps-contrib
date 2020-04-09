@@ -1,11 +1,13 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { getTooltipPosition } from '../helpers/graph';
+import { useCustomDatetime } from '../helpers/router';
 import { getCo2Scale } from '../helpers/scales';
 import {
-  getSelectedZoneHistory,
+  getZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
@@ -34,9 +36,6 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
@@ -44,14 +43,18 @@ const mapStateToProps = state => ({
 const CountryHistoryCarbonGraph = ({
   colorBlindModeEnabled,
   electricityMixMode,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const { zoneId } = useParams();
+  const historyData = useSelector(getZoneHistory(zoneId));
+
+  const customDatetime = useCustomDatetime();
+  const startTime = useSelector(getZoneHistoryStartTime(customDatetime));
+  const endTime = useSelector(getZoneHistoryEndTime(customDatetime));
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(

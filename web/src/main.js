@@ -23,7 +23,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getCurrentZoneData, getSelectedZoneExchangeKeys } from './selectors';
+import { getZoneData } from './selectors';
 import { getCo2Scale } from './helpers/scales';
 import {
   history,
@@ -921,10 +921,12 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 
 // Observe
 observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
-  if (getCurrentZoneData(state)) {
+  const zoneId = getZoneId();
+  const zoneData = getZoneData(zoneId)(state);
+  if (zoneData) {
     thirdPartyServices.track(
       tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-      { countryCode: getCurrentZoneData(state).countryCode },
+      { countryCode: zoneData.countryCode },
     );
   }
 });

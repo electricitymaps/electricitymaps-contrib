@@ -1,17 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
-import { getCurrentZoneData } from '../selectors';
+import { getZoneData } from '../selectors';
 
 const mapStateToProps = state => ({
-  zoneData: getCurrentZoneData(state),
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryTableOverlayIfNoData = ({ zoneData, zoneTimeIndex }) => {
+const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const { zoneId } = useParams();
+  const zoneData = useSelector(getZoneData(zoneId));
 
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
   const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && !zonesThatCanHaveZeroProduction.includes(zoneId);

@@ -1,13 +1,15 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
+import { useCustomDatetime } from '../helpers/router';
 import { getCo2Scale } from '../helpers/scales';
 import {
-  getSelectedZoneHistory,
+  getZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
 } from '../selectors';
@@ -39,23 +41,23 @@ const prepareGraphData = (historyData) => {
 };
 
 const mapStateToProps = state => ({
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryEmissionsGraph = ({
-  displayByEmissions,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const { zoneId } = useParams();
+  const historyData = useSelector(getZoneHistory(zoneId));
+
+  const customDatetime = useCustomDatetime();
+  const startTime = useSelector(getZoneHistoryStartTime(customDatetime));
+  const endTime = useSelector(getZoneHistoryEndTime(customDatetime));
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(

@@ -10,7 +10,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import moment from 'moment';
 
 // Components
@@ -27,7 +27,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getCurrentZoneData } from '../../selectors';
+import { getZoneData } from '../../selectors';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
@@ -36,39 +36,46 @@ import { co2Sub } from '../../helpers/formatting';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
+const CountryLowCarbonGauge = () => {
+  const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+
+  const { zoneId } = useParams();
+  const d = useSelector(getZoneData(zoneId));
   if (!d) {
-    return { percentage: null };
+    return <CircularGauge />;
   }
-  const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
+
+  const fossilFuelRatio = electricityMixMode === 'consumption'
     ? d.fossilFuelRatio
     : d.fossilFuelRatioProduction;
-  const countryLowCarbonPercentage = fossilFuelRatio != null
+  const countryLowCarbonPercentage = fossilFuelRatio !== null
     ? 100 - (fossilFuelRatio * 100)
     : null;
-  return {
-    percentage: countryLowCarbonPercentage,
-  };
-})(CircularGauge);
-const CountryRenewableGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
+
+  return <CircularGauge percentage={countryLowCarbonPercentage} />;
+};
+
+const CountryRenewableGauge = () => {
+  const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+
+  const { zoneId } = useParams();
+  const d = useSelector(getZoneData(zoneId));
   if (!d) {
-    return { percentage: null };
+    return <CircularGauge />;
   }
-  const renewableRatio = state.application.electricityMixMode === 'consumption'
+
+  const renewableRatio = electricityMixMode === 'consumption'
     ? d.renewableRatio
     : d.renewableRatioProduction;
-  const countryRenewablePercentage = renewableRatio != null
-    ? renewableRatio * 100 : null;
-  return {
-    percentage: countryRenewablePercentage,
-  };
-})(CircularGauge);
+  const countryRenewablePercentage = renewableRatio !== null
+    ? renewableRatio * 100
+    : null;
+
+  return <CircularGauge percentage={countryRenewablePercentage} />;
+};
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -77,7 +84,6 @@ const mapStateToProps = state => ({
 
 const CountryPanel = ({
   colorBlindModeEnabled,
-  data,
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
@@ -85,8 +91,10 @@ const CountryPanel = ({
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [pressedBackKey, setPressedBackKey] = useState(false);
+
   const location = useLocation();
   const { zoneId } = useParams();
+  const data = useSelector(getZoneData(zoneId)) || {};
 
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',
