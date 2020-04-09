@@ -244,11 +244,6 @@ function updateCo2Scale() {
   if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
 }
 
-d3.select('#checkbox-colorblind').node().checked = getState().application.colorBlindModeEnabled;
-d3.select('#checkbox-colorblind').on('change', () => {
-  dispatchApplication('colorBlindModeEnabled', !getState().application.colorBlindModeEnabled);
-});
-
 // `finishLoading` will be invoked whenever we've finished loading the map, it could be triggered by a map-rerender
 // or a first-time-ever loading of the webpage.
 function finishLoading() {

@@ -9,13 +9,15 @@ import { connect } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { __ } from '../../helpers/translation';
+import { dispatchApplication } from '../../store';
 import FAQ from '../../components/faq';
 
 const mapStateToProps = state => ({
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   isMobile: state.application.isMobile,
 });
 
-const MobileInfoTab = ({ isMobile }) => {
+const MobileInfoTab = ({ colorBlindModeEnabled, isMobile }) => {
   const location = useLocation();
 
   // If not on mobile, redirect to the /map page
@@ -50,7 +52,12 @@ const MobileInfoTab = ({ isMobile }) => {
 
       <div className="info-text">
         <p>
-          <input type="checkbox" id="checkbox-colorblind" />
+          <input
+            type="checkbox"
+            id="checkbox-colorblind"
+            checked={colorBlindModeEnabled}
+            onChange={() => dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled)}
+          />
           <label htmlFor="checkbox-colorblind">
             {__('legends.colorblindmode')}
           </label>

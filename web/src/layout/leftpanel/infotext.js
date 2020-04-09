@@ -10,21 +10,24 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// Modules
+import { dispatchApplication } from '../../store';
 import { __ } from '../../helpers/translation';
-import { updateApplication } from '../../actioncreators';
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-  dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
+const mapStateToProps = state => ({
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplication }) => (
+export default connect(mapStateToProps)(({ colorBlindModeEnabled }) => (
   <div className="info-text small-screen-hidden">
     <p>
       <label className="checkbox-container">
         {__('legends.colorblindmode')}
-        <input type="checkbox" id="checkbox-colorblind" />
+        <input
+          type="checkbox"
+          id="checkbox-colorblind"
+          checked={colorBlindModeEnabled}
+          onChange={() => dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled)}
+        />
         <span className="checkmark" />
       </label>
     </p>
