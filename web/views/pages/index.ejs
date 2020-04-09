@@ -68,6 +68,7 @@
             var bundleHash = '<%= bundleHash %>';
             var locale = '<%= locale %>';
             var FBLocale = '<%= FBLocale %>';
+            var locales = <%- JSON.stringify(locales) %>;
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
         </script>
 
