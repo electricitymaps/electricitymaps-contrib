@@ -1,15 +1,23 @@
 import moment from 'moment';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { max as d3Max } from 'd3-array';
 import { connect } from 'react-redux';
 import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
+import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { getExchangeKeys } from '../helpers/zones';
+import {
+  getSelectedZoneHistory,
+  getSelectedZoneExchangeKeys,
+  getZoneHistoryStartTime,
+  getZoneHistoryEndTime,
+} from '../selectors';
 import { dispatchApplication } from '../store';
 
+import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
+import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import AreaGraph from './graph/areagraph';
 
 const getValuesInfo = (historyData, displayByEmissions) => {
@@ -20,12 +28,12 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq/min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO2eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 };
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
+const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys) => {
   if (!historyData || !historyData[0]) return {};
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
@@ -66,21 +74,17 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
       });
     }
     // Keep a pointer to original data
-    obj._countryData = d;
+    obj.meta = d;
     return obj;
   });
 
-  // If in consumption mode, show the exchange layers on top of the standard sources.
-  let layerKeys = modeOrder;
-  if (electricityMixMode === 'consumption') {
-    layerKeys = layerKeys.concat(getExchangeKeys(historyData));
-  }
+  // Show the exchange layers (if they exist) on top of the standard sources.
+  const layerKeys = modeOrder.concat(exchangeKeys);
 
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (getExchangeKeys(historyData).includes(key)) {
-      return d => (d.data._countryData.exchangeCo2Intensities
-        ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
+    if (exchangeKeys.includes(key)) {
+      return d => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
     return modeColor[key];
@@ -94,48 +98,13 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
   };
 };
 
-const getMouseMoveHandler = () => (timeIndex) => {
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getMouseOutHandler = () => () => {
-  dispatchApplication('selectedZoneTimeIndex', null);
-};
-const getLayerMouseMoveHandler = (setSelectedLayerIndex, isMobile) => (timeIndex, layerIndex, layer, ev, svgRef) => {
-  // If in mobile mode, put the tooltip to the top of the screen for
-  // readability, otherwise float it depending on the cursor position.
-  const tooltipPosition = !isMobile
-    ? { x: ev.clientX - 7, y: svgRef.current.getBoundingClientRect().top - 7 }
-    : { x: 0, y: 0 };
-  setSelectedLayerIndex(layerIndex);
-  dispatchApplication('tooltipPosition', tooltipPosition);
-  dispatchApplication('tooltipZoneData', layer.datapoints[timeIndex].data._countryData);
-  dispatchApplication('tooltipDisplayMode', layer.key);
-  dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-const getLayerMouseOutHandler = setSelectedLayerIndex => () => {
-  setSelectedLayerIndex(null);
-  dispatchApplication('tooltipDisplayMode', null);
-};
-
-const getCurrentTime = state =>
-  state.application.customDate || (state.data.grid || {}).datetime;
-
-const getSelectedZoneHistory = state =>
-  state.data.histories[state.application.selectedZoneName];
-
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  // Pass current time as the end time of the graph time scale explicitly
-  // as we want to make sure we account for the missing data at the end of
-  // the graph (when not inferable from historyData timestamps).
-  // TODO: Likewise, we should be passing an explicit startTime set to 24h
-  // in the past to make sure we show data is missing at the beginning of
-  // the graph, but that would create UI inconsistency with the other
-  // neighbouring graphs showing data over a bit longer time scale
-  // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-  endTime: moment(getCurrentTime(state)).format(),
+  exchangeKeys: getSelectedZoneExchangeKeys(state),
+  startTime: getZoneHistoryStartTime(state),
+  endTime: getZoneHistoryEndTime(state),
   historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
@@ -145,11 +114,14 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
+  exchangeKeys,
+  startTime,
   endTime,
   historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -159,37 +131,91 @@ const CountryHistoryMixGraph = ({
     layerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
-    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
+    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys),
+    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
   // Mouse action handlers
-  const mouseMoveHandler = useMemo(getMouseMoveHandler, []);
-  const mouseOutHandler = useMemo(getMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+    },
+    []
+  );
+  const backgroundMouseOutHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+    },
+    []
+  );
   const layerMouseMoveHandler = useMemo(
-    () => getLayerMouseMoveHandler(setSelectedLayerIndex, isMobile),
-    [setSelectedLayerIndex, isMobile]
+    () => (timeIndex, layerIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(layerIndex);
+    },
+    [setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
-    () => getLayerMouseOutHandler(setSelectedLayerIndex),
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+    },
     [setSelectedLayerIndex]
+  );
+  // Graph marker callbacks
+  const markerUpdateHandler = useMemo(
+    () => (position, datapoint, layerKey) => {
+      setTooltip({
+        mode: layerKey,
+        position: getTooltipPosition(isMobile, position),
+        zoneData: datapoint.meta,
+      });
+    },
+    [setTooltip, isMobile]
+  );
+  const markerHideHandler = useMemo(
+    () => () => {
+      setTooltip(null);
+    },
+    [setTooltip]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerFill={layerFill}
-      endTime={endTime}
-      valueAxisLabel={valueAxisLabel}
-      mouseMoveHandler={mouseMoveHandler}
-      mouseOutHandler={mouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerFill={layerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel={valueAxisLabel}
+        backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+        backgroundMouseOutHandler={backgroundMouseOutHandler}
+        layerMouseMoveHandler={layerMouseMoveHandler}
+        layerMouseOutHandler={layerMouseOutHandler}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="10em"
+      />
+      {tooltip && (
+        exchangeKeys.includes(tooltip.mode) ? (
+          <CountryPanelExchangeTooltip
+            exchangeKey={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        ) : (
+          <CountryPanelProductionTooltip
+            mode={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        )
+      )}
+    </React.Fragment>
   );
 };
 

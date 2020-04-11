@@ -25,7 +25,7 @@ fi
 unzip -od build build/${STATES_FILENAME}.zip
 
 # Move 3rd party shapes to build
-cp third_party_maps/* build
+cp -r third_party_maps/* build
 
 # Extract metadata
 echo "Extract metadata"

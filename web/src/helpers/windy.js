@@ -15,10 +15,12 @@
     interpolation and animation process.
 */
 
+const { windColor } = require('./scales');
+
 var Windy = function( params ){
   var VELOCITY_SCALE = 1/100000;//1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
   var INTENSITY_SCALE_STEP = 10;            // step size of particle intensity color scale
-  var MAX_WIND_INTENSITY = 15;              // wind velocity at which particle intensity is maximum (m/s)
+  var MAX_WIND_INTENSITY = 30;              // wind velocity at which particle intensity is maximum (m/s)
   var MAX_PARTICLE_AGE = 100;                // max number of frames a particle is drawn before regeneration
   var PARTICLE_LINE_WIDTH = 2;              // line width of a drawn particle
   var PARTICLE_MULTIPLIER = 4;              // particle count scalar (completely arbitrary--this values looks nice)
@@ -329,16 +331,7 @@ var Windy = function( params ){
           // "rgba(" + hexToR('#e185ff') + ", " + hexToG('#e185ff') + ", " + hexToB('#e185ff') + ", " + 1.0 + ")",
           // "rgba(" + hexToR('#ec6dff') + ", " + hexToG('#ec6dff') + ", " + hexToB('#ec6dff') + ", " + 1.0 + ")",
           // "rgba(" + hexToR('#ff1edb') + ", " + hexToG('#ff1edb') + ", " + hexToB('#ff1edb') + ", " + 1.0 + ")"
-          'rgba(0,   255, 255, 1.0)',
-          'rgba(100, 240, 255, 1.0)',
-          'rgba(135, 225, 255, 1.0)',
-          'rgba(160, 208, 255, 1.0)',
-          'rgba(181, 192, 255, 1.0)',
-          'rgba(198, 173, 255, 1.0)',
-          'rgba(212, 155, 255, 1.0)',
-          'rgba(225, 133, 255, 1.0)',
-          'rgba(236, 109, 255, 1.0)',
-          'rgba(255,  30, 219, 1.0)'
+          ...windColor.range(),
         ]
         /*
         var result = [];

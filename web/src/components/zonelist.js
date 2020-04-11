@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
-import { themes } from '../helpers/themes';
 import { getCo2Scale } from '../helpers/scales';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
@@ -149,11 +148,7 @@ const ZoneList = ({
           </div>
           <div
             className="co2-intensity-tag"
-            style={{
-              backgroundColor: co2IntensityAccessor(zone) && co2ColorScale
-                ? co2ColorScale(co2IntensityAccessor(zone))
-                : 'gray',
-            }}
+            style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
           />
         </a>
       ))}

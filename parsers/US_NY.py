@@ -192,16 +192,19 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     # In the source CSV, positive is flow into NY, negative is flow out of NY.
     # In Electricity Map, A->B means flow to B is positive.
-    if sorted_zone_keys == 'US-NEISO->US-NY':
+    if sorted_zone_keys == 'US-NEISO->US-NY' or sorted_zone_keys == 'US-NE-ISNE->US-NY-NYIS':
         direction = 1
         relevant_exchanges = ['SCH - NE - NY', 'SCH - NPX_1385', 'SCH - NPX_CSC']
     elif sorted_zone_keys == 'US-NY->US-PJM':
         direction = -1
         relevant_exchanges = ['SCH - PJ - NY', 'SCH - PJM_HTP', 'SCH - PJM_NEPTUNE', 'SCH - PJM_VFT']
+    elif sorted_zone_keys == 'US-MIDA-PJM->US-NY-NYIS':
+        direction = 1
+        relevant_exchanges = ['SCH - PJ - NY', 'SCH - PJM_HTP', 'SCH - PJM_NEPTUNE', 'SCH - PJM_VFT']
     elif sorted_zone_keys == 'CA-ON->US-NY':
         direction = 1
         relevant_exchanges = ['SCH - OH - NY']
-    elif sorted_zone_keys == 'CA-QC->US-NY':
+    elif sorted_zone_keys == 'CA-QC->US-NY' or sorted_zone_keys == 'CA-QC->US-NY-NYIS':
         direction = 1
         relevant_exchanges = ['SCH - HQ_CEDARS', 'SCH - HQ - NY']
     else:
