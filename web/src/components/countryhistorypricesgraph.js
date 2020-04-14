@@ -14,7 +14,7 @@ import {
   getZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../selectors';
+} from '../selectors/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';

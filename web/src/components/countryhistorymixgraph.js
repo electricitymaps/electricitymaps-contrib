@@ -15,7 +15,7 @@ import {
   getZoneExchangeKeys,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../selectors';
+} from '../selectors/redux';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';

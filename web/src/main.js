@@ -23,7 +23,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getZoneData } from './selectors';
+import { getZoneData } from './selectors/redux';
 import { getCo2Scale } from './helpers/scales';
 import {
   history,

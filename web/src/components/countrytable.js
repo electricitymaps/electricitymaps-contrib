@@ -14,7 +14,7 @@ import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
-import { getZoneData, getZoneExchangeKeys } from '../selectors';
+import { getZoneData, getZoneExchangeKeys } from '../selectors/redux';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';

@@ -11,7 +11,7 @@ import {
   getZoneHistoryDatetimes,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../../selectors';
+} from '../../selectors/redux';
 import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';

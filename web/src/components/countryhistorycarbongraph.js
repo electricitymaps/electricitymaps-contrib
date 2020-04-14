@@ -10,7 +10,7 @@ import {
   getZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../selectors';
+} from '../selectors/redux';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';

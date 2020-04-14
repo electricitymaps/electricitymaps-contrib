@@ -27,7 +27,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getZoneData } from '../../selectors';
+import { getZoneData } from '../../selectors/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';

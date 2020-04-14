@@ -12,7 +12,7 @@ import {
   getZoneHistory,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-} from '../selectors';
+} from '../selectors/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';

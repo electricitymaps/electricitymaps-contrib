@@ -3,7 +3,7 @@ import { connect, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
-import { getZoneData } from '../selectors';
+import { getZoneData } from '../selectors/redux';
 
 const mapStateToProps = state => ({
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
