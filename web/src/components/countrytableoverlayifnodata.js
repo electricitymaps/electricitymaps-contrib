@@ -3,7 +3,7 @@ import { connect, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
-import { getZoneDataSelector } from '../selectors/redux';
+import { useCurrentZoneData } from '../effects/redux';
 
 const mapStateToProps = state => ({
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const { zoneId } = useParams();
-  const zoneData = useSelector(getZoneDataSelector(zoneId));
+  const zoneData = useCurrentZoneData();
 
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
   const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && !zonesThatCanHaveZeroProduction.includes(zoneId);

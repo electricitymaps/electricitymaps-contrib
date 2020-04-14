@@ -1,21 +1,19 @@
 import moment from 'moment';
 import React, { useState, useMemo } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { max as d3Max } from 'd3-array';
 import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
-import { useCustomDatetime } from '../helpers/router';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
-  getZoneExchangeKeysSelector,
-  getZoneHistorySelector,
-  getZoneHistoryStartTimeSelector,
-  getZoneHistoryEndTimeSelector,
-} from '../selectors/redux';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+  useCurrentZoneExchangeKeys,
+} from '../effects/redux';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
@@ -118,13 +116,10 @@ const CountryHistoryMixGraph = ({
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-  const { zoneId } = useParams();
-  const historyData = useSelector(getZoneHistorySelector(zoneId));
-  const exchangeKeys = useSelector(getZoneExchangeKeysSelector(zoneId));
-
-  const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
+  const historyData = useCurrentZoneHistory();
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const {

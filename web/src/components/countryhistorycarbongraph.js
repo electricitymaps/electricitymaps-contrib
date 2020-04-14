@@ -1,16 +1,14 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { useCustomDatetime } from '../helpers/router';
 import { getCo2Scale } from '../helpers/scales';
 import {
-  getZoneHistorySelector,
-  getZoneHistoryStartTimeSelector,
-  getZoneHistoryEndTimeSelector,
-} from '../selectors/redux';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../effects/redux';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
@@ -49,12 +47,9 @@ const CountryHistoryCarbonGraph = ({
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-  const { zoneId } = useParams();
-  const historyData = useSelector(getZoneHistorySelector(zoneId));
-
-  const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
+  const historyData = useCurrentZoneHistory();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(

@@ -27,7 +27,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getZoneDataSelector } from '../../selectors/redux';
+import { useCurrentZoneData } from '../../effects/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
@@ -39,8 +39,7 @@ import { co2Sub } from '../../helpers/formatting';
 const CountryLowCarbonGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
-  const { zoneId } = useParams();
-  const d = useSelector(getZoneDataSelector(zoneId));
+  const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge />;
   }
@@ -58,8 +57,7 @@ const CountryLowCarbonGauge = () => {
 const CountryRenewableGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
-  const { zoneId } = useParams();
-  const d = useSelector(getZoneDataSelector(zoneId));
+  const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge />;
   }
@@ -94,7 +92,8 @@ const CountryPanel = ({
 
   const location = useLocation();
   const { zoneId } = useParams();
-  const data = useSelector(getZoneDataSelector(zoneId)) || {};
+
+  const data = useCurrentZoneData() || {};
 
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',

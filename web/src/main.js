@@ -23,7 +23,6 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getZoneDataSelector } from './selectors/redux';
 import { getCo2Scale } from './helpers/scales';
 import {
   history,
@@ -918,6 +917,23 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
     zoneMap.map.resize();
   }
 });
+
+// TODO: Remove this function in favor of useCurrentZoneData()
+// when migrating table emissions toggle to React.
+function getZoneDataSelector(zoneId) {
+  return (state) => {
+    if (!state.data.grid || !zoneId) {
+      return null;
+    }
+    const zoneTimeIndex = state.application.selectedZoneTimeIndex;
+    if (zoneTimeIndex === null) {
+      return state.data.grid.zones[zoneId];
+    }
+    const zoneHistory = state.data.histories[zoneId] || [];
+    return zoneHistory[zoneTimeIndex];
+  };
+}
+
 
 // Observe
 observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {

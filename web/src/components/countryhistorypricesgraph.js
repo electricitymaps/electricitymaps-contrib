@@ -1,20 +1,18 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 import { first } from 'lodash';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { useCustomDatetime } from '../helpers/router';
 import { dispatchApplication } from '../store';
 import {
-  getZoneHistorySelector,
-  getZoneHistoryStartTimeSelector,
-  getZoneHistoryEndTimeSelector,
-} from '../selectors/redux';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../effects/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
@@ -68,12 +66,9 @@ const CountryHistoryPricesGraph = ({
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-  const { zoneId } = useParams();
-  const historyData = useSelector(getZoneHistorySelector(zoneId));
-
-  const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
+  const historyData = useCurrentZoneHistory();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const {

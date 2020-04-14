@@ -6,7 +6,6 @@ import React, {
   useState,
 } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
@@ -15,9 +14,9 @@ import { isArray, isFinite, noop } from 'lodash';
 import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
 import {
-  getZoneDataSelector,
-  getZoneExchangeKeysSelector,
-} from '../selectors/redux';
+  useCurrentZoneData,
+  useCurrentZoneExchangeKeys,
+} from '../effects/redux';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
@@ -446,9 +445,8 @@ const CountryTable = ({
   const ref = useRef(null);
   const width = useWidthObserver(ref);
 
-  const { zoneId } = useParams();
-  const exchangeKeys = useSelector(getZoneExchangeKeysSelector(zoneId));
-  const data = useSelector(getZoneDataSelector(zoneId));
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const data = useCurrentZoneData();
 
   const productionData = useMemo(
     () => getProductionData(data),

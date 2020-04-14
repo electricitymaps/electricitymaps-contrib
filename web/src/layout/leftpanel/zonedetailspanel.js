@@ -3,15 +3,13 @@
 // TODO: re-enable rules
 import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { dispatch } from '../../store';
-import { useCustomDatetime } from '../../helpers/router';
 import {
-  getZoneHistoryDatetimesSelector,
-  getZoneHistoryStartTimeSelector,
-  getZoneHistoryEndTimeSelector,
-} from '../../selectors/redux';
+  useCurrentZoneHistoryDatetimes,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../../effects/redux';
 import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';
@@ -29,12 +27,9 @@ const mapStateToProps = state => ({
 });
 
 const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
-  const { zoneId } = useParams();
-  const datetimes = useSelector(getZoneHistoryDatetimesSelector(zoneId));
-
-  const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
+  const datetimes = useCurrentZoneHistoryDatetimes();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   return (
     <div className="left-panel-zone-details">
