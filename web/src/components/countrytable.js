@@ -14,7 +14,10 @@ import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatch, dispatchApplication } from '../store';
 import { useWidthObserver } from '../effects';
-import { getZoneData, getZoneExchangeKeys } from '../selectors/redux';
+import {
+  getZoneDataSelector,
+  getZoneExchangeKeysSelector,
+} from '../selectors/redux';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
@@ -444,8 +447,8 @@ const CountryTable = ({
   const width = useWidthObserver(ref);
 
   const { zoneId } = useParams();
-  const exchangeKeys = useSelector(getZoneExchangeKeys(zoneId));
-  const data = useSelector(getZoneData(zoneId));
+  const exchangeKeys = useSelector(getZoneExchangeKeysSelector(zoneId));
+  const data = useSelector(getZoneDataSelector(zoneId));
 
   const productionData = useMemo(
     () => getProductionData(data),

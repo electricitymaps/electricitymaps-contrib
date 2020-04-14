@@ -9,9 +9,9 @@ import { getTooltipPosition } from '../helpers/graph';
 import { useCustomDatetime } from '../helpers/router';
 import { getCo2Scale } from '../helpers/scales';
 import {
-  getZoneHistory,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
+  getZoneHistorySelector,
+  getZoneHistoryStartTimeSelector,
+  getZoneHistoryEndTimeSelector,
 } from '../selectors/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
@@ -53,11 +53,11 @@ const CountryHistoryEmissionsGraph = ({
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const { zoneId } = useParams();
-  const historyData = useSelector(getZoneHistory(zoneId));
+  const historyData = useSelector(getZoneHistorySelector(zoneId));
 
   const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTime(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTime(customDatetime));
+  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
+  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(

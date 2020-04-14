@@ -27,7 +27,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getZoneData } from '../../selectors/redux';
+import { getZoneDataSelector } from '../../selectors/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
@@ -40,7 +40,7 @@ const CountryLowCarbonGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const { zoneId } = useParams();
-  const d = useSelector(getZoneData(zoneId));
+  const d = useSelector(getZoneDataSelector(zoneId));
   if (!d) {
     return <CircularGauge />;
   }
@@ -59,7 +59,7 @@ const CountryRenewableGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const { zoneId } = useParams();
-  const d = useSelector(getZoneData(zoneId));
+  const d = useSelector(getZoneDataSelector(zoneId));
   if (!d) {
     return <CircularGauge />;
   }
@@ -94,7 +94,7 @@ const CountryPanel = ({
 
   const location = useLocation();
   const { zoneId } = useParams();
-  const data = useSelector(getZoneData(zoneId)) || {};
+  const data = useSelector(getZoneDataSelector(zoneId)) || {};
 
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',

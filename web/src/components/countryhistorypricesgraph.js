@@ -11,9 +11,9 @@ import { getTooltipPosition } from '../helpers/graph';
 import { useCustomDatetime } from '../helpers/router';
 import { dispatchApplication } from '../store';
 import {
-  getZoneHistory,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
+  getZoneHistorySelector,
+  getZoneHistoryStartTimeSelector,
+  getZoneHistoryEndTimeSelector,
 } from '../selectors/redux';
 
 import AreaGraph from './graph/areagraph';
@@ -69,11 +69,11 @@ const CountryHistoryPricesGraph = ({
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const { zoneId } = useParams();
-  const historyData = useSelector(getZoneHistory(zoneId));
+  const historyData = useSelector(getZoneHistorySelector(zoneId));
 
   const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTime(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTime(customDatetime));
+  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
+  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
 
   // Recalculate graph data only when the history data is changed
   const {

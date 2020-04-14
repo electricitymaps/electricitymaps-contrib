@@ -8,9 +8,9 @@ import { useParams } from 'react-router-dom';
 import { dispatch } from '../../store';
 import { useCustomDatetime } from '../../helpers/router';
 import {
-  getZoneHistoryDatetimes,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
+  getZoneHistoryDatetimesSelector,
+  getZoneHistoryStartTimeSelector,
+  getZoneHistoryEndTimeSelector,
 } from '../../selectors/redux';
 import TimeSlider from '../../components/timeslider';
 
@@ -30,11 +30,11 @@ const mapStateToProps = state => ({
 
 const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
   const { zoneId } = useParams();
-  const datetimes = useSelector(getZoneHistoryDatetimes(zoneId));
+  const datetimes = useSelector(getZoneHistoryDatetimesSelector(zoneId));
 
   const customDatetime = useCustomDatetime();
-  const startTime = useSelector(getZoneHistoryStartTime(customDatetime));
-  const endTime = useSelector(getZoneHistoryEndTime(customDatetime));
+  const startTime = useSelector(getZoneHistoryStartTimeSelector(customDatetime));
+  const endTime = useSelector(getZoneHistoryEndTimeSelector(customDatetime));
 
   return (
     <div className="left-panel-zone-details">

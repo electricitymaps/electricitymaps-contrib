@@ -23,7 +23,7 @@ import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
-import { getZoneData } from './selectors/redux';
+import { getZoneDataSelector } from './selectors/redux';
 import { getCo2Scale } from './helpers/scales';
 import {
   history,
@@ -922,7 +922,7 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 // Observe
 observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
   const zoneId = getZoneId();
-  const zoneData = getZoneData(zoneId)(state);
+  const zoneData = getZoneDataSelector(zoneId)(state);
   if (zoneData) {
     thirdPartyServices.track(
       tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',

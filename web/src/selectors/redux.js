@@ -6,24 +6,26 @@ import {
   uniq,
 } from 'lodash';
 
-export function getZoneHistory(zoneId) {
+export function getZoneHistorySelector(zoneId) {
   return state => state.data.histories[zoneId] || [];
 }
 
-export function getZoneExchangeKeys(zoneId) {
+export function getZoneExchangeKeysSelector(zoneId) {
+  const zoneHistorySelector = getZoneHistorySelector(zoneId);
   return state => (state.application.electricityMixMode === 'consumption'
-    ? sortBy(uniq(flatMap(getZoneHistory(zoneId)(state), d => keys(d.exchange))))
+    ? sortBy(uniq(flatMap(zoneHistorySelector(state), d => keys(d.exchange))))
     : []);
 }
 
-export function getZoneHistoryDatetimes(zoneId) {
-  return state => getZoneHistory(zoneId)(state).map(d => moment(d.stateDatetime).toDate());
+export function getZoneHistoryDatetimesSelector(zoneId) {
+  const zoneHistorySelector = getZoneHistorySelector(zoneId);
+  return state => zoneHistorySelector(state).map(d => moment(d.stateDatetime).toDate());
 }
 
 // Use current time as the end time of the graph time scale explicitly
 // as we want to make sure we account for the missing data at the end of
 // the graph (when not inferable from historyData timestamps).
-export function getZoneHistoryEndTime(customDatetime) {
+export function getZoneHistoryEndTimeSelector(customDatetime) {
   return state => moment(customDatetime || (state.data.grid || {}).datetime).format();
 }
 
@@ -32,11 +34,12 @@ export function getZoneHistoryEndTime(customDatetime) {
 // the graph, but right now that would create UI inconsistency with the
 // other neighbouring graphs showing data over a bit longer time scale
 // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
-export function getZoneHistoryStartTime() {
+export function getZoneHistoryStartTimeSelector() {
   return state => null;
 }
 
-export function getZoneData(zoneId) {
+export function getZoneDataSelector(zoneId) {
+  const zoneHistorySelector = getZoneHistorySelector(zoneId);
   return (state) => {
     const zoneTimeIndex = state.application.selectedZoneTimeIndex;
     if (!state.data.grid || !zoneId) {
@@ -45,6 +48,6 @@ export function getZoneData(zoneId) {
     if (zoneTimeIndex === null) {
       return state.data.grid.zones[zoneId];
     }
-    return getZoneHistory(zoneId)(state)[zoneTimeIndex];
+    return zoneHistorySelector(state)[zoneTimeIndex];
   };
 }
