@@ -9,7 +9,7 @@ import {
   useCurrentZoneHistoryDatetimes,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
-} from '../../effects/redux';
+} from '../../hooks/redux';
 import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';

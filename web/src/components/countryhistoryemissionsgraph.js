@@ -10,7 +10,7 @@ import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
-} from '../effects/redux';
+} from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';

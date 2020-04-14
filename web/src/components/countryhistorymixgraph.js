@@ -13,7 +13,7 @@ import {
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
   useCurrentZoneExchangeKeys,
-} from '../effects/redux';
+} from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';

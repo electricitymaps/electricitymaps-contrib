@@ -8,7 +8,7 @@ import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
-} from '../effects/redux';
+} from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';

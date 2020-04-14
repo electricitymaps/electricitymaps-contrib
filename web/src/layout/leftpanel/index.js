@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { useSearchParams } from '../../helpers/router';
-import { usePageViewsTracker } from '../../effects';
+import { usePageViewsTracker } from '../../hooks/tracking';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
