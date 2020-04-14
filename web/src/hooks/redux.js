@@ -22,12 +22,11 @@ export function useCurrentZoneHistory() {
   return useSelector(selector);
 }
 
-
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
   return useMemo(
-    () => () => zoneHistory.map(d => moment(d.stateDatetime).toDate()),
+    () => zoneHistory.map(d => moment(d.stateDatetime).toDate()),
     [zoneHistory],
   );
 }
@@ -69,11 +68,7 @@ export function useCurrentZoneHistoryEndTime() {
 // other neighbouring graphs showing data over a bit longer time scale
 // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
 export function useCurrentZoneHistoryStartTime() {
-  const selector = useMemo(
-    () => state => null,
-    [],
-  );
-  return useSelector(selector);
+  return null;
 }
 
 export function useCurrentZoneData() {
