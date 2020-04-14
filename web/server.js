@@ -11,7 +11,11 @@ const { vsprintf } = require('sprintf-js');
 const { version } = require('./package.json');
 
 // Custom module
-const { getTranslationStatusJSON, getTranslationStatusSVG } = require(__dirname + '/translation-status');
+const {
+  getSingleTranslationStatusJSON,
+  getTranslationStatusJSON,
+  getTranslationStatusSVG,
+} = require(__dirname + '/translation-status');
 const {
   localeToFacebookLocale,
   supportedFacebookLocales,
@@ -118,10 +122,10 @@ app.get('/clientVersion', (req, res) => res.send(version));
 // Translation status API
 app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
-  res.end(getTranslationStatusSVG());
+  res.end(getTranslationStatusSVG(locales));
 });
 app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
-app.get('/translationstatus/:language', (req, res) => res.json(getTranslationStatusJSON(req.params.language)));
+app.get('/translationstatus/:language', (req, res) => res.json(getSingleTranslationStatusJSON(req.params.language)));
 
 app.get('/', (req, res) => {
   // On electricitymap.tmrow.co,

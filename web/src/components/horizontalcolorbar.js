@@ -25,12 +25,18 @@ const HorizontalColorbar = ({
   const width = useWidthObserver(ref, 2 * PADDING_X);
   const height = useHeightObserver(ref, 2 * PADDING_Y);
 
+  const className = `${id} colorbar`;
   const linearScale = scaleLinear()
     .domain(extent(colorScale.domain()))
     .range([0, width]);
 
+  // Render an empty SVG if the dimensions are not positive
+  if (width <= 0 || height <= 0) {
+    return <svg className={className} ref={ref} />;
+  }
+
   return (
-    <svg className={`${id} colorbar`} ref={ref}>
+    <svg className={className} ref={ref}>
       <g transform={`translate(${PADDING_X},0)`}>
         <linearGradient id={`${id}-gradient`} x2="100%">
           {spreadOverDomain(colorScale, 10).map((value, index) => (

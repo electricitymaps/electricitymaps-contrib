@@ -126,36 +126,41 @@ const Row = ({
   onMouseOver,
   onMouseOut,
   width,
-}) => (
-  <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
-    {/* Row background */}
-    <rect
-      y="-1"
-      fill="transparent"
-      width={width}
-      height={ROW_HEIGHT + PADDING_Y}
-      /* Support only click events in mobile mode, otherwise react to mouse hovers */
-      onClick={isMobile ? onMouseOver : noop}
-      onFocus={!isMobile ? onMouseOver : noop}
-      onMouseOver={!isMobile ? onMouseOver : noop}
-      onMouseMove={!isMobile ? onMouseOver : noop}
-      onMouseOut={onMouseOut}
-      onBlur={onMouseOut}
-    />
+}) => {
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
-    {/* Row label */}
-    <text
-      className="name"
-      style={{ pointerEvents: 'none', textAnchor: 'end' }}
-      transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-    >
-      {label}
-    </text>
+  return (
+    <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+      {/* Row background */}
+      <rect
+        y="-1"
+        fill="transparent"
+        width={width}
+        height={ROW_HEIGHT + PADDING_Y}
+        /* Support only click events in mobile mode, otherwise react to mouse hovers */
+        onClick={isMobile ? onMouseOver : noop}
+        onFocus={!isMobile ? onMouseOver : noop}
+        onMouseOver={!isMobile ? onMouseOver : noop}
+        onMouseMove={!isMobile ? onMouseOver : noop}
+        onMouseOut={onMouseOut}
+        onBlur={onMouseOut}
+      />
 
-    {/* Row content */}
-    {children}
-  </g>
-);
+      {/* Row label */}
+      <text
+        className="name"
+        style={{ pointerEvents: 'none', textAnchor: 'end' }}
+        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+      >
+        {label}
+      </text>
+
+      {/* Row content */}
+      {children}
+    </g>
+  );
+};
 
 const HorizontalBar = ({
   className,
@@ -166,20 +171,23 @@ const HorizontalBar = ({
   // Don't render if the range is not valid
   if (!isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
 
-  // Make sure that x1 < x2
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
+  const width = scale(x2) - scale(x1);
+
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
   return (
     <rect
       className={className}
+      fill={fill}
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
       style={{ pointerEvents: 'none' }}
-      fill={fill}
       x={LABEL_MAX_WIDTH + scale(x1)}
-      width={scale(x2) - scale(x1)}
+      width={width}
     />
   );
 };

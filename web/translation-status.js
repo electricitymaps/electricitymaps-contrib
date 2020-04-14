@@ -35,12 +35,12 @@ function toPercent(json) {
   };
 }
 
+function getSingleTranslationStatusJSON(language) {
+  return toPercent(translationStatusFor(language));
+}
+
+// List statuses for all languages in descending order by translation percentage.
 function getTranslationStatusJSON(languages) {
-  if (languages && languages.length) {
-    return toPercent(translationStatusFor(languages[0]));
-  }
-  // If the language is not specified, list statuses for all
-  // locales in descending order by translation percentage.
   return reverse(sortBy(languages.map(translationStatusFor), 'translated')).map(toPercent);
 }
 
@@ -50,15 +50,16 @@ function getTranslationBadge({ language, translated, color }) {
 }
 
 // Compile a full list of translation badges into a SVG.
-function getTranslationStatusSVG() {
+function getTranslationStatusSVG(languages) {
   return `
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${24 * size(LOCALES_LIST)}">
-      ${getTranslationStatusJSON().map((translation, index) => `<image y="${24 * index}" xlink:href="${getTranslationBadge(translation)}"/>`).join('')}
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="${24 * size(languages)}">
+      ${getTranslationStatusJSON(languages).map((translation, index) => `<image y="${24 * index}" xlink:href="${getTranslationBadge(translation)}"/>`).join('')}
     </svg>
   `;
 }
 
 module.exports = {
+  getSingleTranslationStatusJSON,
   getTranslationStatusJSON,
   getTranslationStatusSVG,
 };
