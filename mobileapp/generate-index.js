@@ -48,16 +48,6 @@ function getHash(key, ext, obj) {
   }
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-const srcHashes = Object.fromEntries(locales.map((k) => {
-  const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
-  const BUNDLE_HASH = getHash('bundle', 'js', obj);
-  const STYLES_HASH = getHash('styles', 'css', obj);
-  const VENDOR_HASH = getHash('vendor', 'js', obj);
-  const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
-  return [k, {
-    BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
-  }];
-}));
 
 // * i18n
 i18n.configure({
@@ -70,18 +60,21 @@ i18n.configure({
     updateFiles: false // whether to write new locale information to disk - defaults to true
 });
 
+const template = ejs.compile(fs.readFileSync('../web/views/pages/index.ejs', 'utf8'));
+const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
+
 locales.forEach(function(locale) {
     i18n.setLocale(locale);
-    var template = ejs.compile(fs.readFileSync('../web/views/pages/index.ejs', 'utf8'));
-    var html = template({
+    const html = template({
         alternateUrls: [],
-        bundleHash: srcHashes[locale].BUNDLE_HASH,
-        vendorHash: srcHashes[locale].VENDOR_HASH,
-        stylesHash: srcHashes[locale].STYLES_HASH,
-        vendorStylesHash: srcHashes[locale].VENDOR_STYLES_HASH,
+        bundleHash: getHash('bundle', 'js', manifest),
+        vendorHash: getHash('vendor', 'js', manifest),
+        stylesHash: getHash('styles', 'css', manifest),
+        vendorStylesHash: getHash('vendor', 'css', manifest),
         isCordova: true,
         locale: locale,
         FBLocale: localeToFacebookLocale[locale],
+        locales: { en: localeConfigs['en'], [locale]: localeConfigs[locale] },
         supportedLocales: locales,
         supportedFBLocales: supportedFacebookLocales,
         '__': function() {
