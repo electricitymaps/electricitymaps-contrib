@@ -7,6 +7,7 @@ import {
   first,
   last,
   max,
+  min,
   filter,
   flattenDeep,
   isFinite,
@@ -37,17 +38,26 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   ])
   .range([0, width]);
 
-const getMaxTotalValue = (layers) => {
-  const values = flattenDeep(
-    layers.map(
-      layer => layer.datapoints.map(d => d[1])
-    )
+const getTotalValues = (layers) => {
+  const values = filter(
+    flattenDeep(
+      layers.map(
+        layer => layer.datapoints.map(d => d[1])
+      )
+    ),
+    isFinite,
   );
-  return max(filter(values, isFinite)) || 0;
+  return {
+    min: min(values) || 0,
+    max: max(values) || 0,
+  };
 };
 
-const getValueScale = (height, maxTotalValue) => scaleLinear()
-  .domain([0, maxTotalValue * 1.1])
+const getValueScale = (height, totalValues) => scaleLinear()
+  .domain([
+    Math.min(0, 1.1 * totalValues.min),
+    Math.max(0, 1.1 * totalValues.max),
+  ])
   .range([height, Y_AXIS_PADDING]);
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
@@ -139,10 +149,10 @@ const AreaGraph = React.memo(({
   );
 
   // Generate graph scales
-  const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
+  const totalValues = useMemo(() => getTotalValues(layers), [layers]);
   const valueScale = useMemo(
-    () => getValueScale(containerHeight, maxTotalValue),
-    [containerHeight, maxTotalValue]
+    () => getValueScale(containerHeight, totalValues),
+    [containerHeight, totalValues]
   );
   const datetimes = useMemo(() => getDatetimes(data), [data]);
   const timeScale = useMemo(
