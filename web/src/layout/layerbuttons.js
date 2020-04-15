@@ -1,8 +1,8 @@
 import React from 'react';
 
 import LanguageSelect from '../components/languageselect';
+import BrightModeToggle from '../components/brightmodetoggle';
 
-// Modules
 import { __ } from '../helpers/translation';
 
 export default () => (
@@ -26,14 +26,6 @@ export default () => (
         </div>
       </div>
     </div>
-    <div>
-      <button type="button" className="layer-button brightmode-button" />
-      <div id="brightmode-layer-button-tooltip" className="layer-button-tooltip hidden">
-        <div className="tooltip-container">
-          <div className="tooltip-text">{__('tooltips.toggleDarkMode')}</div>
-          <div className="arrow" />
-        </div>
-      </div>
-    </div>
+    <BrightModeToggle />
   </div>
 );

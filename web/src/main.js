@@ -604,22 +604,6 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
-// BrightMode
-function toggleBright() {
-  dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
-}
-d3.select('.brightmode-button').on('click', toggleBright);
-const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.brightmode-button').on('mouseover', () => {
-    brightModeButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.brightmode-button').on('mouseout', () => {
-    brightModeButtonTooltip.classed('hidden', true);
-  });
-}
-
 // Wind
 function toggleWind() {
   if (typeof windLayer === 'undefined') { return; }
@@ -845,10 +829,8 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
-  saveKey('brightModeEnabled', brightModeEnabled);
   // update Theme
-  if (getState().application.brightModeEnabled) {
+  if (brightModeEnabled) {
     theme = themes.bright;
   } else {
     theme = themes.dark;
