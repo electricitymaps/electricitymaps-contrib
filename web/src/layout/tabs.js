@@ -8,7 +8,7 @@ export default () => (
   <div id="tab">
     <div id="tab-content">
       <a className="list-item map-button">
-        <img className="tab-icon-custom" src="/images/electricitymap-icon.svg" alt="" />
+        <img className="tab-icon-custom" src={resolvePath('images/electricitymap-icon.svg')} alt="" />
         <span className="tab-label">{__('mobile-main-menu.map')}</span>
       </a>
       <a className="list-item highscore-button">

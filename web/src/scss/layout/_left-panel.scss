@@ -58,7 +58,7 @@
     transition: transform 0.4s, box-shadow 0.4s;
 
     .loading {
-        background: $lighter-gray url('/images/loading/loading64_FA.gif') no-repeat center center;
+        background: $lighter-gray url('../images/loading/loading64_FA.gif') no-repeat center center;
         background-size: 100%;
         width: 1em;
         height: 1em;

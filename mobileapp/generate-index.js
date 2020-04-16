@@ -71,6 +71,10 @@ locales.forEach(function(locale) {
         vendorHash: getHash('vendor', 'js', manifest),
         stylesHash: getHash('styles', 'css', manifest),
         vendorStylesHash: getHash('vendor', 'css', manifest),
+        // Keep using relative resource paths on mobile platforms as that's
+        // the way to keep them working with file:// protocol and HashHistory
+        // doesn't require paths to be absolute.
+        resolvePath: function(relativePath) { return relativePath; },
         isCordova: true,
         locale: locale,
         FBLocale: localeToFacebookLocale[locale],

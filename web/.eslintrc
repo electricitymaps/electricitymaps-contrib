@@ -5,6 +5,7 @@
     "codePush": "readonly",
     "device": "readonly",
     "cordova": "readonly",
+    "resolvePath": "readonly",
     "universalLinks": "readonly",
     "InstallMode": "readonly",
   },

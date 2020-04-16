@@ -1,11 +1,15 @@
 import { useLocation } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createHashHistory } from 'history';
 
 import { dispatch } from '../store';
 
+// Use BrowserHistory in the web browser and HashHistory
+// in the mobile apps as we need to keep relative resource
+// paths for the mobile which are fundamentally incompatible
+// with browser side URL paths routing.
 // TODO: Replace this with React Router DOM
 // `useHistory` hook after full migration to React.
-export const history = createBrowserHistory();
+export const history = window.isCordova ? createHashHistory() : createBrowserHistory();
 
 // TODO: Deprecate in favor of <Link /> and <Redirect />
 export function navigateTo({ pathname, search }) {
