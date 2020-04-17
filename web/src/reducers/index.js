@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
 import { getKey } from '../helpers/storage';
+import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
-
-const isProduction = () => window.location.href.includes('electricitymap');
-const isLocalhost = () => !isProduction() && !window.location.href.includes('192.');
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);

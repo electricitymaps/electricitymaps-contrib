@@ -13,13 +13,12 @@ import { useCustomDatetime } from '../helpers/router';
 
 export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
+  const histories = useSelector(state => state.data.histories);
 
-  const selector = useMemo(
-    () => state => state.data.histories[zoneId] || [],
-    [zoneId],
+  return useMemo(
+    () => histories[zoneId] || [],
+    [histories, zoneId],
   );
-
-  return useSelector(selector);
 }
 
 export function useCurrentZoneHistoryDatetimes() {
@@ -33,17 +32,12 @@ export function useCurrentZoneHistoryDatetimes() {
 
 export function useCurrentZoneExchangeKeys() {
   const zoneHistory = useCurrentZoneHistory();
+  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
 
-  const selector = useMemo(
-    () => state => (
-      state.application.electricityMixMode === 'consumption'
-        ? sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange))))
-        : []
-    ),
-    [zoneHistory]
+  return useMemo(
+    () => (isConsumption ? sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange)))) : []),
+    [isConsumption, zoneHistory]
   );
-
-  return useSelector(selector);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -51,15 +45,12 @@ export function useCurrentZoneExchangeKeys() {
 // the graph (when not inferable from historyData timestamps).
 export function useCurrentZoneHistoryEndTime() {
   const customDatetime = useCustomDatetime();
+  const gridDatetime = useSelector(state => (state.data.grid || {}).datetime);
 
-  const selector = useMemo(
-    () => state => (
-      moment(customDatetime || (state.data.grid || {}).datetime).format()
-    ),
-    [customDatetime],
+  return useMemo(
+    () => moment(customDatetime || gridDatetime).format(),
+    [customDatetime, gridDatetime],
   );
-
-  return useSelector(selector);
 }
 
 // TODO: Likewise, we should be passing an explicit startTime set to 24h
@@ -74,20 +65,19 @@ export function useCurrentZoneHistoryStartTime() {
 export function useCurrentZoneData() {
   const { zoneId } = useParams();
   const zoneHistory = useCurrentZoneHistory();
+  const zoneTimeIndex = useSelector(state => state.application.selectedZoneTimeIndex);
+  const grid = useSelector(state => state.data.grid);
 
-  const selector = useMemo(
-    () => (state) => {
-      if (!state.data.grid || !zoneId) {
+  return useMemo(
+    () => {
+      if (!zoneId || !grid) {
         return null;
       }
-      const zoneTimeIndex = state.application.selectedZoneTimeIndex;
       if (zoneTimeIndex === null) {
-        return state.data.grid.zones[zoneId];
+        return grid.zones[zoneId];
       }
       return zoneHistory[zoneTimeIndex];
     },
-    [zoneId, zoneHistory],
+    [zoneId, zoneHistory, zoneTimeIndex, grid],
   );
-
-  return useSelector(selector);
 }

@@ -92,10 +92,6 @@ const fetchState = function(endpoint, datetime, callback) {
   var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
   return protectedJsonRequest(endpoint, path, callback);
 }
-const fetchHistory = function(endpoint, zone_name, callback) {
-  var path = '/v3/history?countryCode=' + zone_name;
-  return protectedJsonRequest(endpoint, path, callback);
-}
 
 export {
   fetchForecast,
@@ -104,5 +100,4 @@ export {
   fetchGfs,
   fetchNothing,
   fetchState,
-  fetchHistory,
 };

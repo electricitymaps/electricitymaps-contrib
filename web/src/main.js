@@ -24,9 +24,9 @@ import thirdPartyServices from './services/thirdparty';
 
 // Utils
 import { getCo2Scale } from './helpers/scales';
+import { getEndpoint } from './helpers/api';
 import {
   history,
-  isRemoteEndpoint,
   isSolarEnabled,
   isWindEnabled,
   navigateTo,
@@ -95,16 +95,6 @@ if (thirdPartyServices._ga) {
 
 // Constants
 const REFRESH_TIME_MINUTES = 5;
-
-// Use local endpoint only if ALL of the following conditions are true:
-// 1. The app is running on localhost
-// 2. The `remote` search param hasn't been explicitly set to true
-// 3. Document domain has a non-empty value
-const getEndpoint = () => ((
-  getState().application.isLocalhost
-  && !isRemoteEndpoint()
-  && document.domain !== ''
-) ? 'http://localhost:9000' : 'https://api.electricitymap.org');
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -620,28 +610,6 @@ window.retryFetch = () => {
   fetch(false);
 };
 
-function tryFetchHistory(state) {
-  const zoneId = getZoneId();
-  if (getCustomDatetime()) {
-    console.error('Can\'t fetch history when a custom date is provided!');
-  } else if (!state.data.histories[zoneId]) {
-    LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(getEndpoint(), zoneId, (err, obj) => {
-      LoadingService.stopLoading('.country-history .loading');
-      if (err) { return console.error(err); }
-      if (!obj || !obj.data) {
-        return console.warn(`Empty history received for ${zoneId}`);
-      }
-      // Save to local cache
-      return dispatch({
-        payload: obj.data,
-        zoneName: zoneId,
-        type: 'HISTORY_DATA',
-      });
-    });
-  }
-}
-
 //
 // *** OBSERVERS ***
 //
@@ -682,23 +650,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
 
   // Analytics
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
-});
-
-// Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
-  if (!selectedZoneName) { return; }
-
-  // Fetch history if needed
-  tryFetchHistory(state);
-});
-
-// Observe for history change
-observe(state => state.data.histories, (histories, state) => {
-  // If history was cleared by the grid data for the currently selected country,
-  // try to refetch it.
-  if (getZoneId() && !state.data.histories[getZoneId()]) {
-    tryFetchHistory(state);
-  }
 });
 
 // Observe for color blind mode changes

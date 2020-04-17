@@ -3,12 +3,16 @@
 // TODO: re-enable rules
 import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { isEmpty } from 'lodash';
 
 import { dispatch } from '../../store';
+import { useCustomDatetime } from '../../helpers/router';
 import {
   useCurrentZoneHistoryDatetimes,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
+  useCurrentZoneHistory,
 } from '../../hooks/redux';
 import TimeSlider from '../../components/timeslider';
 
@@ -30,6 +34,18 @@ const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
   const datetimes = useCurrentZoneHistoryDatetimes();
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
+
+  const { zoneId } = useParams();
+  const historyData = useCurrentZoneHistory();
+  const customDatetime = useCustomDatetime();
+
+  useEffect(() => {
+    if (customDatetime) {
+      console.error('Can\'t fetch history when a custom date is provided!');
+    } else if (zoneId && isEmpty(historyData)) {
+      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId } });
+    }
+  }, [zoneId, historyData, customDatetime]);
 
   return (
     <div className="left-panel-zone-details">

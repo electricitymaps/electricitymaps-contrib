@@ -147,7 +147,13 @@ module.exports = (state = initialDataState, action) => {
       return newState;
     }
 
-    case 'HISTORY_DATA': {
+    case 'ZONE_HISTORY_FETCH_FAILED': {
+      // TODO: Implement error handling
+      console.error('Error fetching zone history data', action.error.message);
+      return state;
+    }
+
+    case 'ZONE_HISTORY_FETCH_SUCCEEDED': {
       // Create new histories
       const newHistories = Object.assign({}, state.histories);
 
@@ -165,7 +171,7 @@ module.exports = (state = initialDataState, action) => {
       });
 
 
-      newHistories[action.zoneName] = zoneHistory;
+      newHistories[action.zoneId] = zoneHistory;
       // Create new state
       const newState = Object.assign({}, state);
       newState.histories = newHistories;
