@@ -703,7 +703,6 @@ observe(state => state.data.histories, (histories, state) => {
 
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
-  saveKey('colorBlindModeEnabled', colorBlindModeEnabled);
   if (zoneMap) {
     zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
   }
