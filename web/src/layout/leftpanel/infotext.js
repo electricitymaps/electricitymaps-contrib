@@ -7,23 +7,27 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// Modules
+import { dispatchApplication } from '../../store';
 import { __ } from '../../helpers/translation';
-import { updateApplication } from '../../actioncreators';
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-  dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
+const mapStateToProps = state => ({
+  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplication }) => (
+export default connect(mapStateToProps)(({ colorBlindModeEnabled }) => (
   <div className="info-text small-screen-hidden">
     <p>
       <label className="checkbox-container">
         {__('legends.colorblindmode')}
-        <input type="checkbox" id="checkbox-colorblind" />
+        <input
+          type="checkbox"
+          id="checkbox-colorblind"
+          checked={colorBlindModeEnabled}
+          onChange={() => dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled)}
+        />
         <span className="checkmark" />
       </label>
     </p>
@@ -59,17 +63,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
     <p>
       {__('footer.faq-text')}
       {' '}
-      <a
-        className="faq-link"
-        role="link"
-        tabIndex="0"
-        onClick={() => {
-          dispatchApplication('selectedZoneName', undefined);
-          dispatchApplication('showPageState', 'faq');
-        }}
-      >
-        {__('footer.faq')}
-      </a>
+      <Link to={{ pathname: '/faq', search: useLocation().search }}>
+        <span className="faq-link">{__('footer.faq')}</span>
+      </Link>
     </p>
     <div className="social-buttons">
       <div>

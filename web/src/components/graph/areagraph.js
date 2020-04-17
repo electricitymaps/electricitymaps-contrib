@@ -23,7 +23,7 @@ import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
-import { useWidthObserver, useHeightObserver } from '../../effects';
+import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;

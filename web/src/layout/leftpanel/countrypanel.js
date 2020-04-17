@@ -1,14 +1,17 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
 // TODO: re-enable rules
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  Redirect,
+  Link,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
+import { connect, useSelector } from 'react-redux';
 import moment from 'moment';
-import { connect } from 'react-redux';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
@@ -24,7 +27,7 @@ import { dispatch, dispatchApplication } from '../../store';
 
 // Modules
 import { updateApplication } from '../../actioncreators';
-import { getCurrentZoneData } from '../../selectors';
+import { useCurrentZoneData } from '../../hooks/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
@@ -33,52 +36,88 @@ import { co2Sub } from '../../helpers/formatting';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
+const CountryLowCarbonGauge = () => {
+  const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+
+  const d = useCurrentZoneData();
   if (!d) {
-    return { percentage: null };
+    return <CircularGauge />;
   }
-  const fossilFuelRatio = state.application.electricityMixMode === 'consumption'
+
+  const fossilFuelRatio = electricityMixMode === 'consumption'
     ? d.fossilFuelRatio
     : d.fossilFuelRatioProduction;
-  const countryLowCarbonPercentage = fossilFuelRatio != null
+  const countryLowCarbonPercentage = fossilFuelRatio !== null
     ? 100 - (fossilFuelRatio * 100)
     : null;
-  return {
-    percentage: countryLowCarbonPercentage,
-  };
-})(CircularGauge);
-const CountryRenewableGauge = connect((state) => {
-  const d = getCurrentZoneData(state);
+
+  return <CircularGauge percentage={countryLowCarbonPercentage} />;
+};
+
+const CountryRenewableGauge = () => {
+  const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+
+  const d = useCurrentZoneData();
   if (!d) {
-    return { percentage: null };
+    return <CircularGauge />;
   }
-  const renewableRatio = state.application.electricityMixMode === 'consumption'
+
+  const renewableRatio = electricityMixMode === 'consumption'
     ? d.renewableRatio
     : d.renewableRatioProduction;
-  const countryRenewablePercentage = renewableRatio != null
-    ? renewableRatio * 100 : null;
-  return {
-    percentage: countryRenewablePercentage,
-  };
-})(CircularGauge);
+  const countryRenewablePercentage = renewableRatio !== null
+    ? renewableRatio * 100
+    : null;
+
+  return <CircularGauge percentage={countryRenewablePercentage} />;
+};
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  countryCode: state.application.selectedZoneName || '',
-  data: getCurrentZoneData(state) || {},
   electricityMixMode: state.application.electricityMixMode,
+  isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
+  zones: state.data.grid.zones,
 });
 
 const CountryPanel = ({
   colorBlindModeEnabled,
-  countryCode,
-  data,
   electricityMixMode,
+  isMobile,
   tableDisplayEmissions,
+  zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
+  const [pressedBackKey, setPressedBackKey] = useState(false);
+
+  const location = useLocation();
+  const { zoneId } = useParams();
+
+  const data = useCurrentZoneData() || {};
+
+  const parentPage = {
+    pathname: isMobile ? '/ranking' : '/map',
+    search: location.search,
+  };
+
+  // Back button keyboard navigation
+  useEffect(() => {
+    const keyHandler = (e) => {
+      if (e.key === 'Backspace' || e.key === '/') {
+        setPressedBackKey(true);
+      }
+    };
+    document.addEventListener('keyup', keyHandler);
+    return () => {
+      document.removeEventListener('keyup', keyHandler);
+    };
+  });
+
+  // Redirect to the parent page if the zone is invalid
+  // or if the back navigation key has been pressed.
+  if (!zones[zoneId] || pressedBackKey) {
+    return <Redirect to={parentPage} />;
+  }
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
@@ -86,27 +125,25 @@ const CountryPanel = ({
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
-  
-  const toggleSource = () => {
-    dispatchApplication('tableDisplayEmissions', !tableDisplayEmissions);
-  };
 
   return (
     <div className="country-panel">
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
-          <span className="left-panel-back-button">
-            <i className="material-icons" aria-hidden="true">arrow_back</i>
-          </span>
+          <Link to={parentPage}>
+            <span className="left-panel-back-button">
+              <i className="material-icons" aria-hidden="true">arrow_back</i>
+            </span>
+          </Link>
           <div className="country-name-time">
             <div className="country-name-time-table">
               <div style={{ display: 'table-cell' }}>
-                <img id="country-flag" className="flag" alt="" src={countryCode && flagUri(countryCode, 24)} />
+                <img id="country-flag" className="flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
 
               <div style={{ display: 'table-cell' }}>
                 <div className="country-name">
-                  {getFullZoneName(countryCode)}
+                  {getFullZoneName(zoneId)}
                 </div>
                 <div className="country-time">
                   {datetime ? moment(datetime).format('LL LT') : ''}
@@ -166,14 +203,14 @@ const CountryPanel = ({
               <div className="menu">
                 <a
                   id="production"
-                  onClick={toggleSource}
+                  onClick={() => dispatchApplication('tableDisplayEmissions', false)}
                   className={!tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
                 />
                 |
                 <a
                   id="emissions"
-                  onClick={toggleSource}
+                  onClick={() => dispatchApplication('tableDisplayEmissions', true)}
                   className={tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
                 />
@@ -195,13 +232,10 @@ const CountryPanel = ({
             <hr />
             <div className="country-history">
               <div className="loading overlay" />
-              <span className="country-history-title">
-                {co2Sub(__(
-                  tableDisplayEmissions
-                    ? 'country-history.emissions24h'
-                    : 'country-history.carbonintensity24h'
-                ))}
-              </span>
+              <span
+                className="country-history-title"
+                dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
+              />
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>

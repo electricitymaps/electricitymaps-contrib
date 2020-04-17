@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useState, useMemo } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { max as d3Max } from 'd3-array';
-import { connect } from 'react-redux';
 import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
@@ -9,11 +9,11 @@ import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
-  getSelectedZoneHistory,
-  getSelectedZoneExchangeKeys,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
-} from '../selectors';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+  useCurrentZoneExchangeKeys,
+} from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
@@ -102,10 +102,6 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKeys: getSelectedZoneExchangeKeys(state),
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
@@ -114,15 +110,16 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
-  exchangeKeys,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const historyData = useCurrentZoneHistory();
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const {

@@ -46,7 +46,7 @@ class GoogleAnalyticsThirdParty {
         document.addEventListener('deviceready', function() {
           // Hack
           if (event === 'pageview') {
-            cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+            cordova.plugins.firebase.analytics.setCurrentScreen(data.currentPage);
           } else {
             cordova.plugins.firebase.analytics.logEvent(event, data);
           }
@@ -54,7 +54,7 @@ class GoogleAnalyticsThirdParty {
       } else {
         // Duplicated code
         if (event === 'pageview') {
-          cordova.plugins.firebase.analytics.setCurrentScreen(data.showPageState);
+          cordova.plugins.firebase.analytics.setCurrentScreen(data.currentPage);
         } else {
           cordova.plugins.firebase.analytics.logEvent(event, data);
         }

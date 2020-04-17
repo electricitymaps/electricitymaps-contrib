@@ -1,20 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import zonesConfig from '../../../config/zones.json';
 
-const mapStateToProps = state => ({
-  contributors: (zonesConfig[state.application.selectedZoneName] || {}).contributors || [],
-});
+const ContributorList = () => {
+  const { zoneId } = useParams();
+  const contributors = (zonesConfig[zoneId] || {}).contributors || [];
 
-const ContributorList = ({ contributors }) => (
-  <div className="contributors">
-    {contributors.map(contributor => (
-      <a key={contributor} href={contributor} rel="noopener noreferrer" target="_blank">
-        <img src={`${contributor}.png`} alt={contributor} />
-      </a>
-    ))}
-  </div>
-);
+  return (
+    <div className="contributors">
+      {contributors.map(contributor => (
+        <a key={contributor} href={contributor} rel="noopener noreferrer" target="_blank">
+          <img src={`${contributor}.png`} alt={contributor} />
+        </a>
+      ))}
+    </div>
+  );
+};
 
-export default connect(mapStateToProps)(ContributorList);
+export default ContributorList;

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Portal } from 'react-portal';
 
-import { useWidthObserver, useHeightObserver } from '../effects';
+import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
 
 const MARGIN = 16;
 
