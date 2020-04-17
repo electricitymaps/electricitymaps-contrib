@@ -234,13 +234,6 @@ const randomBoolean = Math.random() >= 0.5;
 d3.select('.api-ad').classed('visible', randomBoolean);
 d3.select('.database-ad').classed('visible', !randomBoolean);
 
-// Set up co2 scales
-let co2ColorScale;
-function updateCo2Scale() {
-  co2ColorScale = getCo2Scale(getState().application.colorBlindModeEnabled);
-  if (typeof zoneMap !== 'undefined') zoneMap.setCo2color(co2ColorScale, theme);
-}
-
 // `finishLoading` will be invoked whenever we've finished loading the map, it could be triggered by a map-rerender
 // or a first-time-ever loading of the webpage.
 function finishLoading() {
@@ -260,7 +253,6 @@ function finishLoading() {
 // Start initialising map
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
-    .setCo2color(co2ColorScale)
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -331,11 +323,6 @@ try {
     throw e;
   }
 }
-
-d3.select('.country-show-emissions-wrap a#emissions')
-  .classed('selected', getState().application.tableDisplayEmissions);
-d3.select('.country-show-emissions-wrap a#production')
-  .classed('selected', !getState().application.tableDisplayEmissions);
 
 function mapMouseOver(lonlat) {
   if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
@@ -779,7 +766,9 @@ observe(state => state.data.histories, (histories, state) => {
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
   saveKey('colorBlindModeEnabled', colorBlindModeEnabled);
-  updateCo2Scale();
+  if (zoneMap) {
+    zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
+  }
   if (exchangeLayer) {
     exchangeLayer
       .setColorblindMode(colorBlindModeEnabled)
@@ -852,31 +841,13 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   }
 });
 
-// TODO: Remove this function in favor of useCurrentZoneData()
-// when migrating table emissions toggle to React.
-function getZoneDataSelector(zoneId) {
-  return (state) => {
-    if (!state.data.grid || !zoneId) {
-      return null;
-    }
-    const zoneTimeIndex = state.application.selectedZoneTimeIndex;
-    if (zoneTimeIndex === null) {
-      return state.data.grid.zones[zoneId];
-    }
-    const zoneHistory = state.data.histories[zoneId] || [];
-    return zoneHistory[zoneTimeIndex];
-  };
-}
-
-
 // Observe
-observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions, state) => {
+observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions) => {
   const zoneId = getZoneId();
-  const zoneData = getZoneDataSelector(zoneId)(state);
-  if (zoneData) {
+  if (zoneId) {
     thirdPartyServices.track(
       tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-      { countryCode: zoneData.countryCode },
+      { countryCode: zoneId },
     );
   }
 });

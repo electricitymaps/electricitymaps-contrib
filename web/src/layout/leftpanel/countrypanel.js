@@ -202,14 +202,12 @@ const CountryPanel = ({
             <div className="country-show-emissions-wrap">
               <div className="menu">
                 <a
-                  id="production"
                   onClick={() => dispatchApplication('tableDisplayEmissions', false)}
                   className={!tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
                 />
                 |
                 <a
-                  id="emissions"
                   onClick={() => dispatchApplication('tableDisplayEmissions', true)}
                   className={tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
