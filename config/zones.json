@@ -1357,15 +1357,16 @@
     ],
     "capacity": {
       "biomass": 30,
-      "coal": 314,
-      "gas": 722,
-      "hydro": 610,
-      "oil": 2200,
-      "solar": 3,
-      "wind": 85
+      "coal": 1094,
+      "gas": 678,
+      "hydro": 623,
+      "oil": 1938,
+      "solar": 188,
+      "wind": 370
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "DO.fetch_production"
