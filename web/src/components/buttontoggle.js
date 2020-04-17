@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { noop } from 'lodash';
+import styled from 'styled-components';
+import { isEmpty, noop } from 'lodash';
 
-// Modules
-import { __ } from '../helpers/translation';
-import { saveKey } from '../helpers/storage';
-import { dispatchApplication } from '../store';
+const Button = styled.button`
+  background-color: #FFFFFF;
+  background-image: ${props => (props.active
+    ? `url(../images/${props.icon}_active.svg)`
+    : `url(../images/${props.icon}.svg)`)};
+`;
 
-export default () => {
+const ButtonToggle = ({
+  active,
+  icon,
+  onChange,
+  tooltip,
+}) => {
   const isMobile = useSelector(state => state.application.isMobile);
-
-  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
-  const toggleBrightMode = () => {
-    dispatchApplication('brightModeEnabled', !brightModeEnabled);
-    saveKey('brightModeEnabled', !brightModeEnabled);
-  };
 
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const showTooltip = () => { setTooltipVisible(true); };
@@ -22,19 +24,21 @@ export default () => {
 
   return (
     <div>
-      <button
+      <Button
         type="button"
-        className={`layer-button brightmode-button ${brightModeEnabled ? 'active' : ''}`}
+        className="layer-button"
         onFocus={isMobile ? noop : showTooltip}
         onMouseOver={isMobile ? noop : showTooltip}
         onMouseOut={isMobile ? noop : hideTooltip}
         onBlur={isMobile ? noop : hideTooltip}
-        onClick={toggleBrightMode}
+        onClick={onChange}
+        active={active}
+        icon={icon}
       />
-      {tooltipVisible && (
+      {tooltipVisible && !isEmpty(tooltip) && (
         <div className="layer-button-tooltip">
           <div className="tooltip-container">
-            <div className="tooltip-text">{__('tooltips.toggleDarkMode')}</div>
+            <div className="tooltip-text">{tooltip}</div>
             <div className="arrow" />
           </div>
         </div>
@@ -42,3 +46,5 @@ export default () => {
     </div>
   );
 };
+
+export default ButtonToggle;
