@@ -75,11 +75,6 @@ const { themes } = require('./helpers/themes');
 // Configs
 const zonesConfig = require('../../config/zones.json');
 
-// Constants
-// TODO(olc): should this be moved to constants.js?
-const REMOTE_ENDPOINT = 'https://api.electricitymap.org';
-const LOCAL_ENDPOINT = 'http://localhost:9000';
-
 /*
   ****************************************************************
   This file is quite horrible. We are in the progress of migrating
@@ -109,11 +104,10 @@ const getEndpoint = () => ((
   getState().application.isLocalhost
   && !isRemoteEndpoint()
   && document.domain !== ''
-) ? LOCAL_ENDPOINT : REMOTE_ENDPOINT);
+) ? 'http://localhost:9000' : 'https://api.electricitymap.org');
 
 // TODO(olc) move those to redux state
 // or to component state
-let currentMoment;
 let mapDraggedSinceStart = false;
 let wind;
 let solar;
@@ -122,11 +116,21 @@ let hasCenteredMap = false;
 // Set up objects
 let exchangeLayer = null;
 let initLoading = true;
-LoadingService.startLoading('#loading');
-LoadingService.startLoading('#small-loading');
 let zoneMap;
 let windLayer;
 let solarLayer;
+
+// Set standard theme
+let theme = themes.bright;
+
+LoadingService.startLoading('#loading');
+LoadingService.startLoading('#small-loading');
+
+// Set proper locale
+moment.locale(getState().application.locale.toLowerCase());
+
+// Analytics
+thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
 // Render DOM
 ReactDOM.render(
@@ -146,8 +150,9 @@ ReactDOM.render(
   }
 );
 
-// Set standard theme
-let theme = themes.bright;
+//
+// *** CORDOVA ***
+//
 
 // Initialise mobile app (cordova)
 const app = {
@@ -212,27 +217,158 @@ if (getState().application.isCordova) {
   app.initialize();
 }
 
-function catchError(e) {
-  console.error(`Error Caught! ${e}`);
-  thirdPartyServices.reportError(e);
-  thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
-  const params = getState().application;
-  params.name = e.name;
-  params.stack = e.stack;
-  thirdPartyServices.track('error', params);
+//
+// *** MAP & LAYERS ***
+//
+
+// Only center once
+function renderMap(state) {
+  if (typeof zoneMap === 'undefined') { return; }
+
+  if (!mapDraggedSinceStart && !hasCenteredMap) {
+    const { callerLocation } = state.application;
+    const zoneId = getZoneId();
+    if (zoneId) {
+      console.log(`Centering on zone ${zoneId}`);
+      // eslint-disable-next-line no-use-before-define
+      dispatchApplication('centeredZoneName', zoneId);
+      hasCenteredMap = true;
+    } else if (callerLocation) {
+      console.log('Centering on browser location @', callerLocation);
+      zoneMap.setCenter(callerLocation);
+      hasCenteredMap = true;
+    } else {
+      zoneMap.setCenter([0, 50]);
+    }
+  }
+
+  // Render Wind
+  if (isWindEnabled() && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
+    LoadingService.startLoading('#loading');
+    windLayer.draw(
+      getCustomDatetime()
+        ? moment(getCustomDatetime()) : moment(new Date()),
+      wind.forecasts[0],
+      wind.forecasts[1],
+      scales.windColor,
+    );
+    if (isWindEnabled()) {
+      windLayer.show();
+    } else {
+      windLayer.hide();
+    }
+    LoadingService.stopLoading('#loading');
+  } else if (typeof windLayer !== 'undefined') {
+    windLayer.hide();
+  }
+
+  // Render Solar
+  if (isSolarEnabled() && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
+    LoadingService.startLoading('#loading');
+    solarLayer.draw(
+      getCustomDatetime()
+        ? moment(getCustomDatetime()) : moment(new Date()),
+      solar.forecasts[0],
+      solar.forecasts[1],
+      (err) => {
+        if (err) {
+          console.error(err.message);
+        } else if (isSolarEnabled()) {
+          solarLayer.show();
+        } else {
+          solarLayer.hide();
+        }
+        LoadingService.stopLoading('#loading');
+      },
+    );
+  } else if (typeof solarLayer !== 'undefined') {
+    solarLayer.hide();
+  }
+
+  // Resize map to make sure it takes all container space
+  // Warning: this causes a flicker
+  zoneMap.map.resize();
 }
 
-// Set proper locale
-moment.locale(getState().application.locale.toLowerCase());
+function mapMouseOver(lonlat) {
+  if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
+    const now = getCustomDatetime()
+      ? moment(getCustomDatetime()) : (new Date()).getTime();
+    if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+      const u = grib.getInterpolatedValueAtLonLat(lonlat,
+        now, wind.forecasts[0][0], wind.forecasts[1][0]);
+      const v = grib.getInterpolatedValueAtLonLat(lonlat,
+        now, wind.forecasts[0][1], wind.forecasts[1][1]);
+      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
+    }
+  } else {
+    dispatchApplication('windColorbarValue', null);
+  }
+  if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
+    const now = getCustomDatetime()
+      ? moment(getCustomDatetime()) : (new Date()).getTime();
+    if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+      dispatchApplication(
+        'solarColorbarValue',
+        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
+      );
+    }
+  } else {
+    dispatchApplication('solarColorbarValue', null);
+  }
+}
 
-// Analytics
-thirdPartyServices.trackWithCurrentApplicationState('Visit');
+function centerOnZoneName(state, zoneName, zoomLevel) {
+  if (typeof zoneMap === 'undefined') { return; }
+  const selectedZone = state.data.grid.zones[zoneName];
+  const selectedZoneCoordinates = [];
+  selectedZone.geometry.coordinates.forEach((geojson) => {
+    // selectedZoneCoordinates.push(geojson[0]);
+    geojson[0].forEach((coord) => {
+      selectedZoneCoordinates.push(coord);
+    });
+  });
+  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
+  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
+  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
+  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
+  const lon = d3.mean([minLon, maxLon]);
+  const lat = d3.mean([minLat, maxLat]);
 
-// Display randomly alternating header campaign message
-const randomBoolean = Math.random() >= 0.5;
+  zoneMap.setCenter([lon, lat]);
+  if (zoomLevel) {
+    // Remember to set center and zoom in case the map wasn't loaded yet
+    zoneMap.setZoom(zoomLevel);
+    // If the panel is open the zoom doesn't appear perfectly centered because
+    // it centers on the whole window and not just the visible map part.
+    // something one could fix in the future. It's tricky because one has to project, unproject
+    // and project again taking both starting and ending zoomlevel into account
+    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
+  }
+}
 
-d3.select('.api-ad').classed('visible', randomBoolean);
-d3.select('.database-ad').classed('visible', !randomBoolean);
+function renderExchanges(state) {
+  const { exchanges } = state.data.grid;
+  const { electricityMixMode } = state.application;
+  if (exchangeLayer) {
+    exchangeLayer
+      .setData(electricityMixMode === 'consumption'
+        ? Object.values(exchanges)
+        : [])
+      .render();
+  }
+}
+
+function renderZones(state) {
+  const { zones } = state.data.grid;
+  const { electricityMixMode } = state.application;
+  if (typeof zoneMap !== 'undefined') {
+    zoneMap.setData(electricityMixMode === 'consumption'
+      ? Object.values(zones)
+      : Object.values(zones)
+        .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
+  }
+}
 
 // `finishLoading` will be invoked whenever we've finished loading the map, it could be triggered by a map-rerender
 // or a first-time-ever loading of the webpage.
@@ -314,6 +450,34 @@ try {
       navigateTo({ pathname: `/zone/${d.countryCode}`, search: history.location.search });
       dispatchApplication('isLeftPanelCollapsed', false);
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
+    })
+    .onMouseMove((lonlat) => {
+      mapMouseOver(lonlat);
+    })
+    .onZoneMouseMove((zoneData, i, clientX, clientY) => {
+      const node = document.getElementById('map-container');
+      dispatchApplication(
+        'co2ColorbarValue',
+        getState().application.electricityMixMode === 'consumption'
+          ? zoneData.co2intensity
+          : zoneData.co2intensityProduction
+      );
+      dispatch({
+        type: 'SHOW_TOOLTIP',
+        payload: {
+          data: zoneData,
+          displayMode: MAP_COUNTRY_TOOLTIP_KEY,
+          position: {
+            x: node.getBoundingClientRect().left + clientX,
+            y: node.getBoundingClientRect().top + clientY,
+          },
+        },
+      });
+    })
+    .onZoneMouseOut(() => {
+      dispatchApplication('co2ColorbarValue', null);
+      dispatch({ type: 'HIDE_TOOLTIP' });
+      mapMouseOver(undefined);
     });
 
   windLayer = new WindLayer('wind', zoneMap);
@@ -332,102 +496,9 @@ try {
   }
 }
 
-function mapMouseOver(lonlat) {
-  if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      const u = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][0], wind.forecasts[1][0]);
-      const v = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
-    }
-  } else {
-    dispatchApplication('windColorbarValue', null);
-  }
-  if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      dispatchApplication(
-        'solarColorbarValue',
-        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
-      );
-    }
-  } else {
-    dispatchApplication('solarColorbarValue', null);
-  }
-}
-
-// Only center once
-function renderMap(state) {
-  if (typeof zoneMap === 'undefined') { return; }
-
-  if (!mapDraggedSinceStart && !hasCenteredMap) {
-    const { callerLocation } = state.application;
-    const zoneId = getZoneId();
-    if (zoneId) {
-      console.log(`Centering on zone ${zoneId}`);
-      // eslint-disable-next-line no-use-before-define
-      dispatchApplication('centeredZoneName', zoneId);
-      hasCenteredMap = true;
-    } else if (callerLocation) {
-      console.log('Centering on browser location @', callerLocation);
-      zoneMap.setCenter(callerLocation);
-      hasCenteredMap = true;
-    } else {
-      zoneMap.setCenter([0, 50]);
-    }
-  }
-
-  // Render Wind
-  if (isWindEnabled() && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    windLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      wind.forecasts[0],
-      wind.forecasts[1],
-      scales.windColor,
-    );
-    if (isWindEnabled()) {
-      windLayer.show();
-    } else {
-      windLayer.hide();
-    }
-    LoadingService.stopLoading('#loading');
-  } else if (typeof windLayer !== 'undefined') {
-    windLayer.hide();
-  }
-
-  // Render Solar
-  if (isSolarEnabled() && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    solarLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      solar.forecasts[0],
-      solar.forecasts[1],
-      (err) => {
-        if (err) {
-          console.error(err.message);
-        } else if (isSolarEnabled()) {
-          solarLayer.show();
-        } else {
-          solarLayer.hide();
-        }
-        LoadingService.stopLoading('#loading');
-      },
-    );
-  } else if (typeof solarLayer !== 'undefined') {
-    solarLayer.hide();
-  }
-
-  // Resize map to make sure it takes all container space
-  // Warning: this causes a flicker
-  zoneMap.map.resize();
-}
+//
+// *** DATA MANAGEMENT ***
+//
 
 function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
   if (err) {
@@ -445,39 +516,6 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
       && !getState().application.isLocalhost && !getState().application.isCordova
     ));
 
-  if (typeof zoneMap !== 'undefined') {
-    // Assign country map data
-    zoneMap
-      .onMouseMove((lonlat) => {
-        mapMouseOver(lonlat);
-      })
-      .onZoneMouseMove((zoneData, i, clientX, clientY) => {
-        const node = document.getElementById('map-container');
-        dispatchApplication(
-          'co2ColorbarValue',
-          getState().application.electricityMixMode === 'consumption'
-            ? zoneData.co2intensity
-            : zoneData.co2intensityProduction
-        );
-        dispatch({
-          type: 'SHOW_TOOLTIP',
-          payload: {
-            data: zoneData,
-            displayMode: MAP_COUNTRY_TOOLTIP_KEY,
-            position: {
-              x: node.getBoundingClientRect().left + clientX,
-              y: node.getBoundingClientRect().top + clientY,
-            },
-          },
-        });
-      })
-      .onZoneMouseOut(() => {
-        dispatchApplication('co2ColorbarValue', null);
-        dispatch({ type: 'HIDE_TOOLTIP' });
-        mapMouseOver(undefined);
-      });
-  }
-
   // Render weather if provided
   // Do not overwrite with null/undefined
   if (argWind) wind = argWind;
@@ -485,10 +523,17 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
 
   dispatchApplication('callerLocation', callerLocation);
   dispatchApplication('callerZone', callerZone);
-  dispatch({
-    payload: state,
-    type: 'GRID_DATA',
-  });
+  dispatch({ type: 'GRID_DATA', payload: state });
+}
+
+function catchError(e) {
+  console.error(`Error Caught! ${e}`);
+  thirdPartyServices.reportError(e);
+  thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
+  const params = getState().application;
+  params.name = e.name;
+  params.stack = e.stack;
+  thirdPartyServices.track('error', params);
 }
 
 // Periodically load data
@@ -597,59 +642,9 @@ function tryFetchHistory(state) {
   }
 }
 
-function centerOnZoneName(state, zoneName, zoomLevel) {
-  if (typeof zoneMap === 'undefined') { return; }
-  const selectedZone = state.data.grid.zones[zoneName];
-  const selectedZoneCoordinates = [];
-  selectedZone.geometry.coordinates.forEach((geojson) => {
-    // selectedZoneCoordinates.push(geojson[0]);
-    geojson[0].forEach((coord) => {
-      selectedZoneCoordinates.push(coord);
-    });
-  });
-  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
-  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
-  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
-  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
-  const lon = d3.mean([minLon, maxLon]);
-  const lat = d3.mean([minLat, maxLat]);
-
-  zoneMap.setCenter([lon, lat]);
-  if (zoomLevel) {
-    // Remember to set center and zoom in case the map wasn't loaded yet
-    zoneMap.setZoom(zoomLevel);
-    // If the panel is open the zoom doesn't appear perfectly centered because
-    // it centers on the whole window and not just the visible map part.
-    // something one could fix in the future. It's tricky because one has to project, unproject
-    // and project again taking both starting and ending zoomlevel into account
-    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
-  }
-}
-
-function renderExchanges(state) {
-  const { exchanges } = state.data.grid;
-  const { electricityMixMode } = state.application;
-  if (exchangeLayer) {
-    exchangeLayer
-      .setData(electricityMixMode === 'consumption'
-        ? Object.values(exchanges)
-        : [])
-      .render();
-  }
-}
-
-function renderZones(state) {
-  const { zones } = state.data.grid;
-  const { electricityMixMode } = state.application;
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.setData(electricityMixMode === 'consumption'
-      ? Object.values(zones)
-      : Object.values(zones)
-        .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
-  }
-}
-
+//
 // *** OBSERVERS ***
+//
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
 
@@ -777,7 +772,9 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   }
 });
 
-// ** START
+//
+// *** START ***
+//
 
 // Start a fetch and show loading screen
 fetch(true, () => {
