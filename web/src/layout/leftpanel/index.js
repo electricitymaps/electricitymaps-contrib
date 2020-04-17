@@ -9,6 +9,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { useSearchParams } from '../../helpers/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
+import LastUpdatedTime from '../../components/lastupdatedtime';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
@@ -55,7 +56,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
           </div>
           <div className="right-header large-screen-hidden">
             <span id="small-loading" className="loading" />
-            <span className="current-datetime-from-now" />
+            <LastUpdatedTime />
           </div>
         </div>
       </div>

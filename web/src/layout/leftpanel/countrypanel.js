@@ -22,6 +22,7 @@ import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissio
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
+import thirdPartyServices from '../../services/thirdparty';
 
 import { dispatch, dispatchApplication } from '../../store';
 
@@ -126,6 +127,16 @@ const CountryPanel = ({
     ? data.co2intensity
     : data.co2intensityProduction;
 
+  const switchToZoneEmissions = () => {
+    dispatchApplication('tableDisplayEmissions', true);
+    thirdPartyServices.track('switchToCountryEmissions');
+  };
+
+  const switchToZoneProduction = () => {
+    dispatchApplication('tableDisplayEmissions', false);
+    thirdPartyServices.track('switchToCountryProduction');
+  };
+
   return (
     <div className="country-panel">
       <div id="country-table-header">
@@ -202,13 +213,13 @@ const CountryPanel = ({
             <div className="country-show-emissions-wrap">
               <div className="menu">
                 <a
-                  onClick={() => dispatchApplication('tableDisplayEmissions', false)}
+                  onClick={switchToZoneProduction}
                   className={!tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
                 />
                 |
                 <a
-                  onClick={() => dispatchApplication('tableDisplayEmissions', true)}
+                  onClick={switchToZoneEmissions}
                   className={tableDisplayEmissions ? 'selected' : null}
                   dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
                 />

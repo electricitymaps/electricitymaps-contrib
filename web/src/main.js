@@ -421,23 +421,6 @@ function renderMap(state) {
   zoneMap.map.resize();
 }
 
-// Inform the user the last time the map was updated.
-function setLastUpdated() {
-  currentMoment = getCustomDatetime()
-    ? moment(getCustomDatetime())
-    : moment((getState().data.grid || {}).datetime);
-  d3.selectAll('.current-datetime').text(currentMoment.format('LL LT'));
-  d3.selectAll('.current-datetime-from-now')
-    .text(currentMoment.fromNow())
-    .style('color', 'darkred')
-    .transition()
-    .duration(800)
-    .style('color', undefined);
-}
-
-// Re-check every minute
-setInterval(setLastUpdated, 60 * 1000);
-
 function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
   if (err) {
     console.error(err);
@@ -827,31 +810,12 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
   }
 });
 
-// Observe for datetime chanes
-observe(state => state.data.grid, (grid) => {
-  if (grid && grid.datetime) {
-    setLastUpdated();
-  }
-});
-
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   if (typeof zoneMap !== 'undefined') {
     zoneMap.map.resize();
   }
 });
-
-// Observe
-observe(state => state.application.tableDisplayEmissions, (tableDisplayEmissions) => {
-  const zoneId = getZoneId();
-  if (zoneId) {
-    thirdPartyServices.track(
-      tableDisplayEmissions ? 'switchToCountryEmissions' : 'switchToCountryProduction',
-      { countryCode: zoneId },
-    );
-  }
-});
-
 
 // ** START
 
