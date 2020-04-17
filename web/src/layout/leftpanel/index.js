@@ -5,7 +5,12 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+} from 'react-router-dom';
 
 import { useSearchParams } from '../../helpers/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
@@ -41,13 +46,21 @@ const HandleLegacyRoutes = () => {
 
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  isMobile: state.application.isMobile,
 });
 
-const LeftPanel = ({ isLeftPanelCollapsed }) => {
+const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
   usePageViewsTracker();
 
+  // Hide the panel completely if looking at the map on mobile.
+  // TODO: Do this better when <Switch> is pulled up the hierarchy.
+  const panelHidden = isMobile && useLocation().pathname === '/map';
+
   return (
-    <div className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}>
+    <div
+      className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
+      style={panelHidden ? { display: 'none' } : {}}
+    >
 
       <div id="mobile-header" className="large-screen-hidden brightmode">
         <div className="header-content">

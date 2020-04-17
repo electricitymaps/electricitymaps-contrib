@@ -305,6 +305,15 @@ try {
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
+    })
+    .onSeaClick(() => {
+      navigateTo({ pathname: '/map', search: history.location.search });
+    })
+    .onCountryClick((d) => {
+      // Analytics
+      navigateTo({ pathname: `/zone/${d.countryCode}`, search: history.location.search });
+      dispatchApplication('isLeftPanelCollapsed', false);
+      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     });
 
   windLayer = new WindLayer('wind', zoneMap);
@@ -312,10 +321,9 @@ try {
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
-    // Set mobile mode, and disable maps
+    // Redirect and notify if WebGL is not supported
     dispatchApplication('webglsupported', false);
     navigateTo({ pathname: '/ranking', search: history.location.search });
-    document.getElementById('tab').className = 'nomap';
 
     // map loading is finished, lower the overlay shield
     finishLoading();
@@ -437,7 +445,6 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
       && !getState().application.isLocalhost && !getState().application.isCordova
     ));
 
-  const node = document.getElementById('map-container');
   if (typeof zoneMap !== 'undefined') {
     // Assign country map data
     zoneMap
@@ -445,6 +452,7 @@ function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSo
         mapMouseOver(lonlat);
       })
       .onZoneMouseMove((zoneData, i, clientX, clientY) => {
+        const node = document.getElementById('map-container');
         dispatchApplication(
           'co2ColorbarValue',
           getState().application.electricityMixMode === 'consumption'
@@ -567,64 +575,6 @@ window.retryFetch = () => {
   fetch(false);
 };
 
-
-// *** DISPATCHERS ***
-// Declare and attach all event handlers that will
-// cause events to be emitted
-
-// Collapse button
-document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
-  dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
-
-// Map click
-// TODO(olc): make sure to assign even if map is not ready yet
-if (typeof zoneMap !== 'undefined') {
-  zoneMap
-    .onSeaClick(() => {
-      navigateTo({ pathname: '/map', search: history.location.search });
-    })
-    .onCountryClick((d) => {
-      // Analytics
-      navigateTo({ pathname: `/zone/${d.countryCode}`, search: history.location.search });
-      dispatchApplication('isLeftPanelCollapsed', false);
-      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
-    });
-}
-
-// * Left panel *
-
-// Mobile toolbar buttons
-d3.selectAll('.map-button').on('click touchend', () => navigateTo({ pathname: '/map', search: history.location.search }));
-d3.selectAll('.info-button').on('click touchend', () => navigateTo({ pathname: '/info', search: history.location.search }));
-d3.selectAll('.highscore-button').on('click touchend', () => navigateTo({ pathname: '/ranking', search: history.location.search }));
-
-// *** OBSERVERS ***
-// Declare and attach all listeners that will react
-// to state changes and cause a side-effect
-
-function routeToPage(pageName, state) {
-  // Hide map on small screens
-  // It's important we show the map before rendering it to make sure
-  // sizes are set properly
-  d3.selectAll('#map-container').classed('small-screen-hidden', pageName !== 'map');
-
-  if (pageName === 'map') {
-    d3.select('.left-panel').classed('small-screen-hidden', true);
-    renderMap(state);
-    if (isWindEnabled() && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (isSolarEnabled() && typeof solarLayer !== 'undefined') { solarLayer.show(); }
-  } else {
-    d3.select('.left-panel').classed('small-screen-hidden', false);
-    d3.selectAll(`.left-panel-${pageName}`).style('display', undefined);
-  }
-
-  d3.selectAll('#tab .list-item:not(.wind-toggle):not(.solar-toggle)').classed('active', false);
-  d3.selectAll(`#tab .${pageName}-button`).classed('active', true);
-  if (pageName === 'zone') {
-    d3.selectAll('#tab .highscore-button').classed('active', true);
-  }
-}
-
 function tryFetchHistory(state) {
   const zoneId = getZoneId();
   if (getCustomDatetime()) {
@@ -699,6 +649,10 @@ function renderZones(state) {
   }
 }
 
+// *** OBSERVERS ***
+// Declare and attach all listeners that will react
+// to state changes and cause a side-effect
+
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
   renderExchanges(state);
@@ -723,7 +677,13 @@ observe(state => state.data.grid, (grid, state) => {
 
 // Observe for page change
 observe(state => state.application.currentPage, (currentPage, state) => {
-  routeToPage(currentPage, state);
+  if (currentPage === 'map') {
+    // Refresh map in the next render cycle (after the page
+    // transition) to make sure it gets displayed correctly.
+    setTimeout(() => { renderMap(state); }, 0);
+    if (isWindEnabled() && typeof windLayer !== 'undefined') { windLayer.show(); }
+    if (isSolarEnabled() && typeof solarLayer !== 'undefined') { solarLayer.show(); }
+  }
 
   // Analytics
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
