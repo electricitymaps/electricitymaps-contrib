@@ -7,6 +7,19 @@ const translation = require('../helpers/translation');
 const exchangesConfig = require('../../../config/exchanges.json');
 const zonesConfig = require('../../../config/zones.json');
 
+function computeZoneAggregates(zone) {
+  zone.maxProduction = Math.max(...Object.values(zone.production || {}));
+  zone.maxDischarge =
+    -Math.min(Math.min(...Object.values(zone.storage || {})), 0);
+  zone.maxStorage =
+    Math.max(Math.max(...Object.values(zone.storage || {})), 0);
+  zone.maxExport =
+    -Math.min(Math.min(...Object.values(zone.exchange || {})), 0);
+  zone.maxImport =
+    Math.max(Math.max(...Object.values(zone.exchange || {})), 0);
+  return zone;
+}
+
 // ** Prepare initial zone data
 const zones = constructTopos();
 Object.entries(zonesConfig).forEach((d) => {
@@ -105,6 +118,7 @@ module.exports = (state = initialDataState, action) => {
         });
         // Set date
         zone.datetime = action.payload.datetime;
+        computeZoneAggregates(zone);
         // Validate data
         if (!zone.production) return;
         modeOrder.forEach((mode) => {
@@ -153,7 +167,7 @@ module.exports = (state = initialDataState, action) => {
       const newHistories = Object.assign({}, state.histories);
 
       const zoneHistory = action.payload.map((observation) => {
-        const ret = Object.assign({}, observation);
+        const ret = Object.assign({}, computeZoneAggregates(observation));
 
         ret.hasParser = true;
         if (observation.exchange && Object.keys(observation.exchange).length

@@ -18,12 +18,16 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
   const startMoment = moment(scale.domain()[0]);
   const endMoment = moment(scale.domain()[1]);
   let interval;
+  let format;
   if (endMoment.diff(startMoment, 'years') > 1) {
     interval = 'year';
+    format = 'YYYY';
   } else if (endMoment.diff(startMoment, 'months') > 1) {
     interval = 'month';
+    format = 'MMM YYYY';
   } else {
     interval = 'hour';
+    format = 'LT';
   }
   const range = moment.range(
     startMoment.startOf(interval).add(1, interval), // add one at the end to make sure it includes NOW
@@ -31,7 +35,6 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
   );
   const tickMoments = Array.from(range.by(interval, { step: interval === 'hour' ? 6 : 1 }));
 
-  const format = interval === 'year' ? 'YYYY' : 'LT';
   return (
     <g
       className={className}
