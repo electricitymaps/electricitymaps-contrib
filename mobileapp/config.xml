@@ -58,6 +58,6 @@
     </plugin>
     <plugin name="cordova-plugin-code-push" spec="^1.11.13" />
     <plugin name="sentry-cordova" spec="^0.16.2" />
-    <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^6.4.0" />
+    <engine name="ios" spec="^5.1.1" />
 </widget>
