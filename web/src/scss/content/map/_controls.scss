@@ -36,15 +36,6 @@
     }
 }
 
-.wind-button {
-    background-image: url(../images/weather/wind.svg);
-
-    &.active {
-        background-image: url(../images/weather/wind_active.svg);
-        background-color: #FFFFFF;
-    }
-}
-
 .language-select-button{
     background-image: url(../images/language_select.svg);
 }

@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { __ } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import {
+  useWindEnabled,
+  setWindEnabled,
   useSolarEnabled,
   setSolarEnabled,
 } from '../helpers/router';
@@ -13,6 +15,11 @@ import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
 
 export default () => {
+  const windEnabled = useWindEnabled();
+  const toggleWind = () => {
+    setWindEnabled(!windEnabled);
+  };
+
   const solarEnabled = useSolarEnabled();
   const toggleSolar = () => {
     setSolarEnabled(!solarEnabled);
@@ -27,15 +34,12 @@ export default () => {
   return (
     <div className="layer-buttons-container">
       <LanguageSelect />
-      <div>
-        <button type="button" className="layer-button wind-button" />
-        <div id="wind-layer-button-tooltip" className="layer-button-tooltip hidden">
-          <div className="tooltip-container">
-            <div className="tooltip-text">{__('tooltips.showWindLayer')}</div>
-            <div className="arrow" />
-          </div>
-        </div>
-      </div>
+      <ButtonToggle
+        active={windEnabled}
+        onChange={toggleWind}
+        tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+        icon="weather/wind"
+      />
       <ButtonToggle
         active={solarEnabled}
         onChange={toggleSolar}

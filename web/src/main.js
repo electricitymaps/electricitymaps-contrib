@@ -28,9 +28,8 @@ import {
   history,
   isRemoteEndpoint,
   isSolarEnabled,
-  navigateTo,
   isWindEnabled,
-  setWindEnabled,
+  navigateTo,
   getCurrentPage,
   getCustomDatetime,
   getZoneId,
@@ -603,25 +602,6 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
-// Wind
-function toggleWind() {
-  if (typeof windLayer === 'undefined') { return; }
-  setWindEnabled(!isWindEnabled());
-}
-d3.select('.wind-button').on('click', toggleWind);
-
-const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
-
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.wind-button').on('mouseover', () => {
-    windLayerButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.wind-button').on('mouseout', () => {
-    windLayerButtonTooltip.classed('hidden', true);
-  });
-}
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -840,10 +820,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // bool can be removed from Redux and managed through the URL state.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.windEnabled, (windEnabled, state) => {
-  d3.selectAll('.wind-button').classed('active', windEnabled);
-
-  windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
-
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
