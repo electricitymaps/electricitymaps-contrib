@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { map } from 'lodash';
 
 import { __ } from '../helpers/translation';
+import { useSearchParams } from '../helpers/router';
 import { languageNames } from '../../locales-config.json';
 
 import ButtonToggle from './buttontoggle';
@@ -12,8 +13,15 @@ const LanguageSelect = () => {
     setLanguagesVisible(!languagesVisible);
   };
 
-  const handleLanguageSelect = (key) => {
-    window.location.href = window.isCordova ? `index_${key}.html` : `${window.location.href}&lang=${key}`;
+  const searchParams = useSearchParams();
+  const handleLanguageSelect = (languageKey) => {
+    // TODO: Figure a better way to switch between languages that doesn't require a page refresh.
+    if (window.isCordova) {
+      window.location.href = `index_${languageKey}.html`;
+    } else {
+      searchParams.set('lang', languageKey);
+      window.location.search = `?${searchParams.toString()}`;
+    }
   };
 
   return (
