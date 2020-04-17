@@ -28,10 +28,8 @@ import {
   history,
   isRemoteEndpoint,
   isSolarEnabled,
-  navigateTo,
-  setSolarEnabled,
   isWindEnabled,
-  setWindEnabled,
+  navigateTo,
   getCurrentPage,
   getCustomDatetime,
   getZoneId,
@@ -604,60 +602,6 @@ window.retryFetch = () => {
 // Declare and attach all event handlers that will
 // cause events to be emitted
 
-// BrightMode
-function toggleBright() {
-  dispatchApplication('brightModeEnabled', !getState().application.brightModeEnabled);
-}
-d3.select('.brightmode-button').on('click', toggleBright);
-const brightModeButtonTooltip = d3.select('#brightmode-layer-button-tooltip');
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.brightmode-button').on('mouseover', () => {
-    brightModeButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.brightmode-button').on('mouseout', () => {
-    brightModeButtonTooltip.classed('hidden', true);
-  });
-}
-
-// Wind
-function toggleWind() {
-  if (typeof windLayer === 'undefined') { return; }
-  setWindEnabled(!isWindEnabled());
-}
-d3.select('.wind-button').on('click', toggleWind);
-
-const windLayerButtonTooltip = d3.select('#wind-layer-button-tooltip');
-
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.wind-button').on('mouseover', () => {
-    windLayerButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.wind-button').on('mouseout', () => {
-    windLayerButtonTooltip.classed('hidden', true);
-  });
-}
-
-// Solar
-function toggleSolar() {
-  if (typeof solarLayer === 'undefined') { return; }
-  setSolarEnabled(!isSolarEnabled());
-}
-d3.select('.solar-button').on('click', toggleSolar);
-
-const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
-
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.solar-button').on('mouseover', () => {
-    solarLayerButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.solar-button').on('mouseout', () => {
-    solarLayerButtonTooltip.classed('hidden', true);
-  });
-}
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -845,10 +789,8 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  d3.selectAll('.brightmode-button').classed('active', brightModeEnabled);
-  saveKey('brightModeEnabled', brightModeEnabled);
   // update Theme
-  if (getState().application.brightModeEnabled) {
+  if (brightModeEnabled) {
     theme = themes.bright;
   } else {
     theme = themes.dark;
@@ -861,10 +803,6 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 // bool can be removed from Redux and managed through the URL state.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
-  d3.selectAll('.solar-button').classed('active', solarEnabled);
-
-  solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
-
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -882,10 +820,6 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // bool can be removed from Redux and managed through the URL state.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.windEnabled, (windEnabled, state) => {
-  d3.selectAll('.wind-button').classed('active', windEnabled);
-
-  windLayerButtonTooltip.select('.tooltip-text').text(translation.translate(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer'));
-
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (windEnabled && typeof windLayer !== 'undefined') {
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {

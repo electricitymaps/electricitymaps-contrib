@@ -36,37 +36,6 @@
     }
 }
 
-.wind-button {
-    background-image: url(../images/weather/wind.svg);
-
-    &.active {
-        background-image: url(../images/weather/wind_active.svg);
-        background-color: #FFFFFF;
-    }
-}
-
-.solar-button {
-    background-image: url(../images/weather/sun.svg);
-
-    &.active{
-        background-image: url(../images/weather/sun_active.svg);
-        background-color: #FFFFFF;
-    }
-}
-
-.brightmode-button {
-    background-image: url(../images/brightmode.svg);
-
-    &.active{
-        background-image: url(../images/brightmode_active.svg);
-        background-color: #FFFFFF;
-    }
-}
-
-.language-select-button{
-    background-image: url(../images/language_select.svg);
-}
-
 .controls-container {
     position: absolute;
     top: 70px;
