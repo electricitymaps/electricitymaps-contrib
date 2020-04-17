@@ -1,52 +1,29 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { map } from 'lodash';
 
 import { __ } from '../helpers/translation';
 import { languageNames } from '../../locales-config.json';
 
-const mapStateToProps = state => ({
-  isMobile: state.application.isMobile,
-});
+import ButtonToggle from './buttontoggle';
 
-const LanguageSelect = ({ isMobile }) => {
-  const [showLanguages, setShowLanguages] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+const LanguageSelect = () => {
+  const [languagesVisible, setLanguagesVisible] = useState(false);
+  const toggleLanguagesVisible = () => {
+    setLanguagesVisible(!languagesVisible);
+  };
 
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  const handleMouseOver = () => {
-    if (!isMobile) setShowTooltip(true);
-  };
-  const handleMouseOut = () => {
-    if (!isMobile) setShowTooltip(false);
-  };
-  const handleClick = () => {
-    setShowLanguages(!showLanguages);
-  };
   const handleLanguageSelect = (key) => {
     window.location.href = window.isCordova ? `index_${key}.html` : `${window.location.href}&lang=${key}`;
   };
 
   return (
     <div>
-      <button
-        type="button"
-        className="layer-button language-select-button"
-        onClick={handleClick}
-        onFocus={handleMouseOver}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-        onBlur={handleMouseOut}
+      <ButtonToggle
+        onChange={toggleLanguagesVisible}
+        tooltip={__('tooltips.selectLanguage')}
+        icon="language_select"
       />
-      {showTooltip && (
-        <div id="language-select-button-tooltip" className="layer-button-tooltip">
-          <div className="tooltip-container">
-            <div className="tooltip-text">{__('tooltips.selectLanguage')}</div>
-            <div className="arrow" />
-          </div>
-        </div>
-      )}
-      {showLanguages && (
+      {languagesVisible && (
         <div id="language-select-container">
           {map(languageNames, (language, key) => (
             <li key={key} onClick={() => handleLanguageSelect(key)}>
@@ -59,4 +36,4 @@ const LanguageSelect = ({ isMobile }) => {
   );
 };
 
-export default connect(mapStateToProps)(LanguageSelect);
+export default LanguageSelect;
