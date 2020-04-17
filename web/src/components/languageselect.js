@@ -16,6 +16,7 @@ const LanguageSelect = () => {
   const searchParams = useSearchParams();
   const handleLanguageSelect = (languageKey) => {
     // TODO: Figure a better way to switch between languages that doesn't require a page refresh.
+    // See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
     if (window.isCordova) {
       window.location.href = `index_${languageKey}.html`;
     } else {

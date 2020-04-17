@@ -114,6 +114,15 @@ export function setWindEnabled(windEnabled) {
   updateSearchParams(searchParams);
 }
 
+// TODO: Get rid of this when a better system is put in place for switching languages.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
+export function hideLanguageSearchParam() {
+  const searchParams = getSearchParams();
+  searchParams.delete('lang');
+  history.replace(`?${searchParams.toString()}`);
+}
+hideLanguageSearchParam();
+
 //
 // Redux state sync
 //
