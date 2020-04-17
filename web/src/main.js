@@ -29,7 +29,6 @@ import {
   isRemoteEndpoint,
   isSolarEnabled,
   navigateTo,
-  setSolarEnabled,
   isWindEnabled,
   setWindEnabled,
   getCurrentPage,
@@ -623,25 +622,6 @@ if (!getState().application.isMobile) {
   });
 }
 
-// Solar
-function toggleSolar() {
-  if (typeof solarLayer === 'undefined') { return; }
-  setSolarEnabled(!isSolarEnabled());
-}
-d3.select('.solar-button').on('click', toggleSolar);
-
-const solarLayerButtonTooltip = d3.select('#solar-layer-button-tooltip');
-
-if (!getState().application.isMobile) {
-  // Mouseovers will trigger on click on mobile and is therefore only set on desktop
-  d3.select('.solar-button').on('mouseover', () => {
-    solarLayerButtonTooltip.classed('hidden', false);
-  });
-  d3.select('.solar-button').on('mouseout', () => {
-    solarLayerButtonTooltip.classed('hidden', true);
-  });
-}
-
 // Collapse button
 document.getElementById('left-panel-collapse-button').addEventListener('click', () =>
   dispatchApplication('isLeftPanelCollapsed', !getState().application.isLeftPanelCollapsed));
@@ -843,10 +823,6 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 // bool can be removed from Redux and managed through the URL state.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
-  d3.selectAll('.solar-button').classed('active', solarEnabled);
-
-  solarLayerButtonTooltip.select('.tooltip-text').text(translation.translate(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer'));
-
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
   if (solarEnabled && typeof solarLayer !== 'undefined') {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
