@@ -40,7 +40,7 @@ const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
   histories: {},
-  solar: null, // TODO(olc)
+  solar: null,
   wind: null, // TODO(olc)
 };
 
@@ -182,6 +182,12 @@ module.exports = (state = initialDataState, action) => {
       const newState = Object.assign({}, state);
       newState.histories = newHistories;
 
+      return newState;
+    }
+
+    case 'SOLAR_DATA_FETCH_SUCCEEDED': {
+      const newState = Object.assign({}, state);
+      newState.solar = action.payload;
       return newState;
     }
 

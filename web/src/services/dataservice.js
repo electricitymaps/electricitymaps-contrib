@@ -90,9 +90,6 @@ const fetchNothing = function(callback) {
 }
 
 export {
-  fetchForecast,
-  getGfsTargetTimeBefore,
-  getGfsRefTimeForTarget,
   fetchGfs,
   fetchNothing,
 };

@@ -8,6 +8,11 @@ import {
 import thirdPartyServices from '../services/thirdparty';
 import * as LoadingService from '../services/loadingservice';
 import { handleConnectionReturnCode, protectedJsonRequest, textRequest } from '../helpers/api';
+import {
+  getGfsTargetTimeBefore,
+  getGfsTargetTimeAfter,
+  getGfsRefTimeForTarget,
+} from '../helpers/gfs';
 
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
@@ -57,8 +62,31 @@ function* fetchClientVersion(action) {
   LoadingService.stopLoading('#small-loading');
 }
 
+function fetchGfsForecast(resource, targetTime) {
+  const refTime = getGfsRefTimeForTarget(targetTime);
+  return protectedJsonRequest(`/v3/gfs/${resource}?refTime=${refTime.toISOString()}&targetTime=${targetTime.toISOString()}`);
+}
+
+// TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
+function* fetchSolarData(action) {
+  const { datetime, showLoading } = action.payload;
+  if (showLoading) LoadingService.startLoading('#loading');
+  LoadingService.startLoading('#small-loading');
+  try {
+    const before = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeBefore(datetime));
+    const after = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeAfter(datetime));
+    yield put({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
+  } catch (error) {
+    const appState = yield select(state => state.application);
+    handleConnectionReturnCode(error, appState);
+  }
+  if (showLoading) LoadingService.stopLoading('#loading');
+  LoadingService.stopLoading('#small-loading');
+}
+
 export default function* () {
   yield takeLatest('GRID_DATA_FETCH_REQUESTED', fetchGridData);
+  yield takeLatest('SOLAR_DATA_FETCH_REQUESTED', fetchSolarData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
   yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);
 }

@@ -100,7 +100,6 @@ const REFRESH_TIME_MINUTES = 5;
 // or to component state
 let mapDraggedSinceStart = false;
 let wind;
-let solar;
 let hasCenteredMap = false;
 
 // Set up objects
@@ -215,6 +214,8 @@ if (getState().application.isCordova) {
 function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
 
+  const { solar } = state.data;
+
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { callerLocation } = state.application;
     const zoneId = getZoneId();
@@ -281,6 +282,8 @@ function renderMap(state) {
 }
 
 function mapMouseOver(lonlat) {
+  const { solar } = getState().data;
+
   if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
@@ -294,6 +297,7 @@ function mapMouseOver(lonlat) {
   } else {
     dispatchApplication('windColorbarValue', null);
   }
+
   if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
@@ -501,6 +505,7 @@ const ignoreError = func =>
   };
 
 function fetch(showLoading, callback) {
+  const { solar } = getState().data;
   const { clientType, isLocalhost } = getState().application;
   const datetime = getCustomDatetime();
   const now = datetime || new Date();
@@ -517,12 +522,8 @@ function fetch(showLoading, callback) {
 
   if (isSolarEnabled()) {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
-    } else {
-      Q.defer(cb => cb(null, solar));
+      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime: now, showLoading } });
     }
-  } else {
-    Q.defer(DataService.fetchNothing);
   }
 
   if (isWindEnabled()) {
@@ -536,13 +537,12 @@ function fetch(showLoading, callback) {
   }
 
   // eslint-disable-next-line no-shadow
-  Q.await((err, argSolar, argWind) => {
+  Q.await((err, argWind) => {
     handleConnectionReturnCode(err, getState().application);
     if (!err) {
       // Render weather if provided
       // Do not overwrite with null/undefined
       if (argWind) wind = argWind;
-      if (argSolar) solar = argSolar;
     }
     if (showLoading) LoadingService.stopLoading('#loading');
     LoadingService.stopLoading('#small-loading');
@@ -627,6 +627,7 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.solarEnabled, (solarEnabled, state) => {
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
+  const { solar } = state.data;
   if (solarEnabled && typeof solarLayer !== 'undefined') {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       fetch(true);
