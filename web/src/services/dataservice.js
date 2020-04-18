@@ -88,10 +88,6 @@ const fetchGfs = function(endpoint, key, datetime, callback) {
 const fetchNothing = function(callback) {
   return callback(null, null);
 }
-const fetchState = function(endpoint, datetime, callback) {
-  var path = '/v3/state' + (datetime ? '?datetime=' + datetime : '');
-  return protectedJsonRequest(endpoint, path, callback);
-}
 
 export {
   fetchForecast,
@@ -99,5 +95,4 @@ export {
   getGfsRefTimeForTarget,
   fetchGfs,
   fetchNothing,
-  fetchState,
 };

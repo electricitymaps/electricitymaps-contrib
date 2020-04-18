@@ -501,21 +501,19 @@ const ignoreError = func =>
   };
 
 function fetch(showLoading, callback) {
-  if (showLoading) LoadingService.startLoading('#loading');
-  LoadingService.startLoading('#small-loading');
-  const Q = d3.queue();
-
-  // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
-  if (getState().application.clientType === 'web' && !getState().application.isLocalhost) {
-    Q.defer(d3.text, '/clientVersion');
-  } else {
-    Q.defer(DataService.fetchNothing);
-  }
-
+  const { clientType, isLocalhost } = getState().application;
   const datetime = getCustomDatetime();
   const now = datetime || new Date();
 
+  // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
+  if (clientType === 'web' && !isLocalhost) {
+    dispatch({ type: 'CLIENT_VERSION_FETCH_REQUESTED', payload: { showLoading } });
+  }
   dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
+
+  if (showLoading) LoadingService.startLoading('#loading');
+  LoadingService.startLoading('#small-loading');
+  const Q = d3.queue();
 
   if (isSolarEnabled()) {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -538,23 +536,15 @@ function fetch(showLoading, callback) {
   }
 
   // eslint-disable-next-line no-shadow
-  Q.await((err, clientVersion, argSolar, argWind) => {
+  Q.await((err, argSolar, argWind) => {
     handleConnectionReturnCode(err, getState().application);
     if (!err) {
       // Render weather if provided
       // Do not overwrite with null/undefined
       if (argWind) wind = argWind;
       if (argSolar) solar = argSolar;
-
-      // Is there a new version?
-      d3.select('#new-version').classed('active', (
-        clientVersion !== getState().application.version
-        && !getState().application.isLocalhost && !getState().application.isCordova
-      ));
     }
-    if (showLoading) {
-      LoadingService.stopLoading('#loading');
-    }
+    if (showLoading) LoadingService.stopLoading('#loading');
     LoadingService.stopLoading('#small-loading');
     if (callback) callback();
   });

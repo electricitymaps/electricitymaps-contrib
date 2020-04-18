@@ -58,6 +58,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action;
+      if (state[key] === value) {
+        return state;
+      }
+
       const newState = Object.assign({}, state);
       newState[key] = value;
 

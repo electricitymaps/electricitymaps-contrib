@@ -6,3 +6,7 @@ export function isProduction() {
 export function isLocalhost() {
   return !isProduction() && !window.location.href.includes('192.');
 }
+
+export function isNewClientVersion(version) {
+  return version !== VERSION;
+}

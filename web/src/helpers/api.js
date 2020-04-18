@@ -1,4 +1,4 @@
-import { json as jsonRequest } from 'd3-request';
+import * as request from 'd3-request';
 import { sha256 } from 'js-sha256';
 import Cookies from 'js-cookie';
 
@@ -27,7 +27,7 @@ export function protectedJsonRequest(path) {
   const timestamp = new Date().getTime();
 
   return new Promise((resolve, reject) => {
-    jsonRequest(url)
+    request.json(url)
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
       .header('x-signature', sha256(token + path + timestamp))
@@ -40,6 +40,22 @@ export function protectedJsonRequest(path) {
           resolve(res.data);
         }
       });
+  });
+}
+
+export function textRequest(path) {
+  const url = getEndpoint() + path;
+
+  return new Promise((resolve, reject) => {
+    request.text(url).get(null, (err, res) => {
+      if (err) {
+        reject(err);
+      } else if (!res) {
+        reject(new Error(`Empty response received for ${url}`));
+      } else {
+        resolve(res);
+      }
+    });
   });
 }
 

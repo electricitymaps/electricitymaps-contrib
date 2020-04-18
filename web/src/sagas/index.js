@@ -7,7 +7,7 @@ import {
 
 import thirdPartyServices from '../services/thirdparty';
 import * as LoadingService from '../services/loadingservice';
-import { handleConnectionReturnCode, protectedJsonRequest } from '../helpers/api';
+import { handleConnectionReturnCode, protectedJsonRequest, textRequest } from '../helpers/api';
 
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
@@ -42,7 +42,23 @@ function* fetchGridData(action) {
   LoadingService.stopLoading('#small-loading');
 }
 
+function* fetchClientVersion(action) {
+  const { showLoading } = action.payload;
+  if (showLoading) LoadingService.startLoading('#loading');
+  LoadingService.startLoading('#small-loading');
+  try {
+    const version = yield call(textRequest, '/clientVersion');
+    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
+  } catch (error) {
+    const appState = yield select(state => state.application);
+    handleConnectionReturnCode(error, appState);
+  }
+  if (showLoading) LoadingService.stopLoading('#loading');
+  LoadingService.stopLoading('#small-loading');
+}
+
 export default function* () {
   yield takeLatest('GRID_DATA_FETCH_REQUESTED', fetchGridData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
+  yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);
 }

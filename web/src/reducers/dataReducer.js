@@ -46,6 +46,12 @@ const initialDataState = {
 
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
+    case 'GRID_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      console.error('Error fetching grid data', action.error.message);
+      return state;
+    }
+
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {

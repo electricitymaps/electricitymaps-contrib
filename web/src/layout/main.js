@@ -16,6 +16,7 @@ import MapTooltips from './maptooltips';
 
 // Modules
 import { __ } from '../helpers/translation';
+import { isNewClientVersion } from '../helpers/environment';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import Toggle from '../components/toggle';
@@ -28,6 +29,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   showConnectionWarning: state.application.showConnectionWarning,
+  version: state.application.version,
 });
 
 const Main = ({
@@ -35,6 +37,7 @@ const Main = ({
   electricityMixMode,
   isLeftPanelCollapsed,
   showConnectionWarning,
+  version,
 }) => {
   const location = useLocation();
 
@@ -99,7 +102,7 @@ const Main = ({
               </div>
             </div>
           )}
-          <div id="new-version" className="flash-message">
+          <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>
