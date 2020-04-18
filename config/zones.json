@@ -2695,19 +2695,6 @@
     ]
   },
   "IT-SAR": {
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome",
     "bounding_box": [
       [
         7.633799675000148,
@@ -2726,6 +2713,19 @@
       "wind": 1054,
       "unknown": 2386
     },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome",
   },
   "IT-SIC": {
     "contributors": [
