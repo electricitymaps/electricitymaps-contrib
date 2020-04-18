@@ -2696,7 +2696,8 @@
   },
   "IT-SAR": {
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2716,7 +2717,15 @@
         10.326670769000089,
         41.76264069200013
       ]
-    ]
+    ],
+    "capacity": {
+      "geothermal": 0,
+      "hydro": 466,
+      "nuclear": 0,
+      "solar": 787,
+      "wind": 1054,
+      "unknown": 2386
+    },
   },
   "IT-SIC": {
     "contributors": [
