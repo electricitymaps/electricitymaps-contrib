@@ -84,8 +84,26 @@ function* fetchSolarData(action) {
   LoadingService.stopLoading('#small-loading');
 }
 
+// TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
+function* fetchWindData(action) {
+  const { datetime, showLoading } = action.payload;
+  if (showLoading) LoadingService.startLoading('#loading');
+  LoadingService.startLoading('#small-loading');
+  try {
+    const before = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeBefore(datetime));
+    const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime));
+    yield put({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
+  } catch (error) {
+    const appState = yield select(state => state.application);
+    handleConnectionReturnCode(error, appState);
+  }
+  if (showLoading) LoadingService.stopLoading('#loading');
+  LoadingService.stopLoading('#small-loading');
+}
+
 export default function* () {
   yield takeLatest('GRID_DATA_FETCH_REQUESTED', fetchGridData);
+  yield takeLatest('WIND_DATA_FETCH_REQUESTED', fetchWindData);
   yield takeLatest('SOLAR_DATA_FETCH_REQUESTED', fetchSolarData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
   yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);

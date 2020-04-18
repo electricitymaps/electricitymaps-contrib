@@ -41,7 +41,7 @@ const initialDataState = {
   grid: { zones, exchanges },
   histories: {},
   solar: null,
-  wind: null, // TODO(olc)
+  wind: null,
 };
 
 module.exports = (state = initialDataState, action) => {
@@ -188,6 +188,12 @@ module.exports = (state = initialDataState, action) => {
     case 'SOLAR_DATA_FETCH_SUCCEEDED': {
       const newState = Object.assign({}, state);
       newState.solar = action.payload;
+      return newState;
+    }
+
+    case 'WIND_DATA_FETCH_SUCCEEDED': {
+      const newState = Object.assign({}, state);
+      newState.wind = action.payload;
       return newState;
     }
 

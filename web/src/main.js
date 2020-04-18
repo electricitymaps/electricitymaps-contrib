@@ -18,7 +18,6 @@ import SolarLayer from './components/layers/solar';
 import WindLayer from './components/layers/wind';
 
 // Services
-import * as DataService from './services/dataservice';
 import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
@@ -99,7 +98,6 @@ const REFRESH_TIME_MINUTES = 5;
 // TODO(olc) move those to redux state
 // or to component state
 let mapDraggedSinceStart = false;
-let wind;
 let hasCenteredMap = false;
 
 // Set up objects
@@ -214,7 +212,7 @@ if (getState().application.isCordova) {
 function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
 
-  const { solar } = state.data;
+  const { solar, wind } = state.data;
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { callerLocation } = state.application;
@@ -282,7 +280,7 @@ function renderMap(state) {
 }
 
 function mapMouseOver(lonlat) {
-  const { solar } = getState().data;
+  const { solar, wind } = getState().data;
 
   if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
     const now = getCustomDatetime()
@@ -494,18 +492,8 @@ try {
 // *** DATA MANAGEMENT ***
 //
 
-const ignoreError = func =>
-  (...args) => {
-    const callback = args[args.length - 1];
-    args[args.length - 1] = (err, obj) => {
-      if (err) { return callback(null, null); }
-      return callback(null, obj);
-    };
-    func.apply(this, args);
-  };
-
 function fetch(showLoading, callback) {
-  const { solar } = getState().data;
+  const { solar, wind } = getState().data;
   const { clientType, isLocalhost } = getState().application;
   const datetime = getCustomDatetime();
   const now = datetime || new Date();
@@ -516,10 +504,6 @@ function fetch(showLoading, callback) {
   }
   dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
 
-  if (showLoading) LoadingService.startLoading('#loading');
-  LoadingService.startLoading('#small-loading');
-  const Q = d3.queue();
-
   if (isSolarEnabled()) {
     if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
       dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime: now, showLoading } });
@@ -528,26 +512,11 @@ function fetch(showLoading, callback) {
 
   if (isWindEnabled()) {
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
-    } else {
-      Q.defer(cb => cb(null, wind));
+      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime: now, showLoading } });
     }
-  } else {
-    Q.defer(DataService.fetchNothing);
   }
 
-  // eslint-disable-next-line no-shadow
-  Q.await((err, argWind) => {
-    handleConnectionReturnCode(err, getState().application);
-    if (!err) {
-      // Render weather if provided
-      // Do not overwrite with null/undefined
-      if (argWind) wind = argWind;
-    }
-    if (showLoading) LoadingService.stopLoading('#loading');
-    LoadingService.stopLoading('#small-loading');
-    if (callback) callback();
-  });
+  if (callback) callback();
 }
 
 // Only for debugging purposes
@@ -645,6 +614,7 @@ observe(state => state.application.solarEnabled, (solarEnabled, state) => {
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2310
 observe(state => state.application.windEnabled, (windEnabled, state) => {
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
+  const { wind } = state.data;
   if (windEnabled && typeof windLayer !== 'undefined') {
     if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
       fetch(true);
