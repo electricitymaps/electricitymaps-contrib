@@ -2725,7 +2725,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Rome",
+    "timezone": "Europe/Rome"
   },
   "IT-SIC": {
     "contributors": [
