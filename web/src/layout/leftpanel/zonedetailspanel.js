@@ -39,6 +39,7 @@ const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
   const historyData = useCurrentZoneHistory();
   const customDatetime = useCustomDatetime();
 
+  // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
   useEffect(() => {
     if (customDatetime) {
       console.error('Can\'t fetch history when a custom date is provided!');

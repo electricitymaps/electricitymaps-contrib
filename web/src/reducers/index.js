@@ -42,6 +42,7 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
+  showConnectionWarning: false,
   solarColorbarValue: null,
   solarEnabled: false,
   windColorbarMarker: null,

@@ -27,9 +27,15 @@ const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  showConnectionWarning: state.application.showConnectionWarning,
 });
 
-const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) => {
+const Main = ({
+  brightModeEnabled,
+  electricityMixMode,
+  isLeftPanelCollapsed,
+  showConnectionWarning,
+}) => {
   const location = useLocation();
 
   return (
@@ -75,22 +81,24 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) =
             <LayerButtons />
           </div>
 
-          <div id="connection-warning" className="flash-message">
-            <div className="inner">
-              {__('misc.oops')}
-              {' '}
-              <a
-                href=""
-                onClick={(e) => {
-                  window.retryFetch();
-                  e.preventDefault();
-                }}
-              >
-                {__('misc.retrynow')}
-              </a>
-              .
+          {showConnectionWarning && (
+            <div id="connection-warning" className="flash-message">
+              <div className="inner">
+                {__('misc.oops')}
+                {' '}
+                <a
+                  href=""
+                  onClick={(e) => {
+                    window.retryFetch();
+                    e.preventDefault();
+                  }}
+                >
+                  {__('misc.retrynow')}
+                </a>
+                .
+              </div>
             </div>
-          </div>
+          )}
           <div id="new-version" className="flash-message">
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />

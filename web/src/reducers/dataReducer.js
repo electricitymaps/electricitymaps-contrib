@@ -46,7 +46,7 @@ const initialDataState = {
 
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
-    case 'GRID_DATA': {
+    case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {
         zones: Object.assign({}, state.grid.zones),

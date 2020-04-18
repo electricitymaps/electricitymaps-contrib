@@ -24,7 +24,7 @@ import thirdPartyServices from './services/thirdparty';
 
 // Utils
 import { getCo2Scale } from './helpers/scales';
-import { getEndpoint } from './helpers/api';
+import { getEndpoint, handleConnectionReturnCode } from './helpers/api';
 import {
   history,
   isSolarEnabled,
@@ -490,67 +490,6 @@ try {
 // *** DATA MANAGEMENT ***
 //
 
-function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  // Track pageview
-  thirdPartyServices.trackWithCurrentApplicationState('pageview');
-
-  // Is there a new version?
-  d3.select('#new-version')
-    .classed('active', (
-      clientVersion !== getState().application.version
-      && !getState().application.isLocalhost && !getState().application.isCordova
-    ));
-
-  // Render weather if provided
-  // Do not overwrite with null/undefined
-  if (argWind) wind = argWind;
-  if (argSolar) solar = argSolar;
-
-  dispatchApplication('callerLocation', callerLocation);
-  dispatchApplication('callerZone', callerZone);
-  dispatch({ type: 'GRID_DATA', payload: state });
-}
-
-function catchError(e) {
-  console.error(`Error Caught! ${e}`);
-  thirdPartyServices.reportError(e);
-  thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
-  const params = getState().application;
-  params.name = e.name;
-  params.stack = e.stack;
-  thirdPartyServices.track('error', params);
-}
-
-// Periodically load data
-function handleConnectionReturnCode(err) {
-  if (err) {
-    if (err.target) {
-      // Avoid catching HTTPError 0
-      // The error will be empty, and we can't catch any more info
-      // for security purposes
-      // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
-      if (err.target.status) {
-        catchError(new Error(
-          'HTTPError '
-          + err.target.status + ' ' + err.target.statusText + ' at '
-          + err.target.responseURL + ': '
-          + err.target.responseText
-        ));
-      }
-    } else {
-      catchError(err);
-    }
-    d3.select('#connection-warning').classed('active', true);
-  } else {
-    d3.select('#connection-warning').classed('active', false);
-  }
-}
-
 const ignoreError = func =>
   (...args) => {
     const callback = args[args.length - 1];
@@ -565,36 +504,53 @@ function fetch(showLoading, callback) {
   if (showLoading) LoadingService.startLoading('#loading');
   LoadingService.startLoading('#small-loading');
   const Q = d3.queue();
+
   // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
   if (getState().application.clientType === 'web' && !getState().application.isLocalhost) {
     Q.defer(d3.text, '/clientVersion');
   } else {
     Q.defer(DataService.fetchNothing);
   }
-  Q.defer(DataService.fetchState, getEndpoint(), getCustomDatetime());
 
-  const now = getCustomDatetime() || new Date();
+  const datetime = getCustomDatetime();
+  const now = datetime || new Date();
 
-  if (!isSolarEnabled()) {
-    Q.defer(DataService.fetchNothing);
-  } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
+  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
+
+  if (isSolarEnabled()) {
+    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
+      Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
+    } else {
+      Q.defer(cb => cb(null, solar));
+    }
   } else {
-    Q.defer(cb => cb(null, solar));
+    Q.defer(DataService.fetchNothing);
   }
 
-  if (!isWindEnabled() || typeof windLayer === 'undefined') {
-    Q.defer(DataService.fetchNothing);
-  } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
+  if (isWindEnabled()) {
+    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
+      Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
+    } else {
+      Q.defer(cb => cb(null, wind));
+    }
   } else {
-    Q.defer(cb => cb(null, wind));
+    Q.defer(DataService.fetchNothing);
   }
+
   // eslint-disable-next-line no-shadow
-  Q.await((err, clientVersion, state, solar, wind) => {
-    handleConnectionReturnCode(err);
+  Q.await((err, clientVersion, argSolar, argWind) => {
+    handleConnectionReturnCode(err, getState().application);
     if (!err) {
-      dataLoaded(err, clientVersion, state.data.callerLocation, state.data.callerZone, state.data, solar, wind);
+      // Render weather if provided
+      // Do not overwrite with null/undefined
+      if (argWind) wind = argWind;
+      if (argSolar) solar = argSolar;
+
+      // Is there a new version?
+      d3.select('#new-version').classed('active', (
+        clientVersion !== getState().application.version
+        && !getState().application.isLocalhost && !getState().application.isCordova
+      ));
     }
     if (showLoading) {
       LoadingService.stopLoading('#loading');
@@ -606,7 +562,7 @@ function fetch(showLoading, callback) {
 
 // Only for debugging purposes
 window.retryFetch = () => {
-  d3.select('#connection-warning').classed('active', false);
+  dispatchApplication('showConnectionWarning', false);
   fetch(false);
 };
 
