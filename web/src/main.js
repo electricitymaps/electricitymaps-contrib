@@ -103,7 +103,6 @@ let hasCenteredMap = false;
 
 // Set up objects
 let exchangeLayer = null;
-let initLoading = true;
 let zoneMap;
 let windLayer;
 let solarLayer;
@@ -369,18 +368,8 @@ function renderZones(state) {
   }
 }
 
-// `finishLoading` will be invoked whenever we've finished loading the map, it could be triggered by a map-rerender
-// or a first-time-ever loading of the webpage.
+// Map loading is done or aborted, hide the "map loading" overlay
 function finishLoading() {
-  // if we're done with loading the map for the first ever render, toggle the state and wrapping up
-  // with cleanup actions.
-  if (initLoading) {
-    // toggle the initial loading state. since this is a one-time on/off state, there's no need to manage it
-    // with the redux state store.
-    initLoading = false;
-  }
-
-  // map loading is done or aborted, hide the "map loading" overlay
   LoadingService.stopLoading('#loading');
   LoadingService.stopLoading('#small-loading');
 }
@@ -500,13 +489,8 @@ try {
 //
 
 function fetch(showLoading, callback) {
-  const { clientType, isLocalhost } = getState().application;
   const datetime = getCustomDatetime();
 
-  // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
-  if (clientType === 'web' && !isLocalhost) {
-    dispatch({ type: 'CLIENT_VERSION_FETCH_REQUESTED', payload: { showLoading } });
-  }
   dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
 
   if (callback) callback();

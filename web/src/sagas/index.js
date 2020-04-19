@@ -48,9 +48,6 @@ function* fetchGridData(action) {
 }
 
 function* fetchClientVersion(action) {
-  const { showLoading } = action.payload;
-  if (showLoading) LoadingService.startLoading('#loading');
-  LoadingService.startLoading('#small-loading');
   try {
     const version = yield call(textRequest, '/clientVersion');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
@@ -58,8 +55,6 @@ function* fetchClientVersion(action) {
     const appState = yield select(state => state.application);
     handleConnectionReturnCode(error, appState);
   }
-  if (showLoading) LoadingService.stopLoading('#loading');
-  LoadingService.stopLoading('#small-loading');
 }
 
 // TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.

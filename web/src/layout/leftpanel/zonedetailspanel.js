@@ -8,6 +8,7 @@ import { isEmpty } from 'lodash';
 
 import { dispatch } from '../../store';
 import { useCustomDatetime } from '../../helpers/router';
+import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
 import {
   useCurrentZoneHistoryDatetimes,
   useCurrentZoneHistoryStartTime,
@@ -35,18 +36,8 @@ const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
 
-  const { zoneId } = useParams();
-  const historyData = useCurrentZoneHistory();
-  const customDatetime = useCustomDatetime();
-
-  // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
-  useEffect(() => {
-    if (customDatetime) {
-      console.error('Can\'t fetch history when a custom date is provided!');
-    } else if (zoneId && isEmpty(historyData)) {
-      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId } });
-    }
-  }, [zoneId, historyData, customDatetime]);
+  // Fetch history for the current zone if it hasn't been fetched yet.
+  useConditionalZoneHistoryFetch();
 
   return (
     <div className="left-panel-zone-details">

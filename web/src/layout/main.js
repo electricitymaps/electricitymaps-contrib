@@ -17,6 +17,7 @@ import MapTooltips from './maptooltips';
 // Modules
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
+import { useClientVersionFetch } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import Toggle from '../components/toggle';
@@ -40,6 +41,9 @@ const Main = ({
   version,
 }) => {
   const location = useLocation();
+
+  // Check for the latest client version once initially.
+  useClientVersionFetch();
 
   return (
     <React.Fragment>
