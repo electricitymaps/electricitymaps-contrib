@@ -11,7 +11,7 @@ import { handleConnectionReturnCode, protectedJsonRequest, textRequest } from '.
 import {
   getGfsTargetTimeBefore,
   getGfsTargetTimeAfter,
-  getGfsRefTimeForTarget,
+  fetchGfsForecast,
 } from '../helpers/gfs';
 
 function* fetchZoneHistory(action) {
@@ -60,11 +60,6 @@ function* fetchClientVersion(action) {
   }
   if (showLoading) LoadingService.stopLoading('#loading');
   LoadingService.stopLoading('#small-loading');
-}
-
-function fetchGfsForecast(resource, targetTime) {
-  const refTime = getGfsRefTimeForTarget(targetTime);
-  return protectedJsonRequest(`/v3/gfs/${resource}?refTime=${refTime.toISOString()}&targetTime=${targetTime.toISOString()}`);
 }
 
 // TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.

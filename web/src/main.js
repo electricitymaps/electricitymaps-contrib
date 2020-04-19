@@ -34,7 +34,11 @@ import {
   getZoneId,
 } from './helpers/router';
 
-import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
+import {
+  DATA_FETCH_INTERVAL,
+  MAP_EXCHANGE_TOOLTIP_KEY,
+  MAP_COUNTRY_TOOLTIP_KEY,
+} from './helpers/constants';
 
 // Layout
 import Main from './layout/main';
@@ -91,9 +95,6 @@ const zonesConfig = require('../../config/zones.json');
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
-
-// Constants
-const REFRESH_TIME_MINUTES = 5;
 
 // TODO(olc) move those to redux state
 // or to component state
@@ -208,11 +209,54 @@ if (getState().application.isCordova) {
 // *** MAP & LAYERS ***
 //
 
+function renderWind() {
+  if (windLayer) {
+    const { wind } = getState().data;
+    if (isWindEnabled() && wind && wind.forecasts[0] && wind.forecasts[1]) {
+      windLayer.draw(
+        getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date()),
+        wind.forecasts[0],
+        wind.forecasts[1],
+        scales.windColor,
+      );
+      if (isWindEnabled()) {
+        windLayer.show();
+      } else {
+        windLayer.hide();
+      }
+    } else {
+      windLayer.hide();
+    }
+  }
+}
+
+function renderSolar() {
+  if (solarLayer) {
+    const { solar } = getState().data;
+    if (isSolarEnabled() && solar && solar.forecasts[0] && solar.forecasts[1]) {
+      solarLayer.draw(
+        getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime(),
+        solar.forecasts[0],
+        solar.forecasts[1],
+        (err) => {
+          if (err) {
+            console.error(err.message);
+          } else if (isSolarEnabled()) {
+            solarLayer.show();
+          } else {
+            solarLayer.hide();
+          }
+        },
+      );
+    } else {
+      solarLayer.hide();
+    }
+  }
+}
+
 // Only center once
 function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
-
-  const { solar, wind } = state.data;
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { callerLocation } = state.application;
@@ -232,47 +276,10 @@ function renderMap(state) {
   }
 
   // Render Wind
-  if (isWindEnabled() && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    windLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      wind.forecasts[0],
-      wind.forecasts[1],
-      scales.windColor,
-    );
-    if (isWindEnabled()) {
-      windLayer.show();
-    } else {
-      windLayer.hide();
-    }
-    LoadingService.stopLoading('#loading');
-  } else if (typeof windLayer !== 'undefined') {
-    windLayer.hide();
-  }
+  renderWind();
 
   // Render Solar
-  if (isSolarEnabled() && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    solarLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      solar.forecasts[0],
-      solar.forecasts[1],
-      (err) => {
-        if (err) {
-          console.error(err.message);
-        } else if (isSolarEnabled()) {
-          solarLayer.show();
-        } else {
-          solarLayer.hide();
-        }
-        LoadingService.stopLoading('#loading');
-      },
-    );
-  } else if (typeof solarLayer !== 'undefined') {
-    solarLayer.hide();
-  }
+  renderSolar();
 
   // Resize map to make sure it takes all container space
   // Warning: this causes a flicker
@@ -493,28 +500,14 @@ try {
 //
 
 function fetch(showLoading, callback) {
-  const { solar, wind } = getState().data;
   const { clientType, isLocalhost } = getState().application;
   const datetime = getCustomDatetime();
-  const now = datetime || new Date();
 
   // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
   if (clientType === 'web' && !isLocalhost) {
     dispatch({ type: 'CLIENT_VERSION_FETCH_REQUESTED', payload: { showLoading } });
   }
   dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
-
-  if (isSolarEnabled()) {
-    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime: now, showLoading } });
-    }
-  }
-
-  if (isWindEnabled()) {
-    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime: now, showLoading } });
-    }
-  }
 
   if (callback) callback();
 }
@@ -559,8 +552,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
     // Refresh map in the next render cycle (after the page
     // transition) to make sure it gets displayed correctly.
     setTimeout(() => { renderMap(state); }, 0);
-    if (isWindEnabled() && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (isSolarEnabled() && typeof solarLayer !== 'undefined') { solarLayer.show(); }
   }
 
   // Analytics
@@ -590,42 +581,6 @@ observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
   if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
 });
 
-// Observe for solar settings change
-// TODO: Remove this after solar layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-observe(state => state.application.solarEnabled, (solarEnabled, state) => {
-  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
-  const { solar } = state.data;
-  if (solarEnabled && typeof solarLayer !== 'undefined') {
-    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      fetch(true);
-    } else {
-      solarLayer.show();
-    }
-  } else if (typeof solarLayer !== 'undefined') {
-    solarLayer.hide();
-  }
-});
-
-// Observe for wind settings change
-// TODO: Remove this after wind layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-observe(state => state.application.windEnabled, (windEnabled, state) => {
-  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
-  const { wind } = state.data;
-  if (windEnabled && typeof windLayer !== 'undefined') {
-    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      fetch(true);
-    } else {
-      windLayer.show();
-    }
-  } else if (typeof windLayer !== 'undefined') {
-    windLayer.hide();
-  }
-});
-
 observe(state => state.application.centeredZoneName, (centeredZoneName, state) => {
   if (centeredZoneName) {
     centerOnZoneName(state, centeredZoneName, 4);
@@ -639,6 +594,44 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   }
 });
 
+// Observe for solar settings change
+// TODO: Remove this after solar layer is moved to React, so that this
+// bool can be removed from Redux and managed through the URL state.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
+let solarInterval;
+observe(state => state.application.solarEnabled, (solarEnabled) => {
+  const datetime = getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date());
+  if (solarEnabled) {
+    dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+    solarInterval = setInterval(() => {
+      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+    }, DATA_FETCH_INTERVAL);
+  } else {
+    dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
+    clearInterval(solarInterval);
+  }
+});
+observe(state => state.data.solar, () => { renderSolar(); });
+
+// Observe for wind settings change
+// TODO: Remove this after wind layer is moved to React, so that this
+// bool can be removed from Redux and managed through the URL state.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
+let windInterval;
+observe(state => state.application.windEnabled, (windEnabled) => {
+  const datetime = getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date());
+  if (windEnabled) {
+    dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+    windInterval = setInterval(() => {
+      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+    }, DATA_FETCH_INTERVAL);
+  } else {
+    dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
+    clearInterval(windInterval);
+  }
+});
+observe(state => state.data.wind, () => { renderWind(); });
+
 //
 // *** START ***
 //
@@ -647,6 +640,6 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 fetch(true, () => {
   if (!getCustomDatetime()) {
     // Further calls to `fetch` won't show loading screen
-    setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
+    setInterval(fetch, DATA_FETCH_INTERVAL);
   }
 });
