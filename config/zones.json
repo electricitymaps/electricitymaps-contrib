@@ -2706,12 +2706,13 @@
       ]
     ],
     "capacity": {
+      "biomass": 1104,
       "geothermal": 0,
       "hydro": 466,
       "nuclear": 0,
       "solar": 787,
       "wind": 1054,
-      "unknown": 2386
+      "unknown": 1282
     },
     "contributors": [
       "https://github.com/corradio",
