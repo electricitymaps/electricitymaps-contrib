@@ -18,7 +18,6 @@ import SolarLayer from './components/layers/solar';
 import WindLayer from './components/layers/wind';
 
 // Services
-import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
 // Utils
@@ -100,9 +99,6 @@ let solarLayer;
 
 // Set standard theme
 let theme = themes.bright;
-
-LoadingService.startLoading('#loading');
-LoadingService.startLoading('#small-loading');
 
 // Set proper locale
 moment.locale(getState().application.locale.toLowerCase());
@@ -209,11 +205,7 @@ function renderWind() {
         wind.forecasts[1],
         scales.windColor,
       );
-      if (isWindEnabled()) {
-        windLayer.show();
-      } else {
-        windLayer.hide();
-      }
+      windLayer.show();
     } else {
       windLayer.hide();
     }
@@ -359,12 +351,6 @@ function renderZones(state) {
   }
 }
 
-// Map loading is done or aborted, hide the "map loading" overlay
-function finishLoading() {
-  LoadingService.stopLoading('#loading');
-  LoadingService.stopLoading('#small-loading');
-}
-
 // Start initialising map
 try {
   zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
@@ -415,7 +401,7 @@ try {
         .render();
 
       // map loading is finished, lower the overlay shield
-      finishLoading();
+      dispatchApplication('isLoadingMap', false);
 
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
@@ -469,7 +455,7 @@ try {
     navigateTo({ pathname: '/ranking', search: history.location.search });
 
     // map loading is finished, lower the overlay shield
-    finishLoading();
+    dispatchApplication('isLoadingMap', false);
   } else {
     throw e;
   }

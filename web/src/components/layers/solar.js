@@ -111,6 +111,7 @@ class SolarLayer {
   }
 
   hide() {
+    if (this.hidden) return;
     if (this.canvas) {
       d3.select(this.canvas).transition().style('opacity', 0)
         .on('end', function() {

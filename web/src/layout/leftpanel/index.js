@@ -14,6 +14,7 @@ import {
 
 import { useSearchParams } from '../../helpers/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
+import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
 
 import FAQPanel from './faqpanel';
@@ -50,11 +51,14 @@ const mapStateToProps = state => ({
 });
 
 const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
+  const isLoaderVisible = useSmallLoaderVisible();
+  const location = useLocation();
+
   usePageViewsTracker();
 
   // Hide the panel completely if looking at the map on mobile.
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
-  const panelHidden = isMobile && useLocation().pathname === '/map';
+  const panelHidden = isMobile && location.pathname === '/map';
 
   return (
     <div
@@ -68,7 +72,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <div className="right-header large-screen-hidden">
-            <span id="small-loading" className="loading" />
+            {isLoaderVisible && <span id="small-loading" className="loading" />}
             <LastUpdatedTime />
           </div>
         </div>

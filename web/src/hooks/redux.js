@@ -9,7 +9,7 @@ import {
   uniq,
 } from 'lodash';
 
-import { useCustomDatetime } from '../helpers/router';
+import { useCustomDatetime, useSolarEnabled } from '../helpers/router';
 
 export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
@@ -80,4 +80,19 @@ export function useCurrentZoneData() {
     },
     [zoneId, zoneHistory, zoneTimeIndex, grid],
   );
+}
+
+export function useLoadingOverlayVisible() {
+  const mapInitializing = useSelector(state => state.application.isLoadingMap);
+  const gridInitializing = useSelector(state => state.data.isLoadingGrid && !state.data.hasInitializedGrid);
+  const solarInitializing = useSelector(state => state.data.isLoadingSolar && !state.data.solar);
+  const windInitializing = useSelector(state => state.data.isLoadingWind && !state.data.wind);
+  return mapInitializing || gridInitializing || solarInitializing || windInitializing;
+}
+
+export function useSmallLoaderVisible() {
+  const gridLoading = useSelector(state => state.data.isLoadingGrid);
+  const solarLoading = useSelector(state => state.data.isLoadingSolar);
+  const windLoading = useSelector(state => state.data.isLoadingWind);
+  return gridLoading || solarLoading || windLoading;
 }

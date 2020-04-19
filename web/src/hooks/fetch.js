@@ -47,10 +47,10 @@ export function useGridDataPolling() {
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
     clearInterval(pollInterval);
-    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
     if (!datetime) {
       pollInterval = setInterval(() => {
-        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { showLoading: false } });
+        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
       }, DATA_FETCH_INTERVAL);
     }
   }, [datetime]);
@@ -68,10 +68,10 @@ export function useConditionalWindDataPolling() {
   useEffect(() => {
     clearInterval(pollInterval);
     if (windEnabled) {
-      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime } });
       if (!customDatetime) {
         pollInterval = setInterval(() => {
-          dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+          dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime } });
         }, DATA_FETCH_INTERVAL);
       }
     } else {
@@ -93,10 +93,10 @@ export function useConditionalSolarDataPolling() {
   useEffect(() => {
     clearInterval(pollInterval);
     if (solarEnabled) {
-      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime } });
       if (!customDatetime) {
         pollInterval = setInterval(() => {
-          dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+          dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime } });
         }, DATA_FETCH_INTERVAL);
       }
     } else {

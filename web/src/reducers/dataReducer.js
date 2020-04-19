@@ -1,3 +1,4 @@
+const { isEmpty } = require('lodash');
 const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
@@ -39,19 +40,22 @@ Object.entries(exchanges).forEach((entry) => {
 const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
+  hasInitializedGrid: false,
   histories: {},
+  isLoadingHistories: false,
+  isLoadingGrid: false,
+  isLoadingSolar: false,
+  isLoadingWind: false,
   solar: null,
   wind: null,
 };
 
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
-    case 'GRID_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      console.error('Error fetching grid data', action.error.message);
-      return state;
+    case 'GRID_DATA_FETCH_REQUESTED': {
+      return { ...state, isLoadingGrid: true };
     }
-
+  
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {
@@ -150,51 +154,69 @@ module.exports = (state = initialDataState, action) => {
       // Debug
       console.log(newGrid.zones);
 
+      newState.hasInitializedGrid = true;
+      newState.isLoadingGrid = false;
       return newState;
+    }
+
+    case 'GRID_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      console.error('Error fetching grid data', action.error.message);
+      return { ...state, isLoadingGrid: false };
+    }
+
+    case 'ZONE_HISTORY_FETCH_REQUESTED': {
+      return { ...state, isLoadingHistories: true };
+    }
+
+    case 'ZONE_HISTORY_FETCH_SUCCEEDED': {
+      return {
+        ...state,
+        isLoadingHistories: false,
+        histories: {
+          ...state.histories,
+          [action.zoneId]: action.payload.map(datapoint => ({
+            ...datapoint,
+            hasParser: true,
+            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
+            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
+          })),
+        },
+      };
     }
 
     case 'ZONE_HISTORY_FETCH_FAILED': {
       // TODO: Implement error handling
       console.error('Error fetching zone history data', action.error.message);
-      return state;
+      return { ...state, isLoadingHistories: false };
     }
 
-    case 'ZONE_HISTORY_FETCH_SUCCEEDED': {
-      // Create new histories
-      const newHistories = Object.assign({}, state.histories);
-
-      const zoneHistory = action.payload.map((observation) => {
-        const ret = Object.assign({}, observation);
-
-        ret.hasParser = true;
-        if (observation.exchange && Object.keys(observation.exchange).length
-          && (!observation.production || !Object.keys(observation.production).length)) {
-          // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-          ret.exchange = {};
-        }
-
-        return ret;
-      });
-
-
-      newHistories[action.zoneId] = zoneHistory;
-      // Create new state
-      const newState = Object.assign({}, state);
-      newState.histories = newHistories;
-
-      return newState;
+    case 'SOLAR_DATA_FETCH_REQUESTED': {
+      return { ...state, isLoadingSolar: true };
     }
 
     case 'SOLAR_DATA_FETCH_SUCCEEDED': {
-      const newState = Object.assign({}, state);
-      newState.solar = action.payload;
-      return newState;
+      return { ...state, isLoadingSolar: false, solar: action.payload };
+    }
+
+    case 'SOLAR_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      console.error('Error fetching solar data', action.error.message);
+      return { ...state, isLoadingSolar: false, solar: null };
+    }
+
+    case 'WIND_DATA_FETCH_REQUESTED': {
+      return { ...state, isLoadingWind: true };
     }
 
     case 'WIND_DATA_FETCH_SUCCEEDED': {
-      const newState = Object.assign({}, state);
-      newState.wind = action.payload;
-      return newState;
+      return { ...state, isLoadingWind: false, wind: action.payload };
+    }
+
+    case 'WIND_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      console.error('Error fetching wind data', action.error.message);
+      return { ...state, isLoadingWind: false, wind: null };
     }
 
     default:

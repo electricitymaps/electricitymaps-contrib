@@ -36,7 +36,7 @@ const MAP_COUNTRY_TOOLTIP_KEY = 'map-country';
 
 const DEFAULT_FLAG_SIZE = 16;
 
-const DATA_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
+const DATA_FETCH_INTERVAL = 0.1 * 60 * 1000; // 5 minutes
 
 module.exports = {
   modeColor,

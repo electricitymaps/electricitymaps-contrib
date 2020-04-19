@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -18,6 +18,7 @@ import MapTooltips from './maptooltips';
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime } from '../helpers/router';
+import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
   useClientVersionFetch,
   useGridDataPolling,
@@ -49,6 +50,8 @@ const Main = ({
   const location = useLocation();
   const datetime = useCustomDatetime();
 
+  const showLoadingOverlay = useLoadingOverlayVisible();
+
   // Check for the latest client version once initially.
   useClientVersionFetch();
 
@@ -75,7 +78,7 @@ const Main = ({
       >
         <Header />
         <div id="inner">
-          <div id="loading" className="loading overlay" />
+          {showLoadingOverlay && <div id="loading" className="loading overlay" />}
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />

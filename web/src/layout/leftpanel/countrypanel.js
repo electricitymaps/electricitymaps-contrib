@@ -91,6 +91,8 @@ const CountryPanel = ({
   const [tooltip, setTooltip] = useState(null);
   const [pressedBackKey, setPressedBackKey] = useState(false);
 
+  const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
+
   const location = useLocation();
   const { zoneId } = useParams();
 
@@ -240,7 +242,7 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              <div className="loading overlay" />
+              {isLoadingHistories && <div className="loading overlay" />}
               <span
                 className="country-history-title"
                 dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
@@ -253,7 +255,7 @@ const CountryPanel = ({
 
               {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
 
-              <div className="loading overlay" />
+              {isLoadingHistories && <div className="loading overlay" />}
               <span className="country-history-title">
                 {tableDisplayEmissions
                   ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
@@ -268,7 +270,7 @@ const CountryPanel = ({
 
               <CountryHistoryMixGraph />
 
-              <div className="loading overlay" />
+              {isLoadingHistories && <div className="loading overlay" />}
               <span className="country-history-title">
                 {__('country-history.electricityprices24h')}
               </span>
