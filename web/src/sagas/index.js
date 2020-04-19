@@ -14,6 +14,16 @@ import {
   fetchGfsForecast,
 } from '../helpers/gfs';
 
+function* fetchClientVersion(action) {
+  try {
+    const version = yield call(textRequest, '/clientVersion');
+    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
+  } catch (error) {
+    const appState = yield select(state => state.application);
+    handleConnectionReturnCode(error, appState);
+  }
+}
+
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
   LoadingService.startLoading('.country-history .loading');
@@ -45,16 +55,6 @@ function* fetchGridData(action) {
   }
   if (showLoading) LoadingService.stopLoading('#loading');
   LoadingService.stopLoading('#small-loading');
-}
-
-function* fetchClientVersion(action) {
-  try {
-    const version = yield call(textRequest, '/clientVersion');
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
-  } catch (error) {
-    const appState = yield select(state => state.application);
-    handleConnectionReturnCode(error, appState);
-  }
 }
 
 // TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.

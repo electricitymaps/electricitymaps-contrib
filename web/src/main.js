@@ -485,24 +485,6 @@ try {
 }
 
 //
-// *** DATA MANAGEMENT ***
-//
-
-function fetch(showLoading, callback) {
-  const datetime = getCustomDatetime();
-
-  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading } });
-
-  if (callback) callback();
-}
-
-// Only for debugging purposes
-window.retryFetch = () => {
-  dispatchApplication('showConnectionWarning', false);
-  fetch(false);
-};
-
-//
 // *** OBSERVERS ***
 //
 // Declare and attach all listeners that will react
@@ -615,15 +597,3 @@ observe(state => state.application.windEnabled, (windEnabled) => {
   }
 });
 observe(state => state.data.wind, () => { renderWind(); });
-
-//
-// *** START ***
-//
-
-// Start a fetch and show loading screen
-fetch(true, () => {
-  if (!getCustomDatetime()) {
-    // Further calls to `fetch` won't show loading screen
-    setInterval(fetch, DATA_FETCH_INTERVAL);
-  }
-});

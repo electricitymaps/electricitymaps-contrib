@@ -17,8 +17,9 @@ import MapTooltips from './maptooltips';
 // Modules
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useClientVersionFetch } from '../hooks/fetch';
-import { dispatchApplication } from '../store';
+import { useCustomDatetime } from '../helpers/router';
+import { useClientVersionFetch, useGridDataPolling } from '../hooks/fetch';
+import { dispatch, dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import Toggle from '../components/toggle';
 
@@ -41,9 +42,13 @@ const Main = ({
   version,
 }) => {
   const location = useLocation();
+  const datetime = useCustomDatetime();
 
   // Check for the latest client version once initially.
   useClientVersionFetch();
+
+  // Start grid data polling as soon as the app is mounted.
+  useGridDataPolling();
 
   return (
     <React.Fragment>
@@ -96,7 +101,8 @@ const Main = ({
                 <a
                   href=""
                   onClick={(e) => {
-                    window.retryFetch();
+                    dispatchApplication('showConnectionWarning', false);
+                    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
                     e.preventDefault();
                   }}
                 >
