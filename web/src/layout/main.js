@@ -18,7 +18,12 @@ import MapTooltips from './maptooltips';
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime } from '../helpers/router';
-import { useClientVersionFetch, useGridDataPolling } from '../hooks/fetch';
+import {
+  useClientVersionFetch,
+  useGridDataPolling,
+  useConditionalWindDataPolling,
+  useConditionalSolarDataPolling,
+} from '../hooks/fetch';
 import { dispatch, dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import Toggle from '../components/toggle';
@@ -49,6 +54,12 @@ const Main = ({
 
   // Start grid data polling as soon as the app is mounted.
   useGridDataPolling();
+
+  // Poll wind data if the toggle is enabled.
+  useConditionalWindDataPolling();
+
+  // Poll solar data if the toggle is enabled.
+  useConditionalSolarDataPolling();
 
   return (
     <React.Fragment>

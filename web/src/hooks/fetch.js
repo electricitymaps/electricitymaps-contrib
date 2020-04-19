@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
+import moment from 'moment';
 
-import { useCustomDatetime } from '../helpers/router';
+import { useCustomDatetime, useWindEnabled, useSolarEnabled } from '../helpers/router';
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
 import { useCurrentZoneHistory } from './redux';
@@ -53,4 +54,54 @@ export function useGridDataPolling() {
       }, DATA_FETCH_INTERVAL);
     }
   }, [datetime]);
+}
+
+export function useConditionalWindDataPolling() {
+  const windEnabled = useWindEnabled();
+  const customDatetime = useCustomDatetime();
+  const datetime = moment(customDatetime || new Date());
+  const dispatch = useDispatch();
+
+  let pollInterval;
+
+  // After initial request, do the polling only if the custom datetime is not specified.
+  useEffect(() => {
+    clearInterval(pollInterval);
+    if (windEnabled) {
+      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+      if (!customDatetime) {
+        pollInterval = setInterval(() => {
+          dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+        }, DATA_FETCH_INTERVAL);
+      }
+    } else {
+      // TODO: Find a nicer way to invalidate the wind data (or remove it altogether when wind layer is moved to React).
+      dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
+    }
+  }, [windEnabled, datetime]);
+}
+
+export function useConditionalSolarDataPolling() {
+  const solarEnabled = useSolarEnabled();
+  const customDatetime = useCustomDatetime();
+  const datetime = moment(customDatetime || new Date());
+  const dispatch = useDispatch();
+
+  let pollInterval;
+
+  // After initial request, do the polling only if the custom datetime is not specified.
+  useEffect(() => {
+    clearInterval(pollInterval);
+    if (solarEnabled) {
+      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
+      if (!customDatetime) {
+        pollInterval = setInterval(() => {
+          dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+        }, DATA_FETCH_INTERVAL);
+      }
+    } else {
+      // TODO: Find a nicer way to invalidate the solar data (or remove it altogether when solar layer is moved to React).
+      dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
+    }
+  }, [solarEnabled, datetime]);
 }

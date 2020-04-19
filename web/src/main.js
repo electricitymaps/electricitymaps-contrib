@@ -23,7 +23,6 @@ import thirdPartyServices from './services/thirdparty';
 
 // Utils
 import { getCo2Scale } from './helpers/scales';
-import { getEndpoint, handleConnectionReturnCode } from './helpers/api';
 import {
   history,
   isSolarEnabled,
@@ -35,7 +34,6 @@ import {
 } from './helpers/router';
 
 import {
-  DATA_FETCH_INTERVAL,
   MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
@@ -56,7 +54,6 @@ const d3 = Object.assign(
   require('d3-interpolate'),
 );
 const moment = require('moment');
-const getSymbolFromCurrency = require('currency-symbol-map');
 
 // State management
 const {
@@ -68,15 +65,9 @@ const {
 } = require('./store');
 
 // Helpers
-const { modeOrder, modeColor } = require('./helpers/constants');
 const grib = require('./helpers/grib');
 const scales = require('./helpers/scales');
-const { saveKey } = require('./helpers/storage');
-const translation = require('./helpers/translation');
 const { themes } = require('./helpers/themes');
-
-// Configs
-const zonesConfig = require('../../config/zones.json');
 
 /*
   ****************************************************************
@@ -560,40 +551,8 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   }
 });
 
-// Observe for solar settings change
-// TODO: Remove this after solar layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-let solarInterval;
-observe(state => state.application.solarEnabled, (solarEnabled) => {
-  const datetime = getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date());
-  if (solarEnabled) {
-    dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
-    solarInterval = setInterval(() => {
-      dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
-    }, DATA_FETCH_INTERVAL);
-  } else {
-    dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
-    clearInterval(solarInterval);
-  }
-});
+// Observe for solar data change
 observe(state => state.data.solar, () => { renderSolar(); });
 
-// Observe for wind settings change
-// TODO: Remove this after wind layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-let windInterval;
-observe(state => state.application.windEnabled, (windEnabled) => {
-  const datetime = getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date());
-  if (windEnabled) {
-    dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: true } });
-    windInterval = setInterval(() => {
-      dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
-    }, DATA_FETCH_INTERVAL);
-  } else {
-    dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
-    clearInterval(windInterval);
-  }
-});
+// Observe for wind data change
 observe(state => state.data.wind, () => { renderWind(); });
