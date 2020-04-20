@@ -1,19 +1,12 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable prefer-spread */
 // TODO: re-enable rules
 
-// Import locales required
-const locales = {
-  en: require('../../locales/en.json'),
-  [locale]: require(`../../locales/${locale}.json`),
-};
-const { vsprintf } = require('sprintf-js');
+import { vsprintf } from 'sprintf-js';
 
 function translateWithLocale(locale, keyStr) {
   const keys = keyStr.split('.');
-  let result = locales[locale];
+  let result = window.locales[locale];
   for (let i = 0; i < keys.length; i += 1) {
     if (result == null) { break; }
     result = result[keys[i]];

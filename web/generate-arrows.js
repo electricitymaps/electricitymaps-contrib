@@ -1,5 +1,4 @@
 // Requires `brew install imagemagick`
-// import themes from './helpers/themes'
 
 const child_process = require('child_process');
 const fs = require('fs');

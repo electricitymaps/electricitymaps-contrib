@@ -179,7 +179,7 @@ class ExchangeLayer {
         }
         const prefix = this.colorblindMode ? 'colorblind-' : ''
         const duration = +this.exchangeAnimationDurationScale(Math.abs(d.netFlow || 0));
-        return `images/${prefix}arrow-${intensity}-animated-${duration}.gif`;
+        return resolvePath(`images/${prefix}arrow-${intensity}-animated-${duration}.gif`);
       });
 
     return this;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { MAP_COUNTRY_TOOLTIP_KEY } from '../../helpers/constants';
 import { __, getFullZoneName } from '../../helpers/translation';
 import { getCo2Scale } from '../../helpers/scales';
 import { co2Sub } from '../../helpers/formatting';
@@ -13,45 +12,43 @@ import { ZoneName } from './common';
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  countryData: state.application.tooltipData,
   electricityMixMode: state.application.electricityMixMode,
-  visible: state.application.tooltipDisplayMode === MAP_COUNTRY_TOOLTIP_KEY,
 });
 
 const MapCountryTooltip = ({
   colorBlindModeEnabled,
-  countryData,
   electricityMixMode,
-  visible,
+  position,
+  zoneData,
 }) => {
-  if (!visible || !countryData) return null;
+  if (!zoneData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   const co2intensity = electricityMixMode === 'consumption'
-    ? countryData.co2intensity
-    : countryData.co2intensityProduction;
+    ? zoneData.co2intensity
+    : zoneData.co2intensityProduction;
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
-    ? countryData.fossilFuelRatio
-    : countryData.fossilFuelRatioProduction;
+    ? zoneData.fossilFuelRatio
+    : zoneData.fossilFuelRatioProduction;
   const fossilFuelPercentage = fossilFuelRatio !== null
     ? Math.round(100 * (1 - fossilFuelRatio))
     : '?';
 
   const renewableRatio = electricityMixMode === 'consumption'
-    ? countryData.renewableRatio
-    : countryData.renewableRatioProduction;
+    ? zoneData.renewableRatio
+    : zoneData.renewableRatioProduction;
   const renewablePercentage = renewableRatio !== null
     ? Math.round(100 * renewableRatio)
     : '?';
 
   return (
-    <Tooltip id="country-tooltip">
+    <Tooltip id="country-tooltip" position={position}>
       <div className="zone-name-header">
-        <ZoneName zone={countryData.countryCode} />
+        <ZoneName zone={zoneData.countryCode} />
       </div>
-      {countryData.hasParser ? (
+      {zoneData.hasParser ? (
         co2intensity ? (
           <div className="zone-details">
             <div className="country-table-header-inner">

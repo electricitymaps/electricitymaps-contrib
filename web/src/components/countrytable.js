@@ -1,24 +1,31 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, {
   useRef,
   useMemo,
   useEffect,
   useState,
 } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
-import { isArray, isFinite } from 'lodash';
+import { isArray, isFinite, noop } from 'lodash';
 
-import { dispatch } from '../store';
-import { useWidthObserver } from '../effects';
-import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
+import { dispatch, dispatchApplication } from '../store';
+import { useWidthObserver } from '../hooks/viewport';
+import {
+  useCurrentZoneData,
+  useCurrentZoneExchangeKeys,
+} from '../hooks/redux';
 import { getCo2Scale } from '../helpers/scales';
+import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
 import { getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
+import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
+import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import CountryTableOverlayIfNoData from './countrytableoverlayifnodata';
 
 const LABEL_MAX_WIDTH = 102;
@@ -29,34 +36,6 @@ const PADDING_X = 5;
 const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
-
-function handleRowMouseMove(isMobile, mode, zoneData, electricityMixMode, ev) {
-  dispatch({
-    type: 'SET_CO2_COLORBAR_MARKER',
-    payload: {
-      marker: modeOrder.includes(mode)
-        ? getProductionCo2Intensity(mode, zoneData)
-        : getExchangeCo2Intensity(mode, zoneData, electricityMixMode),
-    },
-  });
-  dispatch({
-    type: 'SHOW_TOOLTIP',
-    payload: {
-      data: zoneData,
-      displayMode: mode,
-      // If in mobile mode, put the tooltip to the top of the screen for
-      // readability, otherwise float it depending on the cursor position.
-      position: !isMobile
-        ? { x: ev.clientX - 7, y: ev.clientY - 7 }
-        : { x: 0, y: 0 },
-    },
-  });
-}
-
-function handleRowMouseOut() {
-  dispatch({ type: 'UNSET_CO2_COLORBAR_MARKER' });
-  dispatch({ type: 'HIDE_TOOLTIP' });
-}
 
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
@@ -144,41 +123,47 @@ const Axis = ({ formatTick, height, scale }) => (
 
 const Row = ({
   children,
-  data,
-  electricityMixMode,
   index,
   isMobile,
   label,
-  mode,
+  onMouseOver,
+  onMouseOut,
   width,
-}) => (
-  <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
-    {/* Row background */}
-    <rect
-      y="-1"
-      fill="transparent"
-      width={width}
-      height={ROW_HEIGHT + PADDING_Y}
-      onFocus={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
-      onMouseOver={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
-      onMouseMove={ev => handleRowMouseMove(isMobile, mode, data, electricityMixMode, ev)}
-      onMouseOut={handleRowMouseOut}
-      onBlur={handleRowMouseOut}
-    />
+}) => {
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
-    {/* Row label */}
-    <text
-      className="name"
-      style={{ pointerEvents: 'none', textAnchor: 'end' }}
-      transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-    >
-      {label}
-    </text>
+  return (
+    <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+      {/* Row background */}
+      <rect
+        y="-1"
+        fill="transparent"
+        width={width}
+        height={ROW_HEIGHT + PADDING_Y}
+        /* Support only click events in mobile mode, otherwise react to mouse hovers */
+        onClick={isMobile ? onMouseOver : noop}
+        onFocus={!isMobile ? onMouseOver : noop}
+        onMouseOver={!isMobile ? onMouseOver : noop}
+        onMouseMove={!isMobile ? onMouseOver : noop}
+        onMouseOut={onMouseOut}
+        onBlur={onMouseOut}
+      />
 
-    {/* Row content */}
-    {children}
-  </g>
-);
+      {/* Row label */}
+      <text
+        className="name"
+        style={{ pointerEvents: 'none', textAnchor: 'end' }}
+        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+      >
+        {label}
+      </text>
+
+      {/* Row content */}
+      {children}
+    </g>
+  );
+};
 
 const HorizontalBar = ({
   className,
@@ -189,20 +174,23 @@ const HorizontalBar = ({
   // Don't render if the range is not valid
   if (!isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
 
-  // Make sure that x1 < x2
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
+  const width = scale(x2) - scale(x1);
+
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
   return (
     <rect
       className={className}
+      fill={fill}
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
       style={{ pointerEvents: 'none' }}
-      fill={fill}
       x={LABEL_MAX_WIDTH + scale(x1)}
-      width={scale(x2) - scale(x1)}
+      width={width}
     />
   );
 };
@@ -235,6 +223,10 @@ const CountryCarbonEmissionsTable = React.memo(({
   height,
   isMobile,
   productionData,
+  onProductionRowMouseOver,
+  onProductionRowMouseOut,
+  onExchangeRowMouseOver,
+  onExchangeRowMouseOut,
   width,
 }) => {
   const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
@@ -261,7 +253,7 @@ const CountryCarbonEmissionsTable = React.memo(({
   };
 
   return (
-    <React.Fragment>
+    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -271,13 +263,12 @@ const CountryCarbonEmissionsTable = React.memo(({
         {productionData.map((d, index) => (
           <Row
             key={d.mode}
-            mode={d.mode}
             index={index}
             label={__(d.mode)}
             width={width}
-            electricityMixMode={electricityMixMode}
+            onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
+            onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
-            data={data}
           >
             <HorizontalBar
               className="production"
@@ -296,13 +287,12 @@ const CountryCarbonEmissionsTable = React.memo(({
         {exchangeData.map((d, index) => (
           <Row
             key={d.mode}
-            mode={d.mode}
             index={index}
             label={d.mode}
             width={width}
-            electricityMixMode={electricityMixMode}
+            onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
+            onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
-            data={data}
           >
             <image
               style={{ pointerEvents: 'none' }}
@@ -318,7 +308,7 @@ const CountryCarbonEmissionsTable = React.memo(({
           </Row>
         ))}
       </g>
-    </React.Fragment>
+    </svg>
   );
 });
 
@@ -330,6 +320,10 @@ const CountryElectricityProductionTable = React.memo(({
   height,
   isMobile,
   productionData,
+  onProductionRowMouseOver,
+  onProductionRowMouseOut,
+  onExchangeRowMouseOver,
+  onExchangeRowMouseOut,
   width,
 }) => {
   const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
@@ -364,7 +358,7 @@ const CountryElectricityProductionTable = React.memo(({
   };
 
   return (
-    <React.Fragment>
+    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -374,13 +368,12 @@ const CountryElectricityProductionTable = React.memo(({
         {productionData.map((d, index) => (
           <Row
             key={d.mode}
-            mode={d.mode}
             index={index}
             label={__(d.mode)}
             width={width}
-            electricityMixMode={electricityMixMode}
+            onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
+            onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
-            data={data}
           >
             <HorizontalBar
               className="capacity"
@@ -405,13 +398,12 @@ const CountryElectricityProductionTable = React.memo(({
         {exchangeData.map((d, index) => (
           <Row
             key={d.mode}
-            mode={d.mode}
             index={index}
             label={d.mode}
             width={width}
-            electricityMixMode={electricityMixMode}
+            onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
+            onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
-            data={data}
           >
             <image
               style={{ pointerEvents: 'none' }}
@@ -433,29 +425,28 @@ const CountryElectricityProductionTable = React.memo(({
           </Row>
         ))}
       </g>
-    </React.Fragment>
+    </svg>
   );
 });
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
-  data: getCurrentZoneData(state),
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKeys: getSelectedZoneExchangeKeys(state),
   isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
   colorBlindModeEnabled,
-  data,
   displayByEmissions,
   electricityMixMode,
-  exchangeKeys,
   isMobile,
 }) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref);
+
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const data = useCurrentZoneData();
 
   const productionData = useMemo(
     () => getProductionData(data),
@@ -466,36 +457,79 @@ const CountryTable = ({
     [data, exchangeKeys, electricityMixMode]
   );
 
+  const [productionTooltip, setProductionTooltip] = useState(null);
+  const [exchangeTooltip, setExchangeTooltip] = useState(null);
+
+  const handleProductionRowMouseOver = (mode, zoneData, ev) => {
+    dispatchApplication('co2ColorbarValue', getProductionCo2Intensity(mode, zoneData));
+    setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
+  };
+
+  const handleProductionRowMouseOut = () => {
+    dispatchApplication('co2ColorbarValue', null);
+    setProductionTooltip(null);
+  };
+
+  const handleExchangeRowMouseOver = (mode, zoneData, ev) => {
+    dispatchApplication('co2ColorbarValue', getExchangeCo2Intensity(mode, zoneData, electricityMixMode));
+    setExchangeTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
+  };
+
+  const handleExchangeRowMouseOut = () => {
+    dispatchApplication('co2ColorbarValue', null);
+    setExchangeTooltip(null);
+  };
+
   const { exchangeY, exchangeHeight } = getDataBlockPositions(productionData, exchangeData);
   const height = exchangeY + exchangeHeight;
 
   return (
-    <div className="country-table-container">
-      <svg className="country-table" height={height} style={{ overflow: 'visible' }} ref={ref}>
-        {displayByEmissions ? (
-          <CountryCarbonEmissionsTable
-            colorBlindModeEnabled={colorBlindModeEnabled}
-            electricityMixMode={electricityMixMode}
-            data={data}
-            productionData={productionData}
-            exchangeData={exchangeData}
-            width={width}
-            height={height}
-            isMobile={isMobile}
-          />
-        ) : (
-          <CountryElectricityProductionTable
-            colorBlindModeEnabled={colorBlindModeEnabled}
-            electricityMixMode={electricityMixMode}
-            data={data}
-            productionData={productionData}
-            exchangeData={exchangeData}
-            width={width}
-            height={height}
-            isMobile={isMobile}
-          />
-        )}
-      </svg>
+    <div className="country-table-container" ref={ref}>
+      {displayByEmissions ? (
+        <CountryCarbonEmissionsTable
+          colorBlindModeEnabled={colorBlindModeEnabled}
+          electricityMixMode={electricityMixMode}
+          data={data}
+          productionData={productionData}
+          exchangeData={exchangeData}
+          onProductionRowMouseOver={handleProductionRowMouseOver}
+          onProductionRowMouseOut={handleProductionRowMouseOut}
+          onExchangeRowMouseOver={handleExchangeRowMouseOver}
+          onExchangeRowMouseOut={handleExchangeRowMouseOut}
+          width={width}
+          height={height}
+          isMobile={isMobile}
+        />
+      ) : (
+        <CountryElectricityProductionTable
+          colorBlindModeEnabled={colorBlindModeEnabled}
+          electricityMixMode={electricityMixMode}
+          data={data}
+          productionData={productionData}
+          exchangeData={exchangeData}
+          onProductionRowMouseOver={handleProductionRowMouseOver}
+          onProductionRowMouseOut={handleProductionRowMouseOut}
+          onExchangeRowMouseOver={handleExchangeRowMouseOver}
+          onExchangeRowMouseOut={handleExchangeRowMouseOut}
+          width={width}
+          height={height}
+          isMobile={isMobile}
+        />
+      )}
+      {productionTooltip && (
+        <CountryPanelProductionTooltip
+          mode={productionTooltip.mode}
+          position={productionTooltip.position}
+          zoneData={productionTooltip.zoneData}
+        />
+      )}
+      {exchangeTooltip && (
+        <CountryPanelExchangeTooltip
+          exchangeKey={exchangeTooltip.mode}
+          position={exchangeTooltip.position}
+          zoneData={exchangeTooltip.zoneData}
+        />
+      )}
       <CountryTableOverlayIfNoData />
     </div>
   );

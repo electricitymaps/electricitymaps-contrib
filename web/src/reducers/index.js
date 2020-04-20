@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 
-const dataReducer = require('./dataReducer');
-const { getKey } = require('../helpers/storage');
+import { getKey } from '../helpers/storage';
 
-const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
-  || window.location.href.indexOf('192.') !== -1;
+import dataReducer from './dataReducer';
+
+const isProduction = () => window.location.href.includes('electricitymap');
+const isLocalhost = () => !isProduction() && !window.location.href.includes('192.');
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -22,18 +23,18 @@ const initialApplicationState = {
   callerZone: null,
   centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
-  co2ColorbarMarker: undefined,
+  co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  customDate: null,
+  customDatetime: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
-  isProduction: window.location.href.indexOf('electricitymap') !== -1,
-  isLocalhost,
+  isProduction: isProduction(),
+  isLocalhost: isLocalhost(),
   legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
@@ -43,13 +44,13 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  solarEnabled: cookieGetBool('solarEnabled', false),
-  useRemoteEndpoint: document.domain === '' || isLocalhost,
-  windEnabled: cookieGetBool('windEnabled', false),
+  solarColorbarValue: null,
+  solarEnabled: false,
+  windColorbarMarker: null,
+  windEnabled: false,
 
   // TODO(olc): refactor this state
-  showPageState: 'map',
-  pageToGoBackTo: null,
+  currentPage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -61,34 +62,11 @@ const applicationReducer = (state = initialApplicationState, action) => {
       const newState = Object.assign({}, state);
       newState[key] = value;
 
-      // Disabled for now (see TODO in main.js)
-      // if (key === 'selectedZoneName') {
-      //   newState.showPageState = value ? 'country' : 'map';
-      // }
-      if (key === 'showPageState'
-          && state.showPageState !== 'country') {
-        newState.pageToGoBackTo = state.showPageState;
-      }
-
       if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
         throw Error(`Unknown electricityMixMode "${value}"`);
       }
 
       return newState;
-    }
-
-    case 'GRID_DATA': {
-      const selectedZoneNameExists = Object.keys(action.payload.countries)
-        .indexOf(state.selectedZoneName) !== -1;
-      if (state.selectedZoneName != null && !selectedZoneNameExists) {
-        // The selectedZoneName doesn't exist anymore, we need to reset it
-        // TODO(olc): the page state should be inferred from selectedZoneName
-        return Object.assign({}, state, {
-          selectedZoneName: undefined,
-          showPageState: state.pageToGoBackTo || 'map',
-        });
-      }
-      return state;
     }
 
     case 'SHOW_TOOLTIP': {
@@ -105,26 +83,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
       });
     }
 
-    case 'SET_CO2_COLORBAR_MARKER': {
-      const co2ColorbarMarker = action.payload.marker;
-      if (co2ColorbarMarker !== state.co2ColorbarMarker) {
-        return Object.assign({}, state, { co2ColorbarMarker });
-      }
-      return state;
-    }
-
-    case 'UNSET_CO2_COLORBAR_MARKER': {
-      return Object.assign({}, state, {
-        co2ColorbarMarker: undefined,
-      });
-    }
-
-    case 'UPDATE_SELECTED_ZONE': {
-      const { selectedZoneName } = action.payload;
-      return Object.assign({}, state, {
-        selectedZoneName,
-        selectedZoneTimeIndex: null,
-      });
+    case 'UPDATE_STATE_FROM_URL': {
+      return Object.assign({}, state, action.payload);
     }
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
