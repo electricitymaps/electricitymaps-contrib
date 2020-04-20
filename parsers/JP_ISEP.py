@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 import os
-import time
-import arrow
+import re
+import json
 import logging
+import requests
 import datetime
-import pyvirtualdisplay
-import selenium.webdriver
 
 import pandas as pd
-
-from glob import glob
-from selenium.webdriver.firefox.options import Options
 
 url = 'https://isep-energychart.com/en/graphics/electricityproduction/?region={region}&period_year={year}&period_month={month}&period_day={day}&period_length=1day&display_format=residual_demand'
 timezone = 'Japan'
@@ -30,67 +26,37 @@ MAP_ZONE_TO_REGION_NAME = {
 }
 
 COLUMN_MAP = {
-   'Area Demand Electricity Generation[MWh]':'consumption',
-   'Geothermal Electricity Generation[MWh]':'geothermal',
-   'Biomass Electricity Generation[MWh]':'biomass',
-   'Hydro Electricity Generation[MWh]':'hydro', 
-   'Wind Electricity Generation[MWh]':'wind',
-   'Solar PV Electricity Generation[MWh]':'solar',
-   'Nuclear Electricity Generation[MWh]':'nuclear',
-   'Fossil Fuels Electricity Generation[MWh]':'unknown',
-   'Pumped Hydro Electricity Generation[MWh]':'pumped hydro',
-   'Interconnection Electricity Generation[MWh]':'exchanges',
-   'Solar PV Curtailment Electricity Generation[MWh]': 'solar curtailment',
-   'Wind Curtailment Electricity Generation[MWh]': 'wind curtailment'
+   'demand':'consumption',
+   'wind_performance':'wind',
+   'solar_performance':'solar',
+   'thermal':'unknown',
+   'pumped':'pumped hydro',
+   'interconnection':'exchanges',
+   'solar_suppression': 'solar curtailment',
+   'wind_suppression': 'wind curtailment'
 }
 
-# prevents selenium from opening an actual browser window
-display = pyvirtualdisplay.Display(visible=0, size=(1280, 1024,))
-display.start()
-
-def make_firefox_driver():
-    fp = selenium.webdriver.FirefoxProfile()
-    fp.set_preference("browser.download.dir",os.getcwd());
-    fp.set_preference("browser.download.folderList",2);
-    fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream");
-    
-    opts = Options()
-    opts.profile = fp
-    
-    return selenium.webdriver.Firefox(options = opts)
-
-
 def get_data(region, year, month, day):
-    driver = make_firefox_driver()
-    driver.get(url.format(**{'region':region,'year':year,'month':month,'day':day}))
+    r = requests.get(url.format(**{'region':region,
+                                    'year':year,
+                                    'month':month,
+                                    'day':day}))
 
-    elem = driver.find_elements_by_xpath("//*[@data-file_type='xls']")[0]
-    elem.click()
-    
-    #Add leading 0s to month and day
-    _month = '%02.0f'%month
-    _day = '%02.0f'%day
-    
-    i = 0
-    files_found = glob(f'Electricity*{region}-{year}{_month}{_day}*.xls')
-    while len(files_found) == 0 and i < 10:
-        time.sleep(1)
-        files_found = glob(f'Electricity*{region}-{year}{_month}{_day}*.xls')
-        i += 1
-    driver.close()
-    assert len(files_found) > 0, 'Excel file not downloaded properly'
-    df = pd.read_excel(files_found[0])
+    assert r.status_code == 200, 'Could not get url'
 
-    os.remove(files_found[0])
+    jsonval_matches = re.findall("(?<=var jsonval = JSON.parse\(\').*(?=\'\)\n\t)",
+                                r.text)
+    assert len(jsonval_matches), 'Data not found. Perhaps the format of the html file has changed, or data for this date is not yet available?'
+
+    df = pd.read_json(jsonval_matches[0])
+    
     return df
 
-def process_data(df, year):
-    #add year to datetime
-    df['Date & Time'] = df['Date & Time'].map(lambda x: '%s '%year + x)
-    
+def process_data(df):
     #convert to timestamp with timezone info
-    df['ts'] = pd.to_datetime(df['Date & Time'], format=('%Y %b %d. %H:%M'))
-    df['ts'] = df['ts'].dt.tz_localize(timezone).dt.tz_convert('UTC')
+    df['date_time'] = pd.to_datetime(df['date_time']).dt\
+                            .tz_localize(timezone).dt\
+                            .tz_convert('UTC')
     
     df = df.rename(columns = COLUMN_MAP)
     
@@ -170,12 +136,12 @@ def fetch_production(zone_key='JP', session=None,
     day = target_datetime.day
 
     df = get_data(region,year,month,day)
-    df = process_data(df, year)
+    df = process_data(df)
 
     data = []
     for name, row in df.iterrows():
         dat = {
-            'datetime': row['ts'].to_pydatetime(),
+            'datetime': row['date_time'].to_pydatetime(),
             'zoneKey': zone_key,
             'production': {
                 'biomass': row.get('biomass', None),
@@ -247,12 +213,12 @@ def fetch_consumption(zone_key='JP', session=None,
     day = target_datetime.day
 
     df = get_data(region,year,month,day)
-    df = process_data(df, year)
+    df = process_data(df)
 
     data = []
     for name, row in df.iterrows():
         dat = {
-            'datetime': row['ts'].to_pydatetime(),
+            'datetime': row['date_time'].to_pydatetime(),
             'zoneKey': zone_key,
             'consumption': row.get('consumption', None),
             'source': 'isep-energychart.com'
