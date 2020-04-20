@@ -97,9 +97,6 @@ let zoneMap;
 let windLayer;
 let solarLayer;
 
-// Set standard theme
-let theme = themes.bright;
-
 // Set proper locale
 moment.locale(getState().application.locale.toLowerCase());
 
@@ -353,7 +350,7 @@ function renderZones(state) {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
+  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -515,13 +512,9 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  // update Theme
-  if (brightModeEnabled) {
-    theme = themes.bright;
-  } else {
-    theme = themes.dark;
+  if (zoneMap) {
+    zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
   }
-  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
 });
 
 observe(state => state.application.centeredZoneName, (centeredZoneName, state) => {
