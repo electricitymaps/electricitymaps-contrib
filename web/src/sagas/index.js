@@ -52,7 +52,7 @@ function* fetchGridData(action) {
 
 // TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
 function* fetchSolarData(action) {
-  const { datetime } = action.payload;
+  const { datetime } = action.payload || {};
   try {
     const before = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeBefore(datetime));
     const after = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeAfter(datetime));
@@ -66,7 +66,7 @@ function* fetchSolarData(action) {
 
 // TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
 function* fetchWindData(action) {
-  const { datetime } = action.payload;
+  const { datetime } = action.payload || {};
   try {
     const before = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeBefore(datetime));
     const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime));

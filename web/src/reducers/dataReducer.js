@@ -161,7 +161,6 @@ module.exports = (state = initialDataState, action) => {
 
     case 'GRID_DATA_FETCH_FAILED': {
       // TODO: Implement error handling
-      console.error('Error fetching grid data', action.error.message);
       return { ...state, isLoadingGrid: false };
     }
 
@@ -187,7 +186,6 @@ module.exports = (state = initialDataState, action) => {
 
     case 'ZONE_HISTORY_FETCH_FAILED': {
       // TODO: Implement error handling
-      console.error('Error fetching zone history data', action.error.message);
       return { ...state, isLoadingHistories: false };
     }
 
@@ -201,7 +199,6 @@ module.exports = (state = initialDataState, action) => {
 
     case 'SOLAR_DATA_FETCH_FAILED': {
       // TODO: Implement error handling
-      console.error('Error fetching solar data', action.error.message);
       return { ...state, isLoadingSolar: false, solar: null };
     }
 
@@ -215,7 +212,6 @@ module.exports = (state = initialDataState, action) => {
 
     case 'WIND_DATA_FETCH_FAILED': {
       // TODO: Implement error handling
-      console.error('Error fetching wind data', action.error.message);
       return { ...state, isLoadingWind: false, wind: null };
     }
 
