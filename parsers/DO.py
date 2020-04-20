@@ -71,7 +71,7 @@ thermal_plants = {
                  u'SAN FELIPE': 'oil',
                  u'SAN FELIPE CC': 'gas',
                  u'SAN FELIPE VAP': 'oil',
-                 u'SAN LORENZO 1': 'oil',
+                 u'SAN LORENZO 1': 'gas',
                  u'SAN PEDRO BIO-ENERGY': 'biomass',
                  u'SAN PEDRO VAPOR': 'oil',
                  u'SULTANA DEL ESTE': 'oil'
