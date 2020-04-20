@@ -116,7 +116,7 @@ const Main = ({
                   href=""
                   onClick={(e) => {
                     dispatchApplication('showConnectionWarning', false);
-                    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, showLoading: false } });
+                    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
                     e.preventDefault();
                   }}
                 >

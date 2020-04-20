@@ -42,17 +42,16 @@ export function useGridDataPolling() {
   const datetime = useCustomDatetime();
   const dispatch = useDispatch();
 
-  let pollInterval;
-
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
-    clearInterval(pollInterval);
+    let pollInterval;
     dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
     if (!datetime) {
       pollInterval = setInterval(() => {
         dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
       }, DATA_FETCH_INTERVAL);
     }
+    return () => clearInterval(pollInterval);
   }, [datetime]);
 }
 

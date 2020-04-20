@@ -50,7 +50,6 @@ function* fetchGridData(action) {
   }
 }
 
-// TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
 function* fetchSolarData(action) {
   const { datetime } = action.payload || {};
   try {
@@ -64,7 +63,6 @@ function* fetchSolarData(action) {
   }
 }
 
-// TODO: Try datetime.subtract(GFS_STEP_ORIGIN, 'hour') once if the first attempt doesn't work.
 function* fetchWindData(action) {
   const { datetime } = action.payload || {};
   try {

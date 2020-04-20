@@ -1,18 +1,13 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-template */
-// TODO(olc): Remove after refactor
-
-// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
-import { event as currentEvent } from 'd3-selection';
+import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { event as currentEvent, select } from 'd3-selection';
+import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 
 // Components
 import ZoneMap from './components/map';
-
-// Layer Components
 import ExchangeLayer from './components/layers/exchange';
 import SolarLayer from './components/layers/solar';
 import WindLayer from './components/layers/wind';
@@ -20,8 +15,19 @@ import WindLayer from './components/layers/wind';
 // Services
 import thirdPartyServices from './services/thirdparty';
 
-// Utils
-import { getCo2Scale } from './helpers/scales';
+// State management
+import {
+  dispatch,
+  dispatchApplication,
+  getState,
+  observe,
+  store,
+} from './store';
+
+// Helpers
+import grib from './helpers/grib';
+import { themes } from './helpers/themes';
+import { getCo2Scale, windColor } from './helpers/scales';
 import {
   history,
   isSolarEnabled,
@@ -31,7 +37,6 @@ import {
   getCustomDatetime,
   getZoneId,
 } from './helpers/router';
-
 import {
   MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
@@ -39,34 +44,6 @@ import {
 
 // Layout
 import Main from './layout/main';
-
-// Libraries
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-collection'),
-  require('d3-queue'),
-  require('d3-request'),
-  require('d3-scale'),
-  require('d3-selection'),
-  require('d3-scale-chromatic'),
-  require('d3-interpolate'),
-);
-const moment = require('moment');
-
-// State management
-const {
-  dispatch,
-  dispatchApplication,
-  getState,
-  observe,
-  store,
-} = require('./store');
-
-// Helpers
-const grib = require('./helpers/grib');
-const scales = require('./helpers/scales');
-const { themes } = require('./helpers/themes');
 
 /*
   ****************************************************************
@@ -92,13 +69,13 @@ let mapDraggedSinceStart = false;
 let hasCenteredMap = false;
 
 // Set up objects
-let exchangeLayer = null;
+let exchangeLayer;
 let zoneMap;
 let windLayer;
 let solarLayer;
 
 // Set proper locale
-moment.locale(getState().application.locale.toLowerCase());
+moment.locale(window.locale.toLowerCase());
 
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
@@ -154,20 +131,20 @@ const app = {
       const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
         ? 30
         : 20;
-      d3.select('#header')
+      select('#header')
         .style('padding-top', `${extraPadding}px`);
-      d3.select('#mobile-header')
+      select('#mobile-header')
         .style('padding-top', `${extraPadding}px`);
 
-      d3.select('.prodcons-toggle-container')
+      select('.prodcons-toggle-container')
         .style('margin-top', `${extraPadding}px`);
 
-      d3.select('.flash-message .inner')
+      select('.flash-message .inner')
         .style('padding-top', `${extraPadding}px`);
 
-      d3.select('.mapboxgl-ctrl-top-right')
+      select('.mapboxgl-ctrl-top-right')
         .style('transform', `translate(0,${extraPadding}px)`);
-      d3.select('.layer-buttons-container')
+      select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
@@ -192,15 +169,15 @@ if (getState().application.isCordova) {
 // *** MAP & LAYERS ***
 //
 
-function renderWind() {
+function renderWind(state) {
   if (windLayer) {
-    const { wind } = getState().data;
+    const { wind } = state.data;
     if (isWindEnabled() && wind && wind.forecasts[0] && wind.forecasts[1]) {
       windLayer.draw(
         getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date()),
         wind.forecasts[0],
         wind.forecasts[1],
-        scales.windColor,
+        windColor,
       );
       windLayer.show();
     } else {
@@ -209,9 +186,9 @@ function renderWind() {
   }
 }
 
-function renderSolar() {
+function renderSolar(state) {
   if (solarLayer) {
-    const { solar } = getState().data;
+    const { solar } = state.data;
     if (isSolarEnabled() && solar && solar.forecasts[0] && solar.forecasts[1]) {
       solarLayer.draw(
         getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime(),
@@ -254,12 +231,6 @@ function renderMap(state) {
     }
   }
 
-  // Render Wind
-  renderWind();
-
-  // Render Solar
-  renderSolar();
-
   // Resize map to make sure it takes all container space
   // Warning: this causes a flicker
   zoneMap.map.resize();
@@ -268,7 +239,7 @@ function renderMap(state) {
 function mapMouseOver(lonlat) {
   const { solar, wind } = getState().data;
 
-  if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
+  if (isWindEnabled() && wind && lonlat && windLayer) {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
@@ -282,7 +253,7 @@ function mapMouseOver(lonlat) {
     dispatchApplication('windColorbarValue', null);
   }
 
-  if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
+  if (isSolarEnabled() && solar && lonlat && solarLayer) {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -306,12 +277,12 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
       selectedZoneCoordinates.push(coord);
     });
   });
-  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
-  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
-  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
-  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
-  const lon = d3.mean([minLon, maxLon]);
-  const lat = d3.mean([minLat, maxLat]);
+  const maxLon = d3Max(selectedZoneCoordinates, d => d[0]);
+  const minLon = d3Min(selectedZoneCoordinates, d => d[0]);
+  const maxLat = d3Max(selectedZoneCoordinates, d => d[1]);
+  const minLat = d3Min(selectedZoneCoordinates, d => d[1]);
+  const lon = d3Mean([minLon, maxLon]);
+  const lat = d3Mean([minLat, maxLat]);
 
   zoneMap.setCenter([lon, lat]);
   if (zoomLevel) {
@@ -488,10 +459,15 @@ observe(state => state.data.grid, (grid, state) => {
 
 // Observe for page change
 observe(state => state.application.currentPage, (currentPage, state) => {
-  if (currentPage === 'map') {
-    // Refresh map in the next render cycle (after the page
-    // transition) to make sure it gets displayed correctly.
-    setTimeout(() => { renderMap(state); }, 0);
+  // Refresh map in the next render cycle (after the page transition) to make
+  // sure it gets displayed correctly. Do it only on mobile as otherwise the
+  // map is being displayed the whole time (on every page).
+  if (currentPage === 'map' && state.application.isMobile) {
+    setTimeout(() => {
+      renderMap(state);
+      renderWind(state);
+      renderSolar(state);
+    }, 0);
   }
 
   // Analytics
@@ -531,7 +507,7 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 });
 
 // Observe for solar data change
-observe(state => state.data.solar, () => { renderSolar(); });
+observe(state => state.data.solar, (_, state) => { renderSolar(state); });
 
 // Observe for wind data change
-observe(state => state.data.wind, () => { renderWind(); });
+observe(state => state.data.wind, (_, state) => { renderWind(state); });
