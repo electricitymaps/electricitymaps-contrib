@@ -17,5 +17,3 @@ tablib==0.12.1
 testfixtures==6.0.0
 opencv-python==4.2.0.32
 xlrd==1.1.0
-selenium==3.141.0
-pyvirtualdisplay==0.2.5
