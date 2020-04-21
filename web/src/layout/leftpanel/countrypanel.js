@@ -187,7 +187,7 @@ const CountryPanel = ({
                   className="country-col-headline"
                   dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
                 />
-                <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
+                <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">

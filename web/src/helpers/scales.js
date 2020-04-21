@@ -29,7 +29,7 @@ export const solarColor = scaleLinear()
   .range(['black', 'white', 'gold'])
   .clamp(true);
 
-// ** CO2
+// ** CO₂
 export const getCo2Scale = (colorBlindModeEnabled) => {
   const theme = colorBlindModeEnabled
     ? themes.colorblindScale

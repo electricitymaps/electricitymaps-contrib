@@ -11,7 +11,7 @@ export const CarbonIntensity = ({ colorBlindModeEnabled, intensity }) => {
     <React.Fragment>
       <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />
       {' '}
-      <b>{Math.round(intensity) || '?'}</b> gCO<span className="sub">2</span>eq/kWh
+      <b>{Math.round(intensity) || '?'}</b> gCO₂eq/kWh
     </React.Fragment>
   );
 };
