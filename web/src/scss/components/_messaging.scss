@@ -49,6 +49,9 @@
     filter: alpha(opacity=50);
     opacity: 0.8;
     background-color:$lighter-gray;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .no-data-overlay-message{

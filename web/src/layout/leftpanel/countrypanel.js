@@ -22,6 +22,7 @@ import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissio
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
+import LoadingPlaceholder from '../../components/loadingplaceholder';
 import thirdPartyServices from '../../services/thirdparty';
 
 import { dispatch, dispatchApplication } from '../../store';
@@ -242,7 +243,6 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              {isLoadingHistories && <div className="loading overlay" />}
               <span
                 className="country-history-title"
                 dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
@@ -252,10 +252,11 @@ const CountryPanel = ({
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
+                tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
+              )}
 
-              {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
-
-              {isLoadingHistories && <div className="loading overlay" />}
               <span className="country-history-title">
                 {tableDisplayEmissions
                   ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
@@ -267,15 +268,14 @@ const CountryPanel = ({
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
 
-              <CountryHistoryMixGraph />
-
-              {isLoadingHistories && <div className="loading overlay" />}
               <span className="country-history-title">
                 {__('country-history.electricityprices24h')}
               </span>
-
-              <CountryHistoryPricesGraph />
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="7.2em" /> : <CountryHistoryPricesGraph />}
             </div>
             <hr />
             <div>
