@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -16,8 +16,18 @@ import MapTooltips from './maptooltips';
 
 // Modules
 import { __ } from '../helpers/translation';
-import { dispatchApplication } from '../store';
+import { isNewClientVersion } from '../helpers/environment';
+import { useCustomDatetime } from '../helpers/router';
+import { useLoadingOverlayVisible } from '../hooks/redux';
+import {
+  useClientVersionFetch,
+  useGridDataPolling,
+  useConditionalWindDataPolling,
+  useConditionalSolarDataPolling,
+} from '../hooks/fetch';
+import { dispatch, dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
+import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
 // TODO: Move all styles from styles.css to here
@@ -26,11 +36,34 @@ import Toggle from '../components/toggle';
 const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
+  hasConnectionWarning: state.data.hasConnectionWarning,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  version: state.application.version,
 });
 
-const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) => {
+const Main = ({
+  brightModeEnabled,
+  electricityMixMode,
+  isLeftPanelCollapsed,
+  hasConnectionWarning,
+  version,
+}) => {
   const location = useLocation();
+  const datetime = useCustomDatetime();
+
+  const showLoadingOverlay = useLoadingOverlayVisible();
+
+  // Check for the latest client version once initially.
+  useClientVersionFetch();
+
+  // Start grid data polling as soon as the app is mounted.
+  useGridDataPolling();
+
+  // Poll wind data if the toggle is enabled.
+  useConditionalWindDataPolling();
+
+  // Poll solar data if the toggle is enabled.
+  useConditionalSolarDataPolling();
 
   return (
     <React.Fragment>
@@ -46,7 +79,7 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) =
       >
         <Header />
         <div id="inner">
-          <div id="loading" className="loading overlay" />
+          <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />
@@ -75,14 +108,14 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) =
             <LayerButtons />
           </div>
 
-          <div id="connection-warning" className="flash-message">
+          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
               {__('misc.oops')}
               {' '}
               <a
                 href=""
                 onClick={(e) => {
-                  window.retryFetch();
+                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
                   e.preventDefault();
                 }}
               >
@@ -91,7 +124,7 @@ const Main = ({ brightModeEnabled, electricityMixMode, isLeftPanelCollapsed }) =
               .
             </div>
           </div>
-          <div id="new-version" className="flash-message">
+          <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>

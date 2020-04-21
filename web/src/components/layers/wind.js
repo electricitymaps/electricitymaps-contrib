@@ -142,8 +142,7 @@ class WindLayer {
     const sw = unproject([0, height]);
     const ne = unproject([width, 0]);
     this.canvas.style.display = 'block';
-    d3.select(this.canvas)
-      .transition().style('opacity', WIND_OPACITY);
+    this.canvas.style.opacity = WIND_OPACITY;
 
     this.windy.start(
       [[0, 0], [width, height]],
@@ -155,11 +154,12 @@ class WindLayer {
   }
 
   hide() {
+    if (this.hidden) return;
     if (this.canvas) {
-      d3.select(this.canvas).transition().style('opacity', 0)
-        .on('end', function() {
-          d3.select(this).style('display', 'none');
-        });
+      this.canvas.style.opacity = 0;
+      setTimeout(() => {
+        this.canvas.style.display = 'none';
+      }, 500);
     }
     if (this.windy) {
       this.windy.stop();

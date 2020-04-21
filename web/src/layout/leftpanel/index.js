@@ -4,6 +4,7 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
   Switch,
@@ -14,6 +15,7 @@ import {
 
 import { useSearchParams } from '../../helpers/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
+import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
 
 import FAQPanel from './faqpanel';
@@ -44,17 +46,29 @@ const HandleLegacyRoutes = () => {
 
 // TODO: Move all styles from styles.css to here
 
+const SmallLoader = styled.span`
+  background: transparent url('../images/loading/loading64_FA.gif') no-repeat center center;
+  background-size: 1.5em;
+  display: inline-block;
+  margin-right: 1em;
+  width: 1.5em;
+  height: 1em;
+`;
+
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   isMobile: state.application.isMobile,
 });
 
 const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
+  const isLoaderVisible = useSmallLoaderVisible();
+  const location = useLocation();
+
   usePageViewsTracker();
 
   // Hide the panel completely if looking at the map on mobile.
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
-  const panelHidden = isMobile && useLocation().pathname === '/map';
+  const panelHidden = isMobile && location.pathname === '/map';
 
   return (
     <div
@@ -68,7 +82,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <div className="right-header large-screen-hidden">
-            <span id="small-loading" className="loading" />
+            {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
           </div>
         </div>

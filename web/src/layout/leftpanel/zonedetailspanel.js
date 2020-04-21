@@ -3,12 +3,17 @@
 // TODO: re-enable rules
 import React, { useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { isEmpty } from 'lodash';
 
 import { dispatch } from '../../store';
+import { useCustomDatetime } from '../../helpers/router';
+import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
 import {
   useCurrentZoneHistoryDatetimes,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
+  useCurrentZoneHistory,
 } from '../../hooks/redux';
 import TimeSlider from '../../components/timeslider';
 
@@ -30,6 +35,9 @@ const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
   const datetimes = useCurrentZoneHistoryDatetimes();
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
+
+  // Fetch history for the current zone if it hasn't been fetched yet.
+  useConditionalZoneHistoryFetch();
 
   return (
     <div className="left-panel-zone-details">
