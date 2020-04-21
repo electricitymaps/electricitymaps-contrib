@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../helpers/translation';
-import { co2Sub } from '../helpers/formatting';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import thirdPartyServices from '../services/thirdparty';
@@ -26,7 +25,7 @@ const views = [{
   renderContent: () => (
     <React.Fragment>
       <div>
-        <h2 dangerouslySetInnerHTML={{ __html: co2Sub(__('onboarding-modal.view2.header')) }} />
+        <h2 dangerouslySetInnerHTML={{ __html: __('onboarding-modal.view2.header') }} />
       </div>
       <div>{__('onboarding-modal.view2.text')}</div>
     </React.Fragment>

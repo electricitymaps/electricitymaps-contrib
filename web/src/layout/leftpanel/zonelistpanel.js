@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
 import { dispatchApplication } from '../../store';
 
 import SearchBar from '../../components/searchbar';
@@ -35,7 +34,7 @@ const ZoneListPanel = () => (
       <div
         className="subtitle"
         dangerouslySetInnerHTML={{
-          __html: co2Sub(__('left-panel.zone-list-header-subtitle')),
+          __html: __('left-panel.zone-list-header-subtitle'),
         }}
       />
     </div>

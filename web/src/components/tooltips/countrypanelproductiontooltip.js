@@ -4,7 +4,7 @@ import { isFinite } from 'lodash';
 
 import { modeOrder } from '../../helpers/constants';
 import { __, getFullZoneName } from '../../helpers/translation';
-import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
+import { formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
@@ -49,14 +49,14 @@ const CountryPanelProductionTooltip = ({
     ? (zoneData.dischargeCo2IntensitySources || {})[resource]
     : (zoneData.productionCo2IntensitySources || {})[resource];
 
-  let headline = co2Sub(__(
+  let headline = __(
     isExport
       ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
       : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
     getRatioPercent(usage, totalElectricity),
     getFullZoneName(zoneData.countryCode),
     __(mode)
-  ));
+  );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 
   return (
@@ -81,7 +81,7 @@ const CountryPanelProductionTooltip = ({
           />
           <br />
           <br />
-          <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.withcarbonintensity')) }} />
+          <span dangerouslySetInnerHTML={{ __html: __('tooltips.withcarbonintensity') }} />
           <br />
           <CarbonIntensity
             colorBlindModeEnabled={colorBlindModeEnabled}

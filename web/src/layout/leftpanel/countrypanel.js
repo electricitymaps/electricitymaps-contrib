@@ -33,7 +33,6 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -185,7 +184,7 @@ const CountryPanel = ({
                 </div>
                 <div
                   className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
+                  dangerouslySetInnerHTML={{ __html: __('country-panel.carbonintensity') }}
                 />
                 <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
@@ -199,7 +198,7 @@ const CountryPanel = ({
                 </div>
                 <div
                   className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
+                  dangerouslySetInnerHTML={{ __html: __('country-panel.lowcarbon') }}
                 />
                 <div className="country-col-subtext" />
               </div>
@@ -209,7 +208,7 @@ const CountryPanel = ({
                 </div>
                 <div
                   className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
+                  dangerouslySetInnerHTML={{ __html: __('country-panel.renewable') }}
                 />
               </div>
             </div>
@@ -224,7 +223,7 @@ const CountryPanel = ({
                 <a
                   onClick={switchToZoneEmissions}
                   className={tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
+                  dangerouslySetInnerHTML={{ __html: __('country-panel.emissions') }}
                 />
               </div>
             </div>
@@ -245,7 +244,7 @@ const CountryPanel = ({
             <div className="country-history">
               <span
                 className="country-history-title"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
+                dangerouslySetInnerHTML={{ __html: __(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h') }}
               />
               <br />
               <small className="small-screen-hidden">
