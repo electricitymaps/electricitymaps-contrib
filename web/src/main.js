@@ -1,32 +1,35 @@
-/* eslint-disable camelcase */
-/* eslint-disable prefer-template */
-// TODO(olc): Remove after refactor
-
-// see https://stackoverflow.com/questions/36887428/d3-event-is-null-in-a-reactjs-d3js-component
-import { event as currentEvent } from 'd3-selection';
+import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { event as currentEvent, select } from 'd3-selection';
+import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 
 // Components
 import ZoneMap from './components/map';
-
-// Layer Components
 import ExchangeLayer from './components/layers/exchange';
 import SolarLayer from './components/layers/solar';
 import WindLayer from './components/layers/wind';
 
 // Services
-import * as DataService from './services/dataservice';
-import * as LoadingService from './services/loadingservice';
 import thirdPartyServices from './services/thirdparty';
 
-// Utils
-import { getCo2Scale } from './helpers/scales';
+// State management
+import {
+  dispatch,
+  dispatchApplication,
+  getState,
+  observe,
+  store,
+} from './store';
+
+// Helpers
+import grib from './helpers/grib';
+import { themes } from './helpers/themes';
+import { getCo2Scale, windColor } from './helpers/scales';
 import {
   history,
-  isRemoteEndpoint,
   isSolarEnabled,
   isWindEnabled,
   navigateTo,
@@ -34,46 +37,13 @@ import {
   getCustomDatetime,
   getZoneId,
 } from './helpers/router';
-
-import { MAP_EXCHANGE_TOOLTIP_KEY, MAP_COUNTRY_TOOLTIP_KEY } from './helpers/constants';
+import {
+  MAP_EXCHANGE_TOOLTIP_KEY,
+  MAP_COUNTRY_TOOLTIP_KEY,
+} from './helpers/constants';
 
 // Layout
 import Main from './layout/main';
-
-// Libraries
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-collection'),
-  require('d3-queue'),
-  require('d3-request'),
-  require('d3-scale'),
-  require('d3-selection'),
-  require('d3-scale-chromatic'),
-  require('d3-interpolate'),
-);
-const moment = require('moment');
-const getSymbolFromCurrency = require('currency-symbol-map');
-
-// State management
-const {
-  dispatch,
-  dispatchApplication,
-  getState,
-  observe,
-  store,
-} = require('./store');
-
-// Helpers
-const { modeOrder, modeColor } = require('./helpers/constants');
-const grib = require('./helpers/grib');
-const scales = require('./helpers/scales');
-const { saveKey } = require('./helpers/storage');
-const translation = require('./helpers/translation');
-const { themes } = require('./helpers/themes');
-
-// Configs
-const zonesConfig = require('../../config/zones.json');
 
 /*
   ****************************************************************
@@ -93,41 +63,19 @@ if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
-// Constants
-const REFRESH_TIME_MINUTES = 5;
-
-// Use local endpoint only if ALL of the following conditions are true:
-// 1. The app is running on localhost
-// 2. The `remote` search param hasn't been explicitly set to true
-// 3. Document domain has a non-empty value
-const getEndpoint = () => ((
-  getState().application.isLocalhost
-  && !isRemoteEndpoint()
-  && document.domain !== ''
-) ? 'http://localhost:9000' : 'https://api.electricitymap.org');
-
 // TODO(olc) move those to redux state
 // or to component state
 let mapDraggedSinceStart = false;
-let wind;
-let solar;
 let hasCenteredMap = false;
 
 // Set up objects
-let exchangeLayer = null;
-let initLoading = true;
+let exchangeLayer;
 let zoneMap;
 let windLayer;
 let solarLayer;
 
-// Set standard theme
-let theme = themes.bright;
-
-LoadingService.startLoading('#loading');
-LoadingService.startLoading('#small-loading');
-
 // Set proper locale
-moment.locale(getState().application.locale.toLowerCase());
+moment.locale(window.locale.toLowerCase());
 
 // Analytics
 thirdPartyServices.trackWithCurrentApplicationState('Visit');
@@ -183,20 +131,20 @@ const app = {
       const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
         ? 30
         : 20;
-      d3.select('#header')
+      select('#header')
         .style('padding-top', `${extraPadding}px`);
-      d3.select('#mobile-header')
+      select('#mobile-header')
         .style('padding-top', `${extraPadding}px`);
 
-      d3.select('.prodcons-toggle-container')
+      select('.prodcons-toggle-container')
         .style('margin-top', `${extraPadding}px`);
 
-      d3.select('.flash-message .inner')
+      select('.flash-message .inner')
         .style('padding-top', `${extraPadding}px`);
 
-      d3.select('.mapboxgl-ctrl-top-right')
+      select('.mapboxgl-ctrl-top-right')
         .style('transform', `translate(0,${extraPadding}px)`);
-      d3.select('.layer-buttons-container')
+      select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
       if (typeof zoneMap !== 'undefined') {
         zoneMap.map.resize();
@@ -221,6 +169,47 @@ if (getState().application.isCordova) {
 // *** MAP & LAYERS ***
 //
 
+function renderWind(state) {
+  if (windLayer) {
+    const { wind } = state.data;
+    if (isWindEnabled() && wind && wind.forecasts[0] && wind.forecasts[1]) {
+      windLayer.draw(
+        getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date()),
+        wind.forecasts[0],
+        wind.forecasts[1],
+        windColor,
+      );
+      windLayer.show();
+    } else {
+      windLayer.hide();
+    }
+  }
+}
+
+function renderSolar(state) {
+  if (solarLayer) {
+    const { solar } = state.data;
+    if (isSolarEnabled() && solar && solar.forecasts[0] && solar.forecasts[1]) {
+      solarLayer.draw(
+        getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime(),
+        solar.forecasts[0],
+        solar.forecasts[1],
+        (err) => {
+          if (err) {
+            console.error(err.message);
+          } else if (isSolarEnabled()) {
+            solarLayer.show();
+          } else {
+            solarLayer.hide();
+          }
+        },
+      );
+    } else {
+      solarLayer.hide();
+    }
+  }
+}
+
 // Only center once
 function renderMap(state) {
   if (typeof zoneMap === 'undefined') { return; }
@@ -242,56 +231,15 @@ function renderMap(state) {
     }
   }
 
-  // Render Wind
-  if (isWindEnabled() && wind && wind['forecasts'][0] && wind['forecasts'][1] && typeof windLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    windLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      wind.forecasts[0],
-      wind.forecasts[1],
-      scales.windColor,
-    );
-    if (isWindEnabled()) {
-      windLayer.show();
-    } else {
-      windLayer.hide();
-    }
-    LoadingService.stopLoading('#loading');
-  } else if (typeof windLayer !== 'undefined') {
-    windLayer.hide();
-  }
-
-  // Render Solar
-  if (isSolarEnabled() && solar && solar['forecasts'][0] && solar['forecasts'][1] && typeof solarLayer !== 'undefined') {
-    LoadingService.startLoading('#loading');
-    solarLayer.draw(
-      getCustomDatetime()
-        ? moment(getCustomDatetime()) : moment(new Date()),
-      solar.forecasts[0],
-      solar.forecasts[1],
-      (err) => {
-        if (err) {
-          console.error(err.message);
-        } else if (isSolarEnabled()) {
-          solarLayer.show();
-        } else {
-          solarLayer.hide();
-        }
-        LoadingService.stopLoading('#loading');
-      },
-    );
-  } else if (typeof solarLayer !== 'undefined') {
-    solarLayer.hide();
-  }
-
   // Resize map to make sure it takes all container space
   // Warning: this causes a flicker
   zoneMap.map.resize();
 }
 
 function mapMouseOver(lonlat) {
-  if (isWindEnabled() && wind && lonlat && typeof windLayer !== 'undefined') {
+  const { solar, wind } = getState().data;
+
+  if (isWindEnabled() && wind && lonlat && windLayer) {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
@@ -304,7 +252,8 @@ function mapMouseOver(lonlat) {
   } else {
     dispatchApplication('windColorbarValue', null);
   }
-  if (isSolarEnabled() && solar && lonlat && typeof solarLayer !== 'undefined') {
+
+  if (isSolarEnabled() && solar && lonlat && solarLayer) {
     const now = getCustomDatetime()
       ? moment(getCustomDatetime()) : (new Date()).getTime();
     if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
@@ -328,12 +277,12 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
       selectedZoneCoordinates.push(coord);
     });
   });
-  const maxLon = d3.max(selectedZoneCoordinates, d => d[0]);
-  const minLon = d3.min(selectedZoneCoordinates, d => d[0]);
-  const maxLat = d3.max(selectedZoneCoordinates, d => d[1]);
-  const minLat = d3.min(selectedZoneCoordinates, d => d[1]);
-  const lon = d3.mean([minLon, maxLon]);
-  const lat = d3.mean([minLat, maxLat]);
+  const maxLon = d3Max(selectedZoneCoordinates, d => d[0]);
+  const minLon = d3Min(selectedZoneCoordinates, d => d[0]);
+  const maxLat = d3Max(selectedZoneCoordinates, d => d[1]);
+  const minLat = d3Min(selectedZoneCoordinates, d => d[1]);
+  const lon = d3Mean([minLon, maxLon]);
+  const lat = d3Mean([minLat, maxLat]);
 
   zoneMap.setCenter([lon, lat]);
   if (zoomLevel) {
@@ -370,25 +319,9 @@ function renderZones(state) {
   }
 }
 
-// `finishLoading` will be invoked whenever we've finished loading the map, it could be triggered by a map-rerender
-// or a first-time-ever loading of the webpage.
-function finishLoading() {
-  // if we're done with loading the map for the first ever render, toggle the state and wrapping up
-  // with cleanup actions.
-  if (initLoading) {
-    // toggle the initial loading state. since this is a one-time on/off state, there's no need to manage it
-    // with the redux state store.
-    initLoading = false;
-  }
-
-  // map loading is done or aborted, hide the "map loading" overlay
-  LoadingService.stopLoading('#loading');
-  LoadingService.stopLoading('#small-loading');
-}
-
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme })
+  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -436,7 +369,7 @@ try {
         .render();
 
       // map loading is finished, lower the overlay shield
-      finishLoading();
+      dispatchApplication('isLoadingMap', false);
 
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
@@ -490,155 +423,9 @@ try {
     navigateTo({ pathname: '/ranking', search: history.location.search });
 
     // map loading is finished, lower the overlay shield
-    finishLoading();
+    dispatchApplication('isLoadingMap', false);
   } else {
     throw e;
-  }
-}
-
-//
-// *** DATA MANAGEMENT ***
-//
-
-function dataLoaded(err, clientVersion, callerLocation, callerZone, state, argSolar, argWind) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  // Track pageview
-  thirdPartyServices.trackWithCurrentApplicationState('pageview');
-
-  // Is there a new version?
-  d3.select('#new-version')
-    .classed('active', (
-      clientVersion !== getState().application.version
-      && !getState().application.isLocalhost && !getState().application.isCordova
-    ));
-
-  // Render weather if provided
-  // Do not overwrite with null/undefined
-  if (argWind) wind = argWind;
-  if (argSolar) solar = argSolar;
-
-  dispatchApplication('callerLocation', callerLocation);
-  dispatchApplication('callerZone', callerZone);
-  dispatch({ type: 'GRID_DATA', payload: state });
-}
-
-function catchError(e) {
-  console.error(`Error Caught! ${e}`);
-  thirdPartyServices.reportError(e);
-  thirdPartyServices.ga('event', 'exception', { description: e, fatal: false });
-  const params = getState().application;
-  params.name = e.name;
-  params.stack = e.stack;
-  thirdPartyServices.track('error', params);
-}
-
-// Periodically load data
-function handleConnectionReturnCode(err) {
-  if (err) {
-    if (err.target) {
-      // Avoid catching HTTPError 0
-      // The error will be empty, and we can't catch any more info
-      // for security purposes
-      // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
-      if (err.target.status) {
-        catchError(new Error(
-          'HTTPError '
-          + err.target.status + ' ' + err.target.statusText + ' at '
-          + err.target.responseURL + ': '
-          + err.target.responseText
-        ));
-      }
-    } else {
-      catchError(err);
-    }
-    d3.select('#connection-warning').classed('active', true);
-  } else {
-    d3.select('#connection-warning').classed('active', false);
-  }
-}
-
-const ignoreError = func =>
-  (...args) => {
-    const callback = args[args.length - 1];
-    args[args.length - 1] = (err, obj) => {
-      if (err) { return callback(null, null); }
-      return callback(null, obj);
-    };
-    func.apply(this, args);
-  };
-
-function fetch(showLoading, callback) {
-  if (showLoading) LoadingService.startLoading('#loading');
-  LoadingService.startLoading('#small-loading');
-  const Q = d3.queue();
-  // We ignore errors in case this is run from a file:// protocol (e.g. cordova)
-  if (getState().application.clientType === 'web' && !getState().application.isLocalhost) {
-    Q.defer(d3.text, '/clientVersion');
-  } else {
-    Q.defer(DataService.fetchNothing);
-  }
-  Q.defer(DataService.fetchState, getEndpoint(), getCustomDatetime());
-
-  const now = getCustomDatetime() || new Date();
-
-  if (!isSolarEnabled()) {
-    Q.defer(DataService.fetchNothing);
-  } else if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'solar', now);
-  } else {
-    Q.defer(cb => cb(null, solar));
-  }
-
-  if (!isWindEnabled() || typeof windLayer === 'undefined') {
-    Q.defer(DataService.fetchNothing);
-  } else if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-    Q.defer(ignoreError(DataService.fetchGfs), getEndpoint(), 'wind', now);
-  } else {
-    Q.defer(cb => cb(null, wind));
-  }
-  // eslint-disable-next-line no-shadow
-  Q.await((err, clientVersion, state, solar, wind) => {
-    handleConnectionReturnCode(err);
-    if (!err) {
-      dataLoaded(err, clientVersion, state.data.callerLocation, state.data.callerZone, state.data, solar, wind);
-    }
-    if (showLoading) {
-      LoadingService.stopLoading('#loading');
-    }
-    LoadingService.stopLoading('#small-loading');
-    if (callback) callback();
-  });
-}
-
-// Only for debugging purposes
-window.retryFetch = () => {
-  d3.select('#connection-warning').classed('active', false);
-  fetch(false);
-};
-
-function tryFetchHistory(state) {
-  const zoneId = getZoneId();
-  if (getCustomDatetime()) {
-    console.error('Can\'t fetch history when a custom date is provided!');
-  } else if (!state.data.histories[zoneId]) {
-    LoadingService.startLoading('.country-history .loading');
-    DataService.fetchHistory(getEndpoint(), zoneId, (err, obj) => {
-      LoadingService.stopLoading('.country-history .loading');
-      if (err) { return console.error(err); }
-      if (!obj || !obj.data) {
-        return console.warn(`Empty history received for ${zoneId}`);
-      }
-      // Save to local cache
-      return dispatch({
-        payload: obj.data,
-        zoneName: zoneId,
-        type: 'HISTORY_DATA',
-      });
-    });
   }
 }
 
@@ -672,33 +459,19 @@ observe(state => state.data.grid, (grid, state) => {
 
 // Observe for page change
 observe(state => state.application.currentPage, (currentPage, state) => {
-  if (currentPage === 'map') {
-    // Refresh map in the next render cycle (after the page
-    // transition) to make sure it gets displayed correctly.
-    setTimeout(() => { renderMap(state); }, 0);
-    if (isWindEnabled() && typeof windLayer !== 'undefined') { windLayer.show(); }
-    if (isSolarEnabled() && typeof solarLayer !== 'undefined') { solarLayer.show(); }
+  // Refresh map in the next render cycle (after the page transition) to make
+  // sure it gets displayed correctly. Do it only on mobile as otherwise the
+  // map is being displayed the whole time (on every page).
+  if (currentPage === 'map' && state.application.isMobile) {
+    setTimeout(() => {
+      renderMap(state);
+      renderWind(state);
+      renderSolar(state);
+    }, 0);
   }
 
   // Analytics
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
-});
-
-// Observe for zone change (for example after map click)
-observe(state => state.application.selectedZoneName, (selectedZoneName, state) => {
-  if (!selectedZoneName) { return; }
-
-  // Fetch history if needed
-  tryFetchHistory(state);
-});
-
-// Observe for history change
-observe(state => state.data.histories, (histories, state) => {
-  // If history was cleared by the grid data for the currently selected country,
-  // try to refetch it.
-  if (getZoneId() && !state.data.histories[getZoneId()]) {
-    tryFetchHistory(state);
-  }
 });
 
 // Observe for color blind mode changes
@@ -715,46 +488,8 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  // update Theme
-  if (brightModeEnabled) {
-    theme = themes.bright;
-  } else {
-    theme = themes.dark;
-  }
-  if (typeof zoneMap !== 'undefined') zoneMap.setTheme(theme);
-});
-
-// Observe for solar settings change
-// TODO: Remove this after solar layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-observe(state => state.application.solarEnabled, (solarEnabled, state) => {
-  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
-  if (solarEnabled && typeof solarLayer !== 'undefined') {
-    if (!solar || solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      fetch(true);
-    } else {
-      solarLayer.show();
-    }
-  } else if (typeof solarLayer !== 'undefined') {
-    solarLayer.hide();
-  }
-});
-
-// Observe for wind settings change
-// TODO: Remove this after wind layer is moved to React, so that this
-// bool can be removed from Redux and managed through the URL state.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2310
-observe(state => state.application.windEnabled, (windEnabled, state) => {
-  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
-  if (windEnabled && typeof windLayer !== 'undefined') {
-    if (!wind || windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      fetch(true);
-    } else {
-      windLayer.show();
-    }
-  } else if (typeof windLayer !== 'undefined') {
-    windLayer.hide();
+  if (zoneMap) {
+    zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
   }
 });
 
@@ -771,14 +506,8 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
   }
 });
 
-//
-// *** START ***
-//
+// Observe for solar data change
+observe(state => state.data.solar, (_, state) => { renderSolar(state); });
 
-// Start a fetch and show loading screen
-fetch(true, () => {
-  if (!getCustomDatetime()) {
-    // Further calls to `fetch` won't show loading screen
-    setInterval(fetch, REFRESH_TIME_MINUTES * 60 * 1000);
-  }
-});
+// Observe for wind data change
+observe(state => state.data.wind, (_, state) => { renderWind(state); });
