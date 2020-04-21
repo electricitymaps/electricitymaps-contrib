@@ -24,11 +24,11 @@
     },
     "left-panel": {
         "zone-list-header-title": "Impacto Climático por Área",
-        "zone-list-header-subtitle": "Clasificado por intensidad de carbón de electricidad consumido (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Clasificado por intensidad de carbón de electricidad consumido (gCO₂eq/kWh)",
         "search": "Buscar áreas"
     },
     "country-history": {
-        "carbonintensity24h": "Intensidad de emisiones de CO2 en las últimas 24 horas",
+        "carbonintensity24h": "Intensidad de emisiones de CO₂ en las últimas 24 horas",
         "electricityorigin24h": "Origen de electricidad en las últimas 24 horas",
         "electricityproduction24h": "Producción de electricidad en las últimas 24 horas",
         "electricityprices24h": "Precios de electricidad en las últimas 24 horas",
@@ -46,15 +46,15 @@
         "windpotential": "Potencial de la fuerza del viento",
         "solarpotential": "Potencial solar",
         "colorblindmode": "modo para daltónicos",
-        "carbonintensity": "Intensidad de emisiones de CO2"
+        "carbonintensity": "Intensidad de emisiones de CO₂"
     },
     "tooltips": {
-        "carbonintensity": "Intensidad de emisiones de CO2",
+        "carbonintensity": "Intensidad de emisiones de CO₂",
         "crossborderexport": "Exportación transfronteriza",
-        "carbonintensityexport": "Intensidad de emisiones de CO2 en la exportación",
+        "carbonintensityexport": "Intensidad de emisiones de CO₂ en la exportación",
         "ofinstalled": "de la capacidad instalada",
         "utilizing": "utilizando",
-        "withcarbonintensity": "con una intensidad de emisión de CO2 de",
+        "withcarbonintensity": "con una intensidad de emisión de CO₂ de",
         "showWindLayer": "Mostrar las corrientes de aire",
         "hideWindLayer": "Ocultar las corrientes de aire",
         "showSolarLayer": "Mostrar los rayos solares",
@@ -62,7 +62,7 @@
         "toggleDarkMode": "Cambiar modo oscuro"
     },
     "misc": {
-        "maintitle": "Emisiones de CO2 del consumo eléctrico en tiempo real",
+        "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
         "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",
         "newversion": "¡Está disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
         "faq": "Preguntas Frecuentes"
@@ -90,7 +90,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq por minuto",
+    "ofCO2eqPerMinute": "of CO₂eq por minuto",
 
     "zoneShortName": {
         "AD": {
