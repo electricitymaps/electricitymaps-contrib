@@ -30,7 +30,7 @@ export default ({ timeout = 500, visible }) => (
   <React.Fragment>
     <FadeAnimationDefinition />
     <CSSTransition in={visible} timeout={timeout} classNames="fade">
-      <Overlay className="loading overlay" timeout={timeout} />
+      <Overlay timeout={timeout} />
     </CSSTransition>
   </React.Fragment>
 );

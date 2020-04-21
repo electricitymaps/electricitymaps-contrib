@@ -4,6 +4,7 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
   Switch,
@@ -45,6 +46,15 @@ const HandleLegacyRoutes = () => {
 
 // TODO: Move all styles from styles.css to here
 
+const SmallLoader = styled.span`
+  background: transparent url('../images/loading/loading64_FA.gif') no-repeat center center;
+  background-size: 1.5em;
+  display: inline-block;
+  margin-right: 1em;
+  width: 1.5em;
+  height: 1em;
+`;
+
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   isMobile: state.application.isMobile,
@@ -72,7 +82,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <div className="right-header large-screen-hidden">
-            {isLoaderVisible && <span id="small-loading" className="loading" />}
+            {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
           </div>
         </div>
