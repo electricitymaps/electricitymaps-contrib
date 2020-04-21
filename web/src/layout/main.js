@@ -35,8 +35,8 @@ import Toggle from '../components/toggle';
 const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
+  hasConnectionWarning: state.data.hasConnectionWarning,
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
-  showConnectionWarning: state.application.showConnectionWarning,
   version: state.application.version,
 });
 
@@ -44,7 +44,7 @@ const Main = ({
   brightModeEnabled,
   electricityMixMode,
   isLeftPanelCollapsed,
-  showConnectionWarning,
+  hasConnectionWarning,
   version,
 }) => {
   const location = useLocation();
@@ -107,25 +107,22 @@ const Main = ({
             <LayerButtons />
           </div>
 
-          {showConnectionWarning && (
-            <div id="connection-warning" className="flash-message">
-              <div className="inner">
-                {__('misc.oops')}
-                {' '}
-                <a
-                  href=""
-                  onClick={(e) => {
-                    dispatchApplication('showConnectionWarning', false);
-                    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
-                    e.preventDefault();
-                  }}
-                >
-                  {__('misc.retrynow')}
-                </a>
-                .
-              </div>
+          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
+            <div className="inner">
+              {__('misc.oops')}
+              {' '}
+              <a
+                href=""
+                onClick={(e) => {
+                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+                  e.preventDefault();
+                }}
+              >
+                {__('misc.retrynow')}
+              </a>
+              .
             </div>
-          )}
+          </div>
           <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />

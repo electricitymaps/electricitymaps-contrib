@@ -40,6 +40,7 @@ Object.entries(exchanges).forEach((entry) => {
 const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
+  hasConnectionWarning: false,
   hasInitializedGrid: false,
   histories: {},
   isLoadingHistories: false,
@@ -53,7 +54,7 @@ const initialDataState = {
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingGrid: true };
+      return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
     }
   
     case 'GRID_DATA_FETCH_SUCCEEDED': {
@@ -161,7 +162,7 @@ module.exports = (state = initialDataState, action) => {
 
     case 'GRID_DATA_FETCH_FAILED': {
       // TODO: Implement error handling
-      return { ...state, isLoadingGrid: false };
+      return { ...state, hasConnectionWarning: true, isLoadingGrid: false };
     }
 
     case 'ZONE_HISTORY_FETCH_REQUESTED': {

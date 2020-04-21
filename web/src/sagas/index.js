@@ -34,11 +34,9 @@ function* fetchGridData(action) {
     thirdPartyServices.trackWithCurrentApplicationState('pageview');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'showConnectionWarning', value: false });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
   } catch (error) {
     handleConnectionReturnCode(error);
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'showConnectionWarning', value: true });
     yield put({ type: 'GRID_DATA_FETCH_FAILED', error });
   }
 }
