@@ -27,6 +27,7 @@ import {
 } from '../hooks/fetch';
 import { dispatch, dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
+import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
 // TODO: Move all styles from styles.css to here
@@ -78,7 +79,7 @@ const Main = ({
       >
         <Header />
         <div id="inner">
-          {showLoadingOverlay && <div id="loading" className="loading overlay" />}
+          <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />
