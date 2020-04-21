@@ -208,14 +208,6 @@ module.exports = (state = initialDataState, action) => {
       return { ...state, isLoadingWind: false, wind: null };
     }
 
-    case 'CLEAR_HISTORY_DATA': {
-      // Clear
-      return {
-        ...state,
-        histories: {},
-      };
-    }
-
     default:
       return state;
   }
