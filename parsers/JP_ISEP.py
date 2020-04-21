@@ -37,10 +37,10 @@ COLUMN_MAP = {
 }
 
 def get_data(region, year, month, day):
-    r = requests.get(url.format(**{'region':region,
-                                    'year':year,
-                                    'month':month,
-                                    'day':day}))
+    r = requests.get(url.format(region=region,
+                                year=year,
+                                month=month,
+                                day=day))
 
     assert r.status_code == 200, 'Could not get url'
 
