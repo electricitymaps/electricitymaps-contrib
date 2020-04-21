@@ -61,13 +61,13 @@ const getProductionData = data => modeOrder.map((mode) => {
   };
 });
 
-const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys.map((mode) => {
+const getExchangeData = (data, exchangeKeys) => exchangeKeys.map((mode) => {
   // Power in MW
   const exchange = (data.exchange || {})[mode];
   const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
   // Exchange CO2 intensity
-  const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
+  const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
 
@@ -453,8 +453,8 @@ const CountryTable = ({
     [data]
   );
   const exchangeData = useMemo(
-    () => getExchangeData(data, exchangeKeys, electricityMixMode),
-    [data, exchangeKeys, electricityMixMode]
+    () => getExchangeData(data, exchangeKeys),
+    [data, exchangeKeys]
   );
 
   const [productionTooltip, setProductionTooltip] = useState(null);

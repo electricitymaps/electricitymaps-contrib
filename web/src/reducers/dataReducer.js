@@ -96,6 +96,7 @@ module.exports = (state = initialDataState, action) => {
         zone.co2intensity = undefined;
         zone.co2intensityProduction = undefined;
         zone.exchange = {};
+        zone.exchangeCo2Intensities = {};
         zone.production = {};
         zone.productionCo2Intensities = {};
         zone.productionCo2IntensitySources = {};
@@ -107,6 +108,7 @@ module.exports = (state = initialDataState, action) => {
       });
       Object.keys(newGrid.exchanges).forEach((key) => {
         newGrid.exchanges[key].netFlow = undefined;
+        newGrid.exchanges[key].co2intensity = undefined;
       });
 
       // Populate with realtime country data
@@ -126,27 +128,6 @@ module.exports = (state = initialDataState, action) => {
         // Set date
         zone.datetime = action.payload.datetime;
         computeZoneAggregates(zone);
-        // Validate data
-        if (!zone.production) return;
-        modeOrder.forEach((mode) => {
-          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-          // Check missing values
-          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-          //    console.warn(`${key} is missing production or storage of ' + mode`);
-          // Check validity of production
-          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.warn(`${key} has negative production of ${mode}`);
-          }
-          // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
-            console.warn(`${key} produces more than its capacity of ${mode}`);
-          }
-        });
-        if (!zone.exchange || !Object.keys(zone.exchange).length) {
-          console.warn(`${key} is missing exchanges`);
-        }
       });
 
       // Populate exchange pairs for exchange layer
