@@ -78,8 +78,7 @@ const Legend = ({
           )}
           <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
             <div className="legend-header">
-              <span dangerouslySetInnerHTML={{ __html: __('legends.carbonintensity') }} />
-              <small> (gCO₂eq/kWh)</small>
+              {__('legends.carbonintensity')} <small>(gCO₂eq/kWh)</small>
             </div>
             <HorizontalColorbar
               id="carbon-intensity-bar"

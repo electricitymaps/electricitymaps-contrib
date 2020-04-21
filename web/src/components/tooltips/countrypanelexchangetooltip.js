@@ -75,7 +75,7 @@ const CountryPanelExchangeTooltip = ({
           />
           <br />
           <br />
-          <span dangerouslySetInnerHTML={{ __html: __('tooltips.withcarbonintensity') }} />
+          {__('tooltips.withcarbonintensity')}
           <br />
           <b><ZoneName zone={isExport ? zoneData.countryCode : exchangeKey} /></b>
           {': '}

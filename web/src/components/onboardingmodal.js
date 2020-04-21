@@ -25,7 +25,7 @@ const views = [{
   renderContent: () => (
     <React.Fragment>
       <div>
-        <h2 dangerouslySetInnerHTML={{ __html: __('onboarding-modal.view2.header') }} />
+        <h2>{__('onboarding-modal.view2.header')}</h2>
       </div>
       <div>{__('onboarding-modal.view2.text')}</div>
     </React.Fragment>

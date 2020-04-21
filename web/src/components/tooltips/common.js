@@ -17,11 +17,7 @@ export const CarbonIntensity = ({ colorBlindModeEnabled, intensity }) => {
 };
 
 export const MetricRatio = ({ value, total, format }) => (
-  <small
-    dangerouslySetInnerHTML={{
-      __html: `(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`,
-    }}
-  />
+  <small>{`(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`}</small>
 );
 
 export const ZoneName = ({ zone }) => (

@@ -182,10 +182,7 @@ const CountryPanel = ({
                     g
                   </div>
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: __('country-panel.carbonintensity') }}
-                />
+                <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
                 <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
               <div className="country-col country-lowcarbon-wrap">
@@ -196,35 +193,25 @@ const CountryPanel = ({
                   />
                   {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: __('country-panel.lowcarbon') }}
-                />
+                <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
               </div>
               <div className="country-col country-renewable-wrap">
                 <div id="country-renewable-gauge" className="country-gauge-wrap">
                   <CountryRenewableGauge />
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: __('country-panel.renewable') }}
-                />
+                <div className="country-col-headline">{__('country-panel.renewable')}</div>
               </div>
             </div>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a
-                  onClick={switchToZoneProduction}
-                  className={!tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
-                />
+                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                  {__(`country-panel.electricity${electricityMixMode}`)}
+                </a>
                 |
-                <a
-                  onClick={switchToZoneEmissions}
-                  className={tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: __('country-panel.emissions') }}
-                />
+                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                  {__('country-panel.emissions')}
+                </a>
               </div>
             </div>
           </React.Fragment>
@@ -242,10 +229,9 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              <span
-                className="country-history-title"
-                dangerouslySetInnerHTML={{ __html: __(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h') }}
-              />
+              <span className="country-history-title">
+                {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
+              </span>
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>

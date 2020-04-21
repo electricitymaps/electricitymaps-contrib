@@ -13,7 +13,7 @@ const CountryPanelEmissionsTooltip = ({ position, zoneData }) => {
 
   return (
     <Tooltip id="countrypanel-emissions-tooltip" position={position}>
-      <b>{totalEmissions}t</b> <span dangerouslySetInnerHTML={{ __html: __('ofCO2eqPerMinute') }} />
+      <b>{totalEmissions}t</b> {__('ofCO2eqPerMinute')}
     </Tooltip>
   );
 };

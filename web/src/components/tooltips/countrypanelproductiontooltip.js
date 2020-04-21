@@ -81,7 +81,7 @@ const CountryPanelProductionTooltip = ({
           />
           <br />
           <br />
-          <span dangerouslySetInnerHTML={{ __html: __('tooltips.withcarbonintensity') }} />
+          {__('tooltips.withcarbonintensity')}
           <br />
           <CarbonIntensity
             colorBlindModeEnabled={colorBlindModeEnabled}

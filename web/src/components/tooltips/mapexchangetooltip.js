@@ -25,7 +25,7 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, position }) =
       <ZoneName zone={zoneFrom} /> → <ZoneName zone={zoneTo} />: <b>{netFlow}</b> MW
       <br />
       <br />
-      <span dangerouslySetInnerHTML={{ __html: __('tooltips.carbonintensityexport') }} />:
+      {__('tooltips.carbonintensityexport')}:
       <br />
       <CarbonIntensity
         colorBlindModeEnabled={colorBlindModeEnabled}

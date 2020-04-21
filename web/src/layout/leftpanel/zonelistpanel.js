@@ -31,12 +31,7 @@ const ZoneListPanel = () => (
         {' '}
         {__('left-panel.zone-list-header-title')}
       </div>
-      <div
-        className="subtitle"
-        dangerouslySetInnerHTML={{
-          __html: __('left-panel.zone-list-header-subtitle'),
-        }}
-      />
+      <div className="subtitle">{__('left-panel.zone-list-header-subtitle')}</div>
     </div>
 
     <SearchBar
