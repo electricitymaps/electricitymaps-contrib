@@ -38,6 +38,7 @@
 
 #wind,
 #solar {
+    transition: opacity 0.5s ease;
     pointer-events: none;
     opacity: 0;
     display: none;

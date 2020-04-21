@@ -8,7 +8,6 @@ import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
-import { getSelectedZoneExchangeKeys } from '../../selectors';
 
 import Tooltip from '../tooltip';
 import { CarbonIntensity, MetricRatio } from './common';
@@ -17,21 +16,16 @@ import { getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zo
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
-  electricityMixMode: state.application.electricityMixMode,
-  mode: state.application.tooltipDisplayMode,
-  visible: modeOrder.includes(state.application.tooltipDisplayMode),
-  zoneData: state.application.tooltipData,
 });
 
 const CountryPanelProductionTooltip = ({
   colorBlindModeEnabled,
   displayByEmissions,
-  exchangeKey,
   mode,
-  visible,
+  position,
   zoneData,
 }) => {
-  if (!visible || !zoneData) return null;
+  if (!zoneData) return null;
 
   const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
@@ -66,7 +60,7 @@ const CountryPanelProductionTooltip = ({
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 
   return (
-    <Tooltip id="countrypanel-production-tooltip">
+    <Tooltip id="countrypanel-production-tooltip" position={position}>
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio

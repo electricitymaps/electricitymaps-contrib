@@ -57,7 +57,8 @@
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
         "electricityproduction24h": "Erzeugte Elektrizität in den letzten 24 h",
         "electricityprices24h": "Strompreis in den letzten 24 h",
-        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
+        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
+        "emissions24h": "Emissionen in den letzten 24 Stunden"
     },
     "footer": {
         "likethisvisu": "Findest du die Visualisierung gut?",
@@ -93,7 +94,7 @@
         "consumption": "Verbrauch",
         "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
         "selectLanguage": "Sprache auswählen",
-        "lowCarbDescription": "Beinhaltet regenerative Energie and Atomkraft"
+        "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie"
     },
     "misc": {
         "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
@@ -111,7 +112,7 @@
     "hydro storage": "Pumpspeicher",
     "battery storage": "Batteriespeicher",
     "biomass": "Biomasse",
-    "nuclear": "Atomkraft",
+    "nuclear": "Kernenergie",
     "geothermal": "Geothermie",
     "gas": "Erdgas",
     "coal": "Kohle",
@@ -134,8 +135,8 @@
         "mapArrows-answer": "Die Pfeile zwischen den Regionen zeigen den physischen Stromfluss (Importe und Exporte) der Elektrizität: Je schneller sie blinken, desto stärker ist der grenzüberschreitende Stromaustausch. Der Elektrizitätaustausch ist von großer Bedeutung, da beim Import von Strom bilanziell auch auch die Kohlenstoffemissionen importiert werden.",
         "mapSolarWindButtons-question": "Wofür sind die “Sonne” und “Wind”-Buttons auf der Karte da?",
         "mapSolarWindButtons-answer": "Die Knöpfe aktivieren die Anzeige der Echtzeit-Windgeschwindigkeit und Sonneneinstrahlung, womit das momentane Potenzial von Photovoltaik- und Windenergieanlagen abgeschätzt werden kann. Das tatsächliche Potenzial dieser Anlagen ist von vielen weiteren Faktoren abhängig, daher dient diese Visualisierung als ungefährer Indikator des Potenzials.",
-        "mapNuclearColors-question": "Warum werden Regionen mit Atomkraftwerken auf der Karte grün dargestellt?",
-        "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>). Regionen mit hohem Atomstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
+        "mapNuclearColors-question": "Warum werden Regionen mit Kernkraftwerken auf der Karte grün dargestellt?",
+        "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>). Regionen mit hohem Kernstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
         "mapColorBlind-question": "Ich bin farbenblind. Wie kann ich die Karte lesen?",
         "mapColorBlind-answer": "Die in der Karte angezeigte Farbskala kann geändert werden, indem man die Einstellung “Farbenblind-Modus“ aktiviert. Sie befindet sich unten links im Desktopmodus und im Tab “Über“ bei mobilen Geräten."
     },
@@ -157,7 +158,7 @@
         "consumptionFocus-question": "Warum wird die CO2-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
         "consumptionFocus-answer": "Wir glauben, dass die Bürger für den Strom, den sie verbrauchen, verantwortlich sein sollten und nicht für den Strom, der in dem Bereich produziert wird, in dem sie leben. Darüber hinaus sind wir der Meinung, dass Regionen nicht in der Lage sein sollten, einen geringeren Klimaeinfluss zu \"fälschen\", indem sie die Stromerzeugung in andere Regionen verlagern und dann den Strom aus diesen Gebieten importieren.",
         "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
-        "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Atomkraft.",
+        "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernkraft.",
         "importsAndExports-question": "Werden Stromimporte und -exporte berücksichtigt?",
         "importsAndExports-answer": "Ja, diese berücksichtigen wir. Importe und Exporte werden auf der Karte als kleine Pfeile zwischen verschiedenen Regionen angezeigt [Link zur Erklärung der Pfeile]. Detaillierte Informationen finden Sie in den angezeigten Grafiken, wenn Sie auf einen Bereich klicken.",
         "emissionsOfStored-question": "Was ist mit den Emissionen der Stromerzeugung, die in Batterien gespeichert oder zum Füllen von Pumpspeicher-Reservoirs verwendet wird?",
@@ -1529,6 +1530,207 @@
         "US-HI-OA": {
             "countryName": "Vereinigte Staaten von Amerika",
             "zoneName": "Oahu"
+        },
+        "US-CAL-BANC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-CISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-IID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-LDWP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-TIDC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-DUK": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SCEG": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-YAD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SWPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FMPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-GVL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-HST": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-JEA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-NSB": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-SEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TAL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-OVEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-PJM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-AECI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-EEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-LGEE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-MISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NE-ISNE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVRN": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-BPAT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-CHPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-DOPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GCPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GRID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-IPCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NEVP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NWMT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PGE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-SCL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-TPWR": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WACM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WAUW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NY-NYIS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-AEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SEPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SOCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-AZPS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-DEAA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-EPE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRIF": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-HGMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-PNM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-SRP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-TEPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-WALC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEN-TVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEX-ERCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
         }
     },
     "mobile-info-tab": {

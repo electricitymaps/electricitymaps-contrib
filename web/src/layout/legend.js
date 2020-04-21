@@ -10,6 +10,7 @@ import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { getCo2Scale, solarColor, windColor } from '../helpers/scales';
+import { useSolarEnabled, useWindEnabled } from '../helpers/router';
 import { co2Sub } from '../helpers/formatting';
 
 // TODO: Move styles from styles.css to here
@@ -20,9 +21,7 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
-  solarEnabled: state.application.solarEnabled,
   windColorbarValue: state.application.windColorbarValue,
-  windEnabled: state.application.windEnabled,
 });
 
 const Legend = ({
@@ -30,10 +29,11 @@ const Legend = ({
   colorBlindModeEnabled,
   legendVisible,
   solarColorbarValue,
-  solarEnabled,
   windColorbarValue,
-  windEnabled,
 }) => {
+  const solarEnabled = useSolarEnabled();
+  const windEnabled = useWindEnabled();
+
   const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
   const toggleLegend = () => {
     dispatchApplication('legendVisible', !legendVisible);

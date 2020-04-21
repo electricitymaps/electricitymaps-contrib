@@ -2,31 +2,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 // TODO: re-enable rules
 
 import React from 'react';
-import { connect } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
-// Modules
 import { __ } from '../../helpers/translation';
-import { updateApplication } from '../../actioncreators';
+import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-  dispatchApplication: (k, v) => dispatch(updateApplication(k, v)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplication }) => (
+export default () => (
   <div className="info-text small-screen-hidden">
-    <p>
-      <label className="checkbox-container">
-        {__('legends.colorblindmode')}
-        <input type="checkbox" id="checkbox-colorblind" />
-        <span className="checkmark" />
-      </label>
-    </p>
+    <ColorBlindCheckbox />
     <p>
       {__('panel-initial-text.thisproject')}
       {' '}
@@ -59,17 +45,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
     <p>
       {__('footer.faq-text')}
       {' '}
-      <a
-        className="faq-link"
-        role="link"
-        tabIndex="0"
-        onClick={() => {
-          dispatchApplication('selectedZoneName', undefined);
-          dispatchApplication('showPageState', 'faq');
-        }}
-      >
-        {__('footer.faq')}
-      </a>
+      <Link to={{ pathname: '/faq', search: useLocation().search }}>
+        <span className="faq-link">{__('footer.faq')}</span>
+      </Link>
     </p>
     <div className="social-buttons">
       <div>
@@ -96,4 +74,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(({ dispatchApplicati
       </div>
     </div>
   </div>
-));
+);

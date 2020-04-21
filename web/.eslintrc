@@ -1,10 +1,13 @@
 {
+  "root": true,
   "globals": {
+    "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
     "locale": "readonly",
     "codePush": "readonly",
     "device": "readonly",
     "cordova": "readonly",
+    "resolvePath": "readonly",
     "universalLinks": "readonly",
     "InstallMode": "readonly",
   },

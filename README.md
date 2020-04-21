@@ -82,6 +82,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Australia (distributed solar generation): [Australian PV Institute](http://pv-map.apvi.org.au/live)
 - Australia (South Battery): [Nemwatch](https://ausrealtimefueltype.global-roam.com/expanded)
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Bahrain: [GCCIA](https://www.gccia.com.sa/)
 - Bangladesh: [PGCB](https://pgcb.org.bd/PGCB/?a=pages/operational_daily.php)
 - Bosnia and Herzegovina: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bolivia: [CNDC](http://www.cndc.bo/media/archivos/graf/gene_hora/gweb_despdia_genera.php)
@@ -142,7 +143,8 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
 - Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
-- Kuwait: [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)  
+- Kuwait (TSO): [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)
+- Kuwait (Power Market): [GCCIA](https://www.gccia.com.sa/)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Lithuania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Malaysia: [GSO](https://www.gso.org.my/LandingPage.aspx)
@@ -154,10 +156,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Oman: [GCCIA](https://www.gccia.com.sa/)
 - Panama: [CND](http://sitr.cnd.com.pa/m/pub/gen.html)
 - Peru: [COES](http://www.coes.org.pe/Portal/portalinformacion/Generacion)
 - Poland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Portugal: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Qatar: [GCCIA](https://www.gccia.com.sa/)
 - Romania: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Russia: [SO-UPS](http://br.so-ups.ru/Public/MainPageData/BR/PowerGeneration.aspx)
 - Serbia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -172,10 +176,12 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
 - Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
+- Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
+- United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
   - Bonneville Power Authority: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.txt)
   - California: [CAISO](http://www.caiso.com/Pages/default.aspx)
@@ -285,7 +291,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
 - Poland  
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1237695748147462144)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
@@ -312,6 +318,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sweden
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
+  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
+  - Nuclear: [Vattenfall](https://group.vattenfall.com/se/var-verksamhet/forsmark/produktion)
+  - Nuclear 2: [OKG](https://www.okg.se/sv/Om-OKG/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland
   - Solar: [IREAN](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2019/Mar/IRENA_RE_Capacity_Statistics_2019.pdf)
@@ -518,5 +527,3 @@ It should appear on the map as you refresh your local browser.
 - `ERROR: for X Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
-
-- When running `docker-compose up` you get the error: `Cannot read property 'BUNDLE_HASH' of undefined`. This can occur if your OS's default language is not english - since we by default only compile the english site. You can fix this by going into `web/package.json` and changing this line : `"watch-en": "webpack --watch --progress --mode development --config-name en"` to use the abbreviation for your system's language. ie, if your systems language is italian, you should change it to `"watch-en": "webpack --watch --progress --mode development --config-name it"`.

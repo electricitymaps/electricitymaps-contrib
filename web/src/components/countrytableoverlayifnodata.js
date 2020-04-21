@@ -1,18 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
-import { getCurrentZoneData } from '../selectors';
+import { useCurrentZoneData } from '../hooks/redux';
 
 const mapStateToProps = state => ({
-  zoneData: getCurrentZoneData(state),
-  zoneName: state.application.selectedZoneName,
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryTableOverlayIfNoData = ({ zoneData, zoneName, zoneTimeIndex }) => {
+const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
+  const { zoneId } = useParams();
+  const zoneData = useCurrentZoneData();
+
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && zonesThatCanHaveZeroProduction.indexOf(zoneName) === -1;
+  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && !zonesThatCanHaveZeroProduction.includes(zoneId);
   const zoneIsMissingParser = !zoneData.hasParser;
   const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
   const isRealtimeData = zoneTimeIndex === null;
@@ -21,7 +23,7 @@ const CountryTableOverlayIfNoData = ({ zoneData, zoneName, zoneTimeIndex }) => {
 
   return (
     <div className="no-data-overlay visible">
-      <div className="overlay no-data-overlay-background" />
+      <div className="no-data-overlay-background" />
       <div className="no-data-overlay-message">
         {__(isRealtimeData ? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp')}
       </div>

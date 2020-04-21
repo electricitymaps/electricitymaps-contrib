@@ -27,7 +27,7 @@ const CircularGauge = React.memo(({
       onMouseOut={() => onMouseOut && onMouseOut()}
       onMouseMove={e => onMouseMove && onMouseMove(e.clientX, e.clientY)}
     >
-      <svg width={radius * 2} height={radius * 2}>
+      <svg style={{ pointerEvents: 'none' }} width={radius * 2} height={radius * 2}>
         <g transform={`translate(${radius},${radius})`}>
           <g className="circular-gauge">
             <path className="background" d={percentageFill(100)} />
