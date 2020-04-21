@@ -2,12 +2,7 @@ import moment from 'moment';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-  flatMap,
-  keys,
-  sortBy,
-  uniq,
-} from 'lodash';
+import { keys, sortBy } from 'lodash';
 
 import { useCustomDatetime, useSolarEnabled } from '../helpers/router';
 
@@ -27,16 +22,6 @@ export function useCurrentZoneHistoryDatetimes() {
   return useMemo(
     () => zoneHistory.map(d => moment(d.stateDatetime).toDate()),
     [zoneHistory],
-  );
-}
-
-export function useCurrentZoneExchangeKeys() {
-  const zoneHistory = useCurrentZoneHistory();
-  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
-
-  return useMemo(
-    () => (isConsumption ? sortBy(uniq(flatMap(zoneHistory, d => keys(d.exchange)))) : []),
-    [isConsumption, zoneHistory]
   );
 }
 
@@ -79,6 +64,16 @@ export function useCurrentZoneData() {
       return zoneHistory[zoneTimeIndex];
     },
     [zoneId, zoneHistory, zoneTimeIndex, grid],
+  );
+}
+
+export function useCurrentZoneExchangeKeys() {
+  const zoneData = useCurrentZoneData();
+  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
+
+  return useMemo(
+    () => (isConsumption ? sortBy(keys(zoneData.exchange)) : []),
+    [isConsumption, zoneData]
   );
 }
 
