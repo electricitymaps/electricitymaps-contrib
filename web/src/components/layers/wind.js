@@ -166,11 +166,6 @@ class WindLayer {
     }
     this.hidden = true;
   }
-
-  isExpired(now, grib1, grib2) {
-    return grib.getTargetTime(grib2[0]) <= moment(now) ||
-      grib.getTargetTime(grib1[0]) > moment(now);
-  }
 }
 
 export default WindLayer;

@@ -95,11 +95,6 @@ class SolarLayer {
     return this;
   }
 
-  isExpired(now, grib1, grib2) {
-    return grib.getTargetTime(grib2) <= moment(now) ||
-      grib.getTargetTime(grib1) > moment(now);
-  }
-
   show() {
     if (this.canvas) {
       this.canvas.style.display = 'block';

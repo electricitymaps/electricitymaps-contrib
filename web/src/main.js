@@ -28,6 +28,7 @@ import {
 import grib from './helpers/grib';
 import { themes } from './helpers/themes';
 import { getCo2Scale, windColor } from './helpers/scales';
+import { hasSolarDataExpired, hasWindDataExpired } from './helpers/gfs';
 import {
   history,
   isSolarEnabled,
@@ -238,30 +239,19 @@ function renderMap(state) {
 
 function mapMouseOver(lonlat) {
   const { solar, wind } = getState().data;
+  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
 
-  if (isWindEnabled() && wind && lonlat && windLayer) {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      const u = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][0], wind.forecasts[1][0]);
-      const v = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
-    }
+  if (lonlat && isWindEnabled() && !hasWindDataExpired(now, getState())) {
+    const u = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][0], wind.forecasts[1][0]);
+    const v = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][1], wind.forecasts[1][1]);
+    dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
   } else {
     dispatchApplication('windColorbarValue', null);
   }
 
-  if (isSolarEnabled() && solar && lonlat && solarLayer) {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      dispatchApplication(
-        'solarColorbarValue',
-        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
-      );
-    }
+  if (lonlat && isSolarEnabled() && !hasSolarDataExpired(now, getState())) {
+    const value = grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1]);
+    dispatchApplication('solarColorbarValue', value);
   } else {
     dispatchApplication('solarColorbarValue', null);
   }
