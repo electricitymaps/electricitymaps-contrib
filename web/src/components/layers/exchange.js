@@ -9,8 +9,10 @@ const d3 = Object.assign(
 
 import {event as d3Event} from 'd3-selection';
 
+const global = require('../../global').default;
+
 class ExchangeLayer {
-  constructor(selectorId, map) {
+  constructor(selectorId) {
     this.exchangeAnimationDurationScale = d3.scaleLinear()
       .domain([500, 5000])
       .rangeRound([0, 2])
@@ -27,7 +29,7 @@ class ExchangeLayer {
     this.initialMapTransform = undefined;
 
     /* Set arrow scale */
-    this.arrowScale = 0.04 + (map.map.getZoom() - 1.5) * 0.1;
+    this.arrowScale = 0.04 + (global.zoneMap.map.getZoom() - 1.5) * 0.1;
 
     this.projection = (lonlat) => {
       /*
@@ -35,14 +37,14 @@ class ExchangeLayer {
       Because the layer might already have a transform applied when dragged,
       we need to compensate.
       */
-      const p = map.projection()(lonlat);
+      const p = global.zoneMap.projection()(lonlat);
       return [
         (p[0] - this.transform.x) / this.transform.k,
         (p[1] - this.transform.y) / this.transform.k,
       ];
     };
 
-    map
+    global.zoneMap
       .onDragStart((transform) => {
         if (!this.initialMapTransform) {
           this.initialMapTransform = transform;

@@ -9,13 +9,13 @@ const d3 = Object.assign(
 );
 const moment = require('moment');
 const grib = require('../../helpers/grib');
+const global = require('../../global').default;
 
 class SolarLayer {
-  constructor(selectorId, map) {
+  constructor(selectorId) {
     this.lastDraw = null;
     this.canvas = document.getElementById(selectorId);
     this.hidden = true;
-    this.map = map;
     this.k = 0;
     this.grib1 = null;
     this.grib2 = null;
@@ -24,7 +24,7 @@ class SolarLayer {
     this.initialMapTransform = undefined;
 
     let zoomEndTimeout = null; // debounce events
-    map.onDragStart((transform) => {
+    global.zoneMap.onDragStart((transform) => {
       if (this.hidden) { return; }
       if (zoomEndTimeout) {
         // We're already dragging
@@ -36,7 +36,7 @@ class SolarLayer {
         }
       }
     });
-    map.onDrag((transform) => {
+    global.zoneMap.onDrag((transform) => {
       if (this.hidden) { return; }
       if (!this.initialMapTransform) { return; }
       // `relTransform` is the transform of the map
@@ -50,7 +50,7 @@ class SolarLayer {
       this.canvas.style.transform =
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
-    map.onDragEnd(() => {
+    global.zoneMap.onDragEnd(() => {
       if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
         this.canvas.style.transform = 'inherit';
@@ -119,7 +119,7 @@ class SolarLayer {
     if (this.hidden || !this.grib1) { return; }
 
     const { canvas, grib1, grib2, k } = this;
-    const unprojection = this.map.unprojection();
+    const unprojection = global.zoneMap.unprojection();
 
     // Control the rendering
     var gaussianBlur = true;
@@ -149,8 +149,8 @@ class SolarLayer {
     canvas.width = realW;
     canvas.height = realH;
 
-    var ul = this.map.unprojection()([0, 0]);
-    var br = this.map.unprojection()([realW, realH]);
+    var ul = global.zoneMap.unprojection()([0, 0]);
+    var br = global.zoneMap.unprojection()([realW, realH]);
 
     // ** Those need to be integers **
     var minLon = parseInt(Math.floor(ul[0]), 10);

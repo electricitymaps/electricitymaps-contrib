@@ -46,6 +46,8 @@ import {
 // Layout
 import Main from './layout/main';
 
+import global from './global';
+
 /*
   ****************************************************************
   This file is quite horrible. We are in the progress of migrating
@@ -71,7 +73,6 @@ let hasCenteredMap = false;
 
 // Set up objects
 let exchangeLayer;
-let zoneMap;
 let windLayer;
 let solarLayer;
 
@@ -93,8 +94,8 @@ ReactDOM.render(
   document.querySelector('#app'),
   () => {
     // Called when rendering is done
-    if (typeof zoneMap !== 'undefined') {
-      zoneMap.map.resize();
+    if (global.zoneMap) {
+      global.zoneMap.map.resize();
     }
   }
 );
@@ -147,8 +148,8 @@ const app = {
         .style('transform', `translate(0,${extraPadding}px)`);
       select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
-      if (typeof zoneMap !== 'undefined') {
-        zoneMap.map.resize();
+      if (global.zoneMap) {
+        global.zoneMap.map.resize();
       }
     }
 
@@ -213,7 +214,7 @@ function renderSolar(state) {
 
 // Only center once
 function renderMap(state) {
-  if (typeof zoneMap === 'undefined') { return; }
+  if (!global.zoneMap) { return; }
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { callerLocation } = state.application;
@@ -225,16 +226,16 @@ function renderMap(state) {
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
-      zoneMap.setCenter(callerLocation);
+      global.zoneMap.setCenter(callerLocation);
       hasCenteredMap = true;
     } else {
-      zoneMap.setCenter([0, 50]);
+      global.zoneMap.setCenter([0, 50]);
     }
   }
 
   // Resize map to make sure it takes all container space
   // Warning: this causes a flicker
-  zoneMap.map.resize();
+  global.zoneMap.map.resize();
 }
 
 function mapMouseOver(lonlat) {
@@ -258,7 +259,8 @@ function mapMouseOver(lonlat) {
 }
 
 function centerOnZoneName(state, zoneName, zoomLevel) {
-  if (typeof zoneMap === 'undefined') { return; }
+  if (!global.zoneMap) { return; }
+
   const selectedZone = state.data.grid.zones[zoneName];
   const selectedZoneCoordinates = [];
   selectedZone.geometry.coordinates.forEach((geojson) => {
@@ -274,15 +276,15 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   const lon = d3Mean([minLon, maxLon]);
   const lat = d3Mean([minLat, maxLat]);
 
-  zoneMap.setCenter([lon, lat]);
+  global.zoneMap.setCenter([lon, lat]);
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
-    zoneMap.setZoom(zoomLevel);
+    global.zoneMap.setZoom(zoomLevel);
     // If the panel is open the zoom doesn't appear perfectly centered because
     // it centers on the whole window and not just the visible map part.
     // something one could fix in the future. It's tricky because one has to project, unproject
     // and project again taking both starting and ending zoomlevel into account
-    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
+    global.zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
   }
 }
 
@@ -301,8 +303,8 @@ function renderExchanges(state) {
 function renderZones(state) {
   const { zones } = state.data.grid;
   const { electricityMixMode } = state.application;
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.setData(electricityMixMode === 'consumption'
+  if (global.zoneMap) {
+    global.zoneMap.setData(electricityMixMode === 'consumption'
       ? Object.values(zones)
       : Object.values(zones)
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
@@ -311,7 +313,7 @@ function renderZones(state) {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
+  global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -330,7 +332,7 @@ try {
         .appendChild(el);
 
       // Create exchange layer as a result
-      exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
+      exchangeLayer = new ExchangeLayer('arrows-layer')
         .onExchangeMouseMove((zoneData) => {
           const { co2intensity } = zoneData;
           if (co2intensity) {
@@ -403,8 +405,8 @@ try {
       mapMouseOver(undefined);
     });
 
-  windLayer = new WindLayer('wind', zoneMap);
-  solarLayer = new SolarLayer('solar', zoneMap);
+  windLayer = new WindLayer('wind');
+  solarLayer = new SolarLayer('solar');
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
@@ -466,8 +468,8 @@ observe(state => state.application.currentPage, (currentPage, state) => {
 
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
-  if (zoneMap) {
-    zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
+  if (global.zoneMap) {
+    global.zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
   }
   if (exchangeLayer) {
     exchangeLayer
@@ -478,8 +480,8 @@ observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  if (zoneMap) {
-    zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
+  if (global.zoneMap) {
+    global.zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
   }
 });
 
@@ -491,8 +493,8 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.map.resize();
+  if (global.zoneMap) {
+    global.zoneMap.map.resize();
   }
 });
 

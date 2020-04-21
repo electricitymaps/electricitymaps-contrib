@@ -9,24 +9,24 @@ const d3 = Object.assign(
 
 const moment = require('moment');
 
+const global = require('../../global').default;
 const grib = require('../../helpers/grib');
 const Windy = require('../../helpers/windy');
 
 const WIND_OPACITY = 0.53;
 
 class WindLayer {
-  constructor(selectorId, map) {
+  constructor(selectorId) {
     this.canvas = document.getElementById(selectorId);
     this.hidden = true;
     this.lastDraw = null;
     this.windy = null;
-    this.map = map;
 
     /* This is the *map* transform applied at last render */
     this.initialMapTransform = undefined;
 
     let zoomEndTimeout = null; // debounce events
-    map.onDragStart((transform) => {
+    global.zoneMap.onDragStart((transform) => {
       if (this.hidden) { return; }
       if (zoomEndTimeout) {
         // We're already dragging
@@ -41,7 +41,7 @@ class WindLayer {
         }
       }
     });
-    map.onDrag((transform) => {
+    global.zoneMap.onDrag((transform) => {
       if (this.hidden) { return; }
       if (!this.initialMapTransform) { return; }
       // `relTransform` is the transform of the map
@@ -55,7 +55,7 @@ class WindLayer {
       this.canvas.style.transform =
         `translate(${relTransform.x}px,${relTransform.y}px) scale(${relTransform.k})`;
     });
-    map.onDragEnd(() => {
+    global.zoneMap.onDragEnd(() => {
       if (this.hidden) { return; }
       zoomEndTimeout = setTimeout(() => {
         this.canvas.style.transform = 'inherit';
@@ -120,8 +120,8 @@ class WindLayer {
       if (!this.windy) {
         this.windy = new Windy({
           canvas: this.canvas,
-          project: this.map.projection(),
-          unproject: this.map.unprojection(),
+          project: global.zoneMap.projection(),
+          unproject: global.zoneMap.unprojection(),
         });
       }
       this.windy.params.data = interpolatedWind;
