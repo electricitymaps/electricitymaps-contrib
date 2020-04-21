@@ -19,7 +19,17 @@
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
-    "timezone": "Asia/Dubai"
+    "timezone": "Asia/Dubai",
+    "bounding_box": [
+      [
+        51.069346550000034,
+        22.120945943000052
+      ],
+      [
+        56.88363691500007,
+        26.574791972000085
+      ]
+    ]
   },
   "AL": {
     "bounding_box": [
@@ -509,7 +519,17 @@
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
-    "timezone": "Asia/Bahrain"
+    "timezone": "Asia/Bahrain",
+    "bounding_box": [
+      [
+        49.94890384200005,
+        25.289536851000037
+      ],
+      [
+        51.14565981318161,
+        26.742580471000053
+      ]
+    ]
   },
   "BO": {
     "capacity": {
@@ -979,7 +999,7 @@
       [
         -123.31910336003193,
         70.15420156500005
-     ]
+      ]
     ],
     "capacity": {
       "hydro": 92
@@ -2406,8 +2426,14 @@
   },
   "IN-MH": {
     "bounding_box": [
-      [72.799410, 15.613079],
-      [80.661984, 22.105644]
+      [
+        72.79941,
+        15.613079
+      ],
+      [
+        80.661984,
+        22.105644
+      ]
     ],
     "contributors": [
       "https://github.com/GitMatze",
@@ -3615,7 +3641,17 @@
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
-    "timezone": "Asia/Muscat"
+    "timezone": "Asia/Muscat",
+    "bounding_box": [
+      [
+        51.47861495000012,
+        16.142401434000078
+      ],
+      [
+        60.34457441500007,
+        26.885972398000035
+      ]
+    ]
   },
   "PA": {
     "bounding_box": [
@@ -3680,15 +3716,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 597,
-      "coal": 30289,
-      "gas": 2401,
-      "hydro": 593,
+      "biomass": 880,
+      "coal": 29963,
+      "gas": 2812,
+      "hydro": 605,
       "hydro storage": 1780,
       "nuclear": 0,
-      "oil": 415,
-      "solar": 1597,
-      "wind": 5825
+      "oil": 359,
+      "solar": 1695,
+      "wind": 5953
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3776,7 +3812,17 @@
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
-    "timezone": "Asia/Qatar"
+    "timezone": "Asia/Qatar",
+    "bounding_box": [
+      [
+        50.250987175000034,
+        24.059871521000062
+      ],
+      [
+        52.11654707100007,
+        26.660101630000042
+      ]
+    ]
   },
   "RE": {
     "bounding_box": [
@@ -3996,7 +4042,17 @@
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
-    "timezone": "Asia/Riyadh"
+    "timezone": "Asia/Riyadh",
+    "bounding_box": [
+      [
+        34.07276451900009,
+        15.87095774900007
+      ],
+      [
+        56.13756473800004,
+        32.62134796200006
+      ]
+    ]
   },
   "SE": {
     "bounding_box": [
@@ -4304,14 +4360,15 @@
   },
   "UA": {
     "capacity": {
-      "biomass": 123,
-      "hydro": 4819,
-      "hydro storage": 1474,
+      "biomass": 151,
+      "hydro": 4810,
+      "hydro storage": 1487,
       "nuclear": 13835,
-      "solar": 3145,
-      "wind": 1013
+      "solar": 4231,
+      "wind": 1036
     },
     "contributors": [
+      "https://github.com/amkozlov",
       "https://github.com/denplis",
       "https://github.com/corradio",
       "https://github.com/MariusKroon",

@@ -1,18 +1,18 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
+import { connect, useSelector } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { connect } from 'react-redux';
 import { first } from 'lodash';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { dispatchApplication } from '../store';
 import {
-  getSelectedZoneHistory,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
-} from '../selectors';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
@@ -53,9 +53,6 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
@@ -63,14 +60,15 @@ const mapStateToProps = state => ({
 const CountryHistoryPricesGraph = ({
   colorBlindModeEnabled,
   electricityMixMode,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const historyData = useCurrentZoneHistory();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const {

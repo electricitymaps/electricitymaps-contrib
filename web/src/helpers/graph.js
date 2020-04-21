@@ -1,4 +1,5 @@
-import { bisectLeft, touches } from 'd3-array';
+import { bisectLeft } from 'd3-array';
+import { touches } from 'd3-selection';
 
 export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgRef) => {
   if (!datetimes.length) return null;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
@@ -62,7 +63,6 @@ function zoneMatchesQuery(zone, queryString) {
 
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentPage: state.application.showPageState,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
@@ -70,7 +70,6 @@ const mapStateToProps = state => ({
 
 const ZoneList = ({
   colorBlindModeEnabled,
-  currentPage,
   electricityMixMode,
   gridZones,
   searchQuery,
@@ -81,13 +80,18 @@ const ZoneList = ({
     .filter(z => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
+  const location = useLocation();
+  const [enteredZone, setEnteredZone] = useState(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  // Click action
-  const handleClick = (countryCode) => {
-    dispatchApplication('showPageState', 'country');
-    dispatchApplication('selectedZoneName', countryCode);
-    dispatchApplication('centeredZoneName', countryCode);
+  const zonePage = zone => ({
+    pathname: `/zone/${zone.countryCode}`,
+    search: location.search,
+  });
+
+  const enterZone = (zone) => {
+    dispatchApplication('centeredZoneName', zone.countryCode);
+    setEnteredZone(zone);
   };
 
   // Keyboard navigation
@@ -108,9 +112,9 @@ const ZoneList = ({
       }
     };
     const keyHandler = (e) => {
-      if (e.key && currentPage === 'map') {
+      if (e.key) {
         if (e.key === 'Enter' && zones[selectedItemIndex]) {
-          handleClick(zones[selectedItemIndex].countryCode);
+          enterZone(zones[selectedItemIndex]);
         } else if (e.key === 'ArrowUp') {
           const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
           scrollToItemIfNeeded(prevItemIndex);
@@ -132,13 +136,20 @@ const ZoneList = ({
     };
   });
 
+  // Redirect to the zone details page if Enter key
+  // has been pressed over the zone in the list.
+  if (enteredZone) {
+    return <Redirect to={zonePage(enteredZone)} />;
+  }
+
   return (
     <div className="zone-list" ref={ref}>
       {zones.map((zone, ind) => (
-        <a
-          key={zone.shortname}
+        <Link
+          to={zonePage(zone)}
+          onClick={() => enterZone(zone)}
           className={selectedItemIndex === ind ? 'selected' : ''}
-          onClick={() => handleClick(zone.countryCode)}
+          key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
           <img className="flag" src={flagUri(zone.countryCode, 32)} />
@@ -150,7 +161,7 @@ const ZoneList = ({
             className="co2-intensity-tag"
             style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
           />
-        </a>
+        </Link>
       ))}
     </div>
   );

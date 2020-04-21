@@ -16,7 +16,7 @@ import moment from 'moment';
 
 import { __ } from '../helpers/translation';
 import TimeAxis from './graph/timeaxis';
-import { useWidthObserver } from '../effects';
+import { useWidthObserver } from '../hooks/viewport';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 

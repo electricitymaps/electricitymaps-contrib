@@ -5,15 +5,18 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatch, dispatchApplication } from '../store';
-import { useWidthObserver } from '../effects';
-import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
+import { useWidthObserver } from '../hooks/viewport';
+import {
+  useCurrentZoneData,
+  useCurrentZoneExchangeKeys,
+} from '../hooks/redux';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
@@ -126,36 +129,41 @@ const Row = ({
   onMouseOver,
   onMouseOut,
   width,
-}) => (
-  <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
-    {/* Row background */}
-    <rect
-      y="-1"
-      fill="transparent"
-      width={width}
-      height={ROW_HEIGHT + PADDING_Y}
-      /* Support only click events in mobile mode, otherwise react to mouse hovers */
-      onClick={isMobile ? onMouseOver : noop}
-      onFocus={!isMobile ? onMouseOver : noop}
-      onMouseOver={!isMobile ? onMouseOver : noop}
-      onMouseMove={!isMobile ? onMouseOver : noop}
-      onMouseOut={onMouseOut}
-      onBlur={onMouseOut}
-    />
+}) => {
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
-    {/* Row label */}
-    <text
-      className="name"
-      style={{ pointerEvents: 'none', textAnchor: 'end' }}
-      transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
-    >
-      {label}
-    </text>
+  return (
+    <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
+      {/* Row background */}
+      <rect
+        y="-1"
+        fill="transparent"
+        width={width}
+        height={ROW_HEIGHT + PADDING_Y}
+        /* Support only click events in mobile mode, otherwise react to mouse hovers */
+        onClick={isMobile ? onMouseOver : noop}
+        onFocus={!isMobile ? onMouseOver : noop}
+        onMouseOver={!isMobile ? onMouseOver : noop}
+        onMouseMove={!isMobile ? onMouseOver : noop}
+        onMouseOut={onMouseOut}
+        onBlur={onMouseOut}
+      />
 
-    {/* Row content */}
-    {children}
-  </g>
-);
+      {/* Row label */}
+      <text
+        className="name"
+        style={{ pointerEvents: 'none', textAnchor: 'end' }}
+        transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
+      >
+        {label}
+      </text>
+
+      {/* Row content */}
+      {children}
+    </g>
+  );
+};
 
 const HorizontalBar = ({
   className,
@@ -166,20 +174,23 @@ const HorizontalBar = ({
   // Don't render if the range is not valid
   if (!isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
 
-  // Make sure that x1 < x2
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
+  const width = scale(x2) - scale(x1);
+
+  // Don't render if the width is not positive
+  if (width <= 0) return null;
 
   return (
     <rect
       className={className}
+      fill={fill}
       height={ROW_HEIGHT}
       opacity={RECT_OPACITY}
       shapeRendering="crispEdges"
       style={{ pointerEvents: 'none' }}
-      fill={fill}
       x={LABEL_MAX_WIDTH + scale(x1)}
-      width={scale(x2) - scale(x1)}
+      width={width}
     />
   );
 };
@@ -421,22 +432,21 @@ const CountryElectricityProductionTable = React.memo(({
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
-  data: getCurrentZoneData(state),
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKeys: getSelectedZoneExchangeKeys(state),
   isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
   colorBlindModeEnabled,
-  data,
   displayByEmissions,
   electricityMixMode,
-  exchangeKeys,
   isMobile,
 }) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref);
+
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const data = useCurrentZoneData();
 
   const productionData = useMemo(
     () => getProductionData(data),

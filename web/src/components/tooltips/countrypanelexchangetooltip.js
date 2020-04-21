@@ -7,7 +7,6 @@ import { co2Sub, formatCo2, formatPower } from '../../helpers/formatting';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
-import { getSelectedZoneExchangeKeys } from '../../selectors';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, MetricRatio, ZoneName } from './common';

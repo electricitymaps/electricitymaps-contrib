@@ -8,7 +8,7 @@ import { dispatchApplication } from '../store';
 import thirdPartyServices from '../services/thirdparty';
 
 const views = [{
-  headerImage: 'images/onboarding/electricymapLogoIcon.svg',
+  headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
   renderContent: () => (
@@ -22,7 +22,7 @@ const views = [{
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/mapExtract.png',
+  headerImage: resolvePath('images/onboarding/mapExtract.png'),
   renderContent: () => (
     <React.Fragment>
       <div>
@@ -32,7 +32,7 @@ const views = [{
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/exchangeArrows.png',
+  headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
   renderContent: () => (
     <React.Fragment>
       <div>
@@ -42,7 +42,7 @@ const views = [{
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/splitLayers.png',
+  headerImage: resolvePath('images/onboarding/splitLayers.png'),
   renderContent: () => (
     <React.Fragment>
       <div>

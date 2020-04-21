@@ -291,7 +291,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
 - Poland  
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1237695748147462144)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
@@ -527,5 +527,3 @@ It should appear on the map as you refresh your local browser.
 - `ERROR: for X Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
-
-- When running `docker-compose up` you get the error: `Cannot read property 'BUNDLE_HASH' of undefined`. This can occur if your OS's default language is not english - since we by default only compile the english site. You can fix this by going into `web/package.json` and changing this line : `"watch-en": "webpack --watch --progress --mode development --config-name en"` to use the abbreviation for your system's language. ie, if your systems language is italian, you should change it to `"watch-en": "webpack --watch --progress --mode development --config-name it"`.
