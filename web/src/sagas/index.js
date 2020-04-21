@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
-import { handleConnectionReturnCode, protectedJsonRequest, textRequest } from '../helpers/api';
+import { handleRequestError, protectedJsonRequest, textRequest } from '../helpers/api';
 import {
   getGfsTargetTimeBefore,
   getGfsTargetTimeAfter,
@@ -12,8 +12,8 @@ function* fetchClientVersion(action) {
   try {
     const version = yield call(textRequest, '/clientVersion');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
-  } catch (error) {
-    handleConnectionReturnCode(error);
+  } catch (err) {
+    handleRequestError(err);
   }
 }
 
@@ -22,8 +22,9 @@ function* fetchZoneHistory(action) {
   try {
     const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}`);
     yield put({ type: 'ZONE_HISTORY_FETCH_SUCCEEDED', zoneId, payload });
-  } catch (error) {
-    yield put({ type: 'ZONE_HISTORY_FETCH_FAILED', error });
+  } catch (err) {
+    yield put({ type: 'ZONE_HISTORY_FETCH_FAILED' });
+    handleRequestError(err);
   }
 }
 
@@ -35,9 +36,9 @@ function* fetchGridData(action) {
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
-  } catch (error) {
-    handleConnectionReturnCode(error);
-    yield put({ type: 'GRID_DATA_FETCH_FAILED', error });
+  } catch (err) {
+    yield put({ type: 'GRID_DATA_FETCH_FAILED' });
+    handleRequestError(err);
   }
 }
 
@@ -47,9 +48,9 @@ function* fetchSolarData(action) {
     const before = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeBefore(datetime));
     const after = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeAfter(datetime));
     yield put({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
-  } catch (error) {
-    handleConnectionReturnCode(error);
+  } catch (err) {
     yield put({ type: 'SOLAR_DATA_FETCH_FAILED' });
+    handleRequestError(err);
   }
 }
 
@@ -59,9 +60,9 @@ function* fetchWindData(action) {
     const before = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeBefore(datetime));
     const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime));
     yield put({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
-  } catch (error) {
-    handleConnectionReturnCode(error);
+  } catch (err) {
     yield put({ type: 'WIND_DATA_FETCH_FAILED' });
+    handleRequestError(err);
   }
 }
 

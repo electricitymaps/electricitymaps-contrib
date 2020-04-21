@@ -59,18 +59,25 @@ export function textRequest(path) {
   });
 }
 
-export function handleConnectionReturnCode(err) {
+export function handleRequestError(err) {
   if (err) {
     if (err.target) {
+      const {
+        responseText,
+        responseURL,
+        status,
+        statusText,
+      } = err.target;
+
       // Avoid catching HTTPError 0
-      // The error will be empty, and we can't catch any more info
-      // for security purposes
+      // The error will be empty, and we can't catch any more info for security purposes.
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
-      if (err.target.status) {
-        thirdPartyServices.trackError(
-          new Error(`HTTPError ${err.target.status} ${err.target.statusText} at ${err.target.responseURL}: ${err.target.responseText}`)
-        );
-      }
+      if (!status) return;
+
+      // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
+      if (status >= 500 && status <= 599) return;
+
+      thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {
       thirdPartyServices.trackError(err);
     }
