@@ -59,14 +59,7 @@ export function textRequest(path) {
   });
 }
 
-function trackError(err, appState) {
-  console.error(`Error Caught! ${err}`);
-  thirdPartyServices.reportError(err);
-  thirdPartyServices.ga('event', 'exception', { description: err, fatal: false });
-  thirdPartyServices.track('error', Object.assign({}, appState, { name: err.name, stack: err.stack }));
-}
-
-export function handleConnectionReturnCode(err, appState = {}) {
+export function handleConnectionReturnCode(err) {
   if (err) {
     if (err.target) {
       // Avoid catching HTTPError 0
@@ -74,13 +67,12 @@ export function handleConnectionReturnCode(err, appState = {}) {
       // for security purposes
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
       if (err.target.status) {
-        trackError(
-          new Error(`HTTPError ${err.target.status} ${err.target.statusText} at ${err.target.responseURL}: ${err.target.responseText}`),
-          appState
+        thirdPartyServices.trackError(
+          new Error(`HTTPError ${err.target.status} ${err.target.statusText} at ${err.target.responseURL}: ${err.target.responseText}`)
         );
       }
     } else {
-      trackError(err, appState);
+      thirdPartyServices.trackError(err);
     }
   }
 }

@@ -1,9 +1,4 @@
-import {
-  call,
-  put,
-  select,
-  takeLatest,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleConnectionReturnCode, protectedJsonRequest, textRequest } from '../helpers/api';
@@ -18,8 +13,7 @@ function* fetchClientVersion(action) {
     const version = yield call(textRequest, '/clientVersion');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
   } catch (error) {
-    const appState = yield select(state => state.application);
-    handleConnectionReturnCode(error, appState);
+    handleConnectionReturnCode(error);
   }
 }
 
@@ -43,8 +37,7 @@ function* fetchGridData(action) {
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'showConnectionWarning', value: false });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
   } catch (error) {
-    const appState = yield select(state => state.application);
-    handleConnectionReturnCode(error, appState);
+    handleConnectionReturnCode(error);
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'showConnectionWarning', value: true });
     yield put({ type: 'GRID_DATA_FETCH_FAILED', error });
   }
@@ -57,8 +50,7 @@ function* fetchSolarData(action) {
     const after = yield call(fetchGfsForecast, 'solar', getGfsTargetTimeAfter(datetime));
     yield put({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
   } catch (error) {
-    const appState = yield select(state => state.application);
-    handleConnectionReturnCode(error, appState);
+    handleConnectionReturnCode(error);
     yield put({ type: 'SOLAR_DATA_FETCH_FAILED' });
   }
 }
@@ -70,8 +62,7 @@ function* fetchWindData(action) {
     const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime));
     yield put({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
   } catch (error) {
-    const appState = yield select(state => state.application);
-    handleConnectionReturnCode(error, appState);
+    handleConnectionReturnCode(error);
     yield put({ type: 'WIND_DATA_FETCH_FAILED' });
   }
 }
