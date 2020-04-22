@@ -4,11 +4,19 @@
 // TODO: re-enable rules
 
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  Redirect,
+  useLocation,
+} from 'react-router-dom';
 
 import { useSearchParams } from '../../helpers/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
+import { useSmallLoaderVisible } from '../../hooks/redux';
+import LastUpdatedTime from '../../components/lastupdatedtime';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
@@ -38,15 +46,35 @@ const HandleLegacyRoutes = () => {
 
 // TODO: Move all styles from styles.css to here
 
+const SmallLoader = styled.span`
+  background: transparent url('../images/loading/loading64_FA.gif') no-repeat center center;
+  background-size: 1.5em;
+  display: inline-block;
+  margin-right: 1em;
+  width: 1.5em;
+  height: 1em;
+`;
+
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
+  isMobile: state.application.isMobile,
 });
 
-const LeftPanel = ({ isLeftPanelCollapsed }) => {
+const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
+  const isLoaderVisible = useSmallLoaderVisible();
+  const location = useLocation();
+
   usePageViewsTracker();
 
+  // Hide the panel completely if looking at the map on mobile.
+  // TODO: Do this better when <Switch> is pulled up the hierarchy.
+  const panelHidden = isMobile && location.pathname === '/map';
+
   return (
-    <div className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}>
+    <div
+      className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
+      style={panelHidden ? { display: 'none' } : {}}
+    >
 
       <div id="mobile-header" className="large-screen-hidden brightmode">
         <div className="header-content">
@@ -54,8 +82,8 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <div className="right-header large-screen-hidden">
-            <span id="small-loading" className="loading" />
-            <span className="current-datetime-from-now" />
+            {isLoaderVisible && <SmallLoader />}
+            <LastUpdatedTime />
           </div>
         </div>
       </div>

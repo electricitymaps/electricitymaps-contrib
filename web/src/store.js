@@ -1,17 +1,25 @@
+import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import { updateApplication } from './actioncreators';
 import reducer from './reducers';
+import sagas from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const store = process.env.NODE_ENV === 'production'
   ? createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(sagaMiddleware),
   )
   : createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(sagaMiddleware),
     applyMiddleware(require('redux-logger').logger),
   );
+
+sagaMiddleware.run(sagas);
 
 // Utility to react to store changes
 const observe = (select, onChange) => {

@@ -1,23 +1,20 @@
-/* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable react/jsx-no-target-blank */
 // TODO: re-enable rules
 
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { __ } from '../../helpers/translation';
 import { dispatchApplication } from '../../store';
+
 import FAQ from '../../components/faq';
+import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
-const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  isMobile: state.application.isMobile,
-});
-
-const MobileInfoTab = ({ colorBlindModeEnabled, isMobile }) => {
+const MobileInfoTab = () => {
+  const isMobile = useSelector(state => state.application.isMobile);
   const location = useLocation();
 
   // If not on mobile, redirect to the /map page
@@ -51,17 +48,7 @@ const MobileInfoTab = ({ colorBlindModeEnabled, isMobile }) => {
       </div>
 
       <div className="info-text">
-        <p>
-          <input
-            type="checkbox"
-            id="checkbox-colorblind"
-            checked={colorBlindModeEnabled}
-            onChange={() => dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled)}
-          />
-          <label htmlFor="checkbox-colorblind">
-            {__('legends.colorblindmode')}
-          </label>
-        </p>
+        <ColorBlindCheckbox />
         <p>
           {__('panel-initial-text.thisproject')} <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">{__('panel-initial-text.opensource')}</a> ({__('panel-initial-text.see')} <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">{__('panel-initial-text.datasources')}</a>). <span dangerouslySetInnerHTML={{ __html: __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />.
         </p>
@@ -105,4 +92,4 @@ const MobileInfoTab = ({ colorBlindModeEnabled, isMobile }) => {
   );
 };
 
-export default connect(mapStateToProps)(MobileInfoTab);
+export default MobileInfoTab;

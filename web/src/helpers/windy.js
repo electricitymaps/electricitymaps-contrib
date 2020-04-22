@@ -219,8 +219,6 @@ var Windy = function( params ){
           return o;
       };
 
-      //field.overlay = mask.imageData;
-      //return field;
       callback( bounds, field );
   };
 
