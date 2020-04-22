@@ -22,15 +22,15 @@ const Overlay = styled.div`
   display: inline-block;
   position: fixed;
   top: 0;
-  transition: opacity ${props => props.timeout}ms ease-in-out;
+  transition: opacity ${props => props.fadeTimeout}ms ease-in-out;
   z-index: 500;
 `;
 
-export default ({ timeout = 500, visible }) => (
+export default ({ fadeTimeout = 500, visible }) => (
   <React.Fragment>
     <FadeAnimationDefinition />
-    <CSSTransition in={visible} timeout={timeout} classNames="fade">
-      <Overlay timeout={timeout} />
+    <CSSTransition in={visible} timeout={fadeTimeout} classNames="fade">
+      <Overlay fadeTimeout={fadeTimeout} />
     </CSSTransition>
   </React.Fragment>
 );
