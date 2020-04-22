@@ -23,7 +23,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   return (
     <div className="no-data-overlay visible">
-      <div className="overlay no-data-overlay-background" />
+      <div className="no-data-overlay-background" />
       <div className="no-data-overlay-message">
         {__(isRealtimeData ? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp')}
       </div>

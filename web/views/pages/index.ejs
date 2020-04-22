@@ -59,7 +59,7 @@
         <link rel="alternate" href="<%- alternateUrls[i] %>" hreflang="<%= supportedLocales[i] %>" />
         <% } %>
         <% if (typeof fullUrl != 'undefined') { %>
-        <link rel="alternate" href="<%- fullUrl.replace('&lang=' + locale, '').replace('/?lang=' + locale, '/?').replace(/\?$/, '').replace('/?&', '/?') %>" hreflang="x-default" />
+        <link rel="alternate" href="<%- fullUrl.replace(/[?|&]lang=[^&]*/, '') %>" hreflang="x-default" />
         <link rel="canonical" href="<%- fullUrl %>" />
         <% } %>
 

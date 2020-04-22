@@ -102,20 +102,20 @@ class SolarLayer {
 
   show() {
     if (this.canvas) {
-      d3.select(this.canvas)
-        .style('display', 'block')
-        .transition().style('opacity', 1);
+      this.canvas.style.display = 'block';
+      this.canvas.style.opacity = 1;
     }
     this.hidden = false;
     this.render();
   }
 
   hide() {
+    if (this.hidden) return;
     if (this.canvas) {
-      d3.select(this.canvas).transition().style('opacity', 0)
-        .on('end', function() {
-          d3.select(this).style('display', 'none');
-        });
+      this.canvas.style.opacity = 0;
+      setTimeout(() => {
+        this.canvas.style.display = 'none';
+      }, 500);
     }
     this.hidden = true;
   }

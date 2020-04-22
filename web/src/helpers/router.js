@@ -33,10 +33,6 @@ export function useCustomDatetime() {
   return useSearchParams().get('datetime');
 }
 
-export function useRemoteEndpoint() {
-  return useSearchParams().get('remote') === 'true';
-}
-
 export function useSolarEnabled() {
   return useSearchParams().get('solar') === 'true';
 }
@@ -63,11 +59,6 @@ export function getZoneId() {
 // TODO: Deprecate in favor of useCustomDatetime (requires move to React)
 export function getCustomDatetime() {
   return getSearchParams().get('datetime');
-}
-
-// TODO: Deprecate in favor of useRemoteEndpoint (requires move to React)
-export function isRemoteEndpoint() {
-  return getSearchParams().get('remote') === 'true';
 }
 
 // TODO: Deprecate in favor of useSolarEnabled (requires move to React)
@@ -113,6 +104,15 @@ export function setWindEnabled(windEnabled) {
   }
   updateSearchParams(searchParams);
 }
+
+// TODO: Get rid of this when a better system is put in place for switching languages.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
+export function hideLanguageSearchParam() {
+  const searchParams = getSearchParams();
+  searchParams.delete('lang');
+  history.replace(`?${searchParams.toString()}`);
+}
+hideLanguageSearchParam();
 
 //
 // Redux state sync

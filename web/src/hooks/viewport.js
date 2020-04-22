@@ -7,13 +7,12 @@ export function useWidthObserver(ref, offset = 0) {
   useEffect(() => {
     const updateWidth = () => {
       if (ref.current) {
-        setWidth(ref.current.getBoundingClientRect().width - offset);
+        const newWidth = ref.current.getBoundingClientRect().width - offset;
+        if (newWidth !== width) { setWidth(newWidth); }
       }
     };
-    // Initialize width if it's not set yet
-    if (!width) {
-      updateWidth();
-    }
+    // Set initial width
+    updateWidth();
     // Update container width on every resize
     window.addEventListener('resize', updateWidth);
     return () => {
@@ -31,13 +30,12 @@ export function useHeightObserver(ref, offset = 0) {
   useEffect(() => {
     const updateHeight = () => {
       if (ref.current) {
-        setHeight(ref.current.getBoundingClientRect().height - offset);
+        const newHeight = ref.current.getBoundingClientRect().height - offset;
+        if (newHeight !== height) { setHeight(newHeight); }
       }
     };
-    // Initialize height if it's not set yet
-    if (!height) {
-      updateHeight();
-    }
+    // Set initial height
+    updateHeight();
     // Update height on every resize
     window.addEventListener('resize', updateHeight);
     return () => {
