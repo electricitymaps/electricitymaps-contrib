@@ -21,6 +21,7 @@
     "d3-transition": "^1.1.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "history": "^4.9.0",
     "i18n": "^0.8.3",
     "js-cookie": "^2.2.0",
     "js-sha256": "^0.9.0",
@@ -33,8 +34,10 @@
     "react-portal": "^4.2.1",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
+    "react-transition-group": "^4.3.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3",
     "sprintf-js": "^1.1.2",
     "styled-components": "^5.0.1",
     "topojson": "^3.0.2"
@@ -79,12 +82,11 @@
   },
   "scripts": {
     "build-debug": "webpack --bail --progress --mode development",
-    "build-release": "export NODE_ENV=production && cat locales-config.json| jq '.languageNames | keys[]' | xargs -L1 -I {} node_modules/.bin/webpack --mode production --bail --config-name {}",
+    "build-release": "export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "lint": "eslint --quiet src",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
-    "watch-en": "webpack --watch --progress --mode development --config-name en",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development"
   },
   "browserslist": [

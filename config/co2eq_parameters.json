@@ -213,6 +213,11 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 52.16941300335089
+        },
+        "unknown": {
+          "_comment": "Source https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp",
+          "source": "assumes 58% thermal (coal, gas, or oil), 42% solar and biomass",
+          "value": 463.75
         }
       },
       "CY": {
