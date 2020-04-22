@@ -23,12 +23,12 @@ import AreaGraph from './graph/areagraph';
 const getValuesInfo = (historyData, displayByEmissions) => {
   const maxTotalValue = d3Max(historyData, d => (
     displayByEmissions
-      ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO2eq/min
+      ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 };
@@ -54,7 +54,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
       // in GW or MW
       obj[k] = value / valueFactor;
       if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
-        // in tCO2eq/min
+        // in tCO₂eq/min
         if (isStorage && obj[k] >= 0) {
           obj[k] *= (d.dischargeCo2Intensities || {})[k.replace(' storage', '')] / 1e3 / 60.0;
         } else {
@@ -68,7 +68,7 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
         // in GW or MW
         obj[key] = Math.max(0, value / valueFactor);
         if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
-          // in tCO2eq/min
+          // in tCO₂eq/min
           obj[key] *= (d.exchangeCo2Intensities || {})[key] / 1e3 / 60.0;
         }
       });
