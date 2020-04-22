@@ -30,6 +30,8 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
+import WindLayer from '../components/layers/windlayer';
+
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
@@ -83,7 +85,7 @@ const Main = ({
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />
-            <canvas id="wind" className="map-layer" />
+            <WindLayer />
             <canvas id="solar" className="map-layer" />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">

@@ -10,7 +10,6 @@ import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 import ZoneMap from './components/map';
 import ExchangeLayer from './components/layers/exchange';
 import SolarLayer from './components/layers/solar';
-import WindLayer from './components/layers/wind';
 
 // Services
 import thirdPartyServices from './services/thirdparty';
@@ -73,7 +72,6 @@ let hasCenteredMap = false;
 
 // Set up objects
 let exchangeLayer;
-let windLayer;
 let solarLayer;
 
 // Set proper locale
@@ -170,23 +168,6 @@ if (getState().application.isCordova) {
 //
 // *** MAP & LAYERS ***
 //
-
-function renderWind(state) {
-  if (windLayer) {
-    const { wind } = state.data;
-    if (isWindEnabled() && wind && wind.forecasts[0] && wind.forecasts[1]) {
-      windLayer.draw(
-        getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date()),
-        wind.forecasts[0],
-        wind.forecasts[1],
-        windColor,
-      );
-      windLayer.show();
-    } else {
-      windLayer.hide();
-    }
-  }
-}
 
 function renderSolar(state) {
   if (solarLayer) {
@@ -405,7 +386,6 @@ try {
       mapMouseOver(undefined);
     });
 
-  windLayer = new WindLayer('wind');
   solarLayer = new SolarLayer('solar');
   dispatchApplication('webglsupported', true);
 } catch (e) {
@@ -457,7 +437,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
   if (currentPage === 'map' && state.application.isMobile) {
     setTimeout(() => {
       renderMap(state);
-      renderWind(state);
       renderSolar(state);
     }, 0);
   }
@@ -500,6 +479,3 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
 
 // Observe for solar data change
 observe(state => state.data.solar, (_, state) => { renderSolar(state); });
-
-// Observe for wind data change
-observe(state => state.data.wind, (_, state) => { renderWind(state); });
