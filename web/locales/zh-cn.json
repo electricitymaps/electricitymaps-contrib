@@ -69,7 +69,7 @@
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO₂eq per minute",
 
     "zoneShortName": {
         "AL": {

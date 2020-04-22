@@ -16,8 +16,8 @@
             "subtitle": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
         },
         "view2": {
-            "header": "Betrachte in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden.",
-            "text": "Die Färbung der Zonen erfolgt anhand der spezifischen Emissionen klimawirksamer Gase (CO2-Intensität), die zur Deckung des Strombedarfs einer Region freigesetzt werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung."
+            "header": "Betrachte in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden.",
+            "text": "Die Färbung der Zonen erfolgt anhand der spezifischen Emissionen klimawirksamer Gase (CO₂-Intensität), die zur Deckung des Strombedarfs einer Region freigesetzt werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung."
         },
         "view3": {
             "header": "Erfahre, aus welchen Quellen deine Elektrizität stammt.",
@@ -30,13 +30,13 @@
     },
     "country-panel": {
         "source": "Quelle",
-        "carbonintensity": "spezifische CO2-Emissionen",
-        "lowcarbon": "CO2-arm",
+        "carbonintensity": "spezifische CO₂-Emissionen",
+        "lowcarbon": "CO₂-arm",
         "renewable": "regenerativ",
         "electricityproduction": "Stromerzeugung",
         "electricityconsumption": "Stromverbrauch",
         "bysource": "Ursprung:",
-        "emissions": "CO2-Emissionen",
+        "emissions": "CO₂-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
         "helpfrom": "mit Unterstützung von",
         "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
@@ -47,11 +47,11 @@
     },
     "left-panel": {
         "zone-list-header-title": "Klimaeinfluss der Regionen",
-        "zone-list-header-subtitle": "Sortiert nach CO2-Intensität der verfügbaren Elektrizität (gCO2äq/kWh)",
+        "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
         "search": "Land oder Region suchen"
     },
     "country-history": {
-        "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 h",
+        "carbonintensity24h": "spezifische CO₂-Emissionen in den letzten 24 h",
         "emissionsorigin24h": "Ursprung der Emissionen in den letzten 24 h",
         "emissionsproduction24h": "Erzeugte Emissionen in den letzten 24 h",
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
@@ -72,17 +72,17 @@
         "windpotential": "Windpotenzial",
         "solarpotential": "Solarpotenzial",
         "colorblindmode": "Farbenblind-Modus",
-        "carbonintensity": "CO2-Intensität"
+        "carbonintensity": "CO₂-Intensität"
     },
     "tooltips": {
-        "carbonintensity": "CO2-Intensität",
-        "lowcarbon": "CO2-arm",
+        "carbonintensity": "CO₂-Intensität",
+        "lowcarbon": "CO₂-arm",
         "renewable": "regenerativ",
         "crossborderexport": "Stromexport",
-        "carbonintensityexport": "CO2-Intensität der Exporte",
+        "carbonintensityexport": "CO₂-Intensität der Exporte",
         "ofinstalled": "der installierten Leistung",
         "utilizing": "durch Nutzung von",
-        "withcarbonintensity": "mit einer CO2-Intensität von",
+        "withcarbonintensity": "mit einer CO₂-Intensität von",
         "showWindLayer": "Windlayer anzeigen",
         "hideWindLayer": "Windlayer verbergen",
         "showSolarLayer": "Solarlayer anzeigen",
@@ -97,7 +97,7 @@
         "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie"
     },
     "misc": {
-        "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
+        "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
         "retrynow": "Erneut versuchen",
@@ -119,18 +119,18 @@
     "oil": "Öl",
     "unknown": "unbekannt",
     "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "emissionsComeFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-    "emissionsStoredUsing": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
     "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-    "emissionsExportedTo": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
     "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-    "emissionsImportedFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-    "ofCO2eqPerMinute": "CO2äq pro Minute",
+    "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+    "ofCO2eqPerMinute": "CO₂äq pro Minute",
     "theMap": {
         "groupName": "Die Karte",
         "mapColors-question": "Was bedeuten die Farben auf der Karte?",
-        "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO2äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href=\"#carbonIntensity\" class=\"entry-link\">CO2-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
+        "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO₂äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href=\"#carbonIntensity\" class=\"entry-link\">CO₂-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
         "mapArrows-question": "Was bedeuten die Pfeile zwischen den Regionen auf der Karte?",
         "mapArrows-answer": "Die Pfeile zwischen den Regionen zeigen den physischen Stromfluss (Importe und Exporte) der Elektrizität: Je schneller sie blinken, desto stärker ist der grenzüberschreitende Stromaustausch. Der Elektrizitätaustausch ist von großer Bedeutung, da beim Import von Strom bilanziell auch auch die Kohlenstoffemissionen importiert werden.",
         "mapSolarWindButtons-question": "Wofür sind die “Sonne” und “Wind”-Buttons auf der Karte da?",
@@ -154,8 +154,8 @@
     "methodology": {
         "groupName": "Unsere Methoden",
         "carbonIntensity-question": "Was ist \"Kohlenstoffintensität\"?",
-        "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO2-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO2eq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO2 als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO2-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
-        "consumptionFocus-question": "Warum wird die CO2-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
+        "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO₂-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO₂äq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO₂ als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO₂-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
+        "consumptionFocus-question": "Warum wird die CO₂-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
         "consumptionFocus-answer": "Wir glauben, dass die Bürger für den Strom, den sie verbrauchen, verantwortlich sein sollten und nicht für den Strom, der in dem Bereich produziert wird, in dem sie leben. Darüber hinaus sind wir der Meinung, dass Regionen nicht in der Lage sein sollten, einen geringeren Klimaeinfluss zu \"fälschen\", indem sie die Stromerzeugung in andere Regionen verlagern und dann den Strom aus diesen Gebieten importieren.",
         "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
         "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernkraft.",
@@ -1734,7 +1734,7 @@
         }
     },
     "mobile-info-tab": {
-        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO2-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
+        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO₂-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
         "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
         "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
     }

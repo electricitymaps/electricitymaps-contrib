@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { __ } from '../../helpers/translation';
 import { getTotalElectricity } from '../../helpers/zonedata';
 import { tonsPerHourToGramsPerMinute } from '../../helpers/math';
-import { co2Sub } from '../../helpers/formatting';
 import Tooltip from '../tooltip';
 
 const CountryPanelEmissionsTooltip = ({ position, zoneData }) => {
@@ -14,7 +13,7 @@ const CountryPanelEmissionsTooltip = ({ position, zoneData }) => {
 
   return (
     <Tooltip id="countrypanel-emissions-tooltip" position={position}>
-      <b>{totalEmissions}t</b> <span dangerouslySetInnerHTML={{ __html: co2Sub(__('ofCO2eqPerMinute')) }} />
+      <b>{totalEmissions}t</b> {__('ofCO2eqPerMinute')}
     </Tooltip>
   );
 };

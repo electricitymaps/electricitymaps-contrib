@@ -16,7 +16,7 @@
             "subtitle": "Kartlägger klimatpåverkan från elkonsumtion"
         },
         "view2": {
-            "header": "Se hur mycket CO2 som släpps ut när din el produceras, i realtid.",
+            "header": "Se hur mycket CO₂ som släpps ut när din el produceras, i realtid.",
             "text": "Vi färglägger regioner runt om i världen baserat på dess kolintensitet (inklusive alla växthusgaser) från el konsumerad där. Ju grönare färg, desto mer klimatvänlig el."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Klimatpåverkan per region",
-        "zone-list-header-subtitle": "Rankad efter kolintensitet från elproduktion (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Rankad efter kolintensitet från elproduktion (gCO₂eq/kWh)",
         "search": "Sök efter region"
     },
     "country-history": {
@@ -95,7 +95,7 @@
         "lowCarbDescription": "Inkluderar förnybart och kärnkraft"
     },
     "misc": {
-        "maintitle": "Aktuellt CO2-utsläpp från elproduktion",
+        "maintitle": "Aktuellt CO₂-utsläpp från elproduktion",
         "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
         "retrynow": "Försök igen",
@@ -127,7 +127,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> av elen i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> av utsläppen från elproduktion i <img id=\"country-flag\"></img> <b>%2$s</b> importeras från <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "av CO2eq per minut",
+    "ofCO2eqPerMinute": "av CO₂eq per minut",
     "theMap": {
         "groupName": "Kartan",
         "mapColors-question": "Vad betyder färgerna på kartan?",
@@ -155,7 +155,7 @@
     "methodology": {
         "groupName": "Våra metoder",
         "carbonIntensity-question": "Vad innebär \"kolintensitet\"?",
-        "carbonIntensity-answer": "Kolintensitet är ett mått på utsläpp av växthusgaser associerad med produktion av den el du konsumerar (i gCO2eq/kWh - gram av CO2-ekvivalenter utsläppt per kilowattimme av el konsumerad). <br><br>Vi mäter utsläppen från elkonsumtion (inte produktion), vilket betyder att allt utsläpp av växthusgaser (både CO2 och andra växthusgaser så som metan) som har skapats för att producera elen som konsumeras i en region, med hänsyn tagen till kolintensitet för el importerad från andra regioner. Vi använder en livscykelanalys (LCA), vilket innebär att vi räkna med utsläpp skapade under hela livscykeln för kraftverk (konstruktion, bränsleproduktion, produktionsutsläpp och rivning).",
+        "carbonIntensity-answer": "Kolintensitet är ett mått på utsläpp av växthusgaser associerad med produktion av den el du konsumerar (i gCO₂eq/kWh - gram av CO₂-ekvivalenter utsläppt per kilowattimme av el konsumerad). <br><br>Vi mäter utsläppen från elkonsumtion (inte produktion), vilket betyder att allt utsläpp av växthusgaser (både CO₂ och andra växthusgaser så som metan) som har skapats för att producera elen som konsumeras i en region, med hänsyn tagen till kolintensitet för el importerad från andra regioner. Vi använder en livscykelanalys (LCA), vilket innebär att vi räkna med utsläpp skapade under hela livscykeln för kraftverk (konstruktion, bränsleproduktion, produktionsutsläpp och rivning).",
         "consumptionFocus-question": "Varför beräknar ni kolintensitet för elkonsumtion och istället för produktion?",
         "consumptionFocus-answer": "Vi anser att alla medborgare bör vara ansvariga för den el de konsumerar, och inte för den el som produceras i den region de råkar bo i. Dessutom anser vi att regioner inte bör 'fejka' låg kolintensitet genom att helt enkelt flytta smutsig energiproduktion till andra regioner och sedan importera el från dessa regioner.",
         "renewableLowCarbonDifference-question": "Vad är skillnaden mellan “förnybart” och “fosilfritt”?",

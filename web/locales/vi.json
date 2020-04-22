@@ -16,7 +16,7 @@
             "subtitle": "Mapping the climate impact of electricity"
         },
         "view2": {
-            "header": "Xem lượng CO2 được thải ra trong quá trình sản xuất điện năng của bạn trong thời gian thực",
+            "header": "Xem lượng CO₂ được thải ra trong quá trình sản xuất điện năng của bạn trong thời gian thực",
             "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
-        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
         "search": "Tìm khu vực"
     },
     "country-history": {
@@ -94,7 +94,7 @@
         "selectLanguage": "Select language"
     },
     "misc": {
-        "maintitle": "Live CO2 emissions of electricity consumption",
+        "maintitle": "Live CO₂ emissions of electricity consumption",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "Retry now",
@@ -126,7 +126,7 @@
     "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO₂eq per minute",
     "theMap": {
         "groupName": "Bản đồ",
         "mapColors-question": "Những màu trên bản đồ có ý nghĩa gì?",
@@ -154,7 +154,7 @@
     "methodology": {
         "groupName": "Phương pháp của chúng tôi",
         "carbonIntensity-question": "What is \"carbon intensity\"?",
-        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO2eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO2 and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
+        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
         "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
         "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas and then import the electricity from those areas.",
         "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
