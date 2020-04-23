@@ -2572,17 +2572,18 @@
       "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 665,
-      "hydro": 1986,
+      "geothermal": 753,
+      "hydro": 2095,
       "nuclear": 0,
       "oil": 117,
       "solar": 0,
       "unknown": 0,
-      "wind": 3
+      "wind": 2
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/SNPerkin"
+      "https://github.com/SNPerkin",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "IS.fetch_production"
