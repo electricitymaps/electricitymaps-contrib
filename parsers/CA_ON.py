@@ -91,6 +91,11 @@ def _fetch_ieso_xml(target_datetime, session, logger, url_template):
     return dt, xml
 
 
+def _parse_ieso_hour(output, target_dt):
+    hour = int(output.find(XML_NS_TEXT + 'Hour').text)
+    return target_dt.shift(hours=hour).datetime
+
+
 def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given region
@@ -152,9 +157,7 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
             'fuel': MAP_GENERATION[
                 generator.find(XML_NS_TEXT + 'FuelType').text
             ],
-            'dt': dt.replace(hours=+int(
-                output.find(XML_NS_TEXT + 'Hour').text
-            )).datetime,
+            'dt': _parse_ieso_hour(output, dt),
             'production': float(production_or_zero(output))
         }
         for generator in generators
@@ -225,9 +228,7 @@ def fetch_price(zone_key='CA-ON', session=None, target_datetime=None,
 
     data = [
         {
-            'datetime': dt.replace(hours=+int(
-                price.find(XML_NS_TEXT + 'Hour').text
-            )).datetime,
+            'datetime': _parse_ieso_hour(price, dt),
             'price': float(price.find(XML_NS_TEXT + 'Price').text),
             'currency': 'CAD',
             'source': 'ieso.ca',
@@ -283,7 +284,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
         hour = int(flow.find(XML_NS_TEXT + 'Hour').text) - 1
         minute = (int(flow.find(XML_NS_TEXT + 'Interval').text) - 1) * 5
 
-        return dt.replace(hours=+hour, minutes=+minute).datetime
+        return dt.replace(hour=hour, minute=minute).datetime
 
     # flat iterable of per-intertie values per time from the XML data
     all_exchanges = (
