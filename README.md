@@ -283,7 +283,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Nepal
   -List of PowerStations:[PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
-- Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Netherlands
+  - Renewables: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
   - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
