@@ -38,13 +38,6 @@
     height: 100%;
 }
 
-#solar {
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    opacity: 0;
-    display: none;
-}
-
 .tooltip {
     border: 1px solid lightgray;
     background-color: $lighter-gray;

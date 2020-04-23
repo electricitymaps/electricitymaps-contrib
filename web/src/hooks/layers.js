@@ -7,10 +7,22 @@ import moment from 'moment';
 import { useCustomDatetime } from '../helpers/router';
 import { getRefTime, getTargetTime } from '../helpers/grib';
 
-export function useInterpolateWindData() {
+
+export function useExchangeArrowsData() {
+  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
+  const exchanges = useSelector(state => state.data.grid.exchanges);
+
+  return useMemo(
+    () => (isConsumption ? values(exchanges).filter(d => d.lonlat) : []),
+    [isConsumption, exchanges],
+  );
+}
+
+export function useInterpolatedWindData() {
   const windData = useSelector(state => state.data.wind);
   const customDatetime = useCustomDatetime();
 
+  // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(
     () => {
       if (!windData || !windData.forecasts) {
@@ -41,12 +53,35 @@ export function useInterpolateWindData() {
   );
 }
 
-export function useExchangeArrowsData() {
-  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
-  const exchanges = useSelector(state => state.data.grid.exchanges);
+export function useInterpolatedSolarData() {
+  const solarData = useSelector(state => state.data.solar);
+  const customDatetime = useCustomDatetime();
 
+  // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(
-    () => (isConsumption ? values(exchanges).filter(d => d.lonlat) : []),
-    [isConsumption, exchanges],
+    () => {
+      if (!solarData || !solarData.forecasts) {
+        return null;
+      }
+
+      const grib1 = solarData.forecasts[0];
+      const grib2 = solarData.forecasts[1];
+      const tBefore = getTargetTime(grib1);
+      const tAfter = getTargetTime(grib2);
+      const datetime = moment(customDatetime || new Date()).subtract(2, 'hours'); 
+      const k = (datetime - tBefore) / (tAfter - tBefore);
+
+      if (datetime > tAfter) {
+        console.error('Error while interpolating solar because current time is out of bounds');
+        return null;
+      }
+
+      console.log(`#1 solar forecast target ${tBefore.fromNow()} made ${getRefTime(grib1).fromNow()}`);
+      console.log(`#2 solar forecast target ${tAfter.fromNow()} made ${getRefTime(grib2).fromNow()}`);
+
+      return grib1;
+      // return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
+    },
+    [solarData, customDatetime],
   );
 }

@@ -8,7 +8,6 @@ import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 
 // Components
 import ZoneMap from './components/map';
-import SolarLayer from './components/layers/solar';
 
 // Services
 import thirdPartyServices from './services/thirdparty';
@@ -68,9 +67,6 @@ if (thirdPartyServices._ga) {
 // or to component state
 let mapDraggedSinceStart = false;
 let hasCenteredMap = false;
-
-// Set up objects
-let solarLayer;
 
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
@@ -164,32 +160,8 @@ if (getState().application.isCordova) {
 }
 
 //
-// *** MAP & LAYERS ***
+// *** MAP ***
 //
-
-function renderSolar(state) {
-  if (solarLayer) {
-    const { solar } = state.data;
-    if (isSolarEnabled() && solar && solar.forecasts[0] && solar.forecasts[1]) {
-      solarLayer.draw(
-        getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime(),
-        solar.forecasts[0],
-        solar.forecasts[1],
-        (err) => {
-          if (err) {
-            console.error(err.message);
-          } else if (isSolarEnabled()) {
-            solarLayer.show();
-          } else {
-            solarLayer.hide();
-          }
-        },
-      );
-    } else {
-      solarLayer.hide();
-    }
-  }
-}
 
 // Only center once
 function renderMap(state) {
@@ -336,7 +308,6 @@ try {
       mapMouseOver(undefined);
     });
 
-  solarLayer = new SolarLayer('solar');
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
@@ -381,7 +352,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
   if (currentPage === 'map' && state.application.isMobile) {
     setTimeout(() => {
       renderMap(state);
-      renderSolar(state);
     }, 0);
   }
 
@@ -415,6 +385,3 @@ observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
     global.zoneMap.map.resize();
   }
 });
-
-// Observe for solar data change
-observe(state => state.data.solar, (_, state) => { renderSolar(state); });

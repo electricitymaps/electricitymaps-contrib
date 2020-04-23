@@ -31,6 +31,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
 import ExchangeLayer from '../components/layers/exchangelayer';
+import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 
 // TODO: Move all styles from styles.css to here
@@ -88,7 +89,7 @@ const Main = ({
             <div id="zones" className="map-layer" />
             <ExchangeLayer />
             <WindLayer />
-            <canvas id="solar" className="map-layer" />
+            <SolarLayer />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />

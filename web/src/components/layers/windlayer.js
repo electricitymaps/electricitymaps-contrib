@@ -7,14 +7,13 @@ import React, {
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { debounce } from 'lodash';
 
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
 import { useWindEnabled } from '../../helpers/router';
 
 import global from '../../global';
 import Windy from '../../helpers/windy';
-import { useInterpolateWindData } from '../../hooks/layers';
+import { useInterpolatedWindData } from '../../hooks/layers';
 
 const Canvas = styled.canvas`
   top: 0;
@@ -30,7 +29,7 @@ export default () => {
   const ref = useRef(null);
   const width = useWidthObserver(ref);
   const height = useHeightObserver(ref);
-  const interpolatedData = useInterpolateWindData();
+  const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
   const [windy, setWindy] = useState(null);
