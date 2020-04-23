@@ -45,23 +45,6 @@
     display: none;
 }
 
-#arrows-layer {
-    position: absolute;
-    transform: translateZ(0);
-    transition: opacity 0.2s ease;
-
-    .exchange-arrow {
-        position: absolute;
-        left: -25px;
-        top: -41px;
-        overflow: hidden;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
 .tooltip {
     border: 1px solid lightgray;
     background-color: $lighter-gray;

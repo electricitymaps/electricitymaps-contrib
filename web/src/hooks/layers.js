@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { interpolate } from 'd3-interpolate';
+import { values } from 'lodash';
 import moment from 'moment';
 
 import { useCustomDatetime } from '../helpers/router';
@@ -37,5 +38,15 @@ export function useInterpolateWindData() {
       ];
     },
     [windData, customDatetime],
+  );
+}
+
+export function useExchangeArrowsData() {
+  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
+  const exchanges = useSelector(state => state.data.grid.exchanges);
+
+  return useMemo(
+    () => (isConsumption ? values(exchanges).filter(d => d.lonlat) : []),
+    [isConsumption, exchanges],
   );
 }

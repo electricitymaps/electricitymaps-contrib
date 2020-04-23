@@ -30,6 +30,7 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
+import ExchangeLayer from '../components/layers/exchangelayer';
 import WindLayer from '../components/layers/windlayer';
 
 // TODO: Move all styles from styles.css to here
@@ -85,6 +86,7 @@ const Main = ({
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />
+            <ExchangeLayer />
             <WindLayer />
             <canvas id="solar" className="map-layer" />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>

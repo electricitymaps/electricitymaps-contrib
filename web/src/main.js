@@ -8,7 +8,6 @@ import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 
 // Components
 import ZoneMap from './components/map';
-import ExchangeLayer from './components/layers/exchange';
 import SolarLayer from './components/layers/solar';
 
 // Services
@@ -71,7 +70,6 @@ let mapDraggedSinceStart = false;
 let hasCenteredMap = false;
 
 // Set up objects
-let exchangeLayer;
 let solarLayer;
 
 // Set proper locale
@@ -269,18 +267,6 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   }
 }
 
-function renderExchanges(state) {
-  const { exchanges } = state.data.grid;
-  const { electricityMixMode } = state.application;
-  if (exchangeLayer) {
-    exchangeLayer
-      .setData(electricityMixMode === 'consumption'
-        ? Object.values(exchanges)
-        : [])
-      .render();
-  }
-}
-
 function renderZones(state) {
   const { zones } = state.data.grid;
   const { electricityMixMode } = state.application;
@@ -305,43 +291,7 @@ try {
       }
     })
     .onMapLoaded((map) => {
-      // Nest the exchange layer inside
-      const el = document.createElement('div');
-      el.id = 'arrows-layer';
-      map.map.getCanvas()
-        .parentNode
-        .appendChild(el);
-
-      // Create exchange layer as a result
-      exchangeLayer = new ExchangeLayer('arrows-layer')
-        .onExchangeMouseMove((zoneData) => {
-          const { co2intensity } = zoneData;
-          if (co2intensity) {
-            dispatchApplication('co2ColorbarValue', co2intensity);
-          }
-          dispatch({
-            type: 'SHOW_TOOLTIP',
-            payload: {
-              data: zoneData,
-              displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
-              position: { x: currentEvent.clientX, y: currentEvent.clientY },
-            },
-          });
-        })
-        .onExchangeMouseOut((d) => {
-          dispatchApplication('co2ColorbarValue', null);
-          dispatch({ type: 'HIDE_TOOLTIP' });
-        })
-        .onExchangeClick((d) => {
-          console.log(d);
-        })
-        .setData(getState().application.electricityMixMode === 'consumption'
-          ? Object.values(getState().data.grid.exchanges)
-          : [])
-        .setColorblindMode(getState().application.colorBlindModeEnabled)
-        .render();
-
-      // map loading is finished, lower the overlay shield
+      // Map loading is finished, lower the overlay shield
       dispatchApplication('isLoadingMap', false);
 
       if (thirdPartyServices._ga) {
@@ -409,7 +359,6 @@ try {
 
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
-  renderExchanges(state);
   renderZones(state);
   renderMap(state);
 });
@@ -417,11 +366,6 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
   renderZones(state);
-});
-
-// Observe for grid exchanges change
-observe(state => state.data.grid.exchanges, (exchanges, state) => {
-  renderExchanges(state);
 });
 
 // Observe for grid change
@@ -449,11 +393,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
   if (global.zoneMap) {
     global.zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
-  }
-  if (exchangeLayer) {
-    exchangeLayer
-      .setColorblindMode(colorBlindModeEnabled)
-      .render();
   }
 });
 
