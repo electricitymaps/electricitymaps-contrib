@@ -4087,6 +4087,7 @@
     ],
     "capacity": {
       "biomass": 4800,
+      "coal": 0,
       "gas": 698,
       "hydro": 15945,
       "nuclear": 7801,
@@ -4097,7 +4098,8 @@
     "contributors": [
       "https://github.com/augustekman",
       "https://github.com/RRyyas",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/VIKTORVAV99"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
