@@ -81,7 +81,8 @@ def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
         'JP-HR':['JP-CB', 'JP-KN'],
         'JP-KN':['JP-CB', 'JP-HR', 'JP-SK', 'JP-CG'],
         'JP-SK':['JP-KN', 'JP-CG'],
-        'JP-CG':['JP-KN', 'JP-SK', 'JP-KY']
+        'JP-CG':['JP-KN', 'JP-SK', 'JP-KY'],
+        'JP-ON':[]
         }
     df = fetch_consumption_df(zone_key, target_datetime)
     df['imports'] = 0
