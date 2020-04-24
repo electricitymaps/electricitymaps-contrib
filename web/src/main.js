@@ -36,7 +36,6 @@ import {
   getZoneId,
 } from './helpers/router';
 import {
-  MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
 

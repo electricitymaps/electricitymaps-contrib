@@ -6,11 +6,11 @@ import { noop } from 'lodash';
 
 import global from '../../global';
 import { useExchangeArrowsData } from '../../hooks/layers';
-import { dispatch, dispatchApplication } from '../../store';
+import { dispatchApplication } from '../../store';
 
-import { MAP_EXCHANGE_TOOLTIP_KEY } from '../../helpers/constants';
+import MapExchangeTooltip from '../tooltips/mapexchangetooltip';
 
-// TODO: Fix map scrolling when hovering over arrows.
+// TODO: Fix map scrolling when hovering over arrows when moving map to React.
 const ArrowImage = styled.img`
   cursor: pointer;
   overflow: hidden;
@@ -31,7 +31,7 @@ const exchangeAnimationDurationScale = scaleLinear()
   .unknown(0)
   .clamp(true);
 
-const Arrow = ({
+const Arrow = React.memo(({
   arrow,
   mapTransform,
   mouseMoveHandler,
@@ -58,7 +58,7 @@ const Arrow = ({
 
   const transform = useMemo(
     () => {
-      const [x, y] = global.zoneMap ? global.zoneMap.projection()(lonlat) : [300, 300];
+      const [x, y] = global.zoneMap ? global.zoneMap.projection()(lonlat) : [0, 0];
       const k = mapTransform ? (0.04 + (mapTransform.k - 1.5) * 0.1) * 0.2 : 0;
       const r = rotation + (netFlow > 0 ? 180 : 0);
       return `translateX(${x}px) translateY(${y}px) rotate(${r}deg) scale(${k})`;
@@ -86,7 +86,7 @@ const Arrow = ({
       onBlur={mouseOutHandler}
     />
   );
-};
+});
 
 const ArrowsContainer = styled.div`
   position: absolute;
@@ -98,6 +98,7 @@ export default () => {
   const arrows = useExchangeArrowsData();
   const [transform, setTransform] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [tooltip, setTooltip] = useState(null);
 
   // Set up map interaction handlers once the map gets initialized.
   // TODO: Consider hidding the arrows or stopping their animation when dragging.
@@ -109,25 +110,23 @@ export default () => {
   }, [global.zoneMap, isInitialized]);
 
   // Mouse interaction handlers
-  const handleArrowMouseMove = useMemo(() => (data, x, y) => {
-    dispatchApplication('co2ColorbarValue', data.co2intensity);
-    dispatch({
-      type: 'SHOW_TOOLTIP',
-      payload: {
-        data,
-        displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
-        position: { x, y },
-      },
-    });
+  const handleArrowMouseMove = useMemo(() => (exchangeData, x, y) => {
+    dispatchApplication('co2ColorbarValue', exchangeData.co2intensity);
+    setTooltip({ exchangeData, position: { x, y } });
   }, []);
   const handleArrowMouseOut = useMemo(() => () => {
     dispatchApplication('co2ColorbarValue', null);
-    dispatch({ type: 'HIDE_TOOLTIP' });
+    setTooltip(null);
   }, []);
 
-  // TODO: Fix key uniqueness errors.
   return (
     <ArrowsContainer id="exchange">
+      {tooltip && (
+        <MapExchangeTooltip
+          exchangeData={tooltip.exchangeData}
+          position={tooltip.position}
+        />
+      )}
       {arrows.map(arrow => (
         <Arrow
           key={arrow.sortedCountryCodes}

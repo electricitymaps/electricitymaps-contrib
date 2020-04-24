@@ -13,7 +13,7 @@ export function useExchangeArrowsData() {
   const exchanges = useSelector(state => state.data.grid.exchanges);
 
   return useMemo(
-    () => (isConsumption ? values(exchanges).filter(d => d.lonlat) : []),
+    () => (isConsumption ? values(exchanges).filter(d => d.lonlat && d.sortedCountryCodes) : []),
     [isConsumption, exchanges],
   );
 }
@@ -68,7 +68,7 @@ export function useInterpolatedSolarData() {
       const grib2 = solarData.forecasts[1];
       const tBefore = getTargetTime(grib1);
       const tAfter = getTargetTime(grib2);
-      const datetime = moment(customDatetime || new Date()).subtract(2, 'hours');
+      const datetime = moment(customDatetime || new Date()).subtract(6, 'hours');
       const k = (datetime - tBefore) / (tAfter - tBefore);
 
       if (datetime > tAfter) {

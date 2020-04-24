@@ -67,6 +67,7 @@ export default () => {
     const { lo1, la1 } = solar.header;
 
     // Project solar data onto the image opacity channel
+    // TODO: Consider using bilinear interpolation here instead of Gaussian blur.
     for (let x = 0; x < image.width; x += 1) {
       for (let y = 0; y < image.height; y += 1) {
         // Taking [lon, lat] = unproject([x, y]) here would be
