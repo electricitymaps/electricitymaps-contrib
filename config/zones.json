@@ -3753,18 +3753,20 @@
   },
   "PT": {
     "capacity": {
-      "biomass": 598,
+      "biomass": 729,
       "coal": 1756,
-      "gas": 4457,
+      "gas": 4606,
+      "geothermal": 29,
       "hydro": 4359,
       "hydro storage": 2559,
       "nuclear": 0,
       "oil": 0,
-      "solar": 670,
-      "wind": 5191
+      "solar": 828,
+      "wind": 5233
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "pt.png",
     "parsers": {
