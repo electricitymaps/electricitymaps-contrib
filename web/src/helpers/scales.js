@@ -26,7 +26,7 @@ export const windColor = scaleLinear()
 // ** Solar
 export const solarColor = scaleLinear()
   .domain([0, 500, 1000])
-  .range(['black', 'white', 'gold'])
+  .range(['black', 'transparent', 'gold'])
   .clamp(true);
 
 // ** CO₂

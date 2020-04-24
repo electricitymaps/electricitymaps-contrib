@@ -68,7 +68,7 @@ export function useInterpolatedSolarData() {
       const grib2 = solarData.forecasts[1];
       const tBefore = getTargetTime(grib1);
       const tAfter = getTargetTime(grib2);
-      const datetime = moment(customDatetime || new Date()).subtract(2, 'hours'); 
+      const datetime = moment(customDatetime || new Date()).subtract(2, 'hours');
       const k = (datetime - tBefore) / (tAfter - tBefore);
 
       if (datetime > tAfter) {

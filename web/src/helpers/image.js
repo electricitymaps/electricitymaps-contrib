@@ -172,5 +172,41 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
         }
     }
     return imageData;
+}
 
+const MAX_OPACITY = 0.85;
+
+export function scaleImage(source, target) {
+  // Pre-calculate the dimension ratios
+  const aspectWidth = source.width / target.width;
+  const aspectHeight = source.height / target.height;
+
+  for (let tX = 0; tX < target.width; tX += 1) {
+    for (let tY = 0; tY < target.height; tY += 1) {
+      // Get the source coordinates (sX, sY) given the target coordinates (tX, tY).
+      const sX = Math.floor(tX * aspectWidth);
+      const sY = Math.floor(tY * aspectHeight);
+      // Calculate source and target color indices in the dataset given the coordinates.
+      const sIndex = 4 * (sY * source.width + sX);
+      const tIndex = 4 * (tY * target.width + tX);
+      // Copy only the pixel alpha value.
+      target.data[tIndex + 3] = source.data[sIndex + 3];
+    }
+  }
+}
+
+
+export function applySolarColorFilter(target) {
+  for (let i = 0; i < target.data.length; i += 4) {
+    // The bluredData correspond to the solar value projected from 0 to 255 hence, 128 is mid-scale
+    if (target.data[i + 3] > 128) {
+      // Gold
+      target.data[i + 0] = 255;
+      target.data[i + 1] = 215;
+      target.data[i + 2] = 0;
+      target.data[i + 3] = 256 * MAX_OPACITY * (target.data[i + 3] / 128 - 1);
+    } else {
+      target.data[i + 3] = 256 * MAX_OPACITY * (1 - target.data[i + 3] / 128);
+    }
+  }
 }
