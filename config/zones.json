@@ -2215,19 +2215,20 @@
       ]
     ],
     "capacity": {
-      "biomass": 107,
+      "biomass": 109,
       "coal": 1199,
       "gas": 4265,
       "hydro": 216,
       "hydro storage": 292,
       "nuclear": 0,
       "oil": 1272,
-      "solar": 10,
+      "solar": 36,
       "unknown": 647,
-      "wind": 3253
+      "wind": 4172
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2573,17 +2574,18 @@
       "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 665,
-      "hydro": 1986,
+      "geothermal": 753,
+      "hydro": 2095,
       "nuclear": 0,
       "oil": 117,
       "solar": 0,
       "unknown": 0,
-      "wind": 3
+      "wind": 2
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/SNPerkin"
+      "https://github.com/SNPerkin",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "IS.fetch_production"
@@ -3695,13 +3697,6 @@
     "timezone": "America/Panama"
   },
   "PE": {
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "production": "PE.fetch_production"
-    },
-    "timezone": "America/Lima",
     "bounding_box": [
       [
         -81.83755752899992,
@@ -3711,7 +3706,21 @@
         -68.18425248299991,
         0.47090728800013437
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 186,
+      "hydro": 5741,
+      "solar": 341,
+      "wind": 372
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
+    ],
+    "parsers": {
+      "production": "PE.fetch_production"
+    },
+    "timezone": "America/Lima"
   },
   "PL": {
     "bounding_box": [
@@ -3752,18 +3761,20 @@
   },
   "PT": {
     "capacity": {
-      "biomass": 598,
+      "biomass": 729,
       "coal": 1756,
-      "gas": 4457,
+      "gas": 4606,
+      "geothermal": 29,
       "hydro": 4359,
       "hydro storage": 2559,
       "nuclear": 0,
       "oil": 0,
-      "solar": 670,
-      "wind": 5191
+      "solar": 828,
+      "wind": 5233
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "pt.png",
     "parsers": {

@@ -258,10 +258,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Hungary
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=HUN)
   - Other[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
+- Iceland
+  - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
+  - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Ireland
-  - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Biomass, Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=IRL)
+  - Non-Renewable: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)  
 - Italy
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
@@ -293,11 +295,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
+- Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland  
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
-  - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
+  - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania:
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)

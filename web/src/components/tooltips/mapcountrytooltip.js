@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { __, getFullZoneName } from '../../helpers/translation';
 import { getCo2Scale } from '../../helpers/scales';
-import { co2Sub } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
 
 import CircularGauge from '../circulargauge';
@@ -65,19 +64,13 @@ const MapCountryTooltip = ({
                     g
                   </div>
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
               </div>
               <div className="country-col country-lowcarbon-wrap">
                 <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CircularGauge percentage={fossilFuelPercentage} />
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
               </div>
               <div className="country-col country-renewable-wrap">
