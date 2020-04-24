@@ -3696,13 +3696,6 @@
     "timezone": "America/Panama"
   },
   "PE": {
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "production": "PE.fetch_production"
-    },
-    "timezone": "America/Lima",
     "bounding_box": [
       [
         -81.83755752899992,
@@ -3712,7 +3705,21 @@
         -68.18425248299991,
         0.47090728800013437
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 186,
+      "hydro": 5741,
+      "solar": 341,
+      "wind": 372
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
+    ],
+    "parsers": {
+      "production": "PE.fetch_production"
+    },
+    "timezone": "America/Lima"
   },
   "PL": {
     "bounding_box": [
