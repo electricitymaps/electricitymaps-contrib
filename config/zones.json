@@ -67,17 +67,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1.3,
+      "biomass": 0,
       "gas": 1832,
-      "hydro": 1326.8,
+      "hydro": 1336,
       "nuclear": 440,
-      "solar": 2.4,
-      "wind": 2.9
+      "solar": 50,
+      "wind": 3
     },
     "contributors": [
       "https://github.com/tmslaine",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "AM.fetch_production"
