@@ -3126,13 +3126,17 @@
       ]
     ],
     "capacity": {
+	    "biomass": 6,
       "gas": 335,
       "hydro": 64,
+	    "solar": 4,
+	    "wind": 29,
       "unknown": 2520
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+	  "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "MD.fetch_production"
