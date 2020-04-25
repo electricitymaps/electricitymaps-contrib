@@ -42,8 +42,14 @@
         42.6882473822
       ]
     ],
+    "capacity": {
+      "biomass": 1,
+      "hydro": 2132,
+      "solar": 3
+    },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
