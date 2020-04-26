@@ -201,6 +201,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
+- Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
    - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
