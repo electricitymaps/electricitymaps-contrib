@@ -3165,10 +3165,13 @@
     ],
     "capacity": {
       "coal": 218,
-      "hydro": 649
+      "hydro": 658,
+	    "solar": 3,
+	    "wind": 118
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+	    "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
