@@ -13,13 +13,6 @@
     "timezone": null
   },
   "AE": {
-    "contributors": [
-      "https://github.com/q--"
-    ],
-    "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
-    },
-    "timezone": "Asia/Dubai",
     "bounding_box": [
       [
         51.069346550000034,
@@ -29,7 +22,20 @@
         56.88363691500007,
         26.574791972000085
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 1,
+      "hydro": 0,
+      "solar": 1883,
+      "wind": 1
+    },
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Dubai"
   },
   "AL": {
     "bounding_box": [
@@ -42,8 +48,14 @@
         42.6882473822
       ]
     ],
+    "capacity": {
+      "biomass": 1,
+      "hydro": 2132,
+      "solar": 3
+    },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -67,17 +79,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1.3,
+      "biomass": 0,
       "gas": 1832,
-      "hydro": 1326.8,
+      "hydro": 1336,
       "nuclear": 440,
-      "solar": 2.4,
-      "wind": 2.9
+      "solar": 50,
+      "wind": 3
     },
     "contributors": [
       "https://github.com/tmslaine",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "AM.fetch_production"
