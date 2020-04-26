@@ -154,7 +154,7 @@ def fetch_production(zone_key='JP', session=None,
                 'unknown': row.get('unknown', None)
             },
             'storage': {
-                'hydro storage': row.get('hydro storage', None)
+                'hydro': row.get('hydro storage', None)
             },
             'source': 'isep-energychart.com'
         }
