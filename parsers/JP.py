@@ -137,7 +137,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
         startrow = 42
     df = pd.read_csv(consumption_url[zone_key], skiprows=startrow,
                      encoding='shift-jis')
-    print(df.columns)
+    
     if zone_key in ['JP-CB', 'JP-CG', 'JP-TK', 'JP-HKD', 'JP-HR', 'JP-KN', 'JP-SK', 'JP-KY']:
         df.columns = ['Date', 'Time', 'cons', 'solar']
     elif zone_key in ['JP-TH']:
