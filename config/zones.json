@@ -13,13 +13,6 @@
     "timezone": null
   },
   "AE": {
-    "contributors": [
-      "https://github.com/q--"
-    ],
-    "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
-    },
-    "timezone": "Asia/Dubai",
     "bounding_box": [
       [
         51.069346550000034,
@@ -29,7 +22,20 @@
         56.88363691500007,
         26.574791972000085
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 1,
+      "hydro": 0,
+      "solar": 1883,
+      "wind": 1
+    },
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "consumption": "GCCIA.fetch_consumption"
+    },
+    "timezone": "Asia/Dubai"
   },
   "AL": {
     "bounding_box": [
@@ -42,8 +48,14 @@
         42.6882473822
       ]
     ],
+    "capacity": {
+      "biomass": 1,
+      "hydro": 2132,
+      "solar": 3
+    },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -67,17 +79,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1.3,
+      "biomass": 0,
       "gas": 1832,
-      "hydro": 1326.8,
+      "hydro": 1336,
       "nuclear": 440,
-      "solar": 2.4,
-      "wind": 2.9
+      "solar": 50,
+      "wind": 3
     },
     "contributors": [
       "https://github.com/tmslaine",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "AM.fetch_production"
@@ -3152,10 +3165,13 @@
     ],
     "capacity": {
       "coal": 218,
-      "hydro": 649
+      "hydro": 658,
+	    "solar": 3,
+	    "wind": 118
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+	    "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3734,19 +3750,20 @@
       ]
     ],
     "capacity": {
-      "biomass": 880,
+      "biomass": 1142,
       "coal": 29963,
-      "gas": 2812,
-      "hydro": 605,
-      "hydro storage": 1780,
+      "gas": 2540,
+      "hydro": 968,
+      "hydro storage": 1423,
       "nuclear": 0,
       "oil": 359,
       "solar": 1695,
-      "wind": 5953
+      "wind": 5917
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/wojciej"
+      "https://github.com/wojciej",
+	    "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4322,21 +4339,22 @@
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
     "capacity": {
       "battery storage": 0,
-      "biomass": 510,
+      "biomass": 983,
       "coal": 19350,
       "gas": 26637,
-      "geothermal": 1064,
-      "hydro": 27273,
+      "geothermal": 1515,
+      "hydro": 28503,
       "hydro storage": 0,
       "oil": 306,
-      "solar": 3421,
+      "solar": 5996,
       "unknown": 124,
-      "wind": 6516
+      "wind": 7591
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/olivierSemet",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
