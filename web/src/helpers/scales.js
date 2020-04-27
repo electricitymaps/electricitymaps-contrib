@@ -1,5 +1,4 @@
-import { scaleLinear } from 'd3-scale';
-import { range } from 'lodash';
+import { scaleLinear, scaleQuantize } from 'd3-scale';
 
 // TODO: Merge themes and scales
 import { themes } from './themes';
@@ -27,6 +26,19 @@ export const windColor = scaleLinear()
 export const solarColor = scaleLinear()
   .domain([0, 500, 1000])
   .range(['black', 'transparent', 'gold'])
+  .clamp(true);
+
+// ** Exchange
+
+export const exchangeQuantizedIntensityScale = scaleQuantize()
+  .domain([0, 800])
+  .range([0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800])
+  .unknown('nan');
+
+export const exchangeSpeedCategoryScale = scaleLinear()
+  .domain([500, 5000])
+  .rangeRound([0, 2])
+  .unknown(0)
   .clamp(true);
 
 // ** CO₂

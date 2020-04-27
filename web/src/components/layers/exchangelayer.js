@@ -5,8 +5,12 @@ import styled from 'styled-components';
 import { noop } from 'lodash';
 
 import global from '../../global';
-import { useExchangeArrowsData } from '../../hooks/layers';
 import { dispatchApplication } from '../../store';
+import { useExchangeArrowsData } from '../../hooks/layers';
+import {
+  exchangeQuantizedIntensityScale,
+  exchangeSpeedCategoryScale,
+} from '../../helpers/scales';
 
 import MapExchangeTooltip from '../tooltips/mapexchangetooltip';
 
@@ -19,17 +23,6 @@ const ArrowImage = styled.img`
   left: -25px;
   top: -41px;
 `;
-
-const exchangeAnimationIntensityScale = scaleQuantize()
-  .domain([0, 800])
-  .range([0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800])
-  .unknown('nan');
-
-const exchangeAnimationDurationScale = scaleLinear()
-  .domain([500, 5000])
-  .rangeRound([0, 2])
-  .unknown(0)
-  .clamp(true);
 
 const Arrow = React.memo(({
   arrow,
@@ -49,9 +42,9 @@ const Arrow = React.memo(({
   const imageSource = useMemo(
     () => {
       const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
-      const intensity = exchangeAnimationIntensityScale(co2intensity);
-      const duration = exchangeAnimationDurationScale(Math.abs(netFlow));
-      return resolvePath(`images/${prefix}arrow-${intensity}-animated-${duration}.gif`);
+      const intensity = exchangeQuantizedIntensityScale(co2intensity);
+      const speed = exchangeSpeedCategoryScale(Math.abs(netFlow));
+      return resolvePath(`images/${prefix}arrow-${intensity}-animated-${speed}.gif`);
     },
     [colorBlindModeEnabled, co2intensity, netFlow]
   );
