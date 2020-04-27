@@ -7,7 +7,6 @@ import moment from 'moment';
 import { useCustomDatetime } from '../helpers/router';
 import { getRefTime, getTargetTime } from '../helpers/grib';
 
-
 export function useExchangeArrowsData() {
   const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
   const exchanges = useSelector(state => state.data.grid.exchanges);
@@ -68,7 +67,7 @@ export function useInterpolatedSolarData() {
       const grib2 = solarData.forecasts[1];
       const tBefore = getTargetTime(grib1);
       const tAfter = getTargetTime(grib2);
-      const datetime = moment(customDatetime || new Date()).subtract(6, 'hours');
+      const datetime = moment(customDatetime || new Date());
       const k = (datetime - tBefore) / (tAfter - tBefore);
 
       if (datetime > tAfter) {
@@ -79,8 +78,7 @@ export function useInterpolatedSolarData() {
       console.log(`#1 solar forecast target ${tBefore.fromNow()} made ${getRefTime(grib1).fromNow()}`);
       console.log(`#2 solar forecast target ${tAfter.fromNow()} made ${getRefTime(grib2).fromNow()}`);
 
-      return grib1;
-      // return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
+      return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
     },
     [solarData, customDatetime],
   );
