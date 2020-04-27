@@ -101,7 +101,7 @@ export default () => {
   const [tooltip, setTooltip] = useState(null);
 
   // Set up map interaction handlers once the map gets initialized.
-  // TODO: Consider hidding the arrows or stopping their animation when dragging.
+  // TODO: Consider hidding the arrows when dragging.
   useEffect(() => {
     if (global.zoneMap && !isInitialized) {
       global.zoneMap.onDrag((t) => { setTransform(t); });

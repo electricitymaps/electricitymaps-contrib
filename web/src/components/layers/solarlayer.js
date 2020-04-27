@@ -5,16 +5,33 @@ import React, {
   useMemo,
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { range, last } from 'lodash';
 import styled from 'styled-components';
+import parse from 'color-parse';
 
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
-import { applySolarColorFilter, stackBlurImageOpacity } from '../../helpers/image';
+import { stackBlurImageOpacity } from '../../helpers/image';
 import { useSolarEnabled } from '../../helpers/router';
+import { solarColor } from '../../helpers/scales';
 
 import global from '../../global';
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
-const SOLAR_SCALE = 1000;
+const maxSolar = last(solarColor.domain());
+const solarIntensityToOpacity = intensity => Math.floor(intensity / maxSolar * 255);
+const opacityToSolarIntensity = opacity => Math.floor(opacity * maxSolar / 255);
+
+// Pre-process solar color components across all integer values
+// for faster vertex shading when generating the canvas image.
+const solarColorComponents = range(maxSolar + 1).map((value) => {
+  const parsed = parse(solarColor(value));
+  return {
+    red: parsed.values[0],
+    green: parsed.values[1],
+    blue: parsed.values[2],
+    alpha: Math.floor(255 * 0.85 * parsed.alpha), // Max layer opacity 85%
+  };
+});
 
 const Canvas = styled.canvas`
   top: 0;
@@ -67,7 +84,6 @@ export default () => {
     const { lo1, la1 } = solar.header;
 
     // Project solar data onto the image opacity channel
-    // TODO: Consider using bilinear interpolation here instead of Gaussian blur.
     for (let x = 0; x < image.width; x += 1) {
       for (let y = 0; y < image.height; y += 1) {
         // Taking [lon, lat] = unproject([x, y]) here would be
@@ -81,17 +97,21 @@ export default () => {
         const sourceIndex = sy * solar.header.nx + sx;
         const targetIndex = 4 * (y * image.width + x);
 
-        image.data[targetIndex + 3] = Math.floor(solar.data[sourceIndex] / SOLAR_SCALE * 255);
+        image.data[targetIndex + 3] = solarIntensityToOpacity(solar.data[sourceIndex]);
       }
     }
 
-    // Apply a gaussian blur on grid cells
-    // TODO: Consider replacing with https://github.com/flozz/StackBlur
+    // Apply stack blur filter over the image opacity.
     stackBlurImageOpacity(image, 0, 0, width, height, 10 * zoom);
 
-    // Apply solarColor scale to the grayscale image
-    // TODO: Use actual solarColor scale (maybe use https://www.npmjs.com/package/color-parse)
-    applySolarColorFilter(image);
+    // Map image opacity channel onto solarColor scale to get the real solar colors.
+    for (let i = 0; i < image.data.length; i += 4) {
+      const color = solarColorComponents[opacityToSolarIntensity(image.data[i + 3])];
+      image.data[i + 0] = color.red;
+      image.data[i + 1] = color.green;
+      image.data[i + 2] = color.blue;
+      image.data[i + 3] = color.alpha;
+    }
 
     // Render the image into canvas and mark as ready so that fading in can start.
     ctx.putImageData(image, 0, 0);
