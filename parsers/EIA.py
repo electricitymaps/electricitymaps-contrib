@@ -36,6 +36,29 @@ REVERSE_EXCHANGES = [
     'MX-NO->US-TEX-ERCO'
 ]
 
+
+NEGATIVE_PRODUCTION_THRESHOLDS = {
+    'default': -10,
+    'zoneOverrides': {
+        'US-SW-SRP': {
+            'coal': -50,
+            'unknown': -50
+        },
+        'US-CAL-CISO': {
+            'unknown': -50,
+            'solar': -100
+        },
+        'US-SE-AEC': {
+            'coal': -50,
+            'gas': -20
+        },
+        'US-CAR-CPLE': {
+            'coal': -20
+        }
+    }
+}
+
+
 EXCHANGES = {
 
 #Old exchanges with old zones, to be updated/removed once clients have had time to switch
@@ -382,6 +405,15 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
+            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS['zoneOverrides']\
+                .get(zone_key, {})\
+                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS['default'])
+
+            if type != 'hydro' and \
+                    point['value'] < 0 and \
+                    point['value'] >= negative_threshold:
+                point['value'] = 0
+
             if type == 'hydro' and point['value'] < 0:
                 point.update({
                     'production': {},# required by merge_production_outputs()
