@@ -356,6 +356,29 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
 
+        # EIA does not currently split production from the Virgil Summer C 
+        # plant across the two owning/ utilizing BAs:
+        # US-CAR-SCEG and US-CAR-SC,
+        # but attributes it all to US-CAR-SCEG
+        # Here we apply a temporary fix for that until EIA properly splits the production
+        # This split can be found in the eGRID data,
+        # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
+        SC_VIRGIL_OWNERSHIP = 0.3333333
+        if zone_key == 'US-CAR-SC' and type == 'nuclear':
+            series = PRODUCTION_MIX_SERIES % (REGIONS['US-CAR-SCEG'], code)
+            mix = _fetch_series('US-CAR-SCEG', series, session=session,
+                        target_datetime=target_datetime, logger=logger)
+            for point in mix:
+                point.update({
+                    'value': point['value']*SC_VIRGIL_OWNERSHIP
+                })
+
+        if zone_key == 'US-CAR-SCEG' and type == 'nuclear':
+            for point in mix:
+                point.update({
+                    'value': point['value']*(1-SC_VIRGIL_OWNERSHIP)
+                })
+
         if not mix:
             continue
         for point in mix:
