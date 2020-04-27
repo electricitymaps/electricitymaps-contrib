@@ -3277,6 +3277,26 @@
     },
     "rotation": -44
   },
+  "US-MIDW-GLHB->US-MIDW-LGEE": {
+    "lonlat": [
+      -88.85889,
+      37.2094
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-MIDW-GLHB->US-MIDW-MISO": {
+    "lonlat": [
+      -88.85889,
+      37.2094
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
   "US-MIDW-LGEE->US-MIDW-MISO": {
     "lonlat": [
       -87.3654617889999,
