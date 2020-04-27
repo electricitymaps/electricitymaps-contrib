@@ -33,15 +33,15 @@ REVERSE_EXCHANGES = [
     'CA-QC->US-NY-NYIS',
     'CA-ON->US-NY-NYIS',
     'MX-NE->US-TEX-ERCO',
-    'MX-NO->US-TEX-ERCO'
+    'MX-NO->US-TEX-ERCO',
+    'US-SW-PNM->US-SW-SRP' # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
 EXCHANGES = {
-
 #Old exchanges with old zones, to be updated/removed once clients have had time to switch
     'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-SPP->US-TX': 'SWPP.ID.H-EBA.ERCO',
+    'US-SPP->US-TX': 'EBA.SWPP-ERCO.ID.H',
     'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
     'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
     'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
@@ -210,6 +210,7 @@ EXCHANGES = {
     'US-SW-GRIF->US-SW-WALC': 'EBA.GRIF-WALC.ID.H',
     'US-SW-HGMA->US-SW-SRP': 'EBA.HGMA-SRP.ID.H',
     'US-SW-PNM->US-SW-TEPC': 'EBA.PNM-TEPC.ID.H',
+    'US-SW-PNM->US-SW-SRP': 'EBA.SRP-PNM.ID.H',
     'US-SW-SRP->US-SW-TEPC': 'EBA.SRP-TEPC.ID.H',
     'US-SW-SRP->US-SW-WALC': 'EBA.SRP-WALC.ID.H',
     'US-SW-TEPC->US-SW-WALC': 'EBA.TEPC-WALC.ID.H'

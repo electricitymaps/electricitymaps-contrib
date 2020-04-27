@@ -26,8 +26,8 @@ EXCHANGES = {"MX-NO->MX-NW": "IntercambioNTE-NOR",
              "MX-NE->MX-OC": "IntercambioNES-OCC",
              "MX-NO->MX-OC": "IntercambioNTE-OCC",
              "MX-NW->MX-OC": "IntercambioNOR-OCC",
-             "MX-NO->US": "IntercambioUSA-NTE",
-             "MX-NE->US": "IntercambioUSA-NES",
+             "MX-NO->US-TEX-ERCO": "IntercambioUSA-NTE",
+             "MX-NE->US-TEX-ERCO": "IntercambioUSA-NES",
              "BZ->MX-PN": "IntercambioPEN-BEL"
              }
 
@@ -218,16 +218,16 @@ if __name__ == '__main__':
     print(fetch_exchange("MX-NE", "MX-NO"))
     print("fetch_exchange(MX-OC, MX-OR)")
     print(fetch_exchange("MX-OC", "MX-OR"))
-    print("fetch_exchange(MX-NE, US)")
-    print(fetch_exchange("MX-NE", "US"))
+    print("fetch_exchange(MX-NE, US-TEX-ERCO)")
+    print(fetch_exchange("MX-NE", "US-TEX-ERCO"))
     print("fetch_exchange(MX-CE, MX-OC)")
     print(fetch_exchange("MX-CE", "MX-OC"))
     print("fetch_exchange(MX-PN, BZ)")
     print(fetch_exchange("MX-PN", "BZ"))
     print("fetch_exchange(MX-NO, MX-OC)")
     print(fetch_exchange("MX-NO", "MX-OC"))
-    print("fetch_exchange(MX-NO, US)")
-    print(fetch_exchange("MX-NO", "US"))
+    print("fetch_exchange(MX-NO, US-TEX-ERCO)")
+    print(fetch_exchange("MX-NO", "US-TEX-ERCO"))
     print("fetch_exchange(MX-NE, MX-OR)")
     print(fetch_exchange("MX-NE", "MX-OR"))
     print("fetch_exchange(MX-CE, MX-OR)")
