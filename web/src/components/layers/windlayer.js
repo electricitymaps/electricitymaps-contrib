@@ -38,17 +38,10 @@ export default () => {
   const [isDragging, setIsDragging] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
-  const project = useMemo(
-    () => global.zoneMap && global.zoneMap.projection(),
-    [global.zoneMap],
-  );
-  const unproject = useMemo(
-    () => global.zoneMap && global.zoneMap.unprojection(),
-    [global.zoneMap],
-  );
   const viewport = useMemo(
     () => {
-      if (!unproject) return null;
+      if (!global.zoneMap) return null;
+      const unproject = global.zoneMap.unprojection();
       const sw = unproject([0, height]);
       const ne = unproject([width, 0]);
       return [
@@ -58,7 +51,7 @@ export default () => {
         [sw, ne],
       ];
     },
-    [width, height, unproject],
+    [global.zoneMap, width, height],
   );
 
   // Set up map interaction handlers once the map gets initialized.
@@ -83,8 +76,8 @@ export default () => {
       setWindy(new Windy({
         canvas: ref.current,
         data: interpolatedData,
-        project,
-        unproject,
+        project: global.zoneMap.projection(),
+        unproject: global.zoneMap.unprojection(),
       }));
     } else if (windy && !enabled) {
       windy.stop();
@@ -92,13 +85,16 @@ export default () => {
     }
   }, [windy, enabled, ref.current, interpolatedData, viewport]);
 
+  // Restart Windy every time the viewport changes (e.g. after map dragging).
+  // Always start the animation in the next render cycle and give 500ms extra
+  // for Windy to do its magic before starting the fade in. This will hopefully
+  // be less hacky once Windy service is merged here and perhaps optimized via
+  // WebGL, see https://github.com/tmrowco/electricitymap-contrib/issues/944.
   useLayoutEffect(() => {
     if (enabled && windy && viewport && !isReady) {
       setTimeout(() => {
         windy.start(...viewport);
-        setTimeout(() => {
-          setIsReady(true);
-        }, 500);
+        setTimeout(() => { setIsReady(true); }, 500);
       }, 0);
     }
   }, [enabled, windy, viewport, isReady]);
