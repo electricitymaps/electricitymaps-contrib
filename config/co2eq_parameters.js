@@ -49,7 +49,7 @@ exports.fossilFuelAccessor = (zoneKey, k, v) => {
   return (k == 'coal' ||
           k == 'gas' ||
           k == 'oil' ||
-          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA')) ||
+          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA' && zoneKey !== 'SG')) ||
           k == 'other') ? 1 : 0;
 }
 
