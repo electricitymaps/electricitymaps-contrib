@@ -41,7 +41,7 @@ import {
 
 // Layout
 import Main from './layout/main';
-
+import GlobalStyle from './globalstyle';
 import global from './global';
 
 /*
@@ -79,6 +79,7 @@ ReactDOM.render(
     {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
     {/* the route history outside of React components anymore */}
     <Router history={history}>
+      <GlobalStyle />
       <Main />
     </Router>
   </Provider>,

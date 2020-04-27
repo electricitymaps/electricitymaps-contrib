@@ -1,15 +1,6 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
-
-// TODO: Pull this up the DOM hierarchy.
-const FadeAnimationDefinition = createGlobalStyle`
-  .fade-enter { opacity: 0; }
-  .fade-enter-active { opacity: 1; }
-  .fade-exit { opacity: 1; }
-  .fade-exit-active { opacity: 0; }
-  .fade-exit-done { display: none; }
-`;
 
 const Overlay = styled.div`
   background-image: url('../images/loading/loading64_FA.gif'), url('../images/loading/electricitymap-text.svg');
@@ -27,10 +18,7 @@ const Overlay = styled.div`
 `;
 
 export default ({ fadeTimeout = 500, visible }) => (
-  <React.Fragment>
-    <FadeAnimationDefinition />
-    <CSSTransition in={visible} timeout={fadeTimeout} classNames="fade">
-      <Overlay fadeTimeout={fadeTimeout} />
-    </CSSTransition>
-  </React.Fragment>
+  <CSSTransition in={visible} timeout={fadeTimeout} classNames="fade">
+    <Overlay fadeTimeout={fadeTimeout} />
+  </CSSTransition>
 );

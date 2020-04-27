@@ -65,7 +65,7 @@ export default () => {
   useEffect(() => {
     if (global.zoneMap && !isInitialized) {
       global.zoneMap
-        .onDragStart((transform) => {
+        .onDragStart(() => {
           setIsDragging(true);
         })
         .onDragEnd(() => {
