@@ -52,9 +52,9 @@ MAP_GENERATION = {
 MAP_EXCHANGE = {
     'MANITOBA': 'CA-MB->CA-ON',
     'MANITOBA SK': 'CA-MB->CA-ON',
-    'MICHIGAN': 'CA-ON->US-MISO',
-    'MINNESOTA': 'CA-ON->US-MISO',
-    'NEW-YORK': 'CA-ON->US-NY',
+    'MICHIGAN': 'CA-ON->US-MIDW-MISO',
+    'MINNESOTA': 'CA-ON->US-MIDW-MISO',
+    'NEW-YORK': 'CA-ON->US-NY-NYIS',
     'PQ.AT': 'CA-ON->CA-QC',
     'PQ.B5D.B31L': 'CA-ON->CA-QC',
     'PQ.D4Z': 'CA-ON->CA-QC',

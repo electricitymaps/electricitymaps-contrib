@@ -3188,12 +3188,12 @@
     "capacity": {
       "coal": 218,
       "hydro": 658,
-	    "solar": 3,
-	    "wind": 118
+      "solar": 3,
+      "wind": 118
     },
     "contributors": [
       "https://github.com/corradio",
-	    "https://github.com/nessie2013"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3785,7 +3785,7 @@
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/wojciej",
-	    "https://github.com/nessie2013"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5775,6 +5775,18 @@
         37.83698
       ]
     ]
+  },
+  "US-MIDW-GLHB": {
+    "comment": "GridLiance",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Central"
   },
   "US-MIDW-LGEE": {
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",

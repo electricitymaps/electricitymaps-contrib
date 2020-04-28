@@ -33,7 +33,8 @@ REVERSE_EXCHANGES = [
     'CA-QC->US-NY-NYIS',
     'CA-ON->US-NY-NYIS',
     'MX-NE->US-TEX-ERCO',
-    'MX-NO->US-TEX-ERCO'
+    'MX-NO->US-TEX-ERCO',
+    'US-SW-PNM->US-SW-SRP' # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
 
@@ -60,11 +61,10 @@ NEGATIVE_PRODUCTION_THRESHOLDS = {
 
 
 EXCHANGES = {
-
 #Old exchanges with old zones, to be updated/removed once clients have had time to switch
     'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-SPP->US-TX': 'SWPP.ID.H-EBA.ERCO',
+    'US-SPP->US-TX': 'EBA.SWPP-ERCO.ID.H',
     'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
     'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
     'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
@@ -167,6 +167,8 @@ EXCHANGES = {
     'US-MIDW-EEI->US-MIDW-LGEE': 'EBA.EEI-LGEE.ID.H',
     'US-MIDW-EEI->US-MIDW-MISO': 'EBA.EEI-MISO.ID.H',
     'US-MIDW-EEI->US-TEN-TVA': 'EBA.EEI-TVA.ID.H',
+    'US-MIDW-GLHB->US-MIDW-LGEE': 'EBA.GLHB-LGEE.ID.H',
+    'US-MIDW-GLHB->US-MIDW-MISO': 'EBA.GLHB-MISO.ID.H',
     'US-MIDW-LGEE->US-MIDW-MISO': 'EBA.LGEE-MISO.ID.H',
     'US-MIDW-LGEE->US-TEN-TVA': 'EBA.LGEE-TVA.ID.H',
     'US-MIDW-MISO->US-SE-AEC': 'EBA.MISO-AEC.ID.H',
@@ -233,6 +235,7 @@ EXCHANGES = {
     'US-SW-GRIF->US-SW-WALC': 'EBA.GRIF-WALC.ID.H',
     'US-SW-HGMA->US-SW-SRP': 'EBA.HGMA-SRP.ID.H',
     'US-SW-PNM->US-SW-TEPC': 'EBA.PNM-TEPC.ID.H',
+    'US-SW-PNM->US-SW-SRP': 'EBA.SRP-PNM.ID.H',
     'US-SW-SRP->US-SW-TEPC': 'EBA.SRP-TEPC.ID.H',
     'US-SW-SRP->US-SW-WALC': 'EBA.SRP-WALC.ID.H',
     'US-SW-TEPC->US-SW-WALC': 'EBA.TEPC-WALC.ID.H'
@@ -292,6 +295,7 @@ REGIONS = {
     'US-MIDA-PJM': 'PJM', #Pjm Interconnection, Llc
     'US-MIDW-AECI': 'AECI', #Associated Electric Cooperative, Inc.
     'US-MIDW-EEI': 'EEI', #Electric Energy, Inc.
+    'US-MIDW-GLHB': 'GLHB', #GridLiance
     'US-MIDW-LGEE': 'LGEE', #Louisville Gas And Electric Company And Kentucky Utilities
     'US-MIDW-MISO': 'MISO', #Midcontinent Independent Transmission System Operator, Inc..
     'US-NE-ISNE': 'ISNE', #Iso New England Inc.
