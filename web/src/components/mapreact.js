@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import { isEmpty, noop } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
@@ -199,7 +199,7 @@ const Map = ({
     [isMobile],
   );
 
-  // TODO: Add navigation control.
+  // TODO: Don't propagate navigation buttons mouse interaction events to the map.
   // TODO: Put viewport state in Redux.
   // TODO: Add tooltip.
   // TODO: Add onMouseMove handler.
@@ -225,7 +225,11 @@ const Map = ({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onViewportChange={setViewport}
-    />
+    >
+      <div className="mapboxgl-zoom-controls">
+        <NavigationControl showCompass={false} />
+      </div>
+    </ReactMapGL>
   );
 };
 
