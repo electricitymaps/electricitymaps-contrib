@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { values, size } from 'lodash';
+import { forEach, size } from 'lodash';
 
 export function useZoneGeometries() {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
@@ -11,7 +11,7 @@ export function useZoneGeometries() {
       const clickable = [];
       const nonClickable = [];
 
-      values(zones).forEach((zone, zoneIndex) => {
+      forEach(zones, (zone, zoneId) => {
         const feature = {
           type: 'Feature',
           geometry: {
@@ -19,7 +19,8 @@ export function useZoneGeometries() {
             coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
           },
           properties: {
-            zoneId: zoneIndex,
+            zoneId,
+            zoneData: zone,
             co2intensity: electricityMixMode === 'consumption'
               ? zone.co2intensity
               : zone.co2intensityProduction,
