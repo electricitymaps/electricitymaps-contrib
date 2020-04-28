@@ -121,12 +121,16 @@ export default () => {
 
   const [transform, setTransform] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [tooltip, setTooltip] = useState(null);
 
   // Set up map interaction handlers once the map gets initialized.
   useEffect(() => {
     if (global.zoneMap && !isInitialized) {
-      global.zoneMap.onDrag((t) => { setTransform(t); });
+      global.zoneMap
+        .onDrag(setTransform)
+        .onDragStart(() => { setIsDragging(true); })
+        .onDragEnd(() => { setIsDragging(false); });
       setIsInitialized(true);
     }
   }, [global.zoneMap, isInitialized]);
@@ -149,7 +153,8 @@ export default () => {
           position={tooltip.position}
         />
       )}
-      {arrows.map(arrow => (
+      {/* Don't render arrows when dragging - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
+      {!isDragging && arrows.map(arrow => (
         <Arrow
           arrow={arrow}
           key={arrow.sortedCountryCodes}
