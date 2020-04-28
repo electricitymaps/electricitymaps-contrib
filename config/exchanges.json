@@ -518,16 +518,6 @@
     },
     "rotation": 90
   },
-  "CA-AB->US-MT": {
-    "lonlat": [
-      -111.920238,
-      49.016577
-    ],
-    "parsers": {
-      "exchange": "CA_AB.fetch_exchange"
-    },
-    "rotation": 180
-  },
   "CA-AB->US-NW-NWMT": {
     "lonlat": [
       -111.920238,
@@ -535,16 +525,6 @@
     ],
     "parsers": {
       "exchange": "CA_AB.fetch_exchange"
-    },
-    "rotation": 180
-  },
-  "CA-BC->US-BPA": {
-    "lonlat": [
-      -119.300532,
-      49.044392
-    ],
-    "parsers": {
-      "exchange": "CA_BC.fetch_exchange"
     },
     "rotation": 180
   },
@@ -608,23 +588,13 @@
     },
     "rotation": -45
   },
-  "CA-NB->US-NEISO": {
-    "lonlat": [
-      -67.7771,
-      46.139
-    ],
-    "parsers": {
-      "exchange": "CA_NB.fetch_exchange"
-    },
-    "rotation": -90
-  },
   "CA-NB->US-NE-ISNE": {
     "lonlat": [
       -67.7771,
       46.139
     ],
     "parsers": {
-      "exchange": "US_NEISO.fetch_exchange"
+      "exchange": "CA_NB.fetch_exchange"
     },
     "rotation": -90
   },
@@ -638,35 +608,15 @@
     },
     "rotation": 90
   },
-  "CA-ON->US-MISO": {
-    "lonlat": [
-      -84.188,
-      46.476
-    ],
-    "parsers": {
-      "exchange": "CA_ON.fetch_exchange"
-    },
-    "rotation": -145
-  },
   "CA-ON->US-MIDW-MISO": {
     "lonlat": [
       -84.188,
       46.476
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -145
-  },
-  "CA-ON->US-NY": {
-    "lonlat": [
-      -78.9147,
-      43.5523
-    ],
-    "parsers": {
       "exchange": "CA_ON.fetch_exchange"
     },
-    "rotation": 135
+    "rotation": -145
   },
   "CA-ON->US-NY-NYIS": {
     "lonlat": [
@@ -674,19 +624,9 @@
       43.5523
     ],
     "parsers": {
-      "exchange": "US_NY.fetch_exchange"
+      "exchange": "CA_ON.fetch_exchange"
     },
     "rotation": 135
-  },
-  "CA-QC->US-NEISO": {
-    "lonlat": [
-      -71.737,
-      45.011
-    ],
-    "parsers": {
-      "exchange": "US_NEISO.fetch_exchange"
-    },
-    "rotation": 180
   },
   "CA-QC->US-NE-ISNE": {
     "lonlat": [
@@ -695,16 +635,6 @@
     ],
     "parsers": {
       "exchange": "US_NEISO.fetch_exchange"
-    },
-    "rotation": 180
-  },
-  "CA-QC->US-NY": {
-    "lonlat": [
-      -73.768,
-      45.004
-    ],
-    "parsers": {
-      "exchange": "US_NY.fetch_exchange"
     },
     "rotation": 180
   },
@@ -1874,23 +1804,13 @@
     },
     "rotation": 0
   },
-  "MX-BC->US-CA": {
-    "lonlat": [
-      -116.027,
-      32.607
-    ],
-    "parsers": {
-      "exchange": "US_CA.fetch_exchange"
-    },
-    "rotation": -10
-  },
   "MX-BC->US-CAL-CISO": {
     "lonlat": [
       -116.027,
       32.607
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_CA.fetch_exchange"
     },
     "rotation": -10
   },
@@ -1974,30 +1894,10 @@
     },
     "rotation": 150
   },
-  "MX-NE->US":{
-    "lonlat": [
-      -98.042,
-      26.057
-    ],
-    "parsers": {
-      "exchange": "MX.fetch_exchange"
-    },
-    "rotation": 0
-  },
   "MX-NE->US-TEX-ERCO":{
     "lonlat": [
       -98.042,
       26.057
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": 0
-  },
-  "MX-NO->US":{
-    "lonlat": [
-      -107.292,
-      31.709
     ],
     "parsers": {
       "exchange": "MX.fetch_exchange"
@@ -2446,16 +2346,6 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": 180
-  },
-  "US->US-CAL-CISO": {
-    "lonlat": [
-      -115.846,
-      35.962
-    ],
-    "parsers": {
-      "exchange": "US_CA.fetch_exchange"
-    },
-    "rotation": -135
   },
   "US-CAL-BANC->US-NW-BPAT": {
     "lonlat": [
@@ -3213,7 +3103,7 @@
       41.99881
     ],
     "parsers": {
-      "exchange": "EIA.fetch_exchange"
+      "exchange": "US_PJM.fetch_exchange"
     },
     "rotation": -124
   },
@@ -3416,6 +3306,26 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": -87
+  },
+  "US-NW-AVRN->US-NW-BPAT": {
+    "lonlat": [
+      -122.6819706,
+      45.5206888
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "US-NW-AVRN->US-NW-PACW": {
+    "lonlat": [
+      -122.6819706,
+      45.5206888
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 0
   },
   "US-NW-BPAT->US-NW-TPWR": {
     "lonlat": [
@@ -3927,6 +3837,16 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": -62
+  },
+  "US-SW-PNM->US-SW-SRP": {
+    "lonlat": [
+      -110.765242868,
+      33.711766337
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
   },
   "US-SW-PNM->US-SW-TEPC": {
     "lonlat": [
