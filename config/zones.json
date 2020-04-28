@@ -1445,16 +1445,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 981,
-      "coal": 9683,
+      "biomass": 1076,
+      "coal": 9456,
       "gas": 26284,
       "geothermal": 0,
-      "hydro": 17087,
+      "hydro": 17085,
       "nuclear": 7117,
       "oil": 715,
-      "solar": 10122,
+      "solar": 11744,
       "unknown": 360,
-      "wind": 25223
+      "wind": 25806
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3188,12 +3188,12 @@
     "capacity": {
       "coal": 218,
       "hydro": 658,
-	    "solar": 3,
-	    "wind": 118
+      "solar": 3,
+      "wind": 118
     },
     "contributors": [
       "https://github.com/corradio",
-	    "https://github.com/nessie2013"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3785,7 +3785,7 @@
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/wojciej",
-	    "https://github.com/nessie2013"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5775,6 +5775,18 @@
         37.83698
       ]
     ]
+  },
+  "US-MIDW-GLHB": {
+    "comment": "GridLiance",
+    "contributors": [
+      "https://github.com/systemcatch",
+      "https://github.com/robertahunt"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "EIA.fetch_production_mix"
+    },
+    "timezone": "US/Central"
   },
   "US-MIDW-LGEE": {
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
