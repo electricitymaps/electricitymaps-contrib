@@ -1,4 +1,9 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, {
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
@@ -17,6 +22,7 @@ const interactiveLayerIds = ['clickable-zones-fill'];
 const Map = ({
   scrollZoom = true,
   onMapLoaded = noop,
+  onMapInitFailed = noop,
   onSeaClick = noop,
   onZoneClick = noop,
   onZoneMouseMove = noop,
@@ -138,6 +144,16 @@ const Map = ({
     zoom: 1.5,
   });
 
+  // If WebGL is not supported trigger a callback.
+  useEffect(
+    () => {
+      if (!ReactMapGL.supported()) {
+        onMapInitFailed();
+      }
+    },
+    [],
+  );
+
   const handleClick = useMemo(
     () => ({ point }) => {
       // Disable when dragging
@@ -183,13 +199,13 @@ const Map = ({
     [isMobile],
   );
 
-  // TODO: Detect WebGL support.
   // TODO: Add navigation control.
   // TODO: Put viewport state in Redux.
   // TODO: Add tooltip.
   // TODO: Add onMouseMove handler.
   // TODO: Consider passing zoneGeometries as a prop.
   // TODO: Re-enable layers.
+  // TODO: Re-enable smooth animations.
 
   return (
     <ReactMapGL
@@ -222,10 +238,24 @@ export default () => {
     () => () => {
       // Map loading is finished, lower the overlay shield
       dispatchApplication('isLoadingMap', false);
-    
+
+      // Track and notify that WebGL is supported
+      dispatchApplication('webglsupported', true);
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
+    },
+    [],
+  );
+
+  const handleMapInitFailed = useMemo(
+    () => () => {
+      // Map loading is finished, lower the overlay shield
+      dispatchApplication('isLoadingMap', false);
+
+      // Redirect and notify that WebGL is not supported
+      dispatchApplication('webglsupported', false);
+      navigateTo({ pathname: '/ranking', search: location.search });
     },
     [],
   );
@@ -278,6 +308,7 @@ export default () => {
     <Map
       scrollZoom={!isEmbedded}
       onMapLoaded={handleMapLoaded}
+      onMapInitFailed={handleMapInitFailed}
       onSeaClick={handleSeaClick}
       onZoneClick={handleZoneClick}
       onZoneMouseMove={handleZoneMouseMove}

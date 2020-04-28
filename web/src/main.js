@@ -239,88 +239,19 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   }
 }
 
-function renderZones(state) {
-  const { zones } = state.data.grid;
-  const { electricityMixMode } = state.application;
-  if (global.zoneMap) {
-    global.zoneMap.setData(electricityMixMode === 'consumption'
-      ? Object.values(zones)
-      : Object.values(zones)
-        .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
-  }
-}
-
 // Start initialising map
-try {
-  global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
-    .setScrollZoom(!getState().application.isEmbedded)
-    .onDragEnd(() => {
-      dispatchApplication('centeredZoneName', null);
-      // Somehow there is a drag event sent before the map data is loaded.
-      // We want to ignore it.
-      if (!mapDraggedSinceStart && getState().data.grid.datetime) {
-        mapDraggedSinceStart = true;
-      }
-    })
-    .onMapLoaded((map) => {
-      // Map loading is finished, lower the overlay shield
-      dispatchApplication('isLoadingMap', false);
-
-      if (thirdPartyServices._ga) {
-        thirdPartyServices._ga.timingMark('map_loaded');
-      }
-    })
-    .onSeaClick(() => {
-      navigateTo({ pathname: '/map', search: history.location.search });
-    })
-    .onCountryClick((d) => {
-      // Analytics
-      navigateTo({ pathname: `/zone/${d.countryCode}`, search: history.location.search });
-      dispatchApplication('isLeftPanelCollapsed', false);
-      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
-    })
-    .onMouseMove((lonlat) => {
-      mapMouseOver(lonlat);
-    })
-    .onZoneMouseMove((zoneData, i, clientX, clientY) => {
-      const node = document.getElementById('map-container');
-      dispatchApplication(
-        'co2ColorbarValue',
-        getState().application.electricityMixMode === 'consumption'
-          ? zoneData.co2intensity
-          : zoneData.co2intensityProduction
-      );
-      dispatch({
-        type: 'SHOW_TOOLTIP',
-        payload: {
-          data: zoneData,
-          displayMode: MAP_COUNTRY_TOOLTIP_KEY,
-          position: {
-            x: node.getBoundingClientRect().left + clientX,
-            y: node.getBoundingClientRect().top + clientY,
-          },
-        },
-      });
-    })
-    .onZoneMouseOut(() => {
-      dispatchApplication('co2ColorbarValue', null);
-      dispatch({ type: 'HIDE_TOOLTIP' });
-      mapMouseOver(undefined);
-    });
-
-  dispatchApplication('webglsupported', true);
-} catch (e) {
-  if (e === 'WebGL not supported') {
-    // Redirect and notify if WebGL is not supported
-    dispatchApplication('webglsupported', false);
-    navigateTo({ pathname: '/ranking', search: history.location.search });
-
-    // map loading is finished, lower the overlay shield
-    dispatchApplication('isLoadingMap', false);
-  } else {
-    throw e;
-  }
-}
+global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
+  .onDragEnd(() => {
+    dispatchApplication('centeredZoneName', null);
+    // Somehow there is a drag event sent before the map data is loaded.
+    // We want to ignore it.
+    if (!mapDraggedSinceStart && getState().data.grid.datetime) {
+      mapDraggedSinceStart = true;
+    }
+  })
+  .onMouseMove((lonlat) => {
+    mapMouseOver(lonlat);
+  });
 
 //
 // *** OBSERVERS ***
@@ -328,60 +259,14 @@ try {
 // Declare and attach all listeners that will react
 // to state changes and cause a side-effect
 
-// Observe for electricityMixMode change
-observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
-  renderZones(state);
-  renderMap(state);
-});
-
-// Observe for grid zones change
-observe(state => state.data.grid.zones, (zones, state) => {
-  renderZones(state);
-});
-
-// Observe for grid change
-observe(state => state.data.grid, (grid, state) => {
-  renderMap(state);
-});
-
 // Observe for page change
 observe(state => state.application.currentPage, (currentPage, state) => {
-  // Refresh map in the next render cycle (after the page transition) to make
-  // sure it gets displayed correctly. Do it only on mobile as otherwise the
-  // map is being displayed the whole time (on every page).
-  if (currentPage === 'map' && state.application.isMobile) {
-    setTimeout(() => {
-      renderMap(state);
-    }, 0);
-  }
-
   // Analytics
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
-});
-
-// Observe for color blind mode changes
-observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
-  if (global.zoneMap) {
-    global.zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
-  }
-});
-
-// Observe for bright mode changes
-observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  if (global.zoneMap) {
-    global.zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
-  }
 });
 
 observe(state => state.application.centeredZoneName, (centeredZoneName, state) => {
   if (centeredZoneName) {
     centerOnZoneName(state, centeredZoneName, 4);
-  }
-});
-
-// Observe for left panel collapse
-observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
-  if (global.zoneMap) {
-    global.zoneMap.map.resize();
   }
 });
