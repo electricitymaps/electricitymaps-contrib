@@ -42,6 +42,7 @@ export const exchangeSpeedCategoryScale = scaleLinear()
   .clamp(true);
 
 // ** CO₂
+// TODO: Deprecate in favor of useCo2ColorScale.
 export const getCo2Scale = (colorBlindModeEnabled) => {
   const theme = colorBlindModeEnabled
     ? themes.colorblindScale

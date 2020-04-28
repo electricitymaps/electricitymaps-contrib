@@ -1,69 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
-import { keys, values } from 'lodash';
 
-import { themes } from '../helpers/themes';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale, useTheme } from '../hooks/theme';
+import { useZoneGeometries } from '../hooks/map';
 
 const Map = () => {
-  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
-  // TODO: Move to a hook.
-  const theme = useMemo(
-    () => (brightModeEnabled ? themes.bright : themes.dark),
-    [brightModeEnabled],
-  );
-  // TODO: Move to a hook.
-  const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
-  const co2Scale = useMemo(
-    () => getCo2Scale(colorBlindModeEnabled),
-    [colorBlindModeEnabled],
-  );
-
-  const zones = useSelector(state => state.data.grid.zones);
-  const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-
-  // TODO: Move to a hook.
-  const data = useMemo(
-    () => (
-      electricityMixMode === 'consumption'
-        ? values(zones || {})
-        : values(zones || {})
-          .map(d => ({ ...d, co2intensity: d.co2intensityProduction }))
-    ),
-    [electricityMixMode, zones],
-  );
-
-  // TODO: Move to a hook.
-  const zoneGeometries = useMemo(
-    () => {
-      const clickable = [];
-      const nonClickable = [];
-
-      keys(data).forEach((zoneId) => {
-        const { geometry } = data[zoneId];
-        // Remove empty geometries
-        // TODO: Make this operation immutable.
-        geometry.coordinates = geometry.coordinates.filter(d => d.length !== 0);
-        const feature = {
-          type: 'Feature',
-          geometry,
-          properties: {
-            zoneId,
-            co2intensity: data[zoneId].co2intensity,
-          },
-        };
-        if (data[zoneId].isClickable === undefined || data[zoneId].isClickable === true) {
-          clickable.push(feature);
-        } else {
-          nonClickable.push(feature);
-        }
-      });
-
-      return { clickable, nonClickable };
-    },
-    [data],
-  );
+  const theme = useTheme();
+  const co2Scale = useCo2ColorScale();
+  const zoneGeometries = useZoneGeometries();
 
   const mapStyle = useMemo(
     () => ({
