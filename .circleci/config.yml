@@ -15,7 +15,7 @@ jobs:
             set -eux -o pipefail
             python --version
             pip -v --version
-            sudo pip install --progress-bar=off -q flake8 pylint==2.3.1
+            sudo pip install --progress-bar=off -q flake8 pylint==2.4.4
             sudo apt-get install libxml2-dev
             sudo pip install --progress-bar=off -q -r parsers/requirements.txt
             # stop the build if there are Python syntax errors or undefined names
