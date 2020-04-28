@@ -30,6 +30,7 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
+import MapReact from '../components/mapreact';
 import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
@@ -86,7 +87,8 @@ const Main = ({
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
-            <div id="zones" className="map-layer" />
+            <div id="zones" className="map-layer" style={{ display: 'none' }} />
+            <MapReact />
             <ExchangeLayer />
             <WindLayer />
             <SolarLayer />

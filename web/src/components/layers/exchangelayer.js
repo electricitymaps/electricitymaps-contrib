@@ -145,6 +145,8 @@ export default () => {
     setTooltip(null);
   }, []);
 
+  if (true) return null;
+
   return (
     <ArrowsContainer id="exchange" ref={ref}>
       {tooltip && (
