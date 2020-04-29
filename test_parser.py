@@ -65,7 +65,7 @@ def test_parser(zone, data_type, target_datetime):
         print('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
         return
-    print([type(e['datetime']) is datetime.datetime for e in res_list])
+    
     assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
         'Datetimes must be returned as native datetime.datetime objects'
 
