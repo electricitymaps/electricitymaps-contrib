@@ -2,16 +2,15 @@ import React, {
   useRef,
   useState,
   useEffect,
-  useLayoutEffect,
   useMemo,
 } from 'react';
+import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
 import { useWindEnabled } from '../../helpers/router';
 
-import global from '../../global';
 import Windy from '../../helpers/windy';
 import { useInterpolatedWindData } from '../../hooks/layers';
 
@@ -25,7 +24,7 @@ const Canvas = styled.canvas`
   height: 100%;
 `;
 
-export default () => {
+export default ({ project, unproject }) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref);
   const height = useHeightObserver(ref);
@@ -34,14 +33,12 @@ export default () => {
 
   const [windy, setWindy] = useState(null);
 
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
+  const isDragging = useSelector(state => state.application.isDraggingMap);
+  const isVisible = enabled && !isDragging;
 
   const viewport = useMemo(
     () => {
-      if (!global.zoneMap) return null;
-      const unproject = global.zoneMap.unprojection();
       const sw = unproject([0, height]);
       const ne = unproject([width, 0]);
       return [
@@ -51,58 +48,36 @@ export default () => {
         [sw, ne],
       ];
     },
-    [global.zoneMap, width, height],
+    [unproject, width, height],
   );
 
-  // Set up map interaction handlers once the map gets initialized.
+  // Kill and reinitialize Windy every time the layer visibility changes, which
+  // will usually be at the beginning and the end of dragging. Windy initialization
+  // is currently very slow so we take it to the next render cycle so that the
+  // rendering of everything else is not blocked. This will hopefully be less
+  // hacky once Windy service is merged here and perhaps optimized via WebGL.
+  // See https://github.com/tmrowco/electricitymap-contrib/issues/944.
   useEffect(() => {
-    if (global.zoneMap && !isInitialized) {
-      global.zoneMap
-        .onDragStart(() => {
-          setIsDragging(true);
-        })
-        .onDragEnd(() => {
-          setIsDragging(false);
-          setIsReady(false);
-        });
-      setIsInitialized(true);
-    }
-  }, [global.zoneMap, isInitialized]);
-
-  // Create a Windy instance if it's not been created yet.
-  useEffect(() => {
-    if (!windy && enabled && ref.current && interpolatedData && viewport) {
-      setIsReady(false);
-      setWindy(new Windy({
+    if (!windy && isVisible && ref.current && interpolatedData && viewport && isMapLoaded) {
+      const w = new Windy({
         canvas: ref.current,
         data: interpolatedData,
-        project: global.zoneMap.projection(),
-        unproject: global.zoneMap.unprojection(),
-      }));
-    } else if (windy && !enabled) {
+        project,
+        unproject,
+      });
+      w.start(...viewport);
+      // Set in the next render cycle.
+      setTimeout(() => { setWindy(w); }, 0);
+    } else if (windy && !isVisible) {
       windy.stop();
       setWindy(null);
     }
-  }, [windy, enabled, ref.current, interpolatedData, viewport]);
-
-  // Restart Windy every time the viewport changes (e.g. after map dragging).
-  // Always start the animation in the next render cycle and give 500ms extra
-  // for Windy to do its magic before starting the fade in. This will hopefully
-  // be less hacky once Windy service is merged here and perhaps optimized via
-  // WebGL, see https://github.com/tmrowco/electricitymap-contrib/issues/944.
-  useLayoutEffect(() => {
-    if (enabled && windy && viewport && !isReady) {
-      setTimeout(() => {
-        windy.start(...viewport);
-        setTimeout(() => { setIsReady(true); }, 500);
-      }, 0);
-    }
-  }, [enabled, windy, viewport, isReady]);
+  }, [windy, isVisible, ref.current, interpolatedData, viewport, isMapLoaded, project, unproject]);
 
   return (
     <CSSTransition
       classNames="fade"
-      in={enabled && isReady && !isDragging}
+      in={isVisible && windy && windy.started}
       timeout={300}
     >
       <Canvas

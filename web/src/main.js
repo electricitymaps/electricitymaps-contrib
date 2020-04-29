@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { event as currentEvent, select } from 'd3-selection';
-import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
+import { select } from 'd3-selection';
 
 // Components
 import ZoneMap from './components/map';
@@ -14,7 +13,6 @@ import thirdPartyServices from './services/thirdparty';
 
 // State management
 import {
-  dispatch,
   dispatchApplication,
   getState,
   observe,
@@ -24,7 +22,6 @@ import {
 // Helpers
 import grib from './helpers/grib';
 import { themes } from './helpers/themes';
-import { getCo2Scale, windColor } from './helpers/scales';
 import { hasSolarDataExpired, hasWindDataExpired } from './helpers/gfs';
 import {
   history,
@@ -33,11 +30,7 @@ import {
   navigateTo,
   getCurrentPage,
   getCustomDatetime,
-  getZoneId,
 } from './helpers/router';
-import {
-  MAP_COUNTRY_TOOLTIP_KEY,
-} from './helpers/constants';
 
 // Layout
 import Main from './layout/main';
@@ -79,12 +72,6 @@ ReactDOM.render(
     </Router>
   </Provider>,
   document.querySelector('#app'),
-  () => {
-    // Called when rendering is done
-    if (global.zoneMap) {
-      global.zoneMap.map.resize();
-    }
-  }
 );
 
 //
@@ -135,9 +122,6 @@ const app = {
         .style('transform', `translate(0,${extraPadding}px)`);
       select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
-      if (global.zoneMap) {
-        global.zoneMap.map.resize();
-      }
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
