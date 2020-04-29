@@ -19,7 +19,6 @@ const initialApplicationState = {
   version: VERSION,
   callerLocation: null,
   callerZone: null,
-  centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
@@ -36,6 +35,11 @@ const initialApplicationState = {
   isLocalhost: isLocalhost(),
   legendVisible: true,
   locale: window.locale,
+  mapViewport: {
+    latitude: 50,
+    longitude: 0,
+    zoom: 1.5,
+  },
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   tooltipData: null,
   tooltipDisplayMode: null,
@@ -45,6 +49,7 @@ const initialApplicationState = {
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
   solarEnabled: false,
+  webGLSupported: false,
   windColorbarMarker: null,
   windEnabled: false,
 

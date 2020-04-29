@@ -62,11 +62,6 @@ if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
-// TODO(olc) move those to redux state
-// or to component state
-let mapDraggedSinceStart = false;
-let hasCenteredMap = false;
-
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
 
@@ -163,32 +158,6 @@ if (getState().application.isCordova) {
 // *** MAP ***
 //
 
-// Only center once
-function renderMap(state) {
-  if (!global.zoneMap) { return; }
-
-  if (!mapDraggedSinceStart && !hasCenteredMap) {
-    const { callerLocation } = state.application;
-    const zoneId = getZoneId();
-    if (zoneId) {
-      console.log(`Centering on zone ${zoneId}`);
-      // eslint-disable-next-line no-use-before-define
-      dispatchApplication('centeredZoneName', zoneId);
-      hasCenteredMap = true;
-    } else if (callerLocation) {
-      console.log('Centering on browser location @', callerLocation);
-      global.zoneMap.setCenter(callerLocation);
-      hasCenteredMap = true;
-    } else {
-      global.zoneMap.setCenter([0, 50]);
-    }
-  }
-
-  // Resize map to make sure it takes all container space
-  // Warning: this causes a flicker
-  global.zoneMap.map.resize();
-}
-
 function mapMouseOver(lonlat) {
   const { solar, wind } = getState().data;
   const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
@@ -209,46 +178,8 @@ function mapMouseOver(lonlat) {
   }
 }
 
-function centerOnZoneName(state, zoneName, zoomLevel) {
-  if (!global.zoneMap) { return; }
-
-  const selectedZone = state.data.grid.zones[zoneName];
-  const selectedZoneCoordinates = [];
-  selectedZone.geometry.coordinates.forEach((geojson) => {
-    // selectedZoneCoordinates.push(geojson[0]);
-    geojson[0].forEach((coord) => {
-      selectedZoneCoordinates.push(coord);
-    });
-  });
-  const maxLon = d3Max(selectedZoneCoordinates, d => d[0]);
-  const minLon = d3Min(selectedZoneCoordinates, d => d[0]);
-  const maxLat = d3Max(selectedZoneCoordinates, d => d[1]);
-  const minLat = d3Min(selectedZoneCoordinates, d => d[1]);
-  const lon = d3Mean([minLon, maxLon]);
-  const lat = d3Mean([minLat, maxLat]);
-
-  global.zoneMap.setCenter([lon, lat]);
-  if (zoomLevel) {
-    // Remember to set center and zoom in case the map wasn't loaded yet
-    global.zoneMap.setZoom(zoomLevel);
-    // If the panel is open the zoom doesn't appear perfectly centered because
-    // it centers on the whole window and not just the visible map part.
-    // something one could fix in the future. It's tricky because one has to project, unproject
-    // and project again taking both starting and ending zoomlevel into account
-    global.zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
-  }
-}
-
 // Start initialising map
 global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
-  .onDragEnd(() => {
-    dispatchApplication('centeredZoneName', null);
-    // Somehow there is a drag event sent before the map data is loaded.
-    // We want to ignore it.
-    if (!mapDraggedSinceStart && getState().data.grid.datetime) {
-      mapDraggedSinceStart = true;
-    }
-  })
   .onMouseMove((lonlat) => {
     mapMouseOver(lonlat);
   });
@@ -263,10 +194,4 @@ global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
 observe(state => state.application.currentPage, (currentPage, state) => {
   // Analytics
   thirdPartyServices.trackWithCurrentApplicationState('pageview');
-});
-
-observe(state => state.application.centeredZoneName, (centeredZoneName, state) => {
-  if (centeredZoneName) {
-    centerOnZoneName(state, centeredZoneName, 4);
-  }
 });

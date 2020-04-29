@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
 import { getCo2Scale } from '../helpers/scales';
+import { getCenteredZoneViewport } from '../helpers/map';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
@@ -90,7 +91,7 @@ const ZoneList = ({
   });
 
   const enterZone = (zone) => {
-    dispatchApplication('centeredZoneName', zone.countryCode);
+    dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
     setEnteredZone(zone);
   };
 

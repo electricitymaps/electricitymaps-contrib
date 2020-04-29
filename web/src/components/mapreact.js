@@ -10,7 +10,8 @@ import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import { isEmpty, noop } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
-import { navigateTo } from '../helpers/router';
+import { getZoneId, navigateTo } from '../helpers/router';
+import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZoneGeometries } from '../hooks/map';
 import { dispatch, dispatchApplication } from '../store';
@@ -27,6 +28,12 @@ const Map = ({
   onZoneClick = noop,
   onZoneMouseMove = noop,
   onZoneMouseOut = noop,
+  onViewportChange = noop,
+  viewport = {
+    latitude: 0,
+    longitude: 0,
+    zoom: 1.5,
+  },
 }) => {
   const ref = useRef();
   const isMobile = useSelector(state => state.application.isMobile);
@@ -138,12 +145,6 @@ const Map = ({
     [staticMapStyle, hoveredZoneId],
   );
 
-  const [viewport, setViewport] = useState({
-    latitude: 50,
-    longitude: 0,
-    zoom: 1.5,
-  });
-
   // If WebGL is not supported trigger a callback.
   useEffect(
     () => {
@@ -200,7 +201,6 @@ const Map = ({
   );
 
   // TODO: Don't propagate navigation buttons mouse interaction events to the map.
-  // TODO: Put viewport state in Redux.
   // TODO: Add tooltip.
   // TODO: Add onMouseMove handler.
   // TODO: Consider passing zoneGeometries as a prop.
@@ -224,7 +224,7 @@ const Map = ({
       onClick={handleClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      onViewportChange={setViewport}
+      onViewportChange={onViewportChange}
     >
       <div className="mapboxgl-zoom-controls">
         <NavigationControl showCompass={false} />
@@ -235,30 +235,45 @@ const Map = ({
 
 export default () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+  const callerLocation = useSelector(state => state.application.callerLocation);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
+  const viewport = useSelector(state => state.application.mapViewport);
+  const zones = useSelector(state => state.data.grid.zones);
   const location = useLocation();
+  // TODO: Replace with useParams().zoneId once this component gets
+  // put in the right render context and has this param available.
+  const zoneId = getZoneId();
 
   const handleMapLoaded = useMemo(
     () => () => {
-      // Map loading is finished, lower the overlay shield
+      // Center the map initially based on the focused zone and the user geolocation.
+      if (zoneId) {
+        console.log(`Centering on zone ${zoneId}`);
+        dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
+      } else if (callerLocation) {
+        console.log(`Centering on browser location (${callerLocation})`);
+        dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
+      }
+
+      // Map loading is finished, lower the overlay shield.
       dispatchApplication('isLoadingMap', false);
 
-      // Track and notify that WebGL is supported
-      dispatchApplication('webglsupported', true);
+      // Track and notify that WebGL is supported.
+      dispatchApplication('webGLSupported', true);
       if (thirdPartyServices._ga) {
         thirdPartyServices._ga.timingMark('map_loaded');
       }
     },
-    [],
+    [zones, zoneId, callerLocation],
   );
 
   const handleMapInitFailed = useMemo(
     () => () => {
-      // Map loading is finished, lower the overlay shield
+      // Map loading is finished, lower the overlay shield.
       dispatchApplication('isLoadingMap', false);
 
-      // Redirect and notify that WebGL is not supported
-      dispatchApplication('webglsupported', false);
+      // Redirect and notify that WebGL is not supported.
+      dispatchApplication('webGLSupported', false);
       navigateTo({ pathname: '/ranking', search: location.search });
     },
     [],
@@ -272,26 +287,26 @@ export default () => {
   );
 
   const handleZoneClick = useMemo(
-    () => (zoneId) => {
+    () => (id) => {
       dispatchApplication('isLeftPanelCollapsed', false);
-      navigateTo({ pathname: `/zone/${zoneId}`, search: location.search });
+      navigateTo({ pathname: `/zone/${id}`, search: location.search });
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     },
     [location],
   );
 
   const handleZoneMouseMove = useMemo(
-    () => (zoneData, zoneId, x, y) => {
+    () => (data, id, x, y) => {
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
-          ? zoneData.co2intensity
-          : zoneData.co2intensityProduction
+          ? data.co2intensity
+          : data.co2intensityProduction
       );
       dispatch({
         type: 'SHOW_TOOLTIP',
         payload: {
-          data: zoneData,
+          data,
           displayMode: MAP_COUNTRY_TOOLTIP_KEY,
           position: { x, y },
         },
@@ -308,15 +323,24 @@ export default () => {
     [],
   );
 
+  const handleViewportChange = useMemo(
+    () => ({ latitude, longitude, zoom }) => {
+      dispatchApplication('mapViewport', { latitude, longitude, zoom });
+    },
+    [],
+  );
+
   return (
     <Map
-      scrollZoom={!isEmbedded}
       onMapLoaded={handleMapLoaded}
       onMapInitFailed={handleMapInitFailed}
       onSeaClick={handleSeaClick}
       onZoneClick={handleZoneClick}
       onZoneMouseMove={handleZoneMouseMove}
       onZoneMouseOut={handleZoneMouseOut}
+      onViewportChange={handleViewportChange}
+      scrollZoom={!isEmbedded}
+      viewport={viewport}
     />
   );
 };
