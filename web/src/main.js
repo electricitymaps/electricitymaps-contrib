@@ -1,9 +1,9 @@
-import moment from 'moment';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { select } from 'd3-selection';
+import moment from 'moment';
 
 // Components
 import ZoneMap from './components/map';
@@ -12,25 +12,11 @@ import ZoneMap from './components/map';
 import thirdPartyServices from './services/thirdparty';
 
 // State management
-import {
-  dispatchApplication,
-  getState,
-  observe,
-  store,
-} from './store';
+import { getState, observe, store } from './store';
 
 // Helpers
-import grib from './helpers/grib';
 import { themes } from './helpers/themes';
-import { hasSolarDataExpired, hasWindDataExpired } from './helpers/gfs';
-import {
-  history,
-  isSolarEnabled,
-  isWindEnabled,
-  navigateTo,
-  getCurrentPage,
-  getCustomDatetime,
-} from './helpers/router';
+import { history, navigateTo, getCurrentPage } from './helpers/router';
 
 // Layout
 import Main from './layout/main';
@@ -142,31 +128,8 @@ if (getState().application.isCordova) {
 // *** MAP ***
 //
 
-function mapMouseOver(lonlat) {
-  const { solar, wind } = getState().data;
-  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
-
-  if (lonlat && isWindEnabled() && !hasWindDataExpired(now, getState())) {
-    const u = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][0], wind.forecasts[1][0]);
-    const v = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][1], wind.forecasts[1][1]);
-    dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
-  } else {
-    dispatchApplication('windColorbarValue', null);
-  }
-
-  if (lonlat && isSolarEnabled() && !hasSolarDataExpired(now, getState())) {
-    const value = grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1]);
-    dispatchApplication('solarColorbarValue', value);
-  } else {
-    dispatchApplication('solarColorbarValue', null);
-  }
-}
-
 // Start initialising map
-global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
-  .onMouseMove((lonlat) => {
-    mapMouseOver(lonlat);
-  });
+global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright });
 
 //
 // *** OBSERVERS ***

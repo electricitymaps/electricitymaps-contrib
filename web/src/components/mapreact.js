@@ -11,7 +11,10 @@ import { debounce, isEmpty, noop } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
 import { getZoneId, navigateTo } from '../helpers/router';
+import { getValueAtPosition } from '../helpers/grib';
+import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
+import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZoneGeometries } from '../hooks/map';
 import { dispatch, dispatchApplication } from '../store';
@@ -24,11 +27,12 @@ const Map = ({
   children = null,
   onMapLoaded = noop,
   onMapInitFailed = noop,
+  onMouseMove = noop,
   onSeaClick = noop,
   onViewportChange = noop,
   onZoneClick = noop,
-  onZoneMouseMove = noop,
-  onZoneMouseOut = noop,
+  onZoneMouseEnter = noop,
+  onZoneMouseLeave = noop,
   scrollZoom = true,
   viewport = {
     latitude: 0,
@@ -168,44 +172,53 @@ const Map = ({
         }
       }
     },
-    [ref.current],
+    [ref.current, onSeaClick, onZoneClick],
   );
 
   const handleMouseMove = useMemo(
-    () => ({ point }) => {
+    () => ({ point, lngLat }) => {
       // Disable for touch devices
       if (ref.current && !isMobile) {
+        onMouseMove({
+          x: point[0],
+          y: point[1],
+          longitude: lngLat[0],
+          latitude: lngLat[1],
+        });
         const features = ref.current.queryRenderedFeatures(point);
         if (!isEmpty(features)) {
           const { zoneId } = features[0].properties;
           if (hoveredZoneId !== zoneId) {
             setHoveredZoneId(zoneId);
           }
-          onZoneMouseMove(zones[zoneId], zoneId, point[0], point[1]);
+          onZoneMouseEnter(zones[zoneId], zoneId, {
+            x: point[0],
+            y: point[1],
+            longitude: lngLat[0],
+            latitude: lngLat[1],
+          });
         }
       }
     },
-    [ref.current, isMobile, zones],
+    [ref.current, isMobile, zones, onMouseMove, onZoneMouseEnter],
   );
 
   const handleMouseLeave = useMemo(
     () => () => {
       // Disable for touch devices
-      if (!isMobile) {
+      if (ref.current && !isMobile) {
         if (hoveredZoneId !== null) {
           setHoveredZoneId(null);
         }
-        onZoneMouseOut();
+        onZoneMouseLeave();
       }
     },
-    [isMobile],
+    [ref.current, isMobile],
   );
 
   // TODO: Don't propagate navigation buttons mouse interaction events to the map.
   // TODO: Add tooltip.
-  // TODO: Add onMouseMove handler.
   // TODO: Consider passing zoneGeometries as a prop.
-  // TODO: Re-enable layers.
   // TODO: Re-enable smooth animations.
 
   return (
@@ -246,6 +259,9 @@ export default ({ children }) => {
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
 
+  const solarData = useInterpolatedSolarData();
+  const windData = useInterpolatedWindData();
+
   const handleMapLoaded = useMemo(
     () => () => {
       // Center the map initially based on the focused zone and the user geolocation.
@@ -281,6 +297,23 @@ export default ({ children }) => {
     [],
   );
 
+  const handleMouseMove = useMemo(
+    () => ({ longitude, latitude }) => {
+      dispatchApplication(
+        'solarColorbarValue',
+        getValueAtPosition(longitude, latitude, solarData),
+      );
+      dispatchApplication(
+        'windColorbarValue',
+        calculateLengthFromDimensions(
+          getValueAtPosition(longitude, latitude, windData && windData[0]),
+          getValueAtPosition(longitude, latitude, windData && windData[1]),
+        ),
+      );
+    },
+    [solarData, windData],
+  );
+
   const handleSeaClick = useMemo(
     () => () => {
       navigateTo({ pathname: '/map', search: location.search });
@@ -297,8 +330,8 @@ export default ({ children }) => {
     [location],
   );
 
-  const handleZoneMouseMove = useMemo(
-    () => (data, id, x, y) => {
+  const handleZoneMouseEnter = useMemo(
+    () => (data, id, { x, y }) => {
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
@@ -317,7 +350,7 @@ export default ({ children }) => {
     [electricityMixMode],
   );
 
-  const handleZoneMouseOut = useMemo(
+  const handleZoneMouseLeave = useMemo(
     () => () => {
       dispatchApplication('co2ColorbarValue', null);
       dispatch({ type: 'HIDE_TOOLTIP' });
@@ -338,18 +371,19 @@ export default ({ children }) => {
       dispatchApplication('mapViewport', { latitude, longitude, zoom });
       debouncedSetNoDragging();
     },
-    [debouncedSetNoDragging],
+    [],
   );
 
   return (
     <Map
       onMapLoaded={handleMapLoaded}
       onMapInitFailed={handleMapInitFailed}
+      onMouseMove={handleMouseMove}
       onSeaClick={handleSeaClick}
       onViewportChange={handleViewportChange}
       onZoneClick={handleZoneClick}
-      onZoneMouseMove={handleZoneMouseMove}
-      onZoneMouseOut={handleZoneMouseOut}
+      onZoneMouseEnter={handleZoneMouseEnter}
+      onZoneMouseLeave={handleZoneMouseLeave}
       scrollZoom={!isEmbedded}
       viewport={viewport}
     >
