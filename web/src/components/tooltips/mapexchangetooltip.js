@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, ZoneName } from './common';
@@ -26,7 +25,7 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, position }) =
       <ZoneName zone={zoneFrom} /> → <ZoneName zone={zoneTo} />: <b>{netFlow}</b> MW
       <br />
       <br />
-      <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.carbonintensityexport')) }} />:
+      {__('tooltips.carbonintensityexport')}:
       <br />
       <CarbonIntensity
         colorBlindModeEnabled={colorBlindModeEnabled}

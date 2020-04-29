@@ -22,6 +22,8 @@ import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissio
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
+import LoadingPlaceholder from '../../components/loadingplaceholder';
+import thirdPartyServices from '../../services/thirdparty';
 
 import { dispatch, dispatchApplication } from '../../store';
 
@@ -31,7 +33,6 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -90,6 +91,8 @@ const CountryPanel = ({
   const [tooltip, setTooltip] = useState(null);
   const [pressedBackKey, setPressedBackKey] = useState(false);
 
+  const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
+
   const location = useLocation();
   const { zoneId } = useParams();
 
@@ -125,6 +128,16 @@ const CountryPanel = ({
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
+
+  const switchToZoneEmissions = () => {
+    dispatchApplication('tableDisplayEmissions', true);
+    thirdPartyServices.track('switchToCountryEmissions');
+  };
+
+  const switchToZoneProduction = () => {
+    dispatchApplication('tableDisplayEmissions', false);
+    thirdPartyServices.track('switchToCountryProduction');
+  };
 
   return (
     <div className="country-panel">
@@ -169,11 +182,8 @@ const CountryPanel = ({
                     g
                   </div>
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
-                />
-                <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
+                <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
+                <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
@@ -183,37 +193,25 @@ const CountryPanel = ({
                   />
                   {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
               </div>
               <div className="country-col country-renewable-wrap">
                 <div id="country-renewable-gauge" className="country-gauge-wrap">
                   <CountryRenewableGauge />
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.renewable')}</div>
               </div>
             </div>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a
-                  id="production"
-                  onClick={() => dispatchApplication('tableDisplayEmissions', false)}
-                  className={!tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
-                />
+                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                  {__(`country-panel.electricity${electricityMixMode}`)}
+                </a>
                 |
-                <a
-                  id="emissions"
-                  onClick={() => dispatchApplication('tableDisplayEmissions', true)}
-                  className={tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
-                />
+                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                  {__('country-panel.emissions')}
+                </a>
               </div>
             </div>
           </React.Fragment>
@@ -231,20 +229,19 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              <div className="loading overlay" />
-              <span
-                className="country-history-title"
-                dangerouslySetInnerHTML={{ __html: co2Sub(__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')) }}
-              />
+              <span className="country-history-title">
+                {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
+              </span>
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
+                tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
+              )}
 
-              {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
-
-              <div className="loading overlay" />
               <span className="country-history-title">
                 {tableDisplayEmissions
                   ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
@@ -256,15 +253,14 @@ const CountryPanel = ({
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
 
-              <CountryHistoryMixGraph />
-
-              <div className="loading overlay" />
               <span className="country-history-title">
                 {__('country-history.electricityprices24h')}
               </span>
-
-              <CountryHistoryPricesGraph />
+              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
+              {isLoadingHistories ? <LoadingPlaceholder height="7.2em" /> : <CountryHistoryPricesGraph />}
             </div>
             <hr />
             <div>

@@ -16,7 +16,7 @@
             "subtitle": "Mapovanie dopadu spotreby elektriny na klímu"
         },
         "view2": {
-            "header": "Sledujte koľko CO2 je vyprodukovaného tvojou spotrebou elektriny v reálnom čase",
+            "header": "Sledujte koľko CO₂ je vyprodukovaného tvojou spotrebou elektriny v reálnom čase",
             "text": "Farebne zobrazujeme oblasti po celom svete na základe ich intenzity emisií"
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Dopad na klímu podľa oblasti",
-        "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny(gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Hodnotené podľa intezity uhlíka spotrebovanej elektriny(gCO₂eq/kWh)",
         "search": "Hľadaj oblasti"
     },
     "country-history": {
@@ -90,7 +90,7 @@
         "temporaryDataOutage": "Dáta momentálne nedostupné"
     },
     "misc": {
-        "maintitle": "CO2 emisie elektrickej spotreby v aktuálnom čase",
+        "maintitle": "CO₂ emisie elektrickej spotreby v aktuálnom čase",
         "oops": "Achjaj! Máme problém v komunikácii so serverom. Skúsime to opäť o pár sekúnd.",
         "newversion": "Nová verzia je dostupná! Klikni <a onClick=\"location.reload(true);\">tu</a> pre znovunačítanie.",
         "retrynow": "Zopakuj teraz",
@@ -119,7 +119,7 @@
     "emissionsExportedTo": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> emisii z elektriny dostupnej v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "CO2 za minútu",
+    "ofCO2eqPerMinute": "CO₂ za minútu",
     "theMap": {
         "groupName": "Mapa",
         "mapColors-question": "Čo znamenajú farby na mape?",
@@ -147,7 +147,7 @@
     "methodology": {
         "groupName": "Naše metódy",
         "carbonIntensity-question": "Čo je \"intenzita uhlíka\"?",
-        "carbonIntensity-answer": "Intenzita uhlíka je miera emisií skleníkových plynov vo vzťahu s produkciou elektriny, ktorú spotrebúvate(uvádza sa v gCO2eq/kWh - gram ekvivalentov oxidu uhličitého vyprodukovaného na kilowatthodinu spotrebovanej elektriny). <br><br>My meriame emisie spotrebovy elektriny(nie produkcie), to znamená, že všetky skleníkové plyny(tak CO2 ako aj iné skleníkové plyny, napríklad metán), ktoré vošli do produkcie elektriny, ktorá bola spotrebovaná v danej oblasti, berúc v úvahu intenzitu uhlíka elektriny importovanej z iných oblastí. Používame prístup posuzdovania životného cyklu(LCA - life cycle analysis approach), to znamená, že berieme v úvahu emisie vznikajúce v celom životnom cykle elektrárne(stavba, produkcia paliva, operatívne emisie, vyradenie).",
+        "carbonIntensity-answer": "Intenzita uhlíka je miera emisií skleníkových plynov vo vzťahu s produkciou elektriny, ktorú spotrebúvate(uvádza sa v gCO₂eq/kWh - gram ekvivalentov oxidu uhličitého vyprodukovaného na kilowatthodinu spotrebovanej elektriny). <br><br>My meriame emisie spotrebovy elektriny(nie produkcie), to znamená, že všetky skleníkové plyny(tak CO₂ ako aj iné skleníkové plyny, napríklad metán), ktoré vošli do produkcie elektriny, ktorá bola spotrebovaná v danej oblasti, berúc v úvahu intenzitu uhlíka elektriny importovanej z iných oblastí. Používame prístup posuzdovania životného cyklu(LCA - life cycle analysis approach), to znamená, že berieme v úvahu emisie vznikajúce v celom životnom cykle elektrárne(stavba, produkcia paliva, operatívne emisie, vyradenie).",
         "consumptionFocus-question": "Prečo počítate intenzitu uhlíka spotreby energie a nie pre jej produkciu?",
         "consumptionFocus-answer": "Veríme, že obyvateľstvo by malo byt zodpovedné za elektrinu, ktorú spotrebuje a nie za elektrinu, ktorá je produkovaná v oblasti, v ktorej žije. Taktiež veríme, že oblasti by nemali byť schopné simulovať nízky dopad na klímu jednoducho tým, že premiestnia špinavú produkciu energie to iných oblastí a potom importovať elektrinu práve z nich.",
         "renewableLowCarbonDifference-question": "Aký je rozdieľ medzi “obnoviteľný” and “s nízkymi emisiami”?",
