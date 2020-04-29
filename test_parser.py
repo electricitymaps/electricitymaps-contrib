@@ -2,7 +2,7 @@ import time
 
 import arrow
 import click
-import pandas as pd
+import datetime
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
@@ -65,9 +65,9 @@ def test_parser(zone, data_type, target_datetime):
         print('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
         return
-
-    assert not any([isinstance(e['datetime'], pd.Timestamp) for e in res_list]), \
-        'Datetimes cannot be returns as pandas timestamps - they should be python datetimes.datetime objects.'
+    print([type(e['datetime']) is datetime.datetime for e in res_list])
+    assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
+        'Datetimes must be returned as native datetime.datetime objects'
 
     last_dt = arrow.get(max(dts)).to('UTC')
     first_dt = arrow.get(min(dts)).to('UTC')
