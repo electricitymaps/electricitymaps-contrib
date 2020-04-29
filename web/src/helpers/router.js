@@ -33,10 +33,6 @@ export function useCustomDatetime() {
   return useSearchParams().get('datetime');
 }
 
-export function useRemoteEndpoint() {
-  return useSearchParams().get('remote') === 'true';
-}
-
 export function useSolarEnabled() {
   return useSearchParams().get('solar') === 'true';
 }
@@ -63,11 +59,6 @@ export function getZoneId() {
 // TODO: Deprecate in favor of useCustomDatetime (requires move to React)
 export function getCustomDatetime() {
   return getSearchParams().get('datetime');
-}
-
-// TODO: Deprecate in favor of useRemoteEndpoint (requires move to React)
-export function isRemoteEndpoint() {
-  return getSearchParams().get('remote') === 'true';
 }
 
 // TODO: Deprecate in favor of useSolarEnabled (requires move to React)

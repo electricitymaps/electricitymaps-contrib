@@ -11,7 +11,6 @@ import { __ } from '../helpers/translation';
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { getCo2Scale, solarColor, windColor } from '../helpers/scales';
 import { useSolarEnabled, useWindEnabled } from '../helpers/router';
-import { co2Sub } from '../helpers/formatting';
 
 // TODO: Move styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -79,8 +78,7 @@ const Legend = ({
           )}
           <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
             <div className="legend-header">
-              <span dangerouslySetInnerHTML={{ __html: co2Sub(__('legends.carbonintensity')) }} />
-              <small> (gCO<span className="sub">2</span>eq/kWh)</small>
+              {__('legends.carbonintensity')} <small>(gCO₂eq/kWh)</small>
             </div>
             <HorizontalColorbar
               id="carbon-intensity-bar"

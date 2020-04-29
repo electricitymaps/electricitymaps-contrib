@@ -45,15 +45,22 @@ class ConnectionsService {
     }
   }
 
-  // track errors
-  reportError(e) {
+  reportToSentry(e) {
     if (Sentry !== undefined) {
       try {
         Sentry.captureException(e);
       } catch (err) {
-        console.error('Error while reporting error: ' + err);
+        console.error('Error while reporting error to Sentry: ' + err);
       }
     }
+  }
+
+  // track errors
+  trackError(e) {
+    console.error(`Error Caught! ${e}`);
+    this.track('error', { ...store.getState().application, name: e.name, stack: e.stack });
+    this.ga('event', 'exception', { description: e, fatal: false });
+    this.reportToSentry(e);
   }
 }
 

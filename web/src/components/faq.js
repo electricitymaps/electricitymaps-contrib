@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 
 import { __ } from '../helpers/translation';
-import { co2Sub } from '../helpers/formatting';
 
 const orderings = [
   {
@@ -76,7 +75,7 @@ const QuestionAnswer = ({
       <div
         className="answer"
         dangerouslySetInnerHTML={{
-          __html: co2Sub(__(`${groupKey}.${entryKey}-answer`)),
+          __html: __(`${groupKey}.${entryKey}-answer`),
         }}
       />
     )}

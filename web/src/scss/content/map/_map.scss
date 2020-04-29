@@ -34,30 +34,8 @@
     position: absolute;
     top: 0;
     left: 0;
-}
-
-#wind,
-#solar {
-    pointer-events: none;
-    opacity: 0;
-    display: none;
-}
-
-#arrows-layer {
-    position: absolute;
-    transform: translateZ(0);
-    transition: opacity 0.2s ease;
-
-    .exchange-arrow {
-        position: absolute;
-        left: -25px;
-        top: -41px;
-        overflow: hidden;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
+    width: 100%;
+    height: 100%;
 }
 
 .tooltip {

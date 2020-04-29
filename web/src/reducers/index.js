@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
 import { getKey } from '../helpers/storage';
+import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
-
-const isProduction = () => window.location.href.includes('electricitymap');
-const isLocalhost = () => !isProduction() && !window.location.href.includes('192.');
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -31,6 +29,7 @@ const initialApplicationState = {
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
+  isLoadingMap: true,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: isProduction(),
@@ -59,6 +58,10 @@ const applicationReducer = (state = initialApplicationState, action) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action;
+      if (state[key] === value) {
+        return state;
+      }
+
       const newState = Object.assign({}, state);
       newState[key] = value;
 

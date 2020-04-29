@@ -15,8 +15,8 @@
             "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
         },
         "view2": {
-            "header": "Zobacz ile CO2 jest aktualnie emitowane przy produkcji twojej energii elektrycznej",
-            "text": "Regiony świata są kolorowane według intensywności emisji CO2, wliczając potencjał tworzenia efektu cieplarnianego, jednostkowo według zużywanej tam energii elektrycznej. Zieleńsze odcienie oznaczają bardziej przyjazną dla klimatu energię elektryczną."
+            "header": "Zobacz ile CO₂ jest aktualnie emitowane przy produkcji twojej energii elektrycznej",
+            "text": "Regiony świata są kolorowane według intensywności emisji CO₂, wliczając potencjał tworzenia efektu cieplarnianego, jednostkowo według zużywanej tam energii elektrycznej. Zieleńsze odcienie oznaczają bardziej przyjazną dla klimatu energię elektryczną."
         },
         "view3": {
             "header": "Dowiedz się skąd pochodzi twój prąd",
@@ -29,23 +29,23 @@
     },
     "country-panel": {
         "source": "źródło",
-        "carbonintensity": "Emisja CO2",
+        "carbonintensity": "Emisja CO₂",
         "lowcarbon": "Niskoemisyjne",
         "renewable": "Odnawialne",
         "electricityproduction": "Produkcja energii elektrycznej",
         "bysource": "według źródeł energii",
-        "emissions": "Emisje CO2",
+        "emissions": "Emisje CO₂",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
         "helpfrom": "z wkładem"
     },
     "left-panel": {
         "zone-list-header-title": "Wpływ na klimat",
-        "zone-list-header-subtitle": "według emisji CO2 poprzez wytwarzanie energii elektrycznej (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
         "search": "Szukaj"
     },
     "country-history": {
-        "carbonintensity24h": "Emisja CO2 w ostatnich 24 godzinach",
-        "emissionsorigin24h": "Źródła emisji CO2 w ostatnich 24 godzinach",
+        "carbonintensity24h": "Emisja CO₂ w ostatnich 24 godzinach",
+        "emissionsorigin24h": "Źródła emisji CO₂ w ostatnich 24 godzinach",
         "electricityorigin24h": "Źródła energii elektrycznej w ostatnich 24 godzinach",
         "electricityprices24h": "Ceny energii elektrycznej w ostatnich 24 godzinach",
         "Getdata": "Sprawdź dane historyczne i API z prognozą"
@@ -60,17 +60,17 @@
         "windpotential": "Potencjał wiatrowy",
         "solarpotential": "Potencjał słoneczny",
         "colorblindmode": "tryb bezbarwny",
-        "carbonintensity": "Emisja CO2"
+        "carbonintensity": "Emisja CO₂"
     },
     "tooltips": {
-        "carbonintensity": "Emisja CO2",
+        "carbonintensity": "Emisja CO₂",
         "lowcarbon": "Niskoemisyjne źródła energii",
         "renewable": "Odnawialne źródła energii",
         "crossborderexport": "Eksport",
-        "carbonintensityexport": "Emisja CO2 eksportu",
+        "carbonintensityexport": "Emisja CO₂ eksportu",
         "ofinstalled": "zainstalowanej mocy",
         "utilizing": "wykorzystując",
-        "withcarbonintensity": "z emisją CO2 wynoszącą",
+        "withcarbonintensity": "z emisją CO₂ wynoszącą",
         "showWindLayer": "Pokaż wiatr",
         "hideWindLayer": "Schowaj wiatr",
         "showSolarLayer": "Pokaż nasłonecznienie",
@@ -83,7 +83,7 @@
         "selectLanguage": "Wybierz język"
     },
     "misc": {
-        "maintitle": "Emisja CO2 konsumpcji energii elektrycznej w czasie rzeczywistym",
+        "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
         "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
         "retrynow": "Spróbuj teraz",
@@ -115,7 +115,7 @@
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "CO2eq na minutę",
+    "ofCO2eqPerMinute": "CO₂eq na minutę",
 
     "zoneShortName": {
         "AE": {

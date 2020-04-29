@@ -58,7 +58,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=N
 
     obj = fetch(session)
 
-    datetime = arrow.get(obj['soPgenGraph']['timestamp']).datetime
+    datetime = arrow.get(obj['soPgenGraph']['timestamp'],"X").datetime
 
     if zone_key == 'NZ-NZN':
         region_key = 'North Island'
@@ -118,7 +118,7 @@ def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_
     datetime_start = arrow.now().to(timezone).floor('day')
     data = []
     for item in obj['data']['mw_north']:
-        datetime = datetime_start.replace(minutes=+item[0])
+        datetime = datetime_start.shift(minutes=+item[0])
         if datetime > arrow.get() or item[1] is None:
             continue
         netFlow = item[1]

@@ -2,35 +2,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 // TODO: re-enable rules
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import { dispatchApplication } from '../../store';
 import { __ } from '../../helpers/translation';
+import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
-const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-});
-
-export default connect(mapStateToProps)(({ colorBlindModeEnabled }) => (
+export default () => (
   <div className="info-text small-screen-hidden">
-    <p>
-      <label className="checkbox-container">
-        {__('legends.colorblindmode')}
-        <input
-          type="checkbox"
-          id="checkbox-colorblind"
-          checked={colorBlindModeEnabled}
-          onChange={() => dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled)}
-        />
-        <span className="checkmark" />
-      </label>
-    </p>
+    <ColorBlindCheckbox />
     <p>
       {__('panel-initial-text.thisproject')}
       {' '}
@@ -92,4 +74,4 @@ export default connect(mapStateToProps)(({ colorBlindModeEnabled }) => (
       </div>
     </div>
   </div>
-));
+);

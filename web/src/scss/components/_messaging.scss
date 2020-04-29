@@ -49,6 +49,9 @@
     filter: alpha(opacity=50);
     opacity: 0.8;
     background-color:$lighter-gray;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .no-data-overlay-message{
@@ -76,22 +79,6 @@
 #new-version .inner {
     background-color: #3F51B5;
 }
-
-#loading.loading.overlay {
-    /* That's the main loading overlay */
-    background-image: url('../images/loading/loading64_FA.gif'), url('../images/loading/electricitymap-text.svg');
-    background-position: calc(50% - 64px) center , center center;
-    background-repeat: no-repeat, no-repeat; 
-    background-size: 36px , 10rem;
-    background-color: $lighter-gray;
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    position: fixed;
-    top: 0;
-    z-index: 500;
-}
-
 
 .referral-link {
     color: inherit;
