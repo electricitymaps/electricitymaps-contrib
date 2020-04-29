@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+import { getTargetTime } from './grib';
 import { protectedJsonRequest } from './api';
 
 const GFS_STEP_ORIGIN = 6; // hours
@@ -40,4 +41,24 @@ export function fetchGfsForecast(resource, targetTime) {
           .catch(reject);
       });
   });
+}
+
+export function hasSolarDataExpired(datetime, state) {
+  const { solar } = state.data;
+  if (!solar) return true;
+
+  const now = moment(datetime).valueOf();
+  const startTime = getTargetTime(solar.forecasts[0]).valueOf();
+  const endTime = getTargetTime(solar.forecasts[1]).valueOf();
+  return now < startTime || now >= endTime;
+}
+
+export function hasWindDataExpired(datetime, state) {
+  const { wind } = state.data;
+  if (!wind) return true;
+
+  const now = moment(datetime).valueOf();
+  const startTime = getTargetTime(wind.forecasts[0][0]).valueOf();
+  const endTime = getTargetTime(wind.forecasts[1][0]).valueOf();
+  return now < startTime || now >= endTime;
 }

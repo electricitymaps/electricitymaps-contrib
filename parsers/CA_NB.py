@@ -134,7 +134,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     if sorted_zone_keys == 'CA-NB->CA-QC':
         value = flows['QUEBEC']
-    elif sorted_zone_keys == 'CA-NB->US-NEISO':
+    elif sorted_zone_keys == 'CA-NB->US-NE-ISNE':
         # all of these exports are to Maine
         # (see https://www.nbpower.com/en/about-us/our-energy/system-map/),
         # currently this is mapped to ISO-NE
