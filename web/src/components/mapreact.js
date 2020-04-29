@@ -7,7 +7,7 @@ import React, {
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
-import { isEmpty, noop } from 'lodash';
+import { debounce, isEmpty, noop } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
 import { getZoneId, navigateTo } from '../helpers/router';
@@ -21,14 +21,15 @@ import { MAP_COUNTRY_TOOLTIP_KEY } from '../helpers/constants';
 const interactiveLayerIds = ['clickable-zones-fill'];
 
 const Map = ({
-  scrollZoom = true,
+  children = null,
   onMapLoaded = noop,
   onMapInitFailed = noop,
   onSeaClick = noop,
+  onViewportChange = noop,
   onZoneClick = noop,
   onZoneMouseMove = noop,
   onZoneMouseOut = noop,
-  onViewportChange = noop,
+  scrollZoom = true,
   viewport = {
     latitude: 0,
     longitude: 0,
@@ -229,11 +230,12 @@ const Map = ({
       <div className="mapboxgl-zoom-controls">
         <NavigationControl showCompass={false} />
       </div>
+      {children}
     </ReactMapGL>
   );
 };
 
-export default () => {
+export default ({ children }) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
@@ -323,11 +325,20 @@ export default () => {
     [],
   );
 
+  const debouncedSetNoDragging = useMemo(
+    () => debounce(() => {
+      dispatchApplication('isDraggingMap', false);
+    }, 200),
+    [],
+  );
+
   const handleViewportChange = useMemo(
     () => ({ latitude, longitude, zoom }) => {
       dispatchApplication('mapViewport', { latitude, longitude, zoom });
+      dispatchApplication('isDraggingMap', true);
+      debouncedSetNoDragging();
     },
-    [],
+    [debouncedSetNoDragging],
   );
 
   return (
@@ -335,12 +346,14 @@ export default () => {
       onMapLoaded={handleMapLoaded}
       onMapInitFailed={handleMapInitFailed}
       onSeaClick={handleSeaClick}
+      onViewportChange={handleViewportChange}
       onZoneClick={handleZoneClick}
       onZoneMouseMove={handleZoneMouseMove}
       onZoneMouseOut={handleZoneMouseOut}
-      onViewportChange={handleViewportChange}
       scrollZoom={!isEmbedded}
       viewport={viewport}
-    />
+    >
+      {children}
+    </Map>
   );
 };

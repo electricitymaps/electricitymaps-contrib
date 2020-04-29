@@ -28,6 +28,7 @@ const initialApplicationState = {
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
+  isDraggingMap: false,
   isLoadingMap: true,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
@@ -50,7 +51,7 @@ const initialApplicationState = {
   solarColorbarValue: null,
   solarEnabled: false,
   webGLSupported: false,
-  windColorbarMarker: null,
+  windColorbarValue: null,
   windEnabled: false,
 
   // TODO(olc): refactor this state

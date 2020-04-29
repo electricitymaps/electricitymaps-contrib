@@ -31,6 +31,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
 import MapReact from '../components/mapreact';
+import MapLayer from '../components/maplayer';
 import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
@@ -88,10 +89,11 @@ const Main = ({
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" style={{ display: 'none' }} />
-            <MapReact />
-            <ExchangeLayer />
-            <WindLayer />
-            <SolarLayer />
+            <MapReact>
+              <MapLayer component={ExchangeLayer} />
+              <MapLayer component={WindLayer} />
+              <MapLayer component={SolarLayer} />
+            </MapReact>
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
