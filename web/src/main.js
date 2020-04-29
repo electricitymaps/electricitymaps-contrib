@@ -5,9 +5,6 @@ import { Provider } from 'react-redux';
 import { select } from 'd3-selection';
 import moment from 'moment';
 
-// Components
-import ZoneMap from './components/map';
-
 // Services
 import thirdPartyServices from './services/thirdparty';
 
@@ -15,13 +12,11 @@ import thirdPartyServices from './services/thirdparty';
 import { getState, observe, store } from './store';
 
 // Helpers
-import { themes } from './helpers/themes';
 import { history, navigateTo, getCurrentPage } from './helpers/router';
 
 // Layout
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
-import global from './global';
 
 /*
   ****************************************************************
@@ -123,13 +118,6 @@ const app = {
 if (getState().application.isCordova) {
   app.initialize();
 }
-
-//
-// *** MAP ***
-//
-
-// Start initialising map
-global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright });
 
 //
 // *** OBSERVERS ***

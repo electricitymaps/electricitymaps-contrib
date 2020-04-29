@@ -1,5 +1,5 @@
 #map-container {
-    position: relative;
+    position: absolute; /* required for Safari iPad */
     flex-grow: 1; /* This takes up available horizontal space */
     overflow: hidden; /* hide overflowing children */
 
@@ -16,26 +16,12 @@
     outline-width: 0px;
 }
 
-#zones {
-    width: 100%;
-    height: 100%;
-    position: absolute; /* required for Safari iPad */
-}
-
 #inner {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     position: relative;
     flex: 1 1 auto;
-}
-
-.map-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 .tooltip {
