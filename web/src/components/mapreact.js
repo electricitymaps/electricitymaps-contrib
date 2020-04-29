@@ -334,8 +334,8 @@ export default ({ children }) => {
 
   const handleViewportChange = useMemo(
     () => ({ latitude, longitude, zoom }) => {
-      dispatchApplication('mapViewport', { latitude, longitude, zoom });
       dispatchApplication('isDraggingMap', true);
+      dispatchApplication('mapViewport', { latitude, longitude, zoom });
       debouncedSetNoDragging();
     },
     [debouncedSetNoDragging],

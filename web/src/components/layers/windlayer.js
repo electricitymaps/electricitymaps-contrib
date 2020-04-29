@@ -35,7 +35,7 @@ export default ({ project, unproject }) => {
 
   const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
   const isDragging = useSelector(state => state.application.isDraggingMap);
-  const isVisible = enabled && !isDragging;
+  const isVisible = enabled && isMapLoaded && !isDragging;
 
   const viewport = useMemo(
     () => {
@@ -58,7 +58,7 @@ export default ({ project, unproject }) => {
   // hacky once Windy service is merged here and perhaps optimized via WebGL.
   // See https://github.com/tmrowco/electricitymap-contrib/issues/944.
   useEffect(() => {
-    if (!windy && isVisible && ref.current && interpolatedData && viewport && isMapLoaded) {
+    if (!windy && isVisible && ref.current && interpolatedData) {
       const w = new Windy({
         canvas: ref.current,
         data: interpolatedData,
@@ -72,7 +72,7 @@ export default ({ project, unproject }) => {
       windy.stop();
       setWindy(null);
     }
-  }, [windy, isVisible, ref.current, interpolatedData, viewport, isMapLoaded, project, unproject]);
+  }, [windy, isVisible, ref.current, interpolatedData]);
 
   return (
     <CSSTransition
