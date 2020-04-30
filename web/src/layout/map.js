@@ -30,6 +30,7 @@ export default () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
+  const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
   const zones = useSelector(state => state.data.grid.zones);
   const location = useLocation();
@@ -157,9 +158,11 @@ export default () => {
     [],
   );
 
+  const hoveringEnabled = !isHoveringExchange && !isMobile;
+
   return (
     <React.Fragment>
-      {tooltipPosition && tooltipZoneData && !isHoveringExchange && (
+      {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
           zoneData={tooltipZoneData}
           position={tooltipPosition}
@@ -167,7 +170,7 @@ export default () => {
       )}
       <ZoneMap
         co2Scale={co2Scale}
-        hoveringEnabled={!isHoveringExchange}
+        hoveringEnabled={hoveringEnabled}
         onMapLoaded={handleMapLoaded}
         onMapInitFailed={handleMapInitFailed}
         onMouseMove={handleMouseMove}

@@ -191,12 +191,14 @@ const ZoneMap = ({
   const handleMouseMove = useMemo(
     () => (e) => {
       if (ref.current) {
-        onMouseMove({
-          x: e.point[0],
-          y: e.point[1],
-          longitude: e.lngLat[0],
-          latitude: e.lngLat[1],
-        });
+        if (hoveringEnabled) {
+          onMouseMove({
+            x: e.point[0],
+            y: e.point[1],
+            longitude: e.lngLat[0],
+            latitude: e.lngLat[1],
+          });
+        }
         // Trigger onZoneMouseEnter is mouse enters a different
         // zone and onZoneMouseLeave when it leaves all zones.
         const features = ref.current.queryRenderedFeatures(e.point);
