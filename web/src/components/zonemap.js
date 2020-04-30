@@ -5,10 +5,11 @@ import React, {
   useEffect,
 } from 'react';
 import { Portal } from 'react-portal';
-import ReactMapGL, { NavigationControl } from 'react-map-gl';
+import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { isEmpty, filter, noop } from 'lodash';
 
 const interactiveLayerIds = ['clickable-zones-fill'];
+const mapStyle = { version: 8, sources: {}, layers: [] };
 
 const ZoneMap = ({
   children = null,
@@ -38,132 +39,38 @@ const ZoneMap = ({
   const ref = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
 
-  const clickableWorldSource = useMemo(
+  const nonClickableSourceData = useMemo(
     () => ({
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: zoneGeometries.clickable,
-      },
-    }),
-    [zoneGeometries.clickable],
-  );
-
-  const nonClickableWorldSource = useMemo(
-    () => ({
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: zoneGeometries.nonClickable,
-      },
+      type: 'FeatureCollection',
+      features: zoneGeometries.nonClickable,
     }),
     [zoneGeometries.nonClickable],
   );
 
-  const hoveredZoneSource = useMemo(
+  const clickableSourceData = useMemo(
     () => ({
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: filter(zoneGeometries.clickable, f => f.properties.zoneId === hoveredZoneId),
-      },
+      type: 'FeatureCollection',
+      features: zoneGeometries.clickable,
     }),
-    [hoveredZoneId, zoneGeometries.clickable],
+    [zoneGeometries.clickable],
   );
 
-  const backgroundLayer = useMemo(
-    () => ({
-      id: 'background',
-      type: 'background',
-      paint: { 'background-color': theme.oceanColor },
-    }),
-    [theme.oceanColor],
-  );
+  const backgroundPaint = useMemo(() => ({ 'background-color': theme.oceanColor }), [theme.oceanColor]);
+  const nonClickableZonePaint = useMemo(() => ({ 'fill-color': theme.nonClickableFill }), [theme.nonClickable]);
+  const clickableZonePaint = useMemo(() => ({
+    'fill-color': {
+      property: 'co2intensity',
+      stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
+      default: theme.clickableFill,
+    },
+  }), [co2Scale, theme.clickableFill]);
+  const clickableZoneStroke = useMemo(() => ({
+    'line-color': theme.strokeColor,
+    'line-width': theme.strokeWidth,
+  }), [theme.strokeColor, theme.strokeWidth]);
+  const hoverPaint = useMemo(() => ({ 'fill-color': 'white', 'fill-opacity': 0.3 }), []);
 
-  const clickableZonesLayer = useMemo(
-    () => ({
-      id: 'clickable-zones-fill',
-      type: 'fill',
-      source: 'clickable-world',
-      layout: {},
-      paint: {
-        'fill-color': {
-          property: 'co2intensity',
-          stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
-          default: theme.clickableFill,
-        },
-      },
-    }),
-    [co2Scale, theme.clickableFill],
-  );
-
-  const nonClickableZonesLayer = useMemo(
-    () => ({
-      id: 'non-clickable-zones-fill',
-      type: 'fill',
-      source: 'non-clickable-world',
-      layout: {},
-      paint: { 'fill-color': theme.nonClickableFill },
-    }),
-    [theme.nonClickableFill],
-  );
-
-  const zonesHoverLayer = useMemo(
-    () => ({
-      id: 'zones-hover',
-      type: 'fill',
-      source: 'hover',
-      layout: {},
-      paint: {
-        'fill-color': 'white',
-        'fill-opacity': 0.3,
-      },
-    }),
-    [],
-  );
-
-  // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
-  const zonesLinesLayer = useMemo(
-    () => ({
-      id: 'zones-line',
-      type: 'line',
-      source: 'clickable-world',
-      layout: {},
-      paint: {
-        'line-color': theme.strokeColor,
-        'line-width': theme.strokeWidth,
-      },
-    }),
-    [theme.strokeColor, theme.strokeWidth],
-  );
-
-  const mapStyle = useMemo(
-    () => ({
-      version: 8,
-      sources: {
-        'clickable-world': clickableWorldSource,
-        'non-clickable-world': nonClickableWorldSource,
-        'hover': hoveredZoneSource,
-      },
-      layers: [
-        backgroundLayer,
-        clickableZonesLayer,
-        nonClickableZonesLayer,
-        zonesHoverLayer,
-        zonesLinesLayer,
-      ],
-    }),
-    [
-      clickableWorldSource,
-      nonClickableWorldSource,
-      hoveredZoneSource,
-      backgroundLayer,
-      clickableZonesLayer,
-      nonClickableZonesLayer,
-      zonesHoverLayer,
-      zonesLinesLayer,
-    ],
-  );
+  const hoverFilter = useMemo(() => (['==', 'zoneId', hoveredZoneId || '']), [hoveredZoneId]);
 
   // If WebGL is not supported trigger a callback.
   useEffect(
@@ -264,6 +171,19 @@ const ZoneMap = ({
             />
           </div>
         </Portal>
+        {/* Layers */}
+        <Layer id="background" type="background" paint={backgroundPaint} />
+        <Source type="geojson" data={nonClickableSourceData}>
+          <Layer id="non-clickable-zones-fill" type="fill" paint={nonClickableZonePaint} />
+        </Source>
+        <Source type="geojson" data={clickableSourceData}>
+          <Layer id="clickable-zones-fill" type="fill" paint={clickableZonePaint} />
+          <Layer id="clickable-zones-line" type="line" paint={clickableZoneStroke} />
+          {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
+        </Source>
+        <Source type="geojson" data={clickableSourceData}>
+          <Layer id="clickable-zones-hover" type="fill" paint={hoverPaint} filter={hoverFilter} />
+        </Source>
         {children}
       </ReactMapGL>
     </div>
