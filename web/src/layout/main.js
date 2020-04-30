@@ -12,6 +12,7 @@ import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Tabs from './tabs';
+import Map from './map';
 
 // Modules
 import { __ } from '../helpers/translation';
@@ -28,12 +29,6 @@ import { dispatch, dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
-
-import ZoneMap from '../components/zonemap';
-import MapLayer from '../components/maplayer';
-import ExchangeLayer from '../components/layers/exchangelayer';
-import SolarLayer from '../components/layers/solarlayer';
-import WindLayer from '../components/layers/windlayer';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -87,11 +82,7 @@ const Main = ({
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
-            <ZoneMap>
-              <MapLayer component={ExchangeLayer} />
-              <MapLayer component={WindLayer} />
-              <MapLayer component={SolarLayer} />
-            </ZoneMap>
+            <Map />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
