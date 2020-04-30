@@ -31,19 +31,18 @@ export const cordovaApp = {
       const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
         ? 30
         : 20;
-      // TODO: Check if these selectors are still valid and fix them.
       select('#header')
         .style('padding-top', `${extraPadding}px`);
       select('#mobile-header')
         .style('padding-top', `${extraPadding}px`);
 
-      select('.prodcons-toggle-container')
+      select('.controls-container')
         .style('margin-top', `${extraPadding}px`);
 
       select('.flash-message .inner')
         .style('padding-top', `${extraPadding}px`);
 
-      select('.mapboxgl-ctrl-top-right')
+      select('.mapboxgl-zoom-controls')
         .style('transform', `translate(0,${extraPadding}px)`);
       select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
