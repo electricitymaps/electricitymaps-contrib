@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { forEach, size } from 'lodash';
+import { forEach, isFinite, size } from 'lodash';
+
+import { useCo2ColorScale } from './theme';
 
 export function useZoneGeometries() {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
+  const co2ColorScale = useCo2ColorScale();
   const zones = useSelector(state => state.data.grid.zones);
 
   return useMemo(
@@ -12,6 +15,9 @@ export function useZoneGeometries() {
       const nonClickable = [];
 
       forEach(zones, (zone, zoneId) => {
+        const co2intensity = electricityMixMode === 'consumption'
+          ? zone.co2intensity
+          : zone.co2intensityProduction;
         const feature = {
           type: 'Feature',
           geometry: {
@@ -21,9 +27,7 @@ export function useZoneGeometries() {
           properties: {
             zoneId,
             zoneData: zone,
-            co2intensity: electricityMixMode === 'consumption'
-              ? zone.co2intensity
-              : zone.co2intensityProduction,
+            fillColor: isFinite(co2intensity) ? co2ColorScale(co2intensity) : undefined,
           },
         };
         if (zone.isClickable === undefined || zone.isClickable === true) {

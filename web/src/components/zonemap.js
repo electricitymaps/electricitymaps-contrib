@@ -13,8 +13,6 @@ const mapStyle = { version: 8, sources: {}, layers: [] };
 
 const ZoneMap = ({
   children = null,
-  // TODO: Generalize this to a custom color function
-  co2Scale = noop,
   hoveringEnabled = true,
   onMapLoaded = noop,
   onMapInitFailed = noop,
@@ -66,15 +64,9 @@ const ZoneMap = ({
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
       zonesStatic: { 'fill-color': theme.nonClickableFill },
-      zonesClickable: {
-        'fill-color': {
-          property: 'co2intensity',
-          stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
-          default: theme.clickableFill,
-        },
-      },
+      zonesClickable: { 'fill-color': ['case', ['has', 'fillColor'], ['get', 'fillColor'], theme.clickableFill] },
     }),
-    [theme, co2Scale],
+    [theme],
   );
 
   // If WebGL is not supported trigger a callback.

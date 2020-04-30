@@ -3,7 +3,7 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
@@ -63,19 +63,17 @@ function zoneMatchesQuery(zone, queryString) {
 }
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
 });
 
 const ZoneList = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   gridZones,
   searchQuery,
 }) => {
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor)
     .filter(z => zoneMatchesQuery(z, searchQuery));

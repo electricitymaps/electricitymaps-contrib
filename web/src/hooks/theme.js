@@ -6,27 +6,29 @@ import { themes } from '../helpers/themes';
 
 export function useTheme() {
   const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
+  const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
 
   return useMemo(
-    () => (brightModeEnabled ? themes.bright : themes.dark),
-    [brightModeEnabled],
+    () => (
+      brightModeEnabled
+        ? (colorBlindModeEnabled ? themes.colorblindBright : themes.bright)
+        : (colorBlindModeEnabled ? themes.colorblindDark : themes.dark)
+    ),
+    [brightModeEnabled, colorBlindModeEnabled],
   );
 }
 
 export function useCo2ColorScale() {
-  const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
+  const theme = useTheme();
 
   return useMemo(
-    () => {
-      const theme = colorBlindModeEnabled
-        ? themes.colorblindScale
-        : themes.co2Scale;
-      return scaleLinear()
-        .domain(theme.steps)
-        .range(theme.colors)
+    () => (
+      scaleLinear()
+        .domain(theme.co2Scale.steps)
+        .range(theme.co2Scale.colors)
         .unknown('gray')
-        .clamp(true);
-    },
-    [colorBlindModeEnabled],
+        .clamp(true)
+    ),
+    [theme],
   );
 }

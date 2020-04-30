@@ -43,7 +43,6 @@ export default () => {
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zoneGeometries = useZoneGeometries();
-  const co2Scale = useCo2ColorScale();
   const theme = useTheme();
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
@@ -172,7 +171,6 @@ export default () => {
         />
       )}
       <ZoneMap
-        co2Scale={co2Scale}
         hoveringEnabled={hoveringEnabled}
         onMapLoaded={handleMapLoaded}
         onMapInitFailed={handleMapInitFailed}
