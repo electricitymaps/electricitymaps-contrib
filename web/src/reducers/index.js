@@ -27,6 +27,10 @@ const initialApplicationState = {
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
+  // We have to track this here because map layers currently can't
+  // be stopped from propagating mouse move events to the map.
+  // See https://github.com/visgl/react-map-gl/blob/master/docs/advanced/custom-components.md
+  isHoveringExchange: false,
   isLeftPanelCollapsed: false,
   isDraggingMap: false,
   isLoadingMap: true,
@@ -42,9 +46,6 @@ const initialApplicationState = {
     zoom: 1.5,
   },
   onboardingSeen: cookieGetBool('onboardingSeen', false),
-  tooltipData: null,
-  tooltipDisplayMode: null,
-  tooltipPosition: { x: 0, y: 0 },
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
@@ -76,20 +77,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       }
 
       return newState;
-    }
-
-    case 'SHOW_TOOLTIP': {
-      return Object.assign({}, state, {
-        tooltipData: action.payload.data,
-        tooltipDisplayMode: action.payload.displayMode,
-        tooltipPosition: action.payload.position,
-      });
-    }
-
-    case 'HIDE_TOOLTIP': {
-      return Object.assign({}, state, {
-        tooltipDisplayMode: null,
-      });
     }
 
     case 'UPDATE_STATE_FROM_URL': {

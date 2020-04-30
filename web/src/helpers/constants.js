@@ -31,8 +31,6 @@ const modeOrder = [
 const PRODUCTION_MODES = modeOrder.filter(d => d.indexOf('storage') === -1);
 const STORAGE_MODES = modeOrder.filter(d => d.indexOf('storage') !== -1).map(d => d.replace(' storage', ''));
 
-const MAP_COUNTRY_TOOLTIP_KEY = 'map-country';
-
 const DEFAULT_FLAG_SIZE = 16;
 
 const DATA_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
@@ -42,7 +40,6 @@ module.exports = {
   modeOrder,
   PRODUCTION_MODES,
   STORAGE_MODES,
-  MAP_COUNTRY_TOOLTIP_KEY,
   DEFAULT_FLAG_SIZE,
   DATA_FETCH_INTERVAL,
 };

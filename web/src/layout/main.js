@@ -12,7 +12,6 @@ import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Tabs from './tabs';
-import MapTooltips from './maptooltips';
 
 // Modules
 import { __ } from '../helpers/translation';
@@ -152,8 +151,6 @@ const Main = ({
         </div>
         <Tabs />
       </div>
-      {/* TODO: Get rid of this as a part of https://github.com/tmrowco/electricitymap-contrib/issues/2288 */}
-      <MapTooltips />
       <OnboardingModal />
     </React.Fragment>
   );

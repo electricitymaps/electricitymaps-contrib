@@ -17,13 +17,14 @@ import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZoneGeometries } from '../hooks/map';
-import { dispatch, dispatchApplication } from '../store';
+import { dispatchApplication } from '../store';
 
-import { MAP_COUNTRY_TOOLTIP_KEY } from '../helpers/constants';
+import MapCountryTooltip from './tooltips/mapcountrytooltip';
 
 const interactiveLayerIds = ['clickable-zones-fill'];
 
 const Map = ({
+  hoveringEnabled = true,
   children = null,
   onMapLoaded = noop,
   onMapInitFailed = noop,
@@ -111,7 +112,7 @@ const Map = ({
             'fill-color': 'white',
             'fill-opacity': 0.3,
           },
-          filter: ['==', 'zoneId', 'DE'],
+          filter: ['==', 'zoneId', ''],
         },
         // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
         {
@@ -161,10 +162,10 @@ const Map = ({
   );
 
   const handleClick = useMemo(
-    () => ({ point }) => {
+    () => (e) => {
       // Disable when dragging
       if (ref.current && !ref.current.state.isDragging) {
-        const features = ref.current.queryRenderedFeatures(point);
+        const features = ref.current.queryRenderedFeatures(e.point);
         if (isEmpty(features)) {
           onSeaClick();
         } else {
@@ -176,48 +177,34 @@ const Map = ({
   );
 
   const handleMouseMove = useMemo(
-    () => ({ point, lngLat }) => {
+    () => (e) => {
       // Disable for touch devices
       if (ref.current && !isMobile) {
         onMouseMove({
-          x: point[0],
-          y: point[1],
-          longitude: lngLat[0],
-          latitude: lngLat[1],
+          x: e.point[0],
+          y: e.point[1],
+          longitude: e.lngLat[0],
+          latitude: e.lngLat[1],
         });
-        const features = ref.current.queryRenderedFeatures(point);
-        if (!isEmpty(features)) {
+        // Trigger onZoneMouseEnter is mouse enters a different
+        // zone and onZoneMouseLeave when it leaves all zones.
+        const features = ref.current.queryRenderedFeatures(e.point);
+        if (!isEmpty(features) && hoveringEnabled) {
           const { zoneId } = features[0].properties;
           if (hoveredZoneId !== zoneId) {
+            onZoneMouseEnter(zones[zoneId], zoneId);
             setHoveredZoneId(zoneId);
           }
-          onZoneMouseEnter(zones[zoneId], zoneId, {
-            x: point[0],
-            y: point[1],
-            longitude: lngLat[0],
-            latitude: lngLat[1],
-          });
-        }
-      }
-    },
-    [ref.current, isMobile, zones, onMouseMove, onZoneMouseEnter],
-  );
-
-  const handleMouseLeave = useMemo(
-    () => () => {
-      // Disable for touch devices
-      if (ref.current && !isMobile) {
-        if (hoveredZoneId !== null) {
+        } else if (hoveredZoneId !== null) {
+          onZoneMouseLeave();
           setHoveredZoneId(null);
         }
-        onZoneMouseLeave();
       }
     },
-    [ref.current, isMobile],
+    [ref.current, isMobile, hoveringEnabled, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
   );
 
   // TODO: Don't propagate navigation buttons mouse interaction events to the map.
-  // TODO: Add tooltip.
   // TODO: Consider passing zoneGeometries as a prop.
   // TODO: Re-enable smooth animations.
 
@@ -237,7 +224,6 @@ const Map = ({
       onLoad={onMapLoaded}
       onClick={handleClick}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       onViewportChange={onViewportChange}
     >
       <div className="mapboxgl-zoom-controls">
@@ -249,6 +235,7 @@ const Map = ({
 };
 
 export default ({ children }) => {
+  const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
@@ -261,6 +248,9 @@ export default ({ children }) => {
 
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
+
+  const [tooltipPosition, setTooltipPosition] = useState(null);
+  const [tooltipZoneData, setTooltipZoneData] = useState(null);
 
   const handleMapLoaded = useMemo(
     () => () => {
@@ -298,7 +288,12 @@ export default ({ children }) => {
   );
 
   const handleMouseMove = useMemo(
-    () => ({ longitude, latitude }) => {
+    () => ({
+      longitude,
+      latitude,
+      x,
+      y,
+    }) => {
       dispatchApplication(
         'solarColorbarValue',
         getValueAtPosition(longitude, latitude, solarData),
@@ -310,6 +305,7 @@ export default ({ children }) => {
           getValueAtPosition(longitude, latitude, windData && windData[1]),
         ),
       );
+      setTooltipPosition({ x, y });
     },
     [solarData, windData],
   );
@@ -331,21 +327,14 @@ export default ({ children }) => {
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (data, id, { x, y }) => {
+    () => (data, id) => {
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
           ? data.co2intensity
           : data.co2intensityProduction
       );
-      dispatch({
-        type: 'SHOW_TOOLTIP',
-        payload: {
-          data,
-          displayMode: MAP_COUNTRY_TOOLTIP_KEY,
-          position: { x, y },
-        },
-      });
+      setTooltipZoneData(data);
     },
     [electricityMixMode],
   );
@@ -353,7 +342,7 @@ export default ({ children }) => {
   const handleZoneMouseLeave = useMemo(
     () => () => {
       dispatchApplication('co2ColorbarValue', null);
-      dispatch({ type: 'HIDE_TOOLTIP' });
+      setTooltipZoneData(null);
     },
     [],
   );
@@ -375,19 +364,28 @@ export default ({ children }) => {
   );
 
   return (
-    <Map
-      onMapLoaded={handleMapLoaded}
-      onMapInitFailed={handleMapInitFailed}
-      onMouseMove={handleMouseMove}
-      onSeaClick={handleSeaClick}
-      onViewportChange={handleViewportChange}
-      onZoneClick={handleZoneClick}
-      onZoneMouseEnter={handleZoneMouseEnter}
-      onZoneMouseLeave={handleZoneMouseLeave}
-      scrollZoom={!isEmbedded}
-      viewport={viewport}
-    >
-      {children}
-    </Map>
+    <React.Fragment>
+      {tooltipPosition && tooltipZoneData && !isHoveringExchange && (
+        <MapCountryTooltip
+          zoneData={tooltipZoneData}
+          position={tooltipPosition}
+        />
+      )}
+      <Map
+        hoveringEnabled={!isHoveringExchange}
+        onMapLoaded={handleMapLoaded}
+        onMapInitFailed={handleMapInitFailed}
+        onMouseMove={handleMouseMove}
+        onSeaClick={handleSeaClick}
+        onViewportChange={handleViewportChange}
+        onZoneClick={handleZoneClick}
+        onZoneMouseEnter={handleZoneMouseEnter}
+        onZoneMouseLeave={handleZoneMouseLeave}
+        scrollZoom={!isEmbedded}
+        viewport={viewport}
+      >
+        {children}
+      </Map>
+    </React.Fragment>
   );
 };

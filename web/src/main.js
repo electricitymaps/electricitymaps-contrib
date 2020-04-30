@@ -88,6 +88,7 @@ const app = {
       const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
         ? 30
         : 20;
+      // TODO: Check if these selectors are still valid and fix them.
       select('#header')
         .style('padding-top', `${extraPadding}px`);
       select('#mobile-header')

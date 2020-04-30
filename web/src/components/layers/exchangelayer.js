@@ -124,10 +124,12 @@ export default ({ project }) => {
 
   // Mouse interaction handlers
   const handleArrowMouseMove = useMemo(() => (exchangeData, x, y) => {
+    dispatchApplication('isHoveringExchange', true);
     dispatchApplication('co2ColorbarValue', exchangeData.co2intensity);
     setTooltip({ exchangeData, position: { x, y } });
   }, []);
   const handleArrowMouseOut = useMemo(() => () => {
+    dispatchApplication('isHoveringExchange', false);
     dispatchApplication('co2ColorbarValue', null);
     setTooltip(null);
   }, []);
