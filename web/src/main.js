@@ -2,34 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { select } from 'd3-selection';
 import moment from 'moment';
 
-// Services
 import thirdPartyServices from './services/thirdparty';
+import { history } from './helpers/router';
+import { observe, store } from './store';
+import { cordovaApp } from './cordova';
 
-// State management
-import { getState, observe, store } from './store';
-
-// Helpers
-import { history, navigateTo, getCurrentPage } from './helpers/router';
-
-// Layout
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
-
-/*
-  ****************************************************************
-  This file is quite horrible. We are in the progress of migrating
-  all logic of this file into React components.
-  Help is appreciated ;-)
-  ****************************************************************
-  TODO:
-  - turn all files in components/ into React components
-  - move style from styles.css to individual components
-  - instantiate components properly in the DOM in layout/ files
-  - remove all observers and turn into react/redux flows
-*/
 
 // Timing
 if (thirdPartyServices._ga) {
@@ -55,69 +36,9 @@ ReactDOM.render(
   document.querySelector('#app'),
 );
 
-//
-// *** CORDOVA ***
-//
-
 // Initialise mobile app (cordova)
-const app = {
-  // Application Constructor
-  initialize() {
-    this.bindEvents();
-  },
-
-  bindEvents() {
-    document.addEventListener('deviceready', this.onDeviceReady, false);
-    document.addEventListener('resume', this.onResume, false);
-    document.addEventListener('backbutton', this.onBack, false);
-  },
-
-  onBack(e) {
-    if (['zone', 'faq'].includes(getCurrentPage())) {
-      navigateTo({ pathname: '/map', search: history.location.search });
-      e.preventDefault();
-    } else {
-      navigator.app.exitApp();
-    }
-  },
-
-  onDeviceReady() {
-    // Resize if we're on iOS
-    if (cordova.platformId === 'ios') {
-      // TODO(olc): What about Xr and Xs?
-      const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
-        ? 30
-        : 20;
-      // TODO: Check if these selectors are still valid and fix them.
-      select('#header')
-        .style('padding-top', `${extraPadding}px`);
-      select('#mobile-header')
-        .style('padding-top', `${extraPadding}px`);
-
-      select('.prodcons-toggle-container')
-        .style('margin-top', `${extraPadding}px`);
-
-      select('.flash-message .inner')
-        .style('padding-top', `${extraPadding}px`);
-
-      select('.mapboxgl-ctrl-top-right')
-        .style('transform', `translate(0,${extraPadding}px)`);
-      select('.layer-buttons-container')
-        .style('transform', `translate(0,${extraPadding}px)`);
-    }
-
-    codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
-  },
-
-  onResume() {
-    // Count a pageview
-    thirdPartyServices.trackWithCurrentApplicationState('Visit');
-    codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
-  },
-};
-
-if (getState().application.isCordova) {
-  app.initialize();
+if (window.isCordova) {
+  cordovaApp.initialize();
 }
 
 //
