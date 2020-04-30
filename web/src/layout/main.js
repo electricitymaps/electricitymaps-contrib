@@ -32,6 +32,10 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import { TIMESCALE } from '../helpers/constants';
 
+import ExchangeLayer from '../components/layers/exchangelayer';
+import SolarLayer from '../components/layers/solarlayer';
+import WindLayer from '../components/layers/windlayer';
+
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
@@ -89,8 +93,9 @@ const Main = ({
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <div id="zones" className="map-layer" />
-            <canvas id="wind" className="map-layer" />
-            <canvas id="solar" className="map-layer" />
+            <ExchangeLayer />
+            <WindLayer />
+            <SolarLayer />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
@@ -146,7 +151,7 @@ const Main = ({
           </div>
           <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
-              <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
+              {__('misc.newversion')}
             </div>
           </div>
 

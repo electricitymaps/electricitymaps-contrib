@@ -46,7 +46,7 @@ const getProductionData = data => modeOrder.map((mode) => {
   const production = (data.production || {})[resource];
   const storage = (data.storage || {})[resource];
 
-  // Production CO2 intensity
+  // Production CO₂ intensity
   const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -66,7 +66,6 @@ const getExchangeData = (data, exchangeKeys) => exchangeKeys.map((mode) => {
   const exchange = (data.exchange || {})[mode];
   const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
-  // Exchange CO2 intensity
   const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -235,7 +234,7 @@ const CountryCarbonEmissionsTable = React.memo(({
   const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
   const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
 
-  // in tCO2eq/min
+  // in tCO₂eq/min
   const co2Scale = scaleLinear()
     .domain([
       -maxCO2eqExport || 0,

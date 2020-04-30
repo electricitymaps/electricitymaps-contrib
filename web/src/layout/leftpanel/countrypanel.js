@@ -33,8 +33,7 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
-import { LOW_CARBON_INFO_TOOLTIP_KEY, TIMESCALE } from '../../helpers/constants';
+import { TIMESCALE } from '../../helpers/constants';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -190,11 +189,8 @@ const CountryPanel = ({
                     g
                   </div>
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.carbonintensity')) }}
-                />
-                <div className="country-col-subtext">(gCO<span className="sub">2</span>eq/kWh)</div>
+                <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
+                <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
@@ -204,35 +200,25 @@ const CountryPanel = ({
                   />
                   {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.lowcarbon')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
               </div>
               <div className="country-col country-renewable-wrap">
                 <div id="country-renewable-gauge" className="country-gauge-wrap">
                   <CountryRenewableGauge />
                 </div>
-                <div
-                  className="country-col-headline"
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.renewable')) }}
-                />
+                <div className="country-col-headline">{__('country-panel.renewable')}</div>
               </div>
             </div>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a
-                  onClick={switchToZoneProduction}
-                  className={!tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: __(`country-panel.electricity${electricityMixMode}`) }}
-                />
+                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                  {__(`country-panel.electricity${electricityMixMode}`)}
+                </a>
                 |
-                <a
-                  onClick={switchToZoneEmissions}
-                  className={tableDisplayEmissions ? 'selected' : null}
-                  dangerouslySetInnerHTML={{ __html: co2Sub(__('country-panel.emissions')) }}
-                />
+                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                  {__('country-panel.emissions')}
+                </a>
               </div>
             </div>
           </React.Fragment>
@@ -250,16 +236,13 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              <span
-                className="country-history-title"
-                dangerouslySetInnerHTML={{
-                  __html: co2Sub(__(
+              <span className="country-history-title">
+                {__(
                     tableDisplayEmissions
                       ? `country-history.emissions${timescaleTranslationKey}`
                       : `country-history.carbonintensity${timescaleTranslationKey}`
-                  )),
-                }}
-              />
+                )}
+              </span>
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>

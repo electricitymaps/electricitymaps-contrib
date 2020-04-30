@@ -8,9 +8,6 @@ import { max as d3Max, min as d3Min, mean as d3Mean } from 'd3-array';
 
 // Components
 import ZoneMap from './components/map';
-import ExchangeLayer from './components/layers/exchange';
-import SolarLayer from './components/layers/solar';
-import WindLayer from './components/layers/wind';
 
 // Services
 import thirdPartyServices from './services/thirdparty';
@@ -28,6 +25,7 @@ import {
 import grib from './helpers/grib';
 import { themes } from './helpers/themes';
 import { getCo2Scale, windColor } from './helpers/scales';
+import { hasSolarDataExpired, hasWindDataExpired } from './helpers/gfs';
 import {
   history,
   isSolarEnabled,
@@ -38,12 +36,13 @@ import {
   getZoneId,
 } from './helpers/router';
 import {
-  MAP_EXCHANGE_TOOLTIP_KEY,
   MAP_COUNTRY_TOOLTIP_KEY,
 } from './helpers/constants';
 
 // Layout
 import Main from './layout/main';
+import GlobalStyle from './globalstyle';
+import global from './global';
 
 /*
   ****************************************************************
@@ -68,12 +67,6 @@ if (thirdPartyServices._ga) {
 let mapDraggedSinceStart = false;
 let hasCenteredMap = false;
 
-// Set up objects
-let exchangeLayer;
-let zoneMap;
-let windLayer;
-let solarLayer;
-
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
 
@@ -86,14 +79,15 @@ ReactDOM.render(
     {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
     {/* the route history outside of React components anymore */}
     <Router history={history}>
+      <GlobalStyle />
       <Main />
     </Router>
   </Provider>,
   document.querySelector('#app'),
   () => {
     // Called when rendering is done
-    if (typeof zoneMap !== 'undefined') {
-      zoneMap.map.resize();
+    if (global.zoneMap) {
+      global.zoneMap.map.resize();
     }
   }
 );
@@ -146,8 +140,8 @@ const app = {
         .style('transform', `translate(0,${extraPadding}px)`);
       select('.layer-buttons-container')
         .style('transform', `translate(0,${extraPadding}px)`);
-      if (typeof zoneMap !== 'undefined') {
-        zoneMap.map.resize();
+      if (global.zoneMap) {
+        global.zoneMap.map.resize();
       }
     }
 
@@ -166,53 +160,12 @@ if (getState().application.isCordova) {
 }
 
 //
-// *** MAP & LAYERS ***
+// *** MAP ***
 //
-
-function renderWind(state) {
-  if (windLayer) {
-    const { wind } = state.data;
-    if (isWindEnabled() && wind && wind.forecasts[0] && wind.forecasts[1]) {
-      windLayer.draw(
-        getCustomDatetime() ? moment(getCustomDatetime()) : moment(new Date()),
-        wind.forecasts[0],
-        wind.forecasts[1],
-        windColor,
-      );
-      windLayer.show();
-    } else {
-      windLayer.hide();
-    }
-  }
-}
-
-function renderSolar(state) {
-  if (solarLayer) {
-    const { solar } = state.data;
-    if (isSolarEnabled() && solar && solar.forecasts[0] && solar.forecasts[1]) {
-      solarLayer.draw(
-        getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime(),
-        solar.forecasts[0],
-        solar.forecasts[1],
-        (err) => {
-          if (err) {
-            console.error(err.message);
-          } else if (isSolarEnabled()) {
-            solarLayer.show();
-          } else {
-            solarLayer.hide();
-          }
-        },
-      );
-    } else {
-      solarLayer.hide();
-    }
-  }
-}
 
 // Only center once
 function renderMap(state) {
-  if (typeof zoneMap === 'undefined') { return; }
+  if (!global.zoneMap) { return; }
 
   if (!mapDraggedSinceStart && !hasCenteredMap) {
     const { callerLocation } = state.application;
@@ -224,51 +177,41 @@ function renderMap(state) {
       hasCenteredMap = true;
     } else if (callerLocation) {
       console.log('Centering on browser location @', callerLocation);
-      zoneMap.setCenter(callerLocation);
+      global.zoneMap.setCenter(callerLocation);
       hasCenteredMap = true;
     } else {
-      zoneMap.setCenter([0, 50]);
+      global.zoneMap.setCenter([0, 50]);
     }
   }
 
   // Resize map to make sure it takes all container space
   // Warning: this causes a flicker
-  zoneMap.map.resize();
+  global.zoneMap.map.resize();
 }
 
 function mapMouseOver(lonlat) {
   const { solar, wind } = getState().data;
+  const now = getCustomDatetime() ? moment(getCustomDatetime()) : (new Date()).getTime();
 
-  if (isWindEnabled() && wind && lonlat && windLayer) {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!windLayer.isExpired(now, wind.forecasts[0], wind.forecasts[1])) {
-      const u = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][0], wind.forecasts[1][0]);
-      const v = grib.getInterpolatedValueAtLonLat(lonlat,
-        now, wind.forecasts[0][1], wind.forecasts[1][1]);
-      dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
-    }
+  if (lonlat && isWindEnabled() && !hasWindDataExpired(now, getState())) {
+    const u = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][0], wind.forecasts[1][0]);
+    const v = grib.getInterpolatedValueAtLonLat(lonlat, now, wind.forecasts[0][1], wind.forecasts[1][1]);
+    dispatchApplication('windColorbarValue', Math.sqrt(u * u + v * v));
   } else {
     dispatchApplication('windColorbarValue', null);
   }
 
-  if (isSolarEnabled() && solar && lonlat && solarLayer) {
-    const now = getCustomDatetime()
-      ? moment(getCustomDatetime()) : (new Date()).getTime();
-    if (!solarLayer.isExpired(now, solar.forecasts[0], solar.forecasts[1])) {
-      dispatchApplication(
-        'solarColorbarValue',
-        grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1])
-      );
-    }
+  if (lonlat && isSolarEnabled() && !hasSolarDataExpired(now, getState())) {
+    const value = grib.getInterpolatedValueAtLonLat(lonlat, now, solar.forecasts[0], solar.forecasts[1]);
+    dispatchApplication('solarColorbarValue', value);
   } else {
     dispatchApplication('solarColorbarValue', null);
   }
 }
 
 function centerOnZoneName(state, zoneName, zoomLevel) {
-  if (typeof zoneMap === 'undefined') { return; }
+  if (!global.zoneMap) { return; }
+
   const selectedZone = state.data.grid.zones[zoneName];
   const selectedZoneCoordinates = [];
   selectedZone.geometry.coordinates.forEach((geojson) => {
@@ -284,35 +227,23 @@ function centerOnZoneName(state, zoneName, zoomLevel) {
   const lon = d3Mean([minLon, maxLon]);
   const lat = d3Mean([minLat, maxLat]);
 
-  zoneMap.setCenter([lon, lat]);
+  global.zoneMap.setCenter([lon, lat]);
   if (zoomLevel) {
     // Remember to set center and zoom in case the map wasn't loaded yet
-    zoneMap.setZoom(zoomLevel);
+    global.zoneMap.setZoom(zoomLevel);
     // If the panel is open the zoom doesn't appear perfectly centered because
     // it centers on the whole window and not just the visible map part.
     // something one could fix in the future. It's tricky because one has to project, unproject
     // and project again taking both starting and ending zoomlevel into account
-    zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
-  }
-}
-
-function renderExchanges(state) {
-  const { exchanges } = state.data.grid;
-  const { electricityMixMode } = state.application;
-  if (exchangeLayer) {
-    exchangeLayer
-      .setData(electricityMixMode === 'consumption'
-        ? Object.values(exchanges)
-        : [])
-      .render();
+    global.zoneMap.map.easeTo({ center: [lon, lat], zoom: zoomLevel });
   }
 }
 
 function renderZones(state) {
   const { zones } = state.data.grid;
   const { electricityMixMode } = state.application;
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.setData(electricityMixMode === 'consumption'
+  if (global.zoneMap) {
+    global.zoneMap.setData(electricityMixMode === 'consumption'
       ? Object.values(zones)
       : Object.values(zones)
         .map(d => Object.assign({}, d, { co2intensity: d.co2intensityProduction })));
@@ -321,7 +252,7 @@ function renderZones(state) {
 
 // Start initialising map
 try {
-  zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
+  global.zoneMap = new ZoneMap('zones', { zoom: 1.5, theme: themes.bright })
     .setScrollZoom(!getState().application.isEmbedded)
     .onDragEnd(() => {
       dispatchApplication('centeredZoneName', null);
@@ -332,43 +263,7 @@ try {
       }
     })
     .onMapLoaded((map) => {
-      // Nest the exchange layer inside
-      const el = document.createElement('div');
-      el.id = 'arrows-layer';
-      map.map.getCanvas()
-        .parentNode
-        .appendChild(el);
-
-      // Create exchange layer as a result
-      exchangeLayer = new ExchangeLayer('arrows-layer', zoneMap)
-        .onExchangeMouseMove((zoneData) => {
-          const { co2intensity } = zoneData;
-          if (co2intensity) {
-            dispatchApplication('co2ColorbarValue', co2intensity);
-          }
-          dispatch({
-            type: 'SHOW_TOOLTIP',
-            payload: {
-              data: zoneData,
-              displayMode: MAP_EXCHANGE_TOOLTIP_KEY,
-              position: { x: currentEvent.clientX, y: currentEvent.clientY },
-            },
-          });
-        })
-        .onExchangeMouseOut((d) => {
-          dispatchApplication('co2ColorbarValue', null);
-          dispatch({ type: 'HIDE_TOOLTIP' });
-        })
-        .onExchangeClick((d) => {
-          console.log(d);
-        })
-        .setData(getState().application.electricityMixMode === 'consumption'
-          ? Object.values(getState().data.grid.exchanges)
-          : [])
-        .setColorblindMode(getState().application.colorBlindModeEnabled)
-        .render();
-
-      // map loading is finished, lower the overlay shield
+      // Map loading is finished, lower the overlay shield
       dispatchApplication('isLoadingMap', false);
 
       if (thirdPartyServices._ga) {
@@ -413,8 +308,6 @@ try {
       mapMouseOver(undefined);
     });
 
-  windLayer = new WindLayer('wind', zoneMap);
-  solarLayer = new SolarLayer('solar', zoneMap);
   dispatchApplication('webglsupported', true);
 } catch (e) {
   if (e === 'WebGL not supported') {
@@ -437,7 +330,6 @@ try {
 
 // Observe for electricityMixMode change
 observe(state => state.application.electricityMixMode, (electricityMixMode, state) => {
-  renderExchanges(state);
   renderZones(state);
   renderMap(state);
 });
@@ -445,11 +337,6 @@ observe(state => state.application.electricityMixMode, (electricityMixMode, stat
 // Observe for grid zones change
 observe(state => state.data.grid.zones, (zones, state) => {
   renderZones(state);
-});
-
-// Observe for grid exchanges change
-observe(state => state.data.grid.exchanges, (exchanges, state) => {
-  renderExchanges(state);
 });
 
 // Observe for grid change
@@ -465,8 +352,6 @@ observe(state => state.application.currentPage, (currentPage, state) => {
   if (currentPage === 'map' && state.application.isMobile) {
     setTimeout(() => {
       renderMap(state);
-      renderWind(state);
-      renderSolar(state);
     }, 0);
   }
 
@@ -476,20 +361,15 @@ observe(state => state.application.currentPage, (currentPage, state) => {
 
 // Observe for color blind mode changes
 observe(state => state.application.colorBlindModeEnabled, (colorBlindModeEnabled) => {
-  if (zoneMap) {
-    zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
-  }
-  if (exchangeLayer) {
-    exchangeLayer
-      .setColorblindMode(colorBlindModeEnabled)
-      .render();
+  if (global.zoneMap) {
+    global.zoneMap.setCo2color(getCo2Scale(colorBlindModeEnabled));
   }
 });
 
 // Observe for bright mode changes
 observe(state => state.application.brightModeEnabled, (brightModeEnabled) => {
-  if (zoneMap) {
-    zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
+  if (global.zoneMap) {
+    global.zoneMap.setTheme(brightModeEnabled ? themes.bright : themes.dark);
   }
 });
 
@@ -501,13 +381,7 @@ observe(state => state.application.centeredZoneName, (centeredZoneName, state) =
 
 // Observe for left panel collapse
 observe(state => state.application.isLeftPanelCollapsed, (_, state) => {
-  if (typeof zoneMap !== 'undefined') {
-    zoneMap.map.resize();
+  if (global.zoneMap) {
+    global.zoneMap.map.resize();
   }
 });
-
-// Observe for solar data change
-observe(state => state.data.solar, (_, state) => { renderSolar(state); });
-
-// Observe for wind data change
-observe(state => state.data.wind, (_, state) => { renderWind(state); });

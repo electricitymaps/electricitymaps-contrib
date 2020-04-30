@@ -81,7 +81,9 @@ def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
         'JP-HR':['JP-CB', 'JP-KN'],
         'JP-KN':['JP-CB', 'JP-HR', 'JP-SK', 'JP-CG'],
         'JP-SK':['JP-KN', 'JP-CG'],
-        'JP-CG':['JP-KN', 'JP-SK', 'JP-KY']
+        'JP-CG':['JP-KN', 'JP-SK', 'JP-KY'],
+        'JP-ON':[],
+        'JP-KY':['JP-CG']
         }
     df = fetch_consumption_df(zone_key, target_datetime)
     df['imports'] = 0
@@ -115,12 +117,12 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
         'JP-HKD': 'http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv'.format(datestamp),
         'JP-TH': 'http://setsuden.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv'.format(datestamp),
         'JP-TK': 'http://www.tepco.co.jp/forecast/html/images/juyo-d-j.csv',
-        'JP-HR': 'http://www.rikuden.co.jp/denki-yoho/csv/juyo_05_{}.csv'.format(datestamp),
-        'JP-CB': 'http://denki-yoho.chuden.jp/denki_yoho_content_data/juyo_cepco003.csv',
-        'JP-KN': 'http://www.kepco.co.jp/yamasou/juyo1_kansai.csv',
-        'JP-CG': 'http://www.energia.co.jp/jukyuu/sys/juyo_07_{}.csv'.format(datestamp),
+        'JP-HR': 'http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv'.format(datestamp),
+        'JP-CB': 'https://powergrid.chuden.co.jp/denki_yoho_content_data/juyo_cepco003.csv',
+        'JP-KN': 'https://www.kansai-td.co.jp/yamasou/juyo1_kansai.csv',
+        'JP-CG': 'https://www.energia.co.jp/nw/jukyuu/sys/juyo_07_{}.csv'.format(datestamp),
         'JP-SK': 'http://www.yonden.co.jp/denkiyoho/juyo_shikoku.csv',
-        'JP-KY': 'http://www.kyuden.co.jp/power_usages/csv/juyo-hourly-{}.csv'.format(datestamp),
+        'JP-KY': 'https://www.kyuden.co.jp/td_power_usages/csv/juyo-hourly-{}.csv'.format(datestamp),
         'JP-ON': 'https://www.okiden.co.jp/denki/juyo_10_{}.csv'.format(datestamp)
         }
     
@@ -128,16 +130,18 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values 
     if zone_key == 'JP-KN':
-        startrow = 44
-    elif zone_key in ['JP-CB', 'JP-TK']:
+        startrow = 57
+    elif zone_key in ['JP-CB', 'JP-CG', 'JP-TK', 'JP-HKD', 'JP-TH', 'JP-HR', 'JP-SK', 'JP-KY']:
         startrow = 54
     else:
         startrow = 42
     df = pd.read_csv(consumption_url[zone_key], skiprows=startrow,
                      encoding='shift-jis')
     
-    if zone_key in ['JP-CB', 'JP-TK']:
+    if zone_key in ['JP-CB', 'JP-CG', 'JP-TK', 'JP-HKD', 'JP-HR', 'JP-KN', 'JP-SK', 'JP-KY']:
         df.columns = ['Date', 'Time', 'cons', 'solar']
+    elif zone_key in ['JP-TH']:
+        df.columns = ['Date', 'Time', 'cons', 'solar', 'wind']
     else:
         df.columns = ['Date', 'Time', 'cons']
     # Convert 万kW to MW

@@ -5,6 +5,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "basic-auth": "^2.0.0",
+    "color-parse": "^1.3.8",
     "compression": "^1.7.2",
     "currency-symbol-map": "^4.0.3",
     "d3-array": "^1.2.1",

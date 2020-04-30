@@ -26,6 +26,6 @@ export function getExchangeCo2Intensity(key, zoneData) {
 
 export function getTotalElectricity(zoneData, displayByEmissions) {
   return displayByEmissions
-    ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO2eq/h
+    ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO₂eq/h
     : (zoneData.totalProduction + zoneData.totalDischarge + zoneData.totalImport);
 }
