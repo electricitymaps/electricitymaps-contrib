@@ -8,7 +8,7 @@ import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { isEmpty, filter, noop } from 'lodash';
 
-const interactiveLayerIds = ['clickable-zones-fill'];
+const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
 
 const ZoneMap = ({
@@ -55,22 +55,27 @@ const ZoneMap = ({
     [zoneGeometries.clickable],
   );
 
-  const backgroundPaint = useMemo(() => ({ 'background-color': theme.oceanColor }), [theme.oceanColor]);
-  const nonClickableZonePaint = useMemo(() => ({ 'fill-color': theme.nonClickableFill }), [theme.nonClickable]);
-  const clickableZonePaint = useMemo(() => ({
-    'fill-color': {
-      property: 'co2intensity',
-      stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
-      default: theme.clickableFill,
-    },
-  }), [co2Scale, theme.clickableFill]);
-  const clickableZoneStroke = useMemo(() => ({
-    'line-color': theme.strokeColor,
-    'line-width': theme.strokeWidth,
-  }), [theme.strokeColor, theme.strokeWidth]);
-  const hoverPaint = useMemo(() => ({ 'fill-color': 'white', 'fill-opacity': 0.3 }), []);
-
+  // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => (['==', 'zoneId', hoveredZoneId || '']), [hoveredZoneId]);
+
+  // Calculate layer styles only when the theme changes
+  // to keep the stable and prevent excessive rerendering.
+  const styles = useMemo(
+    () => ({
+      hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
+      ocean: { 'background-color': theme.oceanColor },
+      zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
+      zonesStatic: { 'fill-color': theme.nonClickableFill },
+      zonesClickable: {
+        'fill-color': {
+          property: 'co2intensity',
+          stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
+          default: theme.clickableFill,
+        },
+      },
+    }),
+    [theme, co2Scale],
+  );
 
   // If WebGL is not supported trigger a callback.
   useEffect(
@@ -172,17 +177,17 @@ const ZoneMap = ({
           </div>
         </Portal>
         {/* Layers */}
-        <Layer id="background" type="background" paint={backgroundPaint} />
+        <Layer id="ocean" type="background" paint={styles.ocean} />
         <Source type="geojson" data={nonClickableSourceData}>
-          <Layer id="non-clickable-zones-fill" type="fill" paint={nonClickableZonePaint} />
+          <Layer id="zones-static" type="fill" paint={styles.zonesStatic} />
         </Source>
         <Source type="geojson" data={clickableSourceData}>
-          <Layer id="clickable-zones-fill" type="fill" paint={clickableZonePaint} />
-          <Layer id="clickable-zones-line" type="line" paint={clickableZoneStroke} />
+          <Layer id="zones-clickable" type="fill" paint={styles.zonesClickable} />
+          <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>
         <Source type="geojson" data={clickableSourceData}>
-          <Layer id="clickable-zones-hover" type="fill" paint={hoverPaint} filter={hoverFilter} />
+          <Layer id="hover" type="fill" paint={styles.hover} filter={hoverFilter} />
         </Source>
         {children}
       </ReactMapGL>
