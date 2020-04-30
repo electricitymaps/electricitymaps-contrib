@@ -238,9 +238,9 @@ const CountryPanel = ({
             <div className="country-history">
               <span className="country-history-title">
                 {__(
-                    tableDisplayEmissions
-                      ? `country-history.emissions${timescaleTranslationKey}`
-                      : `country-history.carbonintensity${timescaleTranslationKey}`
+                  tableDisplayEmissions
+                    ? `country-history.emissions${timescaleTranslationKey}`
+                    : `country-history.carbonintensity${timescaleTranslationKey}`
                 )}
               </span>
               <br />

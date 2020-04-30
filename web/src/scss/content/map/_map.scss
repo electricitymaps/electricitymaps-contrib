@@ -108,7 +108,7 @@
 
 /* override mapbox styling */
 .mapboxgl-ctrl-top-right {
-    top: 159px !important;
+    top: 169px !important;
 
     @include respond-to('small') {
         top: 56px !important;

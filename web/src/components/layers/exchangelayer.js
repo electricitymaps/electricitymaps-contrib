@@ -157,7 +157,7 @@ export default () => {
       {!isDragging && arrows.map(arrow => (
         <Arrow
           arrow={arrow}
-          key={arrow.sortedCountryCodes}
+          key={arrow.countryCodes}
           mouseMoveHandler={handleArrowMouseMove}
           mouseOutHandler={handleArrowMouseOut}
           mapTransform={transform}

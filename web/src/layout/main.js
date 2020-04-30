@@ -175,7 +175,6 @@ const Main = ({
       <div
         style={{
           position: 'absolute',
-          fontFamily: 'Catamaran',
           top: 10,
           left: 0,
           right: 0,

@@ -44,6 +44,8 @@ const OptionItem = styled.div`
   padding: 0 12px;
   transition: all 0.4s;
   z-index: 9;
+  flex-grow: 1;
+  text-align: center;
 
   ${props => props.active && css`
     background: #ffffff;
