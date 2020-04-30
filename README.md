@@ -308,6 +308,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland  
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
+  - Biomas: [URE] (https://www.ure.gov.pl/download/9/10905/mocIVkw2019.pdf)
   - Other Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
