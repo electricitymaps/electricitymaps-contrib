@@ -29,6 +29,8 @@ export default () => {
   const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
+  const isDraggingMap = useSelector(state => state.application.isDraggingMap);
+  const isLoadingMap = useSelector(state => state.application.isLoadingMap);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
@@ -159,6 +161,7 @@ export default () => {
   );
 
   const hoveringEnabled = !isHoveringExchange && !isMobile;
+  const transitionDuration = (isLoadingMap || isDraggingMap) ? 0 : 300;
 
   return (
     <React.Fragment>
@@ -181,6 +184,7 @@ export default () => {
         onZoneMouseLeave={handleZoneMouseLeave}
         scrollZoom={!isEmbedded}
         theme={theme}
+        transitionDuration={transitionDuration}
         viewport={viewport}
         zoneGeometries={zoneGeometries}
         zones={zones}

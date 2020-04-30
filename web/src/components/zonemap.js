@@ -25,10 +25,11 @@ const ZoneMap = ({
   onZoneMouseLeave = noop,
   scrollZoom = true,
   theme = {},
+  transitionDuration = 0,
   viewport = {
     latitude: 0,
     longitude: 0,
-    zoom: 1.5,
+    zoom: 2,
   },
   // TODO: Calculate this from zones
   zoneGeometries = { clickable: [], nonClickable: [] },
@@ -227,8 +228,6 @@ const ZoneMap = ({
     [hoveredZoneId],
   );
 
-  // TODO: Re-enable smooth animations.
-
   return (
     <div id="zone-map">
       <ReactMapGL
@@ -243,11 +242,13 @@ const ZoneMap = ({
         touchRotate={false}
         scrollZoom={scrollZoom}
         mapStyle={mapStyle}
+        maxZoom={10}
         onLoad={onMapLoaded}
         onClick={handleClick}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onBlur={handleMouseOut}
+        transitionDuration={transitionDuration}
         onViewportChange={onViewportChange}
       >
         {/*
