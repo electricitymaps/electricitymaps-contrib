@@ -52,7 +52,7 @@ export const cordovaApp = {
   },
 
   onResume() {
-    // Count a pageview
+    // Count as app visit
     thirdPartyServices.trackWithCurrentApplicationState('Visit');
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },

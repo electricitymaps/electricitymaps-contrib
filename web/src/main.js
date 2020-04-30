@@ -6,22 +6,19 @@ import moment from 'moment';
 
 import thirdPartyServices from './services/thirdparty';
 import { history } from './helpers/router';
-import { observe, store } from './store';
+import { store } from './store';
 import { cordovaApp } from './cordova';
 
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
 
-// Timing
+// Track how long it took to start executing the JS code
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
-
-// Analytics
-thirdPartyServices.trackWithCurrentApplicationState('Visit');
 
 // Render DOM
 ReactDOM.render(
@@ -40,15 +37,3 @@ ReactDOM.render(
 if (window.isCordova) {
   cordovaApp.initialize();
 }
-
-//
-// *** OBSERVERS ***
-//
-// Declare and attach all listeners that will react
-// to state changes and cause a side-effect
-
-// Observe for page change
-observe(state => state.application.currentPage, (currentPage, state) => {
-  // Analytics
-  thirdPartyServices.trackWithCurrentApplicationState('pageview');
-});
