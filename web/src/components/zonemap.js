@@ -4,6 +4,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
+import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import { isEmpty, filter, noop } from 'lodash';
 
@@ -175,7 +176,6 @@ const ZoneMap = ({
 
   const handleClick = useMemo(
     () => (e) => {
-      // Disable when dragging
       if (ref.current && !ref.current.state.isDragging) {
         const features = ref.current.queryRenderedFeatures(e.point);
         if (isEmpty(features)) {
@@ -199,7 +199,7 @@ const ZoneMap = ({
             latitude: e.lngLat[1],
           });
         }
-        // Trigger onZoneMouseEnter is mouse enters a different
+        // Trigger onZoneMouseEnter if mouse enters a different
         // zone and onZoneMouseLeave when it leaves all zones.
         const features = ref.current.queryRenderedFeatures(e.point);
         if (!isEmpty(features) && hoveringEnabled) {
@@ -217,32 +217,55 @@ const ZoneMap = ({
     [ref.current, hoveringEnabled, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
   );
 
-  // TODO: Don't propagate navigation buttons mouse interaction events to the map.
+  const handleMouseOut = useMemo(
+    () => () => {
+      if (hoveredZoneId !== null) {
+        onZoneMouseLeave();
+        setHoveredZoneId(null);
+      }
+    },
+    [hoveredZoneId],
+  );
+
   // TODO: Re-enable smooth animations.
 
   return (
-    <ReactMapGL
-      ref={ref}
-      width="100vw"
-      height="100vh"
-      latitude={viewport.latitude}
-      longitude={viewport.longitude}
-      zoom={viewport.zoom}
-      interactiveLayerIds={interactiveLayerIds}
-      dragRotate={false}
-      touchRotate={false}
-      scrollZoom={scrollZoom}
-      mapStyle={mapStyle}
-      onLoad={onMapLoaded}
-      onClick={handleClick}
-      onMouseMove={handleMouseMove}
-      onViewportChange={onViewportChange}
-    >
-      <div className="mapboxgl-zoom-controls">
-        <NavigationControl showCompass={false} />
-      </div>
-      {children}
-    </ReactMapGL>
+    <div id="zone-map">
+      <ReactMapGL
+        ref={ref}
+        width="100vw"
+        height="100vh"
+        latitude={viewport.latitude}
+        longitude={viewport.longitude}
+        zoom={viewport.zoom}
+        interactiveLayerIds={interactiveLayerIds}
+        dragRotate={false}
+        touchRotate={false}
+        scrollZoom={scrollZoom}
+        mapStyle={mapStyle}
+        onLoad={onMapLoaded}
+        onClick={handleClick}
+        onMouseMove={handleMouseMove}
+        onMouseOut={handleMouseOut}
+        onBlur={handleMouseOut}
+        onViewportChange={onViewportChange}
+      >
+        {/*
+          Render the navigation controls next to ReactMapGL in the DOM so that
+          hovering over zoom buttons doesn't fire hover events on the map.
+        */}
+        <Portal node={document.getElementById('zone-map')}>
+          <div className="mapboxgl-zoom-controls">
+            <NavigationControl
+              showCompass={false}
+              zoomInLabel=""
+              zoomOutLabel=""
+            />
+          </div>
+        </Portal>
+        {children}
+      </ReactMapGL>
+    </div>
   );
 };
 
