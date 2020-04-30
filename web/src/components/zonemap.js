@@ -4,17 +4,15 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import { useSelector } from 'react-redux';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
-import { isEmpty, noop } from 'lodash';
-
-import { useCo2ColorScale, useTheme } from '../hooks/theme';
-import { useZoneGeometries } from '../hooks/map';
+import { isEmpty, filter, noop } from 'lodash';
 
 const interactiveLayerIds = ['clickable-zones-fill'];
 
 const ZoneMap = ({
   children = null,
+  // TODO: Generalize this to a custom color function
+  co2Scale = noop,
   hoveringEnabled = true,
   onMapLoaded = noop,
   onMapInitFailed = noop,
@@ -25,120 +23,144 @@ const ZoneMap = ({
   onZoneMouseEnter = noop,
   onZoneMouseLeave = noop,
   scrollZoom = true,
+  theme = {},
   viewport = {
     latitude: 0,
     longitude: 0,
     zoom: 1.5,
   },
+  // TODO: Calculate this from zones
+  zoneGeometries = { clickable: [], nonClickable: [] },
+  zones = {},
 }) => {
-  const ref = useRef();
-  const isMobile = useSelector(state => state.application.isMobile);
-  const zones = useSelector(state => state.data.grid.zones);
-  const zoneGeometries = useZoneGeometries();
-  const co2Scale = useCo2ColorScale();
-  const theme = useTheme();
-
+  const ref = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
 
-  const staticMapStyle = useMemo(
+  const clickableWorldSource = useMemo(
+    () => ({
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: zoneGeometries.clickable,
+      },
+    }),
+    [zoneGeometries.clickable],
+  );
+
+  const nonClickableWorldSource = useMemo(
+    () => ({
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: zoneGeometries.nonClickable,
+      },
+    }),
+    [zoneGeometries.nonClickable],
+  );
+
+  const hoveredZoneSource = useMemo(
+    () => ({
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: filter(zoneGeometries.clickable, f => f.properties.zoneId === hoveredZoneId),
+      },
+    }),
+    [hoveredZoneId, zoneGeometries.clickable],
+  );
+
+  const backgroundLayer = useMemo(
+    () => ({
+      id: 'background',
+      type: 'background',
+      paint: { 'background-color': theme.oceanColor },
+    }),
+    [theme.oceanColor],
+  );
+
+  const clickableZonesLayer = useMemo(
+    () => ({
+      id: 'clickable-zones-fill',
+      type: 'fill',
+      source: 'clickable-world',
+      layout: {},
+      paint: {
+        'fill-color': {
+          property: 'co2intensity',
+          stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
+          default: theme.clickableFill,
+        },
+      },
+    }),
+    [co2Scale, theme.clickableFill],
+  );
+
+  const nonClickableZonesLayer = useMemo(
+    () => ({
+      id: 'non-clickable-zones-fill',
+      type: 'fill',
+      source: 'non-clickable-world',
+      layout: {},
+      paint: { 'fill-color': theme.nonClickableFill },
+    }),
+    [theme.nonClickableFill],
+  );
+
+  const zonesHoverLayer = useMemo(
+    () => ({
+      id: 'zones-hover',
+      type: 'fill',
+      source: 'hover',
+      layout: {},
+      paint: {
+        'fill-color': 'white',
+        'fill-opacity': 0.3,
+      },
+    }),
+    [],
+  );
+
+  // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
+  const zonesLinesLayer = useMemo(
+    () => ({
+      id: 'zones-line',
+      type: 'line',
+      source: 'clickable-world',
+      layout: {},
+      paint: {
+        'line-color': theme.strokeColor,
+        'line-width': theme.strokeWidth,
+      },
+    }),
+    [theme.strokeColor, theme.strokeWidth],
+  );
+
+  const mapStyle = useMemo(
     () => ({
       version: 8,
       sources: {
-        'clickable-world': {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: zoneGeometries.clickable,
-          },
-        },
-        'non-clickable-world': {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: zoneGeometries.nonClickable,
-          },
-        },
-        // Duplicating source makes filter operations faster https://github.com/mapbox/mapbox-gl-js/issues/5040#issuecomment-321688603
-        'hover': {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: zoneGeometries.clickable,
-          },
-        },
+        'clickable-world': clickableWorldSource,
+        'non-clickable-world': nonClickableWorldSource,
+        'hover': hoveredZoneSource,
       },
       layers: [
-        {
-          id: 'background',
-          type: 'background',
-          paint: { 'background-color': theme.oceanColor },
-        },
-        {
-          id: 'clickable-zones-fill',
-          type: 'fill',
-          source: 'clickable-world',
-          layout: {},
-          paint: {
-            'fill-color': {
-              property: 'co2intensity',
-              stops: [0, 200, 400, 600, 800, 1000].map(d => [d, co2Scale(d)]),
-              default: theme.clickableFill,
-            },
-          },
-        },
-        {
-          id: 'non-clickable-zones-fill',
-          type: 'fill',
-          source: 'non-clickable-world',
-          layout: {},
-          paint: { 'fill-color': theme.nonClickableFill },
-        },
-        {
-          id: 'zones-hover',
-          type: 'fill',
-          source: 'hover',
-          layout: {},
-          paint: {
-            'fill-color': 'white',
-            'fill-opacity': 0.3,
-          },
-          filter: ['==', 'zoneId', ''],
-        },
-        // Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer
-        {
-          id: 'zones-line',
-          type: 'line',
-          source: 'clickable-world',
-          layout: {},
-          paint: {
-            'line-color': theme.strokeColor,
-            'line-width': theme.strokeWidth,
-          },
-        },
+        backgroundLayer,
+        clickableZonesLayer,
+        nonClickableZonesLayer,
+        zonesHoverLayer,
+        zonesLinesLayer,
       ],
     }),
-    [zoneGeometries, theme, co2Scale],
-  );
-
-  // Update only the hovered zone in the zones-hover layer, keeping
-  // the rest of the layers unchanged for more optimized layers diff
-  // resolution in the ReactMapGL component.
-  // TODO: Write this in a nicer way.
-  const mapStyle = useMemo(
-    () => ({
-      ...staticMapStyle,
-      layers: [
-        staticMapStyle.layers[0],
-        staticMapStyle.layers[1],
-        staticMapStyle.layers[2],
-        {
-          ...staticMapStyle.layers[3],
-          filter: ['==', 'zoneId', hoveredZoneId || ''],
-        },
-        staticMapStyle.layers[4],
-      ],
-    }),
-    [staticMapStyle, hoveredZoneId],
+    [
+      clickableWorldSource,
+      nonClickableWorldSource,
+      hoveredZoneSource,
+      backgroundLayer,
+      clickableZonesLayer,
+      nonClickableZonesLayer,
+      zonesHoverLayer,
+      zonesLinesLayer,
+    ],
   );
 
   // If WebGL is not supported trigger a callback.
@@ -168,8 +190,7 @@ const ZoneMap = ({
 
   const handleMouseMove = useMemo(
     () => (e) => {
-      // Disable for touch devices
-      if (ref.current && !isMobile) {
+      if (ref.current) {
         onMouseMove({
           x: e.point[0],
           y: e.point[1],
@@ -191,11 +212,10 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, isMobile, hoveringEnabled, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [ref.current, hoveringEnabled, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
   );
 
   // TODO: Don't propagate navigation buttons mouse interaction events to the map.
-  // TODO: Consider passing zoneGeometries as a prop.
   // TODO: Re-enable smooth animations.
 
   return (

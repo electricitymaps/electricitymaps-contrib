@@ -39,6 +39,9 @@ export default () => {
 
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
+  const zoneGeometries = useZoneGeometries();
+  const co2Scale = useCo2ColorScale();
+  const theme = useTheme();
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
   const [tooltipZoneData, setTooltipZoneData] = useState(null);
@@ -163,6 +166,7 @@ export default () => {
         />
       )}
       <ZoneMap
+        co2Scale={co2Scale}
         hoveringEnabled={!isHoveringExchange}
         onMapLoaded={handleMapLoaded}
         onMapInitFailed={handleMapInitFailed}
@@ -173,7 +177,10 @@ export default () => {
         onZoneMouseEnter={handleZoneMouseEnter}
         onZoneMouseLeave={handleZoneMouseLeave}
         scrollZoom={!isEmbedded}
+        theme={theme}
         viewport={viewport}
+        zoneGeometries={zoneGeometries}
+        zones={zones}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />

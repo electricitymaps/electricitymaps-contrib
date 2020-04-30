@@ -113,7 +113,7 @@ const ArrowsContainer = styled.div`
   left: 0;
 `;
 
-export default ({ project }) => {
+export default React.memo(({ project }) => {
   const ref = useRef();
   const arrows = useExchangeArrowsData();
   const width = useWidthObserver(ref);
@@ -156,4 +156,4 @@ export default ({ project }) => {
       ))}
     </ArrowsContainer>
   );
-};
+});
