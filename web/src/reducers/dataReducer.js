@@ -68,7 +68,7 @@ module.exports = (state = initialDataState, action) => {
       if (key === 'timescale') {
         return { ...state, histories: {} };
       }
-      break;
+      return state;
     }
 
     case 'GRID_DATA_FETCH_REQUESTED': {
