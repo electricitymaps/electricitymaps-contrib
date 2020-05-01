@@ -1,6 +1,5 @@
 import React, {
   useState,
-  useEffect,
   useRef,
   useMemo,
 } from 'react';
@@ -8,6 +7,9 @@ import {
   first,
   last,
   max,
+  filter,
+  flattenDeep,
+  isFinite,
   isNumber,
   isEmpty,
 } from 'lodash';
@@ -20,6 +22,7 @@ import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
+import { useWidthObserver, useHeightObserver } from '../../effects';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
@@ -27,18 +30,25 @@ const Y_AXIS_PADDING = 4;
 
 const getDatetimes = data => (data || []).map(d => d.datetime);
 
-const getTimeScale = (containerWidth, datetimes, startTime, endTime) => scaleTime()
+const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
     startTime ? moment(startTime).toDate() : first(datetimes),
     endTime ? moment(endTime).toDate() : last(datetimes),
   ])
-  .range([0, containerWidth]);
+  .range([0, width]);
 
-const getMaxTotalValue = layers => (last(layers) ? max(last(layers).datapoints.map(d => d[1])) : 0);
+const getMaxTotalValue = (layers) => {
+  const values = flattenDeep(
+    layers.map(
+      layer => layer.datapoints.map(d => d[1])
+    )
+  );
+  return max(filter(values, isFinite)) || 0;
+};
 
-const getValueScale = (containerHeight, maxTotalValue) => scaleLinear()
+const getValueScale = (height, maxTotalValue) => scaleLinear()
   .domain([0, maxTotalValue * 1.1])
-  .range([containerHeight, Y_AXIS_PADDING]);
+  .range([height, Y_AXIS_PADDING]);
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   if (!data || !data[0]) return [];
@@ -97,6 +107,11 @@ const AreaGraph = React.memo(({
   layerMouseMoveHandler,
   layerMouseOutHandler,
   /*
+    Marker hooks that get called when the marker selection gets updated or hidden
+  */
+  markerUpdateHandler,
+  markerHideHandler,
+  /*
     `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
   */
   selectedTimeIndex,
@@ -114,28 +129,8 @@ const AreaGraph = React.memo(({
   height = '10em',
 }) => {
   const ref = useRef(null);
-  const [container, setContainer] = useState({ width: 0, height: 0 });
-
-  // Container resize hook
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (ref.current) {
-        setContainer({
-          width: ref.current.getBoundingClientRect().width - Y_AXIS_WIDTH,
-          height: ref.current.getBoundingClientRect().height - X_AXIS_HEIGHT,
-        });
-      }
-    };
-    // Initialize dimensions if they are not set yet
-    if (!container.width || !container.height) {
-      updateDimensions();
-    }
-    // Update container dimensions on every resize
-    window.addEventListener('resize', updateDimensions);
-    return () => {
-      window.removeEventListener('resize', updateDimensions);
-    };
-  });
+  const containerWidth = useWidthObserver(ref, Y_AXIS_WIDTH);
+  const containerHeight = useHeightObserver(ref, X_AXIS_HEIGHT);
 
   // Build layers
   const layers = useMemo(
@@ -146,13 +141,13 @@ const AreaGraph = React.memo(({
   // Generate graph scales
   const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
   const valueScale = useMemo(
-    () => getValueScale(container.height, maxTotalValue),
-    [container.height, maxTotalValue]
+    () => getValueScale(containerHeight, maxTotalValue),
+    [containerHeight, maxTotalValue]
   );
   const datetimes = useMemo(() => getDatetimes(data), [data]);
   const timeScale = useMemo(
-    () => getTimeScale(container.width, datetimes, startTime, endTime),
-    [container.width, datetimes, startTime, endTime]
+    () => getTimeScale(containerWidth, datetimes, startTime, endTime),
+    [containerWidth, datetimes, startTime, endTime]
   );
 
   // Don't render the graph at all if no layers are present
@@ -162,17 +157,16 @@ const AreaGraph = React.memo(({
     <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
       <TimeAxis
         scale={timeScale}
-        transform={`translate(-1 ${container.height - 1})`}
+        transform={`translate(-1 ${containerHeight - 1})`}
         className="x axis"
       />
       <ValueAxis
         scale={valueScale}
         label={valueAxisLabel}
-        width={container.width}
-        height={container.height}
+        width={containerWidth}
+        height={containerHeight}
       />
       <GraphBackground
-        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
@@ -192,12 +186,15 @@ const AreaGraph = React.memo(({
         svgRef={ref}
       />
       <GraphHoverLine
+        layers={layers}
         timeScale={timeScale}
         valueScale={valueScale}
         datetimes={datetimes}
-        fill={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].markerFill}
-        data={isNumber(selectedLayerIndex) && layers[selectedLayerIndex].datapoints}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedLayerIndex={selectedLayerIndex}
         selectedTimeIndex={selectedTimeIndex}
+        svgRef={ref}
       />
     </svg>
   );

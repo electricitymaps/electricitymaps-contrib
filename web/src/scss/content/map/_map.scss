@@ -1,12 +1,3 @@
-#main {
-    position: fixed; /* This is done in order to ensure that dragging will not affect the body */
-    width: 100vw;
-    height: inherit;
-    display: flex;
-    flex-direction: column; /* children will be stacked vertically */
-    align-items: stretch; /* force children to take 100% width */
-}
-
 #map-container {
     position: relative;
     flex-grow: 1; /* This takes up available horizontal space */
@@ -70,7 +61,6 @@
 }
 
 .tooltip {
-    display: none;
     border: 1px solid lightgray;
     background-color: $lighter-gray;
     color: black;
@@ -82,7 +72,6 @@
     border-radius: 5px;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
     box-sizing: border-box;
-    opacity: 0;
 }
 
 #country-tooltip {

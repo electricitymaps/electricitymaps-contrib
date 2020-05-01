@@ -124,17 +124,27 @@ class ExchangeLayer {
     newArrows
       .on('mouseover', function (d, i) {
         d3Event.stopPropagation();
-        exchangeMouseOverHandler.call(this, d, i);
+        if (exchangeMouseOverHandler) {
+          exchangeMouseOverHandler.call(this, d, i);
+        }
       })
       .on('mouseout', function (d, i) {
         d3Event.stopPropagation();
-        exchangeMouseOutHandler.call(this, d, i);
+        if (exchangeMouseOutHandler) {
+          exchangeMouseOutHandler.call(this, d, i);
+        }
       })
       .on('mousemove', function (d, i) {
         d3Event.stopPropagation();
-        exchangeMouseMoveHandler.call(this, d, i);
+        if (exchangeMouseMoveHandler) {
+          exchangeMouseMoveHandler.call(this, d, i);
+        }
       })
-      .on('click', function (d, i) { exchangeClickHandler.call(this, d, i); });
+      .on('click', function (d, i) {
+        if (exchangeClickHandler) {
+          exchangeClickHandler.call(this, d, i);
+        }
+      });
 
     const arrowCarbonIntensitySliceSize = 80; // New arrow color at every X rise in co2
     const maxCarbonIntensity = 800; // we only have arrows up to a certain point

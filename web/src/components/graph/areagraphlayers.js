@@ -27,14 +27,14 @@ const AreaGraphLayers = React.memo(({
 
   // Mouse hover events
   let mouseOutTimeout;
-  const handleLayerMouseMove = (ev, layer, layerIndex) => {
+  const handleLayerMouseMove = (ev, layerIndex) => {
     if (mouseOutTimeout) {
       clearTimeout(mouseOutTimeout);
       mouseOutTimeout = undefined;
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex, layerIndex, layer, ev, svgRef);
+      mouseMoveHandler(timeIndex, layerIndex);
     }
   };
   const handleLayerMouseOut = () => {
@@ -57,10 +57,10 @@ const AreaGraphLayers = React.memo(({
               fill={isGradient ? `url(#${gradientId})` : layer.fill}
               d={layerArea(layer.datapoints)}
               /* Support only click events in mobile mode, otherwise react to mouse hovers */
-              onClick={isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-              onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-              onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
-              onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, layer, ind)) : noop}
+              onClick={isMobile ? (ev => handleLayerMouseMove(ev, ind)) : noop}
+              onFocus={!isMobile ? (ev => handleLayerMouseMove(ev, ind)) : noop}
+              onMouseOver={!isMobile ? (ev => handleLayerMouseMove(ev, ind)) : noop}
+              onMouseMove={!isMobile ? (ev => handleLayerMouseMove(ev, ind)) : noop}
               onMouseOut={handleLayerMouseOut}
               onBlur={handleLayerMouseOut}
             />

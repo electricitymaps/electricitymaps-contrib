@@ -4,7 +4,6 @@ import { noop } from 'lodash';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const GraphBackground = React.memo(({
-  layers,
   timeScale,
   valueScale,
   datetimes,
@@ -15,7 +14,8 @@ const GraphBackground = React.memo(({
 }) => {
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
-  if (x1 >= x2 || y1 >= y2) return null;
+  const width = x2 - x1;
+  const height = y2 - y1;
 
   // Mouse hover events
   let mouseOutRectTimeout;
@@ -26,7 +26,7 @@ const GraphBackground = React.memo(({
     }
     const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
     if (mouseMoveHandler) {
-      mouseMoveHandler(timeIndex, layers, ev, svgRef);
+      mouseMoveHandler(timeIndex);
     }
   };
   const handleRectMouseOut = () => {
@@ -35,12 +35,15 @@ const GraphBackground = React.memo(({
     }
   };
 
+  // Don't render if the dimensions are not positive
+  if (width <= 0 || height <= 0) return null;
+
   return (
     <rect
       x={x1}
       y={y1}
-      width={x2 - x1}
-      height={y2 - y1}
+      width={width}
+      height={height}
       style={{ cursor: 'pointer', opacity: 0 }}
       /* Support only click events in mobile mode, otherwise react to mouse hovers */
       onClick={isMobile ? handleRectMouseMove : noop}

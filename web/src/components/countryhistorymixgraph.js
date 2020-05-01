@@ -6,18 +6,18 @@ import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
 import { getCo2Scale } from '../helpers/scales';
+import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
-  getExchangeKeys,
   getSelectedZoneHistory,
+  getSelectedZoneExchangeKeys,
   getZoneHistoryStartTime,
   getZoneHistoryEndTime,
-  createGraphBackgroundMouseMoveHandler,
-  createGraphBackgroundMouseOutHandler,
-  createGraphLayerMouseMoveHandler,
-  createGraphLayerMouseOutHandler,
-} from '../helpers/history';
+} from '../selectors';
+import { dispatchApplication } from '../store';
 
+import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
+import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import AreaGraph from './graph/areagraph';
 
 const getValuesInfo = (historyData, displayByEmissions) => {
@@ -33,7 +33,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   return { valueAxisLabel, valueFactor };
 };
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode) => {
+const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys) => {
   if (!historyData || !historyData[0]) return {};
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
@@ -74,21 +74,17 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
       });
     }
     // Keep a pointer to original data
-    obj._countryData = d;
+    obj.meta = d;
     return obj;
   });
 
-  // If in consumption mode, show the exchange layers on top of the standard sources.
-  let layerKeys = modeOrder;
-  if (electricityMixMode === 'consumption') {
-    layerKeys = layerKeys.concat(getExchangeKeys(historyData));
-  }
+  // Show the exchange layers (if they exist) on top of the standard sources.
+  const layerKeys = modeOrder.concat(exchangeKeys);
 
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
-    if (getExchangeKeys(historyData).includes(key)) {
-      return d => (d.data._countryData.exchangeCo2Intensities
-        ? co2ColorScale(d.data._countryData.exchangeCo2Intensities[key]) : 'darkgray');
+    if (exchangeKeys.includes(key)) {
+      return d => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
     return modeColor[key];
@@ -106,6 +102,7 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
+  exchangeKeys: getSelectedZoneExchangeKeys(state),
   startTime: getZoneHistoryStartTime(state),
   endTime: getZoneHistoryEndTime(state),
   historyData: getSelectedZoneHistory(state),
@@ -117,12 +114,14 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
+  exchangeKeys,
   startTime,
   endTime,
   historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
+  const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   // Recalculate graph data only when the history data is changed
@@ -132,39 +131,91 @@ const CountryHistoryMixGraph = ({
     layerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode),
-    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode]
+    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys),
+    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
   // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(createGraphBackgroundMouseMoveHandler, []);
-  const backgroundMouseOutHandler = useMemo(createGraphBackgroundMouseOutHandler, []);
+  const backgroundMouseMoveHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+    },
+    []
+  );
+  const backgroundMouseOutHandler = useMemo(
+    () => (timeIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+    },
+    []
+  );
   const layerMouseMoveHandler = useMemo(
-    () => createGraphLayerMouseMoveHandler(isMobile, setSelectedLayerIndex),
-    [isMobile, setSelectedLayerIndex]
+    () => (timeIndex, layerIndex) => {
+      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setSelectedLayerIndex(layerIndex);
+    },
+    [setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
-    () => createGraphLayerMouseOutHandler(setSelectedLayerIndex),
+    () => () => {
+      dispatchApplication('selectedZoneTimeIndex', null);
+      setSelectedLayerIndex(null);
+    },
     [setSelectedLayerIndex]
+  );
+  // Graph marker callbacks
+  const markerUpdateHandler = useMemo(
+    () => (position, datapoint, layerKey) => {
+      setTooltip({
+        mode: layerKey,
+        position: getTooltipPosition(isMobile, position),
+        zoneData: datapoint.meta,
+      });
+    },
+    [setTooltip, isMobile]
+  );
+  const markerHideHandler = useMemo(
+    () => () => {
+      setTooltip(null);
+    },
+    [setTooltip]
   );
 
   return (
-    <AreaGraph
-      data={data}
-      layerKeys={layerKeys}
-      layerFill={layerFill}
-      startTime={startTime}
-      endTime={endTime}
-      valueAxisLabel={valueAxisLabel}
-      backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-      backgroundMouseOutHandler={backgroundMouseOutHandler}
-      layerMouseMoveHandler={layerMouseMoveHandler}
-      layerMouseOutHandler={layerMouseOutHandler}
-      selectedTimeIndex={selectedTimeIndex}
-      selectedLayerIndex={selectedLayerIndex}
-      isMobile={isMobile}
-      height="10em"
-    />
+    <React.Fragment>
+      <AreaGraph
+        data={data}
+        layerKeys={layerKeys}
+        layerFill={layerFill}
+        startTime={startTime}
+        endTime={endTime}
+        valueAxisLabel={valueAxisLabel}
+        backgroundMouseMoveHandler={backgroundMouseMoveHandler}
+        backgroundMouseOutHandler={backgroundMouseOutHandler}
+        layerMouseMoveHandler={layerMouseMoveHandler}
+        layerMouseOutHandler={layerMouseOutHandler}
+        markerUpdateHandler={markerUpdateHandler}
+        markerHideHandler={markerHideHandler}
+        selectedTimeIndex={selectedTimeIndex}
+        selectedLayerIndex={selectedLayerIndex}
+        isMobile={isMobile}
+        height="10em"
+      />
+      {tooltip && (
+        exchangeKeys.includes(tooltip.mode) ? (
+          <CountryPanelExchangeTooltip
+            exchangeKey={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        ) : (
+          <CountryPanelProductionTooltip
+            mode={tooltip.mode}
+            position={tooltip.position}
+            zoneData={tooltip.zoneData}
+          />
+        )
+      )}
+    </React.Fragment>
   );
 };
 

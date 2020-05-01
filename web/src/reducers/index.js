@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 
-const dataReducer = require('./dataReducer');
-const { getKey } = require('../helpers/storage');
+import { getKey } from '../helpers/storage';
 
-const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
-  || window.location.href.indexOf('192.') !== -1;
+import dataReducer from './dataReducer';
+
+const isProduction = () => window.location.href.includes('electricitymap');
+const isLocalhost = () => !isProduction() && !window.location.href.includes('192.');
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -22,6 +23,7 @@ const initialApplicationState = {
   callerZone: null,
   centeredZoneName: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
+  co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
   customDate: null,
@@ -31,28 +33,26 @@ const initialApplicationState = {
   isLeftPanelCollapsed: false,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
-  isProduction: window.location.href.indexOf('electricitymap') !== -1,
-  isLocalhost,
+  isProduction: isProduction(),
+  isLocalhost: isLocalhost(),
   legendVisible: true,
   locale: window.locale,
   onboardingSeen: cookieGetBool('onboardingSeen', false),
+  tooltipData: null,
   tooltipDisplayMode: null,
   tooltipPosition: { x: 0, y: 0 },
-  tooltipZoneData: null,
   searchQuery: null,
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  previousSelectedZoneTimeIndex: null,
+  solarColorbarValue: null,
   solarEnabled: cookieGetBool('solarEnabled', false),
-  useRemoteEndpoint: document.domain === '' || isLocalhost,
+  useRemoteEndpoint: false,
+  windColorbarMarker: null,
   windEnabled: cookieGetBool('windEnabled', false),
 
   // TODO(olc): refactor this state
   showPageState: 'map',
   pageToGoBackTo: null,
-  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
-  tooltipLowCarbonGaugePercentage: null,
-  tooltipRenewableGaugePercentage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -94,12 +94,37 @@ const applicationReducer = (state = initialApplicationState, action) => {
       return state;
     }
 
+    case 'SHOW_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipData: action.payload.data,
+        tooltipDisplayMode: action.payload.displayMode,
+        tooltipPosition: action.payload.position,
+      });
+    }
+
+    case 'HIDE_TOOLTIP': {
+      return Object.assign({}, state, {
+        tooltipDisplayMode: null,
+      });
+    }
+
     case 'UPDATE_SELECTED_ZONE': {
       const { selectedZoneName } = action.payload;
       return Object.assign({}, state, {
         selectedZoneName,
         selectedZoneTimeIndex: null,
-        previousSelectedZoneTimeIndex: null,
+      });
+    }
+
+    case 'UPDATE_STATE_FROM_URL': {
+      const { searchParams } = new URL(action.payload.url);
+      return Object.assign({}, state, {
+        customDate: searchParams.get('datetime'),
+        selectedZoneName: searchParams.get('countryCode'),
+        showPageState: searchParams.get('page') || 'map', // Default to map view if page was not specified
+        solarEnabled: searchParams.get('solar') === 'true',
+        useRemoteEndpoint: searchParams.get('remote') === 'true',
+        windEnabled: searchParams.get('wind') === 'true',
       });
     }
 
@@ -107,10 +132,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
       const { selectedZoneTimeIndex } = action.payload;
       // Update the selection only if it has changed
       if (selectedZoneTimeIndex !== state.selectedZoneTimeIndex) {
-        return Object.assign({}, state, {
-          selectedZoneTimeIndex,
-          previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
-        });
+        return Object.assign({}, state, { selectedZoneTimeIndex });
       }
       return state;
     }

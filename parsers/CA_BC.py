@@ -38,11 +38,11 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
     datetime = arrow.get(
         arrow.get(obj[0], 'DD-MMM-YY HH:mm:ss').datetime, timezone).datetime
 
-    if (zone_key1 == 'CA-BC' and zone_key2 == 'US-BPA'):
-        sortedZoneKeys = 'CA-BC->US-BPA'
+    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    if sortedZoneKeys == 'CA-BC->US-BPA' or sortedZoneKeys == 'CA-BC->US-NW-BPAT':
         netFlow = float(obj[1])
-    elif (zone_key1 == 'CA-AB' and zone_key2 == 'CA-BC'):
-        sortedZoneKeys = 'CA-AB->CA-BC'
+    elif sortedZoneKeys == 'CA-AB->CA-BC':
         netFlow = -1 * float(obj[2])
     else:
         raise NotImplementedError('This exchange pair is not implemented')
