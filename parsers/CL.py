@@ -18,6 +18,16 @@ TYPE_MAPPING = {'hidraulica': 'hydro',
                 'geotermica': 'geothermal'}
 
 
+API_BASE_URL_LIVE = 'http://panelapp.coordinadorelectrico.cl/api/chart/produccion'
+
+TYPE_MAPPING_LIVE = {
+                      'HIDRÁULICO': 'hydro',
+                      'TERMICAS': 'unknown',
+                      'EOLICAS': 'wind',
+                      'SOLAR': 'solar',
+                    }
+
+
 def timestamp_creator(date, hour):
     """Takes a string and int and returns a datetime object"""
 
@@ -59,6 +69,38 @@ def data_processor(raw_data):
     return ordered_data
 
 
+def get_data_live(session, logger):
+    """Requests generation data in json format."""
+
+    s = session or requests.session()
+    json_data = s.get(API_BASE_URL_LIVE).json()
+    return json_data
+
+
+def production_processor_live(json_data, zone_key):
+    """
+    Extracts data timestamp and sums regional data into totals by key.
+    Maps keys to type and returns a tuple.
+    """
+
+# unsure about this time object, but seems to be unix time, but in msecs
+        # 1) is this right?
+        # 2) does this need to have a timezone or anything??
+    dt = arrow.get(json_data['fecha']/1000)
+    
+    totals = defaultdict(lambda: 0.0)
+    
+    breakdown = json_data['data']
+
+    for generation in breakdown:
+        totals[generation['key']] = generation['value']
+
+    mapped_totals = {TYPE_MAPPING_LIVE.get(name, 'unknown'): val for name, val
+                     in totals.items()}
+
+    return dt, mapped_totals
+
+
 def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given zone
     Arguments:
@@ -91,11 +133,26 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
     """
 
     if target_datetime is None:
-        target_datetime=arrow.now(tz='Chile/Continental')
-        logger.warning('The real-time data collected by the parser is incomplete for the latest datapoints/hours,'
-                       'so the last 3 datapoints were omitted.'
-                       'If desired, please specify a historical date in YYYYMMDD format.')
+        gd = get_data_live(session, logger)
+        
+        generation = production_processor_live(gd, zone_key)
+
+        datapoint = {
+                      'zoneKey': zone_key,
+                      'datetime': generation[0].datetime,
+                      'production': generation[1],
+                      'storage': {
+                          'hydro': None,
+                                  },
+                      'source': 'panelapp.coordinadorelectrico.cl'
+                    }
+                
+        # Uncomment this when running in docker
+        #    datapoint = validate(datapoint, logger,
+        #                         remove_negative=True, required=['hydro'], floor=1000)
     
+        return datapoint
+        
     arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
@@ -132,7 +189,9 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    print('fetch_production() ->')
-    print(fetch_production())
+    #print('fetch_production() ->')
+    Prod=fetch_production()
+    print(Prod)
     # For fetching historical data instead, try:
-    ##print(fetch_procution(target_datetime=arrow.get("20200220", "YYYYMMDD"))
+    print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
+    
