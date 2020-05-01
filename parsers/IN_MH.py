@@ -178,15 +178,6 @@ def RGBtoBW(pil_image):
                           cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
     return Image.fromarray(image)
 
-# performs text recognition on given location and source image
-def recognize(location, source, lang):
-    img = source.crop(location)
-    img = RGBtoBW(img)
-    img = ImageOps.invert(img)
-    text = pytesseract.image_to_string(img, lang=lang, config='--psm 7')
-
-    return text, img
-
 # returns image section
 def read(location, source):
                 img = source.crop(location)
@@ -231,9 +222,10 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
     text = pytesseract.image_to_string(imgs_line, lang='digits_comma', config='--psm 7')
     text = text.split(' ')
     
+    # generate dict from string list
     values = {}
-    for i,key in enumerate(locations):
-        values[key]=max( [float(text[i]),0] )
+    for count,key in enumerate(locations):
+        values[key]=max( [float(text[count]),0] )
 
     # fraction of central state production that is exchanged with Maharashtra
     share = values['CS EXCH'] / values['CS GEN. TTL.']
@@ -256,119 +248,4 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
 
 if __name__ == '__main__':
 
-#     print( fetch_production() )
-    
-    import matplotlib.pyplot as plt
-    import time
-
-    file = open('log.txt', 'a')
-
-    while(True):
-
-        # image = imread(url)
-        # image = Image.fromarray(image)  # create PIL image
-        image = Image.open('error_2020-05-01T19 29.png')
-
-        localtime = arrow.utcnow().shift(hours=5, minutes=30)
-        localtime = localtime.format('YYYY-MM-DDTHH:mm')
-        debug_time = localtime.replace(':', ' ')
-
-        data = {
-        'zoneKey': 'IN-MH',
-        'datetime': 0,
-        'production': {
-            'biomass': 0.0,
-            'coal': 0.0,
-            'gas': 0.0,
-            'hydro': 0.0,
-            'nuclear': 0.0,
-            'solar': 0.0,
-            'wind': 0.0,
-            'unknown': 0.0
-        },
-        'storage': {},
-        'source': 'mahasldc.in',
-    }
-
-        def read(location, source):
-                img = source.crop(location)
-                img = RGBtoBW(img)
-                img = ImageOps.invert(img)
-                return img
-        
-
-        imgs    = [ read(loc['value'],image) for loc in locations.values() ] 
-        
-        
-        #min_shape = sorted([ i.size[1]  for i in imgs])[-1]
-        
-        imgs_line = np.hstack( list(np.asarray( i ) for i in imgs[:] ) )  
-
-        imgs_line = Image.fromarray( imgs_line)
-        text = pytesseract.image_to_string(imgs_line, lang='digits_comma', config='--psm 7')
-        
-        values1 = text.split(' ')
-        
-        
-        values2 = []
-        # values={}
-        for type, locs in locations.items():
-                value, _ = recognize(locs['value'], image, 'digits_comma')
-                values2.append(value)
-        #        values[type] = max( [float(value),0] )
-
-        values = {}
-        for i,key in enumerate(locations):
-                values[key]=max([float(values1[i]),0])
-
-        # fraction of central state production that is exchanged with Maharashtra
-        share = values['CS EXCH'] / values['CS GEN. TTL.']
-
-        for type, plants in generation_map.items():
-                for plant in plants['add']:
-                        fac = share if plant in CS else 1  # add only a fraction of central state plant consumption
-                        data['production'][type] += fac * values[plant]
-                for plant in plants['subtract']:
-                        fac = share if plant in CS else 1
-                        data['production'][type] -= fac * values[plant]
-
-        # Sum over all production types is expected to equal the total demand
-        demand_diff = sum( data['production'].values() ) - values['DEMAND']
-        print(demand_diff)
-        if (abs( demand_diff) > 30):
-                print('Production types do not add up to total demand. Difference: {}'.format(demand_diff))
-                image.save('error_'+debug_time+'.png')    
-        
-        if not values1 == values2:
-                print(values1)
-                print(values2)
-                image.save('error_'+debug_time+'.png')
-        else:
-                print('Successfull')
-        
-        vdict = {}
-        for i,key in enumerate(locations):
-                vdict[key]=values1[i]
-        #print(vdict)
-
-
-        #print results
-        line = ''
-        for key in locations.keys():
-                line = line+str(vdict[key])+ ' '
-
-        for prod in data['production'].values():
-                line = line + str(prod) + ' '
-        line = line + str(demand_diff)
-
-        file.write(line+'\n')
-        #print(line)
-        
-        imgs_line.save( 'Trifecta1.jpg' )   
-        plt.imshow(imgs_line)
-        plt.title(text)
-        plt.show()
-        time.sleep(10*60)
-
-
-
+    print( fetch_production() )
