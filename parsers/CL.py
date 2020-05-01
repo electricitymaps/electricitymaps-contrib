@@ -8,6 +8,7 @@ import logging
 import requests
 from collections import defaultdict
 from operator import itemgetter
+from .lib.validation import validate
 
 API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?"
 
@@ -146,10 +147,9 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
                                   },
                       'source': 'panelapp.coordinadorelectrico.cl'
                     }
-                
-        # Uncomment this when running in docker
-        #    datapoint = validate(datapoint, logger,
-        #                         remove_negative=True, required=['hydro'], floor=1000)
+        
+        datapoint = validate(datapoint, logger,
+                                remove_negative=True, required=['hydro'], floor=1000)
     
         return datapoint
         
