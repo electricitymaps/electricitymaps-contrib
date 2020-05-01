@@ -506,12 +506,6 @@ Run all of the parser tests with the following command from the root directory:
 python -m unittest discover parsers/test/
 ```
 
-Many of the tests require API keys of the data or web service providers and will therefore fail with an error message like
-
-> Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
-
-In such cases, please browse the website related to the provider and get the API key. (For ENTSO-E this process doesn't take 5 minutes: https://opendata.reseaux-energies.fr/signup/) As soon as you got hold of the API key, make it an environment variable. This fixes the error message.
-
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 
 ### Generating a new map
@@ -523,12 +517,11 @@ docker-compose run --rm web ./topogen.sh
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
 ### Testing parsers locally
-
 In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
-#### testing a parser
+
 From the root folder, use the `test_parser.py` command line utility:
 ```python
 python test_parser.py FR price  # get latest price parser for France
@@ -537,7 +530,13 @@ python test_parser.py FR  # defaults to production if no data type is given
 python test_parser.py DE --target_datetime 2018-01-01T08:00
 ```
 
-#### update the map
+Many of the tests require API keys of the data or web service providers and will therefore fail with an error message like
+
+> Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
+
+In such cases, please browse the website related to the provider and get the API key. (For ENTSO-E this process doesn't take 5 minutes: https://opendata.reseaux-energies.fr/signup/) As soon as you got hold of the API key, make it an environment variable. This fixes the error message.
+
+### Update the map
 We've added a testing server locally.
 
 To add a new country to the map, run:
