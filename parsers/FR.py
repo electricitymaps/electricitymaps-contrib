@@ -171,7 +171,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
                 if value.text == 'ND':
                     continue
                 period = int(value.attrib['periode'])
-                datetime = start_date.replace(hour=+period).datetime
+                datetime = start_date.shift(hours=+period).datetime
                 if not datetime in datas:
                     datas[datetime] = {
                         'zoneKey': zone_key,
