@@ -70,12 +70,12 @@ export default () => {
     [zones, zoneId, callerLocation],
   );
 
-  const handleMapInitFailed = useMemo(
+  const handleMapError = useMemo(
     () => () => {
       // Map loading is finished, lower the overlay shield.
       dispatchApplication('isLoadingMap', false);
 
-      // Redirect and notify that WebGL is not supported.
+      // Disable the map and redirect to zones ranking.
       dispatchApplication('webGLSupported', false);
       navigateTo({ pathname: '/ranking', search: location.search });
     },
@@ -172,7 +172,7 @@ export default () => {
       <ZoneMap
         hoveringEnabled={hoveringEnabled}
         onMapLoaded={handleMapLoaded}
-        onMapInitFailed={handleMapInitFailed}
+        onMapError={handleMapError}
         onMouseMove={handleMouseMove}
         onSeaClick={handleSeaClick}
         onViewportChange={handleViewportChange}

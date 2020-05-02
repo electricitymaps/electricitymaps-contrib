@@ -20,7 +20,7 @@ const ZoneMap = ({
   children = null,
   hoveringEnabled = true,
   onMapLoaded = noop,
-  onMapInitFailed = noop,
+  onMapError = noop,
   onMouseMove = noop,
   onSeaClick = noop,
   onViewportChange = noop,
@@ -87,11 +87,11 @@ const ZoneMap = ({
     [theme],
   );
 
-  // If WebGL is not supported trigger a callback.
+  // If WebGL is not supported trigger an error callback.
   useEffect(
     () => {
       if (!ReactMapGL.supported()) {
-        onMapInitFailed();
+        onMapError('WebGL not supported');
       }
     },
     [],
@@ -165,8 +165,9 @@ const ZoneMap = ({
         scrollZoom={scrollZoom}
         mapStyle={mapStyle}
         maxZoom={10}
-        onLoad={onMapLoaded}
         onClick={handleClick}
+        onError={onMapError}
+        onLoad={onMapLoaded}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onBlur={handleMouseOut}
