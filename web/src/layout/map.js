@@ -25,6 +25,8 @@ import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 
+const debouncedReleaseDragging = debounce(() => { dispatchApplication('isDraggingMap', false); }, 200);
+
 export default () => {
   const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
@@ -34,14 +36,13 @@ export default () => {
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
+  const solarData = useInterpolatedSolarData();
+  const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
   const location = useLocation();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
-
-  const solarData = useInterpolatedSolarData();
-  const windData = useInterpolatedWindData();
   const theme = useTheme();
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
@@ -142,24 +143,21 @@ export default () => {
     [],
   );
 
-  const debouncedSetNoDragging = useMemo(
-    () => debounce(() => {
-      dispatchApplication('isDraggingMap', false);
-    }, 200),
-    [],
-  );
-
   const handleViewportChange = useMemo(
     () => ({ latitude, longitude, zoom }) => {
       dispatchApplication('isDraggingMap', true);
       dispatchApplication('mapViewport', { latitude, longitude, zoom });
-      debouncedSetNoDragging();
+      // TODO: Try tying this to internal map state
+      // somehow to remove the need for debouncing.
+      debouncedReleaseDragging();
     },
     [],
   );
 
-  const hoveringEnabled = !isHoveringExchange && !isMobile;
+  // Animate map transitions only if viewport changes are triggered externally
+  // after the map's been loadded (and not by direct mouse interaction).
   const transitionDuration = (isLoadingMap || isDraggingMap) ? 0 : 300;
+  const hoveringEnabled = !isHoveringExchange && !isMobile;
 
   return (
     <React.Fragment>
