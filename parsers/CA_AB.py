@@ -125,9 +125,9 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
     for rowIndex, row in prices.iterrows():
         price = row['Price ($)']
         if (isfloat(price)):
-            hours = int(rowIndex.split(' ')[1]) - 1
+            hour = int(rowIndex.split(' ')[1]) - 1
             data[rowIndex] = {
-                'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hours=hours, tzinfo=ab_timezone).datetime,
+                'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hour=hour, tzinfo=ab_timezone).datetime,
                 'zoneKey': zone_key,
                 'currency': 'CAD',
                 'source': 'ets.aeso.ca',
