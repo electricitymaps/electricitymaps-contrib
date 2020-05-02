@@ -324,8 +324,27 @@
     "timezone": null
   },
   "AUS-TAS-KI": {
+    "_comment": "Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "flag_file_name": "au.png",
     "timezone": null,
+    "parsers": {
+      "production": "AUS-TAS-KI.fetch_production"
+    },
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 6,
+      "solar": 0.47,
+      "battery storage": 1.5,
+      "wind": 5.65
+    },
+    "contributors": [
+      "https://github.com/ajoga"
+    ],
     "bounding_box": [
       [
         143.33716881600026,
