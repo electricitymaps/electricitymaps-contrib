@@ -534,7 +534,7 @@ Many of the tests require API keys of the data or web service providers and will
 
 > Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
 
-In such cases, please browse the website related to the provider and get the API key. (For ENTSO-E this process doesn't take 5 minutes: https://opendata.reseaux-energies.fr/signup/) As soon as you got hold of the API key, make it an environment variable. This fixes the error message.
+In such cases, please browse the website related to the provider and ask for an API key. As soon as you got hold of the API key, make it an environment variable. This fixes the error.
 
 ### Update the map
 We've added a testing server locally.
