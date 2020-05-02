@@ -73,7 +73,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
-- Armenia: [Armenian Energy Power System Operator](http://epso.am/poweren.htm)  
+- Armenia: [Armenian Energy Power System Operator](http://epso.am/poweren.htm)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
   ([CSV](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all))
@@ -118,7 +118,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)  
+- Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
@@ -267,7 +267,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Ireland
   - Non-Renewable: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)  
+- Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
 - Italy
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
@@ -306,7 +306,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Poland  
+- Poland
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
   - Other Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -445,9 +445,9 @@ This will watch over source file changes, running nonstop and watching changes y
 Note this only builds for the English language (which will be faster as not all languages need to be built).
 If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
 
-If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section for common problems and fixes.
+If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
@@ -504,7 +504,7 @@ Once you're done, add your parser to the [zones.json](https://github.com/tmrowco
 
 Run all of the parser tests with the following command from the root directory:
 ```
-python3 -m unittest discover parsers/test/
+python -m unittest discover parsers/test/
 ```
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
@@ -518,12 +518,11 @@ docker-compose run --rm web ./topogen.sh
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
 ### Testing parsers locally
-
 In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
-#### testing a parser
+
 From the root folder, use the `test_parser.py` command line utility:
 ```python
 python test_parser.py FR price  # get latest price parser for France
@@ -532,12 +531,18 @@ python test_parser.py FR  # defaults to production if no data type is given
 python test_parser.py DE --target_datetime 2018-01-01T08:00
 ```
 
-#### update the map
+Many of the tests require API keys of the data or web service providers and will therefore fail with an error message like
+
+> Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
+
+In such cases, please browse the website related to the provider and ask for an API key. As soon as you got hold of the API key, make it an environment variable. This fixes the error.
+
+### Update the map
 We've added a testing server locally.
 
 To add a new country to the map, run:
 ```
-PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
+PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
 
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want
