@@ -1,16 +1,16 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { getCo2Scale } from '../helpers/scales';
 import {
-  getSelectedZoneHistory,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
-} from '../selectors';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';
@@ -39,23 +39,20 @@ const prepareGraphData = (historyData) => {
 };
 
 const mapStateToProps = state => ({
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryEmissionsGraph = ({
-  displayByEmissions,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const historyData = useCurrentZoneHistory();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
@@ -103,7 +100,7 @@ const CountryHistoryEmissionsGraph = ({
         layerFill={layerFill}
         startTime={startTime}
         endTime={endTime}
-        valueAxisLabel="tCO2eq / min"
+        valueAxisLabel="tCO₂eq / min"
         backgroundMouseMoveHandler={mouseMoveHandler}
         backgroundMouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={mouseMoveHandler}

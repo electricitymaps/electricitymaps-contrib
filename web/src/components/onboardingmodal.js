@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../helpers/translation';
-import { co2Sub } from '../helpers/formatting';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import thirdPartyServices from '../services/thirdparty';
 
 const views = [{
-  headerImage: 'images/onboarding/electricymapLogoIcon.svg',
+  headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
   renderContent: () => (
@@ -22,17 +21,17 @@ const views = [{
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/mapExtract.png',
+  headerImage: resolvePath('images/onboarding/mapExtract.png'),
   renderContent: () => (
     <React.Fragment>
       <div>
-        <h2 dangerouslySetInnerHTML={{ __html: co2Sub(__('onboarding-modal.view2.header')) }} />
+        <h2>{__('onboarding-modal.view2.header')}</h2>
       </div>
       <div>{__('onboarding-modal.view2.text')}</div>
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/exchangeArrows.png',
+  headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
   renderContent: () => (
     <React.Fragment>
       <div>
@@ -42,7 +41,7 @@ const views = [{
     </React.Fragment>
   ),
 }, {
-  headerImage: 'images/onboarding/splitLayers.png',
+  headerImage: resolvePath('images/onboarding/splitLayers.png'),
   renderContent: () => (
     <React.Fragment>
       <div>

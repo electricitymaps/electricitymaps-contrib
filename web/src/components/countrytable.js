@@ -5,15 +5,18 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { precisionPrefix, formatPrefix } from 'd3-format';
 import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatch, dispatchApplication } from '../store';
-import { useWidthObserver } from '../effects';
-import { getCurrentZoneData, getSelectedZoneExchangeKeys } from '../selectors';
+import { useWidthObserver } from '../hooks/viewport';
+import {
+  useCurrentZoneData,
+  useCurrentZoneExchangeKeys,
+} from '../hooks/redux';
 import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
@@ -43,7 +46,7 @@ const getProductionData = data => modeOrder.map((mode) => {
   const production = (data.production || {})[resource];
   const storage = (data.storage || {})[resource];
 
-  // Production CO2 intensity
+  // Production CO₂ intensity
   const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -63,7 +66,7 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
   const exchange = (data.exchange || {})[mode];
   const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
-  // Exchange CO2 intensity
+  // Exchange CO₂ intensity
   const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
   const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
   const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
@@ -232,7 +235,7 @@ const CountryCarbonEmissionsTable = React.memo(({
   const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
   const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
 
-  // in tCO2eq/min
+  // in tCO₂eq/min
   const co2Scale = scaleLinear()
     .domain([
       -maxCO2eqExport || 0,
@@ -429,22 +432,21 @@ const CountryElectricityProductionTable = React.memo(({
 const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
-  data: getCurrentZoneData(state),
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKeys: getSelectedZoneExchangeKeys(state),
   isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
   colorBlindModeEnabled,
-  data,
   displayByEmissions,
   electricityMixMode,
-  exchangeKeys,
   isMobile,
 }) => {
   const ref = useRef(null);
   const width = useWidthObserver(ref);
+
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const data = useCurrentZoneData();
 
   const productionData = useMemo(
     () => getProductionData(data),

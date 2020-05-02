@@ -11,17 +11,13 @@ export const CarbonIntensity = ({ colorBlindModeEnabled, intensity }) => {
     <React.Fragment>
       <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />
       {' '}
-      <b>{Math.round(intensity) || '?'}</b> gCO<span className="sub">2</span>eq/kWh
+      <b>{Math.round(intensity) || '?'}</b> gCO₂eq/kWh
     </React.Fragment>
   );
 };
 
 export const MetricRatio = ({ value, total, format }) => (
-  <small
-    dangerouslySetInnerHTML={{
-      __html: `(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`,
-    }}
-  />
+  <small>{`(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`}</small>
 );
 
 export const ZoneName = ({ zone }) => (

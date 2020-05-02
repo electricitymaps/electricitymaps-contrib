@@ -94,21 +94,8 @@ function getHash(key, ext, obj) {
   }
   return filename.replace('.' + ext, '').replace(key + '.', '');
 }
-const srcHashes = Object.fromEntries(locales.map((k) => {
-  try {
-    const obj = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest_${k}.json`));
-    const BUNDLE_HASH = getHash('bundle', 'js', obj);
-    const STYLES_HASH = getHash('styles', 'css', obj);
-    const VENDOR_HASH = getHash('vendor', 'js', obj);
-    const VENDOR_STYLES_HASH = getHash('vendor', 'css', obj);
-    return [k, {
-      BUNDLE_HASH, STYLES_HASH, VENDOR_HASH, VENDOR_STYLES_HASH,
-    }];
-  } catch (err) {
-    console.warn(`Warning: couldn't load manifest for locale ${k}: ${err}`);
-    return null; // Ignore
-  }
-}).filter(d => d));
+
+const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
 
 // * Error handling
 function handleError(err) {
@@ -119,7 +106,7 @@ function handleError(err) {
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/clientVersion', (req, res) => res.send(version));
 
-// Translation status API
+// Translation status
 app.get('/translationstatus/badges.svg', (req, res) => {
   res.set('Content-Type', 'image/svg+xml;charset=utf-8');
   res.end(getTranslationStatusSVG(locales));
@@ -127,7 +114,31 @@ app.get('/translationstatus/badges.svg', (req, res) => {
 app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
 app.get('/translationstatus/:language', (req, res) => res.json(getSingleTranslationStatusJSON(req.params.language)));
 
-app.get('/', (req, res) => {
+// API
+app.get('/v1/*', (req, res) =>
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v2/*', (req, res) =>
+  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+
+// Source maps
+app.all('/dist/*.map', (req, res, next) => {
+  // Allow sentry
+  if ([
+    '35.184.238.160',
+    '104.155.159.182',
+    '104.155.149.19',
+    '130.211.230.102',
+  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
+    return res.status(401).json({ error: 'unauthorized' });
+  }
+  return next();
+});
+
+// Static files
+app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
+
+// App routes (managed by React Router)
+app.use('/', (req, res) => {
   // On electricitymap.tmrow.co,
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
@@ -189,12 +200,17 @@ app.get('/', (req, res) => {
           }
         }
       }),
-      bundleHash: srcHashes[locale].BUNDLE_HASH,
-      vendorHash: srcHashes[locale].VENDOR_HASH,
-      stylesHash: srcHashes[locale].STYLES_HASH,
-      vendorStylesHash: srcHashes[locale].VENDOR_STYLES_HASH,
+      bundleHash: getHash('bundle', 'js', manifest),
+      vendorHash: getHash('vendor', 'js', manifest),
+      stylesHash: getHash('styles', 'css', manifest),
+      vendorStylesHash: getHash('vendor', 'css', manifest),
+      // Make the paths absolute as that's required for BrowserHistory routing
+      // to work normally and it's also ok when used with the https:// protocol
+      // as resources are mounted to a fixed location.
+      resolvePath: function(relativePath) { return '/' + relativePath; },
       fullUrl,
       locale,
+      locales: { en: localeConfigs['en'], [locale]: localeConfigs[locale] },
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale],
       supportedFBLocales: supportedFacebookLocales,
@@ -207,25 +223,6 @@ app.get('/', (req, res) => {
     });
   }
 });
-app.get('/v1/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.get('/v2/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.all('/dist/*.map', (req, res, next) => {
-  // Allow sentry
-  if ([
-    '35.184.238.160',
-    '104.155.159.182',
-    '104.155.149.19',
-    '130.211.230.102',
-  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
-    return res.status(401).json({ error: 'unauthorized' });
-  }
-  return next();
-});
-
-// Static routes (need to be declared at the end)
-app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
 // Start the application
 server.listen(process.env['PORT'], () => {

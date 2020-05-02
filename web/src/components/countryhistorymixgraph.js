@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React, { useState, useMemo } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { max as d3Max } from 'd3-array';
-import { connect } from 'react-redux';
 import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
@@ -9,11 +9,11 @@ import { getCo2Scale } from '../helpers/scales';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
-  getSelectedZoneHistory,
-  getSelectedZoneExchangeKeys,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
-} from '../selectors';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+  useCurrentZoneExchangeKeys,
+} from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
@@ -23,12 +23,12 @@ import AreaGraph from './graph/areagraph';
 const getValuesInfo = (historyData, displayByEmissions) => {
   const maxTotalValue = d3Max(historyData, d => (
     displayByEmissions
-      ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO2eq/min
+      ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
   const format = formatting.scalePower(maxTotalValue);
 
-  const valueAxisLabel = displayByEmissions ? 'tCO2eq / min' : format.unit;
+  const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
   return { valueAxisLabel, valueFactor };
 };
@@ -54,11 +54,11 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
       // in GW or MW
       obj[k] = value / valueFactor;
       if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
-        // in tCO2eq/min
+        // in tCO₂eq/min
         if (isStorage && obj[k] >= 0) {
-          obj[k] *= d.dischargeCo2Intensities[k.replace(' storage', '')] / 1e3 / 60.0;
+          obj[k] *= (d.dischargeCo2Intensities || {})[k.replace(' storage', '')] / 1e3 / 60.0;
         } else {
-          obj[k] *= d.productionCo2Intensities[k] / 1e3 / 60.0;
+          obj[k] *= (d.productionCo2Intensities || {})[k] / 1e3 / 60.0;
         }
       }
     });
@@ -68,8 +68,8 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
         // in GW or MW
         obj[key] = Math.max(0, value / valueFactor);
         if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
-          // in tCO2eq/min
-          obj[key] *= d.exchangeCo2Intensities[key] / 1e3 / 60.0;
+          // in tCO₂eq/min
+          obj[key] *= (d.exchangeCo2Intensities || {})[key] / 1e3 / 60.0;
         }
       });
     }
@@ -102,10 +102,6 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
-  exchangeKeys: getSelectedZoneExchangeKeys(state),
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
@@ -114,15 +110,16 @@ const CountryHistoryMixGraph = ({
   colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
-  exchangeKeys,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+  const historyData = useCurrentZoneHistory();
+  const exchangeKeys = useCurrentZoneExchangeKeys();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
   const {

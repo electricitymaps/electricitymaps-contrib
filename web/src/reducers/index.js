@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
 import { getKey } from '../helpers/storage';
+import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
-
-const isProduction = () => window.location.href.includes('electricitymap');
-const isLocalhost = () => !isProduction() && !window.location.href.includes('192.');
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -26,11 +24,12 @@ const initialApplicationState = {
   co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  customDate: null,
+  customDatetime: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
   isLeftPanelCollapsed: false,
+  isLoadingMap: true,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: isProduction(),
@@ -45,14 +44,12 @@ const initialApplicationState = {
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
-  solarEnabled: cookieGetBool('solarEnabled', false),
-  useRemoteEndpoint: false,
+  solarEnabled: false,
   windColorbarMarker: null,
-  windEnabled: cookieGetBool('windEnabled', false),
+  windEnabled: false,
 
   // TODO(olc): refactor this state
-  showPageState: 'map',
-  pageToGoBackTo: null,
+  currentPage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -61,37 +58,18 @@ const applicationReducer = (state = initialApplicationState, action) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action;
+      if (state[key] === value) {
+        return state;
+      }
+
       const newState = Object.assign({}, state);
       newState[key] = value;
-
-      // Disabled for now (see TODO in main.js)
-      // if (key === 'selectedZoneName') {
-      //   newState.showPageState = value ? 'country' : 'map';
-      // }
-      if (key === 'showPageState'
-          && state.showPageState !== 'country') {
-        newState.pageToGoBackTo = state.showPageState;
-      }
 
       if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
         throw Error(`Unknown electricityMixMode "${value}"`);
       }
 
       return newState;
-    }
-
-    case 'GRID_DATA': {
-      const selectedZoneNameExists = Object.keys(action.payload.countries)
-        .indexOf(state.selectedZoneName) !== -1;
-      if (state.selectedZoneName != null && !selectedZoneNameExists) {
-        // The selectedZoneName doesn't exist anymore, we need to reset it
-        // TODO(olc): the page state should be inferred from selectedZoneName
-        return Object.assign({}, state, {
-          selectedZoneName: undefined,
-          showPageState: state.pageToGoBackTo || 'map',
-        });
-      }
-      return state;
     }
 
     case 'SHOW_TOOLTIP': {
@@ -108,24 +86,8 @@ const applicationReducer = (state = initialApplicationState, action) => {
       });
     }
 
-    case 'UPDATE_SELECTED_ZONE': {
-      const { selectedZoneName } = action.payload;
-      return Object.assign({}, state, {
-        selectedZoneName,
-        selectedZoneTimeIndex: null,
-      });
-    }
-
     case 'UPDATE_STATE_FROM_URL': {
-      const { searchParams } = new URL(action.payload.url);
-      return Object.assign({}, state, {
-        customDate: searchParams.get('datetime'),
-        selectedZoneName: searchParams.get('countryCode'),
-        showPageState: searchParams.get('page') || 'map', // Default to map view if page was not specified
-        solarEnabled: searchParams.get('solar') === 'true',
-        useRemoteEndpoint: searchParams.get('remote') === 'true',
-        windEnabled: searchParams.get('wind') === 'true',
-      });
+      return Object.assign({}, state, action.payload);
     }
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {

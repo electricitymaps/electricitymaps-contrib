@@ -10,7 +10,7 @@ import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { getCo2Scale, solarColor, windColor } from '../helpers/scales';
-import { co2Sub } from '../helpers/formatting';
+import { useSolarEnabled, useWindEnabled } from '../helpers/router';
 
 // TODO: Move styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -20,9 +20,7 @@ const mapStateToProps = state => ({
   colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
-  solarEnabled: state.application.solarEnabled,
   windColorbarValue: state.application.windColorbarValue,
-  windEnabled: state.application.windEnabled,
 });
 
 const Legend = ({
@@ -30,10 +28,11 @@ const Legend = ({
   colorBlindModeEnabled,
   legendVisible,
   solarColorbarValue,
-  solarEnabled,
   windColorbarValue,
-  windEnabled,
 }) => {
+  const solarEnabled = useSolarEnabled();
+  const windEnabled = useWindEnabled();
+
   const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
   const toggleLegend = () => {
     dispatchApplication('legendVisible', !legendVisible);
@@ -79,8 +78,7 @@ const Legend = ({
           )}
           <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
             <div className="legend-header">
-              <span dangerouslySetInnerHTML={{ __html: co2Sub(__('legends.carbonintensity')) }} />
-              <small> (gCO<span className="sub">2</span>eq/kWh)</small>
+              {__('legends.carbonintensity')} <small>(gCO₂eq/kWh)</small>
             </div>
             <HorizontalColorbar
               id="carbon-intensity-bar"
