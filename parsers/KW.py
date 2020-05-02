@@ -11,19 +11,19 @@ import arrow
 import requests
 import re
 
-def fetch_production(zone_key='KW', session=None, logger=None):
+def fetch_consumption(zone_key='KW', session=None, logger=None):
     r = session or requests.session()
     url = 'https://www.mew.gov.kw/en'
     response = r.get(url)
     load = re.findall(r"\((\d{4,5})\)", response.text)
     load = int(load[0])
-    production = {}
-    production['unknown'] = load
+    consumption = {}
+    consumption['unknown'] = load
     
     datapoint = {
         'zoneKey': zone_key,
         'datetime': arrow.now('Asia/Kuwait').datetime,
-        'production': production,
+        'consumption': consumption,
         'source': 'mew.gov.kw'
     }
 
@@ -32,5 +32,5 @@ def fetch_production(zone_key='KW', session=None, logger=None):
 if __name__ == '__main__':
     """Main method, never used by the electricityMap backend, but handy for testing."""
     
-    print('fetch_production() ->')
-    print(fetch_production())
+    print('fetch_consumption() ->')
+    print(fetch_consumption())

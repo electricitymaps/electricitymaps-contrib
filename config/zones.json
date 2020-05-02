@@ -3069,7 +3069,7 @@
       "https://github.com/alixunderplatz"
     ],
     "parsers": {
-      "production": "KW.fetch_production"
+      "production": "KW.fetch_consumption"
     },
     "timezone": "Asia/Kuwait"
   },
