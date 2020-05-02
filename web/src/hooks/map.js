@@ -1,44 +1,27 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { forEach, isFinite, size } from 'lodash';
+import { mapValues, isFinite } from 'lodash';
 
 import { useCo2ColorScale } from './theme';
 
-export function useZoneGeometries() {
+export function useZonesWithColors() {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-  const co2ColorScale = useCo2ColorScale();
   const zones = useSelector(state => state.data.grid.zones);
+  const co2ColorScale = useCo2ColorScale();
 
   return useMemo(
-    () => {
-      const clickable = [];
-      const nonClickable = [];
-
-      forEach(zones, (zone, zoneId) => {
+    () => (
+      mapValues(zones, (zone) => {
         const co2intensity = electricityMixMode === 'consumption'
           ? zone.co2intensity
           : zone.co2intensityProduction;
-        const feature = {
-          type: 'Feature',
-          geometry: {
-            ...zone.geometry,
-            coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
-          },
-          properties: {
-            zoneId,
-            zoneData: zone,
-            fillColor: isFinite(co2intensity) ? co2ColorScale(co2intensity) : undefined,
-          },
+        return {
+          ...zone,
+          color: isFinite(co2intensity) ? co2ColorScale(co2intensity) : undefined,
+          isClickable: true,
         };
-        if (zone.isClickable === undefined || zone.isClickable === true) {
-          clickable.push(feature);
-        } else {
-          nonClickable.push(feature);
-        }
-      });
-
-      return { clickable, nonClickable };
-    },
-    [zones, electricityMixMode],
+      })
+    ),
+    [zones, electricityMixMode, co2ColorScale],
   );
 }

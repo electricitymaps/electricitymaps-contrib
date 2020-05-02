@@ -6,7 +6,12 @@ import React, {
 } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import { isEmpty, filter, noop } from 'lodash';
+import {
+  isEmpty,
+  map,
+  noop,
+  size,
+} from 'lodash';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -30,27 +35,40 @@ const ZoneMap = ({
     longitude: 0,
     zoom: 2,
   },
-  // TODO: Calculate this from zones
-  zoneGeometries = { clickable: [], nonClickable: [] },
   zones = {},
 }) => {
   const ref = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
 
-  const nonClickableSourceData = useMemo(
-    () => ({
-      type: 'FeatureCollection',
-      features: zoneGeometries.nonClickable,
-    }),
-    [zoneGeometries.nonClickable],
-  );
+  // Generate two sources (clickable and non-clickable zones), based on the zones data.
+  const sources = useMemo(
+    () => {
+      const features = map(zones, (zone, zoneId) => ({
+        type: 'Feature',
+        geometry: {
+          ...zone.geometry,
+          coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
+        },
+        properties: {
+          color: zone.color,
+          isClickable: zone.isClickable,
+          zoneData: zone,
+          zoneId,
+        },
+      }));
 
-  const clickableSourceData = useMemo(
-    () => ({
-      type: 'FeatureCollection',
-      features: zoneGeometries.clickable,
-    }),
-    [zoneGeometries.clickable],
+      return {
+        zonesClickable: {
+          type: 'FeatureCollection',
+          features: features.filter(f => f.properties.isClickable),
+        },
+        zonesNonClickable: {
+          type: 'FeatureCollection',
+          features: features.filter(f => !f.properties.isClickable),
+        },
+      };
+    },
+    [zones],
   );
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
@@ -63,8 +81,8 @@ const ZoneMap = ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
-      zonesStatic: { 'fill-color': theme.nonClickableFill },
-      zonesClickable: { 'fill-color': ['case', ['has', 'fillColor'], ['get', 'fillColor'], theme.clickableFill] },
+      zonesClickable: { 'fill-color': ['case', ['has', 'color'], ['get', 'color'], theme.clickableFill] },
+      zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
     [theme],
   );
@@ -170,17 +188,18 @@ const ZoneMap = ({
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
-        <Source type="geojson" data={nonClickableSourceData}>
-          <Layer id="zones-static" type="fill" paint={styles.zonesStatic} />
+        <Source type="geojson" data={sources.zonesNonClickable}>
+          <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
         </Source>
-        <Source type="geojson" data={clickableSourceData}>
+        <Source type="geojson" data={sources.zonesClickable}>
           <Layer id="zones-clickable" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>
-        <Source type="geojson" data={clickableSourceData}>
+        <Source type="geojson" data={sources.zonesClickable}>
           <Layer id="hover" type="fill" paint={styles.hover} filter={hoverFilter} />
         </Source>
+        {/* Extra layers provided by user */}
         {children}
       </ReactMapGL>
     </div>

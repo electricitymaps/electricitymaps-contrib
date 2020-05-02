@@ -15,7 +15,7 @@ import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
-import { useZoneGeometries } from '../hooks/map';
+import { useZonesWithColors } from '../hooks/map';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -34,7 +34,7 @@ export default () => {
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
-  const zones = useSelector(state => state.data.grid.zones);
+  const zones = useZonesWithColors();
   const location = useLocation();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
@@ -42,7 +42,6 @@ export default () => {
 
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
-  const zoneGeometries = useZoneGeometries();
   const theme = useTheme();
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
@@ -184,7 +183,6 @@ export default () => {
         theme={theme}
         transitionDuration={transitionDuration}
         viewport={viewport}
-        zoneGeometries={zoneGeometries}
         zones={zones}
       >
         <MapLayer component={ExchangeLayer} />
