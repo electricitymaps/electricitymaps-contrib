@@ -434,6 +434,8 @@ We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover
 
 To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
 
+If you want to run python code outside the docker environment, for example when testing a new parser, please use python 3.6 .
+
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
 docker-compose build
