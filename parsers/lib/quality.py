@@ -67,7 +67,7 @@ def validate_production(obj, zone_key):
                 'US-CAR-YAD','US-NW-SCL','US-NW-CHPD',
                 'US-NW-WWA','US-NW-GCPD','US-NW-TPWR',
                 'US-NW-WAUW','US-SE-SEPA','US-NW-GWA',
-                'US-NW-DOPD'])):
+                'US-NW-DOPD', 'US-NW-AVRN'])):
         raise ValidationError(
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)
