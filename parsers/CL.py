@@ -26,6 +26,7 @@ TYPE_MAPPING_LIVE = {
                       'TERMICAS': 'unknown',
                       'EOLICAS': 'wind',
                       'SOLAR': 'solar',
+                      'TOTAL GENERACION': 'total'
                     }
 
 
@@ -93,9 +94,16 @@ def production_processor_live(json_data, zone_key):
     for generation in breakdown:
         totals[generation['key']] = generation['value']
 
-    mapped_totals = {TYPE_MAPPING_LIVE.get(name, 'unknown'): val for name, val
+    for item in totals.keys():
+        if item not in TYPE_MAPPING_LIVE:
+            logger.warning('{} generation unexpectedly included in CL'.format(item),
+                      extra={'key': 'CL'})
+    
+    mapped_totals = {TYPE_MAPPING_LIVE.get(name, 'unexpected'): val for name, val
                      in totals.items()}
-
+    
+    mapped_totals.pop('total', None)
+    
     return dt, mapped_totals
 
 
