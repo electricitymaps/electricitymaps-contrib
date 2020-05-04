@@ -522,7 +522,7 @@ docker-compose run --rm web ./topogen.sh
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
 ### Testing parsers locally
-In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
+In order to test your parser, make sure first that you have installed the required modules as described, and are using python 3.6 (consider also using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
