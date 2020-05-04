@@ -84,10 +84,7 @@ def production_processor_live(json_data, zone_key):
     Maps keys to type and returns a tuple.
     """
 
-# unsure about this time object, but seems to be unix time, but in msecs
-        # 1) is this right?
-        # 2) does this need to have a timezone or anything??
-    dt = arrow.get(json_data['fecha']/1000)
+    dt = arrow.get(json_data['fecha']/1000,tzinfo='Chile/Continental')
     
     totals = defaultdict(lambda: 0.0)
     
@@ -145,7 +142,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
                       'storage': {
                           'hydro': None,
                                   },
-                      'source': 'panelapp.coordinadorelectrico.cl'
+                      'source': 'coordinadorelectrico.cl'
                     }
         
         datapoint = validate(datapoint, logger,
@@ -189,9 +186,8 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    #print('fetch_production() ->')
-    Prod=fetch_production()
-    print(Prod)
+    print('fetch_production() ->')
+    print(fetch_production())
     # For fetching historical data instead, try:
     print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
     
