@@ -17,8 +17,7 @@ def fetch_consumption(zone_key='KW', session=None, logger=None):
     response = r.get(url)
     load = re.findall(r"\((\d{4,5})\)", response.text)
     load = int(load[0])
-    consumption = {}
-    consumption['unknown'] = load
+    consumption = load
     
     datapoint = {
         'zoneKey': zone_key,
