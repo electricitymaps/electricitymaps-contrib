@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { createBrowserHistory, createHashHistory } from 'history';
 
@@ -41,6 +42,40 @@ export function useWindEnabled() {
   return useSearchParams().get('wind') === 'true';
 }
 
+export function useSolarToggledLocation() {
+  const location = useLocation();
+  const searchParams = useSearchParams();
+  const solarEnabled = useSolarEnabled();
+
+  return useMemo(
+    () => {
+      searchParams.set('solar', !solarEnabled);
+      return {
+        pathname: location.pathname,
+        search: searchParams.toString(),
+      };
+    },
+    [location, searchParams, solarEnabled],
+  );
+}
+
+export function useWindToggledLocation() {
+  const location = useLocation();
+  const searchParams = useSearchParams();
+  const windEnabled = useWindEnabled();
+
+  return useMemo(
+    () => {
+      searchParams.set('wind', !windEnabled);
+      return {
+        pathname: location.pathname,
+        search: searchParams.toString(),
+      };
+    },
+    [location, searchParams, windEnabled],
+  );
+}
+
 // TODO: Deprecate in favor of useSearchParams (requires move to React)
 function getSearchParams() {
   return new URLSearchParams(history.location.search);
@@ -69,40 +104,6 @@ export function isSolarEnabled() {
 // TODO: Deprecate in favor of useWindEnabled (requires move to React)
 export function isWindEnabled() {
   return getSearchParams().get('wind') === 'true';
-}
-
-// TODO: Deprecate in favor of using <Link /> and <Redirect /> directly
-function updateSearchParams(searchParams) {
-  let search = searchParams.toString();
-  if (search) {
-    search = `?${search}`;
-  }
-  // Keep the pathname intact when updating search params
-  navigateTo({ pathname: history.location.pathname, search });
-}
-
-// TODO: Move this logic in the solar button once the React component is there
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2345.
-export function setSolarEnabled(solarEnabled) {
-  const searchParams = getSearchParams();
-  if (solarEnabled) {
-    searchParams.set('solar', true);
-  } else {
-    searchParams.delete('solar');
-  }
-  updateSearchParams(searchParams);
-}
-
-// TODO: Move this logic in the wind button once the React component is there
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2345.
-export function setWindEnabled(windEnabled) {
-  const searchParams = getSearchParams();
-  if (windEnabled) {
-    searchParams.set('wind', true);
-  } else {
-    searchParams.delete('wind');
-  }
-  updateSearchParams(searchParams);
 }
 
 // TODO: Get rid of this when a better system is put in place for switching languages.

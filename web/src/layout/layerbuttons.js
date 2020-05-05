@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import {
   useWindEnabled,
-  setWindEnabled,
   useSolarEnabled,
-  setSolarEnabled,
+  useSolarToggledLocation,
+  useWindToggledLocation,
 } from '../helpers/router';
 import { dispatchApplication } from '../store';
 
@@ -16,14 +17,10 @@ import ButtonToggle from '../components/buttontoggle';
 
 export default () => {
   const windEnabled = useWindEnabled();
-  const toggleWind = () => {
-    setWindEnabled(!windEnabled);
-  };
+  const windToggledLocation = useWindToggledLocation();
 
   const solarEnabled = useSolarEnabled();
-  const toggleSolar = () => {
-    setSolarEnabled(!solarEnabled);
-  };
+  const solarToggledLocation = useSolarToggledLocation();
 
   const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
   const toggleBrightMode = () => {
@@ -34,18 +31,20 @@ export default () => {
   return (
     <div className="layer-buttons-container">
       <LanguageSelect />
-      <ButtonToggle
-        active={windEnabled}
-        onChange={toggleWind}
-        tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
-        icon="weather/wind"
-      />
-      <ButtonToggle
-        active={solarEnabled}
-        onChange={toggleSolar}
-        tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
-        icon="weather/sun"
-      />
+      <Link to={windToggledLocation}>
+        <ButtonToggle
+          active={windEnabled}
+          tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+          icon="weather/wind"
+        />
+      </Link>
+      <Link to={solarToggledLocation}>
+        <ButtonToggle
+          active={solarEnabled}
+          tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+          icon="weather/sun"
+        />
+      </Link>
       <ButtonToggle
         active={brightModeEnabled}
         onChange={toggleBrightMode}
