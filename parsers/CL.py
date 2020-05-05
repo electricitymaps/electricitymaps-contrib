@@ -23,15 +23,6 @@ API_BASE_URL_LIVE_TOT = 'http://panelapp.coordinadorelectrico.cl/api/chart/deman
 
 API_BASE_URL_LIVE_REN = 'http://panelapp.coordinadorelectrico.cl/api/chart/ernc'
 
-TYPE_MAPPING_LIVE = {
-                      'HIDRÁULICO': 'hydro',
-                      'TERMICAS': 'unknown',
-                      'EOLICAS': 'wind',
-                      'SOLAR': 'solar',
-                      'TOTAL GENERACION': 'total'
-                    }
-
-
 def timestamp_creator(date, hour):
     """Takes a string and int and returns a datetime object"""
 
