@@ -40,6 +40,10 @@ const Tooltip = ({ id, children, position }) => {
 
   style.transform = `translate(${x}px,${y}px)`;
 
+  // Don't show the tooltip until its dimensions have
+  // been set and its position correctly calculated.
+  style.opacity = width && height ? 1 : 0;
+
   return (
     <Portal>
       <div id={id} className="tooltip panel" style={style} ref={ref}>

@@ -17,7 +17,7 @@ import {
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
+const prepareGraphData = (historyData, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
 
   const currencySymbol = getSymbolFromCurrency(((first(historyData) || {}).price || {}).currency);
@@ -51,14 +51,12 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryPricesGraph = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   isMobile,
   selectedTimeIndex,
@@ -79,8 +77,8 @@ const CountryHistoryPricesGraph = ({
     markerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, electricityMixMode),
-    [historyData, colorBlindModeEnabled, electricityMixMode]
+    () => prepareGraphData(historyData, electricityMixMode),
+    [historyData, electricityMixMode]
   );
 
   // Mouse action handlers
