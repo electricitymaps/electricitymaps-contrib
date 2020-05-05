@@ -90,7 +90,7 @@ def get_solar(session, logger):
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
-    if diff.seconds > 3600:
+    if diff.total_seconds() > 3600:
         msg = ('Singapore solar data is too old to use, '
                'parsed data timestamp was {}.').format(solar_dt)
         logger.warning(msg, extra={'key': 'SG'})

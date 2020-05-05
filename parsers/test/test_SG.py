@@ -31,6 +31,18 @@ class TestSolar(unittest.TestCase):
         power = SG.get_solar(self.session, logger=self.logger)
         self.assertEqual(power, 0.0)
 
+    @freeze_time('2020-05-05 20:49:00')
+    def test_ignore_data_older_than_one_hour(self):
+        with LogCapture() as log:
+            power = SG.get_solar(self.session, logger=self.logger)
+        self.assertIsNone(power)
+
+    @freeze_time('2020-05-05 19:47:00')
+    def test_allow_remote_clock_to_be_slightly_ahead(self):
+        with LogCapture() as log:
+            power = SG.get_solar(self.session, logger=self.logger)
+        self.assertEqual(power, 0.0)
+
 
 if __name__ == '__main__':
     unittest.main()
