@@ -52,7 +52,7 @@ const ZoneMap = ({
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
   const handleDragStart = useMemo(() => () => setIsDragging(true), []);
-  const handleDragEnd = useMemo(() => () => debouncedSetIsDragging(false), []);
+  const handleDragEnd = useMemo(() => () => setIsDragging(false), []);
   const handleWheel = useMemo(
     () => () => {
       setIsDragging(true);
