@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
-import { useCustomDatetime, useWindEnabled, useSolarEnabled } from '../helpers/router';
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
+import { useCustomDatetime, useWindEnabled, useSolarEnabled } from './router';
 import { useCurrentZoneHistory } from './redux';
 
 export function useClientVersionFetch() {

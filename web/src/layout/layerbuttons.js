@@ -9,7 +9,7 @@ import {
   useSolarEnabled,
   useSolarToggledLocation,
   useWindToggledLocation,
-} from '../helpers/router';
+} from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';

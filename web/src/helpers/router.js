@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import { createBrowserHistory, createHashHistory } from 'history';
 
 import { dispatch } from '../store';
@@ -11,60 +9,6 @@ import { dispatch } from '../store';
 // TODO: Replace this with React Router DOM
 // `useHistory` hook after full migration to React.
 export const history = window.isCordova ? createHashHistory() : createBrowserHistory();
-
-//
-// Search params
-//
-
-export function useSearchParams() {
-  return new URLSearchParams(useLocation().search);
-}
-
-export function useCustomDatetime() {
-  return useSearchParams().get('datetime');
-}
-
-export function useSolarEnabled() {
-  return useSearchParams().get('solar') === 'true';
-}
-
-export function useWindEnabled() {
-  return useSearchParams().get('wind') === 'true';
-}
-
-export function useSolarToggledLocation() {
-  const location = useLocation();
-  const searchParams = useSearchParams();
-  const solarEnabled = useSolarEnabled();
-
-  return useMemo(
-    () => {
-      searchParams.set('solar', !solarEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, solarEnabled],
-  );
-}
-
-export function useWindToggledLocation() {
-  const location = useLocation();
-  const searchParams = useSearchParams();
-  const windEnabled = useWindEnabled();
-
-  return useMemo(
-    () => {
-      searchParams.set('wind', !windEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, windEnabled],
-  );
-}
 
 // TODO: Deprecate in favor of useSearchParams (requires move to React)
 function getSearchParams() {
@@ -104,10 +48,6 @@ export function hideLanguageSearchParam() {
   history.replace(`?${searchParams.toString()}`);
 }
 hideLanguageSearchParam();
-
-//
-// Redux state sync
-//
 
 // TODO: Remove once we don't need the copy of URL state in the Redux state anymore
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2296.

@@ -17,7 +17,7 @@ import Map from './map';
 // Modules
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime } from '../helpers/router';
+import { useCustomDatetime } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
   useClientVersionFetch,
