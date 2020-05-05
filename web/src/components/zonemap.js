@@ -28,6 +28,7 @@ const ZoneMap = ({
   onZoneMouseEnter = noop,
   onZoneMouseLeave = noop,
   scrollZoom = true,
+  style = {},
   theme = {},
   transitionDuration = 0,
   viewport = {
@@ -151,11 +152,11 @@ const ZoneMap = ({
   );
 
   return (
-    <div id="zone-map">
+    <div id="zone-map" style={style}>
       <ReactMapGL
         ref={ref}
-        width="100vw"
-        height="100vh"
+        width="100%"
+        height="100%"
         latitude={viewport.latitude}
         longitude={viewport.longitude}
         zoom={viewport.zoom}
@@ -179,7 +180,15 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={document.getElementById('zone-map')}>
-          <div className="mapboxgl-zoom-controls">
+          <div
+            className="mapboxgl-zoom-controls"
+            style={{
+              boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
+              position: 'absolute',
+              right: '24px',
+              top: '24px',
+            }}
+          >
             <NavigationControl
               showCompass={false}
               zoomInLabel=""
