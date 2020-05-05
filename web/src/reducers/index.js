@@ -32,7 +32,7 @@ const initialApplicationState = {
   // See https://github.com/visgl/react-map-gl/blob/master/docs/advanced/custom-components.md
   isHoveringExchange: false,
   isLeftPanelCollapsed: false,
-  isDraggingMap: false,
+  isMovingMap: false,
   isLoadingMap: true,
   isMobile:
   (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),

@@ -52,8 +52,8 @@ export default ({ unproject }) => {
 
   const mapZoom = useSelector(state => state.application.mapViewport.zoom);
   const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
-  const isDragging = useSelector(state => state.application.isDraggingMap);
-  const isVisible = enabled && isMapLoaded && !isDragging;
+  const isMoving = useSelector(state => state.application.isMovingMap);
+  const isVisible = enabled && isMapLoaded && !isMoving;
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {

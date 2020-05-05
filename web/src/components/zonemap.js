@@ -7,6 +7,7 @@ import React, {
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import {
+  debounce,
   isEmpty,
   map,
   noop,
@@ -30,7 +31,7 @@ const ZoneMap = ({
   scrollZoom = true,
   style = {},
   theme = {},
-  transitionDuration = 0,
+  transitionDuration = 300,
   viewport = {
     latitude: 0,
     longitude: 0,
@@ -40,6 +41,25 @@ const ZoneMap = ({
 }) => {
   const ref = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const debouncedSetIsDragging = useMemo(
+    () => debounce((value) => {
+      setIsDragging(value);
+    }, 200),
+    [],
+  );
+
+  // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
+  const handleDragStart = useMemo(() => () => setIsDragging(true), []);
+  const handleDragEnd = useMemo(() => () => debouncedSetIsDragging(false), []);
+  const handleWheel = useMemo(
+    () => () => {
+      setIsDragging(true);
+      debouncedSetIsDragging(false);
+    },
+    [],
+  );
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(
@@ -172,8 +192,13 @@ const ZoneMap = ({
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onBlur={handleMouseOut}
-        transitionDuration={transitionDuration}
+        onMouseDown={handleDragStart}
+        onMouseUp={handleDragEnd}
+        onTouchStart={handleDragStart}
+        onTouchEnd={handleDragEnd}
+        onWheel={handleWheel}
         onViewportChange={onViewportChange}
+        transitionDuration={isDragging ? 0 : transitionDuration}
       >
         {/*
           Render the navigation controls next to ReactMapGL in the DOM so that

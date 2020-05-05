@@ -119,7 +119,7 @@ export default React.memo(({ project }) => {
   const width = useWidthObserver(ref);
   const height = useHeightObserver(ref);
 
-  const isDragging = useSelector(state => state.application.isDraggingMap);
+  const isMoving = useSelector(state => state.application.isMovingMap);
   const [tooltip, setTooltip] = useState(null);
 
   // Mouse interaction handlers
@@ -142,8 +142,8 @@ export default React.memo(({ project }) => {
           position={tooltip.position}
         />
       )}
-      {/* Don't render arrows when dragging - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
-      {!isDragging && arrows.map(arrow => (
+      {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
+      {!isMoving && arrows.map(arrow => (
         <Arrow
           arrow={arrow}
           key={arrow.sortedCountryCodes}

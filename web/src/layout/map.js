@@ -25,13 +25,12 @@ import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 
-const debouncedReleaseDragging = debounce(() => { dispatchApplication('isDraggingMap', false); }, 200);
+const debouncedReleaseMoving = debounce(() => { dispatchApplication('isMovingMap', false); }, 200);
 
 export default () => {
   const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
-  const isDraggingMap = useSelector(state => state.application.isDraggingMap);
   const isLoadingMap = useSelector(state => state.application.isLoadingMap);
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
@@ -145,18 +144,17 @@ export default () => {
 
   const handleViewportChange = useMemo(
     () => ({ latitude, longitude, zoom }) => {
-      dispatchApplication('isDraggingMap', true);
+      dispatchApplication('isMovingMap', true);
       dispatchApplication('mapViewport', { latitude, longitude, zoom });
       // TODO: Try tying this to internal map state
       // somehow to remove the need for debouncing.
-      debouncedReleaseDragging();
+      debouncedReleaseMoving();
     },
     [],
   );
 
-  // Animate map transitions only if viewport changes are triggered externally
-  // after the map's been loadded (and not by direct mouse interaction).
-  const transitionDuration = (isLoadingMap || isDraggingMap) ? 0 : 300;
+  // Animate map transitions only after the map has been loaded.
+  const transitionDuration = isLoadingMap ? 0 : 300;
   const hoveringEnabled = !isHoveringExchange && !isMobile;
 
   return (
