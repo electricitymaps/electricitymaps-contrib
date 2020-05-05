@@ -1,7 +1,7 @@
 import { select } from 'd3-selection';
 
 import thirdPartyServices from './services/thirdparty';
-import { history, navigateTo, getCurrentPage } from './helpers/router';
+import { history } from './helpers/router';
 
 export const cordovaApp = {
   // Application Constructor
@@ -16,8 +16,9 @@ export const cordovaApp = {
   },
 
   onBack(e) {
-    if (['zone', 'faq'].includes(getCurrentPage())) {
-      navigateTo({ pathname: '/map', search: history.location.search });
+    // Go to previous page if it exists, otherwise exit the app.
+    if (history.length > 1) {
+      history.goBack();
       e.preventDefault();
     } else {
       navigator.app.exitApp();

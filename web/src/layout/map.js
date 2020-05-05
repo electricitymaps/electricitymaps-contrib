@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
-import { getZoneId, navigateTo } from '../helpers/router';
+import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
@@ -34,6 +34,7 @@ export default () => {
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
   const location = useLocation();
+  const history = useHistory();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
@@ -72,9 +73,9 @@ export default () => {
 
       // Disable the map and redirect to zones ranking.
       dispatchApplication('webGLSupported', false);
-      navigateTo({ pathname: '/ranking', search: location.search });
+      history.push({ pathname: '/ranking', search: location.search });
     },
-    [],
+    [history],
   );
 
   const handleMouseMove = useMemo(
@@ -102,18 +103,18 @@ export default () => {
 
   const handleSeaClick = useMemo(
     () => () => {
-      navigateTo({ pathname: '/map', search: location.search });
+      history.push({ pathname: '/map', search: location.search });
     },
-    [location],
+    [history],
   );
 
   const handleZoneClick = useMemo(
     () => (id) => {
       dispatchApplication('isLeftPanelCollapsed', false);
-      navigateTo({ pathname: `/zone/${id}`, search: location.search });
+      history.push({ pathname: `/zone/${id}`, search: location.search });
       thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     },
-    [location],
+    [history],
   );
 
   const handleZoneMouseEnter = useMemo(
