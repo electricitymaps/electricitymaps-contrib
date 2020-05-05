@@ -17,3 +17,4 @@ tablib==0.12.1
 testfixtures==6.0.0
 opencv-python==4.2.0.32
 xlrd==1.1.0
+freezegun==0.3.15
