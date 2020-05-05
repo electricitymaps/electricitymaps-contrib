@@ -9,6 +9,7 @@ import {
   Link,
   useLocation,
   useParams,
+  useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import moment from 'moment';
@@ -86,11 +87,11 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [pressedBackKey, setPressedBackKey] = useState(false);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
   const co2ColorScale = useCo2ColorScale();
 
+  const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
 
@@ -102,21 +103,23 @@ const CountryPanel = ({
   };
 
   // Back button keyboard navigation
-  useEffect(() => {
-    const keyHandler = (e) => {
-      if (e.key === 'Backspace' || e.key === '/') {
-        setPressedBackKey(true);
-      }
-    };
-    document.addEventListener('keyup', keyHandler);
-    return () => {
-      document.removeEventListener('keyup', keyHandler);
-    };
-  });
+  useEffect(
+    () => {
+      const keyHandler = (e) => {
+        if (e.key === 'Backspace' || e.key === '/') {
+          history.push(parentPage);
+        }
+      };
+      document.addEventListener('keyup', keyHandler);
+      return () => {
+        document.removeEventListener('keyup', keyHandler);
+      };
+    },
+    [history],
+  );
 
-  // Redirect to the parent page if the zone is invalid
-  // or if the back navigation key has been pressed.
-  if (!zones[zoneId] || pressedBackKey) {
+  // Redirect to the parent page if the zone is invalid.
+  if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
   }
 
