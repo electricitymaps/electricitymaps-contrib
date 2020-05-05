@@ -9,7 +9,6 @@ import { scaleLinear, scaleQuantize } from 'd3-scale';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 
-import global from '../../global';
 import { dispatchApplication } from '../../store';
 import { useExchangeArrowsData } from '../../hooks/layers';
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
@@ -34,13 +33,14 @@ const ArrowImage = styled.img`
 
 const Arrow = React.memo(({
   arrow,
-  mapTransform,
   mouseMoveHandler,
   mouseOutHandler,
+  project,
   viewportWidth,
   viewportHeight,
 }) => {
   const isMobile = useSelector(state => state.application.isMobile);
+  const mapZoom = useSelector(state => state.application.mapViewport.zoom);
   const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
   const {
     co2intensity,
@@ -61,12 +61,12 @@ const Arrow = React.memo(({
 
   const transform = useMemo(
     () => ({
-      x: global.zoneMap ? global.zoneMap.projection()(lonlat)[0] : 0,
-      y: global.zoneMap ? global.zoneMap.projection()(lonlat)[1] : 0,
-      k: mapTransform ? (0.04 + (mapTransform.k - 1.5) * 0.1) * 0.2 : 0,
+      x: project(lonlat)[0],
+      y: project(lonlat)[1],
+      k: 0.04 + (mapZoom - 1.5) * 0.1,
       r: rotation + (netFlow > 0 ? 180 : 0),
     }),
-    [lonlat, rotation, netFlow, mapTransform],
+    [lonlat, rotation, netFlow, mapZoom],
   );
 
   const isVisible = useMemo(
@@ -113,34 +113,23 @@ const ArrowsContainer = styled.div`
   left: 0;
 `;
 
-export default () => {
+export default React.memo(({ project }) => {
   const ref = useRef();
   const arrows = useExchangeArrowsData();
   const width = useWidthObserver(ref);
   const height = useHeightObserver(ref);
 
-  const [transform, setTransform] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
+  const isMoving = useSelector(state => state.application.isMovingMap);
   const [tooltip, setTooltip] = useState(null);
-
-  // Set up map interaction handlers once the map gets initialized.
-  useEffect(() => {
-    if (global.zoneMap && !isInitialized) {
-      global.zoneMap
-        .onDrag(setTransform)
-        .onDragStart(() => { setIsDragging(true); })
-        .onDragEnd(() => { setIsDragging(false); });
-      setIsInitialized(true);
-    }
-  }, [global.zoneMap, isInitialized]);
 
   // Mouse interaction handlers
   const handleArrowMouseMove = useMemo(() => (exchangeData, x, y) => {
+    dispatchApplication('isHoveringExchange', true);
     dispatchApplication('co2ColorbarValue', exchangeData.co2intensity);
     setTooltip({ exchangeData, position: { x, y } });
   }, []);
   const handleArrowMouseOut = useMemo(() => () => {
+    dispatchApplication('isHoveringExchange', false);
     dispatchApplication('co2ColorbarValue', null);
     setTooltip(null);
   }, []);
@@ -153,18 +142,18 @@ export default () => {
           position={tooltip.position}
         />
       )}
-      {/* Don't render arrows when dragging - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
-      {!isDragging && arrows.map(arrow => (
+      {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
+      {!isMoving && arrows.map(arrow => (
         <Arrow
           arrow={arrow}
           key={arrow.sortedCountryCodes}
           mouseMoveHandler={handleArrowMouseMove}
           mouseOutHandler={handleArrowMouseOut}
-          mapTransform={transform}
+          project={project}
           viewportWidth={width}
           viewportHeight={height}
         />
       ))}
     </ArrowsContainer>
   );
-};
+});

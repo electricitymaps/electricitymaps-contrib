@@ -5,7 +5,6 @@ import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { getCo2Scale } from '../helpers/scales';
 import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
