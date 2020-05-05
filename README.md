@@ -73,7 +73,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland: [Kraftnät Åland](http://www.kraftnat.ax/text2.con?iPage=28&iLan=1)
 - Argentina: [Cammesa](http://portalweb.cammesa.com/Memnet1/default.aspx)
-- Armenia: [Armenian Energy Power System Operator](http://epso.am/poweren.htm)  
+- Armenia: [Armenian Energy Power System Operator](http://epso.am/poweren.htm)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
   ([CSV](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all))
@@ -118,7 +118,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Hungary: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)  
+- Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
@@ -201,9 +201,10 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
 &nbsp;<details><summary>Click to see the full list of sources</summary>
+- Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
-   - Biomass, Hydro, Solar, Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ARM)
+   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
    - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
 - Australia [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Australia#Wind_power_by_state)
@@ -237,15 +238,19 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Denmark (DK1 and DK2): [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
-- Dominican Republic: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
+- Dominican Republic:
+  - 2020 Data: [OC](https://www.dropbox.com/sh/8dec0z1ftf2nqr0/AAAbDG-6lSttxBprxhPRNkjaa/2020?dl=0&preview=OC-2020-000190-GG-SIE-INFORME+ANUAL+2019+V1.pdf&subfolder_nav_tracking=1)
+  - Other: [Climatescope](http://global-climatescope.org/en/country/dominican-republic/#/details)
 - El Salvador:
   - Thermal: [CNE](http://estadisticas.cne.gob.sv/wp-content/uploads/2016/09/Plan_indicativo_2016_2026-1.pdf)
   - Biomass, Geothermal, Hydro & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SLV)
 - Estonia:
-  - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=EST)
+  - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gatewable:ay/countrySearch/?countryCode=EST)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
-- Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Finland
+  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France: 
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Non-Renewable: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
@@ -258,14 +263,17 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Hungary
   - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=HUN)
   - Other[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Iceland: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
+- Iceland
+  - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
+  - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Ireland
-  - All production types: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Biomass, Solar & Wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=IRL)
-- Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)  
+  - Non-Renewable: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+- Israel: [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
 - Italy
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
+  - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - India: [mercomindia](https://mercomindia.com/solar-indias-installed-power-capacity/)
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
 - India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
@@ -276,8 +284,12 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
-- Moldova: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
-- Montenegro: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
+- Moldova
+  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [FAS](http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf)
+- Montenegro
+  - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
 - Nagorno-Karabakh: [Artsakh HEK](http://artsakhhek.am/?lang=en)
 - Namibia
   - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
@@ -285,7 +297,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Nepal
   -List of PowerStations:[PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
-- Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Netherlands
+  - Renewables: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Norway
   - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
@@ -293,11 +307,13 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
-- Poland  
+- Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+- Poland
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
+  - Other Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
-  - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=PTA)
+  - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Romania:
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)
@@ -322,16 +338,21 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Sweden
   - Renewables: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=SWE)
   - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
+  - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
   - Nuclear: [Vattenfall](https://group.vattenfall.com/se/var-verksamhet/forsmark/produktion)
   - Nuclear 2: [OKG](https://www.okg.se/sv/Om-OKG/)
+  - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland
   - Solar: [IREAN](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2019/Mar/IRENA_RE_Capacity_Statistics_2019.pdf)
   - Nuclear: [BKW](https://www.bkw.ch/fr/le-groupe-bkw/notre-infrastructure/centrale-nucleaire-de-muehleberg/desaffectation/lapercu/#Home)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey: [TEİAŞ](https://www.teias.gov.tr/)
+- Turkey: 
+  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [TEİAŞ](https://www.teias.gov.tr/)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
+- United Arab Emirates: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
@@ -367,6 +388,8 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
+- Japan-Chūbu ⇄ Japan-Tōkyō: [3x HVDC interconnectors between 60Hz/50Hz areas: 1200 MW](https://www.jepic.or.jp/pub/pdf/epijJepic2019.pdf)
+- Japan-Hokkaidō ⇄ Japan-Tōhoku: ["HVDC Hokkaidō–Honshū": 900 MW](https://ja.wikipedia.org/wiki/%E5%8C%97%E6%B5%B7%E9%81%93%E3%83%BB%E6%9C%AC%E5%B7%9E%E9%96%93%E9%80%A3%E7%B3%BB%E8%A8%AD%E5%82%99)
 - Lithuania ⇄ Sweden: ["NordBalt": 700 MW](https://en.wikipedia.org/wiki/NordBalt)
 - Lithuania ⇄ Poland: ["LitPol Link": 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
 - Malta ⇄ Italy Sicily: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
@@ -426,9 +449,9 @@ This will watch over source file changes, running nonstop and watching changes y
 Note this only builds for the English language (which will be faster as not all languages need to be built).
 If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions, so the map will be empty.
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
 
-If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section for common problems and fixes.
+If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
@@ -485,7 +508,7 @@ Once you're done, add your parser to the [zones.json](https://github.com/tmrowco
 
 Run all of the parser tests with the following command from the root directory:
 ```
-python3 -m unittest discover parsers/test/
+python -m unittest discover parsers/test/
 ```
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
@@ -499,12 +522,11 @@ docker-compose run --rm web ./topogen.sh
 For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
 ### Testing parsers locally
-
 In order to test your parser, make sure first that you have installed the required modules as described (consider using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
 ```
 pip install -r parsers/requirements.txt
 ```
-#### testing a parser
+
 From the root folder, use the `test_parser.py` command line utility:
 ```python
 python test_parser.py FR price  # get latest price parser for France
@@ -513,12 +535,18 @@ python test_parser.py FR  # defaults to production if no data type is given
 python test_parser.py DE --target_datetime 2018-01-01T08:00
 ```
 
-#### update the map
+Many of the tests require API keys of the data or web service providers and will therefore fail with an error message like
+
+> Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
+
+In such cases, please browse the website related to the provider and ask for an API key. As soon as you got hold of the API key, make it an environment variable. This fixes the error.
+
+### Update the map
 We've added a testing server locally.
 
 To add a new country to the map, run:
 ```
-PYTHONPATH=. python3 mockserver/update_state.py <zone_name>
+PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
 
 from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want

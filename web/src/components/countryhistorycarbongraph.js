@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { connect, useSelector } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
 import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
@@ -14,10 +14,9 @@ import { dispatchApplication } from '../store';
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
+const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
   if (!historyData || !historyData[0]) return {};
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const data = historyData.map(d => ({
     carbonIntensity: electricityMixMode === 'consumption'
       ? d.co2intensity
@@ -32,20 +31,19 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryCarbonGraph = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+  const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
   const startTime = useCurrentZoneHistoryStartTime();
@@ -53,8 +51,8 @@ const CountryHistoryCarbonGraph = ({
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, electricityMixMode),
-    [historyData, colorBlindModeEnabled, electricityMixMode]
+    () => prepareGraphData(historyData, co2ColorScale, electricityMixMode),
+    [historyData, co2ColorScale, electricityMixMode]
   );
 
   // Mouse action handlers
