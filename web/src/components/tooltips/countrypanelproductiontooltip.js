@@ -5,7 +5,6 @@ import { isFinite } from 'lodash';
 import { modeOrder } from '../../helpers/constants';
 import { __, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
-import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
 
@@ -14,12 +13,10 @@ import { CarbonIntensity, MetricRatio } from './common';
 import { getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
 });
 
 const CountryPanelProductionTooltip = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   mode,
   position,
@@ -27,7 +24,6 @@ const CountryPanelProductionTooltip = ({
 }) => {
   if (!zoneData) return null;
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
 
   const format = displayByEmissions ? formatCo2 : formatPower;
@@ -83,10 +79,7 @@ const CountryPanelProductionTooltip = ({
           <br />
           {__('tooltips.withcarbonintensity')}
           <br />
-          <CarbonIntensity
-            colorBlindModeEnabled={colorBlindModeEnabled}
-            intensity={co2Intensity}
-          />
+          <CarbonIntensity intensity={co2Intensity} />
           <small> ({__('country-panel.source')}: {co2IntensitySource || '?'})</small>
         </React.Fragment>
       )}

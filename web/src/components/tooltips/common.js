@@ -2,11 +2,12 @@ import React from 'react';
 import { isFinite } from 'lodash';
 
 import { getFullZoneName } from '../../helpers/translation';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
 
-export const CarbonIntensity = ({ colorBlindModeEnabled, intensity }) => {
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+export const CarbonIntensity = ({ intensity }) => {
+  const co2ColorScale = useCo2ColorScale();
+
   return (
     <React.Fragment>
       <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />

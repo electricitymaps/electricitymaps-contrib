@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { __, getFullZoneName } from '../../helpers/translation';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
 
 import CircularGauge from '../circulargauge';
@@ -10,19 +10,17 @@ import Tooltip from '../tooltip';
 import { ZoneName } from './common';
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
 });
 
 const MapCountryTooltip = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   position,
   zoneData,
 }) => {
-  if (!zoneData) return null;
+  const co2ColorScale = useCo2ColorScale();
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  if (!zoneData) return null;
 
   const co2intensity = electricityMixMode === 'consumption'
     ? zoneData.co2intensity

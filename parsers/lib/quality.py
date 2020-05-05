@@ -65,8 +65,9 @@ def validate_production(obj, zone_key):
          obj.get('production', {}).get('gas', None) is None and zone_key
          not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO',
                 'US-CAR-YAD','US-NW-SCL','US-NW-CHPD',
-                'US-NW-WWA','US-NW-GCPD','US-NW-TWPR',
-                'US-NW-WAUW','US-SE-SEPA','US-NW-GWA'])):
+                'US-NW-WWA','US-NW-GCPD','US-NW-TPWR',
+                'US-NW-WAUW','US-SE-SEPA','US-NW-GWA',
+                'US-NW-DOPD', 'US-NW-AVRN'])):
         raise ValidationError(
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)

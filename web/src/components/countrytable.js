@@ -17,7 +17,7 @@ import {
   useCurrentZoneData,
   useCurrentZoneExchangeKeys,
 } from '../hooks/redux';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
 import { getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
@@ -216,7 +216,6 @@ const QuestionMarkIfNoData = ({ datapoint, scale }) => {
 };
 
 const CountryCarbonEmissionsTable = React.memo(({
-  colorBlindModeEnabled,
   data,
   electricityMixMode,
   exchangeData,
@@ -313,7 +312,6 @@ const CountryCarbonEmissionsTable = React.memo(({
 });
 
 const CountryElectricityProductionTable = React.memo(({
-  colorBlindModeEnabled,
   data,
   electricityMixMode,
   exchangeData,
@@ -326,9 +324,9 @@ const CountryElectricityProductionTable = React.memo(({
   onExchangeRowMouseOut,
   width,
 }) => {
-  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+  const co2ColorScale = useCo2ColorScale();
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
   // Power in MW
   const powerScale = scaleLinear()
@@ -430,14 +428,12 @@ const CountryElectricityProductionTable = React.memo(({
 });
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
   isMobile,
@@ -487,7 +483,6 @@ const CountryTable = ({
     <div className="country-table-container" ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
-          colorBlindModeEnabled={colorBlindModeEnabled}
           electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}
@@ -502,7 +497,6 @@ const CountryTable = ({
         />
       ) : (
         <CountryElectricityProductionTable
-          colorBlindModeEnabled={colorBlindModeEnabled}
           electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}

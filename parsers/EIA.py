@@ -33,15 +33,41 @@ REVERSE_EXCHANGES = [
     'CA-QC->US-NY-NYIS',
     'CA-ON->US-NY-NYIS',
     'MX-NE->US-TEX-ERCO',
-    'MX-NO->US-TEX-ERCO'
+    'MX-NO->US-TEX-ERCO',
+    'US-SW-PNM->US-SW-SRP' # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
-EXCHANGES = {
 
+NEGATIVE_PRODUCTION_THRESHOLDS = {
+    'default': -10,
+    'zoneOverrides': {
+        'US-SW-SRP': {
+            'coal': -50,
+            'unknown': -50
+        },
+        'US-CAL-CISO': {
+            'unknown': -50,
+            'solar': -100
+        },
+        'US-SE-AEC': {
+            'coal': -50,
+            'gas': -20
+        },
+        'US-CAR-CPLE': {
+            'coal': -20
+        },
+        'US-NW-AVRN': {
+            'wind': -20
+        }
+    }
+}
+
+
+EXCHANGES = {
 #Old exchanges with old zones, to be updated/removed once clients have had time to switch
     'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
     'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-SPP->US-TX': 'SWPP.ID.H-EBA.ERCO',
+    'US-SPP->US-TX': 'EBA.SWPP-ERCO.ID.H',
     'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
     'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
     'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
@@ -144,6 +170,8 @@ EXCHANGES = {
     'US-MIDW-EEI->US-MIDW-LGEE': 'EBA.EEI-LGEE.ID.H',
     'US-MIDW-EEI->US-MIDW-MISO': 'EBA.EEI-MISO.ID.H',
     'US-MIDW-EEI->US-TEN-TVA': 'EBA.EEI-TVA.ID.H',
+    'US-MIDW-GLHB->US-MIDW-LGEE': 'EBA.GLHB-LGEE.ID.H',
+    'US-MIDW-GLHB->US-MIDW-MISO': 'EBA.GLHB-MISO.ID.H',
     'US-MIDW-LGEE->US-MIDW-MISO': 'EBA.LGEE-MISO.ID.H',
     'US-MIDW-LGEE->US-TEN-TVA': 'EBA.LGEE-TVA.ID.H',
     'US-MIDW-MISO->US-SE-AEC': 'EBA.MISO-AEC.ID.H',
@@ -210,6 +238,7 @@ EXCHANGES = {
     'US-SW-GRIF->US-SW-WALC': 'EBA.GRIF-WALC.ID.H',
     'US-SW-HGMA->US-SW-SRP': 'EBA.HGMA-SRP.ID.H',
     'US-SW-PNM->US-SW-TEPC': 'EBA.PNM-TEPC.ID.H',
+    'US-SW-PNM->US-SW-SRP': 'EBA.SRP-PNM.ID.H',
     'US-SW-SRP->US-SW-TEPC': 'EBA.SRP-TEPC.ID.H',
     'US-SW-SRP->US-SW-WALC': 'EBA.SRP-WALC.ID.H',
     'US-SW-TEPC->US-SW-WALC': 'EBA.TEPC-WALC.ID.H'
@@ -269,6 +298,7 @@ REGIONS = {
     'US-MIDA-PJM': 'PJM', #Pjm Interconnection, Llc
     'US-MIDW-AECI': 'AECI', #Associated Electric Cooperative, Inc.
     'US-MIDW-EEI': 'EEI', #Electric Energy, Inc.
+    'US-MIDW-GLHB': 'GLHB', #GridLiance
     'US-MIDW-LGEE': 'LGEE', #Louisville Gas And Electric Company And Kentucky Utilities
     'US-MIDW-MISO': 'MISO', #Midcontinent Independent Transmission System Operator, Inc..
     'US-NE-ISNE': 'ISNE', #Iso New England Inc.
@@ -356,9 +386,41 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
 
+        # EIA does not currently split production from the Virgil Summer C 
+        # plant across the two owning/ utilizing BAs:
+        # US-CAR-SCEG and US-CAR-SC,
+        # but attributes it all to US-CAR-SCEG
+        # Here we apply a temporary fix for that until EIA properly splits the production
+        # This split can be found in the eGRID data,
+        # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
+        SC_VIRGIL_OWNERSHIP = 0.3333333
+        if zone_key == 'US-CAR-SC' and type == 'nuclear':
+            series = PRODUCTION_MIX_SERIES % (REGIONS['US-CAR-SCEG'], code)
+            mix = _fetch_series('US-CAR-SCEG', series, session=session,
+                        target_datetime=target_datetime, logger=logger)
+            for point in mix:
+                point.update({
+                    'value': point['value']*SC_VIRGIL_OWNERSHIP
+                })
+
+        if zone_key == 'US-CAR-SCEG' and type == 'nuclear':
+            for point in mix:
+                point.update({
+                    'value': point['value']*(1-SC_VIRGIL_OWNERSHIP)
+                })
+
         if not mix:
             continue
         for point in mix:
+            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS['zoneOverrides']\
+                .get(zone_key, {})\
+                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS['default'])
+
+            if type != 'hydro' and \
+                    point['value'] < 0 and \
+                    point['value'] >= negative_threshold:
+                point['value'] = 0
+
             if type == 'hydro' and point['value'] < 0:
                 point.update({
                     'production': {},# required by merge_production_outputs()

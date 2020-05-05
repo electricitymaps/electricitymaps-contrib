@@ -5,7 +5,7 @@ import { max as d3Max } from 'd3-array';
 import { forEach } from 'lodash';
 
 import formatting from '../helpers/formatting';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import {
@@ -33,11 +33,10 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   return { valueAxisLabel, valueFactor };
 };
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys) => {
+const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys) => {
   if (!historyData || !historyData[0]) return {};
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
 
   // Format history data received by the API
   // TODO: Simplify this function and make it more readable
@@ -99,7 +98,6 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, displayByEmissions
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
@@ -107,7 +105,6 @@ const mapStateToProps = state => ({
 });
 
 const CountryHistoryMixGraph = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
   isMobile,
@@ -115,6 +112,7 @@ const CountryHistoryMixGraph = ({
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+  const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
   const exchangeKeys = useCurrentZoneExchangeKeys();
@@ -128,8 +126,8 @@ const CountryHistoryMixGraph = ({
     layerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys),
-    [historyData, colorBlindModeEnabled, displayByEmissions, electricityMixMode, exchangeKeys]
+    () => prepareGraphData(historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys),
+    [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
   // Mouse action handlers

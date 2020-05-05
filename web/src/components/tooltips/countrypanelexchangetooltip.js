@@ -4,7 +4,6 @@ import { isFinite } from 'lodash';
 
 import { __, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
-import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
 import Tooltip from '../tooltip';
@@ -13,13 +12,11 @@ import { CarbonIntensity, MetricRatio, ZoneName } from './common';
 import { getExchangeCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
 });
 
 const CountryPanelExchangeTooltip = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
   exchangeKey,
@@ -28,7 +25,6 @@ const CountryPanelExchangeTooltip = ({
 }) => {
   if (!zoneData) return null;
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = getExchangeCo2Intensity(exchangeKey, zoneData, electricityMixMode);
 
   const format = displayByEmissions ? formatCo2 : formatPower;
@@ -79,10 +75,7 @@ const CountryPanelExchangeTooltip = ({
           <br />
           <b><ZoneName zone={isExport ? zoneData.countryCode : exchangeKey} /></b>
           {': '}
-          <CarbonIntensity
-            colorBlindModeEnabled={colorBlindModeEnabled}
-            intensity={co2Intensity}
-          />
+          <CarbonIntensity intensity={co2Intensity} />
         </React.Fragment>
       )}
     </Tooltip>

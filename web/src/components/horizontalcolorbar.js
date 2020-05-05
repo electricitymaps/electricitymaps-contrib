@@ -3,7 +3,6 @@ import { range, isFinite } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
-import { getCo2Scale } from '../helpers/scales';
 import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
 
 const PADDING_X = 13;

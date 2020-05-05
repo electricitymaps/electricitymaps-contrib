@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
+
 import logging
 import datetime
-
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
-
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(zone_key='US-HI-OA', session=None,
@@ -81,24 +76,26 @@ def fetch_production(zone_key='US-HI-OA', session=None,
     obj = res.json()
     raw_data = obj[0]
 
-    data = {
-        'zoneKey': zone_key,
-        'production': {
+    production = {
           'biomass': float(raw_data['Waste2Energy'] + raw_data['BioFuel']),
           'coal': float(raw_data['Coal']),
           'oil': float(raw_data['Fossil_Fuel']),
           'solar': float(raw_data['Solar']),
           'wind': float(raw_data['WindFarm'])
-          },
-        'storage': {},
-        'source': 'islandpulse.org',
     }
 
-    # Parse the datetime and return a python datetime object
-    data['datetime'] = arrow.get(raw_data['dateTime'], 'YYYY-MM-DDTHH:mm:ss').to(tz="Pacific/Honolulu").datetime
+    dt = arrow.get(raw_data['dateTime']).to(tz="Pacific/Honolulu").datetime
+
+    data = {
+        'zoneKey': zone_key,
+        'production': production,
+        'datetime': dt,
+        'storage': {},
+        'source': 'islandpulse.org'
+    }
 
     return data
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    print("fetch_production ->")
+    print(fetch_production())
