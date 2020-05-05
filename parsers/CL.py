@@ -19,7 +19,9 @@ TYPE_MAPPING = {'hidraulica': 'hydro',
                 'geotermica': 'geothermal'}
 
 
-API_BASE_URL_LIVE = 'http://panelapp.coordinadorelectrico.cl/api/chart/produccion'
+API_BASE_URL_LIVE_TOT = 'http://panelapp.coordinadorelectrico.cl/api/chart/demanda'
+
+API_BASE_URL_LIVE_REN = 'http://panelapp.coordinadorelectrico.cl/api/chart/ernc'
 
 TYPE_MAPPING_LIVE = {
                       'HIDRÁULICO': 'hydro',
@@ -75,36 +77,32 @@ def get_data_live(session, logger):
     """Requests generation data in json format."""
 
     s = session or requests.session()
-    json_data = s.get(API_BASE_URL_LIVE).json()
-    return json_data
+    json_total = s.get(API_BASE_URL_LIVE_TOT).json()
+    json_ren = s.get(API_BASE_URL_LIVE_REN).json()
+        
+    return json_total, json_ren
 
 
-def production_processor_live(json_data, zone_key):
+def production_processor_live(json_tot, json_ren, zone_key):
     """
     Extracts data timestamp and sums regional data into totals by key.
     Maps keys to type and returns a tuple.
     """
+   
+    gen_total = json_tot['data'][0]['values'][-1]
+    gen_sol = json_ren['data'][1]['values'][-1]
+    gen_wind = json_ren['data'][0]['values'][-1]
 
-    dt = arrow.get(json_data['fecha']/1000,tzinfo='Chile/Continental')
+    dt_ren = arrow.get(gen_sol[0]/1000,tzinfo='Chile/Continental')
+    dt_tot = arrow.get(gen_total[0]/1000,tzinfo='Chile/Continental')
     
-    totals = defaultdict(lambda: 0.0)
-    
-    breakdown = json_data['data']
-
-    for generation in breakdown:
-        totals[generation['key']] = generation['value']
-
-    for item in totals.keys():
-        if item not in TYPE_MAPPING_LIVE:
-            logger.warning('{} generation unexpectedly included in CL'.format(item),
-                      extra={'key': 'CL'})
-    
-    mapped_totals = {TYPE_MAPPING_LIVE.get(name, 'unexpected'): val for name, val
-                     in totals.items()}
-    
-    mapped_totals.pop('total', None)
-    
-    return dt, mapped_totals
+    mapped_totals = {
+        'wind'      :gen_wind[1],
+        'solar'     :gen_sol[1],
+        'unknown'   :gen_total[1]-gen_sol[1]-gen_wind[1]
+        }
+        
+    return dt_tot,dt_ren, mapped_totals
 
 
 def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
@@ -139,14 +137,14 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
     """
 
     if target_datetime is None:
-        gd = get_data_live(session, logger)
+        gen_tot, gen_ren = get_data_live(session, logger)
         
-        generation = production_processor_live(gd, zone_key)
+        generation = production_processor_live(gen_tot, gen_ren, zone_key)
 
         datapoint = {
                       'zoneKey': zone_key,
                       'datetime': generation[0].datetime,
-                      'production': generation[1],
+                      'production': generation[2],
                       'storage': {
                           'hydro': None,
                                   },
