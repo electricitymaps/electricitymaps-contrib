@@ -143,22 +143,25 @@ const ZoneMap = ({
             latitude: e.lngLat[1],
           });
         }
-        // Trigger onZoneMouseEnter if mouse enters a different
-        // zone and onZoneMouseLeave when it leaves all zones.
-        const features = ref.current.queryRenderedFeatures(e.point);
-        if (!isEmpty(features) && hoveringEnabled) {
-          const { zoneId } = features[0].properties;
-          if (hoveredZoneId !== zoneId) {
-            onZoneMouseEnter(zones[zoneId], zoneId);
-            setHoveredZoneId(zoneId);
+        // Ignore zone hovering when dragging (performance optimization).
+        if (!isDragging) {
+          const features = ref.current.queryRenderedFeatures(e.point);
+          // Trigger onZoneMouseEnter if mouse enters a different
+          // zone and onZoneMouseLeave when it leaves all zones.
+          if (!isEmpty(features) && hoveringEnabled) {
+            const { zoneId } = features[0].properties;
+            if (hoveredZoneId !== zoneId) {
+              onZoneMouseEnter(zones[zoneId], zoneId);
+              setHoveredZoneId(zoneId);
+            }
+          } else if (hoveredZoneId !== null) {
+            onZoneMouseLeave();
+            setHoveredZoneId(null);
           }
-        } else if (hoveredZoneId !== null) {
-          onZoneMouseLeave();
-          setHoveredZoneId(null);
         }
       }
     },
-    [ref.current, hoveringEnabled, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [ref.current, hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
   );
 
   const handleMouseOut = useMemo(
