@@ -69,27 +69,18 @@ const Arrow = React.memo(({
     [lonlat, rotation, netFlow, mapZoom],
   );
 
-  const isVisible = useMemo(
-    () => {
-      // Hide arrows with a very low flow...
-      if (Math.abs(netFlow || 0) < 1) return false;
+  // Don't render if the flow is very low...
+  if (Math.abs(netFlow || 0) < 1) return null;
 
-      // ... or the ones that would be rendered outside of viewport ...
-      if (transform.x + 100 * transform.k < 0) return false;
-      if (transform.y + 100 * transform.k < 0) return false;
-      if (transform.x - 100 * transform.k > viewportWidth) return false;
-      if (transform.y - 100 * transform.k > viewportHeight) return false;
-
-      // ... and show all the other ones.
-      return true;
-    },
-    [netFlow, transform],
-  );
+  // ... or if it would be rendered outside of viewport.
+  if (transform.x + 100 * transform.k < 0) return null;
+  if (transform.y + 100 * transform.k < 0) return null;
+  if (transform.x - 100 * transform.k > viewportWidth) return null;
+  if (transform.y - 100 * transform.k > viewportHeight) return null;
 
   return (
     <ArrowImage
       style={{
-        display: isVisible ? '' : 'none',
         transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
       }}
       src={imageSource}
