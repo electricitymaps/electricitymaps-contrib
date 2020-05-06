@@ -40,6 +40,7 @@ const ZoneMap = ({
   zones = {},
 }) => {
   const ref = useRef(null);
+  const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
 
   const [isDragging, setIsDragging] = useState(false);
@@ -175,7 +176,7 @@ const ZoneMap = ({
   );
 
   return (
-    <div id="zone-map" style={style}>
+    <div className="zone-map" style={style} ref={wrapperRef}>
       <ReactMapGL
         ref={ref}
         width="100%"
@@ -207,7 +208,7 @@ const ZoneMap = ({
           Render the navigation controls next to ReactMapGL in the DOM so that
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
-        <Portal node={document.getElementById('zone-map')}>
+        <Portal node={wrapperRef.current}>
           <div
             className="mapboxgl-zoom-controls"
             style={{
