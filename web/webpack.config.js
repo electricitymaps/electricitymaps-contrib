@@ -17,7 +17,6 @@ module.exports = {
     styles: './src/scss/styles.scss',
   },
   module: {
-    noParse: /(mapbox-gl)\.js$/,
     rules: [
       // Extract css files
       {
