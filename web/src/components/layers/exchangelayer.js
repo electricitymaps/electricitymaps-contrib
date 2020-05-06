@@ -69,8 +69,11 @@ const Arrow = React.memo(({
     [lonlat, rotation, netFlow, mapZoom],
   );
 
-  // Don't render if the flow is very low...
+  // Don't render if the flow is very low ...
   if (Math.abs(netFlow || 0) < 1) return null;
+
+  // ... or if the arrow would be very tiny ...
+  if (transform.k < 0.1) return null;
 
   // ... or if it would be rendered outside of viewport.
   if (transform.x + 100 * transform.k < 0) return null;
