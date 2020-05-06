@@ -65,11 +65,15 @@ export default React.memo(({ project }) => {
       {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
       {!isMoving && arrows.map(arrow => (
         <ExchangeArrow
-          data={arrow}
+          co2intensity={arrow.co2intensity}
           key={arrow.sortedCountryCodes}
+          lonlat={arrow.lonlat}
           mouseMoveHandler={handleArrowMouseMove}
           mouseOutHandler={handleArrowMouseOut}
+          netFlow={arrow.netFlow}
           project={project}
+          rotation={arrow.rotation}
+          tooltipData={arrow}
           viewportWidth={width}
           viewportHeight={height}
         />

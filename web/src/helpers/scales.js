@@ -34,6 +34,5 @@ export const quantizedCo2IntensityScale = scaleQuantize()
 
 export const quantizedExchangeSpeedScale = scaleLinear()
   .domain([500, 5000])
-  .rangeRound([0, 2])
-  .unknown(0)
-  .clamp(true);
+  .range(['2s', '1s', '0.5s'])
+  .unknown('2s');
