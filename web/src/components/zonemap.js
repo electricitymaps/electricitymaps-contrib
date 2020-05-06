@@ -17,7 +17,7 @@ import {
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
 
-const ZoneMap = ({
+const ZoneMap = React.memo(({
   children = null,
   hoveringEnabled = true,
   onMapLoaded = noop,
@@ -243,6 +243,6 @@ const ZoneMap = ({
       </ReactMapGL>
     </div>
   );
-};
+});
 
 export default ZoneMap;
