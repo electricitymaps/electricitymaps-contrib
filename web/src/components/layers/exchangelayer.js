@@ -116,6 +116,18 @@ export default React.memo(({ project }) => {
   const isMoving = useSelector(state => state.application.isMovingMap);
   const [tooltip, setTooltip] = useState(null);
 
+  // Remove the tooltip immidiatelly if moving the map.
+  useEffect(
+    () => {
+      if (isMoving && tooltip) {
+        dispatchApplication('isHoveringExchange', false);
+        dispatchApplication('co2ColorbarValue', null);
+        setTooltip(null);
+      }
+    },
+    [isMoving, tooltip],
+  );
+
   // Mouse interaction handlers
   const handleArrowMouseMove = useMemo(() => (exchangeData, x, y) => {
     dispatchApplication('isHoveringExchange', true);
