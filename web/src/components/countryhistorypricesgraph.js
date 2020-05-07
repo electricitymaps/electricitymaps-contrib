@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
@@ -17,7 +17,7 @@ import {
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
 
-const prepareGraphData = (historyData, electricityMixMode) => {
+const prepareGraphData = (historyData) => {
   if (!historyData || !historyData[0]) return {};
 
   const currencySymbol = getSymbolFromCurrency(((first(historyData) || {}).price || {}).currency);
@@ -51,13 +51,11 @@ const prepareGraphData = (historyData, electricityMixMode) => {
 };
 
 const mapStateToProps = state => ({
-  electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryPricesGraph = ({
-  electricityMixMode,
   isMobile,
   selectedTimeIndex,
 }) => {
@@ -77,8 +75,8 @@ const CountryHistoryPricesGraph = ({
     markerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, electricityMixMode),
-    [historyData, electricityMixMode]
+    () => prepareGraphData(historyData),
+    [historyData]
   );
 
   // Mouse action handlers

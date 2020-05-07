@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
