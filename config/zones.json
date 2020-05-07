@@ -1766,7 +1766,6 @@
     "timezone": "Atlantic/Faroe"
   },
   "FR": {
-    "_comment": "hydro incl. 4975 MW pumped storage.",
     "bounding_box": [
       [
         -5.44921875,
@@ -1778,14 +1777,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 2122,
-      "coal": 2997,
-      "gas": 12191,
-      "hydro": 25557,
+      "biomass": 1776,
+      "coal": 2968,
+      "gas": 12156,
+      "geothermal": 16,
+      "hydro": 24086,
+      "hydro-storage": 1728,
       "nuclear": 63130,
-      "oil": 3401,
-      "solar": 9435,
-      "wind": 16494
+      "oil": 2705,
+      "solar": 10562,
+      "wind": 16494,
+      "unknown": 218
     },
     "contributors": [
       "https://github.com/corradio",
