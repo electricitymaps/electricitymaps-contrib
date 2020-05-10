@@ -49,7 +49,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
             The main README says "The production values should never be negative. Use None, or omit the key if a specific production mode is not known." but doesn't answer this question
     """
     return {
-      'countryCode': 'AUS-TAS-KI',
+      'zoneKey': zone_key,
       'datetime': arrow.now(tz='Australia/Currie').datetime,
       'production': {
           'biomass': technologies_parsed['diesel']*biodiesel_percent,
