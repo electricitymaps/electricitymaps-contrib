@@ -328,7 +328,7 @@
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
-      "production": "AUS-TAS-KI.fetch_production"
+      "production": "AU_TAS_KI.fetch_production"
     },
     "capacity": {
       "biomass": 0,
