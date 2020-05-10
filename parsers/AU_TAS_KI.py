@@ -14,7 +14,14 @@ def fetch_api():
             payload_str = await websocket.recv()
             payload = json.loads(payload_str)
             return payload
-    return asyncio.get_event_loop().run_until_complete(fetch())
+
+    # Sometimes the webservice returns an empty dic (in ~20% of the calls)... Let's retry two times in those cases
+    res = {}
+    tries = 0
+    while res == {} and tries < 2:
+        res = asyncio.get_event_loop().run_until_complete(fetch())
+        tries+=1
+    return res
 
 def parse_payload(logger, payload):
     for message in payload['M']:
