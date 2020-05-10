@@ -30,6 +30,9 @@ class TestAusTasKi(unittest.TestCase):
         self.assertEqual(data['production']['wind'], 1.024)
         self.assertEqual(data['production']['solar'], 0)
 
+        self.assertEqual(data['production']['oil'], 0.779)
+        self.assertEqual(data['production']['biomass'], 0)
+
     # This test will fetch the payload from the webservice
     # def test_parsing_payload_real(self):
     #     data = AU_TAS_KI.fetch_production()

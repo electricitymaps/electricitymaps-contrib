@@ -324,14 +324,14 @@
     "timezone": null
   },
   "AUS-TAS-KI": {
-    "_comment": "Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Parsing for production is done on instantaneous measurements : this is not reliable at all",
+    "_comment": "Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Oil capacity is said to run with blended biodiesel : hense the diesel capacity is equal to the biomass capacity. Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
       "production": "AU_TAS_KI.fetch_production"
     },
     "capacity": {
-      "biomass": 0,
+      "biomass": 6,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,

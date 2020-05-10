@@ -25,7 +25,11 @@ def parse_payload(logger, payload):
                 # The upstream API gives us kW, we need MW
                 technologies_parsed[technology['id']] = int(technology['value'])/1000
             logger.debug(f"production : {json.dumps(technologies_parsed)}")
-    return technologies_parsed
+
+            biodiesel_percent = serie['biodiesel']['percent']
+
+
+    return technologies_parsed, biodiesel_percent
 
 def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
 
@@ -37,7 +41,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
         raise NotImplementedError
     
     payload = fetch_api()
-    technologies_parsed = parse_payload(logger, payload)
+    technologies_parsed, biodiesel_percent = parse_payload(logger, payload)
 
     """ 
     TODO
@@ -48,12 +52,12 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
       'countryCode': 'AUS-TAS-KI',
       'datetime': arrow.now(tz='Australia/Currie').datetime,
       'production': {
-          'biomass': 0,
+          'biomass': technologies_parsed['diesel']*biodiesel_percent,
           'coal': 0,
           'gas': 0,
           'hydro': 0,
           'nuclear': 0,
-          'oil': technologies_parsed['diesel'],
+          'oil': technologies_parsed['diesel']*(1-biodiesel_percent),
           'solar': technologies_parsed['solar'],
           'wind': technologies_parsed['wind'],
           'geothermal': 0,
