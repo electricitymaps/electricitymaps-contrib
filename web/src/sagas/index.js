@@ -8,7 +8,7 @@ import {
   fetchGfsForecast,
 } from '../helpers/gfs';
 
-function* fetchClientVersion(action) {
+function* fetchClientVersion() {
   try {
     const version = yield call(textRequest, '/clientVersion');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });

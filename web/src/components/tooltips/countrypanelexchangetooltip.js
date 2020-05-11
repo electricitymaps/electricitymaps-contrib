@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { isFinite } from 'lodash';
 
 import { __, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';

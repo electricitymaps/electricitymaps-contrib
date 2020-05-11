@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 

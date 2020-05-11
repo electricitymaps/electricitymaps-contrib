@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { __, getFullZoneName } from '../../helpers/translation';
+import { __ } from '../../helpers/translation';
 import { useCo2ColorScale } from '../../hooks/theme';
-import { flagUri } from '../../helpers/flags';
 
 import CircularGauge from '../circulargauge';
 import Tooltip from '../tooltip';
