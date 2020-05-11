@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import time
 
 import arrow
@@ -43,7 +45,7 @@ def test_parser(zone, data_type, target_datetime):
     start = time.time()
 
     parser = PARSER_KEY_TO_DICT[data_type][zone]
-    if data_type in ['exchange', 'exchangeForecast']:
+    if data_type in ['exchange', 'exchangzoneeForecast']:
         args = zone.split('->')
     else:
         args = [zone]
