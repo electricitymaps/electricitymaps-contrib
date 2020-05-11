@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-} from 'react';
+import React, { useRef, useMemo } from 'react';
 import {
   first,
   last,
@@ -11,7 +7,6 @@ import {
   filter,
   flattenDeep,
   isFinite,
-  isNumber,
   isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';

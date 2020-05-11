@@ -1,8 +1,5 @@
 import { scaleLinear, scaleQuantize } from 'd3-scale';
 
-// TODO: Merge themes and scales
-import { themes } from './themes';
-
 // ** Wind
 export const windColor = scaleLinear()
   .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])

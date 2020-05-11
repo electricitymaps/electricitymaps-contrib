@@ -1,12 +1,7 @@
-import React, {
-  useState,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { debounce, isEmpty, noop } from 'lodash';
+import { debounce } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
 import { getZoneId, navigateTo } from '../helpers/router';
@@ -14,7 +9,7 @@ import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
-import { useCo2ColorScale, useTheme } from '../hooks/theme';
+import { useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
 import { dispatchApplication } from '../store';
 
@@ -122,7 +117,7 @@ export default () => {
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (data, id) => {
+    () => (data) => {
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'

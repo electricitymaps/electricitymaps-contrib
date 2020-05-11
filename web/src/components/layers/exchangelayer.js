@@ -1,11 +1,9 @@
 import React, {
   useState,
-  useEffect,
   useMemo,
   useRef,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { scaleLinear, scaleQuantize } from 'd3-scale';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 
