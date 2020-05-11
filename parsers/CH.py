@@ -32,7 +32,7 @@ def get_date_from_payload(p):
   assert(ts[0] is not None)
   
   # ts[0]['label'] is expected to contain something like "Date / time of the values 10.05.2020 14:39:20"
-  return arrow.get(ts[0]['label'], 'DD.MM.YYYY HH:mm:ss')
+  return arrow.get(ts[0]['label'], 'DD.MM.YYYY HH:mm:ss', tzinfo='Europe/Zurich')
 
 def fetch_exchange(zone_key1='CH', zone_key2='FR', session=None, target_datetime=None, logger=None):
     """Requests the last known power exchange (in MW) between two countries
