@@ -40,7 +40,6 @@
     "no-param-reassign": ["error", { "props": false }],
     "no-trailing-spaces": "warn",
     "no-underscore-dangle": "warn",
-    "no-unused-vars": "warn",
     "react/destructuring-assignment": "warn",
     "quote-props": "warn",
     "react/jsx-curly-brace-presence": "warn",

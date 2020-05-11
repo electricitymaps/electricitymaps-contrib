@@ -473,7 +473,7 @@ A parser is a python3 script that is expected to define the method `fetch_produc
 ```python
 def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
     return {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,

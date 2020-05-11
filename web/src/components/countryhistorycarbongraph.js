@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { useCo2ColorScale } from '../hooks/theme';

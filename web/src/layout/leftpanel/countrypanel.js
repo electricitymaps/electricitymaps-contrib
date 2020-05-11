@@ -25,10 +25,9 @@ import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import thirdPartyServices from '../../services/thirdparty';
 
-import { dispatch, dispatchApplication } from '../../store';
+import { dispatchApplication } from '../../store';
 
 // Modules
-import { updateApplication } from '../../actioncreators';
 import { useCurrentZoneData } from '../../hooks/redux';
 import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';

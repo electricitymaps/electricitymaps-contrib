@@ -2,19 +2,16 @@ import React, {
   useRef,
   useMemo,
   useState,
-  useEffect,
 } from 'react';
 import {
   first,
   last,
   sortedIndex,
-  range,
   isNumber,
 } from 'lodash';
 import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
-import { __ } from '../helpers/translation';
 import TimeAxis from './graph/timeaxis';
 import { useWidthObserver } from '../hooks/viewport';
 
