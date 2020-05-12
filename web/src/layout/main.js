@@ -37,14 +37,12 @@ const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
-  isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   version: state.application.version,
 });
 
 const Main = ({
   brightModeEnabled,
   electricityMixMode,
-  isLeftPanelCollapsed,
   hasConnectionWarning,
   version,
 }) => {
@@ -126,16 +124,6 @@ const Main = ({
             <div className="inner">
               {__('misc.newversion')}
             </div>
-          </div>
-
-          <div
-            id="left-panel-collapse-button"
-            className={`small-screen-hidden ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
-            onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
-            role="button"
-            tabIndex="0"
-          >
-            <i className="material-icons">arrow_drop_down</i>
           </div>
 
           { /* end #inner */}
