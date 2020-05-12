@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { isFinite } from 'lodash';
 
 import { __, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
@@ -8,7 +9,11 @@ import { getRatioPercent } from '../../helpers/math';
 
 import Tooltip from '../tooltip';
 import { CarbonIntensity, MetricRatio } from './common';
-import { getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
+import {
+  getElectricityProductionValue,
+  getProductionCo2Intensity,
+  getTotalElectricity,
+} from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
   displayByEmissions: state.application.tableDisplayEmissions,
@@ -33,10 +38,15 @@ const CountryPanelProductionTooltip = ({
   const production = (zoneData.production || {})[resource];
   const storage = (zoneData.storage || {})[resource];
 
-  const electricity = isStorage ? -storage : production;
+  const electricity = getElectricityProductionValue({
+    capacity,
+    isStorage,
+    storage,
+    production,
+  });
   const isExport = electricity < 0;
 
-  const usage = Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
+  const usage = isFinite(electricity) && Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
   const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
 
   const co2IntensitySource = isStorage
@@ -73,6 +83,11 @@ const CountryPanelProductionTooltip = ({
             total={capacity}
             format={format}
           />
+        </React.Fragment>
+      )}
+      {/* Don't show carbon intensity if we know for sure the zone doesn't use this resource */}
+      {!displayByEmissions && (isFinite(co2Intensity) || usage !== 0) && (
+        <React.Fragment>
           <br />
           <br />
           {__('tooltips.withcarbonintensity')}
