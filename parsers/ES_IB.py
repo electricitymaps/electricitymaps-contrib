@@ -6,6 +6,7 @@ from requests import Session
 from ree import (Formentera, Ibiza,
                  Mallorca, Menorca,
                  BalearicIslands)
+# package "ree" is used to parse data from www.ree.es // maintained on github by @hectorespert
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
