@@ -16,11 +16,6 @@ function getSearchParams() {
 }
 
 // TODO: Deprecate in favor of React Router useParams (requires move to React)
-export function getCurrentPage() {
-  return history.location.pathname.split('/')[1];
-}
-
-// TODO: Deprecate in favor of React Router useParams (requires move to React)
 export function getZoneId() {
   return history.location.pathname.split('/')[2];
 }
@@ -56,7 +51,6 @@ function updateStateFromURL() {
     type: 'UPDATE_STATE_FROM_URL',
     payload: {
       customDatetime: getCustomDatetime(),
-      currentPage: getCurrentPage(),
       selectedZoneName: getZoneId(),
       solarEnabled: isSolarEnabled(),
       windEnabled: isWindEnabled(),

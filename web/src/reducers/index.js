@@ -55,8 +55,6 @@ const initialApplicationState = {
   windColorbarValue: null,
   windEnabled: false,
 
-  // TODO(olc): refactor this state
-  currentPage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
