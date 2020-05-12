@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useState, useMemo } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { max as d3Max } from 'd3-array';
 import { forEach } from 'lodash';
 
@@ -138,7 +138,7 @@ const CountryHistoryMixGraph = ({
     []
   );
   const backgroundMouseOutHandler = useMemo(
-    () => (timeIndex) => {
+    () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
     },
     []

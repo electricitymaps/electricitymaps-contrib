@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { interpolate } from 'd3-interpolate';
 import { values } from 'lodash';

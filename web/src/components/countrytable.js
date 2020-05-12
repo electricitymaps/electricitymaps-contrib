@@ -2,16 +2,14 @@
 import React, {
   useRef,
   useMemo,
-  useEffect,
   useState,
 } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
-import { max as d3Max, min as d3Min } from 'd3-array';
-import { precisionPrefix, formatPrefix } from 'd3-format';
+import { max as d3Max } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
 
-import { dispatch, dispatchApplication } from '../store';
+import { dispatchApplication } from '../store';
 import { useWidthObserver } from '../hooks/viewport';
 import {
   useCurrentZoneData,
@@ -217,7 +215,6 @@ const QuestionMarkIfNoData = ({ datapoint, scale }) => {
 
 const CountryCarbonEmissionsTable = React.memo(({
   data,
-  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -313,7 +310,6 @@ const CountryCarbonEmissionsTable = React.memo(({
 
 const CountryElectricityProductionTable = React.memo(({
   data,
-  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -483,7 +479,6 @@ const CountryTable = ({
     <div className="country-table-container" ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
-          electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
@@ -497,7 +492,6 @@ const CountryTable = ({
         />
       ) : (
         <CountryElectricityProductionTable
-          electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
