@@ -23,7 +23,6 @@ const initialApplicationState = {
   co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  customDatetime: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
@@ -50,7 +49,6 @@ const initialApplicationState = {
   selectedZoneName: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
-  solarEnabled: false,
   webGLSupported: false,
   windColorbarValue: null,
   windEnabled: false,
@@ -75,10 +73,6 @@ const applicationReducer = (state = initialApplicationState, action) => {
       }
 
       return newState;
-    }
-
-    case 'UPDATE_STATE_FROM_URL': {
-      return Object.assign({}, state, action.payload);
     }
 
     case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {

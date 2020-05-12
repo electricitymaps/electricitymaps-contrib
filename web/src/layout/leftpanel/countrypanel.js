@@ -131,12 +131,12 @@ const CountryPanel = ({
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
-    thirdPartyServices.track('switchToCountryEmissions');
+    thirdPartyServices.trackWithCurrentApplicationState('switchToCountryEmissions');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
-    thirdPartyServices.track('switchToCountryProduction');
+    thirdPartyServices.trackWithCurrentApplicationState('switchToCountryProduction');
   };
 
   return (
