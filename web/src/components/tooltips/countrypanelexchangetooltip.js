@@ -43,7 +43,7 @@ const CountryPanelExchangeTooltip = ({
       : (displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'),
     getRatioPercent(usage, totalElectricity),
     getFullZoneName(zoneData.countryCode),
-    getFullZoneName(exchangeKey)
+    getFullZoneName(exchangeKey),
   );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
   headline = headline.replace('id="country-exchange-flag"', `class="flag" src="${flagUri(exchangeKey)}"`);

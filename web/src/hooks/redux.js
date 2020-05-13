@@ -73,7 +73,7 @@ export function useCurrentZoneExchangeKeys() {
 
   return useMemo(
     () => (isConsumption ? sortBy(keys(zoneData.exchange)) : []),
-    [isConsumption, zoneData]
+    [isConsumption, zoneData],
   );
 }
 

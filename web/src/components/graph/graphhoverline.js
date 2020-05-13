@@ -32,7 +32,7 @@ const GraphHoverLine = React.memo(({
             y: svgRef.current.getBoundingClientRect().top + y,
           },
           datapoint.data,
-          layer.key
+          layer.key,
         );
       }
     } else if (markerHideHandler) {

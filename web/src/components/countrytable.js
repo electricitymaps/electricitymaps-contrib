@@ -237,7 +237,7 @@ const CountryCarbonEmissionsTable = React.memo(({
           -maxCO2eqExport || 0,
           Math.max(
             maxCO2eqProduction || 0,
-            maxCO2eqImport || 0
+            maxCO2eqImport || 0,
           ),
         ])
         .range([0, width - LABEL_MAX_WIDTH - PADDING_X])
@@ -334,7 +334,7 @@ const CountryElectricityProductionTable = React.memo(({
         -data.maxStorageCapacity || 0,
         -data.maxStorage || 0,
         -data.maxExport || 0,
-        -data.maxExportCapacity || 0
+        -data.maxExportCapacity || 0,
       ),
       Math.max(
         data.maxCapacity || 0,
@@ -342,7 +342,7 @@ const CountryElectricityProductionTable = React.memo(({
         data.maxDischarge || 0,
         data.maxStorageCapacity || 0,
         data.maxImport || 0,
-        data.maxImportCapacity || 0
+        data.maxImportCapacity || 0,
       ),
     ])
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
@@ -445,11 +445,11 @@ const CountryTable = ({
 
   const productionData = useMemo(
     () => getProductionData(data),
-    [data]
+    [data],
   );
   const exchangeData = useMemo(
     () => getExchangeData(data, exchangeKeys, electricityMixMode),
-    [data, exchangeKeys, electricityMixMode]
+    [data, exchangeKeys, electricityMixMode],
   );
 
   const [productionTooltip, setProductionTooltip] = useState(null);

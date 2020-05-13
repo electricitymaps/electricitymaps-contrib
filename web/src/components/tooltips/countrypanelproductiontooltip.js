@@ -59,7 +59,7 @@ const CountryPanelProductionTooltip = ({
       : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
     getRatioPercent(usage, totalElectricity),
     getFullZoneName(zoneData.countryCode),
-    __(mode)
+    __(mode),
   );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 

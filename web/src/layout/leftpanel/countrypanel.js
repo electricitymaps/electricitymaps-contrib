@@ -273,7 +273,7 @@ const CountryPanel = ({
                   dangerouslySetInnerHTML={{
                     __html: __(
                       'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />

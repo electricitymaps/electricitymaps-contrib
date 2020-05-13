@@ -59,7 +59,7 @@ function zoneMatchesQuery(zone, queryString) {
   return queries.every(
     query => getFullZoneName(zone.countryCode)
       .toLowerCase()
-      .indexOf(query.toLowerCase()) !== -1
+      .indexOf(query.toLowerCase()) !== -1,
   );
 }
 
