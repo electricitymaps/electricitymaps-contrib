@@ -19,9 +19,7 @@ export const store = process.env.NODE_ENV === 'production'
     applyMiddleware(logger),
   );
 
-export const { dispatch, getState } = store;
-
 // TODO: Deprecate and use actioncreators instead
 export const dispatchApplication = (key, value) => {
-  dispatch({ type: 'APPLICATION_STATE_UPDATE', key, value });
+  store.dispatch({ type: 'APPLICATION_STATE_UPDATE', key, value });
 };

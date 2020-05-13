@@ -1,7 +1,7 @@
 import { select } from 'd3-selection';
 
 import { history } from './helpers/router';
-import { dispatch } from './store';
+import { store } from './store';
 
 export const cordovaApp = {
   // Application Constructor
@@ -54,7 +54,7 @@ export const cordovaApp = {
 
   onResume() {
     // Count as app visit
-    dispatch({ type: 'TRACK_EVENT', payload: { eventName: 'Visit' } });
+    store.dispatch({ type: 'TRACK_EVENT', payload: { eventName: 'Visit' } });
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };

@@ -2,7 +2,8 @@
 /* eslint-disable prefer-rest-params */
 // TODO: remove once refactored
 
-import { dispatch, getState } from '../store';
+import { store } from '../store';
+import { isProduction } from '../helpers/environment';
 
 function reportToSentry(e) {
   if (window.Sentry !== undefined) {
@@ -17,7 +18,7 @@ function reportToSentry(e) {
 class ConnectionsService {
   constructor() {
     this.connections = [];
-    if (getState().application.isProduction) {
+    if (isProduction()) {
       this.addConnection(require('./thirdparty/twitter'));
       this.addConnection(require('./thirdparty/facebook'));
       this._ga = this.addConnection(require('./thirdparty/ga'));
@@ -53,7 +54,7 @@ class ConnectionsService {
   trackError(e) {
     console.error(`Error Caught! ${e}`);
     this.ga('event', 'exception', { description: e, fatal: false });
-    dispatch({
+    store.dispatch({
       type: 'TRACK_EVENT',
       payload: {
         eventName: 'error',
