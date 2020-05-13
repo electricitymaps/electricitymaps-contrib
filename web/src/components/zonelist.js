@@ -56,10 +56,11 @@ function processZones(zonesData, accessor) {
 function zoneMatchesQuery(zone, queryString) {
   if (!queryString) return true;
   const queries = queryString.split(' ');
-  return queries.every(query =>
-    getFullZoneName(zone.countryCode)
+  return queries.every(
+    query => getFullZoneName(zone.countryCode)
       .toLowerCase()
-      .indexOf(query.toLowerCase()) !== -1);
+      .indexOf(query.toLowerCase()) !== -1,
+  );
 }
 
 const mapStateToProps = state => ({
@@ -151,7 +152,7 @@ const ZoneList = ({
           key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
-          <img className="flag" src={flagUri(zone.countryCode, 32)} />
+          <img className="flag" src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
           <div className="name">
             <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
             <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>

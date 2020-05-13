@@ -267,16 +267,17 @@ const CountryPanel = ({
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
-                {' ('}
+                {' '}
+                (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
                       'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />
-                {')'}
+                )
               </small>
               {' '}
               {__('country-panel.helpfrom')}

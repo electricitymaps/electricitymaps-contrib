@@ -36,7 +36,7 @@ const views = [{
     <React.Fragment>
       <div>
         <h2>{__('onboarding-modal.view3.header')}</h2>
-      </div> 
+      </div>
       <div>{__('onboarding-modal.view3.text')}</div>
     </React.Fragment>
   ),
