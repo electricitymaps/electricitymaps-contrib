@@ -73,8 +73,7 @@ const CountryPanelExchangeTooltip = ({
           {__('tooltips.withcarbonintensity')}
           <br />
           <b><ZoneName zone={isExport ? zoneData.countryCode : exchangeKey} /></b>
-          {': '}
-          <CarbonIntensity intensity={co2Intensity} />
+          : <CarbonIntensity intensity={co2Intensity} />
         </React.Fragment>
       )}
     </Tooltip>

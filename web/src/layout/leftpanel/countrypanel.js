@@ -267,7 +267,8 @@ const CountryPanel = ({
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
-                {' ('}
+                {' '}
+                (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
@@ -276,7 +277,7 @@ const CountryPanel = ({
                     ),
                   }}
                 />
-                {')'}
+                )
               </small>
               {' '}
               {__('country-panel.helpfrom')}

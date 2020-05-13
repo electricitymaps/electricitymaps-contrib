@@ -19,13 +19,13 @@ export default () => (
       <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
         {__('panel-initial-text.opensource')}
       </a>
-      {' ('}
+      {' '}(
       {__('panel-initial-text.see')}
       {' '}
       <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">
         {__('panel-initial-text.datasources')}
       </a>
-      {'). '}
+      ).{' '}
       <span
         dangerouslySetInnerHTML={{
           __html: __(
@@ -34,7 +34,7 @@ export default () => (
           ),
         }}
       />
-      {'.'}
+      .
     </p>
     <p>
       {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
