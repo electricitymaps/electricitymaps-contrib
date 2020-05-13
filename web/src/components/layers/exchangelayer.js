@@ -54,7 +54,7 @@ const Arrow = React.memo(({
       const speed = exchangeSpeedCategoryScale(Math.abs(netFlow));
       return resolvePath(`images/${prefix}arrow-${intensity}-animated-${speed}.gif`);
     },
-    [colorBlindModeEnabled, co2intensity, netFlow]
+    [colorBlindModeEnabled, co2intensity, netFlow],
   );
 
   const transform = useMemo(

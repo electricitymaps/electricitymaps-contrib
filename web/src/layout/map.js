@@ -122,7 +122,7 @@ export default () => {
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
           ? data.co2intensity
-          : data.co2intensityProduction
+          : data.co2intensityProduction,
       );
       setTooltipZoneData(data);
     },

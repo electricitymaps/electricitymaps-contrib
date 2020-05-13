@@ -56,7 +56,7 @@ module.exports = (state = initialDataState, action) => {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
     }
-  
+
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {
