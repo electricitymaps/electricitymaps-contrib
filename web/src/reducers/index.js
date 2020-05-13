@@ -46,12 +46,10 @@ const initialApplicationState = {
   },
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   searchQuery: null,
-  selectedZoneName: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
   webGLSupported: false,
   windColorbarValue: null,
-  windEnabled: false,
 
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,

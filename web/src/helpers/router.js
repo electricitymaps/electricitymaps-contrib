@@ -8,11 +8,6 @@ import { createBrowserHistory, createHashHistory } from 'history';
 // `useHistory` hook after full migration to React.
 export const history = window.isCordova ? createHashHistory() : createBrowserHistory();
 
-// TODO: Deprecate in favor of useSearchParams (requires move to React)
-export function getSearchParams() {
-  return new URLSearchParams(history.location.search);
-}
-
 // TODO: Deprecate in favor of React Router useParams (requires move to React)
 export function getZoneId() {
   return history.location.pathname.split('/')[2];
@@ -21,7 +16,7 @@ export function getZoneId() {
 // TODO: Get rid of this when a better system is put in place for switching languages.
 // See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
 export function hideLanguageSearchParam() {
-  const searchParams = getSearchParams();
+  const searchParams = new URLSearchParams(history.location.search);
   searchParams.delete('lang');
   history.replace(`?${searchParams.toString()}`);
 }
