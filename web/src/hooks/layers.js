@@ -32,7 +32,7 @@ export function useInterpolatedWindData() {
       const gribs2 = windData.forecasts[1];
       const tBefore = getTargetTime(gribs1[0]);
       const tAfter = getTargetTime(gribs2[0]);
-      const datetime = moment(customDatetime || new Date()); 
+      const datetime = moment(customDatetime || new Date());
       const k = (datetime - tBefore) / (tAfter - tBefore);
 
       if (datetime > tAfter) {
