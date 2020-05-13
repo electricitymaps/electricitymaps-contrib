@@ -2,8 +2,7 @@
 /* eslint-disable prefer-rest-params */
 // TODO: remove once refactored
 
-import { getState } from '../store';
-import { history, getSearchParams } from '../helpers/router';
+import { dispatch, getState } from '../store';
 
 function reportToSentry(e) {
   if (window.Sentry !== undefined) {
@@ -33,29 +32,17 @@ class ConnectionsService {
     return i;
   }
 
-  // TODO: Use sagas for this instead.
-  trackWithCurrentApplicationState(eventName, additionalData) {
-    const appState = getState().application;
-    const data = {
-      ...appState,
-      bundleVersion: appState.bundleHash,
-      embeddedUri: appState.isEmbedded ? document.referrer : null,
-      currentPage: history.location.pathname.split('/')[1],
-      selectedZoneName: history.location.pathname.split('/')[2],
-      solarEnabled: getSearchParams().get('solar') === 'true',
-      windEnabled: getSearchParams().get('wind') === 'true',
-      ...additionalData,
-    };
+  trackEvent(eventName, context) {
     this.connections.forEach((conn) => {
       try {
-        conn.track(eventName, data);
+        conn.track(eventName, context);
       } catch (err) { console.error(`External connection error: ${err}`); }
     });
   }
 
   // track google analytics if is available
   ga() {
-    if (this._ga !== undefined) {
+    if (this._ga) {
       try {
         this._ga.ga(...arguments);
       } catch (err) { console.error(`Google analytics track error: ${err}`); }
@@ -65,8 +52,14 @@ class ConnectionsService {
   // track errors
   trackError(e) {
     console.error(`Error Caught! ${e}`);
-    this.trackWithCurrentApplicationState('error', { name: e.name, stack: e.stack });
     this.ga('event', 'exception', { description: e, fatal: false });
+    dispatch({
+      type: 'TRACK_EVENT',
+      payload: {
+        eventName: 'error',
+        context: { name: e.name, stack: e.stack },
+      },
+    });
     reportToSentry(e);
   }
 }

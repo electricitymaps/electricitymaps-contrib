@@ -24,13 +24,13 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
-import thirdPartyServices from '../../services/thirdparty';
 
 import { dispatchApplication } from '../../store';
 
 // Modules
 import { useCurrentZoneData } from '../../hooks/redux';
 import { useCo2ColorScale } from '../../hooks/theme';
+import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 
@@ -91,6 +91,7 @@ const CountryPanel = ({
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
   const co2ColorScale = useCo2ColorScale();
 
+  const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
@@ -131,12 +132,12 @@ const CountryPanel = ({
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
-    thirdPartyServices.trackWithCurrentApplicationState('switchToCountryEmissions');
+    trackEvent('switchToCountryEmissions');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
-    thirdPartyServices.trackWithCurrentApplicationState('switchToCountryProduction');
+    trackEvent('switchToCountryProduction');
   };
 
   return (

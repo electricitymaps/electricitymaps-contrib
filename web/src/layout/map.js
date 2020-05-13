@@ -11,6 +11,7 @@ import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
+import { useTrackEvent } from '../hooks/tracking';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -33,6 +34,7 @@ export default () => {
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
+  const trackEvent = useTrackEvent();
   const location = useLocation();
   const history = useHistory();
   // TODO: Replace with useParams().zoneId once this component gets
@@ -110,11 +112,11 @@ export default () => {
 
   const handleZoneClick = useMemo(
     () => (id) => {
+      trackEvent('countryClick');
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
-      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
     },
-    [history],
+    [trackEvent, history],
   );
 
   const handleZoneMouseEnter = useMemo(
