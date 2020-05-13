@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -12,7 +12,7 @@ import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Tabs from './tabs';
-import MapTooltips from './maptooltips';
+import Map from './map';
 
 // Modules
 import { __ } from '../helpers/translation';
@@ -30,10 +30,6 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
-import ExchangeLayer from '../components/layers/exchangelayer';
-import SolarLayer from '../components/layers/solarlayer';
-import WindLayer from '../components/layers/windlayer';
-
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
@@ -41,14 +37,12 @@ const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
-  isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   version: state.application.version,
 });
 
 const Main = ({
   brightModeEnabled,
   electricityMixMode,
-  isLeftPanelCollapsed,
   hasConnectionWarning,
   version,
 }) => {
@@ -86,10 +80,7 @@ const Main = ({
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
-            <div id="zones" className="map-layer" />
-            <ExchangeLayer />
-            <WindLayer />
-            <SolarLayer />
+            <Map />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
@@ -135,22 +126,10 @@ const Main = ({
             </div>
           </div>
 
-          <div
-            id="left-panel-collapse-button"
-            className={`small-screen-hidden ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
-            onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
-            role="button"
-            tabIndex="0"
-          >
-            <i className="material-icons">arrow_drop_down</i>
-          </div>
-
           { /* end #inner */}
         </div>
         <Tabs />
       </div>
-      {/* TODO: Get rid of this as a part of https://github.com/tmrowco/electricitymap-contrib/issues/2288 */}
-      <MapTooltips />
       <OnboardingModal />
     </React.Fragment>
   );

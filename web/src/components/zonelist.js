@@ -3,7 +3,8 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
+import { getCenteredZoneViewport } from '../helpers/map';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
@@ -55,26 +56,25 @@ function processZones(zonesData, accessor) {
 function zoneMatchesQuery(zone, queryString) {
   if (!queryString) return true;
   const queries = queryString.split(' ');
-  return queries.every(query =>
-    getFullZoneName(zone.countryCode)
+  return queries.every(
+    query => getFullZoneName(zone.countryCode)
       .toLowerCase()
-      .indexOf(query.toLowerCase()) !== -1);
+      .indexOf(query.toLowerCase()) !== -1,
+  );
 }
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
 });
 
 const ZoneList = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   gridZones,
   searchQuery,
 }) => {
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor)
     .filter(z => zoneMatchesQuery(z, searchQuery));
@@ -90,7 +90,7 @@ const ZoneList = ({
   });
 
   const enterZone = (zone) => {
-    dispatchApplication('centeredZoneName', zone.countryCode);
+    dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
     setEnteredZone(zone);
   };
 
@@ -152,7 +152,7 @@ const ZoneList = ({
           key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
-          <img className="flag" src={flagUri(zone.countryCode, 32)} />
+          <img className="flag" src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
           <div className="name">
             <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
             <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>

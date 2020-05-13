@@ -25,12 +25,11 @@ import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import thirdPartyServices from '../../services/thirdparty';
 
-import { dispatch, dispatchApplication } from '../../store';
+import { dispatchApplication } from '../../store';
 
 // Modules
-import { updateApplication } from '../../actioncreators';
 import { useCurrentZoneData } from '../../hooks/redux';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 
@@ -74,7 +73,6 @@ const CountryRenewableGauge = () => {
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -82,7 +80,6 @@ const mapStateToProps = state => ({
 });
 
 const CountryPanel = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
@@ -92,6 +89,7 @@ const CountryPanel = ({
   const [pressedBackKey, setPressedBackKey] = useState(false);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
+  const co2ColorScale = useCo2ColorScale();
 
   const location = useLocation();
   const { zoneId } = useParams();
@@ -124,7 +122,6 @@ const CountryPanel = ({
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
@@ -270,16 +267,17 @@ const CountryPanel = ({
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
-                {' ('}
+                {' '}
+                (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
                       'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />
-                {')'}
+                )
               </small>
               {' '}
               {__('country-panel.helpfrom')}

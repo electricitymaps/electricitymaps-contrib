@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { isFinite } from 'lodash';
 
-import { modeOrder } from '../../helpers/constants';
 import { __, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
-import { getCo2Scale } from '../../helpers/scales';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
 
 import Tooltip from '../tooltip';
 import { CarbonIntensity, MetricRatio } from './common';
-import { getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
+import {
+  getElectricityProductionValue,
+  getProductionCo2Intensity,
+  getTotalElectricity,
+} from '../../helpers/zonedata';
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
 });
 
 const CountryPanelProductionTooltip = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   mode,
   position,
@@ -27,7 +27,6 @@ const CountryPanelProductionTooltip = ({
 }) => {
   if (!zoneData) return null;
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
 
   const format = displayByEmissions ? formatCo2 : formatPower;
@@ -39,10 +38,15 @@ const CountryPanelProductionTooltip = ({
   const production = (zoneData.production || {})[resource];
   const storage = (zoneData.storage || {})[resource];
 
-  const electricity = isStorage ? -storage : production;
+  const electricity = getElectricityProductionValue({
+    capacity,
+    isStorage,
+    storage,
+    production,
+  });
   const isExport = electricity < 0;
 
-  const usage = Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
+  const usage = isFinite(electricity) && Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
   const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
 
   const co2IntensitySource = isStorage
@@ -55,7 +59,7 @@ const CountryPanelProductionTooltip = ({
       : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
     getRatioPercent(usage, totalElectricity),
     getFullZoneName(zoneData.countryCode),
-    __(mode)
+    __(mode),
   );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 
@@ -79,14 +83,16 @@ const CountryPanelProductionTooltip = ({
             total={capacity}
             format={format}
           />
+        </React.Fragment>
+      )}
+      {/* Don't show carbon intensity if we know for sure the zone doesn't use this resource */}
+      {!displayByEmissions && (isFinite(co2Intensity) || usage !== 0) && (
+        <React.Fragment>
           <br />
           <br />
           {__('tooltips.withcarbonintensity')}
           <br />
-          <CarbonIntensity
-            colorBlindModeEnabled={colorBlindModeEnabled}
-            intensity={co2Intensity}
-          />
+          <CarbonIntensity intensity={co2Intensity} />
           <small> ({__('country-panel.source')}: {co2IntensitySource || '?'})</small>
         </React.Fragment>
       )}
