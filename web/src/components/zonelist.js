@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
@@ -80,8 +80,8 @@ const ZoneList = ({
     .filter(z => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
+  const history = useHistory();
   const location = useLocation();
-  const [enteredZone, setEnteredZone] = useState(null);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   const zonePage = zone => ({
@@ -91,7 +91,7 @@ const ZoneList = ({
 
   const enterZone = (zone) => {
     dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
-    setEnteredZone(zone);
+    history.push(zonePage(zone));
   };
 
   // Keyboard navigation
@@ -135,12 +135,6 @@ const ZoneList = ({
       document.removeEventListener('keyup', keyHandler);
     };
   });
-
-  // Redirect to the zone details page if Enter key
-  // has been pressed over the zone in the list.
-  if (enteredZone) {
-    return <Redirect to={zonePage(enteredZone)} />;
-  }
 
   return (
     <div className="zone-list" ref={ref}>

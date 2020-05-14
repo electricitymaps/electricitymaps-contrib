@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { dispatch } from '../../store';
+import { dispatchApplication } from '../../store';
 import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
 import {
   useCurrentZoneHistoryDatetimes,
@@ -15,11 +15,8 @@ import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';
 
-const handleZoneTimeIndexChange = (selectedZoneTimeIndex) => {
-  dispatch({
-    type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
-    payload: { selectedZoneTimeIndex },
-  });
+const handleZoneTimeIndexChange = (timeIndex) => {
+  dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
 const mapStateToProps = state => ({
