@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { __ } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
-import thirdPartyServices from '../services/thirdparty';
+import { useTrackEvent } from '../hooks/tracking';
 
 const views = [{
   headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
@@ -58,6 +58,8 @@ const mapStateToProps = state => ({
 });
 
 const OnboardingModal = ({ visible }) => {
+  const trackEvent = useTrackEvent();
+
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
   const isOnFirstView = () => currentViewIndex === 0;
@@ -93,7 +95,7 @@ const OnboardingModal = ({ visible }) => {
   // Track event when the onboarding modal opens up
   useEffect(() => {
     if (visible) {
-      thirdPartyServices.trackWithCurrentApplicationState('onboardingModalShown');
+      trackEvent('onboardingModalShown');
     }
   }, [visible]);
 

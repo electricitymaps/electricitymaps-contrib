@@ -9,7 +9,7 @@ import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
-import { useWindEnabled } from '../../helpers/router';
+import { useWindEnabled } from '../../hooks/router';
 
 import Windy from '../../helpers/windy';
 import { useInterpolatedWindData } from '../../hooks/layers';

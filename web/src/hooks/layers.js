@@ -4,8 +4,9 @@ import { interpolate } from 'd3-interpolate';
 import { values } from 'lodash';
 import moment from 'moment';
 
-import { useCustomDatetime } from '../helpers/router';
 import { getRefTime, getTargetTime } from '../helpers/grib';
+
+import { useCustomDatetime } from './router';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');

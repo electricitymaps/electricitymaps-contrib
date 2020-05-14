@@ -6,8 +6,9 @@ import moment from 'moment';
 
 import thirdPartyServices from './services/thirdparty';
 import { history } from './helpers/router';
-import { store } from './store';
+import { store, sagaMiddleware } from './store';
 import { cordovaApp } from './cordova';
+import sagas from './sagas';
 
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
@@ -19,6 +20,9 @@ if (thirdPartyServices._ga) {
 
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
+
+// Plug in the sagas
+sagaMiddleware.run(sagas);
 
 // Render DOM
 ReactDOM.render(
