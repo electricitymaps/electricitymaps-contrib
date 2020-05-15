@@ -555,12 +555,14 @@ It should appear on the map as you refresh your local browser.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
 
-- FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory: You can configure the memory allocation using `NODE_OPTIONS=--max-old-space-size=4096` in the "build-release" script in package.json, example: "export `NODE_OPTIONS=--max-old-space-size=4096` NODE_ENV=production && webpack --bail --mode production". Also update to the latest node version.
+#### Windows Specific
 
-- Expected linebreaks to be 'LF' but found 'CRLF': Fixed by adding `"linebreak-style": 0` in "rules" in .estlintrc
+- FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory: You can configure the memory allocation using `NODE_OPTIONS=--max-old-space-size=4096` in the "build-release" script in package.json, example: "export `NODE_OPTIONS=--max-old-space-size=4096` NODE_ENV=production && webpack --bail --mode production". Also update the node version (last working version was v12.16.3).
+
+- Expected linebreaks to be 'LF' but found 'CRLF': Configure your IDE to use LF instead of CRLF. If that doesn't fix it, add `"linebreak-style": 0` in "rules" in .estlintrc
 
 - ERROR: for electricitymap-contrib_mockserver_1  Cannot start service mockserver: OCI runtime create failed: container_linux.go:345: starting container process caused "process_linux.go:424: container init caused \"rootfs_linux.go:58: mounting \\\".../server.py\\\" to rootfs \\\"/mnt/sda1/var/lib/docker/overlay2/.../merged\\\" at \\\".../server.py\\\" caused \\\"not a directory\\\"\"": unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type
    - Check that the project is cloned under C:/Users/
 
-- nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: "server-dev": "nodemon server.js `-L`"
+- nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: "server-dev": "nodemon server.js `-L`". See https://www.npmjs.com/package/nodemon#application-isnt-restartin
 
