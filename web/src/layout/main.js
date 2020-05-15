@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -17,7 +17,7 @@ import Map from './map';
 // Modules
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime } from '../helpers/router';
+import { useCustomDatetime } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
   useClientVersionFetch,
@@ -25,7 +25,7 @@ import {
   useConditionalWindDataPolling,
   useConditionalSolarDataPolling,
 } from '../hooks/fetch';
-import { dispatch, dispatchApplication } from '../store';
+import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
@@ -46,6 +46,7 @@ const Main = ({
   hasConnectionWarning,
   version,
 }) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
 

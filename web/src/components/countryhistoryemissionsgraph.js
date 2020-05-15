@@ -56,7 +56,7 @@ const CountryHistoryEmissionsGraph = ({
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
     () => prepareGraphData(historyData),
-    [historyData]
+    [historyData],
   );
 
   // Mouse action handlers
@@ -65,14 +65,14 @@ const CountryHistoryEmissionsGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -82,13 +82,13 @@ const CountryHistoryEmissionsGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile]
+    [setTooltip, isMobile],
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip]
+    [setTooltip],
   );
 
   return (

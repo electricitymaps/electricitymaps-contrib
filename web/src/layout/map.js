@@ -1,16 +1,17 @@
 import React, { useState, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
-import { getZoneId, navigateTo } from '../helpers/router';
+import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
+import { useTrackEvent } from '../hooks/tracking';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -33,7 +34,9 @@ export default () => {
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
+  const trackEvent = useTrackEvent();
   const location = useLocation();
+  const history = useHistory();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
@@ -72,9 +75,9 @@ export default () => {
 
       // Disable the map and redirect to zones ranking.
       dispatchApplication('webGLSupported', false);
-      navigateTo({ pathname: '/ranking', search: location.search });
+      history.push({ pathname: '/ranking', search: location.search });
     },
-    [],
+    [history],
   );
 
   const handleMouseMove = useMemo(
@@ -102,18 +105,18 @@ export default () => {
 
   const handleSeaClick = useMemo(
     () => () => {
-      navigateTo({ pathname: '/map', search: location.search });
+      history.push({ pathname: '/map', search: location.search });
     },
-    [location],
+    [history],
   );
 
   const handleZoneClick = useMemo(
     () => (id) => {
+      trackEvent('countryClick');
       dispatchApplication('isLeftPanelCollapsed', false);
-      navigateTo({ pathname: `/zone/${id}`, search: location.search });
-      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
+      history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [location],
+    [trackEvent, history],
   );
 
   const handleZoneMouseEnter = useMemo(
@@ -122,7 +125,7 @@ export default () => {
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
           ? data.co2intensity
-          : data.co2intensityProduction
+          : data.co2intensityProduction,
       );
       setTooltipZoneData(data);
     },
