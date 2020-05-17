@@ -81,9 +81,16 @@ def production_processor_live(json_tot, json_ren):
     """
    
     gen_total = json_tot['data'][0]['values']
-    rawgen_sol = json_ren['data'][1]['values']
-    rawgen_wind = json_ren['data'][0]['values']
 
+    if json_ren['data'][1]['key']=='ENERGÍA SOLAR':
+        rawgen_sol = json_ren['data'][1]['values']
+    else:
+        raise RuntimeError('Unexpected data label. Expected "ENERGÍA SOLAR" and got {}'.format(json_ren['data'][1]['key']))
+    
+    if json_ren['data'][0]['key']=='ENERGÍA EÓLICA':
+        rawgen_wind = json_ren['data'][0]['values']
+    else:
+        raise RuntimeError('Unexpected data label. Expected "ENERGÍA EÓLICA" and got {}'.format(json_ren['data'][0]['key']))
 
     mapped_totals = []
     
