@@ -65,7 +65,7 @@ def data_processor(raw_data):
 
 
 def get_data_live(session, logger):
-    """Requests generation data in json format."""
+    """Requests live generation data in json format."""
 
     s = session or requests.session()
     json_total = s.get(API_BASE_URL_LIVE_TOT).json()
@@ -76,8 +76,8 @@ def get_data_live(session, logger):
 
 def production_processor_live(json_tot, json_ren):
     """
-    Extracts generation data and timestamp.
-    Maps keys to type and returns a list of dictionaries for all of the .
+    Extracts generation data and timestamp into dictionary.
+    Returns a list of dictionaries for all of the available "live" data, usually that day.
     """
    
     gen_total = json_tot['data'][0]['values']
