@@ -74,26 +74,39 @@ def get_data_live(session, logger):
     return json_total, json_ren
 
 
-def production_processor_live(json_tot, json_ren, zone_key):
+def production_processor_live(json_tot, json_ren):
     """
-    Extracts data timestamp and sums regional data into totals by key.
-    Maps keys to type and returns a tuple.
+    Extracts generation data and timestamp.
+    Maps keys to type and returns a list of dictionaries for all of the .
     """
    
-    gen_total = json_tot['data'][0]['values'][-1]
-    gen_sol = json_ren['data'][1]['values'][-1]
-    gen_wind = json_ren['data'][0]['values'][-1]
+    gen_total = json_tot['data'][0]['values']
+    rawgen_sol = json_ren['data'][1]['values']
+    rawgen_wind = json_ren['data'][0]['values']
 
-    dt_ren = arrow.get(gen_sol[0]/1000,tzinfo='Chile/Continental')
-    dt_tot = arrow.get(gen_total[0]/1000,tzinfo='Chile/Continental')
+
+    mapped_totals = []
     
-    mapped_totals = {
-        'wind'      :gen_wind[1],
-        'solar'     :gen_sol[1],
-        'unknown'   :gen_total[1]-gen_sol[1]-gen_wind[1]
-        }
+    for total in gen_total:
+        datapoint={}
         
-    return dt_tot,dt_ren, mapped_totals
+        dt=total[0]
+        for pair in rawgen_sol:
+            if pair[0] == dt:
+                solar=pair[1]
+                break
+        for pair in rawgen_wind:
+            if pair[0] == dt:
+                wind=pair[1]
+                break
+        
+        datapoint['datetime']=arrow.get(dt/1000,tzinfo='Chile/Continental')
+        datapoint['unknown']=(total[1]-wind-solar)
+        datapoint['wind']=wind
+        datapoint['solar']=solar
+        mapped_totals.append(datapoint)
+        
+    return mapped_totals
 
 
 def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
@@ -130,23 +143,29 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
     if target_datetime is None:
         gen_tot, gen_ren = get_data_live(session, logger)
         
-        generation = production_processor_live(gen_tot, gen_ren, zone_key)
-
-        datapoint = {
-                      'zoneKey': zone_key,
-                      'datetime': generation[0].datetime,
-                      'production': generation[2],
-                      'storage': {
-                          'hydro': None,
-                                  },
-                      'source': 'coordinadorelectrico.cl'
-                    }
+        processed_data = production_processor_live(gen_tot, gen_ren)
         
-        datapoint = validate(datapoint, logger,
+        data = []
+        
+        for production_data in processed_data:
+            dt = production_data.pop('datetime')
+    
+            datapoint = {
+                'zoneKey': zone_key,
+                'datetime': dt,
+                'production': production_data,
+                'storage': {
+                          'hydro': None,
+                           },
+                'source': 'coordinadorelectrico.cl'
+                }
+            datapoint = validate(datapoint, logger,
                                 remove_negative=True, required=['hydro'], floor=1000)
     
-        return datapoint
-        
+            data.append(datapoint)
+    
+        return data
+    
     arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
