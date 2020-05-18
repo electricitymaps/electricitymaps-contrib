@@ -16,7 +16,7 @@
             "subtitle": "Mappatura dell'impatto climatico dell'elettricità"
         },
         "view2": {
-            "header": "Guarda quanta CO2 è emessa nel produrre la tua elettricità, in tempo reale.",
+            "header": "Guarda quanta CO₂ è emessa nel produrre la tua elettricità, in tempo reale.",
             "text": "Coloriamo le aree nel mondo tramite la loro intensità di carbonio (include tutti i gas serra) dell'elettricità che consumano. Più l'area è verde più produce elettricità in maniera ecologica."
         },
         "view3": {
@@ -46,11 +46,12 @@
     },
     "left-panel": {
         "zone-list-header-title": "Impatto climatico per area",
-        "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Classificazione per intensità di carbonio dell'elettricità consumata (gCO₂eq/kWh)",
         "search": "Cerca un'area..."
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
+        "emissions24h": "Emissioni nelle ultime 24 ore",
         "emissionsorigin24h": "Origine delle emissioni nelle ultime 24 ore",
         "emissionsproduction24h": "Emissioni prodotte nelle ultime 24 ore",
         "electricityorigin24h": "Origine dell'elettricità nelle ultime 24 ore",
@@ -95,7 +96,7 @@
         "lowCarbDescription": "Include rinnovabili e nucleare"
     },
     "misc": {
-        "maintitle": "Emissioni di CO2 in tempo reale del consumo elettrico",
+        "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
         "retrynow": "Riprova ora",
@@ -116,15 +117,18 @@
     "coal": "Carbone",
     "oil": "Petrolio",
     "unknown": "Sconosciuto",
+
     "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
-    "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
+    "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-    "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
+    "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
+
     "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO2 di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "di CO2eq per minuto",
+    "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+
+    "ofCO2eqPerMinute": "di CO₂eq per minuto",
     "theMap": {
         "groupName": "La mappa",
         "mapColors-question": "Cosa significano i colori sulla mappa?",
@@ -152,7 +156,7 @@
     "methodology": {
         "groupName": "I nostri metodi",
         "carbonIntensity-question": "Cos'è l'\"intensità di carbonio\"?",
-        "carbonIntensity-answer": "L'intensità di carbonio è lo strumento per misurare le emissioni di gas serra associati con la produzione di elettricità che consumiamo (in gCO2eq/kWh - grammi di monossido di carbonio equivalenti emessi per kilowatt all'ora di elettricità consumata). <br><br>Misuriamo le emissioni derivate dal consumo elettrico (e non dalla produzione), e ciò vuol dire che tutte le emissioni di gas serra (Sia la CO2 che altri gas serra come il metano) che sono andati a produrre l'elettricità che viene consumata in un'area, tenendo conto delle intensità di carbonio dell'elettricità importata da altre aree. Usiamo un approccio di analisi del ciclo di vita (ACV), nel senso che prendiamo in considerazione le emissioni derivanti dall'intero ciclo di vita delle centrali elettriche (Costruzione, produzione di carburante, emissioni operative e decommissionamento).",
+        "carbonIntensity-answer": "L'intensità di carbonio è lo strumento per misurare le emissioni di gas serra associati con la produzione di elettricità che consumiamo (in gCO₂eq/kWh - grammi di monossido di carbonio equivalenti emessi per kilowatt all'ora di elettricità consumata). <br><br>Misuriamo le emissioni derivate dal consumo elettrico (e non dalla produzione), e ciò vuol dire che tutte le emissioni di gas serra (Sia la CO₂ che altri gas serra come il metano) che sono andati a produrre l'elettricità che viene consumata in un'area, tenendo conto delle intensità di carbonio dell'elettricità importata da altre aree. Usiamo un approccio di analisi del ciclo di vita (ACV), nel senso che prendiamo in considerazione le emissioni derivanti dall'intero ciclo di vita delle centrali elettriche (Costruzione, produzione di carburante, emissioni operative e decommissionamento).",
         "consumptionFocus-question": "Perché calcolate l'intensità di carbonio per il consumo elettrico invece della produzione?",
         "consumptionFocus-answer": "Riteniamo che i cittadini dovrebbero essere responsabili per l'elettricità che consumano, e non per l'elettricità prodotta nell'area in cui vivono. Inoltre, riteniamo che le aree non debbano essere in grado di 'falsificare' un basso impatto climatico semplicemente spostando produzione di energia sporca in altre aree e quindi importare l'elettricità da quelle aree.",
         "renewableLowCarbonDifference-question": "Qual è la differenza tra “Rinnovabile” e “Basse emissioni”?",

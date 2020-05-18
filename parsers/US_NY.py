@@ -201,7 +201,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     elif sorted_zone_keys == 'US-MIDA-PJM->US-NY-NYIS':
         direction = 1
         relevant_exchanges = ['SCH - PJ - NY', 'SCH - PJM_HTP', 'SCH - PJM_NEPTUNE', 'SCH - PJM_VFT']
-    elif sorted_zone_keys == 'CA-ON->US-NY':
+    elif sorted_zone_keys == 'CA-ON->US-NY' or sorted_zone_keys == 'CA-ON->US-NY-NYIS':
         direction = 1
         relevant_exchanges = ['SCH - OH - NY']
     elif sorted_zone_keys == 'CA-QC->US-NY' or sorted_zone_keys == 'CA-QC->US-NY-NYIS':

@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { range, isFinite } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
-import { getCo2Scale } from '../helpers/scales';
-import { useWidthObserver, useHeightObserver } from '../effects';
+import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
 
 const PADDING_X = 13;
 const PADDING_Y = 10;

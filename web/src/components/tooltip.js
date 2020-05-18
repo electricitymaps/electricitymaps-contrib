@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Portal } from 'react-portal';
 
-import { useWidthObserver, useHeightObserver } from '../effects';
+import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
 
 const MARGIN = 16;
 
@@ -39,6 +39,10 @@ const Tooltip = ({ id, children, position }) => {
   if (y + height + MARGIN >= screenHeight) y = position.y - height - MARGIN;
 
   style.transform = `translate(${x}px,${y}px)`;
+
+  // Don't show the tooltip until its dimensions have
+  // been set and its position correctly calculated.
+  style.opacity = width && height ? 1 : 0;
 
   return (
     <Portal>

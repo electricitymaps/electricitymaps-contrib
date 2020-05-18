@@ -1,33 +1,23 @@
-import thirdPartyServices from '../services/thirdparty';
+import { createBrowserHistory, createHashHistory } from 'history';
 
-export function updateURLFromState(state) {
-  const {
-    customDate,
-    selectedZoneName,
-    showPageState,
-    solarEnabled,
-    useRemoteEndpoint,
-    windEnabled,
-  } = state.application;
+// Use BrowserHistory in the web browser and HashHistory
+// in the mobile apps as we need to keep relative resource
+// paths for the mobile which are fundamentally incompatible
+// with browser side URL paths routing.
+// TODO: Replace this with React Router DOM
+// `useHistory` hook after full migration to React.
+export const history = window.isCordova ? createHashHistory() : createBrowserHistory();
 
-  // Build search params from application state, ignoring falsey values
-  const searchParams = Object.assign({},
-    customDate ? { datetime: customDate } : {},
-    selectedZoneName ? { countryCode: selectedZoneName } : {},
-    showPageState ? { page: showPageState } : {},
-    solarEnabled ? { solar: solarEnabled } : {},
-    useRemoteEndpoint ? { remote: useRemoteEndpoint } : {},
-    windEnabled ? { wind: windEnabled } : {});
-
-  // Build the URL search string from the search params
-  const urlSearch = `?${(new URLSearchParams(searchParams)).toString()}`;
-
-  // Push the new URL state to browser history and track
-  // it only if the new URL differs from the current one
-  if (urlSearch !== window.location.search) {
-    if (thirdPartyServices._ga) {
-      thirdPartyServices._ga.config({ page_path: urlSearch });
-    }
-    window.history.pushState(searchParams, '', urlSearch);
-  }
+// TODO: Deprecate in favor of React Router useParams (requires move to React)
+export function getZoneId() {
+  return history.location.pathname.split('/')[2];
 }
+
+// TODO: Get rid of this when a better system is put in place for switching languages.
+// See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
+export function hideLanguageSearchParam() {
+  const searchParams = new URLSearchParams(history.location.search);
+  searchParams.delete('lang');
+  history.replace(`?${searchParams.toString()}`);
+}
+hideLanguageSearchParam();

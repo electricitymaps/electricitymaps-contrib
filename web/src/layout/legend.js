@@ -2,38 +2,35 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { connect } from 'react-redux';
-import { scaleLinear } from 'd3-scale';
 
 import { dispatchApplication } from '../store';
-import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
-import { getCo2Scale, solarColor, windColor } from '../helpers/scales';
-import { co2Sub } from '../helpers/formatting';
+import { solarColor, windColor } from '../helpers/scales';
+import { useSolarEnabled, useWindEnabled } from '../hooks/router';
+import { useCo2ColorScale } from '../hooks/theme';
 
 // TODO: Move styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
 const mapStateToProps = state => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
-  solarEnabled: state.application.solarEnabled,
   windColorbarValue: state.application.windColorbarValue,
-  windEnabled: state.application.windEnabled,
 });
 
 const Legend = ({
   co2ColorbarValue,
-  colorBlindModeEnabled,
   legendVisible,
   solarColorbarValue,
-  solarEnabled,
   windColorbarValue,
-  windEnabled,
 }) => {
+  const co2ColorScale = useCo2ColorScale();
+  const solarEnabled = useSolarEnabled();
+  const windEnabled = useWindEnabled();
+
   const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
   const toggleLegend = () => {
     dispatchApplication('legendVisible', !legendVisible);
@@ -79,12 +76,11 @@ const Legend = ({
           )}
           <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
             <div className="legend-header">
-              <span dangerouslySetInnerHTML={{ __html: co2Sub(__('legends.carbonintensity')) }} />
-              <small> (gCO<span className="sub">2</span>eq/kWh)</small>
+              {__('legends.carbonintensity')} <small>(gCO₂eq/kWh)</small>
             </div>
             <HorizontalColorbar
               id="carbon-intensity-bar"
-              colorScale={getCo2Scale(colorBlindModeEnabled)}
+              colorScale={co2ColorScale}
               currentValue={co2ColorbarValue}
               markerColor="white"
               ticksCount={5}

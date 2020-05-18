@@ -18,7 +18,7 @@
         "carbonintensity": "Koolstofintensiteit",
         "electricityproduction": "Elektriciteitsproductie",
         "bysource": "per bron",
-        "emissions": "CO2 uitstoot",
+        "emissions": "CO₂ uitstoot",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
         "helpfrom": "met hulp van",
         "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
@@ -28,7 +28,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Invloed op klimaat per Gebied",
-        "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Gerangschikt op koolstofintentsiteit van geconsumeerde elektriciteit (gCO₂eq/kWh)",
         "search": "Zoek gebieden"
     },
     "country-history": {
@@ -75,7 +75,7 @@
         "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
     },
     "misc": {
-        "maintitle": "Live CO2 uitstoot van het elektriciteitsverbruik",
+        "maintitle": "Live CO₂ uitstoot van het elektriciteitsverbruik",
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden.",
         "retrynow": "Probeer opnieuw",
@@ -107,7 +107,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "CO2eq per minuut",
+    "ofCO2eqPerMinute": "CO₂eq per minuut",
 
     "zoneShortName": {
         "AL": {

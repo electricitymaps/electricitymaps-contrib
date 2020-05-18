@@ -572,7 +572,7 @@ def datetime_from_position(start, position, resolution):
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == 'M':
-            return start.replace(minutes=(position - 1) * digits)
+            return start.shift(minutes=(position - 1) * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 

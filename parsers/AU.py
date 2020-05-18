@@ -509,7 +509,7 @@ def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime
         'netFlow': net_flow,
         'capacity': [import_capacity, export_capacity],  # first one should be negative
         'source': 'aemo.com.au',
-        'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').replace(
+        'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').shift(
             minutes=-5).datetime
     }
 
@@ -559,7 +559,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
         'currency': 'AUD',
         'price': obj['PRICE'],
         'source': 'aemo.com.au',
-        'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').replace(
+        'datetime': arrow.get(arrow.get(obj['SETTLEMENTDATE']).datetime, 'Australia/NSW').shift(
             minutes=-5).datetime
     }
 
