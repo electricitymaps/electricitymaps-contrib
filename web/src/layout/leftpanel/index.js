@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
-import { useSearchParams } from '../../helpers/router';
+import { useSearchParams } from '../../hooks/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
 import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';

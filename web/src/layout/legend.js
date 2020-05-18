@@ -8,7 +8,7 @@ import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { solarColor, windColor } from '../helpers/scales';
-import { useSolarEnabled, useWindEnabled } from '../helpers/router';
+import { useSolarEnabled, useWindEnabled } from '../hooks/router';
 import { useCo2ColorScale } from '../hooks/theme';
 
 // TODO: Move styles from styles.css to here

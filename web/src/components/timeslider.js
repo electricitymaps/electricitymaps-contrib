@@ -51,12 +51,12 @@ const TimeSlider = ({
 
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
-    [width, datetimes, startTime, endTime]
+    [width, datetimes, startTime, endTime],
   );
 
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
-    [datetimes, onChange, setAnchoredTimeIndex]
+    [datetimes, onChange, setAnchoredTimeIndex],
   );
 
   if (!datetimes || datetimes.length === 0) return null;

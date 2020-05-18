@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import parse from 'color-parse';
 
 import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
+import { useSolarEnabled } from '../../hooks/router';
 import { stackBlurImageOpacity } from '../../helpers/image';
-import { useSolarEnabled } from '../../helpers/router';
 import { solarColor } from '../../helpers/scales';
 
 import { useInterpolatedSolarData } from '../../hooks/layers';

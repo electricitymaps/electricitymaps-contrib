@@ -1,8 +1,15 @@
 import { isFinite } from 'lodash';
 
 export function getRatioPercent(value, total) {
-  const perc = Math.round(value / total * 10000) / 100;
-  return isFinite(perc) ? `${perc}` : '?';
+  // If both the numerator and denominator are zeros,
+  // interpret the ratio as zero instead of NaN.
+  if (value === 0 && total === 0) {
+    return 0;
+  }
+  if (!isFinite(value) || !isFinite(total)) {
+    return '?';
+  }
+  return Math.round(value / total * 10000) / 100;
 }
 
 export function tonsPerHourToGramsPerMinute(value) {

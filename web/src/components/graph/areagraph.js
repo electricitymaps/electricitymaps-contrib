@@ -37,8 +37,8 @@ const getTotalValues = (layers) => {
   const values = filter(
     flattenDeep(
       layers.map(
-        layer => layer.datapoints.map(d => d[1])
-      )
+        layer => layer.datapoints.map(d => d[1]),
+      ),
     ),
     isFinite,
   );
@@ -140,19 +140,19 @@ const AreaGraph = React.memo(({
   // Build layers
   const layers = useMemo(
     () => getLayers(data, layerKeys, layerStroke, layerFill, markerFill),
-    [data, layerKeys, layerStroke, layerFill, markerFill]
+    [data, layerKeys, layerStroke, layerFill, markerFill],
   );
 
   // Generate graph scales
   const totalValues = useMemo(() => getTotalValues(layers), [layers]);
   const valueScale = useMemo(
     () => getValueScale(containerHeight, totalValues),
-    [containerHeight, totalValues]
+    [containerHeight, totalValues],
   );
   const datetimes = useMemo(() => getDatetimes(data), [data]);
   const timeScale = useMemo(
     () => getTimeScale(containerWidth, datetimes, startTime, endTime),
-    [containerWidth, datetimes, startTime, endTime]
+    [containerWidth, datetimes, startTime, endTime],
   );
 
   // Don't render the graph at all if no layers are present
