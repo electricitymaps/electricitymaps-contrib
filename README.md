@@ -564,4 +564,4 @@ It should appear on the map as you refresh your local browser.
 - `ERROR: for electricitymap-contrib_mockserver_1  Cannot start service mockserver: OCI runtime create failed: container_linux.go:345: starting container process caused "process_linux.go:424: container init caused \"rootfs_linux.go:58: mounting \\\".../server.py\\\" to rootfs \\\"/mnt/sda1/var/lib/docker/overlay2/.../merged\\\" at \\\".../server.py\\\" caused \\\"not a directory\\\"\"": unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type`.
    - Check that the project is cloned under C:/Users/
 
-- nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: "server-dev": "nodemon server.js `-L`". See https://www.npmjs.com/package/nodemon#application-isnt-restartin
+- nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: `"server-dev": "nodemon server.js -L"`. See https://www.npmjs.com/package/nodemon#application-isnt-restarting
