@@ -427,16 +427,30 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 
 
 ## Contribute
-Want to help? Join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
+Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
+On Slack you can see what we are working on and get in touch with other contributors.
 
-### Logger
+You can contribute by
+- **[helping us to add a new region on the map](#adding-a-new-region)**
+- correcting [data sources](#data-sources) and [capacities](#updating-region-capacities)
+- [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
+- fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
+- submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
 
-We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) which shows warnings and errors for all parsers.
+### Steps to making a contribution Make your code changes and test them by running your version locally
 
-### Running locally
+Follow these steps to make your contribution:
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
+2. [Clone](https://help.github.com/articles/cloning-a-repository/) *your fork* of the repository.
+3. Download [Docker](https://docs.docker.com/engine/installation/).
+4. Set up and start your local environment.
+5. Make your code changes and test them in your local environment.
+6. Push your changes to your fork.
+7. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) to us.
 
-To get started, [clone](https://help.github.com/articles/cloning-a-repository/) or [fork](https://help.github.com/articles/fork-a-repo/) the repository, and install [Docker](https://docs.docker.com/engine/installation/).
+Steps 4 to 7 are explained in more detail below.
 
+#### From setting up your local environment to submitting your contribution
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
 docker-compose build
@@ -450,11 +464,14 @@ This will watch over source file changes, running nonstop and watching changes y
 Note this only builds for the English language (which will be faster as not all languages need to be built).
 If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for calculation carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
+Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for the calculation of carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
 
 If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
 
 Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
+
+### Logger
+We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) which shows warnings and errors for all parsers.
 
 ### Updating region capacities
 If you want to update or add production capacities for a region then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed to the `capacity` map. Values are in MW.
