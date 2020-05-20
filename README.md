@@ -430,15 +430,14 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 On Slack you can see what we are working on and get in touch with other contributors. Also, if you get stuck, you can write a message in our channel #electricitymap.
 
-You can contribute by
-- **[helping us to add a new region on the map](#adding-a-new-region)**
-- correcting [data sources](#data-sources) and [capacities](#updating-region-capacities)
-- [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
-- fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
-- submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
+### How can you contribute?
+- **[add a new region on the map](#adding-a-new-region)**
+- correct [data sources](#data-sources) and [capacities](#updating-region-capacities)
+- [translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
+- fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
+- submit ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section
 
 ### Steps to making a code contribution
-
 Follow these steps to make your contribution:
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
 2. [Clone](https://help.github.com/articles/cloning-a-repository/) *your fork* of the repository.
@@ -557,7 +556,7 @@ Many of the tests require API keys of the data or web service providers and will
 
 In such cases, please browse the website related to the provider and ask for an API key. As soon as you got hold of the API key, make it an environment variable. This fixes the error.
 
-### Update the map
+### Updating the map
 We've added a testing server locally.
 
 To add a new country to the map, run:
