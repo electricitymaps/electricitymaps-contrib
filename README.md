@@ -430,7 +430,7 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 On Slack you can see what we are working on and get in touch with other contributors. Also, if you get stuck, you can write a message in our channel #electricitymap.
 
-There are different ways for you to help improve electricityMap, see our [overview above](#electricityMap).
+There are different ways how you can help improve electricityMap, have a look at the [overview above](#electricityMap).
 
 ### Steps to making a code contribution
 Follow these steps to make your contribution:
