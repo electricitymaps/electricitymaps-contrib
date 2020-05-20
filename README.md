@@ -557,7 +557,7 @@ It should appear on the map as you refresh your local browser.
 
 #### Windows Specific
 
-- FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory: You can configure the memory allocation using `NODE_OPTIONS=--max-old-space-size=4096` in the "build-release" script in package.json, example: "export `NODE_OPTIONS=--max-old-space-size=4096` NODE_ENV=production && webpack --bail --mode production". Also update the node version (last working version was v12.16.3).
+- `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`. You can configure the memory allocation using `NODE_OPTIONS=--max-old-space-size=4096` in the "build-release" script in package.json, example: `export NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production && webpack --bail --mode production`. Also update the node version (last working version was `v12.16.3`).
 
 - Expected linebreaks to be 'LF' but found 'CRLF': Configure your IDE to use LF instead of CRLF. If that doesn't fix it, add `"linebreak-style": 0` in "rules" in .estlintrc
 
@@ -565,4 +565,3 @@ It should appear on the map as you refresh your local browser.
    - Check that the project is cloned under C:/Users/
 
 - nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: "server-dev": "nodemon server.js `-L`". See https://www.npmjs.com/package/nodemon#application-isnt-restartin
-
