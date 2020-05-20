@@ -9,6 +9,7 @@ import {
   Link,
   useLocation,
   useParams,
+  useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import moment from 'moment';
@@ -23,14 +24,13 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
-import thirdPartyServices from '../../services/thirdparty';
 
-import { dispatch, dispatchApplication } from '../../store';
+import { dispatchApplication } from '../../store';
 
 // Modules
-import { updateApplication } from '../../actioncreators';
 import { useCurrentZoneData } from '../../hooks/redux';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
+import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 
@@ -74,7 +74,6 @@ const CountryRenewableGauge = () => {
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -82,17 +81,18 @@ const mapStateToProps = state => ({
 });
 
 const CountryPanel = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [pressedBackKey, setPressedBackKey] = useState(false);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
+  const co2ColorScale = useCo2ColorScale();
 
+  const trackEvent = useTrackEvent();
+  const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
 
@@ -104,39 +104,40 @@ const CountryPanel = ({
   };
 
   // Back button keyboard navigation
-  useEffect(() => {
-    const keyHandler = (e) => {
-      if (e.key === 'Backspace' || e.key === '/') {
-        setPressedBackKey(true);
-      }
-    };
-    document.addEventListener('keyup', keyHandler);
-    return () => {
-      document.removeEventListener('keyup', keyHandler);
-    };
-  });
+  useEffect(
+    () => {
+      const keyHandler = (e) => {
+        if (e.key === 'Backspace' || e.key === '/') {
+          history.push(parentPage);
+        }
+      };
+      document.addEventListener('keyup', keyHandler);
+      return () => {
+        document.removeEventListener('keyup', keyHandler);
+      };
+    },
+    [history],
+  );
 
-  // Redirect to the parent page if the zone is invalid
-  // or if the back navigation key has been pressed.
-  if (!zones[zoneId] || pressedBackKey) {
+  // Redirect to the parent page if the zone is invalid.
+  if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
   }
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
-    thirdPartyServices.track('switchToCountryEmissions');
+    trackEvent('switchToCountryEmissions');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
-    thirdPartyServices.track('switchToCountryProduction');
+    trackEvent('switchToCountryProduction');
   };
 
   return (
@@ -270,16 +271,17 @@ const CountryPanel = ({
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
-                {' ('}
+                {' '}
+                (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
                       'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />
-                {')'}
+                )
               </small>
               {' '}
               {__('country-panel.helpfrom')}

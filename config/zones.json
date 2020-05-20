@@ -1445,20 +1445,22 @@
       ]
     ],
     "capacity": {
-      "biomass": 1076,
+      "biomass": 1189,
       "coal": 9456,
-      "gas": 26284,
+      "gas": 30012,
       "geothermal": 0,
       "hydro": 17085,
+      "hydro-storage": 3329,
       "nuclear": 7117,
-      "oil": 715,
-      "solar": 11744,
-      "unknown": 360,
-      "wind": 25806
+      "oil": 707,
+      "solar": 11353,
+      "wind": 25806,
+      "unknown": 360
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/JosepRey"
+      "https://github.com/JosepRey",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1766,7 +1768,6 @@
     "timezone": "Atlantic/Faroe"
   },
   "FR": {
-    "_comment": "hydro incl. 4975 MW pumped storage.",
     "bounding_box": [
       [
         -5.44921875,
@@ -1778,14 +1779,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 2122,
-      "coal": 2997,
-      "gas": 12191,
-      "hydro": 25557,
+      "biomass": 1776,
+      "coal": 2968,
+      "gas": 12156,
+      "geothermal": 16,
+      "hydro": 24086,
+      "hydro storage": 1728,
       "nuclear": 63130,
-      "oil": 3401,
-      "solar": 9435,
-      "wind": 16494
+      "oil": 2705,
+      "solar": 10562,
+      "wind": 16494,
+      "unknown": 218
     },
     "contributors": [
       "https://github.com/corradio",
@@ -2734,7 +2738,7 @@
       "coal": 979, 
       "geothermal": 0,
       "hydro": 154,
-      "hydro-storage": 312,
+      "hydro storage": 312,
       "nuclear": 0,
       "oil": 238,
       "solar": 787,
@@ -3789,15 +3793,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 1142,
+      "biomass": 1493,
       "coal": 29963,
-      "gas": 2540,
-      "hydro": 968,
-      "hydro storage": 1423,
+      "gas": 2812,
+      "hydro": 605,
+      "hydro storage": 1780,
       "nuclear": 0,
       "oil": 359,
-      "solar": 1695,
-      "wind": 5917
+      "solar": 1833,
+      "wind": 5953
     },
     "contributors": [
       "https://github.com/corradio",

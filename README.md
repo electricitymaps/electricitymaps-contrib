@@ -251,7 +251,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Finland
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- France: [RTE](https://bilan-electrique-2019.rte-france.com/production-totale)
+- France: 
+  - Geothermal, Hydro, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst.htm?year=2018&period=annual&type=power_inst)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -306,9 +308,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Northern Ireland:[ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1248502288152293378)
-  - Other Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+- Poland  
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1259734669232427009)
+  - Biomass: [URE] (https://www.ure.gov.pl/download/9/10905/mocIVkw2019.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -324,9 +326,10 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - South Korea: [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
-- Spain:[REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
-  - Hydro: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ESP)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?name=&defaultValue=false&viewType=TABLE&areaType=BZN&atch=false&dateTime.dateTime=01.01.2017+00:00|UTC|YEAR&dateTime.endDateTime=01.01.2017+00:00|UTC|YEAR&area.values=CTY|10YES-REE------0!BZN|10YES-REE------0&productionType.values=B01&productionType.values=B02&productionType.values=B03&productionType.values=B04&productionType.values=B05&productionType.values=B06&productionType.values=B07&productionType.values=B08&productionType.values=B09&productionType.values=B10&productionType.values=B11&productionType.values=B12&productionType.values=B13&productionType.values=B14&productionType.values=B20&productionType.values=B15&productionType.values=B16&productionType.values=B17&productionType.values=B18&productionType.values=B19)
+- Spain:
+  - Biomass: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Gas, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
+  - Other: [REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
 - Spain (Canary Islands)
   - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
@@ -386,6 +389,8 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
+- Japan-Chūbu ⇄ Japan-Tōkyō: [3x HVDC interconnectors between 60Hz/50Hz areas: 1200 MW](https://www.jepic.or.jp/pub/pdf/epijJepic2019.pdf)
+- Japan-Hokkaidō ⇄ Japan-Tōhoku: ["HVDC Hokkaidō–Honshū": 900 MW](https://ja.wikipedia.org/wiki/%E5%8C%97%E6%B5%B7%E9%81%93%E3%83%BB%E6%9C%AC%E5%B7%9E%E9%96%93%E9%80%A3%E7%B3%BB%E8%A8%AD%E5%82%99)
 - Lithuania ⇄ Sweden: ["NordBalt": 700 MW](https://en.wikipedia.org/wiki/NordBalt)
 - Lithuania ⇄ Poland: ["LitPol Link": 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
 - Malta ⇄ Italy Sicily: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
@@ -469,7 +474,7 @@ A parser is a python3 script that is expected to define the method `fetch_produc
 ```python
 def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
     return {
-      'countryCode': 'FR',
+      'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
           'biomass': 0.0,

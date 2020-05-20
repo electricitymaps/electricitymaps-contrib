@@ -2,7 +2,7 @@ import * as request from 'd3-request';
 import { sha256 } from 'js-sha256';
 import Cookies from 'js-cookie';
 
-import { isLocalhost, isProduction } from './environment';
+import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
 function isRemoteParam() {
