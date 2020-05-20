@@ -430,12 +430,7 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
 On Slack you can see what we are working on and get in touch with other contributors. Also, if you get stuck, you can write a message in our channel #electricitymap.
 
-### How can you contribute?
-- **[add a new region on the map](#adding-a-new-region)**
-- correct [data sources](#data-sources) and [capacities](#updating-region-capacities)
-- [translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
-- fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
-- submit ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section
+There are different ways for you to help improve electricityMap, see our [overview above](#electricityMap).
 
 ### Steps to making a code contribution
 Follow these steps to make your contribution:
