@@ -443,14 +443,12 @@ Follow these steps to make your contribution:
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
 2. [Clone](https://help.github.com/articles/cloning-a-repository/) *your fork* of the repository.
 3. Download [Docker](https://docs.docker.com/engine/installation/).
-4. Set up and start your local environment.*
+4. Set up and start your local environment (see explanation below).
 5. Make your code changes and test them in your local environment.
 6. Push your changes to your fork.
 7. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) to bring your contribution into the production version.
 
-* Step 4 is explained in more detail below.
-
-#### 4. Set up and start your local environment.
+#### Set up and start your local environment
 
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
@@ -470,7 +468,8 @@ Head over to [http://localhost:8000/](http://localhost:8000/) and you should see
 If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
 
 ### Logger
-We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) which shows warnings and errors for all parsers.
+If you want to add new or change existing parsers you can use our public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) to see if your parsers can fetch data successfully.
+The logs show warnings and errors for all parsers.
 
 ### Updating region capacities
 If you want to update or add production capacities for a region then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed to the `capacity` map. Values are in MW.
