@@ -437,20 +437,21 @@ You can contribute by
 - fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
 - submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
 
-### Steps to making a contribution Make your code changes and test them by running your version locally
+### Steps to making a contribution
 
 Follow these steps to make your contribution:
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
 2. [Clone](https://help.github.com/articles/cloning-a-repository/) *your fork* of the repository.
 3. Download [Docker](https://docs.docker.com/engine/installation/).
-4. Set up and start your local environment.
+4. Set up and start your local environment.*
 5. Make your code changes and test them in your local environment.
 6. Push your changes to your fork.
-7. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) to us.
+7. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) to bring your contribution into the production version.
 
-Steps 4 to 7 are explained in more detail below.
+* Step 4 is explained in more detail below.
 
-#### From setting up your local environment to submitting your contribution
+#### 4. Set up and start your local environment.
+
 The frontend will need compiling. In order to do this, open a terminal in the root directory and run
 ```
 docker-compose build
@@ -460,15 +461,13 @@ One you are done, you can start the application by running
 docker-compose up
 ```
 
-This will watch over source file changes, running nonstop and watching changes you make in the code to recompile the frontend if needed.
+This will watch over source file changes, run nonstop and watch changes you make in the code to recompile the frontend if needed.
 Note this only builds for the English language (which will be faster as not all languages need to be built).
 If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
 
 Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for the calculation of carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
 
 If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
-
-Once you're done doing your changes, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to get them integrated into the production version.
 
 ### Logger
 We have a public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) which shows warnings and errors for all parsers.
