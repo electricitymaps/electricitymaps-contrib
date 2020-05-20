@@ -428,7 +428,7 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 
 ## Contribute
 Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
-On Slack you can see what we are working on and get in touch with other contributors.
+On Slack you can see what we are working on and get in touch with other contributors. If you get stuck, you can write a message in our channel #electricitymap.
 
 You can contribute by
 - **[helping us to add a new region on the map](#adding-a-new-region)**
@@ -437,7 +437,7 @@ You can contribute by
 - fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
 - submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
 
-### Steps to making a contribution
+### Steps to making a code contribution
 
 Follow these steps to make your contribution:
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
@@ -468,7 +468,7 @@ Head over to [http://localhost:8000/](http://localhost:8000/) and you should see
 If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
 
 ### Logger
-If you want to add new or change existing parsers you can use our public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) to see if your parsers can fetch data successfully.
+If you want to add new or change existing parsers you can use our public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) to see if your parser(s) can fetch data successfully.
 The logs show warnings and errors for all parsers.
 
 ### Updating region capacities
