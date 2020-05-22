@@ -45,8 +45,8 @@
         "now": "Now"
     },
     "left-panel": {
-        "zone-list-header-title": "Ilmastovaikutukset alueittain,
-        "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq / kWh)",
+        "zone-list-header-title": "Ilmastovaikutukset alueittain",
+        "zone-list-header-subtitle": "Sijoitus kulutetun sähkön hiili-intensiteetin mukaan (gCO₂eq/kWh)",
         "search": "Etsi alueita"
     },
     "country-history": {
