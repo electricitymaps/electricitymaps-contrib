@@ -528,7 +528,12 @@
   "BH": {
     "contributors": [
       "https://github.com/q--"
+      "https://github.com/nessie2013"
     ],
+    "capacity": {
+      "solar": 6,
+      "wind": 1
+    },
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
