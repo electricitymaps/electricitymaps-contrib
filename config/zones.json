@@ -2050,20 +2050,21 @@
       ]
     ],
     "capacity": {
-      "biomass": 51,
-      "coal": 3912,
+      "biomass": 86,
+      "coal": 3362,
       "gas": 4902,
       "geothermal": 0,
       "hydro": 2702,
       "hydro storage": 699,
       "nuclear": 0,
       "oil": 0,
-      "solar": 2441,
-      "unknown": 69,
-      "wind": 2355
+      "solar": 2763,
+      "unknown": 105,
+      "wind": 3547
     },
     "contributors": [
       "https://github.com/corradio"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
