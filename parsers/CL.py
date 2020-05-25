@@ -32,6 +32,7 @@ def timestamp_creator(date, hour):
     dt = pd.to_datetime(date, format='%Y-%m-%d').tz_localize('Chile/Continental')
     dt = dt + pd.DateOffset(hours=hour)
     dt = dt.tz_convert('UTC')
+    dt=dt.to_pydatetime()
 
     return dt
 
