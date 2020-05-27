@@ -3066,11 +3066,12 @@
     "capacity": {
       "gas": 6525,
       "oil": 8550,
-      "solar": 30.5,
-      "wind": 10
+      "solar": 93,
+      "wind": 12
     },
     "contributors": [
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "KW.fetch_production"
