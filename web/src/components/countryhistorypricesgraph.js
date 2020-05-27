@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
@@ -17,7 +17,7 @@ import {
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
 
-const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode) => {
+const prepareGraphData = (historyData) => {
   if (!historyData || !historyData[0]) return {};
 
   const currencySymbol = getSymbolFromCurrency(((first(historyData) || {}).price || {}).currency);
@@ -51,15 +51,11 @@ const prepareGraphData = (historyData, colorBlindModeEnabled, electricityMixMode
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryPricesGraph = ({
-  colorBlindModeEnabled,
-  electricityMixMode,
   isMobile,
   selectedTimeIndex,
 }) => {
@@ -79,8 +75,8 @@ const CountryHistoryPricesGraph = ({
     markerFill,
     valueAxisLabel,
   } = useMemo(
-    () => prepareGraphData(historyData, colorBlindModeEnabled, electricityMixMode),
-    [historyData, colorBlindModeEnabled, electricityMixMode]
+    () => prepareGraphData(historyData),
+    [historyData],
   );
 
   // Mouse action handlers
@@ -89,14 +85,14 @@ const CountryHistoryPricesGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -106,13 +102,13 @@ const CountryHistoryPricesGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile]
+    [setTooltip, isMobile],
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip]
+    [setTooltip],
   );
 
   return (

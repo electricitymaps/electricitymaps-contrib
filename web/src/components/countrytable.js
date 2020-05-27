@@ -2,25 +2,27 @@
 import React, {
   useRef,
   useMemo,
-  useEffect,
   useState,
 } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
-import { max as d3Max, min as d3Min } from 'd3-array';
-import { precisionPrefix, formatPrefix } from 'd3-format';
+import { max as d3Max } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
 
-import { dispatch, dispatchApplication } from '../store';
+import { dispatchApplication } from '../store';
 import { useWidthObserver } from '../hooks/viewport';
 import {
   useCurrentZoneData,
   useCurrentZoneExchangeKeys,
 } from '../hooks/redux';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
-import { getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
+import {
+  getElectricityProductionValue,
+  getProductionCo2Intensity,
+  getExchangeCo2Intensity,
+} from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
 import { __ } from '../helpers/translation';
 
@@ -126,6 +128,8 @@ const Row = ({
   index,
   isMobile,
   label,
+  scale,
+  value,
   onMouseOver,
   onMouseOut,
   width,
@@ -161,6 +165,18 @@ const Row = ({
 
       {/* Row content */}
       {children}
+
+      {/* Question mark if the value is not defined */}
+      {!isFinite(value) && (
+        <text
+          className="unknown"
+          transform={`translate(3, ${TEXT_ADJUST_Y})`}
+          style={{ pointerEvents: 'none', fill: 'darkgray' }}
+          x={LABEL_MAX_WIDTH + scale(0)}
+        >
+          ?
+        </text>
+      )}
     </g>
   );
 };
@@ -195,30 +211,8 @@ const HorizontalBar = ({
   );
 };
 
-const QuestionMarkIfNoData = ({ datapoint, scale }) => {
-  // If the mode is unknown, don't need to show the question mark
-  if (datapoint.mode === 'unknown') return null;
-
-  // If both the value and capacity fills are there, don't show the question mark 
-  const value = datapoint.isStorage ? datapoint.storage : datapoint.production;
-  if (datapoint.capacity !== undefined && value !== undefined) return null;
-
-  return (
-    <text
-      className="unknown"
-      transform={`translate(1, ${TEXT_ADJUST_Y})`}
-      style={{ pointerEvents: 'none', fill: 'darkgray' }}
-      x={LABEL_MAX_WIDTH + scale(0)}
-    >
-      ?
-    </text>
-  );
-};
-
 const CountryCarbonEmissionsTable = React.memo(({
-  colorBlindModeEnabled,
   data,
-  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -236,15 +230,20 @@ const CountryCarbonEmissionsTable = React.memo(({
   const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
 
   // in tCO₂eq/min
-  const co2Scale = scaleLinear()
-    .domain([
-      -maxCO2eqExport || 0,
-      Math.max(
-        maxCO2eqProduction || 0,
-        maxCO2eqImport || 0
-      ),
-    ])
-    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+  const co2Scale = useMemo(
+    () => (
+      scaleLinear()
+        .domain([
+          -maxCO2eqExport || 0,
+          Math.max(
+            maxCO2eqProduction || 0,
+            maxCO2eqImport || 0,
+          ),
+        ])
+        .range([0, width - LABEL_MAX_WIDTH - PADDING_X])
+    ),
+    [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width],
+  );
 
   const formatTick = (t) => {
     const [x1, x2] = co2Scale.domain();
@@ -266,6 +265,8 @@ const CountryCarbonEmissionsTable = React.memo(({
             index={index}
             label={__(d.mode)}
             width={width}
+            scale={co2Scale}
+            value={Math.abs(d.tCo2eqPerMin)}
             onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -274,10 +275,6 @@ const CountryCarbonEmissionsTable = React.memo(({
               className="production"
               fill={modeColor[d.mode]}
               range={[0, Math.abs(d.tCo2eqPerMin)]}
-              scale={co2Scale}
-            />
-            <QuestionMarkIfNoData
-              datapoint={d}
               scale={co2Scale}
             />
           </Row>
@@ -290,6 +287,8 @@ const CountryCarbonEmissionsTable = React.memo(({
             index={index}
             label={d.mode}
             width={width}
+            scale={co2Scale}
+            value={d.tCo2eqPerMin}
             onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
@@ -313,9 +312,7 @@ const CountryCarbonEmissionsTable = React.memo(({
 });
 
 const CountryElectricityProductionTable = React.memo(({
-  colorBlindModeEnabled,
   data,
-  electricityMixMode,
   exchangeData,
   height,
   isMobile,
@@ -326,9 +323,9 @@ const CountryElectricityProductionTable = React.memo(({
   onExchangeRowMouseOut,
   width,
 }) => {
-  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+  const co2ColorScale = useCo2ColorScale();
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
   // Power in MW
   const powerScale = scaleLinear()
@@ -337,7 +334,7 @@ const CountryElectricityProductionTable = React.memo(({
         -data.maxStorageCapacity || 0,
         -data.maxStorage || 0,
         -data.maxExport || 0,
-        -data.maxExportCapacity || 0
+        -data.maxExportCapacity || 0,
       ),
       Math.max(
         data.maxCapacity || 0,
@@ -345,7 +342,7 @@ const CountryElectricityProductionTable = React.memo(({
         data.maxDischarge || 0,
         data.maxStorageCapacity || 0,
         data.maxImport || 0,
-        data.maxImportCapacity || 0
+        data.maxImportCapacity || 0,
       ),
     ])
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
@@ -371,6 +368,8 @@ const CountryElectricityProductionTable = React.memo(({
             index={index}
             label={__(d.mode)}
             width={width}
+            scale={powerScale}
+            value={getElectricityProductionValue(d)}
             onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
             onMouseOut={onProductionRowMouseOut}
             isMobile={isMobile}
@@ -384,11 +383,7 @@ const CountryElectricityProductionTable = React.memo(({
             <HorizontalBar
               className="production"
               fill={modeColor[d.mode]}
-              range={d.isStorage ? [0, -d.storage] : [0, d.production]}
-              scale={powerScale}
-            />
-            <QuestionMarkIfNoData
-              datapoint={d}
+              range={[0, getElectricityProductionValue(d)]}
               scale={powerScale}
             />
           </Row>
@@ -401,6 +396,8 @@ const CountryElectricityProductionTable = React.memo(({
             index={index}
             label={d.mode}
             width={width}
+            scale={powerScale}
+            value={d.exchange}
             onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
             onMouseOut={onExchangeRowMouseOut}
             isMobile={isMobile}
@@ -430,14 +427,12 @@ const CountryElectricityProductionTable = React.memo(({
 });
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
 const CountryTable = ({
-  colorBlindModeEnabled,
   displayByEmissions,
   electricityMixMode,
   isMobile,
@@ -450,11 +445,11 @@ const CountryTable = ({
 
   const productionData = useMemo(
     () => getProductionData(data),
-    [data]
+    [data],
   );
   const exchangeData = useMemo(
     () => getExchangeData(data, exchangeKeys, electricityMixMode),
-    [data, exchangeKeys, electricityMixMode]
+    [data, exchangeKeys, electricityMixMode],
   );
 
   const [productionTooltip, setProductionTooltip] = useState(null);
@@ -487,8 +482,6 @@ const CountryTable = ({
     <div className="country-table-container" ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
-          colorBlindModeEnabled={colorBlindModeEnabled}
-          electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
@@ -502,8 +495,6 @@ const CountryTable = ({
         />
       ) : (
         <CountryElectricityProductionTable
-          colorBlindModeEnabled={colorBlindModeEnabled}
-          electricityMixMode={electricityMixMode}
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
