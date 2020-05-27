@@ -4381,14 +4381,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 253,
+      "biomass": 317,
       "geothermal": 204,
-      "hydro": 575,
+      "hydro": 571,
       "oil": 756,
-      "solar": 140
+      "solar": 273
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "SV.fetch_production"
