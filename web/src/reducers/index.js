@@ -48,7 +48,7 @@ const initialApplicationState = {
   searchQuery: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
-  webGLSupported: false,
+  webGLSupported: true,
   windColorbarValue: null,
 
   // TODO(olc): move this to countryPanel once all React components have been made
