@@ -214,8 +214,9 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Bahrain: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium
-  - Hydro, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - Other: [ELIA](https://www.eliagroup.eu/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20190411_gri18_elia_en.pdf)
+  - Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Hydro & Wind: [ELIA](https://www.elia.be/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20200414_elia_annual-report-sustainability_en.pdf)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
