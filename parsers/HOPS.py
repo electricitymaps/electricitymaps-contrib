@@ -36,8 +36,6 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
     solar_production_dt = pd.Timestamp(feed_date, tz='Europe/Zagreb').floor('1h')
     try:
         solar = df['Value'].loc[solar_production_dt]
-        # Value is in string format and needs to be converted to float
-        solar = float(solar.replace(",", "."))
         # Converting to MW
         solar *= 0.001
     except KeyError:

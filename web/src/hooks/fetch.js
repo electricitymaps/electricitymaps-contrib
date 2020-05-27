@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
-import moment from 'moment';
 
-import { useCustomDatetime, useWindEnabled, useSolarEnabled } from '../helpers/router';
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
+import { useCustomDatetime, useWindEnabled, useSolarEnabled } from './router';
 import { useCurrentZoneHistory } from './redux';
 
 export function useClientVersionFetch() {

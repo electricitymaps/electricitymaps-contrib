@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useState, useMemo } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { max as d3Max } from 'd3-array';
 import { forEach } from 'lodash';
 
@@ -127,7 +127,7 @@ const CountryHistoryMixGraph = ({
     valueAxisLabel,
   } = useMemo(
     () => prepareGraphData(historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys),
-    [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys]
+    [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys],
   );
 
   // Mouse action handlers
@@ -135,27 +135,27 @@ const CountryHistoryMixGraph = ({
     () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
     },
-    []
+    [],
   );
   const backgroundMouseOutHandler = useMemo(
-    () => (timeIndex) => {
+    () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
     },
-    []
+    [],
   );
   const layerMouseMoveHandler = useMemo(
     () => (timeIndex, layerIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(layerIndex);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   const layerMouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -166,13 +166,13 @@ const CountryHistoryMixGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile]
+    [setTooltip, isMobile],
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip]
+    [setTooltip],
   );
 
   return (
