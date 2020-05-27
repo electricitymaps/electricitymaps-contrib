@@ -121,7 +121,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
             'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
         }
-        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro'])
+        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro', 'gas'])
         datapoints.append(datapoint)
 
     max_diffs = {
