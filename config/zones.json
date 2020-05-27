@@ -3897,8 +3897,13 @@
   },
   "QA": {
     "contributors": [
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
+    "capacity": {
+      "biomass": 38,
+      "solar": 5
+    },
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
