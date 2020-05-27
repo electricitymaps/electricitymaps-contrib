@@ -60,8 +60,7 @@ def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=N
     data = [dict() for h in range(actual_hour + 1)]
 
     # initial path for url to request
-    url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
-
+    url_init = 'https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
     # Start with data for midnight
     url = url_init + past_formatted_date
     # Request and rearange in DF
@@ -118,7 +117,7 @@ def fetch_consumption(zone_key='GT', session=None, target_datetime=None, logger=
     data = [dict() for h in range(actual_hour + 1)]
 
     # initial path for url to request
-    url_init = 'http://wl.amm.org.gt/AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
+    url_init = 'https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
 
     # Start with data for midnight
     url = url_init + past_formatted_date

@@ -40,7 +40,9 @@ const ZoneMap = ({
   zones = {},
 }) => {
   const ref = useRef(null);
+  const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
+  const [isSupported, setIsSupported] = useState(true);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -112,6 +114,7 @@ const ZoneMap = ({
   useEffect(
     () => {
       if (!ReactMapGL.supported()) {
+        setIsSupported(false);
         onMapError('WebGL not supported');
       }
     },
@@ -174,8 +177,13 @@ const ZoneMap = ({
     [hoveredZoneId],
   );
 
+  // Don't render map nor any of the layers if WebGL is not supported.
+  if (!isSupported) {
+    return null;
+  }
+
   return (
-    <div id="zone-map" style={style}>
+    <div className="zone-map" style={style} ref={wrapperRef}>
       <ReactMapGL
         ref={ref}
         width="100%"
@@ -207,7 +215,7 @@ const ZoneMap = ({
           Render the navigation controls next to ReactMapGL in the DOM so that
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
-        <Portal node={document.getElementById('zone-map')}>
+        <Portal node={wrapperRef.current}>
           <div
             className="mapboxgl-zoom-controls"
             style={{

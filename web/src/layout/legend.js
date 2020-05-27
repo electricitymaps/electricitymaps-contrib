@@ -2,15 +2,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { connect } from 'react-redux';
-import { scaleLinear } from 'd3-scale';
 
 import { dispatchApplication } from '../store';
-import { updateApplication } from '../actioncreators';
 import { __ } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { solarColor, windColor } from '../helpers/scales';
-import { useSolarEnabled, useWindEnabled } from '../helpers/router';
+import { useSolarEnabled, useWindEnabled } from '../hooks/router';
 import { useCo2ColorScale } from '../hooks/theme';
 
 // TODO: Move styles from styles.css to here

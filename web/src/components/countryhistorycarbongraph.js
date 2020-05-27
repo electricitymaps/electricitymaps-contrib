@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useMemo, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { useCo2ColorScale } from '../hooks/theme';
@@ -52,7 +52,7 @@ const CountryHistoryCarbonGraph = ({
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
     () => prepareGraphData(historyData, co2ColorScale, electricityMixMode),
-    [historyData, co2ColorScale, electricityMixMode]
+    [historyData, co2ColorScale, electricityMixMode],
   );
 
   // Mouse action handlers
@@ -61,14 +61,14 @@ const CountryHistoryCarbonGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -78,13 +78,13 @@ const CountryHistoryCarbonGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile]
+    [setTooltip, isMobile],
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip]
+    [setTooltip],
   );
 
   return (

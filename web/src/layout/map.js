@@ -1,21 +1,18 @@
-import React, {
-  useState,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useMemo } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { debounce, isEmpty, noop } from 'lodash';
+import { debounce } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
-import { getZoneId, navigateTo } from '../helpers/router';
+import { __ } from '../helpers/translation';
+import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
-import { useCo2ColorScale, useTheme } from '../hooks/theme';
+import { useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
+import { useTrackEvent } from '../hooks/tracking';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -28,6 +25,7 @@ import WindLayer from '../components/layers/windlayer';
 const debouncedReleaseMoving = debounce(() => { dispatchApplication('isMovingMap', false); }, 200);
 
 export default () => {
+  const webGLSupported = useSelector(state => state.application.webGLSupported);
   const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
@@ -38,7 +36,9 @@ export default () => {
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
+  const trackEvent = useTrackEvent();
   const location = useLocation();
+  const history = useHistory();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
@@ -77,9 +77,9 @@ export default () => {
 
       // Disable the map and redirect to zones ranking.
       dispatchApplication('webGLSupported', false);
-      navigateTo({ pathname: '/ranking', search: location.search });
+      history.push({ pathname: '/ranking', search: location.search });
     },
-    [],
+    [history],
   );
 
   const handleMouseMove = useMemo(
@@ -107,27 +107,27 @@ export default () => {
 
   const handleSeaClick = useMemo(
     () => () => {
-      navigateTo({ pathname: '/map', search: location.search });
+      history.push({ pathname: '/map', search: location.search });
     },
-    [location],
+    [history],
   );
 
   const handleZoneClick = useMemo(
     () => (id) => {
+      trackEvent('countryClick');
       dispatchApplication('isLeftPanelCollapsed', false);
-      navigateTo({ pathname: `/zone/${id}`, search: location.search });
-      thirdPartyServices.trackWithCurrentApplicationState('countryClick');
+      history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [location],
+    [trackEvent, history],
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (data, id) => {
+    () => (data) => {
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
           ? data.co2intensity
-          : data.co2intensityProduction
+          : data.co2intensityProduction,
       );
       setTooltipZoneData(data);
     },
@@ -159,6 +159,11 @@ export default () => {
 
   return (
     <React.Fragment>
+      <div id="webgl-error" className={`flash-message ${!webGLSupported ? 'active' : ''}`}>
+        <div className="inner">
+          {__('misc.webgl-not-supported')}
+        </div>
+      </div>
       {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
           zoneData={tooltipZoneData}

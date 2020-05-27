@@ -13,7 +13,8 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import { useSearchParams } from '../../helpers/router';
+import { dispatchApplication } from '../../store';
+import { useSearchParams } from '../../hooks/router';
 import { usePageViewsTracker } from '../../hooks/tracking';
 import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
@@ -86,6 +87,16 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
             <LastUpdatedTime />
           </div>
         </div>
+      </div>
+
+      <div
+        id="left-panel-collapse-button"
+        className={`small-screen-hidden ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
+        onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
+        role="button"
+        tabIndex="0"
+      >
+        <i className="material-icons">arrow_drop_down</i>
       </div>
 
       {/* Render different content based on the current route */}
