@@ -280,7 +280,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
 - Kuwait 
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
-  - Solar & wind: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=KWT)
+  - Solar & wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
@@ -559,3 +559,14 @@ It should appear on the map as you refresh your local browser.
 - `ERROR: for X Cannot create container for service X: Invalid bind mount spec "<path>": Invalid volume specification: '<volume spec>'`. If you get this error after running `docker-compose up` on Windows, you should tell `docker-compose` to properly understand Windows paths by setting the environment variable `COMPOSE_CONVERT_WINDOWS_PATHS` to `0` by running `setx COMPOSE_CONVERT_WINDOWS_PATHS 0`. You will also need a recent version of `docker-compose`. We have successfully seen this fix work with [v1.13.0-rc4](https://github.com/docker/toolbox/releases/tag/v1.13.0-rc4). More info here: https://github.com/docker/compose/issues/4274.
 
 - No website found at `http://localhost:8000`: This can happen if you're running Docker in a virtual machine. Find out docker's IP using `docker-machine ip default`, and replace `localhost` by your Docker IP when connecting.
+
+#### Windows Specific
+
+- `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`. You can configure the memory allocation using `NODE_OPTIONS=--max-old-space-size=4096` in the "build-release" script in package.json, example: `export NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production && webpack --bail --mode production`. Also update the node version (last working version was `v12.16.3`).
+
+- Expected linebreaks to be 'LF' but found 'CRLF': Configure your IDE to use LF instead of CRLF. If that doesn't fix it, add `"linebreak-style": 0` in "rules" in .estlintrc
+
+- `ERROR: for electricitymap-contrib_mockserver_1  Cannot start service mockserver: OCI runtime create failed: container_linux.go:345: starting container process caused "process_linux.go:424: container init caused \"rootfs_linux.go:58: mounting \\\".../server.py\\\" to rootfs \\\"/mnt/sda1/var/lib/docker/overlay2/.../merged\\\" at \\\".../server.py\\\" caused \\\"not a directory\\\"\"": unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type`.
+   - Check that the project is cloned under C:/Users/
+
+- nodemon not restarting on file changes: try adding the `-L` parameter to use the legacy watch: `"server-dev": "nodemon server.js -L"`. See https://www.npmjs.com/package/nodemon#application-isnt-restarting
