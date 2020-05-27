@@ -42,6 +42,7 @@ const ZoneMap = ({
   const ref = useRef(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
+  const [isSupported, setIsSupported] = useState(true);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -113,6 +114,7 @@ const ZoneMap = ({
   useEffect(
     () => {
       if (!ReactMapGL.supported()) {
+        setIsSupported(false);
         onMapError('WebGL not supported');
       }
     },
@@ -174,6 +176,11 @@ const ZoneMap = ({
     },
     [hoveredZoneId],
   );
+
+  // Don't render map nor any of the layers if WebGL is not supported.
+  if (!isSupported) {
+    return null;
+  }
 
   return (
     <div className="zone-map" style={style} ref={wrapperRef}>
