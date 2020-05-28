@@ -2766,18 +2766,7 @@
     "timezone": "Europe/Rome"
   },
   "IT-SIC": {
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome",
-    "bounding_box": [
+   "bounding_box": [
       [
         11.422211134000122,
         34.98924388200004
@@ -2786,7 +2775,32 @@
         16.151621941000144,
         39.311957098000164
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 72,
+      "gas": 589,
+      "coal": 979, 
+      "geothermal": 0,
+      "hydro": 419,
+      "hydro-storage": 312,
+      "nuclear": 0,
+      "oil": 238,
+      "solar": 1400,
+      "wind": 1893,
+      "unknown": 3756
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome"
   },
   "IT-SO": {
     "contributors": [
