@@ -55,6 +55,9 @@ NEGATIVE_PRODUCTION_THRESHOLDS = {
         },
         'US-CAR-CPLE': {
             'coal': -20
+        },
+        'US-NW-AVRN': {
+            'wind': -20
         }
     }
 }

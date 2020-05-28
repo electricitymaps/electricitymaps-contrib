@@ -197,7 +197,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
         datapoint = {
             'zoneKey': zone_key,
-            'datetime': dt,
+            'datetime': dt.to_pydatetime(),
             'production': production_data,
             'storage': {},
             'source': 'coordinador.cl'

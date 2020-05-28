@@ -1,14 +1,20 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  select,
+  takeLatest,
+} from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleRequestError, protectedJsonRequest, textRequest } from '../helpers/api';
+import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
   getGfsTargetTimeAfter,
   fetchGfsForecast,
 } from '../helpers/gfs';
 
-function* fetchClientVersion(action) {
+function* fetchClientVersion() {
   try {
     const version = yield call(textRequest, '/clientVersion');
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
@@ -32,7 +38,7 @@ function* fetchGridData(action) {
   const { datetime } = action.payload;
   try {
     const payload = yield call(protectedJsonRequest, datetime ? `/v3/state?datetime=${datetime}` : '/v3/state');
-    thirdPartyServices.trackWithCurrentApplicationState('pageview');
+    yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
@@ -66,10 +72,37 @@ function* fetchWindData(action) {
   }
 }
 
+function* trackEvent(action) {
+  const appState = yield select(state => state.application);
+  const searchParams = new URLSearchParams(history.location.search);
+  const { eventName, context = {} } = action.payload;
+
+  yield call(
+    [thirdPartyServices, thirdPartyServices.trackEvent],
+    eventName,
+    {
+      // Pass whole of the application state ...
+      ...appState,
+      bundleVersion: appState.bundleHash,
+      embeddedUri: appState.isEmbedded ? document.referrer : null,
+      // ... together with the URL context ...
+      currentPage: history.location.pathname.split('/')[1],
+      selectedZoneName: history.location.pathname.split('/')[2],
+      solarEnabled: searchParams.get('solar') === 'true',
+      windEnabled: searchParams.get('wind') === 'true',
+      // ... and whatever context is explicitly provided.
+      ...context,
+    },
+  );
+}
+
 export default function* () {
+  // Data fetching
   yield takeLatest('GRID_DATA_FETCH_REQUESTED', fetchGridData);
   yield takeLatest('WIND_DATA_FETCH_REQUESTED', fetchWindData);
   yield takeLatest('SOLAR_DATA_FETCH_REQUESTED', fetchSolarData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
   yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);
+  // Analytics
+  yield takeLatest('TRACK_EVENT', trackEvent);
 }
