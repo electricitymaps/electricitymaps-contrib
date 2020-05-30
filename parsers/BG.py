@@ -76,7 +76,7 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
     time_string = bold.string
     dt = time_string_converter(time_string)
 
-    table = soup.find("table", {"class": "defaultTable2"})
+    table = soup.find("table", {"class": "table-condensed"})
     rows = table.findChildren("tr")
 
     datapoints = []

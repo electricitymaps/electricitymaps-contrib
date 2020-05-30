@@ -85,7 +85,7 @@ def fetch_production(zone_key='JP-KY', session=None, target_datetime=None,
         'source': 'www.kyuden.co.jp'
         }
     # url for consumption and solar
-    url = 'https://www.kyuden.co.jp/power_usages/pc.html'
+    url = 'https://www.kyuden.co.jp/td_power_usages/pc.html'
     r = requests.get(url)
     r.encoding = 'utf-8'
     html = r.text

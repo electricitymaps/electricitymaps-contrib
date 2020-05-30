@@ -1,16 +1,12 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-} from 'react';
+import React, { useRef, useMemo } from 'react';
 import {
   first,
   last,
   max,
+  min,
   filter,
   flattenDeep,
   isFinite,
-  isNumber,
   isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
@@ -22,7 +18,7 @@ import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
-import { useWidthObserver, useHeightObserver } from '../../effects';
+import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
@@ -37,17 +33,26 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   ])
   .range([0, width]);
 
-const getMaxTotalValue = (layers) => {
-  const values = flattenDeep(
-    layers.map(
-      layer => layer.datapoints.map(d => d[1])
-    )
+const getTotalValues = (layers) => {
+  const values = filter(
+    flattenDeep(
+      layers.map(
+        layer => layer.datapoints.map(d => d[1]),
+      ),
+    ),
+    isFinite,
   );
-  return max(filter(values, isFinite)) || 0;
+  return {
+    min: min(values) || 0,
+    max: max(values) || 0,
+  };
 };
 
-const getValueScale = (height, maxTotalValue) => scaleLinear()
-  .domain([0, maxTotalValue * 1.1])
+const getValueScale = (height, totalValues) => scaleLinear()
+  .domain([
+    Math.min(0, 1.1 * totalValues.min),
+    Math.max(0, 1.1 * totalValues.max),
+  ])
   .range([height, Y_AXIS_PADDING]);
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
@@ -135,19 +140,19 @@ const AreaGraph = React.memo(({
   // Build layers
   const layers = useMemo(
     () => getLayers(data, layerKeys, layerStroke, layerFill, markerFill),
-    [data, layerKeys, layerStroke, layerFill, markerFill]
+    [data, layerKeys, layerStroke, layerFill, markerFill],
   );
 
   // Generate graph scales
-  const maxTotalValue = useMemo(() => getMaxTotalValue(layers), [layers]);
+  const totalValues = useMemo(() => getTotalValues(layers), [layers]);
   const valueScale = useMemo(
-    () => getValueScale(containerHeight, maxTotalValue),
-    [containerHeight, maxTotalValue]
+    () => getValueScale(containerHeight, totalValues),
+    [containerHeight, totalValues],
   );
   const datetimes = useMemo(() => getDatetimes(data), [data]);
   const timeScale = useMemo(
     () => getTimeScale(containerWidth, datetimes, startTime, endTime),
-    [containerWidth, datetimes, startTime, endTime]
+    [containerWidth, datetimes, startTime, endTime],
   );
 
   // Don't render the graph at all if no layers are present

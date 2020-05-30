@@ -1,3 +1,4 @@
+const { isEmpty } = require('lodash');
 const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
@@ -39,14 +40,24 @@ Object.entries(exchanges).forEach((entry) => {
 const initialDataState = {
   // Here we will store data items
   grid: { zones, exchanges },
+  hasConnectionWarning: false,
+  hasInitializedGrid: false,
   histories: {},
-  solar: null, // TODO(olc)
-  wind: null, // TODO(olc)
+  isLoadingHistories: false,
+  isLoadingGrid: false,
+  isLoadingSolar: false,
+  isLoadingWind: false,
+  solar: null,
+  wind: null,
 };
 
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
-    case 'GRID_DATA': {
+    case 'GRID_DATA_FETCH_REQUESTED': {
+      return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
+    }
+
+    case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {
         zones: Object.assign({}, state.grid.zones),
@@ -144,33 +155,65 @@ module.exports = (state = initialDataState, action) => {
       // Debug
       console.log(newGrid.zones);
 
+      newState.hasInitializedGrid = true;
+      newState.isLoadingGrid = false;
       return newState;
     }
 
-    case 'HISTORY_DATA': {
-      // Create new histories
-      const newHistories = Object.assign({}, state.histories);
+    case 'GRID_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      return { ...state, hasConnectionWarning: true, isLoadingGrid: false };
+    }
 
-      const zoneHistory = action.payload.map((observation) => {
-        const ret = Object.assign({}, observation);
+    case 'ZONE_HISTORY_FETCH_REQUESTED': {
+      return { ...state, isLoadingHistories: true };
+    }
 
-        ret.hasParser = true;
-        if (observation.exchange && Object.keys(observation.exchange).length
-          && (!observation.production || !Object.keys(observation.production).length)) {
-          // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-          ret.exchange = {};
-        }
+    case 'ZONE_HISTORY_FETCH_SUCCEEDED': {
+      return {
+        ...state,
+        isLoadingHistories: false,
+        histories: {
+          ...state.histories,
+          [action.zoneId]: action.payload.map(datapoint => ({
+            ...datapoint,
+            hasParser: true,
+            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
+            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
+          })),
+        },
+      };
+    }
 
-        return ret;
-      });
+    case 'ZONE_HISTORY_FETCH_FAILED': {
+      // TODO: Implement error handling
+      return { ...state, isLoadingHistories: false };
+    }
 
+    case 'SOLAR_DATA_FETCH_REQUESTED': {
+      return { ...state, isLoadingSolar: true };
+    }
 
-      newHistories[action.zoneName] = zoneHistory;
-      // Create new state
-      const newState = Object.assign({}, state);
-      newState.histories = newHistories;
+    case 'SOLAR_DATA_FETCH_SUCCEEDED': {
+      return { ...state, isLoadingSolar: false, solar: action.payload };
+    }
 
-      return newState;
+    case 'SOLAR_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      return { ...state, isLoadingSolar: false, solar: null };
+    }
+
+    case 'WIND_DATA_FETCH_REQUESTED': {
+      return { ...state, isLoadingWind: true };
+    }
+
+    case 'WIND_DATA_FETCH_SUCCEEDED': {
+      return { ...state, isLoadingWind: false, wind: action.payload };
+    }
+
+    case 'WIND_DATA_FETCH_FAILED': {
+      // TODO: Implement error handling
+      return { ...state, isLoadingWind: false, wind: null };
     }
 
     default:

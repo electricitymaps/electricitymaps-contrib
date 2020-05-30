@@ -5,12 +5,11 @@ import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { getCo2Scale } from '../helpers/scales';
 import {
-  getSelectedZoneHistory,
-  getZoneHistoryStartTime,
-  getZoneHistoryEndTime,
-} from '../selectors';
+  useCurrentZoneHistory,
+  useCurrentZoneHistoryStartTime,
+  useCurrentZoneHistoryEndTime,
+} from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';
@@ -39,28 +38,25 @@ const prepareGraphData = (historyData) => {
 };
 
 const mapStateToProps = state => ({
-  startTime: getZoneHistoryStartTime(state),
-  endTime: getZoneHistoryEndTime(state),
-  historyData: getSelectedZoneHistory(state),
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
 const CountryHistoryEmissionsGraph = ({
-  displayByEmissions,
-  startTime,
-  endTime,
-  historyData,
   isMobile,
   selectedTimeIndex,
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
+  const historyData = useCurrentZoneHistory();
+  const startTime = useCurrentZoneHistoryStartTime();
+  const endTime = useCurrentZoneHistoryEndTime();
+
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
     () => prepareGraphData(historyData),
-    [historyData]
+    [historyData],
   );
 
   // Mouse action handlers
@@ -69,14 +65,14 @@ const CountryHistoryEmissionsGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex]
+    [setSelectedLayerIndex],
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -86,13 +82,13 @@ const CountryHistoryEmissionsGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile]
+    [setTooltip, isMobile],
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip]
+    [setTooltip],
   );
 
   return (
@@ -103,7 +99,7 @@ const CountryHistoryEmissionsGraph = ({
         layerFill={layerFill}
         startTime={startTime}
         endTime={endTime}
-        valueAxisLabel="tCO2eq / min"
+        valueAxisLabel="tCO₂eq / min"
         backgroundMouseMoveHandler={mouseMoveHandler}
         backgroundMouseOutHandler={mouseOutHandler}
         layerMouseMoveHandler={mouseMoveHandler}

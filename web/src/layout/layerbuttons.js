@@ -1,39 +1,56 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { __ } from '../helpers/translation';
+import { saveKey } from '../helpers/storage';
+import {
+  useWindEnabled,
+  useSolarEnabled,
+  useSolarToggledLocation,
+  useWindToggledLocation,
+} from '../hooks/router';
+import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
+import ButtonToggle from '../components/buttontoggle';
 
-// Modules
-import { __ } from '../helpers/translation';
+export default () => {
+  const windEnabled = useWindEnabled();
+  const windToggledLocation = useWindToggledLocation();
 
-export default () => (
-  <div className="layer-buttons-container">
-    <LanguageSelect />
-    <div>
-      <button type="button" className="layer-button wind-button" />
-      <div id="wind-layer-button-tooltip" className="layer-button-tooltip hidden">
-        <div className="tooltip-container">
-          <div className="tooltip-text">{__('tooltips.showWindLayer')}</div>
-          <div className="arrow" />
-        </div>
-      </div>
+  const solarEnabled = useSolarEnabled();
+  const solarToggledLocation = useSolarToggledLocation();
+
+  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
+  const toggleBrightMode = () => {
+    dispatchApplication('brightModeEnabled', !brightModeEnabled);
+    saveKey('brightModeEnabled', !brightModeEnabled);
+  };
+
+  return (
+    <div className="layer-buttons-container">
+      <LanguageSelect />
+      <Link to={windToggledLocation}>
+        <ButtonToggle
+          active={windEnabled}
+          tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+          icon="weather/wind"
+        />
+      </Link>
+      <Link to={solarToggledLocation}>
+        <ButtonToggle
+          active={solarEnabled}
+          tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+          icon="weather/sun"
+        />
+      </Link>
+      <ButtonToggle
+        active={brightModeEnabled}
+        onChange={toggleBrightMode}
+        tooltip={__('tooltips.toggleDarkMode')}
+        icon="brightmode"
+      />
     </div>
-    <div>
-      <button type="button" className="layer-button solar-button" />
-      <div id="solar-layer-button-tooltip" className="layer-button-tooltip hidden">
-        <div className="tooltip-container">
-          <div className="tooltip-text">{__('tooltips.showSolarLayer')}</div>
-          <div className="arrow" />
-        </div>
-      </div>
-    </div>
-    <div>
-      <button type="button" className="layer-button brightmode-button" />
-      <div id="brightmode-layer-button-tooltip" className="layer-button-tooltip hidden">
-        <div className="tooltip-container">
-          <div className="tooltip-text">{__('tooltips.toggleDarkMode')}</div>
-          <div className="arrow" />
-        </div>
-      </div>
-    </div>
-  </div>
-);
+  );
+};

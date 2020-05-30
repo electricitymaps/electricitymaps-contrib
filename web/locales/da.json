@@ -8,21 +8,21 @@
     },
     "country-panel": {
         "source": "kilde",
-        "carbonintensity": "CO2 intensitet",
-        "lowcarbon": "Lav CO2",
+        "carbonintensity": "CO₂ intensitet",
+        "lowcarbon": "Lav CO₂",
         "renewable": "Vedvarende",
         "electricity": "Elektricitet",
         "electricityproduction": "Elproduktion",
         "electricityconsumption": "Elforbrug",
         "bysource": "per kilde",
-        "emissions": "CO2 udledning",
+        "emissions": "CO₂ udledning",
         "helpfrom": "med hjælp fra",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>"
     },
     "country-history": {
-        "carbonintensity24h": "CO2 intensitet i de sidste 24 timer",
-        "emissionsorigin24h": "CO2 udledningens oprindelse i de sidste 24 timer",
-        "emissionsproduction24h": "CO2 udledt i de sidste 24 timer",
+        "carbonintensity24h": "CO₂ intensitet i de sidste 24 timer",
+        "emissionsorigin24h": "CO₂ udledningens oprindelse i de sidste 24 timer",
+        "emissionsproduction24h": "CO₂ udledt i de sidste 24 timer",
         "electricityorigin24h": "Elektricitets oprindelse i de sidste 24 timer",
         "electricityproduction24h": "Elproduktionen i de sidste 24 timer",
         "electricityprices24h": "Elprisen i de sidste 24 timer"
@@ -37,18 +37,18 @@
         "windpotential": "Vindpotentiale",
         "solarpotential": "Solpotentiale",
         "colorblindmode": "farveblind indstilling",
-        "carbonintensity": "CO2 intensitet"
+        "carbonintensity": "CO₂ intensitet"
     },
     "tooltips": {
-        "carbonintensity": "CO2 intensitet",
+        "carbonintensity": "CO₂ intensitet",
         "crossborderexport": "Eksport til udlandet",
-        "carbonintensityexport": "Eksport CO2 intensitet",
+        "carbonintensityexport": "Eksport CO₂ intensitet",
         "ofinstalled": "af installeret kapacitet",
         "utilizing": "udnytter",
-        "withcarbonintensity": "med en CO2 intensitet på"
+        "withcarbonintensity": "med en CO₂ intensitet på"
     },
     "misc": {
-        "maintitle": "Realtids CO2-udledning af elforbruget",
+        "maintitle": "Realtids CO₂-udledning af elforbruget",
         "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
         "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere.",
         "retrynow": "Prøv igen nu"
@@ -67,16 +67,16 @@
     "unknown": "Ubekendt",
 
     "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
-    "emissionsComeFrom": "<b>%1$s %%</b> af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
-    "emissionsStoredUsing": "<b>%1$s %%</b> af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
 
     "electricityExportedTo": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<b>%1$s %%</b> af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<b>%1$s %%</b> af CO2-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO₂eq per minute",
 
     "zoneShortName": {
         "AL": {

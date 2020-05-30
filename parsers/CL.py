@@ -8,6 +8,7 @@ import logging
 import requests
 from collections import defaultdict
 from operator import itemgetter
+from .lib.validation import validate
 
 API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?"
 
@@ -18,6 +19,10 @@ TYPE_MAPPING = {'hidraulica': 'hydro',
                 'geotermica': 'geothermal'}
 
 
+API_BASE_URL_LIVE_TOT = 'http://panelapp.coordinadorelectrico.cl/api/chart/demanda'
+
+API_BASE_URL_LIVE_REN = 'http://panelapp.coordinadorelectrico.cl/api/chart/ernc'
+
 def timestamp_creator(date, hour):
     """Takes a string and int and returns a datetime object"""
 
@@ -27,6 +32,7 @@ def timestamp_creator(date, hour):
     dt = pd.to_datetime(date, format='%Y-%m-%d').tz_localize('Chile/Continental')
     dt = dt + pd.DateOffset(hours=hour)
     dt = dt.tz_convert('UTC')
+    dt=dt.to_pydatetime()
 
     return dt
 
@@ -57,6 +63,58 @@ def data_processor(raw_data):
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
 
     return ordered_data
+
+
+def get_data_live(session, logger):
+    """Requests live generation data in json format."""
+
+    s = session or requests.session()
+    json_total = s.get(API_BASE_URL_LIVE_TOT).json()
+    json_ren = s.get(API_BASE_URL_LIVE_REN).json()
+        
+    return json_total, json_ren
+
+
+def production_processor_live(json_tot, json_ren):
+    """
+    Extracts generation data and timestamp into dictionary.
+    Returns a list of dictionaries for all of the available "live" data, usually that day.
+    """
+   
+    gen_total = json_tot['data'][0]['values']
+
+    if json_ren['data'][1]['key']=='ENERGÍA SOLAR':
+        rawgen_sol = json_ren['data'][1]['values']
+    else:
+        raise RuntimeError('Unexpected data label. Expected "ENERGÍA SOLAR" and got {}'.format(json_ren['data'][1]['key']))
+    
+    if json_ren['data'][0]['key']=='ENERGÍA EÓLICA':
+        rawgen_wind = json_ren['data'][0]['values']
+    else:
+        raise RuntimeError('Unexpected data label. Expected "ENERGÍA EÓLICA" and got {}'.format(json_ren['data'][0]['key']))
+
+    mapped_totals = []
+    
+    for total in gen_total:
+        datapoint={}
+        
+        dt=total[0]
+        for pair in rawgen_sol:
+            if pair[0] == dt:
+                solar=pair[1]
+                break
+        for pair in rawgen_wind:
+            if pair[0] == dt:
+                wind=pair[1]
+                break
+        
+        datapoint['datetime']=arrow.get(dt/1000,tzinfo='Chile/Continental')
+        datapoint['unknown']=(total[1]-wind-solar)
+        datapoint['wind']=wind
+        datapoint['solar']=solar
+        mapped_totals.append(datapoint)
+        
+    return mapped_totals
 
 
 def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
@@ -91,10 +149,30 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
     """
 
     if target_datetime is None:
-        target_datetime=arrow.now(tz='Chile/Continental')
-        logger.warning('The real-time data collected by the parser is incomplete for the latest datapoints/hours,'
-                       'so the last 3 datapoints were omitted.'
-                       'If desired, please specify a historical date in YYYYMMDD format.')
+        gen_tot, gen_ren = get_data_live(session, logger)
+        
+        processed_data = production_processor_live(gen_tot, gen_ren)
+        
+        data = []
+        
+        for production_data in processed_data:
+            dt = production_data.pop('datetime')
+    
+            datapoint = {
+                'zoneKey': zone_key,
+                'datetime': dt,
+                'production': production_data,
+                'storage': {
+                          'hydro': None,
+                           },
+                'source': 'coordinadorelectrico.cl'
+                }
+            datapoint = validate(datapoint, logger,
+                                remove_negative=True, required=['hydro'], floor=1000)
+    
+            data.append(datapoint)
+    
+        return data
     
     arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
@@ -119,7 +197,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
         datapoint = {
             'zoneKey': zone_key,
-            'datetime': dt,
+            'datetime': dt.to_pydatetime(),
             'production': production_data,
             'storage': {},
             'source': 'coordinador.cl'
@@ -135,4 +213,5 @@ if __name__ == "__main__":
     print('fetch_production() ->')
     print(fetch_production())
     # For fetching historical data instead, try:
-    ##print(fetch_procution(target_datetime=arrow.get("20200220", "YYYYMMDD"))
+    print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
+    
