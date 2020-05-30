@@ -5061,6 +5061,17 @@
     },
     "timezone": null
   },
+  "US-PREPA": {
+    "contributors": [
+      "https://github.com/q--",
+      "https://github.com/systemcatch"
+    ],
+    "flag_file_name": "us.png",
+    "parsers": {
+      "production": "US_PREPA.fetch_production"
+    },
+    "timezone": "America/Puerto_Rico"
+  },
   "US-SC": {
     "comment": "South Carolina Public Service Authority",
     "bounding_box": [
