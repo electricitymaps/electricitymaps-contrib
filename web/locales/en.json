@@ -421,17 +421,17 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING-SIC": {
+          "CL-SEA": {
             "countryName": "Chile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema Eléctrico de Aysén"
           },
           "CL-SEM": {
             "countryName": "Chile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema Eléctrico de Magallanes"
           },
-          "CL-SEA": {
+          "CL-SEN": {
             "countryName": "Chile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico Nacional"
           },
           "CM": {
             "zoneName": "Cameroon"
@@ -1360,6 +1360,10 @@
           },
           "US": {
             "zoneName": "United States of America"
+          },
+          "US-AK": {
+            "countryName": "United States of America",
+            "zoneName": "Alaska"
           },
           "US-AL": {
             "countryName": "United States of America",
