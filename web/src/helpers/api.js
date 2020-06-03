@@ -43,22 +43,6 @@ export function protectedJsonRequest(path) {
   });
 }
 
-export function textRequest(path) {
-  const url = getEndpoint() + path;
-
-  return new Promise((resolve, reject) => {
-    request.text(url).get(null, (err, res) => {
-      if (err) {
-        reject(err);
-      } else if (!res) {
-        reject(new Error(`Empty response received for ${url}`));
-      } else {
-        resolve(res);
-      }
-    });
-  });
-}
-
 export function handleRequestError(err) {
   if (err) {
     if (err.target) {
