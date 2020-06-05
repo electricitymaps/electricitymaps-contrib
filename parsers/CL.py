@@ -168,7 +168,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
                 'source': 'coordinadorelectrico.cl'
                 }
             datapoint = validate(datapoint, logger,
-                                remove_negative=True, required=['hydro'], floor=1000)
+                                remove_negative=True, floor=1000)
     
             data.append(datapoint)
     

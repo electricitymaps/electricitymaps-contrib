@@ -1095,6 +1095,20 @@
     },
     "timezone": "Chile/Continental"
   },
+  "CL-SIC": {
+    "_todo": "remove. See https://github.com/tmrowco/tmrow/issues/3188",
+    "bounding_box": [
+      [
+        -74.71,
+        -44.02
+      ],
+      [
+        -66.88,
+        -17.39
+      ]
+    ],
+    "timezone": "Chile/Continental"
+  },
   "CR": {
     "bounding_box": [
       [
