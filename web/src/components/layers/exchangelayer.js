@@ -64,7 +64,7 @@ const Arrow = React.memo(({
       k: 0.04 + (mapZoom - 1.5) * 0.1,
       r: rotation + (netFlow > 0 ? 180 : 0),
     }),
-    [lonlat, rotation, netFlow, mapZoom],
+    [project, lonlat, rotation, netFlow, mapZoom],
   );
 
   const isVisible = useMemo(

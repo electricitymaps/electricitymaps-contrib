@@ -58,8 +58,11 @@ export default () => {
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
       }
 
-      // Map loading is finished, lower the overlay shield.
-      dispatchApplication('isLoadingMap', false);
+      // Map loading is finished, lower the overlay shield with
+      // a bit of delay to allow the background to render first.
+      setTimeout(() => {
+        dispatchApplication('isLoadingMap', false);
+      }, 100);
 
       // Track and notify that WebGL is supported.
       dispatchApplication('webGLSupported', true);
