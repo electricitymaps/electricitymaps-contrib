@@ -57,7 +57,7 @@
         "electricityorigin24h": "Sähkön alkuperä viimeisen 24 tunnin aikana",
         "electricityproduction24h": "Sähkön tuotanto viimeisen 24 tunnin aikana",
         "electricityprices24h": "Sähkön hinnat viimeisen 24 tunnin aikana",
-        "Getdata": "Saa historiallista tietoa, marginaalinen ja ennuste API"
+        "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin"
     },
     "footer": {
         "likethisvisu": "Pidätkö visualisoinnista?",
