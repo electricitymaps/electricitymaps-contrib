@@ -36,9 +36,8 @@ jobs:
       - checkout
       - run:
           command: |
-            set -eux -o pipefail
             sudo npm install -g jsonlint
-            jsonlint -q config/*.json web/locales/*.json
+            jsonlint config/*.json web/locales/*.json
 
   lint_js:
     docker:
