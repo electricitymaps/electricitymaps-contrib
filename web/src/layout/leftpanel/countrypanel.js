@@ -24,7 +24,7 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
-import App1 from '../../components/feedbackform/feedbackform';
+import Feedbackform from '../../components/feedbackform/feedbackform';
 
 import { dispatchApplication } from '../../store';
 
@@ -296,7 +296,7 @@ const CountryPanel = ({
             </div>
             <hr />
             <div>
-              <App1 />
+              <Feedbackform />
             </div>
           </div>
         )}

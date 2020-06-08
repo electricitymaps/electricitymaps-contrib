@@ -27,6 +27,10 @@ light green: #A3C4BC
     display: flex;
     flex-wrap: wrap;
   }
+
+  .counterbox {
+    clear: both
+  }
   
  /*  h1 {
     text-align: center;
@@ -56,17 +60,28 @@ light green: #A3C4BC
     color: #999;
   }
   
-  input.error {
+  textarea {
+    resize: vertical;
+  }
+
+  input.error,
+  textarea.error {
     border: 1px solid red;
   }
   
   .errorMessage {
     color: red;
     font-size: 0.75em;
-    display: relative;
+    float: left;
+    //display: inline;
+  }
+
+  .counter {
+    font-size: 0.75em;
+    //display: inline;
+    float: right;
   }
   
-    
   .username,
   .email,
   .comment {
