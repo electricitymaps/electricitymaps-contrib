@@ -99,6 +99,7 @@
         "maintitle": "Live CO₂ emissions of electricity consumption",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+        "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
@@ -420,17 +421,17 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING-SIC": {
+          "CL-SEA": {
             "countryName": "Chile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema Eléctrico de Aysén"
           },
           "CL-SEM": {
             "countryName": "Chile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema Eléctrico de Magallanes"
           },
-          "CL-SEA": {
+          "CL-SEN": {
             "countryName": "Chile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico Nacional"
           },
           "CM": {
             "zoneName": "Cameroon"
@@ -1359,6 +1360,10 @@
           },
           "US": {
             "zoneName": "United States of America"
+          },
+          "US-AK": {
+            "countryName": "United States of America",
+            "zoneName": "Alaska"
           },
           "US-AL": {
             "countryName": "United States of America",
