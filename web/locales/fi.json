@@ -173,7 +173,6 @@
         "homeSolarPanel-answer": "Mittaamme paikallisen sähköverkon hiili-intensiteetin, joten kaikki sähkö, jota kulutat suoraan aurinkopaneelistasi (off-grid), ei ole osa mittauksiamme. Jos aurinkopaneelisi kuitenkin tarjoaa virtaa paikalliselle sähköverkollesi, sen tuotanto sisältyy tilastoihimme alueilla, joilla arviot paikallisesta aurinkoenergian tuotannosta ovat julkisesti saatavilla (kuten Ranskassa ja Isossa-Britanniassa).",
         "emissionsPerCapita-question": "Miksi ette näytä päästöjä asukasta kohti?",
         "emissionsPerCapita-answer": "Osa alueen kulutetusta sähköstä käytetään tuotteiden valmistukseen, jotka myöhemmin viedään ja kulutetaan muilla alueilla. Tätä valmistusta ja siten myös sen sähkönkulutusta ja siihen liittyviä päästöjä ohjaa tuotteiden kulutus <em> tuonti-alueilla </em>, ei alueilla, jolla tuotanto tapahtuu. Uskomme, että ihmisten tulisi olla vastuussa vain kuluttamastaan sähköstä, ei sähköstä jota on käytetty tuotteiden valmistukseen jota ei ole itse kulutettu. Tässä mielessä alueiden sähkönkulutuksen mittaaminen asukasta kohden on harhaanjohtavaa."
-"
     },
     "data": {
         "groupName": "Datamme",
