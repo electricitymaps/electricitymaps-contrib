@@ -48,7 +48,7 @@ const HandleLegacyRoutes = () => {
 // TODO: Move all styles from styles.css to here
 
 const SmallLoader = styled.span`
-  background: transparent url('../images/loading/loading64_FA.gif') no-repeat center center;
+  background: transparent url(${resolvePath('images/loading/loading64_FA.gif')}) no-repeat center center;
   background-size: 1.5em;
   display: inline-block;
   margin-right: 1em;
