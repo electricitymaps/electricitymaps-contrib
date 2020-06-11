@@ -5,7 +5,7 @@ import warnings
 
 import arrow
 
-from utils.config import INTERCONNECTORS
+from utils.config import EXCHANGES_CONFIG
 
 class ValidationError(ValueError):
     pass
@@ -45,18 +45,12 @@ def validate_exchange(item, k):
     # Verify that the exchange flow is not greater than the interconnector capacity
     # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
     if item.get('sortedZoneKeys', None) and item.get('netFlow', None):
-        zone_names = k.split('->')
+        zone_names = item['sortedZoneKeys']
         if len(zone_names) == 2:
-            pairs = [
-                (zone_names[0], zone_names[1]),
-                (zone_names[1], zone_names[0])
-            ]
-            for zone_name_1, zone_name_2 in pairs:
-                if ((zone_name_1 in INTERCONNECTORS) and
-                    (zone_name_2 in INTERCONNECTORS[zone_name_1]) and
-                    ('capacity' in INTERCONNECTORS[zone_name_1][zone_name_2])
+                if ((zone_names in EXCHANGES_CONFIG) and
+                    ('capacity' in EXCHANGES_CONFIG[zone_names])
                 ):
-                    interconnector_capacities = INTERCONNECTORS[zone_name_1][zone_name_2]['capacity']
+                    interconnector_capacities = EXCHANGES_CONFIG[zone_names]['capacity']
                     if not (min(interconnector_capacities) <= item['netFlow'] <= max(interconnector_capacities)):
                         raise ValidationError('netFlow %s exceeds interconnector capacity for %s' %
                                               (item['netFlow'], k))
