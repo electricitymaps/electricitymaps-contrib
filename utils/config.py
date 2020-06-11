@@ -23,6 +23,7 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     if 'bounding_box' in zone_config:
         ZONE_BOUNDING_BOXES[zone_id] = zone_config['bounding_box']
 
+INTERCONNECTORS = {}
 ZONE_NEIGHBOURS = {}
 for k, v in EXCHANGES_CONFIG.items():
     zone_names = k.split('->')
@@ -34,6 +35,11 @@ for k, v in EXCHANGES_CONFIG.items():
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
         ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+        if (zone_name_1 not in INTERCONNECTORS) and ('capacity' in v):
+            INTERCONNECTORS[zone_name_1] = {}
+        INTERCONNECTORS[zone_name_1][zone_name_2] = {
+            'capacity': v['capacity']
+        }
 # we want neighbors to always be in the same order
 for zone, neighbors in ZONE_NEIGHBOURS.items():
     ZONE_NEIGHBOURS[zone] = sorted(neighbors)
