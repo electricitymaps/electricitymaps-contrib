@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
   useMemo,
   useRef,
@@ -42,6 +43,16 @@ export default React.memo(({ project }) => {
     dispatchApplication('co2ColorbarValue', null);
     setTooltip(null);
   }, []);
+
+  // Call mouse out handler immidiately if moving the map.
+  useEffect(
+    () => {
+      if (isMoving && tooltip) {
+        handleArrowMouseOut();
+      }
+    },
+    [isMoving, tooltip],
+  );
 
   return (
     <Layer id="exchange" ref={ref}>
