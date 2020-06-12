@@ -8,8 +8,6 @@ import {
   quantizedExchangeSpeedScale,
 } from '../helpers/scales';
 
-// TODO: Fix map scrolling when hovering over arrows when moving map to React.
-// See https://github.com/tmrowco/electricitymap-contrib/issues/2309.
 const ArrowImage = styled.img`
   cursor: pointer;
   overflow: hidden;
@@ -31,6 +29,7 @@ export default React.memo(({
   const isMobile = useSelector(state => state.application.isMobile);
   const mapZoom = useSelector(state => state.application.mapViewport.zoom);
   const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
+  const absFlow = Math.abs(data.netFlow || 0);
   const {
     co2intensity,
     lonlat,
@@ -58,27 +57,21 @@ export default React.memo(({
     [project, lonlat, rotation, netFlow, mapZoom],
   );
 
-  const isVisible = useMemo(
-    () => {
-      // Hide arrows with a very low flow...
-      if (Math.abs(netFlow || 0) < 1) return false;
+  // Don't render if the flow is very low ...
+  if (absFlow < 1) return null;
 
-      // ... or the ones that would be rendered outside of viewport ...
-      if (transform.x + 100 * transform.k < 0) return false;
-      if (transform.y + 100 * transform.k < 0) return false;
-      if (transform.x - 100 * transform.k > viewportWidth) return false;
-      if (transform.y - 100 * transform.k > viewportHeight) return false;
+  // ... or if the arrow would be very tiny ...
+  if (transform.k < 0.1) return null;
 
-      // ... and show all the other ones.
-      return true;
-    },
-    [netFlow, transform],
-  );
+  // ... or if it would be rendered outside of viewport.
+  if (transform.x + 100 * transform.k < 0) return null;
+  if (transform.y + 100 * transform.k < 0) return null;
+  if (transform.x - 100 * transform.k > viewportWidth) return null;
+  if (transform.y - 100 * transform.k > viewportHeight) return null;
 
   return (
     <ArrowImage
       style={{
-        display: isVisible ? '' : 'none',
         transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
       }}
       src={imageSource}
