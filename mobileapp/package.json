@@ -11,7 +11,7 @@
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "^1.7.1",
-    "cordova-plugin-firebase-analytics": "^4.3.0",
+    "cordova-plugin-firebase-analytics": "^4.1.2",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -43,10 +43,8 @@
       "cordova-universal-links-plugin": {},
       "cordova-plugin-code-push": {},
       "sentry-cordova": {},
-      "cordova-plugin-firebase-analytics": {
-        "FIREBASE_VERSION": "11.6.+"
-      },
-      "cordova-support-google-services": {}
+      "cordova-support-google-services": {},
+      "cordova-plugin-firebase-analytics": {}
     },
     "platforms": [
       "android",
