@@ -119,3 +119,15 @@ function loadProjectFile() {
   return projectFile;
 }
 ```
+
+### Cannot read property 'manifest' of undefined
+(From https://stackoverflow.com/a/57638582/11940257)
+
+Go to file `plugins/cordova-universal-links-plugin/hooks/lib/android/manifestWriter.js` and change the following:
+```javascript
+var pathToManifest = path.join(cordovaContext.opts.projectRoot, 'platforms', 'android', 'cordovaLib', 'AndroidManifest.xml');
+```
+to
+```javascript
+var pathToManifest = path.join( cordovaContext.opts.projectRoot, 'platforms', 'android', 'app', 'src', 'main', 'AndroidManifest.xml');
+```
