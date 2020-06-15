@@ -51,7 +51,8 @@ def validate_exchange(item, k):
                     ('capacity' in EXCHANGES_CONFIG[zone_names])
                 ):
                     interconnector_capacities = EXCHANGES_CONFIG[zone_names]['capacity']
-                    if not (min(interconnector_capacities) <= item['netFlow'] <= max(interconnector_capacities)):
+                    margin = 0.1
+                    if not (min(interconnector_capacities)*(1-margin) <= item['netFlow'] <= max(interconnector_capacities)*(1+margin)):
                         raise ValidationError('netFlow %s exceeds interconnector capacity for %s' %
                                               (item['netFlow'], k))
 
