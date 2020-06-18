@@ -5,7 +5,7 @@ import warnings
 
 import arrow
 
-from ...utils.config import EXCHANGES_CONFIG
+from utils.config import EXCHANGES_CONFIG
 
 class ValidationError(ValueError):
     pass
