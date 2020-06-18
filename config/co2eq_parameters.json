@@ -203,6 +203,12 @@
           "value": 40.98482440401805
         }
       },
+      "CL-SEN" : {
+        "unknown": {
+          "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
+          "value": 491.8
+        }
+      },
       "CL-SING": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",

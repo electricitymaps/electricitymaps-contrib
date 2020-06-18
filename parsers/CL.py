@@ -103,6 +103,17 @@ def production_processor_historical(raw_data):
 
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
 
+    # For consistency with live API, hydro and geothermal must be squeezed into unknown
+    for datapoint in ordered_data:
+        if 'unknown' not in datapoint:
+            datapoint['unknown'] = 0
+        if 'hydro' in datapoint:
+            datapoint['unknown'] += datapoint['hydro']
+            del datapoint['hydro']
+        if 'geothermal' in datapoint:
+            datapoint['unknown'] += datapoint['geothermal']
+            del datapoint['geothermal']
+
     return ordered_data
 
 
@@ -202,7 +213,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    print('fetch_production() ->')
-    print(fetch_production())
+    #print('fetch_production() ->')
+    #print(fetch_production())
     # For fetching historical data instead, try:
     print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
