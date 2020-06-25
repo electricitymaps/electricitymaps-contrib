@@ -5,6 +5,7 @@ import warnings
 
 import arrow
 
+from utils.config import EXCHANGES_CONFIG
 
 class ValidationError(ValueError):
     pass
@@ -41,6 +42,19 @@ def validate_exchange(item, k):
         raise ValidationError('datetime %s is not valid for %s' %
                               (item['datetime'], k))
     validate_reasonable_time(item, k)
+    # Verify that the exchange flow is not greater than the interconnector capacity
+    # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
+    if item.get('sortedZoneKeys', None) and item.get('netFlow', None):
+        zone_names = item['sortedZoneKeys']
+        if len(zone_names) == 2:
+                if ((zone_names in EXCHANGES_CONFIG) and
+                    ('capacity' in EXCHANGES_CONFIG[zone_names])
+                ):
+                    interconnector_capacities = EXCHANGES_CONFIG[zone_names]['capacity']
+                    margin = 0.1
+                    if not (min(interconnector_capacities)*(1-margin) <= item['netFlow'] <= max(interconnector_capacities)*(1+margin)):
+                        raise ValidationError('netFlow %s exceeds interconnector capacity for %s' %
+                                              (item['netFlow'], k))
 
 
 def validate_production(obj, zone_key):

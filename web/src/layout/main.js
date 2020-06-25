@@ -92,9 +92,6 @@ const Main = ({
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
-              <a id="hiring-flag" href="https://tmrow.com/jobs" target="_blank">
-                <p>we&apos;re hiring!</p>
-              </a>
             </div>
             <Legend />
             <div className="controls-container">
