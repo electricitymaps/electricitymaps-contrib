@@ -115,8 +115,10 @@ module.exports = (state = initialDataState, action) => {
         newGrid.zones[key] = zone;
       });
       Object.keys(newGrid.exchanges).forEach((key) => {
-        newGrid.exchanges[key].netFlow = undefined;
-        newGrid.exchanges[key].co2intensity = undefined;
+        const exchange = Object.assign({}, newGrid.exchanges[key]);
+        exchange.netFlow = undefined;
+        exchange.co2intensity = undefined;
+        newGrid.exchanges[key] = exchange;
       });
 
       // Populate with realtime country data
