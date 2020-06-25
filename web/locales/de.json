@@ -104,7 +104,8 @@
         "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
         "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
-        "faq": "Häufig gestellte Fragen"
+        "faq": "Häufig gestellte Fragen",
+        "webgl-not-supported": "Diese Karte kann nicht angezeigt, weil dieser Webbrowser kein WebGL unterstützt."
     },
     "wind": "Windenergie",
     "solar": "Solarenergie",
@@ -1730,6 +1731,16 @@
             "countryName": "Vereinigte Staaten von Amerika"
         },
         "US-TEX-ERCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "CL-SEN": {
+            "countryName": "Chile"
+        },
+        "US-AK": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Alaska"
+        },
+        "US-MIDW-GLHB": {
             "countryName": "Vereinigte Staaten von Amerika"
         }
     },
