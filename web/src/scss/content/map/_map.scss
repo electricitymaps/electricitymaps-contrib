@@ -103,10 +103,10 @@
 /* override mapbox styling */
 .mapboxgl-zoom-controls {
     right: 16px !important;
-    top: 169px !important;
+    top: 167px !important;
 
     @include respond-to('small') {
-        top: 66px !important;
+        top: 114px !important;
     }
 
     &:hover {

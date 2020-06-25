@@ -104,7 +104,6 @@ const Main = ({
                 ]}
                 value={electricityMixMode}
               />
-              <br />
               <Toggle
                 onChange={value => dispatchApplication('timescale', value)}
                 options={[TIMESCALE.MONTHLY, TIMESCALE.LIVE].map((k) => {
