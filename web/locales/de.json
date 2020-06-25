@@ -105,7 +105,7 @@
         "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
         "faq": "Häufig gestellte Fragen",
-        "webgl-not-supported": "Diese Karte kann nicht angezeigt, weil dieser Webbrowser kein WebGL unterstützt."
+        "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
     },
     "wind": "Windenergie",
     "solar": "Solarenergie",
