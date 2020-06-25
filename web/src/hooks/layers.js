@@ -1,11 +1,12 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { interpolate } from 'd3-interpolate';
 import { values } from 'lodash';
 import moment from 'moment';
 
-import { useCustomDatetime } from '../helpers/router';
 import { getRefTime, getTargetTime } from '../helpers/grib';
+
+import { useCustomDatetime } from './router';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
@@ -32,7 +33,7 @@ export function useInterpolatedWindData() {
       const gribs2 = windData.forecasts[1];
       const tBefore = getTargetTime(gribs1[0]);
       const tAfter = getTargetTime(gribs2[0]);
-      const datetime = moment(customDatetime || new Date()); 
+      const datetime = moment(customDatetime || new Date());
       const k = (datetime - tBefore) / (tAfter - tBefore);
 
       if (datetime > tAfter) {

@@ -1,18 +1,29 @@
-/* eslint-disable */
+/* eslint-disable global-require */
+/* eslint-disable prefer-rest-params */
 // TODO: remove once refactored
 
-const store = require('../store');
+import { store } from '../store';
+import { isProduction } from '../helpers/environment';
 
-const { Sentry } = window;
+function reportToSentry(e) {
+  if (window.Sentry !== undefined) {
+    try {
+      window.Sentry.captureException(e);
+    } catch (err) {
+      console.error(`Error while reporting error to Sentry: ${err}`);
+    }
+  }
+}
 
 class ConnectionsService {
   constructor() {
     this.connections = [];
-    if (store.getState().application.isProduction) {
+    if (isProduction()) {
       this.addConnection(require('./thirdparty/twitter'));
-      this.addConnection(require('./thirdparty/facebook'));
       this._ga = this.addConnection(require('./thirdparty/ga'));
       this.addConnection(require('./thirdparty/mixpanel'));
+    } else {
+      this.addConnection(require('./thirdparty/debugconsole'));
     }
   }
 
@@ -21,46 +32,35 @@ class ConnectionsService {
     return i;
   }
 
-  track(eventName, paramObj) {
+  trackEvent(eventName, context) {
     this.connections.forEach((conn) => {
       try {
-        conn.track(eventName, paramObj);
-      } catch(err) { console.error('External connection error: ' + err); }
+        conn.track(eventName, context);
+      } catch (err) { console.error(`External connection error: ${err}`); }
     });
   }
 
-  trackWithCurrentApplicationState(eventName) {
-    const params = store.getState().application;
-    params.bundleVersion = params.bundleHash;
-    params.embeddedUri = params.isEmbedded ? document.referrer : null;
-    this.track(eventName, params);
-  }
-
   // track google analytics if is available
-  ga(){
-    if(this._ga !== undefined){
+  ga() {
+    if (this._ga) {
       try {
         this._ga.ga(...arguments);
-      } catch(err) { console.error('Google analytics track error: ' + err); }
-    }
-  }
-
-  reportToSentry(e) {
-    if (Sentry !== undefined) {
-      try {
-        Sentry.captureException(e);
-      } catch (err) {
-        console.error('Error while reporting error to Sentry: ' + err);
-      }
+      } catch (err) { console.error(`Google analytics track error: ${err}`); }
     }
   }
 
   // track errors
   trackError(e) {
     console.error(`Error Caught! ${e}`);
-    this.track('error', { ...store.getState().application, name: e.name, stack: e.stack });
     this.ga('event', 'exception', { description: e, fatal: false });
-    this.reportToSentry(e);
+    store.dispatch({
+      type: 'TRACK_EVENT',
+      payload: {
+        eventName: 'error',
+        context: { name: e.name, stack: e.stack },
+      },
+    });
+    reportToSentry(e);
   }
 }
 

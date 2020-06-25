@@ -51,6 +51,7 @@
     },
     "country-history": {
         "carbonintensity24h": "Intensità di carbonio nelle ultime 24 ore",
+        "emissions24h": "Emissioni nelle ultime 24 ore",
         "emissionsorigin24h": "Origine delle emissioni nelle ultime 24 ore",
         "emissionsproduction24h": "Emissioni prodotte nelle ultime 24 ore",
         "electricityorigin24h": "Origine dell'elettricità nelle ultime 24 ore",
@@ -98,6 +99,7 @@
         "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
         "oops": "Oops! Stiamo avendo dei problemi nel raggiungere il server. Proveremo di nuovo tra poco!.",
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
+        "webgl-not-supported": "La mappa non può essere mostrata perché questo browser non supporta WebGL.",
         "retrynow": "Riprova ora",
         "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
         "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
@@ -116,14 +118,17 @@
     "coal": "Carbone",
     "oil": "Petrolio",
     "unknown": "Sconosciuto",
+
     "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
     "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
+
     "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+
     "ofCO2eqPerMinute": "di CO₂eq per minuto",
     "theMap": {
         "groupName": "La mappa",
@@ -416,17 +421,17 @@
         "CK": {
             "zoneName": "Isole Cook"
         },
-        "CL-SING-SIC": {
+        "CL-SEA": {
             "countryName": "Cile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema de Aysén"
         },
         "CL-SEM": {
             "countryName": "Cile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema de Magallanes"
         },
-        "CL-SEA": {
+        "CL-SEN": {
             "countryName": "Cile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico Nacional"
         },
         "CM": {
             "zoneName": "Camerun"
@@ -1359,6 +1364,10 @@
         "US-AL": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Alabama"
+        },
+        "US-AK": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "Alaska"
         },
         "US-BPA": {
             "countryName": "Stati Uniti d'America",

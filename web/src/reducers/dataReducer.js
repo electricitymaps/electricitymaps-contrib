@@ -1,7 +1,6 @@
 const { isEmpty } = require('lodash');
 const moment = require('moment');
 
-const { modeOrder } = require('../helpers/constants');
 const constructTopos = require('../helpers/topos');
 const translation = require('../helpers/translation');
 
@@ -64,7 +63,7 @@ module.exports = (state = initialDataState, action) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       // Reset histories if timescale changes
-      const { key, value } = action;
+      const { key } = action;
       if (key === 'timescale') {
         return { ...state, histories: {} };
       }
@@ -74,7 +73,7 @@ module.exports = (state = initialDataState, action) => {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
     }
-  
+
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
       const newGrid = Object.assign({}, {

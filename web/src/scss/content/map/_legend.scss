@@ -36,7 +36,6 @@
     }
 
     @include respond-to('medium-up') {
-        pointer-events: none;
         right: 0;
     }
 

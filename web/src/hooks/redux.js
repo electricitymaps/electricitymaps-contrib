@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { keys, sortBy } from 'lodash';
 
-import { useCustomDatetime, useSolarEnabled } from '../helpers/router';
+import { useCustomDatetime } from './router';
 
 export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
@@ -73,7 +73,7 @@ export function useCurrentZoneExchangeKeys() {
 
   return useMemo(
     () => (isConsumption ? sortBy(keys(zoneData.exchange)) : []),
-    [isConsumption, zoneData]
+    [isConsumption, zoneData],
   );
 }
 

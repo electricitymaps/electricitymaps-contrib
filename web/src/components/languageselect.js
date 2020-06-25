@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { map } from 'lodash';
 
 import { __ } from '../helpers/translation';
-import { useSearchParams } from '../helpers/router';
+import { useSearchParams } from '../hooks/router';
 import { languageNames } from '../../locales-config.json';
 
 import ButtonToggle from './buttontoggle';

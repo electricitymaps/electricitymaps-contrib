@@ -6,6 +6,7 @@ from requests import Session
 from ree import (Formentera, Ibiza,
                  Mallorca, Menorca,
                  BalearicIslands)
+# package "ree" is used to parse data from www.ree.es // maintained on github by @hectorespert
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
@@ -87,17 +88,13 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     island_data = fetch_island_data(zone_key, ses)
     data = []
 
-## biomass could probably be added as response.biomass in ree, including value['resid'] which I assume is for residuos=waste. Atm it seems unincluded.
-## I saw generation from "genAux" (generacion auxiliar) today on Formentera, which should probably be added to response.other in ree
-## Formentera mostly only has some solar generation during the day, importing from Ibiza all of the time, which probably has to be considered for response.production() > 0: ?
-
     if zone_key == 'ES-IB':
         expected_range = {'coal': (50,600)}
     else:
         expected_range = None
 
     for response in island_data:
-        if response.production() > 0:
+        if response.production() >= 0:
             response_data = {
                 'zoneKey': zone_key,
                 'datetime': get(response.timestamp).datetime,

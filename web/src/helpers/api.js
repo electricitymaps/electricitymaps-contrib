@@ -2,7 +2,7 @@ import * as request from 'd3-request';
 import { sha256 } from 'js-sha256';
 import Cookies from 'js-cookie';
 
-import { isLocalhost, isProduction } from './environment';
+import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
 function isRemoteParam() {
@@ -40,22 +40,6 @@ export function protectedJsonRequest(path) {
           resolve(res.data);
         }
       });
-  });
-}
-
-export function textRequest(path) {
-  const url = getEndpoint() + path;
-
-  return new Promise((resolve, reject) => {
-    request.text(url).get(null, (err, res) => {
-      if (err) {
-        reject(err);
-      } else if (!res) {
-        reject(new Error(`Empty response received for ${url}`));
-      } else {
-        resolve(res);
-      }
-    });
   });
 }
 
