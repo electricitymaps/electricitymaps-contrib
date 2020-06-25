@@ -74,6 +74,17 @@ const CountryRenewableGauge = () => {
   return <CircularGauge percentage={countryRenewablePercentage} />;
 };
 
+function formatDatetime(datetime, timescale) {
+  if (!datetime) { return ''; }
+  if (timescale === TIMESCALE.LIVE) {
+    return moment(datetime).format('LL LT');
+  }
+  if (timescale === TIMESCALE.MONTHLY) {
+    return `${moment(datetime).format('MMM YYYY')} average`;
+  }
+  throw new Error(`Unknown timescale "${timescale}" given`);
+}
+
 const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
@@ -167,7 +178,7 @@ const CountryPanel = ({
                   {getFullZoneName(zoneId)}
                 </div>
                 <div className="country-time">
-                  {datetime ? moment(datetime).format('LL LT') : ''}
+                  {formatDatetime(datetime, timescale)}
                 </div>
               </div>
             </div>

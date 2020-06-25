@@ -119,6 +119,13 @@ const Main = ({
               />
             </div>
             <LayerButtons />
+            {
+              timescale !== TIMESCALE.LIVE ? (
+                <div className="text-title" style={{ color: brightModeEnabled ? '#000': '#fff' }}>
+                  {moment(currentDate).format('MMMM YYYY')}
+                </div>
+              ) : null
+            }
           </div>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
@@ -148,27 +155,6 @@ const Main = ({
         <Tabs />
       </div>
       <OnboardingModal />
-      <div
-        style={{
-          position: 'absolute',
-          top: 10,
-          left: 0,
-          right: 0,
-          textAlign: 'center',
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          padding: 18,
-          borderRadius: 3,
-          cursor: 'pointer',
-          color: brightModeEnabled ? '#000' : '#fff',
-          fontSize: '3em',
-          fontWeight: 'bold',
-          display: timescale !== TIMESCALE.LIVE ? undefined : 'none',
-          pointerEvents: 'none',
-        }}
-      >
-        {moment(currentDate).format('MMMM YYYY')}
-      </div>
     </React.Fragment>
   );
 };
