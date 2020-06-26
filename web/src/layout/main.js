@@ -121,7 +121,7 @@ const Main = ({
             <LayerButtons />
             {
               timescale !== TIMESCALE.LIVE ? (
-                <div className="text-title" style={{ color: brightModeEnabled ? '#000': '#fff' }}>
+                <div className="text-title" style={{ color: brightModeEnabled ? '#000' : '#fff' }}>
                   {moment(currentDate).format('MMMM YYYY')}
                 </div>
               ) : null
