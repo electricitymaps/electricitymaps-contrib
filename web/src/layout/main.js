@@ -5,7 +5,6 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
 
 // Layout
 import Header from './header';
@@ -30,7 +29,7 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
-import JSONDropzone from '../components/dropzone';
+import JSONDropzone from '../components/jsondropzone';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -53,7 +52,6 @@ const Main = ({
   const datetime = useCustomDatetime();
 
   const showLoadingOverlay = useLoadingOverlayVisible();
-  console.log('l', showLoadingOverlay);
 
   // Check for the latest client version once initially.
   useClientVersionFetch();
@@ -87,7 +85,7 @@ const Main = ({
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <Map />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <JSONDropzone></JSONDropzone>
+              <JSONDropzone />
               <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
@@ -120,7 +118,7 @@ const Main = ({
               >
                 {__('misc.retrynow')}
               </a>
-                .
+              .
             </div>
           </div>
           <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>

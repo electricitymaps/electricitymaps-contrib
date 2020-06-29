@@ -6,11 +6,14 @@ const JSONDropzone = (handleJSONLoad) => {
   const defaultHandleJSONLoad = (jsonLoad) => {
     const payload = jsonLoad;
     payload.exchanges = payload.exchanges ? payload.exchanges : {};
-    store.dispatch({ type: 'GRID_PUSH_STATE' });
+    store.dispatch({ type: 'GRID_DATA_FETCH_REQUESTED' });
     store.dispatch({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
   };
+  let JSONLoader;
   if (Object.keys(handleJSONLoad).length === 0 && handleJSONLoad.constructor === Object) {
-    handleJSONLoad = defaultHandleJSONLoad;
+    JSONLoader = defaultHandleJSONLoad;
+  } else {
+    JSONLoader = handleJSONLoad;
   }
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -22,7 +25,7 @@ const JSONDropzone = (handleJSONLoad) => {
       reader.onload = () => {
       // Do whatever you want with the file contents
         const jsonLoad = JSON.parse(reader.result);
-        handleJSONLoad(jsonLoad);
+        JSONLoader(jsonLoad);
       };
       reader.readAsText(file);
     });
@@ -31,7 +34,7 @@ const JSONDropzone = (handleJSONLoad) => {
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
-      <p>📜</p>
+      <span role="img" aria-label="json_dropzone">📜</span>
     </div>
   );
 };

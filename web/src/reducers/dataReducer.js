@@ -53,10 +53,6 @@ const initialDataState = {
 
 module.exports = (state = initialDataState, action) => {
   switch (action.type) {
-    case 'GRID_PUSH_STATE': {
-      return { ...state, isLoadingGrid: true, pushedState: true };
-    }
-
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
     }
