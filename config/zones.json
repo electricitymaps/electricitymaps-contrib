@@ -1468,7 +1468,7 @@
     ],
     "capacity": {
       "biomass": 1189,
-      "coal": 9456,
+      "coal": 4826,
       "gas": 30012,
       "geothermal": 0,
       "hydro": 17085,
@@ -1480,6 +1480,7 @@
       "unknown": 360
     },
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/corradio",
       "https://github.com/JosepRey",
       "https://github.com/nessie2013"
