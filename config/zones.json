@@ -907,17 +907,18 @@
   "CA-ON": {
     "capacity": {
       "biomass": 295,
-      "gas": 10277,
-      "hydro": 8482,
+      "gas": 11270,
+      "hydro": 9065,
       "nuclear": 13009,
-      "solar": 380,
+      "solar": 478,
       "wind": 4486,
       "coal": 0
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/jarek",
-      "https://github.com/scriptator"
+      "https://github.com/scriptator",
+      "https://github.com/felixvanoost"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1467,7 +1468,7 @@
     ],
     "capacity": {
       "biomass": 1189,
-      "coal": 9456,
+      "coal": 4826,
       "gas": 30012,
       "geothermal": 0,
       "hydro": 17085,
@@ -1479,6 +1480,7 @@
       "unknown": 360
     },
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/corradio",
       "https://github.com/JosepRey",
       "https://github.com/nessie2013"
