@@ -59,8 +59,6 @@
         "Getdata": "Get historical data, marginal and forecast API"
     },
     "footer": {
-        "likethisvisu": "Like the visualization?",
-        "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
         "faq-text": "Anything unclear? Check out our",
         "faq": "frequently asked questions.",

@@ -40,9 +40,6 @@ export default () => (
       {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
     </p>
     <p>
-      {__('footer.likethisvisu')} <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">{__('footer.loveyourfeedback')}</a>!
-    </p>
-    <p>
       {__('footer.faq-text')}
       {' '}
       <Link to={{ pathname: '/faq', search: useLocation().search }}>
