@@ -60,8 +60,6 @@
         "Getdata": "Hanki pääsy historia-, marginaali- ja ennuste-API:hin"
     },
     "footer": {
-        "likethisvisu": "Pidätkö visualisoinnista?",
-        "loveyourfeedback": "Lähetä palautetta!",
         "foundbugs": "Löysitkö vikoja tai onko ideoita? Kerro niistä",
         "faq-text": "Jotain epäselvää? Lue",
         "faq": "usein kysytyt kysymykset.",

@@ -59,8 +59,6 @@
         "Getdata": "API för att hämta historisk data, marginal och prognos"
     },
     "footer": {
-        "likethisvisu": "Gillar du visualiseringen?",
-        "loveyourfeedback": "Berätta gärna vad du tycker",
         "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
         "faq-text": "Någonting oklart? Kolla in våra",
         "faq": "vanliga frågor.",
