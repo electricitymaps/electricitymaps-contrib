@@ -140,7 +140,7 @@
     ],
     "capacity": {
       "biomass": 647,
-      "coal": 246,
+      "coal": 0,
       "gas": 4015,
       "hydro": 8160,
       "hydro storage": 3120,
