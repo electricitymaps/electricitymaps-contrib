@@ -435,8 +435,27 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             #replace small negative values (>-5) with 0s This is necessary for solar
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
+    
+    # Some of the returned mixes could be for older timeframes.
+    # Fx the latest oil data could be 6 months old.
+    # In this case we want to discard the old data as we won't be able to merge it
+    timeframes = [
+        sorted(map(lambda x: x['datetime'], mix))
+        for mix in mixes
+    ]
+    latest_timeframe = max(timeframes, key=lambda x: x[-1])
+    
 
-    return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
+    correct_mixes = []
+    for mix in mixes:
+        correct_mix = []
+        for production_in_mix in mix:
+            if production_in_mix['datetime'] in latest_timeframe:
+                correct_mix.append(production_in_mix)
+        if len(correct_mix) > 0:
+            correct_mixes.append(correct_mix)
+    
+    return merge_production_outputs(correct_mixes, zone_key, merge_source='eia.gov')
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
