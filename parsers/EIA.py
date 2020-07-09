@@ -417,8 +417,8 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
                 .get(type, NEGATIVE_PRODUCTION_THRESHOLDS['default'])
 
             if type != 'hydro' and \
-                    point['value'] < 0 and \
-                    point['value'] >= negative_threshold:
+                point['value'] and \
+                0 > point['value'] >= negative_threshold:
                 point['value'] = 0
 
             if type == 'hydro' and point['value'] < 0:

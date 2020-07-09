@@ -879,7 +879,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
         pd.DataFrame(output).set_index('datetime')[['production', 'storage']]
         for output in parser_outputs
     ]
-    to_return = prod_and_storage_dfs[0]
+    to_return = prod_and_storage_dfs[0] if len(prod_and_storage_dfs) > 0 \
+        else pd.DataFrame()
     for prod_and_storage in prod_and_storage_dfs[1:]:
         # `inner` join drops rows where one of the production is missing
         to_return = to_return.join(
