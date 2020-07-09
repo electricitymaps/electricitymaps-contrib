@@ -873,14 +873,15 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     This will drop rows where the datetime is missing in at least a
     parser_output.
     """
+    if len(parser_outputs) == 0:
+        return []
     if merge_source is None:
         merge_source = parser_outputs[0][0]['source']
     prod_and_storage_dfs = [
         pd.DataFrame(output).set_index('datetime')[['production', 'storage']]
         for output in parser_outputs
     ]
-    to_return = prod_and_storage_dfs[0] if len(prod_and_storage_dfs) > 0 \
-        else pd.DataFrame()
+    to_return = prod_and_storage_dfs[0]
     for prod_and_storage in prod_and_storage_dfs[1:]:
         # `inner` join drops rows where one of the production is missing
         to_return = to_return.join(
