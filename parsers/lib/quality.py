@@ -29,6 +29,10 @@ def validate_consumption(obj, zone_key):
     if obj['consumption'] is not None and obj['consumption'] < 0:
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
+    # Plausibility Check, no more than 500GW
+    if obj['consumption'] is not None and abs(obj['consumption']) > 500000:
+        raise ValidationError('%s: consumption is not realistic (>500GW) '
+                              '%s' % (zone_key, obj['consumption']))
     validate_reasonable_time(obj, zone_key)
 
 
@@ -104,4 +108,9 @@ def validate_production(obj, zone_key):
         if v < 0:
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
+        # Plausibility Check, no more than 500GW
+        if abs(v) > 500000:
+            raise ValidationError('%s: production for %s is not realistic ('
+                                  '>500GW) '
+                                  '%s' % (zone_key, k, obj['consumption']))
     validate_reasonable_time(obj, zone_key)
