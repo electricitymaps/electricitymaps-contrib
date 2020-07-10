@@ -24,13 +24,13 @@ def validate_reasonable_time(item, k):
             "%s" % (k, data_time, arrow_now))
 
 
-def validate_consumption(obj: dict, zone_key):
+def validate_consumption(obj, zone_key):
     # Data quality check
-    if obj['consumption'] is not None and obj['consumption'] < 0:
+    if (obj.get('consumption') or 0) < 0:
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
     # Plausibility Check, no more than 500GW
-    if abs(obj.get('consumption', 0)) > 500000:
+    if abs(obj.get('consumption') or 0) > 500000:
         raise ValidationError('%s: consumption is not realistic (>500GW) '
                               '%s' % (zone_key, obj['consumption']))
     validate_reasonable_time(obj, zone_key)
