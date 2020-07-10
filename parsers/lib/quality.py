@@ -30,7 +30,7 @@ def validate_consumption(obj, zone_key):
         raise ValidationError('%s: consumption has negative value '
                               '%s' % (zone_key, obj['consumption']))
     # Plausibility Check, no more than 500GW
-    if obj['consumption'] is not None and abs(obj['consumption']) > 500000:
+    if abs(obj.get('consumption', 0)) > 500000:
         raise ValidationError('%s: consumption is not realistic (>500GW) '
                               '%s' % (zone_key, obj['consumption']))
     validate_reasonable_time(obj, zone_key)
@@ -51,7 +51,7 @@ def validate_exchange(item, k):
     # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
     if item.get('sortedZoneKeys', None) and item.get('netFlow', None):
         zone_names = item['sortedZoneKeys']
-        if abs(item['netFlow']) > 100000:
+        if abs(item.get('netFlow', 0)) > 100000:
             raise ValidationError(
                 'netFlow %s exceeds physical plausibility (>100GW) for %s' %
                 (item['netFlow'], k))
@@ -109,7 +109,7 @@ def validate_production(obj, zone_key):
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
         # Plausibility Check, no more than 500GW
-        if abs(v) > 500000:
+        if v > 500000:
             raise ValidationError('%s: production for %s is not realistic ('
                                   '>500GW) '
                                   '%s' % (zone_key, k, obj['consumption']))
