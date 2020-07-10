@@ -42,10 +42,15 @@ def validate_exchange(item, k):
         raise ValidationError('datetime %s is not valid for %s' %
                               (item['datetime'], k))
     validate_reasonable_time(item, k)
-    # Verify that the exchange flow is not greater than the interconnector capacity
+    # Verify that the exchange flow is not greater than the interconnector
+    # capacity and has physical sense (no exchange should exceed 100GW)
     # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
     if item.get('sortedZoneKeys', None) and item.get('netFlow', None):
         zone_names = item['sortedZoneKeys']
+        if abs(item['netFlow']) > 100000:
+            raise ValidationError(
+                'netFlow %s exceeds physical plausibility (>100GW) for %s' %
+                (item['netFlow'], k))
         if len(zone_names) == 2:
                 if ((zone_names in EXCHANGES_CONFIG) and
                     ('capacity' in EXCHANGES_CONFIG[zone_names])
