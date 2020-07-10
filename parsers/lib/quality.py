@@ -112,5 +112,5 @@ def validate_production(obj, zone_key):
         if v > 500000:
             raise ValidationError('%s: production for %s is not realistic ('
                                   '>500GW) '
-                                  '%s' % (zone_key, k, obj['consumption']))
+                                  '%s' % (zone_key, k, v))
     validate_reasonable_time(obj, zone_key)
