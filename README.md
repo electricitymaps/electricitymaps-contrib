@@ -6,14 +6,14 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ![image](https://www.electricitymap.org/images/electricitymap_social_image.jpg)
 
-You can [contribute](#contribute) by
-- **[helping us to add a new region on the map](#adding-a-new-region)**
-- correcting [data sources](#data-sources) and [capacities](#updating-region-capacities)
-- [translating](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map
-- fixing existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues)
-- submitting ideas, feature requests, or bugs in the [issues](https://github.com/tmrowco/electricitymap-contrib/issues) section.
+You can [contribute](#contribute) in the following ways:
+- **[Add a new region](#adding-a-new-region) to the map**, including contact information for energy agencies, governments, and transmission system operators.
+- Correct [data sources](#data-sources) and [capacities](#updating-region-capacities).
+- [Translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map.
+- Fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues).
+- Submit ideas, feature requests, or bugs as a new [issue](https://github.com/tmrowco/electricitymap-contrib/issues).
 
-You can also see a list of missing data displayed as warnings in the developer console, or question marks in the country panel:
+You can also find a list of missing data displayed as warnings in the developer console, or question marks in the country panel:
 
 ![image](https://cloud.githubusercontent.com/assets/1655848/16256617/9c5872fc-3853-11e6-8c84-f562679086f3.png)
 
@@ -426,60 +426,66 @@ We use the [Natural Earth Data Cultural Vectors](http://www.naturalearthdata.com
 
 
 ## Contribute
-Want to help? First of all, we'd like to invite you to join us on slack at [http://slack.tmrow.co](http://slack.tmrow.co).
-On Slack you can see what we are working on and get in touch with other contributors. Also, if you get stuck, you can write a message in our channel #electricitymap.
+Want to help? First of all, thank you for your interest!
 
-There are different ways how you can help improve electricityMap, have a look at the [overview above](#electricitymap---).
+Join us on Slack at [http://slack.tmrow.co](http://slack.tmrow.co) to see what we are working on and to get in touch with other contributors. Also, if you get stuck, you can write a message in our channel #electricitymap.
+
+For different ways to help improve electricityMap, have a look at the [overview above](#electricitymap---). Here is how to get started:
 
 ### Steps to making a code contribution
 Follow these steps to make your contribution:
 1. [Fork](https://help.github.com/articles/fork-a-repo/) the repository.
 2. [Clone](https://help.github.com/articles/cloning-a-repository/) *your fork* of the repository.
 3. Download [Docker](https://docs.docker.com/engine/installation/).
-4. Set up and start your local environment (see explanation below).
+4. Set up and start your local environment ([see steps below](#set-up-and-start-your-local-environment)).
 5. Make your code changes and test them in your local environment.
 6. Push your changes to your fork.
 7. Submit a [pull request](https://help.github.com/articles/using-pull-requests/) to bring your contribution into the production version.
 
 #### Set up and start your local environment
 
-Note: to test parsers, head directly to [Testing parsers locally](#testing-parsers-locally)
+Note: to test parsers, go to [testing parsers locally](#testing-parsers-locally)
 
-The frontend will need compiling. In order to do this, open a terminal in the root directory and run
-```
-docker-compose build
-```
-One you are done, you can start the application by running
-```
-docker-compose up
-```
+1. First, you need to compile the frontend. Open a terminal in the root directory and run:
 
-This will watch over source file changes, run nonstop and watch changes you make in the code to recompile the frontend if needed.
-Note this only builds for the English language (which will be faster as not all languages need to be built).
-If you want to build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
+   ```
+   docker-compose build
+   ```
 
-Head over to [http://localhost:8000/](http://localhost:8000/) and you should see the map! Note that the backend is responsible for the calculation of carbon emissions. The map data displayed comes from a mock server providing dummy data from [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
+2. Start the application by running:
 
-If you have issues building the map locally check out the [Troubleshooting](#troubleshooting) section below for common problems and fixes.
+   ```
+   docker-compose up
+   ```
+
+   This will watch over source file changes, run nonstop and watch changes you make in the code to recompile the frontend if needed.
+
+3. Go to [http://localhost:8000/](http://localhost:8000/) and you should now see the map!
+
+Notes: 
+   - These steps only build with the English language (which will be faster as not all languages need to be built). To build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
+   - The backend handles the calculation of carbon emissions. The map data displayed comes from a mock server providing dummy data from the [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
+
+See [Troubleshooting](#troubleshooting) below for common issues and fixes when building the map locally.
 
 ### Logger
 If you want to add new or change existing parsers you can use our public [logger](https://kibana.electricitymap.org/app/kibana#/discover/10af54f0-0c4a-11e9-85c1-1d63df8c862c?_g=()&_a=(columns:!(message,extra.key,level),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'96f67170-0c49-11e9-85c1-1d63df8c862c',key:level,negate:!f,params:(query:ERROR,type:phrase),type:phrase,value:ERROR),query:(match:(level:(query:ERROR,type:phrase))))),index:'96f67170-0c49-11e9-85c1-1d63df8c862c',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',asc))) to see if your parser(s) can fetch data successfully.
 The logs show warnings and errors for all parsers.
 
-### Updating region capacities
-If you want to update or add production capacities for a region then head over to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make any changes needed to the `capacity` map. Values are in MW.
-The zones use ISO 3166-1 codes as identifiers, a list of which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes).
+### Update region capacities
+If you want to update or add production capacities for a region, go to the [zones file](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) and make changes to the `capacity` map. Values are in MW. The zones use [ISO 3166-1 codes](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes) as identifiers.
 
-### Adding a new region
-
+### Add a new region
 As a first step, do a search for the region on our GitHub, as contributors may have explored things before.
-It is very simple to add a new country. The electricityMap backend runs a list of so-called *parsers* every 5min. Those parsers are responsible for fetching the generation mix of a given country (check out the existing list in the [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers) directory, or look at the [work in progress](https://github.com/tmrowco/electricitymap-contrib/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
+It is very simple to add a new country. The electricityMap backend runs a list of so-called *parsers* every 5 minutes. Those parsers are responsible for fetching the generation mix of a given country. See the existing list in the [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers) directory, or review [work in progress parsers](https://github.com/tmrowco/electricitymap-contrib/issues?q=is%3Aissue+is%3Aopen+label%3Aparser)).
 
-**I have not found a new data source**
-You can help us by opening a new issue for the relevant region and add the relevant individual or organization to contact (ideally with their contact details on email, Twitter and phone). Doing so will ensure that we and other visitors interested can contact them to make them aware of the electricityMap. Usually, energy agencies, governments, transmission system operators are good potential sources. If you can't code, this is an amazing way to help us!
+#### I have not found a new data source
+Open a new issue for the relevant region and add the relevant individual or organization to contact. Please include email, Twitter and phone number for the contact where available.
 
-**I have found a data source and I could help build a parser**
-A parser is a python3 script that is expected to define the method `fetch_production` which returns the production mix at current time, in the format:
+This helps us and the community to contact them and make them aware of the electricityMap. Usually, energy agencies, governments, and transmission system operators are good potential sources. If you can't code, this is an amazing way to help us!
+
+#### I have found a data source and I could help build a parser
+A parser is a python3 script that defines the method `fetch_production` and returns the production mix at current time, in this format:
 
 ```python
 def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=None):
@@ -505,10 +511,11 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None, logger=N
     }
 ```
 
-The `session` object is a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
+It contains the following objects:
 
-`target_datetime` is used to fetch historical data (when available). `logger` is a `logging.Logger`
-whose output is publicly available so that everyone can monitor correct functioning of the parsers.
+  - `session`: a [python request](http://docs.python-requests.org/en/master/) session that you can re-use to make HTTP requests.
+  - `target_datetime`: used to fetch historical data when available.
+  - `logger`: a `logging.Logger` whose output is publicly available for anyone to monitor correct functioning of the parsers.
 
 The production values should never be negative. Use `None`, or omit the key if a specific production mode is not known.
 Storage values can be both positive (when storing energy) or negative (when the storage is emptied).
@@ -524,35 +531,40 @@ python -m unittest discover parsers/test/
 
 For more info, check out the [example parser](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers/example.py) or browse existing [parsers](https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers).
 
-### Generating a new map
-If your changes involve altering the way countries are displayed on the map a new world.json will need to be generated. Make sure you're in the root directory then run the following command:
+### Generate a new map
+If your changes involve altering the way countries are displayed on the map, a new world.json will need to be generated. Make sure you're in the root directory then run the following command:
+
 ```
 docker-compose run --rm web ./topogen.sh
 ```
 
-For a more detailed explanation of how the map is generated see [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
+[Learn more about how the map is generated](https://github.com/tmrowco/electricitymap-contrib/blob/master/web/README.md).
 
-### Testing parsers locally
-In order to test your parser, make sure first that you have installed the required modules as described, and are using python 3.6 (consider also using a [virtual environment](https://docs.python.org/3/library/venv.html)) in parsers/requirements.txt: for that you can run
+### Test parsers locally
+
+1. Make sure you have installed the required modules as described in [parsers/requirements.txt](https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/requirements.txt), and are using python 3.6 (consider using a [virtual environment](https://docs.python.org/3/library/venv.html) for python). To confirm this, run:
+
+   ```
+   pip install -r parsers/requirements.txt
+   ```
+2. From the root folder, use the `test_parser.py` command line utility:
+
+   ```python
+   python test_parser.py FR price  # get latest price parser for France
+   python test_parser.py FR  # defaults to production if no data type is given
+   # test a specific datetime (parser needs to be able to fetch past datetimes)
+   python test_parser.py DE --target_datetime 2018-01-01T08:00
+   ```
+
+Many of the tests require API keys of the data or web service providers, and therefore fail with an error message like
+
 ```
-pip install -r parsers/requirements.txt
+Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
 ```
 
-From the root folder, use the `test_parser.py` command line utility:
-```python
-python test_parser.py FR price  # get latest price parser for France
-python test_parser.py FR  # defaults to production if no data type is given
-# test a specific datetime (parser needs to be able to fetch past datetimes)
-python test_parser.py DE --target_datetime 2018-01-01T08:00
-```
+In such cases, please browse the website related to the provider and ask for an API key. Once you get hold of the API key, make it an environment variable. This fixes the error.
 
-Many of the tests require API keys of the data or web service providers and will therefore fail with an error message like
-
-> Exception: No ENTSOE_TOKEN found! Please add it into secrets.env!
-
-In such cases, please browse the website related to the provider and ask for an API key. As soon as you got hold of the API key, make it an environment variable. This fixes the error.
-
-### Updating the map
+### Update the map
 We've added a testing server locally.
 
 To add a new country to the map, run:
@@ -560,9 +572,7 @@ To add a new country to the map, run:
 PYTHONPATH=. python mockserver/update_state.py <zone_name>
 ```
 
-from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want
-to test. This will fetch production and exchanges and assign it a random carbon intensity value.
-It should appear on the map as you refresh your local browser.
+from the root directory, replacing `<zone_name>` by the zone identifier of the parser you want to test. This fetches production, and assigns it a random carbon intensity value. It should appear on the map as you refresh your local browser.
 
 ### Troubleshooting
 

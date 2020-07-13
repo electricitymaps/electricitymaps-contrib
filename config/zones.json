@@ -3496,7 +3496,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 2445
+      "wind": 2754
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3558,7 +3558,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 800
+      "wind": 1060
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3589,7 +3589,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1057
+      "wind": 1074
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3620,7 +3620,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 442
+      "wind": 456
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -6417,6 +6417,17 @@
     ]
   },
   "US-NY-NYIS": {
+    "capacity": {
+      "coal": 676,
+      "gas": 23956,
+      "hydro": 4247,
+      "hydro storage": 1407,
+      "nuclear": 5391,
+      "oil": 2416,
+      "solar": 32,
+      "wind": 1739,
+      "unknown": 327
+    },
     "comment": "New York Independent System Operator",
     "contributors": [
       "https://github.com/systemcatch",
