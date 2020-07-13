@@ -6417,6 +6417,17 @@
     ]
   },
   "US-NY-NYIS": {
+    "capacity": {
+      "coal": 676,
+      "gas": 23956,
+      "hydro": 4247,
+      "hydro storage": 1407,
+      "nuclear": 5391,
+      "oil": 2416,
+      "solar": 32,
+      "wind": 1739,
+      "unknown": 327
+    },
     "comment": "New York Independent System Operator",
     "contributors": [
       "https://github.com/systemcatch",
