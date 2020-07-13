@@ -873,6 +873,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     This will drop rows where the datetime is missing in at least a
     parser_output.
     """
+    if len(parser_outputs) == 0:
+        return []
     if merge_source is None:
         merge_source = parser_outputs[0][0]['source']
     prod_and_storage_dfs = [
