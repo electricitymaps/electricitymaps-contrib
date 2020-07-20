@@ -112,7 +112,7 @@ export default () => {
     () => () => {
       history.push({ pathname: '/map', search: location.search });
     },
-    [history],
+    [history, location],
   );
 
   const handleZoneClick = useMemo(
@@ -121,7 +121,7 @@ export default () => {
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [trackEvent, history],
+    [trackEvent, history, location],
   );
 
   const handleZoneMouseEnter = useMemo(
