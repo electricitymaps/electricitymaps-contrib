@@ -15,7 +15,8 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__), energieopwek_nl=True):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
-
+    else:
+        target_datetime = arrow.get(target_datetime)
     r = session or requests.session()
 
     consumptions = ENTSOE.fetch_consumption(zone_key=zone_key,
@@ -130,7 +131,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
     # Flatten production dictionaries (we ignore storage)
     for p in productions:
         # if for some reason theré's no unknown value
-        if not 'unknown' in p['production']:
+        if not 'unknown' in p['production'] or p['production']['unknown'] == None:
             p['production']['unknown'] = 0
         
         Z = sum([x or 0 for x in p['production'].values()])
