@@ -37,12 +37,12 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = () => {
+const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
@@ -52,15 +52,15 @@ const CountryLowCarbonGauge = () => {
     ? 100 - (fossilFuelRatio * 100)
     : null;
 
-  return <CircularGauge percentage={countryLowCarbonPercentage} />;
+  return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
-const CountryRenewableGauge = () => {
+const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const renewableRatio = electricityMixMode === 'consumption'
@@ -70,7 +70,7 @@ const CountryRenewableGauge = () => {
     ? renewableRatio * 100
     : null;
 
-  return <CircularGauge percentage={countryRenewablePercentage} />;
+  return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
 const mapStateToProps = state => ({

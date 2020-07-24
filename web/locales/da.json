@@ -4,26 +4,30 @@
         "opensource": "Open Source",
         "see": "se",
         "datasources": "kildekode",
-        "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit territorie</a>"
+        "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit område</a>"
     },
     "country-panel": {
         "source": "kilde",
-        "carbonintensity": "CO₂ intensitet",
+        "carbonintensity": "CO₂-intensitet",
         "lowcarbon": "Lav CO₂",
         "renewable": "Vedvarende",
         "electricity": "Elektricitet",
         "electricityproduction": "Elproduktion",
         "electricityconsumption": "Elforbrug",
-        "bysource": "per kilde",
-        "emissions": "CO₂ udledning",
+        "bysource": "efter kilde",
+        "emissions": "CO₂-udledning",
         "helpfrom": "med hjælp fra",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>"
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
+        "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
+        "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
+        "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href=\"%s\" target=\"_blank\">tilføje områdedata</a>.",
+        "now": "Nu"
     },
     "country-history": {
-        "carbonintensity24h": "CO₂ intensitet i de sidste 24 timer",
-        "emissionsorigin24h": "CO₂ udledningens oprindelse i de sidste 24 timer",
+        "carbonintensity24h": "CO₂-intensitet i de sidste 24 timer",
+        "emissionsorigin24h": "CO₂-udledningens oprindelse i de sidste 24 timer",
         "emissionsproduction24h": "CO₂ udledt i de sidste 24 timer",
-        "electricityorigin24h": "Elektricitets oprindelse i de sidste 24 timer",
+        "electricityorigin24h": "Elektricitetens oprindelse i de sidste 24 timer",
         "electricityproduction24h": "Elproduktionen i de sidste 24 timer",
         "electricityprices24h": "Elprisen i de sidste 24 timer"
     },
@@ -34,19 +38,19 @@
     "legends": {
         "windpotential": "Vindpotentiale",
         "solarpotential": "Solpotentiale",
-        "colorblindmode": "farveblind indstilling",
-        "carbonintensity": "CO₂ intensitet"
+        "colorblindmode": "farveblindhedstilstand",
+        "carbonintensity": "CO₂-intensitet"
     },
     "tooltips": {
-        "carbonintensity": "CO₂ intensitet",
+        "carbonintensity": "CO₂-intensitet",
         "crossborderexport": "Eksport til udlandet",
-        "carbonintensityexport": "Eksport CO₂ intensitet",
+        "carbonintensityexport": "CO₂-intensitet af eksport",
         "ofinstalled": "af installeret kapacitet",
         "utilizing": "udnytter",
-        "withcarbonintensity": "med en CO₂ intensitet på"
+        "withcarbonintensity": "med en CO₂-intensitet på"
     },
     "misc": {
-        "maintitle": "Realtids CO₂-udledning af elforbruget",
+        "maintitle": "Realtids-CO₂-udledning fra elforbruget",
         "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
         "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere.",
         "retrynow": "Prøv igen nu"
@@ -54,15 +58,15 @@
     "wind": "Vind",
     "solar": "Sol",
     "hydro": "Hydro",
-    "hydro storage": "Hydro lagring",
-    "batteri storage": "Batteri lagring",
+    "hydro storage": "Hydrolagring",
+    "batteri storage": "Batterilagring",
     "biomass": "Biomasse",
     "nuclear": "Atomkraft",
     "geothermal": "Geotermi",
     "gas": "Gas",
     "coal": "Kul",
     "oil": "Olie",
-    "unknown": "Ubekendt",
+    "unknown": "Ukendt",
 
     "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
@@ -74,7 +78,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO₂eq per minute",
+    "ofCO2eqPerMinute": "af CO₂-ækvivalenter per minut",
 
     "zoneShortName": {
         "AL": {
@@ -112,11 +116,11 @@
           },
           "DK-DK1": {
             "countryName": "Danmark",
-            "zoneName": "Vest Denmark"
+            "zoneName": "Vestdanmark"
           },
           "DK-DK2": {
             "countryName": "Danmark",
-            "zoneName": "Øst Denmark"
+            "zoneName": "Østdanmark"
           },
           "EE": {
             "zoneName": "Estland"
@@ -183,23 +187,23 @@
           },
           "NO-NO1": {
             "countryName": "Norge",
-            "zoneName": "Sydøst Norge"
+            "zoneName": "Sydøstnorge"
           },
           "NO-NO2": {
             "countryName": "Norge",
-            "zoneName": "Sydvest Norge"
+            "zoneName": "Sydvestnorge"
           },
           "NO-NO3": {
             "countryName": "Norge",
-            "zoneName": "Midt Norge"
+            "zoneName": "Midtnorge"
           },
           "NO-NO4": {
             "countryName": "Norge",
-            "zoneName": "Nord Norge"
+            "zoneName": "Nordnorge"
           },
           "NO-NO5": {
             "countryName": "Norge",
-            "zoneName": "Vest Norge"
+            "zoneName": "Vestnorge"
           },
           "PE": {
             "zoneName": "Peru"
