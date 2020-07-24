@@ -3836,13 +3836,16 @@
     ],
     "capacity": {
       "biomass": 1493,
+      "battery storage": 0,
       "coal": 29963,
       "gas": 2812,
+      "geothermal": 0,
       "hydro": 605,
       "hydro storage": 1780,
       "nuclear": 0,
       "oil": 359,
-      "solar": 1833,
+      "solar": 2109,
+      "unknown": 0,
       "wind": 5953
     },
     "contributors": [
