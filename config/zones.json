@@ -2937,7 +2937,7 @@
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
+      "production": "JP_KN.fetch_production",
       "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
