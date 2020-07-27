@@ -326,7 +326,11 @@
         "hydro discharge": {
           "source": "2019 average by Tomorrow",
           "value": 48.14997796838915
-        }
+        },
+        "nuclear": {
+        "source": "ADEME",
+        "value": 6
+        },
       },
       "GB": {
         "hydro discharge": {
