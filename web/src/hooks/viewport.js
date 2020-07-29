@@ -46,7 +46,7 @@ export function useHeightObserver(ref, offset = 0) {
   return height;
 }
 
-function useWindowSize() {
+export function useWindowSize() {
   const [windowSize, setWindowSize] = useState({});
 
   // Resize hook

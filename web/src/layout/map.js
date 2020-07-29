@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
@@ -8,6 +8,7 @@ import { __ } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
+import { useWindowSize } from '../hooks/viewport';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useTheme } from '../hooks/theme';
@@ -146,15 +147,36 @@ export default () => {
   );
 
   const handleViewportChange = useMemo(
-    () => ({ latitude, longitude, zoom }) => {
+    () => ({
+      width,
+      height,
+      latitude,
+      longitude,
+      zoom,
+    }) => {
       dispatchApplication('isMovingMap', true);
-      dispatchApplication('mapViewport', { latitude, longitude, zoom });
+      dispatchApplication('mapViewport', {
+        width,
+        height,
+        latitude,
+        longitude,
+        zoom,
+      });
       // TODO: Try tying this to internal map state
       // somehow to remove the need for debouncing.
       debouncedReleaseMoving();
     },
     [],
   );
+
+  // Update the map viewport whenever the window width or height changes.
+  // TODO: This is a hack that should ideally not be needed, but without it
+  // the exchange arrows don't seem to update well under resizing the width.
+  // See https://github.com/tmrowco/electricitymap-contrib/issues/2573#issuecomment-658242753
+  const { width, height } = useWindowSize();
+  useEffect(() => {
+    handleViewportChange({ ...viewport, width, height });
+  }, [width, height]);
 
   // Animate map transitions only after the map has been loaded.
   const transitionDuration = isLoadingMap ? 0 : 300;
