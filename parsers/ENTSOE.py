@@ -22,8 +22,10 @@ import requests
 
 import pandas as pd
 
-from .lib.validation import validate
-from .lib.utils import sum_production_dicts
+from lib.validation import validate
+from lib.utils import sum_production_dicts
+
+os.environ['ENTSOE_TOKEN']='dfb276c1-986a-4e92-a736-74d584bb782c'
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -407,10 +409,10 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
-        
+
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = os.environ['ENTSOE_TOKEN'].split(',')
-    
+
     params['securityToken'] = np.random.choice(tokens)
     return session.get(ENTSOE_ENDPOINT, params=params)
 
@@ -1168,3 +1170,5 @@ def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
         })
 
     return data
+
+print(fetch_production('AT'))

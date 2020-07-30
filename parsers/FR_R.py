@@ -27,51 +27,62 @@ MAP_GENERATION = {
     'bioenergies': 'biomass'
 }
 
-
 # # Define all RTE French regional zone-key <-> domain mapping
-# RTE_FR_REGION_MAPPINGS = {
-#   'FR-ARA': 'Auvergne-Rh%C3%B4ne-Alpes',
-#   'FR-BFC': 'Bourgogne-Franche-Comt%C3%A9',
-#   'FR-BRE': 'Bretagne',
-#   'FR-CVL': 'Centre-Val+de+Loire',
-#   'FR-GES': 'Grand-Est',
-#   'FR-HDF': 'Hauts-de-France',
-#   'FR-IDF': 'Ile-de-France',
-#   'FR-NOR': 'Normandie',
-#   'FR-NAQ': 'Nouvelle-Aquitaine',
-#   'FR-OCC': 'Occitanie',
-#   'FR-PDL': 'Pays+de+la+Loire',
-#   'FR-PAC': 'Provence-Alpes-Côte+d%27Azur'
-# }
+FR_REGIONS = {
+  'FR-ARA': 'Auvergne-Rhône-Alpes',
+  'FR-BFC': 'Bourgogne-Franche-Comté',
+  'FR-BRE': 'Bretagne',
+  'FR-CVL': 'Centre-Val de Loire',
+  'FR-GES': 'Grand-Est',
+  'FR-HDF': 'Hauts-de-France',
+  'FR-IDF': 'Ile-de-France',
+  'FR-NOR': 'Normandie',
+  'FR-NAQ': 'Nouvelle-Aquitaine',
+  'FR-OCC': 'Occitanie',
+  'FR-PDL': 'Pays de la Loire',
+  'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
+}
 
-def is_not_nan_and_truthy(v):
-    if isinstance(v, float) and math.isnan(v):
-        return False
-    return bool(v)
+VALIDATIONS = {
+  'FR-ARA': ['thermal', 'nuclear', 'hydro'],
+  'FR-BFC': ['wind'],
+  'FR-BRE': ['thermal', 'wind'],
+  'FR-CVL': ['nuclear', 'wind'],
+  'FR-GES': ['thermal', 'nuclear', 'hydro'],
+  'FR-HDF': ['thermal', 'nuclear'],
+  'FR-IDF': ['thermal'],
+  'FR-NOR': ['thermal', 'nuclear'],
+  'FR-NAQ': ['nuclear', 'hydro'],
+  'FR-OCC': ['nuclear', 'hydro'],
+  'FR-PDL': ['thermal', 'wind'],
+  'FR-PAC': ['thermal', 'hydro'],
+}
 
-# NOTE: Changed zone key from FR to FR-OCC (need to make this dynamic now)
-def fetch_production(zone_key='FR-OCC', session=None, target_datetime=None,
+# need to input zone_key when fetching production
+def fetch_production(zone_key=None, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
+
     if target_datetime:
         to = arrow.get(target_datetime, 'Europe/Paris')
     else:
         to = arrow.now(tz='Europe/Paris')
 
     # setup request
+    zone_key=zone_key
+
     r = session or requests.session()
     formatted_from = to.shift(days=-1).format('YYYY-MM-DDTHH:mm')
     formatted_to = to.format('YYYY-MM-DDTHH:mm')
 
-    # dataset changed to regional regional + refine search parameter for region
+    # dataset changed to regional + refine.libelle_region added
     params = {
         'dataset': 'eco2mix-regional-tr',
         'q': 'date_heure >= {} AND date_heure <= {}'.format(
             formatted_from, formatted_to),
         'timezone': 'Europe/Paris',
         'rows': 100,
-        'refine.libelle_region': 'Occitanie'
+        'refine.libelle_region': FR_REGIONS[zone_key]
     }
-
 
     if 'RESEAUX_ENERGIES_TOKEN' not in os.environ:
         raise Exception(
@@ -118,13 +129,13 @@ def fetch_production(zone_key='FR-OCC', session=None, target_datetime=None,
             'production': production,
             'source': 'opendata.reseaux-energies.fr'
         }
-        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro', 'thermal']) # changed validation of gas to hydro
+        datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key]) # validations responsive to region
         datapoints.append(datapoint)
 
     max_diffs = {
         'hydro': 1600,
         'solar': 1000, # was 500 before
-        'thermal': 2000, # changed this to hypothetical value
+        'thermal': 2000, # added thermal
         'wind': 1000,
         'nuclear': 1300,
     }
@@ -134,9 +145,5 @@ def fetch_production(zone_key='FR-OCC', session=None, target_datetime=None,
     return datapoints
 
 if __name__ == '__main__':
-    print(fetch_production())
-
-
-
-
+    print(fetch_production('FR-BFC'))
 

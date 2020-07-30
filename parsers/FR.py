@@ -10,7 +10,10 @@ import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
 
-from .lib.validation import validate, validate_production_diffs
+from lib.validation import validate, validate_production_diffs
+
+# Setting env variable
+os.environ['RESEAUX_ENERGIES_TOKEN']='8286b3219dbedb0c74bbab52ef6a268fcaf79423f7b2deb727a6e803'
 
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
@@ -159,7 +162,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
             continue
 
         start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/Paris')
-        
+
         for item in donnesMarche:
             if item.get('granularite') != 'Global':
                 continue
