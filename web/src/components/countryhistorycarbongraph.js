@@ -111,7 +111,10 @@ const CountryHistoryCarbonGraph = ({
         <MapCountryTooltip
           position={tooltip.position}
           zoneData={tooltip.zoneData}
-          onClose={markerHideHandler}
+          onClose={() => {
+            setSelectedLayerIndex(null);
+            setTooltip(null);
+          }}
         />
       )}
     </React.Fragment>
