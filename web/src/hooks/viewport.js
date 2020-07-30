@@ -52,10 +52,15 @@ export function useWindowSize() {
   // Resize hook
   useEffect(() => {
     const updateSize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      if (
+        windowSize.width !== window.innerWidth
+        || windowSize.height !== window.innerHeight
+      ) {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
     };
     // Set initial size
     updateSize();
