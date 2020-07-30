@@ -115,6 +115,7 @@ const CountryHistoryEmissionsGraph = ({
         <CountryPanelEmissionsTooltip
           position={tooltip.position}
           zoneData={tooltip.zoneData}
+          onClose={markerHideHandler}
         />
       )}
     </React.Fragment>

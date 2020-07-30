@@ -193,6 +193,7 @@ export default () => {
         <MapCountryTooltip
           zoneData={tooltipZoneData}
           position={tooltipPosition}
+          onClose={() => setTooltipZoneData(null)}
         />
       )}
       <ZoneMap

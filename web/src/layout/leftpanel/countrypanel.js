@@ -192,7 +192,12 @@ const CountryPanel = ({
                     onMouseMove={(x, y) => setTooltip({ position: { x, y } })}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
+                  {tooltip && (
+                    <LowCarbonInfoTooltip
+                      position={tooltip.position}
+                      onClose={() => setTooltip(null)}
+                    />
+                  )}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />

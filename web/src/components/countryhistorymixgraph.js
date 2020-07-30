@@ -201,12 +201,14 @@ const CountryHistoryMixGraph = ({
             exchangeKey={tooltip.mode}
             position={tooltip.position}
             zoneData={tooltip.zoneData}
+            onClose={markerHideHandler}
           />
         ) : (
           <CountryPanelProductionTooltip
             mode={tooltip.mode}
             position={tooltip.position}
             zoneData={tooltip.zoneData}
+            onClose={markerHideHandler}
           />
         )
       )}
