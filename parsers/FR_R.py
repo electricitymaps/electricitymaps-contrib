@@ -12,22 +12,26 @@ import requests
 
 from lib.validation import validate, validate_production_diffs
 
-# Setting env variable
+# setting env variable
 os.environ['RESEAUX_ENERGIES_TOKEN']='8286b3219dbedb0c74bbab52ef6a268fcaf79423f7b2deb727a6e803'
 
-# # taken from FR.py
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
+# note: thermal lump sum for coal, oil, gas as breakdown not available at regional level
 MAP_GENERATION = {
     'nucleaire': 'nuclear',
-    'thermique': 'thermal', #lump sum for coal, oil, gas as breakdown not available at regional level
+    'thermique': 'thermal',
     'eolien': 'wind',
     'solaire': 'solar',
     'hydraulique': 'hydro',
     'bioenergies': 'biomass'
 }
 
-# # Define all RTE French regional zone-key <-> domain mapping
+MAP_STORAGE = {
+    'pompage': 'hydro',
+}
+
+# define all RTE French regional zone-key <-> domain mapping
 FR_REGIONS = {
   'FR-ARA': 'Auvergne-Rhône-Alpes',
   'FR-BFC': 'Bourgogne-Franche-Comté',
@@ -43,6 +47,7 @@ FR_REGIONS = {
   'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
 }
 
+# validations for each region
 VALIDATIONS = {
   'FR-ARA': ['thermal', 'nuclear', 'hydro'],
   'FR-BFC': ['wind'],
@@ -58,6 +63,11 @@ VALIDATIONS = {
   'FR-PAC': ['thermal', 'hydro'],
 }
 
+def is_not_nan_and_truthy(v):
+    if isinstance(v, float) and math.isnan(v):
+        return False
+    return bool(v)
+
 # need to input zone_key when fetching production
 def fetch_production(zone_key=None, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
@@ -67,9 +77,9 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     else:
         to = arrow.now(tz='Europe/Paris')
 
-    # setup request
     zone_key=zone_key
 
+    # setup request
     r = session or requests.session()
     formatted_from = to.shift(days=-1).format('YYYY-MM-DDTHH:mm')
     formatted_to = to.format('YYYY-MM-DDTHH:mm')
@@ -96,7 +106,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     df = pd.DataFrame(data)
 
     # filter out desired columns and convert values to float
-    value_columns = list(MAP_GENERATION.keys())
+    value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys())
     missing_fuels = [v for v in value_columns if v not in df.columns]
     present_fuels = [v for v in value_columns if v in df.columns]
     if len(missing_fuels) == len(value_columns):
@@ -106,6 +116,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
         mf_str = ', '.join(missing_fuels)
         logger.warning('Fuels [{}] are not present in the API '
                        'response'.format(mf_str))
+    # note this happens and is ok as not all French regions have all fuels.
 
     df = df.loc[:, ['date_heure'] + present_fuels]
     df[present_fuels] = df[present_fuels].astype(float)
@@ -113,6 +124,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     datapoints = list()
     for row in df.iterrows():
         production = dict()
+        storage = dict()
         for key, value in MAP_GENERATION.items():
             if key not in present_fuels:
                 continue
@@ -123,13 +135,30 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
                 production[value] = 0
             else:
                 production[value] = row[1][key]
+
+        for key, value in MAP_STORAGE.items():
+            if key not in present_fuels:
+                continue
+            elif row[1][key] == 0:
+                storage[value] = 0
+            else:
+                storage[value] = row[1][key]
+
+
+        # if all production values are null, ignore datapoint
+        if not any([is_not_nan_and_truthy(v)
+                    for k, v in production.items()]):
+            continue
+
         datapoint = {
             'zoneKey': zone_key,
             'datetime': arrow.get(row[1]['date_heure']).datetime,
             'production': production,
+            'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
         }
-        datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key]) # validations responsive to region
+        # validations responsive to region
+        datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key])
         datapoints.append(datapoint)
 
     max_diffs = {
@@ -144,6 +173,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
 
     return datapoints
 
+# enter any of the regional zone keys when calling method
 if __name__ == '__main__':
-    print(fetch_production('FR-BFC'))
+    print(fetch_production('FR-NAQ'))
 
