@@ -60,6 +60,7 @@ export default React.memo(({ project }) => {
         <MapExchangeTooltip
           exchangeData={tooltip.exchangeData}
           position={tooltip.position}
+          onClose={() => setTooltip(null)}
         />
       )}
       {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
