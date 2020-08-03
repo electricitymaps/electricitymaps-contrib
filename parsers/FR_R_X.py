@@ -156,27 +156,44 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     data = [d['fields'] for d in data['records']]
     df = pd.DataFrame(data)
 
+
+
+##############################################
     # filter out desired columns and convert values to float
     exchange_zone = EXCHANGE[zone_key1][zone_key2]
 
     value_columns = list(exchange_zone.values())
+    x_import = exchange_zone['import']
+    x_export = exchange_zone['export']
+
     df = df.loc[:, ['date_heure'] + value_columns]
+
+    # cleaning data: converting str and NaN to 0
+    df.fillna({x_import: 0, x_export: 0}, inplace = True)
+    df.replace({x_import: "-", x_export: "-"}, 0, inplace = True)
+
+    # converting data to float
     df[value_columns] = df[value_columns].astype(float)
 
-    df['net_flow'] = (df[exchange_zone['export']] + df[exchange_zone['import']]) * -1
+    # calculating net-flow
+    df['net_flow'] = (df[x_export] + df[x_import]) * -1
 
     datapoints = list()
     for row in df.iterrows():
-        net_flow = row[1]['net_flow']
+        if row[1]['net_flow'] == 0:
+          net_flow = 0
+        else:
+          net_flow = row[1]['net_flow']
 
         datapoint = {
-              'sortedZoneKeys': zone_key1 + '->' + zone_key2,
-              'datetime': arrow.get(row[1]['date_heure']).datetime,
-              'netFlow': net_flow,
-              'source': 'opendata.reseaux-energies.fr'
-          }
+            'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
+            'datetime': arrow.get(row[1]['date_heure']).datetime,
+            'netFlow': net_flow,
+            'source': 'opendata.reseaux-energies.fr'
+        }
+
 
         datapoints.append(datapoint)
     return datapoints
 
-print(fetch_exchange('FR-GES', 'DE'))
+print(fetch_exchange('FR-GES', 'IT'))

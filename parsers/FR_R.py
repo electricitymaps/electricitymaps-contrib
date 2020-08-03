@@ -105,6 +105,8 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     data = [d['fields'] for d in data['records']]
     df = pd.DataFrame(data)
 
+
+#########################################
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys())
     missing_fuels = [v for v in value_columns if v not in df.columns]
@@ -116,64 +118,65 @@ def fetch_production(zone_key, session=None, target_datetime=None,
         mf_str = ', '.join(missing_fuels)
         logger.warning('Fuels [{}] are not present in the API '
                        'response'.format(mf_str))
+
     # note this happens and is ok as not all French regions have all fuels.
 
     df = df.loc[:, ['date_heure'] + present_fuels]
     df[present_fuels] = df[present_fuels].astype(float)
 
-    datapoints = list()
-    for row in df.iterrows():
-        production = dict()
-        storage = dict()
+    # datapoints = list()
+    # for row in df.iterrows():
+    #     production = dict()
+    #     storage = dict()
 
-        for key, value in MAP_GENERATION.items():
-            if key not in present_fuels:
-                continue
+    #     for key, value in MAP_GENERATION.items():
+    #         if key not in present_fuels:
+    #             continue
 
-            if -50 < row[1][key] < 0:
-                # set small negative values to 0
-                logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
-                production[value] = 0
-            else:
-                production[value] = row[1][key]
+    #         if -50 < row[1][key] < 0:
+    #             # set small negative values to 0
+    #             logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
+    #             production[value] = 0
+    #         else:
+    #             production[value] = row[1][key]
 
-        for key, value in MAP_STORAGE.items():
-            if key not in present_fuels:
-                continue
-            else:
-                storage[value] = row[1][key]
-
-
-        # if all production values are null, ignore datapoint
-        if not any([is_not_nan_and_truthy(v)
-                    for k, v in production.items()]):
-            continue
-
-        datapoint = {
-            'zoneKey': zone_key,
-            'datetime': arrow.get(row[1]['date_heure']).datetime,
-            'production': production,
-            'storage': storage,
-            'source': 'opendata.reseaux-energies.fr'
-        }
-        # validations responsive to region
-        datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key])
-        datapoints.append(datapoint)
-
-    max_diffs = {
-        'hydro': 1600,
-        'solar': 1000, # was 500 before
-        'thermal': 2000, # added thermal
-        'wind': 1000,
-        'nuclear': 1300,
-    }
-
-    datapoints = validate_production_diffs(datapoints, max_diffs, logger)
-
-    return datapoints
+    #     for key, value in MAP_STORAGE.items():
+    #         if key not in present_fuels:
+    #             continue
+    #         else:
+    #             storage[value] = row[1][key]
 
 
-enter any of the regional zone keys when calling method
+    #     # if all production values are null, ignore datapoint
+    #     if not any([is_not_nan_and_truthy(v)
+    #                 for k, v in production.items()]):
+    #         continue
+
+    #     datapoint = {
+    #         'zoneKey': zone_key,
+    #         'datetime': arrow.get(row[1]['date_heure']).datetime,
+    #         'production': production,
+    #         'storage': storage,
+    #         'source': 'opendata.reseaux-energies.fr'
+    #     }
+    #     # validations responsive to region
+    #     datapoint = validate(datapoint, logger, required=VALIDATIONS[zone_key])
+    #     datapoints.append(datapoint)
+
+    # max_diffs = {
+    #     'hydro': 1600,
+    #     'solar': 1000, # was 500 before
+    #     'thermal': 2000, # added thermal
+    #     'wind': 1000,
+    #     'nuclear': 1300,
+    # }
+
+    # datapoints = validate_production_diffs(datapoints, max_diffs, logger)
+
+    # return datapoints
+
+
+# enter any of the regional zone keys when calling method
 if __name__ == '__main__':
-    print(fetch_production('FR-OCC'))
+    print(fetch_production('FR-BFC'))
 
