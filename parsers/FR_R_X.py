@@ -157,28 +157,39 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     df = pd.DataFrame(data)
 
 
-
 ##############################################
     # filter out desired columns and convert values to float
     exchange_zone = EXCHANGE[zone_key1][zone_key2]
 
     value_columns = list(exchange_zone.values())
-    x_import = exchange_zone['import']
-    x_export = exchange_zone['export']
-
     df = df.loc[:, ['date_heure'] + value_columns]
 
-    # cleaning data: converting str and NaN to 0
-    df.fillna({x_import: 0, x_export: 0}, inplace = True)
-    df.replace({x_import: "-", x_export: "-"}, 0, inplace = True)
+    x_import = exchange_zone['import']
 
-    # converting data to float
-    df[value_columns] = df[value_columns].astype(float)
 
-    # calculating net-flow
-    df['net_flow'] = (df[x_export] + df[x_import]) * -1
+    if 'export' in exchange_zone:
+        x_export = exchange_zone['export']
 
+        # cleaning data: converting str and NaN to 0
+        df.fillna({x_import: 0, x_export: 0}, inplace = True)
+        df.replace({x_import: "-", x_export: "-"}, 0, inplace = True)
+
+        # converting data to float
+        df[value_columns] = df[value_columns].astype(float)
+
+        # calculating net-flow
+        df['net_flow'] = (df[x_export] + df[x_import]) * -1
+    else:
+        # doing the same without exports
+        df.fillna({x_import: 0}, inplace = True)
+        df.replace({x_import: "-"}, 0, inplace = True)
+        df[value_columns] = df[value_columns].astype(float)
+        df['net_flow'] = df[x_import] * -1
+
+    # compiling datapoints
     datapoints = list()
+
+
     for row in df.iterrows():
         if row[1]['net_flow'] == 0:
           net_flow = 0
@@ -192,8 +203,10 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
             'source': 'opendata.reseaux-energies.fr'
         }
 
-
         datapoints.append(datapoint)
-    return datapoints
 
-print(fetch_exchange('FR-GES', 'IT'))
+    datapoints = sorted(datapoints, key=lambda x: x['datetime'])
+
+    return len(datapoints)
+
+print(fetch_exchange('FR-BFC', 'FR-GES'))
