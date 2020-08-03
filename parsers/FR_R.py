@@ -33,34 +33,34 @@ MAP_STORAGE = {
 
 # define all RTE French regional zone-key <-> domain mapping
 FR_REGIONS = {
-  'FR-ARA': 'Auvergne-Rhône-Alpes',
-  'FR-BFC': 'Bourgogne-Franche-Comté',
-  'FR-BRE': 'Bretagne',
-  'FR-CVL': 'Centre-Val de Loire',
-  'FR-GES': 'Grand-Est',
-  'FR-HDF': 'Hauts-de-France',
-  'FR-IDF': 'Ile-de-France',
-  'FR-NOR': 'Normandie',
-  'FR-NAQ': 'Nouvelle-Aquitaine',
-  'FR-OCC': 'Occitanie',
-  'FR-PDL': 'Pays de la Loire',
-  'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
+    'FR-ARA': 'Auvergne-Rhône-Alpes',
+    'FR-BFC': 'Bourgogne-Franche-Comté',
+    'FR-BRE': 'Bretagne',
+    'FR-CVL': 'Centre-Val de Loire',
+    'FR-GES': 'Grand-Est',
+    'FR-HDF': 'Hauts-de-France',
+    'FR-IDF': 'Ile-de-France',
+    'FR-NOR': 'Normandie',
+    'FR-NAQ': 'Nouvelle-Aquitaine',
+    'FR-OCC': 'Occitanie',
+    'FR-PDL': 'Pays de la Loire',
+    'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
 }
 
 # validations for each region
 VALIDATIONS = {
-  'FR-ARA': ['thermal', 'nuclear', 'hydro'],
-  'FR-BFC': ['wind'],
-  'FR-BRE': ['thermal', 'wind'],
-  'FR-CVL': ['nuclear', 'wind'],
-  'FR-GES': ['thermal', 'nuclear', 'hydro'],
-  'FR-HDF': ['thermal', 'nuclear'],
-  'FR-IDF': ['thermal'],
-  'FR-NOR': ['thermal', 'nuclear'],
-  'FR-NAQ': ['nuclear', 'hydro'],
-  'FR-OCC': ['nuclear', 'hydro'],
-  'FR-PDL': ['thermal', 'wind'],
-  'FR-PAC': ['thermal', 'hydro'],
+    'FR-ARA': ['thermal', 'nuclear', 'hydro'],
+    'FR-BFC': ['wind'],
+    'FR-BRE': ['thermal', 'wind'],
+    'FR-CVL': ['nuclear', 'wind'],
+    'FR-GES': ['thermal', 'nuclear', 'hydro'],
+    'FR-HDF': ['thermal', 'nuclear'],
+    'FR-IDF': ['thermal'],
+    'FR-NOR': ['thermal', 'nuclear'],
+    'FR-NAQ': ['nuclear', 'hydro'],
+    'FR-OCC': ['nuclear', 'hydro'],
+    'FR-PDL': ['thermal', 'wind'],
+    'FR-PAC': ['thermal', 'hydro'],
 }
 
 def is_not_nan_and_truthy(v):
@@ -69,7 +69,7 @@ def is_not_nan_and_truthy(v):
     return bool(v)
 
 # need to input zone_key when fetching production
-def fetch_production(zone_key=None, session=None, target_datetime=None,
+def fetch_production(zone_key, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
 
     if target_datetime:
@@ -125,6 +125,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
     for row in df.iterrows():
         production = dict()
         storage = dict()
+
         for key, value in MAP_GENERATION.items():
             if key not in present_fuels:
                 continue
@@ -139,8 +140,6 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
         for key, value in MAP_STORAGE.items():
             if key not in present_fuels:
                 continue
-            elif row[1][key] == 0:
-                storage[value] = 0
             else:
                 storage[value] = row[1][key]
 
@@ -173,7 +172,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None,
 
     return datapoints
 
-# enter any of the regional zone keys when calling method
+
+enter any of the regional zone keys when calling method
 if __name__ == '__main__':
-    print(fetch_production('FR-NAQ'))
+    print(fetch_production('FR-OCC'))
 

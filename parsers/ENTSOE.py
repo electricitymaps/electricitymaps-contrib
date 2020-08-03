@@ -1171,4 +1171,5 @@ def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
 
     return data
 
-print(fetch_production('AT'))
+# print(fetch_production('AT'))
+print(fetch_exchange('AT', 'CH'))
