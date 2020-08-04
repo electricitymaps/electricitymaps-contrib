@@ -127,14 +127,11 @@ EXCHANGE = {
         }
 }
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=logging.getLogger(__name__)):
+def fetch(zone_key, session=None, target_datetime=None):
     if target_datetime:
         to = arrow.get(target_datetime, 'Europe/Paris')
     else:
         to = arrow.now(tz='Europe/Paris')
-
-    zone_key=zone_key1
 
     # setup request
     r = session or requests.session()
@@ -147,7 +144,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
             formatted_from, formatted_to),
         'timezone': 'Europe/Paris',
         'rows': 100,
-        'refine.libelle_region': FR_REGIONS[zone_key1]
+        'refine.libelle_region': FR_REGIONS[zone_key]
     }
 
     # make request and create dataframe with response
@@ -156,6 +153,13 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     data = [d['fields'] for d in data['records']]
     df = pd.DataFrame(data)
 
+    return df
+
+
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
+                   logger=logging.getLogger(__name__)):
+
+    df = fetch(zone_key1, session=session, target_datetime=target_datetime)
 
 ##############################################
     # filter out desired columns and convert values to float
@@ -166,26 +170,22 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     x_import = exchange_zone['import']
 
-
-    if 'export' in exchange_zone:
+    if 'export' not in exchange_zone:
+        x_export = 'default_column'
+        df[x_export] = 0
+    else:
         x_export = exchange_zone['export']
 
-        # cleaning data: converting str and NaN to 0
-        df.fillna({x_import: 0, x_export: 0}, inplace = True)
-        df.replace({x_import: "-", x_export: "-"}, 0, inplace = True)
+    df.dropna(how='any', inplace=True)
+    df.replace({x_import: "-", x_export: "-"}, 0, inplace=True)
 
-        # converting data to float
-        df[value_columns] = df[value_columns].astype(float)
+    # converting data to float
+    df[value_columns] = df[value_columns].astype(float)
 
-        # calculating net-flow
-        df['net_flow'] = (df[x_export] + df[x_import]) * -1
-    else:
-        # doing the same without exports
-        df.fillna({x_import: 0}, inplace = True)
-        df.replace({x_import: "-"}, 0, inplace = True)
-        df[value_columns] = df[value_columns].astype(float)
-        df['net_flow'] = df[x_import] * -1
+    df['net_flow'] = (df[x_export] + df[x_import]) * -1
 
+
+########################################################
     # compiling datapoints
     datapoints = list()
 
@@ -207,6 +207,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     datapoints = sorted(datapoints, key=lambda x: x['datetime'])
 
-    return len(datapoints)
+    return datapoints
 
-print(fetch_exchange('FR-BFC', 'FR-GES'))
+if __name__ == '__main__':
+
+
+  print(fetch_exchange('FR-ARA', 'FR-GES'))
