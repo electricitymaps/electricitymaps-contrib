@@ -8,7 +8,6 @@ import math
 
 import pandas as pd
 import requests
-# import xml.etree.ElementTree as ET
 
 from lib.validation import validate, validate_production_diffs
 
@@ -193,13 +192,12 @@ def fetch(zone_key, session=None, target_datetime=None):
 
     return df
 
-# need to input zone_key when fetching production
+
 def fetch_production(zone_key, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
 
     df = fetch(zone_key, session=session, target_datetime=target_datetime)
 
-#########################################
     # filter out desired columns and convert values to float
     value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys())
     missing_fuels = [v for v in value_columns if v not in df.columns]
@@ -211,8 +209,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
         mf_str = ', '.join(missing_fuels)
         logger.warning('Fuels [{}] are not present in the API '
                        'response'.format(mf_str))
-
-    # note this happens and is ok as not all French regions have all fuels.
+        # note this happens and is ok as not all French regions have all fuels.
 
     df = df.loc[:, ['date_heure'] + present_fuels]
     df[present_fuels] = df[present_fuels].astype(float)
@@ -238,7 +235,6 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                 continue
             else:
                 storage[value] = row[1][key]
-
 
         # if all production values are null, ignore datapoint
         if not any([is_not_nan_and_truthy(v)
@@ -268,20 +264,20 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     return datapoints
 
+
+
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
 
     df = fetch(zone_key1, session=session, target_datetime=target_datetime)
 
-##############################################
-    # filter out desired columns and convert values to float
+    # cleaning data
     exchange_zone = EXCHANGE[zone_key1][zone_key2]
 
     value_columns = list(exchange_zone.values())
     df = df.loc[:, ['date_heure'] + value_columns]
 
     x_import = exchange_zone['import']
-
     if 'export' not in exchange_zone:
         x_export = 'default_column'
         df[x_export] = 0
@@ -293,11 +289,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     # converting data to float
     df[value_columns] = df[value_columns].astype(float)
-
     df['net_flow'] = (df[x_export] + df[x_import]) * -1
 
-
-########################################################
     # compiling datapoints
     datapoints = list()
 
@@ -323,6 +316,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 # enter any of the regional zone keys when calling method
 if __name__ == '__main__':
-    print(fetch_production('FR-OCC'))
-    #print(fetch_exchange('FR-ARA', 'FR-GES'))
+    # print(fetch_production('FR-OCC'))
+    print(fetch_exchange('FR-GES', 'DE'))
 
