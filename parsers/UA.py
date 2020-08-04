@@ -46,7 +46,7 @@ def fetch_production(zone_key='UA', session=None, target_datetime=None, logger=N
         'type': 'day'
     }
 
-    response = r.post(url, postdata)
+    response = r.post(url, postdata, headers={'User-Agent': 'electricitymap-parser/1.0'})
 
     for serie in response.json():
         row = {

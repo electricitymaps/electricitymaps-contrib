@@ -45,3 +45,41 @@ export function useHeightObserver(ref, offset = 0) {
 
   return height;
 }
+
+export function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({});
+
+  // Resize hook
+  useEffect(() => {
+    const updateSize = () => {
+      if (
+        windowSize.width !== window.innerWidth
+        || windowSize.height !== window.innerHeight
+      ) {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+    };
+    // Set initial size
+    updateSize();
+    // Add window listeners
+    window.addEventListener('resize', updateSize);
+    return () => {
+      window.removeEventListener('resize', updateSize);
+    };
+  });
+
+  return windowSize;
+}
+
+export function useIsSmallScreen() {
+  const { width } = useWindowSize();
+  return width < 768;
+}
+
+export function useIsMediumUpScreen() {
+  const { width } = useWindowSize();
+  return width >= 768;
+}
