@@ -43,13 +43,11 @@ def fetch_production(zone_key='JP-KN', session=None,
     else:
         diff = latest["datetime"]-nuclear_datetime
     if abs(diff.seconds) > 30 * 60:
-        raise Exception("Difference between nuclear datetime and solar data is too large")
+        raise Exception("Difference between nuclear datetime and JP data is too large")
 
     latest["production"]["nuclear"] = nuclear_mw
     latest["production"]["unknown"] = latest["production"]["unknown"] - nuclear_mw
     return latest
-
-# https://stackoverflow.com/questions/50655738/how-do-i-resolve-a-tesseractnotfounderror
 
 URL = "https://www.kepco.co.jp/energy_supply/energy/nuclear_power/info/monitor/live_unten"
 IMAGE_CORE_URL = "https://www.kepco.co.jp/"

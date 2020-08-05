@@ -2933,7 +2933,9 @@
   "JP-KN": {
     "contributors": [
       "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/kongkille"
+
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
