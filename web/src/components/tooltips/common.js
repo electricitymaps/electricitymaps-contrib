@@ -2,26 +2,23 @@ import React from 'react';
 import { isFinite } from 'lodash';
 
 import { getFullZoneName } from '../../helpers/translation';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
 
-export const CarbonIntensity = ({ colorBlindModeEnabled, intensity }) => {
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+export const CarbonIntensity = ({ intensity }) => {
+  const co2ColorScale = useCo2ColorScale();
+
   return (
     <React.Fragment>
       <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />
       {' '}
-      <b>{Math.round(intensity) || '?'}</b> gCO<span className="sub">2</span>eq/kWh
+      <b>{Math.round(intensity) || '?'}</b> gCO₂eq/kWh
     </React.Fragment>
   );
 };
 
 export const MetricRatio = ({ value, total, format }) => (
-  <small
-    dangerouslySetInnerHTML={{
-      __html: `(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`,
-    }}
-  />
+  <small>{`(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`}</small>
 );
 
 export const ZoneName = ({ zone }) => (

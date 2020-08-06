@@ -572,7 +572,7 @@ def datetime_from_position(start, position, resolution):
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == 'M':
-            return start.replace(minutes=(position - 1) * digits)
+            return start.shift(minutes=(position - 1) * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
@@ -873,6 +873,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     This will drop rows where the datetime is missing in at least a
     parser_output.
     """
+    if len(parser_outputs) == 0:
+        return []
     if merge_source is None:
         merge_source = parser_outputs[0][0]['source']
     prod_and_storage_dfs = [

@@ -16,7 +16,7 @@
             "subtitle": "Mapování dopadu spotřeby elektřiny na klima"
         },
         "view2": {
-            "header": "Sledujte, kolik CO2 je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
+            "header": "Sledujte, kolik CO₂ je vyprodukovaného vaší spotřebou elektřiny v reálném čase",
             "text": "Barevně zobrazujeme oblasti po celém světě na základě jejich uhlíkové intenzity"
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Dopad na klima podle oblasti",
-        "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Hodnocené podle uhlíkové intenzity spotřebované elektřiny (gCO₂eq/kWh)",
         "search": "Hledej oblasti"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Ziskejte historická a mezní data i předpověď přes API"
     },
     "footer": {
-        "likethisvisu": "Líbí se Vám vizualizace?",
-        "loveyourfeedback": "Těšíme se na Vaši zpětnou vazbu",
         "foundbugs": "Našli jste nedostatky, nebo máte nápad? Řekněte nám o nich",
         "faq-text": "Je vám něco nejasné? Navštivte ",
         "faq": "Často kladené otázky.",
@@ -94,7 +92,7 @@
         "selectLanguage": "Vyberte jazyk"
     },
     "misc": {
-        "maintitle": "Emise CO2 ze spotřeby elektřiny v reálném čase",
+        "maintitle": "Emise CO₂ ze spotřeby elektřiny v reálném čase",
         "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",
         "newversion": "Nová verze je dostupná! <a onClick=\"location.reload(true);\">Klikněte zde</a> pro aktualizaci.",
         "retrynow": "Zkusit znovu",
@@ -123,7 +121,7 @@
     "emissionsExportedTo": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je exportovaných do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> je importovaných z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "CO2eq za minutu",
+    "ofCO2eqPerMinute": "CO₂eq za minutu",
     "theMap": {
         "groupName": "Mapa",
         "mapColors-question": "Co znamenají barvy na mapě?",
@@ -151,7 +149,7 @@
     "methodology": {
         "groupName": "Metogologie",
         "carbonIntensity-question": "Co je \"uhlíková intenzita\"?",
-        "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO2eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO2, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
+        "carbonIntensity-answer": "Uhlíková intenzita je míra emisí skleníkových plynů ve vztahu k produkci elektrické energie, kterou spotřebováváte (uvádí se v gCO₂eq/kWh - gram ekvivalentního oxidu uhličitého vyprodukovaného na kilowatthodinu spotřebované elektřiny). <br><br>Měříme emise spotřebované elektřiny - ne produkce. To znamená, že počítáme všechny skleníkové plyny (jak CO₂, tak i jiné skleníkové plyny, například metan), které vzešly z produkce a importu elektřiny spotřebované v dané oblasti. Používáme přístup posuzovaní životního cyklu (LCA - life cycle analysis approach). To znamená, že bereme v úvahu emise vznikající v celém životním cyklu elektrárny(stavba, produkce paliva, operativní emise, vyřazení).",
         "consumptionFocus-question": "Proč počítáte uhlíkovou intenzitu spotřeby energie a ne její produkce?",
         "consumptionFocus-answer": "Věříme, že obyvatelstvo by mělo být zodpovědné za elektřinu, kterou spotřebuje a ne za elektřinu, která je produkovaná v oblasti, ve které žije. Taky věříme, že oblasti by neměly být schopné simulovat nízký dopad na klima jednoduše tím, že přemístí špinavou produkci energie do jiných oblastí a pak importovat elektřinu právě z nich.",
         "renewableLowCarbonDifference-question": "Jaký je rozdíl mezi „obnovitelnou“ a „nízko-emisní“ energií?",

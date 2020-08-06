@@ -16,7 +16,7 @@
             "subtitle": "Prikaz utjecaja struje na klimu"
         },
         "view2": {
-            "header": "Pogledaj koliko CO2 se emitira za proizvodnju tvoje struje, u realnom vremenu",
+            "header": "Pogledaj koliko CO₂ se emitira za proizvodnju tvoje struje, u realnom vremenu",
             "text": "Područja u svijetu su pobojana prema faktoru emisije (uključujući sve staklenične plinove) svoje upotrijebljene struje. Zelena boja označava manje ekološkije izvore struje."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Utjecaj na klimu po području",
-        "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Poredak po faktoru emisije upotrijebljene struje (gCO₂eq/kWh)",
         "search": "Traži"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Nađi povijesne podatke i API s prognozom"
     },
     "footer": {
-      "likethisvisu": "Sviđa ti se vizualizacija?",
-      "loveyourfeedback": "Popuni ovu anketu",
       "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
       "faq-text": "Nešto ti je nejasno? Provjeri naša",
       "faq": "često postavljana pitanja.",
@@ -94,7 +92,7 @@
         "selectLanguage": "Odaberi jezik"
     },
     "misc": {
-        "maintitle": "Emisije CO2 upotrijebljene struje uživo",
+        "maintitle": "Emisije CO₂ upotrijebljene struje uživo",
         "oops": "Ups! Došlo je do problema kod kontaktiranja servera. Pokušat ćemo opet za nekoliko sekundi.",
         "newversion": "Nova verzija je dostupna! Klikni <a onClick=\"location.reload(true);\">ovdje</a> za ponovno učitavanje.",
         "retrynow": "Pokušaj opet",
@@ -126,7 +124,7 @@
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "CO2eq po minuti",
+    "ofCO2eqPerMinute": "CO₂eq po minuti",
     "theMap": {
         "groupName": "Karta",
         "mapColors-question": "Što znače boje na karti?",
@@ -154,7 +152,7 @@
   "methodology": {
       "groupName": "Naše metode",
       "carbonIntensity-question": "Što je \"faktor emisije\"?",
-      "carbonIntensity-answer": "Faktor emisije je mjera emisije stakleničnih plinova vezana uz proizvodnju potrošene struje (u gCO2eq/kWh - grami ekvivalenta ugljikovog dioksida emitiranih po kilovat-satu iskorištene struje). <br><br>Mjerimo emisije iskorištene struje (ne proizvedene), dakle emisije svih stakleničnih plinova (CO2 kao i drugih, poput metana) koji su ušli u proizvodnju struje potrošene na nekom području, uzimajući u obzir i faktor emisije struje uvezene iz drugih područja. Koristimo life cycle analysis (LCA) pristup, što znači da uzimamo u obzir emisije nastale tokom cijelog ciklusa proizvodnje u pogonima (izgradnja, proizvodnja goriva, operativne emisije i zatvaranje pogona).",
+      "carbonIntensity-answer": "Faktor emisije je mjera emisije stakleničnih plinova vezana uz proizvodnju potrošene struje (u gCO₂eq/kWh - grami ekvivalenta ugljikovog dioksida emitiranih po kilovat-satu iskorištene struje). <br><br>Mjerimo emisije iskorištene struje (ne proizvedene), dakle emisije svih stakleničnih plinova (CO₂ kao i drugih, poput metana) koji su ušli u proizvodnju struje potrošene na nekom području, uzimajući u obzir i faktor emisije struje uvezene iz drugih područja. Koristimo life cycle analysis (LCA) pristup, što znači da uzimamo u obzir emisije nastale tokom cijelog ciklusa proizvodnje u pogonima (izgradnja, proizvodnja goriva, operativne emisije i zatvaranje pogona).",
       "consumptionFocus-question": "Zašto računate faktor emisije potrošene struje umjesto proizvedene?",
       "consumptionFocus-answer": "Vjerujemo u odgovornost svakog građanina prema struji koju koriste, a ne za struju koja je proizvedena na području u kojem ispadne da žive. Štoviše, vjerujemo da područja ne bi smijela biti u mogućnosti lažirati niski utjecaj na klimu jednostavnim premještanjem štetne proizvodnje u druga područja i naknadnim uvoženjem struje iz istih.",
       "renewableLowCarbonDifference-question": "U čemu je razlika između “obnovljive” i “nisko-emisijske” energije?",

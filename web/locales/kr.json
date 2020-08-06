@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "지역에 따른 기후 영향",
-        "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO2eq/kWh)",
+        "zone-list-header-subtitle": "전력소비에 따른 탄소 밀집도 순위(gCO₂eq/kWh)",
         "search": "지역 찾기"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "역사적 자료, marginal 그리고 예상된 API."
     },
         "footer": {
-               "likethisvisu": "구상화 좋아합니까?",
-               "loveyourfeedback": "피드백 주시면 감사하겠습니다",
                "foundbugs": "버그가 발견되었거나 의견이 있으신가요? 알려주세요",
                "faq-text": "명확하지 않은 점이 있나요? 이 곳을 확인해주세요",
                "faq": "자주 묻는 질문",
@@ -94,7 +92,7 @@
                "selectLanguage": "언어를 선택하세요"
         },
         "misc": {
-               "maintitle": "전력 소비로 인한 실시간 CO2 배출",
+               "maintitle": "전력 소비로 인한 실시간 CO₂ 배출",
                "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
                "newversion": "새 버전이 출시되었습니다! 누르세요 <a onClick=\"location.reload(true);\">here</a> to reload.",
                "retrynow": "지금 다시 눌러보세요",
@@ -123,7 +121,7 @@
         "emissionsExportedTo": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
         "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
         "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-        "ofCO2eqPerMinute": "of CO2eq per minute",
+        "ofCO2eqPerMinute": "of CO₂eq per minute",
 
         "theMap": {
 	       "groupName": "지도",
@@ -152,7 +150,7 @@
     "methodology": {
        "groupName": "접근 방법/연구 방법",
        "carbonIntensity-question": "탄소집약도란?",
-       "carbonIntensity-answer": "탄소집약도란 우리가 소비하는 전력의 생산과 관련하여 온실가스 배출량을 측정한 수치를 말합니다.(gCO2eq/kWh; 소비전력 킬로와트시당 방출되는 이산화탄소 그램 양). <br><br>다만, 우리는 생산된 전력의 온실가스 방출량이 아니라 소비 전력의 온실가스 방출량을 측정합니다. 즉, 한 지역에서 소비되는 전력을 생산하는 과정에서 배출되는 모든 온실가스(이산화탄소뿐만 아니라 메탄과 같은 다른 온실가스도 포함)의 방출량을 측정하는 것입니다. 이때 다른 지역에서 수입된 전력의 탄소집약도까지 고려하게 됩니다. 우리는 라이프사이클 분석(LCA) 기법을 적용하여, 연료 생산 및 발전소 운영에 따른 방출량을 포함해 발전소 건설 단계에서부터 폐기 단계까지 발전소의 전체 라이프사이클에서 발생되는 배출량을 고려합니다.",
+       "carbonIntensity-answer": "탄소집약도란 우리가 소비하는 전력의 생산과 관련하여 온실가스 배출량을 측정한 수치를 말합니다.(gCO₂eq/kWh; 소비전력 킬로와트시당 방출되는 이산화탄소 그램 양). <br><br>다만, 우리는 생산된 전력의 온실가스 방출량이 아니라 소비 전력의 온실가스 방출량을 측정합니다. 즉, 한 지역에서 소비되는 전력을 생산하는 과정에서 배출되는 모든 온실가스(이산화탄소뿐만 아니라 메탄과 같은 다른 온실가스도 포함)의 방출량을 측정하는 것입니다. 이때 다른 지역에서 수입된 전력의 탄소집약도까지 고려하게 됩니다. 우리는 라이프사이클 분석(LCA) 기법을 적용하여, 연료 생산 및 발전소 운영에 따른 방출량을 포함해 발전소 건설 단계에서부터 폐기 단계까지 발전소의 전체 라이프사이클에서 발생되는 배출량을 고려합니다.",
        "consumptionFocus-question": "생산 전력 대신 소비 전력의 탄소집약도를 측정하는 이유는 무엇입니까?",
        "consumptionFocus-answer": "우리는 사람들이 살고 있는 지역에서 생산된 전력이 아니라 그들이 소비한 전력에 대해 책임이 있다고 생각합니다. 또한 각 지자체는 오염된 에너지를 그저 다른 지역으로 이전시키고 그곳에서 다시 전력을 수입하는 방식을 통해 해당 지역이 환경에 미치는 영향이 적다고 ‘거짓' 홍보를 해서는 안됩니다.",
        "renewableLowCarbonDifference-question": "재생 에너지와 저탄소 에너지의 차이점은 무엇입니까?",

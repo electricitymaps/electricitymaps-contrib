@@ -16,7 +16,7 @@
             "subtitle": "Pemetaan klimatologi yang berdampak pada daya listrik"
         },
         "view2": {
-            "header": "Lihat seberapa banyak CO2 yang dipancarkan untuk memproduksi listrik, secara langsung.",
+            "header": "Lihat seberapa banyak CO₂ yang dipancarkan untuk memproduksi listrik, secara langsung.",
             "text": "Kami memberikan warna pada area di seluruh dunia berdasarkan intensitas karbon (termasuk gas rumah kaca) yang digunakan dalam listrik di sana. Warna hijau menunjukkan bahwa area di sana sangat bersih dan ramah dalam penggunaan listrik."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Dampak klimatologi berdasarkan area",
-        "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
         "search": "Cari area"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Dapatkan data original, marjinal dan API cuaca."
     },
     "footer": {
-        "likethisvisu": "Suka visualisasi yang diberikan?",
-        "loveyourfeedback": "Kami senang mendapatkan umpan balik Anda.",
         "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",
         "faq-text": "Apakah masih ada pertanyaan? Lihat",
         "faq": "pertanyaan yang sering ditanyakan.",
@@ -94,7 +92,7 @@
         "selectLanguage": "Pilih bahasa"
     },
     "misc": {
-        "maintitle": "Emisi CO2 langsung dari pemakaian energi listrik",
+        "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
         "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
         "newversion": "Versi baru tersedia! Klik <a onClick=\"location.reload(true);\">di sini</a> untuk memuat ulang.",
         "retrynow": "Ulangi sekarang",
@@ -123,7 +121,7 @@
     "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "CO2eq per menit",
+    "ofCO2eqPerMinute": "CO₂eq per menit",
     "theMap": {
         "groupName": "Peta",
         "mapColors-question": "Apa arti dari warna di dalam peta?",
@@ -151,7 +149,7 @@
     "methodology": {
         "groupName": "Metode Kami",
         "carbonIntensity-question": "Apa itu \"intensitas Karbon\"?",
-        "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO2eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO2 dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
+        "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO₂eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO₂ dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
         "consumptionFocus-question": "Mengapa Anda menghitung intensitas karbon dari konsumsi listrik daripada produksinya?",
         "consumptionFocus-answer": "Kami percaya warga harus bertanggung jawab atas listrik yang mereka konsumsi, dan bukan untuk listrik yang diproduksi di daerah tempat mereka tinggal. Selain itu, kami percaya bahwa daerah tidak boleh 'memalsukan' dampak iklim rendah hanya dengan merelokasi produksi energi kotor ke daerah lain dan kemudian mengimpor listrik dari daerah tersebut. ",
         "renewableLowCarbonDifference-question": "Apa perbedaan dari “terbarukan” and “karbon-rendah”?",

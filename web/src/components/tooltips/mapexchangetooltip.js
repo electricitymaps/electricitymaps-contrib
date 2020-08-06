@@ -1,17 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { __ } from '../../helpers/translation';
-import { co2Sub } from '../../helpers/formatting';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, ZoneName } from './common';
 
-const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-});
-
-const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, position }) => {
+const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
   if (!exchangeData) return null;
 
   const isExporting = exchangeData.netFlow > 0;
@@ -20,20 +14,17 @@ const MapExchangeTooltip = ({ colorBlindModeEnabled, exchangeData, position }) =
   const zoneTo = exchangeData.countryCodes[isExporting ? 1 : 0];
 
   return (
-    <Tooltip id="exchange-tooltip" position={position}>
+    <Tooltip id="exchange-tooltip" position={position} onClose={onClose}>
       {__('tooltips.crossborderexport')}:
       <br />
       <ZoneName zone={zoneFrom} /> → <ZoneName zone={zoneTo} />: <b>{netFlow}</b> MW
       <br />
       <br />
-      <span dangerouslySetInnerHTML={{ __html: co2Sub(__('tooltips.carbonintensityexport')) }} />:
+      {__('tooltips.carbonintensityexport')}:
       <br />
-      <CarbonIntensity
-        colorBlindModeEnabled={colorBlindModeEnabled}
-        intensity={exchangeData.co2intensity}
-      />
+      <CarbonIntensity intensity={exchangeData.co2intensity} />
     </Tooltip>
   );
 };
 
-export default connect(mapStateToProps)(MapExchangeTooltip);
+export default MapExchangeTooltip;

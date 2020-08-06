@@ -53,7 +53,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
       'Hídrica': 'hydro',
       'Eólica': 'wind',
       'Solar': 'solar',
-      'Biogas': 'gas',
+      'Biogas': 'biomass',
       'Térmica': 'unknown'
     }
     data = {

@@ -16,7 +16,7 @@
             "subtitle": "Mapeando o impacto climático da eletricidade"
         },
         "view2": {
-            "header": "Veja o quanto de CO2 é emitido para produzir sua eletricidade em tempo real.",
+            "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
             "text": "As áreas através do mundo são coloridas pela sua Intencidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático",
-        "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
         "search": "Pesquise por país ou área"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
     },
     "footer": {
-        "likethisvisu": "Gostou desta visualização?",
-        "loveyourfeedback": "Nós adoraríamos receber o seu feedback",
         "foundbugs": "Encontrou erros ou tem alguma sugestão? Contacte-nos",
         "faq-text": "Algo não está claro? Olhe nossa",
         "faq": "questões frequentes.",
@@ -73,14 +71,14 @@
         "carbonintensity": "Intensidade de carbono"
     },
     "tooltips": {
-        "carbonintensity": "Intensidade de emissões de CO2",
+        "carbonintensity": "Intensidade de emissões de CO₂",
         "lowcarbon": "Baixo carbono",
         "renewable": "Renovável",
         "crossborderexport": "Exportação transfronteiriça",
-        "carbonintensityexport": "Intensidade de emissões de CO2 na exportação",
+        "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
         "ofinstalled": "da capacidade instalada",
         "utilizing": "utilizando",
-        "withcarbonintensity": "com uma intensidade de emissão de CO2 de",
+        "withcarbonintensity": "com uma intensidade de emissão de CO₂ de",
         "showWindLayer": "Mostrar a camada de vento",
         "hideWindLayer": "Esconder a camada de vento",
         "showSolarLayer": "Mostrar a camada solar",
@@ -95,7 +93,7 @@
         "lowCarbDescription": "Inclui renováveis e nucleares"
     },
     "misc": {
-        "maintitle": "Emissões de CO2 do consumo elétrico em tempo real",
+        "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
         "oops": "Epa! Estamos tendo problemas com o servidor. Tentaremos novamente em alguns segundos.",
         "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
         "retrynow": "Tentar novamente",
@@ -127,7 +125,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é importada de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são importadas de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "de CO2eq por minuto",
+    "ofCO2eqPerMinute": "de CO₂eq por minuto",
     "theMap": {
       "groupName": "O mapa",
       "mapColors-question": "O que significam as cores no mapa?",
@@ -155,7 +153,7 @@
     "methodology": {
         "groupName": "Nossos métodos",
         "carbonIntensity-question": "O que é \"intensidade de carbono\"?",
-        "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO2eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO2 e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
+        "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO₂eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO₂ e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
         "consumerFocus-question": "Por que você calcula a intensidade de carbono do consumo de eletricidade em vez da produção?",
         "consumerFocus-answer": "Acreditamos que os cidadãos devem ser responsáveis ​​pela eletricidade que consomem, e não pela eletricidade produzida na área em que vivem. Além disso, acreditamos que as áreas não devem ser capazes de \"falsificar\" um baixo impacto climático simplesmente transferindo a produção de energia suja para outras áreas e importando a eletricidade dessas áreas.",
         "renewableLowCarbonDifference-question": "Qual é a diferença entre \"renovável \"e \"baixo carbono\"?",

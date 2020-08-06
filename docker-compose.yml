@@ -34,7 +34,7 @@ services:
       - './web/topogen.sh:/home/web/topogen.sh'
       - './web/views:/home/web/views'
       - './web/webpack.config.js:/home/web/webpack.config.js'
-  web-watch-en:
+  web-watch:
     build:
       context: .
       dockerfile: web/Dockerfile
@@ -43,7 +43,7 @@ services:
         - eu.gcr.io/tmrow-152415/electricitymap_web:staging
         - eu.gcr.io/tmrow-152415/electricitymap_web:latest
     image: eu.gcr.io/tmrow-152415/electricitymap_web:latest
-    command: npm run watch-en
+    command: npm run watch
     environment:
       - NODE_ENV=development
     volumes:

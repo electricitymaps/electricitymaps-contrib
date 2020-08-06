@@ -1,4 +1,4 @@
-arrow==0.10.0
+arrow==0.15.5
 beautifulsoup4==4.6.0
 click==6.7
 demjson==2.2.4
@@ -17,3 +17,4 @@ tablib==0.12.1
 testfixtures==6.0.0
 opencv-python==4.2.0.32
 xlrd==1.1.0
+freezegun==0.3.15

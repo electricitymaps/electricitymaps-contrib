@@ -38,34 +38,6 @@
     height: 24px;
 }
 
-#hiring-flag{
-    background-color: #F20050;
-    border-radius: 4px;
-    padding: 2px 4px;
-    margin-left: 10px;
-    p {
-        font-weight: bold;
-        color: $white;
-        font-size: 0.5em;
-        margin: 0;
-    }
-}
-
-div.highscore-button {
-    position: absolute;
-    top: 8px;
-    left: 32px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    cursor: pointer;
-    color: #fff;
-
-    &:hover {
-	    background: rgba(0, 0, 0, 0.4);
-	}
-}
-
 .social-buttons {
     margin-top: 12px;
 }
@@ -112,12 +84,6 @@ div.highscore-button {
     height: 20px;
     border-radius: 3px;
     margin-right: 0.4em;
-}
-
-div.highscore-button {
-    @include respond-to('small') {
-        display: none;
-    }
 }
 
 div.fb-share-button, div.fb-like, div.fb-follow, iframe.twitter-share-button, iframe.twitter-follow-button, .slack-button {

@@ -44,16 +44,15 @@ soup_content_variables_mapping = {
     '[5]' : 'arcakh (NKR)',
     '[6]' : 'ahar (IR)',
     '[7]' : 'cons [total production]',
-    '[8]' : ' altern',
+    '[8]' : 'altern',
     '[9]' : 'atom',
     '[10]' : 'tes',
     '[11]' : 'ges',
     '[12]' : 'peretok',
     '[13]' : 'herc2',
-    '[14]' : 'time2',
-    '[15]' : 'sparum2 []',
-    '[16]' : 'empty',
-    '[17]' : 'empty',
+    # unstable other mappings
+    '[27]' : 'time2',
+    '[28]' : 'sparum2',
     }
 
 def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=None):
@@ -62,8 +61,10 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
     response = r.get(url)
     response.encoding = 'utf-8'
     html_doc = response.text
-    soup = BeautifulSoup(html_doc, 'html.parser')
-
+    start_string = "<script type=\'text/javascript\'>"
+    start_index = html_doc.find(start_string) + len(start_string)
+    stop_index =  html_doc.find("left:")
+    soup = BeautifulSoup(html_doc[start_index:stop_index], 'html.parser')
     data_string = soup.find(text=re.compile('var'))
     data_split = data_string.split('\r\n')
 
@@ -77,8 +78,9 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
     nuclear_atom = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[9])
     nuclear_total = float(nuclear_atom[0])
 
+    time_data = [s for s in data_split if "time2" in s][0]
     yerevan = tz.gettz('Asia/Yerevan')
-    date_time = dparser.parse(data_split[14].split()[3], default=datetime.now(yerevan), fuzzy=True)
+    date_time = dparser.parse(time_data.split()[3], default=datetime.now(yerevan), fuzzy=True)
 
     #Operating solar, wind and biomass plants exist in small numbers, but are not reported yet
     data = {
@@ -126,8 +128,10 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     response = r.get(url)
     response.encoding = 'utf-8'
     html_doc = response.text
-    soup = BeautifulSoup(html_doc, 'html.parser')
-
+    start_string = "<script type=\'text/javascript\'>"
+    start_index = html_doc.find(start_string) + len(start_string)
+    stop_index =  html_doc.find("left:")
+    soup = BeautifulSoup(html_doc[start_index:stop_index], 'html.parser')
     data_string = soup.find(text=re.compile('var'))
     data_split = data_string.split('\r\n')
     GE_1 = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[1])
@@ -141,8 +145,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     AM_GE = float(GE_1[0])+float(GE_2[0])+float(GE_3[0])
     AM_IR = float(IR_1[0])
 
+    time_data = [s for s in data_split if "time2" in s][0]
     yerevan = tz.gettz('Asia/Yerevan')
-    date_time = dparser.parse(data_split[14].split()[3], default=datetime.now(yerevan), fuzzy=True)
+    date_time = dparser.parse(time_data.split()[3], default=datetime.now(yerevan), fuzzy=True)
 
 
     if sorted_keys == 'AM->NKR':

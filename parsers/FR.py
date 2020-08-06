@@ -121,7 +121,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
             'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
         }
-        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro'])
+        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro', 'gas'])
         datapoints.append(datapoint)
 
     max_diffs = {
@@ -159,7 +159,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
             continue
 
         start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/Paris')
-
+        
         for item in donnesMarche:
             if item.get('granularite') != 'Global':
                 continue
@@ -171,7 +171,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
                 if value.text == 'ND':
                     continue
                 period = int(value.attrib['periode'])
-                datetime = start_date.replace(hours=+period).datetime
+                datetime = start_date.shift(hours=+period).datetime
                 if not datetime in datas:
                     datas[datetime] = {
                         'zoneKey': zone_key,
