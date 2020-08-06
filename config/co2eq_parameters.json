@@ -328,8 +328,9 @@
           "value": 48.14997796838915
         },
         "nuclear": {
-        "source": "ADEME",
-        "value": 6
+          "_url": "https://www.bilans-ges.ademe.fr/documentation/UPLOAD_DOC_FR/index.htm?conventionnel.htm"
+          "source": "ADEME 2015",
+          "value": 6
         }
       },
       "GB": {
