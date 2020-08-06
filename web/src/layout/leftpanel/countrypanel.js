@@ -12,6 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
+import { noop } from 'lodash';
 import moment from 'moment';
 
 // Components
@@ -189,10 +190,16 @@ const CountryPanel = ({
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
-                    onMouseMove={(x, y) => setTooltip({ position: { x, y } })}
+                    onClick={isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
+                    onMouseMove={!isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
+                  {tooltip && (
+                    <LowCarbonInfoTooltip
+                      position={tooltip.position}
+                      onClose={() => setTooltip(null)}
+                    />
+                  )}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />

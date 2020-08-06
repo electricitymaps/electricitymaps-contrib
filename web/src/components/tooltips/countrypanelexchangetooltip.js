@@ -21,6 +21,7 @@ const CountryPanelExchangeTooltip = ({
   exchangeKey,
   position,
   zoneData,
+  onClose,
 }) => {
   if (!zoneData) return null;
 
@@ -49,7 +50,7 @@ const CountryPanelExchangeTooltip = ({
   headline = headline.replace('id="country-exchange-flag"', `class="flag" src="${flagUri(exchangeKey)}"`);
 
   return (
-    <Tooltip id="countrypanel-exchange-tooltip" position={position}>
+    <Tooltip id="countrypanel-exchange-tooltip" position={position} onClose={onClose}>
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
