@@ -1829,6 +1829,87 @@
     },
     "timezone": "Europe/Paris"
   },
+  "FR-ARA":{
+    "bounding_box": [
+      [
+        2.0629,
+        44.1152
+      ],
+      [
+        7.1859,
+        46.8042
+      ]
+    ],
+    "capacity": {
+      "biomass": 183,
+      "hydro": 11641,
+      "nuclear": 13570,
+      "solar": 1069,
+      "thermal": 1083,
+      "wind": 552,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-BFC":{
+    "bounding_box": [
+      [
+        2.8445,
+        46.156,
+      ],
+      [
+        7.1433,
+        48.4001
+      ]
+    ],
+    "capacity": {
+      "biomass": 74,
+      "hydro": 523,
+      "nuclear": 0,
+      "solar": 294,
+      "thermal": 385,
+      "wind": 808,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-BRE":{
+    "bounding_box": [
+      [
+        -5.1413,
+        47.2778
+      ],
+      [
+        -1.0157,
+        48.9086
+      ]
+    ],
+    "capacity": {
+      "biomass": 74,
+      "hydro": 275,
+      "nuclear": 0,
+      "solar": 236,
+      "thermal": 975,
+      "wind": 1047,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
   "FR-COR": {
     "bounding_box": [
       [
@@ -1855,6 +1936,247 @@
     "parsers": {
       "production": "FR_O.fetch_production",
       "price": "FR_O.fetch_price"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-CVL":{
+    "bounding_box": [
+      [
+        0.0527,
+        46.3472
+      ],
+      [
+        3.1286,
+        48.941
+      ]
+    ],
+    "capacity": {
+      "biomass": 86,
+      "hydro": 93,
+      "nuclear": 11630,
+      "solar": 317,
+      "thermal": 220,
+      "wind": 1255,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-GES":{
+    "bounding_box": [
+      [
+        3.3836,
+        47.4203
+      ],
+      [
+        8.2325,
+        50.1693
+      ]
+    ],
+    "capacity": {
+      "biomass": 237,
+      "hydro": 2312,
+      "nuclear": 12580,
+      "solar": 541,
+      "thermal": 3157,
+      "wind": 3603,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-HDF":{
+    "bounding_box": [
+      [
+        1.3798,
+        48.8372
+      ],
+      [
+        4.2557,
+        51.089
+      ]
+    ],
+    "capacity": {
+      "biomass": 186,
+      "hydro": 4,
+      "nuclear": 5460,
+      "solar": 164,
+      "thermal": 2445,
+      "wind": 4546,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-IDF":{
+    "bounding_box": [
+      [
+        1.4462,
+        48.1201
+      ],
+      [
+        3.5592,
+        49.2414
+      ]
+    ],
+    "capacity": {
+      "biomass": 317,
+      "hydro": 20,
+      "nuclear": 0,
+      "solar": 123,
+      "thermal": 2220,
+      "wind": 89,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-NOR":{
+    "bounding_box": [
+      [
+        -1.9551,
+        48.1794
+      ],
+      [
+        1.8029,
+        50.0758
+      ]
+    ],
+    "capacity": {
+      "biomass": 121,
+      "hydro": 30,
+      "nuclear": 10640,
+      "solar": 178,
+      "thermal": 1393,
+      "wind": 836,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-NAQ":{
+    "bounding_box": [
+      [
+        -1.791,
+        42.7775
+      ],
+      [
+        2.6115,
+        47.1759
+      ]
+    ],
+    "capacity": {
+      "biomass": 326,
+      "hydro": 1765,
+      "nuclear": 6630,
+      "solar": 2455,
+      "thermal": 576,
+      "wind": 1049,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-OCC":{
+    "bounding_box": [
+      [
+        -0.3272,
+        42.3328],
+      [
+        4.8455,
+        45.0466]
+    ],
+    "capacity": {
+      "biomass": 146,
+      "hydro": 5392,
+      "nuclear": 2620,
+      "solar": 2017,
+      "thermal": 283,
+      "wind": 1630,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-PDL":{
+    "bounding_box": [
+      [
+        -2.6251,
+        46.2665
+      ],
+      [
+        0.9166,
+        48.5683
+      ]
+    ],
+    "capacity": {
+      "biomass": 77,
+      "hydro": 11,
+      "nuclear": 0,
+      "solar": 557,
+      "thermal": 2080,
+      "wind": 1012,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-PAC":{
+    "bounding_box": [
+      [
+        4.2301,
+        42.9822
+      ],
+      [
+        7.7185,
+        45.1266
+      ]
+    ],
+    "capacity": {
+      "biomass": 293,
+      "hydro": 3269,
+      "nuclear": 0,
+      "solar": 1334,
+      "thermal": 3283,
+      "wind": 48,
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
     },
     "timezone": "Europe/Paris"
   },
@@ -2758,7 +3080,7 @@
     ],
     "capacity": {
       "biomass": 1104,
-      "coal": 979, 
+      "coal": 979,
       "geothermal": 0,
       "hydro": 154,
       "hydro storage": 312,
@@ -2784,4049 +3106,4049 @@
   },
   "IT-SIC": {
    "bounding_box": [
-      [
-        11.422211134000122,
-        34.98924388200004
-      ],
-      [
-        16.151621941000144,
-        39.311957098000164
-      ]
-    ],
-    "capacity": {
-      "biomass": 72,
-      "gas": 589,
-      "coal": 979, 
-      "geothermal": 0,
-      "hydro": 419,
-      "hydro-storage": 312,
-      "nuclear": 0,
-      "oil": 238,
-      "solar": 1400,
-      "wind": 1893,
-      "unknown": 3756
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome"
-  },
-  "IT-SO": {
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production_aggregate"
-    },
-    "timezone": "Europe/Rome",
-    "bounding_box": [
-      [
-        13.445700757783754,
-        37.419012762000136
-      ],
-      [
-        19.01742597700013,
-        42.57794649582388
-      ]
-    ]
-  },
-  "JP-CB": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        135.84,
-        33.82
-      ],
-      [
-        138.72,
-        37.17
-      ]
-    ]
-  },
-  "JP-CG": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        130.66,
-        33.585
-      ],
-      [
-        134.54,
-        35.74
-      ]
-    ]
-  },
-  "JP-HKD": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        139.35,
-        41.3
-      ],
-      [
-        146,
-        45.97
-      ]
-    ]
-  },
-  "JP-HR": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        135.8,
-        35.39
-      ],
-      [
-        137.75,
-        37.9
-      ]
-    ]
-  },
-  "JP-KN": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        134.24,
-        33.29
-      ],
-      [
-        136.38,
-        36.01
-      ]
-    ]
-  },
-  "JP-KY": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP-KY.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        128.29,
-        27.03
-      ],
-      [
-        131.89,
-        35.11
-      ]
-    ]
-  },
-  "JP-ON": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        122.43816165500004,
-        23.756984768000052
-      ],
-      [
-        131.82789147200003,
-        28.368963934000078
-      ]
-    ]
-  },
-  "JP-SK": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        132.15,
-        32.53
-      ],
-      [
-        134.69,
-        34.63
-      ]
-    ]
-  },
-  "JP-TH": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        137.65,
-        36.65
-      ],
-      [
-        142,
-        41.66
-      ]
-    ]
-  },
-  "JP-TK": {
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
-    "parsers": {
-      "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
-      "price": "JP.fetch_price"
-    },
-    "timezone": "Asia/Tokyo",
-    "bounding_box": [
-      [
-        138.5,
-        34.52
-      ],
-      [
-        141.16,
-        37.17
-      ]
-    ]
-  },
-  "KR": {
-    "bounding_box": [
-      [
-        126.11,
-        34.39
-      ],
-      [
-        129.46,
-        38.61
-      ]
-    ],
-    "capacity": {
-      "nuclear": 22529,
-      "coal": 36709,
-      "oil": 4155,
-      "gas": 37838,
-      "hydro": 1789
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
-    "parsers": {
-      "production": "KR.fetch_production"
-    },
-    "timezone": "Asia/Seoul"
-  },
-  "KW": {
-    "bounding_box": [
-      [
-        46.155,
-        28.3985
-      ],
-      [
-        48.7948,
-        30.4747
-      ]
-    ],
-    "capacity": {
-      "gas": 6525,
-      "oil": 8550,
-      "solar": 93,
-      "wind": 12
-    },
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "KW.fetch_production"
-    },
-    "timezone": "Asia/Kuwait"
-  },
-  "LT": {
-    "bounding_box": [
-      [
-        21.0558004086,
-        53.9057022162
-      ],
-      [
-        26.5882792498,
-        56.3725283881
-      ]
-    ],
-    "capacity": {
-      "biomass": 120,
-      "gas": 1770,
-      "hydro": 128,
-      "hydro storage": 900,
-      "oil": 0,
-      "solar": 103,
-      "wind": 534,
-      "unknown": 144
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Vilnius"
-  },
-  "LU": {
-    "bounding_box": [
-      [
-        5.67405195478,
-        49.4426671413
-      ],
-      [
-        6.24275109216,
-        50.1280516628
-      ]
-    ],
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null
-  },
-  "LV": {
-    "bounding_box": [
-      [
-        21.0558004086,
-        55.61510692
-      ],
-      [
-        28.1767094256,
-        57.9701569688
-      ]
-    ],
-    "capacity": {
-      "biomass": 102,
-      "gas": 1103,
-      "hydro": 1537,
-      "wind": 55
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Riga"
-  },
-  "MD": {
-    "bounding_box": [
-      [
-        26.6193367856,
-        45.4882831895
-      ],
-      [
-        30.0246586443,
-        48.4671194525
-      ]
-    ],
-    "capacity": {
-	    "biomass": 6,
-      "gas": 335,
-      "hydro": 64,
-	    "solar": 4,
-	    "wind": 29,
-      "unknown": 2520
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-	  	 "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "MD.fetch_production"
-    },
-    "timezone": "Europe/Chisinau"
-  },
-  "ME": {
-    "bounding_box": [
-      [
-        18.45,
-        41.87755
-      ],
-      [
-        20.3398,
-        43.52384
-      ]
-    ],
-    "capacity": {
-      "coal": 218,
-      "hydro": 658,
-      "solar": 3,
-      "wind": 118
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Podgorica"
-  },
-  "MK": {
-    "bounding_box": [
-      [
-        20.46315,
-        40.8427269557
-      ],
-      [
-        22.9523771502,
-        42.3202595078
-      ]
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Skopje"
-  },
-  "MQ": {
-    "bounding_box": [
-      [
-        -61.252194,
-        14.364404
-      ],
-      [
-        -60.732382,
-        14.888562
-      ]
-    ],
-    "capacity": {
-      "biomass": 15.082,
-      "hydro": 0,
-      "solar": 53.97,
-      "wind": 1.1,
-      "geothermal": 0,
-      "oil": 292,
-      "gas": 129
-    },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
-    "parsers": {
-      "production": "FR_O.fetch_production",
-      "price": "FR_O.fetch_price"
-    },
-    "timezone": "Europe/Paris"
-  },
-  "MT": {
-    "bounding_box": [
-      [
-        13.683604363000086,
-        35.301214911
-      ],
-      [
-        15.067149285000113,
-        36.5755882830001
-      ]
-    ],
-    "timezone": null
-  },
-  "MX": {
-    "bounding_box": [
-      [
-        -117.12776,
-        14.5388286402
-      ],
-      [
-        -86.811982388,
-        32.72083
-      ]
-    ],
-    "capacity": {},
-    "contributors": [
-      "https://github.com/scriptator"
-    ],
-    "parsers": {
-      "production": "MX.fetch_production"
-    },
-    "subZoneNames": [
-      "MX-BC",
-      "MX-CE",
-      "MX-NE",
-      "MX-NO",
-      "MX-NW",
-      "MX-OC",
-      "MX-OR",
-      "MX-PN"
-    ],
-    "timezone": null
-  },
-  "MY-WM": {
-    "bounding_box": [
-      [
-        99.14522806000014,
-        0.7704531920001614
-      ],
-      [
-        104.79468834700015,
-        7.207963766000191
-      ]
-    ],
-    "capacity": {
-      "coal": 9271,
-      "gas": 11085,
-      "hydro": 2502
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "parsers": {
-      "production": "MY_WM.fetch_production"
-    },
-    "timezone": null
-  },
-  "NA": {
-    "capacity": {
-      "coal": 120,
-      "hydro": 347,
-      "oil": 38,
-      "solar": 116,
-      "wind": 5
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/jarek",
-      "https://github.com/alixunderplatz"
-    ],
-    "timezone": null,
-    "bounding_box": [
-      [
-        11.217621290000068,
-        -29.45936818399987
-      ],
-      [
-        25.759780721000112,
-        -16.451057230999922
-      ]
-    ]
-  },
-  "NI": {
-    "bounding_box": [
-      [
-        -87.6684934151,
-        10.7268390975
-      ],
-      [
-        -83.147219001,
-        15.0162671981
-      ]
-    ],
-    "capacity": {
-      "biomass": 133,
-      "geothermal": 154,
-      "hydro": 138,
-      "oil": 732,
-      "wind": 186
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/jarek"
-    ],
-    "parsers": {
-      "price": "NI.fetch_price",
-      "production": "NI.fetch_production"
-    },
-    "timezone": "America/Managua"
-  },
-  "NKR": {
-    "bounding_box": [
-      [
-        45.2,
-        38.6
-      ],
-      [
-        47.6,
-        40.7
-      ]
-    ],
-    "flag_file_name": "_Nagorno-Karabakh.png",
-    "timezone": null
-  },
-  "NL": {
-    "bounding_box": [
-      [
-        3.31497114423,
-        50.803721015
-      ],
-      [
-        7.09205325687,
-        53.5104033474
-      ]
-    ],
-    "capacity": {
-      "biomass": 849,
-      "coal": 4000,
-      "gas": 15496,
-      "geothermal": 0,
-      "hydro": 37,
-      "hydro storage": 0,
-      "nuclear": 486,
-      "oil": 0,
-      "solar": 6720,
-      "wind": 4463
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/PaulCornelissen",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null
-  },
-  "NO": {
-    "capacity": {
-      "coal": 0,
-      "gas": 634,
-      "geothermal": 0,
-      "hydro": 32440,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 2754
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "subZoneNames": [
-      "NO-NO1",
-      "NO-NO2",
-      "NO-NO3",
-      "NO-NO4",
-      "NO-NO5"
-    ],
-    "timezone": "Europe/Oslo"
-  },
-  "NO-NO1": {
-    "capacity": {
-      "coal": 0,
-      "gas": 0,
-      "geothermal": 0,
-      "hydro": 3592,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 166
-    },
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        7.610326512408815,
-        58.38472727500012
-      ],
-      [
-        13.388184448000061,
-        63.128901615737796
-      ]
-    ]
-  },
-  "NO-NO2": {
-    "capacity": {
-      "coal": 0,
-      "gas": 5,
-      "geothermal": 0,
-      "hydro": 11317,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 1060
-    },
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        4.570648634000037,
-        57.49315013200005
-      ],
-      [
-        11.014170769000089,
-        60.73048157269916
-      ]
-    ]
-  },
-  "NO-NO3": {
-    "capacity": {
-      "coal": 0,
-      "gas": 0,
-      "geothermal": 0,
-      "hydro": 4571,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 1074
-    },
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        4.143809441000116,
-        60.43027545054864
-      ],
-      [
-        14.661440063000043,
-        65.490423895
-      ]
-    ]
-  },
-  "NO-NO4": {
-    "capacity": {
-      "coal": 0,
-      "gas": 270,
-      "geothermal": 0,
-      "hydro": 5088,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 456
-    },
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        11.018809441000087,
-        63.879640651798496
-      ],
-      [
-        31.576996290000153,
-        71.6652692730001
-      ]
-    ]
-  },
-  "NO-NO5": {
-    "capacity": {
-      "coal": 0,
-      "gas": 359,
-      "geothermal": 0,
-      "hydro": 7873,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
-    },
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        4.27686608200014,
-        59.59392557929161
-      ],
-      [
-        10.10473435728148,
-        62.338893003403086
-      ]
-    ]
-  },
-  "NP": {
-    "bounding_box": [
-      [
-        26.33196174127239,
-        83.31609381672638
-      ],
-      [
-        29.2389869272311,
-        84.17810344629932
-      ]
-    ],
-    "capacity": {
-      "biomass": 0,
-      "coal": 0,
-      "gas": 0,
-      "hydro": 1016,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 0.7804,
-      "wind": 0
-    },
-    "contributors": [
-      "https://github.com/Subarna578"
-    ],
-    "flag_file_name": "np.png",
-    "timezone": null
-  },
-  "NZ-NZN": {
-    "bounding_box": [
-      [
-        172.17408287900022,
-        -42.12029387799984
-      ],
-      [
-        179.06617272200023,
-        -33.89763762799993
-      ]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "production": "NZ.fetch_production"
-    },
-    "timezone": null
-  },
-  "NZ-NZS": {
-    "bounding_box": [
-      [
-        165.9664819670002,
-        -47.77760182099989
-      ],
-      [
-        174.90137780000023,
-        -40.00212981599989
-      ]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "production": "NZ.fetch_production"
-    },
-    "timezone": null
-  },
-  "OM": {
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
-    "capacity": {
-      "solar": 8
-    },
-    "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
-    },
-    "timezone": "Asia/Muscat",
-    "bounding_box": [
-      [
-        51.47861495000012,
-        16.142401434000078
-      ],
-      [
-        60.34457441500007,
-        26.885972398000035
-      ]
-    ]
-  },
-  "PA": {
-    "bounding_box": [
-      [
-        -82.9657830472,
-        7.2205414901
-      ],
-      [
-        -77.2425664944,
-        9.61161001224
-      ]
-    ],
-    "capacity": {
-      "biomass": 0,
-      "gas": 113,
-      "hydro": 1704,
-      "nuclear": 0,
-      "solar": 75,
-      "unknown": 962,
-      "wind": 270
-    },
-    "contributors": [
-      "https://github.com/paulotaviodr",
-      "https://github.com/jarek",
-      "https://github.com/systemcatch",
-      "https://github.com/7hibault",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "PA.fetch_production"
-    },
-    "timezone": "America/Panama"
-  },
-  "PE": {
-    "bounding_box": [
-      [
-        -81.83755752899992,
-        -18.83774620693788
-      ],
-      [
-        -68.18425248299991,
-        0.47090728800013437
-      ]
-    ],
-    "capacity": {
-      "biomass": 186,
-      "hydro": 5741,
-      "solar": 341,
-      "wind": 372
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "PE.fetch_production"
-    },
-    "timezone": "America/Lima"
-  },
-  "PL": {
-    "bounding_box": [
-      [
-        14.0745211117,
-        49.0273953314
-      ],
-      [
-        24.0299857927,
-        54.8515359564
-      ]
-    ],
-    "capacity": {
-      "biomass": 1493,
-      "coal": 29963,
-      "gas": 2812,
-      "hydro": 605,
-      "hydro storage": 1780,
-      "nuclear": 0,
-      "oil": 359,
-      "solar": 1833,
-      "wind": 5953
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/wojciej",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production",
-      "productionPerUnit": "ENTSOE.fetch_production_per_units"
-    },
-    "timezone": "Europe/Warsaw"
-  },
-  "PT": {
-    "capacity": {
-      "biomass": 729,
-      "coal": 1756,
-      "gas": 4606,
-      "geothermal": 29,
-      "hydro": 4359,
-      "hydro storage": 2559,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 828,
-      "wind": 5233
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "flag_file_name": "pt.png",
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Lisbon",
-    "bounding_box": [
-      [
-        -9.997466600999928,
-        36.46588776200015
-      ],
-      [
-        -5.705947224999932,
-        42.65362965999999
-      ]
-    ]
-  },
-  "PT-AC": {
-    "bounding_box": [
-      [
-        -31.784901495999918,
-        36.43431224200016
-      ],
-      [
-        -24.51219641799986,
-        40.22833893400015
-      ]
-    ],
-    "flag_file_name": "pt.png",
-    "timezone": null
-  },
-  "PT-MA": {
-    "bounding_box": [
-      [
-        -17.752105272999927,
-        29.529242255000057
-      ],
-      [
-        -15.354969855999883,
-        33.61078522300012
-      ]
-    ],
-    "flag_file_name": "pt.png",
-    "timezone": null
-  },
-  "QA": {
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
-    "capacity": {
-      "biomass": 38,
-      "solar": 5
-    },
-    "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
-    },
-    "timezone": "Asia/Qatar",
-    "bounding_box": [
-      [
-        50.250987175000034,
-        24.059871521000062
-      ],
-      [
-        52.11654707100007,
-        26.660101630000042
-      ]
-    ]
-  },
-  "RE": {
-    "bounding_box": [
-      [
-        54.374008,
-        -22.069087
-      ],
-      [
-        56.33463,
-        -20.421464
-      ]
-    ],
-    "capacity": {
-      "biomass": 215,
-      "coal": 211,
-      "oil": 221,
-      "gas": 80,
-      "hydro": 138,
-      "solar": 189,
-      "wind": 15
-    },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
-    "parsers": {
-      "production": "FR_O.fetch_production",
-      "price": "FR_O.fetch_price"
-    },
-    "timezone": "Indian/Reunion"
-  },
-  "RO": {
-    "bounding_box": [
-      [
-        20.2201924985,
-        43.6884447292
-      ],
-      [
-        29.62654341,
-        48.2208812526
-      ]
-    ],
-    "capacity": {
-      "biomass": 115,
-      "coal": 4128,
-      "gas": 3033,
-      "geothermal": 0,
-      "hydro": 6143,
-      "hydro storage": 0,
-      "nuclear": 1400,
-      "solar": 1150,
-      "wind": 2968
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Bucharest"
-  },
-  "RS": {
-    "bounding_box": [
-      [
-        18.82982,
-        42.2452243971
-      ],
-      [
-        22.9860185076,
-        46.1717298447
-      ]
-    ],
-    "capacity": {
-      "biomass": 8,
-      "coal": 5283,
-      "gas": 286,
-      "hydro": 2459,
-      "hydro storage": 639,
-      "solar": 4,
-      "wind": 397,
-      "unknown": 25
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Belgrade"
-  },
-  "RU": {
-    "capacity": {
-      "biomass": 0,
-      "coal": 44868,
-      "gas": 115374,
-      "hydro": 48085,
-      "nuclear": 27929,
-      "oil": 1600,
-      "solar": 75,
-      "wind": 10
-    },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
-    "flag_file_name": "ru.png",
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "RU.fetch_production"
-    },
-    "timezone": "Europe/Moscow"
-  },
-  "RU-1": {
-    "capacity": {
-      "nuclear": 27914,
-      "hydro": 19500,
-      "unknown": 125014
-    },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
-    "flag_file_name": "ru.png",
-    "parsers": {
-      "production": "RU.fetch_production"
-    },
-    "timezone": "Europe/Moscow",
-    "bounding_box": [
-      [
-        26.444509311000104,
-        40.69268056200022
-      ],
-      [
-        86.53054243358639,
-        80.6748721370002
-      ]
-    ]
-  },
-  "RU-2": {
-    "capacity": {
-      "hydro": 25286,
-      "unknown": 26570
-    },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
-    "flag_file_name": "ru.png",
-    "parsers": {
-      "production": "RU.fetch_production"
-    },
-    "timezone": "Europe/Moscow",
-    "bounding_box": [
-      [
-        69.88395226418567,
-        48.571011048000116
-      ],
-      [
-        122.63913943863423,
-        81.78880442900012
-      ]
-    ]
-  },
-  "RU-AS": {
-    "flag_file_name": "ru.png",
-    "timezone": null
-  },
-  "RU-EU": {
-    "flag_file_name": "ru.png",
-    "timezone": null,
-    "bounding_box": [
-      [
-        35.357377557328505,
-        58.708375963180174
-      ],
-      [
-        69.53394616000008,
-        82.35871002800013
-      ]
-    ]
-  },
-  "RU-KGD": {
-    "bounding_box": [
-      [
-        19.10954837300008,
-        53.842937318000054
-      ],
-      [
-        23.348351684000107,
-        55.78995961500016
-      ]
-    ],
-    "flag_file_name": "ru.png",
-    "timezone": null
-  },
-  "SA": {
-    "contributors": [
-      "https://github.com/q--"
-    ],
-    "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
-    },
-    "timezone": "Asia/Riyadh",
-    "bounding_box": [
-      [
-        34.07276451900009,
-        15.87095774900007
-      ],
-      [
-        56.13756473800004,
-        32.62134796200006
-      ]
-    ]
-  },
-  "SE": {
-    "bounding_box": [
-      [
-        11.25,
-        55.379110448
-      ],
-      [
-        21.2255859375,
-        69.0214140884
-      ]
-    ],
-    "capacity": {
-      "biomass": 4800,
-      "coal": 0,
-      "gas": 698,
-      "hydro": 15945,
-      "nuclear": 7801,
-      "oil": 2251,
-      "solar": 698,
-      "wind": 8984
-    },
-    "contributors": [
-      "https://github.com/augustekman",
-      "https://github.com/RRyyas",
-      "https://github.com/corradio",
-      "https://github.com/VIKTORVAV99"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "SE.fetch_production",
-      "productionPerUnit": "ENTSOE.fetch_production_per_units"
-    },
-    "timezone": "Europe/Stockholm"
-  },
-  "SE-SE1": {
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        14.926272420000089,
-        63.65992801849613
-      ],
-      [
-        24.663413534000114,
-        69.53635569300009
-      ]
-    ]
-  },
-  "SE-SE2": {
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        11.492425171000093,
-        60.280991513822045
-      ],
-      [
-        21.486074487958014,
-        66.78799631800014
-      ]
-    ]
-  },
-  "SE-SE3": {
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        10.608164910000113,
-        56.392035223000065
-      ],
-      [
-        19.8385522800001,
-        62.67478628775066
-      ]
-    ]
-  },
-  "SE-SE4": {
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        11.951426629000139,
-        54.84267812700013
-      ],
-      [
-        17.624522332000083,
-        57.85822174700009
-      ]
-    ]
-  },
-  "SG": {
-    "bounding_box": [
-      [
-        103.14039147200003,
-        0.7643089860000885
-      ],
-      [
-        104.50342858200003,
-        1.9486351580000445
-      ]
-    ],
-    "capacity": {
-      "biomass": 257,
-      "gas": 10344,
-      "solar": 231.26
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/q--"
-    ],
-    "parsers": {
-      "price": "SG.fetch_price",
-      "production": "SG.fetch_production"
-    },
-    "timezone": "Asia/Singapore"
-  },
-  "SI": {
-    "_comment": "hydro incl. 180 MW pumped storage",
-    "bounding_box": [
-      [
-        13.6981099789,
-        45.4523163926
-      ],
-      [
-        16.5648083839,
-        46.8523859727
-      ]
-    ],
-    "capacity": {
-      "biomass": 57,
-      "coal": 921,
-      "gas": 491,
-      "hydro": 1233,
-      "nuclear": 696,
-      "hydro storage": 180,
-      "oil": 0,
-      "solar": 263,
-      "wind": 3,
-      "battery storage": 0,
-      "geothermal": 0
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Ljubljana"
-  },
-  "SK": {
-    "bounding_box": [
-      [
-        16.8799829444,
-        47.7584288601
-      ],
-      [
-        22.5581376482,
-        49.5715740017
-      ]
-    ],
-    "capacity": {
-      "biomass": 363,
-      "coal": 1008,
-      "gas": 1093,
-      "hydro": 1621,
-      "hydro storage": 916,
-      "nuclear": 1940,
-      "oil": 195,
-      "solar": 532,
-      "wind": 3
-    },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Bratislava"
-  },
-  "SV": {
-    "bounding_box": [
-      [
-        -90.0955545723,
-        13.1490168319
-      ],
-      [
-        -87.7235029772,
-        14.4241327987
-      ]
-    ],
-    "capacity": {
-      "biomass": 317,
-      "geothermal": 204,
-      "hydro": 571,
-      "oil": 756,
-      "solar": 273
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "SV.fetch_production"
-    },
-    "timezone": "America/El_Salvador"
-  },
-  "TR": {
-    "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
-    "capacity": {
-      "battery storage": 0,
-      "biomass": 983,
-      "coal": 19350,
-      "gas": 26637,
-      "geothermal": 1515,
-      "hydro": 28503,
-      "hydro storage": 0,
-      "oil": 306,
-      "solar": 5996,
-      "unknown": 124,
-      "wind": 7591
-    },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/olivierSemet",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "TR.fetch_price",
-      "production": "TR.fetch_production"
-    },
-    "timezone": "Europe/Istanbul",
-    "bounding_box": [
-      [
-        25.16325931100002,
-        35.319778545000034
-      ],
-      [
-        45.30699282900011,
-        42.598781643000095
-      ]
-    ]
-  },
-  "TW": {
-    "bounding_box": [
-      [
-        120.106188593,
-        21.9705713974
-      ],
-      [
-        121.951243931,
-        25.2954588893
-      ]
-    ],
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon"
-    ],
-    "parsers": {
-      "production": "TW.fetch_production"
-    },
-    "timezone": "Asia/Taipei"
-  },
-  "UA": {
-    "capacity": {
-      "biomass": 151,
-      "hydro": 4810,
-      "hydro storage": 1487,
-      "nuclear": 13835,
-      "solar": 4231,
-      "wind": 1036
-    },
-    "contributors": [
-      "https://github.com/amkozlov",
-      "https://github.com/denplis",
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon",
-      "https://github.com/alixunderplatz"
-    ],
-    "parsers": {
-      "consumption": "ENTSOE.fetch_consumption",
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "UA.fetch_production"
-    },
-    "timezone": "Europe/Kiev",
-    "bounding_box": [
-      [
-        21.63283980300011,
-        44.713568427000055
-      ],
-      [
-        40.65954309100019,
-        52.86894928000005
-      ]
-    ]
-  },
-  "UA-CR": {
-    "bounding_box": [
-      [
-        31.981618686000104,
-        43.88104889500005
-      ],
-      [
-        37.13835696700005,
-        46.716899045472104
-      ]
-    ],
-    "timezone": "Europe/Kiev"
-  },
-  "US-AK": {
-    "flag_file_name": "us.png",
-    "timezone": null,
-    "bounding_box": [
-      [
-        -179.64350338399993,
-        50.71539948100022
-      ],
-      [
-        180.28093509200022,
-        71.91250234600014
-      ]
-    ]
-  },
-  "US-AL": {
-    "bounding_box": [
-      [
-        -88.19113,
-        30.166662
-      ],
-      [
-        -85.009698,
-        34.956744
-      ]
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-BPA": {
-    "capacity": {
-      "biomass": 378,
-      "coal": 0,
-      "gas": 1135,
-      "hydro": 22184,
-      "nuclear": 1191,
-      "wind": 2770
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        -125.23460723799991,
-        45.066312681984755
-      ],
-      [
-        -116.37882694730573,
-        49.49251489298911
-      ]
-    ]
-  },
-  "US-CA": {
-    "bounding_box": [
-      [
-        -124.9092019709999,
-        32.03166949000371
-      ],
-      [
-        -113.61906132172261,
-        42.499540221404175
-      ]
-    ],
-    "capacity": {
-      "battery storage": 136,
-      "biomass": 861,
-      "coal": 55,
-      "gas": 41491,
-      "geothermal": 1785,
-      "hydro": 14010,
-      "nuclear": 2393,
-      "oil": 352,
-      "solar": 12697,
-      "wind": 6927
-    },
-    "contributors": [
-      "https://github.com/7hibault",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "consumption": "EIA.fetch_consumption",
-      "production": "US_CA.fetch_production"
-    },
-    "timezone": null
-  },
-  "US-DUK": {
-    "comment": "Duke Energy Carolinas",
-    "bounding_box": [
-      [
-        -83.2518,
-        34.2505
-      ],
-      [
-        -79.1045,
-        36.2525
-      ]
-    ],
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": "US/Eastern"
-  },
-  "US-SEC": {
-    "bounding_box": [
-      [
-        -87.63333333,
-        24.45
-      ],
-      [
-        -80.03333333,
-        31
-      ]
-    ],
-    "capacity": {
-      "unknown": 2110,
-      "solar": 2
-    },
-    "contributors": [
-      "https://github.com/snarfed"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_SEC.fetch_production"
-    },
-    "timezone": "US/Eastern"
-  },
-  "US-TX": {
-    "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
-    "bounding_box": [
-      [
-        -106.963657,
-        26.485219
-      ],
-      [
-        -90.539219,
-        36.265205
-      ]
-    ],
-    "capacity": {
-      "wind": 21751,
-      "solar": 1719,
-      "unknown": 69483
-    },
-    "contributors": [
-      "https://github.com/typicalTYLER"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption"
-    },
-    "timezone": "US/Central"
-  },
-  "US-GA": {
-    "bounding_box": [
-      [
-        -85.601474,
-        30.503252
-      ],
-      [
-        -80.76343,
-        34.975541
-      ]
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-HI-HA": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -156.5601639279999,
-        18.40611714300016
-      ],
-      [
-        -154.31406356599993,
-        20.763429107000178
-      ]
-    ]
-  },
-  "US-HI-KA": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -160.28721974299992,
-        21.368769246000056
-      ],
-      [
-        -158.7925919259999,
-        22.735494671000225
-      ]
-    ]
-  },
-  "US-HI-KH": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -157.20056182399986,
-        20.004712932000132
-      ],
-      [
-        -156.03412841099995,
-        21.09995670100011
-      ]
-    ]
-  },
-  "US-HI-LA": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -157.56313605799994,
-        20.232387730000227
-      ],
-      [
-        -156.30353909899995,
-        21.427508787000193
-      ]
-    ]
-  },
-  "US-HI-MA": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -157.19600919699985,
-        20.081179336000048
-      ],
-      [
-        -155.47955290999988,
-        21.532653273000165
-      ]
-    ]
-  },
-  "US-HI-MO": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -157.80426998599995,
-        20.553371486000145
-      ],
-      [
-        -156.20572493599994,
-        21.721879885000135
-      ]
-    ]
-  },
-  "US-HI-NI": {
-    "flag_file_name": "us.png",
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -160.74803626199989,
-        21.280209463000062
-      ],
-      [
-        -159.55143635199994,
-        22.507756812000167
-      ]
-    ]
-  },
-  "US-HI-OA": {
-    "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
-    "capacity": {
-      "biomass": 256.5,
-      "coal": 0,
-      "gas": 0,
-      "geothermal": 0,
-      "hydro": 0,
-      "oil": 0,
-      "solar": 781,
-      "wind": 171,
-      "unknown": 0
-    },
-    "contributors": [
-      "https://github.com/kepiej",
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_HI.fetch_production"
-    },
-    "timezone": "Pacific/Honolulu",
-    "bounding_box": [
-      [
-        -158.7789330139999,
-        20.75418992400006
-      ],
-      [
-        -157.14716739499988,
-        22.209850429000085
-      ]
-    ]
-  },
-  "US-IPC": {
-    "capacity": {
-      "coal": 1118,
-      "gas": 762,
-      "geothermal": 51,
-      "hydro": 1709,
-      "oil": 5,
-      "solar": 291,
-      "wind": 682
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_IPC.fetch_production"
-    },
-    "timezone": "America/Boise",
-    "bounding_box": [
-      [
-        -117.7153503854119,
-        41.49954022140409
-      ],
-      [
-        -110.5502380803231,
-        49.49251454705444
-      ]
-    ]
-  },
-  "US-MISO": {
-    "bounding_box": [
-      [
-        -93.40172733814615,
-        41.991799921851396
-      ],
-      [
-        -86.35286760864014,
-        47.58159536389269
-      ]
-    ],
-    "capacity": {
-      "coal": 53328,
-      "gas": 76437,
-      "nuclear": 14221,
-      "solar": 314,
-      "wind": 21089,
-      "unknown": 3555
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "production": "US_MISO.fetch_production",
-      "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
-    },
-    "timezone": null
-  },
-  "US-NC": {
-    "bounding_box": [
-      [
-        -84.232364,
-        33.654
-      ],
-      [
-        -75.644807,
-        36.579671
-      ]
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-NEISO": {
-    "bounding_box": [
-      [
-        -73.93854374389866,
-        42.22927654897353
-      ],
-      [
-        -71.00570682970636,
-        45.51373107491463
-      ]
-    ],
-    "capacity": {
-      "biomass": 1895,
-      "coal": 2083,
-      "gas": 16234,
-      "hydro": 3425,
-      "nuclear": 4074,
-      "solar": 584,
-      "wind": 1356
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "consumption": "EIA.fetch_consumption",
-      "production": "US_NEISO.fetch_production"
-    },
-    "timezone": null
-  },
-  "US-NEVP": {
-    "comment": "Nevada Power Company",
-    "bounding_box": [
-      [
-        -118.7481,
-        35.8322
-      ],
-      [
-        -112.9336,
-        41.9947
-      ]
-    ],
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-NV": {
-    "bounding_box": [
-      [
-        -120,
-        35
-      ],
-      [
-        -114,
-        42
-      ]
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-NY": {
-    "_comment": "hydro incl. 1407 MW pumped storage",
-    "bounding_box": [
-      [
-        -80.26300663544788,
-        39.99943456200015
-      ],
-      [
-        -71.35741126199989,
-        45.51012196900015
-      ]
-    ],
-    "capacity": {
-      "coal": 1011,
-      "gas": 22117,
-      "hydro": 5658,
-      "nuclear": 5375,
-      "oil": 2499,
-      "wind": 1740
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "consumption": "EIA.fetch_consumption",
-      "production": "US_NY.fetch_production"
-    },
-    "timezone": null
-  },
-  "US-OR": {
-    "bounding_box": [
-      [
-        -124.697592,
-        42.005176
-      ],
-      [
-        -116.632557,
-        46.194588
-      ]
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-PJM": {
-    "bounding_box": [
-      [
-        -90.07794804136901,
-        35.9986369002728
-      ],
-      [
-        -81.46522831443511,
-        39.646219908521914
-      ]
-    ],
-    "capacity": {
-      "biomass": 630,
-      "coal": 57588,
-      "gas": 77101,
-      "hydro": 9283,
-      "nuclear": 33001,
-      "oil": 8306,
-      "solar": 702,
-      "unknown": 214,
-      "wind": 1192
-    },
-    "comment": "gas includes landfill, oil includes black liquor",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/jacobbaratta",
-      "https://github.com/hanshyde",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "consumption": "EIA.fetch_consumption",
-      "price": "US_PJM.fetch_price",
-      "production": "US_PJM.fetch_production"
-    },
-    "timezone": null
-  },
-  "US-SC": {
-    "comment": "South Carolina Public Service Authority",
-    "bounding_box": [
-      [
-        -81.6726,
-        32.7536
-      ],
-      [
-        -78.9549,
-        34.4838
-      ]
-    ],
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": "US/Eastern"
-  },
-  "US-SOCO": {
-    "comment": "Southern Company Services, Inc",
-    "bounding_box": [
-      [
-        -88.9689,
-        30.3916
-      ],
-      [
-        -81.915,
-        34.5297
-      ]
-    ],
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-SPP": {
-    "capacity": {
-      "coal": 25740,
-      "gas": 36270,
-      "hydro": 3420,
-      "nuclear": 2070,
-      "oil": 1620,
-      "solar": 180,
-      "wind": 20609,
-      "unknown": 90
-    },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/Hyric89",
-      "https://github.com/nessie2013"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "consumption": "EIA.fetch_consumption",
-      "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
-      "production": "US_SPP.fetch_production"
-    },
-    "timezone": null,
-    "bounding_box": [
-      [
-        -103.9005,
-        33.5302
-      ],
-      [
-        -95.6571,
-        48.2931
-      ]
-    ]
-  },
-  "US-SVERI": {
-    "bounding_box": [
-      [
-        -115.412018,
-        32.001824
-      ],
-      [
-        -103.051202,
-        36.967691
-      ]
-    ],
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-TN": {
-    "comment": "Tennessee",
-    "bounding_box": [
-      [
-        -90.323361,
-        34.881666
-      ],
-      [
-        -81.934704,
-        36.674417
-      ]
-    ],
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "contributors": [
-      "https://github.com/snarfed"
-    ],
-    "flag_file_name": "us.png",
-    "timezone": null
-  },
-  "US-CAL-BANC": {
-    "comment": "Balancing Authority Of Northern California",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -124.123781,
-        37.076039301
-      ],
-      [
-        -120.084803325,
-        41.868139
-      ]
-    ]
-  },
-  "US-CAL-CISO": {
-    "comment": "California Independent System Operator",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_CA.fetch_production",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -124.909721,
-        32.0341570000001
-      ],
-      [
-        -113.631212,
-        41.965851
-      ]
-    ]
-  },
-  "US-CAL-IID": {
-    "comment": "Imperial Irrigation District",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -116.925459495,
-        32.118592
-      ],
-      [
-        -113.962511,
-        34.535375
-      ]
-    ]
-  },
-  "US-CAL-LDWP": {
-    "comment": "Los Angeles Department Of Water And Power",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -119.168404,
-        33.204538
-      ],
-      [
-        -117.104019502,
-        37.963081
-      ]
-    ]
-  },
-  "US-CAL-TIDC": {
-    "comment": "Turlock Irrigation District",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -121.95216521,
-        36.780338348
-      ],
-      [
-        -119.868765123,
-        38.209221358
-      ]
-    ]
-  },
-  "US-CAR-CPLE": {
-    "comment": "Duke Energy Progress East",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "",
-    "bounding_box": [
-      [
-        -81.37844,
-        32.6102500000001
-      ],
-      [
-        -75.53103,
-        37.04465
-      ]
-    ]
-  },
-  "US-CAR-CPLW": {
-    "comment": "Duke Energy Progress West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.86385,
-        34.5009
-      ],
-      [
-        -81.19208,
-        36.7872800000001
-      ]
-    ]
-  },
-  "US-CAR-DUK": {
-    "comment": "Duke Energy Carolinas",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -84.82173,
-        33.03163
-      ],
-      [
-        -77.75453,
-        37.0883200000001
-      ]
-    ]
-  },
-  "US-CAR-SC": {
-    "comment": "South Carolina Public Service Authority",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -82.8222040759999,
-        31.5821888830001
-      ],
-      [
-        -78.04086,
-        35.334748543
-      ]
-    ]
-  },
-  "US-CAR-SCEG": {
-    "comment": "South Carolina Electric & Gas Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.14555,
-        31.584470000000103
-      ],
-      [
-        -78.92575821,
-        35.2360579840001
-      ]
-    ]
-  },
-  "US-CAR-YAD": {
-    "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -80.825586319,
-        34.797960281
-      ],
-      [
-        -79.4523525239999,
-        36.2042064670001
-      ]
-    ]
-  },
-  "US-CENT-SPA": {
-    "comment": "Southwestern Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -98.122757,
-        34.320635
-      ],
-      [
-        -89.033722,
-        40.781817
-      ]
-    ]
-  },
-  "US-CENT-SWPP": {
-    "comment": "Southwest Power Pool",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_SPP.fetch_production",
-      "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -107.926457081158,
-        30.3593306971005
-      ],
-      [
-        -89.4563897448683,
-        49.5000212518403
-      ]
-    ]
-  },
-  "US-FLA-FMPP": {
-    "comment": "Florida Municipal Power Pool",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.03593,
-        24.044093
-      ],
-      [
-        -79.53074,
-        30.69435
-      ]
-    ]
-  },
-  "US-FLA-FPC": {
-    "comment": "Duke Energy Florida Inc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -86.49625,
-        25.7531500000001
-      ],
-      [
-        -79.99125,
-        31.214009
-      ]
-    ]
-  },
-  "US-FLA-FPL": {
-    "comment": "Florida Power & Light Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.67149,
-        24.02126
-      ],
-      [
-        -79.53074,
-        31.33017
-      ]
-    ]
-  },
-  "US-FLA-GVL": {
-    "comment": "Gainesville Regional Utilities",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.1581599999999,
-        28.9170100000001
-      ],
-      [
-        -81.54976,
-        30.44528
-      ]
-    ]
-  },
-  "US-FLA-HST": {
-    "comment": "City Of Homestead",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -81.3738299999999,
-        24.6374500000001
-      ],
-      [
-        -79.61802,
-        26.47902
-      ]
-    ]
-  },
-  "US-FLA-JEA": {
-    "comment": "Jea",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -86.0998,
-        29.463185332
-      ],
-      [
-        -80.848769105,
-        31.50107
-      ]
-    ]
-  },
-  "US-FLA-NSB": {
-    "comment": "New Smyrna Beach, Utilities Commission Of",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -82.18057,
-        28.1131300000001
-      ],
-      [
-        -80.23297,
-        29.92717
-      ]
-    ]
-  },
-  "US-FLA-SEC": {
-    "comment": "Seminole Electric Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -85.65399,
-        25.7184577510001
-      ],
-      [
-        -80.123257233,
-        31.2115600000001
-      ]
-    ]
-  },
-  "US-FLA-TAL": {
-    "comment": "City Of Tallahassee",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -84.94623,
-        29.865082
-      ],
-      [
-        -83.591841,
-        31.123546
-      ]
-    ]
-  },
-  "US-FLA-TEC": {
-    "comment": "Tampa Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.214478374,
-        26.985591
-      ],
-      [
-        -81.1327000919999,
-        28.9295718550001
-      ]
-    ]
-  },
-  "US-MIDA-OVEC": {
-    "comment": "Ohio Valley Electric Corporation",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -83.885637,
-        38.4480730000001
-      ],
-      [
-        -82.285891,
-        39.6975850000001
-      ]
-    ]
-  },
-  "US-MIDA-PJM": {
-    "comment": "Pjm Interconnection, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_PJM.fetch_production",
-      "price": "US_PJM.fetch_price",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -90.88416,
-        34.3029500000001
-      ],
-      [
-        -73.39368,
-        43.00836
-      ]
-    ]
-  },
-  "US-MIDW-AECI": {
-    "comment": "Associated Electric Cooperative, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -98.45079,
-        34.168033532
-      ],
-      [
-        -88.5987499999999,
-        41.779649115
-      ]
-    ]
-  },
-  "US-MIDW-EEI": {
-    "comment": "Electric Energy, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -89.44135,
-        36.44203
-      ],
-      [
-        -87.9829,
-        37.83698
-      ]
-    ]
-  },
-  "US-MIDW-GLHB": {
-    "comment": "GridLiance",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Central"
-  },
-  "US-MIDW-LGEE": {
-    "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -89.682531784,
-        36.073739711
-      ],
-      [
-        -82.355720806,
-        39.4703334770001
-      ]
-    ]
-  },
-  "US-MIDW-MISO": {
-    "comment": "Midcontinent Independent Transmission System Operator, Inc..",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_MISO.fetch_production",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -107.862115248933,
-        28.4286900252724
-      ],
-      [
-        -81.9130970652477,
-        49.884274119856
-      ]
-    ]
-  },
-  "US-NE-ISNE": {
-    "comment": "Iso New England Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_NEISO.fetch_production",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -74.22789,
-        40.10968
-      ],
-      [
-        -66.45013,
-        47.9598300000001
-      ]
-    ]
-  },
-  "US-NW-AVA": {
-    "comment": "Avista Corporation",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -120.54268,
-        44.57814
-      ],
-      [
-        -113.68675,
-        49.50073
-      ]
-    ]
-  },
-  "US-NW-AVRN": {
-    "comment": "Avangrid Renewables Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Pacific"
-  },
-  "US-NW-BPAT": {
-    "comment": "Bonneville Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -125.23688,
-        39.61659
-      ],
-      [
-        -105.50971,
-        49.50244
-      ]
-    ]
-  },
-  "US-NW-CHPD": {
-    "comment": "Public Utility District No. 1 Of Chelan County",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -121.680713,
-        46.760889
-      ],
-      [
-        -119.359734,
-        49.050725
-      ]
-    ]
-  },
-  "US-NW-DOPD": {
-    "comment": "Pud No. 1 Of Douglas County",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -120.819941629,
-        46.7200530000001
-      ],
-      [
-        -118.335197,
-        49.500448
-      ]
-    ]
-  },
-  "US-NW-GCPD": {
-    "comment": "Public Utility District No. 2 Of Grant County, Washington",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -120.542866,
-        46.125243
-      ],
-      [
-        -118.473872746,
-        48.462236509
-      ]
-    ]
-  },
-  "US-NW-GRID": {
-    "comment": "Gridforce Energy Management, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -119.851352692,
-        44.7463779450001
-      ],
-      [
-        -118.363136292,
-        46.366308212
-      ]
-    ]
-  },
-  "US-NW-GWA": {
-    "comment": "Naturener Power Watch, Llc (Gwa)",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -113.660743713,
-        47.4742527010001
-      ],
-      [
-        -111.05112648,
-        49.491411209
-      ]
-    ]
-  },
-  "US-NW-IPCO": {
-    "comment": "Idaho Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -120.44398,
-        41.48796
-      ],
-      [
-        -111.08807,
-        47.1707900000001
-      ]
-    ]
-  },
-  "US-NW-NEVP": {
-    "comment": "Nevada Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -121.98446,
-        34.50232
-      ],
-      [
-        -111.0849,
-        42.5017700000001
-      ]
-    ]
-  },
-  "US-NW-NWMT": {
-    "comment": "Northwestern Energy (Nwmt)",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -116.5492,
-        43.3016500000001
-      ],
-      [
-        -103.53947,
-        49.5011000000001
-      ]
-    ]
-  },
-  "US-NW-PACE": {
-    "comment": "Pacificorp - East",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -115.80505,
-        32.97563
-      ],
-      [
-        -104.15314,
-        45.5057600000001
-      ]
-    ]
-  },
-  "US-NW-PACW": {
-    "comment": "Pacificorp - West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -124.98038,
-        38.66544
-      ],
-      [
-        -115.96327,
-        47.5893300000001
-      ]
-    ]
-  },
-  "US-NW-PGE": {
-    "comment": "Portland General Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -124.225142777,
-        44.2721814650001
-      ],
-      [
-        -121.156917718,
-        46.4057731890001
-      ]
-    ]
-  },
-  "US-NW-PSCO": {
-    "comment": "Public Service Company Of Colorado",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -109.559308887,
-        35.7175500000001
-      ],
-      [
-        -102.094762152,
-        41.7250704890001
-      ]
-    ]
-  },
-  "US-NW-PSEI": {
-    "comment": "Puget Sound Energy",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -123.703117998,
-        45.902822584
-      ],
-      [
-        -119.816106194,
-        49.502493024
-      ]
-    ]
-  },
-  "US-NW-SCL": {
-    "comment": "Seattle City Light",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -122.936059783,
-        46.955507
-      ],
-      [
-        -121.725915999,
-        48.277929
-      ]
-    ]
-  },
-  "US-NW-TPWR": {
-    "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Pacific",
-    "bounding_box": [
-      [
-        -124.00616,
-        45.8837600000001
-      ],
-      [
-        -120.56592,
-        48.28046
-      ]
-    ]
-  },
-  "US-NW-WACM": {
-    "comment": "Western Area Power Administration - Rocky Mountain Region",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -114.55,
-        35.43059
-      ],
-      [
-        -95.95176,
-        48.07463
-      ]
-    ]
-  },
-  "US-NW-WAUW": {
-    "comment": "Western Area Power Administration Ugp West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -113.348433684,
-        43.730745552
-      ],
-      [
-        -102.051328941,
-        49.1340949710001
-      ]
-    ]
-  },
-  "US-NW-WWA": {
-    "comment": "Naturener Wind Watch, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -113.662527277,
-        48.163057327
-      ],
-      [
-        -110.887711776,
-        49.498921
-      ]
-    ]
-  },
-  "US-NY-NYIS": {
-    "capacity": {
-      "coal": 676,
-      "gas": 23956,
-      "hydro": 4247,
-      "hydro storage": 1407,
-      "nuclear": 5391,
-      "oil": 2416,
-      "solar": 32,
-      "wind": 1739,
-      "unknown": 327
-    },
-    "comment": "New York Independent System Operator",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "US_NY.fetch_production",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -80.26197,
-        39.99603
-      ],
-      [
-        -71.35625,
-        45.51097
-      ]
-    ]
-  },
-  "US-SE-AEC": {
-    "comment": "Powersouth Energy Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -88.9596785776442,
-        29.339638675596
-      ],
-      [
-        -84.3581394658229,
-        34.4502982778481
-      ]
-    ]
-  },
-  "US-SE-SEPA": {
-    "comment": "Southeastern Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -85.61569,
-        30.211187
-      ],
-      [
-        -83.357543,
-        33.075117
-      ]
-    ]
-  },
-  "US-SE-SOCO": {
-    "comment": "Southern Company Services, Inc. - Trans",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -90.5406,
-        29.42398
-      ],
-      [
-        -80.251429,
-        35.5013030000001
-      ]
-    ]
-  },
-  "US-SW-AZPS": {
-    "comment": "Arizona Public Service Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "",
-    "bounding_box": [
-      [
-        -115.31829,
-        30.8336654
-      ],
-      [
-        -108.777145881,
-        36.784585904
-      ]
-    ]
-  },
-  "US-SW-DEAA": {
-    "comment": "Arlington Valley, Llc - Avba",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -113.397006989,
-        32.8262615200001
-      ],
-      [
-        -112.375976563,
-        33.877473831
-      ]
-    ]
-  },
-  "US-SW-EPE": {
-    "comment": "El Paso Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -108.7302,
-        26.75944
-      ],
-      [
-        -98.29803,
-        33.98024
-      ]
-    ]
-  },
-  "US-SW-GRIF": {
-    "comment": "Griffith Energy, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -114.764827728,
-        34.168836594
-      ],
-      [
-        -112.998666763,
-        35.717744827
-      ]
-    ]
-  },
-  "US-SW-GRMA": {
-    "comment": "Gila River Power, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -113.26607132,
-        31.246901321
-      ],
-      [
-        -111.760446548,
-        33.5380344390001
-      ]
-    ]
-  },
-  "US-SW-HGMA": {
-    "comment": "New Harquahala Generating Company, Llc - Hgba",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -114.158504486,
-        32.855298996
-      ],
-      [
-        -112.449426651,
-        34.847730637
-      ]
-    ]
-  },
-  "US-SW-PNM": {
-    "comment": "Public Service Company Of New Mexico",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Mountain",
-    "bounding_box": [
-      [
-        -123.550316649,
-        30.83222
-      ],
-      [
-        -101.52796,
-        44.59554275
-      ]
-    ]
-  },
-  "US-SW-SRP": {
-    "comment": "Salt River Project",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -113.83417,
-        32.00496
-      ],
-      [
-        -110.438901961,
-        34.54817
-      ]
-    ]
-  },
-  "US-SW-TEPC": {
-    "comment": "Tucson Electric Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -115.25595,
-        31.1808879800001
-      ],
-      [
-        -110.070620884,
-        36.710648233
-      ]
-    ]
-  },
-  "US-SW-WALC": {
-    "comment": "Western Area Power Administration - Desert Southwest Region",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Arizona",
-    "bounding_box": [
-      [
-        -124.21924,
-        30.83201
-      ],
-      [
-        -105.02991,
-        44.1167400000001
-      ]
-    ]
-  },
-  "US-TEN-TVA": {
-    "comment": "Tennessee Valley Authority",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -90.849224442,
-        31.824126136000103
-      ],
-      [
-        -81.14647784,
-        38.101846827
-      ]
-    ]
-  },
-  "US-TEX-ERCO": {
-    "comment": "Electric Reliability Council Of Texas, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Central",
-    "bounding_box": [
-      [
-        -104.48406,
-        25.3370600000001
-      ],
-      [
-        -93.2943099999999,
-        36.55797
-      ]
-    ]
-  },
-  "UY": {
-    "bounding_box": [
-      [
-        -58.4270741441,
-        -34.9526465797
-      ],
-      [
-        -53.209588996,
-        -30.1096863746
-      ]
-    ],
-    "capacity": {
-      "biomass": 413,
-      "hydro": 1538,
-      "solar": 242,
-      "unknown": 1170,
-      "wind": 1511
-    },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "UY.fetch_production"
-    },
-    "timezone": "America/Montevideo"
-  }
+    [
+      11.422211134000122,
+      34.98924388200004
+    ],
+    [
+      16.151621941000144,
+      39.311957098000164
+    ]
+  ],
+   "capacity": {
+    "biomass": 72,
+    "gas": 589,
+    "coal": 979,
+    "geothermal": 0,
+    "hydro": 419,
+    "hydro-storage": 312,
+    "nuclear": 0,
+    "oil": 238,
+    "solar": 1400,
+    "wind": 1893,
+    "unknown": 3756
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Rome"
+},
+"IT-SO": {
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production_aggregate"
+  },
+  "timezone": "Europe/Rome",
+  "bounding_box": [
+    [
+      13.445700757783754,
+      37.419012762000136
+    ],
+    [
+      19.01742597700013,
+      42.57794649582388
+    ]
+  ]
+},
+"JP-CB": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      135.84,
+      33.82
+    ],
+    [
+      138.72,
+      37.17
+    ]
+  ]
+},
+"JP-CG": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      130.66,
+      33.585
+    ],
+    [
+      134.54,
+      35.74
+    ]
+  ]
+},
+"JP-HKD": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      139.35,
+      41.3
+    ],
+    [
+      146,
+      45.97
+    ]
+  ]
+},
+"JP-HR": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      135.8,
+      35.39
+    ],
+    [
+      137.75,
+      37.9
+    ]
+  ]
+},
+"JP-KN": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      134.24,
+      33.29
+    ],
+    [
+      136.38,
+      36.01
+    ]
+  ]
+},
+"JP-KY": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP-KY.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      128.29,
+      27.03
+    ],
+    [
+      131.89,
+      35.11
+    ]
+  ]
+},
+"JP-ON": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      122.43816165500004,
+      23.756984768000052
+    ],
+    [
+      131.82789147200003,
+      28.368963934000078
+    ]
+  ]
+},
+"JP-SK": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      132.15,
+      32.53
+    ],
+    [
+      134.69,
+      34.63
+    ]
+  ]
+},
+"JP-TH": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      137.65,
+      36.65
+    ],
+    [
+      142,
+      41.66
+    ]
+  ]
+},
+"JP-TK": {
+  "contributors": [
+    "https://github.com/tmslaine",
+    "https://github.com/lorrieq"
+  ],
+  "parsers": {
+    "consumptionForecast": "JP.fetch_consumption_forecast",
+    "production": "JP.fetch_production",
+    "price": "JP.fetch_price"
+  },
+  "timezone": "Asia/Tokyo",
+  "bounding_box": [
+    [
+      138.5,
+      34.52
+    ],
+    [
+      141.16,
+      37.17
+    ]
+  ]
+},
+"KR": {
+  "bounding_box": [
+    [
+      126.11,
+      34.39
+    ],
+    [
+      129.46,
+      38.61
+    ]
+  ],
+  "capacity": {
+    "nuclear": 22529,
+    "coal": 36709,
+    "oil": 4155,
+    "gas": 37838,
+    "hydro": 1789
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz"
+  ],
+  "parsers": {
+    "production": "KR.fetch_production"
+  },
+  "timezone": "Asia/Seoul"
+},
+"KW": {
+  "bounding_box": [
+    [
+      46.155,
+      28.3985
+    ],
+    [
+      48.7948,
+      30.4747
+    ]
+  ],
+  "capacity": {
+    "gas": 6525,
+    "oil": 8550,
+    "solar": 93,
+    "wind": 12
+  },
+  "contributors": [
+    "https://github.com/alixunderplatz",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "production": "KW.fetch_production"
+  },
+  "timezone": "Asia/Kuwait"
+},
+"LT": {
+  "bounding_box": [
+    [
+      21.0558004086,
+      53.9057022162
+    ],
+    [
+      26.5882792498,
+      56.3725283881
+    ]
+  ],
+  "capacity": {
+    "biomass": 120,
+    "gas": 1770,
+    "hydro": 128,
+    "hydro storage": 900,
+    "oil": 0,
+    "solar": 103,
+    "wind": 534,
+    "unknown": 144
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Vilnius"
+},
+"LU": {
+  "bounding_box": [
+    [
+      5.67405195478,
+      49.4426671413
+    ],
+    [
+      6.24275109216,
+      50.1280516628
+    ]
+  ],
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null
+},
+"LV": {
+  "bounding_box": [
+    [
+      21.0558004086,
+      55.61510692
+    ],
+    [
+      28.1767094256,
+      57.9701569688
+    ]
+  ],
+  "capacity": {
+    "biomass": 102,
+    "gas": 1103,
+    "hydro": 1537,
+    "wind": 55
+  },
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Riga"
+},
+"MD": {
+  "bounding_box": [
+    [
+      26.6193367856,
+      45.4882831895
+    ],
+    [
+      30.0246586443,
+      48.4671194525
+    ]
+  ],
+  "capacity": {
+   "biomass": 6,
+   "gas": 335,
+   "hydro": 64,
+   "solar": 4,
+   "wind": 29,
+   "unknown": 2520
+ },
+ "contributors": [
+  "https://github.com/systemcatch",
+  "https://github.com/alixunderplatz",
+  "https://github.com/nessie2013"
+],
+ "parsers": {
+  "production": "MD.fetch_production"
+},
+"timezone": "Europe/Chisinau"
+},
+"ME": {
+  "bounding_box": [
+    [
+      18.45,
+      41.87755
+    ],
+    [
+      20.3398,
+      43.52384
+    ]
+  ],
+  "capacity": {
+    "coal": 218,
+    "hydro": 658,
+    "solar": 3,
+    "wind": 118
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Podgorica"
+},
+"MK": {
+  "bounding_box": [
+    [
+      20.46315,
+      40.8427269557
+    ],
+    [
+      22.9523771502,
+      42.3202595078
+    ]
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Skopje"
+},
+"MQ": {
+  "bounding_box": [
+    [
+      -61.252194,
+      14.364404
+    ],
+    [
+      -60.732382,
+      14.888562
+    ]
+  ],
+  "capacity": {
+    "biomass": 15.082,
+    "hydro": 0,
+    "solar": 53.97,
+    "wind": 1.1,
+    "geothermal": 0,
+    "oil": 292,
+    "gas": 129
+  },
+  "contributors": [
+    "https://github.com/PETILLON-Sebastien"
+  ],
+  "parsers": {
+    "production": "FR_O.fetch_production",
+    "price": "FR_O.fetch_price"
+  },
+  "timezone": "Europe/Paris"
+},
+"MT": {
+  "bounding_box": [
+    [
+      13.683604363000086,
+      35.301214911
+    ],
+    [
+      15.067149285000113,
+      36.5755882830001
+    ]
+  ],
+  "timezone": null
+},
+"MX": {
+  "bounding_box": [
+    [
+      -117.12776,
+      14.5388286402
+    ],
+    [
+      -86.811982388,
+      32.72083
+    ]
+  ],
+  "capacity": {},
+  "contributors": [
+    "https://github.com/scriptator"
+  ],
+  "parsers": {
+    "production": "MX.fetch_production"
+  },
+  "subZoneNames": [
+    "MX-BC",
+    "MX-CE",
+    "MX-NE",
+    "MX-NO",
+    "MX-NW",
+    "MX-OC",
+    "MX-OR",
+    "MX-PN"
+  ],
+  "timezone": null
+},
+"MY-WM": {
+  "bounding_box": [
+    [
+      99.14522806000014,
+      0.7704531920001614
+    ],
+    [
+      104.79468834700015,
+      7.207963766000191
+    ]
+  ],
+  "capacity": {
+    "coal": 9271,
+    "gas": 11085,
+    "hydro": 2502
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "parsers": {
+    "production": "MY_WM.fetch_production"
+  },
+  "timezone": null
+},
+"NA": {
+  "capacity": {
+    "coal": 120,
+    "hydro": 347,
+    "oil": 38,
+    "solar": 116,
+    "wind": 5
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/jarek",
+    "https://github.com/alixunderplatz"
+  ],
+  "timezone": null,
+  "bounding_box": [
+    [
+      11.217621290000068,
+      -29.45936818399987
+    ],
+    [
+      25.759780721000112,
+      -16.451057230999922
+    ]
+  ]
+},
+"NI": {
+  "bounding_box": [
+    [
+      -87.6684934151,
+      10.7268390975
+    ],
+    [
+      -83.147219001,
+      15.0162671981
+    ]
+  ],
+  "capacity": {
+    "biomass": 133,
+    "geothermal": 154,
+    "hydro": 138,
+    "oil": 732,
+    "wind": 186
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/systemcatch",
+    "https://github.com/jarek"
+  ],
+  "parsers": {
+    "price": "NI.fetch_price",
+    "production": "NI.fetch_production"
+  },
+  "timezone": "America/Managua"
+},
+"NKR": {
+  "bounding_box": [
+    [
+      45.2,
+      38.6
+    ],
+    [
+      47.6,
+      40.7
+    ]
+  ],
+  "flag_file_name": "_Nagorno-Karabakh.png",
+  "timezone": null
+},
+"NL": {
+  "bounding_box": [
+    [
+      3.31497114423,
+      50.803721015
+    ],
+    [
+      7.09205325687,
+      53.5104033474
+    ]
+  ],
+  "capacity": {
+    "biomass": 849,
+    "coal": 4000,
+    "gas": 15496,
+    "geothermal": 0,
+    "hydro": 37,
+    "hydro storage": 0,
+    "nuclear": 486,
+    "oil": 0,
+    "solar": 6720,
+    "wind": 4463
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/PaulCornelissen",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null
+},
+"NO": {
+  "capacity": {
+    "coal": 0,
+    "gas": 634,
+    "geothermal": 0,
+    "hydro": 32440,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 2754
+  },
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "subZoneNames": [
+    "NO-NO1",
+    "NO-NO2",
+    "NO-NO3",
+    "NO-NO4",
+    "NO-NO5"
+  ],
+  "timezone": "Europe/Oslo"
+},
+"NO-NO1": {
+  "capacity": {
+    "coal": 0,
+    "gas": 0,
+    "geothermal": 0,
+    "hydro": 3592,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 166
+  },
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      7.610326512408815,
+      58.38472727500012
+    ],
+    [
+      13.388184448000061,
+      63.128901615737796
+    ]
+  ]
+},
+"NO-NO2": {
+  "capacity": {
+    "coal": 0,
+    "gas": 5,
+    "geothermal": 0,
+    "hydro": 11317,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 1060
+  },
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      4.570648634000037,
+      57.49315013200005
+    ],
+    [
+      11.014170769000089,
+      60.73048157269916
+    ]
+  ]
+},
+"NO-NO3": {
+  "capacity": {
+    "coal": 0,
+    "gas": 0,
+    "geothermal": 0,
+    "hydro": 4571,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 1074
+  },
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      4.143809441000116,
+      60.43027545054864
+    ],
+    [
+      14.661440063000043,
+      65.490423895
+    ]
+  ]
+},
+"NO-NO4": {
+  "capacity": {
+    "coal": 0,
+    "gas": 270,
+    "geothermal": 0,
+    "hydro": 5088,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 456
+  },
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      11.018809441000087,
+      63.879640651798496
+    ],
+    [
+      31.576996290000153,
+      71.6652692730001
+    ]
+  ]
+},
+"NO-NO5": {
+  "capacity": {
+    "coal": 0,
+    "gas": 359,
+    "geothermal": 0,
+    "hydro": 7873,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0,
+    "wind": 0
+  },
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      4.27686608200014,
+      59.59392557929161
+    ],
+    [
+      10.10473435728148,
+      62.338893003403086
+    ]
+  ]
+},
+"NP": {
+  "bounding_box": [
+    [
+      26.33196174127239,
+      83.31609381672638
+    ],
+    [
+      29.2389869272311,
+      84.17810344629932
+    ]
+  ],
+  "capacity": {
+    "biomass": 0,
+    "coal": 0,
+    "gas": 0,
+    "hydro": 1016,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 0.7804,
+    "wind": 0
+  },
+  "contributors": [
+    "https://github.com/Subarna578"
+  ],
+  "flag_file_name": "np.png",
+  "timezone": null
+},
+"NZ-NZN": {
+  "bounding_box": [
+    [
+      172.17408287900022,
+      -42.12029387799984
+    ],
+    [
+      179.06617272200023,
+      -33.89763762799993
+    ]
+  ],
+  "contributors": [
+    "https://github.com/BobGrun",
+    "https://github.com/corradio"
+  ],
+  "flag_file_name": "nz.png",
+  "parsers": {
+    "production": "NZ.fetch_production"
+  },
+  "timezone": null
+},
+"NZ-NZS": {
+  "bounding_box": [
+    [
+      165.9664819670002,
+      -47.77760182099989
+    ],
+    [
+      174.90137780000023,
+      -40.00212981599989
+    ]
+  ],
+  "contributors": [
+    "https://github.com/BobGrun",
+    "https://github.com/corradio"
+  ],
+  "flag_file_name": "nz.png",
+  "parsers": {
+    "production": "NZ.fetch_production"
+  },
+  "timezone": null
+},
+"OM": {
+  "contributors": [
+    "https://github.com/q--",
+    "https://github.com/nessie2013"
+  ],
+  "capacity": {
+    "solar": 8
+  },
+  "parsers": {
+    "consumption": "GCCIA.fetch_consumption"
+  },
+  "timezone": "Asia/Muscat",
+  "bounding_box": [
+    [
+      51.47861495000012,
+      16.142401434000078
+    ],
+    [
+      60.34457441500007,
+      26.885972398000035
+    ]
+  ]
+},
+"PA": {
+  "bounding_box": [
+    [
+      -82.9657830472,
+      7.2205414901
+    ],
+    [
+      -77.2425664944,
+      9.61161001224
+    ]
+  ],
+  "capacity": {
+    "biomass": 0,
+    "gas": 113,
+    "hydro": 1704,
+    "nuclear": 0,
+    "solar": 75,
+    "unknown": 962,
+    "wind": 270
+  },
+  "contributors": [
+    "https://github.com/paulotaviodr",
+    "https://github.com/jarek",
+    "https://github.com/systemcatch",
+    "https://github.com/7hibault",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "production": "PA.fetch_production"
+  },
+  "timezone": "America/Panama"
+},
+"PE": {
+  "bounding_box": [
+    [
+      -81.83755752899992,
+      -18.83774620693788
+    ],
+    [
+      -68.18425248299991,
+      0.47090728800013437
+    ]
+  ],
+  "capacity": {
+    "biomass": 186,
+    "hydro": 5741,
+    "solar": 341,
+    "wind": 372
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "production": "PE.fetch_production"
+  },
+  "timezone": "America/Lima"
+},
+"PL": {
+  "bounding_box": [
+    [
+      14.0745211117,
+      49.0273953314
+    ],
+    [
+      24.0299857927,
+      54.8515359564
+    ]
+  ],
+  "capacity": {
+    "biomass": 1493,
+    "coal": 29963,
+    "gas": 2812,
+    "hydro": 605,
+    "hydro storage": 1780,
+    "nuclear": 0,
+    "oil": 359,
+    "solar": 1833,
+    "wind": 5953
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/wojciej",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production",
+    "productionPerUnit": "ENTSOE.fetch_production_per_units"
+  },
+  "timezone": "Europe/Warsaw"
+},
+"PT": {
+  "capacity": {
+    "biomass": 729,
+    "coal": 1756,
+    "gas": 4606,
+    "geothermal": 29,
+    "hydro": 4359,
+    "hydro storage": 2559,
+    "nuclear": 0,
+    "oil": 0,
+    "solar": 828,
+    "wind": 5233
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "flag_file_name": "pt.png",
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Lisbon",
+  "bounding_box": [
+    [
+      -9.997466600999928,
+      36.46588776200015
+    ],
+    [
+      -5.705947224999932,
+      42.65362965999999
+    ]
+  ]
+},
+"PT-AC": {
+  "bounding_box": [
+    [
+      -31.784901495999918,
+      36.43431224200016
+    ],
+    [
+      -24.51219641799986,
+      40.22833893400015
+    ]
+  ],
+  "flag_file_name": "pt.png",
+  "timezone": null
+},
+"PT-MA": {
+  "bounding_box": [
+    [
+      -17.752105272999927,
+      29.529242255000057
+    ],
+    [
+      -15.354969855999883,
+      33.61078522300012
+    ]
+  ],
+  "flag_file_name": "pt.png",
+  "timezone": null
+},
+"QA": {
+  "contributors": [
+    "https://github.com/q--",
+    "https://github.com/nessie2013"
+  ],
+  "capacity": {
+    "biomass": 38,
+    "solar": 5
+  },
+  "parsers": {
+    "consumption": "GCCIA.fetch_consumption"
+  },
+  "timezone": "Asia/Qatar",
+  "bounding_box": [
+    [
+      50.250987175000034,
+      24.059871521000062
+    ],
+    [
+      52.11654707100007,
+      26.660101630000042
+    ]
+  ]
+},
+"RE": {
+  "bounding_box": [
+    [
+      54.374008,
+      -22.069087
+    ],
+    [
+      56.33463,
+      -20.421464
+    ]
+  ],
+  "capacity": {
+    "biomass": 215,
+    "coal": 211,
+    "oil": 221,
+    "gas": 80,
+    "hydro": 138,
+    "solar": 189,
+    "wind": 15
+  },
+  "contributors": [
+    "https://github.com/PETILLON-Sebastien"
+  ],
+  "parsers": {
+    "production": "FR_O.fetch_production",
+    "price": "FR_O.fetch_price"
+  },
+  "timezone": "Indian/Reunion"
+},
+"RO": {
+  "bounding_box": [
+    [
+      20.2201924985,
+      43.6884447292
+    ],
+    [
+      29.62654341,
+      48.2208812526
+    ]
+  ],
+  "capacity": {
+    "biomass": 115,
+    "coal": 4128,
+    "gas": 3033,
+    "geothermal": 0,
+    "hydro": 6143,
+    "hydro storage": 0,
+    "nuclear": 1400,
+    "solar": 1150,
+    "wind": 2968
+  },
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Bucharest"
+},
+"RS": {
+  "bounding_box": [
+    [
+      18.82982,
+      42.2452243971
+    ],
+    [
+      22.9860185076,
+      46.1717298447
+    ]
+  ],
+  "capacity": {
+    "biomass": 8,
+    "coal": 5283,
+    "gas": 286,
+    "hydro": 2459,
+    "hydro storage": 639,
+    "solar": 4,
+    "wind": 397,
+    "unknown": 25
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Belgrade"
+},
+"RU": {
+  "capacity": {
+    "biomass": 0,
+    "coal": 44868,
+    "gas": 115374,
+    "hydro": 48085,
+    "nuclear": 27929,
+    "oil": 1600,
+    "solar": 75,
+    "wind": 10
+  },
+  "contributors": [
+    "https://github.com/denplis",
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz"
+  ],
+  "flag_file_name": "ru.png",
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "RU.fetch_production"
+  },
+  "timezone": "Europe/Moscow"
+},
+"RU-1": {
+  "capacity": {
+    "nuclear": 27914,
+    "hydro": 19500,
+    "unknown": 125014
+  },
+  "contributors": [
+    "https://github.com/denplis",
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz"
+  ],
+  "flag_file_name": "ru.png",
+  "parsers": {
+    "production": "RU.fetch_production"
+  },
+  "timezone": "Europe/Moscow",
+  "bounding_box": [
+    [
+      26.444509311000104,
+      40.69268056200022
+    ],
+    [
+      86.53054243358639,
+      80.6748721370002
+    ]
+  ]
+},
+"RU-2": {
+  "capacity": {
+    "hydro": 25286,
+    "unknown": 26570
+  },
+  "contributors": [
+    "https://github.com/denplis",
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz"
+  ],
+  "flag_file_name": "ru.png",
+  "parsers": {
+    "production": "RU.fetch_production"
+  },
+  "timezone": "Europe/Moscow",
+  "bounding_box": [
+    [
+      69.88395226418567,
+      48.571011048000116
+    ],
+    [
+      122.63913943863423,
+      81.78880442900012
+    ]
+  ]
+},
+"RU-AS": {
+  "flag_file_name": "ru.png",
+  "timezone": null
+},
+"RU-EU": {
+  "flag_file_name": "ru.png",
+  "timezone": null,
+  "bounding_box": [
+    [
+      35.357377557328505,
+      58.708375963180174
+    ],
+    [
+      69.53394616000008,
+      82.35871002800013
+    ]
+  ]
+},
+"RU-KGD": {
+  "bounding_box": [
+    [
+      19.10954837300008,
+      53.842937318000054
+    ],
+    [
+      23.348351684000107,
+      55.78995961500016
+    ]
+  ],
+  "flag_file_name": "ru.png",
+  "timezone": null
+},
+"SA": {
+  "contributors": [
+    "https://github.com/q--"
+  ],
+  "parsers": {
+    "consumption": "GCCIA.fetch_consumption"
+  },
+  "timezone": "Asia/Riyadh",
+  "bounding_box": [
+    [
+      34.07276451900009,
+      15.87095774900007
+    ],
+    [
+      56.13756473800004,
+      32.62134796200006
+    ]
+  ]
+},
+"SE": {
+  "bounding_box": [
+    [
+      11.25,
+      55.379110448
+    ],
+    [
+      21.2255859375,
+      69.0214140884
+    ]
+  ],
+  "capacity": {
+    "biomass": 4800,
+    "coal": 0,
+    "gas": 698,
+    "hydro": 15945,
+    "nuclear": 7801,
+    "oil": 2251,
+    "solar": 698,
+    "wind": 8984
+  },
+  "contributors": [
+    "https://github.com/augustekman",
+    "https://github.com/RRyyas",
+    "https://github.com/corradio",
+    "https://github.com/VIKTORVAV99"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "SE.fetch_production",
+    "productionPerUnit": "ENTSOE.fetch_production_per_units"
+  },
+  "timezone": "Europe/Stockholm"
+},
+"SE-SE1": {
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      14.926272420000089,
+      63.65992801849613
+    ],
+    [
+      24.663413534000114,
+      69.53635569300009
+    ]
+  ]
+},
+"SE-SE2": {
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      11.492425171000093,
+      60.280991513822045
+    ],
+    [
+      21.486074487958014,
+      66.78799631800014
+    ]
+  ]
+},
+"SE-SE3": {
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      10.608164910000113,
+      56.392035223000065
+    ],
+    [
+      19.8385522800001,
+      62.67478628775066
+    ]
+  ]
+},
+"SE-SE4": {
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      11.951426629000139,
+      54.84267812700013
+    ],
+    [
+      17.624522332000083,
+      57.85822174700009
+    ]
+  ]
+},
+"SG": {
+  "bounding_box": [
+    [
+      103.14039147200003,
+      0.7643089860000885
+    ],
+    [
+      104.50342858200003,
+      1.9486351580000445
+    ]
+  ],
+  "capacity": {
+    "biomass": 257,
+    "gas": 10344,
+    "solar": 231.26
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/jarek",
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz",
+    "https://github.com/q--"
+  ],
+  "parsers": {
+    "price": "SG.fetch_price",
+    "production": "SG.fetch_production"
+  },
+  "timezone": "Asia/Singapore"
+},
+"SI": {
+  "_comment": "hydro incl. 180 MW pumped storage",
+  "bounding_box": [
+    [
+      13.6981099789,
+      45.4523163926
+    ],
+    [
+      16.5648083839,
+      46.8523859727
+    ]
+  ],
+  "capacity": {
+    "biomass": 57,
+    "coal": 921,
+    "gas": 491,
+    "hydro": 1233,
+    "nuclear": 696,
+    "hydro storage": 180,
+    "oil": 0,
+    "solar": 263,
+    "wind": 3,
+    "battery storage": 0,
+    "geothermal": 0
+  },
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Ljubljana"
+},
+"SK": {
+  "bounding_box": [
+    [
+      16.8799829444,
+      47.7584288601
+    ],
+    [
+      22.5581376482,
+      49.5715740017
+    ]
+  ],
+  "capacity": {
+    "biomass": 363,
+    "coal": 1008,
+    "gas": 1093,
+    "hydro": 1621,
+    "hydro storage": 916,
+    "nuclear": 1940,
+    "oil": 195,
+    "solar": 532,
+    "wind": 3
+  },
+  "contributors": [
+    "https://github.com/corradio"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "ENTSOE.fetch_production"
+  },
+  "timezone": "Europe/Bratislava"
+},
+"SV": {
+  "bounding_box": [
+    [
+      -90.0955545723,
+      13.1490168319
+    ],
+    [
+      -87.7235029772,
+      14.4241327987
+    ]
+  ],
+  "capacity": {
+    "biomass": 317,
+    "geothermal": 204,
+    "hydro": 571,
+    "oil": 756,
+    "solar": 273
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "production": "SV.fetch_production"
+  },
+  "timezone": "America/El_Salvador"
+},
+"TR": {
+  "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
+  "capacity": {
+    "battery storage": 0,
+    "biomass": 983,
+    "coal": 19350,
+    "gas": 26637,
+    "geothermal": 1515,
+    "hydro": 28503,
+    "hydro storage": 0,
+    "oil": 306,
+    "solar": 5996,
+    "unknown": 124,
+    "wind": 7591
+  },
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/olivierSemet",
+    "https://github.com/lorrieq",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "TR.fetch_price",
+    "production": "TR.fetch_production"
+  },
+  "timezone": "Europe/Istanbul",
+  "bounding_box": [
+    [
+      25.16325931100002,
+      35.319778545000034
+    ],
+    [
+      45.30699282900011,
+      42.598781643000095
+    ]
+  ]
+},
+"TW": {
+  "bounding_box": [
+    [
+      120.106188593,
+      21.9705713974
+    ],
+    [
+      121.951243931,
+      25.2954588893
+    ]
+  ],
+  "contributors": [
+    "https://github.com/corradio",
+    "https://github.com/MariusKroon"
+  ],
+  "parsers": {
+    "production": "TW.fetch_production"
+  },
+  "timezone": "Asia/Taipei"
+},
+"UA": {
+  "capacity": {
+    "biomass": 151,
+    "hydro": 4810,
+    "hydro storage": 1487,
+    "nuclear": 13835,
+    "solar": 4231,
+    "wind": 1036
+  },
+  "contributors": [
+    "https://github.com/amkozlov",
+    "https://github.com/denplis",
+    "https://github.com/corradio",
+    "https://github.com/MariusKroon",
+    "https://github.com/alixunderplatz"
+  ],
+  "parsers": {
+    "consumption": "ENTSOE.fetch_consumption",
+    "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+    "generationForecast": "ENTSOE.fetch_generation_forecast",
+    "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+    "price": "ENTSOE.fetch_price",
+    "production": "UA.fetch_production"
+  },
+  "timezone": "Europe/Kiev",
+  "bounding_box": [
+    [
+      21.63283980300011,
+      44.713568427000055
+    ],
+    [
+      40.65954309100019,
+      52.86894928000005
+    ]
+  ]
+},
+"UA-CR": {
+  "bounding_box": [
+    [
+      31.981618686000104,
+      43.88104889500005
+    ],
+    [
+      37.13835696700005,
+      46.716899045472104
+    ]
+  ],
+  "timezone": "Europe/Kiev"
+},
+"US-AK": {
+  "flag_file_name": "us.png",
+  "timezone": null,
+  "bounding_box": [
+    [
+      -179.64350338399993,
+      50.71539948100022
+    ],
+    [
+      180.28093509200022,
+      71.91250234600014
+    ]
+  ]
+},
+"US-AL": {
+  "bounding_box": [
+    [
+      -88.19113,
+      30.166662
+    ],
+    [
+      -85.009698,
+      34.956744
+    ]
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-BPA": {
+  "capacity": {
+    "biomass": 378,
+    "coal": 0,
+    "gas": 1135,
+    "hydro": 22184,
+    "nuclear": 1191,
+    "wind": 2770
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      -125.23460723799991,
+      45.066312681984755
+    ],
+    [
+      -116.37882694730573,
+      49.49251489298911
+    ]
+  ]
+},
+"US-CA": {
+  "bounding_box": [
+    [
+      -124.9092019709999,
+      32.03166949000371
+    ],
+    [
+      -113.61906132172261,
+      42.499540221404175
+    ]
+  ],
+  "capacity": {
+    "battery storage": 136,
+    "biomass": 861,
+    "coal": 55,
+    "gas": 41491,
+    "geothermal": 1785,
+    "hydro": 14010,
+    "nuclear": 2393,
+    "oil": 352,
+    "solar": 12697,
+    "wind": 6927
+  },
+  "contributors": [
+    "https://github.com/7hibault",
+    "https://github.com/corradio",
+    "https://github.com/systemcatch",
+    "https://github.com/nessie2013"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "consumption": "EIA.fetch_consumption",
+    "production": "US_CA.fetch_production"
+  },
+  "timezone": null
+},
+"US-DUK": {
+  "comment": "Duke Energy Carolinas",
+  "bounding_box": [
+    [
+      -83.2518,
+      34.2505
+    ],
+    [
+      -79.1045,
+      36.2525
+    ]
+  ],
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": "US/Eastern"
+},
+"US-SEC": {
+  "bounding_box": [
+    [
+      -87.63333333,
+      24.45
+    ],
+    [
+      -80.03333333,
+      31
+    ]
+  ],
+  "capacity": {
+    "unknown": 2110,
+    "solar": 2
+  },
+  "contributors": [
+    "https://github.com/snarfed"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_SEC.fetch_production"
+  },
+  "timezone": "US/Eastern"
+},
+"US-TX": {
+  "_comment": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf lists wind capacity and utility scale solar and percentages, unknown capacity calculated from those figures",
+  "bounding_box": [
+    [
+      -106.963657,
+      26.485219
+    ],
+    [
+      -90.539219,
+      36.265205
+    ]
+  ],
+  "capacity": {
+    "wind": 21751,
+    "solar": 1719,
+    "unknown": 69483
+  },
+  "contributors": [
+    "https://github.com/typicalTYLER"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption"
+  },
+  "timezone": "US/Central"
+},
+"US-GA": {
+  "bounding_box": [
+    [
+      -85.601474,
+      30.503252
+    ],
+    [
+      -80.76343,
+      34.975541
+    ]
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-HI-HA": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -156.5601639279999,
+      18.40611714300016
+    ],
+    [
+      -154.31406356599993,
+      20.763429107000178
+    ]
+  ]
+},
+"US-HI-KA": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -160.28721974299992,
+      21.368769246000056
+    ],
+    [
+      -158.7925919259999,
+      22.735494671000225
+    ]
+  ]
+},
+"US-HI-KH": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -157.20056182399986,
+      20.004712932000132
+    ],
+    [
+      -156.03412841099995,
+      21.09995670100011
+    ]
+  ]
+},
+"US-HI-LA": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -157.56313605799994,
+      20.232387730000227
+    ],
+    [
+      -156.30353909899995,
+      21.427508787000193
+    ]
+  ]
+},
+"US-HI-MA": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -157.19600919699985,
+      20.081179336000048
+    ],
+    [
+      -155.47955290999988,
+      21.532653273000165
+    ]
+  ]
+},
+"US-HI-MO": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -157.80426998599995,
+      20.553371486000145
+    ],
+    [
+      -156.20572493599994,
+      21.721879885000135
+    ]
+  ]
+},
+"US-HI-NI": {
+  "flag_file_name": "us.png",
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -160.74803626199989,
+      21.280209463000062
+    ],
+    [
+      -159.55143635199994,
+      22.507756812000167
+    ]
+  ]
+},
+"US-HI-OA": {
+  "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
+  "capacity": {
+    "biomass": 256.5,
+    "coal": 0,
+    "gas": 0,
+    "geothermal": 0,
+    "hydro": 0,
+    "oil": 0,
+    "solar": 781,
+    "wind": 171,
+    "unknown": 0
+  },
+  "contributors": [
+    "https://github.com/kepiej",
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_HI.fetch_production"
+  },
+  "timezone": "Pacific/Honolulu",
+  "bounding_box": [
+    [
+      -158.7789330139999,
+      20.75418992400006
+    ],
+    [
+      -157.14716739499988,
+      22.209850429000085
+    ]
+  ]
+},
+"US-IPC": {
+  "capacity": {
+    "coal": 1118,
+    "gas": 762,
+    "geothermal": 51,
+    "hydro": 1709,
+    "oil": 5,
+    "solar": 291,
+    "wind": 682
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/alixunderplatz"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_IPC.fetch_production"
+  },
+  "timezone": "America/Boise",
+  "bounding_box": [
+    [
+      -117.7153503854119,
+      41.49954022140409
+    ],
+    [
+      -110.5502380803231,
+      49.49251454705444
+    ]
+  ]
+},
+"US-MISO": {
+  "bounding_box": [
+    [
+      -93.40172733814615,
+      41.991799921851396
+    ],
+    [
+      -86.35286760864014,
+      47.58159536389269
+    ]
+  ],
+  "capacity": {
+    "coal": 53328,
+    "gas": 76437,
+    "nuclear": 14221,
+    "solar": 314,
+    "wind": 21089,
+    "unknown": 3555
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/nessie2013"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "production": "US_MISO.fetch_production",
+    "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
+  },
+  "timezone": null
+},
+"US-NC": {
+  "bounding_box": [
+    [
+      -84.232364,
+      33.654
+    ],
+    [
+      -75.644807,
+      36.579671
+    ]
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-NEISO": {
+  "bounding_box": [
+    [
+      -73.93854374389866,
+      42.22927654897353
+    ],
+    [
+      -71.00570682970636,
+      45.51373107491463
+    ]
+  ],
+  "capacity": {
+    "biomass": 1895,
+    "coal": 2083,
+    "gas": 16234,
+    "hydro": 3425,
+    "nuclear": 4074,
+    "solar": 584,
+    "wind": 1356
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "consumption": "EIA.fetch_consumption",
+    "production": "US_NEISO.fetch_production"
+  },
+  "timezone": null
+},
+"US-NEVP": {
+  "comment": "Nevada Power Company",
+  "bounding_box": [
+    [
+      -118.7481,
+      35.8322
+    ],
+    [
+      -112.9336,
+      41.9947
+    ]
+  ],
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-NV": {
+  "bounding_box": [
+    [
+      -120,
+      35
+    ],
+    [
+      -114,
+      42
+    ]
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-NY": {
+  "_comment": "hydro incl. 1407 MW pumped storage",
+  "bounding_box": [
+    [
+      -80.26300663544788,
+      39.99943456200015
+    ],
+    [
+      -71.35741126199989,
+      45.51012196900015
+    ]
+  ],
+  "capacity": {
+    "coal": 1011,
+    "gas": 22117,
+    "hydro": 5658,
+    "nuclear": 5375,
+    "oil": 2499,
+    "wind": 1740
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "consumption": "EIA.fetch_consumption",
+    "production": "US_NY.fetch_production"
+  },
+  "timezone": null
+},
+"US-OR": {
+  "bounding_box": [
+    [
+      -124.697592,
+      42.005176
+    ],
+    [
+      -116.632557,
+      46.194588
+    ]
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-PJM": {
+  "bounding_box": [
+    [
+      -90.07794804136901,
+      35.9986369002728
+    ],
+    [
+      -81.46522831443511,
+      39.646219908521914
+    ]
+  ],
+  "capacity": {
+    "biomass": 630,
+    "coal": 57588,
+    "gas": 77101,
+    "hydro": 9283,
+    "nuclear": 33001,
+    "oil": 8306,
+    "solar": 702,
+    "unknown": 214,
+    "wind": 1192
+  },
+  "comment": "gas includes landfill, oil includes black liquor",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/jacobbaratta",
+    "https://github.com/hanshyde",
+    "https://github.com/lorrieq",
+    "https://github.com/nessie2013"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "consumption": "EIA.fetch_consumption",
+    "price": "US_PJM.fetch_price",
+    "production": "US_PJM.fetch_production"
+  },
+  "timezone": null
+},
+"US-SC": {
+  "comment": "South Carolina Public Service Authority",
+  "bounding_box": [
+    [
+      -81.6726,
+      32.7536
+    ],
+    [
+      -78.9549,
+      34.4838
+    ]
+  ],
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": "US/Eastern"
+},
+"US-SOCO": {
+  "comment": "Southern Company Services, Inc",
+  "bounding_box": [
+    [
+      -88.9689,
+      30.3916
+    ],
+    [
+      -81.915,
+      34.5297
+    ]
+  ],
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-SPP": {
+  "capacity": {
+    "coal": 25740,
+    "gas": 36270,
+    "hydro": 3420,
+    "nuclear": 2070,
+    "oil": 1620,
+    "solar": 180,
+    "wind": 20609,
+    "unknown": 90
+  },
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/Hyric89",
+    "https://github.com/nessie2013"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "consumption": "EIA.fetch_consumption",
+    "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
+    "production": "US_SPP.fetch_production"
+  },
+  "timezone": null,
+  "bounding_box": [
+    [
+      -103.9005,
+      33.5302
+    ],
+    [
+      -95.6571,
+      48.2931
+    ]
+  ]
+},
+"US-SVERI": {
+  "bounding_box": [
+    [
+      -115.412018,
+      32.001824
+    ],
+    [
+      -103.051202,
+      36.967691
+    ]
+  ],
+  "contributors": [
+    "https://github.com/systemcatch"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-TN": {
+  "comment": "Tennessee",
+  "bounding_box": [
+    [
+      -90.323361,
+      34.881666
+    ],
+    [
+      -81.934704,
+      36.674417
+    ]
+  ],
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "contributors": [
+    "https://github.com/snarfed"
+  ],
+  "flag_file_name": "us.png",
+  "timezone": null
+},
+"US-CAL-BANC": {
+  "comment": "Balancing Authority Of Northern California",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -124.123781,
+      37.076039301
+    ],
+    [
+      -120.084803325,
+      41.868139
+    ]
+  ]
+},
+"US-CAL-CISO": {
+  "comment": "California Independent System Operator",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_CA.fetch_production",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -124.909721,
+      32.0341570000001
+    ],
+    [
+      -113.631212,
+      41.965851
+    ]
+  ]
+},
+"US-CAL-IID": {
+  "comment": "Imperial Irrigation District",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -116.925459495,
+      32.118592
+    ],
+    [
+      -113.962511,
+      34.535375
+    ]
+  ]
+},
+"US-CAL-LDWP": {
+  "comment": "Los Angeles Department Of Water And Power",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -119.168404,
+      33.204538
+    ],
+    [
+      -117.104019502,
+      37.963081
+    ]
+  ]
+},
+"US-CAL-TIDC": {
+  "comment": "Turlock Irrigation District",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -121.95216521,
+      36.780338348
+    ],
+    [
+      -119.868765123,
+      38.209221358
+    ]
+  ]
+},
+"US-CAR-CPLE": {
+  "comment": "Duke Energy Progress East",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "",
+  "bounding_box": [
+    [
+      -81.37844,
+      32.6102500000001
+    ],
+    [
+      -75.53103,
+      37.04465
+    ]
+  ]
+},
+"US-CAR-CPLW": {
+  "comment": "Duke Energy Progress West",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.86385,
+      34.5009
+    ],
+    [
+      -81.19208,
+      36.7872800000001
+    ]
+  ]
+},
+"US-CAR-DUK": {
+  "comment": "Duke Energy Carolinas",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -84.82173,
+      33.03163
+    ],
+    [
+      -77.75453,
+      37.0883200000001
+    ]
+  ]
+},
+"US-CAR-SC": {
+  "comment": "South Carolina Public Service Authority",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -82.8222040759999,
+      31.5821888830001
+    ],
+    [
+      -78.04086,
+      35.334748543
+    ]
+  ]
+},
+"US-CAR-SCEG": {
+  "comment": "South Carolina Electric & Gas Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.14555,
+      31.584470000000103
+    ],
+    [
+      -78.92575821,
+      35.2360579840001
+    ]
+  ]
+},
+"US-CAR-YAD": {
+  "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -80.825586319,
+      34.797960281
+    ],
+    [
+      -79.4523525239999,
+      36.2042064670001
+    ]
+  ]
+},
+"US-CENT-SPA": {
+  "comment": "Southwestern Power Administration",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -98.122757,
+      34.320635
+    ],
+    [
+      -89.033722,
+      40.781817
+    ]
+  ]
+},
+"US-CENT-SWPP": {
+  "comment": "Southwest Power Pool",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_SPP.fetch_production",
+    "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -107.926457081158,
+      30.3593306971005
+    ],
+    [
+      -89.4563897448683,
+      49.5000212518403
+    ]
+  ]
+},
+"US-FLA-FMPP": {
+  "comment": "Florida Municipal Power Pool",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.03593,
+      24.044093
+    ],
+    [
+      -79.53074,
+      30.69435
+    ]
+  ]
+},
+"US-FLA-FPC": {
+  "comment": "Duke Energy Florida Inc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -86.49625,
+      25.7531500000001
+    ],
+    [
+      -79.99125,
+      31.214009
+    ]
+  ]
+},
+"US-FLA-FPL": {
+  "comment": "Florida Power & Light Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.67149,
+      24.02126
+    ],
+    [
+      -79.53074,
+      31.33017
+    ]
+  ]
+},
+"US-FLA-GVL": {
+  "comment": "Gainesville Regional Utilities",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.1581599999999,
+      28.9170100000001
+    ],
+    [
+      -81.54976,
+      30.44528
+    ]
+  ]
+},
+"US-FLA-HST": {
+  "comment": "City Of Homestead",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -81.3738299999999,
+      24.6374500000001
+    ],
+    [
+      -79.61802,
+      26.47902
+    ]
+  ]
+},
+"US-FLA-JEA": {
+  "comment": "Jea",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -86.0998,
+      29.463185332
+    ],
+    [
+      -80.848769105,
+      31.50107
+    ]
+  ]
+},
+"US-FLA-NSB": {
+  "comment": "New Smyrna Beach, Utilities Commission Of",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -82.18057,
+      28.1131300000001
+    ],
+    [
+      -80.23297,
+      29.92717
+    ]
+  ]
+},
+"US-FLA-SEC": {
+  "comment": "Seminole Electric Cooperative",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -85.65399,
+      25.7184577510001
+    ],
+    [
+      -80.123257233,
+      31.2115600000001
+    ]
+  ]
+},
+"US-FLA-TAL": {
+  "comment": "City Of Tallahassee",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -84.94623,
+      29.865082
+    ],
+    [
+      -83.591841,
+      31.123546
+    ]
+  ]
+},
+"US-FLA-TEC": {
+  "comment": "Tampa Electric Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.214478374,
+      26.985591
+    ],
+    [
+      -81.1327000919999,
+      28.9295718550001
+    ]
+  ]
+},
+"US-MIDA-OVEC": {
+  "comment": "Ohio Valley Electric Corporation",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -83.885637,
+      38.4480730000001
+    ],
+    [
+      -82.285891,
+      39.6975850000001
+    ]
+  ]
+},
+"US-MIDA-PJM": {
+  "comment": "Pjm Interconnection, Llc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_PJM.fetch_production",
+    "price": "US_PJM.fetch_price",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -90.88416,
+      34.3029500000001
+    ],
+    [
+      -73.39368,
+      43.00836
+    ]
+  ]
+},
+"US-MIDW-AECI": {
+  "comment": "Associated Electric Cooperative, Inc.",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -98.45079,
+      34.168033532
+    ],
+    [
+      -88.5987499999999,
+      41.779649115
+    ]
+  ]
+},
+"US-MIDW-EEI": {
+  "comment": "Electric Energy, Inc.",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -89.44135,
+      36.44203
+    ],
+    [
+      -87.9829,
+      37.83698
+    ]
+  ]
+},
+"US-MIDW-GLHB": {
+  "comment": "GridLiance",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Central"
+},
+"US-MIDW-LGEE": {
+  "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -89.682531784,
+      36.073739711
+    ],
+    [
+      -82.355720806,
+      39.4703334770001
+    ]
+  ]
+},
+"US-MIDW-MISO": {
+  "comment": "Midcontinent Independent Transmission System Operator, Inc..",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_MISO.fetch_production",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast",
+    "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -107.862115248933,
+      28.4286900252724
+    ],
+    [
+      -81.9130970652477,
+      49.884274119856
+    ]
+  ]
+},
+"US-NE-ISNE": {
+  "comment": "Iso New England Inc.",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_NEISO.fetch_production",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -74.22789,
+      40.10968
+    ],
+    [
+      -66.45013,
+      47.9598300000001
+    ]
+  ]
+},
+"US-NW-AVA": {
+  "comment": "Avista Corporation",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -120.54268,
+      44.57814
+    ],
+    [
+      -113.68675,
+      49.50073
+    ]
+  ]
+},
+"US-NW-AVRN": {
+  "comment": "Avangrid Renewables Cooperative",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Pacific"
+},
+"US-NW-BPAT": {
+  "comment": "Bonneville Power Administration",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -125.23688,
+      39.61659
+    ],
+    [
+      -105.50971,
+      49.50244
+    ]
+  ]
+},
+"US-NW-CHPD": {
+  "comment": "Public Utility District No. 1 Of Chelan County",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -121.680713,
+      46.760889
+    ],
+    [
+      -119.359734,
+      49.050725
+    ]
+  ]
+},
+"US-NW-DOPD": {
+  "comment": "Pud No. 1 Of Douglas County",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -120.819941629,
+      46.7200530000001
+    ],
+    [
+      -118.335197,
+      49.500448
+    ]
+  ]
+},
+"US-NW-GCPD": {
+  "comment": "Public Utility District No. 2 Of Grant County, Washington",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -120.542866,
+      46.125243
+    ],
+    [
+      -118.473872746,
+      48.462236509
+    ]
+  ]
+},
+"US-NW-GRID": {
+  "comment": "Gridforce Energy Management, Llc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -119.851352692,
+      44.7463779450001
+    ],
+    [
+      -118.363136292,
+      46.366308212
+    ]
+  ]
+},
+"US-NW-GWA": {
+  "comment": "Naturener Power Watch, Llc (Gwa)",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -113.660743713,
+      47.4742527010001
+    ],
+    [
+      -111.05112648,
+      49.491411209
+    ]
+  ]
+},
+"US-NW-IPCO": {
+  "comment": "Idaho Power Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -120.44398,
+      41.48796
+    ],
+    [
+      -111.08807,
+      47.1707900000001
+    ]
+  ]
+},
+"US-NW-NEVP": {
+  "comment": "Nevada Power Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -121.98446,
+      34.50232
+    ],
+    [
+      -111.0849,
+      42.5017700000001
+    ]
+  ]
+},
+"US-NW-NWMT": {
+  "comment": "Northwestern Energy (Nwmt)",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -116.5492,
+      43.3016500000001
+    ],
+    [
+      -103.53947,
+      49.5011000000001
+    ]
+  ]
+},
+"US-NW-PACE": {
+  "comment": "Pacificorp - East",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -115.80505,
+      32.97563
+    ],
+    [
+      -104.15314,
+      45.5057600000001
+    ]
+  ]
+},
+"US-NW-PACW": {
+  "comment": "Pacificorp - West",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -124.98038,
+      38.66544
+    ],
+    [
+      -115.96327,
+      47.5893300000001
+    ]
+  ]
+},
+"US-NW-PGE": {
+  "comment": "Portland General Electric Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -124.225142777,
+      44.2721814650001
+    ],
+    [
+      -121.156917718,
+      46.4057731890001
+    ]
+  ]
+},
+"US-NW-PSCO": {
+  "comment": "Public Service Company Of Colorado",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -109.559308887,
+      35.7175500000001
+    ],
+    [
+      -102.094762152,
+      41.7250704890001
+    ]
+  ]
+},
+"US-NW-PSEI": {
+  "comment": "Puget Sound Energy",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -123.703117998,
+      45.902822584
+    ],
+    [
+      -119.816106194,
+      49.502493024
+    ]
+  ]
+},
+"US-NW-SCL": {
+  "comment": "Seattle City Light",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -122.936059783,
+      46.955507
+    ],
+    [
+      -121.725915999,
+      48.277929
+    ]
+  ]
+},
+"US-NW-TPWR": {
+  "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Pacific",
+  "bounding_box": [
+    [
+      -124.00616,
+      45.8837600000001
+    ],
+    [
+      -120.56592,
+      48.28046
+    ]
+  ]
+},
+"US-NW-WACM": {
+  "comment": "Western Area Power Administration - Rocky Mountain Region",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -114.55,
+      35.43059
+    ],
+    [
+      -95.95176,
+      48.07463
+    ]
+  ]
+},
+"US-NW-WAUW": {
+  "comment": "Western Area Power Administration Ugp West",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -113.348433684,
+      43.730745552
+    ],
+    [
+      -102.051328941,
+      49.1340949710001
+    ]
+  ]
+},
+"US-NW-WWA": {
+  "comment": "Naturener Wind Watch, Llc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -113.662527277,
+      48.163057327
+    ],
+    [
+      -110.887711776,
+      49.498921
+    ]
+  ]
+},
+"US-NY-NYIS": {
+  "capacity": {
+    "coal": 676,
+    "gas": 23956,
+    "hydro": 4247,
+    "hydro storage": 1407,
+    "nuclear": 5391,
+    "oil": 2416,
+    "solar": 32,
+    "wind": 1739,
+    "unknown": 327
+  },
+  "comment": "New York Independent System Operator",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "US_NY.fetch_production",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -80.26197,
+      39.99603
+    ],
+    [
+      -71.35625,
+      45.51097
+    ]
+  ]
+},
+"US-SE-AEC": {
+  "comment": "Powersouth Energy Cooperative",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -88.9596785776442,
+      29.339638675596
+    ],
+    [
+      -84.3581394658229,
+      34.4502982778481
+    ]
+  ]
+},
+"US-SE-SEPA": {
+  "comment": "Southeastern Power Administration",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -85.61569,
+      30.211187
+    ],
+    [
+      -83.357543,
+      33.075117
+    ]
+  ]
+},
+"US-SE-SOCO": {
+  "comment": "Southern Company Services, Inc. - Trans",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Eastern",
+  "bounding_box": [
+    [
+      -90.5406,
+      29.42398
+    ],
+    [
+      -80.251429,
+      35.5013030000001
+    ]
+  ]
+},
+"US-SW-AZPS": {
+  "comment": "Arizona Public Service Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "",
+  "bounding_box": [
+    [
+      -115.31829,
+      30.8336654
+    ],
+    [
+      -108.777145881,
+      36.784585904
+    ]
+  ]
+},
+"US-SW-DEAA": {
+  "comment": "Arlington Valley, Llc - Avba",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -113.397006989,
+      32.8262615200001
+    ],
+    [
+      -112.375976563,
+      33.877473831
+    ]
+  ]
+},
+"US-SW-EPE": {
+  "comment": "El Paso Electric Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -108.7302,
+      26.75944
+    ],
+    [
+      -98.29803,
+      33.98024
+    ]
+  ]
+},
+"US-SW-GRIF": {
+  "comment": "Griffith Energy, Llc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -114.764827728,
+      34.168836594
+    ],
+    [
+      -112.998666763,
+      35.717744827
+    ]
+  ]
+},
+"US-SW-GRMA": {
+  "comment": "Gila River Power, Llc",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -113.26607132,
+      31.246901321
+    ],
+    [
+      -111.760446548,
+      33.5380344390001
+    ]
+  ]
+},
+"US-SW-HGMA": {
+  "comment": "New Harquahala Generating Company, Llc - Hgba",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -114.158504486,
+      32.855298996
+    ],
+    [
+      -112.449426651,
+      34.847730637
+    ]
+  ]
+},
+"US-SW-PNM": {
+  "comment": "Public Service Company Of New Mexico",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Mountain",
+  "bounding_box": [
+    [
+      -123.550316649,
+      30.83222
+    ],
+    [
+      -101.52796,
+      44.59554275
+    ]
+  ]
+},
+"US-SW-SRP": {
+  "comment": "Salt River Project",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -113.83417,
+      32.00496
+    ],
+    [
+      -110.438901961,
+      34.54817
+    ]
+  ]
+},
+"US-SW-TEPC": {
+  "comment": "Tucson Electric Power Company",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -115.25595,
+      31.1808879800001
+    ],
+    [
+      -110.070620884,
+      36.710648233
+    ]
+  ]
+},
+"US-SW-WALC": {
+  "comment": "Western Area Power Administration - Desert Southwest Region",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Arizona",
+  "bounding_box": [
+    [
+      -124.21924,
+      30.83201
+    ],
+    [
+      -105.02991,
+      44.1167400000001
+    ]
+  ]
+},
+"US-TEN-TVA": {
+  "comment": "Tennessee Valley Authority",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -90.849224442,
+      31.824126136000103
+    ],
+    [
+      -81.14647784,
+      38.101846827
+    ]
+  ]
+},
+"US-TEX-ERCO": {
+  "comment": "Electric Reliability Council Of Texas, Inc.",
+  "contributors": [
+    "https://github.com/systemcatch",
+    "https://github.com/robertahunt"
+  ],
+  "flag_file_name": "us.png",
+  "parsers": {
+    "production": "EIA.fetch_production_mix",
+    "consumption": "EIA.fetch_consumption",
+    "consumptionForecast": "EIA.fetch_consumption_forecast"
+  },
+  "timezone": "US/Central",
+  "bounding_box": [
+    [
+      -104.48406,
+      25.3370600000001
+    ],
+    [
+      -93.2943099999999,
+      36.55797
+    ]
+  ]
+},
+"UY": {
+  "bounding_box": [
+    [
+      -58.4270741441,
+      -34.9526465797
+    ],
+    [
+      -53.209588996,
+      -30.1096863746
+    ]
+  ],
+  "capacity": {
+    "biomass": 413,
+    "hydro": 1538,
+    "solar": 242,
+    "unknown": 1170,
+    "wind": 1511
+  },
+  "contributors": [
+    "https://github.com/jarek",
+    "https://github.com/corradio",
+    "https://github.com/nessie2013"
+  ],
+  "parsers": {
+    "production": "UY.fetch_production"
+  },
+  "timezone": "America/Montevideo"
+}
 }
