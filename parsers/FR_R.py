@@ -9,7 +9,7 @@ import math
 import pandas as pd
 import requests
 
-from .lib.validation import validate, validate_production_diffs
+from lib.validation import validate, validate_production_diffs
 
 # setting env variable
 os.environ['RESEAUX_ENERGIES_TOKEN']='8286b3219dbedb0c74bbab52ef6a268fcaf79423f7b2deb727a6e803'
@@ -87,22 +87,24 @@ EXCHANGE = {
             }
         },
     'FR-GES': {
+        # BE to GB inclusive import and export are the other way around to allow for zones to be aligned in alphabetical order
         'BE': {
-            'import': 'flux_physiques_belgique_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_belgique'
+            'import': 'flux_physiques_de_grand_est_vers_belgique',
+            'export': 'flux_physiques_belgique_vers_grand_est'
         },
         'CH': {
-            'import': 'flux_physiques_suisse_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_suisse'
+            'import': 'flux_physiques_de_grand_est_vers_suisse',
+            'export': 'flux_physiques_suisse_vers_grand_est'
         },
         'DE': {
-            'import': 'flux_physiques_allemagne_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_allemagne'
+            'import': 'flux_physiques_de_grand_est_vers_allemagne',
+            'export': 'flux_physiques_allemagne_vers_grand_est'
         },
         'ES': {
-            'import': 'flux_physiques_espagne_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_espagne'
+            'import': 'flux_physiques_de_grand_est_vers_espagne',
+            'export': 'flux_physiques_espagne_vers_grand_est'
         },
+        # normal again
         'GB': {
             'import': 'flux_physiques_royaume_uni_vers_grand_est',
             'export': 'flux_physiques_de_grand_est_vers_royaume_uni'
@@ -114,48 +116,34 @@ EXCHANGE = {
         'LU': {
             'import': 'flux_physiques_luxembourg_vers_grand_est',
             'export': 'flux_physiques_de_grand_est_vers_luxembourg'
+        },
+        'FR-HDF': {
+            'import': 'flux_physiques_de_hauts_de_france_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_hauts_de_france'
+        },
+        'FR-IDF': {
+            'export': 'flux_physiques_de_grand_est_vers_ile_de_france'
+        },
+        'FR-NOR': {
+            'import': 'flux_physiques_de_normandie_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_normandie'
+        },
+        'FR-NAQ': {
+            'import': 'flux_physiques_de_nouvelle_aquitaine_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_nouvelle_aquitaine'
+        },
+        'FR-OCC': {
+            'export': 'flux_physiques_de_grand_est_vers_occitanie'
+        },
+        'FR-PDL': {
+            'import': 'flux_physiques_de_pays_de_la_loire_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_pays_de_la_loire'
+        },
+        'FR-PAC': {
+            'import': 'flux_physiques_de_paca_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_paca'
         }
-    },
-    'FR-HDF': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_hauts_de_france',
-            'export': 'flux_physiques_de_hauts_de_france_vers_grand_est'
-            }
-        },
-    'FR-IDF': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_ile_de_france'
-            }
-        },
-    'FR-NOR': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_normandie',
-            'export': 'flux_physiques_de_normandie_vers_grand_est'
-            }
-        },
-    'FR-NAQ': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_nouvelle_aquitaine',
-            'export': 'flux_physiques_de_nouvelle_aquitaine_vers_grand_est'
-            }
-        },
-    'FR-OCC': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_occitanie'
-            }
-        },
-    'FR-PDL': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_pays_de_la_loire',
-            'export': 'flux_physiques_de_pays_de_la_loire_vers_grand_est'
-            }
-        },
-    'FR-PAC': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_paca',
-            'export': 'flux_physiques_de_paca_vers_grand_est'
-            }
-        }
+    }
 }
 
 
@@ -264,25 +252,27 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     return datapoints
 
-
-
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
 
-    df = fetch(zone_key1, session=session, target_datetime=target_datetime)
+    # two scenarios: zone_key1 either a French region or another EU country
+    if zone_key1 in FR_REGIONS.keys():
+        df = fetch(zone_key1, session=session, target_datetime=target_datetime)
+        exchange_zone = EXCHANGE[zone_key1][zone_key2]
+    else:
+        df = fetch(zone_key2, session=session, target_datetime=target_datetime)
+        exchange_zone = EXCHANGE[zone_key2][zone_key1]
 
     # cleaning data
-    exchange_zone = EXCHANGE[zone_key1][zone_key2]
-
     value_columns = list(exchange_zone.values())
     df = df.loc[:, ['date_heure'] + value_columns]
 
-    x_import = exchange_zone['import']
-    if 'export' not in exchange_zone:
-        x_export = 'default_column'
-        df[x_export] = 0
+    x_export = exchange_zone['export']
+    if 'import' not in exchange_zone:
+        x_import = 'default_column'
+        df[x_import] = 0
     else:
-        x_export = exchange_zone['export']
+        x_import = exchange_zone['import']
 
     df.dropna(how='any', inplace=True)
     df.replace({x_import: "-", x_export: "-"}, 0, inplace=True)
@@ -317,4 +307,4 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 # enter any of the regional zone keys when calling method
 if __name__ == '__main__':
     # print(fetch_production('FR-OCC'))
-    print(fetch_exchange('FR-GES', 'DE'))
+    print(fetch_exchange('FR-GES', 'GB'))
