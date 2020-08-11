@@ -307,6 +307,16 @@
     },
     "rotation": -135
   },
+  "BE->FR-GES": {
+    "lonlat": [
+      5.108765,
+      49.747632
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": -135
+  },
   "BE->GB": {
     "capacity": [
       -1000,
@@ -688,6 +698,16 @@
     },
     "rotation": -90
   },
+  "CH->FR-GES": {
+    "lonlat": [
+      7.422418,
+      47.450034
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": -30
+  },
   "CH->IT-NO": {
     "lonlat": [
       9.047334,
@@ -796,6 +816,16 @@
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -110
+  },
+  "DE->FR-GES": {
+    "lonlat": [
+      8.048297,
+      48.931337
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
     },
     "rotation": -110
   },
@@ -1149,6 +1179,16 @@
     },
     "rotation": 70
   },
+  "FR-BFC->FR-GES": {
+    "lonlat": [
+      5.156872,
+      47.730817
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": 45
+  },
   "FR-COR->IT-CNO": {
     "lonlat": [
       10.091148,
@@ -1169,6 +1209,36 @@
 
     },
     "rotation": 0
+  },
+  "FR-GES->FR-HDF": {
+    "lonlat": [
+      3.874506,
+      49.367433
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": -80
+  },
+  "FR-GES->FR-IDF": {
+    "lonlat": [
+      3.460808,
+      48.625303
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": -100
+  },
+  "FR-GES->LU": {
+    "lonlat": [
+      6.100579,
+      49.453060
+    ],
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange",
+    },
+    "rotation": -160
   },
   "GB->GB-NIR": {
     "capacity": [
