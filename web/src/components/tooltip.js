@@ -1,13 +1,30 @@
 import React, { useRef } from 'react';
 import { Portal } from 'react-portal';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
 
 const MARGIN = 16;
 
-const Tooltip = ({ id, children, position }) => {
-  const ref = useRef(null);
+const FadedOverlay = styled.div`
+  background: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
 
+const Tooltip = ({
+  id,
+  children,
+  position,
+  onClose,
+}) => {
+  const isMobile = useSelector(state => state.application.isMobile);
+
+  const ref = useRef(null);
   const width = useWidthObserver(ref);
   const height = useHeightObserver(ref);
 
@@ -46,6 +63,11 @@ const Tooltip = ({ id, children, position }) => {
 
   return (
     <Portal>
+      {/*
+        Show the faded overlay only on mobile - close the tooltip in
+        the next rendering cycle when clicked anywhere on the overlay.
+      */}
+      {isMobile && <FadedOverlay onClick={() => setTimeout(onClose, 0)} />}
       <div id={id} className="tooltip panel" style={style} ref={ref}>
         {children}
       </div>
