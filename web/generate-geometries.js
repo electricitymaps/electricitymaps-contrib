@@ -358,7 +358,6 @@ const zoneDefinitions = [
   { zoneName: 'FR-ARA', type: 'subZone', id: 'FR-ARA' },
   { zoneName: 'FR-BFC', type: 'subZone', id: 'FR-BFC' },
   { zoneName: 'FR-BRE', type: 'subZone', id: 'FR-BRE' },
-  { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'FR-CVL', type: 'subZone', id: 'FR-CVL' },
   { zoneName: 'FR-GES', type: 'subZone', id: 'FR-GES' },
   { zoneName: 'FR-HDF', type: 'subZone', id: 'FR-HDF' },
@@ -368,6 +367,7 @@ const zoneDefinitions = [
   { zoneName: 'FR-OCC', type: 'subZone', id: 'FR-OCC' },
   { zoneName: 'FR-PAC', type: 'subZone', id: 'FR-PAC' },
   { zoneName: 'FR-PDL', type: 'subZone', id: 'FR-PDL' },
+  { zoneName: 'FR-COR', type: 'subunits', subunits: ['FXC']},
   { zoneName: 'GA', type: 'country', id: 'GAB'},
   // see https://github.com/tmrowco/electricitymap-contrib/pull/1615 for how SCT-no-islands is generated
   { zoneName: 'GB', type: 'subunits', subunits: ['SCT-no-islands', 'ENG', 'WLS']},
