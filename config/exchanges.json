@@ -313,7 +313,7 @@
       49.747632
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -135
   },
@@ -704,7 +704,7 @@
       47.450034
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -30
   },
@@ -825,7 +825,7 @@
       48.931337
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -110
   },
@@ -1185,7 +1185,7 @@
       47.730817
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": 45
   },
@@ -1216,7 +1216,7 @@
       49.367433
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -80
   },
@@ -1226,7 +1226,7 @@
       48.625303
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -100
   },
@@ -1236,7 +1236,7 @@
       49.453060
     ],
     "parsers": {
-      "exchange": "FR_R.fetch_exchange",
+      "exchange": "FR_R.fetch_exchange"
     },
     "rotation": -160
   },
