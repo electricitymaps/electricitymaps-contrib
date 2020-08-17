@@ -57,7 +57,7 @@
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityproduction24h": "Electricity production in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
-        "Getdata": "Get historical data, marginal and forecast API"
+        "Getdata": "Get hourly historical, live, and forecast data with electricityMap API"
     },
     "footer": {
         "foundbugs": "Found bugs or have ideas? Report them",
