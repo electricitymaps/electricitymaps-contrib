@@ -59,22 +59,25 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                            for e in exchanges])).replace(minute=0))]
     exchanges.extend(exchange_NO)
 
-    # add DK1 data
-    zone_1, zone_2 = sorted(['DK-DK1', zone_key])
-    df_dk = pd.DataFrame(DK.fetch_exchange(zone_key1=zone_1, zone_key2=zone_2,
-                                        session=r, target_datetime=target_datetime,
-                                        logger=logger))
+    # add DK1 data (only for dates after operation)
+    if target_datetime > arrow.get('2019-08-24', 'YYYY-MM-DD') :
+        zone_1, zone_2 = sorted(['DK-DK1', zone_key])
+        df_dk = pd.DataFrame(DK.fetch_exchange(zone_key1=zone_1, zone_key2=zone_2,
+                                            session=r, target_datetime=target_datetime,
+                                            logger=logger))
 
-    # Because other exchanges and consumption data is only available per hour
-    # we floor the timpstamp to hour and group by hour with averaging of netFlow
-    df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
-    exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean', 
-        'sortedZoneKeys': 'max', 'source' : 'max'}).reset_index()
+        print(df_dk)
 
-    # because averaging with high precision numbers leads to rounding errors
-    exchange_DK = exchange_DK.round({'netFlow': 3})
+        # Because other exchanges and consumption data is only available per hour
+        # we floor the timpstamp to hour and group by hour with averaging of netFlow
+        df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
+        exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean', 
+            'sortedZoneKeys': 'max', 'source' : 'max'}).reset_index()
 
-    exchanges.extend(exchange_DK.to_dict(orient='records'))
+        # because averaging with high precision numbers leads to rounding errors
+        exchange_DK = exchange_DK.round({'netFlow': 3})
+
+        exchanges.extend(exchange_DK.to_dict(orient='records'))
 
     # We want to know the net-imports into NL, so if NL is in zone_1 we need
     # to flip the direction of the flow. E.g. 100MW for NL->DE means 100MW
