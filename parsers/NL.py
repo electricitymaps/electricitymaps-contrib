@@ -66,8 +66,6 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                                             session=r, target_datetime=target_datetime,
                                             logger=logger))
 
-        print(df_dk)
-
         # Because other exchanges and consumption data is only available per hour
         # we floor the timpstamp to hour and group by hour with averaging of netFlow
         df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
@@ -125,7 +123,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
                 p["production"]["coal"] = entsoe_value["production"]["coal"]
                 p["production"]["biomass"] = entsoe_value["production"]["biomass"]
                 p["production"]["unknown"] = entsoe_value["production"]["unknown"]
-            productions.append(p)
+                productions.append(p)
     else:
         productions = productions_ENTSOE
     if not productions:
