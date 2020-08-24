@@ -1508,7 +1508,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1530,7 +1530,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1557,7 +1557,7 @@
       "wind": 11.5
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1582,7 +1582,7 @@
       "oil": 22.8
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1604,7 +1604,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1626,7 +1626,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1638,7 +1638,7 @@
   },
   "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1661,7 +1661,7 @@
   },
   "ES-IB-IZ": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1684,7 +1684,7 @@
   },
   "ES-IB-MA": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1707,7 +1707,7 @@
   },
   "ES-IB-ME": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -2341,7 +2341,7 @@
       "wind": 1866.35
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2372,7 +2372,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2403,7 +2403,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2465,7 +2465,7 @@
       "wind": 3860
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2519,7 +2519,7 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
