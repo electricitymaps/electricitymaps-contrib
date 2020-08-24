@@ -87,7 +87,7 @@ def extract_data(session=None):
     if arr_dt > future_check:
         # Generation mix lags 1-2hrs behind present.
         # This check prevents data near midnight being given the wrong date.
-        arr_dt.shift(days=-1)
+        arr_dt = arr_dt.shift(days=-1)
 
     dt = arr_dt.floor('minute').datetime
 
