@@ -112,7 +112,7 @@ export default () => {
     () => () => {
       history.push({ pathname: '/map', search: location.search });
     },
-    [history, location],
+    [history],
   );
 
   const handleZoneClick = useMemo(
@@ -121,7 +121,7 @@ export default () => {
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [trackEvent, history, location],
+    [trackEvent, history],
   );
 
   const handleZoneMouseEnter = useMemo(
@@ -146,33 +146,14 @@ export default () => {
   );
 
   const handleViewportChange = useMemo(
-    () => ({
-      width,
-      height,
-      latitude,
-      longitude,
-      zoom,
-    }) => {
+    () => ({ latitude, longitude, zoom }) => {
       dispatchApplication('isMovingMap', true);
-      dispatchApplication('mapViewport', {
-        width,
-        height,
-        latitude,
-        longitude,
-        zoom,
-      });
+      dispatchApplication('mapViewport', { latitude, longitude, zoom });
       // TODO: Try tying this to internal map state
       // somehow to remove the need for debouncing.
       debouncedReleaseMoving();
     },
     [],
-  );
-
-  const handleResize = useMemo(
-    () => ({ width, height }) => {
-      handleViewportChange({ ...viewport, width, height });
-    },
-    [viewport],
   );
 
   // Animate map transitions only after the map has been loaded.
@@ -190,7 +171,6 @@ export default () => {
         <MapCountryTooltip
           zoneData={tooltipZoneData}
           position={tooltipPosition}
-          onClose={() => setTooltipZoneData(null)}
         />
       )}
       <ZoneMap
@@ -198,7 +178,6 @@ export default () => {
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
         onMouseMove={handleMouseMove}
-        onResize={handleResize}
         onSeaClick={handleSeaClick}
         onViewportChange={handleViewportChange}
         onZoneClick={handleZoneClick}

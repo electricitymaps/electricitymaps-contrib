@@ -12,7 +12,6 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { noop } from 'lodash';
 import moment from 'moment';
 
 // Components
@@ -38,12 +37,12 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = (props) => {
+const CountryLowCarbonGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge {...props} />;
+    return <CircularGauge />;
   }
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
@@ -53,15 +52,15 @@ const CountryLowCarbonGauge = (props) => {
     ? 100 - (fossilFuelRatio * 100)
     : null;
 
-  return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
+  return <CircularGauge percentage={countryLowCarbonPercentage} />;
 };
 
-const CountryRenewableGauge = (props) => {
+const CountryRenewableGauge = () => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge {...props} />;
+    return <CircularGauge />;
   }
 
   const renewableRatio = electricityMixMode === 'consumption'
@@ -71,7 +70,7 @@ const CountryRenewableGauge = (props) => {
     ? renewableRatio * 100
     : null;
 
-  return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
+  return <CircularGauge percentage={countryRenewablePercentage} />;
 };
 
 const mapStateToProps = state => ({
@@ -190,16 +189,10 @@ const CountryPanel = ({
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
-                    onClick={isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
-                    onMouseMove={!isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
+                    onMouseMove={(x, y) => setTooltip({ position: { x, y } })}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && (
-                    <LowCarbonInfoTooltip
-                      position={tooltip.position}
-                      onClose={() => setTooltip(null)}
-                    />
-                  )}
+                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />

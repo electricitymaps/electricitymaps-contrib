@@ -16,7 +16,6 @@ const MapCountryTooltip = ({
   electricityMixMode,
   position,
   zoneData,
-  onClose,
 }) => {
   const co2ColorScale = useCo2ColorScale();
 
@@ -41,7 +40,7 @@ const MapCountryTooltip = ({
     : '?';
 
   return (
-    <Tooltip id="country-tooltip" position={position} onClose={onClose}>
+    <Tooltip id="country-tooltip" position={position}>
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
       </div>

@@ -512,7 +512,6 @@ const CountryTable = ({
           mode={productionTooltip.mode}
           position={productionTooltip.position}
           zoneData={productionTooltip.zoneData}
-          onClose={() => setProductionTooltip(null)}
         />
       )}
       {exchangeTooltip && (
@@ -520,7 +519,6 @@ const CountryTable = ({
           exchangeKey={exchangeTooltip.mode}
           position={exchangeTooltip.position}
           zoneData={exchangeTooltip.zoneData}
-          onClose={() => setExchangeTooltip(null)}
         />
       )}
       <CountryTableOverlayIfNoData />

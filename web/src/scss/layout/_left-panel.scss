@@ -39,7 +39,8 @@
 .left-panel {
     color: $black;
     padding: 0;
-    width: calc(14vw + 16rem);
+    width: 28vw;
+    min-width: 24rem;
     background-color: $lighter-gray;
     position: fixed;
     box-shadow: 0 24px 15px rgba(0,0,0,0.2);
