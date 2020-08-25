@@ -1,26 +1,48 @@
 {
     "panel-initial-text": {
-        "thisproject": "Este proyecto es",
+        "thisproject": "Este proyecto es de",
         "opensource": "Código abierto",
         "see": "ver",
-        "datasources": "fuente de datos",
+        "datasources": "fuentes de los datos",
         "contribute": "Contribuye <a href=\"%s\" target=\"_blank\">añadiendo tu país</a>"
+    },
+    "mobile-main-menu": {
+        "map": "electricityMap",
+        "areas": "Areas",
+        "about": "About"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Visualización del impacto climático de la electricidad"
+        },
+        "view2": {
+            "header": "Visualiza cuánto CO₂ se emite para producir tu electricidad, en tiempo real.",
+            "text": "El color de cada país refleja la intensidad de carbono (que incluye todos los gases invernadero) de la electricidad que se consume. Cuanto más verde sea, más respectuosa con el clima será la electricidad."
+        },
+        "view3": {
+            "header": "Descubre de dónde viene tu electricidad",
+            "text": "Las flechas del mapa indican flujos de electricidad entre diferentes zonas. Haz click en una zona para ver más información sobre los orígenes de su electricidad."
+        },
+        "view4": {
+            "header": "Intensidad del viento y del sol en tiempo real",
+            "text": "La producción de energía eólica y solar depende del tiempo. Presiona los botones Sol y Viento para ver en tiempo real la fuerza del viento y del sol en todo el mundo."
+        }--
     },
     "country-panel": {
         "source": "fuente",
         "carbonintensity": "Intensidad de carbono",
-        "lowcarbon": "Carbón bajo",
+        "lowcarbon": "Bajo en emisiones",
         "renewable": "Renovables",
-        "electricity": "Electricidad",
         "electricityproduction": "Producción de electricidad",
         "electricityconsumption": "Consumo de electricidad",
         "bysource": "por fuente",
-        "emissions": "Emisiones de carbón",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o editar fuente</a>",
-        "helpfrom": "Ayuda de",
+        "emissions": "Emisiones de CO₂",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o modificar fuente</a>",
+        "helpfrom": "Con la ayuda de",
         "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
         "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta área",
         "noParserInfo": "No tenemos aún información sobre esta área.<br/> ¿Quieres ayudarnos a arreglar esto? Puedes contribuir <a href=\"%s\" target=\"_blank\">añadiendo información de un área</a>."
+        "now": "Ahora"
     },
     "left-panel": {
         "zone-list-header-title": "Impacto Climático por Área",
