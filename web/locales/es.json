@@ -73,8 +73,8 @@
     },
     "tooltips": {
         "carbonintensity": "Intensidad de emisiones de CO₂",
-        "lowcarbon": "Low-carbon",
-        "renewable": "Renewable",
+        "lowcarbon": "Bajo en emisiones",
+        "renewable": "Renovables",
         "crossborderexport": "Exportación transfronteriza",
         "carbonintensityexport": "Intensidad de emisiones de CO₂ de la energía exportada",
         "ofinstalled": "de la capacidad instalada",
@@ -90,19 +90,19 @@
         "production": "producción",
         "consumption": "consumo",
         "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
-        "selectLanguage": "Cambia de idioma",
+        "selectLanguage": "Cambiar de idioma",
         "lowCarbDescription": "Incluye renovables y nuclear"
     },
     "misc": {
         "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
         "oops": "¡Ups! Estamos teniendo problemas con el servidor. Lo intentaremos de nuevo en unos segundos.",
         "newversion": "¡Está disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
-        "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
-        "retrynow": "Retry now",
-        "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
-        "legend": "Legend",
-        "faq": "Preguntas Frecuentes"
+        "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
+        "retrynow": "Vuelve a intentarlo",
+        "database-ad": "¿Buscas datos históricos? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
+        "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
+        "legend": "Leyenda",
+        "faq": "Preguntas frecuentes"
     },
     "wind": "eólica",
     "solar": "solar",
@@ -111,11 +111,11 @@
     "battery storage": "almac. de baterías",
     "biomass": "biomasa",
     "nuclear": "nuclear",
-    "geothermal": "geotérmico",
+    "geothermal": "geotérmica",
     "gas": "gas natural",
     "coal": "carbón",
     "oil": "petróleo",
-    "unknown": "desconocido",
+    "unknown": "origen desconocido",
 
     "electricityComesFrom": "<b>%1$s %%</b> de la electricidad en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> de las emisiones en <img id=\"country-flag\"></img> <b>%2$s</b> proviene de %3$s",
@@ -129,16 +129,16 @@
 
     "ofCO2eqPerMinute": "de CO₂eq por minuto",
     "theMap": {
-        "groupName": "The map",
-        "mapColors-question": "What do the colors on the map mean?",
-        "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
-        "mapArrows-question": "What do the arrows between areas on the map indicate?",
-        "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
+        "groupName": "El mapa",
+        "mapColors-question": "¿Qué significan los colores del mapa?",
+        "mapColors-answer": "El color de cada zona del mapa refleja la cantidad de gases de efecto invernadero emitidos por cada unidad de electricidad consumida (su <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Cuanto más verde, más respetuoso con el clima es el consumo eléctrico.",
+        "mapArrows-question": "¿Qué significan las flechas entre distintas zonas del mapa?",
+        "mapArrows-answer": "Las flechas entre distintas zonas indican el flujo físico (importaciones y exportaciones) de la electricidad entre dos zonas: cuanto más rápido parpadeen, más rápido es el flujo. Este flujo es importante porque al importar electricidad de zonas vecinas, también importas las emisiones de carbono asociadas a su producción.",
         "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
         "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
         "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
         "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
-        "mapColorBlind-question": "I am color blind. How can I read your map?",
+        "mapColorBlind-question": "Soy daltónico. ¿Qué puedo hacer para leer el mapa?",
         "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
     },
     "mapAreas": {
@@ -195,7 +195,6 @@
         "disclaimer-question": "Disclaimer",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
-
     "zoneShortName": {
         "AD": {
             "zoneName": "Andorra"
@@ -210,7 +209,7 @@
             "zoneName": "Antigua y Barbuda"
         },
         "AI": {
-            "zoneName": "Anguilla"
+            "zoneName": "Anguila"
         },
         "AL": {
             "zoneName": "Albania"
@@ -222,16 +221,16 @@
             "zoneName": "Angola"
         },
         "AQ": {
-            "zoneName": "Angola"
-        },
-        "AR": {
-            "zoneName": "Argentina"
+            "zoneName": "Antártida"
         },
         "AS": {
             "zoneName": "Samoa Americana"
         },
         "AT": {
             "zoneName": "Austria"
+        },
+        "AR": {
+            "zoneName": "Argentina"
         },
         "AUS-NSW": {
             "countryName": "Australia",
@@ -253,6 +252,10 @@
             "countryName": "Australia",
             "zoneName": "Tasmania"
         },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmania",
+            "zoneName": "Isla King"
+        },
         "AUS-VIC": {
             "countryName": "Australia",
             "zoneName": "Victoria"
@@ -265,7 +268,7 @@
             "zoneName": "Aruba"
         },
         "AX": {
-            "zoneName": "Åland"
+            "zoneName": "Islas Åland"
         },
         "AZ": {
             "zoneName": "Azerbaiyán"
@@ -307,7 +310,7 @@
             "zoneName": "Bolivia"
         },
         "BQ": {
-            "zoneName": "Bonaire, Sint Eustatius y Saba"
+            "zoneName": "Bonaire, San Eustaquio y Saba"
         },
         "BR-CS": {
             "countryName": "Brasil",
@@ -393,7 +396,7 @@
         },
         "CA-YT": {
             "countryName": "Canadá",
-            "zoneName": "Territorio del Yucón"
+            "zoneName": "Yucón"
         },
         "CC": {
             "zoneName": "Islas Cocos"
@@ -418,15 +421,15 @@
         },
         "CL-SEA": {
             "countryName": "Chile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico de Aysén"
         },
         "CL-SEM": {
             "countryName": "Chile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema Eléctrico de Magallanes"
         },
-        "CL-SING-SIC": {
+        "CL-SEN": {
             "countryName": "Chile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema Eléctrico Nacional"
         },
         "CM": {
             "zoneName": "Camerún"
@@ -473,11 +476,11 @@
         },
         "DK-DK1": {
             "countryName": "Dinamarca",
-            "zoneName": "Oeste Dinamarca"
+            "zoneName": "Dinamarca occidental"
         },
         "DK-DK2": {
             "countryName": "Dinamarca",
-            "zoneName": "Este Dinamarca"
+            "zoneName": "Dinamarca oriental"
         },
         "DM": {
             "zoneName": "Dominica"
@@ -505,6 +508,22 @@
         },
         "ES": {
             "zoneName": "España"
+        "ES-IB-FO": {
+            "countryName": "Spain",
+            "zoneName": "Formentera"
+        },
+        "ES-IB-IZ": {
+            "countryName": "Spain",
+            "zoneName": "Ibiza"
+        },
+        "ES-IB-MA": {
+            "countryName": "Spain",
+            "zoneName": "Mallorca"
+        },
+        "ES-IB-ME": {
+            "countryName": "Spain",
+            "zoneName": "Menorca"
+        },
         },
         "ES-CN-FVLZ": {
             "countryName": "España",
@@ -520,7 +539,7 @@
         },
         "ES-CN-IG": {
             "countryName": "España",
-            "zoneName": "Isla de la Gomera"
+            "zoneName": "La Gomera"
         },
         "ES-CN-LP": {
             "countryName": "España",
@@ -529,10 +548,6 @@
         "ES-CN-TE": {
             "countryName": "España",
             "zoneName": "Tenerife"
-        },
-        "ES-IB": {
-            "countryName": "España",
-            "zoneName": "Islas Baleares"
         },
         "ET": {
             "zoneName": "Etiopía"
