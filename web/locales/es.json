@@ -1,7 +1,7 @@
 {
     "panel-initial-text": {
         "thisproject": "Este proyecto es de",
-        "opensource": "Código abierto",
+        "opensource": "código abierto",
         "see": "ver",
         "datasources": "fuentes de los datos",
         "contribute": "Contribuye <a href=\"%s\" target=\"_blank\">añadiendo tu país</a>"
@@ -38,26 +38,26 @@
         "bysource": "por fuente",
         "emissions": "Emisiones de CO₂",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">añadir o modificar fuente</a>",
-        "helpfrom": "Con la ayuda de",
+        "helpfrom": "con la ayuda de",
         "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
         "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
-        "noParserInfo": "No tenemos aún información sobre esta zona.<br/> ¿Quieres ayudarnos a arreglar esto? Puedes contribuir <a href=\"%s\" target=\"_blank\">añadiendo información sobre una zona</a>."
+        "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>."
         "now": "Ahora"
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático por zona",
-        "zone-list-header-subtitle": "Clasificado por intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
+        "zone-list-header-subtitle": "Según la intensidad de carbono de la electricidad consumida (gCO₂eq/kWh)",
         "search": "Buscar zonas"
     },
     "country-history": {
-        "carbonintensity24h": "Intensidad de emisiones de CO₂ en las últimas 24 horas",
+        "carbonintensity24h": "Intensidad de carbono en las últimas 24 horas",
         "emissions24h": "Emisiones en las últimas 24 horas",
         "emissionsorigin24h": "Origen de las emisiones en las últimas 24 horas",
         "emissionsproduction24h": "Emisiones producidas en las últimas 24 horas",
         "electricityorigin24h": "Origen de la electricidad en las últimas 24 horas",
         "electricityproduction24h": "Producción de electricidad en las últimas 24 horas",
         "electricityprices24h": "Precios de la electricidad en las últimas 24 horas",
-        "Getdata": "Obtener datos histórico, marginal y pronóstico API"
+        "Getdata": "Obtener el histórico por horas y en tiempo real + pronóstico con la API de electricityMap"
     },
     "footer": {
         "foundbugs": "¿Has encontrado algún error o tienes alguna sugerencia? Cuéntanoslo",
@@ -68,7 +68,7 @@
     "legends": {
         "windpotential": "Potencial de la fuerza del viento",
         "solarpotential": "Potencial solar",
-        "colorblindmode": "modo para daltónicos",
+        "colorblindmode": "Modo para daltónicos",
         "carbonintensity": "Intensidad de emisiones de CO₂"
     },
     "tooltips": {
@@ -84,7 +84,7 @@
         "hideWindLayer": "Ocultar las corrientes de aire",
         "showSolarLayer": "Mostrar los rayos solares",
         "hideSolarLayer": "Ocultar los rayos solares",
-        "toggleDarkMode": "Activar modo oscuro"
+        "toggleDarkMode": "Modo oscuro"
         "noParserInfo": "No hay datos disponibles",
         "temporaryDataOutage": "Datos temporalmente no disponibles",
         "production": "producción",
@@ -818,11 +818,11 @@
         },
         "IT-CNO": {
             "countryName": "Italia",
-            "zoneName": "Norte Central"
+            "zoneName": "Centro-norte"
         },
         "IT-CSO": {
             "countryName": "Italia",
-            "zoneName": "Sur Central"
+            "zoneName": "Centro-sur"
         },
         "IT-NO": {
             "countryName": "Italia",
@@ -1099,15 +1099,15 @@
         },
         "NO-NO3": {
             "countryName": "Noruega",
-            "zoneName": "Medio de Noruega"
+            "zoneName": "Noruega central"
         },
         "NO-NO4": {
             "countryName": "Noruega",
-            "zoneName": "Norte de Noruega"
+            "zoneName": "Noruega septentrional"
         },
         "NO-NO5": {
             "countryName": "Noruega",
-            "zoneName": "Oeste de Noruega"
+            "zoneName": "Noruega occidental"
         },
         "NP": {
             "zoneName": "Nepal"
