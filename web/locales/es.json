@@ -636,7 +636,7 @@
             "zoneName": "Islas del Egeo"
         },
         "GS": {
-            "zoneName": "Islas Georgias del Sur y Sandwich del Sur"
+            "zoneName": "Islas Georgias del Sur y Sándwich del Sur"
         },
         "GT": {
             "zoneName": "Guatemala"
@@ -787,10 +787,6 @@
         "IN-SK": {
             "countryName": "India",
             "zoneName": "Sikkim"
-        },
-        "IN-TL": {
-            "countryName": "India",
-            "zoneName": "Tamil Nadu"
         },
         "IN-TN": {
             "countryName": "India",
@@ -984,7 +980,7 @@
         },
         "MF": {
             "countryName": "Isla de San Martín",
-            "zoneName": "Francés"
+            "zoneName": "Francia"
         },
         "MG": {
             "zoneName": "Madagascar"
@@ -999,7 +995,7 @@
             "zoneName": "Malí"
         },
         "MM": {
-            "zoneName": "Myanmar"
+            "zoneName": "Birmania"
         },
         "MN": {
             "zoneName": "Mongolia"
@@ -1101,28 +1097,25 @@
         "NL": {
             "zoneName": "Holanda"
         },
-        "NO": {
-            "zoneName": "Noruega"
-        },
         "NO-NO1": {
             "countryName": "Noruega",
-            "zoneName": "Sureste de Noruega"
+            "zoneName": "Sureste"
         },
         "NO-NO2": {
             "countryName": "Noruega",
-            "zoneName": "Suroeste de Noruega"
+            "zoneName": "Suroeste"
         },
         "NO-NO3": {
             "countryName": "Noruega",
-            "zoneName": "Noruega central"
+            "zoneName": "Centro"
         },
         "NO-NO4": {
             "countryName": "Noruega",
-            "zoneName": "Noruega septentrional"
+            "zoneName": "Norte"
         },
         "NO-NO5": {
             "countryName": "Noruega",
-            "zoneName": "Noruega occidental"
+            "zoneName": "Oeste"
         },
         "NP": {
             "zoneName": "Nepal"
@@ -1239,7 +1232,7 @@
             "zoneName": "Ruanda"
         },
         "SA": {
-            "zoneName": "Arabia Saudita"
+            "zoneName": "Arabia Saudí"
         },
         "SB": {
             "zoneName": "Islas Salomón"
@@ -1257,7 +1250,7 @@
             "zoneName": "Singapur"
         },
         "SH": {
-            "zoneName": "Santa Elena"
+            "zoneName": "Santa Elena, Ascensión y Tristán de Acuña"
         },
         "SI": {
             "zoneName": "Eslovenia"
@@ -1294,7 +1287,7 @@
         },
         "SX": {
             "countryName": "Sint Maarten",
-            "zoneName": "Holandés"
+            "zoneName": "Países Bajos"
         },
         "SY": {
             "zoneName": "Siria"
@@ -1365,6 +1358,14 @@
         },
         "US": {
             "zoneName": "Estados Unidos"
+        },
+        "US-AK": {
+            "countryName": "Estados Unidos",
+            "zoneName": "Alaska"
+        },
+        "US-AL": {
+            "countryName": "Estados Unidos",
+            "zoneName": "Alabama"
         },
         "US-BPA": {
             "countryName": "Estados Unidos",
