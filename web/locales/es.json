@@ -153,12 +153,12 @@
         "seeHistoricalData-answer": "Puedes adquirir el acceso a todos los datos históricos que tenemos en nuestra <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>."
     },
     "methodology": {
-        "groupName": "Our methods",
-        "carbonIntensity-question": "What is \"carbon intensity\"?",
-        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
-        "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
-        "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas, and then importing the electricity from those areas.",
-        "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
+        "groupName": "Nuestros métodos",
+        "carbonIntensity-question": "¿Qué es la \"intensidad de carbono\"?",
+        "carbonIntensity-answer": "La intensidad de carbono mide las emisiones de dióxido de carbono asociadas a la producción de la electricidad que consumimos (en gCO₂eq/kWh - gramos de equivalente de dióxido de carbono emitidos por kilovatio-hora de electricidad consumida). <br><br>Medimos las emisiones del consumo eléctrico (no de la producción), es decir, las emisiones de gases de efecto invernadero (tanto CO₂ como otros gases de efecto invernadero como el metano) resultantes de producir la electricidad que se está consumiendo en una zona, más la intensidad de carbono de la electricidad importada de otras zonas. Además nos servimos de un análisis de ciclo de vida (ACV), que quiere decir que tenemos en cuenta las emisiones de las centrales eléctricas durante todas las etapas de su vida (construcción, obtención de combustibles, emisiones durante su vida útil, y por último el desmantelamiento y la eleiminación de residuos).",
+        "consumptionFocus-question": "¿Por qué calculáis la intensidad de carbono de la electricidad consumida y no de la producida?",
+        "consumptionFocus-answer": "Creemos que los ciudadanos tienen que ser responsables con la electricidad que usan, y no con la que se produzca en la zona donde viven. Además, no queremos que algunas regiones presenten un bajo impacto climático trasladando la producción de electricidad a otras zonas y luego importándola, lo cual sería engañoso.",
+        "renewableLowCarbonDifference-question": "¿Qué diferencia hay entre “renovable” y “bajo en carbono”?",
         "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
         "importsAndExports-question": "Do you take into account imports and exports of electricity?",
         "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
@@ -174,10 +174,10 @@
         "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
     },
     "data": {
-        "groupName": "Our data",
-        "dataOrigins-question": "How do you get your data?",
+        "groupName": "Nuestros datos",
+        "dataOrigins-question": "¿De dónde obtenéis los datos?",
         "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-        "dataDownload-question": "Can I download your data?",
+        "dataDownload-question": "¿Puedo descargarme vuestros datos?",
         "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
         "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
