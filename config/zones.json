@@ -1152,7 +1152,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 10,
+      "biomass": 12.4,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
@@ -1160,11 +1160,12 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 115,
-      "wind": 158
+      "solar": 205.317,
+      "wind": 155
     },
     "contributors": [
-      "https://github.com/ultibo"
+      "https://github.com/ultibo",
+      "https://github.com/veqtrus"
     ],
     "parsers": {
       "production": "CY.fetch_production"
