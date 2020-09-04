@@ -83,8 +83,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
         production_value = float(prod_data[1])
         data['production'][production_mean] = production_value
 
-    #Known coal plants: parse, subtract from "unknown", add to "coal"
-    #(These were identified through https://endcoal.org/tracker/)
+    #Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
     thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
     #Make sure the table header is indeed "Térmicas (MW)" (in case the tables are re-arranged)
     thermal_production_breakdown_table_header = thermal_production_breakdown.select('thead > tr > td > span')[0].string
@@ -93,15 +92,26 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
       "'Térmicas' but is instead named {}".format(zone_key, thermal_production_breakdown_table_header)
     )
     thermal_production_units = thermal_production_breakdown.select('tbody tr td table.sitr-gen-group tr')
-    print(thermal_production_units)
-
     map_thermal_generation_unit_name_to_fuel_type = {
-      'Cobre Panamá 1': 'coal',
-      'Cobre Panamá 2': 'coal',
-      #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.
+      'Cativá 1': 'oil',#[1][2]
+      'Cativá 2': 'oil',#[1][2]
+      'Cativá 3': 'oil',#[1][2]
+      'Cativá 4': 'oil',#[1][2]
+      'Cativá 5': 'oil',#[1][2]
+      'Cativá 6': 'oil',#[1][2]
+      'Cativá 7': 'oil',#[1][2]
+      'Cativá 8': 'oil',#[1][2]
+      'Cativá 9': 'oil',#[1][2]
+      'Cativá 10': 'oil',#[1][2]
+      'Cobre Panamá 1': 'coal',#[3]
+      'Cobre Panamá 2': 'coal',#[3]
+      #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.[1][2]
       #Because I'm not 100% sure which ones burn oil and which ones coal, I'm leaving these as unknown for now
-      #Source: https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
     }
+    #Sources:
+    #1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
+    #2. https://www.celsia.com/en/about-celsia/business-model/power-generation/thermoelectric-power-plants
+    #3. https://endcoal.org/tracker/
     for thermal_production_unit in thermal_production_units:
       unit_name_and_generation = thermal_production_unit.find_all('td')
       unit_name = unit_name_and_generation[0].string
