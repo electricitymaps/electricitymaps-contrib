@@ -41,13 +41,16 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
+    #Fetch page and load into BeautifulSoup
     r = session or requests.session()
     url = 'http://sitr.cnd.com.pa/m/pub/gen.html'
     response = r.get(url)
     response.encoding = 'utf-8'
     html_doc = response.text
     soup = BeautifulSoup(html_doc, 'html.parser')
+
+    #Parse production from pie chart
     productions = soup.find('table', {'class': 'sitr-pie-layout'}).find_all('span')
     map_generation = {
       'Hídrica': 'hydro',
@@ -58,7 +61,19 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
     }
     data = {
         'zoneKey': 'PA',
-        'production': {},
+        'production': {
+          #Setting default values here so we can do += when parsing the thermal generation breakdown
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': 0.0,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0,
+        },
         'storage': {},
         'source': 'https://www.cnd.com.pa/',
     }
@@ -67,6 +82,34 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
         production_mean = map_generation[prod_data[0]]
         production_value = float(prod_data[1])
         data['production'][production_mean] = production_value
+
+    #Known coal plants: parse, subtract from "unknown", add to "coal"
+    #(These were identified through https://endcoal.org/tracker/)
+    thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
+    #Make sure the table header is indeed "Térmicas (MW)" (in case the tables are re-arranged)
+    thermal_production_breakdown_table_header = thermal_production_breakdown.select('thead > tr > td > span')[0].string
+    assert ('Térmicas' in thermal_production_breakdown_table_header), (
+      "Exception when extracting thermal generation breakdown for {}: table header does not contain "
+      "'Térmicas' but is instead named {}".format(zone_key, thermal_production_breakdown_table_header)
+    )
+    thermal_production_units = thermal_production_breakdown.select('tbody tr td table.sitr-gen-group tr')
+    print(thermal_production_units)
+
+    map_thermal_generation_unit_name_to_fuel_type = {
+      'Cobre Panamá 1': 'coal',
+      'Cobre Panamá 2': 'coal',
+      #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.
+      #Because I'm not 100% sure which ones burn oil and which ones coal, I'm leaving these as unknown for now
+      #Source: https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
+    }
+    for thermal_production_unit in thermal_production_units:
+      unit_name_and_generation = thermal_production_unit.find_all('td')
+      unit_name = unit_name_and_generation[0].string
+      unit_generation = float(unit_name_and_generation[1].string)
+      if(unit_name in map_thermal_generation_unit_name_to_fuel_type):
+        unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
+        data['production'][unit_fuel_type] += unit_generation#TODO should we ignore negative "generation"?
+        data['production']['unknown'] -= unit_generation
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find('div', {'class': 'sitr-update'}).find('span').string
