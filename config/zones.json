@@ -181,7 +181,14 @@
       ]
     ],
     "capacity": {
-      "wind": 668
+      "biomass": 102,
+      "coal": 10240,
+      "gas": 2007,
+      "hydro": 2658,
+      "hydro storage": 840,
+      "oil": 148,
+      "solar": 1608,
+      "wind": 1802
     },
     "contributors": [
       "https://github.com/jarek",
