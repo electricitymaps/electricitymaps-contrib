@@ -105,6 +105,10 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
       'Cativá 10': 'oil',#[1][2]
       'Cobre Panamá 1': 'coal',#[3]
       'Cobre Panamá 2': 'coal',#[3]
+      'Costa Norte 1': 'gas',#[4][5]
+      'Costa Norte 2': 'gas',#[4][5]
+      'Costa Norte 3': 'gas',#[4][5]
+      'Costa Norte 4': 'gas',#[4][5]
       #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.[1][2]
       #Because I'm not 100% sure which ones burn oil and which ones coal, I'm leaving these as unknown for now
     }
@@ -112,6 +116,8 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
     #1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
     #2. https://www.celsia.com/en/about-celsia/business-model/power-generation/thermoelectric-power-plants
     #3. https://endcoal.org/tracker/
+    #4. http://aesmcac.com/aespanamades/en/colon/ "It reuses the heat from the exhaust gas from the gas turbines in order to obtain steam, to be later used by a steam turbine and to save fuel consumption in the production of electricity."
+    #5. https://panamcham.com/sites/default/files/el_inicio_del_futuro_del_gas_natural_en_panama.pdf "3 gas turbines and 1 steam (3X1 configuration)" "Technology: Combined Cycle" | This and the previous source taken together seems to imply that the steam turbine is responsible for the second cycle of the CCGT plant, giving confidence that output from all four units should indeed be tallied under "gas". Furthermore, as the plant also has a LNG import facility it is most unlikely the steam turbine would be burning a different fuel such as coal or oil.
     for thermal_production_unit in thermal_production_units:
       unit_name_and_generation = thermal_production_unit.find_all('td')
       unit_name = unit_name_and_generation[0].string
