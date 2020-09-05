@@ -221,7 +221,14 @@
       "https://github.com/corradio"
     ],
     "capacity": {
-      "wind": 13
+      "biomass": 253,
+      "coal": 8119,
+      "gas": 2692,
+      "hydro": 726,
+      "hydro storage": 480,
+      "oil": 449,
+      "solar": 1798,
+      "wind": 644
     },
     "flag_file_name": "au.png",
     "parsers": {
