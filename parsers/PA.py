@@ -8,8 +8,10 @@ import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
 
+import logging
 
-def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=None):
+
+def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -122,10 +124,22 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger=N
       unit_name_and_generation = thermal_production_unit.find_all('td')
       unit_name = unit_name_and_generation[0].string
       unit_generation = float(unit_name_and_generation[1].string)
-      if(unit_name in map_thermal_generation_unit_name_to_fuel_type):
+      if(unit_name in map_thermal_generation_unit_name_to_fuel_type and unit_generation > 0):#Second condition is in order to ignore self-consumption
         unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
-        data['production'][unit_fuel_type] += unit_generation#TODO should we ignore negative "generation"?
+        data['production'][unit_fuel_type] += unit_generation
         data['production']['unknown'] -= unit_generation
+
+    #Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
+    #presumably because they aren't updated at the exact same moment.
+    #Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
+    #TODO we might want to use the sum of the production of all thermal units instead of this workaround,
+    #because now we're still reporting small *postive* amounts of "ghost" thermal production
+    if data['production']['unknown'] < 0 and data['production']['unknown'] > -10:
+      logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
+      data['production']['unknown'] = 0
+
+    #Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
+    data['production']['unknown'] = round(data['production']['unknown'],13)
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find('div', {'class': 'sitr-update'}).find('span').string
