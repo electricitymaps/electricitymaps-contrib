@@ -185,7 +185,7 @@
         "whoAreYou-question": "Quem são vocês?",
         "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
         "feedback-question": "Posso dar algum feedback?",
-        "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricity.com\"> envie-nos um email!</a>",
+        "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricitymap.org\"> envie-nos um email!</a>",
         "contribut-question": "Posso contribuir para o seu projeto?",
         "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs , fique à vontade para se juntar a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
         "workTogether-question": "Podemos trabalhar juntos?",
