@@ -146,7 +146,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Moldova: [MoldElectrica](http://www.moldelectrica.md/ro/activity/system_state)
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Namibia: [NamPower](http://www.nampower.com.na/Scada.aspx)
-- Netherlands: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- Netherlands: 
+  - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+  - [Energieopwek.nl](https://energieopwek.nl/)
 - New Zealand: [Transpower](https://www.transpower.co.nz/power-system-live-data)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
