@@ -297,7 +297,7 @@ const CountryPanel = ({
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
-            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
           </div>
         )}
 
