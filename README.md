@@ -7,7 +7,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 ![image](https://www.electricitymap.org/images/electricitymap_social_image.jpg)
 
 You can [contribute](#contribute) in the following ways:
-- **[Add a new region](#adding-a-new-region) to the map**, including contact information for energy agencies, governments, and transmission system operators.
+- **[Add a new region](#add-a-new-region) to the map**, including contact information for energy agencies, governments, and transmission system operators.
 - Correct [data sources](#data-sources) and [capacities](#updating-region-capacities).
 - [Translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map.
 - Fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues).
