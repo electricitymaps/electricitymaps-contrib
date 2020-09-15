@@ -182,11 +182,11 @@
         "whoAreYou-question": "Who are you?",
         "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
         "feedback-question": "어떻게 피드백을 줄 수 있나요?",
-        "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:hello@electricity.com\">에서 작성하신 후 이메일을 보내주세요!</a>",
+        "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:hello@electricitymap.org\">에서 작성하신 후 이메일을 보내주세요!</a>",
         "contribute-question": "저도 프로젝트에 기여할 수 있을까요?",
         "contribute-answer": "네! The Electricity Map 은 자원자 분들의 도움으로 만들어진 오픈 소스 프로젝트입니다. 새로운 분야의 데이터 소스를 추가하거나, 버그 수정, 새 기능 추가 등 지도 개발을 돕고 싶으신 경우, <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>에서 참여하세요.",
         "workTogether-question": "함께 일할 수 있나요?",
-        "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:hello@tmrow.com\">이메일을 보내주세요!</a>",
+        "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:hello@electricitymap.org\">이메일을 보내주세요!</a>",
         "disclaimer-question": "고지 사항",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>는 <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. Tomorrow는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 Tomorrow의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
     },

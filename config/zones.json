@@ -1508,7 +1508,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1530,7 +1530,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1557,7 +1557,7 @@
       "wind": 11.5
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1582,7 +1582,7 @@
       "oil": 22.8
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1604,7 +1604,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1626,7 +1626,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1638,7 +1638,7 @@
   },
   "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1661,7 +1661,7 @@
   },
   "ES-IB-IZ": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1684,7 +1684,7 @@
   },
   "ES-IB-MA": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1707,7 +1707,7 @@
   },
   "ES-IB-ME": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -2341,7 +2341,7 @@
       "wind": 1866.35
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2372,7 +2372,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2403,7 +2403,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2465,7 +2465,7 @@
       "wind": 3860
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2519,7 +2519,7 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2933,11 +2933,13 @@
   "JP-KN": {
     "contributors": [
       "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/kongkille"
+
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
+      "production": "JP_KN.fetch_production",
       "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
@@ -3496,7 +3498,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 2445
+      "wind": 2754
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3558,7 +3560,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 800
+      "wind": 1060
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3589,7 +3591,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1057
+      "wind": 1074
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3620,7 +3622,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 442
+      "wind": 456
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3835,15 +3837,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1493,
+      "biomass": 1508,
+      "battery storage": 0,
       "coal": 29963,
       "gas": 2812,
+      "geothermal": 0,
       "hydro": 605,
       "hydro storage": 1780,
       "nuclear": 0,
       "oil": 359,
-      "solar": 1833,
-      "wind": 5953
+      "solar": 2261,
+      "unknown": 0,
+      "wind": 6040
     },
     "contributors": [
       "https://github.com/corradio",
@@ -6417,6 +6422,17 @@
     ]
   },
   "US-NY-NYIS": {
+    "capacity": {
+      "coal": 676,
+      "gas": 23956,
+      "hydro": 4247,
+      "hydro storage": 1407,
+      "nuclear": 5391,
+      "oil": 2416,
+      "solar": 32,
+      "wind": 1739,
+      "unknown": 327
+    },
     "comment": "New York Independent System Operator",
     "contributors": [
       "https://github.com/systemcatch",
