@@ -86,7 +86,7 @@ const MapCountryTooltip = ({
         )
       ) : (
         <div className="no-parser-text">
-          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
         </div>
       )}
     </Tooltip>
