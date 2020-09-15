@@ -146,7 +146,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Moldova: [MoldElectrica](http://www.moldelectrica.md/ro/activity/system_state)
 - Montenegro: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Namibia: [NamPower](http://www.nampower.com.na/Scada.aspx)
-- Netherlands: 
+- Netherlands:
   - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - [Energieopwek.nl](https://energieopwek.nl/)
 - New Zealand: [Transpower](https://www.transpower.co.nz/power-system-live-data)
@@ -250,7 +250,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - Finland
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- France: 
+- France:
   - Geothermal, Hydro, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst_de.htm?year=2020&period=annual&type=power_inst)
@@ -277,7 +277,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
 - India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
-- Kuwait 
+- Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
   - Solar & wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -304,14 +304,14 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
   - Wind: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vindkraft/vindkraftdata/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Northern Ireland: [ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Panama: [Secretaría de Energía de Panamá] (http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
+- Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Poland  
+- Poland
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1291264471806218242)
-  - Biomass: [URE] (https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
-  - Wind: [URE] (https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
+  - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
+  - Wind: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -351,7 +351,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Nuclear: [BKW](https://www.bkw.ch/fr/le-groupe-bkw/notre-infrastructure/centrale-nucleaire-de-muehleberg/desaffectation/lapercu/#Home)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey: 
+- Turkey:
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [TEİAŞ](https://www.teias.gov.tr/)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
@@ -465,7 +465,7 @@ Note: to test parsers, go to [testing parsers locally](#testing-parsers-locally)
 
 3. Go to [http://localhost:8000/](http://localhost:8000/) and you should now see the map!
 
-Notes: 
+Notes:
    - These steps only build with the English language (which will be faster as not all languages need to be built). To build all languages, change the `command` of the `web-watch-en` section of docker-compose.yml from `command: npm run watch-en` to `command: npm run watch`.
    - The backend handles the calculation of carbon emissions. The map data displayed comes from a mock server providing dummy data from the [state file](https://github.com/tmrowco/electricitymap-contrib/blob/master/mockserver/public/v3/state).
 
