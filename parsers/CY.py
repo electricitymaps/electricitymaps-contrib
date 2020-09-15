@@ -133,8 +133,7 @@ def fetch_production(zone_key='CY', session=None,
         'production': last_prods,
         'storage': {},
         'source': 'tsoc.org.cy',
-        'datetime': datetime.datetime.fromisoformat(
-            last_time.format('YYYY-MM-DD HH:mm:ss ZZ'))
+        'datetime': last_time.datetime
     }
 
     return data
