@@ -59,7 +59,7 @@ export function handleRequestError(err) {
       if (!status) return;
 
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
-      if (status >= 500 && status <= 599) return;
+      if ((status >= 500 && status <= 599) || status === 404) return;
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {
