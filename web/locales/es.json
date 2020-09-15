@@ -41,7 +41,7 @@
         "helpfrom": "con la ayuda de",
         "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
         "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
-        "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>."
+        "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>.",
         "now": "Ahora"
     },
     "left-panel": {
@@ -84,7 +84,7 @@
         "hideWindLayer": "Ocultar las corrientes de aire",
         "showSolarLayer": "Mostrar los rayos solares",
         "hideSolarLayer": "Ocultar los rayos solares",
-        "toggleDarkMode": "Modo oscuro"
+        "toggleDarkMode": "Modo oscuro",
         "noParserInfo": "No hay datos disponibles",
         "temporaryDataOutage": "Datos temporalmente no disponibles",
         "production": "producción",
@@ -134,7 +134,7 @@
         "mapColors-answer": "El color de cada zona del mapa refleja la cantidad de gases de efecto invernadero emitidos por cada unidad de electricidad consumida (su <a href=\"#carbonIntensity\" class=\"entry-link\">intensidad de carbono</a>). Cuanto más verde, más respetuoso con el clima es el consumo eléctrico.",
         "mapArrows-question": "¿Qué significan las flechas entre distintas zonas del mapa?",
         "mapArrows-answer": "Las flechas entre distintas zonas indican el flujo físico (importaciones y exportaciones) de la electricidad entre dos zonas: cuanto más rápido parpadeen, más rápido es el flujo. Este flujo es importante porque al importar electricidad de zonas vecinas, también importas las emisiones de carbono asociadas a su producción.",
-        "mapSolarWindButtons-question": "¿Para qué sirven los botones de “sol” y “viento” de la derecha del mapa?,
+        "mapSolarWindButtons-question": "¿Para qué sirven los botones de “sol” y “viento” de la derecha del mapa?",
         "mapSolarWindButtons-answer": "Estos botones activan una visualización en tiempo real de la fuerza del viento y del sol, ilustrando las oportunidades para una transición a energía solar y eólica en distintas zonas. Sin embargo, esto hay que tomarlo como un dato indicativo, porque la conveniencia de instalar paneles solares y aerogeneradores depende de muchos otros factores.",
         "mapNuclearColors-question": "¿Por qué son tan verdes los países que dependen mayoritariamente de energía nuclear?",
         "mapNuclearColors-answer": "La producción de energía nuclear tiene una intensidad de carbono muy baja (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), y por eso los países que usan mucha energía nuclear aparecen verdes en el mapa. Esto no significa que la energía nuclear no presente otras dificultades medioambientales (como también lo hacen el resto de fuentes de electricidad), pero estos posibles invonvenientes no afectan a emisión de gases de efecto invernadero, por lo que no se incluyen en el mapa.",
@@ -508,6 +508,7 @@
         },
         "ES": {
             "zoneName": "España"
+        },
         "ES-IB-FO": {
             "countryName": "Spain",
             "zoneName": "Formentera"
@@ -523,7 +524,6 @@
         "ES-IB-ME": {
             "countryName": "Spain",
             "zoneName": "Menorca"
-        },
         },
         "ES-CN-FVLZ": {
             "countryName": "España",
