@@ -4,24 +4,24 @@
 // TODO: re-enable rules
 
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { __ } from '../../helpers/translation';
+import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
 const MobileInfoTab = () => {
-  const isMobile = useSelector(state => state.application.isMobile);
+  const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
 
-  // If not on mobile, redirect to the /map page
-  if (!isMobile) {
+  // If not on small screen, redirect to the /map page
+  if (isMediumUpScreen) {
     return <Redirect to={{ pathname: '/map', search: location.search }} />;
   }
 
   return (
-    <div className="mobile-info-tab large-screen-hidden">
+    <div className="mobile-info-tab">
       <div className="mobile-watermark brightmode">
         <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
           <img src={resolvePath('images/built-by-tomorrow.svg')} alt="" />
