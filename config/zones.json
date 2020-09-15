@@ -3525,7 +3525,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "NL.fetch_production"
     },
     "timezone": null
   },
@@ -3832,7 +3832,8 @@
       "https://github.com/jarek",
       "https://github.com/systemcatch",
       "https://github.com/7hibault",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "PA.fetch_production"
