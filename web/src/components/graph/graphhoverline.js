@@ -17,7 +17,7 @@ const GraphHoverLine = React.memo(({
   const datapoint = layer && layer.datapoints && layer.datapoints[selectedTimeIndex];
 
   const x = datetimes && datetimes[selectedTimeIndex] && timeScale(datetimes[selectedTimeIndex]);
-  const y = datapoint && datapoint[1] && valueScale(datapoint[1]);
+  const y = datapoint && isFinite(datapoint[1]) && valueScale(datapoint[1]);
 
   const showVerticalLine = isFinite(x);
   const showMarker = isFinite(x) && isFinite(y);

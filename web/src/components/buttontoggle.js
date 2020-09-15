@@ -9,9 +9,11 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   background-color: #FFFFFF;
-  background-image: ${props => (props.active
-    ? `url(../images/${props.icon}_active.svg)`
-    : `url(../images/${props.icon}.svg)`)};
+  background-image: url(${props => (
+    props.active
+      ? resolvePath(`images/${props.icon}_active.svg`)
+      : resolvePath(`images/${props.icon}.svg`)
+  )});
 `;
 
 const ButtonToggle = ({

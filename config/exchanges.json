@@ -913,8 +913,8 @@
   },
   "DK-DK1->SE-SE3": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -927,8 +927,8 @@
   },
   "DK-DK1->SE": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -940,6 +940,10 @@
     "rotation": 70
   },
   "DK-DK2->SE-SE4": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -950,6 +954,10 @@
     "rotation": 70
   },
   "DK-DK2->SE": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -1236,7 +1244,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "RU.fetch_exchange"
+      "exchange": "GE.fetch_exchange"
     },
     "rotation": 0
   },

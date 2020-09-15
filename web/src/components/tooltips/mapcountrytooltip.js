@@ -16,6 +16,7 @@ const MapCountryTooltip = ({
   electricityMixMode,
   position,
   zoneData,
+  onClose,
 }) => {
   const co2ColorScale = useCo2ColorScale();
 
@@ -40,7 +41,7 @@ const MapCountryTooltip = ({
     : '?';
 
   return (
-    <Tooltip id="country-tooltip" position={position}>
+    <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
       </div>
@@ -85,7 +86,7 @@ const MapCountryTooltip = ({
         )
       ) : (
         <div className="no-parser-text">
-          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
         </div>
       )}
     </Tooltip>

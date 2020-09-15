@@ -58,8 +58,11 @@ export default () => {
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
       }
 
-      // Map loading is finished, lower the overlay shield.
-      dispatchApplication('isLoadingMap', false);
+      // Map loading is finished, lower the overlay shield with
+      // a bit of delay to allow the background to render first.
+      setTimeout(() => {
+        dispatchApplication('isLoadingMap', false);
+      }, 100);
 
       // Track and notify that WebGL is supported.
       dispatchApplication('webGLSupported', true);
@@ -109,7 +112,7 @@ export default () => {
     () => () => {
       history.push({ pathname: '/map', search: location.search });
     },
-    [history],
+    [history, location],
   );
 
   const handleZoneClick = useMemo(
@@ -118,7 +121,7 @@ export default () => {
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [trackEvent, history],
+    [trackEvent, history, location],
   );
 
   const handleZoneMouseEnter = useMemo(
@@ -143,14 +146,33 @@ export default () => {
   );
 
   const handleViewportChange = useMemo(
-    () => ({ latitude, longitude, zoom }) => {
+    () => ({
+      width,
+      height,
+      latitude,
+      longitude,
+      zoom,
+    }) => {
       dispatchApplication('isMovingMap', true);
-      dispatchApplication('mapViewport', { latitude, longitude, zoom });
+      dispatchApplication('mapViewport', {
+        width,
+        height,
+        latitude,
+        longitude,
+        zoom,
+      });
       // TODO: Try tying this to internal map state
       // somehow to remove the need for debouncing.
       debouncedReleaseMoving();
     },
     [],
+  );
+
+  const handleResize = useMemo(
+    () => ({ width, height }) => {
+      handleViewportChange({ ...viewport, width, height });
+    },
+    [viewport],
   );
 
   // Animate map transitions only after the map has been loaded.
@@ -168,6 +190,7 @@ export default () => {
         <MapCountryTooltip
           zoneData={tooltipZoneData}
           position={tooltipPosition}
+          onClose={() => setTooltipZoneData(null)}
         />
       )}
       <ZoneMap
@@ -175,6 +198,7 @@ export default () => {
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
         onMouseMove={handleMouseMove}
+        onResize={handleResize}
         onSeaClick={handleSeaClick}
         onViewportChange={handleViewportChange}
         onZoneClick={handleZoneClick}
