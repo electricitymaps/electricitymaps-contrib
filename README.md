@@ -204,7 +204,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
    - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
    - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Australia [wikipedia.org](https://en.wikipedia.org/wiki/Wind_power_in_Australia#Wind_power_by_state)
+- Australia [OpenNEM](https://opennem.org.au/facilities/all/)
 - Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -254,7 +254,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
 - France: 
   - Geothermal, Hydro, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
-- Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst.htm?year=2018&period=annual&type=power_inst)
+- Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst_de.htm?year=2020&period=annual&type=power_inst)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -307,7 +307,7 @@ Production capacities are centralized in the [zones.json](https://github.com/tmr
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Northern Ireland: [ENTSO-E] (https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Panama: [ETESA] (https://www.cnd.com.pa/informes.php?cat=5)
+- Panama: [Secretaría de Energía de Panamá] (http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland  
   - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1291264471806218242)
