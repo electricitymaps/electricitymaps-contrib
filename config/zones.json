@@ -3792,7 +3792,8 @@
       "https://github.com/jarek",
       "https://github.com/systemcatch",
       "https://github.com/7hibault",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "PA.fetch_production"
