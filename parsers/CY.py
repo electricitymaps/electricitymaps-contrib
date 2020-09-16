@@ -26,7 +26,14 @@ def parse_html(html):
         '''\[\s*dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\s*\]''', html))
 
     last_datum = None
+    #Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
+    #is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
+    #we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
+    #which constitutes biomass
+    nocturnal_biomass_generation = None
     for t, p in zip(times, prods):
+        if(nocturnal_biomass_generation is None):
+          nocturnal_biomass_generation = float(p[1])
         # find last datum without null values
         # this is the current as null is used for where the chart should show estimates
         if any(e == 'null' for e in p):
@@ -41,12 +48,11 @@ def parse_html(html):
 
     last_prods = {
         'oil': float(last_prods[3]),
-        'solar': float(last_prods[1]),
+        'solar': float(last_prods[1]) - nocturnal_biomass_generation,
         'wind': float(last_prods[0]),
-        'biomass': 6.0 # estimate based on the reported solar+biomass production during the night
+        'biomass': nocturnal_biomass_generation # estimate based on the reported solar+biomass production at midnight
     }
-    last_prods['solar'] -= last_prods['biomass']
-    if (last_prods['solar'] < 0.0):
+    if (last_prods['solar'] < 0.0):#If there is (next to) no sunlight and biomass is lower than at 0:00AM
         last_prods['solar'] = 0.0
 
     return last_time, last_prods
