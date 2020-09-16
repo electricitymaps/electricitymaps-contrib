@@ -1205,7 +1205,8 @@
     },
     "contributors": [
       "https://github.com/ultibo",
-      "https://github.com/veqtrus"
+      "https://github.com/veqtrus",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "CY.fetch_production"
