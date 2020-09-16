@@ -3156,7 +3156,8 @@
       "https://github.com/nessie2013"
     ],
     "parsers": {
-      "production": "KW.fetch_production"
+      "production": "KW.fetch_production",
+      "consumption": "KW.fetch_consumption"
     },
     "timezone": "Asia/Kuwait"
   },
