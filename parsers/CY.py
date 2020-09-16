@@ -1,144 +1,87 @@
 #!/usr/bin/env python3
-
-import arrow
-import requests
-from bs4 import BeautifulSoup
+import logging
+import datetime
 import re
 
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
+# The arrow library is used to handle datetimes
+import arrow
+# The request library is used to fetch content through HTTP
+import requests
 
+# please try to write PEP8 compliant code (use a linter). One of PEP8's
+# requirement is to limit your line length to 79 characters.
 
-def fetch_total_and_wind_production(session=None):
-    """Returns an array that contains [time, total production, wind production] like below
-        ['00:00', 689.0, 18.0],
-        ['00:15', 680.0, 17.0],
-        ['00:30', 673.0, 12.0]
-    """
-    r = session or requests.session()
-    url = 'http://www.dsm.org.cy/en/daily-system-generation-on-the-transmission-system-mw/total-daily-system-generation-mw'
-    response = r.get(url)
-    html = response.text    # we have an html page from the url above that contains the raw data for the generation table
-    soup = BeautifulSoup(html, 'html.parser')
+def parse_html(html):
+    html = html.replace('\n', ' ').replace('\r', ' ')
 
-    # first we ensure the column headers are what we expect, otherwise exception
-    header = soup.find_all('tr')[0].find_all('th')
-    if (header[0].string != 'Time' or
-            header[1].string != 'Generation Forecast' or
-            header[2].string != 'Actual Generation (MW)' or
-            header[3].string != 'Total Available Generation Capacity' or
-            header[4].string != 'Wind Farms Generation'):
-        raise Exception('Mapping for Cyprus has changed')
+    columns = [m.group(1) for m in re.finditer(
+        '''data\.addColumn\("number", "([^"]*)"\);''', html)]
+    assert columns == ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
+        'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
+        'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
 
-    # now we can parse the table to find all the lines that contain actual and wind values
-    rows = soup.find_all('tr')[1:]
-    res = []
-    for row in rows:
-        cols = row.find_all('td')
-        try:
-            time = cols[0].string
-            actual = float(cols[2].string)
-            wind = float(cols[4].string)
-            res.append([time, actual, wind])
-        except (TypeError, ValueError):
-            pass    # this ensure we read only the columns we have actual and wind production
+    times = (m.group(1, 2, 3) for m in re.finditer(
+        '''var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";''', html))
+    prods = (m.group(1, 2, 3, 4) for m in re.finditer(
+        '''\[\s*dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\s*\]''', html))
 
-    return res
+    last_datum = None
+    for t, p in zip(times, prods):
+        # find last datum without null values
+        # this is the current as null is used for where the chart should show estimates
+        if any(e == 'null' for e in p):
+            break
+        last_datum = (t, p)
 
+    if last_datum is None:
+        return None
+    last_time, last_prods = last_datum
 
-def fetch_solar_production_estimation(session=None):
-    """
-    returns an array that contains [time, solar], like the following
-        ['0:0', 0.0]
-        ['0:15', 0.0]
-        ['0:30', 0.0]
-    """
-    r = session or requests.session()
-    url = 'http://www.dsm.org.cy/en/objects/reusable-objects/daily-wind-and-solar-farms-generation-mw'
-    response = r.get(url)
-    html = response.text
-    soup = BeautifulSoup(html, 'html.parser')
-    res = []
+    last_time = last_time[0] + ' ' + last_time[1] + ':' + last_time[2]
 
-    # this is getting ugly, we are searching for the javascript code of the page used to draw the chart
-    # solar data is estimated and doesn't appear on the xls on their website
-    script = soup.find_all(string=re.compile('google\.visualization\.DataTable'))
-    if len(script) > 0:
-        # in the js code we search fo the point values
-        data_pts = re.findall('data\.addRows\((.*)\)', script[0])
-        if data_pts:
-            data_pts = str(data_pts[0]).split(',')  # split all the elements in the list
-            data_pts = [d.replace(']', '').replace('[', '').replace('null', '') for d in data_pts]  # remove useless
-            data_pts = [data_pts[i:i + 5] for i in xrange(0, len(data_pts), 5)]         # group the elements 5 by 5
-            # data_pts is now a list like below containing [hour, minute, second, wind, solar]
-            # ['1', '45', '00', '5', '0'],
-            # ['2', '0', '00', '4', '0'],
-            # ['2', '15', '00', '', '']
-            for point in data_pts:
-                try:
-                    time = str(point[0]) + ':' + str(point[1])
-                    solar = float(point[4])
-                    res.append([time, solar])
-                except (TypeError, ValueError):
-                    pass  # we should end up only with values where solar is populated
-    return res
+    last_prods = {
+        'oil': float(last_prods[3]),
+        'solar': float(last_prods[1]),
+        'wind': float(last_prods[0]),
+        'biomass': 6.0 # estimate based on the reported solar+biomass production during the night
+    }
+    last_prods['solar'] -= last_prods['biomass']
+    if (last_prods['solar'] < 0.0):
+        last_prods['solar'] = 0.0
 
+    return last_time, last_prods
 
-def merge_production(total_and_wind, solar):
-    """ Merge the two productions, we assume the prod2 array can be empty or missing or have additional values
-    we will also return only the times present on prod1 array
-
-    Arguments
-    prod1: contains [time, total, wind]
-        ['00:00', 689.0, 18.0],
-        ['00:15', 680.0, 17.0],
-        ['00:30', 673.0, 12.0]
-
-    prod2: contains [time, solar]
-        ['0:0', 0.0]
-        ['0:15', 0.0]
-        ['0:30', 0.0]
-    """
-
-    # first we create a result dict (res) that will contain {time: total, wind}
-    res = dict()
-    for v in total_and_wind:
-        hour = int(v[0].split(':')[0])
-        minute = int(v[0].split(':')[1])
-        res[arrow.now('Europe/Nicosia').floor('day').replace(hour=hour, minute=minute)] = {
-            'total': v[1],
-            'wind': v[2]
-        }
-
-    # then we create an temporary dict (res2) that contains {time: solar}
-    res2 = dict()
-    for v in solar:
-        hour = int(v[0].split(':')[0])
-        minute = int(v[0].split(':')[1])
-        res2[arrow.now('Europe/Nicosia').floor('day').replace(hour=hour, minute=minute)] = {
-            'solar': v[1],
-        }
-
-    # then we browse the result dict and see if the temporary set contains the same time, if yes we merge
-    for r in res:
-        if r in res2:
-            res[r]['solar'] = res2[r]['solar']
-
-    return res
-
-
-def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CY', session=None,
+                     target_datetime: datetime.datetime = None,
+                     logger: logging.Logger = logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
+    ----------
+    zone_key: used in case a parser is able to fetch multiple countries
+    session: request session passed in order to re-use an existing session
+    target_datetime: the datetime for which we want production data. If not
+      provided, we should default it to now. If past data is not available,
+      raise a NotImplementedError. Beware that the provided target_datetime is
+      UTC. To convert to local timezone, you can use
+      `target_datetime = arrow.get(target_datetime).to('America/New_York')`.
+      Note that `arrow.get(None)` returns UTC now.
+    logger: an instance of a `logging.Logger` that will be passed by the
+      backend. Information logged will be publicly available so that correct
+      execution of the logger can be checked. All Exceptions will automatically
+      be logged, so when something's wrong, simply raise an Exception (with an
+      explicit text). Use `logger.warning` or `logger.info` for information
+      that can useful to check if the parser is working correctly. A default
+      logger is used so that logger output can be seen when coding / debugging.
 
-    Return:
-    An array of dictionary in the form:
-    [{
+    Returns:
+    --------
+    If no data can be fetched, any falsy value (None, [], False) will be
+      ignored by the backend. If there is no data because the source may have
+      changed or is not available, raise an Exception.
+
+    A dictionary in the form:
+    {
       'zoneKey': 'FR',
       'datetime': '2017-01-01T00:00:00Z',
       'production': {
@@ -157,39 +100,48 @@ def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=N
           'hydro': -10.0,
       },
       'source': 'mysource.com'
-    }]
+    }
     """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+    assert zone_key == 'CY'
 
-    total_and_wind_production = fetch_total_and_wind_production()               # [time, total, wind]
-    solar_production = fetch_solar_production_estimation()                      # [time, solar]
-    production = merge_production(total_and_wind_production, solar_production)  # merge the two arrays
+    r = session or requests.session()
+    if target_datetime is None:
+        url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
+    else:
+        # WHEN HISTORICAL DATA IS AVAILABLE
+        # convert target datetime to local datetime
+        # url_date = arrow.get(target_datetime).to(
+        #     "America/Argentina/Buenos_Aires")
+        # url = 'https://api.someservice.com/v1/productionmix/{}'.format(
+        #     url_date)
 
-    data = []
-    for time in production:
-        data.append({
-            'zoneKey': zone_key,
-            'production': {
-                'solar': production[time].get('solar', 0.0),
-                'wind': production[time].get('wind', 0.0),
-                # as discussed in issue 122 on github, put all the non wind/solar as oil.
-                # also, as we only have the total production, we should deduce solar and wind
-                'oil': production[time].get('total', 0.0) - production[time].get('solar', 0.0) - production[time].get('wind', 0.0)
-            },
-            'storage': {},
-            'source': 'dsm.org.cy',
-            'datetime': time.datetime,
-        })
+        # WHEN HISTORICAL DATA IS NOT AVAILABLE
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
-    return sorted(data, key=lambda point: point['datetime'])
+    res = r.get(url)
+    assert res.status_code == 200, 'Exception when fetching production for ' \
+                                   '{}: error when calling url={}'.format(
+                                       zone_key, url)
+
+    last_time, last_prods = parse_html(res.text)
+
+    last_time = arrow.get(last_time).replace(tzinfo='Asia/Nicosia')
+
+    data = {
+        'zoneKey': zone_key,
+        'production': last_prods,
+        'storage': {},
+        'source': 'tsoc.org.cy',
+        'datetime': last_time.datetime
+    }
+
+    return data
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    """Main method, never used by the Electricity Map backend, but handy
+    for testing."""
 
     print('fetch_production() ->')
-    # print fetch_production()
-    res = fetch_production()
-    for r in res:
-        print(r)
+    print(fetch_production())

@@ -139,20 +139,21 @@
       ]
     ],
     "capacity": {
-      "biomass": 650,
-      "coal": 225,
-      "gas": 4463,
-      "hydro": 7998,
+      "biomass": 647,
+      "coal": 246,
+      "gas": 4015,
+      "hydro": 8160,
       "hydro storage": 3120,
       "nuclear": 0,
       "oil": 178,
-      "solar": 1193,
-      "wind": 3035,
-      "geothermal": 1,
-      "unknown": 65
+      "solar": 1333,
+      "wind": 3133,
+      "geothermal": 0,
+      "unknown": 123
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/brandongalbraith"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -180,9 +181,19 @@
       ]
     ],
     "capacity": {
-      "wind": 668
+      "battery storage": 0,
+      "biomass": 102,
+      "coal": 10240,
+      "gas": 2007,
+      "hydro": 2658,
+      "hydro storage": 840,
+      "nuclear": 0,
+      "oil": 148,
+      "solar": 1608,
+      "wind": 1802
     },
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
@@ -209,11 +220,21 @@
   },
   "AUS-QLD": {
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
     "capacity": {
-      "wind": 13
+      "battery storage": 0,
+      "biomass": 253,
+      "coal": 8119,
+      "gas": 2692,
+      "hydro": 726,
+      "hydro storage": 480,
+      "nuclear": 0,
+      "oil": 449,
+      "solar": 1798,
+      "wind": 644
     },
     "flag_file_name": "au.png",
     "parsers": {
@@ -234,11 +255,21 @@
   },
   "AUS-SA": {
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
     "capacity": {
-      "wind": 1808
+      "battery storage": 155,
+      "biomass": 20,
+      "coal": 0,
+      "gas": 2946,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 734,
+      "solar": 378,
+      "wind": 2141
     },
     "flag_file_name": "au.png",
     "parsers": {
@@ -269,11 +300,21 @@
       ]
     ],
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/jarek",
       "https://github.com/corradio"
     ],
     "capacity": {
-      "wind": 314
+      "battery storage": 0,
+      "biomass": 2,
+      "coal": 0,
+      "gas": 372,
+      "hydro": 2361,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 48,
+      "solar": 0,
+      "wind": 567
     },
     "flag_file_name": "au.png",
     "parsers": {
@@ -462,19 +503,20 @@
       ]
     ],
     "capacity": {
-      "biomass": 1113,
+      "biomass": 1173,
       "coal": 0,
-      "gas": 6974,
+      "gas": 6777,
       "geothermal": 0,
-      "hydro": 181,
-      "hydro storage": 1308,
+      "hydro": 125,
+      "hydro storage": 1310,
       "nuclear": 5919,
-      "oil": 334,
-      "solar": 3581,
-      "wind": 3247
+      "oil": 341,
+      "solar": 4531,
+      "wind": 4037
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -527,8 +569,13 @@
   },
   "BH": {
     "contributors": [
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
+    "capacity": {
+      "solar": 6,
+      "wind": 1
+    },
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -900,17 +947,18 @@
   "CA-ON": {
     "capacity": {
       "biomass": 295,
-      "gas": 10277,
-      "hydro": 8482,
+      "gas": 11270,
+      "hydro": 9065,
       "nuclear": 13009,
-      "solar": 380,
+      "solar": 478,
       "wind": 4486,
       "coal": 0
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/jarek",
-      "https://github.com/scriptator"
+      "https://github.com/scriptator",
+      "https://github.com/felixvanoost"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1089,6 +1137,20 @@
     },
     "timezone": "Chile/Continental"
   },
+  "CL-SIC": {
+    "_todo": "remove. See https://github.com/tmrowco/tmrow/issues/3188",
+    "bounding_box": [
+      [
+        -74.71,
+        -44.02
+      ],
+      [
+        -66.88,
+        -17.39
+      ]
+    ],
+    "timezone": "Chile/Continental"
+  },
   "CR": {
     "bounding_box": [
       [
@@ -1130,7 +1192,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 10,
+      "biomass": 12.4,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
@@ -1138,11 +1200,12 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 115,
-      "wind": 158
+      "solar": 205.317,
+      "wind": 155
     },
     "contributors": [
-      "https://github.com/ultibo"
+      "https://github.com/ultibo",
+      "https://github.com/veqtrus"
     ],
     "parsers": {
       "production": "CY.fetch_production"
@@ -1199,20 +1262,21 @@
       ]
     ],
     "capacity": {
-      "biomass": 8170,
-      "coal": 43870,
-      "gas": 29850,
-      "geothermal": 38,
-      "hydro": 4800,
-      "hydro storage": 9600,
+      "biomass": 8210,
+      "coal": 43490,
+      "gas": 29930,
+      "geothermal": 42,
+      "hydro": 4780,
+      "hydro storage": 9810,
       "nuclear": 8114,
       "oil": 4360,
-      "solar": 48570,
-      "unknown": 3137,
-      "wind": 60710
+      "solar": 51990,
+      "unknown": 3700,
+      "wind": 61880
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/bohne13"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1445,20 +1509,23 @@
       ]
     ],
     "capacity": {
-      "biomass": 1076,
-      "coal": 9456,
-      "gas": 26284,
+      "biomass": 1189,
+      "coal": 4826,
+      "gas": 30012,
       "geothermal": 0,
       "hydro": 17085,
+      "hydro-storage": 3329,
       "nuclear": 7117,
-      "oil": 715,
-      "solar": 11744,
-      "unknown": 360,
-      "wind": 25806
+      "oil": 707,
+      "solar": 11828,
+      "wind": 25902,
+      "unknown": 360
     },
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/corradio",
-      "https://github.com/JosepRey"
+      "https://github.com/JosepRey",
+      "https://github.com/nessie2013"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1483,7 +1550,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1505,7 +1572,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1532,7 +1599,7 @@
       "wind": 11.5
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1557,7 +1624,7 @@
       "oil": 22.8
     },
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1579,7 +1646,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1601,7 +1668,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch"
     ],
     "flag_file_name": "es.png",
@@ -1613,7 +1680,7 @@
   },
   "ES-IB-FO": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1636,7 +1703,7 @@
   },
   "ES-IB-IZ": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1659,7 +1726,7 @@
   },
   "ES-IB-MA": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1682,7 +1749,7 @@
   },
   "ES-IB-ME": {
     "contributors": [
-      "https://github.com/blackleg",
+      "https://github.com/hectorespert",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz"
     ],
@@ -1766,7 +1833,6 @@
     "timezone": "Atlantic/Faroe"
   },
   "FR": {
-    "_comment": "hydro incl. 4975 MW pumped storage.",
     "bounding_box": [
       [
         -5.44921875,
@@ -1778,14 +1844,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 2122,
-      "coal": 2997,
-      "gas": 12191,
-      "hydro": 25557,
+      "biomass": 1776,
+      "coal": 2968,
+      "gas": 12156,
+      "geothermal": 16,
+      "hydro": 24086,
+      "hydro storage": 1728,
       "nuclear": 63130,
-      "oil": 3401,
-      "solar": 9435,
-      "wind": 16494
+      "oil": 2705,
+      "solar": 10562,
+      "wind": 16494,
+      "unknown": 218
     },
     "contributors": [
       "https://github.com/corradio",
@@ -2314,7 +2383,7 @@
       "wind": 1866.35
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2345,7 +2414,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2376,7 +2445,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2438,7 +2507,7 @@
       "wind": 3860
     },
     "contributors": [
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2492,7 +2561,7 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/blackleg"
+      "https://github.com/hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2731,10 +2800,10 @@
     ],
     "capacity": {
       "biomass": 1104,
-      "coal": 979, 
+      "coal": 979,
       "geothermal": 0,
       "hydro": 154,
-      "hydro-storage": 312,
+      "hydro storage": 312,
       "nuclear": 0,
       "oil": 238,
       "solar": 787,
@@ -2756,18 +2825,7 @@
     "timezone": "Europe/Rome"
   },
   "IT-SIC": {
-    "contributors": [
-      "https://github.com/corradio"
-    ],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome",
-    "bounding_box": [
+   "bounding_box": [
       [
         11.422211134000122,
         34.98924388200004
@@ -2776,7 +2834,32 @@
         16.151621941000144,
         39.311957098000164
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 72,
+      "gas": 589,
+      "coal": 979,
+      "geothermal": 0,
+      "hydro": 419,
+      "hydro-storage": 312,
+      "nuclear": 0,
+      "oil": 238,
+      "solar": 1400,
+      "wind": 1893,
+      "unknown": 3756
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013"
+    ],
+    "parsers": {
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production"
+    },
+    "timezone": "Europe/Rome"
   },
   "IT-SO": {
     "contributors": [
@@ -2892,11 +2975,13 @@
   "JP-KN": {
     "contributors": [
       "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/kongkille"
+
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
-      "production": "JP.fetch_production",
+      "production": "JP_KN.fetch_production",
       "price": "JP.fetch_price"
     },
     "timezone": "Asia/Tokyo",
@@ -3062,11 +3147,12 @@
     "capacity": {
       "gas": 6525,
       "oil": 8550,
-      "solar": 30.5,
-      "wind": 10
+      "solar": 93,
+      "wind": 12
     },
     "contributors": [
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "KW.fetch_production",
@@ -3442,7 +3528,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "NL.fetch_production"
     },
     "timezone": null
   },
@@ -3455,7 +3541,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 2445
+      "wind": 2754
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3517,7 +3603,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 800
+      "wind": 1060
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3548,7 +3634,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1057
+      "wind": 1074
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3579,7 +3665,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 442
+      "wind": 456
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3703,8 +3789,12 @@
   },
   "OM": {
     "contributors": [
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
+    "capacity": {
+      "solar": 8
+    },
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -3732,12 +3822,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 0,
-      "gas": 113,
-      "hydro": 1704,
+      "biomass": 8.1,
+      "coal": 420,
+      "gas": 381,
+      "hydro": 1795.523,
+      "hydro storage": 0,
       "nuclear": 0,
-      "solar": 75,
-      "unknown": 962,
+      "oil": 1018.393,
+      "solar": 197.872,
+      "unknown": 0,
       "wind": 270
     },
     "contributors": [
@@ -3745,7 +3838,8 @@
       "https://github.com/jarek",
       "https://github.com/systemcatch",
       "https://github.com/7hibault",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "PA.fetch_production"
@@ -3790,15 +3884,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1142,
+      "biomass": 1508,
+      "battery storage": 0,
       "coal": 29963,
-      "gas": 2540,
-      "hydro": 968,
-      "hydro storage": 1423,
+      "gas": 2812,
+      "geothermal": 0,
+      "hydro": 605,
+      "hydro storage": 1780,
       "nuclear": 0,
       "oil": 359,
-      "solar": 1695,
-      "wind": 5917
+      "solar": 2261,
+      "unknown": 0,
+      "wind": 6040
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3884,8 +3981,13 @@
   },
   "QA": {
     "contributors": [
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
+    "capacity": {
+      "biomass": 38,
+      "solar": 5
+    },
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -4363,14 +4465,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 253,
+      "biomass": 317,
       "geothermal": 204,
-      "hydro": 575,
+      "hydro": 571,
       "oil": 756,
-      "solar": 140
+      "solar": 273
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "SV.fetch_production"
@@ -6366,6 +6469,17 @@
     ]
   },
   "US-NY-NYIS": {
+    "capacity": {
+      "coal": 676,
+      "gas": 23956,
+      "hydro": 4247,
+      "hydro storage": 1407,
+      "nuclear": 5391,
+      "oil": 2416,
+      "solar": 32,
+      "wind": 1739,
+      "unknown": 327
+    },
     "comment": "New York Independent System Operator",
     "contributors": [
       "https://github.com/systemcatch",

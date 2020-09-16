@@ -3,11 +3,17 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { isEmpty, noop } from 'lodash';
 
+const Wrapper = styled.div`
+  position: relative;
+`;
+
 const Button = styled.button`
   background-color: #FFFFFF;
-  background-image: ${props => (props.active
-    ? `url(../images/${props.icon}_active.svg)`
-    : `url(../images/${props.icon}.svg)`)};
+  background-image: url(${props => (
+    props.active
+      ? resolvePath(`images/${props.icon}_active.svg`)
+      : resolvePath(`images/${props.icon}.svg`)
+  )});
 `;
 
 const ButtonToggle = ({
@@ -23,7 +29,7 @@ const ButtonToggle = ({
   const hideTooltip = () => { setTooltipVisible(false); };
 
   return (
-    <div>
+    <Wrapper>
       <Button
         type="button"
         className="layer-button"
@@ -43,7 +49,7 @@ const ButtonToggle = ({
           </div>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

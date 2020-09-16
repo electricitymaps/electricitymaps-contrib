@@ -19,28 +19,25 @@ export default () => (
       <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
         {__('panel-initial-text.opensource')}
       </a>
-      {' ('}
+      {' '}(
       {__('panel-initial-text.see')}
       {' '}
       <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">
         {__('panel-initial-text.datasources')}
       </a>
-      {'). '}
+      ).{' '}
       <span
         dangerouslySetInnerHTML={{
           __html: __(
             'panel-initial-text.contribute',
-            'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region'
+            'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region',
           ),
         }}
       />
-      {'.'}
+      .
     </p>
     <p>
       {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
-    </p>
-    <p>
-      {__('footer.likethisvisu')} <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1" target="_blank">{__('footer.loveyourfeedback')}</a>!
     </p>
     <p>
       {__('footer.faq-text')}

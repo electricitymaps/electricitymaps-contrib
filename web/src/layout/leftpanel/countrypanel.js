@@ -9,8 +9,10 @@ import {
   Link,
   useLocation,
   useParams,
+  useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
+import { noop } from 'lodash';
 import moment from 'moment';
 
 // Components
@@ -23,26 +25,25 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
-import thirdPartyServices from '../../services/thirdparty';
 
-import { dispatch, dispatchApplication } from '../../store';
+import { dispatchApplication } from '../../store';
 
 // Modules
-import { updateApplication } from '../../actioncreators';
 import { useCurrentZoneData } from '../../hooks/redux';
-import { getCo2Scale } from '../../helpers/scales';
+import { useCo2ColorScale } from '../../hooks/theme';
+import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = () => {
+const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
@@ -52,15 +53,15 @@ const CountryLowCarbonGauge = () => {
     ? 100 - (fossilFuelRatio * 100)
     : null;
 
-  return <CircularGauge percentage={countryLowCarbonPercentage} />;
+  return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
-const CountryRenewableGauge = () => {
+const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const renewableRatio = electricityMixMode === 'consumption'
@@ -70,11 +71,10 @@ const CountryRenewableGauge = () => {
     ? renewableRatio * 100
     : null;
 
-  return <CircularGauge percentage={countryRenewablePercentage} />;
+  return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -82,17 +82,18 @@ const mapStateToProps = state => ({
 });
 
 const CountryPanel = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   isMobile,
   tableDisplayEmissions,
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [pressedBackKey, setPressedBackKey] = useState(false);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
+  const co2ColorScale = useCo2ColorScale();
 
+  const trackEvent = useTrackEvent();
+  const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
 
@@ -104,39 +105,40 @@ const CountryPanel = ({
   };
 
   // Back button keyboard navigation
-  useEffect(() => {
-    const keyHandler = (e) => {
-      if (e.key === 'Backspace' || e.key === '/') {
-        setPressedBackKey(true);
-      }
-    };
-    document.addEventListener('keyup', keyHandler);
-    return () => {
-      document.removeEventListener('keyup', keyHandler);
-    };
-  });
+  useEffect(
+    () => {
+      const keyHandler = (e) => {
+        if (e.key === 'Backspace' || e.key === '/') {
+          history.push(parentPage);
+        }
+      };
+      document.addEventListener('keyup', keyHandler);
+      return () => {
+        document.removeEventListener('keyup', keyHandler);
+      };
+    },
+    [history],
+  );
 
-  // Redirect to the parent page if the zone is invalid
-  // or if the back navigation key has been pressed.
-  if (!zones[zoneId] || pressedBackKey) {
+  // Redirect to the parent page if the zone is invalid.
+  if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
   }
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
-    thirdPartyServices.track('switchToCountryEmissions');
+    trackEvent('switchToCountryEmissions');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
-    thirdPartyServices.track('switchToCountryProduction');
+    trackEvent('switchToCountryProduction');
   };
 
   return (
@@ -188,10 +190,16 @@ const CountryPanel = ({
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
-                    onMouseMove={(x, y) => setTooltip({ position: { x, y } })}
+                    onClick={isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
+                    onMouseMove={!isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
+                  {tooltip && (
+                    <LowCarbonInfoTooltip
+                      position={tooltip.position}
+                      onClose={() => setTooltip(null)}
+                    />
+                  )}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
@@ -270,16 +278,17 @@ const CountryPanel = ({
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
-                {' ('}
+                {' '}
+                (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
                       'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />
-                {')'}
+                )
               </small>
               {' '}
               {__('country-panel.helpfrom')}
@@ -288,7 +297,7 @@ const CountryPanel = ({
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
-            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
           </div>
         )}
 

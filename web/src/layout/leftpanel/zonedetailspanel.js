@@ -1,37 +1,29 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-has-content */
 // TODO: re-enable rules
-import React, { useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { isEmpty } from 'lodash';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { dispatch } from '../../store';
-import { useCustomDatetime } from '../../helpers/router';
+import { dispatchApplication } from '../../store';
 import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
 import {
   useCurrentZoneHistoryDatetimes,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
-  useCurrentZoneHistory,
 } from '../../hooks/redux';
 import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';
 
-const handleZoneTimeIndexChange = (selectedZoneTimeIndex) => {
-  dispatch({
-    type: 'UPDATE_SLIDER_SELECTED_ZONE_TIME',
-    payload: { selectedZoneTimeIndex },
-  });
+const handleZoneTimeIndexChange = (timeIndex) => {
+  dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
 const mapStateToProps = state => ({
-  isMobile: state.application.isMobile,
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const ZoneDetailsPanel = ({ isMobile, selectedZoneTimeIndex }) => {
+const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
   const datetimes = useCurrentZoneHistoryDatetimes();
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();

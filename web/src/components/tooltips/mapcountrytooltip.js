@@ -1,28 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { __, getFullZoneName } from '../../helpers/translation';
-import { getCo2Scale } from '../../helpers/scales';
-import { flagUri } from '../../helpers/flags';
+import { __ } from '../../helpers/translation';
+import { useCo2ColorScale } from '../../hooks/theme';
 
 import CircularGauge from '../circulargauge';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
 });
 
 const MapCountryTooltip = ({
-  colorBlindModeEnabled,
   electricityMixMode,
   position,
   zoneData,
+  onClose,
 }) => {
-  if (!zoneData) return null;
+  const co2ColorScale = useCo2ColorScale();
 
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  if (!zoneData) return null;
 
   const co2intensity = electricityMixMode === 'consumption'
     ? zoneData.co2intensity
@@ -43,7 +41,7 @@ const MapCountryTooltip = ({
     : '?';
 
   return (
-    <Tooltip id="country-tooltip" position={position}>
+    <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
       </div>
@@ -88,7 +86,7 @@ const MapCountryTooltip = ({
         )
       ) : (
         <div className="no-parser-text">
-          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+          <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
         </div>
       )}
     </Tooltip>

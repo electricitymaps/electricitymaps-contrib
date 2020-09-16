@@ -7,7 +7,7 @@ import { __ } from '../helpers/translation';
 export default () => {
   const location = useLocation();
 
-  const canRenderMap = useSelector(state => state.application.webglsupported);
+  const canRenderMap = useSelector(state => state.application.webGLSupported);
 
   return (
     <div id="tab">

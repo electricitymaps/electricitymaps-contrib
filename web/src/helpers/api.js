@@ -2,7 +2,7 @@ import * as request from 'd3-request';
 import { sha256 } from 'js-sha256';
 import Cookies from 'js-cookie';
 
-import { isLocalhost, isProduction } from './environment';
+import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
 function isRemoteParam() {
@@ -43,22 +43,6 @@ export function protectedJsonRequest(path) {
   });
 }
 
-export function textRequest(path) {
-  const url = getEndpoint() + path;
-
-  return new Promise((resolve, reject) => {
-    request.text(url).get(null, (err, res) => {
-      if (err) {
-        reject(err);
-      } else if (!res) {
-        reject(new Error(`Empty response received for ${url}`));
-      } else {
-        resolve(res);
-      }
-    });
-  });
-}
-
 export function handleRequestError(err) {
   if (err) {
     if (err.target) {
@@ -75,7 +59,7 @@ export function handleRequestError(err) {
       if (!status) return;
 
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
-      if (status >= 500 && status <= 599) return;
+      if ((status >= 500 && status <= 599) || status === 404) return;
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {

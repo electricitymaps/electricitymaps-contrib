@@ -1,8 +1,5 @@
 import { scaleLinear, scaleQuantize } from 'd3-scale';
 
-// TODO: Merge themes and scales
-import { themes } from './themes';
-
 // ** Wind
 export const windColor = scaleLinear()
   .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
@@ -30,26 +27,13 @@ export const solarColor = scaleLinear()
 
 // ** Exchange
 
-export const exchangeQuantizedIntensityScale = scaleQuantize()
+export const quantizedCo2IntensityScale = scaleQuantize()
   .domain([0, 800])
   .range([0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800])
   .unknown('nan');
 
-export const exchangeSpeedCategoryScale = scaleLinear()
+export const quantizedExchangeSpeedScale = scaleLinear()
   .domain([500, 5000])
   .rangeRound([0, 2])
   .unknown(0)
   .clamp(true);
-
-// ** CO₂
-export const getCo2Scale = (colorBlindModeEnabled) => {
-  const theme = colorBlindModeEnabled
-    ? themes.colorblindScale
-    : themes.co2Scale;
-
-  return scaleLinear()
-    .domain(theme.steps)
-    .range(theme.colors)
-    .unknown('gray')
-    .clamp(true);
-};

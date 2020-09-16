@@ -26,7 +26,7 @@ def get_json_data(session):
     Returns a dictionary.
     """
     s = session or requests.Session()
-    req = s.get(GENERATION_LINK)
+    req = s.get(GENERATION_LINK, verify=False)
     raw_json_data = req.json()
 
     generation_data = raw_json_data['data']['datasets']
@@ -51,7 +51,7 @@ def get_datetime(session):
     Returns an arrow object.
     """
     s = session or requests.Session()
-    req = s.get(DATETIME_LINK)
+    req = s.get(DATETIME_LINK, verify=False)
     soup = BeautifulSoup(req.text, 'html.parser')
 
     data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})
