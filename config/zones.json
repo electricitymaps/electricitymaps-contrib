@@ -2879,7 +2879,7 @@
       "hydro": 998.9,
       "nuclear": 0,
       "solar": 3909.6,
-      "wind": 5403.5,
+      "wind": 5403.5
     },
     "contributors": [
       "https://github.com/corradio"
