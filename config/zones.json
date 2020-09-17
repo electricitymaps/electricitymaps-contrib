@@ -2741,18 +2741,8 @@
     ]
   },
   "IT-CSO": {
-    "bounding_box": [
-      [
-        10.951496463496312,
-        39.49396986000008
-      ],
-      [
-        16.29054702002901,
-        43.40156077856554
-      ]
-    ],
     "contributors": [
-      "https://github.com/corradio",
+      "https://github.com/corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2762,7 +2752,17 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": "Europe/Rome"
+    "timezone": "Europe/Rome",
+    "bounding_box": [
+      [
+        10.951496463496312,
+        39.49396986000008
+      ],
+      [
+        16.29054702002901,
+        43.40156077856554
+      ]
+    ]
   },
   "IT-NO": {
     "contributors": [
