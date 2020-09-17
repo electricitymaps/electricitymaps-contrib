@@ -104,11 +104,11 @@ def fetch_historical_production(target_datetime, zone_key):
     return fetch_historical_data(target_datetime, zone_key)[0]
 
 
-def fetch_historical_exchange(target_datetime, zone_key):
-    return fetch_historical_data(target_datetime, zone_key)[1]
+def fetch_historical_exchange(target_datetime):
+    return fetch_historical_data(target_datetime)[1]
 
 
-def fetch_historical_data(target_datetime, zone_key):
+def fetch_historical_data(target_datetime, zone_key='US-CA'):
     # caiso.com provides daily data until the day before today
     # get a clean date at the beginning of yesterday
     target_date = arrow.get(target_datetime).to('US/Pacific').replace(
