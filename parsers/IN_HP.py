@@ -2,12 +2,13 @@
 
 """Parser for Himachal Pradesh (Indian State)."""
 
-import arrow
 import datetime
 import logging
+from enum import Enum
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
-from enum import Enum
 
 
 DATA_URL = 'https://hpsldc.com/intra-state-power-transaction/'
@@ -17,31 +18,33 @@ TZ = 'Asia/Kolkata'
 
 class GenType(Enum):
     """Enum for plant generation types found in the data.
-    Enum values are the keys for the production/consumption
-    dictionaries returned from fetch_production() and fetch_consumption()."""
+    Enum values are the keys for the production dictionary returned
+    from fetch_production()."""
     HYDRO = 'hydro'
     UNKNOWN = 'unknown'
 
 
 # Map of plant names (as given in data source) to their type.
 # Source for types is http://meritindia.in/state-data/himachal-pradesh
-# or the link next to the relevant entry if there is no record in the above.
+# or the link above/next to the relevant entry if there is no record in meritindia.
 PLANT_NAMES_TO_TYPES = {
-    # Plants in GENERATION OF HP(Z) table:
-    'BASPA': GenType.HYDRO,  # Listed as ISGS in type source but state in data source
-    'BHABA': GenType.HYDRO,
-    'GIRI': GenType.HYDRO,
-    'LARJI': GenType.HYDRO,
-    'BASSI': GenType.HYDRO,
-    'MALANA': GenType.HYDRO,  # http://globalenergyobservatory.org/geoid/44638
-    'ANDHRA': GenType.HYDRO,
-    'GHANVI': GenType.HYDRO,  # GANVI in type source
+    ### Plants in GENERATION OF HP(Z) table ###
+    # Listed as ISGS in type source but state in data source
+    'BASPA(3X100MW)': GenType.HYDRO,
+    'BHABA(3X40MW)': GenType.HYDRO,
+    'GIRI(2X30MW)': GenType.HYDRO,
+    'LARJI(3X42MW)': GenType.HYDRO,
+    'BASSI(4X16.5MW)': GenType.HYDRO,
+    # http://globalenergyobservatory.org/geoid/44638
+    'MALANA(2X43MW)': GenType.HYDRO,
+    'ANDHRA(3X5.65MW)': GenType.HYDRO,
+    'GHANVI(2X11.25MW)': GenType.HYDRO,  # GANVI in type source
     # https://www.ejatlas.org/conflict/kashang-hydroelectricity-project
-    'KASHANG': GenType.HYDRO,
-    'MICROP/HMONITORED': GenType.UNKNOWN,  # No type source
-    'IPPSP/HMONITORED': GenType.UNKNOWN,  # No type source
+    'KASHANG(3X65MW)': GenType.HYDRO,
+    'MICROP/HMONITORED(HPSEBL)': GenType.UNKNOWN,  # No type source
+    'IPPsP/HMONITORED': GenType.UNKNOWN,  # No type source
     'MICROP/HUNMONITORED': GenType.UNKNOWN,  # No type source
-    # Plants in (B1)ISGS(HPSLDC WEB PORTAL) table:
+    ### Plants in (B1)ISGS(HPSLDC WEB PORTAL) table ###
     'BSIUL': GenType.HYDRO,  # BAIRASIUL HEP in type source.
     'CHAMERA1': GenType.HYDRO,
     'CHAMERA2': GenType.HYDRO,
@@ -64,14 +67,14 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
             'This parser is not yet able to parse past dates')
     res = r.get(url)
     assert res.status_code == 200, 'Exception when fetching production for ' \
-                                   '{}: error when calling url={}'.format(
-                                       zone_key, url)
+                                   '{}: {} error when calling url={}'.format(
+                                       zone_key, res.status_code, url)
     soup = BeautifulSoup(res.text, 'html.parser')
     return {
         'zoneKey': ZONE_KEY,
         'datetime': arrow.now(TZ).datetime,
         'production': combine_gen(get_state_gen(soup), get_isgs_gen(soup)),
-        'source': url
+        'source': 'hpsldc.com'
     }
 
     # TODO: Below is used for testing, remove once parser complete.
@@ -84,7 +87,7 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
     #         'zoneKey': ZONE_KEY,
     #         'datetime': arrow.now(TZ).datetime,
     #         'production': combine_gen(get_state_gen(soup), get_isgs_gen(soup)),
-    #         'source': url
+    #         'source': 'hpsldc.com'
     #     }
 
 
@@ -97,9 +100,9 @@ def get_state_gen(soup):
     for row in get_table_rows(soup, 'table_5', table_name)[:-1]:
         try:
             cols = row.find_all('td')
-            gen_type = get_gen_type(cols[0].text)
+            gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[1].text)
-        except (AttributeError, IndexError, ValueError):
+        except (AttributeError, KeyError, IndexError, ValueError):
             raise Exception(
                 'Error importing data from row: {}'.format(row))
     return gen
@@ -118,9 +121,9 @@ def get_isgs_gen(soup):
             if not cols[0].has_attr('class'):
                 # Ignore COMPANY column.
                 del cols[0]
-            gen_type = get_gen_type(cols[0].text)
+            gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[2].text)
-        except (AttributeError, IndexError, ValueError):
+        except (AttributeError, KeyError, IndexError, ValueError):
             raise Exception(
                 'Error importing data from row: {}'.format(row))
     return gen
@@ -136,15 +139,6 @@ def get_table_rows(soup, container_class, table_name):
         return rows
     except (AttributeError, ValueError):
         raise Exception('Error reading table {}'.format(table_name))
-
-
-def get_gen_type(desc):
-    """Gets the generation type for the plant described by the given
-    description string. Raises an error if the description is not recognised."""
-    for plant_type in PLANT_NAMES_TO_TYPES.items():
-        if plant_type[0] in desc.upper():
-            return plant_type[1]
-    raise ValueError
 
 
 def combine_gen(gen1, gen2):
