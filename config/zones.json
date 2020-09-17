@@ -593,8 +593,11 @@
   },
   "BO": {
     "capacity": {
-      "hydro": 483.22,
-      "unknown": 1344.55,
+      "biomass": 46.22,
+      "hydro": 734.84,
+      "nuclear": 0,
+      "solar": 115.07,
+      "unknown": 2273.22,
       "wind": 27
     },
     "contributors": [
