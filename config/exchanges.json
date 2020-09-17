@@ -821,6 +821,21 @@
     },
     "rotation": -90
   },
+  "DE->NO-NO2": {
+    "capacity": [
+      -1400,
+      1400
+    ],
+    "lonlat": [
+      7.2,
+      55.90
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -10
+  },
   "DE->PL": {
     "lonlat": [
       14.585163,
