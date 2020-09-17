@@ -2751,17 +2751,8 @@
         43.40156077856554
       ]
     ],
-    "capacity": {
-      "biomass": 440.7,
-      "geothermal": 0,
-      "hydro": 2770.7,
-      "nuclear": 0,
-      "solar": 2960.8,
-      "wind": 2061.1
-    },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
