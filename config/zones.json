@@ -2489,6 +2489,30 @@
     },
     "timezone": "Asia/Kolkata"
   },
+  "IN-HP": {
+    "bounding_box": [
+      [
+        75.07784712064807,
+        29.88217682520036
+      ],
+      [
+        79.49706994002565,
+        33.7328555360541
+      ]
+    ],
+    "capacity": {
+      "hydro": 5475,
+      "unknown": 608
+    },
+    "contributors": [
+      "https://github.com/willbeaufoy"
+    ],
+    "flag_file_name": "in.png",
+    "parsers": {
+      "production": "IN_HP.fetch_production"
+    },
+    "timezone": "Asia/Kolkata"
+  },
   "IN-KA": {
     "bounding_box": [
       [
@@ -2838,7 +2862,7 @@
     "timezone": "Europe/Rome"
   },
   "IT-SIC": {
-   "bounding_box": [
+    "bounding_box": [
       [
         11.422211134000122,
         34.98924388200004
@@ -2999,7 +3023,6 @@
       "https://github.com/tmslaine",
       "https://github.com/lorrieq",
       "https://github.com/kongkille"
-
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3283,17 +3306,17 @@
       ]
     ],
     "capacity": {
-	    "biomass": 6,
+      "biomass": 6,
       "gas": 335,
       "hydro": 64,
-	    "solar": 4,
-	    "wind": 29,
+      "solar": 4,
+      "wind": 29,
       "unknown": 2520
     },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
-	  	 "https://github.com/nessie2013"
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "MD.fetch_production"

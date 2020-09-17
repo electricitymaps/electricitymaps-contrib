@@ -27,6 +27,13 @@ class GenType(Enum):
 # Map of plant names (as given in data source) to their type.
 # Source for types is http://meritindia.in/state-data/himachal-pradesh
 # or the link above/next to the relevant entry if there is no record in meritindia.
+#
+# Total plant capacity as manually calculated from the data source:
+# GENERATION OF HP(Z): 992.45 MW Hydro, 608.26 MW Unknown.
+# (Unknown capacity value not given in data, estimated as 135% of actual generation
+# as this is the average ratio for plants with known capacity).
+# (B1)ISGS(HPSLDC WEB PORTAL): 4483.02 MW Hydro.
+# Total (for zones.json): 5475.47 MW Hydro, 608.26 MW Unknown.
 PLANT_NAMES_TO_TYPES = {
     ### Plants in GENERATION OF HP(Z) table ###
     # Listed as ISGS in type source but state in data source
