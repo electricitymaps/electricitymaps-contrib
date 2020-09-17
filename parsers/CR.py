@@ -52,6 +52,7 @@ POWER_PLANTS = {
     u'Hidrozarcas': 'hydro',
     u'La Esperanza (CoopeL)': 'hydro',
     u'La Joya': 'hydro',
+    u'Las Pailas II': 'geothermal',
     u'Los Negros': 'hydro',
     u'Los Negros II': 'hydro',
     u'Los Santos': 'wind',
