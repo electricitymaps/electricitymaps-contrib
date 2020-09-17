@@ -42,7 +42,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
     }
     """
     if target_datetime:
-        return fetch_historical_production(target_datetime)
+        return fetch_historical_production(target_datetime, zone_key)
 
     target_datetime = arrow.get(target_datetime)
 
@@ -100,15 +100,15 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
     return daily_data
 
 
-def fetch_historical_production(target_datetime):
-    return fetch_historical_data(target_datetime)[0]
+def fetch_historical_production(target_datetime, zone_key):
+    return fetch_historical_data(target_datetime, zone_key)[0]
 
 
-def fetch_historical_exchange(target_datetime):
-    return fetch_historical_data(target_datetime)[1]
+def fetch_historical_exchange(target_datetime, zone_key):
+    return fetch_historical_data(target_datetime, zone_key)[1]
 
 
-def fetch_historical_data(target_datetime):
+def fetch_historical_data(target_datetime, zone_key):
     # caiso.com provides daily data until the day before today
     # get a clean date at the beginning of yesterday
     target_date = arrow.get(target_datetime).to('US/Pacific').replace(
@@ -131,7 +131,7 @@ def fetch_historical_data(target_datetime):
 
     for i in range(0, 24):
         daily_data.append({
-            'zoneKey': 'US-CA',
+            'zoneKey': zone_key,
             'storage': {},
             'source': 'caiso.com',
             'production': {
