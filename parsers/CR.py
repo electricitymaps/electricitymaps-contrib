@@ -50,6 +50,7 @@ POWER_PLANTS = {
     u'Garita': 'hydro',
     u'Guápiles': 'oil',
     u'Hidrozarcas': 'hydro',
+    u'Jorge Manuel Dengo': 'hydro',
     u'La Esperanza (CoopeL)': 'hydro',
     u'La Joya': 'hydro',
     u'Las Pailas II': 'geothermal',
