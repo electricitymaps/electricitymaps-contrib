@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 
 DATA_URL = 'https://hpsldc.com/intra-state-power-transaction/'
-ZONE_KEY = 'IN_HP'
+ZONE_KEY = 'IN-HP'
 TZ = 'Asia/Kolkata'
 
 
@@ -66,6 +66,7 @@ PLANT_NAMES_TO_TYPES = {
 def fetch_production(zone_key=ZONE_KEY, session=None,
                      target_datetime: datetime.datetime = None,
                      logger: logging.Logger = logging.getLogger(__name__)):
+    """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
     r = session or requests.session()
     if target_datetime is None:
         url = DATA_URL
@@ -84,19 +85,6 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
         'source': 'hpsldc.com'
     }
 
-    # TODO: Below is used for testing, remove once parser complete.
-    # with open('/tmp/hpdata.txt', 'w') as text_file:
-    #     text_file.write(res.text)
-
-    # with open('/tmp/hpdata.txt', 'r') as text_file:
-    #     soup = BeautifulSoup(text_file, 'html.parser')
-    #     return {
-    #         'zoneKey': ZONE_KEY,
-    #         'datetime': arrow.now(TZ).datetime,
-    #         'production': combine_gen(get_state_gen(soup), get_isgs_gen(soup)),
-    #         'source': 'hpsldc.com'
-    #     }
-
 
 def get_state_gen(soup):
     """Gets the total generation by type from state powerplants (MW).
@@ -107,6 +95,7 @@ def get_state_gen(soup):
     for row in get_table_rows(soup, 'table_5', table_name)[:-1]:
         try:
             cols = row.find_all('td')
+            # Column 1: plant name, column 2: current generation.
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[1].text)
         except (AttributeError, KeyError, IndexError, ValueError):
@@ -126,8 +115,11 @@ def get_isgs_gen(soup):
         try:
             cols = row.find_all('td')
             if not cols[0].has_attr('class'):
-                # Ignore COMPANY column.
+                # Ignore first column (COMPANY), which only has cells for some
+                # rows (using rowspan).
                 del cols[0]
+            # Once COMPANY column is excluded, we have
+            # column 1: plant name, column 3: current generation.
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[2].text)
         except (AttributeError, KeyError, IndexError, ValueError):
