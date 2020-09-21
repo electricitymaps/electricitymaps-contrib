@@ -108,6 +108,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
       'BLM 5': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
       'BLM 6': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
       'BLM 8': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 9': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp" mentions no fuel type, and given all other units are accounted for this must be the heat recovery boiler for the 3 diesel-fired units mentioned in [2]
       'Cativá 1': 'oil',#[1][2]
       'Cativá 2': 'oil',#[1][2]
       'Cativá 3': 'oil',#[1][2]
@@ -150,12 +151,6 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
       'Tropitérmica 1': 'oil',#[6]:162[7] spelled "Tropitermica" in both
       'Tropitérmica 2': 'oil',#[6]:162[7] spelled "Tropitermica" in both
       'Tropitérmica 3': 'oil',#[6]:162[7] spelled "Tropitermica" in both
-
-      #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.[1][2]
-      #For most units, the fuel type is listed in [7]; however, unit 9 doesn't have a fuel type listed.
-      #Because the plant where some of the units are located is also called "Central 9" (e.g.
-      #units "Central 9 de Enero No 5" and "Central 9 de Enero No 7" are listed in [7]), the text
-      #"BLM 9 Carbón" in [6] is too ambiguous to infer a fuel type
     }
     #Sources:
     #1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
@@ -170,10 +165,13 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
       unit_name_and_generation = thermal_production_unit.find_all('td')
       unit_name = unit_name_and_generation[0].string
       unit_generation = float(unit_name_and_generation[1].string)
-      if(unit_name in map_thermal_generation_unit_name_to_fuel_type and unit_generation > 0):#Second condition is in order to ignore self-consumption
-        unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
-        data['production'][unit_fuel_type] += unit_generation
-        data['production']['unknown'] -= unit_generation
+      if(unit_name in map_thermal_generation_unit_name_to_fuel_type):
+        if(unit_generation > 0):#Ignore self-consumption
+          unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
+          data['production'][unit_fuel_type] += unit_generation
+          data['production']['unknown'] -= unit_generation
+      else:
+        logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
     #Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
     #presumably because they aren't updated at the exact same moment.
