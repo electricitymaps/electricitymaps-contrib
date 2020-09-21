@@ -27,6 +27,7 @@ class GenType(Enum):
 # Map of plant names (as given in data source) to their type.
 # Source for types is http://meritindia.in/state-data/himachal-pradesh
 # or the link above/next to the relevant entry if there is no record in meritindia.
+# Corroborating source: https://hpaldc.org/index.asp?pg=powStn
 #
 # Total plant capacity as manually calculated from the data source:
 # GENERATION OF HP(Z): 992.45 MW Hydro, 608.26 MW Unknown.
@@ -149,6 +150,23 @@ def combine_gen(gen1, gen2):
         GenType.UNKNOWN.value: round(gen1[GenType.UNKNOWN.value] +
                                      gen2[GenType.UNKNOWN.value], 2)
     }
+
+
+def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None,
+                      logger=logging.getLogger(__name__)):
+    # Not currently implemented as this function is not used by the map,
+    # but if required the data is available as 'Demand Met' on https://hpsldc.com/
+    raise NotImplementedError('Fetch production not implemented')
+
+
+def fetch_price(zone_key=ZONE_KEY, session=None, target_datetime=None,
+                logger=logging.getLogger(__name__)):
+    # The only price data available in the source is 'DSM Rate'.
+    # I.e. Demand side management rate.
+    # I believe (though I'm not sure) that this refers to a payment
+    # made by the grid to consumers who reduce their consumption at times
+    # of high demand, therefore it is not appropriate for this function.
+    raise NotImplementedError('No price data available')
 
 
 if __name__ == '__main__':
