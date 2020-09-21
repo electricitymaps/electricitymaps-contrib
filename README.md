@@ -197,7 +197,22 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 
 ### Production capacity data sources
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
-&nbsp;<details><summary>Click to see the full list of sources</summary>
+
+#### International sources
+When determing the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it *also* needs to be listed with the country/region.
+
+- Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
+- Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
+- Coal: [Global Coal Plant Tracker](https://endcoal.org/global-coal-plant-tracker/)
+- Various:
+  - [Climatescope](https://global-climatescope.org/capacity-generation)
+  - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
+
+For many European countries, data is available from [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+
+#### Sources by region
+<details><summary>Click to see the full list of sources</summary>
+
 - Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
