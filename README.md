@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 You can [contribute](#contribute) in the following ways:
 - **[Add a new region](#add-a-new-region) to the map**, including contact information for energy agencies, governments, and transmission system operators.
-- Correct [data sources](#data-sources) and [capacities](#updating-region-capacities).
+- Correct [data sources](#data-sources) and [capacities](#update-region-capacities).
 - [Translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map.
 - Fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues).
 - Submit ideas, feature requests, or bugs as a new [issue](https://github.com/tmrowco/electricitymap-contrib/issues).
@@ -465,7 +465,7 @@ Follow these steps to make your contribution:
 
 #### Set up and start your local environment
 
-Note: to test parsers, go to [testing parsers locally](#testing-parsers-locally)
+Note: to test parsers, go to [test-parsers-locally](#test-parsers-locally)
 
 1. First, you need to compile the frontend. Open a terminal in the root directory and run:
 
