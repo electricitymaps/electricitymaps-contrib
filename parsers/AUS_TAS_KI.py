@@ -1,3 +1,12 @@
+# Initial PR https://github.com/tmrowco/electricitymap-contrib/pull/2456
+# Discussion thread https://github.com/tmrowco/electricitymap-contrib/issues/636
+# This parser is clumsy ; we are parsing an interface that's not meant for that
+# and with the wrong tools.
+# A promotion webpage for King's Island energy production is here : https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island
+# As of 09/2020, it embeds with <iframe> the URI https://data.ajenti.com.au/KIREIP/index.html
+# From that page we find references to SignalR technologies, but as I couldn't get a SignalR client to work, I'm scraping like a beast.
+# About the data, the feed we get seems to be counters with a 2 seconds interval.
+# That means that if we fetch these counters every 15 minutes, we only are reading "instantaneous" metters that could differ from the total quantity of energies at play. To get the very exact data, we would need to have a parser running constanty to collect those 2-sec interval counters.
 import asyncio
 import websockets
 import json
@@ -42,6 +51,14 @@ def parse_payload(logger, payload):
 
     return technologies_parsed, biodiesel_percent
 
+# Both keys battery and flywheel are negative when storing energy, and positive when feeding energy to the grid
+def format_storage_techs(technologies_parsed):
+    storage_techs = technologies_parsed['battery']+technologies_parsed['flywheel']
+    battery_production = storage_techs if storage_techs > 0 else 0
+    battery_storage = storage_techs if storage_techs < 0 else 0
+
+    return battery_production, battery_storage
+
 def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
 
     if target_datetime is not None:
@@ -53,16 +70,12 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
     
     payload = fetch_api()
     technologies_parsed, biodiesel_percent = parse_payload(logger, payload)
-
-    """ 
-    TODO
-        * What do I return for production mode that are not even on the island ? 
-            The main README says "The production values should never be negative. Use None, or omit the key if a specific production mode is not known." but doesn't answer this question
-    """
+    battery_production, battery_storage = format_storage_techs(technologies_parsed)
     return {
       'zoneKey': zone_key,
       'datetime': arrow.now(tz='Australia/Currie').datetime,
       'production': {
+          'battery': battery_storage,
           'biomass': technologies_parsed['diesel']*biodiesel_percent/100,
           'coal': 0,
           'gas': 0,
@@ -75,8 +88,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
           'unknown': 0
       },
       'storage': {
-          'battery': technologies_parsed['battery']*-1,
-          'flywheel': technologies_parsed['flywheel']*-1,
+          'battery': battery_production*-1
       },
       'source': 'https://data.ajenti.com.au/KIREIP/index.html'
     }
