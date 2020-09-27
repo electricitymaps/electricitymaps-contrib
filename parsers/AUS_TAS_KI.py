@@ -9,7 +9,11 @@ technologies_parsed = {}
 def fetch_api():
     async def fetch():
         # TODO this is likely not a viable endpoint / way to fetch this
-        uri = "wss://data.ajenti.com.au/live/signalr/reconnect?transport=webSockets&messageId=d-C8F39B96-km%2C152%7Ckr%2C0%7Cks%2C2&clientProtocol=1.5&connectionToken=Yu0BMoSk5rEBlaiSH%2BaLhoYTA3oiXDBcS%2FvqcVQr7q%2FnKYKbTppUSNS1Mz%2Bx1wwgH4VHAgSv5SalVBzsYrWiG92AM7r5qBJogpCJYS%2BqEWECTRQS%2BUl62HQ5UjFC6zCh&connectionData=%5B%7B%22name%22%3A%22taghub%22%7D%5D&tid=3"
+        # As this URI contains an hardcoded token that eventually expires, 
+        # note that you can get that URI from https://data.ajenti.com.au/KIREIP/index.html
+        # by looking at the console logs. You'll see a "/connect" route that you can insert here, it'll fail, you'll get a /reconnect route that will then works. 
+        # Please don't ask me why
+        uri = "wss://data.ajenti.com.au/live/signalr/reconnect?transport=webSockets&messageId=d-7971CA90-Bmk%2C12C%7CBms%2C0%7CBmt%2C1&clientProtocol=1.5&connectionToken=09ZTjbJpmUNdevf8JNLMlnTL6lOh6Qc8n6dWYtnbP%2FicpI05qDWeZ9fRQFj%2FmbdVVL1vHMRYpGfB9PAORwWXMepVOLGsDvH4gqPNcrMdHpPdDmO3isKxxisvgnWdClUK&connectionData=%5B%7B%22name%22%3A%22taghub%22%7D%5D&tid=6"
         async with websockets.connect(uri) as websocket:
             payload_str = await websocket.recv()
             payload = json.loads(payload_str)
