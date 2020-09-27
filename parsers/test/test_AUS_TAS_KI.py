@@ -8,7 +8,7 @@ from testfixtures import LogCapture
 from pkg_resources import resource_string
 from unittest.mock import patch
 import json
-from parsers import AU_TAS_KI
+from parsers import AUS_TAS_KI
 
 
 class TestAusTasKi(unittest.TestCase):
@@ -19,12 +19,12 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount('https://', self.adapter)
 
     def test_parsing_payload(self):
-        filename = 'parsers/test/mocks/AU_TAS_KI_payload1.json'
+        filename = 'parsers/test/mocks/AUS_TAS_KI_payload1.json'
         with open(filename) as f:
             fake_data = json.load(f)
-        with patch('parsers.AU_TAS_KI.fetch_api') as f:
+        with patch('parsers.AUS_TAS_KI.fetch_api') as f:
             f.return_value = fake_data
-            data = AU_TAS_KI.fetch_production()
+            data = AUS_TAS_KI.fetch_production()
         
         self.assertIsNotNone(data['production'])
         self.assertEqual(data['production']['wind'], 1.024)
@@ -35,7 +35,7 @@ class TestAusTasKi(unittest.TestCase):
 
     # This test will fetch the payload from the webservice
     # def test_parsing_payload_real(self):
-    #     data = AU_TAS_KI.fetch_production()
+    #     data = AUS_TAS_KI.fetch_production()
         
     #     self.assertIsNotNone(data['production'])
     #     self.assertIsNotNone(data['production']['wind'])
