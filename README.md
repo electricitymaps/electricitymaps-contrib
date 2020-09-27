@@ -578,6 +578,7 @@ docker-compose run --rm web ./topogen.sh
    python test_parser.py FR  # defaults to production if no data type is given
    # test a specific datetime (parser needs to be able to fetch past datetimes)
    python test_parser.py DE --target_datetime 2018-01-01T08:00
+   python test_parser.py "CH->FR" exchange # get the exchange data between Switzerland & France
    ```
 
 Many of the tests require API keys of the data or web service providers, and therefore fail with an error message like
