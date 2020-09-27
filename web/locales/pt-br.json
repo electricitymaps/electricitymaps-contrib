@@ -41,7 +41,7 @@
         "helpfrom": "com ajuda de",
         "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
         "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
-        "noParserInfo": "Nós não temps nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
+        "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
         "now": "Agora"
     },
     "left-panel": {
@@ -336,7 +336,7 @@
             "zoneName": "Chipre"
           },
           "CZ": {
-            "zoneName": "República Checa"
+            "zoneName": "Chéquia"
           },
           "DE": {
             "zoneName": "Alemanha"
@@ -351,7 +351,7 @@
             "zoneName": "Argélia"
           },
           "EE": {
-            "zoneName": "Estónia"
+            "zoneName": "Estônia"
           },
           "EG": {
             "zoneName": "Egito"
@@ -423,7 +423,7 @@
             "zoneName": "Assam"
           },
           "IN-BR": {
-            "countryName": "India",
+            "countryName": "Índia",
             "zoneName": "Bihar"
           },
           "IN-CT": {
@@ -479,7 +479,7 @@
             "zoneName": "Manipur"
           },
           "IN-MP": {
-            "countryName": "India",
+            "countryName": "Índia",
             "zoneName": "Madhya Pradesh"
           },
           "IN-MZ": {
@@ -554,7 +554,7 @@
             "zoneName": "Luxemburgo"
           },
           "LV": {
-            "zoneName": "Letónia"
+            "zoneName": "Letônia"
           },
           "LY": {
             "zoneName": "Líbia"
@@ -569,7 +569,7 @@
             "zoneName": "Montenegro"
           },
           "MK": {
-            "zoneName": "Macedónia do Norte"
+            "zoneName": "Macedônia do Norte"
           },
           "MT": {
             "zoneName": "Malta"
