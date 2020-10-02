@@ -20,8 +20,6 @@ Website (required):
 Publicly available email address (optional):
 Twitter (optional):
 Facebook page (optional):
-Publicly available director's email (optional):
-Publicly available director's twitter (optional):
 
 ## Organisation B
 Organisation name (required):
@@ -29,5 +27,3 @@ Website (required):
 Publicly available email address (optional):
 Twitter (optional):
 Facebook page (optional):
-Publicly available director's email (optional):
-Publicly available director's twitter (optional):
