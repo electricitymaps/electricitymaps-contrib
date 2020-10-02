@@ -3515,6 +3515,16 @@
       ]
     ]
   },
+  "NG": {
+    "contact_details": {
+      "organisation1": {
+        "name":"NERC",
+        "email":"info@nerc.gov.ng"
+        "twitter":"https://twitter.com/NERCNG"
+        "facebook":"https://www.facebook.com/NERCNG/"
+      }
+    }
+  },    
   "NI": {
     "bounding_box": [
       [
