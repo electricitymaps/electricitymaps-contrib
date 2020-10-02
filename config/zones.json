@@ -3516,14 +3516,14 @@
     ]
   },
   "NG": {
-    "contact_details": {
-      "organisation1": {
+    "contact_details": [
+      {
         "name":"NERC",
         "email":"info@nerc.gov.ng",
         "twitter":"https://twitter.com/NERCNG",
         "facebook":"https://www.facebook.com/NERCNG/"
       }
-    }
+    ]
   },    
   "NI": {
     "bounding_box": [
