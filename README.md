@@ -27,7 +27,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 
 **Why do you calculate the carbon intensity of *consumption*?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
-Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
+Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
@@ -200,7 +200,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
 
 #### International sources
-When determing the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it *also* needs to be listed with the country/region.
+When determining the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it *also* needs to be listed with the country/region.
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
@@ -548,7 +548,7 @@ The parser can also return an array of objects if multiple time values can be fe
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
-Run all of the parser tests with the following command from the root directory:
+Run all the parser tests with the following command from the root directory:
 ```
 python -m unittest discover parsers/test/
 ```
