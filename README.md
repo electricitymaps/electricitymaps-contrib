@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 You can [contribute](#contribute) in the following ways:
 - **[Add a new region](#add-a-new-region) to the map**, including contact information for energy agencies, governments, and transmission system operators.
-- Correct [data sources](#data-sources) and [capacities](#updating-region-capacities).
+- Correct [data sources](#data-sources) and [capacities](#update-region-capacities).
 - [Translate](https://github.com/tmrowco/electricitymap-contrib/tree/master/web/locales) the map.
 - Fix existing [issues](https://github.com/tmrowco/electricitymap-contrib/issues).
 - Submit ideas, feature requests, or bugs as a new [issue](https://github.com/tmrowco/electricitymap-contrib/issues).
@@ -27,7 +27,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 
 **Why do you calculate the carbon intensity of *consumption*?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
-Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows to assign responsibility to consumers instead of producers.
+Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
 We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
@@ -200,7 +200,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
 
 #### International sources
-When determing the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it *also* needs to be listed with the country/region.
+When determining the installed capacity for a country, these sources might help you get started. Note that if you end up using one of these sources, it *also* needs to be listed with the country/region.
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
@@ -393,7 +393,10 @@ Cross-border transmission capacities between the zones are centralized in the [e
 &nbsp;<details><summary>Click to see the full list of sources</summary>
 - Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Albania ⇄ Greece: [533 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
+- Bulgaria ⇄ Noth Macedonia [950 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
+- Bulgaria ⇄ Turkey [2485 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Denmark (West) ⇄ Norway: ["Skaggerak": 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
 - Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
@@ -409,6 +412,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/NorNed)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
 - Greece ⇄ Italy: ["GRITA": 500 MW](https://en.wikipedia.org/wiki/HVDC_Italy%E2%80%93Greece)
+- Greece ⇄ Turkey: [1900 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
 - Japan-Chūbu ⇄ Japan-Tōkyō: [3x HVDC interconnectors between 60Hz/50Hz areas: 1200 MW](https://www.jepic.or.jp/pub/pdf/epijJepic2019.pdf)
 - Japan-Hokkaidō ⇄ Japan-Tōhoku: ["HVDC Hokkaidō–Honshū": 900 MW](https://ja.wikipedia.org/wiki/%E5%8C%97%E6%B5%B7%E9%81%93%E3%83%BB%E6%9C%AC%E5%B7%9E%E9%96%93%E9%80%A3%E7%B3%BB%E8%A8%AD%E5%82%99)
@@ -468,7 +472,7 @@ Follow these steps to make your contribution:
 
 #### Set up and start your local environment
 
-Note: to test parsers, go to [testing parsers locally](#testing-parsers-locally)
+Note: to test parsers, go to [test-parsers-locally](#test-parsers-locally)
 
 1. First, you need to compile the frontend. Open a terminal in the root directory and run:
 
@@ -548,7 +552,7 @@ The parser can also return an array of objects if multiple time values can be fe
 
 Once you're done, add your parser to the [zones.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/zones.json) and [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/tree/master/config/exchanges.json) configuration files. Finally update the [real-time sources](#real-time-electricity-data-sources).
 
-Run all of the parser tests with the following command from the root directory:
+Run all the parser tests with the following command from the root directory:
 ```
 python -m unittest discover parsers/test/
 ```
@@ -578,6 +582,7 @@ docker-compose run --rm web ./topogen.sh
    python test_parser.py FR  # defaults to production if no data type is given
    # test a specific datetime (parser needs to be able to fetch past datetimes)
    python test_parser.py DE --target_datetime 2018-01-01T08:00
+   python test_parser.py "CH->FR" exchange # get the exchange data between Switzerland & France
    ```
 
 Many of the tests require API keys of the data or web service providers, and therefore fail with an error message like
