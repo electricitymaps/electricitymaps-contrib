@@ -619,20 +619,19 @@ def parse_production(xml_text):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
-        for entry in timeseries.find_all('point'):
-            quantity = float(entry.find_all('quantity')[0].contents[0])
-            position = int(entry.find_all('position')[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            try:
-                i = datetimes.index(datetime)
-                if is_production:
+
+        if len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0:
+            for entry in timeseries.find_all('point'):
+                quantity = float(entry.find_all('quantity')[0].contents[0])
+                position = int(entry.find_all('position')[0].contents[0])
+                datetime = datetime_from_position(datetime_start, position, resolution)
+                try:
+                    i = datetimes.index(datetime)
                     productions[i][psr_type] += quantity
-                else:
-                    productions[i][psr_type] -= quantity
-            except ValueError:  # Not in list
-                datetimes.append(datetime)
-                productions.append(defaultdict(lambda: 0))
-                productions[-1][psr_type] = quantity if is_production else -1 * quantity
+                except ValueError:  # Not in list
+                    datetimes.append(datetime)
+                    productions.append(defaultdict(lambda: 0))
+                    productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
