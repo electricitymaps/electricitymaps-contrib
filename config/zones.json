@@ -771,11 +771,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
-    "timezone": null,
-    "delays": {
-      "production": 24,
-      "price": 8
-    }
+    "timezone": null
   },
   "CA-AB": {
     "contributors": [
@@ -6919,7 +6915,10 @@
         -93.2943099999999,
         36.55797
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "UY": {
     "bounding_box": [
