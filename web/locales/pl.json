@@ -50,10 +50,13 @@
         "search": "Szukaj"
     },
     "country-history": {
-        "carbonintensity24h": "Emisja CO₂ w ostatnich 24 godzinach",
-        "emissionsorigin24h": "Źródła emisji CO₂ w ostatnich 24 godzinach",
-        "electricityorigin24h": "Źródła energii elektrycznej w ostatnich 24 godzinach",
-        "electricityprices24h": "Ceny energii elektrycznej w ostatnich 24 godzinach",
+        "carbonintensity24h": "Emisja CO₂ w ciągu ostatnich 24 godzin",
+        "emissionsorigin24h": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin",
+        "electricityorigin24h": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin",
+        "electricityprices24h": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin",
+        "emissions24h": "Emisja w ciągu ostatnich 24 godzin",
+        "emissionsproduction24h": "Emisja wyprodukowana w ciągu ostatnich 24 godzin",
+        "electricityproduction24h": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin",
         "Getdata": "Sprawdź dane historyczne i API z prognozą"
     },
     "footer": {
