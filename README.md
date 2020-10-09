@@ -11,13 +11,13 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
- * [Building a new parser](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Building-a-new-parser)
- * [Fixing a broken parser](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Fixing-a-broken-parser)
- * [Changes to the frontend](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Changes-to-the-frontend)
- * [Find data sources](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Find-data-sources)
- * [Verify data sources](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Verify-data-sources)
- * [Translating electricitymap.org](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Translating-electricitymap.org)
- * [Updating region capacities](https://github.com/FelixDQ/emap-contrib-wiki-test/wiki/Update-region-capacities)
+ * [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
+ * [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser)
+ * [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
+ * [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
+ * [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
+ * [Translating electricitymap.org](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
+ * [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
 
 
 Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
@@ -27,7 +27,7 @@ We would love your feedback on how to improve the contribution experience, pleas
 ## Frequently asked questions
 
 **Where does the data come from?**
-The data comes from many different sources. You can check them out [here](https://github.com/FelixDQ/emap-contrib-wiki-test/blob/master/DATA_SOURCES.md)
+The data comes from many different sources. You can check them out [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md)
 
 **How do you define real-time data?**
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
