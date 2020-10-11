@@ -30,7 +30,7 @@ We would love your feedback on how to improve the contribution experience, pleas
 The data comes from many different sources. You can check them out [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md)
 
 **How do you define real-time data?**
-Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
+Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem therefore conventional.
 
 **Why do you calculate the carbon intensity of *consumption*?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
