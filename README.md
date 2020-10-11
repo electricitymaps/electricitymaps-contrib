@@ -60,3 +60,23 @@ Yes providing there is a valid GeoJSON geometry (or another format that can be c
 **How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://api.electricitymap.org/)**.
 
+
+## Intervention measures under an energy renovation
+
+An energy renovation can be described in terms of the type of intervention measures undertaken in a building. These can be classified as follows:
+
+1.Building envelope:
+Insulation of external walls, roofs, lofts, floors; replacement of windows, doors; draught proofing; installation of solar shading systems; employment of natural ventilation techniques, passive solar heating or cooling techniques
+
+2.Building technical systems:
+Replacement of inefficient boilers with condensing gas boilers; improvement of mechanical ventilation, air-conditioning, lighting, auxiliary systems; installation of heat recovery system;  improvement of emission/distribution systems of technical systems (e.g. pipework insulation); installation of building controls; installation of micro cogeneration systems;
+
+3.Renewable heat generation systems
+Biomass boilers; thermal solar systems; ground, water, air source heat pumps
+
+4.Renewable electricity generation systems
+Photovoltaic systems, micro wind generation systems, micro-hydro systems
+
+5.Other energy-related measures
+Energy efficient and smart appliances
+
