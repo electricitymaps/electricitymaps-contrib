@@ -583,18 +583,18 @@
         "GB-NIR": {
             "zoneName": "Irlanda del Nord"
         },
-		"GB-ORK": {
-			"countryName": "Gran Bretagna",
+        "GB-ORK": {
+            "countryName": "Gran Bretagna",
             "zoneName": "Isole Orcadi"
-		},
-          "GB-SHI": {
-			"countryName": "Gran Bretagna",
-			"zoneName": "Isole Shetland"
-		},
-          "GB-ZET": {
-			"countryName": "Gran Bretagna",
+        },
+        "GB-SHI": {
+            "countryName": "Gran Bretagna",
             "zoneName": "Isole Shetland"
-		},
+        },
+        "GB-ZET": {
+            "countryName": "Gran Bretagna",
+            "zoneName": "Isole Shetland"
+        },
         "GD": {
             "zoneName": "Grenada"
         },
@@ -708,7 +708,7 @@
             "countryName": "India",
             "zoneName": "Delhi"
         },
-		"IN-DN": {
+        "IN-DN": {
             "countryName": "India",
             "zoneName": "Dadra e Nagar Haveli"
         },
@@ -1012,7 +1012,7 @@
         "MR": {
             "zoneName": "Mauritania"
         },
-		"MS": {
+        "MS": {
             "zoneName": "Montserrat"
         },
         "MT": {
@@ -1091,7 +1091,7 @@
         "NI": {
             "zoneName": "Nicaragua"
         },
-		"NKR": {
+        "NKR": {
             "zoneName": "Nagorno Karabakh"
         },
         "NL": {
@@ -1214,7 +1214,7 @@
             "countryName": "Russia",
             "zoneName": "Russia europea e Monti Urali"
         },
-		"RU-2": {
+        "RU-2": {
             "countryName": "Russia",
             "zoneName": "Siberia"
         },
@@ -1379,31 +1379,31 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "Hawaii"
         },
-		"US-HI-KA": {
+        "US-HI-KA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Kauai"
         },
-		"US-HI-KH": {
+        "US-HI-KH": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Kahoolawe"
         },
-		"US-HI-LA": {
+        "US-HI-LA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Lanai"
         },
-		"US-HI-MA": {
+        "US-HI-MA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Maui"
         },
-		"US-HI-MO": {
+        "US-HI-MO": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Molokai"
         },
-		"US-HI-NI": {
+        "US-HI-NI": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Niihau"
         },
-		"US-HI-OA": {
+        "US-HI-OA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Oahu"
         },
@@ -1567,6 +1567,10 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "Electric Energy, Inc."
         },
+        "US-MIDW-GLHB": {
+            "countryName": "Stati Uniti d'America",
+            "zoneName": "GridLiance"
+        },
         "US-MIDW-LGEE": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
@@ -1575,42 +1579,42 @@
             "countryName": "Stati Uniti d'America",
             "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
         },
-          "US-NE-ISNE": {
+        "US-NE-ISNE": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Iso New England Inc."
-          },
-          "US-NW-AVA": {
+        },
+        "US-NW-AVA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Avista Corporation"
-          },
-          "US-NW-AVRN": {
+        },
+        "US-NW-AVRN": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Avangrid Renewables Cooperative"
-          },
-          "US-NW-BPAT": {
+        },
+        "US-NW-BPAT": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Bonneville Power Administration"
-          },
-          "US-NW-CHPD": {
+        },
+        "US-NW-CHPD": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "PUD No. 1 Of Chelan County"
-          },
-          "US-NW-DOPD": {
+        },
+        "US-NW-DOPD": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "PUD No. 1 Of Douglas County"
-          },
-          "US-NW-GCPD": {
+        },
+        "US-NW-GCPD": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "PUD No. 2 Of Grant County, Washington"
-          },
-          "US-NW-GRID": {
+        },
+        "US-NW-GRID": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Gridforce Energy Management, Llc"
-          },
-          "US-NW-GWA": {
+        },
+        "US-NW-GWA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Naturener Power Watch, Llc (Gwa)"
-          },
+        },
         "US-NW-IPCO": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Idaho Power Company"
