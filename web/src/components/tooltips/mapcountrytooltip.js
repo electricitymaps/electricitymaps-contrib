@@ -12,67 +12,66 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
 });
 
-const TooltipContent = ({isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage}) => {
+const TooltipContent = ({
+  isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage,
+}) => {
   const co2ColorScale = useCo2ColorScale();
-  if(!hasParser){
+  if (!hasParser) {
     return (
       <div className="no-parser-text">
         <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
       </div>
-    )
-  }else{
-    if(!co2intensity) {
-      if(isDataDelayed){
-        return (
-          <div className="temporary-outage-text">
-            {__('tooltips.dataIsDelayed')}
-          </div>
-        )
-      } else {
-        return (
-          <div className="temporary-outage-text">
-            {__('tooltips.temporaryDataOutage')}
-          </div>
-        )
-      }
-    }else{
-      return (
-        <div className="zone-details">
-          <div className="country-table-header-inner">
-            <div className="country-col country-emission-intensity-wrap">
-              <div
-                id="country-emission-rect"
-                className="country-col-box emission-rect emission-rect-overview"
-                style={{ backgroundColor: co2ColorScale(co2intensity) }}
-              >
-                <div>
-                  <span className="country-emission-intensity">
-                    {Math.round(co2intensity) || '?'}
-                  </span>
-                  g
-                </div>
-              </div>
-              <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
-            </div>
-            <div className="country-col country-lowcarbon-wrap">
-              <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
-                <CircularGauge percentage={fossilFuelPercentage} />
-              </div>
-              <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
-              <div className="country-col-subtext" />
-            </div>
-            <div className="country-col country-renewable-wrap">
-              <div id="tooltip-country-renewable-gauge" className="country-gauge-wrap">
-                <CircularGauge percentage={renewablePercentage} />
-              </div>
-              <div className="country-col-headline">{__('country-panel.renewable')}</div>
-            </div>
-          </div>
-        </div>
-      )
-    }
+    );
   }
-}
+  if (!co2intensity) {
+    if (isDataDelayed) {
+      return (
+        <div className="temporary-outage-text">
+          {__('tooltips.dataIsDelayed')}
+        </div>
+      );
+    }
+    return (
+      <div className="temporary-outage-text">
+        {__('tooltips.temporaryDataOutage')}
+      </div>
+    );
+  }
+  return (
+    <div className="zone-details">
+      <div className="country-table-header-inner">
+        <div className="country-col country-emission-intensity-wrap">
+          <div
+            id="country-emission-rect"
+            className="country-col-box emission-rect emission-rect-overview"
+            style={{ backgroundColor: co2ColorScale(co2intensity) }}
+          >
+            <div>
+              <span className="country-emission-intensity">
+                {Math.round(co2intensity) || '?'}
+              </span>
+              g
+            </div>
+          </div>
+          <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
+        </div>
+        <div className="country-col country-lowcarbon-wrap">
+          <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
+            <CircularGauge percentage={fossilFuelPercentage} />
+          </div>
+          <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
+          <div className="country-col-subtext" />
+        </div>
+        <div className="country-col country-renewable-wrap">
+          <div id="tooltip-country-renewable-gauge" className="country-gauge-wrap">
+            <CircularGauge percentage={renewablePercentage} />
+          </div>
+          <div className="country-col-headline">{__('country-panel.renewable')}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const MapCountryTooltip = ({
   electricityMixMode,
@@ -80,7 +79,6 @@ const MapCountryTooltip = ({
   zoneData,
   onClose,
 }) => {
-
   if (!zoneData) return null;
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
