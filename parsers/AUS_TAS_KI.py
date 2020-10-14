@@ -10,8 +10,8 @@ import websockets
 import json
 import logging
 import arrow
-from requests import Session
 from signalr import Connection
+from requests import Session
 
 class SignalR:
     def __init__(self, url):
@@ -30,6 +30,7 @@ class SignalR:
             chat.client.on(method, self.update_res)
             connection.start()
             connection.wait(3)
+            connection.close()
             return self.res
         
 def parse_payload(logger, payload):
@@ -58,7 +59,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
     if target_datetime is not None:
         raise NotImplementedError('The datasource currently implemented is only real time')
       
-    payload = SignalR("http://data.ajenti.com.au/live/signalr").get_value("TagHub", "Dashboard")
+    payload = SignalR("https://data.ajenti.com.au/live/signalr").get_value("TagHub", "Dashboard")
     technologies_parsed, biodiesel_percent = parse_payload(logger, payload)
     battery_production, battery_storage = format_storage_techs(technologies_parsed)
     return {

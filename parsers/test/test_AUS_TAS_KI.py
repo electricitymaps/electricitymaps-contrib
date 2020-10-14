@@ -22,7 +22,7 @@ class TestAusTasKi(unittest.TestCase):
         filename = 'parsers/test/mocks/AUS_TAS_KI_payload1.json'
         with open(filename) as f:
             fake_data = json.load(f)
-        with patch('parsers.AUS_TAS_KI.fetch_api') as f:
+        with patch('parsers.AUS_TAS_KI.SignalR.get_value') as f:
             f.return_value = fake_data
             data = AUS_TAS_KI.fetch_production()
         
