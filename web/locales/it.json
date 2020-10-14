@@ -338,7 +338,7 @@
             "zoneName": "Isola Bouvet"
         },
         "BW": {
-            "zoneName": "Beciuania"
+            "zoneName": "Botswana"
         },
         "BY": {
             "zoneName": "Bielorussia"
@@ -832,7 +832,7 @@
             "zoneName": "Centronord"
         },
         "IT-CSO": {
-            "countryName": "Italy",
+            "countryName": "Italia",
             "zoneName": "Centrosud"
         },
         "IT-NO": {
@@ -901,7 +901,7 @@
             "zoneName": "Tōkyō"
         },
         "KE": {
-            "zoneName": "Chenia"
+            "zoneName": "Kenya"
         },
         "KG": {
             "zoneName": "Chirghisia"
@@ -1238,7 +1238,7 @@
             "zoneName": "Isole Salomone"
         },
         "SC": {
-            "zoneName": "Seicelle"
+            "zoneName": "Seychelles"
         },
         "SD": {
             "zoneName": "Sudan"
@@ -1293,7 +1293,7 @@
             "zoneName": "Siria"
         },
         "SZ": {
-            "zoneName": "eSwatini"
+            "zoneName": "Regno di eSwatini"
         },
         "TC": {
             "zoneName": "Turks e Caicos"
@@ -1338,7 +1338,7 @@
             "zoneName": "Tuvalu"
         },
         "TW": {
-            "zoneName": "Repubblica di Cina"
+            "zoneName": "Taiwan"
         },
         "TZ": {
             "zoneName": "Tanzania"
@@ -1735,7 +1735,7 @@
             "zoneName": "Uruguay"
         },
         "UZ": {
-            "zoneName": "Usbechistàn"
+            "zoneName": "Uzbekistan"
         },
         "VA": {
             "zoneName": "Città del Vaticano"
