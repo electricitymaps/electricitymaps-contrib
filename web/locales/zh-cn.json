@@ -18,7 +18,7 @@
         "electricityconsumption": "用电量",
         "noDataAtTimestamp": "所暂无可用数据",
         "noLiveData": "没有实时数据",
-        "noParserInfo": "我们目前还该地区的信息。<br/> 想要帮忙改善？可以通过<a href=\"%s\" target=\"_blank\">添加该地区数据。",
+        "noParserInfo": "我们目前还没有该地区的信息。<br/> 想要帮忙改善？可以通过<a href=\"%s\" target=\"_blank\">添加该地区的数据</a>。",
         "now": "当前"
     },
     "rankings-panel": {
