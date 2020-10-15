@@ -60,3 +60,4 @@ Yes providing there is a valid GeoJSON geometry (or another format that can be c
 **How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://api.electricitymap.org/)**.
 
+## how to get acess to new cases data?
