@@ -274,7 +274,7 @@ const CountryPanel = ({
             <div>
               {__('country-panel.source')}
               {': '}
-              <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank">
+              <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
