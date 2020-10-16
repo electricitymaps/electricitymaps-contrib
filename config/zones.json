@@ -6944,5 +6944,27 @@
       "production": "UY.fetch_production"
     },
     "timezone": "America/Montevideo"
+  },
+  "XK": {
+    "bounding_box": [
+      [
+        20.013053,
+        41.848669
+      ],
+      [
+        21.791473,
+        43.269883
+      ]
+    ],
+    "capacity": {
+      "coal": 1024,
+      "hydro": 135.277,
+      "wind": 33.75,
+      "solar": 10.002
+    },
+    "contributors": [
+      "https://github.com/veqtrus"
+    ],
+    "timezone": "Europe/Belgrade"
   }
 }

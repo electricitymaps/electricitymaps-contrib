@@ -231,6 +231,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
 - India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
+- Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
   - Solar & wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
