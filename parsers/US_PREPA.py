@@ -30,7 +30,7 @@ def extract_data(html):
   sourceData = dataSource['data'] # The rest of the dataSource object contains unnecessary stuff like chart theme, label, axis names etc.
   return sourceData
 
-def convert_timestamp(timestamp_string, logger: logging.Logger = logging.getLogger(__name__)):
+def convert_timestamp(zone_key, timestamp_string, logger: logging.Logger = logging.getLogger(__name__)):
     """
     Converts timestamp fetched from website into timezone-aware datetime object
     Arguments:
@@ -39,7 +39,7 @@ def convert_timestamp(timestamp_string, logger: logging.Logger = logging.getLogg
     """
     timestamp_string = re.sub(r"\s+", " ", timestamp_string)#Replace double spaces with one
 
-    logger.debug(f"PARSED TIMESTAMP {arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name)}", extra={"key": "US-PREPA"})
+    logger.debug(f"PARSED TIMESTAMP {arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name)}", extra={"key": zone_key})
     return arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss A', tzinfo=timezone_name).datetime
 
 def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
@@ -131,14 +131,14 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
 
   sourceData = extract_data(res.text)
 
-  logger.debug(f"Raw generation breakdown: {sourceData}", extra={"key": "US-PREPA"})
+  logger.debug(f"Raw generation breakdown: {sourceData}", extra={"key": zone_key})
 
   for item in sourceData:#Item has a label with fuel type + generation in MW, and a value with a percentage
 
     if(item['label'] == "  MW"):#There's one empty item for some reason. Skip it.
       continue
 
-    logger.debug(item['label'], extra={"key": "US-PREPA"})
+    logger.debug(item['label'], extra={"key": zone_key})
 
     parsedLabel = re.search(r"^(.+?)\s+(\d+)\s+MW$", item['label'])
 
@@ -154,9 +154,9 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
     elif(category == "RENOVABLES"):
       renewable_output += outputInMW #Temporarily store aggregate renewable output. We'll subtract solar, wind and biomass (landfill gas) from it and assume the remainder, if any,  is hydro
     else:
-      logger.warn(f"Unknown energy type \"{category}\" is present for Puerto Rico", extra={"key": "US-PREPA"})
+      logger.warn(f"Unknown energy type \"{category}\" is present for Puerto Rico", extra={"key": zone_key})
 
-    logger.info(f"Category \"{category}\" produces {outputInMW}MW", extra={"key": "US-PREPA"})
+    logger.info(f"Category \"{category}\" produces {outputInMW}MW", extra={"key": zone_key})
 
   #Step 2: fetch renewable production breakdown
   #Data from this source isn't rounded. Assume renewable production not accounted for is hydro
@@ -167,11 +167,11 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
                                    zone_key, RENEWABLES_BREAKDOWN_URL)
 
   sourceData = extract_data(res.text)
-  logger.debug(f"Raw renewable generation breakdown: {sourceData}", extra={"key": "US-PREPA"})
+  logger.debug(f"Raw renewable generation breakdown: {sourceData}", extra={"key": zone_key})
 
   original_renewable_output = renewable_output#If nothing gets subtracted renewable_output, there probably was no data on the renewables breakdown page
 
-  logger.debug(f"Total (unspecified) renewable output from total generation breakdown: {original_renewable_output}MW", extra={"key": "US-PREPA"})
+  logger.debug(f"Total (unspecified) renewable output from total generation breakdown: {original_renewable_output}MW", extra={"key": zone_key})
 
 
   for item in sourceData:#Somewhat different from above, the item's label has the generation type and the item's value has generation in MW
@@ -185,28 +185,28 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
     elif(item['label'] == "Landfill Gas"):
       data['production']['biomass'] += float(item['value'])
     else:
-      logger.warn(f"Unknown renewable type \"{item['label']}\" is present for Puerto Rico", extra={"key": "US-PREPA"})
+      logger.warn(f"Unknown renewable type \"{item['label']}\" is present for Puerto Rico", extra={"key": zone_key})
 
     renewable_output -= float(item['value'])#Subtract production accounted for from the renewable output total
 
-    logger.info(f"Renewable \"{item['label']}\" produces {item['value']}MW", extra={"key": "US-PREPA"})
-    logger.debug(f"Renewable output yet to be accounted for: {renewable_output}MW", extra={"key": "US-PREPA"})
+    logger.info(f"Renewable \"{item['label']}\" produces {item['value']}MW", extra={"key": zone_key})
+    logger.debug(f"Renewable output yet to be accounted for: {renewable_output}MW", extra={"key": zone_key})
 
   logger.debug("Rounding remaining renewable output to 14 decimal places to get rid of floating point errors");
   renewable_output=round(renewable_output,14)
 
-  logger.info(f"Remaining renewable output not accounted for: {renewable_output}MW", extra={"key": "US-PREPA"})
+  logger.info(f"Remaining renewable output not accounted for: {renewable_output}MW", extra={"key": zone_key})
 
   #Assume renewable generation not accounted for is hydro - if we could fetch the other renewable generation data
   if(renewable_output >= 0.0):
     if(original_renewable_output == renewable_output):#Nothing got subtracted for Solar, Wind or Landfill gas - so the page probably didn't contain any data. Renewable type=unknown
-      logger.warning(f"Renewable generation breakdown page was empty, reporting unspecified renewable output ({renewable_output}MW) as 'unknown'", extra={"key": "US-PREPA"})
+      logger.warning(f"Renewable generation breakdown page was empty, reporting unspecified renewable output ({renewable_output}MW) as 'unknown'", extra={"key": zone_key})
       data['production']['unknown'] += renewable_output
     else:#Otherwise, any remaining renewable output is probably hydro
-      logger.info(f"Assuming remaining renewable output of {renewable_output}MW is hydro", extra={"key": "US-PREPA"})
+      logger.info(f"Assuming remaining renewable output of {renewable_output}MW is hydro", extra={"key": zone_key})
       data['production']['hydro'] += renewable_output
   else:
-    logger.warn(f"Renewable generation breakdown page total is greater than total renewable output, a difference of {renewable_output}MW", extra={"key": "US-PREPA"})
+    logger.warn(f"Renewable generation breakdown page total is greater than total renewable output, a difference of {renewable_output}MW", extra={"key": zone_key})
 
 
   #Step 3: fetch the timestamp, which is at the bottom of a different iframe
@@ -221,9 +221,9 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
 
   raw_timestamp = re.search(r"Ultima Actualización:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)", res.text).group(1)#Extract timestamp
 
-  logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": "US-PREPA"})
+  logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
 
-  data['datetime'] = convert_timestamp(raw_timestamp)
+  data['datetime'] = convert_timestamp(zone_key, raw_timestamp)
 
   return data
 
