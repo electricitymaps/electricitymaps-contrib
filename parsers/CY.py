@@ -12,64 +12,102 @@ import requests
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
+EXPECTED_COLUMNS = ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
+    'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
+    'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
 
-def append_datum(data, time_str, prods_str):
-    time_str = time_str[0] + ' ' + time_str[1] + ':' + time_str[2]
-    time_value = arrow.get(time_str).replace(tzinfo='Asia/Nicosia').datetime
+COLUMNS_REGEX = re.compile(r'data\.addColumn\("number", "([^"]*)"\);')
+TIMES_REGEX = re.compile(
+    r'var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";')
+PRODUCTIONS_REGEX = re.compile(
+    r'\[dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\]')
 
-    prods_value = {
-        'oil': float(prods_str[3]),
-        'solar': float(prods_str[1]),
-        'wind': float(prods_str[0]),
-        'biomass': 0.0
-    }
+class CyprusParser:
+    session = None
+    logger: logging.Logger = None
 
-    # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
-    # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
-    # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
-    # which constitutes biomass
-    nocturnal_biomass_generation = data[0]['production']['biomass'] if len(data) != 0 else prods_value['solar']
-    prods_value['solar'] -= nocturnal_biomass_generation
-    prods_value['biomass'] += nocturnal_biomass_generation
-    if prods_value['solar'] < 0.0:
-        # if there is (next to) no sunlight and biomass is lower than at midnight
-        prods_value['solar'] = 0.0
-
-    data.append({
-        'zoneKey': 'CY',
-        'production': prods_value,
-        'storage': {},
-        'source': 'tsoc.org.cy',
-        'datetime': time_value
-    })
+    def __init__(self, session, logger: logging.Logger):
+        self.session = session
+        self.logger = logger
 
 
-def parse_html(html):
-    html = html.replace('\n', ' ').replace('\r', ' ')
+    def append_datum(self, data: list, time_str: str, prods_list: list) -> None:
+        time_value = arrow.get(time_str).replace(tzinfo='Asia/Nicosia').datetime
 
-    columns = [m.group(1) for m in re.finditer(
-        '''data\.addColumn\("number", "([^"]*)"\);''', html)]
-    assert columns == ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
-        'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
-        'Συνολική Ζήτηση', 'Συμβατική Παραγωγή'], 'Source format changed'
+        prods_value = {
+            'oil': prods_list[3],
+            'solar': prods_list[1],
+            'wind': prods_list[0],
+            'biomass': 0.0
+        }
 
-    times = (m.group(1, 2, 3) for m in re.finditer(
-        '''var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";''', html))
-    prods = (m.group(1, 2, 3, 4) for m in re.finditer(
-        '''\[\s*dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\s*\]''', html))
+        # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
+        # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
+        # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
+        # which constitutes biomass
+        if len(data) == 0:
+            prods_value['biomass'] = prods_value['solar']
+            prods_value['solar'] = 0.0
+        else:
+            nocturnal_biomass_generation = data[0]['production']['biomass']
+            prods_value['solar'] -= nocturnal_biomass_generation
+            prods_value['biomass'] += nocturnal_biomass_generation
+        if prods_value['solar'] < 0.0:
+            # if there is (next to) no sunlight and biomass is lower than at midnight
+            prods_value['solar'] = 0.0
 
-    data = []
-    for t, p in zip(times, prods):
-        if any(e == 'null' for e in p):
-            break
-        append_datum(data, t, p)
+        data.append({
+            'zoneKey': 'CY',
+            'production': prods_value,
+            'storage': {},
+            'source': 'tsoc.org.cy',
+            'datetime': time_value
+        })
 
-    return data
+
+    def parse_html(self, html: str) -> list:
+        global EXPECTED_COLUMNS, COLUMNS_REGEX, TIMES_REGEX, PRODUCTIONS_REGEX
+
+        html = html.replace('\n', ' ').replace('\r', ' ')
+
+        columns = [m.group(1) for m in COLUMNS_REGEX.finditer(html)]
+        assert columns == EXPECTED_COLUMNS, 'Source format changed'
+
+        data = []
+        for time_m, prods_m in zip(TIMES_REGEX.finditer(html), PRODUCTIONS_REGEX.finditer(html)):
+            prods_list = prods_m.group(1, 2, 3, 4)
+            if 'null' in prods_list:
+                break
+            prods_list = [float(p) for p in prods_list]
+            time_str = time_m.group(1) + ' ' + time_m.group(2) + ':' + time_m.group(3)
+            self.append_datum(data, time_str, prods_list)
+
+        return data
+
+
+    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+        if target_datetime is None:
+            url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
+        else:
+            # convert target datetime to local datetime
+            url_date = arrow.get(target_datetime).to('Asia/Nicosia')
+            url = 'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days'.format(
+                url_date.format('DD-MM-YYYY'))
+
+        res = self.session.get(url)
+        assert res.status_code == 200, 'CY parser: GET {} returned {}'.format(url, res.status_code)
+
+        data = self.parse_html(res.text)
+
+        if len(data) == 0:
+            self.logger.warning('No data returned')
+
+        return data
 
 
 def fetch_production(zone_key='CY', session=None,
-                     target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+        target_datetime: datetime.datetime = None,
+        logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -120,26 +158,8 @@ def fetch_production(zone_key='CY', session=None,
     """
     assert zone_key == 'CY'
 
-    r = session or requests.session()
-    if target_datetime is None:
-        url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
-    else:
-        # convert target datetime to local datetime
-        url_date = arrow.get(target_datetime).to('Asia/Nicosia')
-        url = 'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days'.format(
-            url_date.format('DD-MM-YYYY'))
-
-    res = r.get(url)
-    assert res.status_code == 200, 'Exception when fetching production for ' \
-                                   '{}: error when calling url={}'.format(
-                                       zone_key, url)
-
-    data = parse_html(res.text)
-
-    if len(data) == 0:
-        raise Warning('No data returned')
-
-    return data
+    parser = CyprusParser(session or requests.session(), logger)
+    return parser.fetch_production(target_datetime)
 
 
 if __name__ == '__main__':
