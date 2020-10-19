@@ -5064,7 +5064,8 @@
   "US-PREPA": {
     "contributors": [
       "https://github.com/q--",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/veqtrus"
     ],
     "flag_file_name": "us.png",
     "parsers": {
