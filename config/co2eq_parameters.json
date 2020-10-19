@@ -147,6 +147,11 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 558.083871451602
+        },
+        "unknown": {
+          "_url": "https://www.iea.org/data-and-statistics?country=BOLIVIA&fuel=Energy%20supply&indicator=ElecGenByFuel",
+          "source": "IEA 2019, assumes 1.4% oil, 94.5% gas, 4.0% biomass",
+          "value": 481.2
         }
       },
       "BR-CS": {
