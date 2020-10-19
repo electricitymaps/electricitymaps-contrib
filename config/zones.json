@@ -6965,6 +6965,9 @@
     "contributors": [
       "https://github.com/veqtrus"
     ],
+    "parsers": {
+      "production": "XK.fetch_production"
+    },
     "timezone": "Europe/Belgrade"
   }
 }
