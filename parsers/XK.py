@@ -98,6 +98,12 @@ def fetch_production(zone_key='XK', session=None,
 
     data = []
     for time_str, prod in productions.items():
+        timestamp = arrow.get(date_str + time_str).replace(tzinfo='Europe/Belgrade')
+        timestamp = timestamp.shift(hours=-1) # shift to start of period
+        if time_str == '00:00':
+            # Based on the apparent discontinuity in production and the order in the spreadsheet
+            # it seems that the last data-point belongs to the next day
+            timestamp = timestamp.shift(days=1)
         data.append({
             'zoneKey': zone_key,
             'production': {
@@ -105,7 +111,7 @@ def fetch_production(zone_key='XK', session=None,
             },
             'storage': {},
             'source': 'kostt.com',
-            'datetime': arrow.get(date_str + time_str).replace(tzinfo='Europe/Belgrade').datetime
+            'datetime': timestamp.datetime
         })
 
     return data
