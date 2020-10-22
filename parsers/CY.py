@@ -100,7 +100,7 @@ class CyprusParser:
         data = self.parse_html(res.text)
 
         if len(data) == 0:
-            self.logger.warning('No data returned')
+            self.logger.warning(f'No production data returned for Cyprus on {url_date}', extra={'key': 'CY'})
 
         return data
 
