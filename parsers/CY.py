@@ -12,17 +12,16 @@ import requests
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
-EXPECTED_COLUMNS = ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
-    'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
-    'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
-
-COLUMNS_REGEX = re.compile(r'data\.addColumn\("number", "([^"]*)"\);')
-TIMES_REGEX = re.compile(
-    r'var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";')
-PRODUCTIONS_REGEX = re.compile(
-    r'\[dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\]')
-
 class CyprusParser:
+    EXPECTED_COLUMNS = ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
+        'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
+        'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
+    COLUMNS_REGEX = re.compile(r'data\.addColumn\("number", "([^"]*)"\);')
+    TIMES_REGEX = re.compile(
+        r'var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";')
+    PRODUCTIONS_REGEX = re.compile(
+        r'\[dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\]')
+
     session = None
     logger: logging.Logger = None
 
@@ -66,15 +65,13 @@ class CyprusParser:
 
 
     def parse_html(self, html: str) -> list:
-        global EXPECTED_COLUMNS, COLUMNS_REGEX, TIMES_REGEX, PRODUCTIONS_REGEX
-
         html = html.replace('\n', ' ').replace('\r', ' ')
 
-        columns = [m.group(1) for m in COLUMNS_REGEX.finditer(html)]
-        assert columns == EXPECTED_COLUMNS, 'Source format changed'
+        columns = [m.group(1) for m in self.COLUMNS_REGEX.finditer(html)]
+        assert columns == self.EXPECTED_COLUMNS, 'Source format changed'
 
         data = []
-        for time_m, prods_m in zip(TIMES_REGEX.finditer(html), PRODUCTIONS_REGEX.finditer(html)):
+        for time_m, prods_m in zip(self.TIMES_REGEX.finditer(html), self.PRODUCTIONS_REGEX.finditer(html)):
             prods_list = prods_m.group(1, 2, 3, 4)
             if 'null' in prods_list:
                 break
@@ -90,9 +87,8 @@ class CyprusParser:
             url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
         else:
             # convert target datetime to local datetime
-            url_date = arrow.get(target_datetime).to('Asia/Nicosia')
-            url = 'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={}&enddt=%2B1days'.format(
-                url_date.format('DD-MM-YYYY'))
+            url_date = arrow.get(target_datetime).to('Asia/Nicosia').format('DD-MM-YYYY')
+            url = f'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days'
 
         res = self.session.get(url)
         assert res.status_code == 200, 'CY parser: GET {} returned {}'.format(url, res.status_code)
@@ -100,7 +96,7 @@ class CyprusParser:
         data = self.parse_html(res.text)
 
         if len(data) == 0:
-            self.logger.warning(f'No production data returned for Cyprus on {url_date}', extra={'key': 'CY'})
+            self.logger.warning('No production data returned for Cyprus', extra={'key': 'CY'})
 
         return data
 
