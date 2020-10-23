@@ -26,7 +26,6 @@ import CountryHistoryPricesGraph from '../../components/countryhistorypricesgrap
 import CountryTable from '../../components/countrytable';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 
-
 import { dispatchApplication } from '../../store';
 
 // Modules
@@ -38,10 +37,6 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
-
-const action_hasdata = resolvePath('images/contrib-actions/action_hasdata.png');
-const action_contact = resolvePath('images/contrib-actions/action_contact.png');
-const action_hasnothing = resolvePath('images/contrib-actions/action_hasnothing.png');
 
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
@@ -93,8 +88,6 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [dataState, setDataState] = useState(null);
-  const [githubIssues, setGithubIssues] = useState(null);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
   const co2ColorScale = useCo2ColorScale();
@@ -127,37 +120,6 @@ const CountryPanel = ({
     [history],
   );
 
-  useEffect(() => {
-    let requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
-    
-    fetch(`https://api.github.com/repos/tmrowco/electricitymap-contrib/issues?labels=zone%3A${zoneId}`, requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        if (result.length < 1) {
-          console.log('Yo')
-          setGithubIssues([]);          
-          setDataState(null);
-        } else {
-
-          console.log(result);
-          setDataState(result[0].labels[0].name);
-          const issues = [{title: result[0].title, url: result[0].html_url}]
-          setGithubIssues(issues)
-          console.log(issues);
-        }
-
-        
-      }
-        
-        
-        )
-      .catch(error => console.log('error', error));
-  }, [zoneId])
-
-
   // Redirect to the parent page if the zone is invalid.
   if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
@@ -169,17 +131,6 @@ const CountryPanel = ({
     ? data.co2intensity
     : data.co2intensityProduction;
 
-  const renderNoParserInfo = () => {
-    switch (dataState) {
-      case "parser buildable!":
-        return <HasData />;
-      case "contact":
-        return <HasContacts />;
-      default:
-        return <HasNothing />;
-    }
-  }
-
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
     trackEvent('switchToCountryEmissions');
@@ -189,29 +140,6 @@ const CountryPanel = ({
     dispatchApplication('tableDisplayEmissions', false);
     trackEvent('switchToCountryProduction');
   };
-
-  console.log(zoneId);
-
-  const GithubIssues = () => {
-    if (!githubIssues || githubIssues.length < 1) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-      <h2>Github issues</h2>
-      <ul>  
-        {(githubIssues || []).map((issue) => {
-          return <li>
-            <a key={issue.title} target="_blank" href={issue.url}>{issue.title}</a>
-          </li>
-        })}
-      </ul>
-      </React.Fragment>
-    )
-  }
-
-  
 
   return (
     <div className="country-panel">
@@ -367,18 +295,11 @@ const CountryPanel = ({
               <ContributorList />
             </div>
           </React.Fragment>
-        ) : 
-        (
+        ) : (
           <div className="zone-details-no-parser-message">
-    
-          {renderNoParserInfo()}
-            {/* <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} /> */}
-          
-          {GithubIssues()}
-          {/* {(githubIssues || []).map((issue) => <a href={issue.url}>{issue.title}</a>)} */}
+            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
           </div>
-        )
-        }
+        )}
 
         <div className="social-buttons large-screen-hidden">
           <div>
@@ -408,84 +329,5 @@ const CountryPanel = ({
     </div>
   );
 };
-
-
-const HasNothing = () => (  
-  <div>
-    <img className="contribute" src={action_hasnothing} alt={'All pls'} />
-    <h2>No data is currently available for this region</h2>
-    <p>electricityMap is powered by our open-source community</p>
-    <p>Currently no data source has been identified that could allow us to put this region on the map.</p>
-    <h2>What can you do?</h2>
-    <p>1) Add contact details of organisations that may have this data</p>
-    <p>Organisations in this region most likely have data that is not shared openly yet. 
-
-Help us find the relevant email and social media information so the electricityMap community can reach out and ask for this data by adding contact details here:
-</p>
-<p>2) Add a data source</p>
-<p>If you know where we can find real-time data about electricity in this country, you can help us add data on the map by sharing the data source on Github here:
-
-If you know how to code, you can even code the parser yourself by following this guide:
-<br />
-<a href="#">A great guide </a>
-</p>
-  </div>
-);
-
-const HasData = () => (
-  <div>
-  <img className="contribute" src={action_hasdata} alt={'Parser pls'} />
-  <h2>Data has been found for this region</h2>
-  <p>electricityMap is powered by our open-source community</p>
-  <p>
-  Good news: a data source has been found and with your help it could be added to electricityMap.
-  </p>
-
-  <h2>What can you do?</h2>
-
-  <p>
-  Follow the current development and contribute on Github to add this data to electricityMap.
-  </p>
-</div>
-);
-
-const contacts = [{
-  name: 'The Nigerian Electricity Club',
-  email: 'ihavedata@nigerian-electricity.org',
-  twitter: '@nigerianelectricityclub'
-}];
-
-const HasContacts = () => (
-<div>
-  <img className="contribute" src={action_contact} alt={'Contact pls'} />
-  <h2>No data is currently available for this region</h2>
-  <p>electricityMap is powered by our open-source community</p>
-  <p>
-    Currently no data source has been identified that could allow us to put this region on the map.
-  </p>
-
-  <h2>What can you do?</h2>
-
-  <h3>1) Contact organisations that may have this data</h3>
-  <p>
-    These organisations have been mentioned by the community as potential sources for data. Reach
-    out to them and ask them to share that data!
-  </p>
-  {contacts.map((contact) => (
-    <div className="contact-item">
-      <p>
-        <strong>{contact.name}</strong>
-      </p>
-      <p>Email: {contact.email}</p>
-      <p>Twitter: {contact.twitter}</p>
-    </div>
-  ))}
-  <h3>2) Add a data source</h3>
-  <p>
-  If you know where we can find real-time data about electricity in this country, you can help us add data on the map by sharing the data source on Github here:
-  </p>
-</div>
-);
-
 
 export default connect(mapStateToProps)(CountryPanel);
