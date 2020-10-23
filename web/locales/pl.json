@@ -909,7 +909,70 @@
           },
           "ZW": {
             "zoneName": "Zimbabwe"
-        }
+          },
+          "AD": {
+              "zoneName": "Andora"
+          },
+          "AG": {
+              "zoneName": "Antigua i Barbuda"
+          },
+          "AI": {
+              "zoneName": "Anguilla"
+          },
+          "AM": {
+              "zoneName": "Armenia"
+          },
+          "AO": {
+              "zoneName": "Angola"
+          },
+          "AQ": {
+              "zoneName": "Antarktyka"
+          },
+          "AS": {
+              "zoneName": "Samoa Amerykańskie"
+          },
+          "AUS-TAS-KI": {
+              "countryName": "Tasmania"
+          },
+          "AW": {
+              "zoneName": "Aruba"
+          },
+          "BB": {
+              "zoneName": "Barbados"
+          },
+          "BF": {
+              "zoneName": "Burkina Faso"
+          },
+          "BI": {
+              "zoneName": "Burundi"
+          },
+          "BJ": {
+              "zoneName": "Benin"
+          },
+          "BM": {
+              "zoneName": "Bermudy"
+          },
+          "BN": {
+              "zoneName": "Brunei"
+          },
+          "BQ": {
+              "zoneName": "Holandia Karaibska"
+          },
+          "BS": {
+              "zoneName": "Bahamy"
+          },
+          "BT": {
+              "zoneName": "Bhutan"
+          },
+          "BV": {
+              "zoneName": "Wyspa Bouveta"
+          },
+          "BW": {
+              "zoneName": "Botswana"
+          },
+          "BZ": {
+              "zoneName": "Belize"
+          }
     },
     "theMap": {
         "groupName": "Mapa",
