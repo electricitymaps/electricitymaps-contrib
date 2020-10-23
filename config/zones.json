@@ -3958,9 +3958,9 @@
       "hydro storage": 1780,
       "nuclear": 0,
       "oil": 359,
-      "solar": 2261,
+      "solar": 2528.371,
       "unknown": 0,
-      "wind": 6040
+      "wind": 6252
     },
     "contributors": [
       "https://github.com/corradio",
@@ -6945,5 +6945,27 @@
       "production": "UY.fetch_production"
     },
     "timezone": "America/Montevideo"
+  },
+  "XK": {
+    "bounding_box": [
+      [
+        20.013053,
+        41.848669
+      ],
+      [
+        21.791473,
+        43.269883
+      ]
+    ],
+    "capacity": {
+      "coal": 1024,
+      "hydro": 135.277,
+      "wind": 33.75,
+      "solar": 10.002
+    },
+    "contributors": [
+      "https://github.com/veqtrus"
+    ],
+    "timezone": "Europe/Belgrade"
   }
 }
