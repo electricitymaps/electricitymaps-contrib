@@ -53,8 +53,8 @@
         "carbonintensity24h": "Intensidade da emissão de carbono nas últimas 24 horas",
         "emissionsorigin24h": "Origem da emissão de carbono nas últimas 24 horas",
         "emissionsproduction24h": "Emissão de carbono produzida nas últimas 24 horas",
-        "electricityorigin24h": "Origem da eletriciade nas últimas 24 horas",
-        "electricityproduction24h": "Produção de eletrecidade nas últimas 24 horas",
+        "electricityorigin24h": "Origem da eletricidade nas últimas 24 horas",
+        "electricityproduction24h": "Produção de eletricidade nas últimas 24 horas",
         "electricityprices24h": "Preço da eletricidade nas últimas 24 horas",
         "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
     },
