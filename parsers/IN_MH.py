@@ -1,5 +1,5 @@
 from PIL import Image, ImageOps
-import pytesseract
+from pytessy import pytessy
 import cv2
 from imageio import imread
 import numpy as np
@@ -219,9 +219,9 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
     # string together all image sections and recognize resulting line
     imgs_line = np.hstack( list(np.asarray(i) for i in imgs[:]) )  
     imgs_line = Image.fromarray( imgs_line)
-    text = pytesseract.image_to_string(imgs_line, lang='digits_comma', config='--psm 7')
+    digit_reader = pytessy.PyTessy(language='digits_comma')
+    text = digit_reader.read(imgs_line.tobytes(), imgs_line.size[0], imgs_line.size[1], 1)
     text = text.split(' ')
-    
     # generate dict from string list
     values = {}
     for count,key in enumerate(locations):
