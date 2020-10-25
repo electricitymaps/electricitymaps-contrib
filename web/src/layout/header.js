@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled, { ThemeProvider } from 'styled-components';
-import { theme, breakpoints } from '../scss/theme';
+import styled from 'styled-components';
+import { breakpoints } from '../scss/theme';
 
 // TODO: Move all styles from styles.css to here
 const Header = styled.div`
@@ -31,18 +31,16 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(props => (
-  <ThemeProvider theme={ theme }>
-    <Header>
-      <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
-        <div className="logo">
-          <div className="image" id="electricitymap-logo" />
-          <span className="maintitle small-screen-hidden">
-            <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
-            · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
-            · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
-          </span>
-        </div>
+  <Header>
+    <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
+      <div className="logo">
+        <div className="image" id="electricitymap-logo" />
+        <span className="maintitle small-screen-hidden">
+          <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
+          · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
+          · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
+        </span>
       </div>
-    </Header>
-  </ThemeProvider>
+    </div>
+  </Header>
 ));
