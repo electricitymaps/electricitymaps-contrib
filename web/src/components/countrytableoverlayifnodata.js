@@ -22,16 +22,16 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
   if (!zoneHasData) return null;
-  let messageKey = isRealtimeData ? 'country-panel.noLiveData' : 'country-panel.noDataAtTimestamp';
+  let message = isRealtimeData ? __('country-panel.noLiveData') : __('country-panel.noDataAtTimestamp');
   if (isDataDelayed) {
-    messageKey = 'country-panel.dataIsDelayed';
+    message = __('country-panel.dataIsDelayed', zoneData.delays.production);
   }
   return (
     <div className="no-data-overlay visible">
       <div className="no-data-overlay-background" />
       <div className="no-data-overlay-message">
-        {__(messageKey)}
-        {!isRealtimeData ? null : (
+        {message}
+        {(!isRealtimeData || isDataDelayed) ? null : (
           <React.Fragment>
             {'. '}
             {'Help us identify the problem by taking a look at the '}
