@@ -5220,7 +5220,7 @@
       "https://github.com/systemcatch",
       "https://github.com/veqtrus"
     ],
-    "flag_file_name": "us.png",
+    "flag_file_name": "pr.png",
     "parsers": {
       "production": "US_PREPA.fetch_production"
     },

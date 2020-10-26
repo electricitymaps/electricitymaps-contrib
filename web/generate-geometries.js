@@ -685,7 +685,7 @@ const zoneDefinitions = [
   { zoneName: 'US-NW-WAUW', type: 'subZone', countryId: 'USA', id: 'US-NW-WAUW' }, //Western Area Power Administration Ugp West
   { zoneName: 'US-NW-WWA', type: 'subZone', countryId: 'USA', id: 'US-NW-WWA' }, //Naturener Wind Watch, Llc
   { zoneName: 'US-NY-NYIS', type: 'subZone', countryId: 'USA', id: 'US-NY-NYIS' }, //New York Independent System Operator
-  { zoneName: 'US-PREPA', type: 'country', countryId: 'USA', id: 'PRI'}, // Puerto Rico Electric Power Authority
+  { zoneName: 'US-PREPA', type: 'country', id: 'PRI'}, // Puerto Rico Electric Power Authority
   { zoneName: 'US-SE-AEC', type: 'subZone', countryId: 'USA', id: 'US-SE-AEC' }, //Powersouth Energy Cooperative
   { zoneName: 'US-SE-SEPA', type: 'subZone', countryId: 'USA', id: 'US-SE-SEPA' }, //Southeastern Power Administration
   { zoneName: 'US-SE-SOCO', type: 'subZone', countryId: 'USA', id: 'US-SE-SOCO' }, //Southern Company Services, Inc. - Trans
