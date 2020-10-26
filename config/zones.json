@@ -5071,7 +5071,17 @@
     "parsers": {
       "production": "US_PREPA.fetch_production"
     },
-    "timezone": "America/Puerto_Rico"
+    "timezone": "America/Puerto_Rico",
+    "bounding_box": [
+      [
+        -68.43781490799995,
+        17.42291901200015
+      ],
+      [
+        -64.74461829299992,
+        19.022772528000033
+      ]
+    ]
   },
   "US-SC": {
     "comment": "South Carolina Public Service Authority",
