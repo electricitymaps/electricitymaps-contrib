@@ -1,9 +1,9 @@
 {
     "panel-initial-text": {
-        "thisproject": "Este projeto é",
-        "opensource": "código aberto",
-        "see": "ver",
-        "datasources": "fontes de dados",
+        "thisproject": "Este é um projeto de",
+        "opensource": "Código Aberto",
+        "see": "acessar",
+        "datasources": "fonte de dados",
         "contribute": "Contribua <a href=\"%s\" target=\"_blank\">adicionando seu país ou território</a>"
     },
     "mobile-main-menu": {
@@ -52,16 +52,16 @@
     "country-history": {
         "carbonintensity24h": "Intensidade da emissão de carbono nas últimas 24 horas",
         "emissions24h": "Emissões de carbono nas últimas 24 horas",
-        "emissionsorigin24h": "Origem de emissões de carbono nas últimas 24 horas",
-        "emissionsproduction24h": "Emissões de carbono produzidas nas últimas 24 horas",
+        "emissionsorigin24h": "Origem da emissão de carbono nas últimas 24 horas",
+        "emissionsproduction24h": "Emissões de carbono produzida nas últimas 24 horas",
         "electricityorigin24h": "Origem da eletricidade nas últimas 24 horas",
-        "electricityproduction24h": "Produção da eletricidade nas últimas 24 horas",
+        "electricityproduction24h": "Produção de eletricidade nas últimas 24 horas",
         "electricityprices24h": "Preço da eletricidade nas últimas 24 horas",
         "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
     },
     "footer": {
-        "foundbugs": "Encontrou erros ou tem alguma sugestão? Contacte-nos",
-        "faq-text": "Algo não está claro? Olhe nossa",
+        "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
+        "faq-text": "Algo não está claro? Acesse nossas",
         "faq": "questões frequentes.",
         "here": "aqui"
     },
@@ -185,11 +185,11 @@
     "aboutUs": {
         "groupName": "Sobre nós",
         "whoAreYou-question": "Quem são vocês?",
-        "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
+        "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
         "feedback-question": "Posso dar algum feedback?",
         "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricitymap.org\"> envie-nos um email!</a>",
         "contribut-question": "Posso contribuir para o seu projeto?",
-        "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs , fique à vontade para se juntar a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
+        "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs, fique à vontade para juntar-se a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
         "workTogether-question": "Podemos trabalhar juntos?",
         "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@electricitymap.org\">Envie-nos um email!</a>",
         "disclaimer-question": "Aviso legal",
