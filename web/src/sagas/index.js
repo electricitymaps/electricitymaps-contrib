@@ -6,7 +6,8 @@ import {
 } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
-import { handleRequestError, protectedJsonRequest, textRequest } from '../helpers/api';
+import { handleRequestError, protectedJsonRequest } from '../helpers/api';
+import { clientVersionRequest } from '../helpers/client';
 import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
@@ -16,7 +17,7 @@ import {
 
 function* fetchClientVersion() {
   try {
-    const version = yield call(textRequest, '/clientVersion');
+    const version = yield call(clientVersionRequest);
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
   } catch (err) {
     handleRequestError(err);

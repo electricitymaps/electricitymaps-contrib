@@ -1,5 +1,9 @@
 {
   "AL->GR": {
+    "capacity": [
+      -533,
+      533
+    ],
     "lonlat": [
       20.689872,
       40.198219
@@ -355,6 +359,10 @@
     "rotation": 180
   },
   "BG->MK": {
+    "capacity": [
+      -950,
+      950
+    ],
     "lonlat": [
       22.912615,
       41.86784
@@ -389,6 +397,10 @@
     "rotation": -90
   },
   "BG->TR": {
+    "capacity": [
+      -2485,
+      2485
+    ],
     "lonlat": [
       26.89864,
       42.002181
@@ -821,6 +833,21 @@
     },
     "rotation": -90
   },
+  "DE->NO-NO2": {
+    "capacity": [
+      -1400,
+      1400
+    ],
+    "lonlat": [
+      7.2,
+      55.90
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -10
+  },
   "DE->PL": {
     "lonlat": [
       14.585163,
@@ -913,8 +940,8 @@
   },
   "DK-DK1->SE-SE3": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -927,8 +954,8 @@
   },
   "DK-DK1->SE": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -940,6 +967,10 @@
     "rotation": 70
   },
   "DK-DK2->SE-SE4": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -950,6 +981,10 @@
     "rotation": 70
   },
   "DK-DK2->SE": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -984,6 +1019,10 @@
     "rotation": 180
   },
   "EE->RU-1": {
+    "capacity": [
+      -2462,
+      2462
+    ],
     "lonlat": [
       27.468803,
       58.545189
@@ -1038,6 +1077,10 @@
     "rotation": -10
   },
   "ES->FR": {
+    "capacity": [
+      -2800,
+      2800
+    ],
     "lonlat": [
       0.3,
       42.9
@@ -1236,7 +1279,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "RU.fetch_exchange"
+      "exchange": "GE.fetch_exchange"
     },
     "rotation": 0
   },
@@ -1306,6 +1349,10 @@
     "rotation": 0
   },
   "GR->TR": {
+    "capacity": [
+      -1900,
+      1900
+    ],
     "lonlat": [
       26.316812,
       41.1262
@@ -1749,6 +1796,10 @@
     }
   },
   "LV->RU-1": {
+    "capacity": [
+      -696,
+      696
+    ],
     "lonlat": [
       27.7336,
       56.87436

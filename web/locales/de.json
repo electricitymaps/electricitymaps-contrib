@@ -61,8 +61,6 @@
         "emissions24h": "Emissionen in den letzten 24 Stunden"
     },
     "footer": {
-        "likethisvisu": "Findest du die Visualisierung gut?",
-        "loveyourfeedback": "Wir freuen uns über dein Feedback",
         "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
         "faq-text": "Irgendetwas unklar? Schau in unsere",
         "faq": "häufig gestellte Fragen.",
@@ -104,7 +102,8 @@
         "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
         "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
-        "faq": "Häufig gestellte Fragen"
+        "faq": "Häufig gestellte Fragen",
+        "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
     },
     "wind": "Windenergie",
     "solar": "Solarenergie",
@@ -190,7 +189,7 @@
         "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
         "contribute-answer": "Ja, gerne! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
         "workTogether-question": "Können wir zusammenarbeiten?",
-        "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@tmrow.com\">Schicken Sie uns eine E-Mail!</a>",
+        "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@electricitymap.org\">Schicken Sie uns eine E-Mail!</a>",
         "disclaimer-question": "Haftungsausschluss",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Tomorrow übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Tomorrow nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
     },
@@ -1412,15 +1411,15 @@
             "zoneName": "SVERI"
         },
         "GB-ORK": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Orkney Islands"
         },
         "GB-SHI": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Shetland Islands"
         },
         "GB-ZET": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Shetland Islands"
         },
         "IT-CNO": {
@@ -1730,6 +1729,16 @@
             "countryName": "Vereinigte Staaten von Amerika"
         },
         "US-TEX-ERCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "CL-SEN": {
+            "countryName": "Chile"
+        },
+        "US-AK": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Alaska"
+        },
+        "US-MIDW-GLHB": {
             "countryName": "Vereinigte Staaten von Amerika"
         }
     },

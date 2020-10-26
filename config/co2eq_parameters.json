@@ -203,6 +203,12 @@
           "value": 40.98482440401805
         }
       },
+      "CL-SEN" : {
+        "unknown": {
+          "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
+          "value": 491.8
+        }
+      },
       "CL-SING": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
@@ -1217,6 +1223,24 @@
           "solar": 0.0,
           "unknown": 0.0,
           "wind": 0.9982474825220405
+        }
+      },
+      "CA-QC": {
+        "_source": "https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=2510001501#timeframe, for data between Jan 2017 and March 2020",
+        "carbonIntensity": 25.76829489,
+        "powerOriginRatios": {
+          "battery discharge": 0,
+          "biomass": 0.009328769,
+          "coal": 0.0,
+          "gas": 0.00103653,
+          "geothermal": 0.0,
+          "hydro": 0.94066,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.0017525174779592335,
+          "solar": 0.00001,
+          "unknown": 0.0,
+          "wind": 0.04897
         }
       },
       "CA-YT": {

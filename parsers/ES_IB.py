@@ -160,7 +160,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     for response in responses:
 
         if sorted_zone_keys == 'ES-IB-MA->ES-IB-ME':
-            net_flow = response.link['ma_me']
+            net_flow = -1 * response.link['ma_me']
         elif sorted_zone_keys == 'ES-IB-IZ->ES-IB-MA':
             net_flow = response.link['ma_ib']
         elif sorted_zone_keys == 'ES-IB-FO->ES-IB-IZ':
