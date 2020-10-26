@@ -112,7 +112,7 @@
     "biomass": "biomass",
     "nuclear": "nuclear",
     "geothermal": "geothermal",
-    "gas": "gas",
+    "gas": "natural gas",
     "coal": "coal",
     "oil": "oil",
     "unknown": "unknown",
@@ -1765,6 +1765,9 @@
           },
           "WS": {
             "zoneName": "Samoa"
+          },
+          "XK": {
+            "zoneName": "Kosovo"
           },
           "XX": {
             "zoneName": "Northern Cyprus"
