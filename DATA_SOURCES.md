@@ -10,6 +10,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Australia: [AREMI National Map](http://nationalmap.gov.au/renewables/)
   ([CSV](http://services.aremi.nationalmap.gov.au/aemo/v3/csv/all))
 - Australia (Western): [AEMO](http://wa.aemo.com.au/Electricity/Wholesale-Electricity-Market-WEM/Data-dashboard)
+- Australia (King Island) : [King Island Renewable Energy Integration Project (KIREIP)](https://data.ajenti.com.au/KIREIP/index.html)
   ([CSV](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv))
 - Australia (distributed solar generation): [Australian PV Institute](http://pv-map.apvi.org.au/live)
 - Australia (South Battery): [Nemwatch](https://ausrealtimefueltype.global-roam.com/expanded)
