@@ -22,7 +22,7 @@ export default () => (
       {' '}(
       {__('panel-initial-text.see')}
       {' '}
-      <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">
+      <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md" target="_blank">
         {__('panel-initial-text.datasources')}
       </a>
       ).{' '}
