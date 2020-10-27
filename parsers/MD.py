@@ -17,7 +17,7 @@ TYPE_MAPPING = {
 }
 
 display_url = 'http://www.moldelectrica.md/ro/activity/system_state'
-data_url = 'http://www.moldelectrica.md/utils/load4'
+data_url = 'http://www.moldelectrica.md/utils/load4.php'
 
 
 def get_data(session=None):
@@ -28,7 +28,7 @@ def get_data(session=None):
     #In order for the data url to return data, cookies from the display url must be obtained then reused.
     response = s.get(display_url)
     data_response = s.get(data_url)
-    raw_data = data_response.text
+    raw_data = data_response.textg
     data = [float(i) for i in raw_data.split(',')]
 
     return data
