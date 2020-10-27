@@ -17,7 +17,7 @@ TYPE_MAPPING = {
 }
 
 display_url = 'http://www.moldelectrica.md/ro/activity/system_state'
-data_url = 'http://www.moldelectrica.md/utils/load4.php'
+data_url = 'http://www.moldelectrica.md/utils/load4'
 
 
 def get_data(session=None):
