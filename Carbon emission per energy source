@@ -1,0 +1,8 @@
+fig, ax = plt.subplots()
+for desc, group in Energy_sources:
+    group.plot(x = group.index, y='Value', label=desc,ax = ax, title='Carbon Emissions per Energy Source', fontsize = 20)
+    ax.set_xlabel('Time(Monthly)')
+    ax.set_ylabel('Carbon Emissions in MMT')
+    ax.xaxis.label.set_size(20)
+    ax.yaxis.label.set_size(20)
+    ax.legend(fontsize = 11)
