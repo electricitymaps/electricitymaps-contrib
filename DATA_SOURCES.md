@@ -335,6 +335,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Albania ⇄ Greece: [533 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
+- Belgium ⇄ Germany ["Alegro": 1000MW](https://www.elia.be/en/infrastructure-and-projects/infrastructure-projects/alegro?clang=en)
 - Bulgaria ⇄ Noth Macedonia [950 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Bulgaria ⇄ Turkey [2485 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Denmark (West) ⇄ Norway: ["Skaggerak": 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))

@@ -300,6 +300,21 @@
     },
     "rotation": -90
   },
+  "BE->DE": {
+    "capacity": [
+      -1000,
+      1000
+    ],
+    "lonlat": [
+      6.4,
+      50.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
   "BE->FR": {
     "lonlat": [
       4.137165,
