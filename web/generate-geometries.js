@@ -544,6 +544,7 @@ const zoneDefinitions = [
   { zoneName: 'PH', type: 'country', id: 'PHL'},
   { zoneName: 'PL', type: 'country', id: 'POL'},
   { zoneName: 'PN', type: 'country', id: 'PCN'},
+  { zoneName: 'PR', type: 'country', id: 'PRI'}, // Puerto Rico Electric Power Authority
   { zoneName: 'PS', type: 'country', id: 'PSX'},
   { zoneName: 'PT', type: 'subunits', subunits: ['PRX']}, // Portugal Mainland,
   { zoneName: 'PT-MA', type: 'subunits', subunits: ['PMD']}, // Madeira Island,
@@ -685,7 +686,6 @@ const zoneDefinitions = [
   { zoneName: 'US-NW-WAUW', type: 'subZone', countryId: 'USA', id: 'US-NW-WAUW' }, //Western Area Power Administration Ugp West
   { zoneName: 'US-NW-WWA', type: 'subZone', countryId: 'USA', id: 'US-NW-WWA' }, //Naturener Wind Watch, Llc
   { zoneName: 'US-NY-NYIS', type: 'subZone', countryId: 'USA', id: 'US-NY-NYIS' }, //New York Independent System Operator
-  { zoneName: 'US-PREPA', type: 'country', id: 'PRI'}, // Puerto Rico Electric Power Authority
   { zoneName: 'US-SE-AEC', type: 'subZone', countryId: 'USA', id: 'US-SE-AEC' }, //Powersouth Energy Cooperative
   { zoneName: 'US-SE-SEPA', type: 'subZone', countryId: 'USA', id: 'US-SE-SEPA' }, //Southeastern Power Administration
   { zoneName: 'US-SE-SOCO', type: 'subZone', countryId: 'USA', id: 'US-SE-SOCO' }, //Southern Company Services, Inc. - Trans

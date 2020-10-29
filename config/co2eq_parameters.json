@@ -777,7 +777,7 @@
           "value": 399.77646355214347
         }
       },
-      "US-PREPA": {
+      "PR": {
         "unknown": {
           "_comment": "Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6",
           "source": "Based on average renewable generation October 2019-September 2020 (12% hydro, 57% solar, 31% wind)",
