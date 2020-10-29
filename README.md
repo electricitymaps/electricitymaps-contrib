@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 
 ## Contribute
-Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
+Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started with it. Also have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
  * [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
@@ -39,7 +39,7 @@ Furthermore, this method is robust to governments relocating dirty production to
 We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
 **Why don't you show emissions per capita?**
-A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
+A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capital.
 This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
 That country now has a low CO<sub>2</sub>/capita number because we only count CO<sub>2</sub> for electricity (not for imported/exported goods).
 The CO<sub>2</sub>/capita metric, by involving the size of the population, and by not integrating all CO<sub>2</sub> emission sources, is thus an incomplete metric.
