@@ -4583,7 +4583,8 @@
       "https://github.com/corradio",
       "https://github.com/olivierSemet",
       "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/lgrigoryeva1"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
