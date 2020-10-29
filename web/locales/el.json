@@ -1,0 +1,1788 @@
+{
+    "panel-initial-text": {
+        "thisproject": "Αυτό το έργο είναι",
+        "opensource": "Ανοικτού Κώδικα",
+        "see": "δείτε τις",
+        "datasources": "πηγές δεδομένων",
+        "contribute": "Συνεισφέρετε <a href=\"%s\" target=\"_blank\">προσθέτοντας την περιοχή σας</a>"
+    },
+    "mobile-main-menu": {
+        "map": "Χάρτης",
+        "areas": "Περιοχές",
+        "about": "Σχετικά με εμάς"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "Χαρτογράφηση των κλιματικών επιπτώσεων της ηλεκτρικής ενέργειας"
+        },
+        "view2": {
+            "header": "Δείτε πόσο CO₂ εκπέμπεται για να παραχθεί η ηλεκτρική σας ενέργεια, σε πραγματικό χρόνο.",
+            "text": "Χρωματίζουμε τις περιοχές του κόσμου κατά την Ένταση Άνθρακα (συμπεριλαμβανομένων όλων των αερίων θερμοκηπίου) της ηλεκτρικής ενέργειας που καταναλώνεται εκεί. Όσο πιο πράσινο το χρώμα, τόσο πιο φιλική προς το κλίμα είναι η ηλεκτρική ενέργεια."
+        },
+        "view3": {
+            "header": "Μάθετε από πού προέρχεται ο ηλεκτρισμός σας",
+            "text": "Τα βέλη στο χάρτη υποδεικνύουν ροές ηλεκτρικής ενέργειας μεταξύ διαφορετικών περιοχών. Κάντε κλικ σε μια περιοχή για να δείτε περισσότερες πληροφορίες σχετικά με την προέλευση της ηλεκτρικής ενέργειας."
+        },
+        "view4": {
+            "header": "Συνθήκες ανέμου και ηλιοφάνειας σε πραγματικό χρόνο",
+            "text": "Η παραγωγή αιολικής και ηλιακής ενέργειας εξαρτάται από τον καιρό. Πατήστε τα κουμπιά ηλίου και ανέμου για να παρουσιάσετε την ισχύ του ανέμου και ηλιοφάνειας σε όλο τον κόσμο."
+        }
+    },
+    "country-panel": {
+        "source": "Πηγή",
+        "carbonintensity": "Ένταση Άνθρακα",
+        "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
+        "renewable": "Ανανεώσιμες",
+        "electricityproduction": "Παραγωγή ηλεκτρικής ενέργειας",
+        "electricityconsumption": "Κατανάλωση ηλεκτρικής ενέργειας",
+        "bysource": "κατά πηγή",
+        "emissions": "Εκπομπές άνθρακα",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">προσθήκη ή επεξεργασία πηγής</a>",
+        "helpfrom": "με συνεισφορά από",
+        "noDataAtTimestamp": "Τα δεδομένα για την επιλεγμένη ώρα δεν είναι διαθέσιμα αυτή τη στιγμή",
+        "noLiveData": "Τα ζωντανά δεδομένα για την περιοχή αυτή δεν είναι διαθέσιμα αυτή τη στιγμή",
+        "noParserInfo": "Δεν έχουμε ακόμη πληροφορίες σχετικά με αυτή την περιοχή.<br/> Θέλετε να βοηθήσετε να το διορθώσουμε; Μπορείτε να συνεισφέρετε <a href=\"%s\" target=\"_blank\">προσθέτοντας δεδομένα περιοχής</a>.",
+        "now": "Παρόν"
+    },
+    "left-panel": {
+        "zone-list-header-title": "Κλιματική Επίπτωση ανά Περιοχή",
+        "zone-list-header-subtitle": "Ταξινομημένο κατά ένταση άνθρακα της καταναλωθέντας ηλεκτρικής ενέργειας (gCO₂eq/kWh)",
+        "search": "Αναζήτηση περιοχών"
+    },
+    "country-history": {
+        "carbonintensity24h": "Ένταση άνθρακα τις τελευταίες 24 ώρες",
+        "emissions24h": "Εκπομπές τις τελευταίες 24 ώρες",
+        "emissionsorigin24h": "Προέλευση εκπομπών τις τελευταίες 24 ώρες",
+        "emissionsproduction24h": "Εκπομπές που παράχθηκαν τις τελευταίες 24 ώρες",
+        "electricityorigin24h": "Προέλευση ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες",
+        "electricityproduction24h": "Παραγωγή ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες",
+        "electricityprices24h": "Τιμές ηλεκτρικής ενέργειας τις τελευταίες 24 ώρες",
+        "Getdata": "Λάβετε ωριαία ιστορικά και ζωντανά δεδομένα, καθώς και προβλέψεις, με το electricityMap API"
+    },
+    "footer": {
+        "foundbugs": "Βρήκατε σφάλματα ή έχετε ιδέες; Αναφέρετέ τα",
+        "faq-text": "Κάτι είναι ασαφές; Ρίξτε μια ματιά στις",
+        "faq": "συνήθεις ερωτήσεις.",
+        "here": "εδώ"
+    },
+    "legends": {
+        "windpotential": "Δυναμικό αιολικής ενέργειας",
+        "solarpotential": "Δυναμικό ηλιακής ενέργειας",
+        "colorblindmode": "φιλικό προς αχρωματοψία",
+        "carbonintensity": "Ένταση άνθρακα"
+    },
+    "tooltips": {
+        "carbonintensity": "Ένταση άνθρακα",
+        "lowcarbon": "Χαμηλών εκπομπών άνθρακα",
+        "renewable": "Ανανεώσιμες",
+        "crossborderexport": "Διασυνοριακή εξαγωγή",
+        "carbonintensityexport": "Ένταση άνθρακα της εξαγωγής",
+        "ofinstalled": "της εγκατεστημένης ισχύς",
+        "utilizing": "χρησιμοποιώντας",
+        "withcarbonintensity": "με ένταση άνθρακα",
+        "showWindLayer": "Εμφάνιση στρώματος ανέμου",
+        "hideWindLayer": "Απόκρυψη στρώματος ανέμου",
+        "showSolarLayer": "Εμφάνιση στρώματος ηλιοφάνειας",
+        "hideSolarLayer": "Απόκρυψη στρώματος ηλιοφάνειας",
+        "toggleDarkMode": "Εναλλαγή σκοτεινής εμφάνισης",
+        "noParserInfo": "Δεν υπάρχουν διαθέσιμα δεδομένα",
+        "temporaryDataOutage": "Τα ζωντανά δεδομένα δεν είναι διαθέσιμα αυτή τη στιγμή",
+        "production": "παραγωγή",
+        "consumption": "κατανάλωση",
+        "cpinfo": "Η <b>κατανάλωση</b> λαμβάνει υπόψη τις εισαγωγές και εξαγωγές, η <b>παραγωγή</b> τις αγνοεί",
+        "selectLanguage": "Επιλογή γλώσσας",
+        "lowCarbDescription": "Περιλαμβάνει τις ανανεώσιμες και την πυρηνική"
+    },
+    "misc": {
+        "maintitle": "Ζωντανές εκπομπές CO₂ κατανάλωσης ηλεκτρικής ενέργειας",
+        "oops": "Ωχ! Αντιμετωπίζουμε πρόβλημα με τη λήψη δεδομένων. Θα προσπαθήσουμε ξανά σε λίγα δευτερόλεπτα.",
+        "newversion": "Μια νέα έκδοση είναι διαθέσιμη! Πατήστε <a onClick=\"location.reload(true);\">εδώ</a> για επαναφόρτωση.",
+        "webgl-not-supported": "Ο χάρτης δεν μπορεί να παρουσιαστεί καθώς αυτό το πρόγραμμα περιήγησης δεν υποστηρίζει WebGL.",
+        "retrynow": "Επαναδοκιμή τώρα",
+        "database-ad": "Ψάχνετε για ιστορικά δεδομένα; <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Δείτε τη βάση δεδομένων μας!</a>",
+        "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
+        "legend": "Yπόμνημα",
+        "faq": "Συχνές Ερωτήσεις"
+    },
+    "wind": "αιολική",
+    "solar": "ηλιακή",
+    "hydro": "υδροηλεκτρική",
+    "hydro storage": "υδροαντλητικά φράγματα",
+    "battery storage": "μπαταρίες",
+    "biomass": "βιομάζα",
+    "nuclear": "πυρηνική",
+    "geothermal": "γεωθερμική",
+    "gas": "φυσικό αέριο",
+    "coal": "άνθρακας",
+    "oil": "πετρέλαιο",
+    "unknown": "άγνωστη",
+
+    "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στην <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
+
+    "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στην <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στην <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στην <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+
+    "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
+    "theMap": {
+        "groupName": "Ο χάρτης",
+        "mapColors-question": "What do the colors on the map mean?",
+        "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). The greener the colour, the more climate-friendly the electricity consumption.",
+        "mapArrows-question": "What do the arrows between areas on the map indicate?",
+        "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
+        "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
+        "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunshine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells is also dependent on many other factors.",
+        "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
+        "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
+        "mapColorBlind-question": "I am color blind. How can I read your map?",
+        "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+    },
+    "mapAreas": {
+        "groupName": "Περιοχές του χάρτη",
+        "noData-question": "Why is data for my area not available?",
+        "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
+        "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
+        "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
+        "divideExistingArea-question": "Can you divide my area into smaller parts?",
+        "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
+        "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
+        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    },
+    "methodology": {
+        "groupName": "Our methods",
+        "carbonIntensity-question": "What is \"carbon intensity\"?",
+        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
+        "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
+        "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas, and then importing the electricity from those areas.",
+        "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
+        "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine, and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
+        "importsAndExports-question": "Do you take into account imports and exports of electricity?",
+        "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
+        "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
+        "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
+        "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
+        "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
+        "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
+        "otherSources-answer": "This would be outside of the scope of this project. However, at Tomorrow we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
+        "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
+        "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
+        "emissionsPerCapita-question": "Why don't you show emissions per capita?",
+        "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used for manufacturing physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, are driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+    },
+    "data": {
+        "groupName": "Τα δεδομένα μας",
+        "dataOrigins-question": "How do you get your data?",
+        "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
+        "dataDownload-question": "Can I download your data?",
+        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
+        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    },
+    "aboutUs": {
+        "groupName": "Σχετικά με εμάς",
+        "whoAreYou-question": "Who are you?",
+        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+        "feedback-question": "Can I give you some feedback?",
+        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
+        "contribute-question": "Can I contribute to your project?",
+        "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+        "workTogether-question": "Can we work together?",
+        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
+        "disclaimer-question": "Disclaimer",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    },
+    "zoneShortName": {
+        "AD": {
+            "zoneName": "Andorra"
+        },
+        "AE": {
+            "zoneName": "Ηνωμένα Αραβικά Εμιράτα"
+        },
+        "AF": {
+            "zoneName": "Αφγανιστάν"
+        },
+        "AG": {
+            "zoneName": "Antigua and Barbuda"
+        },
+        "AI": {
+            "zoneName": "Anguilla"
+        },
+        "AL": {
+            "zoneName": "Αλβανία"
+        },
+        "AM": {
+            "zoneName": "Αρμενία"
+        },
+        "AO": {
+            "zoneName": "Angola"
+        },
+        "AQ": {
+            "zoneName": "Ανταρκτική"
+        },
+        "AS": {
+            "zoneName": "American Samoa"
+        },
+        "AT": {
+            "zoneName": "Αυστρία"
+        },
+        "AR": {
+            "zoneName": "Αργεντινή"
+        },
+        "AUS-NSW": {
+            "countryName": "Αυστραλία",
+            "zoneName": "New South Wales"
+        },
+        "AUS-NT": {
+            "countryName": "Αυστραλία",
+            "zoneName": "Northern Territory"
+        },
+        "AUS-QLD": {
+            "countryName": "Αυστραλία",
+            "zoneName": "Queensland"
+        },
+        "AUS-SA": {
+            "countryName": "Αυστραλία",
+            "zoneName": "South Australia"
+        },
+        "AUS-TAS": {
+            "countryName": "Αυστραλία",
+            "zoneName": "Tasmania"
+        },
+        "AUS-TAS-KI": {
+            "countryName": "Tasmania",
+            "zoneName": "King Island"
+        },
+        "AUS-VIC": {
+            "countryName": "Αυστραλία",
+            "zoneName": "Victoria"
+        },
+        "AUS-WA": {
+            "countryName": "Αυστραλία",
+            "zoneName": "Western Australia"
+        },
+        "AW": {
+            "zoneName": "Aruba"
+        },
+        "AX": {
+            "zoneName": "Åland Islands"
+        },
+        "AZ": {
+            "zoneName": "Αζερμπαϊτζάν"
+        },
+        "BA": {
+            "zoneName": "Βοσνία και Ερζεγοβίνη"
+        },
+        "BB": {
+            "zoneName": "Barbados"
+        },
+        "BD": {
+            "zoneName": "Μπαγκλαντές"
+        },
+        "BE": {
+            "zoneName": "Βέλγιο"
+        },
+        "BF": {
+            "zoneName": "Burkina Faso"
+        },
+        "BG": {
+            "zoneName": "Βουλγαρία"
+        },
+        "BH": {
+            "zoneName": "Bahrain"
+        },
+        "BI": {
+            "zoneName": "Burundi"
+        },
+        "BJ": {
+            "zoneName": "Benin"
+        },
+        "BM": {
+            "zoneName": "Bermuda"
+        },
+        "BN": {
+            "zoneName": "Brunei"
+        },
+        "BO": {
+            "zoneName": "Bolivia"
+        },
+        "BQ": {
+            "zoneName": "Bonaire, Sint Eustatius and Saba"
+        },
+        "BR-CS": {
+            "countryName": "Βραζιλία",
+            "zoneName": "Central Brazil"
+        },
+        "BR-N": {
+            "countryName": "Βραζιλία",
+            "zoneName": "North Brazil"
+        },
+        "BR-NE": {
+            "countryName": "Βραζιλία",
+            "zoneName": "North-East Brazil"
+        },
+        "BR-S": {
+            "countryName": "Βραζιλία",
+            "zoneName": "South Brazil"
+        },
+        "BS": {
+            "zoneName": "Μπαχάμες"
+        },
+        "BT": {
+            "zoneName": "Bhutan"
+        },
+        "BV": {
+            "zoneName": "Bouvet Island"
+        },
+        "BW": {
+            "zoneName": "Μποτσουάνα"
+        },
+        "BY": {
+            "zoneName": "Λευκορωσία"
+        },
+        "BZ": {
+            "zoneName": "Μπελίζ"
+        },
+        "CA-AB": {
+            "countryName": "Καναδάς",
+            "zoneName": "Alberta"
+        },
+        "CA-BC": {
+            "countryName": "Καναδάς",
+            "zoneName": "British Columbia"
+        },
+        "CA-MB": {
+            "countryName": "Καναδάς",
+            "zoneName": "Manitoba"
+        },
+        "CA-NL": {
+            "countryName": "Καναδάς",
+            "zoneName": "Newfoundland and Labrador"
+        },
+        "CA-NB": {
+            "countryName": "Καναδάς",
+            "zoneName": "New Brunswick"
+        },
+        "CA-NT": {
+            "countryName": "Καναδάς",
+            "zoneName": "Northwest Territories"
+        },
+        "CA-NS": {
+            "countryName": "Καναδάς",
+            "zoneName": "Nova Scotia"
+        },
+        "CA-NU": {
+            "countryName": "Καναδάς",
+            "zoneName": "Nunavut"
+        },
+        "CA-ON": {
+            "countryName": "Καναδάς",
+            "zoneName": "Ontario"
+        },
+        "CA-PE": {
+            "countryName": "Καναδάς",
+            "zoneName": "Prince Edward Island"
+        },
+        "CA-QC": {
+            "countryName": "Καναδάς",
+            "zoneName": "Québec"
+        },
+        "CA-SK": {
+            "countryName": "Καναδάς",
+            "zoneName": "Saskatchewan"
+        },
+        "CA-YT": {
+            "countryName": "Καναδάς",
+            "zoneName": "Yukon"
+        },
+        "CC": {
+            "zoneName": "Cocos Islands"
+        },
+        "CD": {
+            "zoneName": "Democratic Republic of the Congo"
+        },
+        "CF": {
+            "zoneName": "Central African Republic"
+        },
+        "CG": {
+            "zoneName": "Κονγκό"
+        },
+        "CH": {
+            "zoneName": "Ελβετία"
+        },
+        "CI": {
+            "zoneName": "Ακτή Ελεφαντοστού"
+        },
+        "CK": {
+            "zoneName": "Cook Islands"
+        },
+        "CL-SEA": {
+            "countryName": "Χιλή",
+            "zoneName": "Sistema Eléctrico de Aysén"
+        },
+        "CL-SEM": {
+            "countryName": "Χιλή",
+            "zoneName": "Sistema Eléctrico de Magallanes"
+        },
+        "CL-SEN": {
+            "countryName": "Χιλή",
+            "zoneName": "Sistema Eléctrico Nacional"
+        },
+        "CM": {
+            "zoneName": "Καμερούν"
+        },
+        "CN": {
+            "zoneName": "Κίνα"
+        },
+        "CO": {
+            "zoneName": "Κολομβία"
+        },
+        "CR": {
+            "zoneName": "Κόστα Ρίκα"
+        },
+        "CU": {
+            "zoneName": "Cuba"
+        },
+        "CV": {
+            "zoneName": "Cabo Verde"
+        },
+        "CW": {
+            "zoneName": "Curaçao"
+        },
+        "CX": {
+            "zoneName": "Christmas Island"
+        },
+        "CY": {
+            "zoneName": "Κύπρος"
+        },
+        "CZ": {
+            "zoneName": "Τσεχία"
+        },
+        "DE": {
+            "zoneName": "Γερμανία"
+        },
+        "DJ": {
+            "zoneName": "Τζιμπουτί"
+        },
+        "DK": {
+            "zoneName": "Δανία"
+        },
+        "DK-DK1": {
+            "countryName": "Δανία",
+            "zoneName": "Δυτική Δανία"
+        },
+        "DK-DK2": {
+            "countryName": "Δανία",
+            "zoneName": "Ανατολική Δανία"
+        },
+        "DK-BHM": {
+            "countryName": "Δανία",
+            "zoneName": "Bornholm"
+        },
+        "DM": {
+            "zoneName": "Ντομίνικα"
+        },
+        "DO": {
+            "zoneName": "Δομινικανή Δημοκρατία"
+        },
+        "DZ": {
+            "zoneName": "Αλγερία"
+        },
+        "EC": {
+            "zoneName": "Εκουαδόρ"
+        },
+        "EE": {
+            "zoneName": "Εσθονία"
+        },
+        "EG": {
+            "zoneName": "Αίγυπτος"
+        },
+        "EH": {
+            "zoneName": "Western Sahara"
+        },
+        "ER": {
+            "zoneName": "Ερυθραία"
+        },
+        "ES": {
+            "zoneName": "Ισπανία"
+        },
+        "ES-IB-FO": {
+            "countryName": "Ισπανία",
+            "zoneName": "Formentera"
+        },
+        "ES-IB-IZ": {
+            "countryName": "Ισπανία",
+            "zoneName": "Ibiza"
+        },
+        "ES-IB-MA": {
+            "countryName": "Ισπανία",
+            "zoneName": "Mallorca"
+        },
+        "ES-IB-ME": {
+            "countryName": "Ισπανία",
+            "zoneName": "Menorca"
+        },
+        "ES-CN-FVLZ": {
+            "countryName": "Ισπανία",
+            "zoneName": "Fuerteventura/Lanzarote"
+        },
+        "ES-CN-GC": {
+            "countryName": "Ισπανία",
+            "zoneName": "Gran Canaria"
+        },
+        "ES-CN-HI": {
+            "countryName": "Ισπανία",
+            "zoneName": "El Hierro"
+        },
+        "ES-CN-IG": {
+            "countryName": "Ισπανία",
+            "zoneName": "Isla de la Gomera"
+        },
+        "ES-CN-LP": {
+            "countryName": "Ισπανία",
+            "zoneName": "La Palma"
+        },
+        "ES-CN-TE": {
+            "countryName": "Ισπανία",
+            "zoneName": "Tenerife"
+        },
+        "ET": {
+            "zoneName": "Αιθιοπία"
+        },
+        "FI": {
+            "zoneName": "Φινλανδία"
+        },
+        "FJ": {
+            "zoneName": "Φίτζι"
+        },
+        "FK": {
+            "zoneName": "Falkland Islands"
+        },
+        "FM": {
+            "zoneName": "Μικρονησία"
+        },
+        "FO": {
+            "zoneName": "Faroe Islands"
+        },
+        "FR": {
+            "zoneName": "Γαλλία"
+        },
+        "FR-COR": {
+            "countryName": "Γαλλία",
+            "zoneName": "Κορσική"
+        },
+        "GA": {
+            "zoneName": "Gabon"
+        },
+        "GB": {
+            "zoneName": "Μεγάλη Βρετανία"
+        },
+        "GB-NIR": {
+            "zoneName": "Βόρεια Ιρλανδία"
+        },
+        "GB-ORK": {
+            "countryName": "Μεγάλη Βρετανία",
+            "zoneName": "Orkney Islands"
+        },
+        "GB-SHI": {
+            "countryName": "Μεγάλη Βρετανία",
+            "zoneName": "Shetland Islands"
+        },
+        "GB-ZET": {
+            "countryName": "Μεγάλη Βρετανία",
+            "zoneName": "Shetland Islands"
+        },
+        "GD": {
+            "zoneName": "Grenada"
+        },
+        "GE": {
+            "zoneName": "Γεωργία"
+        },
+        "GF": {
+            "zoneName": "French Guiana"
+        },
+        "GG": {
+            "zoneName": "Guernsey"
+        },
+        "GH": {
+            "zoneName": "Γκάνα"
+        },
+        "GI": {
+            "zoneName": "Γιβραλτάρ"
+        },
+        "GL": {
+            "zoneName": "Γροιλανδία"
+        },
+        "GM": {
+            "zoneName": "Γκάμπια"
+        },
+        "GN": {
+            "zoneName": "Γουινέα"
+        },
+        "GP": {
+            "zoneName": "Γουαδελούπη"
+        },
+        "GQ": {
+            "zoneName": "Ισημερινή Γουινέα"
+        },
+        "GR": {
+            "zoneName": "Ελλάδα"
+        },
+        "GR-IS": {
+            "countryName": "Ελλάδα",
+            "zoneName": "Νησιά Αιγαίου Πελάγους"
+        },
+        "GS": {
+            "zoneName": "South Georgia and the South Sandwich Islands"
+        },
+        "GT": {
+            "zoneName": "Γουατεμάλα"
+        },
+        "GU": {
+            "zoneName": "Guam"
+        },
+        "GW": {
+            "zoneName": "Guinea-Bissau"
+        },
+        "GY": {
+            "zoneName": "Γουιάνα"
+        },
+        "HK": {
+            "zoneName": "Χονγκ Κονγκ"
+        },
+        "HM": {
+            "zoneName": "Heard Island and McDonald Islands"
+        },
+        "HN": {
+            "zoneName": "Ονδούρα"
+        },
+        "HR": {
+            "zoneName": "Κροατία"
+        },
+        "HT": {
+            "zoneName": "Αΐτη"
+        },
+        "HU": {
+            "zoneName": "Ουγγαρία"
+        },
+        "ID": {
+            "zoneName": "Ινδονησία"
+        },
+        "IE": {
+            "zoneName": "Ιρλανδία"
+        },
+        "IL": {
+            "zoneName": "Ισραήλ"
+        },
+        "IM": {
+            "zoneName": "Isle of Man"
+        },
+        "IN-AN": {
+            "countryName": "Ινδία",
+            "zoneName": "Andaman and Nicobar Islands"
+        },
+        "IN-AP": {
+            "countryName": "Ινδία",
+            "zoneName": "Andhra Pradesh"
+        },
+        "IN-AR": {
+            "countryName": "Ινδία",
+            "zoneName": "Arunachal Pradesh"
+        },
+        "IN-AS": {
+            "countryName": "Ινδία",
+            "zoneName": "Assam"
+        },
+        "IN-BR": {
+            "countryName": "Ινδία",
+            "zoneName": "Bihar"
+        },
+        "IN-CT": {
+            "countryName": "Ινδία",
+            "zoneName": "Chhattisgarh"
+        },
+        "IN-DL": {
+            "countryName": "Ινδία",
+            "zoneName": "Delhi"
+        },
+        "IN-DN": {
+            "countryName": "Ινδία",
+            "zoneName": "Dadra and Nagar Haveli"
+        },
+        "IN-GA": {
+            "countryName": "Ινδία",
+            "zoneName": "Goa"
+        },
+        "IN-GJ": {
+            "countryName": "Ινδία",
+            "zoneName": "Gujarat"
+        },
+        "IN-HP": {
+            "countryName": "Ινδία",
+            "zoneName": "Himachal Pradesh"
+        },
+        "IN-HR": {
+            "countryName": "Ινδία",
+            "zoneName": "Haryana"
+        },
+        "IN-JH": {
+            "countryName": "Ινδία",
+            "zoneName": "Jharkhand"
+        },
+        "IN-JK": {
+            "countryName": "Ινδία",
+            "zoneName": "Jammu and Kashmir"
+        },
+        "IN-KA": {
+            "countryName": "Ινδία",
+            "zoneName": "Karnataka"
+        },
+        "IN-KL": {
+            "countryName": "Ινδία",
+            "zoneName": "Kerala"
+        },
+        "IN-MH": {
+            "countryName": "Ινδία",
+            "zoneName": "Maharashtra"
+        },
+        "IN-ML": {
+            "countryName": "Ινδία",
+            "zoneName": "Meghalaya"
+        },
+        "IN-MN": {
+            "countryName": "Ινδία",
+            "zoneName": "Manipur"
+        },
+        "IN-MP": {
+            "countryName": "Ινδία",
+            "zoneName": "Madhya Pradesh"
+        },
+        "IN-MZ": {
+            "countryName": "Ινδία",
+            "zoneName": "Mizoram"
+        },
+        "IN-NL": {
+            "countryName": "Ινδία",
+            "zoneName": "Nagaland"
+        },
+        "IN-OR": {
+            "countryName": "Ινδία",
+            "zoneName": "Orissa"
+        },
+        "IN-PB": {
+            "countryName": "Ινδία",
+            "zoneName": "Punjab"
+        },
+        "IN-PY": {
+            "countryName": "Ινδία",
+            "zoneName": "Pondicherry"
+        },
+        "IN-RJ": {
+            "countryName": "Ινδία",
+            "zoneName": "Rajasthan"
+        },
+        "IN-SK": {
+            "countryName": "Ινδία",
+            "zoneName": "Sikkim"
+        },
+        "IN-TN": {
+            "countryName": "Ινδία",
+            "zoneName": "Tamil Nadu"
+        },
+        "IN-TR": {
+            "countryName": "Ινδία",
+            "zoneName": "Tripura"
+        },
+        "IN-UP": {
+            "countryName": "Ινδία",
+            "zoneName": "Uttar Pradesh"
+        },
+        "IN-UT": {
+            "countryName": "Ινδία",
+            "zoneName": "Uttarakhand"
+        },
+        "IN-WB": {
+            "countryName": "Ινδία",
+            "zoneName": "West Bengal"
+        },
+        "IO": {
+            "zoneName": "British Indian Ocean Territory"
+        },
+        "IQ": {
+            "zoneName": "Ιράκ"
+        },
+        "IQ-KUR": {
+            "countryName": "Ιράκ",
+            "zoneName": "Kurdistan"
+        },
+        "IR": {
+            "zoneName": "Ιράν"
+        },
+        "IS": {
+            "zoneName": "Ισλανδία"
+        },
+        "IT": {
+            "zoneName": "Ιταλία"
+        },
+        "IT-CNO": {
+            "countryName": "Ιταλία",
+            "zoneName": "Βόρεια Κεντρική Ιταλία"
+        },
+        "IT-CSO": {
+            "countryName": "Ιταλία",
+            "zoneName": "Νότια Κεντρική Ιταλία"
+        },
+        "IT-NO": {
+            "countryName": "Ιταλία",
+            "zoneName": "Βόρεια Ιταλία"
+        },
+        "IT-SAR": {
+            "countryName": "Ιταλία",
+            "zoneName": "Σαρδηνία"
+        },
+        "IT-SIC": {
+            "countryName": "Ιταλία",
+            "zoneName": "Σικελία"
+        },
+        "IT-SO": {
+            "countryName": "Ιταλία",
+            "zoneName": "Νότια Ιταλία"
+        },
+        "JE": {
+            "zoneName": "Jersey"
+        },
+        "JM": {
+            "zoneName": "Τζαμάικα"
+        },
+        "JO": {
+            "zoneName": "Ιορδανία"
+        },
+        "JP-CB": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Chūbu"
+        },
+        "JP-CG": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Chūgoku"
+        },
+        "JP-HKD": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Hokkaidō"
+        },
+        "JP-HR": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Hokuriku"
+        },
+        "JP-KN": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Kansai"
+        },
+        "JP-KY": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Kyūshū"
+        },
+        "JP-ON": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Okinawa"
+        },
+        "JP-SK": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Shikoku"
+        },
+        "JP-TH": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Tōhoku"
+        },
+        "JP-TK": {
+            "countryName": "Ιαπωνία",
+            "zoneName": "Tōkyō"
+        },
+        "KE": {
+            "zoneName": "Κένυα"
+        },
+        "KG": {
+            "zoneName": "Kyrgyzstan"
+        },
+        "KH": {
+            "zoneName": "Cambodia"
+        },
+        "KI": {
+            "zoneName": "Kiribati"
+        },
+        "KM": {
+            "zoneName": "Comoros"
+        },
+        "KN": {
+            "zoneName": "Saint Kitts and Nevis"
+        },
+        "KP": {
+            "zoneName": "Βόρεια Κορέα"
+        },
+        "KR": {
+            "zoneName": "Νότια Κορέα"
+        },
+        "KW": {
+            "zoneName": "Κουβέιτ"
+        },
+        "KY": {
+            "zoneName": "Cayman Islands"
+        },
+        "KZ": {
+            "zoneName": "Καζακστάν"
+        },
+        "LA": {
+            "zoneName": "Laos"
+        },
+        "LB": {
+            "zoneName": "Λίβανος"
+        },
+        "LC": {
+            "zoneName": "Saint Lucia"
+        },
+        "LI": {
+            "zoneName": "Λιχτενστάιν"
+        },
+        "LK": {
+            "zoneName": "Σρι Λάνκα"
+        },
+        "LR": {
+            "zoneName": "Liberia"
+        },
+        "LS": {
+            "zoneName": "Lesotho"
+        },
+        "LT": {
+            "zoneName": "Λιθουανία"
+        },
+        "LU": {
+            "zoneName": "Λουξεμβούργο"
+        },
+        "LV": {
+            "zoneName": "Λετονία"
+        },
+        "LY": {
+            "zoneName": "Λιβύη"
+        },
+        "MA": {
+            "zoneName": "Μαρόκο"
+        },
+        "MC": {
+            "zoneName": "Μονακό"
+        },
+        "MD": {
+            "zoneName": "Μολδαβία"
+        },
+        "ME": {
+            "zoneName": "Μαυροβούνιο"
+        },
+        "MF": {
+            "countryName": "Saint Martin",
+            "zoneName": "French"
+        },
+        "MG": {
+            "zoneName": "Μαδαγασκάρη"
+        },
+        "MH": {
+            "zoneName": "Marshall Islands"
+        },
+        "MK": {
+            "zoneName": "Βόρεια Μακεδονία"
+        },
+        "ML": {
+            "zoneName": "Mali"
+        },
+        "MM": {
+            "zoneName": "Myanmar"
+        },
+        "MN": {
+            "zoneName": "Μογγολία"
+        },
+        "MO": {
+            "zoneName": "Μακάο"
+        },
+        "MP": {
+            "zoneName": "Northern Mariana Islands"
+        },
+        "MQ": {
+            "zoneName": "Martinique"
+        },
+        "MR": {
+            "zoneName": "Mauritania"
+        },
+        "MS": {
+            "zoneName": "Montserrat"
+        },
+        "MT": {
+            "zoneName": "Μάλτα"
+        },
+        "MU": {
+            "zoneName": "Mauritius"
+        },
+        "MV": {
+            "zoneName": "Maldives"
+        },
+        "MW": {
+            "zoneName": "Malawi"
+        },
+        "MX": {
+            "zoneName": "Μεξικό"
+        },
+        "MX-BC": {
+            "countryName": "Μεξικό",
+            "zoneName": "Baja California"
+        },
+        "MX-CE": {
+            "countryName": "Μεξικό",
+            "zoneName": "Κεντρικό Μεξικό"
+        },
+        "MX-NE": {
+            "countryName": "Μεξικό",
+            "zoneName": "Βορειοανατολικό Μεξικό"
+        },
+        "MX-NO": {
+            "countryName": "Μεξικό",
+            "zoneName": "Βόρειο Μεξικό"
+        },
+        "MX-NW": {
+            "countryName": "Μεξικό",
+            "zoneName": "Βορειοδυτικό Μεξικό"
+        },
+        "MX-OC": {
+            "countryName": "Μεξικό",
+            "zoneName": "Occidental"
+        },
+        "MX-OR": {
+            "countryName": "Μεξικό",
+            "zoneName": "Oriental"
+        },
+        "MX-PN": {
+            "countryName": "Μεξικό",
+            "zoneName": "Peninsula"
+        },
+        "MY-EM": {
+            "countryName": "Μαλαισία",
+            "zoneName": "Borneo"
+        },
+        "MY-WM": {
+            "countryName": "Μαλαισία",
+            "zoneName": "Peninsula"
+        },
+        "MZ": {
+            "zoneName": "Mozambique"
+        },
+        "NA": {
+            "zoneName": "Namibia"
+        },
+        "NC": {
+            "zoneName": "New Caledonia"
+        },
+        "NE": {
+            "zoneName": "Niger"
+        },
+        "NF": {
+            "zoneName": "Norfolk Island"
+        },
+        "NG": {
+            "zoneName": "Νιγηρία"
+        },
+        "NI": {
+            "zoneName": "Nicaragua"
+        },
+        "NKR": {
+            "zoneName": "Nagorno-Karabakh"
+        },
+        "NL": {
+            "zoneName": "Ολλανδία"
+        },
+        "NO-NO1": {
+            "countryName": "Νορβηγία",
+            "zoneName": "Νοτιοανατολική Νορβηγία"
+        },
+        "NO-NO2": {
+            "countryName": "Νορβηγία",
+            "zoneName": "Νοτιοδυτική Νορβηγία"
+        },
+        "NO-NO3": {
+            "countryName": "Νορβηγία",
+            "zoneName": "Κεντρική Νορβηγία"
+        },
+        "NO-NO4": {
+            "countryName": "Νορβηγία",
+            "zoneName": "Βόρεια Νορβηγία"
+        },
+        "NO-NO5": {
+            "countryName": "Νορβηγία",
+            "zoneName": "Δυτική Νορβηγία"
+        },
+        "NP": {
+            "zoneName": "Νεπάλ"
+        },
+        "NR": {
+            "zoneName": "Nauru"
+        },
+        "NU": {
+            "zoneName": "Niue"
+        },
+        "NZ-NZA": {
+            "countryName": "Νέα Ζηλανδία",
+            "zoneName": "Auckland Islands"
+        },
+        "NZ-NZC": {
+            "countryName": "Νέα Ζηλανδία",
+            "zoneName": "Chatham Islands"
+        },
+        "NZ-NZN": {
+            "countryName": "Νέα Ζηλανδία",
+            "zoneName": "North Island"
+        },
+        "NZ-NZS": {
+            "countryName": "Νέα Ζηλανδία",
+            "zoneName": "South Island"
+        },
+        "OM": {
+            "zoneName": "Ομάν"
+        },
+        "PA": {
+            "zoneName": "Παναμάς"
+        },
+        "PE": {
+            "zoneName": "Περού"
+        },
+        "PF": {
+            "zoneName": "Γαλλική Πολυνησία"
+        },
+        "PG": {
+            "zoneName": "Παπούα Νέα Γουινέα"
+        },
+        "PH": {
+            "zoneName": "Φιλιππίνες"
+        },
+        "PK": {
+            "zoneName": "Πακιστάν"
+        },
+        "PL": {
+            "zoneName": "Πολωνία"
+        },
+        "PM": {
+            "zoneName": "Saint Pierre and Miquelon"
+        },
+        "PN": {
+            "zoneName": "Pitcairn"
+        },
+        "PR": {
+            "zoneName": "Πουέρτο Ρίκο"
+        },
+        "PS": {
+            "zoneName": "Παλαιστίνη"
+        },
+        "PT": {
+            "zoneName": "Πορτογαλία"
+        },
+        "PT-AC": {
+            "countryName": "Πορτογαλία",
+            "zoneName": "Azores"
+        },
+        "PT-MA": {
+            "countryName": "Πορτογαλία",
+            "zoneName": "Madeira"
+        },
+        "PW": {
+            "zoneName": "Palau"
+        },
+        "PY": {
+            "zoneName": "Παραγουάη"
+        },
+        "QA": {
+            "zoneName": "Κατάρ"
+        },
+        "RE": {
+            "zoneName": "Réunion"
+        },
+        "RO": {
+            "zoneName": "Ρουμανία"
+        },
+        "RS": {
+            "zoneName": "Σερβία"
+        },
+        "RU": {
+            "zoneName": "Ρωσία"
+        },
+        "RU-1": {
+            "countryName": "Ρωσία",
+            "zoneName": "Ευρωπαϊκή Ρωσία και Ουράλια"
+        },
+        "RU-2": {
+            "countryName": "Ρωσία",
+            "zoneName": "Σιβηρία"
+        },
+        "RU-EU": {
+            "zoneName": "Ρωσία"
+        },
+        "RU-AS": {
+            "zoneName": "Ρωσία"
+        },
+        "RU-KGD": {
+            "countryName": "Ρωσία",
+            "zoneName": "Καλίνινγκραντ"
+        },
+        "RW": {
+            "zoneName": "Ρουάντα"
+        },
+        "SA": {
+            "zoneName": "Σαουδική Αραβία"
+        },
+        "SB": {
+            "zoneName": "Solomon Islands"
+        },
+        "SC": {
+            "zoneName": "Seychelles"
+        },
+        "SD": {
+            "zoneName": "Σουδάν"
+        },
+        "SE": {
+            "zoneName": "Σουηδία"
+        },
+        "SG": {
+            "zoneName": "Σιγκαπούρη"
+        },
+        "SH": {
+            "zoneName": "Saint Helena, Ascension and Tristan da Cunha"
+        },
+        "SI": {
+            "zoneName": "Σλοβενία"
+        },
+        "SJ": {
+            "zoneName": "Svalbard and Jan Mayen"
+        },
+        "SK": {
+            "zoneName": "Σλοβακία"
+        },
+        "SL": {
+            "zoneName": "Sierra Leone"
+        },
+        "SM": {
+            "zoneName": "San Marino"
+        },
+        "SN": {
+            "zoneName": "Senegal"
+        },
+        "SO": {
+            "zoneName": "Σομαλία"
+        },
+        "SR": {
+            "zoneName": "Suriname"
+        },
+        "SS": {
+            "zoneName": "Νότιο Σουδάν"
+        },
+        "ST": {
+            "zoneName": "Sao Tome and Principe"
+        },
+        "SV": {
+            "zoneName": "El Salvador"
+        },
+        "SX": {
+            "countryName": "Sint Maarten",
+            "zoneName": "Dutch"
+        },
+        "SY": {
+            "zoneName": "Συρία"
+        },
+        "SZ": {
+            "zoneName": "Swaziland"
+        },
+        "TC": {
+            "zoneName": "Turks and Caicos Islands"
+        },
+        "TD": {
+            "zoneName": "Chad"
+        },
+        "TF": {
+            "zoneName": "French Southern Territories"
+        },
+        "TG": {
+            "zoneName": "Togo"
+        },
+        "TH": {
+            "zoneName": "Ταϊλάνδη"
+        },
+        "TJ": {
+            "zoneName": "Tajikistan"
+        },
+        "TK": {
+            "zoneName": "Tokelau"
+        },
+        "TL": {
+            "zoneName": "Timor-Leste"
+        },
+        "TM": {
+            "zoneName": "Turkmenistan"
+        },
+        "TN": {
+            "zoneName": "Τυνησία"
+        },
+        "TO": {
+            "zoneName": "Tonga"
+        },
+        "TR": {
+            "zoneName": "Τουρκία"
+        },
+        "TT": {
+            "zoneName": "Trinidad and Tobago"
+        },
+        "TV": {
+            "zoneName": "Tuvalu"
+        },
+        "TW": {
+            "zoneName": "Ταϊβάν"
+        },
+        "TZ": {
+            "zoneName": "Τανζανία"
+        },
+        "UA": {
+            "zoneName": "Ουκρανία"
+        },
+        "UA-CR": {
+            "countryName": "Κριμαία",
+            "zoneName": "Ουκρανία"
+        },
+        "UG": {
+            "zoneName": "Ουγκάντα"
+        },
+        "UM": {
+            "zoneName": "United States Minor Outlying Islands"
+        },
+        "US": {
+            "zoneName": "Ηνωμένες Πολιτείες Αμερικής"
+        },
+        "US-AK": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Alaska"
+        },
+        "US-AL": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Alabama"
+        },
+        "US-BPA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "BPA"
+        },
+        "US-CA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "California"
+        },
+        "US-HI-HA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Hawaii"
+        },
+        "US-HI-KA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Oahu"
+        },
+        "US-IPC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "IPC"
+        },
+        "US-MISO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "MISO"
+        },
+        "US-NC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "North Carolina"
+        },
+        "US-NEISO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "New England"
+        },
+        "US-NV": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Nevada"
+        },
+        "US-NY": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "New York"
+        },
+        "US-OR": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Oregon"
+        },
+        "US-PJM": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "PJM"
+        },
+        "US-SC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "South Carolina"
+        },
+        "US-SPP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "SPP"
+        },
+        "US-SVERI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "SVERI"
+        },
+        "US-TN": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Tennessee"
+        },
+        "US-TX": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "ERCOT"
+        },
+        "US-CAL-BANC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Balancing Authority Of Northern California"
+        },
+        "US-CAL-CISO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "California Independent System Operator"
+        },
+        "US-CAL-IID": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Imperial Irrigation District"
+        },
+        "US-CAL-LDWP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Los Angeles Department Of Water And Power"
+        },
+        "US-CAL-TIDC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Turlock Irrigation District"
+        },
+        "US-CAR-CPLE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Duke Energy Progress East"
+        },
+        "US-CAR-CPLW": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Duke Energy Progress West"
+        },
+        "US-CAR-DUK": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Duke Energy Carolinas"
+        },
+        "US-CAR-SC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "South Carolina Public Service Authority"
+        },
+        "US-CAR-SCEG": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "South Carolina Electric & Gas Company"
+        },
+        "US-CAR-YAD": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+        },
+        "US-CENT-SPA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Southwestern Power Administration"
+        },
+        "US-CENT-SWPP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Southwest Power Pool"
+        },
+        "US-FLA-FMPP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Florida Municipal Power Pool"
+        },
+        "US-FLA-FPC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Duke Energy Florida Inc"
+        },
+        "US-FLA-FPL": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Florida Power & Light Company"
+        },
+        "US-FLA-GVL": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Gainesville Regional Utilities"
+        },
+        "US-FLA-HST": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "City Of Homestead"
+        },
+        "US-FLA-JEA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "JEA"
+        },
+        "US-FLA-NSB": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Utilities Commission Of New Smyrna Beach"
+        },
+        "US-FLA-SEC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Seminole Electric Cooperative"
+        },
+        "US-FLA-TAL": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "City Of Tallahassee"
+        },
+        "US-FLA-TEC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Tampa Electric Company"
+        },
+        "US-MIDA-OVEC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Ohio Valley Electric Corporation"
+        },
+        "US-MIDA-PJM": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "PJM Interconnection, Llc"
+        },
+        "US-MIDW-AECI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Associated Electric Cooperative, Inc."
+        },
+        "US-MIDW-EEI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Electric Energy, Inc."
+        },
+        "US-MIDW-GLHB": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "GridLiance"
+        },
+        "US-MIDW-LGEE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+        },
+        "US-MIDW-MISO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+        },
+        "US-NE-ISNE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Iso New England Inc."
+        },
+        "US-NW-AVA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Avista Corporation"
+        },
+        "US-NW-AVRN": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Avangrid Renewables Cooperative"
+        },
+        "US-NW-BPAT": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Bonneville Power Administration"
+        },
+        "US-NW-CHPD": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "PUD No. 1 Of Chelan County"
+        },
+        "US-NW-DOPD": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "PUD No. 1 Of Douglas County"
+        },
+        "US-NW-GCPD": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "PUD No. 2 Of Grant County, Washington"
+        },
+        "US-NW-GRID": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Gridforce Energy Management, Llc"
+        },
+        "US-NW-GWA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Naturener Power Watch, Llc (Gwa)"
+        },
+        "US-NW-IPCO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Idaho Power Company"
+        },
+        "US-NW-NEVP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Nevada Power Company"
+        },
+        "US-NW-NWMT": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Northwestern Energy"
+        },
+        "US-NW-PACE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Pacificorp East"
+        },
+        "US-NW-PACW": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Pacificorp West"
+        },
+        "US-NW-PGE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Portland General Electric Company"
+        },
+        "US-NW-PSCO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Public Service Company Of Colorado"
+        },
+        "US-NW-PSEI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Puget Sound Energy"
+        },
+        "US-NW-SCL": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Seattle City Light"
+        },
+        "US-NW-TPWR": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+        },
+        "US-NW-WACM": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+        },
+        "US-NW-WAUW": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Western Area Power Administration UGP West"
+        },
+        "US-NW-WWA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Naturener Wind Watch, Llc"
+        },
+        "US-NY-NYIS": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "New York Independent System Operator"
+        },
+        "US-SE-AEC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Powersouth Energy Cooperative"
+        },
+        "US-SE-SEPA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Southeastern Power Administration"
+        },
+        "US-SE-SOCO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Southern Company Services, Inc. - Trans"
+        },
+        "US-SW-AZPS": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Arizona Public Service Company"
+        },
+        "US-SW-DEAA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Arlington Valley, LLC"
+        },
+        "US-SW-EPE": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "El Paso Electric Company"
+        },
+        "US-SW-GRIF": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Griffith Energy, LLC"
+        },
+        "US-SW-GRMA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Gila River Power, LLC"
+        },
+        "US-SW-HGMA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "New Harquahala Generating Company, LLC"
+        },
+        "US-SW-PNM": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Public Service Company Of New Mexico"
+        },
+        "US-SW-SRP": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Salt River Project"
+        },
+        "US-SW-TEPC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Tucson Electric Power Company"
+        },
+        "US-SW-WALC": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Western Area Power Administration - Desert Southwest Region"
+        },
+        "US-TEN-TVA": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Tennessee Valley Authority"
+        },
+        "US-TEX-ERCO": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Electric Reliability Council Of Texas, Inc."
+        },
+        "UY": {
+            "zoneName": "Ουρουγουάη"
+        },
+        "UZ": {
+            "zoneName": "Ουζμπεκιστάν"
+        },
+        "VA": {
+            "zoneName": "Βατικανό"
+        },
+        "VC": {
+            "zoneName": "Saint Vincent and the Grenadines"
+        },
+        "VE": {
+            "zoneName": "Βενεζουέλα"
+        },
+        "VG": {
+            "countryName": "Virgin Islands",
+            "zoneName": "Virgin Islands"
+        },
+        "VI": {
+            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
+            "zoneName": "Virgin Islands"
+        },
+        "VN": {
+            "zoneName": "Βιετνάμ"
+        },
+        "VU": {
+            "zoneName": "Vanuatu"
+        },
+        "WF": {
+            "zoneName": "Wallis and Futuna"
+        },
+        "WS": {
+            "zoneName": "Σαμόα"
+        },
+        "XX": {
+            "zoneName": "Κατεχόμενη Κύπρος"
+        },
+        "YE": {
+            "zoneName": "Yemen"
+        },
+        "YT": {
+            "zoneName": "Mayotte"
+        },
+        "ZA": {
+            "zoneName": "Νότια Αφρική"
+        },
+        "ZM": {
+            "zoneName": "Ζάμπια"
+        },
+        "ZW": {
+            "zoneName": "Ζιμπάμπουε"
+        }
+    }
+}
