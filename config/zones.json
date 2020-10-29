@@ -3355,7 +3355,8 @@
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/lgrigoryeva1"
     ],
     "parsers": {
       "production": "MD.fetch_production"
@@ -4583,7 +4584,8 @@
       "https://github.com/corradio",
       "https://github.com/olivierSemet",
       "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/lgrigoryeva1"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5213,6 +5215,28 @@
       "production": "US_PJM.fetch_production"
     },
     "timezone": null
+  },
+  "PR": {
+    "contributors": [
+      "https://github.com/q--",
+      "https://github.com/systemcatch",
+      "https://github.com/veqtrus"
+    ],
+    "flag_file_name": "pr.png",
+    "parsers": {
+      "production": "US_PREPA.fetch_production"
+    },
+    "timezone": "America/Puerto_Rico",
+    "bounding_box": [
+      [
+        -68.43781490799995,
+        17.42291901200015
+      ],
+      [
+        -64.74461829299992,
+        19.022772528000033
+      ]
+    ]
   },
   "US-SC": {
     "comment": "South Carolina Public Service Authority",
@@ -6935,7 +6959,10 @@
         -93.2943099999999,
         36.55797
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "UY": {
     "bounding_box": [
