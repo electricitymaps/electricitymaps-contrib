@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
 
 import arrow
@@ -86,7 +87,18 @@ def test_parser(zone, data_type, target_datetime):
                      'min returned datetime: {} UTC'.format(first_dt),
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
+    
+    try:
+        if data_type == 'production':
+            validate_production(res, zone)
+        elif data_type == 'consumption':
+            validate_consumption(res, zone)
+        elif data_type == 'exchange':
+            validate_exchange(res, zone)
+    except ValidationError as e:
+        print('\nValidation failed: {}'.format(e))
 
+    
 
 if __name__ == '__main__':
     print(test_parser())
