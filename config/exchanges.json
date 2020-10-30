@@ -1244,7 +1244,7 @@
       58.723
     ],
     "parsers": {
-      "exchange": "GB_ORK.fetch_exchange"
+      "exchange": "GB_SSEN.fetch_exchange"
     },
     "rotation": 10
   },
