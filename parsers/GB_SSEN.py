@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Parser for the Orkney Islands"""
+"""Parser for the SSEN Data"""
 
 import arrow
 import dateutil
@@ -9,7 +9,7 @@ import logging
 import requests
 from typing import Dict, Any
 
-# data from https://www.ssen.co.uk/anm/orkney/
+# data from https://www.ssen.co.uk/anm/orkney/ & /iow/
 
 
 TZ = "Europe/London"
@@ -17,6 +17,7 @@ BASE_URL = "https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Ha
 
 URL_ZONE_MAPPING = {
     "GB-ORK": BASE_URL + "14973",
+    "GB-IOW": BASE_URL + "19491",
 }
 
 GENERATION_MAPPING = {
@@ -38,7 +39,7 @@ def parse_ssen_data(raw_data: Dict[str, Any], mapping: Dict) -> Dict:
     return data
 
 
-def fetch_production(zone_key='GB-ORK', session=None, target_datetime=None,
+def fetch_production(zone_key, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country
@@ -143,6 +144,6 @@ if __name__ == '__main__':
     from pprint import pprint as print
 
     print('fetch_production() ->')
-    print(fetch_production())
+    print(fetch_production('GB-ORK'))
     print('fetch_exchange(GB, GB-ORK)')
     print(fetch_exchange('GB', 'GB-ORK'))

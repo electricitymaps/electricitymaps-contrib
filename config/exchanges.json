@@ -1248,6 +1248,16 @@
     },
     "rotation": 10
   },
+  "GB->GB-IOW": {
+    "lonlat": [
+      -1.355,
+      50.763
+    ],
+    "parsers": {
+      "exchange": "GB_SSEN.fetch_exchange"
+    },
+    "rotation": -10
+  },
   "GB->IE": {
     "capacity": [
       -500,

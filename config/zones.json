@@ -2008,7 +2008,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
+      "https://github.com/maxbellec",
+      "https://github.com/danstan5"
     ],
     "flag_file_name": "gb.png",
     "parsers": {
@@ -2023,6 +2024,26 @@
       [
         -1.8924861319999025,
         59.86090729400016
+      ]
+    ]
+  },
+  "GB-IOW": {
+    "contributors": [
+      "https://github.com/danstan5"
+    ],
+    "flag_file_name": "gb.png",
+    "parsers": {
+      "production": "GB_SSEN.fetch_production"
+    },
+    "timezone": null,
+    "bounding_box": [
+      [
+        -1.7127,
+        50.4744
+      ],
+      [
+        -0.8676,
+        50.8512
       ]
     ]
   },
