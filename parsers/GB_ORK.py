@@ -4,70 +4,38 @@
 
 import arrow
 import dateutil
+import dateutil.parser as dt_parser
 import logging
 import requests
-from bs4 import BeautifulSoup
+from typing import Dict, Any
 
-# There is a 2MW storage battery on the islands.
-# http://www.oref.co.uk/orkneys-energy/innovations-2/
-
-TZ = 'Europe/London'
-DATETIME_LINK = 'https://www.ssen.co.uk/anm/orkney/'
-GENERATION_LINK = 'https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726'
-
-GENERATION_MAPPING = {"Live Demand": "Demand",
-                      "Orkney ANM": "ANM Renewables",
-                      "Non-ANM Renewable Generation": "Renewables"}
+# data from https://www.ssen.co.uk/anm/orkney/
 
 
-def get_json_data(session):
-    """
-    Requests json data and extracts generation information.
-    Returns a dictionary.
-    """
-    s = session or requests.Session()
-    req = s.get(GENERATION_LINK, verify=False)
-    raw_json_data = req.json()
+TZ = "Europe/London"
+BASE_URL = "https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId="
 
-    generation_data = raw_json_data['data']['datasets']
+URL_ZONE_MAPPING = {
+    "GB-ORK": BASE_URL + "14973",
+}
 
-    production = {}
-    for datapoint in generation_data:
-        gen_type = datapoint['label']
-        val = float(max(datapoint['data']))
-        production[gen_type] = val
-
-    for k in list(production.keys()):
-        if k not in GENERATION_MAPPING.keys():
-            # Get rid of unneeded keys.
-            production.pop(k)
-
-    return production
+GENERATION_MAPPING = {
+    "Live Demand": "Demand",
+    " ANM": "ANM Renewables",
+    "Non-ANM Renewable Generation": "Non-ANM Renewables",
+}
 
 
-def get_datetime(session):
-    """
-    Extracts data timestamp from html and checks it's less than 2 hours old.
-    Returns an arrow object.
-    """
-    s = session or requests.Session()
-    req = s.get(DATETIME_LINK, verify=False)
-    soup = BeautifulSoup(req.text, 'html.parser')
+def parse_ssen_data(raw_data: Dict[str, Any], mapping: Dict) -> Dict:
+    """Extracts only the data matching the mapping keys."""
+    data = {}
 
-    data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})
+    for item in raw_data["data"]["datasets"]:
+        for ssen_label, map_label in mapping.items():
+            if ssen_label in item["label"]: # string match
+                data[map_label] = float(max(item["data"]))
 
-    last_updated = data_table.find("div", {"class": "button"}).contents
-    raw_dt = last_updated[-1].strip().split('  ', 1)[-1]
-    naive_dt = arrow.get(raw_dt, 'DD MMMM YYYY HH:mm:ss')
-    aware_dt = naive_dt.replace(tzinfo=dateutil.tz.gettz(TZ))
-
-    current_time = arrow.now(TZ)
-    diff = current_time - aware_dt
-
-    if diff.total_seconds() > 7200:
-        raise ValueError('Orkney data is too old to use, data is {} hours old.'.format(diff.total_seconds()/3600))
-
-    return aware_dt.datetime
+    return data
 
 
 def fetch_production(zone_key='GB-ORK', session=None, target_datetime=None,
@@ -103,22 +71,26 @@ def fetch_production(zone_key='GB-ORK', session=None, target_datetime=None,
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    raw_data = get_json_data(session)
-    raw_data.pop("Live Demand")
+    s = session or requests.Session()
+    response = s.get(URL_ZONE_MAPPING[zone_key], verify=False)
 
-    mapped_data = {}
-    mapped_data['unknown'] = raw_data.get("Orkney ANM", 0.0) + raw_data.get("Non-ANM Renewable Generation", 0.0)
+    response_dt = dt_parser.parse(response.headers.get("date"))
+    dt = arrow.get(response_dt, TZ).datetime
 
-    dt = get_datetime(session)
+    data = parse_ssen_data(response.json(), GENERATION_MAPPING)
+    production_total = \
+        data.get("ANM Renewables", 0.0) + data.get("Non-ANM Renewables", 0.0)
 
     data = {
-      'zoneKey': zone_key,
-      'datetime': dt,
-      'production': mapped_data,
-      'storage': {
-          'battery': None,
-      },
-      'source': 'ssen.co.uk'
+        'zoneKey': zone_key,
+        'datetime': dt,
+        'production': {
+            "unknown": production_total,
+        },
+        'storage': {
+            'battery': None,
+        },
+        'source': 'ssen.co.uk'
     }
 
     return data
@@ -143,14 +115,21 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
       'source': 'mysource.com'
     }
     """
-    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
-    raw_data = get_json_data(session)
-    dt = get_datetime(session)
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    # +ve importing from mainland
-    # -ve export to mainland
-    total_generation = raw_data['Orkney ANM'] + raw_data['Non-ANM Renewable Generation']
-    netflow = raw_data['Live Demand'] - total_generation
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+    s = session or requests.Session()
+    response = s.get(URL_ZONE_MAPPING[zone_key2], verify=False)
+
+    response_dt = dt_parser.parse(response.headers.get("date"))
+    dt = arrow.get(response_dt, TZ).datetime
+
+    data = parse_ssen_data(response.json(), GENERATION_MAPPING)
+    production_total = \
+        data.get("ANM Renewables", 0.0) + data.get("Non-ANM Renewables", 0.0)
+    # +ve importing from mainland, -ve export to mainland
+    netflow = data.get("Demand") - production_total
 
     data = {'netFlow': netflow,
             'datetime': dt,
@@ -161,6 +140,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 
 if __name__ == '__main__':
+    from pprint import pprint as print
+
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_exchange(GB, GB-ORK)')
