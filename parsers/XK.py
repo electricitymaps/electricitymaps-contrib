@@ -87,6 +87,8 @@ def fetch_production(zone_key='XK', session=None,
         time = row[1]
         if time is None:
             break
+        if isinstance(time, float):
+            time = datetime.time(hour=round(time * 24) % 24)
         time_str = time.strftime('%H:%M')
         assert 'TC KOSOVA' in row[3], 'Parser assumes only coal data'
         prod = float(row[2])
