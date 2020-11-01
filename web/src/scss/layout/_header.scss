@@ -58,15 +58,8 @@
     }
 
     .logo {
-        display: inline;
-        font-family: $primary-font;
-
         .image {
             vertical-align: text-top;
-        }
-
-        @include respond-to('small') {
-            margin-right: auto;
         }
     }
 
@@ -103,15 +96,9 @@
     }
 }
 
-#header-content.brightmode,
 #mobile-header {
     #electricitymap-logo{
         background-image: url(../images/electricitymap-logo.svg);
     }
-}
-
-#electricitymap-logo{
-    background-image: url(../images/electricitymap-logo-white.svg);
-    background-size: cover;
 }
 
