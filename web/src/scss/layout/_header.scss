@@ -47,41 +47,11 @@
         vertical-align: middle;
     }
 
-    a {
-        color: $white;
-        transition: color 0.4s;
-
-        &:hover {
-            color: #4178AC !important;
-            text-decoration: none;
-        }
-    }
-
-    .logo {
-        .image {
-            vertical-align: text-top;
-        }
-    }
-
-    .maintitle,
-    .live {
-        color: $white;
-        transition: color 0.4s;
-    }
-
     .right-header {
         display: block;
         float: right;
         text-align: right;
         font-size: 0.6em;
-    }
-
-    &.brightmode {
-        a,
-        .maintitle,
-        .live {
-            color: $black;
-        }
     }
 }
 

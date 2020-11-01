@@ -47,6 +47,34 @@ const Image = styled.div`
   background-size: cover;
 `;
 
+const Maintitle = styled.span`
+  transition: color 0.4s;
+  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+  @media ${breakpoints.small} {
+    display: none !important;
+  }
+`;
+
+// TODO: can this be Maintitle + one style to be more DRY
+const Live = styled.span`
+  transition: color 0.4s;
+  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+  font-weight: bold;
+  @media ${breakpoints.small} {
+    display: none !important;
+  }
+`;
+
+const Anchor = styled.a`
+  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+  transition: color 0.4s;
+
+  &:hover {
+    color: #4178AC !important;
+    text-decoration: none;
+  }
+`;
+
 const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
 });
@@ -56,11 +84,11 @@ export default connect(mapStateToProps)(props => (
     <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
       <Logo>
         <Image brightmode={ props.brightModeEnabled }/>
-        <span className="maintitle small-screen-hidden">
-          <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
-          · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
-          · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
-        </span>
+        <Maintitle brightmode={ props.brightModeEnabled }>
+          <Live brightmode={ props.brightModeEnabled }>Live</Live>
+          · <Anchor brightmode={ props.brightModeEnabled } href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</Anchor>
+          · <Anchor brightmode={ props.brightModeEnabled } href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</Anchor>
+        </Maintitle>
       </Logo>
     </div>
   </Header>
