@@ -16,7 +16,7 @@ import sagas from './sagas';
 
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
-import { theme } from './scss/theme';
+import { themes } from './helpers/themes';
 
 // Track how long it took to start executing the JS code
 if (thirdPartyServices._ga) {
@@ -36,7 +36,7 @@ ReactDOM.render(
     {/* the route history outside of React components anymore */}
     <Router history={history}>
       <GlobalStyle />
-      <ThemeProvider theme={ theme }>
+      <ThemeProvider theme={themes.colorblindDark}>
         <Main />
       </ThemeProvider>
     </Router>

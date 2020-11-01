@@ -9,6 +9,17 @@ export const themes = {
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
     nonClickableFill: '#7A878D',
+    colors: {
+      white: '#FFFFFF',
+      black: '#000000',
+      lighterGray: '#FAFAFA',
+      lightGray: '#EFEFEF',
+      lightGreen: '#95f395',
+      green: '#009800',
+    },
+    fonts: {
+      primary: '"Open Sans", sans-serif'
+    },
   },
   dark: {
     co2Scale: {

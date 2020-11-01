@@ -9,11 +9,11 @@ const Header = styled.div`
   position: fixed;
   right: 0;
   top: 10px;
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.colors.white};
   min-height: 50px; /* required for old Safari */
 
   &.brightmode {
-    color: ${props => props.theme.black};
+    color: ${props => props.theme.colors.black};
   }
 
   @media ${breakpoints.small} {
@@ -47,7 +47,7 @@ const HeaderContent = styled.div`
 
 const Logo = styled.div`
   display: inline;
-  font-family: ${props => props.theme['primary-font']};
+  font-family: ${props => props.theme.fonts.primary};
 
   @media ${breakpoints.small} {
     margin-right: auto;
@@ -61,14 +61,14 @@ const Image = styled.div`
   width: 139px;
   margin-right: 4px;
   margin-top:1.5px;
-  background-image: ${props => props.brightmode ? 'url(../images/electricitymap-logo.svg)' 
-  : 'url(../images/electricitymap-logo-white.svg)'};
+  background-image: ${props => props.brightmode ? 'url(../images/electricitymap-logo.svg)'
+    : 'url(../images/electricitymap-logo-white.svg)'};
   background-size: cover;
 `;
 
 const Maintitle = styled.span`
   transition: color 0.4s;
-  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+  color: ${props => props.brightmode ? props.theme.colors.black : props.theme.colors.white};
   @media ${breakpoints.small} {
     display: none !important;
   }
@@ -79,7 +79,7 @@ const Live = styled(Maintitle)`
 `;
 
 const Anchor = styled.a`
-  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+  color: ${props => props.brightmode ? props.theme.colors.black : props.theme.colors.white};
   transition: color 0.4s;
 
   &:hover {
@@ -96,11 +96,11 @@ export default connect(mapStateToProps)(props => (
   <Header>
     <HeaderContent>
       <Logo>
-        <Image brightmode={ props.brightModeEnabled }/>
-        <Maintitle brightmode={ props.brightModeEnabled }>
-          <Live brightmode={ props.brightModeEnabled }>Live</Live>
-          · <Anchor brightmode={ props.brightModeEnabled } href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</Anchor>
-          · <Anchor brightmode={ props.brightModeEnabled } href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</Anchor>
+        <Image brightmode={props.brightModeEnabled} />
+        <Maintitle brightmode={props.brightModeEnabled}>
+          <Live brightmode={props.brightModeEnabled}>Live</Live>
+          · <Anchor brightmode={props.brightModeEnabled} href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</Anchor>
+          · <Anchor brightmode={props.brightModeEnabled} href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</Anchor>
         </Maintitle>
       </Logo>
     </HeaderContent>
