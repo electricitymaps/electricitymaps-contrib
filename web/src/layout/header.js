@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { breakpoints } from '../scss/theme';
 
-// TODO: Move all styles from styles.css to here
 const Header = styled.div`
   background-color: transparent;
   z-index: 2;
@@ -23,6 +22,26 @@ const Header = styled.div`
     left: 0;
     top: 0;
     z-index: 2;
+  }
+`;
+
+const HeaderContent = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 1.0rem;
+  height: 50px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 24px;
+
+  /* Force width to include padding */
+  box-sizing: border-box;
+
+  & > div,
+  & > span {
+      vertical-align: middle;
   }
 `;
 
@@ -55,14 +74,8 @@ const Maintitle = styled.span`
   }
 `;
 
-// TODO: can this be Maintitle + one style to be more DRY
-const Live = styled.span`
-  transition: color 0.4s;
-  color: ${props => props.brightmode ? props.theme.black : props.theme.white};
+const Live = styled(Maintitle)`
   font-weight: bold;
-  @media ${breakpoints.small} {
-    display: none !important;
-  }
 `;
 
 const Anchor = styled.a`
@@ -81,7 +94,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(props => (
   <Header>
-    <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
+    <HeaderContent>
       <Logo>
         <Image brightmode={ props.brightModeEnabled }/>
         <Maintitle brightmode={ props.brightModeEnabled }>
@@ -90,6 +103,6 @@ export default connect(mapStateToProps)(props => (
           · <Anchor brightmode={ props.brightModeEnabled } href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</Anchor>
         </Maintitle>
       </Logo>
-    </div>
+    </HeaderContent>
   </Header>
 ));
