@@ -1,5 +1,4 @@
 // Requires `brew install imagemagick`
-// import themes from './helpers/themes'
 
 const child_process = require('child_process');
 const fs = require('fs');
@@ -10,19 +9,16 @@ const d3 = Object.assign(
   require('d3-scale'),
 );
 
-const { themes } = require('./src/helpers/themes');
+import { themes } from './src/helpers/themes';
 
-function generateArrows(colorBlind = false) {
-  const prefix = colorBlind ? 'colorblind-' : ''
-  const theme = colorBlind ? themes.colorblindScale : themes.dark.co2Scale 
-
+function generateArrows(prefix, scaleTheme) {
   const co2color = d3.scaleLinear()
-  .domain(theme.steps)
-  .range(theme.colors);
+    .domain(scaleTheme.steps)
+    .range(scaleTheme.colors);
+
+  const colors = { nan: '#A9A9A9' };
   const keys = d3.range(0, 800 + 80, 80);
-  const colors = {};
   keys.forEach((k) => { colors[k] = co2color(k) });
-  colors['nan'] = '#A9A9A9';
 
   for (let co2value in colors) {
     // generate specific color
@@ -36,7 +32,7 @@ function generateArrows(colorBlind = false) {
       '+level-colors', 'transparent,'+colors[co2value],
       `public/images/${prefix}arrow-${co2value}.png`
     ]).on('close', (code) => {
-      if(code !== 0) {
+      if (code !== 0) {
         console.log('child exited with code', code);
         return;
       }
@@ -99,6 +95,5 @@ function generateArrows(colorBlind = false) {
   // #convert -dispose none -delay 0 demo-arrow.png -dispose previous -delay 16x1000 -loop 0 highlight/*.png -layers coalesce animated.gif
 }
 
-generateArrows()
-generateArrows(true)
-
+generateArrows('', themes.dark.co2Scale);
+generateArrows('colorblind-', themes.colorblindDark.co2Scale);

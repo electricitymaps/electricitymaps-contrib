@@ -16,8 +16,8 @@
             "subtitle": "Visualisierung der klimarelevanten Emissionen der Stromerzeugung"
         },
         "view2": {
-            "header": "Betrachte in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden.",
-            "text": "Die Färbung der Zonen erfolgt anhand der spezifischen Emissionen klimawirksamer Gase (CO2-Intensität), die zur Deckung des Strombedarfs einer Region freigesetzt werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung."
+            "header": "Betrachte in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden.",
+            "text": "Die Färbung der Zonen erfolgt anhand der spezifischen Emissionen klimawirksamer Gase (CO₂-Intensität), die zur Deckung des Strombedarfs einer Region freigesetzt werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung."
         },
         "view3": {
             "header": "Erfahre, aus welchen Quellen deine Elektrizität stammt.",
@@ -30,13 +30,13 @@
     },
     "country-panel": {
         "source": "Quelle",
-        "carbonintensity": "spezifische CO2-Emissionen",
-        "lowcarbon": "CO2-arm",
+        "carbonintensity": "spezifische CO₂-Emissionen",
+        "lowcarbon": "CO₂-arm",
         "renewable": "regenerativ",
         "electricityproduction": "Stromerzeugung",
         "electricityconsumption": "Stromverbrauch",
         "bysource": "Ursprung:",
-        "emissions": "CO2-Emissionen",
+        "emissions": "CO₂-Emissionen",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">Quelle bearbeiten oder hinzufügen</a>",
         "helpfrom": "mit Unterstützung von",
         "noDataAtTimestamp": "Für den ausgewählten Zeitraum sind leider keine Daten verfügbar",
@@ -47,21 +47,20 @@
     },
     "left-panel": {
         "zone-list-header-title": "Klimaeinfluss der Regionen",
-        "zone-list-header-subtitle": "Sortiert nach CO2-Intensität der verfügbaren Elektrizität (gCO2äq/kWh)",
+        "zone-list-header-subtitle": "Sortiert nach CO₂-Intensität der verfügbaren Elektrizität (gCO₂äq/kWh)",
         "search": "Land oder Region suchen"
     },
     "country-history": {
-        "carbonintensity24h": "spezifische CO2-Emissionen in den letzten 24 h",
+        "carbonintensity24h": "spezifische CO₂-Emissionen in den letzten 24 h",
         "emissionsorigin24h": "Ursprung der Emissionen in den letzten 24 h",
         "emissionsproduction24h": "Erzeugte Emissionen in den letzten 24 h",
         "electricityorigin24h": "Ursprung der Elektrizität in den letzten 24 h",
         "electricityproduction24h": "Erzeugte Elektrizität in den letzten 24 h",
         "electricityprices24h": "Strompreis in den letzten 24 h",
-        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API"
+        "Getdata": "Zugang zu historischen Daten und zur Vorhersage-API",
+        "emissions24h": "Emissionen in den letzten 24 Stunden"
     },
     "footer": {
-        "likethisvisu": "Findest du die Visualisierung gut?",
-        "loveyourfeedback": "Wir freuen uns über dein Feedback",
         "foundbugs": "Hast du Bugs gefunden? Hast du Ideen zur Verbesserung der Karte?",
         "faq-text": "Irgendetwas unklar? Schau in unsere",
         "faq": "häufig gestellte Fragen.",
@@ -71,17 +70,17 @@
         "windpotential": "Windpotenzial",
         "solarpotential": "Solarpotenzial",
         "colorblindmode": "Farbenblind-Modus",
-        "carbonintensity": "CO2-Intensität"
+        "carbonintensity": "CO₂-Intensität"
     },
     "tooltips": {
-        "carbonintensity": "CO2-Intensität",
-        "lowcarbon": "CO2-arm",
+        "carbonintensity": "CO₂-Intensität",
+        "lowcarbon": "CO₂-arm",
         "renewable": "regenerativ",
         "crossborderexport": "Stromexport",
-        "carbonintensityexport": "CO2-Intensität der Exporte",
+        "carbonintensityexport": "CO₂-Intensität der Exporte",
         "ofinstalled": "der installierten Leistung",
         "utilizing": "durch Nutzung von",
-        "withcarbonintensity": "mit einer CO2-Intensität von",
+        "withcarbonintensity": "mit einer CO₂-Intensität von",
         "showWindLayer": "Windlayer anzeigen",
         "hideWindLayer": "Windlayer verbergen",
         "showSolarLayer": "Solarlayer anzeigen",
@@ -93,17 +92,18 @@
         "consumption": "Verbrauch",
         "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
         "selectLanguage": "Sprache auswählen",
-        "lowCarbDescription": "Beinhaltet regenerative Energie and Atomkraft"
+        "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie"
     },
     "misc": {
-        "maintitle": "CO2-Emissionen des Stromverbrauchs in Echtzeit",
+        "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
         "retrynow": "Erneut versuchen",
         "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
         "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
-        "faq": "Häufig gestellte Fragen"
+        "faq": "Häufig gestellte Fragen",
+        "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
     },
     "wind": "Windenergie",
     "solar": "Solarenergie",
@@ -111,31 +111,31 @@
     "hydro storage": "Pumpspeicher",
     "battery storage": "Batteriespeicher",
     "biomass": "Biomasse",
-    "nuclear": "Atomkraft",
+    "nuclear": "Kernenergie",
     "geothermal": "Geothermie",
     "gas": "Erdgas",
     "coal": "Kohle",
     "oil": "Öl",
     "unknown": "unbekannt",
     "electricityComesFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
-    "emissionsComeFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
+    "emissionsComeFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> stammen aus %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
-    "emissionsStoredUsing": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
+    "emissionsStoredUsing": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden gespeichert in %3$s",
     "electricityExportedTo": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
-    "emissionsExportedTo": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
+    "emissionsExportedTo": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden in die Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> exportiert",
     "electricityImportedFrom": "<b>%1$s %%</b> der Elektrizität der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-    "emissionsImportedFrom": "<b>%1$s %%</b> der CO2-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
-    "ofCO2eqPerMinute": "CO2äq pro Minute",
+    "emissionsImportedFrom": "<b>%1$s %%</b> der CO₂-Emissionen der Region <img id=\"country-flag\"></img> <b>%2$s</b> werden aus der Region <img id=\"country-exchange-flag\"></img> <b>%3$s</b> importiert",
+    "ofCO2eqPerMinute": "CO₂äq pro Minute",
     "theMap": {
         "groupName": "Die Karte",
         "mapColors-question": "Was bedeuten die Farben auf der Karte?",
-        "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO2äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href=\"#carbonIntensity\" class=\"entry-link\">CO2-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
+        "mapColors-answer": "Wir färben Bereiche der Karte anhand der ausgestoßenen Treibhausgase (CO₂äq) für jede dort bereitgestellte Kilowattstunde (kWh) (<a href=\"#carbonIntensity\" class=\"entry-link\">CO₂-Intensität</a>). Grünere Farben bedeuten einen klimafreundlicheren Elektrizitätsmix.",
         "mapArrows-question": "Was bedeuten die Pfeile zwischen den Regionen auf der Karte?",
         "mapArrows-answer": "Die Pfeile zwischen den Regionen zeigen den physischen Stromfluss (Importe und Exporte) der Elektrizität: Je schneller sie blinken, desto stärker ist der grenzüberschreitende Stromaustausch. Der Elektrizitätaustausch ist von großer Bedeutung, da beim Import von Strom bilanziell auch auch die Kohlenstoffemissionen importiert werden.",
         "mapSolarWindButtons-question": "Wofür sind die “Sonne” und “Wind”-Buttons auf der Karte da?",
         "mapSolarWindButtons-answer": "Die Knöpfe aktivieren die Anzeige der Echtzeit-Windgeschwindigkeit und Sonneneinstrahlung, womit das momentane Potenzial von Photovoltaik- und Windenergieanlagen abgeschätzt werden kann. Das tatsächliche Potenzial dieser Anlagen ist von vielen weiteren Faktoren abhängig, daher dient diese Visualisierung als ungefährer Indikator des Potenzials.",
-        "mapNuclearColors-question": "Warum werden Regionen mit Atomkraftwerken auf der Karte grün dargestellt?",
-        "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>). Regionen mit hohem Atomstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
+        "mapNuclearColors-question": "Warum werden Regionen mit Kernkraftwerken auf der Karte grün dargestellt?",
+        "mapNuclearColors-answer": "Die Erzeugung von Strom mittels Kernkraft hat eine niedrige Kohlenstoffintensität (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\") Quelle</a>). Regionen mit hohem Kernstromanteil werden daher auf der Karte grüner dargestellt. Dies bedeutet aber nicht, dass es keine ökologischen Herausforderungen im Zusammenhang mit der Kernenergie gibt (wie dies auch bei anderen Formen der Energieerzeugung der Fall ist). Diese ökologischen Auswirkungen sind nicht Gegenstand dieser Karte.",
         "mapColorBlind-question": "Ich bin farbenblind. Wie kann ich die Karte lesen?",
         "mapColorBlind-answer": "Die in der Karte angezeigte Farbskala kann geändert werden, indem man die Einstellung “Farbenblind-Modus“ aktiviert. Sie befindet sich unten links im Desktopmodus und im Tab “Über“ bei mobilen Geräten."
     },
@@ -153,11 +153,11 @@
     "methodology": {
         "groupName": "Unsere Methoden",
         "carbonIntensity-question": "Was ist \"Kohlenstoffintensität\"?",
-        "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO2-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO2eq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO2 als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO2-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
-        "consumptionFocus-question": "Warum wird die CO2-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
+        "carbonIntensity-answer": "Die Kohlenstoffintensität (bzw. CO₂-Intensität) ist ein Maß für die Treibhausgasemissionen im Zusammenhang mit der Erzeugung des verbrauchten Stroms (in gCO₂äq/kWh - Gramm Kohlendioxidäquivalente pro verbrauchter Kilowattstunde). Wir bewerten die Emissionen des Stromverbrauchs (nicht der Produktion), d.h. alle Treibhausgasemissionen (sowohl CO₂ als auch andere Treibhausgase wie Methan), die in die Produktion des Stroms eingeflossen sind, der in einer Region verbraucht wird, unter Berücksichtigung der CO₂-Intensität des aus anderen Gebieten importierten Stroms. Wir verwenden einen Ökobilanzansatz (Life Cycle Analysis, LCA), d.h. wir berücksichtigen die Emissionen aus dem gesamten Lebenszyklus von Kraftwerken (Bau, Brennstoffproduktion, betriebliche Emissionen und Stilllegung).",
+        "consumptionFocus-question": "Warum wird die CO₂-Intensität des Stromverbrauchs statt der der Stromproduktion berechnet?",
         "consumptionFocus-answer": "Wir glauben, dass die Bürger für den Strom, den sie verbrauchen, verantwortlich sein sollten und nicht für den Strom, der in dem Bereich produziert wird, in dem sie leben. Darüber hinaus sind wir der Meinung, dass Regionen nicht in der Lage sein sollten, einen geringeren Klimaeinfluss zu \"fälschen\", indem sie die Stromerzeugung in andere Regionen verlagern und dann den Strom aus diesen Gebieten importieren.",
         "renewableLowCarbonDifference-question": "Was ist der Unterschied zwischen \"erneuerbar\" und \"kohlenstoffarm\"?",
-        "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Atomkraft.",
+        "renewableLowCarbonDifference-answer": "Erneuerbare Energieerzeugung basiert auf erneuerbaren Energiequellen wie Wind- und Wasserströmung, Sonnenschein und Geothermie. Kohlenstoffarme Energieerzeugung bedeutet, dass die Produktion mit sehr geringen Treibhausgasemissionen verbunden ist, z.B. bei der Kernkraft.",
         "importsAndExports-question": "Werden Stromimporte und -exporte berücksichtigt?",
         "importsAndExports-answer": "Ja, diese berücksichtigen wir. Importe und Exporte werden auf der Karte als kleine Pfeile zwischen verschiedenen Regionen angezeigt [Link zur Erklärung der Pfeile]. Detaillierte Informationen finden Sie in den angezeigten Grafiken, wenn Sie auf einen Bereich klicken.",
         "emissionsOfStored-question": "Was ist mit den Emissionen der Stromerzeugung, die in Batterien gespeichert oder zum Füllen von Pumpspeicher-Reservoirs verwendet wird?",
@@ -189,7 +189,7 @@
         "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
         "contribute-answer": "Ja, gerne! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
         "workTogether-question": "Können wir zusammenarbeiten?",
-        "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@tmrow.com\">Schicken Sie uns eine E-Mail!</a>",
+        "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@electricitymap.org\">Schicken Sie uns eine E-Mail!</a>",
         "disclaimer-question": "Haftungsausschluss",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Tomorrow übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Tomorrow nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
     },
@@ -900,8 +900,7 @@
             "zoneName": "Marshallinseln"
         },
         "MK": {
-            "zoneName": "Mazedonien",
-            "countryName": "Republik Mazedonien"
+            "zoneName": "Nordmazedonien"
         },
         "ML": {
             "zoneName": "Mali"
@@ -1412,15 +1411,15 @@
             "zoneName": "SVERI"
         },
         "GB-ORK": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Orkney Islands"
         },
         "GB-SHI": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Shetland Islands"
         },
         "GB-ZET": {
-            "countryName": "Groß Britannien",
+            "countryName": "Großbritannien",
             "zoneName": "Shetland Islands"
         },
         "IT-CNO": {
@@ -1530,10 +1529,221 @@
         "US-HI-OA": {
             "countryName": "Vereinigte Staaten von Amerika",
             "zoneName": "Oahu"
+        },
+        "US-CAL-BANC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-CISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-IID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-LDWP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAL-TIDC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-CPLW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-DUK": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-SCEG": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CAR-YAD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-CENT-SWPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FMPP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-FPL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-GVL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-HST": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-JEA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-NSB": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-SEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TAL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-FLA-TEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-OVEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDA-PJM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-AECI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-EEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-LGEE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-MIDW-MISO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NE-ISNE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-AVRN": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-BPAT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-CHPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-DOPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GCPD": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GRID": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-GWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-IPCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NEVP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-NWMT": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PACW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PGE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-PSEI": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-SCL": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-TPWR": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WACM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WAUW": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NW-WWA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-NY-NYIS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-AEC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SEPA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SE-SOCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-AZPS": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-DEAA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-EPE": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRIF": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-GRMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-HGMA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-PNM": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-SRP": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-TEPC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-SW-WALC": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEN-TVA": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "US-TEX-ERCO": {
+            "countryName": "Vereinigte Staaten von Amerika"
+        },
+        "CL-SEN": {
+            "countryName": "Chile"
+        },
+        "US-AK": {
+            "countryName": "Vereinigte Staaten von Amerika",
+            "zoneName": "Alaska"
+        },
+        "US-MIDW-GLHB": {
+            "countryName": "Vereinigte Staaten von Amerika"
         }
     },
     "mobile-info-tab": {
-        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO2-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO2-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
+        "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO₂-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
         "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
         "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
     }

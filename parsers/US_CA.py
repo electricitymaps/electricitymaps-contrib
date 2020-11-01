@@ -42,7 +42,7 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
     }
     """
     if target_datetime:
-        return fetch_historical_production(target_datetime)
+        return fetch_historical_production(target_datetime, zone_key)
 
     target_datetime = arrow.get(target_datetime)
 
@@ -81,7 +81,11 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
         # map items from names in CAISO CSV to names used in Electricity Map
         for ca_gen_type, mapped_gen_type in production_map.items():
             production = float(csv[ca_gen_type][i])
-
+            
+            if mapped_gen_type == 'solar' and production < 0:
+                logger.warn('Solar production for US_CA was reported as less than 0 and was clamped')
+                production = 0.0
+            
             # if another mean of production created a value, sum them up
             data['production'][mapped_gen_type] += production
 
@@ -96,15 +100,15 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
     return daily_data
 
 
-def fetch_historical_production(target_datetime):
-    return fetch_historical_data(target_datetime)[0]
+def fetch_historical_production(target_datetime, zone_key):
+    return fetch_historical_data(target_datetime, zone_key)[0]
 
 
 def fetch_historical_exchange(target_datetime):
     return fetch_historical_data(target_datetime)[1]
 
 
-def fetch_historical_data(target_datetime):
+def fetch_historical_data(target_datetime, zone_key='US-CA'):
     # caiso.com provides daily data until the day before today
     # get a clean date at the beginning of yesterday
     target_date = arrow.get(target_datetime).to('US/Pacific').replace(
@@ -127,7 +131,7 @@ def fetch_historical_data(target_datetime):
 
     for i in range(0, 24):
         daily_data.append({
-            'zoneKey': 'US-CA',
+            'zoneKey': zone_key,
             'storage': {},
             'source': 'caiso.com',
             'production': {
@@ -195,7 +199,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     s = session or requests.Session()
 
-    if sorted_zone_keys == 'MX-BC->US-CA':
+    if sorted_zone_keys == 'MX-BC->US-CA' or sorted_zone_keys == 'MX-BC->US-CAL-CISO':
         netflow = fetch_MX_exchange(s)
         exchange = {
           'sortedZoneKeys': sorted_zone_keys,

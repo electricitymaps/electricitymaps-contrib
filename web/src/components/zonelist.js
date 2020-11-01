@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { dispatchApplication } from '../store';
-import { themes } from '../helpers/themes';
-import { getCo2Scale } from '../helpers/scales';
+import { useCo2ColorScale } from '../hooks/theme';
+import { getCenteredZoneViewport } from '../helpers/map';
 import { __, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
@@ -55,45 +56,48 @@ function processZones(zonesData, accessor) {
 function zoneMatchesQuery(zone, queryString) {
   if (!queryString) return true;
   const queries = queryString.split(' ');
-  return queries.every(query =>
-    getFullZoneName(zone.countryCode)
+  return queries.every(
+    query => getFullZoneName(zone.countryCode)
       .toLowerCase()
-      .indexOf(query.toLowerCase()) !== -1);
+      .indexOf(query.toLowerCase()) !== -1,
+  );
 }
 
 const mapStateToProps = state => ({
-  colorBlindModeEnabled: state.application.colorBlindModeEnabled,
-  currentPage: state.application.showPageState,
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
 });
 
 const ZoneList = ({
-  colorBlindModeEnabled,
-  currentPage,
   electricityMixMode,
   gridZones,
   searchQuery,
 }) => {
-  const co2ColorScale = getCo2Scale(colorBlindModeEnabled);
+  const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor)
     .filter(z => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
+  const history = useHistory();
+  const location = useLocation();
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  // Click action
-  const handleClick = (countryCode) => {
-    dispatchApplication('showPageState', 'country');
-    dispatchApplication('selectedZoneName', countryCode);
+  const zonePage = zone => ({
+    pathname: `/zone/${zone.countryCode}`,
+    search: location.search,
+  });
+
+  const enterZone = (zone) => {
+    dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
+    history.push(zonePage(zone));
   };
 
   // Keyboard navigation
   useEffect(() => {
     const scrollToItemIfNeeded = (index) => {
-      const item = ref.current.children[index];
+      const item = ref.current && ref.current.children[index];
       if (!item) return;
 
       const parent = item.parentNode;
@@ -108,9 +112,9 @@ const ZoneList = ({
       }
     };
     const keyHandler = (e) => {
-      if (e.key && currentPage === 'map') {
+      if (e.key) {
         if (e.key === 'Enter' && zones[selectedItemIndex]) {
-          handleClick(zones[selectedItemIndex].countryCode);
+          enterZone(zones[selectedItemIndex]);
         } else if (e.key === 'ArrowUp') {
           const prevItemIndex = selectedItemIndex === null ? 0 : Math.max(0, selectedItemIndex - 1);
           scrollToItemIfNeeded(prevItemIndex);
@@ -135,26 +139,23 @@ const ZoneList = ({
   return (
     <div className="zone-list" ref={ref}>
       {zones.map((zone, ind) => (
-        <a
-          key={zone.shortname}
+        <Link
+          to={zonePage(zone)}
+          onClick={() => enterZone(zone)}
           className={selectedItemIndex === ind ? 'selected' : ''}
-          onClick={() => handleClick(zone.countryCode)}
+          key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
-          <img className="flag" src={flagUri(zone.countryCode, 32)} />
+          <img className="flag" src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
           <div className="name">
             <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
             <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
           </div>
           <div
             className="co2-intensity-tag"
-            style={{
-              backgroundColor: co2IntensityAccessor(zone) && co2ColorScale
-                ? co2ColorScale(co2IntensityAccessor(zone))
-                : 'gray',
-            }}
+            style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
           />
-        </a>
+        </Link>
       ))}
     </div>
   );

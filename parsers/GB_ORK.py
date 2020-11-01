@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
 TZ = 'Europe/London'
-DATETIME_LINK = 'https://www.ssen.co.uk/ANM/'
+DATETIME_LINK = 'https://www.ssen.co.uk/anm/orkney/'
 GENERATION_LINK = 'https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726'
 
 GENERATION_MAPPING = {"Live Demand": "Demand",
@@ -26,7 +26,7 @@ def get_json_data(session):
     Returns a dictionary.
     """
     s = session or requests.Session()
-    req = s.get(GENERATION_LINK)
+    req = s.get(GENERATION_LINK, verify=False)
     raw_json_data = req.json()
 
     generation_data = raw_json_data['data']['datasets']
@@ -51,7 +51,7 @@ def get_datetime(session):
     Returns an arrow object.
     """
     s = session or requests.Session()
-    req = s.get(DATETIME_LINK)
+    req = s.get(DATETIME_LINK, verify=False)
     soup = BeautifulSoup(req.text, 'html.parser')
 
     data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})

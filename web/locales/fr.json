@@ -16,7 +16,7 @@
             "subtitle": "Cartographie de l'impact de l'électricité sur le climat"
         },
         "view2": {
-            "header": "Visualisez la quantité de CO2 émise pour produire votre électricité, en temps réel.",
+            "header": "Visualisez la quantité de CO₂ émise pour produire votre électricité, en temps réel.",
             "text": "Les régions du monde sont colorées en fonction de l'intensité en carbone (incluant tous les gaz à effet de serre) de l’électricité qui y est consommée. Des couleurs plus vertes signifient une électricité plus respectueuse du climat."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Impact sur le climat par zone",
-        "zone-list-header-subtitle": "Classé par intensité carbone de l'électricité consommée (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Classé par intensité carbone de l'électricité consommée (gCO₂eq/kWh)",
         "search": "Rechercher une zone"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Obtenir l'historique et l'API de prévision + marginal"
     },
     "footer": {
-        "likethisvisu": "Vous aimez cette visualisation?",
-        "loveyourfeedback": "Envoyez-nous vos commentaires",
         "foundbugs": "Un bug ? Une idée ? Cliquez",
         "here": "ici",
         "faq-text": "Tout n'est pas clair ? Passez voir notre",
@@ -95,7 +93,7 @@
         "lowCarbDescription": "Inclue les énergies renouvelables et nucléaire"
     },
     "misc": {
-        "maintitle": "Emissions CO2 de la consommation électrique en temps réel",
+        "maintitle": "Emissions CO₂ de la consommation électrique en temps réel",
         "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
@@ -124,7 +122,7 @@
     "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> de l'électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "de CO2eq par minute",
+    "ofCO2eqPerMinute": "de CO₂eq par minute",
     "theMap": {
         "groupName": "La carte",
         "mapColors-question": "Que signifient les couleurs sur la carte ?",
@@ -152,7 +150,7 @@
     "methodology": {
         "groupName": "Nos méthodes",
         "carbonIntensity-question": "Qu'est-ce que « l'intensité carbone » ?",
-        "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO2eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d'électricité (et non de production), c'est-à-dire toutes les émissions de gaz à effet de serre (CO2 et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l'électricité consommée dans une région, en tenant compte de l'intensité en carbone de l'électricité importée depuis d'autres régions. Nous utilisons une approche d'analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l'ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
+        "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO₂eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d'électricité (et non de production), c'est-à-dire toutes les émissions de gaz à effet de serre (CO₂ et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l'électricité consommée dans une région, en tenant compte de l'intensité en carbone de l'électricité importée depuis d'autres régions. Nous utilisons une approche d'analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l'ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
         "consumptionFocus-question": "Pourquoi calculez-vous l'intensité en carbone de la consommation d'électricité au lieu de la production ?",
         "consumptionFocus-answer": "Nous pensons que les citoyens devraient être responsables de l’électricité qu’ils consomment, et non de l’électricité produite dans la région dans laquelle ils vivent. De plus, nous pensons que les régions ne devraient pas être en mesure de « simuler » un faible impact sur le climat simplement en se délocalisant les production d’énergie sale dans d’autres régions, puis importer l’électricité depuis ces régions.",
         "renewableLowCarbonDifference-question": "Quelle est la différence entre « renouvelable » et « bas carbone » ?",
@@ -188,7 +186,7 @@
         "contribute-question": "Puis-je contribuer à votre projet ?",
         "contribute-answer": "Bien sûr ! Electricity Map est un projet open-source, rendu possible par nos contributeurs bénévoles. Si vous souhaitez contribuer au développement de la carte, en ajoutant des sources de données pour de nouvelles zones, en ajoutant de nouvelles fonctionnalités ou en corrigeant des bugs, n'hésitez pas à nous rejoindre sur notre <a href=\"https://github.com/corradio/electricitymap/\" target=\"_ blank\"> github </a>.",
         "workTogether-question": "Pouvons-nous travailler ensemble ?",
-        "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@tmrow.com\">Envoyez-nous un email</a> !",
+        "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@electricitymap.org\">Envoyez-nous un email</a> !",
         "disclaimer-question": "Avertissement",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l'exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d'en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulteraient de l'inexactitude d'electricityMap, qu'elle soit due à une erreur, un manque de données, la présence d'information obsolète ou dépassée. Cela s'applique à electricityMap ainsi qu'à tout produit dérivé. Il est interdit d'inclure cette page web et n'importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu'à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdits sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour."
     },
@@ -986,8 +984,7 @@
             "zoneName": "Îles Marshall"
         },
         "MK": {
-            "countryName": "Rép. de Macédoine",
-            "zoneName": "FYROM"
+            "zoneName": "Macédoine du Nord"
         },
         "ML": {
             "zoneName": "Mali"

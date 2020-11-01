@@ -13,6 +13,8 @@ TIMEZONE = 'Asia/Singapore'
 
 TICKER_URL = 'https://www.emcsg.com/ChartServer/blue/ticker'
 
+SOLAR_URL = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
+
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
 
@@ -61,11 +63,13 @@ def get_solar(session, logger):
     Returns a float or None.
     """
 
-    url = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
+    url = SOLAR_URL
     solar_image = Image.open(session.get(url, stream=True).raw)
 
-    gray = solar_image.convert('L')
-    threshold_filter = lambda x: 0 if x < 77 else 255
+    w, h = solar_image.size
+    text_only = solar_image.crop((w*0.53125, h*0.74375, w*0.9296875, h*0.91875))
+    gray = text_only.convert('L')
+    threshold_filter = lambda x: 0 if x < 10 else 255
     black_white = gray.point(threshold_filter, '1')
 
     text = image_to_string(black_white, lang='eng')
@@ -86,7 +90,7 @@ def get_solar(session, logger):
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
-    if diff.seconds > 3600:
+    if diff.total_seconds() > 3600:
         msg = ('Singapore solar data is too old to use, '
                'parsed data timestamp was {}.').format(solar_dt)
         logger.warning(msg, extra={'key': 'SG'})
@@ -105,7 +109,7 @@ def get_solar(session, logger):
             logger.warning(msg, extra={'key': 'SG'})
             return None
     else:
-        if solar > 200.0:
+        if solar > 400.0:
             msg = "Solar generation is way over capacity - got {}".format(val)
             logger.warning(msg, extra={'key': 'SG'})
             return None

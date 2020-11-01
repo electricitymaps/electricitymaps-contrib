@@ -3,8 +3,9 @@
 
 import arrow
 import dateutil
-from .lib.validation import validate
 import requests
+from .lib.validation import validate
+from logging import getLogger
 
 tz = 'America/Lima'
 
@@ -25,40 +26,89 @@ def parse_date(item):
     return arrow.get(item['Nombre'], 'YYYY/MM/DD hh:mm:ss').replace(tzinfo=dateutil.tz.gettz(tz))
 
 
-def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=getLogger(__name__)):
+    """
+    Requests the last known production mix (in MW) of a given country
+    Arguments:
+    zone_key (optional) -- used in case a parser is able to fetch multiple countries
+    session (optional) -- request session passed in order to re-use an existing session
+    target_datetime (optional) -- used if parser can fetch data for a specific day
+    logger (optional) -- handles logging when parser is run as main
+    Return:
+    A list of dictionaries in the form:
+    {
+      'zoneKey': 'FR',
+      'dt': '2017-01-01T00:00:00Z',
+      'production': {
+          'biomass': 0.0,
+          'coal': 0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': null,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0
+      },
+      'storage': {
+          'hydro': -10.0,
+      },
+      'source': 'mysource.com'
+    }
+    """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     r = session or requests.session()
     url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
-    response = r.post(url, data={
-        'fechaInicial': arrow.now(tz=tz).shift(days=-1).format('DD/MM/YYYY'),
-        'fechaFinal': arrow.now(tz=tz).format('DD/MM/YYYY'),
+
+    current_date = arrow.now(tz=tz)
+
+    today = current_date.format('DD/MM/YYYY')
+    yesterday = current_date.shift(days=-1).format('DD/MM/YYYY')
+    end_date = current_date.shift(days=+1).format('DD/MM/YYYY')
+
+    # To guarantee a full 24 hours of data we must make 2 requests.
+
+    response_today = r.post(url, data={
+        'fechaInicial': today,
+        'fechaFinal': end_date,
         'indicador': 0
     })
-    obj = response.json()['GraficoTipoCombustible']['Series']
+
+    response_yesterday = r.post(url, data={
+        'fechaInicial': yesterday,
+        'fechaFinal': today,
+        'indicador': 0
+    })
+
+    data_today = response_today.json()['GraficoTipoCombustible']['Series']
+    data_yesterday = response_yesterday.json()['GraficoTipoCombustible']['Series']
+    raw_data = data_today + data_yesterday
 
     # Note: We receive MWh values between two intervals!
-    interval_hours = (parse_date(obj[0]['Data'][1]) - parse_date(
-        obj[0]['Data'][0])).total_seconds() / 3600
+    interval_hours = (parse_date(raw_data[0]['Data'][1]) - parse_date(
+        raw_data[0]['Data'][0])).total_seconds() / 3600
 
     data = []
     datetimes = []
 
-    for serie in obj:
-        k = serie['Name']
-        if not k in MAP_GENERATION:
-            raise Exception('Unknown production type %s' % k)
-        for v in serie['Data']:
-            datetime = parse_date(v)
+    for series in raw_data:
+        k = series['Name']
+        if k not in MAP_GENERATION:
+            logger.warning(f'Unknown production type "{k}" for Peru')
+            continue
+        for v in series['Data']:
+            dt = parse_date(v)
             try:
-                i = datetimes.index(datetime)
+                i = datetimes.index(dt)
             except ValueError:
                 i = len(datetimes)
-                datetimes.append(datetime)
+                datetimes.append(dt)
                 data.append({
                     'zoneKey': zone_key,
-                    'datetime': datetime.datetime,
+                    'datetime': dt.datetime,
                     'production': {},
                     'source': 'coes.org.pe'
                 })

@@ -1,5 +1,9 @@
 {
   "AL->GR": {
+    "capacity": [
+      -533,
+      533
+    ],
     "lonlat": [
       20.689872,
       40.198219
@@ -69,7 +73,7 @@
     },
     "rotation": 110
   },
-  "AR->CL-SING": {
+  "AR->CL-SEN": {
     "lonlat": [
       -68.291,
       -24.547
@@ -296,6 +300,21 @@
     },
     "rotation": -90
   },
+  "BE->DE": {
+    "capacity": [
+      -1000,
+      1000
+    ],
+    "lonlat": [
+      6.4,
+      50.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
   "BE->FR": {
     "lonlat": [
       4.137165,
@@ -355,6 +374,10 @@
     "rotation": 180
   },
   "BG->MK": {
+    "capacity": [
+      -950,
+      950
+    ],
     "lonlat": [
       22.912615,
       41.86784
@@ -375,6 +398,10 @@
     "rotation": 0
   },
   "BG->RS": {
+    "capacity": [
+      -2485,
+      2485
+    ],
     "lonlat": [
       22.978533,
       43.131375
@@ -385,6 +412,10 @@
     "rotation": -90
   },
   "BG->TR": {
+    "capacity": [
+      -2485,
+      2485
+    ],
     "lonlat": [
       26.89864,
       42.002181
@@ -395,6 +426,10 @@
     "rotation": 135
   },
   "BY->LT": {
+    "capacity": [
+      -4553,
+      4553
+    ],
     "lonlat": [
       25.756061,
       54.789457
@@ -518,7 +553,7 @@
     },
     "rotation": 90
   },
-  "CA-AB->US-MT": {
+  "CA-AB->US-NW-NWMT": {
     "lonlat": [
       -111.920238,
       49.016577
@@ -528,7 +563,7 @@
     },
     "rotation": 180
   },
-  "CA-BC->US-BPA": {
+  "CA-BC->US-NW-BPAT": {
     "lonlat": [
       -119.300532,
       49.044392
@@ -547,6 +582,16 @@
       "exchange": "CA_ON.fetch_exchange"
     },
     "rotation": 90
+  },
+  "CA-MB->US-MIDW-MISO": {
+    "lonlat": [
+      -97.5788,
+      49.0000
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 180
   },
   "CA-NB->CA-NS": {
     "lonlat": [
@@ -578,7 +623,7 @@
     },
     "rotation": -45
   },
-  "CA-NB->US-NEISO": {
+  "CA-NB->US-NE-ISNE": {
     "lonlat": [
       -67.7771,
       46.139
@@ -598,7 +643,7 @@
     },
     "rotation": 90
   },
-  "CA-ON->US-MISO": {
+  "CA-ON->US-MIDW-MISO": {
     "lonlat": [
       -84.188,
       46.476
@@ -608,7 +653,7 @@
     },
     "rotation": -145
   },
-  "CA-ON->US-NY": {
+  "CA-ON->US-NY-NYIS": {
     "lonlat": [
       -78.9147,
       43.5523
@@ -618,7 +663,7 @@
     },
     "rotation": 135
   },
-  "CA-QC->US-NEISO": {
+  "CA-QC->US-NE-ISNE": {
     "lonlat": [
       -71.737,
       45.011
@@ -628,13 +673,23 @@
     },
     "rotation": 180
   },
-  "CA-QC->US-NY": {
+  "CA-QC->US-NY-NYIS": {
     "lonlat": [
       -73.768,
       45.004
     ],
     "parsers": {
       "exchange": "US_NY.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "CA-SK->US-CENT-SWPP": {
+    "lonlat": [
+      -105.6714,
+      48.9838
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
     },
     "rotation": 180
   },
@@ -793,6 +848,21 @@
     },
     "rotation": -90
   },
+  "DE->NO-NO2": {
+    "capacity": [
+      -1400,
+      1400
+    ],
+    "lonlat": [
+      7.2,
+      55.90
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -10
+  },
   "DE->PL": {
     "lonlat": [
       14.585163,
@@ -885,8 +955,8 @@
   },
   "DK-DK1->SE-SE3": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -899,8 +969,8 @@
   },
   "DK-DK1->SE": {
     "capacity": [
-      -650,
-      650
+      -680,
+      740
     ],
     "lonlat": [
       11.556268,
@@ -912,6 +982,10 @@
     "rotation": 70
   },
   "DK-DK2->SE-SE4": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -922,6 +996,10 @@
     "rotation": 70
   },
   "DK-DK2->SE": {
+    "capacity": [
+      -1300,
+      1700
+    ],
     "lonlat": [
       12.704418,
       55.952282
@@ -956,6 +1034,10 @@
     "rotation": 180
   },
   "EE->RU-1": {
+    "capacity": [
+      -2462,
+      2462
+    ],
     "lonlat": [
       27.468803,
       58.545189
@@ -1010,6 +1092,10 @@
     "rotation": -10
   },
   "ES->FR": {
+    "capacity": [
+      -2800,
+      2800
+    ],
     "lonlat": [
       0.3,
       42.9
@@ -1021,6 +1107,10 @@
     "rotation": 20
   },
   "ES->MA": {
+    "capacity": [
+      -1359,
+      1359
+    ],
     "lonlat": [
       -5.614929,
       35.952597
@@ -1204,7 +1294,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "RU.fetch_exchange"
+      "exchange": "GE.fetch_exchange"
     },
     "rotation": 0
   },
@@ -1274,6 +1364,10 @@
     "rotation": 0
   },
   "GR->TR": {
+    "capacity": [
+      -1900,
+      1900
+    ],
     "lonlat": [
       26.316812,
       41.1262
@@ -1334,6 +1428,10 @@
     "rotation": 30
   },
   "HR->RS": {
+    "capacity": [
+      -1423,
+      1423
+    ],
     "lonlat": [
       19.021212,
       45.354302
@@ -1364,6 +1462,10 @@
     "rotation": 110
   },
   "HU->RS": {
+    "capacity": [
+      -1054,
+      1054
+    ],
     "lonlat": [
       19.494768,
       46.112673
@@ -1479,6 +1581,21 @@
     },
     "rotation": 90
   },
+  "IT-CSO->ME": {
+    "capacity": [
+      -600,
+      600
+    ],
+    "lonlat": [
+      16.5,
+      42.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
+  },
   "IT-NO->SI": {
     "lonlat": [
       13.596393,
@@ -1539,6 +1656,10 @@
     "rotation": -90
   },
   "JP-CB->JP-TK": {
+    "capacity": [
+      -1200,
+      1200
+    ],
     "lonlat": [
       138.24,
       35.34
@@ -1583,6 +1704,10 @@
     "rotation": 175
   },
   "JP-HKD->JP-TH": {
+    "capacity": [
+      -900,
+      900
+    ],
     "lonlat": [
       140.847,
       41.643
@@ -1652,6 +1777,10 @@
     "rotation": 180
   },
   "LT->RU-KGD": {
+    "capacity": [
+      -2490,
+      2490
+    ],
     "lonlat": [
       21.963913,
       55.080726
@@ -1682,6 +1811,10 @@
     }
   },
   "LV->RU-1": {
+    "capacity": [
+      -696,
+      696
+    ],
     "lonlat": [
       27.7336,
       56.87436
@@ -1765,7 +1898,7 @@
     },
     "rotation": 0
   },
-  "MX-BC->US-CA": {
+  "MX-BC->US-CAL-CISO": {
     "lonlat": [
       -116.027,
       32.607
@@ -1855,7 +1988,7 @@
     },
     "rotation": 150
   },
-  "MX-NE->US":{
+  "MX-NE->US-TEX-ERCO":{
     "lonlat": [
       -98.042,
       26.057
@@ -1865,7 +1998,7 @@
     },
     "rotation": 0
   },
-  "MX-NO->US":{
+  "MX-NO->US-TEX-ERCO":{
     "lonlat": [
       -107.292,
       31.709
@@ -2162,6 +2295,10 @@
     "rotation": 90
   },
   "RO->RS": {
+    "capacity": [
+      -1132,
+      1132
+    ],
     "lonlat": [
       21.469049,
       44.947107
@@ -2307,5 +2444,1546 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": 180
+  },
+  "US-CAL-BANC->US-NW-BPAT": {
+    "lonlat": [
+      -122.568137,
+      41.367034
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -122
+  },
+  "US-CAL-BANC->US-CAL-CISO": {
+    "lonlat": [
+      -121.300708327,
+      38.806317855
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -44
+  },
+  "US-CAL-BANC->US-CAL-TIDC": {
+    "lonlat": [
+      -120.584803325,
+      37.632077092
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -33
+  },
+  "US-CAL-CISO->US-SW-AZPS": {
+    "lonlat": [
+      -114.14771926876867,
+      34.26236586541118
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -71
+  },
+  "US-CAL-CISO->US-NW-BPAT": {
+    "lonlat": [
+      -124.06497455924251,
+      41.4636574822466
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -158
+  },
+  "US-CAL-CISO->US-CAL-IID": {
+    "lonlat": [
+      -114.67096252242025,
+      33.20594911251957
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -48
+  },
+  "US-CAL-CISO->US-CAL-LDWP": {
+    "lonlat": [
+      -118.584465341,
+      37.123240455
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -87
+  },
+  "US-CAL-CISO->US-NW-NEVP": {
+    "lonlat": [
+      -118.334372766,
+      37.3916303460001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -135
+  },
+  "US-CAL-CISO->US-NW-PACW": {
+    "lonlat": [
+      -121.01188726250551,
+      40.351243277236364
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -17
+  },
+  "US-CAL-CISO->US-SW-SRP": {
+    "lonlat": [
+      -114.15123583543954,
+      34.24653998229242
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -67
+  },
+  "US-CAL-CISO->US-CAL-TIDC": {
+    "lonlat": [
+      -120.369765245,
+      37.628431424
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -58
+  },
+  "US-CAL-CISO->US-SW-WALC": {
+    "lonlat": [
+      -118.584465341,
+      37.123240455
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -103
+  },
+  "US-CAL-IID->US-SW-AZPS": {
+    "lonlat": [
+      -114.48204066696128,
+      32.83826436542124
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -100
+  },
+  "US-CAL-IID->US-SW-WALC": {
+    "lonlat": [
+      -114.475390609,
+      32.839163816
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -176
+  },
+  "US-CAL-LDWP->US-SW-AZPS": {
+    "lonlat": [
+      -118.237451,
+      33.767594
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -70
+  },
+  "US-CAL-LDWP->US-NW-BPAT": {
+    "lonlat": [
+      -118.239371804,
+      37.462786265
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -163
+  },
+  "US-CAL-LDWP->US-NW-NEVP": {
+    "lonlat": [
+      -118.576569,
+      37.463081
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -145
+  },
+  "US-CAL-LDWP->US-NW-PACE": {
+    "lonlat": [
+      -117.604019502,
+      36.292071642
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -121
+  },
+  "US-CAL-LDWP->US-SW-WALC": {
+    "lonlat": [
+      -118.584465341,
+      37.123240455
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -107
+  },
+  "US-CAR-CPLE->US-CAR-YAD": {
+    "lonlat": [
+      -80.115297318,
+      35.297960281
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -77
+  },
+  "US-CAR-CPLE->US-CAR-DUK": {
+    "lonlat": [
+      -80.7699,
+      34.37724
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -81
+  },
+  "US-CAR-CPLE->US-MIDA-PJM": {
+    "lonlat": [
+      -76.4004199999999,
+      36.30089
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -30
+  },
+  "US-CAR-CPLE->US-CAR-SCEG": {
+    "lonlat": [
+      -80.86966,
+      34.18231
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -120
+  },
+  "US-CAR-CPLE->US-CAR-SC": {
+    "lonlat": [
+      -78.83359112529105,
+      33.69356865349944
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -122
+  },
+  "US-CAR-CPLW->US-CAR-DUK": {
+    "lonlat": [
+      -81.90756,
+      36.27862
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -84
+  },
+  "US-CAR-CPLW->US-MIDA-PJM": {
+    "lonlat": [
+      -81.90756,
+      36.27862
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -155
+  },
+  "US-CAR-CPLW->US-TEN-TVA": {
+    "lonlat": [
+      -83.31717,
+      35.89099
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -94
+  },
+  "US-CAR-DUK->US-CAR-YAD": {
+    "lonlat": [
+      -80.0587501529999,
+      35.689912796
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-CAR-DUK->US-MIDA-PJM": {
+    "lonlat": [
+      -78.45649,
+      36.5425100000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -175
+  },
+  "US-CAR-DUK->US-CAR-SCEG": {
+    "lonlat": [
+      -80.82555736088426,
+      34.26848609706126
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "US-CAR-DUK->US-CAR-SC": {
+    "lonlat": [
+      -82.13578916749756,
+      34.03071845039919
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -37
+  },
+  "US-CAR-DUK->US-SE-SEPA": {
+    "lonlat": [
+      -82.55661,
+      33.94522
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -140
+  },
+  "US-CAR-DUK->US-SE-SOCO": {
+    "lonlat": [
+      -82.55661,
+      33.94522
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -128
+  },
+  "US-CAR-DUK->US-TEN-TVA": {
+    "lonlat": [
+      -84.32173,
+      34.98811
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -92
+  },
+  "US-CAR-SC->US-CAR-SCEG": {
+    "lonlat": [
+      -81.0064260779999,
+      32.3061781770001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -116
+  },
+  "US-CAR-SC->US-SE-SEPA": {
+    "lonlat": [
+      -81.84175369226524,
+      33.26822148267869
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -121
+  },
+  "US-CAR-SC->US-SE-SOCO": {
+    "lonlat": [
+      -81.59124438556297,
+      33.04117482449629
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -107
+  },
+  "US-CAR-SCEG->US-SE-SEPA": {
+    "lonlat": [
+      -82.50397837180677,
+      33.93362812571167
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -122
+  },
+  "US-CAR-SCEG->US-SE-SOCO": {
+    "lonlat": [
+      -81.11441,
+      32.11412
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -104
+  },
+  "US-CENT-SPA->US-MIDW-AECI": {
+    "lonlat": [
+      -90.467778,
+      36.800658
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -52
+  },
+  "US-CENT-SPA->US-MIDW-MISO": {
+    "lonlat": [
+      -90.75005,
+      36.2680700000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -7
+  },
+  "US-CENT-SPA->US-CENT-SWPP": {
+    "lonlat": [
+      -97.380583,
+      35.030009
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -62
+  },
+  "US-CENT-SWPP->US-MIDW-AECI": {
+    "lonlat": [
+      -91.94743571449284,
+      40.59944737687989
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -67
+  },
+  "US-CENT-SWPP->US-SW-EPE": {
+    "lonlat": [
+      -103.81455,
+      32.96495
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -154
+  },
+  "US-CENT-SWPP->US-TEX-ERCO": {
+    "lonlat": [
+      -101.03701,
+      36.0578100000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -1
+  },
+  "US-CENT-SWPP->US-MIDW-MISO": {
+    "lonlat": [
+      -91.94743571449284,
+      40.59944737687989
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-CENT-SWPP->US-NW-PSCO": {
+    "lonlat": [
+      -104.00779609494865,
+      36.973552366615934
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -102
+  },
+  "US-CENT-SWPP->US-SW-PNM": {
+    "lonlat": [
+      -104.00779609494954,
+      36.97355236583146
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -129
+  },
+  "US-CENT-SWPP->US-NW-WACM": {
+    "lonlat": [
+      -102.505732991455,
+      42.6728426538958
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -86
+  },
+  "US-CENT-SWPP->US-NW-WAUW": {
+    "lonlat": [
+      -104.04302135744632,
+      45.46287797184328
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -52
+  },
+  "US-FLA-FMPP->US-FLA-FPC": {
+    "lonlat": [
+      -81.4234908669999,
+      28.6083593760001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -57
+  },
+  "US-FLA-FMPP->US-FLA-FPL": {
+    "lonlat": [
+      -80.13694,
+      26.97092
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -176
+  },
+  "US-FLA-FMPP->US-FLA-JEA": {
+    "lonlat": [
+      -81.72209,
+      30.1911000000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -46
+  },
+  "US-FLA-FMPP->US-FLA-TEC": {
+    "lonlat": [
+      -81.959318912,
+      28.2610770690001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -100
+  },
+  "US-FLA-FPC->US-FLA-TAL": {
+    "lonlat": [
+      -84.384234,
+      30.5538270000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -50
+  },
+  "US-FLA-FPC->US-FLA-FPL": {
+    "lonlat": [
+      -80.88566,
+      26.95883
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -32
+  },
+  "US-FLA-FPC->US-FLA-GVL": {
+    "lonlat": [
+      -82.05551939971254,
+      29.50778681974566
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -7
+  },
+  "US-FLA-FPC->US-FLA-SEC": {
+    "lonlat": [
+      -80.6775013747971,
+      27.13487858194975
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -62
+  },
+  "US-FLA-FPC->US-SE-SOCO": {
+    "lonlat": [
+      -85.49711888213565,
+      30.09033501732437
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -37
+  },
+  "US-FLA-FPC->US-FLA-TEC": {
+    "lonlat": [
+      -82.1267528329999,
+      28.243184474
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -4
+  },
+  "US-FLA-FPC->US-FLA-NSB": {
+    "lonlat": [
+      -81.35555771109858,
+      28.98610783549209
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -107
+  },
+  "US-FLA-FPL->US-FLA-HST": {
+    "lonlat": [
+      -80.1213099999999,
+      25.9004800000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -24
+  },
+  "US-FLA-FPL->US-FLA-GVL": {
+    "lonlat": [
+      -82.48014491617691,
+      29.932992988698576
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -23
+  },
+  "US-FLA-FPL->US-FLA-JEA": {
+    "lonlat": [
+      -81.72209,
+      30.1911000000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -37
+  },
+  "US-FLA-FPL->US-FLA-SEC": {
+    "lonlat": [
+      -82.15157250929833,
+      27.64566722879262
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -38
+  },
+  "US-FLA-FPL->US-SE-SOCO": {
+    "lonlat": [
+      -81.93616,
+      30.8272000000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -36
+  },
+  "US-FLA-FPL->US-FLA-TEC": {
+    "lonlat": [
+      -82.083444633,
+      27.64265563
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -53
+  },
+  "US-FLA-FPL->US-FLA-NSB": {
+    "lonlat": [
+      -81.15018,
+      29.26587
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -175
+  },
+  "US-FLA-JEA->US-FLA-SEC": {
+    "lonlat": [
+      -84.5694759325146,
+      30.01138369316129
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -36
+  },
+  "US-FLA-SEC->US-FLA-TEC": {
+    "lonlat": [
+      -81.817562,
+      27.57663
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -23
+  },
+  "US-FLA-TAL->US-SE-SOCO": {
+    "lonlat": [
+      -84.234874,
+      30.623546
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -22
+  },
+  "US-MIDA-OVEC->US-MIDW-LGEE": {
+    "lonlat": [
+      -83.385637,
+      39.055197
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -118
+  },
+  "US-MIDA-OVEC->US-MIDA-PJM": {
+    "lonlat": [
+      -83.30918,
+      39.041477
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -100
+  },
+  "US-MIDA-PJM->US-MIDW-LGEE": {
+    "lonlat": [
+      -84.69935455639735,
+      37.891105962229595
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "US-MIDA-PJM->US-MIDW-MISO": {
+    "lonlat": [
+      -86.82069,
+      40.21487
+    ],
+    "parsers": {
+      "exchange": "US_PJM.fetch_exchange"
+    },
+    "rotation": -84
+  },
+  "US-MIDA-PJM->US-NY-NYIS": {
+    "lonlat": [
+      -79.76175,
+      41.99881
+    ],
+    "parsers": {
+      "exchange": "US_PJM.fetch_exchange"
+    },
+    "rotation": -124
+  },
+  "US-MIDA-PJM->US-TEN-TVA": {
+    "lonlat": [
+      -81.64647784,
+      36.611567138
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -123
+  },
+  "US-MIDW-AECI->US-MIDW-MISO": {
+    "lonlat": [
+      -92.179147211,
+      40.8997104170001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -142
+  },
+  "US-MIDW-AECI->US-TEN-TVA": {
+    "lonlat": [
+      -89.21365,
+      36.58014
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -66
+  },
+  "US-MIDW-EEI->US-MIDW-LGEE": {
+    "lonlat": [
+      -88.784837511,
+      37.1751983500001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -101
+  },
+  "US-MIDW-EEI->US-MIDW-MISO": {
+    "lonlat": [
+      -88.71062,
+      37.33698
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -36
+  },
+  "US-MIDW-EEI->US-TEN-TVA": {
+    "lonlat": [
+      -88.48412,
+      36.94203
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -44
+  },
+  "US-MIDW-GLHB->US-MIDW-LGEE": {
+    "lonlat": [
+      -88.85889,
+      37.2094
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-MIDW-GLHB->US-MIDW-MISO": {
+    "lonlat": [
+      -88.85889,
+      37.2094
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-MIDW-LGEE->US-MIDW-MISO": {
+    "lonlat": [
+      -87.3654617889999,
+      37.5329061090001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -63
+  },
+  "US-MIDW-LGEE->US-TEN-TVA": {
+    "lonlat": [
+      -83.9195412619999,
+      36.587380029
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -151
+  },
+  "US-MIDW-MISO->US-SE-AEC": {
+    "lonlat": [
+      -88.13743446985477,
+      30.31061246790728
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -29
+  },
+  "US-MIDW-MISO->US-SE-SOCO": {
+    "lonlat": [
+      -88.13743446985477,
+      30.31061246790728
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -37
+  },
+  "US-MIDW-MISO->US-TEN-TVA": {
+    "lonlat": [
+      -89.56580767010422,
+      36.56191297306488
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -39
+  },
+  "US-NE-ISNE->US-NY-NYIS": {
+    "lonlat": [
+      -73.42846218673135,
+      40.67877481619715
+    ],
+    "parsers": {
+      "exchange": "US_NY.fetch_exchange"
+    },
+    "rotation": -105
+  },
+  "US-NW-AVA->US-NW-BPAT": {
+    "lonlat": [
+      -119.95299735574476,
+      46.760318687994754
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -26
+  },
+  "US-NW-AVA->US-NW-IPCO": {
+    "lonlat": [
+      -117.71303872767247,
+      45.65847980648419
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -11
+  },
+  "US-NW-AVA->US-NW-NWMT": {
+    "lonlat": [
+      -114.38878,
+      45.88228
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -87
+  },
+  "US-NW-AVA->US-NW-PACW": {
+    "lonlat": [
+      -119.93263500986485,
+      46.673460082726436
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -124
+  },
+  "US-NW-AVA->US-NW-CHPD": {
+    "lonlat": [
+      -120.0047663015552,
+      47.32002534773005
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -78
+  },
+  "US-NW-AVA->US-NW-GCPD": {
+    "lonlat": [
+      -119.93263500986485,
+      46.673460082726436
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -87
+  },
+  "US-NW-AVRN->US-NW-BPAT": {
+    "lonlat": [
+      -122.6819706,
+      45.5206888
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 180
+  },
+  "US-NW-AVRN->US-NW-PACW": {
+    "lonlat": [
+      -122.6819706,
+      45.5206888
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "US-NW-BPAT->US-NW-TPWR": {
+    "lonlat": [
+      -122.932299998,
+      47.175501
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -72
+  },
+  "US-NW-BPAT->US-NW-GRID": {
+    "lonlat": [
+      -118.69791,
+      45.34516
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -73
+  },
+  "US-NW-BPAT->US-NW-IPCO": {
+    "lonlat": [
+      -114.6944668106769,
+      45.19822083626128
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -153
+  },
+  "US-NW-BPAT->US-NW-NEVP": {
+    "lonlat": [
+      -119.31738486687132,
+      41.99427891980891
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -174
+  },
+  "US-NW-BPAT->US-NW-NWMT": {
+    "lonlat": [
+      -111.06202,
+      46.1928
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "US-NW-BPAT->US-NW-DOPD": {
+    "lonlat": [
+      -120.0047663015552,
+      47.32002534773005
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -48
+  },
+  "US-NW-BPAT->US-NW-PACW": {
+    "lonlat": [
+      -124.04192,
+      42.38771
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -96
+  },
+  "US-NW-BPAT->US-NW-PGE": {
+    "lonlat": [
+      -123.30386139833492,
+      45.58808586698683
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -85
+  },
+  "US-NW-BPAT->US-NW-CHPD": {
+    "lonlat": [
+      -120.70262655196296,
+      47.36500595554484
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -57
+  },
+  "US-NW-BPAT->US-NW-GCPD": {
+    "lonlat": [
+      -120.0047663015552,
+      47.32002534773005
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -56
+  },
+  "US-NW-BPAT->US-NW-PSEI": {
+    "lonlat": [
+      -122.932299998,
+      47.175501
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -64
+  },
+  "US-NW-BPAT->US-NW-SCL": {
+    "lonlat": [
+      -122.40633139284765,
+      47.57899706053294
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -66
+  },
+  "US-NW-CHPD->US-NW-DOPD": {
+    "lonlat": [
+      -120.31333531414889,
+      48.13102610638369
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "US-NW-CHPD->US-NW-PSEI": {
+    "lonlat": [
+      -120.838406192,
+      48.550577006
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -102
+  },
+  "US-NW-GCPD->US-NW-PACW": {
+    "lonlat": [
+      -119.629754,
+      46.6440040000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -151
+  },
+  "US-NW-GCPD->US-NW-PSEI": {
+    "lonlat": [
+      -120.042866,
+      47.073453
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -80
+  },
+  "US-NW-GWA->US-NW-NWMT": {
+    "lonlat": [
+      -111.55112648,
+      48.6675472260001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -59
+  },
+  "US-NW-IPCO->US-NW-NEVP": {
+    "lonlat": [
+      -114.81233,
+      42.0014600000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -179
+  },
+  "US-NW-IPCO->US-NW-NWMT": {
+    "lonlat": [
+      -114.35707,
+      46.66791
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -116
+  },
+  "US-NW-IPCO->US-NW-PACE": {
+    "lonlat": [
+      -112.1088976323217,
+      42.856560150604174
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -76
+  },
+  "US-NW-IPCO->US-NW-PACW": {
+    "lonlat": [
+      -117.89347434398796,
+      45.891672150043
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -85
+  },
+  "US-NW-NEVP->US-NW-PACE": {
+    "lonlat": [
+      -112.65097215548731,
+      41.06900007151519
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -111
+  },
+  "US-NW-NEVP->US-SW-WALC": {
+    "lonlat": [
+      -114.895038742,
+      35.2125988070001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -23
+  },
+  "US-NW-NWMT->US-NW-WWA": {
+    "lonlat": [
+      -111.387711776,
+      48.997097469
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -49
+  },
+  "US-NW-NWMT->US-NW-PACE": {
+    "lonlat": [
+      -112.76591463911802,
+      43.99253582711845
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -8
+  },
+  "US-NW-NWMT->US-NW-WAUW": {
+    "lonlat": [
+      -104.04352440552584,
+      46.14677881539246
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -96
+  },
+  "US-NW-PACE->US-SW-AZPS": {
+    "lonlat": [
+      -110.75073,
+      34.5
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -159
+  },
+  "US-NW-PACE->US-NW-PACW": {
+    "lonlat": [
+      -113.7981,
+      43.5714
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -80
+  },
+  "US-NW-PACE->US-NW-WACM": {
+    "lonlat": [
+      -107.91036406436295,
+      44.99994676910954
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -80
+  },
+  "US-NW-PACW->US-NW-PGE": {
+    "lonlat": [
+      -122.91755947016952,
+      45.703129646532744
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -45
+  },
+  "US-NW-PSCO->US-SW-PNM": {
+    "lonlat": [
+      -105.17399605,
+      36.995179334
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "US-NW-PSCO->US-NW-WACM": {
+    "lonlat": [
+      -106.148241394,
+      38.632944407
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -135
+  },
+  "US-NW-PSEI->US-NW-TPWR": {
+    "lonlat": [
+      -122.932299998,
+      47.175501
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -138
+  },
+  "US-NW-PSEI->US-NW-SCL": {
+    "lonlat": [
+      -122.337684813,
+      47.77777834
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -89
+  },
+  "US-NW-WACM->US-SW-AZPS": {
+    "lonlat": [
+      -111.41321,
+      37.00125
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -133
+  },
+  "US-NW-WACM->US-SW-PNM": {
+    "lonlat": [
+      -105.17399632733049,
+      36.99521455070129
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -163
+  },
+  "US-NW-WACM->US-SW-WALC": {
+    "lonlat": [
+      -106.05838,
+      36.29707
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -110
+  },
+  "US-NW-WACM->US-NW-WAUW": {
+    "lonlat": [
+      -107.17225649844661,
+      45.91038621067434
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -24
+  },
+
+  "US-SE-AEC->US-SE-SOCO": {
+    "lonlat": [
+      -85.14527626961316,
+      30.199905109080476
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -115
+  },
+  "US-SE-SEPA->US-SE-SOCO": {
+    "lonlat": [
+      -85.02928,
+      31.51865
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -11
+  },
+  "US-SE-SOCO->US-TEN-TVA": {
+    "lonlat": [
+      -89.71069775529106,
+      32.63725369923949
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -33
+  },
+  "US-SW-AZPS->US-SW-GRMA": {
+    "lonlat": [
+      -112.323789597,
+      31.8890590670001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -159
+  },
+  "US-SW-AZPS->US-SW-PNM": {
+    "lonlat": [
+      -109.803538951,
+      35.1965674240001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -99
+  },
+  "US-SW-AZPS->US-SW-SRP": {
+    "lonlat": [
+      -112.12569,
+      34.0440100000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -145
+  },
+  "US-SW-AZPS->US-SW-TEPC": {
+    "lonlat": [
+      -110.891848119,
+      32.405763591
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -61
+  },
+  "US-SW-AZPS->US-SW-WALC": {
+    "lonlat": [
+      -114.481466787,
+      32.8340214030001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -47
+  },
+  "US-SW-DEAA->US-SW-SRP": {
+    "lonlat": [
+      -112.875976563,
+      33.3358631130001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -92
+  },
+  "US-SW-EPE->US-SW-PNM": {
+    "lonlat": [
+      -106.37266,
+      33.4798
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -33
+  },
+  "US-SW-EPE->US-SW-TEPC": {
+    "lonlat": [
+      -108.21001111984772,
+      31.790249502661492
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -69
+  },
+  "US-SW-GRIF->US-SW-WALC": {
+    "lonlat": [
+      -113.498666763,
+      34.668836594
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -34
+  },
+  "US-SW-HGMA->US-SW-SRP": {
+    "lonlat": [
+      -112.949426651,
+      33.5413112640001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -62
+  },
+  "US-SW-PNM->US-SW-SRP": {
+    "lonlat": [
+      -110.765242868,
+      33.711766337
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-SW-PNM->US-SW-TEPC": {
+    "lonlat": [
+      -110.765242868,
+      33.711766337
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -90
+  },
+  "US-SW-SRP->US-SW-TEPC": {
+    "lonlat": [
+      -112.97153193543504,
+      33.95958750828914
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -42
+  },
+  "US-SW-SRP->US-SW-WALC": {
+    "lonlat": [
+      -112.12569,
+      34.0440100000001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -40
+  },
+  "US-SW-TEPC->US-SW-WALC": {
+    "lonlat": [
+      -113.939531177,
+      36.1699836540001
+    ],
+    "parsers": {
+      "exchange": "EIA.fetch_exchange"
+    },
+    "rotation": -38
   }
 }

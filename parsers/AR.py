@@ -44,6 +44,8 @@ power_plant_type = {
     'ALEMDI01': 'oil',
     'ALICHI': 'hydro',
     'ALOMDI01': 'gas',
+    'ALU1EO': 'wind',
+    'ALUAEO': 'wind',
     'ALUATG05': 'gas',
     'ALUATG06': 'gas',
     'ALUATG07': 'gas',
@@ -58,6 +60,7 @@ power_plant_type = {
     'ANCHDI03': 'oil',
     'ANCHDI04': 'oil',
     'APARTV01': 'gas',
+    'AR21EO': 'wind',
     'ARA2EO': 'wind',
     'ARA3EO': 'wind',
     'ARAUEO': 'wind',
@@ -69,16 +72,20 @@ power_plant_type = {
     'ARMATG03': 'gas',
     'ARREDI01': 'gas',
     'ARROHI': 'hydro',
-    'ATUCNUCL': 'nuclear',
     'ATU2NUCL': 'nuclear',
+    'ATUCNUCL': 'nuclear',
     'AVALTG21': 'gas',
     'AVALTG22': 'gas',
     'AVALTG23': 'gas',
     'AVALTV11': 'gas',
     'AVALTV12': 'gas',
+    'AVELDI01': 'oil',
+    'BAHIEO': 'wind',
     'BAMODI01': 'gas',
     'BANDDI01': 'oil',
+    'BANDEO': 'wind',
     'BARDDI01': 'oil',
+    'BARIDI01': 'oil',
     'BBLATV29': 'gas',
     'BBLATV30': 'gas',
     'BBLMDI01': 'oil',
@@ -88,6 +95,8 @@ power_plant_type = {
     'BBLMDI05': 'oil',
     'BBLMDI06': 'oil',
     'BERIDI01': 'gas',
+    'BIC2EO': 'wind',
+    'BICEEO': 'wind',
     'BLOPTG01': 'gas',
     'BRAGTG01': 'gas',
     'BRAGTG02': 'gas',
@@ -96,6 +105,8 @@ power_plant_type = {
     'BRAGTG05': 'gas',
     'BRAGTG06': 'gas',
     'BRC1DI01': 'oil',
+    'BRC1DI02': 'oil',
+    'BRC2DI02': 'oil',
     'BRCHTG01': 'gas',
     'BRKETG01': 'gas',
     'BRKETG02': 'gas',
@@ -164,6 +175,8 @@ power_plant_type = {
     'COSTTV10': 'gas',
     'CPIEHI': 'hydro',
     'CSARDI01': 'oil',
+    'CSOLFV': 'solar',
+    'CUM2FV': 'solar',
     'CUMBFV': 'solar',
     'CUMODI01': 'gas',
     'CURUTG01': 'gas',
@@ -172,7 +185,9 @@ power_plant_type = {
     'DFUNDI01': 'oil',
     'DFUNTG01': 'gas',
     'DFUNTG02': 'gas',
+    'DIA2EO': 'wind',
     'DIADEO': 'wind',
+    'DIAGFV': 'solar',
     'DIQUTG02': 'gas',
     'DIQUTG03': 'gas',
     'DSUDTG07': 'gas',
@@ -183,14 +198,17 @@ power_plant_type = {
     'EBARTG01': 'gas',
     'EBARTG02': 'gas',
     'ELOMDI01': 'gas',
-    'ENSETG01': 'gas',
     'EMBANUCL': 'nuclear',
+    'ENE1EO': 'wind',
+    'ENRSDI01': 'oil',
+    'ENSETG01': 'gas',
     'ESCAHI': 'hydro',
     'ESQDDI01': 'oil',
     'ETIGHI': 'hydro',
     'EZEITG01': 'gas',
     'EZEITG02': 'gas',
     'EZEITG03': 'gas',
+    'FIAMFV': 'solar',
     'FORDDI01': 'oil',
     'FORDDI02': 'oil',
     'FRIATG01': 'gas',
@@ -205,6 +223,7 @@ power_plant_type = {
     'GEBATG02': 'gas',
     'GEBATG03': 'gas',
     'GEBATV01': 'gas',
+    'GNV2EO': 'wind',
     'GOYDDI01': 'oil',
     'GUEMTG01': 'gas',
     'GUEMTV11': 'gas',
@@ -213,8 +232,9 @@ power_plant_type = {
     'HON1FV': 'solar',
     'HON2FV': 'solar',
     'HRENDI01': 'oil',
-    'HUMADI01': 'oil',
     'HUEMDI01': 'gas',
+    'HUMADI01': 'oil',
+    'IGLEFV': 'solar',
     'INDETG01': 'gas',
     'INDETG02': 'gas',
     'INDETG03': 'gas',
@@ -236,6 +256,8 @@ power_plant_type = {
     'LDCUTG23': 'gas',
     'LDCUTG24': 'gas',
     'LDCUTG25': 'gas',
+    'LDCUTG26': 'gas',
+    'LDCUTG27': 'gas',
     'LDCUTV11': 'gas',
     'LDCUTV12': 'gas',
     'LDCUTV14': 'gas',
@@ -253,12 +275,14 @@ power_plant_type = {
     'LEVATG02': 'gas',
     'LIBEDI01': 'oil',
     'LINCDI01': 'oil',
+    'LLANFV': 'solar',
     'LMADHI': 'hydro',
     'LMO1HI': 'hydro',
     'LMO2HI': 'hydro',
-    'LOM1EO': 'wind',
-    'LOM4EO': 'wind',
     'LOBODI01': 'oil',
+    'LOM1EO': 'wind',
+    'LOM2EO': 'wind',
+    'LOM4EO': 'wind',
     'LPALDI01': 'oil',
     'LPAZDI01': 'oil',
     'LPLADI01': 'oil',
@@ -279,6 +303,7 @@ power_plant_type = {
     'LVINHI': 'hydro',
     'MAGDDI01': 'oil',
     'MANAEO': 'wind',
+    'MANQEO': 'wind',
     'MAT3TG01': 'gas',
     'MAT3TG02': 'gas',
     'MAT3TG03': 'gas',
@@ -318,6 +343,7 @@ power_plant_type = {
     'MMARTG06': 'gas',
     'MMARTG07': 'gas',
     'MSEVTG01': 'gas',
+    'NEC1EO': 'wind',
     'NECOEO': 'wind',
     'NECOTV01': 'gas',
     'NECOTV02': 'gas',
@@ -339,12 +365,15 @@ power_plant_type = {
     'OCAMDI05': 'oil',
     'OLADTG01': 'gas',
     'OLADTG02': 'gas',
+    'OLIVEO': 'wind',
     'OLPADI01': 'oil',
     'ORADDI01': 'oil',
     'PAGUHI': 'hydro',
+    'PAMEEO': 'wind',
     'PAMODI01': 'oil',
     'PARATG01': 'gas',
     'PARATG02': 'gas',
+    'PASIFV': 'solar',
     'PATATG01': 'gas',
     'PATATG02': 'gas',
     'PATATV01': 'gas',
@@ -365,12 +394,6 @@ power_plant_type = {
     'PHDZTG01': 'gas',
     'PHUITG01': 'gas',
     'PICADI01': 'oil',
-    'PILBDI01': 'oil',
-    'PILBDI02': 'oil',
-    'PILBDI03': 'oil',
-    'PILBDI04': 'oil',
-    'PILBDI05': 'oil',
-    'PILBDI06': 'oil',
     'PILATG11': 'gas',
     'PILATG12': 'gas',
     'PILATV01': 'gas',
@@ -378,6 +401,12 @@ power_plant_type = {
     'PILATV03': 'gas',
     'PILATV04': 'gas',
     'PILATV10': 'gas',
+    'PILBDI01': 'oil',
+    'PILBDI02': 'oil',
+    'PILBDI03': 'oil',
+    'PILBDI04': 'oil',
+    'PILBDI05': 'oil',
+    'PILBDI06': 'oil',
     'PINATG07': 'gas',
     'PINATG08': 'gas',
     'PINATG09': 'gas',
@@ -385,11 +414,14 @@ power_plant_type = {
     'PIQIDI01': 'oil',
     'PIRADI01': 'oil',
     'PMA1EO': 'wind',
+    'PMA2EO': 'wind',
     'PMORHI': 'hydro',
     'PNEGHI': 'hydro',
     'PNUETV07': 'gas',
     'PNUETV08': 'gas',
     'PNUETV09': 'gas',
+    'POM1EO': 'wind',
+    'POM2EO': 'wind',
     'POSAIN': 'hydro',
     'PPATDI01': 'oil',
     'PPLEHI': 'hydro',
@@ -432,6 +464,7 @@ power_plant_type = {
     'RUFIDI01': 'oil',
     'SALOHI': 'hydro',
     'SANADI01': 'oil',
+    'SANDFV': 'solar',
     'SANDHI': 'hydro',
     'SARCTG21': 'gas',
     'SARCTG22': 'gas',
@@ -446,6 +479,7 @@ power_plant_type = {
     'SGDEHIAR': 'hydro',
     'SGUIHI': 'hydro',
     'SHELTG01': 'gas',
+    'SJMTEO': 'wind',
     'SJUAFV': 'solar',
     'SLTODI01': 'oil',
     'SMANDI01': 'oil',
@@ -466,6 +500,7 @@ power_plant_type = {
     'SPE2DI01': 'oil',
     'SPENDI01': 'oil',
     'SPEVDI01': 'oil',
+    'SPUNFV': 'solar',
     'SROQHI': 'hydro',
     'SROSDI01': 'oil',
     'SSALDI01': 'oil',
@@ -477,16 +512,21 @@ power_plant_type = {
     'TARDDI01': 'oil',
     'TELLDI01': 'oil',
     'TERVDI01': 'oil',
+    'TICITV01': 'gas',
     'TIMBTG01': 'gas',
     'TIMBTG02': 'gas',
     'TIMBTV01': 'gas',
+    'TIN2FV': 'solar',
     'TINODI01': 'oil',
+    'TINOFV': 'solar',
     'TORDEO': 'wind',
     'TUCUTG01': 'gas',
     'TUCUTG02': 'gas',
     'TUCUTV01': 'gas',
     'TUNAHI': 'hydro',
+    'UL42FV': 'solar',
     'ULL3FV': 'solar',
+    'ULL4FV': 'solar',
     'ULLUHI': 'hydro',
     'ULN1FV': 'solar',
     'ULN2FV': 'solar',
@@ -559,7 +599,7 @@ thurl = ('http://portalweb.cammesa.com/Reserved.ReportViewerWebControl.'
 
 cammesa_url = 'http://portalweb.cammesa.com/default.aspx'
 
-tie_mapping = {'CL-SING': "position:absolute; top:349; left:585",
+tie_mapping = {'CL-SEN': "position:absolute; top:349; left:585",
                'PY': "position:absolute; top:67; left:649",
                'UY_1': "position:absolute; top:203; left:533",
                'UY_2': "position:absolute; top:226; left:515"
@@ -656,7 +696,7 @@ def dataformat(junk):
 
 
 def generation_finder(data, gen_type):
-    """Finds all genration matching requested type in a list.
+    """Finds all generation matching requested type in a list.
     Sums together and returns a float.
     """
 
@@ -926,7 +966,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
 
-    if sortedcodes == 'AR->CL-SING':
+    if sortedcodes == 'AR->CL-SEN':
         base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Unifilar de NOA&'
     else:
         base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
@@ -941,8 +981,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
         flow = first_tie + second_tie
     elif sortedcodes == 'AR->PY':
         flow = tie_finder(exchange_url, 'PY', s)
-    elif sortedcodes == 'AR->CL-SING':
-        flow = tie_finder(exchange_url, 'CL-SING', s)
+    elif sortedcodes == 'AR->CL-SEN':
+        flow = tie_finder(exchange_url, 'CL-SEN', s)
     else:
         raise NotImplementedError('This exchange is not currently implemented')
 
@@ -967,5 +1007,5 @@ if __name__ == '__main__':
     print(fetch_exchange('AR', 'PY'))
     print('fetch_exchange(AR, UY) ->')
     print(fetch_exchange('AR', 'UY'))
-    print('fetch_exchange(AR, CL-SING) ->')
-    print(fetch_exchange('AR', 'CL-SING'))
+    print('fetch_exchange(AR, CL-SEN) ->')
+    print(fetch_exchange('AR', 'CL-SEN'))

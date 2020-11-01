@@ -16,7 +16,7 @@
             "subtitle": "Mapping the climate impact of electricity"
         },
         "view2": {
-            "header": "See how much CO2 is emitted to produce your electricity, in real-time.",
+            "header": "See how much CO₂ is emitted to produce your electricity, in real-time.",
             "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. The greener the color, the more climate-friendly the electricity."
         },
         "view3": {
@@ -41,26 +41,26 @@
         "helpfrom": "with help from",
         "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
         "noLiveData": "Live data is temporarily unavailable for this area",
+        "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
         "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
         "now": "Now"
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",
-        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
         "search": "Search areas"
     },
     "country-history": {
         "carbonintensity24h": "Carbon intensity in the last 24 hours",
+        "emissions24h": "Emissions in the last 24 hours",
         "emissionsorigin24h": "Origin of emissions in the last 24 hours",
         "emissionsproduction24h": "Emissions produced in the last 24 hours",
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityproduction24h": "Electricity production in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
-        "Getdata": "Get historical data, marginal and forecast API"
+        "Getdata": "Get hourly historical, live, and forecast data with electricityMap API"
     },
     "footer": {
-        "likethisvisu": "Like the visualization?",
-        "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
         "faq-text": "Anything unclear? Check out our",
         "faq": "frequently asked questions.",
@@ -87,17 +87,19 @@
         "hideSolarLayer": "Hide solar layer",
         "toggleDarkMode": "Toggle dark-mode",
         "noParserInfo": "No data available",
-        "temporaryDataOutage": "Data temporarily unavailable",
+        "temporaryDataOutage": "Live data temporarily unavailable",
         "production": "production",
         "consumption": "consumption",
         "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
         "selectLanguage": "Select language",
-        "lowCarbDescription": "Includes renewables and nuclear"
+        "lowCarbDescription": "Includes renewables and nuclear",
+        "dataIsDelayed": "Data is delayed"
     },
     "misc": {
-        "maintitle": "Live CO2 emissions of electricity consumption",
+        "maintitle": "Live CO₂ emissions of electricity consumption",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+        "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
@@ -112,7 +114,7 @@
     "biomass": "biomass",
     "nuclear": "nuclear",
     "geothermal": "geothermal",
-    "gas": "gas",
+    "gas": "natural gas",
     "coal": "coal",
     "oil": "oil",
     "unknown": "unknown",
@@ -127,7 +129,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO₂eq per minute",
     "theMap": {
         "groupName": "The map",
         "mapColors-question": "What do the colors on the map mean?",
@@ -150,12 +152,12 @@
         "divideExistingArea-question": "Can you divide my area into smaller parts?",
         "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
         "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "Our methods",
         "carbonIntensity-question": "What is \"carbon intensity\"?",
-        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO2eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO2 and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
+        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
         "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
         "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas, and then importing the electricity from those areas.",
         "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
@@ -185,13 +187,13 @@
     "aboutUs": {
         "groupName": "About us",
         "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
         "feedback-question": "Can I give you some feedback?",
-        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricity.com\">send us an email!</a>",
+        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
         "contribute-question": "Can I contribute to your project?",
         "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Can we work together?",
-        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@tmrow.com\">Send us an email!</a>",
+        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
         "disclaimer-question": "Disclaimer",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
@@ -419,17 +421,17 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING-SIC": {
+          "CL-SEA": {
             "countryName": "Chile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema Eléctrico de Aysén"
           },
           "CL-SEM": {
             "countryName": "Chile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema Eléctrico de Magallanes"
           },
-          "CL-SEA": {
+          "CL-SEN": {
             "countryName": "Chile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico Nacional"
           },
           "CM": {
             "zoneName": "Cameroon"
@@ -989,8 +991,7 @@
             "zoneName": "Marshall Islands"
           },
           "MK": {
-            "countryName": "Rep. of Macedonia",
-            "zoneName": "FYROM"
+            "zoneName": "North Macedonia"
           },
           "ML": {
             "zoneName": "Mali"
@@ -1360,6 +1361,10 @@
           "US": {
             "zoneName": "United States of America"
           },
+          "US-AK": {
+            "countryName": "United States of America",
+            "zoneName": "Alaska"
+          },
           "US-AL": {
             "countryName": "United States of America",
             "zoneName": "Alabama"
@@ -1456,6 +1461,278 @@
             "countryName": "United States of America",
             "zoneName": "ERCOT"
           },
+          "US-CAL-BANC": {
+            "countryName": "United States of America",
+            "zoneName": "Balancing Authority Of Northern California"
+          },
+          "US-CAL-CISO": {
+            "countryName": "United States of America",
+            "zoneName": "California Independent System Operator"
+          },
+          "US-CAL-IID": {
+            "countryName": "United States of America",
+            "zoneName": "Imperial Irrigation District"
+          },
+          "US-CAL-LDWP": {
+            "countryName": "United States of America",
+            "zoneName": "Los Angeles Department Of Water And Power"
+          },
+          "US-CAL-TIDC": {
+            "countryName": "United States of America",
+            "zoneName": "Turlock Irrigation District"
+          },
+          "US-CAR-CPLE": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Progress East"
+          },
+          "US-CAR-CPLW": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Progress West"
+          },
+          "US-CAR-DUK": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Carolinas"
+          },
+          "US-CAR-SC": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina Public Service Authority"
+          },
+          "US-CAR-SCEG": {
+            "countryName": "United States of America",
+            "zoneName": "South Carolina Electric & Gas Company"
+          },
+          "US-CAR-YAD": {
+            "countryName": "United States of America",
+            "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+          },
+          "US-CENT-SPA": {
+            "countryName": "United States of America",
+            "zoneName": "Southwestern Power Administration"
+          },
+          "US-CENT-SWPP": {
+            "countryName": "United States of America",
+            "zoneName": "Southwest Power Pool"
+          },
+          "US-FLA-FMPP": {
+            "countryName": "United States of America",
+            "zoneName": "Florida Municipal Power Pool"
+          },
+          "US-FLA-FPC": {
+            "countryName": "United States of America",
+            "zoneName": "Duke Energy Florida Inc"
+          },
+          "US-FLA-FPL": {
+            "countryName": "United States of America",
+            "zoneName": "Florida Power & Light Company"
+          },
+          "US-FLA-GVL": {
+            "countryName": "United States of America",
+            "zoneName": "Gainesville Regional Utilities"
+          },
+          "US-FLA-HST": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Homestead"
+          },
+          "US-FLA-JEA": {
+            "countryName": "United States of America",
+            "zoneName": "JEA"
+          },
+          "US-FLA-NSB": {
+            "countryName": "United States of America",
+            "zoneName": "Utilities Commission Of New Smyrna Beach"
+          },
+          "US-FLA-SEC": {
+            "countryName": "United States of America",
+            "zoneName": "Seminole Electric Cooperative"
+          },
+          "US-FLA-TAL": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Tallahassee"
+          },
+          "US-FLA-TEC": {
+            "countryName": "United States of America",
+            "zoneName": "Tampa Electric Company"
+          },
+          "US-MIDA-OVEC": {
+            "countryName": "United States of America",
+            "zoneName": "Ohio Valley Electric Corporation"
+          },
+          "US-MIDA-PJM": {
+            "countryName": "United States of America",
+            "zoneName": "PJM Interconnection, Llc"
+          },
+          "US-MIDW-AECI": {
+            "countryName": "United States of America",
+            "zoneName": "Associated Electric Cooperative, Inc."
+          },
+          "US-MIDW-EEI": {
+            "countryName": "United States of America",
+            "zoneName": "Electric Energy, Inc."
+          },
+          "US-MIDW-GLHB": {
+            "countryName": "United States of America",
+            "zoneName": "GridLiance"
+          },
+          "US-MIDW-LGEE": {
+            "countryName": "United States of America",
+            "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+          },
+          "US-MIDW-MISO": {
+            "countryName": "United States of America",
+            "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+          },
+          "US-NE-ISNE": {
+            "countryName": "United States of America",
+            "zoneName": "Iso New England Inc."
+          },
+          "US-NW-AVA": {
+            "countryName": "United States of America",
+            "zoneName": "Avista Corporation"
+          },
+          "US-NW-AVRN": {
+            "countryName": "United States of America",
+            "zoneName": "Avangrid Renewables Cooperative"
+          },
+          "US-NW-BPAT": {
+            "countryName": "United States of America",
+            "zoneName": "Bonneville Power Administration"
+          },
+          "US-NW-CHPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 1 Of Chelan County"
+          },
+          "US-NW-DOPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 1 Of Douglas County"
+          },
+          "US-NW-GCPD": {
+            "countryName": "United States of America",
+            "zoneName": "PUD No. 2 Of Grant County, Washington"
+          },
+          "US-NW-GRID": {
+            "countryName": "United States of America",
+            "zoneName": "Gridforce Energy Management, Llc"
+          },
+          "US-NW-GWA": {
+            "countryName": "United States of America",
+            "zoneName": "Naturener Power Watch, Llc (Gwa)"
+          },
+          "US-NW-IPCO": {
+            "countryName": "United States of America",
+            "zoneName": "Idaho Power Company"
+          },
+          "US-NW-NEVP": {
+            "countryName": "United States of America",
+            "zoneName": "Nevada Power Company"
+          },
+          "US-NW-NWMT": {
+            "countryName": "United States of America",
+            "zoneName": "Northwestern Energy"
+          },
+          "US-NW-PACE": {
+            "countryName": "United States of America",
+            "zoneName": "Pacificorp East"
+          },
+          "US-NW-PACW": {
+            "countryName": "United States of America",
+            "zoneName": "Pacificorp West"
+          },
+          "US-NW-PGE": {
+            "countryName": "United States of America",
+            "zoneName": "Portland General Electric Company"
+          },
+          "US-NW-PSCO": {
+            "countryName": "United States of America",
+            "zoneName": "Public Service Company Of Colorado"
+          },
+          "US-NW-PSEI": {
+            "countryName": "United States of America",
+            "zoneName": "Puget Sound Energy"
+          },
+          "US-NW-SCL": {
+            "countryName": "United States of America",
+            "zoneName": "Seattle City Light"
+          },
+          "US-NW-TPWR": {
+            "countryName": "United States of America",
+            "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+          },
+          "US-NW-WACM": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+          },
+          "US-NW-WAUW": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration UGP West"
+          },
+          "US-NW-WWA": {
+            "countryName": "United States of America",
+            "zoneName": "Naturener Wind Watch, Llc"
+          },
+          "US-NY-NYIS": {
+            "countryName": "United States of America",
+            "zoneName": "New York Independent System Operator"
+          },
+          "US-SE-AEC": {
+            "countryName": "United States of America",
+            "zoneName": "Powersouth Energy Cooperative"
+          },
+          "US-SE-SEPA": {
+            "countryName": "United States of America",
+            "zoneName": "Southeastern Power Administration"
+          },
+          "US-SE-SOCO": {
+            "countryName": "United States of America",
+            "zoneName": "Southern Company Services, Inc. - Trans"
+          },
+          "US-SW-AZPS": {
+            "countryName": "United States of America",
+            "zoneName": "Arizona Public Service Company"
+          },
+          "US-SW-DEAA": {
+            "countryName": "United States of America",
+            "zoneName": "Arlington Valley, LLC"
+          },
+          "US-SW-EPE": {
+            "countryName": "United States of America",
+            "zoneName": "El Paso Electric Company"
+          },
+          "US-SW-GRIF": {
+            "countryName": "United States of America",
+            "zoneName": "Griffith Energy, LLC"
+          },
+          "US-SW-GRMA": {
+            "countryName": "United States of America",
+            "zoneName": "Gila River Power, LLC"
+          },
+          "US-SW-HGMA": {
+            "countryName": "United States of America",
+            "zoneName": "New Harquahala Generating Company, LLC"
+          },
+          "US-SW-PNM": {
+            "countryName": "United States of America",
+            "zoneName": "Public Service Company Of New Mexico"
+          },
+          "US-SW-SRP": {
+            "countryName": "United States of America",
+            "zoneName": "Salt River Project"
+          },
+          "US-SW-TEPC": {
+            "countryName": "United States of America",
+            "zoneName": "Tucson Electric Power Company"
+          },
+          "US-SW-WALC": {
+            "countryName": "United States of America",
+            "zoneName": "Western Area Power Administration - Desert Southwest Region"
+          },
+          "US-TEN-TVA": {
+            "countryName": "United States of America",
+            "zoneName": "Tennessee Valley Authority"
+          },
+          "US-TEX-ERCO": {
+            "countryName": "United States of America",
+            "zoneName": "Electric Reliability Council Of Texas, Inc."
+          },
           "UY": {
             "zoneName": "Uruguay"
           },
@@ -1490,6 +1767,9 @@
           },
           "WS": {
             "zoneName": "Samoa"
+          },
+          "XK": {
+            "zoneName": "Kosovo"
           },
           "XX": {
             "zoneName": "Northern Cyprus"

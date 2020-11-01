@@ -4,22 +4,19 @@ const autoprefixer = require('autoprefixer');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const { languageNames } = require('./locales-config.json');
 
 const { version } = require('./package.json');
 
-/*
-  Note exporting a config per language makes the build slower.
-  Sequential builds are faster (using jq and `--config-name`)
-*/
-module.exports = Object.keys(languageNames).map(locale => ({
-  name: locale,
+module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
-  entry: { bundle: ['@babel/polyfill', './src/main.js'], styles: './src/scss/styles.scss' },
+  entry: {
+    bundle: ['@babel/polyfill', './src/main.js'],
+    styles: './src/scss/styles.scss',
+  },
   module: {
-    noParse: /(mapbox-gl)\.js$/,
     rules: [
       // Extract css files
       {
@@ -44,9 +41,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
     ],
   },
   plugins: [
-    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(`/${locale}/`)),
-    // Only include current locale + en
-    new webpack.ContextReplacementPlugin(/locales/, new RegExp(`/${locale}|en/`)),
+    new CleanWebpackPlugin(),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
@@ -56,7 +51,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
     function () {
       this.plugin('done', (stats) => {
         fs.writeFileSync(
-          `${__dirname}/public/dist/manifest_${locale}.json`,
+          `${__dirname}/public/dist/manifest.json`,
           JSON.stringify(stats.toJson())
         );
       });
@@ -82,9 +77,7 @@ module.exports = Object.keys(languageNames).map(locale => ({
   },
   output: {
     // filename affects styles.js and bundle.js
-    filename: chunkData => (['styles'].includes(chunkData.chunk.name)
-      ? `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`
-      : `[name].${isProduction ? '[chunkhash]' : 'dev'}.${locale}.js`),
+    filename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`,
     // chunkFilename affects `vendor.js`
     chunkFilename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`,
     path: `${__dirname}/public/dist`,
@@ -94,4 +87,4 @@ module.exports = Object.keys(languageNames).map(locale => ({
   node: {
     fs: 'empty',
   },
-}));
+};

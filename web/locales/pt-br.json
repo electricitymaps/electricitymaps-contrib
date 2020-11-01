@@ -1,9 +1,9 @@
 {
     "panel-initial-text": {
-        "thisproject": "Este projeto é",
-        "opensource": "código aberto",
-        "see": "ver",
-        "datasources": "fontes de dados",
+        "thisproject": "Este é um projeto de",
+        "opensource": "Código Aberto",
+        "see": "acessar",
+        "datasources": "fonte de dados",
         "contribute": "Contribua <a href=\"%s\" target=\"_blank\">adicionando seu país ou território</a>"
     },
     "mobile-main-menu": {
@@ -16,7 +16,7 @@
             "subtitle": "Mapeando o impacto climático da eletricidade"
         },
         "view2": {
-            "header": "Veja o quanto de CO2 é emitido para produzir sua eletricidade em tempo real.",
+            "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
             "text": "As áreas através do mundo são coloridas pela sua Intencidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
         },
         "view3": {
@@ -41,28 +41,26 @@
         "helpfrom": "com ajuda de",
         "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
         "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
-        "noParserInfo": "Nós não temps nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
+        "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
         "now": "Agora"
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático",
-        "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Áreas ranqueadas pela intensidade de carbono que a eletricidade consome (gCO₂eq/kWh)",
         "search": "Pesquise por país ou área"
     },
     "country-history": {
         "carbonintensity24h": "Intensidade da emissão de carbono nas últimas 24 horas",
         "emissionsorigin24h": "Origem da emissão de carbono nas últimas 24 horas",
         "emissionsproduction24h": "Emissão de carbono produzida nas últimas 24 horas",
-        "electricityorigin24h": "Origem da eletriciade nas últimas 24 horas",
-        "electricityproduction24h": "Produção de eletrecidade nas últimas 24 horas",
+        "electricityorigin24h": "Origem da eletricidade nas últimas 24 horas",
+        "electricityproduction24h": "Produção de eletricidade nas últimas 24 horas",
         "electricityprices24h": "Preço da eletricidade nas últimas 24 horas",
         "Getdata": "Obtenha dados históricos, marginais e de previsão da API"
     },
     "footer": {
-        "likethisvisu": "Gostou desta visualização?",
-        "loveyourfeedback": "Nós adoraríamos receber o seu feedback",
-        "foundbugs": "Encontrou erros ou tem alguma sugestão? Contacte-nos",
-        "faq-text": "Algo não está claro? Olhe nossa",
+        "foundbugs": "Encontrou erros ou tem alguma sugestão? Contate-nos",
+        "faq-text": "Algo não está claro? Acesse nossas",
         "faq": "questões frequentes.",
         "here": "aqui"
     },
@@ -73,14 +71,14 @@
         "carbonintensity": "Intensidade de carbono"
     },
     "tooltips": {
-        "carbonintensity": "Intensidade de emissões de CO2",
+        "carbonintensity": "Intensidade de emissões de CO₂",
         "lowcarbon": "Baixo carbono",
         "renewable": "Renovável",
         "crossborderexport": "Exportação transfronteiriça",
-        "carbonintensityexport": "Intensidade de emissões de CO2 na exportação",
+        "carbonintensityexport": "Intensidade de emissões de CO₂ na exportação",
         "ofinstalled": "da capacidade instalada",
         "utilizing": "utilizando",
-        "withcarbonintensity": "com uma intensidade de emissão de CO2 de",
+        "withcarbonintensity": "com uma intensidade de emissão de CO₂ de",
         "showWindLayer": "Mostrar a camada de vento",
         "hideWindLayer": "Esconder a camada de vento",
         "showSolarLayer": "Mostrar a camada solar",
@@ -95,7 +93,7 @@
         "lowCarbDescription": "Inclui renováveis e nucleares"
     },
     "misc": {
-        "maintitle": "Emissões de CO2 do consumo elétrico em tempo real",
+        "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
         "oops": "Epa! Estamos tendo problemas com o servidor. Tentaremos novamente em alguns segundos.",
         "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
         "retrynow": "Tentar novamente",
@@ -127,7 +125,7 @@
     "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é importada de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são importadas de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
-    "ofCO2eqPerMinute": "de CO2eq por minuto",
+    "ofCO2eqPerMinute": "de CO₂eq por minuto",
     "theMap": {
       "groupName": "O mapa",
       "mapColors-question": "O que significam as cores no mapa?",
@@ -155,7 +153,7 @@
     "methodology": {
         "groupName": "Nossos métodos",
         "carbonIntensity-question": "O que é \"intensidade de carbono\"?",
-        "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO2eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO2 e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
+        "carbonIntensity-answer": "A intensidade do carbono é uma medida das emissões de gases de efeito estufa associadas à produção de eletricidade que você consome (em gCO₂eq / kWh - gramas de equivalente de dióxido de carbono emitido por quilowatt-hora de eletricidade consumida). <br> <br> Medimos as emissões do consumo de eletricidade (não a produção), ou seja, todas as emissões de gases de efeito estufa (CO₂ e outros gases de efeito estufa, como o metano) que foram produzidas para a eletricidade que está sendo consumida em uma área, levando em consideração as intensidades de carbono do gás. a eletricidade importada de outras áreas. Utilizamos uma abordagem de análise do ciclo de vida (ACV), o que significa que levamos em consideração as emissões decorrentes de todo o ciclo de vida das usinas (construção, produção de combustível, emissões operacionais e desativação).",
         "consumerFocus-question": "Por que você calcula a intensidade de carbono do consumo de eletricidade em vez da produção?",
         "consumerFocus-answer": "Acreditamos que os cidadãos devem ser responsáveis ​​pela eletricidade que consomem, e não pela eletricidade produzida na área em que vivem. Além disso, acreditamos que as áreas não devem ser capazes de \"falsificar\" um baixo impacto climático simplesmente transferindo a produção de energia suja para outras áreas e importando a eletricidade dessas áreas.",
         "renewableLowCarbonDifference-question": "Qual é a diferença entre \"renovável \"e \"baixo carbono\"?",
@@ -185,13 +183,13 @@
     "aboutUs": {
         "groupName": "Sobre nós",
         "whoAreYou-question": "Quem são vocês?",
-        "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
+        "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
         "feedback-question": "Posso dar algum feedback?",
-        "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricity.com\"> envie-nos um email!</a>",
+        "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:hello@electricitymap.org\"> envie-nos um email!</a>",
         "contribut-question": "Posso contribuir para o seu projeto?",
-        "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs , fique à vontade para se juntar a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
+        "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs, fique à vontade para juntar-se a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
         "workTogether-question": "Podemos trabalhar juntos?",
-        "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@tmrow.com\">Envie-nos um email!</a>",
+        "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@electricitymap.org\">Envie-nos um email!</a>",
         "disclaimer-question": "Aviso legal",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente."
     },
@@ -338,7 +336,7 @@
             "zoneName": "Chipre"
           },
           "CZ": {
-            "zoneName": "República Checa"
+            "zoneName": "Chéquia"
           },
           "DE": {
             "zoneName": "Alemanha"
@@ -353,7 +351,7 @@
             "zoneName": "Argélia"
           },
           "EE": {
-            "zoneName": "Estónia"
+            "zoneName": "Estônia"
           },
           "EG": {
             "zoneName": "Egito"
@@ -425,7 +423,7 @@
             "zoneName": "Assam"
           },
           "IN-BR": {
-            "countryName": "India",
+            "countryName": "Índia",
             "zoneName": "Bihar"
           },
           "IN-CT": {
@@ -481,7 +479,7 @@
             "zoneName": "Manipur"
           },
           "IN-MP": {
-            "countryName": "India",
+            "countryName": "Índia",
             "zoneName": "Madhya Pradesh"
           },
           "IN-MZ": {
@@ -556,7 +554,7 @@
             "zoneName": "Luxemburgo"
           },
           "LV": {
-            "zoneName": "Letónia"
+            "zoneName": "Letônia"
           },
           "LY": {
             "zoneName": "Líbia"
@@ -569,6 +567,9 @@
           },
           "ME": {
             "zoneName": "Montenegro"
+          },
+          "MK": {
+            "zoneName": "Macedônia do Norte"
           },
           "MT": {
             "zoneName": "Malta"

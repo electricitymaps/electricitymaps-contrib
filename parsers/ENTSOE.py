@@ -157,8 +157,13 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
     'DK-DK2->SE': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'DE->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
+                   ENTSOE_DOMAIN_MAPPINGS['NO-NO2']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
-    'GR->IT-SO': ['10YGR-HTSO-----Y', ENTSOE_DOMAIN_MAPPINGS['IT-BR']],
+    'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'],
+                  ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
+    'IT-CSO->ME': [ENTSOE_DOMAIN_MAPPINGS['IT'],
+                   ENTSOE_DOMAIN_MAPPINGS['ME']],
     'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
     'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'],
@@ -404,7 +409,11 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     params['periodEnd'] = target_datetime.shift(hours=span[1]).format('YYYYMMDDHH00')
     if 'ENTSOE_TOKEN' not in os.environ:
         raise Exception('No ENTSOE_TOKEN found! Please add it into secrets.env!')
-    params['securityToken'] = os.environ['ENTSOE_TOKEN']
+        
+    # Due to rate limiting, we need to spread our requests across different tokens
+    tokens = os.environ['ENTSOE_TOKEN'].split(',')
+    
+    params['securityToken'] = np.random.choice(tokens)
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
@@ -565,7 +574,7 @@ def datetime_from_position(start, position, resolution):
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == 'M':
-            return start.replace(minutes=(position - 1) * digits)
+            return start.shift(minutes=(position - 1) * digits)
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
@@ -610,20 +619,19 @@ def parse_production(xml_text):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
-        for entry in timeseries.find_all('point'):
-            quantity = float(entry.find_all('quantity')[0].contents[0])
-            position = int(entry.find_all('position')[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
-            try:
-                i = datetimes.index(datetime)
-                if is_production:
+
+        if len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0:
+            for entry in timeseries.find_all('point'):
+                quantity = float(entry.find_all('quantity')[0].contents[0])
+                position = int(entry.find_all('position')[0].contents[0])
+                datetime = datetime_from_position(datetime_start, position, resolution)
+                try:
+                    i = datetimes.index(datetime)
                     productions[i][psr_type] += quantity
-                else:
-                    productions[i][psr_type] -= quantity
-            except ValueError:  # Not in list
-                datetimes.append(datetime)
-                productions.append(defaultdict(lambda: 0))
-                productions[-1][psr_type] = quantity if is_production else -1 * quantity
+                except ValueError:  # Not in list
+                    datetimes.append(datetime)
+                    productions.append(defaultdict(lambda: 0))
+                    productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
@@ -866,6 +874,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     This will drop rows where the datetime is missing in at least a
     parser_output.
     """
+    if len(parser_outputs) == 0:
+        return []
     if merge_source is None:
         merge_source = parser_outputs[0][0]['source']
     prod_and_storage_dfs = [

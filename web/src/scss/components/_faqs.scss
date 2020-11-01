@@ -55,7 +55,7 @@
     }
 
     .answer {
-        display: none;
+        display: block;
         padding-right: 5px;
         padding-left: 10px;
         margin-left: 11px;
@@ -63,10 +63,6 @@
         border-left: 1px solid grey;
         font-size: 0.8rem;
         line-height: 1.2rem;
-
-        &.visible {
-            display: block;
-        }
     }
 }
 

@@ -1,7 +1,11 @@
+#!/usr/bin/env python3
+
+from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
 
 import arrow
 import click
+import datetime
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
@@ -54,7 +58,7 @@ def test_parser(zone, data_type, target_datetime):
 
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
-        res_list = iter(res)
+        res_list = list(res)
     else:
         res_list = [res]
 
@@ -64,6 +68,9 @@ def test_parser(zone, data_type, target_datetime):
         print('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
         return
+    
+    assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
+        'Datetimes must be returned as native datetime.datetime objects'
 
     last_dt = arrow.get(max(dts)).to('UTC')
     first_dt = arrow.get(min(dts)).to('UTC')
@@ -80,7 +87,18 @@ def test_parser(zone, data_type, target_datetime):
                      'min returned datetime: {} UTC'.format(first_dt),
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
+    
+    try:
+        if data_type == 'production':
+            validate_production(res, zone)
+        elif data_type == 'consumption':
+            validate_consumption(res, zone)
+        elif data_type == 'exchange':
+            validate_exchange(res, zone)
+    except ValidationError as e:
+        print('\nValidation failed: {}'.format(e))
 
+    
 
 if __name__ == '__main__':
     print(test_parser())

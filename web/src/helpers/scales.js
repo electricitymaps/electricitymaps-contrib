@@ -1,19 +1,8 @@
-// TODO: Merge themes and scales
-
-import { themes } from './themes';
-
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-interpolate'),
-  require('d3-scale'),
-  require('d3-scale-chromatic'),
-);
+import { scaleLinear, scaleQuantize } from 'd3-scale';
 
 // ** Wind
-const maxWind = 15;
-export const windColor = d3.scaleLinear()
-  .domain(d3.range(10).map(i => d3.interpolate(0, maxWind)(i / (10 - 1))))
+export const windColor = scaleLinear()
+  .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
   .range([
     'rgba(0,   255, 255, 1.0)',
     'rgba(100, 240, 255, 1.0)',
@@ -25,41 +14,26 @@ export const windColor = d3.scaleLinear()
     'rgba(225, 133, 255, 1.0)',
     'rgba(236, 109, 255, 1.0)',
     'rgba(255,  30, 219, 1.0)',
+    'rgba(255,  30, 219, 1.0)',
   ])
   .clamp(true);
 
 
 // ** Solar
-export const maxSolarDSWRF = 1000;
-const minDayDSWRF = 0;
-// const nightOpacity = 0.8;
-const minSolarDayOpacity = 0.6;
-const maxSolarDayOpacity = 0.0;
-const solarDomain = d3.range(10).map(i => d3.interpolate(minDayDSWRF, maxSolarDSWRF)(i / (10 - 1)));
-const solarRange = d3.range(10).map((i) => {
-  const c = Math.round(d3.interpolate(0, 0)(i / (10 - 1)));
-  const a = d3.interpolate(minSolarDayOpacity, maxSolarDayOpacity)(i / (10 - 1));
-  return `rgba(${c}, ${c}, ${c}, ${a})`;
-});
-
-export const solarColor = d3.scaleLinear()
-  .domain(solarDomain)
-  .range(solarRange)
+export const solarColor = scaleLinear()
+  .domain([0, 500, 1000])
+  .range(['black', 'transparent', 'gold'])
   .clamp(true);
 
-// ** CO2
-export const maxCo2 = 800;
+// ** Exchange
 
-export const getCo2Scale = (colorBlindModeEnabled) => {
-  if (colorBlindModeEnabled) {
-    return d3.scaleLinear()
-      .domain(themes.colorblindScale.steps)
-      .range(themes.colorblindScale.colors)
-      .clamp(true);
-  }
+export const quantizedCo2IntensityScale = scaleQuantize()
+  .domain([0, 800])
+  .range([0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800])
+  .unknown('nan');
 
-  return d3.scaleLinear()
-    .domain(themes.co2Scale.steps)
-    .range(themes.co2Scale.colors)
-    .clamp(true);
-};
+export const quantizedExchangeSpeedScale = scaleLinear()
+  .domain([500, 5000])
+  .rangeRound([0, 2])
+  .unknown(0)
+  .clamp(true);

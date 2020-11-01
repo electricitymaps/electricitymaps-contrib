@@ -36,7 +36,6 @@
     }
 
     @include respond-to('medium-up') {
-        pointer-events: none;
         right: 0;
     }
 
@@ -69,11 +68,6 @@
         position: absolute;
         right: 5px;
         top: 5px;
-        display: none;
-
-        &.visible {
-            display: inherit;
-        }
     }
 }
 
@@ -83,20 +77,5 @@
 
     .colorbar{
         width: 100%;
-    }
-
-    @include respond-to('small') {
-        &.mobile-collapsed {
-            display:none;
-        }
-    }
-}
-
-.wind-potential-legend, 
-.solar-potential-legend{
-    display: none;
-
-    &.visible {
-        display: block;
     }
 }

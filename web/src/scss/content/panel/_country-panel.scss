@@ -83,9 +83,6 @@
     position: relative;
     margin-top: 1em;
 
-    .loading {
-        background-size: 1.7rem;
-    }
     .material-icons {
         font-size: 1rem;
     }
@@ -121,38 +118,6 @@
 
 .country-history-title {
     font-size: 1.1em;
-}
-
-#country-history-carbon {
-    height: 7rem;
-
-    .horizontal-line {
-        display: none;
-    }
-}
-
-#country-history-prices {
-    height: 5rem;
-
-    .line {
-        stroke: darkgray;
-    }
-
-    .area {
-        fill: #616161;
-    }
-}
-    
-#country-history-mix {
-    height: 10rem;
-
-    .layer path {
-        opacity: 1.0
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
 }
 
 .country-col-headlines {

@@ -18,8 +18,6 @@
         "carbonintensity24h": "過去24小時的碳強度"
     },
     "footer": {
-        "likethisvisu": "喜歡這個視覺？",
-        "loveyourfeedback": "我們希望您提供意見",
         "foundbugs": "發現錯誤或有其他想法？請回報",
         "here": "這裡"
     },
@@ -65,7 +63,7 @@
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
 
-    "ofCO2eqPerMinute": "of CO2eq per minute",
+    "ofCO2eqPerMinute": "of CO₂eq per minute",
 
     "zoneShortName": {
         "AL": {
@@ -255,7 +253,7 @@
             "zoneName": "黑山共和國"
           },
           "MK": {
-            "zoneName": "馬其頓共和國"
+            "zoneName": "北馬其頓"
           },
           "MT": {
             "zoneName": "馬耳他"

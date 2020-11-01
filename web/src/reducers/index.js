@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-const dataReducer = require('./dataReducer');
-const { getKey } = require('../helpers/storage');
+import { getKey } from '../helpers/storage';
+import { isLocalhost, isProduction } from '../helpers/environment';
 
-const isLocalhost = window.location.href.indexOf('electricitymap') !== -1
-  || window.location.href.indexOf('192.') !== -1;
+import dataReducer from './dataReducer';
 
 const cookieGetBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -21,35 +20,39 @@ const initialApplicationState = {
   callerLocation: null,
   callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
+  co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
   brightModeEnabled: cookieGetBool('brightModeEnabled', true),
-  customDate: null,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
+  // We have to track this here because map layers currently can't
+  // be stopped from propagating mouse move events to the map.
+  // See https://github.com/visgl/react-map-gl/blob/master/docs/advanced/custom-components.md
+  isHoveringExchange: false,
   isLeftPanelCollapsed: false,
+  isMovingMap: false,
+  isLoadingMap: true,
   isMobile:
-  (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
-  isProduction: window.location.href.indexOf('electricitymap') !== -1,
-  isLocalhost,
+    (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
+  isProduction: isProduction(),
+  isLocalhost: isLocalhost(),
   legendVisible: true,
   locale: window.locale,
+  mapViewport: {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    latitude: 50,
+    longitude: 0,
+    zoom: 1.5,
+  },
   onboardingSeen: cookieGetBool('onboardingSeen', false),
-  tooltipDisplayMode: null,
   searchQuery: null,
-  selectedZoneName: null,
   selectedZoneTimeIndex: null,
-  previousSelectedZoneTimeIndex: null,
-  solarEnabled: cookieGetBool('solarEnabled', false),
-  useRemoteEndpoint: document.domain === '' || isLocalhost,
-  windEnabled: cookieGetBool('windEnabled', false),
+  solarColorbarValue: null,
+  webGLSupported: true,
+  windColorbarValue: null,
 
-  // TODO(olc): refactor this state
-  showPageState: 'map',
-  pageToGoBackTo: null,
-  // TODO(olc): those properties could be deduced from a `hoveredZoneName`
-  tooltipLowCarbonGaugePercentage: null,
-  tooltipRenewableGaugePercentage: null,
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
@@ -58,54 +61,18 @@ const applicationReducer = (state = initialApplicationState, action) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action;
-      const newState = Object.assign({}, state);
-      newState[key] = value;
 
-      // Disabled for now (see TODO in main.js)
-      // if (key === 'selectedZoneName') {
-      //   newState.showPageState = value ? 'country' : 'map';
-      // }
-      if (key === 'showPageState'
-          && state.showPageState !== 'country') {
-        newState.pageToGoBackTo = state.showPageState;
+      // Do nothing if the value is unchanged
+      if (state[key] === value) {
+        return state;
       }
 
-      if (key === 'electricityMixMode' && ['consumption', 'production'].indexOf(value) === -1) {
+      // Throw an error if electricity mode is of the wrong format
+      if (key === 'electricityMixMode' && !['consumption', 'production'].includes(value)) {
         throw Error(`Unknown electricityMixMode "${value}"`);
       }
 
-      return newState;
-    }
-
-    case 'GRID_DATA': {
-      const selectedZoneNameExists = Object.keys(action.payload.countries)
-        .indexOf(state.selectedZoneName) !== -1;
-      if (state.selectedZoneName != null && !selectedZoneNameExists) {
-        // The selectedZoneName doesn't exist anymore, we need to reset it
-        // TODO(olc): the page state should be inferred from selectedZoneName
-        return Object.assign(state, {
-          selectedZoneName: undefined,
-          showPageState: state.pageToGoBackTo || 'map',
-        });
-      }
-      return state;
-    }
-
-    case 'UPDATE_SELECTED_ZONE': {
-      const { selectedZoneName } = action.payload;
-      return Object.assign(state, {
-        selectedZoneName,
-        selectedZoneTimeIndex: null,
-        previousSelectedZoneTimeIndex: null,
-      });
-    }
-
-    case 'UPDATE_SLIDER_SELECTED_ZONE_TIME': {
-      const { selectedZoneTimeIndex } = action.payload;
-      return Object.assign(state, {
-        selectedZoneTimeIndex,
-        previousSelectedZoneTimeIndex: selectedZoneTimeIndex,
-      });
+      return { ...state, [key]: value };
     }
 
     default:

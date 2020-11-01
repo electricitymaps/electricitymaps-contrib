@@ -201,7 +201,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     # For directions, note that ISO-NE always reports its import as negative
 
-    if sorted_zone_keys == 'CA-NB->US-NEISO':
+    if sorted_zone_keys == 'CA-NB->US-NEISO' or sorted_zone_keys == 'CA-NB->US-NE-ISNE':
         # CA-NB->US-NEISO means import to NEISO should be positive
         multiplier = -1
 
@@ -209,7 +209,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             '_nstmp_zone0': '4010'  # ".I.SALBRYNB345 1"
         }
 
-    elif sorted_zone_keys == "CA-QC->US-NEISO":
+    elif sorted_zone_keys == "CA-QC->US-NEISO" or sorted_zone_keys == 'CA-QC->US-NE-ISNE':
         # CA-QC->US-NEISO means import to NEISO should be positive
         multiplier = -1
 
@@ -218,7 +218,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             '_nstmp_zone1': '4013'  # ".I.HQHIGATE120 2"
         }
 
-    elif sorted_zone_keys == 'US-NEISO->US-NY':
+    elif sorted_zone_keys == 'US-NEISO->US-NY' or sorted_zone_keys == 'US-NE-ISNE->US-NY-NYIS':
         # US-NEISO->US-NY means import to NEISO should be negative
         multiplier = 1
 

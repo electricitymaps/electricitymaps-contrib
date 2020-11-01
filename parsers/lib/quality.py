@@ -5,6 +5,7 @@ import warnings
 
 import arrow
 
+from utils.config import EXCHANGES_CONFIG, emission_factors
 
 class ValidationError(ValueError):
     pass
@@ -25,8 +26,12 @@ def validate_reasonable_time(item, k):
 
 def validate_consumption(obj, zone_key):
     # Data quality check
-    if obj['consumption'] is not None and obj['consumption'] < 0:
+    if (obj.get('consumption') or 0) < 0:
         raise ValidationError('%s: consumption has negative value '
+                              '%s' % (zone_key, obj['consumption']))
+    # Plausibility Check, no more than 500GW
+    if abs(obj.get('consumption') or 0) > 500000:
+        raise ValidationError('%s: consumption is not realistic (>500GW) '
                               '%s' % (zone_key, obj['consumption']))
     validate_reasonable_time(obj, zone_key)
 
@@ -41,6 +46,24 @@ def validate_exchange(item, k):
         raise ValidationError('datetime %s is not valid for %s' %
                               (item['datetime'], k))
     validate_reasonable_time(item, k)
+    # Verify that the exchange flow is not greater than the interconnector
+    # capacity and has physical sense (no exchange should exceed 100GW)
+    # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
+    if item.get('sortedZoneKeys', None) and item.get('netFlow', None):
+        zone_names = item['sortedZoneKeys']
+        if abs(item.get('netFlow', 0)) > 100000:
+            raise ValidationError(
+                'netFlow %s exceeds physical plausibility (>100GW) for %s' %
+                (item['netFlow'], k))
+        if len(zone_names) == 2:
+                if ((zone_names in EXCHANGES_CONFIG) and
+                    ('capacity' in EXCHANGES_CONFIG[zone_names])
+                ):
+                    interconnector_capacities = EXCHANGES_CONFIG[zone_names]['capacity']
+                    margin = 0.1
+                    if not (min(interconnector_capacities)*(1-margin) <= item['netFlow'] <= max(interconnector_capacities)*(1+margin)):
+                        raise ValidationError('netFlow %s exceeds interconnector capacity for %s' %
+                                              (item['netFlow'], k))
 
 
 def validate_production(obj, zone_key):
@@ -63,7 +86,11 @@ def validate_production(obj, zone_key):
          obj.get('production', {}).get('coal', None) is None and
          obj.get('production', {}).get('oil', None) is None and
          obj.get('production', {}).get('gas', None) is None and zone_key
-         not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO'])):
+         not in ['CH', 'NO', 'AUS-TAS', 'DK-BHM', 'US-NEISO',
+                'US-CAR-YAD','US-NW-SCL','US-NW-CHPD',
+                'US-NW-WWA','US-NW-GCPD','US-NW-TPWR',
+                'US-NW-WAUW','US-SE-SEPA','US-NW-GWA',
+                'US-NW-DOPD', 'US-NW-AVRN'])):
         raise ValidationError(
             "Coal, gas or oil or unknown production value is required for"
             " %s" % zone_key)
@@ -81,4 +108,14 @@ def validate_production(obj, zone_key):
         if v < 0:
             raise ValidationError('%s: key %s has negative value %s' %
                                   (zone_key, k, v))
+        # Plausibility Check, no more than 500GW
+        if v > 500000:
+            raise ValidationError('%s: production for %s is not realistic ('
+                                  '>500GW) '
+                                  '%s' % (zone_key, k, v))
+
+    for k in obj.get('production', {}).keys():
+        if k not in emission_factors(zone_key).keys():
+            raise ValidationError("Couldn't find emission factor for '%s' in '%s'. Maybe you misspelled one of the production keys?" % (k, zone_key))
+
     validate_reasonable_time(obj, zone_key)

@@ -16,7 +16,7 @@
             "subtitle": "Pemetaan klimatologi yang berdampak pada daya listrik"
         },
         "view2": {
-            "header": "Lihat seberapa banyak CO2 yang dipancarkan untuk memproduksi listrik, secara langsung.",
+            "header": "Lihat seberapa banyak CO₂ yang dipancarkan untuk memproduksi listrik, secara langsung.",
             "text": "Kami memberikan warna pada area di seluruh dunia berdasarkan intensitas karbon (termasuk gas rumah kaca) yang digunakan dalam listrik di sana. Warna hijau menunjukkan bahwa area di sana sangat bersih dan ramah dalam penggunaan listrik."
         },
         "view3": {
@@ -46,7 +46,7 @@
     },
     "left-panel": {
         "zone-list-header-title": "Dampak klimatologi berdasarkan area",
-        "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO2eq/kWh)",
+        "zone-list-header-subtitle": "Susunan peringkat berdasarkan intensitas Karbon yang listrik hasilkan (gCO₂eq/kWh)",
         "search": "Cari area"
     },
     "country-history": {
@@ -59,8 +59,6 @@
         "Getdata": "Dapatkan data original, marjinal dan API cuaca."
     },
     "footer": {
-        "likethisvisu": "Suka visualisasi yang diberikan?",
-        "loveyourfeedback": "Kami senang mendapatkan umpan balik Anda.",
         "foundbugs": "Menemukan kesalahan dan ide baru? Laporkan pada Kami",
         "faq-text": "Apakah masih ada pertanyaan? Lihat",
         "faq": "pertanyaan yang sering ditanyakan.",
@@ -94,7 +92,7 @@
         "selectLanguage": "Pilih bahasa"
     },
     "misc": {
-        "maintitle": "Emisi CO2 langsung dari pemakaian energi listrik",
+        "maintitle": "Emisi CO₂ langsung dari pemakaian energi listrik",
         "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
         "newversion": "Versi baru tersedia! Klik <a onClick=\"location.reload(true);\">di sini</a> untuk memuat ulang.",
         "retrynow": "Ulangi sekarang",
@@ -123,7 +121,7 @@
     "emissionsExportedTo": "%1$s %% emisi dari energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diekspor ke <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "%1$s %% energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "%1$s %% emisi energi listrik tersedia di <img id=\"country-flag\"></img> <b>%2$s</b> diimport dari <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "CO2eq per menit",
+    "ofCO2eqPerMinute": "CO₂eq per menit",
     "theMap": {
         "groupName": "Peta",
         "mapColors-question": "Apa arti dari warna di dalam peta?",
@@ -151,7 +149,7 @@
     "methodology": {
         "groupName": "Metode Kami",
         "carbonIntensity-question": "Apa itu \"intensitas Karbon\"?",
-        "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO2eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO2 dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
+        "carbonIntensity-answer": "Intensitas karbon adalah ukuran emisi gas rumah kaca yang terkait dengan menghasilkan listrik yang Anda konsumsi (dalam gCO₂eq / kWh - gram setara karbon dioksida yang dipancarkan per kilowatt hour dari konsumsi listrik). <br> <br> Kami mengukur emisi konsumsi listrik (bukan produksi), yang berarti semua emisi gas rumah kaca (baik CO₂ dan gas rumah kaca lainnya seperti metana) yang telah menghasilkan listrik yang dikonsumsi di suatu daerah, dengan mengambil memperhitungkan intensitas karbon dari listrik yang diimpor dari daerah lain. Kami menggunakan pendekatan analisis siklus hidup (LCA), yang berarti bahwa kami memperhitungkan emisi yang muncul dari seluruh siklus hidup pembangkit listrik (konstruksi, produksi bahan bakar, emisi operasional, dan penonaktifan).",
         "consumptionFocus-question": "Mengapa Anda menghitung intensitas karbon dari konsumsi listrik daripada produksinya?",
         "consumptionFocus-answer": "Kami percaya warga harus bertanggung jawab atas listrik yang mereka konsumsi, dan bukan untuk listrik yang diproduksi di daerah tempat mereka tinggal. Selain itu, kami percaya bahwa daerah tidak boleh 'memalsukan' dampak iklim rendah hanya dengan merelokasi produksi energi kotor ke daerah lain dan kemudian mengimpor listrik dari daerah tersebut. ",
         "renewableLowCarbonDifference-question": "Apa perbedaan dari “terbarukan” and “karbon-rendah”?",
@@ -183,11 +181,11 @@
         "whoAreYou-question": "Siapa Anda?",
         "whoAreYou-answer": "Pemetaan Listrik dikembangkan dan dikelola oleh <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, sebuah perusahaan kecil Denmark / Perancis. Tujuan kami adalah untuk membantu umat manusia mencapai keadaan keberadaan yang berkelanjutan dengan mengkuantifikasi, dan membuat aksesibilitas luas, dampak iklim dari pilihan sehari-hari yang kami buat.",
         "feedback-question": "Bisakah saya memberi Anda umpan balik?",
-        "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:hello@electricity.com\">kirim via Email!</a>",
+        "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:hello@electricitymap.org\">kirim via Email!</a>",
         "contribute-question": "Dapatkah saya berkontribusi pada proyek Anda?",
         "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Bisakah kita bekerja bersama?",
-        "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:hello@tmrow.com\">Kirimkan pada kami via email!</a>",
+        "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:hello@electricitymap.org\">Kirimkan pada kami via email!</a>",
         "disclaimer-question": "Disclaimer",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
@@ -985,8 +983,7 @@
             "zoneName": "Pulau Marshall"
         },
         "MK": {
-            "countryName": "Rep. of Macedonia",
-            "zoneName": "FYROM"
+            "zoneName": "Makedonia Utara"
         },
         "ML": {
             "zoneName": "Mali"
