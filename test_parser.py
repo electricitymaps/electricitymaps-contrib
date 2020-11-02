@@ -6,6 +6,7 @@ import time
 import arrow
 import click
 import datetime
+import logging
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
@@ -50,7 +51,7 @@ def test_parser(zone, data_type, target_datetime):
         args = zone.split('->')
     else:
         args = [zone]
-    res = parser(*args, target_datetime=target_datetime)
+    res = parser(*args, target_datetime=target_datetime, logger=logging.getLogger(__name__))
 
     if not res:
         print('Error: parser returned nothing ({})'.format(res))
@@ -88,15 +89,18 @@ def test_parser(zone, data_type, target_datetime):
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
     
-    try:
-        if data_type == 'production':
-            validate_production(res, zone)
-        elif data_type == 'consumption':
-            validate_consumption(res, zone)
-        elif data_type == 'exchange':
-            validate_exchange(res, zone)
-    except ValidationError as e:
-        print('\nValidation failed: {}'.format(e))
+    if type(res) == dict:
+        res = [res]
+    for event in res:
+        try:
+            if data_type == 'production':
+                validate_production(event, zone)
+            elif data_type == 'consumption':
+                validate_consumption(event, zone)
+            elif data_type == 'exchange':
+                validate_exchange(event, zone)
+        except ValidationError as e:
+            print('Validation failed: {}'.format(e))
 
     
 
