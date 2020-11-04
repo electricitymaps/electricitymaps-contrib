@@ -23,6 +23,7 @@ import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
 import ZoneDetailsPanel from './zonedetailspanel';
 import ZoneListPanel from './zonelistpanel';
+import { HeaderContent } from '../../helpers/styledcomponents';
 
 const HandleLegacyRoutes = () => {
   const searchParams = useSearchParams();
@@ -56,6 +57,20 @@ const SmallLoader = styled.span`
   height: 1em;
 `;
 
+const MobileHeaderContent = styled(HeaderContent)`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+  height: 50px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 24px;
+  box-sizing: border-box;
+`;
+
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
   isMobile: state.application.isMobile,
@@ -78,7 +93,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
     >
 
       <div id="mobile-header" className="large-screen-hidden brightmode">
-        <div className="header-content">
+        <MobileHeaderContent>
           <div className="logo">
             <div className="image" id="electricitymap-logo" />
           </div>
@@ -86,7 +101,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
             {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
           </div>
-        </div>
+        </MobileHeaderContent>
       </div>
 
       <div

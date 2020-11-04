@@ -1,3 +1,32 @@
+#mobile-header {
+    @include respond-to('small') {
+        min-height: 50px;
+        box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
+        z-index: 999; /* required for the box-shadow to overlay everything */
+
+        .header-content{
+            .logo {
+                display:flex;
+            }
+
+            .right-header {
+                font-size: 0.6em;
+            }
+        }
+    }
+    .logo .image {
+        display: inline-block;
+        height: 21px;
+        width:139px;
+        margin-right: 4px;
+        margin-top:1.5px;
+    }
+    #electricitymap-logo{
+        background-image: url(../images/electricitymap-logo.svg);
+        background-size: cover;
+    }
+}
+
 .panel {
     background-color: $light-gray;
     color: black;

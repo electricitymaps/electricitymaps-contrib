@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { breakpoints } from '../scss/theme';
+import { HeaderContent } from '../helpers/styledcomponents';
 
 const Header = styled.div`
   background-color: transparent;
@@ -22,26 +23,6 @@ const Header = styled.div`
     left: 0;
     top: 0;
     z-index: 2;
-  }
-`;
-
-const HeaderContent = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 1.0rem;
-  height: 50px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 15px;
-  padding-right: 15px;
-  line-height: 24px;
-
-  /* Force width to include padding */
-  box-sizing: border-box;
-
-  & > div,
-  & > span {
-      vertical-align: middle;
   }
 `;
 
