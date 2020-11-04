@@ -18,7 +18,7 @@ export const themes = {
       green: '#009800',
     },
     fonts: {
-      primary: '"Open Sans", sans-serif'
+      primary: '"Open Sans", sans-serif',
     },
   },
   dark: {

@@ -21,5 +21,5 @@ const HeaderContent = styled.div`
 `;
 
 export {
-  HeaderContent
+  HeaderContent,
 };
