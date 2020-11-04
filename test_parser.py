@@ -8,7 +8,6 @@ import arrow
 import click
 import datetime
 import logging
-import json
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
