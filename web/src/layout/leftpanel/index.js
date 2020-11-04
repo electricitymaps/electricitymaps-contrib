@@ -23,7 +23,7 @@ import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
 import ZoneDetailsPanel from './zonedetailspanel';
 import ZoneListPanel from './zonelistpanel';
-import { HeaderContent } from '../../helpers/styledcomponents';
+import { HeaderContent } from '../../components/styledcomponents';
 
 const HandleLegacyRoutes = () => {
   const searchParams = useSearchParams();

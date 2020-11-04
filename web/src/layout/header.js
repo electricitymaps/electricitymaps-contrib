@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { breakpoints } from '../scss/theme';
-import { HeaderContent } from '../helpers/styledcomponents';
+import { breakpoints } from '../helpers/breakpoints';
+import { HeaderContent } from '../components/styledcomponents';
 
 const Header = styled.div`
   background-color: transparent;
