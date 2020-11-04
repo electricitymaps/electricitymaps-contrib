@@ -1,0 +1,102 @@
+{
+  "pollInterval": 1,
+  "clients": 0,
+  "events": 0,
+  "windSpill": false,
+  "chargeEv": false,
+  "zdo": false,
+  "percentageCheck": 100,
+  "message": null,
+  "technologies": [
+    {
+      "direction": 298,
+      "speed": {
+        "value": 10,
+        "units": "m/s",
+        "speed4": 10,
+        "speed5": 7.6
+      },
+      "id": "wind",
+      "title": "Wind",
+      "value": 1024,
+      "unit": "kW",
+      "percent": 57,
+      "status": true
+    },
+    {
+      "id": "solar",
+      "title": "Solar",
+      "value": 0,
+      "unit": "kW",
+      "percent": 0,
+      "status": false
+    },
+    {
+      "burn": false,
+      "id": "diesel",
+      "title": "Diesel",
+      "value": 779,
+      "unit": "kW",
+      "percent": 43,
+      "status": true
+    },
+    {
+      "id": "battery",
+      "title": "Battery",
+      "value": -3,
+      "unit": "kW",
+      "percent": 0,
+      "status": false
+    },
+    {
+      "id": "resistor",
+      "title": "Resistor",
+      "value": 0,
+      "unit": "kW",
+      "percent": 0,
+      "status": false
+    },
+    {
+      "dups1": -73,
+      "dups2": -73,
+      "id": "flywheel",
+      "title": "Flywheel (D-UPS)",
+      "value": -146,
+      "unit": "kW",
+      "percent": 0,
+      "status": true
+    }
+  ],
+  "biodiesel": {
+    "id": "biodiesel",
+    "title": "Biodiesel",
+    "value": 0,
+    "unit": null,
+    "percent": 0,
+    "status": true
+  },
+  "output": {
+    "value2": 49.9,
+    "unit2": "Hz",
+    "generation": 1803,
+    "id": "output",
+    "title": "Output",
+    "value": 1800,
+    "unit": "kW",
+    "percent": 0,
+    "status": false
+  },
+  "smartgrid": {
+    "id": "smartgrid",
+    "unit": "kW",
+    "status": false,
+    "minRange": 0,
+    "maxRange": 2500,
+    "demandResponse": {
+      "minRange": 0,
+      "maxRange": 100,
+      "available": 0,
+      "dispatch": 0
+    }
+  }
+}

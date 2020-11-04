@@ -5,7 +5,7 @@ import warnings
 
 import arrow
 
-from utils.config import EXCHANGES_CONFIG
+from utils.config import EXCHANGES_CONFIG, emission_factors
 
 class ValidationError(ValueError):
     pass
@@ -113,4 +113,9 @@ def validate_production(obj, zone_key):
             raise ValidationError('%s: production for %s is not realistic ('
                                   '>500GW) '
                                   '%s' % (zone_key, k, v))
+
+    for k in obj.get('production', {}).keys():
+        if k not in emission_factors(zone_key).keys():
+            raise ValidationError("Couldn't find emission factor for '%s' in '%s'. Maybe you misspelled one of the production keys?" % (k, zone_key))
+
     validate_reasonable_time(obj, zone_key)
