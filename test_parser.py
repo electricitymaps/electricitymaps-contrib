@@ -3,10 +3,12 @@
 from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
 
+import pprint
 import arrow
 import click
 import datetime
 import logging
+import json
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
@@ -82,8 +84,10 @@ def test_parser(zone, data_type, target_datetime):
             if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
             else ' -- OK, <2h from now :) (now={} UTC)'.format(arrow.utcnow()))
 
-    print('\n'.join(['parser result:', res.__str__(),
-                     '---------------------',
+    print("Parser result:")
+    pp = pprint.PrettyPrinter(width=120)
+    pp.pprint(res)
+    print('\n'.join(['---------------------',
                      'took {:.2f}s'.format(elapsed_time),
                      'min returned datetime: {} UTC'.format(first_dt),
                      'max returned datetime: {} UTC {}'.format(
