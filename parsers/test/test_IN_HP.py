@@ -23,7 +23,7 @@ class Test_IN_HP(unittest.TestCase):
             self.assertEqual(data['source'], 'hpsldc.com')
             self.assertIsNotNone(data['datetime'])
             self.assertEqual(data['production'], {
-                             'hydro': 2826.53, 'unknown': 448.9})
+                             'hydro': 360.42, 'unknown': 115.4})
         except Exception as ex:
             self.fail(
                 "IN_HP.fetch_production() raised Exception: {0}".format(ex))

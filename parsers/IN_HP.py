@@ -26,7 +26,8 @@ class GenType(Enum):
 
 # Map of plant names (as given in data source) to their type.
 # Source for types is http://meritindia.in/state-data/himachal-pradesh
-# or the link above/next to the relevant entry if there is no record in meritindia.
+# (click 'Show details' at the bottom) or the link above/next to the
+# relevant entry if there is no record in meritindia.
 # Corroborating source: https://hpaldc.org/index.asp?pg=powStn
 #
 # Total plant capacity as manually calculated from the data source:
@@ -49,6 +50,8 @@ PLANT_NAMES_TO_TYPES = {
     'GHANVI(2X11.25MW)': GenType.HYDRO,  # GANVI in type source
     # https://www.ejatlas.org/conflict/kashang-hydroelectricity-project
     'KASHANG(3X65MW)': GenType.HYDRO,
+    # https://cdm.unfccc.int/Projects/DB/RWTUV1354641854.75/view
+    'Sawra Kuddu (3x37MW)': GenType.HYDRO,
     'MICROP/HMONITORED(HPSEBL)': GenType.UNKNOWN,  # No type source
     'IPPsP/HMONITORED': GenType.UNKNOWN,  # No type source
     'MICROP/HUNMONITORED': GenType.UNKNOWN,  # No type source
