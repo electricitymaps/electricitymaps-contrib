@@ -838,8 +838,7 @@
       ]
     ],
     "data_contacts": [
-      {
-        "name": "British Columbia Utilities Commission",
+      { "name": "British Columbia Utilities Commission",
         "twitter": "https://twitter.com/BCutilitiescom",
         "email": "commission.secretary@bcuc.com"
       }
@@ -7118,15 +7117,6 @@
       {
         "name": "Egyptian Electricity Holding Company",
         "twitter": "https://twitter.com/EEHCSM"
-      }
-    ]
-  },
-  "CO": {
-    "data_contacts": [
-      {
-        "name": "Comisión de Regulación de Energía y Gas - CREG",
-        "twitter": "https://twitter.com/comisioncreg",
-        "email": "contactenos@creg.gov.co"
       }
     ]
   },
