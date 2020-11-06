@@ -35,15 +35,12 @@ import { useTrackEvent } from "../../hooks/tracking";
 import { flagUri } from "../../helpers/flags";
 import { getFullZoneName, __ } from "../../helpers/translation";
 import { default as zonesInfo } from "../../../../config/zones.json";
+import NoParserInfo from "./noParserInfo/NoParserInfo"
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const action_hasdata = resolvePath("images/contrib-actions/action_hasdata.png");
-const action_contact = resolvePath("images/contrib-actions/action_contact.png");
-const action_hasnothing = resolvePath(
-  "images/contrib-actions/action_hasnothing.png"
-);
+
 
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(
@@ -99,9 +96,6 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [dataState, setDataState] = useState(null);
-  const [githubIssues, setGithubIssues] = useState(null);
-
   const isLoadingHistories = useSelector(
     (state) => state.data.isLoadingHistories
   );
@@ -132,40 +126,6 @@ const CountryPanel = ({
     };
   }, [history]);
 
-  useEffect(() => {
-    setDataState(null);
-    if (zonesInfo[zoneId] && zonesInfo[zoneId].data_contacts) {
-      if (zonesInfo[zoneId].data_contacts.length > 0) {
-        setDataState("contact");
-      }
-      return;
-    }
-
-    let requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-
-    fetch(
-      `https://api.github.com/repos/tmrowco/electricitymap-contrib/issues?labels=zone%3A${zoneId}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.length < 1) {
-          setGithubIssues([]);
-          setDataState(null);
-        } else {
-          console.log(result);
-          setDataState(result[0].labels[0].name);
-          const issues = [{ title: result[0].title, url: result[0].html_url }];
-          setGithubIssues(issues);
-          console.log(issues);
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }, [zoneId]);
-
   // Redirect to the parent page if the zone is invalid.
   if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
@@ -178,35 +138,6 @@ const CountryPanel = ({
       ? data.co2intensity
       : data.co2intensityProduction;
 
-  const renderNoParserInfo = () => {
-    const hasContacts = zonesInfo[zoneId] && zonesInfo[zoneId].data_contacts;
-    switch (dataState) {
-      case "parser buildable!":
-        return <HasData />;
-      case "contact":
-        if (hasContacts) {
-          return (
-            <HasContacts
-              contacts={
-                zonesInfo[zoneId] ? zonesInfo[zoneId].data_contacts : null
-              }
-            />
-          );
-        }
-      case "delayed":
-        return (
-          <HasDelay
-            delay={zonesInfo[zoneId].delay}
-            contacts={
-              zonesInfo[zoneId] ? zonesInfo[zoneId].data_contacts : null
-            }
-          />
-        );
-      default:
-        return <HasNothing />;
-    }
-  };
-
   const switchToZoneEmissions = () => {
     dispatchApplication("tableDisplayEmissions", true);
     trackEvent("switchToCountryEmissions");
@@ -215,29 +146,6 @@ const CountryPanel = ({
   const switchToZoneProduction = () => {
     dispatchApplication("tableDisplayEmissions", false);
     trackEvent("switchToCountryProduction");
-  };
-
-  const GithubIssues = () => {
-    if (!githubIssues || githubIssues.length < 1) {
-      return null;
-    }
-
-    return (
-      <React.Fragment>
-        <h2>Github issues</h2>
-        <ul>
-          {(githubIssues || []).map((issue) => {
-            return (
-              <li>
-                <a key={issue.title} target="_blank" href={issue.url}>
-                  {issue.title}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </React.Fragment>
-    );
   };
 
   return (
@@ -482,11 +390,9 @@ const CountryPanel = ({
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
-            {renderNoParserInfo()}
-            {/* <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} /> */}
-
-            {GithubIssues()}
-            {/* {(githubIssues || []).map((issue) => <a href={issue.url}>{issue.title}</a>)} */}
+            <NoParserInfo
+            zoneId={zoneId}
+            />
           </div>
         )}
 
@@ -522,125 +428,5 @@ const CountryPanel = ({
     </div>
   );
 };
-
-const HasNothing = () => (
-  <div>
-    <img className="contribute" src={action_hasnothing} alt={"All pls"} />
-    <h2>No data is currently available for this region</h2>
-    <p>electricityMap is powered by our open-source community</p>
-    <p>
-      Currently no data source has been identified that could allow us to put
-      this region on the map.
-    </p>
-    <h2>What can you do?</h2>
-    <p>1) Add contact details of organisations that may have this data</p>
-    <p>
-      Organisations in this region most likely have data that is not shared
-      openly yet. Help us find the relevant email and social media information
-      so the electricityMap community can reach out and ask for this data by
-      adding contact details here:
-    </p>
-    <p>2) Add a data source</p>
-    <p>
-      If you know where we can find real-time data about electricity in this
-      country, you can help us add data on the map by sharing the data source on
-      Github here: If you know how to code, you can even code the parser
-      yourself by following this guide:
-      <br />
-      <a href="#">A great guide </a>
-    </p>
-  </div>
-);
-
-const HasData = () => (
-  <div>
-    <img className="contribute" src={action_hasdata} alt={"Parser pls"} />
-    <h2>Data has been found for this region</h2>
-    <p>electricityMap is powered by our open-source community</p>
-    <p>
-      Good news: a data source has been found and with your help it could be
-      added to electricityMap.
-    </p>
-
-    <h2>What can you do?</h2>
-
-    <p>
-      Follow the current development and contribute on Github to add this data
-      to electricityMap.
-    </p>
-  </div>
-);
-
-const HasContacts = ({ contacts }) => (
-  <div>
-    <img className="contribute" src={action_contact} alt={"Contact pls"} />
-    <h2>No data is currently available for this region</h2>
-    <p>electricityMap is powered by our open-source community</p>
-    <p>
-      Currently no data source has been identified that could allow us to put
-      this region on the map.
-    </p>
-
-    <h2>What can you do?</h2>
-
-    <h3>1) Contact organisations that may have this data</h3>
-    <p>
-      These organisations have been mentioned by the community as potential
-      sources for data. Reach out to them and ask them to share that data!
-    </p>
-    {contacts.map((contact) => (
-      <div className="contact-item">
-        <p>
-          <strong>{contact.name}</strong>
-        </p>
-        <p>Email: {contact.email}</p>
-        <p>Twitter: {contact.twitter}</p>
-      </div>
-    ))}
-    <h3>2) Add a data source</h3>
-    <p>
-      If you know where we can find real-time data about electricity in this
-      country, you can help us add data on the map by sharing the data source on
-      Github here:
-    </p>
-  </div>
-);
-
-function renderContacts(contacts) {
-  return (
-    <React.Fragment>
-      <h3>Contact organisations that may have this data</h3>
-      <p>
-        These organisations have been mentioned by the community as potential
-        sources for data. Reach out to them and ask them to share that data!
-      </p>
-      {contacts.map((contact) => (
-        <div className="contact-item">
-          <p>
-            <strong>{contact.name}</strong>
-          </p>
-          <p>Email: {contact.email}</p>
-          <p>Twitter: {contact.twitter}</p>
-        </div>
-      ))}
-    </React.Fragment>
-  );
-}
-
-const HasDelay = ({ delay, contacts }) => (
-  <div>
-    <img className="contribute" src={action_contact} alt={"Contact pls"} />
-    <h2>Data is delayed for this zone</h2>
-    <p>electricityMap is powered by our open-source community</p>
-    <h2>What can you do?</h2>
-    {renderContacts(contacts)}
-    <h3>Add a data source</h3>
-    <p>
-      If you know where we can find real-time data about electricity in this
-      country, you can help us add data on the map by sharing the data source on
-      Github here:
-    </p>
-  </div>
-);
 
 export default connect(mapStateToProps)(CountryPanel);
