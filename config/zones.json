@@ -836,7 +836,14 @@
         -113.53745235883926,
         60.50005890629359
       ]
-    ]
+    ],
+    "data_contacts": [
+      {
+        "name": "British Columbia Utilities Commission",
+        "twitter": "https://twitter.com/BCutilitiescom",
+        "email": "commission.secretary@bcuc.com"
+      }
+    ]
   },
   "CA-MB": {
     "capacity": {
@@ -1043,7 +1050,13 @@
         -56.60087602420913,
         63.0938174500001
       ]
-    ]
+    ],
+    "data_contacts": [
+      {
+        "name": "Hydro-Québec",
+        "twitter": "https://twitter.com/hydroquebec"
+      }
+    ]
   },
   "CA-SK": {
     "capacity": {
@@ -5214,7 +5227,14 @@
       "price": "US_PJM.fetch_price",
       "production": "US_PJM.fetch_production"
     },
-    "timezone": null
+    "timezone": null,
+    "data_contacts": [
+      {
+        "name": "PJM Interconnection",
+        "twitter": "https://twitter.com/pjminterconnect",
+        "email": "custsvc@pjm.com"
+      }
+    ]
   },
   "PR": {
     "contributors": [
@@ -6064,7 +6084,14 @@
         -81.9130970652477,
         49.884274119856
       ]
-    ]
+    ],
+    "data_contacts": [
+      {
+        "name": "Midcontinent ISO",
+        "twitter": "https://twitter.com/miso_energy",
+        "email": "clientrelations@misoenergy.org"
+      }
+    ]
   },
   "US-NE-ISNE": {
     "comment": "Iso New England Inc.",
@@ -6148,7 +6175,13 @@
         -105.50971,
         49.50244
       ]
-    ]
+    ],
+    "data_contacts": [
+      {
+        "name": "Bonneville Power Administration",
+        "twitter": "https://twitter.com/bonnevillepower"
+      }
+    ]
   },
   "US-NW-CHPD": {
     "comment": "Public Utility District No. 1 Of Chelan County",
@@ -6528,8 +6561,16 @@
         -95.95176,
         48.07463
       ]
-    ]
+    ],
+ "data_contacts": [
+      {
+        "name": "Western Area Power Administration",
+        "twitter": "https://twitter.com/westernareapowr",
+        "email": "publicaffairs@wapa.gov"
+      }
+    ]    
   },
+
   "US-NW-WAUW": {
     "comment": "Western Area Power Administration Ugp West",
     "contributors": [
@@ -6552,7 +6593,14 @@
         -102.051328941,
         49.1340949710001
       ]
-    ]
+    ],
+ "data_contacts": [
+      {
+        "name": "Western Area Power Administration",
+        "twitter": "https://twitter.com/westernareapowr",
+        "email": "publicaffairs@wapa.gov"
+      }
+    ]     
   },
   "US-NW-WWA": {
     "comment": "Naturener Wind Watch, Llc",
@@ -6911,7 +6959,14 @@
         -105.02991,
         44.1167400000001
       ]
-    ]
+    ],
+ "data_contacts": [
+      {
+        "name": "Western Area Power Administration",
+        "twitter": "https://twitter.com/westernareapowr",
+        "email": "publicaffairs@wapa.gov"
+      }
+    ]     
   },
   "US-TEN-TVA": {
     "comment": "Tennessee Valley Authority",
@@ -7031,6 +7086,75 @@
         "twitter": "https://twitter.com/ManuelBartlett"
       }
     ]
-  }
-
+  },
+  "PY": {
+    "data_contacts": [
+      {
+        "name": "ANDE",
+        "twitter": "https://twitter.com/ANDEOficial",
+        "email": "contacto@ande.gov.py"
+      }
+    ]
+  },
+  "ZA": {
+    "data_contacts": [
+      {
+        "name": "ESKOM",
+        "twitter": "https://twitter.com/Eskom_SA",
+        "email": "CustomerServices@eskom.co.za"
+      }
+    ]
+  },
+  "LB": {
+    "data_contacts": [
+      {
+        "name": "Electricité du Liban",
+        "email": "info@edl.gov.lb"
+      }
+    ]
+  },
+  "EG": {
+    "data_contacts": [
+      {
+        "name": "Egyptian Electricity Holding Company",
+        "twitter": "https://twitter.com/EEHCSM"
+      }
+    ]
+  },
+  "CO": {
+    "data_contacts": [
+      {
+        "name": "Comisión de Regulación de Energía y Gas - CREG",
+        "twitter": "https://twitter.com/comisioncreg",
+        "email": "contactenos@creg.gov.co"
+      }
+    ]
+  },
+  "CO": {
+    "data_contacts": [
+      {
+        "name": "Comisión de Regulación de Energía y Gas - CREG",
+        "twitter": "https://twitter.com/comisioncreg",
+        "email": "contactenos@creg.gov.co"
+      }
+    ]
+  },
+  "EC": {
+    "data_contacts": [
+      {
+        "name": "Operador Nacional de Electricidad CENACE",
+        "twitter": "https://twitter.com/operadorcenace",
+        "email": "pcorporativo@cenace.org.ec"
+      }
+    ]
+  },
+  "TH": {
+    "data_contacts": [
+      {
+        "name": "Electricity Generating Authority of Thailand (EGAT)",
+        "twitter": "https://twitter.com/EGAT_Official",
+        "email": "EGATCALLCENTER@egat.co.th"
+      }
+    ]
+  }  
 }
