@@ -7019,5 +7019,18 @@
       "production": 48
     },
     "timezone": "Europe/Belgrade"
+  },
+  "MX-NO": {
+    "data_contacts": [
+      {
+        "name": "CFEmx",
+        "twitter": "https://twitter.com/CFEmx"
+      },
+      {
+        "name": "Manuel Bartlett CEO CFEmx",
+        "twitter": "https://twitter.com/ManuelBartlett"
+      }
+    ]
   }
+
 }
