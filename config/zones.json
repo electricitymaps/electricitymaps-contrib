@@ -837,12 +837,11 @@
         60.50005890629359
       ]
     ],
-    "data_contacts": [
-      { "name": "British Columbia Utilities Commission",
-        "twitter": "https://twitter.com/BCutilitiescom",
-        "email": "commission.secretary@bcuc.com"
-      }
-    ]
+    "data_contacts": [{
+      "name": "British Columbia Utilities Commission",
+      "twitter": "https://twitter.com/BCutilitiescom",
+      "email": "commission.secretary@bcuc.com"}
+    ]
   },
   "CA-MB": {
     "capacity": {
@@ -1050,12 +1049,7 @@
         63.0938174500001
       ]
     ],
-    "data_contacts": [
-      {
-        "name": "Hydro-Québec",
-        "twitter": "https://twitter.com/hydroquebec"
-      }
-    ]
+    "data_contacts": [{"name": "Hydro-Québec","twitter": "https://twitter.com/hydroquebec"}]
   },
   "CA-SK": {
     "capacity": {
@@ -5226,13 +5220,11 @@
       "production": "US_PJM.fetch_production"
     },
     "timezone": null,
-    "data_contacts": [
-      {
-        "name": "PJM Interconnection",
-        "twitter": "https://twitter.com/pjminterconnect",
-        "email": "custsvc@pjm.com"
-      }
-    ]
+    "data_contacts": [{
+      "name": "PJM Interconnection",
+      "twitter": "https://twitter.com/pjminterconnect",
+      "email": "custsvc@pjm.com"}
+    ]
   },
   "PR": {
     "contributors": [
@@ -6084,12 +6076,12 @@
       ]
     ],
     "data_contacts": [
-      {
-        "name": "Midcontinent ISO",
-        "twitter": "https://twitter.com/miso_energy",
+      {
+        "name": "Midcontinent ISO",
+        "twitter": "https://twitter.com/miso_energy",
         "email": "clientrelations@misoenergy.org"
-      }
-    ]
+      }
+    ]
   },
   "US-NE-ISNE": {
     "comment": "Iso New England Inc.",
@@ -6175,11 +6167,11 @@
       ]
     ],
     "data_contacts": [
-      {
-        "name": "Bonneville Power Administration",
-        "twitter": "https://twitter.com/bonnevillepower"
-      }
-    ]
+      {
+        "name": "Bonneville Power Administration",
+        "twitter": "https://twitter.com/bonnevillepower"
+      }
+    ]
   },
   "US-NW-CHPD": {
     "comment": "Public Utility District No. 1 Of Chelan County",

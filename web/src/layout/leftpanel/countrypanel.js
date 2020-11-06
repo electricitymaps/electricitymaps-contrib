@@ -3,47 +3,46 @@
 /* eslint-disable react/jsx-no-target-blank */
 // TODO: re-enable rules
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Redirect,
   Link,
   useLocation,
   useParams,
   useHistory,
-} from "react-router-dom";
-import { connect, useSelector } from "react-redux";
-import { noop } from "lodash";
-import moment from "moment";
+} from 'react-router-dom';
+import { connect, useSelector } from 'react-redux';
+import { noop } from 'lodash';
+import moment from 'moment';
 
 // Components
-import LowCarbonInfoTooltip from "../../components/tooltips/lowcarboninfotooltip";
-import CircularGauge from "../../components/circulargauge";
-import ContributorList from "../../components/contributorlist";
-import CountryHistoryCarbonGraph from "../../components/countryhistorycarbongraph";
-import CountryHistoryEmissionsGraph from "../../components/countryhistoryemissionsgraph";
-import CountryHistoryMixGraph from "../../components/countryhistorymixgraph";
-import CountryHistoryPricesGraph from "../../components/countryhistorypricesgraph";
-import CountryTable from "../../components/countrytable";
-import LoadingPlaceholder from "../../components/loadingplaceholder";
+import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
+import CircularGauge from '../../components/circulargauge';
+import ContributorList from '../../components/contributorlist';
+import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
+import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissionsgraph';
+import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
+import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
+import CountryTable from '../../components/countrytable';
+import LoadingPlaceholder from '../../components/loadingplaceholder';
 
-import { dispatchApplication } from "../../store";
+import { dispatchApplication } from '../../store';
 
 // Modules
-import { useCurrentZoneData } from "../../hooks/redux";
-import { useCo2ColorScale } from "../../hooks/theme";
-import { useTrackEvent } from "../../hooks/tracking";
-import { flagUri } from "../../helpers/flags";
-import { getFullZoneName, __ } from "../../helpers/translation";
-import NoParserInfo from "./noParserInfo/NoParserInfo"
+import { useCurrentZoneData } from '../../hooks/redux';
+import { useCo2ColorScale } from '../../hooks/theme';
+import { useTrackEvent } from '../../hooks/tracking';
+import { flagUri } from '../../helpers/flags';
+import { getFullZoneName, __ } from '../../helpers/translation';
+import NoParserInfo from './noParserInfo/NoParserInfo';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
 
-
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(
-    (state) => state.application.electricityMixMode
+    state => state.application.electricityMixMode,
   );
 
   const d = useCurrentZoneData();
@@ -51,19 +50,17 @@ const CountryLowCarbonGauge = (props) => {
     return <CircularGauge {...props} />;
   }
 
-  const fossilFuelRatio =
-    electricityMixMode === "consumption"
-      ? d.fossilFuelRatio
-      : d.fossilFuelRatioProduction;
-  const countryLowCarbonPercentage =
-    fossilFuelRatio !== null ? 100 - fossilFuelRatio * 100 : null;
+  const fossilFuelRatio = electricityMixMode === 'consumption'
+    ? d.fossilFuelRatio
+    : d.fossilFuelRatioProduction;
+  const countryLowCarbonPercentage = fossilFuelRatio !== null ? 100 - fossilFuelRatio * 100 : null;
 
   return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
 const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(
-    (state) => state.application.electricityMixMode
+    state => state.application.electricityMixMode,
   );
 
   const d = useCurrentZoneData();
@@ -71,17 +68,15 @@ const CountryRenewableGauge = (props) => {
     return <CircularGauge {...props} />;
   }
 
-  const renewableRatio =
-    electricityMixMode === "consumption"
-      ? d.renewableRatio
-      : d.renewableRatioProduction;
-  const countryRenewablePercentage =
-    renewableRatio !== null ? renewableRatio * 100 : null;
+  const renewableRatio = electricityMixMode === 'consumption'
+    ? d.renewableRatio
+    : d.renewableRatioProduction;
+  const countryRenewablePercentage = renewableRatio !== null ? renewableRatio * 100 : null;
 
   return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -96,7 +91,7 @@ const CountryPanel = ({
 }) => {
   const [tooltip, setTooltip] = useState(null);
   const isLoadingHistories = useSelector(
-    (state) => state.data.isLoadingHistories
+    state => state.data.isLoadingHistories,
   );
   const co2ColorScale = useCo2ColorScale();
 
@@ -108,20 +103,20 @@ const CountryPanel = ({
   const data = useCurrentZoneData() || {};
 
   const parentPage = {
-    pathname: isMobile ? "/ranking" : "/map",
+    pathname: isMobile ? '/ranking' : '/map',
     search: location.search,
   };
 
   // Back button keyboard navigation
   useEffect(() => {
     const keyHandler = (e) => {
-      if (e.key === "Backspace" || e.key === "/") {
+      if (e.key === 'Backspace' || e.key === '/') {
         history.push(parentPage);
       }
     };
-    document.addEventListener("keyup", keyHandler);
+    document.addEventListener('keyup', keyHandler);
     return () => {
-      document.removeEventListener("keyup", keyHandler);
+      document.removeEventListener('keyup', keyHandler);
     };
   }, [history]);
 
@@ -132,19 +127,18 @@ const CountryPanel = ({
 
   const { hasParser } = data;
   const datetime = data.stateDatetime || data.datetime;
-  const co2Intensity =
-    electricityMixMode === "consumption"
-      ? data.co2intensity
-      : data.co2intensityProduction;
+  const co2Intensity = electricityMixMode === 'consumption'
+    ? data.co2intensity
+    : data.co2intensityProduction;
 
   const switchToZoneEmissions = () => {
-    dispatchApplication("tableDisplayEmissions", true);
-    trackEvent("switchToCountryEmissions");
+    dispatchApplication('tableDisplayEmissions', true);
+    trackEvent('switchToCountryEmissions');
   };
 
   const switchToZoneProduction = () => {
-    dispatchApplication("tableDisplayEmissions", false);
-    trackEvent("switchToCountryProduction");
+    dispatchApplication('tableDisplayEmissions', false);
+    trackEvent('switchToCountryProduction');
   };
 
   return (
@@ -160,7 +154,7 @@ const CountryPanel = ({
           </Link>
           <div className="country-name-time">
             <div className="country-name-time-table">
-              <div style={{ display: "table-cell" }}>
+              <div style={{ display: 'table-cell' }}>
                 <img
                   id="country-flag"
                   className="flag"
@@ -169,10 +163,10 @@ const CountryPanel = ({
                 />
               </div>
 
-              <div style={{ display: "table-cell" }}>
+              <div style={{ display: 'table-cell' }}>
                 <div className="country-name">{getFullZoneName(zoneId)}</div>
                 <div className="country-time">
-                  {datetime ? moment(datetime).format("LL LT") : ""}
+                  {datetime ? moment(datetime).format('LL LT') : ''}
                 </div>
               </div>
             </div>
@@ -190,13 +184,13 @@ const CountryPanel = ({
                 >
                   <div>
                     <span className="country-emission-intensity">
-                      {Math.round(co2Intensity) || "?"}
+                      {Math.round(co2Intensity) || '?'}
                     </span>
                     g
                   </div>
                 </div>
                 <div className="country-col-headline">
-                  {__("country-panel.carbonintensity")}
+                  {__('country-panel.carbonintensity')}
                 </div>
                 <div className="country-col-subtext">(gCO₂eq/kWh)</div>
               </div>
@@ -226,7 +220,7 @@ const CountryPanel = ({
                   )}
                 </div>
                 <div className="country-col-headline">
-                  {__("country-panel.lowcarbon")}
+                  {__('country-panel.lowcarbon')}
                 </div>
                 <div className="country-col-subtext" />
               </div>
@@ -238,7 +232,7 @@ const CountryPanel = ({
                   <CountryRenewableGauge />
                 </div>
                 <div className="country-col-headline">
-                  {__("country-panel.renewable")}
+                  {__('country-panel.renewable')}
                 </div>
               </div>
             </div>
@@ -246,16 +240,16 @@ const CountryPanel = ({
               <div className="menu">
                 <a
                   onClick={switchToZoneProduction}
-                  className={!tableDisplayEmissions ? "selected" : null}
+                  className={!tableDisplayEmissions ? 'selected' : null}
                 >
                   {__(`country-panel.electricity${electricityMixMode}`)}
                 </a>
                 |
                 <a
                   onClick={switchToZoneEmissions}
-                  className={tableDisplayEmissions ? "selected" : null}
+                  className={tableDisplayEmissions ? 'selected' : null}
                 >
-                  {__("country-panel.emissions")}
+                  {__('country-panel.emissions')}
                 </a>
               </div>
             </div>
@@ -266,7 +260,7 @@ const CountryPanel = ({
       <div className="country-panel-wrap">
         {hasParser ? (
           <React.Fragment>
-            <div className="bysource">{__("country-panel.bysource")}</div>
+            <div className="bysource">{__('country-panel.bysource')}</div>
 
             <CountryTable />
 
@@ -275,25 +269,25 @@ const CountryPanel = ({
               <span className="country-history-title">
                 {__(
                   tableDisplayEmissions
-                    ? "country-history.emissions24h"
-                    : "country-history.carbonintensity24h"
+                    ? 'country-history.emissions24h'
+                    : 'country-history.carbonintensity24h',
                 )}
               </span>
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">
                   file_download
-                </i>{" "}
+                </i>{' '}
                 <a
                   href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                 >
-                  {__("country-history.Getdata")}
+                  {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
                   <i className="material-icons" aria-hidden="true">
                     lock
-                  </i>{" "}
+                  </i>{' '}
                   pro
                 </span>
               </small>
@@ -309,35 +303,35 @@ const CountryPanel = ({
               <span className="country-history-title">
                 {tableDisplayEmissions
                   ? __(
-                      `country-history.emissions${
-                        electricityMixMode === "consumption"
-                          ? "origin"
-                          : "production"
-                      }24h`
-                    )
+                    `country-history.emissions${
+                      electricityMixMode === 'consumption'
+                        ? 'origin'
+                        : 'production'
+                    }24h`,
+                  )
                   : __(
-                      `country-history.electricity${
-                        electricityMixMode === "consumption"
-                          ? "origin"
-                          : "production"
-                      }24h`
-                    )}
+                    `country-history.electricity${
+                      electricityMixMode === 'consumption'
+                        ? 'origin'
+                        : 'production'
+                    }24h`,
+                  )}
               </span>
               <br />
               <small className="small-screen-hidden">
                 <i className="material-icons" aria-hidden="true">
                   file_download
-                </i>{" "}
+                </i>{' '}
                 <a
                   href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                 >
-                  {__("country-history.Getdata")}
+                  {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
                   <i className="material-icons" aria-hidden="true">
                     lock
-                  </i>{" "}
+                  </i>{' '}
                   pro
                 </span>
               </small>
@@ -349,7 +343,7 @@ const CountryPanel = ({
               )}
 
               <span className="country-history-title">
-                {__("country-history.electricityprices24h")}
+                {__('country-history.electricityprices24h')}
               </span>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? (
@@ -360,37 +354,37 @@ const CountryPanel = ({
             </div>
             <hr />
             <div>
-              {__("country-panel.source")}
-              {": "}
+              {__('country-panel.source')}
+              {': '}
               <a
                 href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
                 target="_blank"
               >
                 <span className="country-data-source">
-                  {data.source || "?"}
+                  {data.source || '?'}
                 </span>
               </a>
               <small>
-                {" "}
+                {' '}
                 (
                 <span
                   dangerouslySetInnerHTML={{
                     __html: __(
-                      "country-panel.addeditsource",
-                      "https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers"
+                      'country-panel.addeditsource',
+                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
                     ),
                   }}
                 />
                 )
-              </small>{" "}
-              {__("country-panel.helpfrom")}
+              </small>{' '}
+              {__('country-panel.helpfrom')}
               <ContributorList />
             </div>
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
             <NoParserInfo
-            zoneId={zoneId}
+              zoneId={zoneId}
             />
           </div>
         )}
