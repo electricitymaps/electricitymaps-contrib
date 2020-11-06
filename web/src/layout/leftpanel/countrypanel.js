@@ -34,7 +34,6 @@ import { useCo2ColorScale } from "../../hooks/theme";
 import { useTrackEvent } from "../../hooks/tracking";
 import { flagUri } from "../../helpers/flags";
 import { getFullZoneName, __ } from "../../helpers/translation";
-import { default as zonesInfo } from "../../../../config/zones.json";
 import NoParserInfo from "./noParserInfo/NoParserInfo"
 
 // TODO: Move all styles from styles.css to here

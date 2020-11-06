@@ -2872,8 +2872,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome"
+    }
   },
   "IT-SAR": {
     "bounding_box": [
