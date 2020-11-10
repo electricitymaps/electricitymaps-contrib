@@ -3,9 +3,11 @@
 from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
 
+import pprint
 import arrow
 import click
 import datetime
+import logging
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
@@ -50,7 +52,7 @@ def test_parser(zone, data_type, target_datetime):
         args = zone.split('->')
     else:
         args = [zone]
-    res = parser(*args, target_datetime=target_datetime)
+    res = parser(*args, target_datetime=target_datetime, logger=logging.getLogger(__name__))
 
     if not res:
         print('Error: parser returned nothing ({})'.format(res))
@@ -81,22 +83,27 @@ def test_parser(zone, data_type, target_datetime):
             if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
             else ' -- OK, <2h from now :) (now={} UTC)'.format(arrow.utcnow()))
 
-    print('\n'.join(['parser result:', res.__str__(),
-                     '---------------------',
+    print("Parser result:")
+    pp = pprint.PrettyPrinter(width=120)
+    pp.pprint(res)
+    print('\n'.join(['---------------------',
                      'took {:.2f}s'.format(elapsed_time),
                      'min returned datetime: {} UTC'.format(first_dt),
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
     
-    try:
-        if data_type == 'production':
-            validate_production(res, zone)
-        elif data_type == 'consumption':
-            validate_consumption(res, zone)
-        elif data_type == 'exchange':
-            validate_exchange(res, zone)
-    except ValidationError as e:
-        print('\nValidation failed: {}'.format(e))
+    if type(res) == dict:
+        res = [res]
+    for event in res:
+        try:
+            if data_type == 'production':
+                validate_production(event, zone)
+            elif data_type == 'consumption':
+                validate_consumption(event, zone)
+            elif data_type == 'exchange':
+                validate_exchange(event, zone)
+        except ValidationError as e:
+            print('Validation failed: {}'.format(e))
 
     
 

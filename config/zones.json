@@ -7012,6 +7012,12 @@
     "contributors": [
       "https://github.com/veqtrus"
     ],
+    "parsers": {
+      "production": "XK.fetch_production"
+    },
+    "delays": {
+      "production": 48
+    },
     "timezone": "Europe/Belgrade"
   }
 }
