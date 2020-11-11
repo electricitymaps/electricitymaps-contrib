@@ -19,7 +19,7 @@ const TooltipContent = ({
   if (!hasParser) {
     return (
       <div className="no-parser-text">
-        <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
+        <span dangerouslySetInnerHTML={{ __html: __('tooltips.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started') }} />
       </div>
     );
   }
