@@ -1502,9 +1502,9 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 11,
-      "wind": 481,
-      "unknown": 12
+      "solar": 118,
+      "wind": 320,
+      "unknown": 19
     },
     "contributors": [
       "https://github.com/corradio",
