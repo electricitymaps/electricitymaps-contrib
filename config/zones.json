@@ -4330,20 +4330,22 @@
       ]
     ],
     "capacity": {
-      "biomass": 4800,
+      "biomass": 5021,
       "coal": 0,
       "gas": 698,
       "hydro": 15945,
       "nuclear": 7801,
       "oil": 2251,
       "solar": 698,
-      "wind": 8984
+      "wind": 8984,
+      "geothermal": 0
     },
     "contributors": [
       "https://github.com/augustekman",
       "https://github.com/RRyyas",
       "https://github.com/corradio",
-      "https://github.com/VIKTORVAV99"
+      "https://github.com/VIKTORVAV99",
+      "https://github.com/dpkruczek"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
