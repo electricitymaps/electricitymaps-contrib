@@ -34,7 +34,13 @@ class SignalR:
         
 def parse_payload(logger, payload):
     technologies_parsed = {}
-    logger.debug(f"serie : {json.dumps(payload)}")
+    if not 'technologies' in payload:
+      raise KeyError(
+        f"No 'technologies' in payload\n"
+        f"serie : {json.dumps(payload)}"
+      )
+    else:
+      logger.debug(f"serie : {json.dumps(payload)}")
     for technology in payload['technologies']:
         assert technology['unit'] == 'kW'
         # The upstream API gives us kW, we need MW
