@@ -81,11 +81,11 @@ def fetch_price(zone_key='TR', session=None, target_datetime=None,
         data.append(cell.text)
 
     dates = [dt.datetime.strptime(val, '%d/%m/%Y').date()
-             for i, val in enumerate(data) if i % 3 == 0]
+             for i, val in enumerate(data) if i % 5 == 0]
     times = [dt.datetime.strptime(val, '%H:%M').time()
-             for i, val in enumerate(data) if i % 3 == 1]
+             for i, val in enumerate(data) if i % 5 == 1]
     prices = [float(val.replace(',', '.'))
-              for i, val in enumerate(data) if i % 3 == 2]
+              for i, val in enumerate(data) if i % 5 == 2]
 
     datapoints = [{
         'zoneKey': 'TR',
