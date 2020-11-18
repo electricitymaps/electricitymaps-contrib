@@ -5,13 +5,14 @@ import pandas
 import requests
 from bs4 import BeautifulSoup
 from collections import defaultdict
+import logging
 
 FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
-                     logger=None):
+                     logger: logging.Logger = logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -82,8 +83,8 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
         for ca_gen_type, mapped_gen_type in production_map.items():
             production = float(csv[ca_gen_type][i])
             
-            if mapped_gen_type == 'solar' and production < 0:
-                logger.warn('Solar production for US_CA was reported as less than 0 and was clamped')
+            if production < 0 and (mapped_gen_type == 'solar' or mapped_gen_type == 'nuclear'):
+                logger.warn(ca_gen_type + ' production for US_CA was reported as less than 0 and was clamped')
                 production = 0.0
             
             # if another mean of production created a value, sum them up

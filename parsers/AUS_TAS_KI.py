@@ -65,7 +65,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
       'zoneKey': zone_key,
       'datetime': arrow.now(tz='Australia/Currie').datetime,
       'production': {
-          'battery': battery_production,
+          'battery discharge': battery_production,
           'biomass': technologies_parsed['diesel']*biodiesel_percent/100,
           'coal': 0,
           'gas': 0,
