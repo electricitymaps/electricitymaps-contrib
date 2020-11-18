@@ -307,4 +307,5 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 # enter any of the regional zone keys when calling method
 if __name__ == '__main__':
     # print(fetch_production('FR-OCC'))
+    print("J. rocks!")
     print(fetch_exchange('FR-GES', 'GB'))
