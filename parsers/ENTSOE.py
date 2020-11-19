@@ -12,6 +12,7 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
+import itertools
 import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
@@ -67,6 +68,9 @@ ENTSOE_PARAMETER_GROUPS = {
     }
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
+# Get all the individual storage parameters in one list
+ENTSOE_STORAGE_PARAMETERS = list(itertools.chain.from_iterable(
+    ENTSOE_PARAMETER_GROUPS['storage'].values()))
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS = {
@@ -628,8 +632,8 @@ def parse_production(xml_text):
                 i = datetimes.index(datetime)
                 if is_production:
                     productions[i][psr_type] += quantity
-                elif psr_type in ENTSOE_PARAMETER_GROUPS['storage']['hydro storage']:
-                    # Only include consumption if it's for hydro storage. In other cases
+                elif psr_type in ENTSOE_STORAGE_PARAMETERS:
+                    # Only include consumption if it's for storage. In other cases
                     # it is power plant self-consumption which should be ignored.
                     productions[i][psr_type] -= quantity
             except ValueError:  # Not in list
