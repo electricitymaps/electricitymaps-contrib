@@ -85,12 +85,12 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
     return {
         'zoneKey': ZONE_KEY,
         'datetime': arrow.now(TZ).datetime,
-        'production': combine_gen(get_state_gen(soup), get_isgs_gen(soup)),
+        'production': combine_gen(get_state_gen(soup, logger), get_isgs_gen(soup, logger)),
         'source': 'hpsldc.com'
     }
 
 
-def get_state_gen(soup):
+def get_state_gen(soup, logger: logging.Logger):
     """Gets the total generation by type from state powerplants (MW).
     Data is from the table titled GENERATION OF HP(Z)"""
     table_name = 'GENERATION OF HP(Z)'
@@ -103,12 +103,12 @@ def get_state_gen(soup):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[1].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            raise Exception(
-                'Error importing data from row: {}'.format(row))
+            logger.error('Error importing data from row: {}'.format(
+                row), extra={"key": ZONE_KEY})
     return gen
 
 
-def get_isgs_gen(soup):
+def get_isgs_gen(soup, logger: logging.Logger):
     """Gets the total generation by type from ISGS powerplants (MW).
     ISGS means Inter-State Generating Station: one owned by multiple states.
     Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL)"""
@@ -127,8 +127,8 @@ def get_isgs_gen(soup):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[2].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            raise Exception(
-                'Error importing data from row: {}'.format(row))
+            logger.error('Error importing data from row: {}'.format(
+                row), extra={"key": ZONE_KEY})
     return gen
 
 
