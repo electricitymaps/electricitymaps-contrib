@@ -12,6 +12,7 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
+import itertools
 import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
@@ -67,6 +68,9 @@ ENTSOE_PARAMETER_GROUPS = {
     }
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
+# Get all the individual storage parameters in one list
+ENTSOE_STORAGE_PARAMETERS = list(itertools.chain.from_iterable(
+    ENTSOE_PARAMETER_GROUPS['storage'].values()))
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS = {
@@ -620,18 +624,22 @@ def parse_production(xml_text):
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
 
-        if len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0:
-            for entry in timeseries.find_all('point'):
-                quantity = float(entry.find_all('quantity')[0].contents[0])
-                position = int(entry.find_all('position')[0].contents[0])
-                datetime = datetime_from_position(datetime_start, position, resolution)
-                try:
-                    i = datetimes.index(datetime)
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            try:
+                i = datetimes.index(datetime)
+                if is_production:
                     productions[i][psr_type] += quantity
-                except ValueError:  # Not in list
-                    datetimes.append(datetime)
-                    productions.append(defaultdict(lambda: 0))
-                    productions[-1][psr_type] = quantity if is_production else -1 * quantity
+                elif psr_type in ENTSOE_STORAGE_PARAMETERS:
+                    # Only include consumption if it's for storage. In other cases
+                    # it is power plant self-consumption which should be ignored.
+                    productions[i][psr_type] -= quantity
+            except ValueError:  # Not in list
+                datetimes.append(datetime)
+                productions.append(defaultdict(lambda: 0))
+                productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
 
 
