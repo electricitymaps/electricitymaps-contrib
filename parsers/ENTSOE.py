@@ -643,6 +643,39 @@ def parse_production(xml_text):
     return productions, datetimes
 
 
+def parse_self_consumption(xml_text):
+    """
+    Parses the XML text and returns a dict of datetimes to the total self-consumption
+    value from all sources.
+    Self-consumption is the electricity used by a generation source.
+    This is defined as any consumption source (i.e. outBiddingZone_Domain.mRID)
+    that is not storage, e.g. consumption for B04 (Fossil Gas) is counted as
+    self-consumption, but consumption for B10 (Hydro Pumped Storage) is not.
+
+    In most cases, total self-consumption is reported by ENTSOE as 0, therefore the returned
+    dict only includes datetimes where the value > 0.
+    """
+
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    res = {}
+    for timeseries in soup.find_all('timeseries'):
+        is_consumption = len(timeseries.find_all('outBiddingZone_Domain.mRID'.lower())) > 0
+        if not is_consumption: continue
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
+        if psr_type in ENTSOE_STORAGE_PARAMETERS: continue
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            if quantity == 0: continue
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            res[datetime] = res[datetime] + quantity if datetime in res else quantity
+    return res
+
+
 def parse_production_per_units(xml_text):
     """Returns a dict indexed by the (datetime, unit_key) key"""
     values = {}
@@ -784,6 +817,19 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
     if parsed:
         quantities, datetimes = parsed
 
+        # Add power plant self-consumption data. This is reported as part of the
+        # production data by ENTSOE.
+        # self_consumption is a dict of datetimes to the total self-consumption value
+        # from all sources.
+        # Only datetimes where the value > 0 are included.
+        self_consumption = parse_self_consumption(
+            query_production(domain, session,
+                            target_datetime=target_datetime))
+        for k, v in self_consumption.items():
+            i = datetimes.index(k)
+            if i == 0: continue
+            quantities[i] += v
+
         # if a target_datetime was requested, we return everything
         if target_datetime:
             return [{
@@ -794,6 +840,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
             } for dt, quantity in zip(datetimes, quantities)]
 
         # else we keep the last stored value
+        # Note, this may not include self-consumption data as sometimes consumption
+        # data is available for a given TZ a few minutes before production data is.
         dt, quantity = datetimes[-1].datetime, quantities[-1]
         data = {
             'zoneKey': zone_key,
