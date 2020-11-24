@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { breakpoints } from '../helpers/breakpoints';
-import { HeaderContent } from '../components/styledcomponents';
+import { HeaderContent } from '../components/header';
 
 const Header = styled.div`
   background-color: transparent;
@@ -10,11 +10,11 @@ const Header = styled.div`
   position: fixed;
   right: 0;
   top: 10px;
-  color: ${props => props.theme.colors.white};
+  color: ${props => (props.theme.colors.white)};
   min-height: 50px; /* required for old Safari */
 
   &.brightmode {
-    color: ${props => props.theme.colors.black};
+    color: ${props => (props.theme.colors.black)};
   }
 
   @media ${breakpoints.small} {
@@ -28,7 +28,7 @@ const Header = styled.div`
 
 const Logo = styled.div`
   display: inline;
-  font-family: ${props => props.theme.fonts.primary};
+  font-family: ${props => (props.theme.fonts.primary)};
 
   @media ${breakpoints.small} {
     margin-right: auto;
@@ -42,14 +42,14 @@ const Image = styled.div`
   width: 139px;
   margin-right: 4px;
   margin-top:1.5px;
-  background-image: ${props => props.brightmode ? 'url(../images/electricitymap-logo.svg)'
+  background-image: ${props => (props.brightmode ? 'url(../images/electricitymap-logo.svg))'
     : 'url(../images/electricitymap-logo-white.svg)'};
   background-size: cover;
 `;
 
 const Maintitle = styled.span`
   transition: color 0.4s;
-  color: ${props => props.brightmode ? props.theme.colors.black : props.theme.colors.white};
+  color: ${props => (props.brightmode ? props.theme.colors.black : props.theme.colors.white)};
   @media ${breakpoints.small} {
     display: none !important;
   }
@@ -60,7 +60,7 @@ const Live = styled(Maintitle)`
 `;
 
 const Anchor = styled.a`
-  color: ${props => props.brightmode ? props.theme.colors.black : props.theme.colors.white};
+  color: ${props => (props.brightmode ? props.theme.colors.black : props.theme.colors.white)};
   transition: color 0.4s;
 
   &:hover {
