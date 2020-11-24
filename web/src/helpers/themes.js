@@ -1,3 +1,17 @@
+const shared = {
+  colors: {
+    white: '#FFFFFF',
+    black: '#000000',
+    lighterGray: '#FAFAFA',
+    lightGray: '#EFEFEF',
+    lightGreen: '#95f395',
+    green: '#009800',
+  },
+  fonts: {
+    primary: '"Open Sans", sans-serif',
+  },
+};
+
 export const themes = {
   colorblindDark: {
     co2Scale: {
@@ -9,17 +23,7 @@ export const themes = {
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
     nonClickableFill: '#7A878D',
-    colors: {
-      white: '#FFFFFF',
-      black: '#000000',
-      lighterGray: '#FAFAFA',
-      lightGray: '#EFEFEF',
-      lightGreen: '#95f395',
-      green: '#009800',
-    },
-    fonts: {
-      primary: '"Open Sans", sans-serif',
-    },
+    ...shared,
   },
   dark: {
     co2Scale: {
@@ -31,6 +35,7 @@ export const themes = {
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
     nonClickableFill: '#7A878D',
+    ...shared,
   },
   colorblindBright: {
     co2Scale: {
@@ -42,6 +47,7 @@ export const themes = {
     strokeColor: '#FAFAFA',
     clickableFill: '#D4D9DE',
     nonClickableFill: '#D4D9DE',
+    ...shared,
   },
   bright: {
     co2Scale: {
@@ -53,5 +59,6 @@ export const themes = {
     strokeColor: '#FAFAFA',
     clickableFill: '#D4D9DE',
     nonClickableFill: '#D4D9DE',
+    ...shared,
   },
 };

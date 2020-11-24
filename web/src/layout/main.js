@@ -5,6 +5,7 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 // Layout
 import Header from './header';
@@ -19,6 +20,7 @@ import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
+import { useTheme } from '../hooks/theme';
 import {
   useClientVersionFetch,
   useGridDataPolling,
@@ -66,69 +68,71 @@ const Main = ({
 
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: 'fixed', /* This is done in order to ensure that dragging will not affect the body */
-          width: '100vw',
-          height: 'inherit',
-          display: 'flex',
-          flexDirection: 'column', /* children will be stacked vertically */
-          alignItems: 'stretch', /* force children to take 100% width */
-        }}
-      >
-        <Header />
-        <div id="inner">
-          <LoadingOverlay visible={showLoadingOverlay} />
-          <LeftPanel />
-          <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
-            <Map />
-            <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-                <div id="built-by-tomorrow" />
-              </a>
+      <ThemeProvider theme={useTheme()}>
+        <div
+          style={{
+            position: 'fixed', /* This is done in order to ensure that dragging will not affect the body */
+            width: '100vw',
+            height: 'inherit',
+            display: 'flex',
+            flexDirection: 'column', /* children will be stacked vertically */
+            alignItems: 'stretch', /* force children to take 100% width */
+          }}
+        >
+          <Header />
+          <div id="inner">
+            <LoadingOverlay visible={showLoadingOverlay} />
+            <LeftPanel />
+            <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
+              <Map />
+              <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
+                <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+                  <div id="built-by-tomorrow" />
+                </a>
+              </div>
+              <Legend />
+              <div className="controls-container">
+                <Toggle
+                  infoHTML={__('tooltips.cpinfo')}
+                  onChange={value => dispatchApplication('electricityMixMode', value)}
+                  options={[
+                    { value: 'production', label: __('tooltips.production') },
+                    { value: 'consumption', label: __('tooltips.consumption') },
+                  ]}
+                  value={electricityMixMode}
+                />
+              </div>
+              <LayerButtons />
             </div>
-            <Legend />
-            <div className="controls-container">
-              <Toggle
-                infoHTML={__('tooltips.cpinfo')}
-                onChange={value => dispatchApplication('electricityMixMode', value)}
-                options={[
-                  { value: 'production', label: __('tooltips.production') },
-                  { value: 'consumption', label: __('tooltips.consumption') },
-                ]}
-                value={electricityMixMode}
-              />
-            </div>
-            <LayerButtons />
-          </div>
 
-          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
-            <div className="inner">
-              {__('misc.oops')}
-              {' '}
-              <a
-                href=""
-                onClick={(e) => {
-                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
-                  e.preventDefault();
-                }}
-              >
-                {__('misc.retrynow')}
-              </a>
-              .
+            <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
+              <div className="inner">
+                {__('misc.oops')}
+                {' '}
+                <a
+                  href=""
+                  onClick={(e) => {
+                    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+                    e.preventDefault();
+                  }}
+                >
+                  {__('misc.retrynow')}
+                </a>
+                .
+              </div>
             </div>
-          </div>
-          <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
-            <div className="inner">
-              {__('misc.newversion')}
+            <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
+              <div className="inner">
+                {__('misc.newversion')}
+              </div>
             </div>
-          </div>
 
-          { /* end #inner */}
+            { /* end #inner */}
+          </div>
+          <Tabs />
         </div>
-        <Tabs />
-      </div>
-      <OnboardingModal />
+        <OnboardingModal />
+      </ThemeProvider>
     </React.Fragment>
   );
 };

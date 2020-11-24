@@ -42,8 +42,8 @@ const Image = styled.div`
   width: 139px;
   margin-right: 4px;
   margin-top:1.5px;
-  background-image: ${props => (props.brightmode ? 'url(../images/electricitymap-logo.svg))'
-    : 'url(../images/electricitymap-logo-white.svg)'};
+  background-image: ${props => (props.brightmode ? 'url(../images/electricitymap-logo.svg)'
+    : 'url(../images/electricitymap-logo-white.svg)')};
   background-size: cover;
 `;
 
