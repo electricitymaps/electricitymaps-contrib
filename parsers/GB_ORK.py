@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
 
 TZ = 'Europe/London'
-DATETIME_LINK = 'https://www.ssen.co.uk/ANM/'
+DATETIME_LINK = 'https://www.ssen.co.uk/anm/orkney/'
 GENERATION_LINK = 'https://www.ssen.co.uk/Sse_Components/Views/Controls/FormControls/Handlers/ActiveNetworkManagementHandler.ashx?action=graph&contentId=14973&_=1537467858726'
 
 GENERATION_MAPPING = {"Live Demand": "Demand",
