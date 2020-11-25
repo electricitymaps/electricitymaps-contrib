@@ -38,6 +38,16 @@ jobs:
           command: |
             sudo npm install -g jsonlint
             jsonlint config/*.json web/locales/*.json
+  
+            test_json:
+    docker:
+      - image: circleci/node:10.13
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo npm install -g jest
+            jest --verbose --rootDir config
 
   lint_js:
     docker:
