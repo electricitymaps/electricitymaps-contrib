@@ -3405,6 +3405,13 @@
         42.3202595078
       ]
     ],
+    "capacity": {
+      "coal": 824,
+      "gas": 251,
+      "hydro": 506,
+      "nuclear": 0,
+      "wind": 35
+    },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
