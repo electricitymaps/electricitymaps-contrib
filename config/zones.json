@@ -324,8 +324,27 @@
     "timezone": null
   },
   "AUS-TAS-KI": {
+    "_comment": "Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Oil capacity is said to run with blended biodiesel : hense the diesel capacity is equal to the biomass capacity. Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "flag_file_name": "au.png",
     "timezone": null,
+    "parsers": {
+      "production": "AUS_TAS_KI.fetch_production"
+    },
+    "capacity": {
+      "biomass": 6,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 6,
+      "solar": 0.47,
+      "battery storage": 1.5,
+      "wind": 5.65
+    },
+    "contributors": [
+      "https://github.com/ajoga"
+    ],
     "bounding_box": [
       [
         143.33716881600026,
@@ -1204,7 +1223,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 205.317,
+      "solar": 214,
       "wind": 155
     },
     "contributors": [
@@ -1483,9 +1502,9 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 11,
-      "wind": 481,
-      "unknown": 12
+      "solar": 118,
+      "wind": 320,
+      "unknown": 19
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3336,7 +3355,8 @@
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/lgrigoryeva1"
     ],
     "parsers": {
       "production": "MD.fetch_production"
@@ -3579,7 +3599,7 @@
       "hydro storage": 0,
       "nuclear": 486,
       "oil": 0,
-      "solar": 5710,
+      "solar": 6874,
       "wind": 5682
     },
     "contributors": [
@@ -3606,7 +3626,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 2754
+      "wind": 3481
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3637,7 +3657,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 166
+      "wind": 170
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3668,7 +3688,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1060
+      "wind": 1223
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3699,7 +3719,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1074
+      "wind": 1498
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3730,7 +3750,7 @@
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 456
+      "wind": 590
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4310,20 +4330,22 @@
       ]
     ],
     "capacity": {
-      "biomass": 4800,
+      "biomass": 5021,
       "coal": 0,
       "gas": 698,
       "hydro": 15945,
       "nuclear": 7801,
       "oil": 2251,
       "solar": 698,
-      "wind": 8984
+      "wind": 8984,
+      "geothermal": 0
     },
     "contributors": [
       "https://github.com/augustekman",
       "https://github.com/RRyyas",
       "https://github.com/corradio",
-      "https://github.com/VIKTORVAV99"
+      "https://github.com/VIKTORVAV99",
+      "https://github.com/dpkruczek"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4564,7 +4586,8 @@
       "https://github.com/corradio",
       "https://github.com/olivierSemet",
       "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/lgrigoryeva1"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5194,6 +5217,28 @@
       "production": "US_PJM.fetch_production"
     },
     "timezone": null
+  },
+  "PR": {
+    "contributors": [
+      "https://github.com/q--",
+      "https://github.com/systemcatch",
+      "https://github.com/veqtrus"
+    ],
+    "flag_file_name": "pr.png",
+    "parsers": {
+      "production": "US_PREPA.fetch_production"
+    },
+    "timezone": "America/Puerto_Rico",
+    "bounding_box": [
+      [
+        -68.43781490799995,
+        17.42291901200015
+      ],
+      [
+        -64.74461829299992,
+        19.022772528000033
+      ]
+    ]
   },
   "US-SC": {
     "comment": "South Carolina Public Service Authority",
@@ -6916,7 +6961,10 @@
         -93.2943099999999,
         36.55797
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "UY": {
     "bounding_box": [
@@ -6966,6 +7014,12 @@
     "contributors": [
       "https://github.com/veqtrus"
     ],
+    "parsers": {
+      "production": "XK.fetch_production"
+    },
+    "delays": {
+      "production": 48
+    },
     "timezone": "Europe/Belgrade"
   }
 }
