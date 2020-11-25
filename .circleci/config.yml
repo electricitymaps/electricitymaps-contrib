@@ -39,7 +39,7 @@ jobs:
             sudo npm install -g jsonlint
             jsonlint config/*.json web/locales/*.json
   
-            test_json:
+  test_json:
     docker:
       - image: circleci/node:10.13
     steps:
