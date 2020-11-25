@@ -110,8 +110,10 @@ workflows:
       - lint_python
       - lint_js
       - lint_json
+      - test_json
       - build_test:
           requires:
             - lint_js
             - lint_python
             - lint_json
+            . test_json
