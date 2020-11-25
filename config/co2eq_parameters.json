@@ -2941,5 +2941,69 @@
         }
       }
     }
+  },
+  "isLowCarbon": {
+    "defaults": {
+      "battery charge": true,
+      "battery discharge": true,
+      "biomass": true,
+      "coal": false,
+      "gas": false,
+      "geothermal": true,
+      "hydro": true,
+      "hydro charge": true,
+      "hydro discharge": true,
+      "nuclear": true,
+      "oil": false,
+      "solar": true,
+      "unknown": false,
+      "wind": true
+    },
+    "zoneOverrides": {
+      "GB-ORK": {
+        "unknown": true
+      },
+      "UA": {
+        "unknown": true
+      },
+      "SG": {
+        "unknown": true
+      },
+      "PR": {
+        "unknown": true
+      }
+    }
+  },
+  "isRenewable": {
+    "defaults": {
+      "battery charge": true,
+      "battery discharge": true,
+      "biomass": true,
+      "coal": false,
+      "gas": false,
+      "geothermal": true,
+      "hydro": true,
+      "hydro charge": true,
+      "hydro discharge": true,
+      "nuclear": false,
+      "oil": false,
+      "solar": true,
+      "unknown": false,
+      "wind": true
+    },
+    "zoneOverrides": {
+      "GB-ORK": {
+        "unknown": true
+      },
+      "UA": {
+        "unknown": true
+      },
+      "SG": {
+        "unknown": true
+      },
+      "PR": {
+        "unknown": true
+      }
+    }
   }
 }
