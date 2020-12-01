@@ -13,6 +13,7 @@ import requests
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
+last_updated = None
 
 def fetch_production(zone_key='XK', session=None,
         target_datetime: datetime.datetime = None,
@@ -65,6 +66,12 @@ def fetch_production(zone_key='XK', session=None,
       'source': 'mysource.com'
     }
     """
+    global last_updated
+    now = datetime.datetime.now()
+    if last_updated is not None and (now - last_updated).total_seconds() < 3600:
+        logger.info('Updated less than one hour ago', extra={'key': zone_key})
+        return []
+
     r = session or requests.session()
     if target_datetime is None:
         url = 'https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/Prodhimi%20aktual%20gjenerimi%20faktik%20i%20energjise%20elektrike.xlsx'
@@ -116,13 +123,18 @@ def fetch_production(zone_key='XK', session=None,
             'datetime': timestamp.datetime
         })
 
+    if len(data) == 0:
+        logger.warning('No production data returned', extra={'key': zone_key})
+    else:
+        logger.info('Last timestamp: {}'.format(data[-1]['datetime']), extra={'key': zone_key})
+        last_updated = now
     return data
 
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy
     for testing."""
-
+    logging.basicConfig(level=logging.INFO)
     print('fetch_production() ->')
     for datum in fetch_production():
         print(datum)
