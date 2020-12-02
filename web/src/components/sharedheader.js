@@ -8,11 +8,12 @@ const Wrapper = styled.header`
   box-sizing: border-box;
   color: black;
   display: flex;
+  font-family: 'Euclid Triangle';
   font-size: 16px;
   height: 66px;
   justify-content: space-between;
   min-height: 66px; /* required for old Safari */
-  padding: 0 8px 0 32px;
+  padding: 0 24px 0 32px;
   position: fixed;
   transition: background-color 0.5s;
   width: 100vw;
@@ -123,9 +124,8 @@ const SharedHeader = ({
   inverted = false,
   links = [],
   logo,
-  style,
 }) => (
-  <Wrapper style={style} inverted={inverted}>
+  <Wrapper inverted={inverted}>
     <Logo src={logo} alt="logo" />
     <ResponsiveMenu collapsed={collapsed}>
       {links.map(({ label, href, active }) => (
