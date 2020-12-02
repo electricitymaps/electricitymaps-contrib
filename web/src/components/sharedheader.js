@@ -73,6 +73,7 @@ const MenuDrawerContent = styled.div`
   flex-direction: column;
   text-align: center;
   font-size: 125%;
+  padding-bottom: 16px;
   position: absolute;
   top: 0;
   left: 0;
@@ -89,14 +90,14 @@ const MenuDrawerContent = styled.div`
 const MenuButton = ({ onClick }) => (
   <svg
     viewBox="0 0 100 80"
-    width="40"
-    height="40"
+    width="48"
+    height="48"
     onClick={onClick}
-    style={{ cursor: 'pointer', height: 20, padding: '8px 12px' }}
+    style={{ cursor: 'pointer', padding: '8px 12px' }}
   >
-    <rect width="100" height="10" />
-    <rect y="30" width="100" height="10" />
-    <rect y="60" width="100" height="10" />
+    <rect width="100" height="10" fill="currentColor" />
+    <rect y="30" width="100" height="10" fill="currentColor" />
+    <rect y="60" width="100" height="10" fill="currentColor" />
   </svg>
 );
 
