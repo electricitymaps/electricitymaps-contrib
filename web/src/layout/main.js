@@ -30,21 +30,6 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 
-const headerLinks = [
-  {
-    label: 'Live',
-    active: true,
-  },
-  {
-    label: 'Blog',
-    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
-  },
-  {
-    label: 'API',
-    href: 'https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral',
-  },
-];
-
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
@@ -91,7 +76,7 @@ const Main = ({
           alignItems: 'stretch', /* force children to take 100% width */
         }}
       >
-        <Header className="small-screen-hidden" links={headerLinks} />
+        <Header />
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />

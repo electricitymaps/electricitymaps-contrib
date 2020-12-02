@@ -1,130 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.header`
-  align-items: center;
-  background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  color: black;
-  display: flex;
-  font-size: 16px;
+import SharedHeader from '../components/sharedheader';
+
+const logo = resolvePath('images/electricitymap-logo.svg');
+
+const headerLinks = [
+  {
+    label: 'Live',
+    active: true,
+  },
+  {
+    label: 'Blog',
+    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
+  },
+  {
+    label: 'API',
+    href: 'https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral',
+  },
+];
+
+const Container = styled.div`
+  /* This makes sure the map and the other content doesn't
+  go under the SharedHeader which has a fixed position. */
   height: 66px;
-  justify-content: space-between;
-  min-height: 66px; /* required for old Safari */
-  padding: 0 8px 0 32px;
-  transition: background-color 0.5s;
-  width: 100vw;
-  z-index: 3;
-
-  ${props => props.inverted && `
-    background: transparent;
-    color: white;
-    box-shadow: none;
-
-    img {
-      filter: invert(100%);
-    }
-  `};
 `;
 
-const Logo = styled.img`
-  height: 24px;
-`;
-
-const MenuButton = styled.img`
-  cursor: pointer;
-  height: 24px;
-  padding: 8px 12px;
-`;
-
-const Link = styled.a`
-  color: inherit;
-  display: inline-block;
-  padding: 12px 16px;
-  text-decoration: none;
-
-  &:hover {
-    color: inherit;
-    text-decoration: none;
-    text-shadow: 0.5px 0 0 currentColor;
-  }
-
-  ${props => props.active && `
-    text-shadow: 0.5px 0 0 currentColor;
-  `}
-`;
-
-const MenuDrawerBackground = styled.div`
-  background: black;
-  display: none;
-  opacity: 0.3;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  ${props => props.visible && `
-    display: block;
-  `};
-`;
-
-const MenuDrawerContent = styled.div`
-  background: white;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  font-size: 125%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease-in-out;
-  width: 100vw;
-  z-index: 1;
-
-  ${props => props.visible && `
-    transform: translateY(0);
-  `};
-`;
-
-const ResponsiveMenu = ({ children, collapsed }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
-  const openMenu = () => setMenuOpen(true);
-
-  // Show hamburger menu on smaller screens
-  return collapsed ? (
-    <>
-      <MenuButton src={resolvePath('images/hamburger-menu.svg')} alt="menu" onClick={openMenu} />
-      <MenuDrawerBackground visible={menuOpen} onClick={closeMenu} />
-      <MenuDrawerContent visible={menuOpen} onClick={closeMenu}>
-        {children}
-      </MenuDrawerContent>
-    </>
-  ) : (
-    <div>{children}</div>
-  );
-};
-
-const Header = ({
-  className,
-  collapsed = false,
-  inverted = false,
-  links = [],
-}) => (
-  <Wrapper className={className} inverted={inverted}>
-    <Logo src={resolvePath('images/electricitymap-logo.svg')} alt="logo" />
-    <ResponsiveMenu collapsed={collapsed}>
-      {links.map(({ label, href, active }) => (
-        <Link key={label} href={href} active={active}>
-          {label}
-        </Link>
-      ))}
-    </ResponsiveMenu>
-  </Wrapper>
+const Header = () => (
+  <Container className="small-screen-hidden">
+    <SharedHeader logo={logo} links={headerLinks} />
+  </Container>
 );
 
 export default Header;
