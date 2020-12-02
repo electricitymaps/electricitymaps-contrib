@@ -1,23 +1,130 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-// TODO: Move all styles from styles.css to here
+const Wrapper = styled.header`
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  color: black;
+  display: flex;
+  font-size: 16px;
+  height: 66px;
+  justify-content: space-between;
+  min-height: 66px; /* required for old Safari */
+  padding: 0 8px 0 32px;
+  transition: background-color 0.5s;
+  width: 100vw;
+  z-index: 3;
 
-const mapStateToProps = state => ({
-  brightModeEnabled: state.application.brightModeEnabled,
-});
+  ${props => props.inverted && `
+    background: transparent;
+    color: white;
+    box-shadow: none;
 
-export default connect(mapStateToProps)(props => (
-  <div id="header">
-    <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
-      <div className="logo">
-        <div className="image" id="electricitymap-logo" />
-        <span className="maintitle small-screen-hidden">
-          <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
-          · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
-          · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
-        </span>
-      </div>
-    </div>
-  </div>
-));
+    img {
+      filter: invert(100%);
+    }
+  `};
+`;
+
+const Logo = styled.img`
+  height: 24px;
+`;
+
+const MenuButton = styled.img`
+  cursor: pointer;
+  height: 24px;
+  padding: 8px 12px;
+`;
+
+const Link = styled.a`
+  color: inherit;
+  display: inline-block;
+  padding: 12px 16px;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+    text-shadow: 0.5px 0 0 currentColor;
+  }
+
+  ${props => props.active && `
+    text-shadow: 0.5px 0 0 currentColor;
+  `}
+`;
+
+const MenuDrawerBackground = styled.div`
+  background: black;
+  display: none;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  ${props => props.visible && `
+    display: block;
+  `};
+`;
+
+const MenuDrawerContent = styled.div`
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 125%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+  width: 100vw;
+  z-index: 1;
+
+  ${props => props.visible && `
+    transform: translateY(0);
+  `};
+`;
+
+const ResponsiveMenu = ({ children, collapsed }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+  const openMenu = () => setMenuOpen(true);
+
+  // Show hamburger menu on smaller screens
+  return collapsed ? (
+    <>
+      <MenuButton src={resolvePath('images/hamburger-menu.svg')} alt="menu" onClick={openMenu} />
+      <MenuDrawerBackground visible={menuOpen} onClick={closeMenu} />
+      <MenuDrawerContent visible={menuOpen} onClick={closeMenu}>
+        {children}
+      </MenuDrawerContent>
+    </>
+  ) : (
+    <div>{children}</div>
+  );
+};
+
+const Header = ({
+  className,
+  collapsed = false,
+  inverted = false,
+  links = [],
+}) => (
+  <Wrapper className={className} inverted={inverted}>
+    <Logo src={resolvePath('images/electricitymap-logo.svg')} alt="logo" />
+    <ResponsiveMenu collapsed={collapsed}>
+      {links.map(({ label, href, active }) => (
+        <Link key={label} href={href} active={active}>
+          {label}
+        </Link>
+      ))}
+    </ResponsiveMenu>
+  </Wrapper>
+);
+
+export default Header;
