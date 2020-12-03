@@ -120,7 +120,7 @@ const Main = ({
           </div>
           <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
-              {__('misc.newversion')}
+              <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>
           </div>
 
