@@ -34,7 +34,13 @@ class SignalR:
         
 def parse_payload(logger, payload):
     technologies_parsed = {}
-    logger.debug(f"serie : {json.dumps(payload)}")
+    if not 'technologies' in payload:
+      raise KeyError(
+        f"No 'technologies' in payload\n"
+        f"serie : {json.dumps(payload)}"
+      )
+    else:
+      logger.debug(f"serie : {json.dumps(payload)}")
     for technology in payload['technologies']:
         assert technology['unit'] == 'kW'
         # The upstream API gives us kW, we need MW
@@ -73,7 +79,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
           'nuclear': 0,
           'oil': technologies_parsed['diesel']*(100-biodiesel_percent)/100,
           'solar': technologies_parsed['solar'],
-          'wind': technologies_parsed['wind'],
+          'wind': 0 if technologies_parsed['wind'] < 0 and technologies_parsed['wind'] > -0.1 else technologies_parsed['wind'], #If wind between 0 and -0.1 set to 0 to ignore self-consumption
           'geothermal': 0,
           'unknown': 0
       },

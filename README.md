@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 
 ## Contribute
-Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
+Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
  * [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
@@ -34,8 +34,8 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 
 **Why do you calculate the carbon intensity of *consumption*?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
-Consumption-based accounting (CBA) is a very important aspect of climate policy, and allows assigning responsibility to consumers instead of producers.
-Furthermore, this method is robust to governments relocating dirty production to neighbouring countries in order to green their image while still importing from it.
+Consumption-based accounting (CBA) is a very important aspect of climate policy and allows assigning responsibility to consumers instead of producers.
+Furthermore, this method is robust to governments relocating dirty production to neighboring countries in order to green their image while still importing from it.
 We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
 **Why don't you show emissions per capita?**
@@ -46,7 +46,7 @@ The CO<sub>2</sub>/capita metric, by involving the size of the population, and b
 CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
 
 **CO<sub>2</sub> emission factors look high — what do they cover exactly?**
-The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions, and decommissioning).
+The carbon intensity of each type of power plant takes into account emissions arising from the whole life cycle of the plant (construction, fuel production, operational emissions and decommissioning).
 
 **Is delayed data useful?**
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can be used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
@@ -55,7 +55,7 @@ While the map relies on having real-time data to work it's still useful to colle
 The electricityMap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
 
 **Can areas other than countries be shown?**
-Yes providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example we already split several countries into states and grid regions.
+Yes, providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example, we already split several countries into states and grid regions.
 
 **How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://api.electricitymap.org/)**.
