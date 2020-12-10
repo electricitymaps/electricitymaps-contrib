@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -34,10 +34,24 @@ const Logo = styled.img`
   height: 24px;
 `;
 
+const greenUnderline = css`
+  &:after {
+    background: #62B252;
+    bottom: -10px;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+  }
+`;
+
 const Link = styled.a`
   color: inherit;
   display: inline-block;
   padding: 12px 16px;
+  position: relative;
   text-decoration: none;
 
   &:hover {
@@ -48,6 +62,7 @@ const Link = styled.a`
 
   ${props => props.active && `
     text-shadow: 0.5px 0 0 currentColor;
+    ${greenUnderline}
   `}
 `;
 
