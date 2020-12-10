@@ -1288,6 +1288,16 @@
     },
     "rotation": 180
   },
+  "GB->NO-NO2": {
+    "lonlat": [
+      2.44819,
+      57.266334
+    ],
+    "parsers": {
+      "exchange": "ELEXON.fetch_exchange"
+    },
+    "rotation": 50
+  },
   "GE->RU-1": {
     "lonlat": [
       42.822242,

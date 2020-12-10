@@ -34,7 +34,7 @@ REPORT_META = {
         'skiprows': 1
     },
     'INTERFUELHH': {
-        'expected_fields': 8,
+        'expected_fields': 11,
         'skiprows': 0
     }
 }
@@ -56,11 +56,12 @@ RESOURCE_TYPE_TO_FUEL = {
 }
 
 EXCHANGES = {
-    'FR->GB': 3,
-    'GB-NIR->IE': 4,
-    'GB->NL': 5,
-    'GB->IE': 6,
-    'BE->GB': 7
+    'FR->GB': [3, 8, 9],  # IFA, Eleclink, IFA2
+    'GB->GB-NIR': [4],
+    'GB->NL': [5],
+    'GB->IE': [6],
+    'BE->GB': [7],
+    'GB->NO-NO2': [10],  # North Sea Link
 }
 
 FETCH_WIND_FROM_FUELINST = True
@@ -145,7 +146,13 @@ def parse_exchange(zone_key1, zone_key2, csv_text, target_datetime=None,
 
         # positive value implies import to GB
         multiplier = -1 if 'GB' in sorted_zone_keys[0] else 1
-        data['netFlow'] = float(fields[EXCHANGES[exchange]]) * multiplier
+        net_flow = 0.0  # init
+        for column_index in EXCHANGES[exchange]:
+            # read out all columns providing values for this exchange
+            if fields[column_index] == "":
+                continue  # no value provided for this exchange
+            net_flow += float(fields[column_index]) * multiplier
+        data['netFlow'] = net_flow
         data_points.append(data)
 
     return data_points
