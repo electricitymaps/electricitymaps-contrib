@@ -26,8 +26,8 @@ def get_data(session=None):
     s = session or requests.Session()
 
     #In order for the data url to return data, cookies from the display url must be obtained then reused.
-    response = s.get(display_url)
-    data_response = s.get(data_url)
+    response = s.get(display_url, verify=False)
+    data_response = s.get(data_url, verify=False)
     raw_data = data_response.text
     try:
         data = [float(i) for i in raw_data.split(',')]
