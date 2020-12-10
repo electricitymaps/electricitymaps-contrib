@@ -13,11 +13,15 @@ const Wrapper = styled.header`
   height: 66px;
   justify-content: space-between;
   min-height: 66px; /* required for old Safari */
-  padding: 0 24px 0 32px;
+  padding: 0 48px 0 32px;
   position: fixed;
   transition: background-color 0.5s;
   width: 100vw;
   z-index: 3;
+
+  ${props => props.collapsed && `
+    padding: 0 24px;
+  `};
 
   ${props => props.inverted && `
     background: transparent;
@@ -27,6 +31,10 @@ const Wrapper = styled.header`
     img {
       filter: invert(100%);
     }
+
+    a:after {
+      background: white;
+    }
   `};
 `;
 
@@ -34,10 +42,10 @@ const Logo = styled.img`
   height: 24px;
 `;
 
-const greenUnderline = css`
+const linkUnderline = css`
   &:after {
     background: #62B252;
-    bottom: -10px;
+    bottom: 0;
     content: '';
     display: block;
     left: 0;
@@ -50,9 +58,11 @@ const greenUnderline = css`
 const Link = styled.a`
   color: inherit;
   display: inline-block;
+  line-height: 21px;
   padding: 12px 16px;
   position: relative;
   text-decoration: none;
+  width: fit-content;
 
   &:hover {
     color: inherit;
@@ -62,7 +72,7 @@ const Link = styled.a`
 
   ${props => props.active && `
     text-shadow: 0.5px 0 0 currentColor;
-    ${greenUnderline}
+    ${linkUnderline}
   `}
 `;
 
@@ -82,6 +92,7 @@ const MenuDrawerBackground = styled.div`
 `;
 
 const MenuDrawerContent = styled.div`
+  align-items: center;
   background: white;
   color: black;
   display: flex;
@@ -141,7 +152,7 @@ const SharedHeader = ({
   links = [],
   logo,
 }) => (
-  <Wrapper inverted={inverted}>
+  <Wrapper inverted={inverted} collapsed={collapsed}>
     <Logo src={logo} alt="logo" />
     <ResponsiveMenu collapsed={collapsed}>
       {links.map(({ label, href, active }) => (
