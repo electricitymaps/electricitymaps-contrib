@@ -18,6 +18,11 @@
 	    border-bottom-left-radius: 5px;
 	    width: 100%;
 	    box-sizing: border-box;
+
+	    a {
+	        color: $white;
+	        font-weight: bold;
+	    }
 	}
 
 	&.active {
