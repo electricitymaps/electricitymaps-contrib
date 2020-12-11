@@ -58,7 +58,7 @@ const linkUnderline = css`
 const Link = styled.a`
   color: inherit;
   display: inline-block;
-  line-height: 21px;
+  line-height: 42px;
   padding: 12px 16px;
   position: relative;
   text-decoration: none;
