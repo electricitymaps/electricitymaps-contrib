@@ -11,6 +11,10 @@ const headerLinks = [
     active: true,
   },
   {
+    label: 'Open Source',
+    href: 'https://api.electricitymap.org/open-source?utm_source=electricitymap.org&utm_medium=referral',
+  },
+  {
     label: 'Blog',
     href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
   },
