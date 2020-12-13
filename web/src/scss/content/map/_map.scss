@@ -2,8 +2,8 @@
     position: absolute; /* required for Safari iPad */
     flex-grow: 1; /* This takes up available horizontal space */
     overflow: hidden; /* hide overflowing children */
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
     /* Proper sizing */
     box-sizing: border-box;
@@ -103,7 +103,7 @@
 /* override mapbox styling */
 .mapboxgl-zoom-controls {
     right: 16px !important;
-    top: 119px !important;
+    top: 69px !important;
 
     @include respond-to('small') {
         top: 66px !important;
