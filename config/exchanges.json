@@ -1303,6 +1303,10 @@
       42.814,
       41.562
     ],
+    "capacity": [
+      -700,
+      700
+    ],
     "parsers": {
       "exchange": "GE.fetch_exchange"
     },

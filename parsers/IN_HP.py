@@ -26,7 +26,8 @@ class GenType(Enum):
 
 # Map of plant names (as given in data source) to their type.
 # Source for types is http://meritindia.in/state-data/himachal-pradesh
-# or the link above/next to the relevant entry if there is no record in meritindia.
+# (click 'Show details' at the bottom) or the link above/next to the
+# relevant entry if there is no record in meritindia.
 # Corroborating source: https://hpaldc.org/index.asp?pg=powStn
 #
 # Total plant capacity as manually calculated from the data source:
@@ -49,6 +50,8 @@ PLANT_NAMES_TO_TYPES = {
     'GHANVI(2X11.25MW)': GenType.HYDRO,  # GANVI in type source
     # https://www.ejatlas.org/conflict/kashang-hydroelectricity-project
     'KASHANG(3X65MW)': GenType.HYDRO,
+    # https://cdm.unfccc.int/Projects/DB/RWTUV1354641854.75/view
+    'Sawra Kuddu (3x37MW)': GenType.HYDRO,
     'MICROP/HMONITORED(HPSEBL)': GenType.UNKNOWN,  # No type source
     'IPPsP/HMONITORED': GenType.UNKNOWN,  # No type source
     'MICROP/HUNMONITORED': GenType.UNKNOWN,  # No type source
@@ -82,12 +85,12 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
     return {
         'zoneKey': ZONE_KEY,
         'datetime': arrow.now(TZ).datetime,
-        'production': combine_gen(get_state_gen(soup), get_isgs_gen(soup)),
+        'production': combine_gen(get_state_gen(soup, logger), get_isgs_gen(soup, logger)),
         'source': 'hpsldc.com'
     }
 
 
-def get_state_gen(soup):
+def get_state_gen(soup, logger: logging.Logger):
     """Gets the total generation by type from state powerplants (MW).
     Data is from the table titled GENERATION OF HP(Z)"""
     table_name = 'GENERATION OF HP(Z)'
@@ -100,12 +103,12 @@ def get_state_gen(soup):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[1].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            raise Exception(
-                'Error importing data from row: {}'.format(row))
+            logger.error('Error importing data from row: {}'.format(
+                row), extra={"key": ZONE_KEY})
     return gen
 
 
-def get_isgs_gen(soup):
+def get_isgs_gen(soup, logger: logging.Logger):
     """Gets the total generation by type from ISGS powerplants (MW).
     ISGS means Inter-State Generating Station: one owned by multiple states.
     Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL)"""
@@ -124,8 +127,8 @@ def get_isgs_gen(soup):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[2].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            raise Exception(
-                'Error importing data from row: {}'.format(row))
+            logger.error('Error importing data from row: {}'.format(
+                row), extra={"key": ZONE_KEY})
     return gen
 
 
