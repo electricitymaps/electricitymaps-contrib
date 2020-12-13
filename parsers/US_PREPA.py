@@ -225,6 +225,8 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
 
   data['datetime'] = convert_timestamp(zone_key, raw_timestamp)
 
+  assert data['production']['oil'] > 0.0, '{} is missing required generation type: oil'.format(zone_key)
+
   return data
 
 
