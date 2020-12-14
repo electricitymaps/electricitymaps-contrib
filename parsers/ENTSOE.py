@@ -843,6 +843,9 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         # Note, this may not include self-consumption data as sometimes consumption
         # data is available for a given TZ a few minutes before production data is.
         dt, quantity = datetimes[-1].datetime, quantities[-1]
+        if dt not in self_consumption:
+            logger.warning(
+                'Self-consumption data not yet available for {} at {}'.format(zone_key, dt))
         data = {
             'zoneKey': zone_key,
             'datetime': dt,
