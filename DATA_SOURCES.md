@@ -259,6 +259,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other renewables: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
+- North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway
   - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
   - Wind: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vindkraft/vindkraftdata/)
@@ -347,6 +348,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Denmark (West) ⇄ Netherlands: ["COBRAcable": 700 MW](https://en.wikipedia.org/wiki/COBRAcable)
 - Estonia ⇄ European Russia And Ural [2464 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Estonia ⇄ Finnland: ["Estlink 1&2": 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- Georgia ⇄ Turkey: ["Black Sea Transmission Network Project (BSTN)": 700 MW](http://www.gse.com.ge/M9Ltvi2EQCCNYg7LvHW0JQ.html "Two additional connections are planned/under construction, Batumi-Muratli and Akhalstikhe-Tortum, to double capacity to 1400MW; see http://www.gse.com.ge/sw/static/file/TYNDP_GE-2020-2030_ENG.pdf. Another interconnector (Batumi-Khopa) is only used in emergencies, according to http://www.gse.com.ge/about-us/international-affairs")
 - Germany ⇄ Sweden: ["Baltic Cable": 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
 - Germany ⇄ Norway: ["NordLink": 1400MW](https://en.wikipedia.org/wiki/NORD.LINK)
 - Great Britain ⇄ Belgium: ["Nemo Link": 1000 MW](https://en.wikipedia.org/wiki/Nemo_Link)
