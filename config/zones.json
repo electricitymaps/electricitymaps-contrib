@@ -2864,8 +2864,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome"
+    }
   },
   "IT-SAR": {
     "bounding_box": [
@@ -3544,6 +3543,25 @@
       [
         25.759780721000112,
         -16.451057230999922
+      ]
+    ]
+  },
+  "NG": {
+    "contributors": [
+      "https://github.com/byronwilliams"
+    ],
+    "parsers": {
+      "production": "NG.fetch_production"
+    },
+    "timezone": "Africa/Lagos",
+    "bounding_box": [
+      [
+        2.1710819900001184,
+        3.7721621770000695
+      ],
+      [
+        15.16993615700008,
+        14.380290832000114
       ]
     ]
   },
