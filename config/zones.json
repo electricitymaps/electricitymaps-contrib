@@ -2678,7 +2678,8 @@
     "capacity": {},
     "contributors": [
       "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/byronwilliams"
     ],
     "flag_file_name": "iq.png",
     "timezone": "Asia/Baghdad",
@@ -2691,7 +2692,10 @@
         49.059255405000044,
         37.562000619000116
       ]
-    ]
+    ],
+    "parsers": {
+      "production": "IQ.fetch_production"
+    }
   },
   "IS": {
     "bounding_box": [
