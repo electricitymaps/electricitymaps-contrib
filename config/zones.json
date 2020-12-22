@@ -199,8 +199,8 @@
     ],
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
@@ -238,8 +238,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [
@@ -273,8 +273,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [
@@ -318,8 +318,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
@@ -376,8 +376,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
