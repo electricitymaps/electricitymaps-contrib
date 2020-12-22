@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
-import { max as d3Max } from 'd3-array';
+import { max as d3Max, min as d3Min } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatchApplication } from '../store';
@@ -14,6 +14,7 @@ import { useWidthObserver } from '../hooks/viewport';
 import {
   useCurrentZoneData,
   useCurrentZoneExchangeKeys,
+  useCurrentZoneHistory,
 } from '../hooks/redux';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
@@ -322,6 +323,8 @@ const CountryElectricityProductionTable = React.memo(({
   onExchangeRowMouseOver,
   onExchangeRowMouseOut,
   width,
+  minPower,
+  maxPower,
 }) => {
   const co2ColorScale = useCo2ColorScale();
 
@@ -329,22 +332,7 @@ const CountryElectricityProductionTable = React.memo(({
 
   // Power in MW
   const powerScale = scaleLinear()
-    .domain([
-      Math.min(
-        -data.maxStorageCapacity || 0,
-        -data.maxStorage || 0,
-        -data.maxExport || 0,
-        -data.maxExportCapacity || 0,
-      ),
-      Math.max(
-        data.maxCapacity || 0,
-        data.maxProduction || 0,
-        data.maxDischarge || 0,
-        data.maxStorageCapacity || 0,
-        data.maxImport || 0,
-        data.maxImportCapacity || 0,
-      ),
-    ])
+    .domain([minPower, maxPower])
     .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
   const formatTick = (t) => {
@@ -455,6 +443,29 @@ const CountryTable = ({
   const [productionTooltip, setProductionTooltip] = useState(null);
   const [exchangeTooltip, setExchangeTooltip] = useState(null);
 
+  // Use the whole history to determine the min/max,
+  // fallback on current data
+  const history = useCurrentZoneHistory() || [data];
+  const [minPower, maxPower] = useMemo(
+    () => [
+      d3Min(history.map(zoneData => Math.min(
+        -zoneData.maxStorageCapacity || 0,
+        -zoneData.maxStorage || 0,
+        -zoneData.maxExport || 0,
+        -zoneData.maxExportCapacity || 0,
+      ))) || 0,
+      d3Max(history.map(zoneData => Math.max(
+        zoneData.maxCapacity || 0,
+        zoneData.maxProduction || 0,
+        zoneData.maxDischarge || 0,
+        zoneData.maxStorageCapacity || 0,
+        zoneData.maxImport || 0,
+        zoneData.maxImportCapacity || 0,
+      ))) || 0,
+    ],
+    [history],
+  );
+
   const handleProductionRowMouseOver = (mode, zoneData, ev) => {
     dispatchApplication('co2ColorbarValue', getProductionCo2Intensity(mode, zoneData));
     setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
@@ -505,6 +516,8 @@ const CountryTable = ({
           width={width}
           height={height}
           isMobile={isMobile}
+          minPower={minPower}
+          maxPower={maxPower}
         />
       )}
       {productionTooltip && (
