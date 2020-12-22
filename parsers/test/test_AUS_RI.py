@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
- 
+
 import unittest
 
 from requests import Session
@@ -19,7 +19,7 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount('https://', self.adapter)
 
     def test_parsing_payload(self):
-        filename = 'parsers/test/mocks/AUS_TAS_KI_payload1.json'
+        filename = 'parsers/test/mocks/AUS_RI_payload1.json'
         with open(filename) as f:
             fake_data = json.load(f)
         with patch('parsers.adjenti.SignalR.get_value') as f:
@@ -27,20 +27,14 @@ class TestAusTasKi(unittest.TestCase):
             data = adjenti.fetch_production()
         
         self.assertIsNotNone(data['production'])
-        self.assertEqual(data['production']['wind'], 1.024)
+        self.assertEqual(data['production']['wind'], 0.148)
         self.assertEqual(data['production']['solar'], 0)
-
-        self.assertEqual(data['production']['oil'], 0.779)
-        self.assertEqual(data['production']['biomass'], 0)
-
-        self.assertEqual(data['storage']['battery'], 0.149)
-    # This test will fetch the payload from the webservice
-    # def test_parsing_payload_real(self):
-    #     data = AUS_TAS_KI.fetch_production()
         
-    #     self.assertIsNotNone(data['production'])
-    #     self.assertIsNotNone(data['production']['wind'])
-    #     self.assertIsNotNone(data['production']['solar'])
+
+        self.assertEqual(data['production']['oil'], 0.683)
+
+        # there is no biomass on that island
+        self.assertEqual(data['production']['biomass'], 0)
 
 
 if __name__ == '__main__':
