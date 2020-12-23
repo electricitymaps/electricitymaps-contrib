@@ -1239,7 +1239,7 @@
         "powerOriginRatios": {
           "hydro": 0.95,
           "wind": 0.04,
-          "unknown": 0.01,
+          "unknown": 0.01
         }
       },
       "CA-ON": {
@@ -2333,7 +2333,7 @@
       "NKR": {
         "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
         "powerOriginRatios": {
-          "hydro": 1,
+          "hydro": 1
         }
       },
       "NL": {
