@@ -888,6 +888,15 @@
           "wind": 0.13542825574682724
         }
       },
+      "AZ": {
+        "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE",
+        "powerOriginRatios": {
+          "gas": 0.46,
+          "oil": 0.46,
+          "hydro": 0.07,
+          "unknown": 0.01
+        }
+      },
       "AUS-NSW": {
         "_source": "Tomorrow",
         "carbonIntensity": 725.2165826243141,
@@ -1176,6 +1185,14 @@
           "wind": 0.05751308606124606
         }
       },
+      "BY": {
+        "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR",
+        "powerOriginRatios": {
+          "gas": 0.98,
+          "hydro": 0.01,
+          "unknown": 0.01
+        }
+      },
       "CA-AB": {
         "_source": "Tomorrow",
         "carbonIntensity": 570.6050158576046,
@@ -1192,6 +1209,37 @@
           "solar": 0.0,
           "unknown": 0.027200317140498656,
           "wind": 0.05323187854541755
+        }
+      },
+      "CA-BC": {
+        "_source": "List of Generating Stations in BC (Wikipedia)",
+        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+        "powerOriginRatios": {
+          "biomass": 0.09,
+          "hydro": 0.88,
+          "wind": 0.01,
+          "gas": 0.01,
+          "unknown": 0.01
+        }
+      },
+      "CA-NB": {
+        "_source": "Canada NEB yearly data for 2018",
+        "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
+        "powerOriginRatios": {
+          "nuclear": 0.39,
+          "hydro": 0.21,
+          "coal": 0.18,
+          "gas": 0.12,
+          "wind": 0.07,
+          "biomass": 0.03,
+        }
+      },
+      "CA-QC": {
+        "_url": "https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-quebec.html",
+        "powerOriginRatios": {
+          "hydro": 0.95,
+          "wind": 0.04,
+          "unknown": 0.01,
         }
       },
       "CA-ON": {
