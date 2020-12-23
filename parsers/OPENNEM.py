@@ -41,12 +41,19 @@ def dataset_to_df(dataset):
 
 
 def fetch_main_df(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
     region = ZONE_KEY_TO_REGION[zone_key]
+
+    if target_datetime:
+        # We will fetch one week in the past
+        df_start = arrow.get(target_datetime).shift(days=-7).datetime
+        y, w, d = df_start.isocalendar()
+        iso_week = "{0}W{1:02d}".format(y, w)
+        url = f'http://data.opennem.org.au/power/history/5minute/{region}_{iso_week}.json'
+    else:
+        url = f'http://data.opennem.org.au/power/{region}.json'
+
     # Fetches the last week of data
-    r = (session or requests).get(f'http://data.opennem.org.au/power/{region}.json')
+    r = (session or requests).get(url)
     r.raise_for_status()
     datasets = r.json()
     df = pd.concat([dataset_to_df(x) for x in datasets], axis=1)
@@ -129,5 +136,4 @@ if __name__ == '__main__':
     """Main method, never used by the electricityMap backend, but handy for testing."""
     # print(fetch_price('AUS-SA'))
     print(fetch_production('AUS-SA'))
-
-    # TODO: Interconnectors?
+    # print(fetch_production('AUS-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
