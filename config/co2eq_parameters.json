@@ -2666,7 +2666,7 @@
         "powerOriginRatios": {
           "gas": 0.98,
           "wind": 0.015,
-          "hydro": 0.05
+          "hydro": 0.005
         }
       },
       "SE": {
@@ -3021,13 +3021,13 @@
           "solar": 0.03
         }
       },
-      "ZA": {
+      "ZM": {
         "_source": "Our world in data 2019",
         "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB",
         "powerOriginRatios": {
           "hydro": 0.83,
           "coal": 0.11,
-          "oil": 0.6
+          "oil": 0.06
         }
       }
     }
