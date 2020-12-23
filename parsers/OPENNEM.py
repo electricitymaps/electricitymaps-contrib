@@ -15,6 +15,7 @@ ZONE_KEY_TO_REGION = {
     'AUS-VIC': 'vic1',
 }
 SOURCE = 'opennem.org'
+TIME_ZONE = 'Australia/Brisbane'
 
 
 def dataset_to_df(dataset):
@@ -49,7 +50,10 @@ def fetch_main_df(zone_key=None, session=None, target_datetime=None, logger=logg
     r.raise_for_status()
     datasets = r.json()
     df = pd.concat([dataset_to_df(x) for x in datasets], axis=1)
-    return df
+    # Only load data @ 30min interval (ignore the points at higher resolution)
+    # This is due to the fact that ROOFTOP_SOLAR is only given at 30 min interval
+    # We know price is @ 30min data, so use this as reference
+    return df.loc[~df['PRICE'].isna()]
 
 
 def sum_vector(pd_series, keys, transform=lambda x: x):
@@ -72,8 +76,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
     if 'BATTERY_DISCHARGING' in df.columns:
         df['BATTERY_DISCHARGING'] = df['BATTERY_DISCHARGING'] * -1
 
-    return [{
-        'datetime': datetime.to_pydatetime(),
+    objs = [{
+        'datetime': arrow.get(datetime.to_pydatetime(), TIME_ZONE).datetime,
         'production': {  # Unit is MW
             'coal': sum_vector(row, ['BLACK_COAL', 'BROWN_COAL']),
             'gas': sum_vector(row, ['GAS_CCGT', 'GAS_OCGT', 'GAS_RECIP', 'GAS_STEAM']),
@@ -96,11 +100,24 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         'zoneKey': zone_key,
     } for datetime, row in df.iterrows()]
 
+    # Validation
+    for obj in objs:
+        for k, v in obj['production'].items():
+            if v is None:
+                continue
+            if v < 0 and v > -50:
+                # Set small negative values to 0
+                logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
+                               extra={'key': zone_key})
+                obj['production'][k] = 0
+
+    return objs
+
 
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
     return [{
-        'datetime': datetime.to_pydatetime(),
+        'datetime': arrow.get(datetime.to_pydatetime(), TIME_ZONE).datetime,
         'price': sum_vector(row, ['PRICE']),  # currency / MWh
         'currency': 'AUD',
         'source': SOURCE,
