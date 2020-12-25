@@ -330,7 +330,7 @@ const CountryElectricityProductionTable = React.memo(({
 
   // Use the whole history to determine the min/max,
   // fallback on current data
-  const history = useCurrentZoneHistory() || [data];
+  const history = useMemo(() => useCurrentZoneHistory() || [data], [useCurrentZoneHistory, data]);
   const [minPower, maxPower] = useMemo(
     () => [
       d3Min(history.map(zoneData => Math.min(
