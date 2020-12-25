@@ -1475,7 +1475,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "DO.fetch_production"
