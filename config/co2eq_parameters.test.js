@@ -5,6 +5,8 @@ describe('Each fallbackZoneMixes sums to one', () => {
     ['defaults', defaultCO2Params.fallbackZoneMixes.defaults],
     ...Object.entries(defaultCO2Params.fallbackZoneMixes.zoneOverrides),
   ])('for zone %s', (zone, fallbackZoneMix) => {
+    // Verify the key exists
+    expect(fallbackZoneMix.powerOriginRatios).toBeTruthy();
     if (fallbackZoneMix.powerOriginRatios) {
       const totalRatio = Object.values(fallbackZoneMix.powerOriginRatios).reduce(
         (a, b) => a + b,
