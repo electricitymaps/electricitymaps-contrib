@@ -323,12 +323,33 @@ const CountryElectricityProductionTable = React.memo(({
   onExchangeRowMouseOver,
   onExchangeRowMouseOut,
   width,
-  minPower,
-  maxPower,
 }) => {
   const co2ColorScale = useCo2ColorScale();
 
   const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+
+  // Use the whole history to determine the min/max,
+  // fallback on current data
+  const history = useCurrentZoneHistory() || [data];
+  const [minPower, maxPower] = useMemo(
+    () => [
+      d3Min(history.map(zoneData => Math.min(
+        -zoneData.maxStorageCapacity || 0,
+        -zoneData.maxStorage || 0,
+        -zoneData.maxExport || 0,
+        -zoneData.maxExportCapacity || 0,
+      ))) || 0,
+      d3Max(history.map(zoneData => Math.max(
+        zoneData.maxCapacity || 0,
+        zoneData.maxProduction || 0,
+        zoneData.maxDischarge || 0,
+        zoneData.maxStorageCapacity || 0,
+        zoneData.maxImport || 0,
+        zoneData.maxImportCapacity || 0,
+      ))) || 0,
+    ],
+    [history],
+  );
 
   // Power in MW
   const powerScale = scaleLinear()
@@ -443,29 +464,6 @@ const CountryTable = ({
   const [productionTooltip, setProductionTooltip] = useState(null);
   const [exchangeTooltip, setExchangeTooltip] = useState(null);
 
-  // Use the whole history to determine the min/max,
-  // fallback on current data
-  const history = useCurrentZoneHistory() || [data];
-  const [minPower, maxPower] = useMemo(
-    () => [
-      d3Min(history.map(zoneData => Math.min(
-        -zoneData.maxStorageCapacity || 0,
-        -zoneData.maxStorage || 0,
-        -zoneData.maxExport || 0,
-        -zoneData.maxExportCapacity || 0,
-      ))) || 0,
-      d3Max(history.map(zoneData => Math.max(
-        zoneData.maxCapacity || 0,
-        zoneData.maxProduction || 0,
-        zoneData.maxDischarge || 0,
-        zoneData.maxStorageCapacity || 0,
-        zoneData.maxImport || 0,
-        zoneData.maxImportCapacity || 0,
-      ))) || 0,
-    ],
-    [history],
-  );
-
   const handleProductionRowMouseOver = (mode, zoneData, ev) => {
     dispatchApplication('co2ColorbarValue', getProductionCo2Intensity(mode, zoneData));
     setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
@@ -516,8 +514,6 @@ const CountryTable = ({
           width={width}
           height={height}
           isMobile={isMobile}
-          minPower={minPower}
-          maxPower={maxPower}
         />
       )}
       {productionTooltip && (
