@@ -819,7 +819,7 @@
         "biomass": 0.017509,
         "battery discharge": 0,
         "battery storage": 0,
-        "coal": 0.38, 
+        "coal": 0.38,
         "gas": 0.232,
         "geothermal": 0.003081,
         "hydro": 0.158,
@@ -882,6 +882,15 @@
           "solar": 0.035804080073763914,
           "unknown": 0.008146144727791443,
           "wind": 0.13542825574682724
+        }
+      },
+      "AZ": {
+        "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~AZE",
+        "powerOriginRatios": {
+          "gas": 0.46,
+          "oil": 0.46,
+          "hydro": 0.07,
+          "unknown": 0.01
         }
       },
       "AUS-NSW": {
@@ -1156,6 +1165,14 @@
           "wind": 0.05751308606124606
         }
       },
+      "BY": {
+        "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR",
+        "powerOriginRatios": {
+          "gas": 0.98,
+          "hydro": 0.01,
+          "unknown": 0.01
+        }
+      },
       "CA-AB": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -1171,6 +1188,37 @@
           "solar": 0.0,
           "unknown": 0.027200317140498656,
           "wind": 0.05323187854541755
+        }
+      },
+      "CA-BC": {
+        "_source": "List of Generating Stations in BC (Wikipedia)",
+        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+        "powerOriginRatios": {
+          "biomass": 0.09,
+          "hydro": 0.88,
+          "wind": 0.01,
+          "gas": 0.01,
+          "unknown": 0.01
+        }
+      },
+      "CA-NB": {
+        "_source": "Canada NEB yearly data for 2018",
+        "_url": "https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html",
+        "powerOriginRatios": {
+          "nuclear": 0.39,
+          "hydro": 0.21,
+          "coal": 0.18,
+          "gas": 0.12,
+          "wind": 0.07,
+          "biomass": 0.03
+        }
+      },
+      "CA-QC": {
+        "_url": "https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-quebec.html",
+        "powerOriginRatios": {
+          "hydro": 0.95,
+          "wind": 0.04,
+          "unknown": 0.01
         }
       },
       "CA-ON": {
@@ -2159,6 +2207,14 @@
           "wind": 0.0
         }
       },
+      "MX-BC": {
+        "source": "Tomorrow & Dra. Gabriela Muñoz Meléndez",
+        "comment": "Only for exports from Baja California to California, assumes 92.3% gas, 7.7% wind, see issue 1497",
+        "powerOriginRatios": {
+          "gas": 0.923,
+          "wind": 0.077
+        }
+      },
       "NA": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2191,6 +2247,12 @@
           "solar": 0.005024668424594931,
           "unknown": 0.002350834502174446,
           "wind": 0.17269143269667578
+        }
+      },
+      "NKR": {
+        "_comment": "Average carbon intensity using 2016 mean production per fuel source (100% hydro) and IPCC 2014 default lifecycle emission factor",
+        "powerOriginRatios": {
+          "hydro": 1
         }
       },
       "NL": {
@@ -2497,6 +2559,15 @@
           "solar": 0.000467848996279447,
           "unknown": 0.5133267466768396,
           "wind": 2.949968773471882e-07
+        }
+      },
+      "RU-KGD": {
+        "_comment": "see http://www.centrumbalticum.org/files/1899/BSR_Policy_Briefing_2_2014.pdf and https://newsbase.com/topstories/russia-invest-us156bn-kaliningrad-power-plants. About 98% generation from gas in RU-KGD in the past. 5.1 MW wind (2002) and 1.7 MW total hydro installed. 3 gas units (1x440 + 2x156 MW) may come online in 2018, 3x65 MW coal units of Primorskaya TPP probably in 2019 due to future seperation of Baltics from BRELL synchronous area.",
+        "_source": "Energy security in Kaliningrad and geopolitics (2/2014)",
+        "powerOriginRatios": {
+          "gas": 0.98,
+          "wind": 0.015,
+          "hydro": 0.005
         }
       },
       "SE": {
@@ -2820,6 +2891,25 @@
           "solar": 0.019420053345432786,
           "unknown": 0.00010785392438724089,
           "wind": 0.2504298323549667
+        }
+      },
+      "ZA": {
+        "_source": "Our world in data 2019",
+        "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZAF",
+        "powerOriginRatios": {
+          "coal": 0.88,
+          "nuclear": 0.06,
+          "wind": 0.03,
+          "solar": 0.03
+        }
+      },
+      "ZM": {
+        "_source": "Our world in data 2019",
+        "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB",
+        "powerOriginRatios": {
+          "hydro": 0.83,
+          "coal": 0.11,
+          "oil": 0.06
         }
       }
     }
