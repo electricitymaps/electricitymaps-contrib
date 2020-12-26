@@ -12,6 +12,7 @@ import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
+  useCurrentNightTimes,
 } from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
@@ -111,6 +112,8 @@ const CountryHistoryPricesGraph = ({
     [setTooltip],
   );
 
+  const nightTimes = useCurrentNightTimes();
+
   return (
     <React.Fragment>
       <AreaGraph
@@ -132,6 +135,7 @@ const CountryHistoryPricesGraph = ({
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="6em"
+        nightTimes={nightTimes}
       />
       {tooltip && (
         <PriceTooltip

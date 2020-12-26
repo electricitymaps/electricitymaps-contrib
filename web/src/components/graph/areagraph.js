@@ -69,6 +69,18 @@ const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   }));
 };
 
+const HighlightArea = ({
+  timeScale, valueScale, startTime, endTime, style,
+}) => (
+  <rect
+    x={Math.max(timeScale.range()[0], timeScale(startTime))}
+    y={valueScale.range()[1]}
+    width={Math.min(timeScale.range()[1], timeScale(endTime)) - Math.max(timeScale.range()[0], timeScale(startTime))}
+    height={Math.max(0, valueScale.range()[0] - valueScale.range()[1])}
+    style={{ pointerEvents: 'none', ...style }}
+  />
+);
+
 const AreaGraph = React.memo(({
   /*
     `data` should be an array of objects, each containing:
@@ -132,6 +144,10 @@ const AreaGraph = React.memo(({
     Height of the area graph canvas.
   */
   height = '10em',
+  /*
+    Array of pairs of start and end Dates of area to be highlighted
+  */
+  highlightTimes,
 }) => {
   const ref = useRef(null);
   const containerWidth = useWidthObserver(ref, Y_AXIS_WIDTH);
@@ -160,6 +176,35 @@ const AreaGraph = React.memo(({
 
   return (
     <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
+      <GraphBackground
+        timeScale={timeScale}
+        valueScale={valueScale}
+        datetimes={datetimes}
+        mouseMoveHandler={backgroundMouseMoveHandler}
+        mouseOutHandler={backgroundMouseOutHandler}
+        isMobile={isMobile}
+        svgRef={ref}
+      />
+      {highlightTimes ? highlightTimes.map(([highlightStartTime, highlightEndTime]) => (
+        <HighlightArea
+          key={highlightStartTime}
+          startTime={highlightStartTime}
+          endTime={highlightEndTime}
+          style={{ fill: '#e8e8e8' }}
+          timeScale={timeScale}
+          valueScale={valueScale}
+        />
+      )) : null}
+      <AreaGraphLayers
+        layers={layers}
+        datetimes={datetimes}
+        timeScale={timeScale}
+        valueScale={valueScale}
+        mouseMoveHandler={layerMouseMoveHandler}
+        mouseOutHandler={layerMouseOutHandler}
+        isMobile={isMobile}
+        svgRef={ref}
+      />
       <TimeAxis
         scale={timeScale}
         transform={`translate(-1 ${containerHeight - 1})`}
@@ -170,25 +215,6 @@ const AreaGraph = React.memo(({
         label={valueAxisLabel}
         width={containerWidth}
         height={containerHeight}
-      />
-      <GraphBackground
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        mouseMoveHandler={backgroundMouseMoveHandler}
-        mouseOutHandler={backgroundMouseOutHandler}
-        isMobile={isMobile}
-        svgRef={ref}
-      />
-      <AreaGraphLayers
-        layers={layers}
-        datetimes={datetimes}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        mouseMoveHandler={layerMouseMoveHandler}
-        mouseOutHandler={layerMouseOutHandler}
-        isMobile={isMobile}
-        svgRef={ref}
       />
       <GraphHoverLine
         layers={layers}

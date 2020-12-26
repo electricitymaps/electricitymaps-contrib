@@ -13,6 +13,7 @@ import {
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
   useCurrentZoneExchangeKeys,
+  useCurrentNightTimes,
 } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
@@ -119,6 +120,8 @@ const CountryHistoryMixGraph = ({
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
 
+  const nightTimes = useCurrentNightTimes();
+
   // Recalculate graph data only when the history data is changed
   const {
     data,
@@ -194,6 +197,7 @@ const CountryHistoryMixGraph = ({
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="10em"
+        highlightTimes={nightTimes}
       />
       {tooltip && (
         exchangeKeys.includes(tooltip.mode) ? (

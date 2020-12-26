@@ -9,6 +9,7 @@ import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
+  useCurrentNightTimes,
 } from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
@@ -91,6 +92,8 @@ const CountryHistoryEmissionsGraph = ({
     [setTooltip],
   );
 
+  const nightTimes = useCurrentNightTimes();
+
   return (
     <React.Fragment>
       <AreaGraph
@@ -110,6 +113,7 @@ const CountryHistoryEmissionsGraph = ({
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
+        nightTimes={nightTimes}
       />
       {tooltip && (
         <CountryPanelEmissionsTooltip

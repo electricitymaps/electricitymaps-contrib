@@ -8,6 +8,7 @@ import {
   useCurrentZoneHistory,
   useCurrentZoneHistoryStartTime,
   useCurrentZoneHistoryEndTime,
+  useCurrentNightTimes,
 } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
@@ -87,6 +88,8 @@ const CountryHistoryCarbonGraph = ({
     [setTooltip],
   );
 
+  const nightTimes = useCurrentNightTimes();
+
   return (
     <React.Fragment>
       <AreaGraph
@@ -106,6 +109,7 @@ const CountryHistoryCarbonGraph = ({
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
+        nightTimes={nightTimes}
       />
       {tooltip && (
         <MapCountryTooltip
