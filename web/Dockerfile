@@ -1,5 +1,5 @@
 FROM node:12.13.1
-WORKDIR /home/web
+WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
 RUN apt-get update && apt-get install -y jq unzip
