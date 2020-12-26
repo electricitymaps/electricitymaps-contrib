@@ -3,16 +3,16 @@ WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
 RUN apt-get update && apt-get install -y jq unzip
-ADD web/package.json /home/web/package.json
-ADD web/yarn.lock /home/web/yarn.lock
+ADD web/package.json ./package.json
+ADD web/yarn.lock ./yarn.lock
 RUN yarn
 
 # Generate map
 RUN mkdir -p public/dist/
-ADD web/build /home/web/build
-ADD web/third_party_maps /home/web/third_party_maps
-ADD web/generate-geometries.js web/topogen.sh /home/web/
-ADD web/src/world.json /home/web/src/world.json
+ADD web/build ./build
+ADD web/third_party_maps ./third_party_maps
+ADD web/generate-geometries.js web/topogen.sh ./
+ADD web/src/world.json ./src/world.json
 RUN bash topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
