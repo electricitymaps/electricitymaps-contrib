@@ -19,7 +19,7 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build
 # (note: this will override the world.json that was previously created)
-ADD config /home/config
+ADD config /home/src/electricitymap/contrib/config
 ADD web ./
 RUN yarn lint && yarn build-release
 
