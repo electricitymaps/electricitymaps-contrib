@@ -8,7 +8,7 @@ from testfixtures import LogCapture
 from pkg_resources import resource_string
 from unittest.mock import patch
 import json
-from parsers import adjenti
+from parsers import ajenti
 
 
 class TestAusTasKi(unittest.TestCase):
@@ -22,9 +22,9 @@ class TestAusTasKi(unittest.TestCase):
         filename = 'parsers/test/mocks/AUS_RI_payload1.json'
         with open(filename) as f:
             fake_data = json.load(f)
-        with patch('parsers.adjenti.SignalR.get_value') as f:
+        with patch('parsers.ajenti.SignalR.get_value') as f:
             f.return_value = fake_data
-            data = adjenti.fetch_production()
+            data = ajenti.fetch_production()
         
         self.assertIsNotNone(data['production'])
         self.assertEqual(data['production']['wind'], 0.148)

@@ -328,7 +328,7 @@
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
-      "production": "adjenti.fetch_production"
+      "production": "ajenti.fetch_production"
     },
     "capacity": {
       "biomass": 6,
@@ -362,7 +362,7 @@
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
-      "production": "adjenti.fetch_production"
+      "production": "ajenti.fetch_production"
     },
     "capacity": {
       "biomass": 0,
@@ -387,7 +387,7 @@
     "flag_file_name": "au.png",
     "timezone": "Australia/Perth",
     "parsers": {
-      "production": "adjenti.fetch_production"
+      "production": "ajenti.fetch_production"
     },
     "capacity": {
       "biomass": 0,
