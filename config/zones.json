@@ -1534,15 +1534,15 @@
     ],
     "capacity": {
       "biomass": 1189,
-      "coal": 4826,
-      "gas": 30012,
+      "coal": 6219,
+      "gas": 31950,
       "geothermal": 0,
       "hydro": 17085,
       "hydro storage": 5645,
       "nuclear": 7117,
       "oil": 707,
-      "solar": 11828,
-      "wind": 25902,
+      "solar": 12735,
+      "wind": 27063,
       "unknown": 360
     },
     "contributors": [
