@@ -57,10 +57,9 @@ def fetch_main_df(zone_key=None, session=None, target_datetime=None, logger=logg
     r.raise_for_status()
     datasets = r.json()
     df = pd.concat([dataset_to_df(x) for x in datasets], axis=1)
-    # Only load data @ 30min interval (ignore the points at higher resolution)
-    # This is due to the fact that ROOFTOP_SOLAR is only given at 30 min interval
-    # We know price is @ 30min data, so use this as reference
-    return df.loc[~df['PRICE'].isna()]
+    # ROOFTOP_SOLAR is only given at 30 min interval, so let's interpolate it
+    df['ROOFTOP_SOLAR'] = df['ROOFTOP_SOLAR'].interpolate(limit=5)
+    return df
 
 
 def sum_vector(pd_series, keys, transform=lambda x: x):
@@ -74,9 +73,10 @@ def sum_vector(pd_series, keys, transform=lambda x: x):
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
-    # List of fuels
-    # fuel_tech = ["BIOMASS","BLACK_COAL", "BROWN_COAL", "DISTILLATE", "GAS_CCGT",
-    #   "GAS_OCGT", "GAS_RECIP", "GAS_STEAM", "HYDRO", "PUMPS", "SOLAR", "WIND", "BATTERY"]
+    # Index(['DISTILLATE', 'GAS_CCGT', 'GAS_OCGT', 'GAS_RECIP', 'GAS_STEAM', 'SOLAR',
+    #    'WIND', 'BATTERY_DISCHARGING', 'BATTERY_CHARGING', 'EXPORTS', 'IMPORTS',
+    #    'ROOFTOP_SOLAR', 'PRICE', 'DEMAND', 'TEMPERATURE'],
+    #   dtype='object')
 
     # Make sure charging is counted positively
     # and discharging negetively
@@ -123,6 +123,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
+    df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined at 30min steps
     return [{
         'datetime': arrow.get(datetime.to_pydatetime(), TIME_ZONE).datetime,
         'price': sum_vector(row, ['PRICE']),  # currency / MWh
