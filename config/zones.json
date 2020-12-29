@@ -511,6 +511,7 @@
     ]
   },
   "BE": {
+    "_comment": "Biomass includes waste incineration",
     "bounding_box": [
       [
         2.51357303225,
@@ -522,16 +523,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 1173,
+      "biomass": 1030,
       "coal": 0,
-      "gas": 6792,
+      "gas": 6825,
       "geothermal": 0,
       "hydro": 125,
       "hydro storage": 1310,
       "nuclear": 5943,
-      "oil": 341,
-      "solar": 4531,
-      "wind": 4460.8
+      "oil": 322,
+      "solar": 4788,
+      "wind": 4670.8
     },
     "contributors": [
       "https://github.com/corradio",
