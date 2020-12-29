@@ -544,7 +544,7 @@ const zoneDefinitions = [
   { zoneName: 'PH', type: 'country', id: 'PHL'},
   { zoneName: 'PL', type: 'country', id: 'POL'},
   { zoneName: 'PN', type: 'country', id: 'PCN'},
-  { zoneName: 'PR', type: 'country', id: 'PRI'},
+  { zoneName: 'PR', type: 'country', id: 'PRI'}, // Puerto Rico Electric Power Authority
   { zoneName: 'PS', type: 'country', id: 'PSX'},
   { zoneName: 'PT', type: 'subunits', subunits: ['PRX']}, // Portugal Mainland,
   { zoneName: 'PT-MA', type: 'subunits', subunits: ['PMD']}, // Madeira Island,
@@ -554,7 +554,7 @@ const zoneDefinitions = [
   { zoneName: 'QA', type: 'country', id: 'QAT'},
   { zoneName: 'RE', type: 'country', id: 'REU'},
   { zoneName: 'RO', type: 'country', id: 'ROU'},
-  { zoneName: 'RS', type: 'countries', countries: ['SRB', 'KOS']},
+  { zoneName: 'RS', type: 'country', id: 'SRB'},
   //{ zoneName: 'RU', type: 'administrations', administrations: [
   //  'RUS-2280', 'RUS-2416', 'RUS-3200', 'RUS-2356', 'RUS-2359', 'RUS-2343', 'RUS-2377', 'RUS-2397',
   //  'RUS-2366', 'RUS-2391', 'RUS-2167', 'RUS-2603', 'RUS-2401', 'RUS-2360', 'RUS-2602', 'RUS-2385',
@@ -712,6 +712,7 @@ const zoneDefinitions = [
   { zoneName: 'VU', type: 'country', id: 'VUT'},
   { zoneName: 'WF', type: 'country', id: 'WLF'},
   { zoneName: 'WS', type: 'country', id: 'WSM'},
+  { zoneName: 'XK', type: 'country', id: 'KOS'},
   { zoneName: 'YE', type: 'country', id: 'YEM'},
   { zoneName: 'YT', type: 'country', id: 'MYT'},
   { zoneName: 'ZA', type: 'country', id: 'ZAF'},

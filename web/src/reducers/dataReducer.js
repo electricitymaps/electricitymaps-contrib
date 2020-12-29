@@ -31,6 +31,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.timezone = zoneConfig.timezone;
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+  zone.delays = zoneConfig.delays;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });

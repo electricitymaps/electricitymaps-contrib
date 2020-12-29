@@ -35,12 +35,14 @@ const initialApplicationState = {
   isMovingMap: false,
   isLoadingMap: true,
   isMobile:
-  (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
+    (/android|blackberry|iemobile|ipad|iphone|ipod|opera mini|webos/i).test(navigator.userAgent),
   isProduction: isProduction(),
   isLocalhost: isLocalhost(),
   legendVisible: true,
   locale: window.locale,
   mapViewport: {
+    width: window.innerWidth,
+    height: window.innerHeight,
     latitude: 50,
     longitude: 0,
     zoom: 1.5,

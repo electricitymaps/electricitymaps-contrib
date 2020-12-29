@@ -38,7 +38,7 @@
 
 .controls-container {
     position: absolute;
-    top: 70px;
+    top: 20px;
     right: 16px;
 
     @include respond-to('small') {

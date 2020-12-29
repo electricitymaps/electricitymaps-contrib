@@ -1,0 +1,36 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on all PR where md files are modified
+# Disclaimer : this will fail one's PR for one's others broken internal link that went into master.
+# ... which shouldn't happen, for internal links.
+on:
+  pull_request:
+    branches: [ '**' ]
+    paths:
+      - '**.md'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job
+  check_broken_internal_links_in_md:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      # Install https://github.com/remarkjs/remark-validate-links
+      - name: Install remark-validate-links
+        timeout-minutes: 1
+        run: npm install remark-cli remark-validate-links
+        
+      # Invoke remarks to validate INTERNAL links in md. 
+      # --frail specifies to return a non-zero error code even on warning
+      # so the github action fails when a link is invalid
+      - name: Validate local links
+        timeout-minutes: 1
+        run: ./node_modules/.bin/remark --frail -u validate-links .
+

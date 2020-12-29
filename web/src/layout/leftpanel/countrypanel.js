@@ -12,6 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
+import { noop } from 'lodash';
 import moment from 'moment';
 
 // Components
@@ -38,12 +39,12 @@ import { TIMESCALE } from '../../helpers/constants';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = () => {
+const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const fossilFuelRatio = electricityMixMode === 'consumption'
@@ -53,15 +54,15 @@ const CountryLowCarbonGauge = () => {
     ? 100 - (fossilFuelRatio * 100)
     : null;
 
-  return <CircularGauge percentage={countryLowCarbonPercentage} />;
+  return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
-const CountryRenewableGauge = () => {
+const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
-    return <CircularGauge />;
+    return <CircularGauge {...props} />;
   }
 
   const renewableRatio = electricityMixMode === 'consumption'
@@ -71,7 +72,7 @@ const CountryRenewableGauge = () => {
     ? renewableRatio * 100
     : null;
 
-  return <CircularGauge percentage={countryRenewablePercentage} />;
+  return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
 function formatDatetime(datetime, timescale) {
@@ -207,10 +208,16 @@ const CountryPanel = ({
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
-                    onMouseMove={(x, y) => setTooltip({ position: { x, y } })}
+                    onClick={isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
+                    onMouseMove={!isMobile ? ((x, y) => setTooltip({ position: { x, y } })) : noop}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} />}
+                  {tooltip && (
+                    <LowCarbonInfoTooltip
+                      position={tooltip.position}
+                      onClose={() => setTooltip(null)}
+                    />
+                  )}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
@@ -289,7 +296,7 @@ const CountryPanel = ({
             <div>
               {__('country-panel.source')}
               {': '}
-              <a href="https://github.com/tmrowco/electricitymap-contrib#real-time-electricity-data-sources" target="_blank">
+              <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>
               <small>
@@ -312,7 +319,7 @@ const CountryPanel = ({
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
-            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#adding-a-new-region') }} />
+            <span dangerouslySetInnerHTML={{ __html: __('country-panel.noParserInfo', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
           </div>
         )}
 
@@ -333,7 +340,7 @@ const CountryPanel = ({
             />
             { /* Slack */}
             <span className="slack-button">
-              <a href="https://slack.tmrow.co" target="_blank" className="slack-btn">
+              <a href="https://slack.tmrow.com" target="_blank" className="slack-btn">
                 <span className="slack-ico" />
                 <span className="slack-text">Slack</span>
               </a>

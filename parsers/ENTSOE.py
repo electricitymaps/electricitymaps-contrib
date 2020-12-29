@@ -12,6 +12,7 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
+import itertools
 import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
@@ -67,6 +68,9 @@ ENTSOE_PARAMETER_GROUPS = {
     }
 }
 ENTSOE_PARAMETER_BY_GROUP = {v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g}
+# Get all the individual storage parameters in one list
+ENTSOE_STORAGE_PARAMETERS = list(itertools.chain.from_iterable(
+    ENTSOE_PARAMETER_GROUPS['storage'].values()))
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS = {
@@ -157,6 +161,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
     'DK-DK2->SE': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
                    ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'DE->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
+                   ENTSOE_DOMAIN_MAPPINGS['NO-NO2']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
     'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'],
                   ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
@@ -617,6 +623,7 @@ def parse_production(xml_text):
         datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
         is_production = len(timeseries.find_all('inBiddingZone_Domain.mRID'.lower())) > 0
         psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
+
         for entry in timeseries.find_all('point'):
             quantity = float(entry.find_all('quantity')[0].contents[0])
             position = int(entry.find_all('position')[0].contents[0])
@@ -625,13 +632,48 @@ def parse_production(xml_text):
                 i = datetimes.index(datetime)
                 if is_production:
                     productions[i][psr_type] += quantity
-                else:
+                elif psr_type in ENTSOE_STORAGE_PARAMETERS:
+                    # Only include consumption if it's for storage. In other cases
+                    # it is power plant self-consumption which should be ignored.
                     productions[i][psr_type] -= quantity
             except ValueError:  # Not in list
                 datetimes.append(datetime)
                 productions.append(defaultdict(lambda: 0))
                 productions[-1][psr_type] = quantity if is_production else -1 * quantity
     return productions, datetimes
+
+
+def parse_self_consumption(xml_text):
+    """
+    Parses the XML text and returns a dict of datetimes to the total self-consumption
+    value from all sources.
+    Self-consumption is the electricity used by a generation source.
+    This is defined as any consumption source (i.e. outBiddingZone_Domain.mRID)
+    that is not storage, e.g. consumption for B04 (Fossil Gas) is counted as
+    self-consumption, but consumption for B10 (Hydro Pumped Storage) is not.
+
+    In most cases, total self-consumption is reported by ENTSOE as 0, therefore the returned
+    dict only includes datetimes where the value > 0.
+    """
+
+    if not xml_text: return None
+    soup = BeautifulSoup(xml_text, 'html.parser')
+    res = {}
+    for timeseries in soup.find_all('timeseries'):
+        is_consumption = len(timeseries.find_all('outBiddingZone_Domain.mRID'.lower())) > 0
+        if not is_consumption: continue
+        psr_type = timeseries.find_all('mktpsrtype')[0].find_all('psrtype')[0].contents[0]
+        if psr_type in ENTSOE_STORAGE_PARAMETERS: continue
+        resolution = timeseries.find_all('resolution')[0].contents[0]
+        datetime_start = arrow.get(timeseries.find_all('start')[0].contents[0])
+
+        for entry in timeseries.find_all('point'):
+            quantity = float(entry.find_all('quantity')[0].contents[0])
+            if quantity == 0: continue
+            position = int(entry.find_all('position')[0].contents[0])
+            datetime = datetime_from_position(datetime_start, position, resolution)
+            res[datetime] = res[datetime] + quantity if datetime in res else quantity
+    return res
 
 
 def parse_production_per_units(xml_text):
@@ -775,6 +817,19 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
     if parsed:
         quantities, datetimes = parsed
 
+        # Add power plant self-consumption data. This is reported as part of the
+        # production data by ENTSOE.
+        # self_consumption is a dict of datetimes to the total self-consumption value
+        # from all sources.
+        # Only datetimes where the value > 0 are included.
+        self_consumption = parse_self_consumption(
+            query_production(domain, session,
+                            target_datetime=target_datetime))
+        for k, v in self_consumption.items():
+            i = datetimes.index(k)
+            if i == 0: continue
+            quantities[i] += v
+
         # if a target_datetime was requested, we return everything
         if target_datetime:
             return [{
@@ -785,7 +840,12 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
             } for dt, quantity in zip(datetimes, quantities)]
 
         # else we keep the last stored value
+        # Note, this may not include self-consumption data as sometimes consumption
+        # data is available for a given TZ a few minutes before production data is.
         dt, quantity = datetimes[-1].datetime, quantities[-1]
+        if dt not in self_consumption:
+            logger.warning(
+                'Self-consumption data not yet available for {} at {}'.format(zone_key, dt))
         data = {
             'zoneKey': zone_key,
             'datetime': dt,
@@ -873,6 +933,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     This will drop rows where the datetime is missing in at least a
     parser_output.
     """
+    if len(parser_outputs) == 0:
+        return []
     if merge_source is None:
         merge_source = parser_outputs[0][0]['source']
     prod_and_storage_dfs = [

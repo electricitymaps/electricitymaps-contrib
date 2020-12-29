@@ -11,19 +11,37 @@ import arrow
 import requests
 import re
 
-def fetch_production(zone_key='KW', session=None, logger=None):
+def fetch_production(zone_key='KW', target_datetime=None, session=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    # Kuwait very rarely imports power, so we assume that production is equal to consumption
+    # "Kuwait imports power in an emergency and only for a few hours at a time"
+    # See https://github.com/tmrowco/electricitymap-contrib/pull/2457#pullrequestreview-408781556 
+    consumption = fetch_consumption(zone_key=zone_key, session=session, logger=logger)
+
+    datapoint = {
+        'zoneKey': zone_key,
+        'datetime': arrow.now('Asia/Kuwait').datetime,
+        'production': { 'unknown': consumption },
+        'source': 'mew.gov.kw'
+    }
+
+    return datapoint
+
+
+def fetch_consumption(zone_key='KW', session=None, logger=None):
     r = session or requests.session()
     url = 'https://www.mew.gov.kw/en'
     response = r.get(url)
     load = re.findall(r"\((\d{4,5})\)", response.text)
     load = int(load[0])
-    production = {}
-    production['unknown'] = load
+    consumption = load
     
     datapoint = {
         'zoneKey': zone_key,
         'datetime': arrow.now('Asia/Kuwait').datetime,
-        'production': production,
+        'consumption': consumption,
         'source': 'mew.gov.kw'
     }
 
@@ -32,5 +50,7 @@ def fetch_production(zone_key='KW', session=None, logger=None):
 if __name__ == '__main__':
     """Main method, never used by the electricityMap backend, but handy for testing."""
     
+    print('fetch_consumption() ->')
+    print(fetch_consumption())
     print('fetch_production() ->')
     print(fetch_production())

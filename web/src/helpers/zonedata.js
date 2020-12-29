@@ -34,10 +34,18 @@ export function getProductionCo2Intensity(mode, zoneData) {
     );
 }
 
-export function getExchangeCo2Intensity(key, zoneData) {
-  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[key];
+export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
+  const exchange = (zoneData.exchange || {})[mode];
+  const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
 
-  return exchangeCo2Intensity;
+  return exchange >= 0
+    ? (
+      exchangeCo2Intensity
+    ) : (
+      electricityMixMode === 'consumption'
+        ? zoneData.co2intensity
+        : zoneData.co2intensityProduction
+    );
 }
 
 export function getTotalElectricity(zoneData, displayByEmissions) {

@@ -35,7 +35,13 @@ export function protectedJsonRequest(path) {
         if (err) {
           reject(err);
         } else if (!res || !res.data) {
-          reject(new Error(`Empty response received for ${url}`));
+          const errorToReturn = new Error(`Empty response received for ${url}`);
+          // Treat as a 404
+          errorToReturn.target = {
+            status: 404,
+            statusText: errorToReturn.message,
+          };
+          reject(errorToReturn);
         } else {
           resolve(res.data);
         }
@@ -59,7 +65,7 @@ export function handleRequestError(err) {
       if (!status) return;
 
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
-      if (status >= 500 && status <= 599) return;
+      if ((status >= 500 && status <= 599) || status === 404) return;
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {

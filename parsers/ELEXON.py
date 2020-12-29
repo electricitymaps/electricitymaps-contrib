@@ -30,7 +30,7 @@ REPORT_META = {
         'skiprows': 5
     },
     'FUELINST': {
-        'expected_fields': 19,
+        'expected_fields': 22,
         'skiprows': 1
     },
     'INTERFUELHH': {

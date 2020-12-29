@@ -1,4 +1,4 @@
-arrow==0.15.5
+arrow==0.16.0
 beautifulsoup4==4.6.0
 click==6.7
 demjson==2.2.4
@@ -18,3 +18,4 @@ testfixtures==6.0.0
 opencv-python==4.2.0.32
 xlrd==1.1.0
 freezegun==0.3.15
+signalr-client-threads==0.0.12
