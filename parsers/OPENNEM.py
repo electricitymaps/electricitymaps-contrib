@@ -8,11 +8,11 @@ import pandas as pd
 import numpy as np
 
 ZONE_KEY_TO_REGION = {
-    'AUS-NSW': 'nsw1',
-    'AUS-QLD': 'qld1',
-    'AUS-SA': 'sa1',
-    'AUS-TAS': 'tas1',
-    'AUS-VIC': 'vic1',
+    'AUS-NSW': 'nem/nsw1',
+    'AUS-QLD': 'nem/qld1',
+    'AUS-SA': 'nem/sa1',
+    'AUS-TAS': 'nem/tas1',
+    'AUS-VIC': 'nem/vic1',
     'AUS-WA': 'wem',
 }
 SOURCE = 'opennem.org'
@@ -49,9 +49,10 @@ def fetch_main_df(zone_key=None, session=None, target_datetime=None, logger=logg
         df_start = arrow.get(target_datetime).shift(days=-7).datetime
         y, w, d = df_start.isocalendar()
         iso_week = "{0}W{1:02d}".format(y, w)
+        raise Exception('Not tested yet')
         url = f'http://data.opennem.org.au/power/history/5minute/{region}_{iso_week}.json'
     else:
-        url = f'http://data.opennem.org.au/power/{region}.json'
+        url = f'https://data.opennem.org.au/v3/stats/au/{region.upper()}/power/7d.json'
 
     # Fetches the last week of data
     r = (session or requests).get(url)
