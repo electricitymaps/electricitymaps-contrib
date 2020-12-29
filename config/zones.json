@@ -392,7 +392,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "production": "AU_WA.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [

@@ -13,18 +13,18 @@ ZONE_KEY_TO_REGION = {
     'AUS-SA': 'sa1',
     'AUS-TAS': 'tas1',
     'AUS-VIC': 'vic1',
+    'AUS-WA': 'wem',
 }
 SOURCE = 'opennem.org'
-TIME_ZONE = 'Australia/Brisbane'
 
 
 def dataset_to_df(dataset):
     series = dataset['history']
     interval = series['interval']
-    dt_i = datetime.datetime.strptime(series['start'], '%Y-%m-%dT%H:%M+1000')
-    dt_f = datetime.datetime.strptime(series['last'], '%Y-%m-%dT%H:%M+1000')
-    _type = dataset['type']
-    _id = dataset['id']
+    dt_i = arrow.get(series['start']).datetime
+    dt_f = arrow.get(series['last']).datetime
+    _type = dataset.get('type', dataset['data_type'])  # fallback on `data_type`
+    _id = dataset.get('id', 'price')  # price doesn't have an id
 
     if _type != 'power':
         name = _type.upper()
@@ -35,7 +35,8 @@ def dataset_to_df(dataset):
     if interval[-1] == "m":
         interval += "in"
 
-    index = pd.date_range(start=dt_i, end=dt_f, freq=interval)[1:]
+    index = pd.date_range(start=dt_i, end=dt_f, freq=interval)
+    assert len(index) == len(series['data'])
     df = pd.DataFrame(index=index, data=series['data'], columns=[name])
     return df
 
@@ -55,10 +56,10 @@ def fetch_main_df(zone_key=None, session=None, target_datetime=None, logger=logg
     # Fetches the last week of data
     r = (session or requests).get(url)
     r.raise_for_status()
-    datasets = r.json()
+    datasets = r.json()['data']
     df = pd.concat([dataset_to_df(x) for x in datasets], axis=1)
-    # ROOFTOP_SOLAR is only given at 30 min interval, so let's interpolate it
-    df['ROOFTOP_SOLAR'] = df['ROOFTOP_SOLAR'].interpolate(limit=5)
+    # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
+    df['SOLAR_ROOFTOP'] = df['SOLAR_ROOFTOP'].interpolate(limit=5)
     return df
 
 
@@ -73,9 +74,10 @@ def sum_vector(pd_series, keys, transform=lambda x: x):
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
-    # Index(['DISTILLATE', 'GAS_CCGT', 'GAS_OCGT', 'GAS_RECIP', 'GAS_STEAM', 'SOLAR',
-    #    'WIND', 'BATTERY_DISCHARGING', 'BATTERY_CHARGING', 'EXPORTS', 'IMPORTS',
-    #    'ROOFTOP_SOLAR', 'PRICE', 'DEMAND', 'TEMPERATURE'],
+    print(df.columns)
+    # Index(['DISTILLATE', 'WIND', 'SOLAR_UTILITY', 'BIOENERGY_BIOGAS', 'GAS_OCGT',
+    #    'SOLAR_ROOFTOP', 'GAS_CCGT', 'COAL_BLACK', 'PRICE', 'TEMPERATURE',
+    #    'PRICE'],
     #   dtype='object')
 
     # Make sure charging is counted positively
@@ -84,17 +86,18 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         df['BATTERY_DISCHARGING'] = df['BATTERY_DISCHARGING'] * -1
 
     objs = [{
-        'datetime': arrow.get(datetime.to_pydatetime(), TIME_ZONE).datetime,
+        'datetime': arrow.get(datetime.to_pydatetime()).datetime,
         'production': {  # Unit is MW
-            'coal': sum_vector(row, ['BLACK_COAL', 'BROWN_COAL']),
+            'coal': sum_vector(row, ['COAL_BLACK', 'COAL_BROWN']),
             'gas': sum_vector(row, ['GAS_CCGT', 'GAS_OCGT', 'GAS_RECIP', 'GAS_STEAM']),
             'oil': sum_vector(row, ['DISTILLATE']),
             'hydro': sum_vector(row, ['HYDRO']),
             'wind': sum_vector(row, ['WIND']),
+            'biomass': sum_vector(row, ['BIOENERGY_BIOGAS']),
             # We here assume all rooftop solar is fed to the grid
             # This assumption should be checked and we should here only report
             # grid-level generation
-            'solar': sum_vector(row, ['SOLAR', 'ROOFTOP_SOLAR']),
+            'solar': sum_vector(row, ['SOLAR_UTILITY', 'SOLAR_ROOFTOP']),
         },
         'storage': {
             # opennem reports charging as negative, we here should report as positive
@@ -125,7 +128,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
     df = fetch_main_df(zone_key, session, target_datetime, logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined at 30min steps
     return [{
-        'datetime': arrow.get(datetime.to_pydatetime(), TIME_ZONE).datetime,
+        'datetime': arrow.get(datetime.to_pydatetime()).datetime,
         'price': sum_vector(row, ['PRICE']),  # currency / MWh
         'currency': 'AUD',
         'source': SOURCE,
@@ -136,5 +139,5 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
 if __name__ == '__main__':
     """Main method, never used by the electricityMap backend, but handy for testing."""
     # print(fetch_price('AUS-SA'))
-    print(fetch_production('AUS-SA'))
+    print(fetch_production('AUS-WA'))
     # print(fetch_production('AUS-SA', target_datetime=arrow.get('2020-01-01T00:00:00Z').datetime))
