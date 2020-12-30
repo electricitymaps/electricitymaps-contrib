@@ -23,7 +23,7 @@ def dataset_to_df(dataset):
     interval = series['interval']
     dt_i = arrow.get(series['start']).datetime
     dt_f = arrow.get(series['last']).datetime
-    _type = dataset.get('type', dataset['data_type'])  # fallback on `data_type`
+    _type = dataset['data_type']
     _id = dataset.get('id', 'price')  # price doesn't have an id
 
     if _type != 'power':
@@ -75,12 +75,10 @@ def sum_vector(pd_series, keys, transform=lambda x: x):
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
-    print(df.columns)
     # Index(['DISTILLATE', 'WIND', 'SOLAR_UTILITY', 'BIOENERGY_BIOGAS', 'GAS_OCGT',
     #    'SOLAR_ROOFTOP', 'GAS_CCGT', 'COAL_BLACK', 'PRICE', 'TEMPERATURE',
-    #    'PRICE'],
+    #    'PRICE', 'COAL_BROWN', 'GAS_STEAM', 'GAS_RECIP'],
     #   dtype='object')
-
     # Make sure charging is counted positively
     # and discharging negetively
     if 'BATTERY_DISCHARGING' in df.columns:
@@ -127,7 +125,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df = fetch_main_df(zone_key, session, target_datetime, logger)
-    df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined at 30min steps
+    df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
         'datetime': arrow.get(datetime.to_pydatetime()).datetime,
         'price': sum_vector(row, ['PRICE']),  # currency / MWh
