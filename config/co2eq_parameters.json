@@ -704,6 +704,10 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 246.34741810042195
+        },
+        "coal": {
+          "source": "Offical value for TEŠ6 coal power plant",
+          "value": 869 
         }
       },
       "SK": {
