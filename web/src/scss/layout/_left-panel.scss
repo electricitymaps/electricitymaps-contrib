@@ -41,7 +41,7 @@
     padding: 0;
     width: calc(14vw + 16rem);
     background-color: $lighter-gray;
-    position: fixed;
+    position: absolute;
     box-shadow: 0 24px 15px rgba(0,0,0,0.2);
     z-index: 2;
     display: flex;
@@ -114,7 +114,7 @@
     }
 
     @include respond-to('medium-up') {
-        height: 100vh; /* Should only be set on desktop */
+        height: 100%; /* Should only be set on desktop */
     }
 
     @include respond-to('small') {
