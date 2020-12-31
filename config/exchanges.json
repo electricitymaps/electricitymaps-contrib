@@ -802,8 +802,8 @@
   },
   "DE->DK-DK2": {
     "capacity": [
-      -600,
-      600
+      -1000,
+      1000
     ],
     "lonlat": [
       12.135031,
@@ -1302,6 +1302,10 @@
     "lonlat": [
       42.814,
       41.562
+    ],
+    "capacity": [
+      -700,
+      700
     ],
     "parsers": {
       "exchange": "GE.fetch_exchange"

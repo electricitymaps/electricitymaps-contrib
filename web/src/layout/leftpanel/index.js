@@ -58,24 +58,21 @@ const SmallLoader = styled.span`
 
 const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
-  isMobile: state.application.isMobile,
 });
 
-const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
+const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
 
   usePageViewsTracker();
 
-  // Hide the panel completely if looking at the map on mobile.
+  // Hide the panel completely if looking at the map on small screens.
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
-  const panelHidden = isMobile && location.pathname === '/map';
+  const smallScreenHiddenClass = location.pathname === '/map' ? 'small-screen-hidden' : '';
+  const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
 
   return (
-    <div
-      className={`panel left-panel ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
-      style={panelHidden ? { display: 'none' } : {}}
-    >
+    <div className={`panel left-panel ${collapsedClass} ${smallScreenHiddenClass}`}>
 
       <div id="mobile-header" className="large-screen-hidden brightmode">
         <div className="header-content">
@@ -91,7 +88,7 @@ const LeftPanel = ({ isLeftPanelCollapsed, isMobile }) => {
 
       <div
         id="left-panel-collapse-button"
-        className={`small-screen-hidden ${isLeftPanelCollapsed ? 'collapsed' : ''}`}
+        className={`small-screen-hidden ${collapsedClass}`}
         onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
         role="button"
         tabIndex="0"
