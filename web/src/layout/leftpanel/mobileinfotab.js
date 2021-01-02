@@ -25,19 +25,19 @@ const MobileInfoTab = () => {
   if (!mobileAppVersion && window.isCordova) {
     codePush.getCurrentPackage((localPackage) => {
       if (!localPackage) {
-        console.log("CodePush: No updates have been installed yet");
+        console.log('CodePush: No updates have been installed yet');
         return;
       }
 
       const {
         appVersion, // The native version of the application this package update is intended for.
         description, // same as given during deployment
-        isFirstRun, // flag indicating if the current application run is the first one after the package was applied.
+        // isFirstRun, // flag indicating if the current application run is the first one after the package was applied.
         label, // The internal label automatically given to the update by the CodePush server, such as v5. This value uniquely identifies the update within it's deployment
       } = localPackage;
 
       setMobileAppVersion(`${appVersion} ${label} (${description})`);
-    }, (err) => console.error(err));
+    }, err => console.error(err));
   }
 
   return (
