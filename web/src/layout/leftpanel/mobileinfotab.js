@@ -26,6 +26,7 @@ const MobileInfoTab = () => {
     codePush.getCurrentPackage((localPackage) => {
       if (!localPackage) {
         console.log('CodePush: No updates have been installed yet');
+        setMobileAppVersion(null);
         return;
       }
 
@@ -66,10 +67,10 @@ const MobileInfoTab = () => {
       </div>
 
       <div className="info-text">
+        <ColorBlindCheckbox />
         { mobileAppVersion ? (
           <p>{`App version: ${mobileAppVersion}`}</p>
         ) : null}
-        <ColorBlindCheckbox />
         <p>
           {__('panel-initial-text.thisproject')}
           {' '}

@@ -11,7 +11,7 @@ steps:
 
   build:
     inputs:
-      - ../web/public/dist
+      - ../web/public
       - ../web/{locales,src,views/pages/index.ejs}
       - ../web/locales-config.json
       - www/index.html
