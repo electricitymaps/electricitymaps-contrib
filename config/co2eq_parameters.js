@@ -1,4 +1,4 @@
-const exports = module.exports = {};
+var exports = module.exports = {};
 
 const co2eqParameters = require('./co2eq_parameters.json');
 
