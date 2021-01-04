@@ -18,7 +18,7 @@ exports.defaultExportIntensityOf = zoneKey => {
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
   // Compute footprint
   // Note that all mix values usm to 1 so we can simply do a scalar product
-  return Object.values(mix)
+  return Object.entries(mix)
     .map(([mode, v]) => v * exports.footprintOf(mode, zoneKey))
 }
 
