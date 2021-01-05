@@ -4,7 +4,7 @@
     left: 0;
     transition: all 0.5s ease;
     width: 100%;
-    top: -100px; /* hidden state */
+    top: -166px; /* hidden state */
     z-index: 99;
 
     .inner {
@@ -18,6 +18,11 @@
 	    border-bottom-left-radius: 5px;
 	    width: 100%;
 	    box-sizing: border-box;
+
+	    a {
+	        color: $white;
+	        font-weight: bold;
+	    }
 	}
 
 	&.active {

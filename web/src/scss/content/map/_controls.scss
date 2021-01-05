@@ -1,7 +1,7 @@
 .layer-buttons-container {
     position: absolute;
     right: 16px;
-    top: 201px;
+    top: 151px;
     display: flex;
     flex-direction: column;
 
@@ -38,7 +38,7 @@
 
 .controls-container {
     position: absolute;
-    top: 70px;
+    top: 20px;
     right: 16px;
 
     @include respond-to('small') {

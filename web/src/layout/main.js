@@ -17,7 +17,7 @@ import Map from './map';
 // Modules
 import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime } from '../hooks/router';
+import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
   useClientVersionFetch,
@@ -49,6 +49,7 @@ const Main = ({
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
+  const headerVisible = useHeaderVisible();
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -76,14 +77,14 @@ const Main = ({
           alignItems: 'stretch', /* force children to take 100% width */
         }}
       >
-        <Header />
+        {headerVisible && <Header />}
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <Map />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+              <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
             </div>
@@ -120,7 +121,7 @@ const Main = ({
           </div>
           <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
             <div className="inner">
-              {__('misc.newversion')}
+              <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>
           </div>
 
