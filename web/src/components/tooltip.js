@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Portal } from 'react-portal';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -67,7 +67,7 @@ const Tooltip = ({
 
   // Don't show the tooltip until its dimensions have
   // been set and its position correctly calculated.
-  style.opacity = width && height ? 1 : 0;
+  style.opacity = hasDimensions ? 1 : 0;
 
   return (
     <Portal>

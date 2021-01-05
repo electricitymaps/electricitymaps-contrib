@@ -3,10 +3,10 @@ import { useState, useEffect, useCallback } from 'react';
 export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [node, setNode] = useState(null);  // The DOM node
+  const [node, setNode] = useState(null); // The DOM node
 
   // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
-  const ref = useCallback(newNode => {
+  const ref = useCallback((newNode) => {
     // This callback will be called once the ref
     // returned has been attached to `node`.
     const update = () => {
@@ -27,7 +27,9 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
     };
   }, [offsetX, offsetY]);
 
-  return { ref, width, height, node };
+  return {
+    ref, width, height, node,
+  };
 }
 
 export function useWindowSize() {

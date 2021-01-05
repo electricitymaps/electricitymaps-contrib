@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, {
-  useRef,
   useMemo,
   useState,
 } from 'react';

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { range, isFinite } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
