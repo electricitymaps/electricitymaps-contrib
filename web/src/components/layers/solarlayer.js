@@ -5,7 +5,7 @@ import { range, last } from 'lodash';
 import styled from 'styled-components';
 import parse from 'color-parse';
 
-import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
+import { useRefWidthHeightObserver } from '../../hooks/viewport';
 import { useSolarEnabled } from '../../hooks/router';
 import { stackBlurImageOpacity } from '../../helpers/image';
 import { solarColor } from '../../helpers/scales';
@@ -39,9 +39,7 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ unproject }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref);
-  const height = useHeightObserver(ref);
+  const { ref, width, height } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 

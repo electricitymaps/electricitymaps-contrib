@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import { dispatchApplication } from '../../store';
 import { useExchangeArrowsData } from '../../hooks/layers';
-import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
+import { useRefWidthHeightObserver } from '../../hooks/viewport';
 
 import MapExchangeTooltip from '../tooltips/mapexchangetooltip';
 import ExchangeArrow from '../exchangearrow';
@@ -24,10 +24,8 @@ const Layer = styled.div`
 `;
 
 export default React.memo(({ project }) => {
-  const ref = useRef();
   const arrows = useExchangeArrowsData();
-  const width = useWidthObserver(ref);
-  const height = useHeightObserver(ref);
+  const { ref, width, height } = useRefWidthHeightObserver();
 
   const isMoving = useSelector(state => state.application.isMovingMap);
   const [tooltip, setTooltip] = useState(null);
