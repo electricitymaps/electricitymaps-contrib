@@ -36,6 +36,10 @@ with open('config/exchanges.json') as ec:
 if not len(sys.argv) > 1:
     raise Exception('Missing argument <zone_name>')
 
+if '>' in sys.argv[1]:
+    print('Error: please give a zone and not an interconnector')
+    sys.exit(1)
+
 if sys.argv[1] == 'all':
     zone_names = list(zones_config.keys())
     zone_config = zones_config
@@ -100,6 +104,13 @@ for k in exchange_parser_keys:
         if not exchange:
             print('Warning: no exchange data returned by %s' % k)
         else:
+            # Make sure we rename `sortedZoneKeys` to `sortedCountryCodes`
+            # cf https://github.com/tmrowco/electricitymap-contrib/issues/2674
+            exchange = {
+                k.replace('sortedZoneKeys', 'sortedCountryCodes'): v
+                for k, v in exchange.items()
+            }
+
             exchanges.append(exchange)
             print('Collected %s' % k)
             # pp.pprint(exchange)
@@ -124,12 +135,12 @@ with open('mockserver/public/v3/state', 'r') as f:
 
     # Update exchanges
     for e in exchanges:
-        exchange_zone_names = e['sortedZoneKeys'].split('->')
+        exchange_zone_names = e['sortedCountryCodes'].split('->')
         e['datetime'] = arrow.get(e['datetime']).isoformat()
-        obj['exchanges'][e['sortedZoneKeys']] = e.copy()
+        obj['exchanges'][e['sortedCountryCodes']] = e.copy()
 
         export_origin_zone_name = exchange_zone_names[0] if e['netFlow'] >= 0 else exchange_zone_names[1]
-        obj['exchanges'][e['sortedZoneKeys']]['co2intensity'] = \
+        obj['exchanges'][e['sortedCountryCodes']]['co2intensity'] = \
             obj['countries'].get(export_origin_zone_name, {}).get('co2intensity')
 
         for z in exchange_zone_names:
@@ -156,5 +167,5 @@ with open('mockserver/public/v3/state', 'r') as f:
 
 # Save
 with open('mockserver/public/v3/state', 'w') as f:
-    json.dump({'data': obj}, f)
+    json.dump({'data': obj}, f, indent=4, sort_keys=True)
 print('..done')
