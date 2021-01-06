@@ -43,6 +43,6 @@ steps:
       - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY}
       - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
       - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
-      # Promote # TODO: Enable
-      # - code-push promote electricitymap-android Staging Production
-      # - code-push promote electricitymap-ios Staging Production
+      # Promote
+      - code-push promote electricitymap-android Staging Production
+      - code-push promote electricitymap-ios Staging Production
