@@ -321,6 +321,10 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 366.7153663910574
+        },
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 17
         }
       },
       "FR": {
@@ -2964,6 +2968,9 @@
       "wind": true
     },
     "zoneOverrides": {
+      "FO": {
+        "unknown": true
+      },
       "GB-ORK": {
         "unknown": true
       },
