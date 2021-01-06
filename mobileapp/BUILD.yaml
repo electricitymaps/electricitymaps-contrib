@@ -6,6 +6,9 @@ steps:
       - package-lock.json
     commands:
       - apk add --no-cache git imagemagick
+      # Install gsutil
+      - apk add --no-cache curl bash python3
+      - curl https://sdk.cloud.google.com | bash > /dev/null
       - npm ci
       - npm install -g cordova@9.0.0 code-push-cli@2.1.9
 
@@ -31,18 +34,22 @@ steps:
       - node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
       - node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
       # Set Sentry auth-token
-      - echo "auth-token=${BRICK_SENTRY_AUTH_TOKEN}" >> sentry.properties
-      # Build
-      - touch google-services.json  # TODO: Remove
-      - touch GoogleService-Info.plist  # TODO: Remove
-      - cordova prepare
+      - echo "auth-token=${BRICK_SENTRY_AUTH_TOKEN:-unknown}" >> sentry.properties
 
   deploy:
     commands:
+      # Prepare
+      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/google-services.json .
+      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/GoogleService-Info.plist .
+      - cordova prepare
       # Release to staging
-      - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY}
+      - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
       - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
       - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
       # Promote
       - code-push promote electricitymap-android Staging Production
       - code-push promote electricitymap-ios Staging Production
+    secrets:
+      gcloud:
+        src: ~/.config/gcloud
+        target: /root/.config/gcloud
