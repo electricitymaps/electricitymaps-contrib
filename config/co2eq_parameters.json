@@ -321,6 +321,10 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 366.7153663910574
+        },
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 17
         }
       },
       "FR": {
@@ -818,13 +822,13 @@
       "powerOriginRatios": {
         "biomass": 0.017509,
         "battery discharge": 0,
-        "battery storage": 0,
+        "battery charge": 0,
         "coal": 0.38,
         "gas": 0.232,
         "geothermal": 0.003081,
         "hydro": 0.158,
         "hydro discharge": 0,
-        "hydro storage": 0,
+        "hydro charge": 0,
         "nuclear": 0.102,
         "oil": 0.03,
         "solar": 0.021966,
@@ -2964,6 +2968,9 @@
       "wind": true
     },
     "zoneOverrides": {
+      "FO": {
+        "unknown": true
+      },
       "GB-ORK": {
         "unknown": true
       },
