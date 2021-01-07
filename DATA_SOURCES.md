@@ -343,7 +343,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Bulgaria ⇄ Turkey [2485 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Denmark (West) ⇄ Norway: ["Skaggerak": 1700 MW](https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system))
 - Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
-- Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek)
+- Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek) and ["Kriegers Flak": 400MW](https://en.energinet.dk/Infrastructure-Projects/Projektliste/KriegersFlakCGS)
 - Denmark (West) ⇄ Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
 - Denmark (West) ⇄ Netherlands: ["COBRAcable": 700 MW](https://en.wikipedia.org/wiki/COBRAcable)
 - Estonia ⇄ European Russia And Ural [2464 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)

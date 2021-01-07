@@ -23,7 +23,7 @@ const MobileInfoTab = () => {
   return (
     <div className="mobile-info-tab">
       <div className="mobile-watermark brightmode">
-        <a href="http://www.tmrow.com/mission?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
           <img src={resolvePath('images/built-by-tomorrow.svg')} alt="" />
         </a>
         <div className="socialicons">
@@ -48,10 +48,25 @@ const MobileInfoTab = () => {
       <div className="info-text">
         <ColorBlindCheckbox />
         <p>
-          {__('panel-initial-text.thisproject')} <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">{__('panel-initial-text.opensource')}</a> ({__('panel-initial-text.see')} <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">{__('panel-initial-text.datasources')}</a>). <span dangerouslySetInnerHTML={{ __html: __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />.
+          {__('panel-initial-text.thisproject')}
+          {' '}
+          <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">{__('panel-initial-text.opensource')}</a>
+          {' '}
+(
+          {__('panel-initial-text.see')}
+          {' '}
+          <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">{__('panel-initial-text.datasources')}</a>
+).
+          {' '}
+          <span dangerouslySetInnerHTML={{ __html: __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
+.
         </p>
         <p>
-          {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
+          {__('footer.foundbugs')}
+          {' '}
+          <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>
+.
+          <br />
         </p>
       </div>
       <div className="social-buttons large-screen-hidden">
