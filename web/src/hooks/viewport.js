@@ -13,9 +13,9 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
       if (newNode !== null) {
         const newWidth = newNode.getBoundingClientRect().width - offsetX;
         const newHeight = newNode.getBoundingClientRect().height - offsetY;
-        if (width !== newWidth) { setWidth(newWidth); }
-        if (height !== newHeight) { setHeight(newHeight); }
-        if (node !== newNode) { setNode(newNode); }
+        setWidth(newWidth);
+        setHeight(newHeight);
+        setNode(newNode);
       }
     };
     // Set initial width

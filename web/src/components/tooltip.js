@@ -37,7 +37,7 @@ const Tooltip = ({
 
   // Note: at first render, width and height will be undefined
   // They will only be set once the DOM node has been created
-  const hasDimensions = width && height;
+  const hasDimensions = (width > 0 && height > 0);
 
   const style = {};
   if (hasDimensions) {
