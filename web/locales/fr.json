@@ -126,7 +126,7 @@
     "theMap": {
         "groupName": "La carte",
         "mapColors-question": "Que signifient les couleurs sur la carte ?",
-        "mapColors-answer": "Nous colorons les zones de la carte en fonction des quantités de gaz à effet de serre émises pour chaque unité d'électricité consommée là bas (c'est son intensité carbonne <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Des couleurs plus vertes signifient une consommation d'électricité plus respectueuse du climat.",
+        "mapColors-answer": "Nous colorons les zones de la carte en fonction des quantités de gaz à effet de serre émises pour chaque unité d'électricité consommée là bas (c'est son <a href=\"#carbonIntensity\" class=\"entry-link\">intensité carbonne</a>). Des couleurs plus vertes signifient une consommation d'électricité plus respectueuse du climat.",
         "mapArrows-question": "Que signifient les flèches entre les zones de la carte ?",
         "mapArrows-answer": "Les flèches entre les zones indiquent le flux physique (importations et exportations) d'électricité entre les zones: plus elles clignotent rapidement, plus le flux est important. Le flux d'électricité est important car, lorsque vous importez une partie de votre électricité depuis des zones voisines, vous importez également les émissions de carbone associées à sa production.",
         "mapSolarWindButtons-question": "Que font les boutons « Soleil » et « Vent » sur la carte ?",
