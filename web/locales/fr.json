@@ -83,7 +83,7 @@
         "hideWindLayer": "Cacher le calque de vent",
         "showSolarLayer": "Voir le calque d'ensoleillement",
         "hideSolarLayer": "Cacher le calque d'ensoleillement",
-        "toggleDarkMode": "Basculer le thème sombre",
+        "toggleDarkMode": "Activer ou désactiver le thème sombre",
         "noParserInfo": "Pas de données disponible",
         "temporaryDataOutage": "Données temporairement indisponibles",
         "production": "production",
