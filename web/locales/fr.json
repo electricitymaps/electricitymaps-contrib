@@ -94,8 +94,8 @@
     },
     "misc": {
         "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",
-        "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
-        "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
+        "oops": "Oups ! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
+        "newversion": "Une nouvelle version est disponible ! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
         "legend": "Légende",
         "faq": "Foire Aux Questions",
@@ -128,12 +128,12 @@
         "mapColors-question": "Que signifient les couleurs sur la carte ?",
         "mapColors-answer": "Nous colorons les zones de la carte en fonction des quantités de gaz à effet de serre émises pour chaque unité d'électricité consommée là bas (c'est son <a href=\"#carbonIntensity\" class=\"entry-link\">intensité carbonne</a>). Des couleurs plus vertes signifient une consommation d'électricité plus respectueuse du climat.",
         "mapArrows-question": "Que signifient les flèches entre les zones de la carte ?",
-        "mapArrows-answer": "Les flèches entre les zones indiquent le flux physique (importations et exportations) d'électricité entre les zones: plus elles clignotent rapidement, plus le flux est important. Le flux d'électricité est important car, lorsque vous importez une partie de votre électricité depuis des zones voisines, vous importez également les émissions de carbone associées à sa production.",
+        "mapArrows-answer": "Les flèches entre les zones indiquent le flux physique (importations et exportations) d'électricité entre les zones : plus elles clignotent rapidement, plus le flux est important. Le flux d'électricité est important car, lorsque vous importez une partie de votre électricité depuis des zones voisines, vous importez également les émissions de carbone associées à sa production.",
         "mapSolarWindButtons-question": "Que font les boutons « Soleil » et « Vent » sur la carte ?",
         "mapSolarWindButtons-answer": "Ces boutons permettent d’afficher en temps réel la vitesse du vent et la force du soleil, ce qui donne une indication du potentiel de transition vers des alternatives énergétiques basées sur l’énergie solaire et éolienne selon les zones. Notez qu'il ne s'agit que d'une indication superficielle, car le potentiel réel d'installation d'éoliennes et de cellules photovoltaïques dépend également de nombreux autres facteurs.",
         "mapNuclearColors-question": "Pourquoi les pays alimentés par énergie nucléaire sont-ils indiqués en vert sur la carte ?",
         "mapNuclearColors-answer": "La production d’énergie nucléaire a une très faible intensité en carbone (<a href=\"https://fr.wikipedia.org/wiki/Émission_de_gaz_à_effet_de_serre_par_source_d'énergie_électrique#Etude_2014_du_GIEC_sur_les_émissions_de_CO2_des_différents_sources_d'électricité\" target=\"_blank\">source</a>), et les pays alimentés par énergie nucléaire apparaissent donc en vert sur la carte. Cela ne signifie pas qu'il n'y a pas d'autres défis environnementaux associés à l'énergie nucléaire (comme c'est également le cas pour d'autres formes de production d'énergie), mais ces défis ne sont pas liés aux émissions de gaz à effet de serre et sortent donc du cadre de cette carte.",
-        "mapColorBlind-question": "Je suis daltonien. Comment puis-je lire votre carte?",
+        "mapColorBlind-question": "Je suis daltonien. Comment puis-je lire votre carte ?",
         "mapColorBlind-answer": "Vous pouvez modifier les couleurs affichées sur la carte en activant le paramètre « Mode daltonien ». Il se trouve au bas du panneau de gauche sur grand écran et dans l’onglet « À propos » sur mobile."
     },
     "mapAreas": {
@@ -172,10 +172,10 @@
         "groupName": "Nos données",
         "dataOrigins-question": "Comment obtenez-vous vos données ?",
         "dataOrigins-answer": "Nous calculons toutes nos données à partir de données accessibles au public, publiées par les opérateurs de réseaux électriques, les agences officielles et autres. Vous pouvez cliquer sur une zone pour voir plus de détails sur les origines de ces données.",
-        "dataDownload-question": "Puis-je télécharger vos données?",
+        "dataDownload-question": "Puis-je télécharger vos données ?",
         "dataDownload-answer": "Vous pouvez acheter un accès à toutes nos données dans notre <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>.",
         "dataIntegration-question": "Puis-je intégrer vos données en temps réel dans mon application ou mon appareil?",
-        "dataIntegration-answer": "Oui! Nous vendons l'accès à l'API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l'avenir."
+        "dataIntegration-answer": "Oui ! Nous vendons l'accès à l'API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l'avenir."
     },
     "aboutUs": {
         "groupName": "À propos de nous",
