@@ -54,7 +54,7 @@
         "emissionsorigin24h": "Origine des émissions des 24 dernières heures",
         "emissionsproduction24h": "Émissions produites dans les 24 dernières heures",
         "electricityorigin24h": "Origine de l'électricité des 24 dernières heures",
-        "electricityproduction24h": "Production électrique des dernières 24 heures",
+        "electricityproduction24h": "Production électrique des 24 dernières heures",
         "electricityprices24h": "Prix de l'électricité des 24 dernières heures",
         "Getdata": "Obtenir l'historique et l'API de prévision + marginal"
     },
