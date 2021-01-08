@@ -24,7 +24,7 @@
             "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d'informations sur les origines de son électricité."
         },
         "view4": {
-            "header": "Conditions de vent et solaires en temps réel",
+            "header": "Conditions de vent et d'ensoleillement en temps réel",
             "text": "La production d'énergie éolienne et solaire dépend de la météo. Appuyez sur les boutons Soleil et Vent pour afficher la force du vent et du soleil en temps réel dans le monde entier."
         }
     },
