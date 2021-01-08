@@ -99,7 +99,7 @@
         "retrynow": "Réessayez maintenant",
         "legend": "Légende",
         "faq": "Foire Aux Questions",
-        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un oeil à notre base de données.</a>",
+        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un œil à notre base de données.</a>",
         "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>"
     },
     "wind": "éolien",
