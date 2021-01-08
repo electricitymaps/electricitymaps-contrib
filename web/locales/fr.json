@@ -36,7 +36,7 @@
         "electricityproduction": "Production électrique",
         "electricityconsumption": "Consommation électrique",
         "bysource": "par source",
-        "emissions": "Emissions",
+        "emissions": "Émissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
         "helpfrom": "avec l'aide de",
         "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
@@ -52,7 +52,7 @@
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures",
         "emissionsorigin24h": "Origine des émissions des 24 dernières heures",
-        "emissionsproduction24h": "Emissions produites dans les 24 dernières heures",
+        "emissionsproduction24h": "Émissions produites dans les 24 dernières heures",
         "electricityorigin24h": "Origine de l'électricité des 24 dernières heures",
         "electricityproduction24h": "Production électrique des dernières 24 heures",
         "electricityprices24h": "Prix de l'électricité des 24 dernières heures",
@@ -93,7 +93,7 @@
         "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire"
     },
     "misc": {
-        "maintitle": "Emissions CO₂ de la consommation électrique en temps réel",
+        "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",
         "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
         "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
