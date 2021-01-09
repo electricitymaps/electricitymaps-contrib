@@ -42,7 +42,8 @@
         "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
         "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
         "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
-        "now": "Maintenant"
+        "now": "Maintenant",
+        "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées."
     },
     "left-panel": {
         "zone-list-header-title": "Impact sur le climat par zone",
@@ -56,7 +57,8 @@
         "electricityorigin24h": "Origine de l’électricité des 24 dernières heures",
         "electricityproduction24h": "Production électrique des 24 dernières heures",
         "electricityprices24h": "Prix de l’électricité des 24 dernières heures",
-        "Getdata": "Obtenir l’historique et l’API de prévision + marginal"
+        "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
+        "emissions24h": "Émissions des 24 dernières heures"
     },
     "footer": {
         "foundbugs": "Un bug ? Une idée ? Cliquez",
@@ -90,7 +92,8 @@
         "consumption": "consommation",
         "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
         "selectLanguage": "Choisissez une langue",
-        "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire"
+        "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire",
+        "dataIsDelayed": "Données en retard"
     },
     "misc": {
         "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",
@@ -100,7 +103,8 @@
         "legend": "Légende",
         "faq": "Foire Aux Questions",
         "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un œil à notre base de données.</a>",
-        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>"
+        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>",
+        "webgl-not-supported": "La carte ne peut pas être rendue car ce navigateur ne supporte pas WebGL."
     },
     "wind": "éolien",
     "solar": "solaire",
