@@ -251,6 +251,10 @@
             "countryName": "Australie",
             "zoneName": "Tasmanie"
         },
+        "AUS-TAS-KI": {
+            "countryName": "Australie",
+            "zoneName": "Tasmanie (Île King)"
+        },
         "AUS-VIC": {
             "countryName": "Australie",
             "zoneName": "Victoria"
@@ -418,6 +422,10 @@
             "countryName": "Chili",
             "zoneName": "SING"
         },
+        "CL-SING-SIC": {
+            "countryName": "Chili",
+            "zoneName": "SING - SIC"
+        },
         "CL-SIC": {
             "countryName": "Chili",
             "zoneName": "SIC"
@@ -429,6 +437,10 @@
         "CL-SEA": {
             "countryName": "Chili",
             "zoneName": "SEA"
+        },
+        "CL-SEN": {
+            "countryName": "Chili",
+            "zoneName": "SEN"
         },
         "CM": {
             "zoneName": "Cameroun"
@@ -1138,11 +1150,11 @@
         },
         "NZ-NZN": {
             "countryName": "Nouvelle Zélande",
-            "zoneName": "île du Nord"
+            "zoneName": "Île du Nord"
         },
         "NZ-NZS": {
             "countryName": "Nouvelle Zélande",
-            "zoneName": "île du Sud"
+            "zoneName": "Île du Sud"
         },
         "OM": {
             "zoneName": "Oman"
@@ -1363,6 +1375,10 @@
         "US": {
             "zoneName": "États-Unis d’Amérique"
         },
+        "US-AK": {
+            "countryName": "États-Unis d’Amérique",
+            "zoneName": "Alaska"
+        },
         "US-AL": {
             "countryName": "États-Unis d’Amérique",
             "zoneName": "Alabama"
@@ -1378,6 +1394,38 @@
         "US-HI": {
             "countryName": "États-Unis d’Amérique",
             "zoneName": "Hawaï"
+        },
+        "US-HI-HA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Hawaï"
+        },
+        "US-HI-KA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Oahu"
         },
         "US-IPC": {
             "countryName": "États-Unis d’Amérique",
@@ -1485,46 +1533,6 @@
         },
         "ZW": {
             "zoneName": "Zimbabwe"
-        },
-        "AUS-TAS-KI": {
-            "countryName": "Tasmanie",
-            "zoneName": "Île King"
-        },
-        "CL-SING-SIC": {
-            "countryName": "Chili",
-            "zoneName": "Chili"
-        },
-        "US-HI-HA": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Hawaï"
-        },
-        "US-HI-KA": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Kauai"
-        },
-        "US-HI-KH": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Kahoolawe"
-        },
-        "US-HI-LA": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Lanai"
-        },
-        "US-HI-MA": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Maui"
-        },
-        "US-HI-MO": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Molokai"
-        },
-        "US-HI-NI": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Niihau"
-        },
-        "US-HI-OA": {
-            "countryName": "États Unis d’Amérique",
-            "zoneName": "Oahu"
         }
     }
 }
