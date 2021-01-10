@@ -107,5 +107,3 @@ def test_parser(zone, data_type, target_datetime):
 
 
 
-if __name__ == '__main__':
-    print(test_parser())
