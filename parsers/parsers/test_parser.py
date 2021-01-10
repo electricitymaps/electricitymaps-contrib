@@ -9,7 +9,7 @@ import click
 import datetime
 import logging
 
-from utils.parsers import PARSER_KEY_TO_DICT
+from parsers.utils.parsers import PARSER_KEY_TO_DICT
 
 
 @click.command()
@@ -70,7 +70,7 @@ def test_parser(zone, data_type, target_datetime):
         print('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
         return
-    
+
     assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
         'Datetimes must be returned as native datetime.datetime objects'
 
@@ -91,7 +91,7 @@ def test_parser(zone, data_type, target_datetime):
                      'min returned datetime: {} UTC'.format(first_dt),
                      'max returned datetime: {} UTC {}'.format(
                          last_dt, max_dt_warning), ]))
-    
+
     if type(res) == dict:
         res = [res]
     for event in res:
@@ -105,7 +105,7 @@ def test_parser(zone, data_type, target_datetime):
         except ValidationError as e:
             print('Validation failed: {}'.format(e))
 
-    
+
 
 if __name__ == '__main__':
     print(test_parser())

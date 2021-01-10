@@ -1,9 +1,12 @@
 import unittest
+from pathlib import Path
+
 from requests import Session
-from requests_mock import Adapter, ANY
-from pkg_resources import resource_string
+from requests_mock import ANY, Adapter
+
 from parsers import IN_AP
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class Test_IN_AP(unittest.TestCase):
 
@@ -11,7 +14,8 @@ class Test_IN_AP(unittest.TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount('https://', self.adapter)
-        response_text = resource_string("parsers.test.mocks", "IN_AP.html")
+        with Path(MOCK_DIR, "IN_AP.html").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri(ANY, ANY, text=str(response_text))
 
     def test_fetch_production(self):

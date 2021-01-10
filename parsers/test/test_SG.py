@@ -1,14 +1,15 @@
 import logging
 import unittest
+from pathlib import Path
 
 from freezegun import freeze_time
-from pkg_resources import resource_string
 from requests import Session
 from requests_mock import Adapter
 from testfixtures import LogCapture
 
 from parsers import SG
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class TestSolar(unittest.TestCase):
     def setUp(self):
@@ -16,12 +17,14 @@ class TestSolar(unittest.TestCase):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount('https://', self.adapter)
-        response_data = resource_string('parsers.test.mocks', 'SG_ema_gov_sg_solar_map.png')
+        with Path(MOCK_DIR, 'SG_ema_gov_sg_solar_map.png').open('rb') as f:
+            response_data = f.read()
         self.adapter.register_uri('GET', SG.SOLAR_URL, content=response_data)
 
     @freeze_time('2020-05-05 21:27:00')
     def test_works_when_nonzero(self):
-        response_data = resource_string('parsers.test.mocks', 'SG_ema_gov_sg_solar_map_nonzero.png')
+        with Path(MOCK_DIR, 'SG_ema_gov_sg_solar_map_nonzero.png').open('rb') as f:
+            response_data = f.read()
         self.adapter.register_uri('GET', SG.SOLAR_URL, content=response_data)
         power = SG.get_solar(self.session, logger=self.logger)
         self.assertEqual(power, 8.53)

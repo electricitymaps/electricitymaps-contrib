@@ -7,7 +7,7 @@ import math, logging
 
 import numpy as np
 import pandas as pd
-from .utils import nan_to_zero
+from parsers.lib.utils import nan_to_zero
 
 
 def has_value_for_key(datapoint, key, logger):

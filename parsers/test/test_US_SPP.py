@@ -2,21 +2,25 @@
 
 """Tests for US_SPP.py"""
 
-from arrow import get
-from datetime import datetime
 import logging
-from pandas import read_pickle
-from parsers import US_SPP
-from testfixtures import LogCapture
 import unittest
+from datetime import datetime
 from unittest.mock import patch
+from pathlib import Path
 
+from arrow import get
+from pandas import read_pickle
+from testfixtures import LogCapture
+
+from parsers import US_SPP
+
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class TestUSSPP(unittest.TestCase):
     """Patches in a fake response from the data source to allow consistent testing."""
 
     def test_fetch_production(self):
-        filename = 'parsers/test/mocks/US_SPP_Gen_Mix.pkl'
+        filename = MOCK_DIR / 'US_SPP_Gen_Mix.pkl'
         fake_data = read_pickle(filename)
 
         # Suppress log messages to prevent interfering with test formatting.
@@ -53,8 +57,7 @@ class TestUSSPP(unittest.TestCase):
     def test_SPP_logging(self):
         """Make sure that new generation types are logged properly."""
 
-        filename = 'parsers/test/mocks/US_SPP_Gen_Mix.pkl'
-        fake_data = read_pickle(filename)
+        fake_data = read_pickle(MOCK_DIR / 'US_SPP_Gen_Mix.pkl')
 
         with LogCapture() as log:
             with patch('parsers.US_SPP.get_data') as gd:

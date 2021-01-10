@@ -5,7 +5,7 @@ import warnings
 
 import arrow
 
-from utils.config import EXCHANGES_CONFIG, emission_factors
+from parsers.utils.config import EXCHANGES_CONFIG, emission_factors
 
 class ValidationError(ValueError):
     pass

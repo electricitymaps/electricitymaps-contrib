@@ -4,11 +4,15 @@
 
 import json
 import unittest
-from arrow import get
 from datetime import datetime
-from parsers import BR
+from pathlib import Path
 from unittest.mock import patch
 
+from arrow import get
+
+from parsers import BR
+
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class ProductionTestcase(unittest.TestCase):
     """
@@ -17,7 +21,7 @@ class ProductionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open('parsers/test/mocks/BR.html') as f:
+        with open(MOCK_DIR / 'BR.html') as f:
             self.fake_data = json.load(f)
 
         with patch('parsers.BR.get_data', return_value = self.fake_data) as gd:
@@ -69,7 +73,7 @@ class ExchangeTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open('parsers/test/mocks/BR.html') as f:
+        with open(MOCK_DIR / 'BR.html') as f:
             self.fake_data = json.load(f)
 
         with patch('parsers.BR.get_data', return_value = self.fake_data) as gd:
@@ -109,7 +113,7 @@ class RegionTestcase(unittest.TestCase):
     """
 
     def setUp(self):
-        with open('parsers/test/mocks/BR.html') as f:
+        with open(MOCK_DIR / 'BR.html') as f:
             self.fake_data = json.load(f)
 
         with patch('parsers.BR.get_data', return_value = self.fake_data) as gd:

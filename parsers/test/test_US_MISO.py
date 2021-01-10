@@ -3,22 +3,27 @@
 """Tests for US_MISO.py"""
 
 import json
+import logging
 import os
 import unittest
-from arrow import get
 from datetime import datetime
-from parsers import US_MISO
+from pathlib import Path
+
+from arrow import get
 from testfixtures import LogCapture
 from unittest.mock import patch
-import logging
+
+from parsers import US_MISO
+
+
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 
 class TestUSMISO(unittest.TestCase):
     """Patches in a fake response from the data source to allow repeatable testing."""
 
     def test_fetch_production(self):
-        filename = 'parsers/test/mocks/MISO.html'
-        with open(filename) as f:
+        with open(MOCK_DIR / 'MISO.html') as f:
             fake_data = json.load(f)
 
         with LogCapture() as log:

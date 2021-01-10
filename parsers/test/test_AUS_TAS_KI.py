@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
- 
+
+import json
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from requests import Session
 from requests_mock import Adapter
-from testfixtures import LogCapture
-from pkg_resources import resource_string
-from unittest.mock import patch
-import json
+
 from parsers import AUS_TAS_KI
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class TestAusTasKi(unittest.TestCase):
 
@@ -19,13 +20,12 @@ class TestAusTasKi(unittest.TestCase):
         self.session.mount('https://', self.adapter)
 
     def test_parsing_payload(self):
-        filename = 'parsers/test/mocks/AUS_TAS_KI_payload1.json'
-        with open(filename) as f:
+        with open(MOCK_DIR / 'AUS_TAS_KI_payload1.json') as f:
             fake_data = json.load(f)
         with patch('parsers.AUS_TAS_KI.SignalR.get_value') as f:
             f.return_value = fake_data
             data = AUS_TAS_KI.fetch_production()
-        
+
         self.assertIsNotNone(data['production'])
         self.assertEqual(data['production']['wind'], 1.024)
         self.assertEqual(data['production']['solar'], 0)
@@ -36,7 +36,7 @@ class TestAusTasKi(unittest.TestCase):
     # This test will fetch the payload from the webservice
     # def test_parsing_payload_real(self):
     #     data = AUS_TAS_KI.fetch_production()
-        
+
     #     self.assertIsNotNone(data['production'])
     #     self.assertIsNotNone(data['production']['wind'])
     #     self.assertIsNotNone(data['production']['solar'])

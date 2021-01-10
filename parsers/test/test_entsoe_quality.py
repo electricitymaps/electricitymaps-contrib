@@ -4,7 +4,7 @@
 import logging
 import unittest
 from parsers.ENTSOE import validate_production
-from parsers.test.mocks.quality_check import *
+from .mocks.quality_check import *
 
 
 class ProductionTestCase(unittest.TestCase):

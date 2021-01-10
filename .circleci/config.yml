@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          key: pip-{{ .Branch }}-{{ checksum "parsers/setup.py" }}
       - run:
           name: Upgrade pip
           command: sudo pip install -q --upgrade pip
@@ -17,7 +17,7 @@ jobs:
             pip -v --version
             sudo pip install --progress-bar=off -q flake8 pylint==2.4.4
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
-            sudo pip install --progress-bar=off -q -r parsers/requirements.txt
+            sudo pip install --progress-bar=off -q ./parsers
             # stop the build if there are Python syntax errors or undefined names
             flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
             # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
@@ -25,7 +25,7 @@ jobs:
             pylint -E parsers/*.py -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence
             python -m unittest discover parsers/test
       - save_cache:
-          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          key: pip-{{ .Branch }}-{{ checksum "parsers/setup.py" }}
           paths:
             - "~/.cache/pip"
 
@@ -38,7 +38,7 @@ jobs:
           command: |
             sudo npm install -g jsonlint
             jsonlint config/*.json web/locales/*.json
-  
+
   test_js:
     docker:
       - image: circleci/node:12.13

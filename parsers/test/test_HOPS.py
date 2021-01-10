@@ -1,11 +1,13 @@
 import unittest
+from pathlib import Path
 
 from requests import Session
 from requests_mock import Adapter
 from testfixtures import LogCapture
-from pkg_resources import resource_string
+
 from parsers import HOPS
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class TestHOPS(unittest.TestCase):
 
@@ -15,12 +17,15 @@ class TestHOPS(unittest.TestCase):
         self.session.mount('https://', self.adapter)
 
     def test_fetch_production_ok(self):
-        response_text = resource_string("parsers.test.mocks", "hops.json")
+        with Path(MOCK_DIR, "hops.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://www.hops.hr/Home/PowerExchange", content=response_text)
-        response_text = resource_string("parsers.test.mocks", "hrote_dates.json")
+        with Path(MOCK_DIR, "hrote_dates.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/dates.json",
                                   content=response_text)
-        response_text = resource_string("parsers.test.mocks", "hrote.json")
+        with Path(MOCK_DIR, "hrote.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/"
                                          "21.5.2020.json", content=response_text)
 
@@ -36,12 +41,15 @@ class TestHOPS(unittest.TestCase):
         self.assertEqual(data['production']['unknown'], 1474.5)
 
     def test_fetch_production_no_solar(self):
-        response_text = resource_string("parsers.test.mocks", "hops.json")
+        with Path(MOCK_DIR, "hops.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://www.hops.hr/Home/PowerExchange", content=response_text)
-        response_text = resource_string("parsers.test.mocks", "hrote_dates.json")
+        with Path(MOCK_DIR, "hrote_dates.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/dates.json",
                                   content=response_text)
-        response_text = resource_string("parsers.test.mocks", "hrote_no_solar_on_that_hour.json")
+        with Path(MOCK_DIR, "hrote_no_solar_on_that_hour.json").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/"
                                          "21.5.2020.json", content=response_text)
 

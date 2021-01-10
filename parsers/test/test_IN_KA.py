@@ -1,10 +1,12 @@
 import unittest
+from pathlib import Path
 
 from requests import Session
 from requests_mock import Adapter
-from pkg_resources import resource_string
+
 from parsers import IN_KA
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class Test_IN_KA(unittest.TestCase):
 
@@ -14,7 +16,8 @@ class Test_IN_KA(unittest.TestCase):
         self.session.mount('http://', self.adapter)
 
     def test_fetch_consumption(self):
-        response_text = resource_string("parsers.test.mocks", "IN_KA_Default.html")
+        with Path(MOCK_DIR, "IN_KA_Default.html").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "http://kptclsldc.com/Default.aspx", content=response_text)
 
         try:
@@ -29,9 +32,11 @@ class Test_IN_KA(unittest.TestCase):
             self.fail("IN_KA.fetch_consumption() raised Exception: {0}".format(ex.message))
 
     def test_fetch_production(self):
-        response_text = resource_string("parsers.test.mocks", "IN_KA_StateGen.html")
+        with Path(MOCK_DIR, "IN_KA_StateGen.html").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "http://kptclsldc.com/StateGen.aspx", content=response_text)
-        response_text = resource_string("parsers.test.mocks", "IN_KA_StateNCEP.html")
+        with Path(MOCK_DIR, "IN_KA_StateNCEP.html").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri("GET", "http://kptclsldc.com/StateNCEP.aspx", content=response_text)
 
         try:

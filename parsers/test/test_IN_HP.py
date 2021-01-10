@@ -1,20 +1,22 @@
 import re
 import unittest
+from pathlib import Path
 
 from requests import Session
-from requests_mock import Adapter, ANY
-from pkg_resources import resource_string
+from requests_mock import ANY, Adapter
 from testfixtures import LogCapture
 
 from parsers import IN_HP
 
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 class Test_IN_HP(unittest.TestCase):
     def setUp(self):
         self.session = Session()
         self.adapter = Adapter()
         self.session.mount('https://', self.adapter)
-        response_text = resource_string("parsers.test.mocks", "IN_HP.html")
+        with Path(MOCK_DIR, "IN_HP.html").open('rb') as f:
+            response_text = f.read()
         self.adapter.register_uri(
             "GET", IN_HP.DATA_URL, text=str(response_text))
 

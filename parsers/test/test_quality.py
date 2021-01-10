@@ -3,7 +3,7 @@
 """Tests for quality.py."""
 import unittest
 from parsers.lib.quality import validate_consumption, validate_exchange, validate_production
-from parsers.test.mocks.quality_check import *
+from .mocks.quality_check import *
 
 
 class ConsumptionTestCase(unittest.TestCase):

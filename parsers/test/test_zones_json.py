@@ -1,10 +1,13 @@
 import json
 import unittest
+from pathlib import Path
 
+
+CONFIG_DIR = Path(__file__).parent.parent.parent / 'config'
 
 class ZonesJsonTestcase(unittest.TestCase):
     def setUp(self):
-        with open('config/zones.json') as zc:
+        with open(CONFIG_DIR / 'zones.json') as zc:
             self.zones_config = json.load(zc)
 
     def test_bounding_boxes(self):

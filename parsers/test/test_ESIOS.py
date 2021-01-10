@@ -1,11 +1,13 @@
 import unittest
 from json import loads
+from pathlib import Path
 
-from pkg_resources import resource_string
 from requests import Session
+from requests_mock import ANY, Adapter
 
 from parsers import ESIOS
-from requests_mock import ANY, Adapter
+
+MOCK_DIR = Path(__file__).parent / 'mocks'
 
 
 class TestESIOS(unittest.TestCase):
@@ -16,7 +18,8 @@ class TestESIOS(unittest.TestCase):
         self.session.mount('https://', self.adapter)
 
     def test_fetch_exchange(self):
-        json_data = resource_string("parsers.test.mocks", "ESIOS_ES_MA.json")
+        with Path(MOCK_DIR, "ESIOS_ES_MA.json").open('rb') as f:
+            json_data = f.read()
         self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
         try:
             data_list = ESIOS.fetch_exchange('ES', 'MA', self.session, 'ESIOS_MOCK_TOKEN')
