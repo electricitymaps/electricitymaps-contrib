@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, {
-  useRef,
   useMemo,
   useState,
 } from 'react';
@@ -10,7 +9,7 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatchApplication } from '../store';
-import { useWidthObserver } from '../hooks/viewport';
+import { useRefWidthHeightObserver } from '../hooks/viewport';
 import {
   useCurrentZoneData,
   useCurrentZoneExchangeKeys,
@@ -330,25 +329,28 @@ const CountryElectricityProductionTable = React.memo(({
 
   // Use the whole history to determine the min/max,
   // fallback on current data
-  const history = useMemo(() => useCurrentZoneHistory() || [data], [useCurrentZoneHistory, data]);
+  const history = useCurrentZoneHistory();
   const [minPower, maxPower] = useMemo(
-    () => [
-      d3Min(history.map(zoneData => Math.min(
-        -zoneData.maxStorageCapacity || 0,
-        -zoneData.maxStorage || 0,
-        -zoneData.maxExport || 0,
-        -zoneData.maxExportCapacity || 0,
-      ))) || 0,
-      d3Max(history.map(zoneData => Math.max(
-        zoneData.maxCapacity || 0,
-        zoneData.maxProduction || 0,
-        zoneData.maxDischarge || 0,
-        zoneData.maxStorageCapacity || 0,
-        zoneData.maxImport || 0,
-        zoneData.maxImportCapacity || 0,
-      ))) || 0,
-    ],
-    [history],
+    () => {
+      const historyOrCurrent = history || [data];
+      return [
+        d3Min(historyOrCurrent.map(zoneData => Math.min(
+          -zoneData.maxStorageCapacity || 0,
+          -zoneData.maxStorage || 0,
+          -zoneData.maxExport || 0,
+          -zoneData.maxExportCapacity || 0,
+        ))) || 0,
+        d3Max(historyOrCurrent.map(zoneData => Math.max(
+          zoneData.maxCapacity || 0,
+          zoneData.maxProduction || 0,
+          zoneData.maxDischarge || 0,
+          zoneData.maxStorageCapacity || 0,
+          zoneData.maxImport || 0,
+          zoneData.maxImportCapacity || 0,
+        ))) || 0,
+      ];
+    },
+    [history, data],
   );
 
   // Power in MW
@@ -446,8 +448,7 @@ const CountryTable = ({
   electricityMixMode,
   isMobile,
 }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref);
+  const { ref, width } = useRefWidthHeightObserver();
 
   const exchangeKeys = useCurrentZoneExchangeKeys();
   const data = useCurrentZoneData();
