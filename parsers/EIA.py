@@ -473,8 +473,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
                   logger=None):
     """Fetches and converts a data series."""
-    # Will raise if the key does not exist or is None, this call is used as a check
-    get_token('EIA_KEY')
 
     s = session or requests.Session()
 
