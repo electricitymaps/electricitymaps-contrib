@@ -1,11 +1,15 @@
-const exports = module.exports = {};
+var exports = module.exports = {};
 
 const co2eqParameters = require('./co2eq_parameters.json');
 
 exports.footprintOf = function(mode, zoneKey) {
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];
   const override = (co2eqParameters.emissionFactors.zoneOverrides[zoneKey] || {})[mode];
-  return (override || defaultFootprint || {}).value;
+  const value = (override || defaultFootprint).value;
+  if (value == null) {
+    throw new Error(`Couldn't find footprint of ${mode} for ${zoneKey}`);
+  }
+  return value;
 };
 exports.sourceOf = function(mode, zoneKey) {
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];
@@ -17,9 +21,10 @@ exports.defaultExportIntensityOf = zoneKey => {
   const mix = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] ||
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
   // Compute footprint
-  // Note that all mix values usm to 1 so we can simply do a scalar product
-  return Object.values(mix)
+  // Note that all mix values sum to 1 so we can simply do a scalar product
+  return Object.entries(mix)
     .map(([mode, v]) => v * exports.footprintOf(mode, zoneKey))
+    .reduce((a, b) => a + b, 0);
 }
 
 exports.defaultRenewableRatioOf = (zoneKey) => {
@@ -54,7 +59,7 @@ exports.fossilFuelAccessor = (zoneKey, k, v) => {
   return (k == 'coal' ||
           k == 'gas' ||
           k == 'oil' ||
-          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA' && zoneKey !== 'SG' && zoneKey !== 'PR')) ||
+          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA' && zoneKey !== 'SG' && zoneKey !== 'PR' && zoneKey !== 'FO')) ||
           k == 'other') ? 1 : 0;
 }
 

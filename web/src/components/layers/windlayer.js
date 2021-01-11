@@ -1,5 +1,4 @@
 import React, {
-  useRef,
   useState,
   useEffect,
   useMemo,
@@ -8,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
-import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
+import { useRefWidthHeightObserver } from '../../hooks/viewport';
 import { useWindEnabled } from '../../hooks/router';
 
 import Windy from '../../helpers/windy';
@@ -25,9 +24,7 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ project, unproject }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref);
-  const height = useHeightObserver(ref);
+  const { ref, width, height } = useRefWidthHeightObserver();
   const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
