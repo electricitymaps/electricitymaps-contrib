@@ -1,8 +1,11 @@
 import { scaleLinear, scaleQuantize } from 'd3-scale';
+import { range } from 'd3-array';
+import { interpolate } from 'd3-interpolate';
 
 // ** Wind
+const maxWind = 15;
 export const windColor = scaleLinear()
-  .domain([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
+  .domain(range(10).map(i => interpolate(0, maxWind)(i / (10 - 1))))
   .range([
     'rgba(0,   255, 255, 1.0)',
     'rgba(100, 240, 255, 1.0)',
