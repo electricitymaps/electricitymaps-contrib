@@ -201,11 +201,32 @@
         "AD": {
             "zoneName": "アンドラ"
         },
+        "AE": {
+            "zoneName": "アラブ首長国連邦"
+        },
+        "AF": {
+            "zoneName": "アフガニスタン"
+        },
+        "AG": {
+            "zoneName": "アンティグア・バーブーダ"
+        },
+        "AI": {
+            "zoneName": "アンギラ"
+        },
         "AL": {
             "zoneName": "アルバニア"
         },
         "AM": {
             "zoneName": "アルメニア"
+        },
+        "AO": {
+            "zoneName": "アンゴラ"
+        },
+        "AQ": {
+            "zoneName": "南極大陸"
+        },
+        "AS": {
+            "zoneName": "アメリカ領サモア"
         },
         "AT": {
             "zoneName": "オーストリア"
@@ -233,6 +254,10 @@
             "countryName": "オーストラリア",
             "zoneName": "タスマニア"
         },
+        "AUS-TAS-KI": {
+            "countryName": "オーストラリア",
+            "zoneName": "キング島"
+        },
         "AUS-VIC": {
             "countryName": "オーストラリア",
             "zoneName": "ビクトリア州"
@@ -240,6 +265,9 @@
         "AUS-WA": {
             "countryName": "オーストラリア",
             "zoneName": "西 オーストラリア"
+        },
+        "AW": {
+            "zoneName": "アルバ"
         },
         "AX": {
             "zoneName": "オーランド諸島"
@@ -250,33 +278,75 @@
         "BA": {
             "zoneName": "ボスニア・ヘルツェゴビナ"
         },
+        "BB": {
+            "zoneName": "バルバドス"
+        },
+        "BD": {
+            "zoneName": "バングラデシュ"
+        },
         "BE": {
             "zoneName": "ベルギー"
+        },
+        "BF": {
+            "zoneName": "ブルキナファソ"
         },
         "BG": {
             "zoneName": "ブルガリア"
         },
+        "BH": {
+            "zoneName": "バーレーン"
+        },
+        "BI": {
+            "zoneName": "ブルンジ"
+        },
+        "BJ": {
+            "zoneName": "ベナン"
+        },
+        "BM": {
+            "zoneName": "バミューダ"
+        },
+        "BN": {
+            "zoneName": "ブルネイ"
+        },
         "BO": {
             "zoneName": "ボリビア"
         },
+        "BQ": {
+            "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
+        },
         "BR-CS": {
             "countryName": "ブラジル",
-            "zoneName": "中"
+            "zoneName": "中央ブラジル"
         },
         "BR-N": {
             "countryName": "ブラジル",
-            "zoneName": "北"
+            "zoneName": "北ブラジル"
         },
         "BR-NE": {
             "countryName": "ブラジル",
-            "zoneName": "東北"
+            "zoneName": "東北ブラジル"
         },
         "BR-S": {
             "countryName": "ブラジル",
-            "zoneName": "南"
+            "zoneName": "南ブラジル"
+        },
+        "BS": {
+            "zoneName": "バハマ"
+        },
+        "BT": {
+            "zoneName": "ブータン"
+        },
+        "BV": {
+            "zoneName": "ブーベ島"
+        },
+        "BW": {
+            "zoneName": "ボツワナ"
         },
         "BY": {
             "zoneName": "ベラルーシ"
+        },
+        "BZ": {
+            "zoneName": "ベリーズ"
         },
         "CA-AB": {
             "countryName": "カナダ",
