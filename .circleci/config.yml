@@ -13,6 +13,7 @@ jobs:
       - run:
           command: |
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
+            cd parsers
             tox
       - save_cache:
           key: pip-{{ .Branch }}-{{ checksum "parsers/setup.py" }}
