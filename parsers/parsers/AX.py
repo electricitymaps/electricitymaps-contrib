@@ -20,7 +20,7 @@ def _get_masks(session=None):
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]]], dtype = np.uint8)
     Minus = Image.fromarray(Minus)
-    
+
     Dot = np.array([[[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255],[255, 255, 255]],
@@ -141,12 +141,12 @@ def _get_masks(session=None):
      [[255, 255, 255],[0, 0, 0],[0, 0, 0],[0, 0, 0],[0, 0, 0],[255, 255, 255]],
      [[255, 255, 255],[255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255], [255, 255, 255]]], dtype=np.uint8)
     Nine = Image.fromarray(Nine)
-    
+
     shorts = ['-','.','0','1','2','3','4','5','6','7','8','9']
     masks = [Minus, Dot, Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
-    
+
     return dict(zip(shorts,masks))
-    
+
 
 def _fetch_data(session=None):
     # Load masks for reading numbers from the image
@@ -155,15 +155,15 @@ def _fetch_data(session=None):
 
     # Download the updating image from Kraftnät Åland
     r = session or requests.session()
-    
+
     url = 'http://194.110.178.135/grafik/stamnat.php'
-    
+
     im = Image.open(r.get(url, stream=True).raw)
     # Get timestamp
     fetchtime = arrow.utcnow().floor('second').to('Europe/Mariehamn')
-    
+
     # "data" is a height x width x 3 RGB numpy array
-    data = np.array(im)   
+    data = np.array(im)
     #red, green, blue, alpha = data.T # Temporarily unpack the bands for readability
     red, green, blue = data.T
     # Color non-blue areas in the image with white
@@ -171,10 +171,10 @@ def _fetch_data(session=None):
     data[~blue_areas.T] = (255, 255, 255)
     # Color blue areas in the image with black
     data[blue_areas.T] = (0, 0, 0)
-    
+
     # Transform the array back to image
     im = Image.fromarray(data)
-    
+
     shorts = mapping.keys()
 
     # check import from Sweden
@@ -188,7 +188,7 @@ def _fetch_data(session=None):
     SE3Flow = round(float(SE3Flow),1)
 
     # export Åland-Finland(Kustavi/Gustafs)
-    
+
     GustafsFlow=[]
     for x in range(780, 825-6):
         for abr in shorts:
@@ -197,7 +197,7 @@ def _fetch_data(session=None):
                 GustafsFlow.append(abr)
     GustafsFlow = "".join(GustafsFlow)
     GustafsFlow = round(float(GustafsFlow),1)
-    
+
     # Reserve cable import Naantali-Åland
     # Åland administration does not allow export
     # to Finland through this cable
@@ -241,27 +241,27 @@ def _fetch_data(session=None):
                 FProd.append(abr)
     FProd = "".join(FProd)
     FProd = round(float(FProd),1)
-    
+
     # Both are confirmed to be import from Finland by the TSO
     FIFlow = FIFlow+GustafsFlow
-    
+
     # Calculate sum of exchanges
     SumExchanges = SE3Flow+FIFlow
-    
+
     # Calculate total production
     TotProd = FProd+WProd
-    
+
     # Calculate total consumption
     Cons = round(TotProd + SumExchanges,1)
-    
+
     # The production that is not fossil fuel or wind based is unknown
     # Impossible to estimate with current data
     # UProd = TotProd - WProd - FProd
-    
+
     obj = dict({'production':TotProd,'consumption':Cons,'wind':WProd,
                'fossil':FProd,'SE3->AX':SE3Flow,
                'FI->AX':FIFlow,'fetchtime':fetchtime})
-    
+
     return obj
 
 
@@ -317,7 +317,7 @@ def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=N
     data['production']['wind'] = obj['wind']
     data['production']['geothermal'] = None
     data['production']['unknown'] = None
-    
+
     return data
 
 
@@ -326,14 +326,14 @@ def fetch_consumption(zone_key='AX', session=None, target_datetime=None, logger=
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = _fetch_data(session)
-    
+
     data = {
         'zoneKey': zone_key,
         'datetime': arrow.get(obj['fetchtime']).datetime,
         'consumption': obj['consumption'],
         'source': 'kraftnat.aland.fi'
     }
-    
+
     return data
 
 
@@ -369,17 +369,17 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
-    
+
     if '->'.join(sorted([zone_key1, zone_key2])) in ['AX->SE', 'AX->SE-SE3']:
         netFlow = obj['SE3->AX']
-         
+
     elif '->'.join(sorted([zone_key1, zone_key2]))== 'AX->FI':
         netFlow = obj['FI->AX'] # Import is positive
-    
+
     # The net flow to be reported should be from the first country to the second
     # (sorted alphabetically). This is NOT necessarily the same direction as the flow
     # from country1 to country2
-    
+
     #  AX is before both FI and SE
     data['netFlow'] =  round(-1*netFlow,1)
 

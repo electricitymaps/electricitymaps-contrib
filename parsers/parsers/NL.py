@@ -69,7 +69,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # Because other exchanges and consumption data is only available per hour
         # we floor the timpstamp to hour and group by hour with averaging of netFlow
         df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
-        exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean', 
+        exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean',
             'sortedZoneKeys': 'max', 'source' : 'max'}).reset_index()
 
         # because averaging with high precision numbers leads to rounding errors
@@ -112,7 +112,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         productions_eopwek = fetch_production_energieopwek_nl(session=r,
                             target_datetime=target_datetime, logger=logger)
         # For every production value we look up the corresponding ENTSOE
-        # values and copy the nuclear, gas, coal, biomass and unknown production. 
+        # values and copy the nuclear, gas, coal, biomass and unknown production.
         productions = []
         for p in productions_eopwek:
             entsoe_value = next((pe for pe in productions_ENTSOE
@@ -134,10 +134,10 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # if for some reason theré's no unknown value
         if not 'unknown' in p['production'] or p['production']['unknown'] == None:
             p['production']['unknown'] = 0
-        
+
         Z = sum([x or 0 for x in p['production'].values()])
         # Only calculate the difference if the datetime exists
-        # If total ENTSOE reported production (Z) is less than total generation 
+        # If total ENTSOE reported production (Z) is less than total generation
         # (calculated from consumption and imports), then there must be some
         # unknown production missing, so we add the difference.
         # The difference can actually be negative, because consumption is based
@@ -213,4 +213,3 @@ def get_production_data_energieopwek(date, session=None):
 
 if __name__ == '__main__':
     print(fetch_production())
-    
