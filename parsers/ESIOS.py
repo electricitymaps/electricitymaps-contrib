@@ -9,14 +9,13 @@ import arrow
 import requests
 
 from .lib.exceptions import ParserException
+from .lib.utils import get_token
 
 
 def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None, logger=None):
 
     # Get ESIOS token
-    token = environ.get('ESIOS_TOKEN', token)
-    if not token:
-        raise ParserException("ESIOS", "Require access token")
+    token = token or get_token('ESIOS_TOKEN')
 
     ses = session or requests.Session()
 
