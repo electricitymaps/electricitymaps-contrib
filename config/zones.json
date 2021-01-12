@@ -1475,7 +1475,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "DO.fetch_production"
@@ -2917,7 +2918,7 @@
       "coal": 979,
       "geothermal": 0,
       "hydro": 419,
-      "hydro-storage": 312,
+      "hydro storage": 312,
       "nuclear": 0,
       "oil": 238,
       "solar": 1400,
