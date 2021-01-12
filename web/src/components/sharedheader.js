@@ -9,7 +9,7 @@ const Wrapper = styled.header`
   color: black;
   display: flex;
   font-family: 'Euclid Triangle';
-  font-size: 14px;
+  font-size: 15px;
   height: 58px;
   justify-content: space-between;
   min-height: 58px; /* required for old Safari */
