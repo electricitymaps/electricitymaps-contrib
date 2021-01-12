@@ -40,7 +40,8 @@ function* fetchGridData(action) {
   try {
     const payload = yield call(protectedJsonRequest, datetime ? `/v3/state?datetime=${datetime}` : '/v3/state');
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
+    // Do not center the map based on browser location
+    // yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
   } catch (err) {
@@ -64,8 +65,11 @@ function* fetchSolarData(action) {
 function* fetchWindData(action) {
   const { datetime } = action.payload || {};
   try {
-    const before = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeBefore(datetime));
-    const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime));
+    // We pass `3` as an extra argument, which means we
+    // will fetch wind at targetDatetime being a modulo of 3
+    // (as we can only refetch historical weather data every 3 hrs)
+    const before = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeBefore(datetime, 3));
+    const after = yield call(fetchGfsForecast, 'wind', getGfsTargetTimeAfter(datetime, 3));
     yield put({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: { forecasts: [before, after] } });
   } catch (err) {
     yield put({ type: 'WIND_DATA_FETCH_FAILED' });

@@ -5,16 +5,20 @@ import { protectedJsonRequest } from './api';
 const GFS_STEP_ORIGIN = 6; // hours
 const GFS_STEP_HORIZON = 1; // hours
 
-export function getGfsTargetTimeBefore(datetime) {
+export function getGfsTargetTimeBefore(datetime, modulo=GFS_STEP_HORIZON) {
   let horizon = moment(datetime).utc().startOf('hour');
-  while ((horizon.hour() % GFS_STEP_HORIZON) !== 0) {
+  while ((horizon.hour() % modulo) !== 0) {
     horizon = horizon.subtract(1, 'hour');
   }
   return horizon;
 }
 
-export function getGfsTargetTimeAfter(datetime) {
-  return moment(getGfsTargetTimeBefore(datetime)).add(GFS_STEP_HORIZON, 'hour');
+export function getGfsTargetTimeAfter(datetime, modulo=GFS_STEP_HORIZON) {
+  let horizon = moment(datetime).utc().add(1, 'hour').startOf('hour');
+  while ((horizon.hour() % modulo) !== 0) {
+    horizon = horizon.add(1, 'hour');
+  }
+  return horizon;
 }
 
 function getGfsRefTimeForTarget(datetime) {

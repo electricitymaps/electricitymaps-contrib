@@ -5,6 +5,7 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import moment from 'moment';
 
 // Layout
 import Header from './header';
@@ -38,6 +39,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
   version: state.application.version,
+  currentDate: (state.data.grid || {}).datetime,
 });
 
 const Main = ({
@@ -45,6 +47,7 @@ const Main = ({
   electricityMixMode,
   hasConnectionWarning,
   version,
+  currentDate,
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -80,7 +83,6 @@ const Main = ({
         {headerVisible && <Header />}
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
-          <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <Map />
             <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
@@ -101,6 +103,9 @@ const Main = ({
               />
             </div>
             <LayerButtons />
+            <div className="text-title" style={{ color: brightModeEnabled ? '#000' : '#fff' }}>
+              {moment(currentDate).format('MMMM YYYY')}
+            </div>
           </div>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
