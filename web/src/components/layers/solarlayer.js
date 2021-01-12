@@ -39,7 +39,9 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ unproject }) => {
-  const { ref, width, height, node } = useRefWidthHeightObserver();
+  const {
+    ref, width, height, node,
+  } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 

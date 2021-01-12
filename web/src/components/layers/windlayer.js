@@ -24,7 +24,9 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ project, unproject }) => {
-  const { ref, width, height, node } = useRefWidthHeightObserver();
+  const {
+    ref, width, height, node,
+  } = useRefWidthHeightObserver();
   const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
