@@ -20,6 +20,8 @@
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
+        <!-- uncomment for staging build instead  -->
+        <!-- <preference name="CodePushDeploymentKey" value="qKUKXX9JQbat9M56RY54obDyV02BEJ-bjzkpG" /> -->
         <preference name="AndroidLaunchMode" value="singleInstance" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashScreenDelay" value="0" />
@@ -32,6 +34,8 @@
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
         <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
+        <!-- uncomment for staging build instead  -->
+        <!-- <preference name="CodePushDeploymentKey" value="EgyH71oYOglC8w-se8f-EDACw0KtEJ-bjzkpG" /> -->
         <preference name="StatusBarStyle" value="default" />
         <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="itms:*" />
@@ -51,7 +55,6 @@
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
-    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
     <plugin name="cordova-plugin-code-push" spec="^1.12.5" />
     <plugin name="sentry-cordova" spec="^0.16.2" />
     <engine name="android" spec="^8.1.0" />

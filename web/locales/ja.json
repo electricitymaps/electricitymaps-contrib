@@ -6,58 +6,118 @@
         "datasources": "データソースを見る",
         "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
     },
+    "mobile-main-menu": {
+        "map": "電力マップ",
+        "areas": "エリア",
+        "about": "このサイトについて"
+    },
+    "onboarding-modal": {
+        "view1": {
+            "subtitle": "電力による環境負荷のマッピング"
+        },
+        "view2": {
+            "header": "あなたの電気を消費するのにどれほどのCO₂が生み出されるかをリアルタイムで見る",
+            "text": "わたしたちは電力消費による炭素集約度(すべての温室効果ガスを含む)を世界中に色で表します。緑色に近づくほど、その電力が環境に優しくなります。"
+        },
+        "view3": {
+            "header": "あなたの電気がどこから来るかを知る",
+            "text": "地図上の矢印は電力の異なる場所からの流れを示します。電力源についてより詳しく知るにはそのエリアをクリックしてください。"
+        },
+        "view4": {
+            "header": "風と太陽光のリアルタイムの状態",
+            "text": "風力・太陽光発電は気象に左右されます。太陽・風のボタンを押すと世界中の風と太陽光の強さをリアルタイムで表示します。"
+        }
+    },
     "country-panel": {
         "source": "ソース",
-        "carbonintensity": "二酸化炭素量",
-        "electricityproduction": "電力生産量",
+        "carbonintensity": "炭素強度",
         "lowcarbon": "低炭素エネルギー",
         "renewable": "再生可能エネルギー",
+        "electricityproduction": "電力生産量",
+        "electricityconsumption": "電力消費量",
         "bysource": "ソース分け",
         "emissions": "二酸化炭素排出",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ソースを追加または編集する</a>",
-        "helpfrom": "次の方の協力のおかげで"
+        "helpfrom": "次の方の協力のおかげで",
+        "noDataAtTimestamp": "選択された日時のデータは一時的に利用できません",
+        "noLiveData": "このエリアのライブデータは一時的に利用できません",
+        "dataIsDelayed": "この地域のデータは最大 %s 時間遅延します。ライブデータは表示できません。",
+        "noParserInfo": "私たちはこのエリアについてまだ情報を持っていません。<br/> 修正に協力したいですか? <a href=\"%s\" target=\"_blank\"> エリアのデータを追加することで </a> 貢献することができます。",
+        "now": "今"
+    },
+    "left-panel": {
+        "zone-list-header-title": "エリアごとの環境への影響",
+        "zone-list-header-subtitle": "電力消費に対する炭素強度(gCO₂eq/kWh)でランク分け",
+        "search": "エリアを検索"
     },
     "country-history": {
-        "carbonintensity24h": "最近の２４時間の二酸化炭素の排出",
-        "electricityorigin24h": "最近の２４時間の電力の元",
-        "electricityprices24h": "最近の２４時間の電力値",
+        "carbonintensity24h": "最近の24時間の炭素強度",
+        "emissions24h": "過去24時間の排出",
+        "emissionsorigin24h": "過去24時間の排出源",
+        "emissionsproduction24h": "過去24時間に生成された排出ガス",
+        "electricityorigin24h": "最近の24時間の電力源",
+        "electricityproduction24h": "最近の24時間の発電",
+        "electricityprices24h": "最近の24時間の電力価格",
         "Getdata": "過去と予想のデータを取得する"
     },
     "footer": {
-        "foundbugs": "バッグの発見？ご報告ください",
+        "foundbugs": "バグの発見? ご報告ください",
+        "faq-text": "不明な点がありますか? ",
+        "faq": "よくある質問をチェックしてみてください",
         "here": "(こちらに)"
     },
     "legends": {
         "windpotential": "風力可能量",
         "solarpotential": "太陽光可能量",
-        "colorblindmode": "カラーブラインドモード",
+        "colorblindmode": "代替配色モード",
         "carbonintensity": "二酸化炭素量"
     },
     "tooltips": {
-        "carbonintensity": "二酸化炭素量",
-        "crossborderexport": "Cross-border export",
-        "carbonintensityexport": "輸出二酸化炭素量",
+        "carbonintensity": "炭素強度",
+        "lowcarbon": "低二酸化炭素",
+        "renewable": "再生可能",
+        "crossborderexport": "国境を超える輸出",
+        "carbonintensityexport": "輸出された炭素強度",
         "ofinstalled": "of installed capacity",
         "utilizing": "utilizing",
-        "withcarbonintensity": "with a carbon intensity of"
+        "withcarbonintensity": "with a carbon intensity of",
+        "showWindLayer": "風のレイヤーを表示",
+        "hideWindLayer": "風のレイヤーを非表示に",
+        "showSolarLayer": "太陽のレイヤーを表示",
+        "hideSolarLayer": "太陽のレイヤーを非表示に",
+        "toggleDarkMode": "ダークモード切り替え",
+        "noParserInfo": "データがありません",
+        "temporaryDataOutage": "ライブデータが一時的に利用できません",
+        "production": "生産",
+        "consumption": "消費",
+        "cpinfo": "<b>消費</b> は取り込みと放出を考慮し, <b>生産</b> はそれらを考慮しない",
+        "selectLanguage": "言語を選択",
+        "lowCarbDescription": "再生可能エネルギーと原子力を含む",
+        "dataIsDelayed": "データが遅延しています"
     },
     "misc": {
-        "maintitle": "ライブ二酸化炭素排出地図",
-        "oops": "ごめん!サーバーにの接続に問題がありました、数秒後にまた試します",
+        "maintitle": "電力消費による二酸化炭素排出のライブ地図",
+        "oops": "すみません!サーバーにの接続に問題がありました、数秒後にまた試します",
         "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
-        "retrynow": "今すぐリトライ"
+        "webgl-not-supported": "ブラウザがWebGLをサポートしていないため、マップを表示できません。",
+        "retrynow": "今すぐリトライ",
+        "database-ad": "過去のデータをお探しですか? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
+        "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
+        "legend": "Legend",
+        "faq": "よくある質問"
     },
     "wind": "風力",
     "solar": "太陽光",
     "hydro": "水力",
-    "hydro storage": "水力ストーレージ",
+    "hydro storage": "水力ストレージ",
+    "battery storage": "バッテリー貯蔵",
     "biomass": "バイオマス",
     "nuclear": "原子力",
     "geothermal": "地熱",
     "gas": "ガス",
     "coal": "石炭",
     "oil": "石油",
-    "unknown": "未定",
+    "unknown": "不明",
 
     "electricityComesFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
@@ -70,488 +130,554 @@
     "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
 
     "ofCO2eqPerMinute": "of CO₂eq per minute",
-
+    "theMap": {
+        "groupName": "地図",
+        "mapColors-question": "地図中の色は何を意味しますか?",
+        "mapColors-answer": "その地域で消費された電力に伴い排出された温室効果ガスに応じて色がついています (<a href=\"#carbonIntensity\" class=\"entry-link\">炭素強度</a>). 緑色に近づくにしたがって、より環境に優しい電力消費になります.",
+        "mapArrows-question": "エリア間に示された矢印は何を意味しますか?",
+        "mapArrows-answer": "エリア間の矢印は電気の物理的な流れ(輸入と輸出)を意味します: 点滅の速さは流れの速さを意味します。あなたの使う電気が近隣地域から輸入される際は、その発電に伴い二酸化炭素排出を伴っているため、これらの電気の流れは重要です。",
+        "mapSolarWindButtons-question": "地図の“太陽”と“風”のボタンは何をするものですか?",
+        "mapSolarWindButtons-answer": "これらのボタンはリアルタイムでの風力と太陽光強度の表示を切り替えるものです。これはその地域で風力や太陽光発電に転換できるか潜在的な可能性を示すものです。注意すべきはこれは表面的なもので、実際に風力タービンや太陽光発電パネルの導入の可能性は他の多くの要素に左右されます。",
+        "mapNuclearColors-question": "なぜ原子力を用いる国は地図上で緑色なのですか?",
+        "mapNuclearColors-answer": "原子力発電に伴う炭素強度は非常に少ないため(<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>)、原子力発電の多い国は地図上は緑色となります。(他の形態のエネルギー生成にも当てはまりますことですが)これは原子力発電が他の問題を伴わないことを意味するものではありません。しかしこれらの問題は温室効果ガスの排出とは関連するものではなくこの地図の対象範囲外です。",
+        "mapColorBlind-question": "色覚特性があります。地図を見る方法はありますか?",
+        "mapColorBlind-answer": "“代替配色モード”設定を有効にすることで地図に表示される配色を切り替えることができます。切り替え機能はデスクトップ版では左パネルの下部に、モバイルアプリでは情報タブにあります。"
+    },
+    "mapAreas": {
+        "groupName": "地図中の地域",
+        "noData-question": "なぜ私の地域のデータが無いのですか?",
+        "noData-answer": "一時的にその地域の情報が利用できないか、その地域の情報取得に関する設定がまだおこなわれていないためです。<a href=\"#contribute\" class=\"entry-link\">あなたが新しい情報源を付け加える</a>ことができます。",
+        "whySmallAreas-question": "なぜ全世界を小さな地域に分割して国ごとの単純な平均値を表示しないのですか?",
+        "whySmallAreas-answer": "私たちがデータを取得できる最小単位の地域を対象にしています。最小単位のレベルの情報へのアクセスによって、それぞれの地域に住む電力消費者が発電される場所と気候変動への関連について精細な知識と得ることができます。",
+        "divideExistingArea-question": "私が住む地域をより小さい単位に分割できますか?",
+        "divideExistingArea-answer": "それぞれの地域を分割できるような情報源がある場合はもちろんできます。<a href=\"#contribute\" class=\"entry-link\">新しい情報源を追加</a>することができます。",
+        "seeHistoricalData-question": "24時間を超える過去のデータ履歴を見ることができますか?",
+        "seeHistoricalData-answer": "<a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>を通して全ての過去データへのアクセス権を購入できます。"
+    },
+    "methodology": {
+        "groupName": "手法",
+        "carbonIntensity-question": "\"炭素強度(carbon intensity)\"とは何ですか?",
+        "carbonIntensity-answer": "炭素強度は発電に伴い排出される温室効果ガスの計測値です(gCO₂eq/kWh : 1時間に1キロワット電力消費する際に排出される、グラム単位の二酸化炭素排出量)。私たちは(発電ではなく)電力消費に伴う排出を測定しており、発電された地域で消費される電力の排出値も、他地域から輸入された電力による値も考慮した全ての排出ガス(CO₂もメタンのような他の温室効果ガスも)を意味します。私たちは発電所のライフサイクル全体(建設、燃料製造、運用による排出、運用終了後の解体)から生じる排出値を考慮したライフサイクル分析(LCA: life cycle analysis)によるアプローチをとります。",
+        "consumptionFocus-question": "なぜ発電ではなく電力消費による炭素強度を計測するのですか?",
+        "consumptionFocus-answer": "私たちは市民は自らが消費する電気に責任を負うべきで、住んでいる地域で発電されている電気に責任を負うべきでは無いと信じています。さらには各地域が、クリーンではない発電を他の地域に移すことや他の地域から電気を輸入することでは気候への影響が少ないと'偽る'ことはできないはずだと私たちは信じています。",
+        "renewableLowCarbonDifference-question": "“再生可能”と“低炭素”の違いは何ですか??",
+        "renewableLowCarbonDifference-answer": "再生可能な発電は風力、水力、太陽光、地熱などの再生可能なエネルギー源による発電です。低炭素な発電は原子力発電などの非常に少ない温室効果ガスの排出を伴う発電を意味します。",
+        "importsAndExports-question": "電力の輸入と輸出も考慮していますか?",
+        "importsAndExports-answer": "はい、考慮しています。輸入と輸出は<a href=\"#mapArrows\" class=\"entry-link\">地域間の小さい矢印</a>として見ることができます。詳細な情報は地域をクリックした際に表示される図表の中で見ることができます。",
+        "emissionsOfStored-question": "バッテリーに貯蔵されたり貯水池に貯水するための発電からの排出はどうなりますか?",
+        "emissionsOfStored-answer": "現在のところ小さな割合の電力しか貯蔵されておらず、これらの排出値を完全に集計に取り入れていないことから現在のところ排出値合計には影響を及ぼしていません。しかし電力貯蔵の重要性が増していけば私たちも早めに考慮に入れたいと考えます。",
+        "guaranteesOfOrigin-question": "グリーン証書とは何ですか、そしてどのように考慮していますか?",
+        "guaranteesOfOrigin-answer": "再生可能エネルギーの発電所が発電した際に、その発電源について証明書を発行することができます(再生可能エネルギー証書とも呼ばれます) - それは再生可能エネルギーとして発電され送電網に送り込まれたことを証明するものです。これらの保証書は電力と切り離して販売することができます。これによって電力小売業者は証書を組み合わせることで販売する電力の由来がどのようなものでも再生可能エネルギー由来の電力と主張することができ、電力消費者に対して太陽光でも風力でも、風が無い夜でも再生可能エネルギーを利用できると言うことができます。これは消費者から最適な時間帯(例えば再生可能エネルギーが最も多く送電されている際など)に電力を消費してもらう動機を奪うものという点で問題があります。そのためこの地図では電力源の証明に関する情報を除外し、代わりに消費者に判断できるようにすることを目的に位置情報に基づく実際の送電状況を描いています。",
+        "otherSources-question": "なぜ発電以外の排出源について表示しないのですか?",
+        "otherSources-answer": "それはこのプロジェクトの対象外となっています。しかしTomorrowで私たちは<a href=\"#whoAreYou\" class=\"entry-link\">人々の日々の行動がもたらす環境負荷を定量化する手法</a>を開発するために活発に働いています。",
+        "homeSolarPanel-question": "仮に私が家にソーラーパネルを設置したら?",
+        "homeSolarPanel-answer": "私たちは地域の電力網の炭素強度を測定しており、あなたがソーラーパネルで発電した電気を家で直接消費(オフグリッド)しても私たちの測定対象にはなりません。しかしながらあなたの家のソーラーパネルが電力網に電気を提供している場合は、その発電量は地域太陽光発電が利用可能になっている地域(フランスやイギリスなど)で私たちの集計値に含まれています。",
+        "emissionsPerCapita-question": "なぜ1人当たりの排出量を示さないのですか?",
+        "emissionsPerCapita-answer": "地域によってはある程度の割合の電力が製造業で使用されて、作られた商品が他の地域へ輸出され消費されることがあります。この場合は電力消費とそれに伴う温室効果ガス排出は製造した地域のためではなく、<em>輸入した地域</em>で商品を消費するために引き起こされたことになります。私たちは人々は自身の消費にのみ責任を持つべきと考え、地域で製造されたものの自身で消費することのない製造物にまで責任を負うべきではないと考えます。この点で考えると、電力消費に伴う地域1人当たりの排出量を示すことは誤解を招くものです。"
+    },
+    "data": {
+        "groupName": "データ",
+        "dataOrigins-question": "データはどのように取得しているのですか?",
+        "dataOrigins-answer": "私たちは全てのデータを送電事業者、官公庁、その他の機関から公開されているデータを処理して利用しています。地域をクリックすることで情報源についてより詳細な情報が得られます。",
+        "dataDownload-question": "データをダウンロードできますか?",
+        "dataDownload-answer": "<a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>から全てのデータのアクセス権を購入できます。",
+        "dataIntegration-question": "データをリアルタイムに私のアプリケーションやデバイスに統合できますか?",
+        "dataIntegration-answer": "できます! <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">リアルタイムAPI</a>へのアクセス権を販売しており、これには未来予測も含まれています。"
+    },
+    "aboutUs": {
+        "groupName": "私たちについて",
+        "whoAreYou-question": "あなたたちは誰ですか?",
+        "whoAreYou-answer": "Electricity Map はデンマークのスタートアップ企業<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>によって開発、維持されています。私たちのゴールは、私たちが日々行う選択の環境負荷を定量化し広くアクセス可能とすることで人類が持続可能な状態へ至ることの助けとなることです。",
+        "feedback-question": "フィードバックしてもいいですか?",
+        "feedback-answer": "ぜひどうぞ! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">フィードバックフォーム</a>もしくは<a href=\"mailto:hello@electricitymap.org\">メール</a>でお願いします!",
+        "contribute-question": "プロジェクトに貢献できますか?",
+        "contribute-answer": "できます! Electricity Map はオープンソースプロジェクトで、ボランティアの貢献者によって成り立っています。新しい地域への新規データソースの追加、新機能追加、バグ修正などで地図の開発をお手伝いいただける際は気軽に私たちの<a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>へアクセスしてください。",
+        "workTogether-question": "私たちと一緒に仕事できますか?",
+        "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:hello@electricitymap.org\">email</a>を送ってください!",
+        "disclaimer-question": "免責事項",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    },
     "zoneShortName": {
         "AD": {
             "zoneName": "アンドラ"
-          },
-          "AL": {
+        },
+        "AL": {
             "zoneName": "アルバニア"
-          },
-          "AM": {
+        },
+        "AM": {
             "zoneName": "アルメニア"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "オーストリア"
-          },
-          "AR": {
+        },
+        "AR": {
             "zoneName": "アルゼンチン"
-          },
-          "AUS-NSW": {
+        },
+        "AUS-NSW": {
             "countryName": "オーストラリア",
             "zoneName": "ニューサウスウェールズ州"
-          },
-          "AUS-NT": {
+        },
+        "AUS-NT": {
             "countryName": "オーストラリア",
             "zoneName": "ノーザンテリトリー"
-          },
-          "AUS-QLD": {
+        },
+        "AUS-QLD": {
             "countryName": "オーストラリア",
             "zoneName": "クイーンズランド州"
-          },
-          "AUS-SA": {
+        },
+        "AUS-SA": {
             "countryName": "オーストラリア",
             "zoneName": "南 オーストラリア"
-          },
-          "AUS-TAS": {
+        },
+        "AUS-TAS": {
             "countryName": "オーストラリア",
             "zoneName": "タスマニア"
-          },
-          "AUS-VIC": {
+        },
+        "AUS-VIC": {
             "countryName": "オーストラリア",
             "zoneName": "ビクトリア州"
-          },
-          "AUS-WA": {
+        },
+        "AUS-WA": {
             "countryName": "オーストラリア",
             "zoneName": "西 オーストラリア"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "オーランド諸島"
-          },
-          "AZ": {
+        },
+        "AZ": {
             "zoneName": "アゼルバイジャン"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "ボスニア・ヘルツェゴビナ"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "ベルギー"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "ブルガリア"
-          },
-          "BO": {
+        },
+        "BO": {
             "zoneName": "ボリビア"
-          },
-          "BR-CS": {
+        },
+        "BR-CS": {
             "countryName": "ブラジル",
             "zoneName": "中"
-          },
-          "BR-N": {
+        },
+        "BR-N": {
             "countryName": "ブラジル",
             "zoneName": "北"
-          },
-          "BR-NE": {
+        },
+        "BR-NE": {
             "countryName": "ブラジル",
             "zoneName": "東北"
-          },
-          "BR-S": {
+        },
+        "BR-S": {
             "countryName": "ブラジル",
             "zoneName": "南"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "ベラルーシ"
-          },
-          "CA-AB": {
+        },
+        "CA-AB": {
             "countryName": "カナダ",
             "zoneName": "アルバータ州"
-          },
-          "CA-BC": {
+        },
+        "CA-BC": {
             "countryName": "カナダ",
             "zoneName": "ブリティッシュコロンビア"
-          },
-          "CA-MB": {
+        },
+        "CA-MB": {
             "countryName": "カナダ",
             "zoneName": "マニトバ州"
-          },
-          "CA-NL": {
+        },
+        "CA-NL": {
             "countryName": "カナダ",
             "zoneName": "ニューファンドランドアンドラブラドール州"
-          },
-          "CA-NB": {
+        },
+        "CA-NB": {
             "countryName": "カナダ",
             "zoneName": "ニューブランズウィック"
-          },
-          "CA-NT": {
+        },
+        "CA-NT": {
             "countryName": "カナダ",
             "zoneName": "ノースウェスト準州"
-          },
-          "CA-NS": {
+        },
+        "CA-NS": {
             "countryName": "カナダ",
             "zoneName": "ノバスコシア州"
-          },
-          "CA-NU": {
+        },
+        "CA-NU": {
             "countryName": "カナダ",
             "zoneName": "ヌナブト"
-          },
-          "CA-ON": {
+        },
+        "CA-ON": {
             "countryName": "カナダ",
             "zoneName": "オンタリオ"
-          },
-          "CA-PE": {
+        },
+        "CA-PE": {
             "countryName": "カナダ",
             "zoneName": "プリンス・エドワード島"
-          },
-          "CA-QC": {
+        },
+        "CA-QC": {
             "countryName": "カナダ",
             "zoneName": "ケベック州"
-          },
-          "CA-SK": {
+        },
+        "CA-SK": {
             "countryName": "カナダ",
             "zoneName": "サスカチュワン州"
-          },
-          "CA-YT": {
+        },
+        "CA-YT": {
             "countryName": "カナダ",
             "zoneName": "ユーコン"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "スイス"
-          },
-          "CR": {
+        },
+        "CR": {
             "zoneName": "コスタリカ"
-          },
-          "CY": {
+        },
+        "CY": {
             "zoneName": "キプロス"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "チェコ"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "ドイツ"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "デンマーク"
-          },
-          "DO": {
+        },
+        "DO": {
             "zoneName": "ドミニカ共和国"
-          },
-          "DZ": {
+        },
+        "DZ": {
             "zoneName": "アルジェリア"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "エストニア"
-          },
-          "EG": {
+        },
+        "EG": {
             "zoneName": "エジプト"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "スペイン"
-          },
-          "ES-IB": {
+        },
+        "ES-IB": {
             "countryName": "スペイン",
             "zoneName": "バレアレス諸島"
-          },
-          "ES-CN": {
+        },
+        "ES-CN": {
             "countryName": "スペイン",
             "zoneName": "カナリア諸島"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "フィンランド"
-          },
-          "FO": {
+        },
+        "FO": {
             "zoneName": "フェロー諸島"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "フランス"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "イギリス"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "北アイルランド"
-          },
-          "GE": {
+        },
+        "GE": {
             "zoneName": "ジョージア州"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "ギリシャ"
-          },
-          "GT": {
+        },
+        "GT": {
             "zoneName": "グアテマラ"
-          },
-          "HN": {
+        },
+        "HN": {
             "zoneName": "ホンジュラス"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "クロアチア"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "ハンガリー"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "アイルランド"
-          },
-          "IL": {
+        },
+        "IL": {
             "zoneName": "イスラエル"
-          },
-          "IN-AN": {
+        },
+        "IN-AN": {
             "countryName": "インド",
             "zoneName": "アンダマンとニコバル諸島"
-          },
-          "IN-AP": {
+        },
+        "IN-AP": {
             "countryName": "インド",
             "zoneName": "アンドラ・プラデシュ"
-          },
-          "IN-AR": {
+        },
+        "IN-AR": {
             "countryName": "インド",
             "zoneName": "アルナチャルプラデーシュ州"
-          },
-          "IN-AS": {
+        },
+        "IN-AS": {
             "countryName": "インド",
             "zoneName": "アッサム"
-          },
-          "IN-BR": {
+        },
+        "IN-BR": {
             "countryName": "インド",
             "zoneName": "ビハール"
-          },
-          "IN-CT": {
+        },
+        "IN-CT": {
             "countryName": "インド",
             "zoneName": "チャッティースガル"
-          },
-          "IN-DL": {
+        },
+        "IN-DL": {
             "countryName": "インド",
             "zoneName": "デリー"
-          },
-          "IN-GA": {
+        },
+        "IN-GA": {
             "countryName": "インド",
             "zoneName": "ゴア"
-          },
-          "IN-GJ": {
+        },
+        "IN-GJ": {
             "countryName": "インド",
             "zoneName": "グジャラート州"
-          },
-          "IN-HP": {
+        },
+        "IN-HP": {
             "countryName": "インド",
             "zoneName": "ヒマーチャルプラデーシュ州"
-          },
-          "IN-HR": {
+        },
+        "IN-HR": {
             "countryName": "インド",
             "zoneName": "ハリヤーナ"
-          },
-          "IN-JH": {
+        },
+        "IN-JH": {
             "countryName": "インド",
             "zoneName": "ジャールカンド州"
-          },
-          "IN-JK": {
+        },
+        "IN-JK": {
             "countryName": "インド",
             "zoneName": "ジャムとカシミール"
-          },
-          "IN-KA": {
+        },
+        "IN-KA": {
             "countryName": "インド",
             "zoneName": "カルナタカ"
-          },
-          "IN-KL": {
+        },
+        "IN-KL": {
             "countryName": "インド",
             "zoneName": "ケララ州"
-          },
-          "IN-MH": {
+        },
+        "IN-MH": {
             "countryName": "インド",
             "zoneName": "マハラシュトラ"
-          },
-          "IN-ML": {
+        },
+        "IN-ML": {
             "countryName": "インド",
             "zoneName": "メガラヤ"
-          },
-          "IN-MN": {
+        },
+        "IN-MN": {
             "countryName": "インド",
             "zoneName": "マニプール"
-          },
-          "IN-MP": {
+        },
+        "IN-MP": {
             "countryName": "インド",
             "zoneName": "マディヤ・プラデシュ"
-          },
-          "IN-MZ": {
+        },
+        "IN-MZ": {
             "countryName": "インド",
             "zoneName": "ミゾラム"
-          },
-          "IN-NL": {
+        },
+        "IN-NL": {
             "countryName": "インド",
             "zoneName": "ナガランド"
-          },
-          "IN-OR": {
+        },
+        "IN-OR": {
             "countryName": "インド",
             "zoneName": "オリッサ州"
-          },
-          "IN-PB": {
+        },
+        "IN-PB": {
             "countryName": "インド",
             "zoneName": "パンジャーブ"
-          },
-          "IN-PY": {
+        },
+        "IN-PY": {
             "countryName": "インド",
             "zoneName": "ポンディシェリ"
-          },
-          "IN-RJ": {
+        },
+        "IN-RJ": {
             "countryName": "インド",
             "zoneName": "ラージャスターン"
-          },
-          "IN-SK": {
+        },
+        "IN-SK": {
             "countryName": "インド",
             "zoneName": "シッキム"
-          },
-          "IN-TL": {
+        },
+        "IN-TL": {
             "countryName": "インド",
             "zoneName": "タミルナードゥ州"
-          },
-          "IN-TR": {
+        },
+        "IN-TR": {
             "countryName": "インド",
             "zoneName": "トリプラ"
-          },
-          "IN-UP": {
+        },
+        "IN-UP": {
             "countryName": "インド",
             "zoneName": "ウッタル・プラデーシュ州"
-          },
-          "IN-UT": {
+        },
+        "IN-UT": {
             "countryName": "インド",
             "zoneName": "ウッタラーカンド州"
-          },
-          "IN-WB": {
+        },
+        "IN-WB": {
             "countryName": "インド",
             "zoneName": "西ベンガル州"
-          },
-          "IQ": {
+        },
+        "IQ": {
             "zoneName": "イラク"
-          },
-          "IR": {
+        },
+        "IR": {
             "zoneName": "イラン"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "アイスランド"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "イタリア"
-          },
-          "JO": {
+        },
+        "JO": {
             "zoneName": "ヨルダン"
-          },
-          "KZ": {
+        },
+        "KZ": {
             "zoneName": "カザフスタン"
-          },
-          "LB": {
+        },
+        "LB": {
             "zoneName": "レバノン"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "リトアニア"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "ルクセンブルク"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "ラトビア"
-          },
-          "LY": {
+        },
+        "LY": {
             "zoneName": "リビア"
-          },
-          "MA": {
+        },
+        "MA": {
             "zoneName": "モロッコ"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "モルドバ"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "モンテネグロ"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "北マケドニア"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "マルタ"
-          },
-          "NI": {
+        },
+        "NI": {
             "zoneName": "ニカラグア"
-          },
-          "NKR": {
+        },
+        "NKR": {
             "zoneName": "ナゴルノ・カラバフ"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "オランダ"
-          },
-          "NO": {
+        },
+        "NO": {
             "zoneName": "ノルウェー"
-          },
-          "NZ-NZN": {
+        },
+        "NZ-NZN": {
             "countryName": "ニュージーランド",
             "zoneName": "北島"
-          },
-          "NZ-NZS": {
+        },
+        "NZ-NZS": {
             "countryName": "ニュージーランド",
             "zoneName": "南島"
-          },
-          "PA": {
+        },
+        "PA": {
             "zoneName": "パナマ"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "ペルー"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "ポーランド"
-          },
-          "PS": {
+        },
+        "PS": {
             "zoneName": "パレスチナ"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "ポルトガル"
-          },
-          "PT-AC": {
+        },
+        "PT-AC": {
             "countryName": "ポルトガル",
             "zoneName": "アゾレス諸島"
-          },
-          "PT-MA": {
+        },
+        "PT-MA": {
             "countryName": "ポルトガル",
             "zoneName": "マデイラ"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "ルーマニア"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "セルビア"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "ロシア"
-          },
-          "SA": {
+        },
+        "SA": {
             "zoneName": "サウジアラビア"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "スウェーデン"
-          },
-          "SG": {
+        },
+        "SG": {
             "zoneName": "シンガポール"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "スロベニア"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "スロバキア"
-          },
-          "SV": {
+        },
+        "SV": {
             "zoneName": "エルサルバドル"
-          },
-          "SY": {
+        },
+        "SY": {
             "zoneName": "シリア"
-          },
-          "TM": {
+        },
+        "TM": {
             "zoneName": "トルクメニスタン"
-          },
-          "TN": {
+        },
+        "TN": {
             "zoneName": "チュニジア"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "トルコ"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "台湾"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "ウクライナ"
-          },
-          "US": {
+        },
+        "US": {
             "zoneName": "アメリカ合衆国"
-          },
-          "UY": {
+        },
+        "UY": {
             "zoneName": "ウルグアイ"
-          },
-          "UZ": {
+        },
+        "UZ": {
             "zoneName": "ウズベキスタン"
-          }
+        }
     }
 }

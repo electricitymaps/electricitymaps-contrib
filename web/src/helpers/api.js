@@ -35,7 +35,13 @@ export function protectedJsonRequest(path) {
         if (err) {
           reject(err);
         } else if (!res || !res.data) {
-          reject(new Error(`Empty response received for ${url}`));
+          const errorToReturn = new Error(`Empty response received for ${url}`);
+          // Treat as a 404
+          errorToReturn.target = {
+            status: 404,
+            statusText: errorToReturn.message,
+          };
+          reject(errorToReturn);
         } else {
           resolve(res.data);
         }

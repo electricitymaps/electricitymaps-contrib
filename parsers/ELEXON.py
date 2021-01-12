@@ -21,6 +21,7 @@ import pandas as pd
 from io import StringIO
 
 from .lib.validation import validate
+from .lib.utils import get_token
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
@@ -30,11 +31,11 @@ REPORT_META = {
         'skiprows': 5
     },
     'FUELINST': {
-        'expected_fields': 19,
+        'expected_fields': 22,
         'skiprows': 1
     },
     'INTERFUELHH': {
-        'expected_fields': 8,
+        'expected_fields': 11,
         'skiprows': 0
     }
 }
@@ -56,20 +57,19 @@ RESOURCE_TYPE_TO_FUEL = {
 }
 
 EXCHANGES = {
-    'FR->GB': 3,
-    'GB-NIR->IE': 4,
-    'GB->NL': 5,
-    'GB->IE': 6,
-    'BE->GB': 7
+    'FR->GB': [3, 8, 9],  # IFA, Eleclink, IFA2
+    'GB->GB-NIR': [4],
+    'GB->NL': [5],
+    'GB->IE': [6],
+    'BE->GB': [7],
+    'GB->NO-NO2': [10],  # North Sea Link
 }
 
 FETCH_WIND_FROM_FUELINST = True
 
 
 def query_ELEXON(report, session, params):
-    if 'ELEXON_TOKEN' not in os.environ:
-        raise Exception('No ELEXON_TOKEN found! Please add it to secrets.env!')
-    params['APIKey'] = os.environ['ELEXON_TOKEN']
+    params['APIKey'] = get_token('ELEXON_TOKEN')
     return session.get(ELEXON_ENDPOINT.format(report), params=params)
 
 
@@ -145,7 +145,13 @@ def parse_exchange(zone_key1, zone_key2, csv_text, target_datetime=None,
 
         # positive value implies import to GB
         multiplier = -1 if 'GB' in sorted_zone_keys[0] else 1
-        data['netFlow'] = float(fields[EXCHANGES[exchange]]) * multiplier
+        net_flow = 0.0  # init
+        for column_index in EXCHANGES[exchange]:
+            # read out all columns providing values for this exchange
+            if fields[column_index] == "":
+                continue  # no value provided for this exchange
+            net_flow += float(fields[column_index]) * multiplier
+        data['netFlow'] = net_flow
         data_points.append(data)
 
     return data_points
@@ -309,7 +315,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy 
+    """Main method, never used by the Electricity Map backend, but handy
     for testing."""
 
     print('fetch_production() ->')

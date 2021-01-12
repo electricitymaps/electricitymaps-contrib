@@ -39,7 +39,7 @@
       41.205
     ],
     "parsers": {
-      "exchange": "AM.fetch_exchange"
+      "exchange": "GE.fetch_exchange"
     },
     "rotation": 0
   },
@@ -299,6 +299,21 @@
       "exchange": "BD.fetch_exchange"
     },
     "rotation": -90
+  },
+  "BE->DE": {
+    "capacity": [
+      -1000,
+      1000
+    ],
+    "lonlat": [
+      6.4,
+      50.4
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 90
   },
   "BE->FR": {
     "lonlat": [
@@ -787,8 +802,8 @@
   },
   "DE->DK-DK2": {
     "capacity": [
-      -600,
-      600
+      -1000,
+      1000
     ],
     "lonlat": [
       12.135031,
@@ -1164,8 +1179,8 @@
   },
   "FR->GB": {
     "capacity": [
-      -2000,
-      2000
+      -3000,
+      3000
     ],
     "lonlat": [
       0,
@@ -1273,6 +1288,16 @@
     },
     "rotation": 180
   },
+  "GB->NO-NO2": {
+    "lonlat": [
+      2.44819,
+      57.266334
+    ],
+    "parsers": {
+      "exchange": "ELEXON.fetch_exchange"
+    },
+    "rotation": 50
+  },
   "GE->RU-1": {
     "lonlat": [
       42.822242,
@@ -1287,6 +1312,10 @@
     "lonlat": [
       42.814,
       41.562
+    ],
+    "capacity": [
+      -700,
+      700
     ],
     "parsers": {
       "exchange": "GE.fetch_exchange"

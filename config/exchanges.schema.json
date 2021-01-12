@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.schema.json",
+  "title": "ElectricityMap Exchanges",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "_comment": {
+        "type": "string"
+      },
+      "capacity": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number",
+            "maximum": 0
+          },
+          {
+            "type": "number",
+            "minimum": 0
+          }
+        ]
+      },
+      "lonlat": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      },
+      "parsers": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "exchange": {
+            "type": "string"
+          },
+          "exchangeForecast": {
+            "type": "string"
+          }
+        }
+      },
+      "rotation": {
+        "type": "number"
+      }
+    }
+  }
+} 
