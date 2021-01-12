@@ -85,7 +85,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         df['BATTERY_DISCHARGING'] = df['BATTERY_DISCHARGING'] * -1
 
     objs = [{
-        'datetime': arrow.get(datetime.to_pydatetime()).datetime,
+        'datetime': arrow.get(dt.to_pydatetime()).datetime,
         'production': {  # Unit is MW
             'coal': sum_vector(row, ['COAL_BLACK', 'COAL_BROWN']),
             'gas': sum_vector(row, ['GAS_CCGT', 'GAS_OCGT', 'GAS_RECIP', 'GAS_STEAM']),
@@ -107,7 +107,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         },
         'source': SOURCE,
         'zoneKey': zone_key,
-    } for datetime, row in df.iterrows()]
+    } for dt, row in df.iterrows()]
 
     # Validation
     for obj in objs:
@@ -116,7 +116,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
                 continue
             if v < 0 and v > -50:
                 # Set small negative values to 0
-                logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
+                logger.warning(f'Setting small value of {k} ({v}) to 0.',
                                extra={'key': zone_key})
                 obj['production'][k] = 0
 
@@ -127,12 +127,12 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
     df = fetch_main_df(zone_key, session, target_datetime, logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
-        'datetime': arrow.get(datetime.to_pydatetime()).datetime,
+        'datetime': arrow.get(dt.to_pydatetime()).datetime,
         'price': sum_vector(row, ['PRICE']),  # currency / MWh
         'currency': 'AUD',
         'source': SOURCE,
         'zoneKey': zone_key,
-    } for datetime, row in df.iterrows()]
+    } for dt, row in df.iterrows()]
 
 
 if __name__ == '__main__':
