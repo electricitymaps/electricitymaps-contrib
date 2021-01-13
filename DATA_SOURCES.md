@@ -128,6 +128,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - New England: [NEISO](https://www.iso-ne.com/isoexpress/)
   - New York: [NYISO](http://www.nyiso.com/public/markets_operations/market_data/graphs/index.jsp)
   - PJM: [PJM](http://www.pjm.com/markets-and-operations.aspx)
+  - Puerto Rico: [AEEPR](https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx)
   - Southwest Power Pool: [SPP](https://marketplace.spp.org/pages/generation-mix)
   - Southwest Variable Energy Resource Initiative: [SVERI](https://sveri.energy.arizona.edu/#generation-by-fuel-type)
   - Texas: [ERCOT](http://www.ercot.com/content/cdr/html/real_time_system_conditions.html)

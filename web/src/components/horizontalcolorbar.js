@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { range, isFinite } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
-import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
+import { useRefWidthHeightObserver } from '../hooks/viewport';
 
 const PADDING_X = 13;
 const PADDING_Y = 10;
@@ -20,9 +20,7 @@ const HorizontalColorbar = ({
   markerColor,
   ticksCount = 5,
 }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref, 2 * PADDING_X);
-  const height = useHeightObserver(ref, 2 * PADDING_Y);
+  const { ref, width, height } = useRefWidthHeightObserver(2 * PADDING_X, 2 * PADDING_Y);
 
   const className = `${id} colorbar`;
   const linearScale = scaleLinear()

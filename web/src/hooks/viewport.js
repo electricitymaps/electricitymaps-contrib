@@ -1,49 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export function useWidthObserver(ref, offset = 0) {
+export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [node, setNode] = useState(null); // The DOM node
 
-  // Resize hook
-  useEffect(() => {
-    const updateWidth = () => {
-      if (ref.current) {
-        const newWidth = ref.current.getBoundingClientRect().width - offset;
-        if (newWidth !== width) { setWidth(newWidth); }
+  // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
+  const ref = useCallback((newNode) => {
+    // This callback will be called once the ref
+    // returned has been attached to `node`.
+    const update = () => {
+      if (newNode !== null) {
+        const newWidth = newNode.getBoundingClientRect().width - offsetX;
+        const newHeight = newNode.getBoundingClientRect().height - offsetY;
+        setWidth(newWidth);
+        setHeight(newHeight);
+        setNode(newNode);
       }
     };
     // Set initial width
-    updateWidth();
+    update();
     // Update container width on every resize
-    window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', update);
     };
-  });
+  }, [offsetX, offsetY]);
 
-  return width;
-}
-
-export function useHeightObserver(ref, offset = 0) {
-  const [height, setHeight] = useState(0);
-
-  // Resize hook
-  useEffect(() => {
-    const updateHeight = () => {
-      if (ref.current) {
-        const newHeight = ref.current.getBoundingClientRect().height - offset;
-        if (newHeight !== height) { setHeight(newHeight); }
-      }
-    };
-    // Set initial height
-    updateHeight();
-    // Update height on every resize
-    window.addEventListener('resize', updateHeight);
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  });
-
-  return height;
+  return {
+    ref, width, height, node,
+  };
 }
 
 export function useWindowSize() {
