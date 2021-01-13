@@ -1115,7 +1115,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/postronium"
+      "https://github.com/postronium",
+      "https://github.com/Kikof2"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1123,7 +1124,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "CH.fetch_production"
     },
     "timezone": null
   },
@@ -1475,7 +1476,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "DO.fetch_production"
@@ -1849,7 +1851,8 @@
       "wind": 18.3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "FO.fetch_production"
