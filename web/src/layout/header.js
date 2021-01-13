@@ -27,7 +27,7 @@ const headerLinks = [
 const Container = styled.div`
   /* This makes sure the map and the other content doesn't
   go under the SharedHeader which has a fixed position. */
-  height: 66px;
+  height: 58px;
 `;
 
 const Header = () => (
