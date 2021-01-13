@@ -1851,7 +1851,8 @@
       "wind": 18.3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "FO.fetch_production"
