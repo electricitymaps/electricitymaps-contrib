@@ -297,6 +297,10 @@ VALIDATIONS = {
         'required': ['coal', 'nuclear', 'hydro'],
         'expected_range': (2000, 20000),
     },
+    'CH': {
+        'required': ['hydro', 'nuclear'],
+        'expected_range': (2000, 25000),
+    },
     'CZ': {
         # usual load is in 7-12 GW range
         'required': ['coal', 'nuclear'],
