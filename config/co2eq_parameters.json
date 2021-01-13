@@ -321,6 +321,10 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 366.7153663910574
+        },
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 17
         }
       },
       "FR": {
@@ -578,6 +582,11 @@
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 462.73049119238584
+        },
+        "unknown": {
+          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/2804#issuecomment-750944105",
+          "source": "CBS 2019 & ENTSO-E. Assumes 67.5% gas, 18.1% biomass, 5% oil, 0.3% hydro, rest unknown equivalent",
+          "value": 468
         }
       },
       "NO-NO1": {
@@ -2139,6 +2148,17 @@
           "wind": 0.051255527209169635
         }
       },
+      "MA": {
+        "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~MAR",
+        "powerOriginRatios": {
+          "coal": 0.4157,
+          "gas": 0.2443,
+          "hydro": 0.0379,
+          "oil": 0.114,
+          "solar": 0.0474,
+          "wind": 0.1409
+        }
+      },
       "MD": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2964,6 +2984,9 @@
       "wind": true
     },
     "zoneOverrides": {
+      "FO": {
+        "unknown": true
+      },
       "GB-ORK": {
         "unknown": true
       },

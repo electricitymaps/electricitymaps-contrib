@@ -11,7 +11,7 @@ steps:
 
   build:
     environment:
-      ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN}
+      ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
     inputs:
       # geometries
       - generate-geometries.js

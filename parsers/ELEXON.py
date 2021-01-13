@@ -21,6 +21,7 @@ import pandas as pd
 from io import StringIO
 
 from .lib.validation import validate
+from .lib.utils import get_token
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
@@ -68,9 +69,7 @@ FETCH_WIND_FROM_FUELINST = True
 
 
 def query_ELEXON(report, session, params):
-    if 'ELEXON_TOKEN' not in os.environ:
-        raise Exception('No ELEXON_TOKEN found! Please add it to secrets.env!')
-    params['APIKey'] = os.environ['ELEXON_TOKEN']
+    params['APIKey'] = get_token('ELEXON_TOKEN')
     return session.get(ELEXON_ENDPOINT.format(report), params=params)
 
 
@@ -316,7 +315,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy 
+    """Main method, never used by the Electricity Map backend, but handy
     for testing."""
 
     print('fetch_production() ->')
