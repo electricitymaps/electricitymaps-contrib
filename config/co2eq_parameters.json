@@ -2675,6 +2675,20 @@
           "wind": 0.004612842360966347
         }
       },
+      "TH": {
+        "_source": "IEA 2019 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.",
+        "_url": "https://www.iea.org/data-and-statistics?country=THAILAND&fuel=Electricity%20and%20heat&indicator=ElecGenByFuel",
+        "powerOriginRatios": {
+          "coal": 0.180736632940652,
+          "oil": 0.00112025791277195,
+          "gas": 0.646008637644721,
+          "hydro": 0.0326142054786188,
+          "geothermal": 0.00000506904032928486,
+          "biomass": 0.094720087593017,
+          "solar": 0.0262677669863541,
+          "wind": 0.0185273424035362
+        }
+      },
       "TR": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
