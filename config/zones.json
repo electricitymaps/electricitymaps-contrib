@@ -5397,6 +5397,11 @@
   },
   "US-CAL-CISO": {
     "comment": "California Independent System Operator",
+    "capacity": {
+      "solar": 13147,
+      "wind": 6690,
+      "geothermal": 1387
+    },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/robertahunt"
