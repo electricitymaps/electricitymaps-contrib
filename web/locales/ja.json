@@ -400,11 +400,62 @@
             "countryName": "カナダ",
             "zoneName": "ユーコン"
         },
+        "CC": {
+            "zoneName": "ココス諸島"
+        },
+        "CD": {
+            "zoneName": "コンゴ民主共和国"
+        },
+        "CF": {
+            "zoneName": "中央アフリカ共和国"
+        },
+        "CG": {
+            "zoneName": "コンゴ"
+        },
         "CH": {
             "zoneName": "スイス"
         },
+        "CI": {
+            "zoneName": "コートジボワール"
+        },
+        "CK": {
+            "zoneName": "クック諸島"
+        },
+        "CL-SEA": {
+            "countryName": "チリ",
+            "zoneName": "Sistema Eléctrico de Aysén"
+        },
+        "CL-SEM": {
+            "countryName": "チリ",
+            "zoneName": "Sistema Eléctrico de Magallanes"
+        },
+        "CL-SEN": {
+            "countryName": "チリ",
+            "zoneName": "Sistema Eléctrico Nacional"
+        },
+        "CM": {
+            "zoneName": "カメルーン"
+        },
+        "CN": {
+            "zoneName": "中国"
+        },
+        "CO": {
+            "zoneName": "コロンビア"
+        },
         "CR": {
             "zoneName": "コスタリカ"
+        },
+        "CU": {
+            "zoneName": "キューバ"
+        },
+        "CV": {
+            "zoneName": "カーボベルデ"
+        },
+        "CW": {
+            "zoneName": "キュラソー"
+        },
+        "CX": {
+            "zoneName": "クリスマス島"
         },
         "CY": {
             "zoneName": "キプロス"
@@ -415,8 +466,26 @@
         "DE": {
             "zoneName": "ドイツ"
         },
+        "DJ": {
+            "zoneName": "ジブチ"
+        },
         "DK": {
             "zoneName": "デンマーク"
+        },
+        "DK-DK1": {
+            "countryName": "デンマーク",
+            "zoneName": "西デンマーク"
+        },
+        "DK-DK2": {
+            "countryName": "デンマーク",
+            "zoneName": "西デンマーク"
+        },
+        "DK-BHM": {
+            "countryName": "デンマーク",
+            "zoneName": "東デンマーク"
+        },
+        "DM": {
+            "zoneName": "ドミニカ"
         },
         "DO": {
             "zoneName": "ドミニカ共和国"
@@ -424,25 +493,78 @@
         "DZ": {
             "zoneName": "アルジェリア"
         },
+        "EC": {
+            "zoneName": "エクアドル"
+        },
         "EE": {
             "zoneName": "エストニア"
         },
         "EG": {
             "zoneName": "エジプト"
         },
+        "EH": {
+            "zoneName": "西サハラ"
+        },
+        "ER": {
+            "zoneName": "エリトリア"
+        },
         "ES": {
             "zoneName": "スペイン"
         },
-        "ES-IB": {
+        "ES-IB-FO": {
             "countryName": "スペイン",
-            "zoneName": "バレアレス諸島"
+            "zoneName": "フォルメンテラ島"
         },
-        "ES-CN": {
+        "ES-IB-IZ": {
             "countryName": "スペイン",
-            "zoneName": "カナリア諸島"
+            "zoneName": "イビサ島"
+        },
+        "ES-IB-MA": {
+            "countryName": "スペイン",
+            "zoneName": "マヨルカ島"
+        },
+        "ES-IB-ME": {
+            "countryName": "スペイン",
+            "zoneName": "メノルカ島"
+        },
+        "ES-CN-FVLZ": {
+            "countryName": "スペイン",
+            "zoneName": "フエルテベントゥラ島/ランサローテ島"
+        },
+        "ES-CN-GC": {
+            "countryName": "スペイン",
+            "zoneName": "グラン・カナリア島"
+        },
+        "ES-CN-HI": {
+            "countryName": "スペイン",
+            "zoneName": "エル・イエロ島 "
+        },
+        "ES-CN-IG": {
+            "countryName": "スペイン",
+            "zoneName": "ラ・ゴメラ島"
+        },
+        "ES-CN-LP": {
+            "countryName": "スペイン",
+            "zoneName": "ラ・パルマ島"
+        },
+        "ES-CN-TE": {
+            "countryName": "スペイン",
+            "zoneName": "テネリフェ島"
+        },
+        "ET": {
+            "zoneName": "エチオピア"
         },
         "FI": {
             "zoneName": "フィンランド"
+        },
+        "FJ": {
+            "zoneName": "フィジー"
+        },
+        "FK": {
+            "zoneName": "フォークランド諸島"
+        },
+        "FM": {
+            "zoneName": "ミクロネシア"
         },
         "FO": {
             "zoneName": "フェロー諸島"
@@ -450,20 +572,85 @@
         "FR": {
             "zoneName": "フランス"
         },
+        "FR-COR": {
+            "countryName": "フランス",
+            "zoneName": "コルシカ島"
+        },
+        "GA": {
+            "zoneName": "ガボン"
+        },
         "GB": {
             "zoneName": "イギリス"
         },
         "GB-NIR": {
             "zoneName": "北アイルランド"
         },
+        "GB-ORK": {
+            "countryName": "イギリス",
+            "zoneName": "オークニー諸島"
+        },
+        "GB-SHI": {
+            "countryName": "イギリス",
+            "zoneName": "シェットランド諸島"
+        },
+        "GB-ZET": {
+            "countryName": "イギリス",
+            "zoneName": "シェットランド諸島"
+        },
+        "GD": {
+            "zoneName": "グレナダ"
+        },
         "GE": {
             "zoneName": "ジョージア州"
+        },
+        "GF": {
+            "zoneName": "フランス領ギアナ"
+        },
+        "GG": {
+            "zoneName": "ガーンジー"
+        },
+        "GH": {
+            "zoneName": "ガーナ"
+        },
+        "GI": {
+            "zoneName": "ジブラルタル"
+        },
+        "GL": {
+            "zoneName": "グリーンランド"
+        },
+        "GM": {
+            "zoneName": "ガンビア"
+        },
+        "GN": {
+            "zoneName": "ギニア"
+        },
+        "GP": {
+            "zoneName": "グアドループ"
+        },
+        "GQ": {
+            "zoneName": "赤道ギニア"
         },
         "GR": {
             "zoneName": "ギリシャ"
         },
+        "GR-IS": {
+            "countryName": "ギリシャ",
+            "zoneName": "エーゲ海諸島"
+        },
+        "GS": {
+            "zoneName": "サウスジョージア・サウスサンドウィッチ諸島"
+        },
         "GT": {
             "zoneName": "グアテマラ"
+        },
+        "GU": {
+            "zoneName": "グアム"
+        },
+        "GW": {
+            "zoneName": "ギニアビサウ"
+        },
+        "GY": {
+            "zoneName": "ガイアナ"
         },
         "HN": {
             "zoneName": "ホンジュラス"
