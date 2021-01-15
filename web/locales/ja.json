@@ -652,20 +652,35 @@
         "GY": {
             "zoneName": "ガイアナ"
         },
+        "HK": {
+          "zoneName": "香港"
+        },
+        "HM": {
+          "zoneName": "ハード島とマクドナルド諸島"
+        },
         "HN": {
             "zoneName": "ホンジュラス"
         },
         "HR": {
             "zoneName": "クロアチア"
         },
+        "HT": {
+          "zoneName": "ハイチ"
+        },
         "HU": {
             "zoneName": "ハンガリー"
+        },
+        "ID": {
+          "zoneName": "インドネシア"
         },
         "IE": {
             "zoneName": "アイルランド"
         },
         "IL": {
             "zoneName": "イスラエル"
+        },
+        "IM": {
+          "zoneName": "マン島"
         },
         "IN-AN": {
             "countryName": "インド",
@@ -694,6 +709,10 @@
         "IN-DL": {
             "countryName": "インド",
             "zoneName": "デリー"
+        },
+        "IN-DN": {
+          "countryName": "インド",
+          "zoneName": "ダードラーおよびナガル・ハヴェーリー"
         },
         "IN-GA": {
             "countryName": "インド",
@@ -791,8 +810,15 @@
             "countryName": "インド",
             "zoneName": "西ベンガル州"
         },
+        "IO": {
+          "zoneName": "イギリス領インド洋地域"
+        },
         "IQ": {
             "zoneName": "イラク"
+        },
+        "IQ-KUR": {
+          "countryName": "イラク",
+          "zoneName": "クルディスタン"
         },
         "IR": {
             "zoneName": "イラン"
@@ -803,14 +829,132 @@
         "IT": {
             "zoneName": "イタリア"
         },
+        "IT-CNO": {
+          "countryName": "イタリア",
+          "zoneName": "中央北部"
+        },
+        "IT-CSO": {
+          "countryName": "イタリア",
+          "zoneName": "中央南部"
+        },
+        "IT-NO": {
+          "countryName": "イタリア",
+          "zoneName": "北部"
+        },
+        "IT-SAR": {
+          "countryName": "イタリア",
+          "zoneName": "サルデーニャ"
+        },
+        "IT-SIC": {
+          "countryName": "イタリア",
+          "zoneName": "シチリア"
+        },
+        "IT-SO": {
+          "countryName": "イタリア",
+          "zoneName": "南部"
+        },
+        "JE": {
+          "zoneName": "ジャージー"
+        },
+        "JM": {
+          "zoneName": "ジャマイカ"
+        },
         "JO": {
             "zoneName": "ヨルダン"
         },
+        "JP-CB": {
+          "countryName": "日本",
+          "zoneName": "中部"
+        },
+        "JP-CG": {
+          "countryName": "日本",
+          "zoneName": "中国"
+        },
+        "JP-HKD": {
+          "countryName": "日本",
+          "zoneName": "北海道"
+        },
+        "JP-HR": {
+          "countryName": "日本",
+          "zoneName": "北陸"
+        },
+        "JP-KN": {
+            "countryName": "日本",
+            "zoneName": "関西"
+          },
+          "JP-KY": {
+            "countryName": "日本",
+            "zoneName": "九州"
+          },
+          "JP-ON": {
+            "countryName": "日本",
+            "zoneName": "沖縄"
+          },
+          "JP-SK": {
+            "countryName": "日本",
+            "zoneName": "四国"
+          },
+          "JP-TH": {
+            "countryName": "日本",
+            "zoneName": "東北"
+          },
+          "JP-TK": {
+            "countryName": "日本",
+            "zoneName": "東京"
+          },
+          "KE": {
+            "zoneName": "ケニア"
+          },
+          "KG": {
+            "zoneName": "キルギス"
+          },
+          "KH": {
+            "zoneName": "カンボジア"
+          },
+          "KI": {
+            "zoneName": "キリバス"
+          },
+          "KM": {
+            "zoneName": "コモロ"
+          },
+          "KN": {
+            "zoneName": "セントクリストファー・ネービス"
+          },
+          "KP": {
+            "zoneName": "北朝鮮"
+          },
+          "KR": {
+            "zoneName": "韓国"
+          },
+          "KW": {
+            "zoneName": "クウェート"
+          },
+          "KY": {
+            "zoneName": "ケイマン諸島"
+          },
         "KZ": {
             "zoneName": "カザフスタン"
         },
+        "LA": {
+          "zoneName": "ラオス"
+        },
         "LB": {
             "zoneName": "レバノン"
+        },
+        "LC": {
+          "zoneName": "セントルシア"
+        },
+        "LI": {
+          "zoneName": "リヒテンシュタイン"
+        },
+        "LK": {
+          "zoneName": "スリランカ"
+        },
+        "LR": {
+          "zoneName": "リベリア"
+        },
+        "LS": {
+          "zoneName": "レソト"
         },
         "LT": {
             "zoneName": "リトアニア"
@@ -827,17 +971,124 @@
         "MA": {
             "zoneName": "モロッコ"
         },
+        "MC": {
+          "zoneName": "モナコ"
+        },
         "MD": {
             "zoneName": "モルドバ"
         },
         "ME": {
             "zoneName": "モンテネグロ"
         },
+        "MF": {
+          "countryName": "セント・マーチン",
+          "zoneName": "フランス"
+        },
+        "MG": {
+          "zoneName": "マダガスカル"
+        },
+        "MH": {
+          "zoneName": "マーシャル諸島"
+        },
         "MK": {
             "zoneName": "北マケドニア"
         },
+        "ML": {
+          "zoneName": "マリ"
+        },
+        "MM": {
+          "zoneName": "ミャンマー"
+        },
+        "MN": {
+          "zoneName": "モンゴル"
+        },
+        "MO": {
+          "zoneName": "マカオ"
+        },
+        "MP": {
+          "zoneName": "北マリアナ諸島"
+        },
+        "MQ": {
+          "zoneName": "マルティニーク"
+        },
+        "MR": {
+          "zoneName": "モーリタニア"
+        },
+        "MS": {
+          "zoneName": "モントセラト"
+        },
         "MT": {
             "zoneName": "マルタ"
+        },
+        "MU": {
+          "zoneName": "モーリシャス"
+        },
+        "MV": {
+          "zoneName": "モルディブ"
+        },
+        "MW": {
+          "zoneName": "マラウイ"
+        },
+        "MX": {
+          "zoneName": "メキシコ"
+        },
+        "MX-BC": {
+          "countryName": "メキシコ",
+          "zoneName": "バハ・カリフォルニア"
+        },
+        "MX-CE": {
+          "countryName": "メキシコ",
+          "zoneName": "中央部"
+        },
+        "MX-NE": {
+          "countryName": "メキシコ",
+          "zoneName": "北東部"
+        },
+        "MX-NO": {
+          "countryName": "メキシコ",
+          "zoneName": "北部"
+        },
+        "MX-NW": {
+          "countryName": "メキシコ",
+          "zoneName": "北西部"
+        },
+        "MX-OC": {
+          "countryName": "メキシコ",
+          "zoneName": "西洋部"
+        },
+        "MX-OR": {
+          "countryName": "メキシコ",
+          "zoneName": "東洋部"
+        },
+        "MX-PN": {
+          "countryName": "メキシコ",
+          "zoneName": "半島部"
+        },
+        "MY-EM": {
+          "countryName": "マレーシア",
+          "zoneName": "ボルネオ"
+        },
+        "MY-WM": {
+          "countryName": "マレーシア",
+          "zoneName": "マレー半島"
+        },
+        "MZ": {
+          "zoneName": "モザンビーク"
+        },
+        "NA": {
+          "zoneName": "ナミビア"
+        },
+        "NC": {
+          "zoneName": "ニューカレドニア"
+        },
+        "NE": {
+          "zoneName": "ニジェール"
+        },
+        "NF": {
+          "zoneName": "ノーフォーク島"
+        },
+        "NG": {
+          "zoneName": "ナイジェリア"
         },
         "NI": {
             "zoneName": "ニカラグア"
@@ -848,8 +1099,42 @@
         "NL": {
             "zoneName": "オランダ"
         },
-        "NO": {
-            "zoneName": "ノルウェー"
+        "NO-NO1": {
+          "countryName": "ノルウェー",
+          "zoneName": "ノルウェー南東部"
+        },
+        "NO-NO2": {
+          "countryName": "ノルウェー",
+          "zoneName": "ノルウェー南西部"
+        },
+        "NO-NO3": {
+          "countryName": "ノルウェー",
+          "zoneName": "ノルウェー中部"
+        },
+        "NO-NO4": {
+          "countryName": "ノルウェー",
+          "zoneName": "ノルウェー北部"
+        },
+        "NO-NO5": {
+          "countryName": "ノルウェー",
+          "zoneName": "ノルウェー西部"
+        },
+        "NP": {
+          "zoneName": "ネパール"
+        },
+        "NR": {
+          "zoneName": "ナウル"
+        },
+        "NU": {
+          "zoneName": "ニウエ"
+        },
+        "NZ-NZA": {
+          "countryName": "ニュージーランド",
+          "zoneName": "オークランド諸島"
+        },
+        "NZ-NZC": {
+            "countryName": "ニュージーランド",
+            "zoneName": "チャタム諸島"
         },
         "NZ-NZN": {
             "countryName": "ニュージーランド",
@@ -858,6 +1143,9 @@
         "NZ-NZS": {
             "countryName": "ニュージーランド",
             "zoneName": "南島"
+        },
+        "OM": {
+          "zoneName": "オマーン"
         },
         "PA": {
             "zoneName": "パナマ"
