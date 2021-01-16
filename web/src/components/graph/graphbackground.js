@@ -10,7 +10,7 @@ const GraphBackground = React.memo(({
   mouseMoveHandler,
   mouseOutHandler,
   isMobile,
-  svgRef,
+  svgNode,
 }) => {
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
@@ -24,7 +24,7 @@ const GraphBackground = React.memo(({
       clearTimeout(mouseOutRectTimeout);
       mouseOutRectTimeout = undefined;
     }
-    const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgRef);
+    const timeIndex = detectHoveredDatapointIndex(ev, datetimes, timeScale, svgNode);
     if (mouseMoveHandler) {
       mouseMoveHandler(timeIndex);
     }
