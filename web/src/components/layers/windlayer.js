@@ -24,7 +24,9 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ project, unproject }) => {
-  const { ref, width, height } = useRefWidthHeightObserver();
+  const {
+    ref, width, height, node,
+  } = useRefWidthHeightObserver();
   const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
@@ -55,9 +57,9 @@ export default ({ project, unproject }) => {
   // hacky once Windy service is merged here and perhaps optimized via WebGL.
   // See https://github.com/tmrowco/electricitymap-contrib/issues/944.
   useEffect(() => {
-    if (!windy && isVisible && ref.current && interpolatedData) {
+    if (!windy && isVisible && node && interpolatedData) {
       const w = new Windy({
-        canvas: ref.current,
+        canvas: node,
         data: interpolatedData,
         project,
         unproject,
@@ -69,7 +71,7 @@ export default ({ project, unproject }) => {
       windy.stop();
       setWindy(null);
     }
-  }, [windy, isVisible, ref.current, interpolatedData]);
+  }, [windy, isVisible, node, interpolatedData]);
 
   return (
     <CSSTransition
