@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 // TODO: re-enable rules
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { __ } from '../../helpers/translation';
@@ -19,6 +19,29 @@ const MobileInfoTab = () => {
   if (isMediumUpScreen) {
     return <Redirect to={{ pathname: '/map', search: location.search }} />;
   }
+
+  const [mobileAppVersion, setMobileAppVersion] = useState(null);
+  // Check app version once
+  useEffect(() => {
+    if (!mobileAppVersion && window.isCordova) {
+      codePush.getCurrentPackage((localPackage) => {
+        if (!localPackage) {
+          console.log('CodePush: No updates have been installed yet');
+          setMobileAppVersion(null);
+          return;
+        }
+
+        const {
+          appVersion, // The native version of the application this package update is intended for.
+          description, // same as given during deployment
+          // isFirstRun, // flag indicating if the current application run is the first one after the package was applied.
+          label, // The internal label automatically given to the update by the CodePush server, such as v5. This value uniquely identifies the update within it's deployment
+        } = localPackage;
+
+        setMobileAppVersion(`${appVersion} ${label} (${description})`);
+      }, err => console.error(err));
+    }
+  }, []);
 
   return (
     <div className="mobile-info-tab">
@@ -47,6 +70,9 @@ const MobileInfoTab = () => {
 
       <div className="info-text">
         <ColorBlindCheckbox />
+        { mobileAppVersion ? (
+          <p>{`App version: ${mobileAppVersion}`}</p>
+        ) : null}
         <p>
           {__('panel-initial-text.thisproject')}
           {' '}

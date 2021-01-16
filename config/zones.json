@@ -1116,7 +1116,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/postronium"
+      "https://github.com/postronium",
+      "https://github.com/Kikof2"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1124,7 +1125,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
-      "production": "ENTSOE.fetch_production"
+      "production": "CH.fetch_production"
     },
     "timezone": null
   },
@@ -1287,17 +1288,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 8210,
+      "biomass": 8240,
       "coal": 43490,
       "gas": 29930,
-      "geothermal": 42,
-      "hydro": 4780,
+      "geothermal": 47,
+      "hydro": 4790,
       "hydro storage": 9810,
       "nuclear": 8114,
       "oil": 4360,
-      "solar": 51990,
+      "solar": 53580,
       "unknown": 3700,
-      "wind": 61880
+      "wind": 62380
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1476,7 +1477,8 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "production": "DO.fetch_production"
@@ -1850,7 +1852,8 @@
       "wind": 18.3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "FO.fetch_production"
@@ -2918,7 +2921,7 @@
       "coal": 979,
       "geothermal": 0,
       "hydro": 419,
-      "hydro-storage": 312,
+      "hydro storage": 312,
       "nuclear": 0,
       "oil": 238,
       "solar": 1400,
