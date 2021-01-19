@@ -395,7 +395,7 @@
       "https://github.com/MariusKroon"
     ],
     "capacity": {
-      "solar": 1787.565
+      "solar": 1787.565,
       "wind": 491
     },
     "flag_file_name": "au.png",
