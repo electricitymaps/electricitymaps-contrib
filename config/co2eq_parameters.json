@@ -208,6 +208,13 @@
           "value": 40.98482440401805
         }
       },
+      "CH": {
+        "unknown": {
+          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
+          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
+          "value": 131
+        }
+      },
       "CL-SEN" : {
         "unknown": {
           "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
