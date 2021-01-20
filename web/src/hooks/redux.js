@@ -68,12 +68,23 @@ export function useCurrentZoneData() {
 }
 
 export function useCurrentZoneExchangeKeys() {
-  const zoneData = useCurrentZoneData();
+  // Use the whole history (which doesn't depend on timestamp)
+  // and fallback on current zone data
+  const zoneHistory = useCurrentZoneHistory() || [useCurrentZoneData()];
   const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
 
   return useMemo(
-    () => (isConsumption ? sortBy(keys(zoneData.exchange)) : []),
-    [isConsumption, zoneData],
+    () => {
+      if (!isConsumption) {
+        return [];
+      }
+      const exchangeKeys = new Set();
+      zoneHistory.forEach((zoneData) => {
+        keys(zoneData.exchange).forEach(k => exchangeKeys.add(k));
+      });
+      return sortBy(Array.from(exchangeKeys));
+    },
+    [isConsumption, zoneHistory],
   );
 }
 
