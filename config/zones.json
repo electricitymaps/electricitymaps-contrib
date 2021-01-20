@@ -511,6 +511,7 @@
     ]
   },
   "BE": {
+    "_comment": "Biomass includes waste incineration",
     "bounding_box": [
       [
         2.51357303225,
@@ -522,16 +523,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 1173,
+      "biomass": 1030,
       "coal": 0,
-      "gas": 6792,
+      "gas": 6825,
       "geothermal": 0,
       "hydro": 125,
       "hydro storage": 1310,
       "nuclear": 5943,
-      "oil": 341,
-      "solar": 4531,
-      "wind": 4460.8
+      "oil": 322,
+      "solar": 4788,
+      "wind": 4670.8
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1287,17 +1288,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 8210,
+      "biomass": 8240,
       "coal": 43490,
       "gas": 29930,
-      "geothermal": 42,
-      "hydro": 4780,
+      "geothermal": 47,
+      "hydro": 4790,
       "hydro storage": 9810,
       "nuclear": 8114,
       "oil": 4360,
-      "solar": 51990,
+      "solar": 53580,
       "unknown": 3700,
-      "wind": 61880
+      "wind": 62380
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1851,7 +1852,8 @@
       "wind": 18.3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/q--"
     ],
     "parsers": {
       "production": "FO.fetch_production"
@@ -1876,7 +1878,7 @@
       "geothermal": 16,
       "hydro": 16947,
       "hydro storage": 4656,
-      "nuclear": 63130,
+      "nuclear": 61370,
       "oil": 2874,
       "solar": 9438,
       "wind": 16592,
