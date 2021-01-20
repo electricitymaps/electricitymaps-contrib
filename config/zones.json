@@ -4012,7 +4012,7 @@
   "PT": {
     "capacity": {
       "biomass": 729,
-      "coal": 1756,
+      "coal": 628,
       "gas": 4606,
       "geothermal": 29,
       "hydro": 4359,
@@ -4025,6 +4025,7 @@
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/nessie2013"
+      "https://github.com/Falconet8"
     ],
     "flag_file_name": "pt.png",
     "parsers": {
