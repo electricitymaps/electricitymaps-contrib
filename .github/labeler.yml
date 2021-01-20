@@ -1,0 +1,23 @@
+dependencies:
+  - .**/requirements.txt
+
+frontend 🎨:
+  - web/src/**/*
+
+translations 🗣:
+  - web/locales/**/*
+
+javascript:
+  - .**/*.js
+
+python:
+  - .**/*.py
+
+parser:
+  - .**/parsers/**/*
+
+science:
+  - config/co2eq_parameters.json
+
+mobile app 📱:
+  - mobileapp/**/*
