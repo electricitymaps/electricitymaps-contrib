@@ -248,6 +248,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Montenegro
   - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
+- Morocco: [ONEE](http://www.one.org.ma/FR/pdf/Depliant%20Statistiques%20FR%202019.pdf)
 - Nagorno-Karabakh: [Artsakh HEK](http://artsakhhek.am/?lang=en)
 - Namibia
   - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
