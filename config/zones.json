@@ -1334,11 +1334,12 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1009,
-      "solar": 1013,
-      "wind": 6102
+      "solar": 1332.3457,
+      "wind": 6784.0462
     },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/Manu1400"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
