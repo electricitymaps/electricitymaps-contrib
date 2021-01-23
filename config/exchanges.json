@@ -1207,6 +1207,11 @@
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
+  "FR-ARA->FR-BFC": {
+    "parsers": {
+      "exchange": "FR_R.fetch_exchange"
+    }
+  },
   "FR->GB": {
     "capacity": [
       -3000,

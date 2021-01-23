@@ -14,7 +14,7 @@ from utils.parsers import PARSER_KEY_TO_DICT
 
 @click.command()
 @click.argument('zone')
-@click.argument('data-type', default='production')
+@click.argument('data-type', default='')
 @click.option('--target_datetime', default=None, show_default=True)
 def test_parser(zone, data_type, target_datetime):
     """
@@ -46,6 +46,9 @@ def test_parser(zone, data_type, target_datetime):
     if target_datetime:
         target_datetime = arrow.get(target_datetime).datetime
     start = time.time()
+
+    if not data_type:
+        data_type = 'exchange' if '->' in zone else 'production'
 
     parser = PARSER_KEY_TO_DICT[data_type][zone]
     if data_type in ['exchange', 'exchangeForecast']:

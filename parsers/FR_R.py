@@ -11,9 +11,6 @@ import requests
 
 from .lib.validation import validate, validate_production_diffs
 
-# setting env variable
-os.environ['RESEAUX_ENERGIES_TOKEN']='8286b3219dbedb0c74bbab52ef6a268fcaf79423f7b2deb727a6e803'
-
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
 # note: thermal lump sum for coal, oil, gas as breakdown not available at regional level
@@ -64,6 +61,9 @@ VALIDATIONS = {
 
 EXCHANGE = {
     'FR-ARA': {
+        'FR-BFC': {
+
+        },
         'FR-GES': {
             'import': 'flux_physiques_de_grand_est_vers_auvergne_rhone_alpes'
             }
@@ -145,6 +145,35 @@ EXCHANGE = {
         },
     }
 }
+
+ALL_INTERCONNECTOR_COLUMNS = {
+    c for a in EXCHANGE.values() for b in a.values() for c in b.values()
+}
+
+
+# These interconnectors are ordered alphabetically
+INTERCONNECTORS = [
+    'ARA->BFC',
+    'ARA->CH',
+    'ARA->CVL',
+    'ARA->NAQ',
+    'ARA->OCC',
+    'ARA->IT',
+
+    'BFC->CVL',
+    'BFC->GES',
+    'BFC->IDF',
+
+    'BRE->PDL',
+    'BRE->NOR',
+
+    # 'CVL->ARA',  # Redundant
+    # 'CVL->BFC',  # Redundant
+    'CVL->IDF',
+    'CVL->PDL',
+    'CVL->OCC',
+    'CVL->NOR',
+]
 
 
 def is_not_nan_and_truthy(v):
@@ -273,6 +302,14 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     if df.empty:
         return []
+
+    # Verify that all columns are indeed part of exchange_zone
+    # to make sure we don't miss a single one
+    print(f'Calculating {zone_key1} -> {zone_key2}')
+    print(df.columns)
+    sfgdsf
+    #print([col.replace('flux_physiques_', '').split('_vers_') for col in df.filter(like='flux_physiques_').columns])
+    #INTERCONNECTORS
 
     # cleaning data
     value_columns = list(exchange_zone.values())
