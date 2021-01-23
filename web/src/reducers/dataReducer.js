@@ -134,9 +134,6 @@ module.exports = (state = initialDataState, action) => {
             console.warn(`${key} produces more than its capacity of ${mode}`);
           }
         });
-        if (!zone.exchange || !Object.keys(zone.exchange).length) {
-          console.warn(`${key} is missing exchanges`);
-        }
       });
 
       // Populate exchange pairs for exchange layer
@@ -152,9 +149,6 @@ module.exports = (state = initialDataState, action) => {
           exchange[k] = value[k];
         });
       });
-
-      // Debug
-      console.log(newGrid.zones);
 
       newState.hasInitializedGrid = true;
       newState.isLoadingGrid = false;
