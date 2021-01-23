@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, {
-  useRef,
   useMemo,
   useState,
 } from 'react';
@@ -10,7 +9,7 @@ import { max as d3Max, min as d3Min } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
 
 import { dispatchApplication } from '../store';
-import { useWidthObserver } from '../hooks/viewport';
+import { useRefWidthHeightObserver } from '../hooks/viewport';
 import {
   useCurrentZoneData,
   useCurrentZoneExchangeKeys,
@@ -458,8 +457,7 @@ const CountryTable = ({
   isMobile,
   timescale,
 }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref);
+  const { ref, width } = useRefWidthHeightObserver();
 
   const exchangeKeys = useCurrentZoneExchangeKeys();
   const data = useCurrentZoneData();

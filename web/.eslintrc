@@ -1,5 +1,5 @@
 {
-  "root": true,
+  "root": true, // prevent searching eslintrc in parent directories
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",

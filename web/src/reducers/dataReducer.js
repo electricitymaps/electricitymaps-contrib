@@ -155,9 +155,6 @@ module.exports = (state = initialDataState, action) => {
         });
       });
 
-      // Debug
-      console.log(newGrid);
-
       newState.hasInitializedGrid = true;
       newState.isLoadingGrid = false;
       return newState;
