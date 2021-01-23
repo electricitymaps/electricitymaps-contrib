@@ -148,7 +148,7 @@ const ZoneList = ({
           <div className="ranking">{zone.ranking}</div>
           <img className="flag" src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
           <div className="name">
-            <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
+            <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`) || zone.countryCode}</div>
             <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
           </div>
           <div

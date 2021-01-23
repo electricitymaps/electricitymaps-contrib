@@ -354,7 +354,7 @@ const zoneDefinitions = [
   { zoneName: 'FM', type: 'country', id: 'FSM'},
   // { zoneName: 'FR', type: 'country', id: 'FRA'},
   { zoneName: 'FO', type: 'country', id: 'FRO'},
-  { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},
+  // { zoneName: 'FR', type: 'subunits', subunits: ['FXX']},  // only mainland
   { zoneName: 'FR-ARA', type: 'subZone', id: 'FR-ARA' },
   { zoneName: 'FR-BFC', type: 'subZone', id: 'FR-BFC' },
   { zoneName: 'FR-BRE', type: 'subZone', id: 'FR-BRE' },

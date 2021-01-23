@@ -19,7 +19,7 @@ API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 # note: thermal lump sum for coal, oil, gas as breakdown not available at regional level
 MAP_GENERATION = {
     'nucleaire': 'nuclear',
-    'thermique': 'thermal',
+    'thermique': 'unknown',
     'eolien': 'wind',
     'solaire': 'solar',
     'hydraulique': 'hydro',
@@ -48,18 +48,18 @@ FR_REGIONS = {
 
 # validations for each region
 VALIDATIONS = {
-    'FR-ARA': ['thermal', 'nuclear', 'hydro'],
+    'FR-ARA': ['unknown', 'nuclear', 'hydro'],
     'FR-BFC': ['wind'],
-    'FR-BRE': ['thermal', 'wind'],
+    'FR-BRE': ['unknown', 'wind'],
     'FR-CVL': ['nuclear', 'wind'],
-    'FR-GES': ['thermal', 'nuclear', 'hydro'],
-    'FR-HDF': ['thermal', 'nuclear'],
-    'FR-IDF': ['thermal'],
-    'FR-NOR': ['thermal', 'nuclear'],
+    'FR-GES': ['unknown', 'nuclear', 'hydro'],
+    'FR-HDF': ['unknown', 'nuclear'],
+    'FR-IDF': ['unknown'],
+    'FR-NOR': ['unknown', 'nuclear'],
     'FR-NAQ': ['nuclear', 'hydro'],
     'FR-OCC': ['nuclear', 'hydro'],
-    'FR-PDL': ['thermal', 'wind'],
-    'FR-PAC': ['thermal', 'hydro'],
+    'FR-PDL': ['unknown', 'wind'],
+    'FR-PAC': ['unknown', 'hydro'],
 }
 
 EXCHANGE = {
@@ -135,14 +135,14 @@ EXCHANGE = {
         'FR-OCC': {
             'export': 'flux_physiques_de_grand_est_vers_occitanie'
         },
+        'FR-PAC': {
+            'import': 'flux_physiques_de_paca_vers_grand_est',
+            'export': 'flux_physiques_de_grand_est_vers_paca'
+        },
         'FR-PDL': {
             'import': 'flux_physiques_de_pays_de_la_loire_vers_grand_est',
             'export': 'flux_physiques_de_grand_est_vers_pays_de_la_loire'
         },
-        'FR-PAC': {
-            'import': 'flux_physiques_de_paca_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_paca'
-        }
     }
 }
 
@@ -187,42 +187,49 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     df = fetch(zone_key, session=session, target_datetime=target_datetime)
 
     # filter out desired columns and convert values to float
-    value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys())
-    missing_fuels = [v for v in value_columns if v not in df.columns]
-    present_fuels = [v for v in value_columns if v in df.columns]
-    if len(missing_fuels) == len(value_columns):
-        logger.warning('No fuels present in the API response')
+    value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys()) + [f'tch_{x}' for x in MAP_GENERATION.keys()]
+    missing_columns = [v for v in value_columns if v not in df.columns]
+    present_columns = [v for v in value_columns if v in df.columns]
+    if len(missing_columns) == len(value_columns):
+        logger.warning('All columns of interest are missing from the API response')
         return list()
-    elif len(missing_fuels) > 0:
-        mf_str = ', '.join(missing_fuels)
-        logger.warning('Fuels [{}] are not present in the API '
+    elif len(missing_columns) > 0:
+        mf_str = ', '.join(missing_columns)
+        logger.warning('Columns [{}] are not present in the API '
                        'response'.format(mf_str))
         # note this happens and is ok as not all French regions have all fuels.
 
-    df = df.loc[:, ['date_heure'] + present_fuels]
-    df[present_fuels] = df[present_fuels].astype(float)
+    df = df.loc[:, ['date_heure'] + present_columns]
+    df[present_columns] = df[present_columns].astype(float)
 
     datapoints = list()
-    for row in df.iterrows():
+    for _, row in df.iterrows():
         production = dict()
         storage = dict()
+        capacity = dict()
 
         for key, value in MAP_GENERATION.items():
-            if key not in present_fuels:
+            if key not in present_columns:
                 continue
 
-            if -50 < row[1][key] < 0:
+            if -50 < row[key] < 0:
                 # set small negative values to 0
                 logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
                 production[value] = 0
             else:
-                production[value] = row[1][key]
+                production[value] = row[key]
+
+            # Capacity
+            load_factor = row[f'tch_{key}'] / 100.0
+            # We can't estimate capacity if load factor is too small
+            if load_factor > 0.05:
+                capacity[value] = round(row[key] / load_factor)
 
         for key, value in MAP_STORAGE.items():
-            if key not in present_fuels:
+            if key not in present_columns:
                 continue
             else:
-                storage[value] = row[1][key]
+                storage[value] = row[key]
 
         # if all production values are null, ignore datapoint
         if not any([is_not_nan_and_truthy(v)
@@ -231,9 +238,10 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
         datapoint = {
             'zoneKey': zone_key,
-            'datetime': arrow.get(row[1]['date_heure']).datetime,
+            'datetime': arrow.get(row['date_heure']).datetime,
             'production': production,
             'storage': storage,
+            'capacity': capacity,
             'source': 'opendata.reseaux-energies.fr'
         }
         # validations responsive to region
@@ -243,7 +251,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     max_diffs = {
         'hydro': 1600,
         'solar': 1000, # was 500 before
-        'thermal': 2000, # added thermal
+        'unknown': 2000, # thermal
         'wind': 1000,
         'nuclear': 1300,
     }
@@ -262,6 +270,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     else:
         df = fetch(zone_key2, session=session, target_datetime=target_datetime)
         exchange_zone = EXCHANGE[zone_key2][zone_key1]
+
+    if df.empty:
+        return []
 
     # cleaning data
     value_columns = list(exchange_zone.values())

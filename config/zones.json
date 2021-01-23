@@ -1897,7 +1897,21 @@
       "price": "FR.fetch_price",
       "production": "FR.fetch_production"
     },
-    "timezone": "Europe/Paris"
+    "timezone": "Europe/Paris",
+    "subZoneNames": [
+      "FR-ARA",
+      "FR-BFC",
+      "FR-BRE",
+      "FR-CVL",
+      "FR-GES",
+      "FR-HDF",
+      "FR-IDF",
+      "FR-NOR",
+      "FR-NAQ",
+      "FR-OCC",
+      "FR-PAC",
+      "FR-PDL"
+    ]
   },
   "FR-ARA":{
     "bounding_box": [
@@ -2198,33 +2212,6 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-PDL":{
-    "bounding_box": [
-      [
-        -2.5589448655806,
-        46.266566974958
-      ],
-      [
-        0.91379809767445,
-        48.567994064435
-      ]
-    ],
-    "capacity": {
-      "biomass": 77,
-      "hydro": 11,
-      "nuclear": 0,
-      "solar": 557,
-      "thermal": 2080,
-      "wind": 1012
-    },
-    "contributors": [
-      "https://github.com/AilinvandenHonigkuchenpferdlande"
-    ],
-    "parsers": {
-      "production": "FR_R.fetch_production"
-    },
-    "timezone": "Europe/Paris"
-  },
   "FR-PAC":{
     "bounding_box": [
       [
@@ -2243,6 +2230,33 @@
       "solar": 1334,
       "thermal": 3283,
       "wind": 48
+    },
+    "contributors": [
+      "https://github.com/AilinvandenHonigkuchenpferdlande"
+    ],
+    "parsers": {
+      "production": "FR_R.fetch_production"
+    },
+    "timezone": "Europe/Paris"
+  },
+  "FR-PDL":{
+    "bounding_box": [
+      [
+        -2.5589448655806,
+        46.266566974958
+      ],
+      [
+        0.91379809767445,
+        48.567994064435
+      ]
+    ],
+    "capacity": {
+      "biomass": 77,
+      "hydro": 11,
+      "nuclear": 0,
+      "solar": 557,
+      "thermal": 2080,
+      "wind": 1012
     },
     "contributors": [
       "https://github.com/AilinvandenHonigkuchenpferdlande"
