@@ -1,23 +1,39 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-// TODO: Move all styles from styles.css to here
+import SharedHeader from '../components/sharedheader';
 
-const mapStateToProps = state => ({
-  brightModeEnabled: state.application.brightModeEnabled,
-});
+const logo = resolvePath('images/electricitymap-logo.svg');
 
-export default connect(mapStateToProps)(props => (
-  <div id="header">
-    <div id="header-content" className={props.brightModeEnabled ? 'brightmode' : null}>
-      <div className="logo">
-        <div className="image" id="electricitymap-logo" />
-        <span className="maintitle small-screen-hidden">
-          <span className="live" style={{ fontWeight: 'bold' }}>Live</span>
-          · <a href="https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral">API</a>
-          · <a href="https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral">Blog</a>
-        </span>
-      </div>
-    </div>
-  </div>
-));
+const headerLinks = [
+  {
+    label: 'Live',
+    active: true,
+  },
+  {
+    label: 'Open Source',
+    href: 'https://api.electricitymap.org/open-source?utm_source=electricitymap.org&utm_medium=referral',
+  },
+  {
+    label: 'Blog',
+    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
+  },
+  {
+    label: 'API',
+    href: 'https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral',
+  },
+];
+
+const Container = styled.div`
+  /* This makes sure the map and the other content doesn't
+  go under the SharedHeader which has a fixed position. */
+  height: 58px;
+`;
+
+const Header = () => (
+  <Container className="small-screen-hidden">
+    <SharedHeader logo={logo} links={headerLinks} />
+  </Container>
+);
+
+export default Header;

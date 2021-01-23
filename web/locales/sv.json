@@ -41,6 +41,7 @@
         "helpfrom": "med hjälp från",
         "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
         "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
+        "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
         "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
         "now": "Nu"
     },
@@ -57,7 +58,7 @@
         "electricityorigin24h": "Källa för el under de senaste 24 timmarna",
         "electricityproduction24h": "El producerad de senaste 24 timmarna",
         "electricityprices24h": "Elpriser under de senaste 24 timmarna",
-        "Getdata": "API för att hämta historisk data, marginal och prognos"
+        "Getdata": "API från electricityMap för att hämta timvis historisk data, aktuell data och prognos"
     },
     "footer": {
         "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
@@ -91,7 +92,8 @@
         "consumption": "konsumtion",
         "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
         "selectLanguage": "Välj språk",
-        "lowCarbDescription": "Inkluderar förnybart och kärnkraft"
+        "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
+        "dataIsDelayed": "Data är fördröjd"
     },
     "misc": {
         "maintitle": "Aktuellt CO₂-utsläpp från elproduktion",
@@ -112,7 +114,7 @@
     "biomass": "biomassa",
     "nuclear": "kärnkraft",
     "geothermal": "geotermisk",
-    "gas": "gas",
+    "gas": "naturgas",
     "coal": "kol",
     "oil": "olja",
     "unknown": "okänd",
@@ -150,7 +152,7 @@
         "divideExistingArea-question": "Kan ni dela in min region i mindre delar?",
         "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss genom att lägga till datakällor</a>",
         "seeHistoricalData-question": "Kan jag se historik för en region längre tillbaka än 24 timmar?",
-        "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
+        "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
     },
     "methodology": {
         "groupName": "Våra metoder",
@@ -186,7 +188,7 @@
     "aboutUs": {
         "groupName": "Om oss",
         "whoAreYou-question": "Vilka är ni?",
-        "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, ett litet Dansk/Franskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
+        "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
         "feedback-question": "Kan jag ge er någon återkoppling?",
         "NI": null,
         "feedback-answer": "Gärna! Fyll i <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:hello@electricitymap.org\">skicka oss ett e-brev!</a>",
@@ -343,7 +345,7 @@
             "zoneName": "Botswana"
         },
         "BY": {
-            "zoneName": "Vitryssland"
+            "zoneName": "Belarus"
         },
         "BZ": {
             "zoneName": "Belize"
@@ -1767,6 +1769,9 @@
         },
         "WS": {
             "zoneName": "Samoa"
+        },
+        "XK": {
+            "zoneName": "Kosovo"
         },
         "XX": {
             "zoneName": "Nordcypern"

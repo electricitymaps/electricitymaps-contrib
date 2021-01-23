@@ -38,7 +38,7 @@ export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
   const exchange = (zoneData.exchange || {})[mode];
   const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
 
-  return exchange > 0
+  return exchange >= 0
     ? (
       exchangeCo2Intensity
     ) : (

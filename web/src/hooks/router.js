@@ -9,6 +9,10 @@ export function useCustomDatetime() {
   return useSearchParams().get('datetime');
 }
 
+export function useHeaderVisible() {
+  return useSearchParams().get('header') !== 'false';
+}
+
 export function useSolarEnabled() {
   return useSearchParams().get('solar') === 'true';
 }

@@ -8,16 +8,13 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
-import os
 
-import arrow
-from dateutil import parser, tz
-os.environ.setdefault('EIA_KEY', 'eia_key')
-from eiapy import Series
 import requests
+from dateutil import parser, tz
 
-from .lib.validation import validate
 from .ENTSOE import merge_production_outputs
+from .lib.utils import get_token
+from .lib.validation import validate
 
 #Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -246,7 +243,7 @@ EXCHANGES = {
 
 # based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
 # or https://www.eia.gov/opendata/qb.php?category=3390101
-# List includes regions and Balancing Authorities. 
+# List includes regions and Balancing Authorities.
 REGIONS = {
     #Old regions, to be updated/removed once clients have had time to switch
     'US-BPA': 'BPAT',
@@ -386,7 +383,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
 
-        # EIA does not currently split production from the Virgil Summer C 
+        # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
         # but attributes it all to US-CAR-SCEG
@@ -435,7 +432,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             #replace small negative values (>-5) with 0s This is necessary for solar
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
-    
+
     # Some of the returned mixes could be for older timeframes.
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
@@ -444,7 +441,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         for mix in mixes
     ]
     latest_timeframe = max(timeframes, key=lambda x: x[-1])
-    
+
 
     correct_mixes = []
     for mix in mixes:
@@ -454,7 +451,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
                 correct_mix.append(production_in_mix)
         if len(correct_mix) > 0:
             correct_mixes.append(correct_mix)
-    
+
     return merge_production_outputs(correct_mixes, zone_key, merge_source='eia.gov')
 
 
@@ -476,10 +473,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
                   logger=None):
     """Fetches and converts a data series."""
-    key = os.environ['EIA_KEY']
-    assert key and key != 'eia_key', key
 
     s = session or requests.Session()
+
+    # local import to avoid the exception that happens if EIAPY token is not set
+    # even if this module is unused
+    from eiapy import Series
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:

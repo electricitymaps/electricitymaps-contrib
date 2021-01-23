@@ -31,17 +31,27 @@ jobs:
 
   lint_json:
     docker:
-      - image: circleci/node:10.13
+      - image: circleci/node:12.13
     steps:
       - checkout
       - run:
           command: |
             sudo npm install -g jsonlint
             jsonlint config/*.json web/locales/*.json
+  
+  test_js:
+    docker:
+      - image: circleci/node:12.13
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo npm install -g jest
+            jest
 
   lint_js:
     docker:
-      - image: circleci/node:10.13
+      - image: circleci/node:12.13
     steps:
       - checkout
       - restore_cache:
@@ -70,7 +80,7 @@ jobs:
             docker-compose build
             # Make sure files are available outside of container
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
-            docker cp $CONTAINER_ID:/home/web/public/dist web/public/dist
+            docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
           no_output_timeout: 30m
       - run:
           name: Start environment
@@ -100,8 +110,10 @@ workflows:
       - lint_python
       - lint_js
       - lint_json
+      - test_js
       - build_test:
           requires:
             - lint_js
             - lint_python
             - lint_json
+            - test_js

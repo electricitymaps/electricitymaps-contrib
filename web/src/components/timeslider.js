@@ -1,5 +1,4 @@
 import React, {
-  useRef,
   useMemo,
   useState,
 } from 'react';
@@ -13,7 +12,7 @@ import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
 import TimeAxis from './graph/timeaxis';
-import { useWidthObserver } from '../hooks/viewport';
+import { useRefWidthHeightObserver } from '../hooks/viewport';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -45,8 +44,8 @@ const TimeSlider = ({
   startTime,
   endTime,
 }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref, 2 * AXIS_HORIZONTAL_MARGINS);
+  const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
+
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
 
   const timeScale = useMemo(

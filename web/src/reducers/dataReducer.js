@@ -23,6 +23,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.timezone = zoneConfig.timezone;
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+  zone.delays = zoneConfig.delays;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -133,9 +134,6 @@ module.exports = (state = initialDataState, action) => {
             console.warn(`${key} produces more than its capacity of ${mode}`);
           }
         });
-        if (!zone.exchange || !Object.keys(zone.exchange).length) {
-          console.warn(`${key} is missing exchanges`);
-        }
       });
 
       // Populate exchange pairs for exchange layer
@@ -151,9 +149,6 @@ module.exports = (state = initialDataState, action) => {
           exchange[k] = value[k];
         });
       });
-
-      // Debug
-      console.log(newGrid.zones);
 
       newState.hasInitializedGrid = true;
       newState.isLoadingGrid = false;

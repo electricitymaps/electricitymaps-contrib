@@ -2,6 +2,7 @@
 import logging
 import datetime
 import re
+import sys
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -11,49 +12,98 @@ import requests
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
-def parse_html(html):
-    html = html.replace('\n', ' ').replace('\r', ' ')
-
-    columns = [m.group(1) for m in re.finditer(
-        '''data\.addColumn\("number", "([^"]*)"\);''', html)]
-    assert columns == ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
+class CyprusParser:
+    EXPECTED_COLUMNS = ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
         'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
         'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
+    COLUMNS_REGEX = re.compile(r'data\.addColumn\("number", "([^"]*)"\);')
+    TIMES_REGEX = re.compile(
+        r'var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";')
+    PRODUCTIONS_REGEX = re.compile(
+        r'\[dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\]')
 
-    times = (m.group(1, 2, 3) for m in re.finditer(
-        '''var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";''', html))
-    prods = (m.group(1, 2, 3, 4) for m in re.finditer(
-        '''\[\s*dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\s*\]''', html))
+    session = None
+    logger: logging.Logger = None
 
-    last_datum = None
-    for t, p in zip(times, prods):
-        # find last datum without null values
-        # this is the current as null is used for where the chart should show estimates
-        if any(e == 'null' for e in p):
-            break
-        last_datum = (t, p)
+    def __init__(self, session, logger: logging.Logger):
+        self.session = session
+        self.logger = logger
 
-    if last_datum is None:
-        return None
-    last_time, last_prods = last_datum
 
-    last_time = last_time[0] + ' ' + last_time[1] + ':' + last_time[2]
+    def append_datum(self, data: list, time_str: str, prods_list: list) -> None:
+        time_value = arrow.get(time_str).replace(tzinfo='Asia/Nicosia').datetime
 
-    last_prods = {
-        'oil': float(last_prods[3]),
-        'solar': float(last_prods[1]),
-        'wind': float(last_prods[0]),
-        'biomass': 6.0 # estimate based on the reported solar+biomass production during the night
-    }
-    last_prods['solar'] -= last_prods['biomass']
-    if (last_prods['solar'] < 0.0):
-        last_prods['solar'] = 0.0
+        prods_value = {
+            'oil': prods_list[3],
+            'solar': prods_list[1],
+            'wind': prods_list[0],
+            'biomass': 0.0
+        }
 
-    return last_time, last_prods
+        # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
+        # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
+        # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
+        # which constitutes biomass
+        if len(data) == 0:
+            prods_value['biomass'] = prods_value['solar']
+            prods_value['solar'] = 0.0
+        else:
+            nocturnal_biomass_generation = data[0]['production']['biomass']
+            prods_value['solar'] -= nocturnal_biomass_generation
+            prods_value['biomass'] += nocturnal_biomass_generation
+        if prods_value['solar'] < 0.0:
+            # if there is (next to) no sunlight and biomass is lower than at midnight
+            prods_value['solar'] = 0.0
+
+        data.append({
+            'zoneKey': 'CY',
+            'production': prods_value,
+            'storage': {},
+            'source': 'tsoc.org.cy',
+            'datetime': time_value
+        })
+
+
+    def parse_html(self, html: str) -> list:
+        html = html.replace('\n', ' ').replace('\r', ' ')
+
+        columns = [m.group(1) for m in self.COLUMNS_REGEX.finditer(html)]
+        assert columns == self.EXPECTED_COLUMNS, 'Source format changed'
+
+        data = []
+        for time_m, prods_m in zip(self.TIMES_REGEX.finditer(html), self.PRODUCTIONS_REGEX.finditer(html)):
+            prods_list = prods_m.group(1, 2, 3, 4)
+            if 'null' in prods_list:
+                break
+            prods_list = [float(p) for p in prods_list]
+            time_str = time_m.group(1) + ' ' + time_m.group(2) + ':' + time_m.group(3)
+            self.append_datum(data, time_str, prods_list)
+
+        return data
+
+
+    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+        if target_datetime is None:
+            url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
+        else:
+            # convert target datetime to local datetime
+            url_date = arrow.get(target_datetime).to('Asia/Nicosia').format('DD-MM-YYYY')
+            url = f'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days'
+
+        res = self.session.get(url)
+        assert res.status_code == 200, 'CY parser: GET {} returned {}'.format(url, res.status_code)
+
+        data = self.parse_html(res.text)
+
+        if len(data) == 0:
+            self.logger.warning('No production data returned for Cyprus', extra={'key': 'CY'})
+
+        return data
+
 
 def fetch_production(zone_key='CY', session=None,
-                     target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+        target_datetime: datetime.datetime = None,
+        logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -104,45 +154,18 @@ def fetch_production(zone_key='CY', session=None,
     """
     assert zone_key == 'CY'
 
-    r = session or requests.session()
-    if target_datetime is None:
-        url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
-    else:
-        # WHEN HISTORICAL DATA IS AVAILABLE
-        # convert target datetime to local datetime
-        # url_date = arrow.get(target_datetime).to(
-        #     "America/Argentina/Buenos_Aires")
-        # url = 'https://api.someservice.com/v1/productionmix/{}'.format(
-        #     url_date)
-
-        # WHEN HISTORICAL DATA IS NOT AVAILABLE
-        raise NotImplementedError(
-            'This parser is not yet able to parse past dates')
-
-    res = r.get(url)
-    assert res.status_code == 200, 'Exception when fetching production for ' \
-                                   '{}: error when calling url={}'.format(
-                                       zone_key, url)
-
-    last_time, last_prods = parse_html(res.text)
-
-    last_time = arrow.get(last_time).replace(tzinfo='Asia/Nicosia')
-
-    data = {
-        'zoneKey': zone_key,
-        'production': last_prods,
-        'storage': {},
-        'source': 'tsoc.org.cy',
-        'datetime': datetime.datetime.fromisoformat(
-            last_time.format('YYYY-MM-DD HH:mm:ss ZZ'))
-    }
-
-    return data
+    parser = CyprusParser(session or requests.session(), logger)
+    return parser.fetch_production(target_datetime)
 
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy
     for testing."""
 
+    target_datetime = None
+    if len(sys.argv) == 4:
+        target_datetime = datetime.datetime(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+
     print('fetch_production() ->')
-    print(fetch_production())
+    for datum in fetch_production(target_datetime=target_datetime):
+        print(datum)

@@ -95,6 +95,20 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     )
     thermal_production_units = thermal_production_breakdown.select('tbody tr td table.sitr-gen-group tr')
     map_thermal_generation_unit_name_to_fuel_type = {
+      'ACP Miraflores 2': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 5': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 6': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 7': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 8': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 9': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'ACP Miraflores 10': 'oil',#[7] Sheet "C-GE-1A-1 CapInstXEmp"
+      'BLM 2': 'coal',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 3': 'coal',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 4': 'coal',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 5': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 6': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 8': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp"
+      'BLM 9': 'oil',#[7] Sheet "C-GE-1A-2 CapInstXEmp" mentions no fuel type, and given all other units are accounted for this must be the heat recovery boiler for the 3 diesel-fired units mentioned in [2]
       'Cativá 1': 'oil',#[1][2]
       'Cativá 2': 'oil',#[1][2]
       'Cativá 3': 'oil',#[1][2]
@@ -111,8 +125,32 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
       'Costa Norte 2': 'gas',#[4][5]
       'Costa Norte 3': 'gas',#[4][5]
       'Costa Norte 4': 'gas',#[4][5]
-      #The BLM (Bahía Las Minas) plant has both coal and oil-fired units.[1][2]
-      #Because I'm not 100% sure which ones burn oil and which ones coal, I'm leaving these as unknown for now
+      'Esperanza 1': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 2': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 3': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 4': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 5': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 6': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Esperanza 7': 'oil',#[7] has a single 92MW bunker fuel power plant, but [8] shows this is actually a power barge with 7 units
+      'Jinro': 'oil',#[6][7]
+      'Pacora 1': 'oil',#[6]
+      'Pacora 2': 'oil',#[6]
+      'Pacora 3': 'oil',#[6]
+      'PanAm 1': 'oil',#[6][7]
+      'PanAm 2': 'oil',#[6][7]
+      'PanAm 3': 'oil',#[6][7]
+      'PanAm 4': 'oil',#[6][7]
+      'PanAm 5': 'oil',#[6][7]
+      'PanAm 6': 'oil',#[6][7]
+      'PanAm 7': 'oil',#[6][7]
+      'PanAm 8': 'oil',#[6][7]
+      'PanAm 9': 'oil',#[6][7]
+      'Termocolón 1': 'oil',#[6] (spelled "Termo Colón")
+      'Termocolón 2': 'oil',#[6] (spelled "Termo Colón")
+      'Termocolón 3': 'oil',#[6] (spelled "Termo Colón")
+      'Tropitérmica 1': 'oil',#[6]:162[7] spelled "Tropitermica" in both
+      'Tropitérmica 2': 'oil',#[6]:162[7] spelled "Tropitermica" in both
+      'Tropitérmica 3': 'oil',#[6]:162[7] spelled "Tropitermica" in both
     }
     #Sources:
     #1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
@@ -120,14 +158,20 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     #3. https://endcoal.org/tracker/
     #4. http://aesmcac.com/aespanamades/en/colon/ "It reuses the heat from the exhaust gas from the gas turbines in order to obtain steam, to be later used by a steam turbine and to save fuel consumption in the production of electricity."
     #5. https://panamcham.com/sites/default/files/el_inicio_del_futuro_del_gas_natural_en_panama.pdf "3 gas turbines and 1 steam (3X1 configuration)" "Technology: Combined Cycle" | This and the previous source taken together seems to imply that the steam turbine is responsible for the second cycle of the CCGT plant, giving confidence that output from all four units should indeed be tallied under "gas". Furthermore, as the plant also has a LNG import facility it is most unlikely the steam turbine would be burning a different fuel such as coal or oil.
+    #6. https://www.etesa.com.pa/documentos/Tomo_II__Plan_Indicativo_de_Generacin_2019__2033.pdf page 142
+    #7. http://168.77.210.79/energia/wp-content/uploads/sites/2/2020/08/2-CEE-1970-2019-GE-Generaci%C3%B3n-El%C3%A9ctrica.xls (via http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
+    #8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
     for thermal_production_unit in thermal_production_units:
       unit_name_and_generation = thermal_production_unit.find_all('td')
       unit_name = unit_name_and_generation[0].string
       unit_generation = float(unit_name_and_generation[1].string)
-      if(unit_name in map_thermal_generation_unit_name_to_fuel_type and unit_generation > 0):#Second condition is in order to ignore self-consumption
-        unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
-        data['production'][unit_fuel_type] += unit_generation
-        data['production']['unknown'] -= unit_generation
+      if(unit_name in map_thermal_generation_unit_name_to_fuel_type):
+        if(unit_generation > 0):#Ignore self-consumption
+          unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
+          data['production'][unit_fuel_type] += unit_generation
+          data['production']['unknown'] -= unit_generation
+      else:
+        logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
     #Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
     #presumably because they aren't updated at the exact same moment.

@@ -8,7 +8,8 @@
     },
     "mobile-main-menu": {
         "map": "electricityMap",
-        "areas": "Obszary"
+        "areas": "Obszary",
+        "about": "O nas"
     },
     "onboarding-modal": {
         "view1": {
@@ -36,7 +37,12 @@
         "bysource": "według źródeł energii",
         "emissions": "Emisje CO₂",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
-        "helpfrom": "z wkładem"
+        "helpfrom": "z wkładem",
+        "electricityconsumption": "Zużycie energii elektrycznej",
+        "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
+        "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
+        "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"%s\" target=\"_blank\">dodając dane dla obszaru</a>.",
+        "now": "Obecnie"
     },
     "left-panel": {
         "zone-list-header-title": "Wpływ na klimat",
@@ -44,15 +50,20 @@
         "search": "Szukaj"
     },
     "country-history": {
-        "carbonintensity24h": "Emisja CO₂ w ostatnich 24 godzinach",
-        "emissionsorigin24h": "Źródła emisji CO₂ w ostatnich 24 godzinach",
-        "electricityorigin24h": "Źródła energii elektrycznej w ostatnich 24 godzinach",
-        "electricityprices24h": "Ceny energii elektrycznej w ostatnich 24 godzinach",
+        "carbonintensity24h": "Emisja CO₂ w ciągu ostatnich 24 godzin",
+        "emissionsorigin24h": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin",
+        "electricityorigin24h": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin",
+        "electricityprices24h": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin",
+        "emissions24h": "Emisja w ciągu ostatnich 24 godzin",
+        "emissionsproduction24h": "Emisja wyprodukowana w ciągu ostatnich 24 godzin",
+        "electricityproduction24h": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin",
         "Getdata": "Sprawdź dane historyczne i API z prognozą"
     },
     "footer": {
         "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
-        "here": "tutaj"
+        "here": "tutaj",
+        "faq-text": "Coś niejasne? Sprawdź nasze",
+        "faq": "najczęściej zadawane pytania."
     },
     "legends": {
         "windpotential": "Potencjał wiatrowy",
@@ -88,12 +99,13 @@
         "database-ad": "Szukasz danych historycznych? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
         "api-ad": "Chcesz mieć aktualne dane w twoich aplikacjach lub urządzeniach? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
         "legend": "Legenda",
-        "faq": "Najczęściej Zadawane Pytania"
+        "faq": "Najczęściej Zadawane Pytania",
+        "webgl-not-supported": "Nie można zrenderować mapy, ponieważ używana przeglądarka nie wspiera WebGL."
     },
     "wind": "wiatrowa",
     "solar": "słoneczna",
     "hydro": "wodna",
-    "hydro storage": "zbiorniki wodne",
+    "hydro storage": "szczytowo-pompowa",
     "battery storage": "baterie",
     "biomass": "biomasa",
     "nuclear": "jądrowa",
@@ -897,6 +909,76 @@
           },
           "ZW": {
             "zoneName": "Zimbabwe"
+          },
+          "AD": {
+              "zoneName": "Andora"
+          },
+          "AG": {
+              "zoneName": "Antigua i Barbuda"
+          },
+          "AI": {
+              "zoneName": "Anguilla"
+          },
+          "AM": {
+              "zoneName": "Armenia"
+          },
+          "AO": {
+              "zoneName": "Angola"
+          },
+          "AQ": {
+              "zoneName": "Antarktyka"
+          },
+          "AS": {
+              "zoneName": "Samoa Amerykańskie"
+          },
+          "AUS-TAS-KI": {
+              "countryName": "Tasmania"
+          },
+          "AW": {
+              "zoneName": "Aruba"
+          },
+          "BB": {
+              "zoneName": "Barbados"
+          },
+          "BF": {
+              "zoneName": "Burkina Faso"
+          },
+          "BI": {
+              "zoneName": "Burundi"
+          },
+          "BJ": {
+              "zoneName": "Benin"
+          },
+          "BM": {
+              "zoneName": "Bermudy"
+          },
+          "BN": {
+              "zoneName": "Brunei"
+          },
+          "BQ": {
+              "zoneName": "Holandia Karaibska"
+          },
+          "BS": {
+              "zoneName": "Bahamy"
+          },
+          "BT": {
+              "zoneName": "Bhutan"
+          },
+          "BV": {
+              "zoneName": "Wyspa Bouveta"
+          },
+          "BW": {
+              "zoneName": "Botswana"
+          },
+          "BZ": {
+              "zoneName": "Belize"
           }
+    },
+    "theMap": {
+        "groupName": "Mapa",
+        "mapColors-question": "Co oznaczają kolory na mapie?",
+        "mapColors-answer": "Regiony na mapie kolorujemy na podstawie ilości emitowanych gazów cieplarnianych przypadających na każdą zużytą jednostkę energii elektrycznej (jej <a href=\"#carbonIntensity\" class=\"entry-link\"> intensywności emisji dwutlenku węgla </a>). Im bardziej zielony kolor, tym bardziej przyjazne dla klimatu zużycie energii elektrycznej.",
+        "mapArrows-question": "Co oznaczają strzałki między regionami na mapie?",
+        "mapArrows-answer": "Strzałki między regionami wskazują fizyczny przepływ (import i eksport) energii elektrycznej między nimi: Im szybciej migają, tym jest on szybszy. Przepływ energii elektrycznej jest ważny, ponieważ importując energię elektryczną z sąsiednich obszarów importujesz również emisję dwutlenku węgla związaną z jej produkcją."
     }
 }
