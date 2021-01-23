@@ -14,7 +14,7 @@ python:
   - .**/*.py
 
 parser:
-  - .**/parsers/**/*
+  - parsers/**/*
 
 science:
   - config/co2eq_parameters.json
