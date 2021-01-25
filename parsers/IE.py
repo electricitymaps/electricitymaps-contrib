@@ -97,7 +97,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     r = session or requests.session()
 
 
-    if {zone_key1, zone_key2} == {'GB-NIR', 'IE'}:
+    if {zone_key1, zone_key2} == {'GB', 'IE'}:
+        # This is the EWIC interconnector
         base_url = 'https://smartgriddashboard.eirgrid.com/DashboardService.svc/data?area=interconnection'
         last_updated = _fetch(base_url, session, logger, target_datetime)['LastUpdated']
         last_updated = arrow.get(last_updated, 'DD-MMM-YYYY HH:mm:ss').to('local')
@@ -105,7 +106,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
         return {
             'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
-            'datetime': last_updated,
+            'datetime': last_updated.datetime,
             'netFlow': rows['Rows'][0]['Value'],  # TODO: wip, sometimes this is None, not sure if this should be incoming or outcoming flow ?
             'source': SOURCE,
         }
@@ -124,5 +125,5 @@ if __name__=='__main__':
     # print("total: {}".format(total))
 
     print('\n\nEXCHANGE')
-    data = fetch_exchange('IE', 'GB-NIR')
+    data = fetch_exchange('IE', 'GB')
     pprint(data)
