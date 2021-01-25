@@ -8,7 +8,7 @@ const Wrapper = styled.header`
   box-sizing: border-box;
   color: black;
   display: flex;
-  font-family: 'Euclid Triangle';
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 15px;
   height: 58px;
   justify-content: space-between;
