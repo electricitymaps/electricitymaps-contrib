@@ -153,7 +153,9 @@ const SharedHeader = ({
   logo,
 }) => (
   <Wrapper inverted={inverted} collapsed={collapsed}>
-    <Logo src={logo} alt="logo" />
+    <a href="/map">
+      <Logo src={logo} alt="logo" />
+    </a>
     <ResponsiveMenu collapsed={collapsed}>
       {links.map(({ label, href, active }) => (
         <Link key={label} href={href} active={active}>
