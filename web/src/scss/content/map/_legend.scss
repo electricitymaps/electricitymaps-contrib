@@ -17,7 +17,7 @@
     padding: 12px 10px 10px 10px;
     margin: 16px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.10);
-    font-family: $headline-font;
+    z-index: 1;
 
     div {
         color: black;
@@ -69,6 +69,9 @@
         position: absolute;
         right: 5px;
         top: 5px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
