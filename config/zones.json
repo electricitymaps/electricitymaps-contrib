@@ -3983,20 +3983,21 @@
       "biomass": 1508,
       "battery storage": 0,
       "coal": 29963,
-      "gas": 2812,
+      "gas": 2827,
       "geothermal": 0,
-      "hydro": 605,
-      "hydro storage": 1780,
+      "hydro": 604,
+      "hydro storage": 1794,
       "nuclear": 0,
       "oil": 359,
-      "solar": 2528.371,
+      "solar": 3661.7,
       "unknown": 0,
       "wind": 6252
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/wojciej",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/filipc"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
