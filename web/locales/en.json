@@ -258,6 +258,14 @@
             "countryName": "Tasmania",
             "zoneName": "King Island"
           },
+          "AUS-TAS-FI": {
+            "countryName": "Australia",
+            "zoneName": "Flinders Island"
+          },
+          "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
+          },
           "AUS-VIC": {
             "countryName": "Australia",
             "zoneName": "Victoria"
