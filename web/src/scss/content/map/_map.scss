@@ -104,6 +104,7 @@
 .mapboxgl-zoom-controls {
     right: 16px !important;
     top: 69px !important;
+    transition: box-shadow .4s;
 
     @include respond-to('small') {
         top: 66px !important;
@@ -122,5 +123,6 @@
         width: 35px !important;
         height: 35px !important;
         background-size: 100% 100%;
+        transition: background-color .4s;
     }
 }
