@@ -37,7 +37,7 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo npm install -g jsonlint
+            sudo npm install -g jsonlint-mod
             jsonlint config/*.json web/locales/*.json
 
   test_js:
