@@ -6,9 +6,13 @@ import sys
 
 
 def lint():
-    subprocess.run(
-        ['pylint', '-E', 'tests', 'electricitymap'] + sys.argv[1:]
-    )
+    subprocess.run([
+        'flake8', 'electricitymap', 'tests', 'parsers', '--count', '--select=E901,E999,F821,F822,F823', '--show-source', '--statistics'
+    ])
+    for paths in ['tests', 'electricitymap']:
+        subprocess.run(
+            ['pylint', '-E', paths, '-d', 'unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence']
+        )
 
 def test():
     subprocess.run(
