@@ -14,3 +14,6 @@ def test():
     subprocess.run(
         ['python', '-u', '-m', 'unittest', 'discover', 'tests'] + sys.argv[1:]
     )
+    subprocess.run(
+        ['python', '-u', '-m', 'unittest', 'discover', 'parsers/test'] + sys.argv[1:]
+    )
