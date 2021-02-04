@@ -5,19 +5,19 @@ import subprocess
 import sys
 
 
+def _run(cmd):
+    assert isinstance(cmd, str)
+    r = subprocess.run(cmd + " ".join(sys.argv[1:]), shell=True).returncode
+    if r != 0:
+        sys.exit(r)
+
+
 def lint():
-    subprocess.run([
-        'flake8', 'electricitymap', 'tests', 'parsers', '--count', '--select=E901,E999,F821,F822,F823', '--show-source', '--statistics'
-    ])
-    for paths in ['tests', 'electricitymap']:
-        subprocess.run(
-            ['pylint', '-E', paths, '-d', 'unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence']
-        )
+    _run("flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics")
+    for path in ["tests", "electricitymap"]:
+        _run(f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence")
+
 
 def test():
-    subprocess.run(
-        ['python', '-u', '-m', 'unittest', 'discover', 'tests'] + sys.argv[1:]
-    )
-    subprocess.run(
-        ['python', '-u', '-m', 'unittest', 'discover', 'parsers/test'] + sys.argv[1:]
-    )
+    _run("python -u -m unittest discover tests")
+    _run("python -u -m unittest discover parsers/test")
