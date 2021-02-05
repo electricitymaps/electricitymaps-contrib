@@ -4,7 +4,7 @@
 import json
 from pathlib import Path
 
-CONFIG_DIR = Path(__file__).parent.parent.parent.parent.resolve()
+CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath('config').resolve()
 
 # Prepare zone bounding boxes
 ZONE_BOUNDING_BOXES = {}

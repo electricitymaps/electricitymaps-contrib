@@ -1,3 +1,5 @@
+# NOTE: this file is being deprecated! Please switch to use Poetry instead and
+# update the pyproject.toml instead
 arrow==0.16.0
 beautifulsoup4==4.6.0
 click==6.7
