@@ -4,7 +4,7 @@
 import arrow
 import dateutil
 import requests
-from .lib.validation import validate
+# from .lib.validation import validate
 from logging import getLogger
 
 tz = 'America/Lima'
