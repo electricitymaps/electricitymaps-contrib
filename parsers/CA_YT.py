@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-timezone = 'Canada/Pacific'
+timezone = 'America/Whitehorse'
 
 
 def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logger=None):

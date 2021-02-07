@@ -17,7 +17,7 @@ ZONE_PARAMS = {
         "hub": "TagHub",
         "method": "Dashboard",
         "tz": "Australia/Currie",
-        "source": "https://data.ajenti.com.au/KIREIP/index.html"
+        "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island" #Iframe: https://data.ajenti.com.au/KIREIP/index.html
     },
     # Flinders Island
     # https://github.com/tmrowco/electricitymap-contrib/issues/2533
@@ -61,9 +61,10 @@ class SignalR:
         
 def parse_payload(logger, payload):
     technologies_parsed = {
-        'battery discharge': 0,
         'biomass': 0,
+        'battery': 0,
         'coal': 0,
+        'flywheel': 0,
         'gas': 0,
         'hydro': 0,
         'nuclear': 0,
@@ -110,7 +111,10 @@ def format_storage_techs(technologies_parsed):
     battery_production = storage_techs if storage_techs > 0 else 0
     battery_storage = storage_techs if storage_techs < 0 else 0
 
-    return battery_production, battery_storage
+def sum_storage_techs(technologies_parsed):
+    storage_techs = technologies_parsed['battery']+technologies_parsed['flywheel']
+
+    return storage_techs
 
 def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
 
@@ -125,12 +129,12 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
 
     payload = SignalR("https://data.ajenti.com.au/live/signalr").get_value(hub, dashboard)
     technologies_parsed = parse_payload(logger, payload)
-    battery_production, battery_storage = format_storage_techs(technologies_parsed)
+    storage_techs = sum_storage_techs(technologies_parsed)
+
     return {
       'zoneKey': zone_key,
       'datetime': arrow.now(tz=tz).datetime,
       'production': {
-          'battery discharge': battery_production,
           'biomass': technologies_parsed['biomass'],
           'coal': technologies_parsed['coal'],
           'gas': technologies_parsed['gas'],
@@ -143,7 +147,7 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
           'unknown': technologies_parsed['unknown'],
       },
       'storage': {
-          'battery': battery_storage*-1
+          'battery': storage_techs*-1 #Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
       },
       'source': source
     }

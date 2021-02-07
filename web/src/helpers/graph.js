@@ -1,10 +1,10 @@
 import { bisectLeft } from 'd3-array';
 import { touches } from 'd3-selection';
 
-export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgRef) => {
+export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgNode) => {
   if (!datetimes.length) return null;
   const dx = ev.pageX
-    ? (ev.pageX - svgRef.current.getBoundingClientRect().left)
+    ? (ev.pageX - svgNode.getBoundingClientRect().left)
     : (touches(this)[0][0]);
   const datetime = timeScale.invert(dx);
   // Find data point closest to

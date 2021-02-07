@@ -1,3 +1,6 @@
+# WARNING: if you make any changes to this file, remember to update config/electricitymap/contrib/config/__init__.py
+# This is required while we transition the codebase to Poetry
+
 import json
 import os
 
