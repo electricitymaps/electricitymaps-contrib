@@ -378,10 +378,21 @@
       "wind": 1.5
     },
     "contributors": [
+      "https://github.com/chuqtas",
       "https://github.com/ajoga"
+    ],
+    "bounding_box": [
+      [
+        147.25766035200024,
+        -40.770603122999844
+      ],
+      [
+        148.83375084700015,
+        -39.211683851999794
+      ]
     ]
   },
-  "AUS-RI": {
+  "AUS-WA-RI": {
     "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "flag_file_name": "au.png",
     "timezone": "Australia/Perth",
