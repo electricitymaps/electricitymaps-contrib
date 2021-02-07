@@ -358,7 +358,7 @@
     ]
   },
   "AUS-TAS-FI": {
-    "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all",
+    "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all. Battery storage is composed of 0.5 battery+0.2 of flywheel",
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
@@ -375,7 +375,6 @@
       "solar": 0.6,
       "battery storage": 0.7,
       "hydro storage": 0,
-      "_comment": "Battery storage is composed of 0.5 battery+0.2 of flywheel",
       "wind": 1.5
     },
     "contributors": [
