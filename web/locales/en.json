@@ -274,6 +274,10 @@
             "countryName": "Australia",
             "zoneName": "Western Australia"
           },
+          "AUS-WA-RI": {
+            "countryName": "Australia",
+            "zoneName": "Rottnest Island"
+          },
           "AW": {
             "zoneName": "Aruba"
           },
