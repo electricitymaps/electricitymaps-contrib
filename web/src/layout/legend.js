@@ -29,7 +29,7 @@ const LegendsContainer = styled.div`
   font-size: 0.8rem;
   
   // Apply specific styles if the legend is collapsed
-  ${props => props.collapsed
+  ${props => props.isCollapsed
     && css`
       width: 90px;
       height: 18px;
@@ -57,7 +57,7 @@ const ToggleLegendButton = styled.i`
 `;
 
 const StyledMobileHeader = styled.div`
-  text-align: ${props => (props.collapsed ? 'left' : 'center')};
+  text-align: ${props => (props.isCollapsed ? 'left' : 'center')};
   font-weight: bold;
   margin-bottom: 5px;
 
@@ -68,7 +68,7 @@ const StyledMobileHeader = styled.div`
 }`;
 
 const MobileHeader = ({ onToggle, isOpen }) => (
-  <StyledMobileHeader collapsed={!isOpen}>
+  <StyledMobileHeader isCollapsed={!isOpen}>
     <span>{__('misc.legend')}</span>
     <ToggleLegendButton className="material-icons" onClick={onToggle}>
       {isOpen ? 'call_received' : 'call_made'}
@@ -77,8 +77,8 @@ const MobileHeader = ({ onToggle, isOpen }) => (
 );
 
 const LegendItem = ({
-  enabled, label, unit, children,
-}) => (!enabled ? null : (
+  isEnabled, label, unit, children,
+}) => (!isEnabled ? null : (
   <LegendItemWrapper>
     <div>
       {label} <small>({unit})</small>
@@ -110,11 +110,11 @@ const Legend = ({
   };
 
   return (
-    <LegendsContainer collapsed={!legendVisible}>
+    <LegendsContainer isCollapsed={!legendVisible}>
       <MobileHeader onToggle={toggleLegend} isOpen={legendVisible} />
       {legendVisible && (
         <React.Fragment>
-          <LegendItem label={__('legends.windpotential')} unit="m/s" enabled={windEnabled}>
+          <LegendItem label={__('legends.windpotential')} unit="m/s" isEnabled={windEnabled}>
             <HorizontalColorbar
               id="wind-potential-bar"
               colorScale={windColor}
@@ -130,7 +130,7 @@ const Legend = ({
                 W/m<span className="sup">2</span>
               </span>
             )}
-            enabled={solarEnabled}
+            isEnabled={solarEnabled}
           >
             <HorizontalColorbar
               id="solar-potential-bar"
@@ -140,7 +140,7 @@ const Legend = ({
               ticksCount={5}
             />
           </LegendItem>
-          <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh" enabled>
+          <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh" isEnabled>
             <HorizontalColorbar
               id="co2intensity-bar"
               colorScale={co2ColorScale}
