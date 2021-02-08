@@ -18,9 +18,8 @@ const getTextColor = (rgbColor) => {
   return contrastRatio > 128 ? 'black' : 'white';
 };
 
-
 const Value = styled.span`
-font-weight: bold;
+  font-weight: bold;
 `;
 
 const Box = styled.div`
@@ -42,9 +41,7 @@ const CarbonIntensitySquare = ({ value, withSubtext }) => {
 
   return (
     <div className="country-col">
-      <Box
-        color={co2ColorScale(value)}
-      >
+      <Box color={co2ColorScale(value)}>
         <div>
           <Value>{Math.round(value) || '?'}</Value>g
         </div>
