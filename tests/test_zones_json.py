@@ -2,7 +2,7 @@ import json
 import unittest
 from pathlib import Path
 
-CONFIG_DIR = Path(__file__).parent.parent.resolve()
+CONFIG_DIR = Path(__file__).parent.parent.joinpath('config').resolve()
 
 
 class ZonesJsonTestcase(unittest.TestCase):
