@@ -17,6 +17,7 @@ import moment from 'moment';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
+import CarbonIntensitySquare from '../../components/carbonintensitysquare';
 import CircularGauge from '../../components/circulargauge';
 import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
@@ -30,7 +31,6 @@ import { dispatchApplication } from '../../store';
 
 // Modules
 import { useCurrentZoneData } from '../../hooks/redux';
-import { useCo2ColorScale } from '../../hooks/theme';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
@@ -90,7 +90,6 @@ const CountryPanel = ({
   const [tooltip, setTooltip] = useState(null);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
-  const co2ColorScale = useCo2ColorScale();
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
@@ -171,22 +170,7 @@ const CountryPanel = ({
         {hasParser && (
           <React.Fragment>
             <div className="country-table-header-inner">
-              <div className="country-col country-emission-intensity-wrap">
-                <div
-                  id="country-emission-rect"
-                  className="country-col-box emission-rect emission-rect-overview"
-                  style={{ backgroundColor: co2ColorScale(co2Intensity) }}
-                >
-                  <div>
-                    <span className="country-emission-intensity">
-                      {Math.round(co2Intensity) || '?'}
-                    </span>
-                    g
-                  </div>
-                </div>
-                <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
-                <div className="country-col-subtext">(gCO₂eq/kWh)</div>
-              </div>
+              <CarbonIntensitySquare value={co2Intensity} withSubtext />
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
