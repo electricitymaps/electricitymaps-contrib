@@ -25,6 +25,7 @@ const LegendsContainer = styled.div`
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   z-index: 99;
   transition: width 0.4s, height 0.4s;
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 0.8rem;
   
   // Apply specific styles if the legend is collapsed
