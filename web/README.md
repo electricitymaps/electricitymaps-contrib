@@ -34,3 +34,10 @@ TopoJSON format, which is a more compressed format than geoJSON. It only stores 
 on a grid. All together, this allows to convert a ~`24MB` file to a ~`1MB` one.
 
 The final file is named `world.json` and is the one sent to the client.
+
+## `generate-zone-bounding-boxes.js`
+
+You can create bounding boxes for new or existing zones in `config/zones.json`:
+1) Run: `docker-compose run --rm web ./topogen.sh`
+2) Update the zone you want to update in `config/zones.json` with `"bounding_box": null`
+3) Run: `node generate-zone-bounding-boxes.js`

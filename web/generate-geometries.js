@@ -923,7 +923,11 @@ const zoneFeatures = getZoneFeatures(zoneDefinitions, backendGeos)
 
 // Write unsimplified list of geojson, without state merges
 // including overlapping US zones
-fs.writeFileSync('public/dist/zonegeometries.json', zoneFeatures.map(JSON.stringify).join('\n'));
+const zonegeometriesFolder = 'public/dist'
+if (!fs.existsSync(zonegeometriesFolder)){
+  fs.mkdirSync(zonegeometriesFolder);
+}
+fs.writeFileSync(`${zonegeometriesFolder}/zonegeometries.json`, zoneFeatures.map(JSON.stringify).join('\n'));
 
 // Convert to TopoJSON
 const topojson = require('topojson');
