@@ -65,7 +65,6 @@
     }
 }
 
-.country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
 .fossil-fuel-percentage,
@@ -73,16 +72,6 @@
     font-weight: bold;
 }
 
-.emission-rect-overview {
-    width: 4rem;
-    height: 4rem;
-    display: inline-flex;
-    font-size: 1rem;
-    border-radius: 1rem;
-    color: #fff;
-    flex-direction: column;
-    justify-content: center;
-}
 
 .emission-rect {
     display: inline-block;
