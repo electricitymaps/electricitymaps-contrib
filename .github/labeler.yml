@@ -1,5 +1,6 @@
 dependencies:
-  - .**/requirements.txt
+  - poetry.lock
+  - pyproject.toml
 
 frontend 🎨:
   - web/src/**/*
@@ -14,7 +15,7 @@ python:
   - .**/*.py
 
 parser:
-  - .**/parsers/**/*
+  - parsers/**/*
 
 science:
   - config/co2eq_parameters.json

@@ -1225,8 +1225,8 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 214,
-      "wind": 155
+      "solar": 229.3,
+      "wind": 157.5
     },
     "contributors": [
       "https://github.com/ultibo",
@@ -2864,8 +2864,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
-    },
-    "timezone": "Europe/Rome"
+    }
   },
   "IT-SAR": {
     "bounding_box": [
@@ -3547,6 +3546,25 @@
       ]
     ]
   },
+  "NG": {
+    "contributors": [
+      "https://github.com/byronwilliams"
+    ],
+    "parsers": {
+      "production": "NG.fetch_production"
+    },
+    "timezone": "Africa/Lagos",
+    "bounding_box": [
+      [
+        2.1710819900001184,
+        3.7721621770000695
+      ],
+      [
+        15.16993615700008,
+        14.380290832000114
+      ]
+    ]
+  },
   "NI": {
     "bounding_box": [
       [
@@ -3610,8 +3628,8 @@
       "hydro storage": 0,
       "nuclear": 486,
       "oil": 0,
-      "solar": 6874,
-      "wind": 5682
+      "solar": 10000,
+      "wind": 6719
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3983,20 +4001,21 @@
       "biomass": 1508,
       "battery storage": 0,
       "coal": 29963,
-      "gas": 2812,
+      "gas": 2827,
       "geothermal": 0,
-      "hydro": 605,
-      "hydro storage": 1780,
+      "hydro": 604,
+      "hydro storage": 1794,
       "nuclear": 0,
       "oil": 359,
-      "solar": 2528.371,
+      "solar": 3661.7,
       "unknown": 0,
       "wind": 6252
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/wojciej",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/filipc"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4012,7 +4031,7 @@
   "PT": {
     "capacity": {
       "biomass": 729,
-      "coal": 1756,
+      "coal": 628,
       "gas": 4606,
       "geothermal": 29,
       "hydro": 4359,
@@ -4024,7 +4043,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/Falconet8"
     ],
     "flag_file_name": "pt.png",
     "parsers": {

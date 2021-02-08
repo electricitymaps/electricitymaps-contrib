@@ -8,7 +8,7 @@ const Wrapper = styled.header`
   box-sizing: border-box;
   color: black;
   display: flex;
-  font-family: 'Euclid Triangle';
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 15px;
   height: 58px;
   justify-content: space-between;
@@ -153,7 +153,9 @@ const SharedHeader = ({
   logo,
 }) => (
   <Wrapper inverted={inverted} collapsed={collapsed}>
-    <Logo src={logo} alt="logo" />
+    <a href="/map">
+      <Logo src={logo} alt="logo" />
+    </a>
     <ResponsiveMenu collapsed={collapsed}>
       {links.map(({ label, href, active }) => (
         <Link key={label} href={href} active={active}>
