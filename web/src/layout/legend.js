@@ -23,9 +23,10 @@ const LegendsContainer = styled.div`
   padding: 12px 10px 10px 10px;
   margin: 16px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  z-index: 999;
+  z-index: 99;
   transition: width 0.4s, height 0.4s;
-
+  font-size: 0.8rem;
+  
   // Apply specific styles if the legend is collapsed
   ${props => props.collapsed
     && css`
@@ -35,9 +36,7 @@ const LegendsContainer = styled.div`
     `}
 
   div {
-    color: #000000;
     padding: 2px 6px 5px 6px;
-    font-size: 0.8rem;
   }
 `;
 
@@ -56,7 +55,6 @@ const ToggleLegendButton = styled.i`
   }
 `;
 
-// TODO: Test that this works! If is collapsed and small screen: text-align left
 const StyledMobileHeader = styled.div`
   text-align: ${props => (props.collapsed ? 'left' : 'center')};
   font-weight: bold;
@@ -88,8 +86,6 @@ const LegendItem = ({
   </LegendItemWrapper>
 ));
 
-// TODO: Move styles from styles.css to here
-// TODO: Remove all unecessary id and class tags
 
 const mapStateToProps = state => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
@@ -119,7 +115,7 @@ const Legend = ({
         <React.Fragment>
           <LegendItem label={__('legends.windpotential')} unit="m/s" enabled={windEnabled}>
             <HorizontalColorbar
-              id="wind-bar"
+              id="wind-potential-bar"
               colorScale={windColor}
               currentValue={windColorbarValue}
               markerColor="black"
@@ -136,7 +132,7 @@ const Legend = ({
             enabled={solarEnabled}
           >
             <HorizontalColorbar
-              id="solar-bar"
+              id="solar-potential-bar"
               colorScale={solarColor}
               currentValue={solarColorbarValue}
               markerColor="red"
