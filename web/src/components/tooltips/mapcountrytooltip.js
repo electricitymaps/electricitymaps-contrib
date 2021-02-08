@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
 });
 
-const TooltipContent = ({
+const TooltipContent = React.memo(({
   isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage,
 }) => {
   if (!hasParser) {
@@ -56,7 +56,7 @@ const TooltipContent = ({
       </div>
     </div>
   );
-};
+});
 
 const MapCountryTooltip = ({
   electricityMixMode,
