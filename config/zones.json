@@ -1225,8 +1225,8 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 214,
-      "wind": 155
+      "solar": 229.3,
+      "wind": 157.5
     },
     "contributors": [
       "https://github.com/ultibo",
@@ -3628,8 +3628,8 @@
       "hydro storage": 0,
       "nuclear": 486,
       "oil": 0,
-      "solar": 6874,
-      "wind": 5682
+      "solar": 10000,
+      "wind": 6719
     },
     "contributors": [
       "https://github.com/corradio",
