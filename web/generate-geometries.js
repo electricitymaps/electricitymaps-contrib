@@ -943,14 +943,16 @@ let topo = topojson.topology(webZones);
 // Simplify all countries
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 
 // Simplify to 0.001 zonesMoreDetails zones
 topoMoreDetails = topojson.topology(zonesMoreDetails);
 topoMoreDetails = topojson.presimplify(topoMoreDetails);
 topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
+topoMoreDetails = topojson.filter(topoMoreDetails, topojson.filterWeight(topo, 0.001));
+
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
-topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topo = topojson.quantize(topo, 1e5);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));
