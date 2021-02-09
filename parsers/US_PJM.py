@@ -2,14 +2,16 @@
 
 """Parser for the PJM area of the United States."""
 
+import json
+import re
+
 import arrow
+import demjson
+import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-import demjson
-import json
-import os
-import re
-import requests
+
+from .lib.utils import get_token
 
 # Used for consumption forecast data.
 API_ENDPOINT = 'https://api.pjm.com/api/v1/'
@@ -132,9 +134,7 @@ def fetch_consumption_forecast_7_days(zone_key='US-PJM', session=None,
     if not session:
         session = requests.session()
 
-    if 'PJM_TOKEN' not in os.environ:
-        raise Exception('No PJM_TOKEN found! Please add it to secrets.env!')
-    headers = {'Ocp-Apim-Subscription-Key': os.environ['PJM_TOKEN']}
+    headers = {'Ocp-Apim-Subscription-Key': get_token('PJM_TOKEN')}
 
     # startRow must be set if forecast_area is set.
     # RTO_COMBINED is area for whole PJM zone.

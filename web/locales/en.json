@@ -80,6 +80,8 @@
         "carbonintensityexport": "Carbon intensity of export",
         "ofinstalled": "of installed capacity",
         "utilizing": "utilizing",
+        "representing": "representing",
+        "ofemissions": "of emissions",
         "withcarbonintensity": "with a carbon intensity of",
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
@@ -257,6 +259,14 @@
           "AUS-TAS-KI": {
             "countryName": "Tasmania",
             "zoneName": "King Island"
+          },
+          "AUS-TAS-FI": {
+            "countryName": "Australia",
+            "zoneName": "Flinders Island"
+          },
+          "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
           },
           "AUS-VIC": {
             "countryName": "Australia",

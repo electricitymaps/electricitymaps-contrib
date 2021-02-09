@@ -15,6 +15,7 @@ web/node_modules
 /.venv
 Thumbs.db
 mobileapp/*.zip
+dist
 
 ## Pycharm IDE
 .idea

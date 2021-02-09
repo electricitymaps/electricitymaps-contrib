@@ -1,12 +1,34 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { range, isFinite } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
-import { useWidthObserver, useHeightObserver } from '../hooks/viewport';
+import styled from 'styled-components';
+import { useRefWidthHeightObserver } from '../hooks/viewport';
 
 const PADDING_X = 13;
 const PADDING_Y = 10;
+
+
+const Wrapper = styled.svg`
+  width: 100%;
+  height: 30px;
+  /* This will make sure children are relative to 1em */
+  font-size: 1rem;
+
+  .tick {
+    text {
+      fill: #000000;
+    }
+    line {
+      stroke: none;
+    }
+  }
+
+  rect.border {
+    stroke: none;
+  }
+`;
 
 const spreadOverDomain = (scale, count) => {
   const [x1, x2] = extent(scale.domain());
@@ -20,22 +42,19 @@ const HorizontalColorbar = ({
   markerColor,
   ticksCount = 5,
 }) => {
-  const ref = useRef(null);
-  const width = useWidthObserver(ref, 2 * PADDING_X);
-  const height = useHeightObserver(ref, 2 * PADDING_Y);
+  const { ref, width, height } = useRefWidthHeightObserver(2 * PADDING_X, 2 * PADDING_Y);
 
-  const className = `${id} colorbar`;
   const linearScale = scaleLinear()
     .domain(extent(colorScale.domain()))
     .range([0, width]);
 
   // Render an empty SVG if the dimensions are not positive
   if (width <= 0 || height <= 0) {
-    return <svg className={className} ref={ref} />;
+    return <Wrapper ref={ref} />;
   }
 
   return (
-    <svg className={className} ref={ref}>
+    <Wrapper ref={ref}>
       <g transform={`translate(${PADDING_X},0)`}>
         <linearGradient id={`${id}-gradient`} x2="100%">
           {spreadOverDomain(colorScale, 10).map((value, index) => (
@@ -43,14 +62,12 @@ const HorizontalColorbar = ({
           ))}
         </linearGradient>
         <rect
-          className="gradient"
           fill={`url(#${id}-gradient)`}
           width={width}
           height={height}
         />
         {isFinite(currentValue) && (
           <line
-            className="marker"
             stroke={markerColor}
             strokeWidth="2"
             x1={linearScale(currentValue)}
@@ -81,7 +98,7 @@ const HorizontalColorbar = ({
           ))}
         </g>
       </g>
-    </svg>
+    </Wrapper>
   );
 };
 

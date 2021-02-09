@@ -41,6 +41,7 @@
         "helpfrom": "med hjälp från",
         "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
         "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
+        "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
         "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
         "now": "Nu"
     },
@@ -91,7 +92,8 @@
         "consumption": "konsumtion",
         "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
         "selectLanguage": "Välj språk",
-        "lowCarbDescription": "Inkluderar förnybart och kärnkraft"
+        "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
+        "dataIsDelayed": "Data är fördröjd"
     },
     "misc": {
         "maintitle": "Aktuellt CO₂-utsläpp från elproduktion",
@@ -112,7 +114,7 @@
     "biomass": "biomassa",
     "nuclear": "kärnkraft",
     "geothermal": "geotermisk",
-    "gas": "gas",
+    "gas": "naturgas",
     "coal": "kol",
     "oil": "olja",
     "unknown": "okänd",
@@ -1767,6 +1769,9 @@
         },
         "WS": {
             "zoneName": "Samoa"
+        },
+        "XK": {
+            "zoneName": "Kosovo"
         },
         "XX": {
             "zoneName": "Nordcypern"

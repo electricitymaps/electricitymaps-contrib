@@ -39,7 +39,7 @@
       41.205
     ],
     "parsers": {
-      "exchange": "AM.fetch_exchange"
+      "exchange": "GE.fetch_exchange"
     },
     "rotation": 0
   },
@@ -1502,7 +1502,7 @@
   "HU->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       22.526994,
@@ -1851,7 +1851,7 @@
   "MD->UA": {
     "capacity": [
       -700,
-      0
+      700
     ],
     "lonlat": [
       29.218978,
@@ -2297,7 +2297,7 @@
   "PL->UA": {
     "capacity": [
       -235,
-      0
+      235
     ],
     "lonlat": [
       24.097224,
@@ -2325,7 +2325,7 @@
   "RO->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       24.821959,
@@ -2378,7 +2378,7 @@
   "SK->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       22.384512,

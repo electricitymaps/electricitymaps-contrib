@@ -13,19 +13,19 @@
     },
     "onboarding-modal": {
         "view1": {
-            "subtitle": "Cartographie de l'impact de l'électricité sur le climat"
+            "subtitle": "Cartographie de l’impact de l’électricité sur le climat"
         },
         "view2": {
             "header": "Visualisez la quantité de CO₂ émise pour produire votre électricité, en temps réel.",
-            "text": "Les régions du monde sont colorées en fonction de l'intensité en carbone (incluant tous les gaz à effet de serre) de l’électricité qui y est consommée. Des couleurs plus vertes signifient une électricité plus respectueuse du climat."
+            "text": "Les régions du monde sont colorées en fonction de l’intensité en carbone (incluant tous les gaz à effet de serre) de l’électricité qui y est consommée. Des couleurs plus vertes signifient une électricité plus respectueuse du climat."
         },
         "view3": {
-            "header": "Comprenez d'où vient votre électricité",
-            "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d'informations sur les origines de son électricité."
+            "header": "Comprenez d’où vient votre électricité",
+            "text": "Les flèches sur la carte indiquent les flux d’électricité entre différentes zones. Cliquez sur une zone pour voir plus d’informations sur les origines de son électricité."
         },
         "view4": {
-            "header": "Conditions de vent et solaires en temps réel",
-            "text": "La production d'énergie éolienne et solaire dépend de la météo. Appuyez sur les boutons Soleil et Vent pour afficher la force du vent et du soleil en temps réel dans le monde entier."
+            "header": "Conditions de vent et d’ensoleillement en temps réel",
+            "text": "La production d’énergie éolienne et solaire dépend de la météo. Appuyez sur les boutons Soleil et Vent pour afficher la force du vent et du soleil en temps réel dans le monde entier."
         }
     },
     "country-panel": {
@@ -34,34 +34,36 @@
         "carbonintensity": "Intensité carbone",
         "lowcarbon": "Bas carbone",
         "electricityproduction": "Production électrique",
-        "electricityconsumption": "Consommation éléctrique",
+        "electricityconsumption": "Consommation électrique",
         "bysource": "par source",
-        "emissions": "Emissions",
+        "emissions": "Émissions",
         "addeditsource": "<a href=\"%s\" target=\"_blank\">ajouter ou modifier la source</a>",
-        "helpfrom": "avec l'aide de",
+        "helpfrom": "avec l’aide de",
         "noDataAtTimestamp": "Données temporairement indisponibles pour cet instant",
         "noLiveData": "Données temps-réel temporairement indisponibles pour cette zone",
-        "noParserInfo": "Nous n'avons pas encore d'information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
-        "now": "Maintenant"
+        "noParserInfo": "Nous n’avons pas encore d’information pour cette zone. <br/>Vous voulez corriger ça ? Vous pouvez contribuer en <a href=\"%s\" target=\"_blank\">ajoutant des données de zone</a>.",
+        "now": "Maintenant",
+        "dataIsDelayed": "Les données relatives à cette région peuvent avoir jusqu'à %s heures de retard. Les données temps-réel ne peuvent pas être affichées."
     },
     "left-panel": {
         "zone-list-header-title": "Impact sur le climat par zone",
-        "zone-list-header-subtitle": "Classé par intensité carbone de l'électricité consommée (gCO₂eq/kWh)",
+        "zone-list-header-subtitle": "Classé par intensité carbone de l’électricité consommée (gCO₂eq/kWh)",
         "search": "Rechercher une zone"
     },
     "country-history": {
         "carbonintensity24h": "Intensité carbone des 24 dernières heures",
         "emissionsorigin24h": "Origine des émissions des 24 dernières heures",
-        "emissionsproduction24h": "Emissions produites dans les 24 dernières heures",
-        "electricityorigin24h": "Origine de l'électricité des 24 dernières heures",
-        "electricityproduction24h": "Production éléctrique des dernières 24 heures",
-        "electricityprices24h": "Prix de l'électricité des 24 dernières heures",
-        "Getdata": "Obtenir l'historique et l'API de prévision + marginal"
+        "emissionsproduction24h": "Émissions produites dans les 24 dernières heures",
+        "electricityorigin24h": "Origine de l’électricité des 24 dernières heures",
+        "electricityproduction24h": "Production électrique des 24 dernières heures",
+        "electricityprices24h": "Prix de l’électricité des 24 dernières heures",
+        "Getdata": "Obtenir l’historique et l’API de prévision + marginal",
+        "emissions24h": "Émissions des 24 dernières heures"
     },
     "footer": {
-        "foundbugs": "Un bug ? Une idée ? Cliquez",
+        "foundbugs": "Un bug ? Une idée ? Cliquez",
         "here": "ici",
-        "faq-text": "Tout n'est pas clair ? Passez voir notre",
+        "faq-text": "Tout n’est pas clair ? Passez voir notre",
         "faq": "foire aux questions."
     },
     "legends": {
@@ -75,32 +77,34 @@
         "lowcarbon": "Bas carbone",
         "renewable": "Renouvelable",
         "crossborderexport": "Export transfrontalier",
-        "carbonintensityexport": "Intensité carbone de l'export",
+        "carbonintensityexport": "Intensité carbone de l’export",
         "ofinstalled": "de la capacité installée",
         "utilizing": "utilisant",
         "withcarbonintensity": "avec une intensité carbone de",
         "showWindLayer": "Voir le calque de vent",
         "hideWindLayer": "Cacher le calque de vent",
-        "showSolarLayer": "Voir le calque d'ensoleillement",
-        "hideSolarLayer": "Cacher le calque d'ensoleillement",
-        "toggleDarkMode": "Basculer le thème sombre",
+        "showSolarLayer": "Voir le calque d’ensoleillement",
+        "hideSolarLayer": "Cacher le calque d’ensoleillement",
+        "toggleDarkMode": "Activer ou désactiver le thème sombre",
         "noParserInfo": "Pas de données disponible",
         "temporaryDataOutage": "Données temporairement indisponibles",
         "production": "production",
         "consumption": "consommation",
         "cpinfo": "La <b>consommation</b> tient compte des importations et des exportations, la <b>production</b> les ignore.",
         "selectLanguage": "Choisissez une langue",
-        "lowCarbDescription": "Inclue les énergies renouvelables et nucléaire"
+        "lowCarbDescription": "Inclut les énergies renouvelables et nucléaire",
+        "dataIsDelayed": "Données en retard"
     },
     "misc": {
-        "maintitle": "Emissions CO₂ de la consommation électrique en temps réel",
-        "oops": "Oups! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
-        "newversion": "Une nouvelle version est disponible! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
+        "maintitle": "Émissions CO₂ de la consommation électrique en temps réel",
+        "oops": "Oups ! Nous rencontrons un problème de connectivité au serveur. Une nouvelle tentative aura lieu dans quelques instants.",
+        "newversion": "Une nouvelle version est disponible ! Appuyez <a onClick=\"location.reload(true);\">ici</a> pour la charger.",
         "retrynow": "Réessayez maintenant",
         "legend": "Légende",
         "faq": "Foire Aux Questions",
-        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un oeil à notre base de données.</a>",
-        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>"
+        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un œil à notre base de données.</a>",
+        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>",
+        "webgl-not-supported": "La carte ne peut pas être rendue car ce navigateur ne supporte pas WebGL."
     },
     "wind": "éolien",
     "solar": "solaire",
@@ -114,81 +118,81 @@
     "coal": "charbon",
     "oil": "fioul",
     "unknown": "inconnu",
-    "electricityComesFrom": "<b>%1$s %%</b> de l'électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est produite par %3$s",
+    "electricityComesFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est produite par %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont produites par %3$s",
-    "electricityStoredUsing": "<b>%1$s %%</b> de l'électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est stockée par %3$s",
+    "electricityStoredUsing": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est stockée par %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont stockées par %3$s",
-    "electricityExportedTo": "<b>%1$s %%</b> de l'électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est exportée vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityExportedTo": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est exportée vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont exportées vers <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<b>%1$s %%</b> de l'électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+    "electricityImportedFrom": "<b>%1$s %%</b> de l’électricité disponible en <img id=\"country-flag\"></img> <b>%2$s</b> est importée depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> des émissions disponibles en <img id=\"country-flag\"></img> <b>%2$s</b> sont importées depuis <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "ofCO2eqPerMinute": "de CO₂eq par minute",
     "theMap": {
         "groupName": "La carte",
-        "mapColors-question": "Que signifient les couleurs sur la carte ?",
-        "mapColors-answer": "Nous colorons les zones de la carte en fonction des quantités de gaz à effet de serre émises pour chaque unité d'électricité consommée là bas (c'est son intensité carbonne <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Des couleurs plus vertes signifient une consommation d'électricité plus respectueuse du climat.",
-        "mapArrows-question": "Que signifient les flèches entre les zones de la carte ?",
-        "mapArrows-answer": "Les flèches entre les zones indiquent le flux physique (importations et exportations) d'électricité entre les zones: plus elles clignotent rapidement, plus le flux est important. Le flux d'électricité est important car, lorsque vous importez une partie de votre électricité depuis des zones voisines, vous importez également les émissions de carbone associées à sa production.",
-        "mapSolarWindButtons-question": "Que font les boutons « Soleil » et « Vent » sur la carte ?",
-        "mapSolarWindButtons-answer": "Ces boutons permettent d’afficher en temps réel la vitesse du vent et la force du soleil, ce qui donne une indication du potentiel de transition vers des alternatives énergétiques basées sur l’énergie solaire et éolienne selon les zones. Notez qu'il ne s'agit que d'une indication superficielle, car le potentiel réel d'installation d'éoliennes et de cellules photovoltaïques dépend également de nombreux autres facteurs.",
-        "mapNuclearColors-question": "Pourquoi les pays alimentés par énergie nucléaire sont-ils indiqués en vert sur la carte ?",
-        "mapNuclearColors-answer": "La production d’énergie nucléaire a une très faible intensité en carbone (<a href=\"https://fr.wikipedia.org/wiki/Émission_de_gaz_à_effet_de_serre_par_source_d'énergie_électrique#Etude_2014_du_GIEC_sur_les_émissions_de_CO2_des_différents_sources_d'électricité\" target=\"_blank\">source</a>), et les pays alimentés par énergie nucléaire apparaissent donc en vert sur la carte. Cela ne signifie pas qu'il n'y a pas d'autres défis environnementaux associés à l'énergie nucléaire (comme c'est également le cas pour d'autres formes de production d'énergie), mais ces défis ne sont pas liés aux émissions de gaz à effet de serre et sortent donc du cadre de cette carte.",
-        "mapColorBlind-question": "Je suis daltonien. Comment puis-je lire votre carte?",
-        "mapColorBlind-answer": "Vous pouvez modifier les couleurs affichées sur la carte en activant le paramètre « Mode daltonien ». Il se trouve au bas du panneau de gauche sur grand écran et dans l’onglet « À propos » sur mobile."
+        "mapColors-question": "Que signifient les couleurs sur la carte ?",
+        "mapColors-answer": "Nous colorons les zones de la carte en fonction des quantités de gaz à effet de serre émises pour chaque unité d’électricité consommée là bas (c’est son <a href=\"#carbonIntensity\" class=\"entry-link\">intensité carbonne</a>). Des couleurs plus vertes signifient une consommation d’électricité plus respectueuse du climat.",
+        "mapArrows-question": "Que signifient les flèches entre les zones de la carte ?",
+        "mapArrows-answer": "Les flèches entre les zones indiquent le flux physique (importations et exportations) d’électricité entre les zones : plus elles clignotent rapidement, plus le flux est important. Le flux d’électricité est important car, lorsque vous importez une partie de votre électricité depuis des zones voisines, vous importez également les émissions de carbone associées à sa production.",
+        "mapSolarWindButtons-question": "Que font les boutons « Soleil » et « Vent » sur la carte ?",
+        "mapSolarWindButtons-answer": "Ces boutons permettent d’afficher en temps réel la vitesse du vent et la force du soleil, ce qui donne une indication du potentiel de transition vers des alternatives énergétiques basées sur l’énergie solaire et éolienne selon les zones. Notez qu’il ne s’agit que d’une indication superficielle, car le potentiel réel d’installation d’éoliennes et de cellules photovoltaïques dépend également de nombreux autres facteurs.",
+        "mapNuclearColors-question": "Pourquoi les pays alimentés par énergie nucléaire sont-ils indiqués en vert sur la carte ?",
+        "mapNuclearColors-answer": "La production d’énergie nucléaire a une très faible intensité en carbone (<a href=\"https://fr.wikipedia.org/wiki/Émission_de_gaz_à_effet_de_serre_par_source_d'énergie_électrique#Etude_2014_du_GIEC_sur_les_émissions_de_CO2_des_différents_sources_d'électricité\" target=\"_blank\">source</a>), et les pays alimentés par énergie nucléaire apparaissent donc en vert sur la carte. Cela ne signifie pas qu’il n’y a pas d’autres défis environnementaux associés à l’énergie nucléaire (comme c’est également le cas pour d’autres formes de production d’énergie), mais ces défis ne sont pas liés aux émissions de gaz à effet de serre et sortent donc du cadre de cette carte.",
+        "mapColorBlind-question": "Je suis daltonien. Comment puis-je lire votre carte ?",
+        "mapColorBlind-answer": "Vous pouvez modifier les couleurs affichées sur la carte en activant le paramètre « Mode daltonien ». Il se trouve au bas du panneau de gauche sur grand écran et dans l’onglet « À propos » sur mobile."
     },
     "mapAreas": {
         "groupName": "Zones sur la carte",
-        "noData-question": "Pourquoi les données pour ma région ne sont-elles pas disponibles ?",
-        "noData-answer": "Soit parce que les sources de données de la zone sont temporairement indisponibles, soit parce que nous n'avons pas encore configuré de sources de données pour la zone. Vous pouvez <a href=\"#contribute\" class=\"entry-link\">nous aider à ajouter de nouvelles sources de données</a>.",
-        "whySmallAreas-question": "Pourquoi divisez-vous le monde en petites zones et ne faites-vous pas simplement apparaître la moyenne des pays ?",
+        "noData-question": "Pourquoi les données pour ma région ne sont-elles pas disponibles ?",
+        "noData-answer": "Soit parce que les sources de données de la zone sont temporairement indisponibles, soit parce que nous n’avons pas encore configuré de sources de données pour la zone. Vous pouvez <a href=\"#contribute\" class=\"entry-link\">nous aider à ajouter de nouvelles sources de données</a>.",
+        "whySmallAreas-question": "Pourquoi divisez-vous le monde en petites zones et ne faites-vous pas simplement apparaître la moyenne des pays ?",
         "whySmallAreas-answer": "Les zones sont les plus petites surfaces géographiques pour lesquelles nous disposons de données. En ayant accès à des informations au plus haut niveau de granularité, les consommateurs d’électricité de différentes régions peuvent avoir une connaissance plus précise de l’origine de l’électricité qu’ils consomment et de son impact sur le climat.",
-        "divideExistingArea-question": "Pouvez-vous diviser ma zone en petites parties ?",
+        "divideExistingArea-question": "Pouvez-vous diviser ma zone en petites parties ?",
         "divideExistingArea-answer": "Bien sûr, s’il existe des sources de données distinctes pour chaque partie de la zone. Vous pouvez <a href=\"#contribute\" class=\"entry-link\">nous aider à ajouter de nouvelles sources de données</a>.",
-        "seeHistoricalData-question": "Puis-je voir l'historique de plus de 24 heures d'une région ?",
+        "seeHistoricalData-question": "Puis-je voir l’historique de plus de 24 heures d’une région ?",
         "seeHistoricalData-answer": "Vous pouvez acheter un accès à toutes nos données historiques via notre <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>."
     },
     "methodology": {
         "groupName": "Nos méthodes",
-        "carbonIntensity-question": "Qu'est-ce que « l'intensité carbone » ?",
-        "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO₂eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d'électricité (et non de production), c'est-à-dire toutes les émissions de gaz à effet de serre (CO₂ et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l'électricité consommée dans une région, en tenant compte de l'intensité en carbone de l'électricité importée depuis d'autres régions. Nous utilisons une approche d'analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l'ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
-        "consumptionFocus-question": "Pourquoi calculez-vous l'intensité en carbone de la consommation d'électricité au lieu de la production ?",
-        "consumptionFocus-answer": "Nous pensons que les citoyens devraient être responsables de l’électricité qu’ils consomment, et non de l’électricité produite dans la région dans laquelle ils vivent. De plus, nous pensons que les régions ne devraient pas être en mesure de « simuler » un faible impact sur le climat simplement en se délocalisant les production d’énergie sale dans d’autres régions, puis importer l’électricité depuis ces régions.",
-        "renewableLowCarbonDifference-question": "Quelle est la différence entre « renouvelable » et « bas carbone » ?",
-        "renewableLowCarbonDifference-answer": "La production d’énergie renouvelable repose sur des sources d’énergie renouvelables telles que le vent et l’eau, l’ensoleillement et l’énergie géothermique. La production d'énergie à faible intensité carbone signifie que la production n'emet qu'un faible niveau d'émissions de gaz à effet de serre, par exemple la production d'énergie nucléaire.",
-        "importsAndExports-question": "Prenez-vous en compte les importations et les exportations d’électricité ?",
+        "carbonIntensity-question": "Qu’est-ce que « l’intensité carbone » ?",
+        "carbonIntensity-answer": "L’intensité carbone est une mesure des émissions de gaz à effet de serre associées à la production de l’électricité que vous consommez (en gCO₂eq/kWh - gramme d’équivalent dioxyde de carbone émis par kilowattheure d’électricité consommée). <br><br>Nous mesurons les émissions de consommation d’électricité (et non de production), c’est-à-dire toutes les émissions de gaz à effet de serre (CO₂ et autres gaz à effet de serre tels que le méthane) ayant servi à produire de l’électricité consommée dans une région, en tenant compte de l’intensité en carbone de l’électricité importée depuis d’autres régions. Nous utilisons une approche d’analyse du cycle de vie (ACV), ce qui signifie que nous prenons en compte les émissions provenant de l’ensemble du cycle de vie des centrales (construction, production de combustible, émissions opérationnelles et démantèlement).",
+        "consumptionFocus-question": "Pourquoi calculez-vous l’intensité en carbone de la consommation d’électricité au lieu de la production ?",
+        "consumptionFocus-answer": "Nous pensons que les citoyens devraient être responsables de l’électricité qu’ils consomment, et non de l’électricité produite dans la région dans laquelle ils vivent. De plus, nous pensons que les régions ne devraient pas être en mesure de « simuler » un faible impact sur le climat simplement en délocalisant la production d’énergie sale dans d’autres régions, puis importer l’électricité depuis ces régions.",
+        "renewableLowCarbonDifference-question": "Quelle est la différence entre « renouvelable » et « bas carbone » ?",
+        "renewableLowCarbonDifference-answer": "La production d’énergie renouvelable repose sur des sources d’énergie renouvelables telles que le vent, l’écoulement d’eau, l’ensoleillement et l’énergie géothermique. La production d’énergie à faible intensité carbone signifie que la production n’émet qu’un faible niveau d’émissions de gaz à effet de serre, par exemple la production d’énergie nucléaire.",
+        "importsAndExports-question": "Prenez-vous en compte les importations et les exportations d’électricité ?",
         "importsAndExports-answer": "Oui. Les importations et les exportations apparaissent sur la carte sous forme de petites <a href=\"#mapArrows\" class=\"entry-link\">flèches entre différentes zones</a>. Des informations détaillées sont visibles dans les graphiques affichés lorsque vous cliquez sur une zone.",
-        "emissionsOfStored-question": "Qu'en est-il des émissions générées par la production d'électricité qui est ensuite stockée dans des batteries ou utilisée pour remplir des réservoirs ?",
-        "emissionsOfStored-answer": "Comme à l'heure actuelle, seule une petite partie de l'électricité est stockée, les imprécisions dans la modélisation de ces émissions ne devraient pas avoir beaucoup d'incidence sur le total actuel. Cependant, étant donné l’importance croissante du stockage, nous espérons pouvoir le prendre davantage en compte dans notre modèle prochainement.",
-        "guaranteesOfOrigin-question": "Que sont les certificats verts et comment sont-ils pris en compte ?",
-        "guaranteesOfOrigin-answer": "Lorsque les producteurs d'énergie renouvelable produisent de l'électricité, ils peuvent créer des garanties d'origine (« Guarantee of origin » en Europe ou « Renewable Energy Certificate » aux États-Unis), preuve que l'électricité renouvelable a été produite et distribuée dans le réseau électrique. Ces garanties peuvent ensuite être vendues, donnant ainsi à d’autres revendeurs d’électricité le droit de prétendre que l’électricité qu’elles vendent provient de sources renouvelables, quelle que soit leur source réelle et physique. <br><br>Cela signifie que l'on peut dire aux consommateurs d'électricité que leur électricité est vient de panneau solaire, alors meme qu'il fait nuit. Cette problématique, dans la mesure où elle élimine les incitations des consommateurs à consommer de l'électricité au meilleur moment (par exemple, lorsque la quantité d'électricité renouvelable dans le réseau est la plus élevée). Cette carte exclut donc les garanties d'origine, mais offre plutôt une image physique du réseau électrique en fonction de la localisation, afin de responsabiliser les consommateurs.",
-        "otherSources-question": "Pourquoi ne montrez-vous pas d’autres sources d’émission que la production d’électricité ?",
-        "otherSources-answer": "Ce serait en dehors de la portée de ce projet. Toutefois, à Tomorrow nous travaillons activement au développement de <a href=\"#whoAreYou\" class=\"entry-link\">nouvelles solutions permettant de quantifier l'impact de vos décisions au quotidien sur le climat</a>.",
-        "homeSolarPanel-question": "Et si j'ai un panneau solaire installé chez moi ?",
-        "homeSolarPanel-answer": "Nous mesurons l'intensité en carbone du réseau électrique local, de sorte que toute l'électricité que vous consommez directement de votre panneau solaire (hors réseau) ne fait pas partie de nos mesures. Toutefois, si votre panneau solaire alimente votre réseau électrique local, sa production est incluse dans nos statistiques dans les zones où les estimations de la production locale d’énergie solaire sont accessibles au public (comme en France et au Royaume-Uni).",
-        "emissionsPerCapita-question": "Pourquoi ne montrez-vous pas les émissions par habitant ?",
-        "emissionsPerCapita-answer": "Une partie de l'électricité consommée dans une zone est utilisée dans la fabrication de biens physiques et de produits qui sont ensuite exportés et consommés dans d'autres zones. Cette fabrication, et donc aussi sa consommation d’électricité et ses émissions associées, est dictée par la consommation de produits dans les <em>zones importatrices</em> et non dans la zone où la production a lieu. Nous pensons que les gens ne devraient être responsables que de ce qu'ils consomment, et non des produits fabriqués dans la région où ils habitent, car ils ne le consomment pas eux-mêmes. En ce sens, montrer les émissions de consommation d'électricité par habitant pour les zones est trompeur."
+        "emissionsOfStored-question": "Qu’en est-il des émissions générées par la production d’électricité qui est ensuite stockée dans des batteries ou utilisée pour remplir des réservoirs ?",
+        "emissionsOfStored-answer": "Comme à l’heure actuelle, seule une petite partie de l’électricité est stockée, les imprécisions dans la modélisation de ces émissions ne devraient pas avoir beaucoup d’incidence sur le total actuel. Cependant, étant donné l’importance croissante du stockage, nous espérons pouvoir le prendre davantage en compte dans notre modèle prochainement.",
+        "guaranteesOfOrigin-question": "Que sont les certificats verts et comment sont-ils pris en compte ?",
+        "guaranteesOfOrigin-answer": "Lorsque les producteurs d’énergie renouvelable produisent de l’électricité, ils peuvent créer des garanties d’origine (« Guarantee of origin » en Europe ou « Renewable Energy Certificate » aux États-Unis), preuve que l’électricité renouvelable a été produite et distribuée dans le réseau électrique. Ces garanties peuvent ensuite être vendues, donnant ainsi à d’autres revendeurs d’électricité le droit de prétendre que l’électricité qu’elles vendent provient de sources renouvelables, quelle que soit leur source réelle et physique. <br><br>Cela signifie que l’on peut dire aux consommateurs d’électricité que leur électricité est vient de panneau solaire, alors même qu’il fait nuit. Ceci est problématique, dans la mesure où elle élimine les incitations des consommateurs à consommer de l’électricité au meilleur moment (par exemple, lorsque la quantité d’électricité renouvelable dans le réseau est la plus élevée). Cette carte exclut donc les garanties d’origine, mais offre plutôt une image physique du réseau électrique en fonction de la localisation, afin de responsabiliser les consommateurs.",
+        "otherSources-question": "Pourquoi ne montrez-vous pas d’autres sources d’émission que la production d’électricité ?",
+        "otherSources-answer": "Ce serait en dehors de la portée de ce projet. Toutefois, à Tomorrow nous travaillons activement au développement de <a href=\"#whoAreYou\" class=\"entry-link\">nouvelles solutions permettant de quantifier l’impact de vos décisions au quotidien sur le climat</a>.",
+        "homeSolarPanel-question": "Et si j’ai un panneau solaire installé chez moi ?",
+        "homeSolarPanel-answer": "Nous mesurons l’intensité en carbone du réseau électrique local, de sorte que toute l’électricité que vous consommez directement de votre panneau solaire (hors réseau) ne fait pas partie de nos mesures. Toutefois, si votre panneau solaire alimente votre réseau électrique local, sa production est incluse dans nos statistiques dans les zones où les estimations de la production locale d’énergie solaire sont accessibles au public (comme en France et au Royaume-Uni).",
+        "emissionsPerCapita-question": "Pourquoi ne montrez-vous pas les émissions par habitant ?",
+        "emissionsPerCapita-answer": "Une partie de l’électricité consommée dans une zone est utilisée dans la fabrication de biens physiques et de produits qui sont ensuite exportés et consommés dans d’autres zones. Cette fabrication, et donc aussi sa consommation d’électricité et ses émissions associées, est dictée par la consommation de produits dans les <em>zones importatrices</em> et non dans la zone où la production a lieu. Nous pensons que les gens ne devraient être responsables que de ce qu’ils consomment, et non des produits fabriqués dans la région où ils habitent, car ils ne le consomment pas eux-mêmes. En ce sens, montrer les émissions de consommation d’électricité par habitant pour les zones est trompeur."
     },
     "data": {
         "groupName": "Nos données",
-        "dataOrigins-question": "Comment obtenez-vous vos données ?",
+        "dataOrigins-question": "Comment obtenez-vous vos données ?",
         "dataOrigins-answer": "Nous calculons toutes nos données à partir de données accessibles au public, publiées par les opérateurs de réseaux électriques, les agences officielles et autres. Vous pouvez cliquer sur une zone pour voir plus de détails sur les origines de ces données.",
-        "dataDownload-question": "Puis-je télécharger vos données?",
+        "dataDownload-question": "Puis-je télécharger vos données ?",
         "dataDownload-answer": "Vous pouvez acheter un accès à toutes nos données dans notre <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>.",
         "dataIntegration-question": "Puis-je intégrer vos données en temps réel dans mon application ou mon appareil?",
-        "dataIntegration-answer": "Oui! Nous vendons l'accès à l'API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l'avenir."
+        "dataIntegration-answer": "Oui ! Nous vendons l’accès à l’API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l’avenir."
     },
     "aboutUs": {
         "groupName": "À propos de nous",
-        "whoAreYou-question": "Qui êtes-vous ?",
-        "whoAreYou-answer": "La carte de l’électricité est développée et gérée par <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, une petite entreprise franco-danoise. Notre objectif est d'aider l'humanité à atteindre un état d'existence durable en quantifiant et en rendant largement accessible l'impact sur le climat des choix quotidiens que nous faisons.",
-        "feedback-question": "Puis-je vous faire des commentaire ?",
-        "feedback-answer": "Faites donc ! Remplissez <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">notre formulaire de réponse</a> ou <a href=\"mailto:electricitymap@tmrow.com\">envoyez-nous un email</a> !",
-        "contribute-question": "Puis-je contribuer à votre projet ?",
-        "contribute-answer": "Bien sûr ! Electricity Map est un projet open-source, rendu possible par nos contributeurs bénévoles. Si vous souhaitez contribuer au développement de la carte, en ajoutant des sources de données pour de nouvelles zones, en ajoutant de nouvelles fonctionnalités ou en corrigeant des bugs, n'hésitez pas à nous rejoindre sur notre <a href=\"https://github.com/corradio/electricitymap/\" target=\"_ blank\"> github </a>.",
-        "workTogether-question": "Pouvons-nous travailler ensemble ?",
-        "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@electricitymap.org\">Envoyez-nous un email</a> !",
+        "whoAreYou-question": "Qui êtes-vous ?",
+        "whoAreYou-answer": "La carte de l’électricité est développée et gérée par <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, une petite entreprise franco-danoise. Notre objectif est d’aider l’humanité à atteindre un état d’existence durable en quantifiant et en rendant largement accessible l’impact sur le climat des choix quotidiens que nous faisons.",
+        "feedback-question": "Puis-je vous faire des commentaires ?",
+        "feedback-answer": "Faites donc ! Remplissez <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">notre formulaire de réponse</a> ou <a href=\"mailto:electricitymap@tmrow.com\">envoyez-nous un email</a> !",
+        "contribute-question": "Puis-je contribuer à votre projet ?",
+        "contribute-answer": "Bien sûr ! Electricity Map est un projet open-source, rendu possible par nos contributeurs bénévoles. Si vous souhaitez contribuer au développement de la carte, en ajoutant des sources de données pour de nouvelles zones, en ajoutant de nouvelles fonctionnalités ou en corrigeant des bugs, n’hésitez pas à nous rejoindre sur notre <a href=\"https://github.com/corradio/electricitymap/\" target=\"_ blank\"> github </a>.",
+        "workTogether-question": "Pouvons-nous travailler ensemble ?",
+        "workTogether-answer": "Nous recherchons activement de nouvelles opportunités de collaboration. <a href=\"mailto:hello@electricitymap.org\">Envoyez-nous un email</a> !",
         "disclaimer-question": "Avertissement",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l'exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d'en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulteraient de l'inexactitude d'electricityMap, qu'elle soit due à une erreur, un manque de données, la présence d'information obsolète ou dépassée. Cela s'applique à electricityMap ainsi qu'à tout produit dérivé. Il est interdit d'inclure cette page web et n'importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu'à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdits sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour."
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publie à titre informatif des données et des images sur son site <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>.Tomorrow ne répond pas de l’exactitude de ces informations, ne fournit aucune garantie sur ce point et se réserve le droit de changer le contenu de ce site à tout moment, ainsi que d’en retirer, sans avoir à informer son auditoire. Tomorrow décline toute responsabilité et ne pourrait être tenu responsable de dommages ou dépenses qui résulteraient de l’inexactitude d’electricityMap, qu’elle soit due à une erreur, un manque de données, la présence d’information obsolète ou dépassée. Cela s’applique à electricityMap ainsi qu’à tout produit dérivé. Il est interdit d’inclure cette page web et n’importe lequel de ces éléments dans une autre page web, sans le consentement écrit préalable de Tomorrow.<br><br> Tous les droits de propriété intellectuelle appartiennent aux propriétaires légitimes et légaux de ce site, ainsi qu’à tous les concédants. La copie, la distribution ou tout autre usage de ces documents, en particulier les données énergétiques, sont interdits sans le consentement écrit de Tomorrow, sauf contre-indication légale (telle que le droit de mention), à moins que cela ne soit explicitement spécifié par ces documents.<br><br>Cette notice légale pourra être ponctuellement mise à jour."
     },
     "zoneShortName": {
         "AD": {
@@ -246,6 +250,10 @@
         "AUS-TAS": {
             "countryName": "Australie",
             "zoneName": "Tasmanie"
+        },
+        "AUS-TAS-KI": {
+            "countryName": "Australie",
+            "zoneName": "Tasmanie (Île King)"
         },
         "AUS-VIC": {
             "countryName": "Australie",
@@ -405,7 +413,7 @@
             "zoneName": "Suisse"
         },
         "CI": {
-            "zoneName": "Côte d'Ivoire"
+            "zoneName": "Côte d’Ivoire"
         },
         "CK": {
             "zoneName": "Îles Cook"
@@ -413,6 +421,10 @@
         "CL-SING": {
             "countryName": "Chili",
             "zoneName": "SING"
+        },
+        "CL-SING-SIC": {
+            "countryName": "Chili",
+            "zoneName": "SING - SIC"
         },
         "CL-SIC": {
             "countryName": "Chili",
@@ -425,6 +437,10 @@
         "CL-SEA": {
             "countryName": "Chili",
             "zoneName": "SEA"
+        },
+        "CL-SEN": {
+            "countryName": "Chili",
+            "zoneName": "SEN"
         },
         "CM": {
             "zoneName": "Cameroun"
@@ -806,7 +822,7 @@
             "zoneName": "West Bengal"
         },
         "IO": {
-            "zoneName": "Territoire britannique de l'océan Indien"
+            "zoneName": "Territoire britannique de l’océan Indien"
         },
         "IQ": {
             "zoneName": "Irak"
@@ -1134,11 +1150,11 @@
         },
         "NZ-NZN": {
             "countryName": "Nouvelle Zélande",
-            "zoneName": "île du Nord"
+            "zoneName": "Île du Nord"
         },
         "NZ-NZS": {
             "countryName": "Nouvelle Zélande",
-            "zoneName": "île du Sud"
+            "zoneName": "Île du Sud"
         },
         "OM": {
             "zoneName": "Oman"
@@ -1357,74 +1373,110 @@
             "zoneName": "Îles mineures éloignées des États-Unis"
         },
         "US": {
-            "zoneName": "États-Unis d'Amérique"
+            "zoneName": "États-Unis d’Amérique"
+        },
+        "US-AK": {
+            "countryName": "États-Unis d’Amérique",
+            "zoneName": "Alaska"
         },
         "US-AL": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Alabama"
         },
         "US-BPA": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "BPA"
         },
         "US-CA": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Californie"
         },
         "US-HI": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Hawaï"
         },
+        "US-HI-HA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Hawaï"
+        },
+        "US-HI-KA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Kauai"
+        },
+        "US-HI-KH": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Kahoolawe"
+        },
+        "US-HI-LA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Lanai"
+        },
+        "US-HI-MA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Maui"
+        },
+        "US-HI-MO": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Molokai"
+        },
+        "US-HI-NI": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Niihau"
+        },
+        "US-HI-OA": {
+            "countryName": "États Unis d’Amérique",
+            "zoneName": "Oahu"
+        },
         "US-IPC": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "IPC"
         },
         "US-MISO": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "MISO"
         },
         "US-NC": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Caroline du Nord"
         },
         "US-NEISO": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Nouvelle Angleterre"
         },
         "US-NV": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Nevada"
         },
         "US-NY": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "New York"
         },
         "US-OR": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Oregon"
         },
         "US-PJM": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "PJM"
         },
         "US-SC": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Caroline du Sud"
         },
         "US-SPP": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "SPP"
         },
         "US-SVERI": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "SVERI"
         },
         "US-TN": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Tennessee"
         },
         "US-TX": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Texas"
         },
         "UY": {
@@ -1447,7 +1499,7 @@
             "zoneName": "Îles Vierges britanniques"
         },
         "VI": {
-            "countryName": "États-Unis d'Amérique",
+            "countryName": "États-Unis d’Amérique",
             "zoneName": "Îles Vierges des États-Unis"
         },
         "VN": {
@@ -1481,46 +1533,6 @@
         },
         "ZW": {
             "zoneName": "Zimbabwe"
-        },
-        "AUS-TAS-KI": {
-            "countryName": "Tasmanie",
-            "zoneName": "Île King"
-        },
-        "CL-SING-SIC": {
-            "countryName": "Chili",
-            "zoneName": "Chili"
-        },
-        "US-HI-HA": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Hawaï"
-        },
-        "US-HI-KA": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Kauai"
-        },
-        "US-HI-KH": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Kahoolawe"
-        },
-        "US-HI-LA": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Lanai"
-        },
-        "US-HI-MA": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Maui"
-        },
-        "US-HI-MO": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Molokai"
-        },
-        "US-HI-NI": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Niihau"
-        },
-        "US-HI-OA": {
-            "countryName": "États Unis d'Amérique",
-            "zoneName": "Oahu"
         }
     }
 }

@@ -8,11 +8,11 @@ const Wrapper = styled.header`
   box-sizing: border-box;
   color: black;
   display: flex;
-  font-family: 'Euclid Triangle';
-  font-size: 16px;
-  height: 66px;
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  font-size: 15px;
+  height: 58px;
   justify-content: space-between;
-  min-height: 66px; /* required for old Safari */
+  min-height: 58px; /* required for old Safari */
   padding: 0 48px 0 32px;
   position: fixed;
   transition: background-color 0.5s;
@@ -58,7 +58,7 @@ const linkUnderline = css`
 const Link = styled.a`
   color: inherit;
   display: inline-block;
-  line-height: 42px;
+  line-height: 34px;
   padding: 12px 16px;
   position: relative;
   text-decoration: none;
@@ -153,7 +153,9 @@ const SharedHeader = ({
   logo,
 }) => (
   <Wrapper inverted={inverted} collapsed={collapsed}>
-    <Logo src={logo} alt="logo" />
+    <a href="/map">
+      <Logo src={logo} alt="logo" />
+    </a>
     <ResponsiveMenu collapsed={collapsed}>
       {links.map(({ label, href, active }) => (
         <Link key={label} href={href} active={active}>
