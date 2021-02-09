@@ -949,7 +949,6 @@ topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topoMoreDetails = topojson.topology(zonesMoreDetails);
 topoMoreDetails = topojson.presimplify(topoMoreDetails);
 topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
-topoMoreDetails = topojson.filter(topoMoreDetails, topojson.filterWeight(topo, 0.001));
 
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
