@@ -3907,7 +3907,7 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
   },
   "NZ-NZS": {
     "bounding_box": [
@@ -3928,7 +3928,24 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
+  },
+  "NZ-NZST": {
+    "bounding_box": [
+      [
+        183.39718955900003,
+        -40.388788259999956
+      ],
+      [
+        184.39889961200004,
+        -39.38770834099995
+      ]
+    ],
+    "contributors": [
+      "https://github.com/madsnedergaard"
+    ],
+    "flag_file_name": "nz.png",
+    "timezone": "Pacific/Auckland"
   },
   "OM": {
     "contributors": [
