@@ -949,6 +949,6 @@ topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
-//topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topo = topojson.quantize(topo, 1e5);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));
