@@ -2113,6 +2113,20 @@
           "wind": 0.0
         }
       },
+      "KZ": {
+        "_source": "Our world in data 2019",
+        "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ",
+        "powerOriginRatios": {
+          "coal": 0.706728113937001,
+          "gas": 0.188180756380889,
+          "hydro": 0.0904234610265557,
+          "nuclear": 0.0,
+          "oil": 0.00749680842394995,
+          "wind": 0.00449084176120673,
+          "unknown": 0.00452705822702292,
+          "solar": 0.00263474788812734
+        }
+      },
       "LT": {
         "_source": "Tomorrow",
         "powerOriginRatios": {

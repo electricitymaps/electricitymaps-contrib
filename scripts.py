@@ -14,7 +14,7 @@ def _run(cmd):
 
 def lint():
     _run("flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics")
-    for path in ["tests", "electricitymap"]:
+    for path in ["tests", "electricitymap", "*.py"]:
         _run(f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence")
 
 
