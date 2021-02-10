@@ -1225,8 +1225,8 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 214,
-      "wind": 155
+      "solar": 229.3,
+      "wind": 157.5
     },
     "contributors": [
       "https://github.com/ultibo",
@@ -3336,6 +3336,35 @@
     },
     "timezone": "Europe/Riga"
   },
+  "MA": {
+    "bounding_box": [
+      [
+        -17.51374332534519,
+        20.919971097581723
+      ],
+      [
+        -0.5319994709999492,
+        36.426519149000015
+      ]
+    ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 4116,
+      "gas": 1944,
+      "geothermal": 0,
+      "hydro": 1306,
+      "hydro storage": 464,
+      "nuclear": 0,
+      "oil": 916,
+      "solar": 711,
+      "wind": 1220
+    },
+    "contributors": [
+      "https://github.com/veqtrus"
+    ],
+    "parsers": {},
+    "timezone": "Africa/Casablanca"
+  },
   "MD": {
     "bounding_box": [
       [
@@ -3628,8 +3657,8 @@
       "hydro storage": 0,
       "nuclear": 486,
       "oil": 0,
-      "solar": 6874,
-      "wind": 5682
+      "solar": 10000,
+      "wind": 6719
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3878,17 +3907,17 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
   },
   "NZ-NZS": {
     "bounding_box": [
       [
-        165.9664819670002,
-        -47.77760182099989
+        165.96648196700016,
+        -47.30120208099993
       ],
       [
-        174.90137780000023,
-        -40.00212981599989
+        174.82642662900014,
+        -40.002129815999865
       ]
     ],
     "contributors": [
@@ -3899,7 +3928,34 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
+  },
+  "NZ-NZST": {
+    "bounding_box": [
+      [
+        166.91871178500003,
+        -47.777601820999905
+      ],
+      [
+        168.76099694100003,
+        -46.18303801899992
+      ]
+    ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 1.096,
+      "solar": 0,
+      "wind": 0
+    },
+    "contributors": [
+      "https://github.com/madsnedergaard"
+    ],
+    "flag_file_name": "nz.png",
+    "timezone": "Pacific/Auckland"
   },
   "OM": {
     "contributors": [

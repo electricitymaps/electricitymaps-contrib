@@ -827,10 +827,14 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         self_consumption = parse_self_consumption(
             query_production(domain, session,
                             target_datetime=target_datetime))
-        for k, v in self_consumption.items():
-            i = datetimes.index(k)
-            if i == 0: continue
-            quantities[i] += v
+        for dt, value in self_consumption.items():
+            try:
+                i = datetimes.index(dt)
+            except ValueError:
+                logger.warning(
+                    f'No corresponding consumption value found for self-consumption at {dt}')
+                continue
+            quantities[i] += value
 
         # if a target_datetime was requested, we return everything
         if target_datetime:
@@ -846,8 +850,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         # data is available for a given TZ a few minutes before production data is.
         dt, quantity = datetimes[-1].datetime, quantities[-1]
         if dt not in self_consumption:
-            logger.warning(
-                'Self-consumption data not yet available for {} at {}'.format(zone_key, dt))
+            logger.warning(f'Self-consumption data not yet available for {zone_key} at {dt}')
         data = {
             'zoneKey': zone_key,
             'datetime': dt,
