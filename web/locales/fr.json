@@ -263,6 +263,10 @@
             "countryName": "Australie",
             "zoneName": "Australie-Occidentale"
         },
+        "AUS-WA-RI": {
+            "countryName": "Australie",
+            "zoneName": "Île Rottnest"
+        },
         "AW": {
             "zoneName": "Aruba"
         },
