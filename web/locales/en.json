@@ -80,6 +80,8 @@
         "carbonintensityexport": "Carbon intensity of export",
         "ofinstalled": "of installed capacity",
         "utilizing": "utilizing",
+        "representing": "representing",
+        "ofemissions": "of emissions",
         "withcarbonintensity": "with a carbon intensity of",
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
@@ -258,6 +260,14 @@
             "countryName": "Tasmania",
             "zoneName": "King Island"
           },
+          "AUS-TAS-FI": {
+            "countryName": "Australia",
+            "zoneName": "Flinders Island"
+          },
+          "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
+          },
           "AUS-VIC": {
             "countryName": "Australia",
             "zoneName": "Victoria"
@@ -265,6 +275,10 @@
           "AUS-WA": {
             "countryName": "Australia",
             "zoneName": "Western Australia"
+          },
+          "AUS-WA-RI": {
+            "countryName": "Australia",
+            "zoneName": "Rottnest Island"
           },
           "AW": {
             "zoneName": "Aruba"
@@ -1143,6 +1157,10 @@
           "NZ-NZS": {
             "countryName": "New Zealand",
             "zoneName": "South Island"
+          },
+          "NZ-NZST": {
+            "countryName": "New Zealand",
+            "zoneName": "Stewart Island"
           },
           "OM": {
             "zoneName": "Oman"
