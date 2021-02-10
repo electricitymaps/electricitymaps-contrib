@@ -43,6 +43,7 @@ const thirdpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/AUS-TAS-CBI.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/NZ-NZS.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/NZ-NZST.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/AUS-WA-RI.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-HA.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MA.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-KA.geojson')),
@@ -247,6 +248,7 @@ const zoneDefinitions = [
   { zoneName: 'AUS-TAS-CBI', type: 'subZone', id: 'AUS-TAS-CBI'},
   { zoneName: 'AUS-VIC', countryId: 'AUS', stateId: 'AU.VI', type: 'state' },
   { zoneName: 'AUS-WA', countryId: 'AUS', stateId: 'AU.WA', type: 'state' },
+  { zoneName: 'AUS-WA-RI', type: 'subZone', id: 'AUS-WA-RI', moreDetails: true},
   { zoneName: 'AW', type: 'country', id: 'ABW', moreDetails: true},
   { zoneName: 'AX', type: 'country', id: 'ALA'},
   { zoneName: 'AZ', type: 'administrations', administrations: ['AZE-1684', 'AZE-1676', 'AZE-1687', 'AZE-1678', 'AZE-1677', 'AZE-2419', 'AZE-2415', 'AZE-5567', 'AZE-2420', 'AZE-2423', 'AZE-2421', 'AZE-2418', 'AZE-1723', 'AZE-1731', 'AZE-1730', 'AZE-1729', 'AZE-1725', 'AZE-1727', 'AZE-1726', 'AZE-1724', 'AZE-1686', 'AZE-1704', 'AZE-1698', 'AZE-1700', 'AZE-1720', 'AZE-1709', 'AZE-1702', 'AZE-1697', 'AZE-1695', 'AZE-1701', 'AZE-1712', 'AZE-1719', 'AZE-1717', 'AZE-1689', 'AZE-1715', 'AZE-1710', 'AZE-1707', 'AZE-1708', 'AZE-5562', 'AZE-2422', 'AZE-1681', 'AZE-1694', 'AZE-1690', 'AZE-1680', 'AZE-1706', 'AZE-1721', 'AZE-1714', 'AZE-5563', 'AZE-1713', 'AZE-1696', 'AZE-1685', 'AZE-1693', 'AZE-1716', 'AZE-1728', 'AZE-1718', 'AZE-1711', 'AZE-1705', 'AZE-1688', 'AZE-1679', 'AZE-1683', 'AZE-1703', 'AZE-1692', 'AZE-1722', 'AZE-5566', 'AZE-5561', 'AZE-5564']},
@@ -946,14 +948,15 @@ let topo = topojson.topology(webZones);
 // Simplify all countries
 topo = topojson.presimplify(topo);
 topo = topojson.simplify(topo, 0.01);
+topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 
 // Simplify to 0.001 zonesMoreDetails zones
 topoMoreDetails = topojson.topology(zonesMoreDetails);
 topoMoreDetails = topojson.presimplify(topoMoreDetails);
 topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
+
 // Merge topoMoreDetails into topo
 mergeTopoJsonSingleZone(topo, topoMoreDetails);
 
-topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
 topo = topojson.quantize(topo, 1e5);
 fs.writeFileSync('src/world.json', JSON.stringify(topo));
