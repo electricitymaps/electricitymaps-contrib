@@ -3907,17 +3907,17 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
   },
   "NZ-NZS": {
     "bounding_box": [
       [
-        165.9664819670002,
-        -47.77760182099989
+        165.96648196700016,
+        -47.30120208099993
       ],
       [
-        174.90137780000023,
-        -40.00212981599989
+        174.82642662900014,
+        -40.002129815999865
       ]
     ],
     "contributors": [
@@ -3928,7 +3928,34 @@
     "parsers": {
       "production": "NZ.fetch_production"
     },
-    "timezone": null
+    "timezone": "Pacific/Auckland"
+  },
+  "NZ-NZST": {
+    "bounding_box": [
+      [
+        166.91871178500003,
+        -47.777601820999905
+      ],
+      [
+        168.76099694100003,
+        -46.18303801899992
+      ]
+    ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 1.096,
+      "solar": 0,
+      "wind": 0
+    },
+    "contributors": [
+      "https://github.com/madsnedergaard"
+    ],
+    "flag_file_name": "nz.png",
+    "timezone": "Pacific/Auckland"
   },
   "OM": {
     "contributors": [

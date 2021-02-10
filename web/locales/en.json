@@ -1158,6 +1158,10 @@
             "countryName": "New Zealand",
             "zoneName": "South Island"
           },
+          "NZ-NZST": {
+            "countryName": "New Zealand",
+            "zoneName": "Stewart Island"
+          },
           "OM": {
             "zoneName": "Oman"
           },
