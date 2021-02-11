@@ -94,6 +94,7 @@
     right: 16px !important;
     top: 69px !important;
     transition: box-shadow .4s;
+    user-select: none;
 
     @include respond-to('small') {
         top: 66px !important;
