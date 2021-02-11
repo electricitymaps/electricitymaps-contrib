@@ -20,17 +20,18 @@ from parsers import occtonet
 # JP-CG  : Chūgoku
 
 sources = {
-        'JP-HKD':'denkiyoho.hepco.co.jp',
-        'JP-TH':'setsuden.nw.tohoku-epco.co.jp',
-        'JP-TK':'www.tepco.co.jp',
-        'JP-CB':'denki-yoho.chuden.jp',
-        'JP-HR':'www.rikuden.co.jp/denki-yoho',
-        'JP-KN':'www.kepco.co.jp',
-        'JP-SK':'www.yonden.co.jp',
-        'JP-CG':'www.energia.co.jp',
-        'JP-KY':'www.kyuden.co.jp/power_usages/pc.html',
-        'JP-ON':'www.okiden.co.jp/denki/'
+        'JP-HKD': 'denkiyoho.hepco.co.jp',
+        'JP-TH': 'setsuden.nw.tohoku-epco.co.jp',
+        'JP-TK': 'www.tepco.co.jp',
+        'JP-CB': 'denki-yoho.chuden.jp',
+        'JP-HR': 'www.rikuden.co.jp/denki-yoho',
+        'JP-KN': 'www.kepco.co.jp',
+        'JP-SK': 'www.yonden.co.jp',
+        'JP-CG': 'www.energia.co.jp',
+        'JP-KY': 'www.kyuden.co.jp/power_usages/pc.html',
+        'JP-ON': 'www.okiden.co.jp/denki/'
         }
+
 
 def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
@@ -64,23 +65,24 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
         datalist.append(data)
     return datalist
 
+
 def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
-                      logger=logging.getLogger(__name__)):
+                        logger=logging.getLogger(__name__)):
     """
     Calculates production from consumption and imports for a given area
     All production is mapped to unknown
     """
     exch_map = {
-        'JP-HKD':['JP-TH'],
-        'JP-TH':['JP-TK', 'JP-HKD'],
-        'JP-TK':['JP-TH', 'JP-CB'],
-        'JP-CB':['JP-TK', 'JP-HR', 'JP-KN'],
-        'JP-HR':['JP-CB', 'JP-KN'],
-        'JP-KN':['JP-CB', 'JP-HR', 'JP-SK', 'JP-CG'],
-        'JP-SK':['JP-KN', 'JP-CG'],
-        'JP-CG':['JP-KN', 'JP-SK', 'JP-KY'],
-        'JP-ON':[],
-        'JP-KY':['JP-CG']
+        'JP-HKD': ['JP-TH'],
+        'JP-TH': ['JP-TK', 'JP-HKD'],
+        'JP-TK': ['JP-TH', 'JP-CB'],
+        'JP-CB': ['JP-TK', 'JP-HR', 'JP-KN'],
+        'JP-HR': ['JP-CB', 'JP-KN'],
+        'JP-KN': ['JP-CB', 'JP-HR', 'JP-SK', 'JP-CG'],
+        'JP-SK': ['JP-KN', 'JP-CG'],
+        'JP-CG': ['JP-KN', 'JP-SK', 'JP-KY'],
+        'JP-ON': [],
+        'JP-KY': ['JP-CG']
         }
     df = fetch_consumption_df(zone_key, target_datetime)
     df['imports'] = 0
@@ -135,7 +137,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
         df = pd.read_csv(consumption_url[zone_key], skiprows=startrow,
                          encoding='shift-jis')
     except pd.errors.EmptyDataError as e:
-        logger.error("Data not available yet")
+        logger.exception("Data not available yet")
         raise e
 
     if zone_key in ['JP-TH']:
@@ -155,6 +157,7 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
         df = df[['datetime', 'cons']]
     return df
 
+
 def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)):
     """
@@ -162,7 +165,7 @@ def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=N
     Returns a list of dictionaries.
     """
     # Currently past dates not implemented for areas with no date in their demand csv files
-    if target_datetime and (zone_key in ['JP-TK', 'JP-TH', 'JP-CB', 'JP-KN', 'JP-SK']):
+    if target_datetime and zone_key == 'JP-HKD':
         raise NotImplementedError(
             "Past dates not yet implemented for selected region")
     datestamp = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y%m%d')
@@ -218,6 +221,7 @@ def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=N
         })
     return data
 
+
 def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)):
     if target_datetime is None:
@@ -251,7 +255,7 @@ def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
             'zoneKey': zone_key,
             'currency': 'JPY',
             'datetime': row[1]['datetime'].datetime,
-            'price': round(int(1000*row[1][zone_key]),-1),# Convert from JPY/kWh to JPY/MWh
+            'price': round(int(1000*row[1][zone_key]),-1),  # Convert from JPY/kWh to JPY/MWh
             'source': 'jepx.org'
         })
 
@@ -263,11 +267,11 @@ def parse_dt(row):
     Parses timestamps from date and time
     """
     if 'AM' in row['Time'] or 'PM' in row['Time']:
-        timestamp= arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
-                     'YYYY-M-D H:mm A').replace(tzinfo='Asia/Tokyo').datetime
+        timestamp = arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
+                              'YYYY-M-D H:mm A').replace(tzinfo='Asia/Tokyo').datetime
     else:
-        timestamp= arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
-                     'YYYY-M-D H:mm').replace(tzinfo='Asia/Tokyo').datetime
+        timestamp = arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
+                              'YYYY-M-D H:mm').replace(tzinfo='Asia/Tokyo').datetime
     return timestamp
 
 
