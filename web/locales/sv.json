@@ -80,6 +80,8 @@
         "carbonintensityexport": "Kolintensitet för export",
         "ofinstalled": "av installerad kapacitet",
         "utilizing": "utnyttjar",
+        "representing": "representerar",
+        "ofemissions": "av utsläppen",
         "withcarbonintensity": "med en kolintensitet på",
         "showWindLayer": "Visa vind-lager",
         "hideWindLayer": "Dölj vind-lager",
@@ -260,6 +262,14 @@
             "countryName": "Tasmanien",
             "zoneName": "King Island"
         },
+        "AUS-TAS-FI": {
+          "countryName": "Australien",
+          "zoneName": "Flinders Island"
+        },
+        "AUS-TAS-CBI": {
+          "countryName": "Australien",
+          "zoneName": "Cape Barren Island"
+        },
         "AUS-VIC": {
             "countryName": "Australien",
             "zoneName": "Victoria"
@@ -267,6 +277,10 @@
         "AUS-WA": {
             "countryName": "Australien",
             "zoneName": "Western Australia"
+        },
+        "AUS-WA-RI": {
+          "countryName": "Australien",
+          "zoneName": "Rottnest Island"
         },
         "AW": {
             "zoneName": "Aruba"
@@ -1145,6 +1159,10 @@
         "NZ-NZS": {
             "countryName": "Nya Zeeland",
             "zoneName": "Sydön"
+        },
+        "NZ-NZST": {
+          "countryName": "Nya Zeeland",
+          "zoneName": "Stewart Island"
         },
         "OM": {
             "zoneName": "Oman"
