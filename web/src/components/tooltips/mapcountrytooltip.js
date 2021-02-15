@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../../helpers/translation';
-import { useCo2ColorScale } from '../../hooks/theme';
 
 import CircularGauge from '../circulargauge';
+import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
 
@@ -12,10 +12,9 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
 });
 
-const TooltipContent = ({
+const TooltipContent = React.memo(({
   isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage,
 }) => {
-  const co2ColorScale = useCo2ColorScale();
   if (!hasParser) {
     return (
       <div className="no-parser-text">
@@ -40,21 +39,7 @@ const TooltipContent = ({
   return (
     <div className="zone-details">
       <div className="country-table-header-inner">
-        <div className="country-col country-emission-intensity-wrap">
-          <div
-            id="country-emission-rect"
-            className="country-col-box emission-rect emission-rect-overview"
-            style={{ backgroundColor: co2ColorScale(co2intensity) }}
-          >
-            <div>
-              <span className="country-emission-intensity">
-                {Math.round(co2intensity) || '?'}
-              </span>
-              g
-            </div>
-          </div>
-          <div className="country-col-headline">{__('country-panel.carbonintensity')}</div>
-        </div>
+        <CarbonIntensitySquare value={co2intensity} />
         <div className="country-col country-lowcarbon-wrap">
           <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
             <CircularGauge percentage={fossilFuelPercentage} />
@@ -71,7 +56,7 @@ const TooltipContent = ({
       </div>
     </div>
   );
-};
+});
 
 const MapCountryTooltip = ({
   electricityMixMode,

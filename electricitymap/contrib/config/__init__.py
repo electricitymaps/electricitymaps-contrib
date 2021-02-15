@@ -1,6 +1,3 @@
-# WARNING: if you make any changes to this file, remember to update utils/config.py
-# This is required while we transition the codebase to Poetry
-
 import json
 from pathlib import Path
 

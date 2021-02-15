@@ -9,7 +9,6 @@ RUN yarn
 
 # Generate map
 RUN mkdir -p public/dist/
-ADD web/build ./build
 ADD web/third_party_maps ./third_party_maps
 ADD web/generate-geometries.js web/topogen.sh ./
 ADD web/src/world.json ./src/world.json
