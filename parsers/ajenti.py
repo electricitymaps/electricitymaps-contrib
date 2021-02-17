@@ -31,7 +31,7 @@ ZONE_PARAMS = {
     # Rottnest Island
     # https://github.com/tmrowco/electricitymap-contrib/issues/2534
     # https://en.wikipedia.org/wiki/Rottnest_Island
-    'AUS-RI': {
+    'AUS-WA-RI': {
         "hub": "HogsHub",
         "method": "SendDashboard",
         "tz": "Australia/Perth",
