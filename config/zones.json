@@ -1,5 +1,12 @@
 {
   "AD": {
+    "capacity": {
+      "hydro": 45,
+      "nuclear": 0
+    },
+    "contributors": [
+      "https://github.com/Manu1400"
+    ],
     "bounding_box": [
       [
         0.9064563390001013,
