@@ -1872,6 +1872,7 @@
       ]
     ],
     "capacity": {
+      "battery storage": 7,
       "biomass": 1578,
       "coal": 2977,
       "gas": 12238,
