@@ -91,7 +91,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Netherlands:
   - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - [Energieopwek.nl](https://energieopwek.nl/)
-- New Zealand: 
+- New Zealand:
   - [Transpower](https://www.transpower.co.nz/power-system-live-data)
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
@@ -162,6 +162,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 <details><summary>Click to see the full list of sources</summary>
 
 - Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+- Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
 - Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
