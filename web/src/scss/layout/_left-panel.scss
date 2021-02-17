@@ -71,7 +71,7 @@
 
     .title {
         font-size: 1.3rem;
-        font-family: $primary-font;
+        font-family: $headline-font;
     }
 
     .axis {
@@ -158,6 +158,7 @@
 
 .left-panel .left-panel-toolbar-title,
 .left-panel-zone-details .country-name {
+    font-family: $headline-font;
     font-size: 1.2rem;
     line-height: 1.5rem;
 }

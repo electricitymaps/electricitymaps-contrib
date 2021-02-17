@@ -25,7 +25,7 @@ class TwitterThirdParty {
             this.inst.events.bind('click', function (event) {
                 // event.region is {tweet,follow}
                 const thirdPartyService = require('../thirdparty');
-                thirdPartyService.track(event.region);
+                thirdPartyService.trackEvent(event.region);
                 thirdPartyService.ga('event', event.region, {
                   event_category: 'social',
                   event_label: 'twitter',
