@@ -328,7 +328,7 @@
     "flag_file_name": "au.png",
     "timezone": null,
     "parsers": {
-      "production": "AUS_TAS_KI.fetch_production"
+      "production": "ajenti.fetch_production"
     },
     "capacity": {
       "biomass": 6,
@@ -340,6 +340,7 @@
       "oil": 6,
       "solar": 0.47,
       "battery storage": 1.5,
+      "hydro storage": 0,
       "wind": 5.65
     },
     "contributors": [
@@ -354,6 +355,65 @@
         144.64478600400025,
         -39.07146575299984
       ]
+    ]
+  },
+  "AUS-TAS-FI": {
+    "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all. Battery storage is composed of 0.5 battery+0.2 of flywheel",
+    "flag_file_name": "au.png",
+    "timezone": null,
+    "parsers": {
+      "production": "ajenti.fetch_production"
+    },
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 2.1,
+      "solar": 0.6,
+      "battery storage": 0.7,
+      "hydro storage": 0,
+      "wind": 1.5
+    },
+    "contributors": [
+      "https://github.com/chuqtas",
+      "https://github.com/ajoga"
+    ],
+    "bounding_box": [
+      [
+        147.25766035200024,
+        -40.770603122999844
+      ],
+      [
+        148.83375084700015,
+        -39.211683851999794
+      ]
+    ]
+  },
+  "AUS-WA-RI": {
+    "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all",
+    "flag_file_name": "au.png",
+    "timezone": "Australia/Perth",
+    "parsers": {
+      "production": "ajenti.fetch_production"
+    },
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 2.1,
+      "solar": 0.6,
+      "battery storage": 0,
+      "hydro storage": 0,
+      "wind": 0.6
+    },
+    "contributors": [
+      "https://github.com/ajoga"
     ]
   },
   "AUS-VIC": {
