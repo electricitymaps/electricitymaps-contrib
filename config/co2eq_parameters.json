@@ -208,6 +208,13 @@
           "value": 40.98482440401805
         }
       },
+      "CH": {
+        "unknown": {
+          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
+          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
+          "value": 131
+        }
+      },
       "CL-SEN" : {
         "unknown": {
           "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
@@ -1222,14 +1229,6 @@
           "biomass": 0.03
         }
       },
-      "CA-QC": {
-        "_url": "https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-quebec.html",
-        "powerOriginRatios": {
-          "hydro": 0.95,
-          "wind": 0.04,
-          "unknown": 0.01
-        }
-      },
       "CA-ON": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -1296,6 +1295,24 @@
           "solar": 0.0,
           "unknown": 0.15258490420002668,
           "wind": 0.0
+        }
+         },
+      "CH": {
+        "_source": "Bundesamt für Statistik, Gesamtenergiestatistik 2019",
+        "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",
+        "powerOriginRatios": {
+          "battery discharge": 0,
+          "biomass": 0.035171,
+          "coal": 0.0461,
+          "gas": 0.031005,
+          "geothermal": 0,
+          "hydro": 0.409632,
+          "hydro discharge": 0.035143,
+          "nuclear": 0.335663,
+          "oil": 0.001207,
+          "solar": 0.038008,
+          "unknown": 0.021428,
+          "wind": 0.046622
         }
       },
       "CR": {
@@ -2114,6 +2131,20 @@
           "wind": 0.0
         }
       },
+      "KZ": {
+        "_source": "Our world in data 2019",
+        "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ",
+        "powerOriginRatios": {
+          "coal": 0.706728113937001,
+          "gas": 0.188180756380889,
+          "hydro": 0.0904234610265557,
+          "nuclear": 0.0,
+          "oil": 0.00749680842394995,
+          "wind": 0.00449084176120673,
+          "unknown": 0.00452705822702292,
+          "solar": 0.00263474788812734
+        }
+      },
       "LT": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2673,6 +2704,20 @@
           "solar": 0.04004987957191074,
           "unknown": 0.0,
           "wind": 0.004612842360966347
+        }
+      },
+      "TH": {
+        "_source": "IEA 2019 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.",
+        "_url": "https://www.iea.org/data-and-statistics?country=THAILAND&fuel=Electricity%20and%20heat&indicator=ElecGenByFuel",
+        "powerOriginRatios": {
+          "coal": 0.180736632940652,
+          "oil": 0.00112025791277195,
+          "gas": 0.646008637644721,
+          "hydro": 0.0326142054786188,
+          "geothermal": 0.00000506904032928486,
+          "biomass": 0.094720087593017,
+          "solar": 0.0262677669863541,
+          "wind": 0.0185273424035362
         }
       },
       "TR": {

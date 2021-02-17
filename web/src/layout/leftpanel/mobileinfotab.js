@@ -84,7 +84,7 @@ const MobileInfoTab = () => {
           <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">{__('panel-initial-text.datasources')}</a>
 ).
           {' '}
-          <span dangerouslySetInnerHTML={{ __html: __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region') }} />
+          <span dangerouslySetInnerHTML={{ __html: __('panel-initial-text.contribute', 'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started') }} />
 .
         </p>
         <p>
