@@ -201,7 +201,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2):
   - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-  - [energidataservice.dk](energidataservice.dk/tso-electricity/capacitypermunicipality)
+  - [energidataservice.dk](https://energidataservice.dk/tso-electricity/capacitypermunicipality)
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic:
