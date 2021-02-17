@@ -13,6 +13,8 @@ import pandas as pd
 import numpy as np
 
 from . import occtonet
+
+
 def fetch_production(zone_key='JP-KY', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of a given zone
@@ -151,6 +153,8 @@ def fetch_production(zone_key='JP-KY', session=None, target_datetime=None,
         return data
     else:
         return []
+
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 

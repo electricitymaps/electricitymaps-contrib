@@ -52,12 +52,10 @@ def parse_payload(logger, payload):
     return technologies_parsed, biodiesel_percent
 
 # Both keys battery and flywheel are negative when storing energy, and positive when feeding energy to the grid
-def format_storage_techs(technologies_parsed):
+def sum_storage_techs(technologies_parsed):
     storage_techs = technologies_parsed['battery']+technologies_parsed['flywheel']
-    battery_production = storage_techs if storage_techs > 0 else 0
-    battery_storage = storage_techs if storage_techs < 0 else 0
 
-    return battery_production, battery_storage
+    return storage_techs
 
 def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
 
@@ -66,12 +64,11 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
       
     payload = SignalR("https://data.ajenti.com.au/live/signalr").get_value("TagHub", "Dashboard")
     technologies_parsed, biodiesel_percent = parse_payload(logger, payload)
-    battery_production, battery_storage = format_storage_techs(technologies_parsed)
+    storage_techs = sum_storage_techs(technologies_parsed)
     return {
       'zoneKey': zone_key,
       'datetime': arrow.now(tz='Australia/Currie').datetime,
       'production': {
-          'battery discharge': battery_production,
           'biomass': technologies_parsed['diesel']*biodiesel_percent/100,
           'coal': 0,
           'gas': 0,
@@ -84,9 +81,9 @@ def fetch_production(zone_key='AUS-TAS-KI', session=None, target_datetime=None, 
           'unknown': 0
       },
       'storage': {
-          'battery': battery_storage*-1
+          'battery': storage_techs*-1 #Somewhat counterintuitively,to ElectricityMap positive means charging and negative means discharging
       },
-      'source': 'https://data.ajenti.com.au/KIREIP/index.html'
+      'source': 'https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/king-island' #Iframe: https://data.ajenti.com.au/KIREIP/index.html
     }
 
 if __name__ == '__main__':

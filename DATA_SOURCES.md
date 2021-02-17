@@ -40,7 +40,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Faroe Islands: [SEV](https://w3.sev.fo/framleidsla/)
+- Faroe Islands: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](https://opendata.reseaux-energies.fr)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -91,7 +91,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Netherlands:
   - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - [Energieopwek.nl](https://energieopwek.nl/)
-- New Zealand: [Transpower](https://www.transpower.co.nz/power-system-live-data)
+- New Zealand: 
+  - [Transpower](https://www.transpower.co.nz/power-system-live-data)
+  - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
 - Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -172,7 +174,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bahrain: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium
-  - Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Solar: [IRENA](https://www.elia.be/en/grid-data/power-generation/solar-pv-power-generation-data)
   - Hydro: [ELIA](https://www.elia.be/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20200414_elia_annual-report-sustainability_en.pdf)
   - Wind: [ELIA](https://www.elia.be/en/grid-data/power-generation/wind-power-generation)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -254,6 +256,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Montenegro
   - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
+- Morocco: [ONEE](http://www.one.org.ma/FR/pdf/Depliant%20Statistiques%20FR%202019.pdf)
 - Nagorno-Karabakh: [Artsakh HEK](http://artsakhhek.am/?lang=en)
 - Namibia
   - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
@@ -262,10 +265,12 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   -List of PowerStations:[PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
 - Netherlands
-  - Solar: [CBS](https://www.cbs.nl/nl-nl/nieuws/2020/25/vermogen-zonnepanelen-voor-het-eerst-groter-bij-bedrijven-dan-bij-woningen)
+  - Solar: [PolderPV](http://www.polderpv.nl/nieuws_PV168.htm#19jan2021_december_2020_rapport_CertiQ_records_incl_certified_PV_jaargroei_1897MWp) see paragraph titled: '9. Totaal CertiQ volume - extrapolatie tm. medio 2021, inclusief versie "revisie jaar cijfers"'
+  - Wind: [NWEA](https://www.nwea.nl/windenergie-maakt-forse-inhaalslag-in-2020/)
   - Other renewables: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
+- Nigeria: [SO Grid](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway
   - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
@@ -276,12 +281,13 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1304331180247060480)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1351913288809017344)
   - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Wind: [URE](https://twitter.com/pse_pl/status/1303252305832271873)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
   - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Qatar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Romania:

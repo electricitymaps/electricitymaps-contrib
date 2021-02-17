@@ -39,7 +39,9 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ unproject }) => {
-  const { ref, width, height } = useRefWidthHeightObserver();
+  const {
+    ref, width, height, node,
+  } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 
@@ -50,8 +52,8 @@ export default ({ unproject }) => {
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
-    if (ref.current && isVisible && solar && width && height) {
-      const ctx = ref.current.getContext('2d');
+    if (node && isVisible && solar && width && height) {
+      const ctx = node.getContext('2d');
       const image = ctx.createImageData(width, height);
 
       const [minLon, minLat] = unproject([0, 0]);
@@ -92,7 +94,7 @@ export default ({ unproject }) => {
       ctx.clearRect(0, 0, width, height);
       ctx.putImageData(image, 0, 0);
     }
-  }, [ref.current, isVisible, solar, width, height]);
+  }, [node, isVisible, solar, width, height]);
 
   return (
     <CSSTransition

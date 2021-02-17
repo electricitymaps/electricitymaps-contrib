@@ -30,7 +30,7 @@ export default () => (
         dangerouslySetInnerHTML={{
           __html: __(
             'panel-initial-text.contribute',
-            'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region',
+            'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started',
           ),
         }}
       />
