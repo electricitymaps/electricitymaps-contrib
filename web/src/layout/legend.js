@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { connect } from 'react-redux';
+import styled, { css } from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { __ } from '../helpers/translation';
@@ -11,8 +13,81 @@ import { solarColor, windColor } from '../helpers/scales';
 import { useSolarEnabled, useWindEnabled } from '../hooks/router';
 import { useCo2ColorScale } from '../hooks/theme';
 
-// TODO: Move styles from styles.css to here
-// TODO: Remove all unecessary id and class tags
+const LegendsContainer = styled.div`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  float: left;
+  background-color: #fafafa;
+  border-radius: 6px;
+  padding: 12px 10px 10px 10px;
+  margin: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  transition: width 0.4s, height 0.4s;
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+  user-select: none;
+  
+  // Apply specific styles if the legend is collapsed
+  ${props => props.isCollapsed
+    && css`
+      width: 90px;
+      height: 18px;
+      padding: 6px 10px 10px;
+    `}
+
+  div {
+    padding: 2px 6px 5px 6px;
+  }
+`;
+
+const LegendItemWrapper = styled.div`
+  width: 15em;
+  padding-top: 7px;
+`;
+
+const ToggleLegendButton = styled.i`
+  font-size: 24px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledMobileHeader = styled.div`
+  text-align: ${props => (props.isCollapsed ? 'left' : 'center')};
+  font-weight: bold;
+  margin-bottom: 5px;
+
+  @media (min-width: 768px) {
+    display: none;
+    text-align: center;
+  }
+}`;
+
+const MobileHeader = ({ onToggle, isOpen }) => (
+  <StyledMobileHeader isCollapsed={!isOpen}>
+    <span>{__('misc.legend')}</span>
+    <ToggleLegendButton className="material-icons" onClick={onToggle}>
+      {isOpen ? 'call_received' : 'call_made'}
+    </ToggleLegendButton>
+  </StyledMobileHeader>
+);
+
+const LegendItem = ({
+  isEnabled, label, unit, children,
+}) => (!isEnabled ? null : (
+  <LegendItemWrapper>
+    <div>
+      {label} <small>({unit})</small>
+    </div>
+    {children}
+  </LegendItemWrapper>
+));
+
 
 const mapStateToProps = state => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
@@ -31,64 +106,53 @@ const Legend = ({
   const solarEnabled = useSolarEnabled();
   const windEnabled = useWindEnabled();
 
-  const mobileCollapsedClass = !legendVisible ? 'mobile-collapsed' : '';
   const toggleLegend = () => {
     dispatchApplication('legendVisible', !legendVisible);
   };
 
   return (
-    <div className={`floating-legend-container ${mobileCollapsedClass}`}>
-      <div className="floating-legend-mobile-header">
-        <span>{__('misc.legend')}</span>
-        <i className="material-icons toggle-legend-button" onClick={toggleLegend}>
-          {legendVisible ? 'call_received' : 'call_made'}
-        </i>
-      </div>
+    <LegendsContainer isCollapsed={!legendVisible}>
+      <MobileHeader onToggle={toggleLegend} isOpen={legendVisible} />
       {legendVisible && (
         <React.Fragment>
-          {windEnabled && (
-            <div className={`wind-potential-legend floating-legend ${mobileCollapsedClass}`}>
-              <div className="legend-header">
-                {__('legends.windpotential')}<small> (m/s)</small>
-              </div>
-              <HorizontalColorbar
-                id="wind-potential-bar"
-                colorScale={windColor}
-                currentValue={windColorbarValue}
-                markerColor="black"
-                ticksCount={6}
-              />
-            </div>
-          )}
-          {solarEnabled && (
-            <div className={`solar-potential-legend floating-legend ${mobileCollapsedClass}`}>
-              <div className="legend-header">
-                {__('legends.solarpotential')}<small> (W/m<span className="sup">2</span>)</small>
-              </div>
-              <HorizontalColorbar
-                id="solar-potential-bar"
-                colorScale={solarColor}
-                currentValue={solarColorbarValue}
-                markerColor="red"
-                ticksCount={5}
-              />
-            </div>
-          )}
-          <div className={`co2-legend floating-legend ${mobileCollapsedClass}`}>
-            <div className="legend-header">
-              {__('legends.carbonintensity')} <small>(gCO₂eq/kWh)</small>
-            </div>
+          <LegendItem label={__('legends.windpotential')} unit="m/s" isEnabled={windEnabled}>
             <HorizontalColorbar
-              id="carbon-intensity-bar"
+              id="wind-potential-bar"
+              colorScale={windColor}
+              currentValue={windColorbarValue}
+              markerColor="black"
+              ticksCount={6}
+            />
+          </LegendItem>
+          <LegendItem
+            label={__('legends.solarpotential')}
+            unit={(
+              <span>
+                W/m<span className="sup">2</span>
+              </span>
+            )}
+            isEnabled={solarEnabled}
+          >
+            <HorizontalColorbar
+              id="solar-potential-bar"
+              colorScale={solarColor}
+              currentValue={solarColorbarValue}
+              markerColor="red"
+              ticksCount={5}
+            />
+          </LegendItem>
+          <LegendItem label={__('legends.carbonintensity')} unit="gCO₂eq/kWh" isEnabled>
+            <HorizontalColorbar
+              id="co2intensity-bar"
               colorScale={co2ColorScale}
               currentValue={co2ColorbarValue}
               markerColor="white"
               ticksCount={5}
             />
-          </div>
+          </LegendItem>
         </React.Fragment>
       )}
-    </div>
+    </LegendsContainer>
   );
 };
 
