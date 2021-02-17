@@ -1,33 +1,31 @@
 version: 2
 jobs:
-  lint_python:
+  verify_python:
     docker:
-      - image: circleci/python:3.6.3
+      - image: circleci/python:3.6.12
     steps:
       - checkout
       - restore_cache:
-          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          key: venv-{{ checksum "poetry.lock" }}
       - run:
           name: Upgrade pip
           command: sudo pip install -q --upgrade pip
       - run:
+          name: Install dependencies
           command: |
             set -eux -o pipefail
-            python --version
-            pip -v --version
-            sudo pip install --progress-bar=off -q flake8 pylint==2.4.4
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
-            sudo pip install --progress-bar=off -q -r parsers/requirements.txt
-            # stop the build if there are Python syntax errors or undefined names
-            flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
-            # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-            # flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-            pylint -E parsers/*.py -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence
-            python -m unittest discover parsers/test
+            poetry install -E parsers
+      - run:
+          name: Verify changes
+          command: |
+            set -eux -o pipefail
+            poetry run lint
+            poetry run test
       - save_cache:
-          key: pip-{{ .Branch }}-{{ checksum "parsers/requirements.txt" }}
+          key: venv-{{ checksum "poetry.lock" }}
           paths:
-            - "~/.cache/pip"
+            - ".venv"
 
   lint_json:
     docker:
@@ -36,9 +34,9 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo npm install -g jsonlint
+            sudo npm install -g jsonlint-mod
             jsonlint config/*.json web/locales/*.json
-  
+
   test_js:
     docker:
       - image: circleci/node:12.13
@@ -107,13 +105,13 @@ workflows:
   version: 2
   all:
     jobs:
-      - lint_python
+      - verify_python
       - lint_js
       - lint_json
       - test_js
       - build_test:
           requires:
             - lint_js
-            - lint_python
+            - verify_python
             - lint_json
             - test_js

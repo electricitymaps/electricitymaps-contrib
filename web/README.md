@@ -4,14 +4,15 @@
 
 The world map data is open source and provided by [NACIS](http://nacis.org/initiatives/natural-earth/).
 
-To generate a new world.json run the following command from the web directory after making changes.
-```
+To generate a new world.json run the following command from the web directory after making changes:
+
+```sh
 docker-compose run --rm web ./topogen.sh
 ```
 
 ### `topogen.sh`
 
-The file `topogen.sh` does the following :
+The file `topogen.sh` does the following:
 
 - download data from NACIS, at 1:10M scale. Both countries and states data are downloaded,
 and added to the `web/build` folder
@@ -34,3 +35,15 @@ TopoJSON format, which is a more compressed format than geoJSON. It only stores 
 on a grid. All together, this allows to convert a ~`24MB` file to a ~`1MB` one.
 
 The final file is named `world.json` and is the one sent to the client.
+
+## `generate-zone-bounding-boxes.js`
+
+You can create bounding boxes for new or existing zones in `config/zones.json`:
+1) Run: `docker-compose run --rm web ./topogen.sh`
+2) Update the zone you want to update in `config/zones.json` with `"bounding_box": null`
+3) Run: `node generate-zone-bounding-boxes.js`
+
+## Useful tips
+
+- [geojson.io](https://geojson.io) is a great tool for visualizing and editing coordinates
+- We currently can't generate coordinates for small islands --> any PRs for fixing this without compromising too much on bundle size is very welcome!

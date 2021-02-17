@@ -38,6 +38,9 @@ const CountryPanelExchangeTooltip = ({
   const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
   const totalCapacity = Math.abs((exchangeCapacityRange || [])[isExport ? 0 : 1]);
 
+  const emissions = Math.abs(exchange * 1000 * co2Intensity);
+  const totalEmissions = getTotalElectricity(zoneData, true);
+
   let headline = __(
     isExport
       ? (displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo')
@@ -68,6 +71,15 @@ const CountryPanelExchangeTooltip = ({
             value={usage}
             total={totalCapacity}
             format={format}
+          />
+          <br />
+          <br />
+          {__('tooltips.representing')} <b>{getRatioPercent(emissions, totalEmissions)} %</b> {__('tooltips.ofemissions')}
+          <br />
+          <MetricRatio
+            value={emissions}
+            total={totalEmissions}
+            format={formatCo2}
           />
           <br />
           <br />
