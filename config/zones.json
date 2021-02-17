@@ -1603,17 +1603,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 1189,
-      "coal": 4826,
-      "gas": 30012,
+      "biomass": 1190,
+      "coal": 5144,
+      "gas": 30181,
       "geothermal": 0,
-      "hydro": 17085,
+      "hydro": 17083,
       "hydro storage": 5645,
       "nuclear": 7117,
       "oil": 707,
-      "solar": 11828,
-      "wind": 25902,
-      "unknown": 360
+      "solar": 13581,
+      "wind": 26811,
+      "unknown": 438
     },
     "contributors": [
       "https://github.com/brandongalbraith",
