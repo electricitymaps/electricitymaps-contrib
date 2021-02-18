@@ -307,7 +307,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Spain:
   - Biomass: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Gas, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
-  - Other: [REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
+  - Other: [REE](https://www.ree.es/es/datos/publicaciones/boletines-mensuales)
 - Spain (Canary Islands)
   - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
