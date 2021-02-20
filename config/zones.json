@@ -4112,6 +4112,30 @@
     },
     "timezone": "America/Lima"
   },
+  "PF": {
+    "bounding_box": [
+      [
+        -155.0369766919999,
+        -28.14120859199994
+      ],
+      [
+        -134.44298255099994,
+        -7.450127862999921
+      ]
+    ],
+    "capacity": {
+      "hydro": 49.4,
+      "oil": 201.86,
+      "solar": 41.077
+    },
+    "contributors": [
+      "https://github.com/autipial"
+    ],
+    "parsers": {
+      "production": "PF.fetch_production"
+    },
+    "timezone": "Pacific/Tahiti"
+  },
   "PL": {
     "bounding_box": [
       [
