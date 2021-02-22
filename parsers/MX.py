@@ -119,7 +119,7 @@ def convert_production(series):
     return aggregated
 
 
-def fetch_production(zone_key, session=None, target_datetime=None):    
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     if zone_key != "MX":
         raise ValueError("MX parser cannot fetch production for zone {}".format(zone_key))
     

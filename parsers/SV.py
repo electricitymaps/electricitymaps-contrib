@@ -21,11 +21,12 @@ url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
 
 generation_map = {
     0: 'biomass',
-    1: 'geothermal',
-    2: 'hydro',
-    3: 'interconnection',
-    4: 'thermal',
-    5: 'solar',
+    1: 'wind',
+    2: 'geothermal',
+    3: 'hydro',
+    4: 'interconnection',
+    5: 'thermal',
+    6: 'solar',
     'datetime': 'datetime'
 }
 
@@ -182,7 +183,7 @@ def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=N
                 'nuclear': 0.0,
                 'oil': hour.get('thermal', 0.0),
                 'solar': hour.get('solar', 0.0),
-                'wind': None,
+                'wind': hour.get('wind', 0.0),
                 'geothermal': hour.get('geothermal', 0.0),
                 'unknown': 0.0
             },
