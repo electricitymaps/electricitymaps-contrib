@@ -6,6 +6,11 @@
         "datasources": "kildekode",
         "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit område</a>"
     },
+    "left-panel": {
+      "zone-list-header-title": "Klimapåvirkning per region",
+      "zone-list-header-subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
+      "search": "Søg efter region"
+  },
     "country-panel": {
         "source": "kilde",
         "carbonintensity": "CO₂-intensitet",
@@ -33,7 +38,9 @@
     },
     "footer": {
         "foundbugs": "Har du fundet fejl eller har du ideer? Skriv",
-        "here": "her"
+        "here": "her",
+        "faq-text": "Er der noget du ikke forstår? Se de",
+        "faq": "ofte spurgte spørgsmål"
     },
     "legends": {
         "windpotential": "Vindpotentiale",
@@ -47,14 +54,35 @@
         "carbonintensityexport": "CO₂-intensitet af eksport",
         "ofinstalled": "af installeret kapacitet",
         "utilizing": "udnytter",
-        "withcarbonintensity": "med en CO₂-intensitet på"
+        "withcarbonintensity": "med en CO₂-intensitet på",
+        "lowcarbon": "Lav CO₂",
+        "renewable": "Vedvarende",
+        "showWindLayer": "Vis vind",
+        "hideWindLayer": "Skjul vind",
+        "showSolarLayer": "Vis sol",
+        "hideSolarLayer": "Skjul sol",
+        "toggleDarkMode": "Slå dark-mode til/fra",
+        "noParserInfo": "Ingen data tilgængeligt",
+        "temporaryDataOutage": "Realtidsdata er midlertidigt utilgængeligt",
+        "production": "produktion",
+        "consumption": "forbrug",
+        "cpinfo": "<b>forbrug</b> regner import og eksport med, <b>produktion</b> ignorer dem",
+        "selectLanguage": "Skift sprog",
+        "lowCarbDescription": "Inkluderer vedvarende og atomkraft",
+        "dataIsDelayed": "Data er forsinket"
     },
     "misc": {
         "maintitle": "Realtids-CO₂-udledning fra elforbruget",
+        "legend": "Forklaring",
         "oops": "Hov! Vi kan ikke få kontakt til serverne. Vi prøver igen om et par sekunder.",
         "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere.",
         "retrynow": "Prøv igen nu"
     },
+    "mobile-main-menu": {
+      "map": "electricityMap",
+      "areas": "Regioner",
+      "about": "Om kortet"
+  },
     "wind": "Vind",
     "solar": "Sol",
     "hydro": "Hydro",
