@@ -6218,6 +6218,9 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
     },
+    "delays": {
+      "production": 30
+    },
     "timezone": "US/Central",
     "bounding_box": [
       [
