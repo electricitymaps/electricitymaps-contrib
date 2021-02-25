@@ -257,7 +257,7 @@
             "zoneName": "Tasmania"
           },
           "AUS-TAS-KI": {
-            "countryName": "Tasmania",
+            "countryName": "Australia",
             "zoneName": "King Island"
           },
           "AUS-TAS-FI": {
@@ -275,6 +275,10 @@
           "AUS-WA": {
             "countryName": "Australia",
             "zoneName": "Western Australia"
+          },
+          "AUS-WA-RI": {
+            "countryName": "Australia",
+            "zoneName": "Rottnest Island"
           },
           "AW": {
             "zoneName": "Aruba"
@@ -1153,6 +1157,10 @@
           "NZ-NZS": {
             "countryName": "New Zealand",
             "zoneName": "South Island"
+          },
+          "NZ-NZST": {
+            "countryName": "New Zealand",
+            "zoneName": "Stewart Island"
           },
           "OM": {
             "zoneName": "Oman"

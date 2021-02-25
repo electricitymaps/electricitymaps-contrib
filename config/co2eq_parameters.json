@@ -1296,6 +1296,24 @@
           "unknown": 0.15258490420002668,
           "wind": 0.0
         }
+         },
+      "CH": {
+        "_source": "Bundesamt für Statistik, Gesamtenergiestatistik 2019",
+        "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",
+        "powerOriginRatios": {
+          "battery discharge": 0,
+          "biomass": 0.035171,
+          "coal": 0.0461,
+          "gas": 0.031005,
+          "geothermal": 0,
+          "hydro": 0.409632,
+          "hydro discharge": 0.035143,
+          "nuclear": 0.335663,
+          "oil": 0.001207,
+          "solar": 0.038008,
+          "unknown": 0.021428,
+          "wind": 0.046622
+        }
       },
       "CR": {
         "_source": "Tomorrow",

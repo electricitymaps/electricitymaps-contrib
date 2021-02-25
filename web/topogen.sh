@@ -11,6 +11,7 @@ STATES_FILTER="['AUS', 'AZE', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'ESP', 'GBR', '
 NODE_MODULES_PATH="node_modules/.bin"
 
 mkdir -p build
+mkdir -p public/dist
 
 if [ ! -e "build/${COUNTRIES_FILENAME}.zip" ]; then
   echo "Downloading ${COUNTRIES_FILENAME}.zip"
@@ -64,6 +65,7 @@ echo 'Parsing 3rd party..'
 )> build/tmp_thirdparty.json
 
 # Generate final geometries
+echo 'Generating geometries..'
 node generate-geometries.js
 
-echo 'Done'
+echo 'Done!'
