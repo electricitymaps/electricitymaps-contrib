@@ -34,7 +34,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
-- Cyprus: [TSO](https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/)
+- Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Denmark: [TSO](https://www.energidataservice.dk/en/group/production-and-consumption)
 - Denmark (Bornholm): [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
@@ -91,7 +91,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Netherlands:
   - [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
   - [Energieopwek.nl](https://energieopwek.nl/)
-- New Zealand: 
+- New Zealand:
   - [Transpower](https://www.transpower.co.nz/power-system-live-data)
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
@@ -162,6 +162,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 <details><summary>Click to see the full list of sources</summary>
 
 - Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+- Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
 - Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
 - Armenia
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -197,9 +198,11 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
-- Cyprus: [TSO](https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/)
+- Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Denmark (DK1 and DK2): [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Denmark (DK1 and DK2):
+  - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - [energidataservice.dk](https://energidataservice.dk/tso-electricity/capacitypermunicipality)
 - Denmark (Bornholm)
   - Wind: [stateofgreen.com](https://stateofgreen.com/en/profiles/regional-municipality-of-bornholm/solutions/kalby-wind-turbines)
 - Dominican Republic:
@@ -216,7 +219,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
-  - Geothermal, Hydro, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Geothermal, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Hydro storage [RTE](https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege/analyze/?disjunctive.epci&disjunctive.departement&disjunctive.region&disjunctive.filiere&disjunctive.combustible&disjunctive.combustiblessecondaires&disjunctive.technologie&disjunctive.regime&disjunctive.gestionnaire&sort=-puismaxcharge&refine.filiere=Hydraulique&refine.regime=En+service&refine.technologie=Pompage+turbinage&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4aW5zdGFsbGVlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiIzY2YzJhNSJ9LHsiYWxpZ25Nb250aCI6dHJ1ZSwidHlwZSI6ImNvbHVtbiIsImZ1bmMiOiJTVU0iLCJ5QXhpcyI6InB1aXNtYXhyYWMiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiIjZmM4ZDYyIn0seyJhbGlnbk1vbnRoIjp0cnVlLCJ0eXBlIjoiY29sdW1uIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoicHVpc21heGNoYXJnZSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiM4ZGEwY2IifSx7ImFsaWduTW9udGgiOnRydWUsInR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4cmFjY2hhcmdlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2U3OGFjMyJ9XSwieEF4aXMiOiJmaWxpZXJlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoiIiwic29ydCI6InNlcmllMS0xIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJyZWdpc3RyZS1uYXRpb25hbC1pbnN0YWxsYXRpb24tcHJvZHVjdGlvbi1zdG9ja2FnZS1lbGVjdHJpY2l0ZS1hZ3JlZ2UiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLmVwY2kiOnRydWUsImRpc2p1bmN0aXZlLmRlcGFydGVtZW50Ijp0cnVlLCJkaXNqdW5jdGl2ZS5yZWdpb24iOnRydWUsImRpc2p1bmN0aXZlLmZpbGllcmUiOnRydWUsImRpc2p1bmN0aXZlLmNvbWJ1c3RpYmxlIjp0cnVlLCJkaXNqdW5jdGl2ZS5jb21idXN0aWJsZXNzZWNvbmRhaXJlcyI6dHJ1ZSwiZGlzanVuY3RpdmUudGVjaG5vbG9naWUiOnRydWUsImRpc2p1bmN0aXZlLnJlZ2ltZSI6dHJ1ZSwiZGlzanVuY3RpdmUuZ2VzdGlvbm5haXJlIjp0cnVlLCJzb3J0IjoiLXB1aXNtYXhjaGFyZ2UiLCJyZWZpbmUuZmlsaWVyZSI6Ikh5ZHJhdWxpcXVlIiwicmVmaW5lLnJlZ2ltZSI6IkVuIHNlcnZpY2UiLCJyZWZpbmUudGVjaG5vbG9naWUiOiJQb21wYWdlIHR1cmJpbmFnZSJ9fX1dLCJ0aW1lc2NhbGUiOiIiLCJkaXNwbGF5TGVnZW5kIjp0cnVlLCJhbGlnbk1vbnRoIjp0cnVlfQ%3D%3D)
+  - Hydro [RTE](https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege/analyze/?disjunctive.epci&disjunctive.departement&disjunctive.region&disjunctive.filiere&disjunctive.combustible&disjunctive.combustiblessecondaires&disjunctive.technologie&disjunctive.regime&disjunctive.gestionnaire&sort=-puismaxcharge&refine.filiere=Hydraulique&refine.regime=En+service&refine.technologie=Lac&refine.technologie=Fil+de+l%27eau&refine.technologie=Autre&refine.technologie=Eclus%C3%A9e&refine.technologie=Hydrolien+fluvial&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4aW5zdGFsbGVlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiIzY2YzJhNSJ9LHsiYWxpZ25Nb250aCI6dHJ1ZSwidHlwZSI6ImNvbHVtbiIsImZ1bmMiOiJTVU0iLCJ5QXhpcyI6InB1aXNtYXhyYWMiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiIjZmM4ZDYyIn0seyJhbGlnbk1vbnRoIjp0cnVlLCJ0eXBlIjoiY29sdW1uIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoicHVpc21heGNoYXJnZSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiM4ZGEwY2IifSx7ImFsaWduTW9udGgiOnRydWUsInR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4cmFjY2hhcmdlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2U3OGFjMyJ9XSwieEF4aXMiOiJmaWxpZXJlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoiIiwic29ydCI6InNlcmllMS0xIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJyZWdpc3RyZS1uYXRpb25hbC1pbnN0YWxsYXRpb24tcHJvZHVjdGlvbi1zdG9ja2FnZS1lbGVjdHJpY2l0ZS1hZ3JlZ2UiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLmVwY2kiOnRydWUsImRpc2p1bmN0aXZlLmRlcGFydGVtZW50Ijp0cnVlLCJkaXNqdW5jdGl2ZS5yZWdpb24iOnRydWUsImRpc2p1bmN0aXZlLmZpbGllcmUiOnRydWUsImRpc2p1bmN0aXZlLmNvbWJ1c3RpYmxlIjp0cnVlLCJkaXNqdW5jdGl2ZS5jb21idXN0aWJsZXNzZWNvbmRhaXJlcyI6dHJ1ZSwiZGlzanVuY3RpdmUudGVjaG5vbG9naWUiOnRydWUsImRpc2p1bmN0aXZlLnJlZ2ltZSI6dHJ1ZSwiZGlzanVuY3RpdmUuZ2VzdGlvbm5haXJlIjp0cnVlLCJzb3J0IjoiLXB1aXNtYXhjaGFyZ2UiLCJyZWZpbmUuZmlsaWVyZSI6Ikh5ZHJhdWxpcXVlIiwicmVmaW5lLnJlZ2ltZSI6IkVuIHNlcnZpY2UiLCJyZWZpbmUudGVjaG5vbG9naWUiOlsiTGFjIiwiRmlsIGRlIGwnZWF1IiwiQXV0cmUiLCJFY2x1c1x1MDBFOWUiLCJIeWRyb2xpZW4gZmx1dmlhbCJdfX19XSwidGltZXNjYWxlIjoiIiwiZGlzcGxheUxlZ2VuZCI6dHJ1ZSwiYWxpZ25Nb250aCI6dHJ1ZX0%3D)
   - Battery [CRE.FR](https://www.cre.fr/content/download/21318/271898)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst_de.htm?year=2020&period=annual&type=power_inst)
@@ -304,7 +309,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Spain:
   - Biomass: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Gas, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
-  - Other: [REE](https://www.ree.es/es/datos/publicaciones/series-estadisticas-nacionales)
+  - Other: [REE](https://www.ree.es/es/datos/publicaciones/boletines-mensuales)
 - Spain (Canary Islands)
   - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
@@ -337,7 +342,6 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
-  - MISO: [MISO](https://www.misoenergy.org/about/media-center/corporate-fact-sheet/)
   - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
