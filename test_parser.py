@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
-from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
-
+import sys
 import pprint
-import arrow
-import click
 import datetime
 import logging
 
+import arrow
+import click
+
 from electricitymap.contrib.parsers.lib.parsers import PARSER_KEY_TO_DICT
+from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 
 
 @click.command()
@@ -56,7 +57,7 @@ def test_parser(zone, data_type, target_datetime):
 
     if not res:
         print('Error: parser returned nothing ({})'.format(res))
-        return
+        sys.exit(1)
 
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
@@ -68,8 +69,8 @@ def test_parser(zone, data_type, target_datetime):
         dts = [e['datetime'] for e in res_list]
     except:
         print('Parser output lacks `datetime` key for at least some of the '
-              'ouput. Full ouput: \n\n{}\n'.format(res))
-        return
+              'output. Full output: \n\n{}\n'.format(res))
+        sys.exit(2)
 
     assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
         'Datetimes must be returned as native datetime.datetime objects'
@@ -104,7 +105,7 @@ def test_parser(zone, data_type, target_datetime):
                 validate_exchange(event, zone)
         except ValidationError as e:
             print('Validation failed: {}'.format(e))
-
+            sys.exit(3)
 
 
 if __name__ == '__main__':
