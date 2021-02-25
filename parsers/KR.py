@@ -8,7 +8,7 @@ from logging import getLogger
 
 LOAD_URL = 'http://kpx.or.kr/eng/index.do'
 
-HYDRO_URL = 'http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
+HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
 NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
                 'http://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
@@ -78,7 +78,7 @@ def check_hydro_capacity(plant_name, value, logger):
 
 def fetch_hydro(session, logger):
     """Returns 2 element tuple in form (float, arrow object)."""
-    req = session.get(HYDRO_URL)
+    req = session.get(HYDRO_URL, verify=False)
     soup = BeautifulSoup(req.content, 'html.parser')
     table = soup.find("div", {"class": "dep02Sec"})
 
@@ -205,7 +205,7 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    s=session or requests.Session()
+    s = session or requests.Session()
 
     hydro, hydro_dt = fetch_hydro(s, logger)
     nuclear, nuclear_dt = fetch_nuclear(s)
