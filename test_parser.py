@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Usage: poetry run test_parser FR production
+"""
 
 import time
 import sys
