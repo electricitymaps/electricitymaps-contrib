@@ -1,5 +1,6 @@
 dependencies:
-  - .**/requirements.txt
+  - poetry.lock
+  - pyproject.toml
 
 frontend 🎨:
   - web/src/**/*

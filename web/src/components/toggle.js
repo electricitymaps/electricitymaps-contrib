@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: flex-end;
   outline: none;
   transition: all 0.4s;
-
+  user-select: none;
   &:hover {
     box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
   }
@@ -68,7 +68,7 @@ const InfoButton = styled.div`
   margin: 0 4px;
   transition: all 0.4s;
   width: 28px;
-
+  user-select: none;
   &:hover {
     box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
   }
