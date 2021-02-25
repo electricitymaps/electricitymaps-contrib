@@ -174,7 +174,7 @@
       -29.054874
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 0
   },
@@ -184,7 +184,7 @@
       -35.850801
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 180
   },
@@ -194,7 +194,7 @@
       -35.784766
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 90
   },
@@ -208,7 +208,7 @@
       -39.836207
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 0
   },

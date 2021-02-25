@@ -11,6 +11,8 @@ import logging
 
 from utils.parsers import PARSER_KEY_TO_DICT
 
+logger = logging.getLogger(__name__)
+
 
 @click.command()
 @click.argument('zone')
@@ -55,7 +57,7 @@ def test_parser(zone, data_type, target_datetime):
     res = parser(*args, target_datetime=target_datetime, logger=logging.getLogger(__name__))
 
     if not res:
-        print('Error: parser returned nothing ({})'.format(res))
+        raise ValueError('Error: parser returned nothing ({})'.format(res))
         return
 
     elapsed_time = time.time() - start
@@ -67,7 +69,7 @@ def test_parser(zone, data_type, target_datetime):
     try:
         dts = [e['datetime'] for e in res_list]
     except:
-        print('Parser output lacks `datetime` key for at least some of the '
+        raise ValueError('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
         return
     
@@ -103,7 +105,7 @@ def test_parser(zone, data_type, target_datetime):
             elif data_type == 'exchange':
                 validate_exchange(event, zone)
         except ValidationError as e:
-            print('Validation failed: {}'.format(e))
+            logger.warning('Validation failed @ {}: {}'.format(event['datetime'], e))
 
     
 
