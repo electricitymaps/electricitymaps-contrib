@@ -371,6 +371,14 @@ python-versions = "*"
 Pillow = "*"
 
 [[package]]
+name = "pytessy"
+version = "0.1.0"
+description = "Tesseract-OCR, faster"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.1"
 description = "Extensions to the standard Python datetime module"
@@ -611,7 +619,7 @@ parsers = ["arrow", "beautifulsoup4", "demjson", "eiapy", "html5lib", "imageio",
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "d75010e0fffd5f6c1d69bfd7908598f538278a158779016e95283e96c0d12ffe"
+content-hash = "2165985727000a881e52432bbc267d91cf9ceabaabb6c0c8a1b359a30cb15b85"
 
 [metadata.files]
 arrow = [
@@ -897,6 +905,10 @@ pylint = [
 ]
 pytesseract = [
     {file = "pytesseract-0.2.0.tar.gz", hash = "sha256:35035b0a69a789224d1e981d95453d644c95f8bf869372787f2164b9872d597f"},
+]
+pytessy = [
+    {file = "pytessy-0.1.0-py3-none-any.whl", hash = "sha256:47491306a09fb6632f0318f3bf3dbf6705692ca089e07c83718102e5ec70dbb0"},
+    {file = "pytessy-0.1.0.tar.gz", hash = "sha256:ed33960de21571d324fc577cfac8d94bec5c6ec6b01253bb10e1487d065a056c"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
