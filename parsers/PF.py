@@ -6,6 +6,7 @@ import lxml
 from bs4 import BeautifulSoup
 import re
 import json
+import arrow
 
 TZ = 'Pacific/Tahiti'
 
@@ -85,23 +86,18 @@ def fetch_production(
 
     data = {
         'zoneKey': zone_key,
+        'datetime': arrow.utcnow().floor('minute').datetime,
         'production': {
-        'biomass': None,
-        'coal': None,
-        'gas': None,
-        'hydro': 0.0,
-        'nuclear': None,
-        'oil': 0.0,
-        'solar': 0.0,
-        'wind': 0.0,
-        'geothermal': None,
-        'unknown': None
-        },
-        'capacity': {
-        'hydro': 49.4,
-        'oil': 201.86,
-        'solar': 41.077,
-        'wind': 0.0,
+        'biomass': 0.0,
+        'coal': 0.0,
+        'gas': 0.0,
+        'hydro': None,
+        'nuclear': 0.0,
+        'oil': None,
+        'solar': None,
+        'wind': None,
+        'geothermal': 0.0,
+        'unknown': 0.0
         },
         'storage': {},
         'source': 'edt.pf'
