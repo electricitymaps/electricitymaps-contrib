@@ -16,6 +16,18 @@ class CyprusParser:
         'Φωτοβολταϊκή Εγκατεστημένη Ισχύς': 'solar',
         'Εγκατεστημένη Ισχύς Βιομάζας': 'biomass'
     }
+    STATIC_CAPACITIES = {
+        'biomass': 12.4,
+        'coal': 0,
+        'gas': 0,
+        'geothermal': 0,
+        'hydro': 0,
+        'hydro storage': 0,
+        'nuclear': 0,
+        'oil': 1478,
+        'solar': 229.3,
+        'wind': 157.5
+    }
 
     session = None
     logger: logging.Logger = None
@@ -36,10 +48,11 @@ class CyprusParser:
             values = [td.string for td in row.find_all('td')]
             if None in values or '' in values:
                 break
+            production = {}
             datum = {
                 'zoneKey': 'CY',
-                'production': {},
-                'capacity': {},
+                'production': production,
+                'capacity': dict(self.STATIC_CAPACITIES),
                 'storage': {},
                 'source': 'tsoc.org.cy'
             }
@@ -49,9 +62,9 @@ class CyprusParser:
                 elif col == 'Συνολική Διαθέσιμη Συμβατική Ικανότητα Παραγωγής':
                     datum['capacity']['oil'] = float(val)
                 elif col == 'Αιολική Παραγωγή':
-                    datum['production']['wind'] = float(val)
+                    production['wind'] = float(val)
                 elif col == 'Συμβατική Παραγωγή':
-                    datum['production']['oil'] = float(val)
+                    production['oil'] = float(val)
                 elif col == 'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)':
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
                     # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
@@ -59,23 +72,28 @@ class CyprusParser:
                     # which constitutes biomass
                     if len(data) == 0:
                         midnight_biomass = float(val)
-                        datum['production']['biomass'] = midnight_biomass
-                        datum['production']['solar'] = 0.0
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = 0.0
                     else:
-                        datum['production']['biomass'] = midnight_biomass
-                        datum['production']['solar'] = float(val) - midnight_biomass
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = float(val) - midnight_biomass
             data.append(datum)
         return data
 
     def add_capacities(self, data: list, html) -> None:
+        dynamic_capacities = {}
         table = html.find(id='production_graph_static_data')
         for row in table.find_all('tr'):
             values = [td.string for td in row.find_all('td')]
             key = self.CAPACITY_KEYS.get(values[0])
             if key:
-                val = float(values[1])
-                for datum in data:
-                    datum['capacity'][key] = val
+                dynamic_capacities[key] = float(values[1])
+        if len(dynamic_capacities) == 0:
+            return
+        for datum in data:
+            capacities = datum['capacity']
+            for key, val in dynamic_capacities.items():
+                capacities[key] = val  
 
     def fetch_production(self, target_datetime: datetime.datetime) -> list:
         if target_datetime is None:
