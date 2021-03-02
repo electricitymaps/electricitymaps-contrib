@@ -97,7 +97,7 @@ def fetch_production(
         'solar': None,
         'wind': None,
         'geothermal': 0.0,
-        'unknown': 0.0
+        'unknown': None
         },
         'storage': {},
         'source': 'edt.pf'
