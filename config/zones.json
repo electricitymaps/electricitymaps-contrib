@@ -174,7 +174,10 @@
   },
   "AUS-ACT": {
     "flag_file_name": "au.png",
-    "timezone": null
+    "timezone": null,
+    "capacity": {
+      "solar": 217
+    }
   },
   "AUS-NSW": {
     "bounding_box": [
@@ -196,7 +199,7 @@
       "hydro storage": 840,
       "nuclear": 0,
       "oil": 148,
-      "solar": 1608,
+      "solar": 5892,
       "wind": 1802
     },
     "contributors": [
@@ -223,7 +226,10 @@
         138.50018768629417,
         -10.468357028999876
       ]
-    ]
+    ],
+    "capacity": {
+      "solar": 158
+    }
   },
   "AUS-QLD": {
     "contributors": [
@@ -240,7 +246,7 @@
       "hydro storage": 480,
       "nuclear": 0,
       "oil": 449,
-      "solar": 1798,
+      "solar": 6025,
       "wind": 644
     },
     "flag_file_name": "au.png",
@@ -275,7 +281,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 734,
-      "solar": 378,
+      "solar": 2065,
       "wind": 2141
     },
     "flag_file_name": "au.png",
@@ -320,7 +326,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 48,
-      "solar": 0,
+      "solar": 187,
       "wind": 567
     },
     "flag_file_name": "au.png",
@@ -379,7 +385,7 @@
       "hydro": 0,
       "nuclear": 0,
       "oil": 2.1,
-      "solar": 0.6,
+      "solar": 4.1,
       "battery storage": 0.7,
       "hydro storage": 0,
       "wind": 1.5
@@ -439,6 +445,7 @@
       "https://github.com/corradio"
     ],
     "capacity": {
+      "solar": 3772,
       "wind": 1521
     },
     "flag_file_name": "au.png",
@@ -455,6 +462,7 @@
       "https://github.com/MariusKroon"
     ],
     "capacity": {
+      "solar": 1884,
       "wind": 491
     },
     "flag_file_name": "au.png",

@@ -169,7 +169,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Australia [OpenNEM](https://opennem.org.au/facilities/all/)
+- Australia 
+  - Other: [OpenNEM](https://opennem.org.au/facilities/all/)
+  - Solar: [APVI](https://pv-map.apvi.org.au/historical)
 - Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
