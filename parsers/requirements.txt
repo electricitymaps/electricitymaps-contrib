@@ -1,3 +1,5 @@
+# NOTE: this file is being deprecated! Please switch to use Poetry instead and
+# update the pyproject.toml instead
 arrow==0.16.0
 beautifulsoup4==4.6.0
 click==6.7
@@ -5,10 +7,10 @@ demjson==2.2.4
 eiapy==0.1.4
 html5lib==0.999999999
 imageio==2.8.0
-lxml==4.4.1
+lxml==4.6.2
 mock==2.0.0
 pandas==0.23.4
-Pillow==6.2.0
+Pillow==7.1.0
 pytesseract==0.2.0
 ree==2.2.1
 requests==2.20.1
