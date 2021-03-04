@@ -226,14 +226,8 @@ const CountryPanel = ({
               </span>
               <br />
               <small className="small-screen-hidden">
-                <i className="material-icons" aria-hidden="true">file_download</i>
-                {' '}
-                <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro">
-                  <i className="material-icons" aria-hidden="true">lock</i>
-                  {' '}
-pro
-                </span>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
@@ -248,14 +242,8 @@ pro
               </span>
               <br />
               <small className="small-screen-hidden">
-                <i className="material-icons" aria-hidden="true">file_download</i>
-                {' '}
-                <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro">
-                  <i className="material-icons" aria-hidden="true">lock</i>
-                  {' '}
-pro
-                </span>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </small>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}

@@ -69,18 +69,6 @@ const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   }));
 };
 
-const HighlightArea = ({
-  timeScale, valueScale, startTime, endTime, style,
-}) => (
-  <rect
-    x={Math.max(timeScale.range()[0], timeScale(startTime))}
-    y={valueScale.range()[1]}
-    width={Math.min(timeScale.range()[1], timeScale(endTime)) - Math.max(timeScale.range()[0], timeScale(startTime))}
-    height={Math.max(0, valueScale.range()[0] - valueScale.range()[1])}
-    style={{ pointerEvents: 'none', ...style }}
-  />
-);
-
 const AreaGraph = React.memo(({
   /*
     `data` should be an array of objects, each containing:
@@ -144,10 +132,6 @@ const AreaGraph = React.memo(({
     Height of the area graph canvas.
   */
   height = '10em',
-  /*
-    Array of pairs of start and end Dates of area to be highlighted
-  */
-  highlightTimes,
 }) => {
   const {
     ref,
@@ -188,16 +172,6 @@ const AreaGraph = React.memo(({
         isMobile={isMobile}
         svgNode={node}
       />
-      {highlightTimes ? highlightTimes.map(([highlightStartTime, highlightEndTime]) => (
-        <HighlightArea
-          key={highlightStartTime}
-          startTime={highlightStartTime}
-          endTime={highlightEndTime}
-          style={{ fill: '#e8e8e8' }}
-          timeScale={timeScale}
-          valueScale={valueScale}
-        />
-      )) : null}
       <AreaGraphLayers
         layers={layers}
         datetimes={datetimes}
