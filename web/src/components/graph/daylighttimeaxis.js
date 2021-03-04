@@ -1,17 +1,11 @@
 import React from 'react';
-import moment from 'moment';
-import { range } from 'lodash';
-
-const roundUp = (number, base) => Math.ceil(number / base) * base;
 
 // Return `count` timestamp values uniformly distributed within the scale
 // domain, including both ends, rounded up to 15 minutes precision.
-const getTicks = (nightTimes) => {
-  return nightTimes.flatMap(([start, end]) => [
-    [start, '🌙 sunset'],
-    [end, '☀️ sunrise'],
-  ]);
-};
+const getTicks = nightTimes => nightTimes.flatMap(([start, end]) => [
+  [start, '🌙 sunset'],
+  [end, '☀️ sunrise'],
+]);
 
 // Assumes the height of the component is 20, as given in the CSS
 
