@@ -137,7 +137,7 @@ app.use('/', (req, res) => {
   const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
   const isNonWWW = req.get('host') === 'electricitymap.org'
     || req.get('host') === 'live.electricitymap.org';
-  const isStaging = req.get('host') === 'staging.electricitymap.org';
+  const isStaging = req.get('host').includes('staging');
   const isHTTPS = req.secure;
   const isLocalhost = req.hostname === 'localhost'; // hostname is without port
 
