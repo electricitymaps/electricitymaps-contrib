@@ -21,6 +21,6 @@ const Overlay = styled.div`
 
 export default ({ fadeTimeout = 500, visible }) => (
   <CSSTransition in={visible} timeout={fadeTimeout} classNames="fade">
-    <Overlay fadeTimeout={fadeTimeout} />
+    <Overlay id="loading" fadeTimeout={fadeTimeout} />
   </CSSTransition>
 );

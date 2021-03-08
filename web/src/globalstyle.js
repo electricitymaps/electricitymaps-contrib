@@ -6,7 +6,7 @@ const FadeAnimationDefinition = css`
   .fade-exit { opacity: 1; }
   .fade-exit-active { opacity: 0; }
   /* Don't set display to 'none' to keep the same width and height */
-  .fade-exit-done { opacity: 0; pointer-events: none; }
+  .fade-exit-done { opacity: 0; pointer-events: none; visibility: hidden; }
 `;
 
 export default createGlobalStyle`
