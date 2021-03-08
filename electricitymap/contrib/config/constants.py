@@ -11,6 +11,11 @@ WEATHER_DATABASE_KEYS = [
     "dewpoint",
     "precipitation",
 ]
+OTHER_FORECAST_KEYS = [
+    "price",
+    "production",
+    "consumption",
+]
 
 # Note: this is sorted for plotting purposes
 PRODUCTION_MODES = [
@@ -25,10 +30,15 @@ PRODUCTION_MODES = [
     "oil",
     "unknown",
 ]
+FORECASTED_PRODUCTION_MODES = [
+    "solar",
+    "wind",
+]
 STORAGE_MODES = [
     "battery",
     "hydro",
 ]
+
 
 # TODO(olc): Find a more explicit name for `ENERGIES`
 # TODO(olc): This is forecast specific, so it should not be here.
