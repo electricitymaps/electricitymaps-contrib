@@ -637,15 +637,15 @@
       ]
     ],
     "capacity": {
-      "biomass": 81,
-      "coal": 4900,
-      "gas": 779,
+      "biomass": 80,
+      "coal": 4365,
+      "gas": 1361,
       "geothermal": 0,
-      "hydro": 3204,
+      "hydro": 3211,
       "nuclear": 2000,
       "oil": 0.3,
-      "solar": 1043,
-      "wind": 701
+      "solar": 1087,
+      "wind": 700
     },
     "contributors": [
       "https://github.com/yurukov",
