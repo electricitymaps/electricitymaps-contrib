@@ -2764,7 +2764,8 @@
       ]
     ],
     "parsers": {
-      "production": "IQ.fetch_production"
+      "production": "IQ.fetch_production",
+      "consumption": "IQ.fetch_consumption"
     }
   },
   "IS": {

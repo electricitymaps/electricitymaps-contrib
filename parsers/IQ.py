@@ -40,7 +40,7 @@ def fetch_data(r):
 
     timestamp = arrow.get(data["lastmodified"], "HH:mm:ss A DD-MM-YYYY", tzinfo=tz.gettz('Asia/Baghdad'))
 
-    return data["d"], timestamp
+    return data["d"], timestamp.datetime
 
 def fetch_production(
     zone_key=None,
