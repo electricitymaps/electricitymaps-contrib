@@ -174,7 +174,10 @@
   },
   "AUS-ACT": {
     "flag_file_name": "au.png",
-    "timezone": null
+    "timezone": null,
+    "capacity": {
+      "solar": 217
+    }
   },
   "AUS-NSW": {
     "bounding_box": [
@@ -196,7 +199,7 @@
       "hydro storage": 840,
       "nuclear": 0,
       "oil": 148,
-      "solar": 1608,
+      "solar": 5892,
       "wind": 1802
     },
     "contributors": [
@@ -223,7 +226,10 @@
         138.50018768629417,
         -10.468357028999876
       ]
-    ]
+    ],
+    "capacity": {
+      "solar": 158
+    }
   },
   "AUS-QLD": {
     "contributors": [
@@ -240,7 +246,7 @@
       "hydro storage": 480,
       "nuclear": 0,
       "oil": 449,
-      "solar": 1798,
+      "solar": 6025,
       "wind": 644
     },
     "flag_file_name": "au.png",
@@ -275,7 +281,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 734,
-      "solar": 378,
+      "solar": 2065,
       "wind": 2141
     },
     "flag_file_name": "au.png",
@@ -320,7 +326,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 48,
-      "solar": 0,
+      "solar": 187,
       "wind": 567
     },
     "flag_file_name": "au.png",
@@ -379,7 +385,7 @@
       "hydro": 0,
       "nuclear": 0,
       "oil": 2.1,
-      "solar": 0.6,
+      "solar": 4.1,
       "battery storage": 0.7,
       "hydro storage": 0,
       "wind": 1.5
@@ -439,6 +445,7 @@
       "https://github.com/corradio"
     ],
     "capacity": {
+      "solar": 3772,
       "wind": 1521
     },
     "flag_file_name": "au.png",
@@ -455,6 +462,7 @@
       "https://github.com/MariusKroon"
     ],
     "capacity": {
+      "solar": 1884,
       "wind": 491
     },
     "flag_file_name": "au.png",
@@ -2011,17 +2019,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 4237,
-      "coal": 6780,
-      "gas": 38274,
+      "biomass": 4528,
+      "coal": 5241,
+      "gas": 39822,
       "geothermal": 0,
-      "hydro": 1882,
-      "hydro storage": 4052,
-      "nuclear": 8209,
+      "hydro": 1919,
+      "hydro storage": 4309,
+      "nuclear": 8256,
       "oil": 0,
-      "solar": 13276,
-      "unknown": 6155,
-      "wind": 23200
+      "solar": 13378,
+      "unknown": 4708,
+      "wind": 25097
     },
     "contributors": [
       "https://github.com/corradio",
@@ -4117,6 +4125,30 @@
     },
     "timezone": "America/Lima"
   },
+  "PF": {
+    "bounding_box": [
+      [
+        -155.0369766919999,
+        -28.14120859199994
+      ],
+      [
+        -134.44298255099994,
+        -7.450127862999921
+      ]
+    ],
+    "capacity": {
+      "hydro": 49.4,
+      "oil": 201.86,
+      "solar": 41.077
+    },
+    "contributors": [
+      "https://github.com/autipial"
+    ],
+    "parsers": {
+      "production": "PF.fetch_production"
+    },
+    "timezone": "Pacific/Tahiti"
+  },
   "PL": {
     "bounding_box": [
       [
@@ -4138,7 +4170,7 @@
       "hydro storage": 1794,
       "nuclear": 0,
       "oil": 359,
-      "solar": 3661.7,
+      "solar": 3935.74,
       "unknown": 0,
       "wind": 6252
     },

@@ -6,19 +6,19 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ![image](https://www.electricitymap.org/images/electricitymap_social_image.png)
 
-
 ## Contribute
+
 Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
- * [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
- * [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser)
- * [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
- * [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
- * [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
- * [Translating electricitymap.org](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
- * [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
 
+- [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
+- [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser)
+- [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
+- [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
+- [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
+- [Translating electricitymap.org](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
+- [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
 
 Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
 
@@ -32,7 +32,7 @@ The data comes from many different sources. You can check them out [here](https:
 **How do you define real-time data?**
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
 
-**Why do you calculate the carbon intensity of *consumption*?**
+**Why do you calculate the carbon intensity of _consumption_?**
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighboring countries in order to green their image while still importing from it.
@@ -40,7 +40,7 @@ We published our methodology [here](https://arxiv.org/abs/1812.06679).
 
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
-This means you can "trick" the numbers by moving your factory abroad and import the produced *good* instead of the electricity itself.
+This means you can "trick" the numbers by moving your factory abroad and import the produced _good_ instead of the electricity itself.
 That country now has a low CO<sub>2</sub>/capita number because we only count CO<sub>2</sub> for electricity (not for imported/exported goods).
 The CO<sub>2</sub>/capita metric, by involving the size of the population, and by not integrating all CO<sub>2</sub> emission sources, is thus an incomplete metric.
 CO<sub>2</sub> intensity on the other hand only describes where is the best place to put that factory (and when it is best to use electricity), enabling proper decisions.
@@ -59,4 +59,3 @@ Yes, providing there is a valid GeoJSON geometry (or another format that can be 
 
 **How can I get access to historical data or the live API?**
 All this and more can be found **[here](https://api.electricitymap.org/)**.
-
