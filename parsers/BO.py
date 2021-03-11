@@ -2,6 +2,7 @@
 
 # The arrow library is used to handle datetimes
 import arrow
+import json
 # The request library is used to fetch content through HTTP
 import requests
 import re
@@ -84,7 +85,7 @@ def fetch_production(zone_key='BO', session=None, target_datetime=None, logger=N
         "x-csrf-token": xsrf_token
     })
 
-    hour_rows = resp.json()["data"]
+    hour_rows = json.loads(resp.text.replace('ï»¿', ''))["data"]
     payload = []
 
     for hour_row in hour_rows:
@@ -102,7 +103,7 @@ def fetch_production(zone_key='BO', session=None, target_datetime=None, logger=N
             timestamp = timestamp.replace(hour=hour-1)
 
 
-        hour_resp = template_response(zone_key, timestamp, "cndc.bo")
+        hour_resp = template_response(zone_key, timestamp.datetime, "cndc.bo")
         hour_resp["production"]["unknown"] = thermo
         hour_resp["production"]["hydro"] = hydro
         hour_resp["production"]["wind"] = wind
@@ -133,7 +134,7 @@ def fetch_generation_forecast(zone_key='BO', session=None, target_datetime=None,
         "x-csrf-token": xsrf_token
     })
 
-    hour_rows = resp.json()["data"]
+    hour_rows = json.loads(resp.text.replace('ï»¿', ''))["data"]
     payload = []
 
     for hour_row in hour_rows:
@@ -146,7 +147,7 @@ def fetch_generation_forecast(zone_key='BO', session=None, target_datetime=None,
 
         zeroed = timestamp.replace(hour=hour-1, minute=0, second=0, microsecond=0)
 
-        hour_resp = template_forecast_response(zone_key, zeroed, "cndc.bo")
+        hour_resp = template_forecast_response(zone_key, zeroed.datetime, "cndc.bo")
         hour_resp["value"] = forecast
 
         payload.append(hour_resp)
@@ -157,7 +158,6 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print('fetch_production() ->')
     print(fetch_production())
-    print(fetch_production(target_datetime=arrow.get("20210110", "YYYYMMDD")))
 
     print('fetch_generation_forecast() ->')
     print(fetch_generation_forecast())
