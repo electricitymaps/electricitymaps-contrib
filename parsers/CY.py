@@ -17,16 +17,12 @@ class CyprusParser:
         'Εγκατεστημένη Ισχύς Βιομάζας': 'biomass'
     }
     STATIC_CAPACITIES = {
-        'biomass': 12.4,
         'coal': 0,
         'gas': 0,
         'geothermal': 0,
         'hydro': 0,
         'hydro storage': 0,
-        'nuclear': 0,
-        'oil': 1478,
-        'solar': 229.3,
-        'wind': 157.5
+        'nuclear': 0
     }
 
     session = None
