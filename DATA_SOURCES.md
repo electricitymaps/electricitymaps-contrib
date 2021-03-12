@@ -34,7 +34,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Czech Republic: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
-- Cyprus: [TSO](https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/)
+- Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Denmark: [TSO](https://www.energidataservice.dk/en/group/production-and-consumption)
 - Denmark (Bornholm): [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
@@ -43,6 +43,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Faroe Islands: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](https://opendata.reseaux-energies.fr)
+- French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Georgia: [GSE](http://www.gse.com.ge/home)
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -168,7 +169,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Australia [OpenNEM](https://opennem.org.au/facilities/all/)
+- Australia 
+  - Other: [OpenNEM](https://opennem.org.au/facilities/all/)
+  - Solar: [APVI](https://pv-map.apvi.org.au/historical)
 - Austria
   - Wind: [IGWindKraft](https://www.igwindkraft.at)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -198,7 +201,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
-- Cyprus: [TSO](https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/)
+- Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2):
   - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -224,6 +227,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro [RTE](https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege/analyze/?disjunctive.epci&disjunctive.departement&disjunctive.region&disjunctive.filiere&disjunctive.combustible&disjunctive.combustiblessecondaires&disjunctive.technologie&disjunctive.regime&disjunctive.gestionnaire&sort=-puismaxcharge&refine.filiere=Hydraulique&refine.regime=En+service&refine.technologie=Lac&refine.technologie=Fil+de+l%27eau&refine.technologie=Autre&refine.technologie=Eclus%C3%A9e&refine.technologie=Hydrolien+fluvial&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4aW5zdGFsbGVlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiIzY2YzJhNSJ9LHsiYWxpZ25Nb250aCI6dHJ1ZSwidHlwZSI6ImNvbHVtbiIsImZ1bmMiOiJTVU0iLCJ5QXhpcyI6InB1aXNtYXhyYWMiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiIjZmM4ZDYyIn0seyJhbGlnbk1vbnRoIjp0cnVlLCJ0eXBlIjoiY29sdW1uIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoicHVpc21heGNoYXJnZSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiM4ZGEwY2IifSx7ImFsaWduTW9udGgiOnRydWUsInR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4cmFjY2hhcmdlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2U3OGFjMyJ9XSwieEF4aXMiOiJmaWxpZXJlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoiIiwic29ydCI6InNlcmllMS0xIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJyZWdpc3RyZS1uYXRpb25hbC1pbnN0YWxsYXRpb24tcHJvZHVjdGlvbi1zdG9ja2FnZS1lbGVjdHJpY2l0ZS1hZ3JlZ2UiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLmVwY2kiOnRydWUsImRpc2p1bmN0aXZlLmRlcGFydGVtZW50Ijp0cnVlLCJkaXNqdW5jdGl2ZS5yZWdpb24iOnRydWUsImRpc2p1bmN0aXZlLmZpbGllcmUiOnRydWUsImRpc2p1bmN0aXZlLmNvbWJ1c3RpYmxlIjp0cnVlLCJkaXNqdW5jdGl2ZS5jb21idXN0aWJsZXNzZWNvbmRhaXJlcyI6dHJ1ZSwiZGlzanVuY3RpdmUudGVjaG5vbG9naWUiOnRydWUsImRpc2p1bmN0aXZlLnJlZ2ltZSI6dHJ1ZSwiZGlzanVuY3RpdmUuZ2VzdGlvbm5haXJlIjp0cnVlLCJzb3J0IjoiLXB1aXNtYXhjaGFyZ2UiLCJyZWZpbmUuZmlsaWVyZSI6Ikh5ZHJhdWxpcXVlIiwicmVmaW5lLnJlZ2ltZSI6IkVuIHNlcnZpY2UiLCJyZWZpbmUudGVjaG5vbG9naWUiOlsiTGFjIiwiRmlsIGRlIGwnZWF1IiwiQXV0cmUiLCJFY2x1c1x1MDBFOWUiLCJIeWRyb2xpZW4gZmx1dmlhbCJdfX19XSwidGltZXNjYWxlIjoiIiwiZGlzcGxheUxlZ2VuZCI6dHJ1ZSwiYWxpZ25Nb250aCI6dHJ1ZX0%3D)
   - Battery [CRE.FR](https://www.cre.fr/content/download/21318/271898)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
+- French Polynesia:
+  - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
+  - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
 - Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst_de.htm?year=2020&period=annual&type=power_inst)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -286,7 +292,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1351913288809017344)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1366706440291946496)
   - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Wind: [URE](https://twitter.com/pse_pl/status/1303252305832271873)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
