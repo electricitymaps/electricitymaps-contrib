@@ -1351,7 +1351,7 @@
     "timezone": "Europe/Prague"
   },
   "DE": {
-    "_comment": "hydro capacities from BNetzA-Kraftwerksliste (Nov 2017) include capacities in AT, CH, LU which are directly connected to the German grid.",
+    "_comment": "Hydro capacities from Fraunhofer include capacities in AT, CH, LU which are directly connected to the German grid. Fraunhofer has no values for geothermal and unknown - these are from BNetz",
     "bounding_box": [
       [
         5.8227539063,
@@ -1378,7 +1378,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/bohne13"
+      "https://github.com/bohne13",
+      "https://github.com/chiefymuc"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
