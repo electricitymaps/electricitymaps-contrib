@@ -67,7 +67,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
-- Iraq: [Iraqi Power System](http://109.224.53.139:8080/IPS.php)
+- Iraq: [Iraqi Power System](https://www.gdoco.org/generation.html)
 - Japan (Exchanges): [OCCTO](http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login)
 - Japan (Chūbu): [Chūden](http://denki-yoho.chuden.jp/)
 - Japan (Chūgoku): [Energia](http://www.energia.co.jp/jukyuu/)
