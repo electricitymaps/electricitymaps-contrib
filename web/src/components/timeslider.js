@@ -12,7 +12,6 @@ import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
 import TimeAxis from './graph/timeaxis';
-import DaylightTimeAxis from './graph/daylighttimeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
 import { useCurrentNightTimes } from '../hooks/redux';
 
@@ -46,8 +45,7 @@ const TimeSlider = ({
   startTime,
   endTime,
 }) => {
-  const { ref: ref1, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
-  const { ref: ref2 } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
+  const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
 
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
   const nightTimes = useCurrentNightTimes();
@@ -71,14 +69,6 @@ const TimeSlider = ({
 
   return (
     <div className={className}>
-      <svg className="time-slider-daylight-axis-container" ref={ref1}>
-        <DaylightTimeAxis
-          scale={timeScale}
-          nightTimes={nightTimes}
-          transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
-          className="time-slider-axis"
-        />
-      </svg>
       <input
         type="range"
         className="time-slider-input"
@@ -88,7 +78,7 @@ const TimeSlider = ({
         min={startTimeValue}
         max={endTimeValue}
       />
-      <svg className="time-slider-axis-container" ref={ref2}>
+      <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}

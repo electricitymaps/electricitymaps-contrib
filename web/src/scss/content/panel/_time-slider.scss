@@ -1,6 +1,6 @@
 .zone-time-slider {
     bottom: 0;
-    height: 85px;
+    height: 65px;
     padding: 0.25rem 1rem;
     background: transparent;
     width: 100%;
@@ -13,13 +13,6 @@
         width: 100%;
         height: 20px;
         margin: -6px 2px 0;
-        overflow: visible;
-    }
-
-    .time-slider-daylight-axis-container {
-        width: 100%;
-        height: 20px;
-        margin: 0 2px -12px;
         overflow: visible;
     }
 
@@ -43,27 +36,27 @@
     width: 100%;
     margin-top: 5px;
     height: 26px;
-    background: transparent; 
+    background: transparent;
     padding: 0;
     overflow: visible;
     border: none;
 
     &:focus {
-    	outline: none;  
+    	outline: none;
   	}
 }
 
 /* Sliders needs to be styled independently for different browsers:
   https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 */
-  
+
 /* WebKit/Blink */
 
 .time-slider-input::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 26px;
     width: 26px;
-    border-radius: 17px;    
+    border-radius: 17px;
     background: #ffffff;
     cursor: pointer;
     margin-top: -8px;
@@ -132,7 +125,7 @@
 .time-slider-input:hover::-moz-range-thumb{
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
 }
-  
+
 .time-slider-input::-moz-range-track {
     width: 100%;
     height: 6px;
