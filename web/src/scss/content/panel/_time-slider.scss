@@ -46,13 +46,11 @@
   	}
 }
 
-/* Sliders needs to be styled independently for different browsers:
-  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
-*/
+// Sliders needs to be styled independently for different browsers:
+// https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 
-/* WebKit/Blink */
-
-.time-slider-input::-webkit-slider-thumb {
+// Using mixins here as webkit doesn't show any styling if the two classes are grouped (like ".one, .two {}")
+@mixin thumb {
     -webkit-appearance: none;
     height: 26px;
     width: 26px;
@@ -63,23 +61,62 @@
     transition: box-shadow 0.4s;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
     border: 1px solid lightgray;
+    background-position: center center;
+    background-size: 12px;
+    background-repeat: no-repeat;
+
+    &:hover {
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+    }
 }
 
-.time-slider-input:hover::-webkit-slider-thumb{
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-}
-
-.time-slider-input::-webkit-slider-runnable-track {
+@mixin track {
     width: 100%;
     height: 12px;
     border-radius: 4px;
     cursor: pointer;
     background: $light-gray;
-    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
-}
+    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0);
+    background: var(--time-gradient);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
 
-  /* IE */
+.time-slider-input {
+  // TODO: Find proper icons (use existing icon set if possible)
+  --icon-night: url("https://www.pinclipart.com/picdir/big/162-1626368_moon-icons-crescent-moon-icon-png-clipart.png");
+  --icon-day: url("https://icons-for-free.com/iconfiles/png/512/summer+sun+icon-1320186917540922857.png");
 
+  // Webkit
+    &.night::-webkit-slider-thumb {
+      background-image: var(--icon-night);
+    }
+    &.day::-webkit-slider-thumb {
+      background-image: var(--icon-day);
+    }
+    &::-webkit-slider-thumb {
+      @include thumb;
+    }
+    &::-webkit-slider-runnable-track {
+      @include track;
+    }
+    // Firefox
+    &.night::-moz-range-thumb {
+      background-image: var(--icon-night);
+    }
+    &.day::-moz-range-thumb {
+      background-image: var(--icon-day);
+    }
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+    &::-moz-range-track {
+      @include track;
+    }
+  }
+
+
+// IE
 .time-slider-input::-ms-track {
     width: 100%;
     height: 0px;
@@ -107,31 +144,4 @@
     border-radius: 17px;
     background: #ffffff;
     cursor: pointer;
-}
-
-  /* Firefox */
-
-.time-slider-input::-moz-range-thumb {
-    height: 24px;
-    width: 24px;
-    border-radius: 17px;
-    border: none;
-    background: #ffffff;
-    cursor: pointer;
-    transition: box-shadow 0.4s;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-}
-
-.time-slider-input:hover::-moz-range-thumb{
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-}
-
-.time-slider-input::-moz-range-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    background: $light-gray;
-    border-radius: 3px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
