@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 class CyprusParser:
     CAPACITY_KEYS = {
+        'Συμβατική Εγκατεστημένη Ισχύς': 'oil',
         'Αιολική Εγκατεστημένη Ισχύς': 'wind',
         'Φωτοβολταϊκή Εγκατεστημένη Ισχύς': 'solar',
         'Εγκατεστημένη Ισχύς Βιομάζας': 'biomass'
@@ -27,31 +28,40 @@ class CyprusParser:
     def warn(self, text: str) -> None:
         self.logger.warning(text, extra={'key': 'CY'})
 
-    def parse_production(self, html) -> list:
+    def parse_capacity(self, html) -> dict:
+        capacity = {}
+        table = html.find(id='production_graph_static_data')
+        for tr in table.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
+            key = self.CAPACITY_KEYS.get(values[0])
+            if key:
+                capacity[key] = float(values[1])
+        return capacity
+
+    def parse_production(self, html, capacity: dict) -> list:
         data = []
         table = html.find(id='production_graph_data')
         columns = [th.string for th in table.find_all('th')]
         midnight_biomass = 0.0
-        for row in table.tbody.find_all('tr'):
-            values = [td.string for td in row.find_all('td')]
+        for tr in table.tbody.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
             if None in values or '' in values:
                 break
+            production = {}
             datum = {
                 'zoneKey': 'CY',
-                'production': {},
-                'capacity': {},
+                'production': production,
+                'capacity': capacity,
                 'storage': {},
                 'source': 'tsoc.org.cy'
             }
             for col, val in zip(columns, values):
                 if col == 'Timestamp':
                     datum['datetime'] = arrow.get(val).replace(tzinfo='Asia/Nicosia').datetime
-                elif col == 'Συνολική Διαθέσιμη Συμβατική Ικανότητα Παραγωγής':
-                    datum['capacity']['oil'] = float(val)
                 elif col == 'Αιολική Παραγωγή':
-                    datum['production']['wind'] = float(val)
+                    production['wind'] = float(val)
                 elif col == 'Συμβατική Παραγωγή':
-                    datum['production']['oil'] = float(val)
+                    production['oil'] = float(val)
                 elif col == 'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)':
                     # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
                     # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
@@ -59,23 +69,13 @@ class CyprusParser:
                     # which constitutes biomass
                     if len(data) == 0:
                         midnight_biomass = float(val)
-                        datum['production']['biomass'] = midnight_biomass
-                        datum['production']['solar'] = 0.0
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = 0.0
                     else:
-                        datum['production']['biomass'] = midnight_biomass
-                        datum['production']['solar'] = float(val) - midnight_biomass
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = float(val) - midnight_biomass
             data.append(datum)
         return data
-
-    def add_capacities(self, data: list, html) -> None:
-        table = html.find(id='production_graph_static_data')
-        for row in table.find_all('tr'):
-            values = [td.string for td in row.find_all('td')]
-            key = self.CAPACITY_KEYS.get(values[0])
-            if key:
-                val = float(values[1])
-                for datum in data:
-                    datum['capacity'][key] = val
 
     def fetch_production(self, target_datetime: datetime.datetime) -> list:
         if target_datetime is None:
@@ -90,12 +90,11 @@ class CyprusParser:
 
         html = BeautifulSoup(res.text, 'lxml')
 
-        data = self.parse_production(html)
+        capacity = self.parse_capacity(html)
+        data = self.parse_production(html, capacity)
+
         if len(data) == 0:
             self.warn('No production data returned for Cyprus')
-            return data
-        self.add_capacities(data, html)
-
         return data
 
 def fetch_production(zone_key='CY', session=None,
