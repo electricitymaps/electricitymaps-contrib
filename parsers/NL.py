@@ -186,7 +186,7 @@ def get_production_data_energieopwek(date, session=None):
     # The API returns values per day from local time midnight until the last
     # round 10 minutes if the requested date is today or for the entire day if
     # it's in the past. 'sid' can be anything.
-    url = 'http://energieopwek.nl/jsonData.php?sid=2ecde3&Day=%s' % date.format('YYYY-MM-DD')
+    url = 'https://energieopwek.nl/data.php?sid=2ecde3&Day=%s' % date.format('YYYY-MM-DD')
     response = r.get(url)
     obj = response.json()
     production_input = obj['TenMin']['Country']
