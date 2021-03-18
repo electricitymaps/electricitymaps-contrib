@@ -2,7 +2,7 @@ version: 2
 jobs:
   verify_python:
     docker:
-      - image: circleci/python:3.6.12
+      - image: circleci/python:3.7.9
     steps:
       - checkout
       - restore_cache:
