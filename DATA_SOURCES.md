@@ -67,7 +67,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
-- Iraq: [Iraqi Power System](http://109.224.53.139:8080/IPS.php)
+- Iraq: [Iraqi Power System](https://www.gdoco.org/generation.html)
 - Japan (Exchanges): [OCCTO](http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login)
 - Japan (Chūbu): [Chūden](http://denki-yoho.chuden.jp/)
 - Japan (Chūgoku): [Energia](http://www.energia.co.jp/jukyuu/)
@@ -185,7 +185,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
-- Bulgaria: [wikipedia.org](https://en.wikipedia.org/wiki/Energy_in_Bulgaria)
+- Bulgaria: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
@@ -230,7 +230,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - French Polynesia:
   - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
-- Germany: [Frauenhofer ISE](https://www.energy-charts.de/power_inst_de.htm?year=2020&period=annual&type=power_inst)
+- Germany: 
+  - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
+  - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
 - Great Britain: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
