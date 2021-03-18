@@ -1538,6 +1538,9 @@
       43.676,
       35.470
     ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
     "rotation": 0
   },
   "IQ->IR":{
@@ -1545,6 +1548,9 @@
       47.834,
       31.784
     ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
     "rotation": 90
   },
   "IT-CNO->IT-CSO": {

@@ -1,26 +1,22 @@
 #!/usr/bin/env python3
 import logging
 import datetime
-import re
 import sys
 
 # The arrow library is used to handle datetimes
 import arrow
 # The request library is used to fetch content through HTTP
 import requests
-
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
+# BeautifulSoup is used to parse HTML
+from bs4 import BeautifulSoup
 
 class CyprusParser:
-    EXPECTED_COLUMNS = ['Συνολική Προβλεπόμενη Ζήτηση', 'Αιολική Παραγωγή',
-        'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)',
-        'Συνολική Ζήτηση', 'Συμβατική Παραγωγή']
-    COLUMNS_REGEX = re.compile(r'data\.addColumn\("number", "([^"]*)"\);')
-    TIMES_REGEX = re.compile(
-        r'var dateStr = "([^"]*)";\s+var hourStr = "(\d+)";\s+var minutesStr = "(\d+)";')
-    PRODUCTIONS_REGEX = re.compile(
-        r'\[dateStrFormat,\s*(\d+|null),\s*(\d+|null),\s*(\d+|null),\s*(\d+|null)\]')
+    CAPACITY_KEYS = {
+        'Συμβατική Εγκατεστημένη Ισχύς': 'oil',
+        'Αιολική Εγκατεστημένη Ισχύς': 'wind',
+        'Φωτοβολταϊκή Εγκατεστημένη Ισχύς': 'solar',
+        'Εγκατεστημένη Ισχύς Βιομάζας': 'biomass'
+    }
 
     session = None
     logger: logging.Logger = None
@@ -29,77 +25,77 @@ class CyprusParser:
         self.session = session
         self.logger = logger
 
+    def warn(self, text: str) -> None:
+        self.logger.warning(text, extra={'key': 'CY'})
 
-    def append_datum(self, data: list, time_str: str, prods_list: list) -> None:
-        time_value = arrow.get(time_str).replace(tzinfo='Asia/Nicosia').datetime
+    def parse_capacity(self, html) -> dict:
+        capacity = {}
+        table = html.find(id='production_graph_static_data')
+        for tr in table.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
+            key = self.CAPACITY_KEYS.get(values[0])
+            if key:
+                capacity[key] = float(values[1])
+        return capacity
 
-        prods_value = {
-            'oil': prods_list[3],
-            'solar': prods_list[1],
-            'wind': prods_list[0],
-            'biomass': 0.0
-        }
-
-        # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
-        # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
-        # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
-        # which constitutes biomass
-        if len(data) == 0:
-            prods_value['biomass'] = prods_value['solar']
-            prods_value['solar'] = 0.0
-        else:
-            nocturnal_biomass_generation = data[0]['production']['biomass']
-            prods_value['solar'] -= nocturnal_biomass_generation
-            prods_value['biomass'] += nocturnal_biomass_generation
-        if prods_value['solar'] < 0.0:
-            # if there is (next to) no sunlight and biomass is lower than at midnight
-            prods_value['solar'] = 0.0
-
-        data.append({
-            'zoneKey': 'CY',
-            'production': prods_value,
-            'storage': {},
-            'source': 'tsoc.org.cy',
-            'datetime': time_value
-        })
-
-
-    def parse_html(self, html: str) -> list:
-        html = html.replace('\n', ' ').replace('\r', ' ')
-
-        columns = [m.group(1) for m in self.COLUMNS_REGEX.finditer(html)]
-        assert columns == self.EXPECTED_COLUMNS, 'Source format changed'
-
+    def parse_production(self, html, capacity: dict) -> list:
         data = []
-        for time_m, prods_m in zip(self.TIMES_REGEX.finditer(html), self.PRODUCTIONS_REGEX.finditer(html)):
-            prods_list = prods_m.group(1, 2, 3, 4)
-            if 'null' in prods_list:
+        table = html.find(id='production_graph_data')
+        columns = [th.string for th in table.find_all('th')]
+        midnight_biomass = 0.0
+        for tr in table.tbody.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
+            if None in values or '' in values:
                 break
-            prods_list = [float(p) for p in prods_list]
-            time_str = time_m.group(1) + ' ' + time_m.group(2) + ':' + time_m.group(3)
-            self.append_datum(data, time_str, prods_list)
-
+            production = {}
+            datum = {
+                'zoneKey': 'CY',
+                'production': production,
+                'capacity': capacity,
+                'storage': {},
+                'source': 'tsoc.org.cy'
+            }
+            for col, val in zip(columns, values):
+                if col == 'Timestamp':
+                    datum['datetime'] = arrow.get(val).replace(tzinfo='Asia/Nicosia').datetime
+                elif col == 'Αιολική Παραγωγή':
+                    production['wind'] = float(val)
+                elif col == 'Συμβατική Παραγωγή':
+                    production['oil'] = float(val)
+                elif col == 'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)':
+                    # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
+                    # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
+                    # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
+                    # which constitutes biomass
+                    if len(data) == 0:
+                        midnight_biomass = float(val)
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = 0.0
+                    else:
+                        production['biomass'] = midnight_biomass
+                        production['solar'] = float(val) - midnight_biomass
+            data.append(datum)
         return data
-
 
     def fetch_production(self, target_datetime: datetime.datetime) -> list:
         if target_datetime is None:
-            url = 'https://tsoc.org.cy/total-daily-system-generation-on-the-transmission-system/'
+            url = 'https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/'
         else:
             # convert target datetime to local datetime
             url_date = arrow.get(target_datetime).to('Asia/Nicosia').format('DD-MM-YYYY')
-            url = f'https://tsoc.org.cy/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days'
+            url = f'https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days'
 
         res = self.session.get(url)
-        assert res.status_code == 200, 'CY parser: GET {} returned {}'.format(url, res.status_code)
+        assert res.status_code == 200, f'CY parser: GET {url} returned {res.status_code}'
 
-        data = self.parse_html(res.text)
+        html = BeautifulSoup(res.text, 'lxml')
+
+        capacity = self.parse_capacity(html)
+        data = self.parse_production(html, capacity)
 
         if len(data) == 0:
-            self.logger.warning('No production data returned for Cyprus', extra={'key': 'CY'})
-
+            self.warn('No production data returned for Cyprus')
         return data
-
 
 def fetch_production(zone_key='CY', session=None,
         target_datetime: datetime.datetime = None,
@@ -131,26 +127,30 @@ def fetch_production(zone_key='CY', session=None,
       changed or is not available, raise an Exception.
 
     A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+
+        {
+            'zoneKey': 'FR',
+            'datetime': '2017-01-01T00:00:00Z',
+            'production': {
+                'biomass': 0.0,
+                'coal': 0.0,
+                'gas': 0.0,
+                'hydro': 0.0,
+                'nuclear': None,
+                'oil': 0.0,
+                'solar': 0.0,
+                'wind': 0.0,
+                'geothermal': 0.0,
+                'unknown': 0.0
+            },
+            'capacity': {
+                'hydro': 500
+            },
+            'storage': {
+                'hydro': -10.0,
+            },
+            'source': 'mysource.com'
+        }
     """
     assert zone_key == 'CY'
 

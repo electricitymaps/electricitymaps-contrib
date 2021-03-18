@@ -21,6 +21,7 @@ body {
     padding: 0 !important;
     font-family: $primary-font;
     transition: background-color 800ms;
+    overflow: hidden; /* Disable dragging that can occur on mobile */
 }
 
 body {

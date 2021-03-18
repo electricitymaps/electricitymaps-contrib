@@ -141,9 +141,9 @@ def fetch_historical_data(target_datetime, zone_key='US-CA'):
                        + float(other_resources['THERMAL'][i]),
                 'hydro': float(renewable_resources['SMALL HYDRO'][i])
                          + float(other_resources['HYDRO'][i]),
-                'nuclear': float(other_resources['NUCLEAR'][i]),
-                'solar': float(renewable_resources['SOLAR PV'][i])
-                         + float(renewable_resources['SOLAR THERMAL'][i]),
+                'nuclear': max(float(other_resources['NUCLEAR'][i]), 0),
+                'solar': max(float(renewable_resources['SOLAR PV'][i])
+                         + float(renewable_resources['SOLAR THERMAL'][i]), 0),
                 'wind': float(renewable_resources['WIND TOTAL'][i]),
                 'geothermal': float(renewable_resources['GEOTHERMAL'][i]),
             },
