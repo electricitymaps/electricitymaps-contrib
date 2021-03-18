@@ -14,13 +14,8 @@ import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 const MobileInfoTab = () => {
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
-
-  // If not on small screen, redirect to the /map page
-  if (isMediumUpScreen) {
-    return <Redirect to={{ pathname: '/map', search: location.search }} />;
-  }
-
   const [mobileAppVersion, setMobileAppVersion] = useState(null);
+
   // Check app version once
   useEffect(() => {
     if (!mobileAppVersion && window.isCordova) {
@@ -42,6 +37,11 @@ const MobileInfoTab = () => {
       }, err => console.error(err));
     }
   }, []);
+
+  // If not on small screen, redirect to the /map page
+  if (isMediumUpScreen) {
+    return <Redirect to={{ pathname: '/map', search: location.search }} />;
+  }
 
   return (
     <div className="mobile-info-tab">
