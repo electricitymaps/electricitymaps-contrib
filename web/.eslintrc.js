@@ -76,25 +76,27 @@ module.exports = {
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-    'react-hooks/rules-of-hooks': 'error',
     'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx'] }],
 
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
     'object-shorthand': 'error',
 
+    // Rules we want to enable soon!
+    'no-console': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'warn',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+
     // Rules we want to enable one day
-    'no-console': 'warn',
-    curly: 'warn',
-    'no-nested-ternary': 'warn',
-    'jsx-a11y/anchor-is-valid': 'warn',
-    'jsx-a11y/click-events-have-key-events': 'warn',
-    'jsx-a11y/no-noninteractive-element-interactions': 'warn',
-    'jsx-a11y/no-static-element-interactions': 'warn',
-    'max-len': ['warn', {'code': 120}],
-    'no-underscore-dangle': 'warn',
-    'react/jsx-one-expression-per-line': 'warn',
+    'curly': 'off',
+    'no-nested-ternary': 'off',
+    'max-len': ['off', {'code': 120}],
+    'no-underscore-dangle': 'off',
+    'react/jsx-one-expression-per-line': 'off',
 
     // Rules that doesn't make sense for us:
     'jest/no-standalone-expect': 'off', // afterEach not covered
