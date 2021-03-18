@@ -82,7 +82,7 @@ export default () => {
       dispatchApplication('webGLSupported', false);
       history.push({ pathname: '/ranking', search: location.search });
     },
-    [history, location.search],
+    [history],
   );
 
   const handleMouseMove = useMemo(
@@ -172,7 +172,7 @@ export default () => {
     () => ({ width, height }) => {
       handleViewportChange({ ...viewport, width, height });
     },
-    [viewport, handleViewportChange],
+    [viewport],
   );
 
   // Animate map transitions only after the map has been loaded.

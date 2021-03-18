@@ -97,7 +97,7 @@ const OnboardingModal = ({ visible }) => {
     if (visible) {
       trackEvent('onboardingModalShown');
     }
-  }, [trackEvent, visible]);
+  }, [visible]);
 
   if (!visible) return null;
 

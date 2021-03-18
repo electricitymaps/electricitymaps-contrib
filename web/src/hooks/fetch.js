@@ -18,7 +18,7 @@ export function useClientVersionFetch() {
     if (clientType === 'web' && !isLocalhost) {
       dispatch({ type: 'CLIENT_VERSION_FETCH_REQUESTED' });
     }
-  }, [clientType, dispatch, isLocalhost]);
+  }, [clientType, isLocalhost]);
 }
 
 export function useConditionalZoneHistoryFetch() {
@@ -34,7 +34,7 @@ export function useConditionalZoneHistoryFetch() {
     } else if (zoneId && isEmpty(historyData)) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId } });
     }
-  }, [dispatch, zoneId, historyData, customDatetime]);
+  }, [zoneId, historyData, customDatetime]);
 }
 
 export function useGridDataPolling() {
@@ -51,7 +51,7 @@ export function useGridDataPolling() {
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
-  }, [datetime, dispatch]);
+  }, [datetime]);
 }
 
 export function useConditionalWindDataPolling() {
@@ -76,7 +76,7 @@ export function useConditionalWindDataPolling() {
       dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
     }
     return () => clearInterval(pollInterval);
-  }, [dispatch, windEnabled, customDatetime]);
+  }, [windEnabled, customDatetime]);
 }
 
 export function useConditionalSolarDataPolling() {
@@ -101,5 +101,5 @@ export function useConditionalSolarDataPolling() {
       dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
     }
     return () => clearInterval(pollInterval);
-  }, [dispatch, solarEnabled, customDatetime]);
+  }, [solarEnabled, customDatetime]);
 }
