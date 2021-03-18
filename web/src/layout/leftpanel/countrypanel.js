@@ -116,6 +116,7 @@ const CountryPanel = ({
         document.removeEventListener('keyup', keyHandler);
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [history],
   );
 

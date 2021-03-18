@@ -70,6 +70,8 @@ export function useCurrentZoneData() {
 export function useCurrentZoneExchangeKeys() {
   // Use the whole history (which doesn't depend on timestamp)
   // and fallback on current zone data
+  // TODO: this doesn't look right:
+  // eslint-disable-next-line react-hooks/rules-of-hooks, react-hooks/exhaustive-deps
   const zoneHistory = useCurrentZoneHistory() || [useCurrentZoneData()];
   const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
 

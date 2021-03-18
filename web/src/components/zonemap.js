@@ -61,7 +61,7 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    [],
+    [debouncedSetIsDragging],
   );
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
@@ -119,7 +119,7 @@ const ZoneMap = ({
         onMapError('WebGL not supported');
       }
     },
-    [],
+    [onMapError],
   );
 
   const handleClick = useMemo(
@@ -133,7 +133,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick],
+    [onSeaClick, onZoneClick],
   );
 
   const handleMouseMove = useMemo(
@@ -165,7 +165,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
   );
 
   const handleMouseOut = useMemo(
@@ -175,7 +175,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId],
+    [hoveredZoneId, onZoneMouseLeave],
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.

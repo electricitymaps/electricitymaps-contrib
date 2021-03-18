@@ -71,7 +71,7 @@ export default ({ project, unproject }) => {
       windy.stop();
       setWindy(null);
     }
-  }, [windy, isVisible, node, interpolatedData]);
+  }, [windy, isVisible, node, interpolatedData, project, unproject, viewport]);
 
   return (
     <CSSTransition
