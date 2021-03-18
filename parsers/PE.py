@@ -61,7 +61,7 @@ def fetch_production(zone_key='PE', session=None, target_datetime=None, logger=g
         raise NotImplementedError('This parser is not yet able to parse past dates')
     
     r = session or requests.session()
-    url = 'http://www.coes.org.pe/Portal/portalinformacion/Generacion'
+    url = 'https://www.coes.org.pe/Portal/portalinformacion/generacion'
 
     current_date = arrow.now(tz=tz)
 
