@@ -1290,7 +1290,7 @@
     ],
     "capacity": {
       "oil": 8.05,
-      "solar": 0.75
+      "solar": 0.128
     },
     "contributors": [
       "https://github.com/autipial"
