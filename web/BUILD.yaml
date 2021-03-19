@@ -24,7 +24,7 @@ steps:
       - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json}
       - src
       - views
-      - ./{.babelrc,.eslintrc,server.js,webpack.config.js}
+      - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
       - bash topogen.sh
