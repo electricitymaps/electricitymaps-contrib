@@ -410,6 +410,10 @@
           "CK": {
             "zoneName": "Cookovo Otočje"
           },
+          "CL-SEN": {
+            "countryName": "Čile",
+            "zoneName": "SEN"
+          },
           "CL-SEM": {
             "countryName": "Čile",
             "zoneName": "SEM"
@@ -417,6 +421,10 @@
           "CL-SEA": {
             "countryName": "Čile",
             "zoneName": "SEA"
+          },
+          "CL-CHP": {
+            "countryName": "Čile",
+            "zoneName": "Uskršnji otok"
           },
           "CM": {
             "zoneName": "Kamerun"
