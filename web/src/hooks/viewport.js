@@ -18,8 +18,10 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
         setNode(newNode);
       }
     };
-    // Set initial width
-    update();
+    // Set initial width (the usage of setTimeout solves race conditions on mobile)
+    setTimeout(() => {
+      update();
+    }, 0);
     // Update container width on every resize
     window.addEventListener('resize', update);
     return () => {

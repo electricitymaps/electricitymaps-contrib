@@ -100,12 +100,12 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'IE': '10YIE-1001A00010',
     'IT': '10YIT-GRTN-----B',
     'IT-BR': '10Y1001A1001A699',
+    'IT-CA': '10Y1001C--00096J',
     'IT-CNO': '10Y1001A1001A70O',
     'IT-CSO': '10Y1001A1001A71M',
     'IT-FO': '10Y1001A1001A72K',
     'IT-NO': '10Y1001A1001A73I',
     'IT-PR': '10Y1001A1001A76C',
-    'IT-RO': '10Y1001A1001A77A',
     'IT-SAR': '10Y1001A1001A74G',
     'IT-SIC': '10Y1001A1001A75E',
     'IT-SO': '10Y1001A1001A788',
@@ -925,7 +925,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
 
 ZONE_KEY_AGGREGATES = {
-    'IT-SO': ['IT-RO', 'IT-SO'],
+    'IT-SO': ['IT-CA', 'IT-SO'],
 }
 
 
