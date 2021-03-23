@@ -53,13 +53,13 @@ SOURCE = 'opennem.org'
 def dataset_to_df(dataset):
     series = dataset['history']
     interval = series['interval']
-    dt_i = arrow.get(series['start']).datetime
-    dt_f = arrow.get(series['last']).datetime
-    _type = dataset['data_type']
+    dt_start = arrow.get(series['start']).datetime
+    dt_end = arrow.get(series['last']).datetime
+    data_type = dataset['data_type']
     _id = dataset.get('id')
 
-    if _type != 'power':
-        name = _type.upper()
+    if data_type != 'power':
+        name = data_type.upper()
     else:
         # When `power` is given, the multiple power sources will be given
         # we therefore set `name` to the power source
@@ -69,7 +69,7 @@ def dataset_to_df(dataset):
     if interval[-1] == "m":
         interval += "in"
 
-    index = pd.date_range(start=dt_i, end=dt_f, freq=interval)
+    index = pd.date_range(start=dt_start, end=dt_end, freq=interval)
     assert len(index) == len(series['data'])
     df = pd.DataFrame(index=index, data=series['data'], columns=[name])
     return df
@@ -81,8 +81,8 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
         df_start = arrow.get(target_datetime).shift(days=-7).datetime
         y, w, d = df_start.isocalendar()
         iso_week = "{0}W{1:02d}".format(y, w)
-        raise Exception('Not tested yet')
-        url = f'http://data.opennem.org.au/power/history/5minute/{region}_{iso_week}.json'
+        raise NotImplementedError()
+        # url = f'http://data.opennem.org.au/power/history/5minute/{region}_{iso_week}.json'
     else:
         url = f'https://data.dev.opennem.org.au/v3/clients/em/latest.json'
 
@@ -194,7 +194,6 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)
-    # Remember to reverse flow
     df = fetch_main_df('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)
     direction = EXCHANGE_MAPPING_DICTIONARY[key]['direction']
 
