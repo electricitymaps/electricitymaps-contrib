@@ -433,6 +433,10 @@
             "countryName": "Chile",
             "zoneName": "SEA"
         },
+        "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Osterinsel"
+        },
         "CM": {
             "zoneName": "Kamerun"
         },
