@@ -1208,12 +1208,12 @@
   "CL-SEN": {
     "bounding_box": [
       [
-        -74.71,
-        -44.02
+        -74.90721594999991,
+        -44.54499811646991
       ],
       [
-        -66.88,
-        -17.39
+        -66.51396683799987,
+        -17.006588197999946
       ]
     ],
     "capacity": {
@@ -1236,7 +1236,33 @@
     "parsers": {
       "production": "CL.fetch_production"
     },
-    "timezone": "Chile/Continental"
+    "timezone": "America/Santiago"
+  },
+  "CL-SEA": {
+    "bounding_box": [
+      [
+        -76.21141516799992,
+        -49.75087001999994
+      ],
+      [
+        -70.62239823399997,
+        -43.0301774319999
+      ]
+    ],
+    "timezone": "America/Santiago"
+  },
+  "CL-SEM": {
+    "bounding_box": [
+      [
+        -76.16104081899994,
+        -56.4185042229999
+      ],
+      [
+        -65.92080644399994,
+        -48.13730234199994
+      ]
+    ],
+    "timezone": "America/Punta_Arenas"
   },
   "CL-SIC": {
     "_todo": "remove. See https://github.com/tmrowco/tmrow/issues/3188",
@@ -1251,6 +1277,26 @@
       ]
     ],
     "timezone": "Chile/Continental"
+  },
+  "CL-CHP": {
+    "bounding_box": [
+      [
+        -109.95372473899994,
+        -27.701429945999905
+      ],
+      [
+        -104.95954342399995,
+        -25.95549895599993
+      ]
+    ],
+    "capacity": {
+      "oil": 8.05,
+      "solar": 0.128
+    },
+    "contributors": [
+      "https://github.com/autipial"
+    ],
+    "timezone": "Pacific/Easter"
   },
   "CR": {
     "bounding_box": [

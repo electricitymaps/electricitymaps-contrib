@@ -432,6 +432,10 @@
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico Nacional"
         },
+        "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Isla de Pascua"
+        },
         "CM": {
             "zoneName": "Camerún"
         },

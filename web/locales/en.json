@@ -447,6 +447,10 @@
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico Nacional"
           },
+          "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Easter Island"
+          },
           "CM": {
             "zoneName": "Cameroon"
           },
