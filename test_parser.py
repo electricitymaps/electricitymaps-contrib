@@ -20,6 +20,8 @@ from parsers.lib.quality import (
     ValidationError,
 )
 
+logger = logging.getLogger(__name__)
+
 
 @click.command()
 @click.argument("zone")
@@ -66,8 +68,7 @@ def test_parser(zone, data_type, target_datetime):
     )
 
     if not res:
-        print("Error: parser returned nothing ({})".format(res))
-        sys.exit(1)
+        raise ValueError('Error: parser returned nothing ({})'.format(res))
 
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
@@ -78,19 +79,15 @@ def test_parser(zone, data_type, target_datetime):
     try:
         dts = [e["datetime"] for e in res_list]
     except:
-        print(
-            "Parser output lacks `datetime` key for at least some of the "
-            "output. Full output: \n\n{}\n".format(res)
-        )
-        sys.exit(2)
+        raise ValueError('Parser output lacks `datetime` key for at least some of the '
+              'ouput. Full ouput: \n\n{}\n'.format(res))
+    
+    assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
+        'Datetimes must be returned as native datetime.datetime objects'
 
-    assert all(
-        [type(e["datetime"]) is datetime.datetime for e in res_list]
-    ), "Datetimes must be returned as native datetime.datetime objects"
-
-    last_dt = arrow.get(max(dts)).to("UTC")
-    first_dt = arrow.get(min(dts)).to("UTC")
-    max_dt_warning = ""
+    last_dt = arrow.get(max(dts)).to('UTC')
+    first_dt = arrow.get(min(dts)).to('UTC')
+    max_dt_warning = ''
     if not target_datetime:
         max_dt_warning = (
             " :( >2h from now !!!"
@@ -123,8 +120,7 @@ def test_parser(zone, data_type, target_datetime):
             elif data_type == "exchange":
                 validate_exchange(event, zone)
         except ValidationError as e:
-            print("Validation failed: {}".format(e))
-            sys.exit(3)
+            logger.warning('Validation failed @ {}: {}'.format(event['datetime'], e))
 
 
 if __name__ == "__main__":

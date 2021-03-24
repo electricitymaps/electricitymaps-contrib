@@ -209,8 +209,8 @@
     ],
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
@@ -251,8 +251,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [
@@ -286,8 +286,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [
@@ -331,8 +331,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
@@ -450,8 +450,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "price": "AU.fetch_price",
-      "production": "AU.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null
   },
@@ -467,7 +467,8 @@
     },
     "flag_file_name": "au.png",
     "parsers": {
-      "production": "AU_WA.fetch_production"
+      "price": "OPENNEM.fetch_price",
+      "production": "OPENNEM.fetch_production"
     },
     "timezone": null,
     "bounding_box": [
@@ -1346,7 +1347,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 229.3,
+      "solar": 252.76,
       "wind": 157.5
     },
     "contributors": [
@@ -4218,7 +4219,7 @@
       "hydro storage": 1794,
       "nuclear": 0,
       "oil": 359,
-      "solar": 3935.74,
+      "solar": 4088.9,
       "unknown": 0,
       "wind": 6252
     },
