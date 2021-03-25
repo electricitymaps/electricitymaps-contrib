@@ -75,15 +75,19 @@ def dataset_to_df(dataset):
     return df
 
 
+def generate_url():
+    # See https://developers.opennem.org.au/
+
+
 def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+    region = ZONE_KEY_TO_REGION[zone_key]
     if target_datetime:
-        # We will fetch one week in the past
-        df_start = arrow.get(target_datetime).shift(days=-7).datetime
-        y, w, d = df_start.isocalendar()
-        iso_week = "{0}W{1:02d}".format(y, w)
-        raise NotImplementedError()
-        # url = f'http://data.opennem.org.au/power/history/5minute/{region}_{iso_week}.json'
+        # We will fetch since the beginning of the current month
+        month = arrow.get(target_datetime).floor('month').format('YYYY-MM-DD')
+        url = f'http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}.json'
+        url = f'http://api.opennem.org.au/stats/flow/network/{network}?month={month}.json'
     else:
+        # Contains flows and production combined
         url = f'https://data.dev.opennem.org.au/v3/clients/em/latest.json'
 
     # Fetches the last week of data
@@ -93,7 +97,7 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
     filtered_datasets = [
         ds for ds in datasets
         if ds['type'] == data_type and (
-            (zone_key and ds.get('region') == ZONE_KEY_TO_REGION[zone_key])
+            (zone_key and ds.get('region') == region)
             or (sorted_zone_keys and ds.get('id').split('.')[-2] == EXCHANGE_MAPPING_DICTIONARY['->'.join(sorted_zone_keys)]['region_id'])
         )
     ]
@@ -104,7 +108,7 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
         # Parse capacity data
         capacities = dict([
             (obj['id'].split('.')[-2].upper(), obj.get('x_capacity_at_present'))
-            for obj in filtered_datasets if obj['region'] == ZONE_KEY_TO_REGION[zone_key]
+            for obj in filtered_datasets if obj['region'] == region
         ])
         return df, pd.Series(capacities)
     else:
@@ -180,7 +184,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
 
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    df = fetch_main_df('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
+    df = fetch_main_df_price('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
         'datetime': arrow.get(dt.to_pydatetime()).datetime,
@@ -194,7 +198,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)
-    df = fetch_main_df('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)
+    df = fetch_main_df_flow('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)
     direction = EXCHANGE_MAPPING_DICTIONARY[key]['direction']
 
     # Take the first column (there's only one)
