@@ -2505,8 +2505,8 @@
   },
   "IN": {
     "capacity": {
-      "solar": 26000,
-      "wind": 34000,
+      "solar": 37700,
+      "wind": 34600,
       "coal": 196000,
       "hydro": 50000,
       "gas": 25000,
@@ -2533,9 +2533,10 @@
       ]
     ],
     "capacity": {
+      "biomass": 477,
       "hydro": 1797.6,
-      "solar": 2049,
-      "wind": 1866.35
+      "solar": 3610,
+      "wind": 4092
     },
     "contributors": [
       "https://github.com/hectorespert"
@@ -2559,13 +2560,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 228,
+      "biomass": 245,
       "coal": 22968,
       "gas": 0,
       "hydro": 196,
       "nuclear": 0,
       "oil": 0,
-      "solar": 185,
+      "solar": 231,
       "wind": 0
     },
     "contributors": [
@@ -2596,7 +2597,7 @@
       "hydro": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 70,
+      "solar": 165,
       "wind": 0
     },
     "contributors": [
@@ -2627,8 +2628,8 @@
       "hydro": 2019,
       "nuclear": 440,
       "oil": 0,
-      "solar": 1587,
-      "wind": 5570
+      "solar": 2948,
+      "wind": 7542
     },
     "contributors": [
       "https://github.com/sahitya-pavurala"
@@ -2653,6 +2654,7 @@
     ],
     "capacity": {
       "hydro": 5475,
+      "solar": 33,
       "unknown": 608
     },
     "contributors": [
@@ -2683,7 +2685,7 @@
       "nuclear": 880,
       "oil": 153,
       "solar": 3657,
-      "wind": 3860
+      "wind": 4791
     },
     "contributors": [
       "https://github.com/hectorespert"
@@ -2706,6 +2708,11 @@
         22.105644
       ]
     ],
+    "capacity": {
+      "biomass": 2516,
+      "solar": 1802,
+      "wind": 5000
+    },
     "contributors": [
       "https://github.com/GitMatze",
       "https://github.com/alixunderplatz",
@@ -2729,13 +2736,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 203,
+      "biomass": 317,
       "coal": 6540,
       "gas": 0,
       "hydro": 1377,
       "nuclear": 0,
       "oil": 0,
-      "solar": 913,
+      "solar": 947,
       "wind": 0
     },
     "contributors": [
@@ -2767,7 +2774,7 @@
       "hydro": 527,
       "nuclear": 440,
       "oil": 0,
-      "solar": 551,
+      "solar": 1095,
       "wind": 0
     },
     "contributors": [
