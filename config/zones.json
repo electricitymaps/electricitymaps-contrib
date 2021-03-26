@@ -2505,13 +2505,13 @@
   },
   "IN": {
     "capacity": {
-      "solar": 37700,
-      "wind": 34600,
+      "solar": 34600,
+      "wind": 37700,
       "coal": 196000,
       "hydro": 50000,
       "gas": 25000,
       "nuclear": 6700,
-      "biomass": 9400
+      "biomass": 8000
     },
     "contributors": [
       "https://github.com/systemcatch"
@@ -2622,7 +2622,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 65,
+      "biomass": 77,
       "coal": 15492,
       "gas": 7551,
       "hydro": 2019,
