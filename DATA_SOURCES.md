@@ -189,7 +189,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
-- Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
+- Canada (Québec): [Hydro-Québec](https://www.hydroquebec.com/generation/generating-stations.html)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
 - Canada (Yukon)
   - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)

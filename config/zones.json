@@ -1014,7 +1014,7 @@
     "parsers": {
       "production": "CA_NS.fetch_production"
     },
-    "timezone": null
+    "timezone": "America/Halifax"
   },
   "CA-NT": {
     "flag_file_name": "ca.png",
@@ -1065,7 +1065,7 @@
       "price": "CA_ON.fetch_price",
       "production": "CA_ON.fetch_production"
     },
-    "timezone": null,
+    "timezone": "America/Toronto",
     "bounding_box": [
       [
         -95.66119498965699,
@@ -1100,17 +1100,23 @@
     "parsers": {
       "production": "CA_PE.fetch_production"
     },
-    "timezone": null
+    "timezone": "America/Halifax"
   },
   "CA-QC": {
-    "_comment": "http://www.hydroquebec.com/generation/",
+    "_comment": "https://www.hydroquebec.com/generation/generating-stations.html",
     "capacity": {
+      "biomass": 257,
+      "coal": 0,
       "gas": 411,
-      "hydro": 36366,
-      "oil": 130
+      "hydro": 36765,
+      "nuclear": 0,
+      "oil": 131,
+      "solar": 0,
+      "unknown": 1056,
+      "wind": 3508
     },
     "flag_file_name": "ca.png",
-    "timezone": null,
+    "timezone": "America/Toronto",
     "bounding_box": [
       [
         -80.26561438699991,
@@ -1130,7 +1136,7 @@
       "wind": 221
     },
     "flag_file_name": "ca.png",
-    "timezone": null,
+    "timezone": "America/Regina",
     "bounding_box": [
       [
         -110.49997270417693,
@@ -1151,7 +1157,7 @@
     "parsers": {
       "production": "CA_YT.fetch_production"
     },
-    "timezone": null,
+    "timezone": "America/Whitehorse",
     "bounding_box": [
       [
         -141.50554863710892,
