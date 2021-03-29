@@ -987,6 +987,19 @@
       ]
     ]
   },
+  "CA-NL-NL": {
+    "_comment": "https://nlhydro.com/system-information/supply-and-demand/ This is just the island of Newfoundland",
+    "capacity": {},
+    "flag_file_name": "ca.png",
+    "timezone": "Canada/Newfoundland",
+    "bounding_box": null,
+    "parsers": {
+      "production": "CA_NL_NL.fetch_production"
+    },
+    "contributors": [
+      "https://github.com/byronwilliams"
+    ]
+  },
   "CA-NS": {
     "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW",
     "bounding_box": [
