@@ -160,6 +160,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
             'wind': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['wind']),
             'biomass': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['biomass']),
             'solar': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['solar']),
+            'hydro storage': capacities.get(OPENNEM_STORAGE_CATEGORIES['hydro'][0]),
+            'battery storage': capacities.get(OPENNEM_STORAGE_CATEGORIES['battery'][0]),
         },
         'source': SOURCE,
         'zoneKey': zone_key,
