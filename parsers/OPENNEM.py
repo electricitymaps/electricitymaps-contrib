@@ -7,12 +7,22 @@ import requests
 import pandas as pd
 import numpy as np
 
+from tqdm import tqdm
+
 ZONE_KEY_TO_REGION = {
     'AUS-NSW': 'NSW1',
     'AUS-QLD': 'QLD1',
     'AUS-SA': 'SA1',
     'AUS-TAS': 'TAS1',
     'AUS-VIC': 'VIC1',
+    'AUS-WA': 'WEM',
+}
+ZONE_KEY_TO_NETWORK = {
+    'AUS-NSW': 'NEM',
+    'AUS-QLD': 'NEM',
+    'AUS-SA': 'NEM',
+    'AUS-TAS': 'NEM',
+    'AUS-VIC': 'NEM',
     'AUS-WA': 'WEM',
 }
 EXCHANGE_MAPPING_DICTIONARY = {
@@ -75,25 +85,37 @@ def dataset_to_df(dataset):
     return df
 
 
-def generate_url():
-    # See https://developers.opennem.org.au/
+def generate_url(zone_key, is_flow, target_datetime, logger):
+    if target_datetime:
+        network = ZONE_KEY_TO_NETWORK[zone_key]
+        # We will fetch since the beginning of the current month
+        month = arrow.get(target_datetime).floor('month').format('YYYY-MM-DD')
+        if is_flow:
+            url = f'http://api.opennem.org.au/stats/flow/network/{network}?month={month}'
+        else:
+            region = ZONE_KEY_TO_REGION.get(zone_key)
+            url = f'http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}'
+    else:
+        # Contains flows and production combined
+        url = f'https://data.opennem.org.au/v3/clients/em/latest.json'
+    return url
 
 
 def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    region = ZONE_KEY_TO_REGION[zone_key]
-    if target_datetime:
-        # We will fetch since the beginning of the current month
-        month = arrow.get(target_datetime).floor('month').format('YYYY-MM-DD')
-        url = f'http://api.opennem.org.au/stats/power/network/fueltech/{network}/{region}?month={month}.json'
-        url = f'http://api.opennem.org.au/stats/flow/network/{network}?month={month}.json'
-    else:
-        # Contains flows and production combined
-        url = f'https://data.dev.opennem.org.au/v3/clients/em/latest.json'
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    url = generate_url(
+        zone_key=zone_key or sorted_zone_keys[0],
+        is_flow=sorted_zone_keys is not None,
+        target_datetime=target_datetime,
+        logger=logger)
 
     # Fetches the last week of data
+    logger.info(f'Requesting {url}..')
     r = (session or requests).get(url)
     r.raise_for_status()
+    logger.debug('Parsing JSON..')
     datasets = r.json()['data']
+    logger.debug('Filtering datasets..')
     filtered_datasets = [
         ds for ds in datasets
         if ds['type'] == data_type and (
@@ -101,7 +123,9 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
             or (sorted_zone_keys and ds.get('id').split('.')[-2] == EXCHANGE_MAPPING_DICTIONARY['->'.join(sorted_zone_keys)]['region_id'])
         )
     ]
+    logger.debug('Concatenating datasets..')
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
+    logger.debug('Preparing capacities..')
     if data_type == 'power' and zone_key:
         # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
         df['SOLAR_ROOFTOP'] = df['SOLAR_ROOFTOP'].interpolate(limit=5)
@@ -115,12 +139,16 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
         return df
 
 
-def sum_vector(pd_series, keys, transform=lambda x: x):
+def sum_vector(pd_series, keys, transform=None):
     # Only consider keys that are in the pd_series
-    filtered_keys = [k for k in keys if k in pd_series.index]
+    filtered_keys = pd_series.index.intersection(keys)
+
     # Require all present keys to be non-null
-    if filtered_keys and pd_series[filtered_keys].notnull().all():
-        return pd_series[filtered_keys].apply(transform).sum()
+    pd_series_filtered = pd_series.loc[filtered_keys]
+    if filtered_keys.size and pd_series_filtered.notnull().all():
+        if transform:
+            return pd_series_filtered.apply(transform).sum()
+        return pd_series_filtered.sum()
     else:
         return None
 
@@ -135,6 +163,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
     if 'BATTERY_DISCHARGING' in df.columns:
         df['BATTERY_DISCHARGING'] = df['BATTERY_DISCHARGING'] * -1
 
+    logger.debug('Preparing final objects..')
     objs = [{
         'datetime': arrow.get(dt.to_pydatetime()).datetime,
         'production': {  # Unit is MW
@@ -167,9 +196,10 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         },
         'source': SOURCE,
         'zoneKey': zone_key,
-    } for dt, row in df.iterrows()]
+    } for dt, row in tqdm(df.iterrows())]
 
     # Validation
+    logger.debug('Validating..')
     for obj in objs:
         for k, v in obj['production'].items():
             if v is None:
@@ -184,7 +214,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
 
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    df = fetch_main_df_price('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
+    df = fetch_main_df('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
         'datetime': arrow.get(dt.to_pydatetime()).datetime,
@@ -198,7 +228,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)
-    df = fetch_main_df_flow('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)
+    df = fetch_main_df('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)
     direction = EXCHANGE_MAPPING_DICTIONARY[key]['direction']
 
     # Take the first column (there's only one)

@@ -29,6 +29,7 @@ opencv-python = {version="4.2.0.32", optional=true}
 xlrd = {version="1.2.0", optional=true}
 freezegun = {version="0.3.15", optional=true}
 signalr-client-threads = {version="0.0.12", optional=true}
+tqdm = "^4.59.0"
 
 [tool.poetry.dev-dependencies]
 click = "6.7"
