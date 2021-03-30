@@ -47,7 +47,7 @@ OPENNEM_STORAGE_CATEGORIES = {
     'battery': ['BATTERY_DISCHARGING', 'BATTERY_CHARGING'],
     'hydro': ['PUMPS'],
 }
-SOURCE = 'opennem.org'
+SOURCE = 'opennem.org.au'
 
 
 def dataset_to_df(dataset):
