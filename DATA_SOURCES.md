@@ -253,11 +253,12 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
-- India
-  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
+- India:
+   - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
   - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
   - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
-  - other: [Ministry of Power India](https://cea.nic.in/%e0%a4%b8%e0%a4%82%e0%a4%b8%e0%a5%8d%e0%a4%a5%e0%a4%be%e0%a4%aa%e0%a4%bf%e0%a4%a4-%e0%a4%95%e0%a5%8d%e0%a4%b7%e0%a4%ae%e0%a4%a4%e0%a4%be-%e0%a4%b0%e0%a4%bf%e0%a4%aa%e0%a5%8b%e0%a4%b0%e0%a5%8d%e0%a4%9f/)
+  - other: [NPP](https://npp.gov.in/publishedReports)
+  - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
