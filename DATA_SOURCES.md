@@ -254,7 +254,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
 - India:
-   - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
+  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
   - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
   - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
   - other: [NPP](https://npp.gov.in/publishedReports)
