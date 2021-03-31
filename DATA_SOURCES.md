@@ -253,10 +253,12 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
-- India: [mercomindia](https://mercomindia.com/solar-indias-installed-power-capacity/)
-- India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
-- India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
-- India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
+- India:
+  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
+  - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
+  - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
+  - other: [NPP](https://npp.gov.in/publishedReports)
+  - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
