@@ -31,7 +31,8 @@ def fetch_production(zone_key='IL', session=None, logger=None):
         'zoneKey': zone_key,
         'datetime': arrow.now('Asia/Jerusalem').datetime,
         'production': production,
-        'source': 'iec.co.il'
+        'source': 'iec.co.il',
+        'price': '50.66' # Price is determined yearly
     }
 
     return datapoint
