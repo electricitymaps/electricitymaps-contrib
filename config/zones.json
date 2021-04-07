@@ -2488,7 +2488,7 @@
         34.2585
       ]
     ],
-    "capacity": {
+    "capacity": { #TODO: update capacities
       "coal": 4840,
       "gas": 9213,
       "solar": 378,
@@ -2499,7 +2499,8 @@
       "https://github.com/jarek"
     ],
     "parsers": {
-      "production": "IL.fetch_production"
+      "production": "IL.fetch_production",
+      "consumption": #TODO: add function
     },
     "timezone": "Asia/Jerusalem"
   },
