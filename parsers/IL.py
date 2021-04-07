@@ -13,35 +13,38 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-IEC_PRODUCTION = 'https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx'
-PRICE = '50.66' # Price is determined yearly
+IEC_PRODUCTION = (
+    "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
+)
+PRICE = "50.66"  # Price is determined yearly
 
-def fetch_production(zone_key='IL', session=None, logger=None):
+
+def fetch_production(zone_key="IL", session=None, logger=None):
     first = requests.get(IEC_PRODUCTION)
     first.cookies
     second = requests.get(IEC_PRODUCTION, cookies=first.cookies)
 
-    soup = BeautifulSoup(second.content, 'lxml')
+    soup = BeautifulSoup(second.content, "lxml")
 
     span = soup.find("span", attrs={"class": "statusVal"})
     value = re.findall("\d+", span.text.replace(",", ""))
     load = int(value[0])
     production = {}
-    production['unknown'] = load
-    
+    production["unknown"] = load
+
     datapoint = {
-        'zoneKey': zone_key,
-        'datetime': arrow.now('Asia/Jerusalem').datetime,
-        'production': production,
-        'source': 'iec.co.il',
-        'price': PRICE
+        "zoneKey": zone_key,
+        "datetime": arrow.now("Asia/Jerusalem").datetime,
+        "production": production,
+        "source": "iec.co.il",
+        "price": PRICE,
     }
 
     return datapoint
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    
-    print('fetch_production() ->')
+
+    print("fetch_production() ->")
     print(fetch_production())
