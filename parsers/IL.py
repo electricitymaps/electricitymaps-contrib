@@ -12,11 +12,12 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
+IEC_PRODUCTION = 'https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx'
 
 def fetch_production(zone_key='IL', session=None, logger=None):
-    first = requests.get('https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx')
+    first = requests.get(IEC_PRODUCTION)
     first.cookies
-    second = requests.get('https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx', cookies=first.cookies)
+    second = requests.get(IEC_PRODUCTION, cookies=first.cookies)
 
     soup = BeautifulSoup(second.content, 'lxml')
 
