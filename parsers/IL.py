@@ -33,6 +33,7 @@ def flatten_list(_2d_list):
 def fetch_production(zone_key="IL", session=None, logger=None):
     first = requests.get(IEC_PRODUCTION)
     first.cookies
+<<<<<<< HEAD
     with requests.get(IEC_PRODUCTION, cookies=first.cookies) as second:
         soup = BeautifulSoup(second.content, "lxml")
 
@@ -63,6 +64,24 @@ def fetch_production(zone_key="IL", session=None, logger=None):
         },
         "source": IEC_URL,
         "price": PRICE,
+=======
+    second = requests.get(IEC_PRODUCTION, cookies=first.cookies)
+
+    soup = BeautifulSoup(second.content, 'lxml')
+
+    span = soup.find("span", attrs={"class": "statusVal"})
+    value = re.findall("\d+", span.text.replace(",", ""))
+    load = int(value[0])
+    production = {}
+    production['unknown'] = load
+    
+    datapoint = {
+        'zoneKey': zone_key,
+        'datetime': arrow.now('Asia/Jerusalem').datetime,
+        'production': production,
+        'source': 'iec.co.il',
+        'price': '50.66' # Price is determined yearly
+>>>>>>> 0a521ef9 (Add price)
     }
 
     return data
