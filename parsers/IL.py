@@ -18,29 +18,46 @@ IEC_PRODUCTION = (
 )
 PRICE = "50.66"  # Price is determined yearly
 
+def flatten_list(_2d_list):
+    flat_list = []
+    # Iterate through the outer list
+    for element in _2d_list:
+        if type(element) is list:
+            # If the element is of type list, iterate through the sublist
+            for item in element:
+                flat_list.append(item)
+        else:
+            flat_list.append(element)
+    return flat_list
 
 def fetch_production(zone_key="IL", session=None, logger=None):
     first = requests.get(IEC_PRODUCTION)
     first.cookies
-    second = requests.get(IEC_PRODUCTION, cookies=first.cookies)
+    with requests.get(IEC_PRODUCTION, cookies=first.cookies) as second:
+        soup = BeautifulSoup(second.content, "lxml")
 
-    soup = BeautifulSoup(second.content, "lxml")
+        values:list = soup.find_all("span", class_='statusVal')
+        del values[1]
 
-    span = soup.find("span", attrs={"class": "statusVal"})
-    value = re.findall("\d+", span.text.replace(",", ""))
-    load = int(value[0])
-    production = {}
-    production["unknown"] = load
+        cleaned_list = []
+        for value in values:
+            value = re.findall("\d+", value.text.replace(",", ""))
+            cleaned_list.append(value)
 
-    datapoint = {
-        "zoneKey": zone_key,
-        "datetime": arrow.now("Asia/Jerusalem").datetime,
-        "production": production,
-        "source": "iec.co.il",
-        "price": PRICE,
-    }
+        cleaned_list = flatten_list(cleaned_list)
 
-    return datapoint
+        int_list = [int(item) for item in cleaned_list]
+
+        data = {
+            "zoneKey": zone_key,
+            "datetime": arrow.now("Asia/Jerusalem").datetime,
+            "production": int_list[0] + int_list[1],
+            "consumption": int_list[0],
+            "source": "iec.co.il",
+            "price": PRICE,
+        }
+
+        return data
 
 
 if __name__ == "__main__":
