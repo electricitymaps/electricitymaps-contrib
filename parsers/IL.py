@@ -13,6 +13,7 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
+IEC_URL = "iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
@@ -30,7 +31,7 @@ def flatten_list(_2d_list):
             flat_list.append(element)
     return flat_list
 
-def fetch_production(zone_key="IL", session=None, logger=None):
+def fetch():
     first = requests.get(IEC_PRODUCTION)
     first.cookies
     with requests.get(IEC_PRODUCTION, cookies=first.cookies) as second:
@@ -47,21 +48,36 @@ def fetch_production(zone_key="IL", session=None, logger=None):
         cleaned_list = flatten_list(cleaned_list)
 
         int_list = [int(item) for item in cleaned_list]
+    return int_list
 
-        data = {
-            "zoneKey": zone_key,
-            "datetime": arrow.now("Asia/Jerusalem").datetime,
-            "production": int_list[0] + int_list[1],
-            "consumption": int_list[0],
-            "source": "iec.co.il",
-            "price": PRICE,
-        }
+def fetch_production(zone_key="IL", session=None, logger=None):
+    int_list = fetch()
+    data = {
+        "zoneKey": zone_key,
+        "datetime": arrow.now("Asia/Jerusalem").datetime,
+        "production": int_list[0] + int_list[1],
+        "source": IEC_URL,
+        "price": PRICE,
+    }
 
-        return data
+    return data
 
+def fetch_consumption(zone_key='IL', session=None, target_datetime=None, logger=None):
+    int_list = fetch()
+
+    data = {
+        'zoneKey': zone_key,
+        'datetime': arrow.now("Asia/Jerusalem").datetime,
+        'consumption': int_list[0],
+        'source': IEC_URL
+    }
+
+    return data
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print("fetch_production() ->")
     print(fetch_production())
+    print("fetch_consumption() ->")
+    print(fetch_consumption())
