@@ -2488,7 +2488,7 @@
         34.2585
       ]
     ],
-    "capacity": { #TODO: update capacities
+    "capacity": {
       "coal": 4840,
       "gas": 9213,
       "solar": 378,
@@ -2500,7 +2500,7 @@
     ],
     "parsers": {
       "production": "IL.fetch_production",
-      "consumption": #TODO: add function
+      "consumption": "IL.fetch_consumption"
     },
     "timezone": "Asia/Jerusalem"
   },
