@@ -56,7 +56,7 @@ def fetch_production(zone_key="IL", session=None, logger=None):
     with requests.get(IEC_PRODUCTION, cookies=first.cookies) as second:
         soup = BeautifulSoup(second.content, "lxml")
 
-        values:list = soup.find_all("span", class_='statusVal')
+        values:list = soup.find_all("span", class_="statusVal")
         del values[1]
 
         cleaned_list = []
@@ -71,7 +71,7 @@ def fetch_production(zone_key="IL", session=None, logger=None):
     data = {
         "zoneKey": zone_key,
         "datetime": arrow.now("Asia/Jerusalem").datetime,
-        'production': {
+        "production": {
             'biomass': 0.0,
             'coal':  0.0,
             'gas':  0.0,
