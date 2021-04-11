@@ -1803,6 +1803,22 @@
                     "hydro": 0
                 }
             },
+            "IL": {
+                "countryCode": "IL",
+                "datetime": 2021-04-11T21:00:00+02:00,
+                "production": {
+                    "biomass": 0.0,
+                    "coal": 0.0,
+                    "gas": 0.0,
+                    "oil": 0.0,
+                    "solar": 0.0,
+                    "wind": 0.0,
+                    "geothermal": 0.0,
+                    "unknown": 12358
+                },
+                "source": "iec.co.il",
+                "price": "50.66"
+            },
             "IN-AP": {
                 "co2intensity": 11.1133509122906,
                 "countryCode": "IN-AP",
