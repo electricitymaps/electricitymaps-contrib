@@ -729,11 +729,11 @@
       ]
     ],
     "capacity": {
-      "hydro": 63797,
+      "hydro": 58142,
       "nuclear": 1990,
-      "solar": 910,
+      "solar": 923,
       "wind": 28,
-      "unknown": 19365
+      "unknown": 19446
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -759,10 +759,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 22251,
-      "solar": 5,
+      "hydro": 22261,
+      "solar": 3,
       "wind": 426,
-      "unknown": 3654
+      "unknown": 3641
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -788,10 +788,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 11023,
-      "solar": 1525,
-      "wind": 12801,
-      "unknown": 7227
+      "hydro": 11021,
+      "solar": 2128,
+      "wind": 14278,
+      "unknown": 8243
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -817,10 +817,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 17045,
-      "solar": 4,
+      "hydro": 17166,
+      "solar": 8,
       "wind": 2018,
-      "unknown": 4220
+      "unknown": 4227
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -1014,7 +1014,7 @@
     "parsers": {
       "production": "CA_NS.fetch_production"
     },
-    "timezone": null
+    "timezone": "America/Halifax"
   },
   "CA-NT": {
     "flag_file_name": "ca.png",
@@ -1065,7 +1065,7 @@
       "price": "CA_ON.fetch_price",
       "production": "CA_ON.fetch_production"
     },
-    "timezone": null,
+    "timezone": "America/Toronto",
     "bounding_box": [
       [
         -95.66119498965699,
@@ -1100,17 +1100,23 @@
     "parsers": {
       "production": "CA_PE.fetch_production"
     },
-    "timezone": null
+    "timezone": "America/Halifax"
   },
   "CA-QC": {
-    "_comment": "http://www.hydroquebec.com/generation/",
+    "_comment": "https://www.hydroquebec.com/generation/generating-stations.html",
     "capacity": {
+      "biomass": 257,
+      "coal": 0,
       "gas": 411,
-      "hydro": 36366,
-      "oil": 130
+      "hydro": 36765,
+      "nuclear": 0,
+      "oil": 131,
+      "solar": 0,
+      "unknown": 1056,
+      "wind": 3508
     },
     "flag_file_name": "ca.png",
-    "timezone": null,
+    "timezone": "America/Toronto",
     "bounding_box": [
       [
         -80.26561438699991,
@@ -1130,7 +1136,7 @@
       "wind": 221
     },
     "flag_file_name": "ca.png",
-    "timezone": null,
+    "timezone": "America/Regina",
     "bounding_box": [
       [
         -110.49997270417693,
@@ -1151,7 +1157,7 @@
     "parsers": {
       "production": "CA_YT.fetch_production"
     },
-    "timezone": null,
+    "timezone": "America/Whitehorse",
     "bounding_box": [
       [
         -141.50554863710892,
