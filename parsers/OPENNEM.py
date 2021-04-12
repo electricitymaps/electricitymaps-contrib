@@ -100,9 +100,7 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
     if data_type == 'power' and zone_key:
         # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
-        df["SOLAR_ROOFTOP"] = (
-            df["SOLAR_ROOFTOP"].interpolate(limit=5) if "SOLAR_ROOFTOP" in df else 0
-        )
+        df['SOLAR_ROOFTOP'] = df['SOLAR_ROOFTOP'].interpolate(limit=5) if 'SOLAR_ROOFTOP' in df else 0
         # Parse capacity data
         capacities = dict([
             (obj['id'].split('.')[-2].upper(), obj.get('x_capacity_at_present'))
