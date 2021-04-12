@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import arrow
-from bs4 import BeautifulSoup
-import re
 import dateutil
 import requests
 import json

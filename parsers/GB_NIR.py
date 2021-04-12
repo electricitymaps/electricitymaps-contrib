@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
 from datetime import datetime
 from io import StringIO
-from operator import itemgetter
 
 import logging
 import pandas as pd

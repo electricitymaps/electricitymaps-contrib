@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # coding=utf-8
 import logging
-import datetime
 import pandas as pd
 # The arrow library is used to handle datetimes
 import arrow

@@ -3,7 +3,6 @@
 import arrow
 import json
 import logging
-import os
 import math
 
 import pandas as pd
