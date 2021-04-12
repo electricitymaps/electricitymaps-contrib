@@ -44,12 +44,11 @@ exchange_mapping = {
 }
 
 
-def extract_data(session=None):
+def extract_data(session=None) -> tuple:
     """
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
     Finds generation data inside script tag.
-    Returns a tuple of generation data and datetime.
     """
 
     s = session or requests.Session()
@@ -104,10 +103,9 @@ def extract_data(session=None):
     return data, dt
 
 
-def data_processer(data):
+def data_processer(data) -> dict:
     """
     Takes a list of dictionaries and extracts generation type and value from each.
-    Returns a dictionary.
     """
 
     production = {}
@@ -120,10 +118,9 @@ def data_processer(data):
 
 
 def fetch_consumption_forecast_7_days(zone_key='US-PJM', session=None,
-                               target_datetime=None, logger=None):
+                               target_datetime=None, logger=None) -> list:
     """
     Gets consumption forecast for specified zone.
-    Returns a list of dictionaries.
     """
 
     if target_datetime:
@@ -164,30 +161,6 @@ def fetch_consumption_forecast_7_days(zone_key='US-PJM', session=None,
 def fetch_production(zone_key='US-PJM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -215,10 +188,9 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session=None):
+def get_miso_exchange(session=None) -> tuple:
     """
     Current exchange status between PJM and MISO.
-    Returns a tuple containing flow and timestamp.
     """
 
     map_url = 'http://pjm.com/markets-and-operations/interregional-map.aspx'
@@ -252,11 +224,10 @@ def get_miso_exchange(session=None):
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session=None):
+def get_exchange_data(interface, session=None) -> list:
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
-    Returns a list of tuples.
     """
 
     base_url = 'http://www.pjm.com/Charts/InterfaceChart.aspx?open='
@@ -296,11 +267,10 @@ def get_exchange_data(interface, session=None):
     return converted_flows
 
 
-def combine_NY_exchanges():
+def combine_NY_exchanges() -> list:
     """
     Combination function for the 4 New York interfaces.
     Timestamps are checked to ensure correct combination.
-    Returns a list of tuples.
     """
 
     nyiso = get_exchange_data('nyiso', session=None)
@@ -328,20 +298,8 @@ def combine_NY_exchanges():
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
+    """
+    Requests the last known power exchange (in MW) between two zones
     """
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -389,19 +347,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 
 def fetch_price(zone_key='US-PJM', session=None, target_datetime=None, logger=None):
-    """Requests the last known power price of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known power price of a given country
     """
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')

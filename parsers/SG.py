@@ -133,7 +133,8 @@ def parse_price(price_str):
 
 
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
-    """Parses a common pattern in Singapore JSON response format. Examples:
+    """
+    Parses a common pattern in Singapore JSON response format. Examples:
 
     [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
         => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
@@ -149,9 +150,11 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
 
 
 def sg_period_to_hour(period_str):
-    """Singapore electricity markets are split into 48 periods.
+    """
+    Singapore electricity markets are split into 48 periods.
     Period 1 starts at 00:00 Singapore time. Period 9 starts at 04:00.
-    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes."""
+    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes.
+    """
     return (float(period_str) - 1) / 2.0
 
 
@@ -166,11 +169,8 @@ def sg_data_to_datetime(data):
 
 def fetch_production(zone_key='SG', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of Singapore.
-
-    Arguments:
-    zone_key       -- ignored here, only information for SG is returned
-    session (optional) -- request session passed in order to re-use an existing session
+    """
+    Requests the last known production mix (in MW) of Singapore.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -232,30 +232,8 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
 
 
 def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
-    """Requests the most recent known power prices in Singapore (USEP).
-
-    See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
-    We use USEP here: "The Uniform Singapore Energy Price (USEP) is the uniform price of energy
-    that applies for settlement purposes for all energy injections or withdrawals that are deemed to occur
-    at the Singapore hub. It is the weighted-average of the nodal prices at all off-take nodes in each half hour."
-
-    There are also price forecasts for future prices at https://www.emcsg.com/marketdata/priceinformation
-    that appears to extend to end of day in Singapore, so up to 24 hours into the future,
-    however we don't currently use this.
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Singapore is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'currency': 'EUR',
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
+    """
+    Requests the most recent known power prices in Singapore (USEP).
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

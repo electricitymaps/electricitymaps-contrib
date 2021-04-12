@@ -88,8 +88,10 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
 
 
 def get_state_gen(soup, logger: logging.Logger):
-    """Gets the total generation by type from state powerplants (MW).
-    Data is from the table titled GENERATION OF HP(Z)"""
+    """
+    Gets the total generation by type from state powerplants (MW).
+    Data is from the table titled GENERATION OF HP(Z)
+    """
     table_name = 'GENERATION OF HP(Z)'
     gen = {GenType.HYDRO.value: 0.0, GenType.UNKNOWN.value: 0.0}
     # Read all rows except the last (Total).
@@ -106,9 +108,11 @@ def get_state_gen(soup, logger: logging.Logger):
 
 
 def get_isgs_gen(soup, logger: logging.Logger):
-    """Gets the total generation by type from ISGS powerplants (MW).
+    """
+    Gets the total generation by type from ISGS powerplants (MW).
     ISGS means Inter-State Generating Station: one owned by multiple states.
-    Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL)"""
+    Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL)
+    """
     table_name = '(B1)ISGS(HPSLDC WEB PORTAL)'
     gen = {GenType.HYDRO.value: 0.0, GenType.UNKNOWN.value: 0.0}
     # Read all rows except the first (headers) and last two (OTHERISGS and Total).
@@ -142,9 +146,11 @@ def get_table_rows(soup, container_class, table_name):
 
 
 def combine_gen(gen1, gen2):
-    """Combines two dictionaries of generation data.
+    """
+    Combines two dictionaries of generation data.
     Currently only does Hydro and Unknown as there are
-    no other types in the data source."""
+    no other types in the data source.
+    """
     return {
         GenType.HYDRO.value: round(gen1[GenType.HYDRO.value] + gen2[GenType.HYDRO.value], 2),
         GenType.UNKNOWN.value: round(gen1[GenType.UNKNOWN.value] +

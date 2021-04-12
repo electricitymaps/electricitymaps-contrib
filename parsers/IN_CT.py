@@ -27,10 +27,11 @@ def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logg
 
 
 def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logger=None):
+    """Fetch Chhattisgarh production."""
+
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    """Fetch Chhattisgarh production"""
     zonekey.assert_zone_key(zone_key, 'IN-CT')
 
     html = web.get_response_soup(zone_key, 'http://117.239.199.203/csptcl/GEN.aspx', session)

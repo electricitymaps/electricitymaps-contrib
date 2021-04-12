@@ -76,8 +76,7 @@ def check_hydro_capacity(plant_name, value, logger):
         return True
 
 
-def fetch_hydro(session, logger):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_hydro(session, logger) -> tuple:
     req = session.get(HYDRO_URL, verify=False)
     soup = BeautifulSoup(req.content, 'html.parser')
     table = soup.find("div", {"class": "dep02Sec"})
@@ -113,8 +112,7 @@ def fetch_hydro(session, logger):
     return total, dt
 
 
-def fetch_nuclear(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_nuclear(session) -> tuple:
     plant_dts = []
     total = 0.0
     for url in NUCLEAR_URLS:
@@ -147,8 +145,7 @@ def fetch_nuclear(session):
     return total, dt
 
 
-def fetch_load(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_load(session) -> tuple:
     req = session.get(LOAD_URL)
     soup = BeautifulSoup(req.content, 'html.parser')
 
@@ -174,33 +171,6 @@ def fetch_load(session):
 def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

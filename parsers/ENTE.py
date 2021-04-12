@@ -39,7 +39,7 @@ def fetch_production(zone_key='HN', session=None, target_datetime=None, logger=N
 
     return data
 
-def extract_exchange(raw_data, exchange):
+def extract_exchange(raw_data, exchange) -> float:
     """
     Extracts flow value and direction for a given exchange.
     Returns a float or None.
@@ -61,17 +61,9 @@ def extract_exchange(raw_data, exchange):
     return interconnection
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
     """
     Gets an exchange pair from the SIEPAC system.
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'CR->PA',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

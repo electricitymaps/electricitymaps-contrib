@@ -32,10 +32,9 @@ def get_data_live(session, logger):
     return json_total, json_ren
 
 
-def production_processor_live(json_tot, json_ren):
+def production_processor_live(json_tot, json_ren) -> list:
     """
     Extracts generation data and timestamp into dictionary.
-    Returns a list of dictionaries for all of the available "live" data, usually that day.
     """
 
     gen_total = json_tot['data'][0]['values']
@@ -76,9 +75,9 @@ def production_processor_live(json_tot, json_ren):
     return mapped_totals
 
 
-def production_processor_historical(raw_data):
-    """Takes raw json data and groups by datetime while mapping generation to type.
-    Returns a list of dictionaries.
+def production_processor_historical(raw_data) -> list:
+    """
+    Takes raw json data and groups by datetime while mapping generation to type.
     """
 
     clean_datapoints = []
@@ -118,34 +117,8 @@ def production_processor_historical(raw_data):
 
 
 def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day, a string in the form YYYYMMDD
-    logger (optional) -- handles logging when parser is run
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known production mix (in MW) of a given zone.
     """
 
     if target_datetime is None:

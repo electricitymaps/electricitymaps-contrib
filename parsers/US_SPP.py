@@ -41,13 +41,11 @@ def get_data(url, session=None):
     return df
 
 
-def data_processor(df, logger):
+def data_processor(df, logger) -> list:
     """
     Takes a dataframe and logging instance as input.
     Checks for new generation types and logs a warning if any are found.
     Parses the dataframe row by row removing unneeded keys.
-    Returns a list of 2 element tuples, each containing a datetime object
-    and production dictionary.
     """
 
     # Remove leading whitespace in column headers.
@@ -101,31 +99,6 @@ def data_processor(df, logger):
 def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
 
     if target_datetime is not None:
@@ -177,19 +150,6 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the last 24 hours of power exchange (in MW) between two zones
-    Arguments:
-    zone_key1           -- the first zone
-    zone_key2           -- the second zone; order of the two zones in params doesn't matter
-    session (optional)  -- request session passed in order to re-use an existing session
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
     """
 
     if target_datetime:
@@ -229,19 +189,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the load forecast (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'US-SPP',
-      'datetime': '2017-01-01T00:00:00Z',
-      'value': 28576.0,
-      'source': 'mysource.com'
-    }
     """
 
     if not target_datetime:
@@ -277,19 +224,6 @@ def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, l
 def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)):
     """
     Requests the load forecast (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'US-SPP',
-      'datetime': '2017-01-01T00:00:00Z',
-      'value': 28576.0,
-      'source': 'mysource.com'
-    }
     """
 
     if not target_datetime:

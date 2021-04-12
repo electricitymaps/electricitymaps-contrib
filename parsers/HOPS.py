@@ -10,12 +10,11 @@ import requests
 URL = "https://www.hops.hr/Home/PowerExchange"
 
 
-def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__name__)):
+def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__name__)) -> float:
     """
     Calls extra resource at https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/<dd.m.yyyy>.json
     to get Solar power production in MW.
     :param feed_date: date_time string from the original HOPS feed
-    :return: Float
     """
     r = session or requests.session()
 
