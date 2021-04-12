@@ -5,7 +5,6 @@
 from dateutil import parser, tz
 from io import StringIO
 from logging import getLogger
-from pandas.tseries.offsets import DateOffset
 import datetime
 import pandas as pd
 import requests

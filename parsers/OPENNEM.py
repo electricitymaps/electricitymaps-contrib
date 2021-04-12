@@ -1,11 +1,8 @@
 import arrow
-import datetime
-import json
 import logging
 import requests
 
 import pandas as pd
-import numpy as np
 
 ZONE_KEY_TO_REGION = {
     'AUS-NSW': 'NSW1',

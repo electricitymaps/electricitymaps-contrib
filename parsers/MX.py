@@ -2,14 +2,12 @@
 
 import arrow
 import datetime
-import pandas
 import requests
 import urllib
 import pandas as pd
 
 from bs4 import BeautifulSoup
-from collections import defaultdict
-from dateutil import tz, parser
+from dateutil import tz
 from io import StringIO
 
 

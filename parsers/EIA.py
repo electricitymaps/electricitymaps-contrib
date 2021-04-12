@@ -11,9 +11,9 @@ import datetime
 
 import requests
 from dateutil import parser, tz
+from eiapy import Series
 
 from .ENTSOE import merge_production_outputs
-from .lib.utils import get_token
 from .lib.validation import validate
 
 #Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
@@ -478,7 +478,6 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
 
     # local import to avoid the exception that happens if EIAPY token is not set
     # even if this module is unused
-    from eiapy import Series
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:
