@@ -9,20 +9,8 @@ timezone = 'Canada/Pacific'
 
 
 def fetch_exchange(zone_key1=None, zone_key2=None, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known power exchange (in MW) between two countries.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

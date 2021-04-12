@@ -468,9 +468,7 @@ def query_production_per_units(psr_type, domain, session, target_datetime=None):
         check_response(response, query_production_per_units.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_exchange(in_domain, out_domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A11',
         'in_Domain': in_domain,
@@ -483,10 +481,9 @@ def query_exchange(in_domain, out_domain, session, target_datetime=None):
         check_response(response, query_exchange.__name__)
 
 
-def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None):
+def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None) -> str:
     """
     Gets exchange forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
     """
 
     params = {
@@ -501,9 +498,7 @@ def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None
         check_response(response, query_exchange_forecast.__name__)
 
 
-def query_price(domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_price(domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A44',
         'in_Domain': domain,
@@ -516,10 +511,9 @@ def query_price(domain, session, target_datetime=None):
         check_response(response, query_price.__name__)
 
 
-def query_generation_forecast(in_domain, session, target_datetime=None):
+def query_generation_forecast(in_domain, session, target_datetime=None) -> str:
     """
     Gets generation forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
     """
 
     # Note: this does not give a breakdown of the production
@@ -535,10 +529,9 @@ def query_generation_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_consumption_forecast(in_domain, session, target_datetime=None):
+def query_consumption_forecast(in_domain, session, target_datetime=None) -> str:
     """
     Gets consumption forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
     """
 
     params = {
@@ -553,10 +546,9 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_wind_solar_production_forecast(in_domain, session, target_datetime=None):
+def query_wind_solar_production_forecast(in_domain, session, target_datetime=None) -> str:
     """
     Gets consumption forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
     """
 
     params = {
@@ -583,9 +575,7 @@ def datetime_from_position(start, position, resolution):
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
-def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False):
-    """Returns a tuple containing two lists."""
-
+def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -610,9 +600,7 @@ def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_
     return values, datetimes
 
 
-def parse_production(xml_text):
-    """Returns a tuple containing two lists."""
-
+def parse_production(xml_text) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -677,8 +665,7 @@ def parse_self_consumption(xml_text):
     return res
 
 
-def parse_production_per_units(xml_text):
-    """Returns a dict indexed by the (datetime, unit_key) key"""
+def parse_production_per_units(xml_text) -> dict:
     values = {}
 
     if not xml_text:
@@ -716,9 +703,7 @@ def parse_production_per_units(xml_text):
     return values.values()
 
 
-def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
-    """Returns a tuple containing two lists."""
-
+def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tuple:
     if not xml_text:
         return None
     quantities = quantities or []
@@ -749,9 +734,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     return quantities, datetimes
 
 
-def parse_price(xml_text):
-    """Returns a tuple containing three lists."""
-
+def parse_price(xml_text) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -861,11 +844,10 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
 
 
 def fetch_production(zone_key, session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> list:
     """
-    Gets values and corresponding datetimes for all production types in the
-    specified zone. Removes any values that are in the future or don't have
-    a datetime associated with them.
+    Gets values and corresponding datetimes for all production types in the specified zone.
+    Removes any values that are in the future or don't have a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
     if not session:
@@ -980,10 +962,9 @@ def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
 
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)):
+                               logger=logging.getLogger(__name__)) -> list:
     """
-    Returns a list of all production units and production values as a list
-    of dictionaries
+    Returns a list of all production units and production values.
     """
     if not session:
         session = requests.session()
@@ -1012,11 +993,10 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None,
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=logging.getLogger(__name__)):
+                   logger=logging.getLogger(__name__)) -> list:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
-    Returns a list of dictionaries.
     """
     if not session:
         session = requests.session()
@@ -1063,10 +1043,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 
 def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
-                            logger=logging.getLogger(__name__)):
+                            logger=logging.getLogger(__name__)) -> list:
     """
     Gets exchange forecast between two specified zones.
-    Returns a list of dictionaries.
     """
     if not session:
         session = requests.session()
@@ -1113,10 +1092,9 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
 
 
 def fetch_price(zone_key, session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)):
+                logger=logging.getLogger(__name__)) -> list:
     """
     Gets day-ahead price for specified zone.
-    Returns a list of dictionaries.
     """
     # Note: This is day-ahead prices
     if not session:
@@ -1143,10 +1121,9 @@ def fetch_price(zone_key, session=None, target_datetime=None,
 
 
 def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
-                              logger=logging.getLogger(__name__)):
+                              logger=logging.getLogger(__name__)) -> list:
     """
     Gets generation forecast for specified zone.
-    Returns a list of dictionaries.
     """
     if not session:
         session = requests.session()
@@ -1169,10 +1146,9 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
 
 
 def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)):
+                               logger=logging.getLogger(__name__)) -> list:
     """
     Gets consumption forecast for specified zone.
-    Returns a list of dictionaries.
     """
     if not session:
         session = requests.session()
@@ -1195,12 +1171,10 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
 
 
 def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)):
+                               logger=logging.getLogger(__name__)) -> list:
     """
-    Gets values and corresponding datetimes for all production types in the
-    specified zone. Removes any values that are in the future or don't have
-    a datetime associated with them.
-    Returns a list of dictionaries that have been validated.
+    Gets values and corresponding datetimes for all production types in the specified zone.
+    Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
         session = requests.session()

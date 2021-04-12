@@ -46,34 +46,8 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day, a string in the form YYYYMMDD
-    logger (optional) -- handles logging when parser is run
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known production mix (in MW) of a given zone
     """
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")

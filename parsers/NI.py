@@ -89,7 +89,7 @@ def get_time_from_system_map(text):
     return datetime_datetime
 
 
-def get_production_from_map(requests_obj):
+def get_production_from_map(requests_obj) -> tuple:
     """
     Get frequently-updated information on MAP_URL.
     This page is programmed to refresh every 10 seconds, and the timestamp
@@ -97,8 +97,6 @@ def get_production_from_map(requests_obj):
 
     However, it seems to bundle in solar generation with generation at another plant.
     get_production_from_summary() includes solar explictly.
-
-    :return: tuple(production, datetime_datetime)
     """
 
     response = requests_obj.get(MAP_URL)
@@ -123,7 +121,7 @@ def get_production_from_map(requests_obj):
     return production, data_datetime
 
 
-def get_production_from_summary(requests_obj):
+def get_production_from_summary(requests_obj) -> tuple:
     """
     Get information from SUMMARY_URL. This is updated once an hour, on the hour.
 
@@ -132,8 +130,6 @@ def get_production_from_summary(requests_obj):
 
     However, unlike get_production_from_map(), this includes solar generation,
     which, although small, is nice to specify.
-
-    :return: tuple(production, datetime_datetime)
     """
 
     type_translator = {
@@ -228,23 +224,8 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=g
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the 2nd country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-
-    where net flow is from DK into NO
+    """
+    Requests the last known power exchange (in MW) between two regions
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -288,30 +269,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 
 def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the most recent known power prices in Nicaragua grid
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Nicaragua is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A list of dictionaries in the form:
-    [
-        {
-          'zoneKey': 'FR',
-          'currency': EUR,
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        },
-        {
-          'zoneKey': 'FR',
-          'currency': EUR,
-          'datetime': '2017-01-01T00:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
-    ]
+    """
+    Requests the most recent known power prices in Nicaragua grid
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

@@ -84,11 +84,10 @@ thermal_plants = {
                  }
 
 
-def get_data(session=None):
+def get_data(session=None) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
-    Returns a list.
     """
 
     data = []
@@ -117,11 +116,10 @@ def floater(item):
         return item
 
 
-def chunker(big_lst):
+def chunker(big_lst) -> dict:
     """
     Breaks a big list into a list of lists.  Removes any list with no data then turns remaining
     lists into key: value pairs with first element from the list being the key.
-    Returns a dictionary.
     """
 
     chunks = [big_lst[x:x + 27] for x in range(0, len(big_lst), 27)]
@@ -138,10 +136,9 @@ def chunker(big_lst):
     return chunked_list
 
 
-def data_formatter(data):
+def data_formatter(data) -> dict:
     """
     Takes data and finds relevant sections.  Formats and breaks data into usable parts.
-    Returns a nested dictionary.
     """
 
     find_thermal_index = data.index(u'GRUPO: T\xe9rmica')
@@ -180,11 +177,10 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df, logger):
+def thermal_production(df, logger) -> dict:
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
-    Sums type instances and returns a dictionary.
     """
 
     therms = []
@@ -225,10 +221,9 @@ def thermal_production(df, logger):
     return therms
 
 
-def total_production(df):
+def total_production(df) -> dict:
     """
     Takes DataFrame and finds generation totals for each hour.
-    Returns a dictionary.
     """
 
     vals = []
@@ -255,10 +250,9 @@ def total_production(df):
     return vals
 
 
-def merge_production(thermal, total):
+def merge_production(thermal, total) -> defaultdict:
     """
     Takes thermal generation and total generation and merges them using 'datetime' key.
-    Returns a defaultdict.
     """
 
     d = defaultdict(dict)
@@ -283,31 +277,7 @@ def merge_production(thermal, total):
 
 def fetch_production(zone_key='DO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    Requests the last known production mix (in MW) of a given country.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

@@ -30,12 +30,11 @@ fuel_mapping = {
 }
 
 
-def get_data(session=None):
+def get_data(session=None) -> tuple:
     """
     Makes two requests for the current generation total and fuel mix.
     Parses the data into raw form and reads time string associated with it.
     Checks that fuel mix sum is equal to generation total.
-    Returns a tuple.
     """
 
     s = session or requests.Session()
@@ -80,10 +79,9 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(rawdata, logger):
+def data_processer(rawdata, logger) -> tuple:
     """
     Takes in raw data and converts it into a usable form.
-    Returns a tuple.
     """
 
     converted_time_string = convert_time_str(rawdata[0])
@@ -119,31 +117,6 @@ def data_processer(rawdata, logger):
 def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': 0.0,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': None,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -164,10 +137,9 @@ def fetch_production(zone_key='MY-WM', session=None, target_datetime=None, logge
     return production
 
 
-def extract_hidden_values(req):
+def extract_hidden_values(req) -> dict:
     """
     Gets current aspx page values to enable post requests to be sent.
-    Returns a dictionary.
     """
 
     soup = BeautifulSoup(req.content, 'html.parser')
@@ -284,20 +256,8 @@ def zip_and_merge(egat_data, hvdc_data, logger):
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
+    """
+    Requests the last known power exchange (in MW) between two zones
     """
 
     if target_datetime is not None:

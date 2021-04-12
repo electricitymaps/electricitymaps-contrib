@@ -65,12 +65,11 @@ def get_data(session=None):
     return datareq
 
 
-def data_parser(datareq):
+def data_parser(datareq) -> list:
     """
     Accepts a requests response.text object.  Slices the object down to a smaller size then converts
     to usable json.  Loads the data as json then finds the 'result' key.  Uses regex to find the start
     and endpoints of the actual data.  Splits the data into datapoints then cleans them up for processing.
-    Returns a list of lists.
     """
 
     double_json = datareq.text[len('0|/*DX*/('):-1]
@@ -103,11 +102,10 @@ def data_parser(datareq):
     return clean_data
 
 
-def data_processer(data):
+def data_processer(data) -> list:
     """
     Takes data in the form of a list of lists.  Converts each list to a dictionary.
     Joins dictionaries based on shared datetime key.  Maps generation to type.
-    Returns a list of dictionaries.
     """
 
     converted = []
@@ -139,30 +137,6 @@ def data_processer(data):
 def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

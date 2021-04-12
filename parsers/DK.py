@@ -19,12 +19,11 @@ ids = {
 def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)):
     """
-    Queries "Electricity balance Non-Validated" from energinet api
-    for Danish bidding zones
+    Queries "Electricity balance Non-Validated" from energinet api for Danish bidding zones.
 
     NOTE: Missing historical wind/solar data @ 2017-08-01
-
     """
+    
     r = session or requests.session()
     
     if zone_key not in ['DK-DK1', 'DK-DK2']:
