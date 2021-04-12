@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
-import arrow
 import json
-# The request library is used to fetch content through HTTP
-import requests
 import re
+
+import arrow
+import requests
 
 tz_bo = 'America/La_Paz'
 

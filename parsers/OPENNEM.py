@@ -1,8 +1,9 @@
-import arrow
-import logging
-import requests
 
+import logging
+
+import arrow
 import pandas as pd
+import requests
 
 from tqdm import tqdm
 

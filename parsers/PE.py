@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
 # coding=utf-8
+
+from logging import getLogger
 
 import arrow
 import dateutil
 import requests
+
 from .lib.validation import validate
-from logging import getLogger
 
 tz = 'America/Lima'
 

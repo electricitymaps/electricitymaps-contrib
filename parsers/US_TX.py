@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Parser for the ERCOT area of the United States. (~85% of Texas)"""
 
 import csv

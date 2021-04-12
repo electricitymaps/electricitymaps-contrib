@@ -1,10 +1,10 @@
-#!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
+import json
 
 import arrow
 import dateutil
 import requests
-import json
 
 # RU-1: European and Uralian Market Zone (Zone 1)
 # RU-2: Siberian Market Zone (Zone 2)

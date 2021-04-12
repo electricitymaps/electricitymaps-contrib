@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+
+import datetime
 
 import arrow
 import requests
-import datetime
 
 
 def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=None):

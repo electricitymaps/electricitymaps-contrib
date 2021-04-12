@@ -1,14 +1,7 @@
-#!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes consistently with other parsers
 import arrow
-
-# The request library is used to fetch content through HTTP
 import requests
-
-# BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
-
 
 timezone = 'Canada/Atlantic'
 

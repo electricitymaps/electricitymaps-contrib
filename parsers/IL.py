@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
 # This parser returns Israel's electricity system load (assumed to be equal to electricity production)

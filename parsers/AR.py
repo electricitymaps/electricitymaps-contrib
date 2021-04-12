@@ -1,17 +1,14 @@
-#!/usr/bin/env python3
 
 import itertools
+import logging
 import re
 import string
-import logging
+
 import arrow
 import requests
 from bs4 import BeautifulSoup
 
-try:
-    unicode  # Python 2
-except NameError:
-    unicode = str  # Python 3
+unicode = str
 
 # This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
 # for Argentina.  Currently wind and solar power are small contributors and not monitored but this is

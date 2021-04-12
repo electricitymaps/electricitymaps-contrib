@@ -1,11 +1,9 @@
-#!/usr/bin/python3
+
+import re
 
 import arrow
 import dateutil
-import re
 import requests
-
-# BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
 
 tz = 'America/Montevideo'

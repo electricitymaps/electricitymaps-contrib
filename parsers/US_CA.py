@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
+
+import logging
+from collections import defaultdict
 
 import arrow
 import pandas
 import requests
 from bs4 import BeautifulSoup
-from collections import defaultdict
-import logging
 
 FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 

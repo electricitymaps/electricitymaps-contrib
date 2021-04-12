@@ -1,8 +1,5 @@
-#!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
 
 
@@ -194,8 +191,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    from pprint import pprint
     import logging
+    from pprint import pprint
     test_logger = logging.getLogger()
 
     print('fetch_production() ->')

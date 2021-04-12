@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
+
+from collections import defaultdict
 
 import arrow
 import requests
-from collections import defaultdict
-
 
 GENERATION_URL = "http://www.pstcl.org:9091/scadadata/pbGenData2"
 

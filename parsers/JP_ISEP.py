@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
-import re
-import logging
-import requests
+
 import datetime
+import logging
+import re
 
 import pandas as pd
+import requests
 
 url = 'https://isep-energychart.com/en/graphics/electricityproduction/?region={region}&period_year={year}&period_month={month}&period_day={day}&period_length=1day&display_format=residual_demand'
 timezone = 'Japan'

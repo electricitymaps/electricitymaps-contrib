@@ -1,12 +1,10 @@
-#!/usr/bin/env python3
-
 """Parser for the electricity grid of Iraq"""
 
-import arrow
 import logging
-from dateutil.tz import tz
-import requests
 
+import arrow
+import requests
+from dateutil.tz import tz
 
 LIVE_PRODUCTION_API_URL = "https://www.gdoco.org/vueips.php"
 DATA_SOURCE = "www.gdoco.org"

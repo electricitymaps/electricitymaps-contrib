@@ -1,9 +1,11 @@
-import logging
+
 import datetime
-import pandas as pd
+import logging
 
 import arrow
+import pandas as pd
 import requests
+
 
 def fetch_production(zone_key='GE', session=None, target_datetime: datetime.datetime=None,
                      logger: logging.Logger=None):
@@ -194,4 +196,3 @@ if __name__ == '__main__':
     print(fetch_exchange('GE', 'RU'))
     print('fetch_exchange(GE, TR) ->')
     print(fetch_exchange('GE', 'TR'))
-    

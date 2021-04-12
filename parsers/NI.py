@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
-import arrow
 from collections import defaultdict
-from .lib.validation import validate
 from logging import getLogger
+
+import arrow
 import requests
+
+from .lib.validation import validate
 
 TIMEZONE = 'America/Managua'
 

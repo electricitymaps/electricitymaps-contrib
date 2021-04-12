@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+
+import logging
 
 import arrow
+import requests
 
 from . import ENTSOE
-import logging
-import requests
 
 
 def fetch_swiss_exchanges(session, target_datetime, logger):

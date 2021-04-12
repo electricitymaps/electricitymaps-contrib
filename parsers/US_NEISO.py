@@ -1,12 +1,11 @@
-#!/usr/bin/env python3
-
-
 """Real time parser for the New England ISO (NEISO) area."""
-import arrow
-from collections import defaultdict
+
 import logging
-import requests
 import time
+from collections import defaultdict
+
+import arrow
+import requests
 
 url = 'https://www.iso-ne.com/ws/wsclient'
 

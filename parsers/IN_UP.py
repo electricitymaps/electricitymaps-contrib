@@ -1,6 +1,7 @@
-#!/usr/bin/env python3
+
 import json
 from ast import literal_eval
+
 import arrow
 from requests import Session
 

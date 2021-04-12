@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-
 """Real time parser for the state of New York."""
+
 from collections import defaultdict
 from datetime import timedelta
 from operator import itemgetter
@@ -8,6 +7,7 @@ from urllib.error import HTTPError
 
 import arrow
 import pandas as pd
+from arrow.parser import ParserError
 
 # Dual Fuel systems can run either Natural Gas or Oil, they represent
 # significantly more capacity in NY State than plants that can only
@@ -18,7 +18,6 @@ import pandas as pd
 # approximation it's just Natural Gas.
 
 # Pumped storage is present but is not split into a separate category.
-from arrow.parser import ParserError
 
 mapping = {
     'Dual Fuel': 'gas',

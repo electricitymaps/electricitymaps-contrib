@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
 
 import arrow
-from bs4 import BeautifulSoup
 import requests
-
+from bs4 import BeautifulSoup
 
 timezone = 'America/Whitehorse'
 

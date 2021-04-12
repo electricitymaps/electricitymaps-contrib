@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
 
-import logging
 import datetime
+import logging
+
 import arrow
 import requests
 

@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
-# The arrow library is used to handle datetimes
-import arrow
+
 import logging
-# The request library is used to fetch content through HTTP
+
+import arrow
 import requests
+
 exchanges_mapping = {
     'BY->LT': [
         'BY->LT'

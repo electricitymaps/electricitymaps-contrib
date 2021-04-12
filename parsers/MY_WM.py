@@ -1,18 +1,18 @@
-#!/usr/bin/env python3
 
 # Parser for Peninsular Malaysia (West Malaysia).
 # This does not include the states of Sarawak and Sarawak.
 # There is pumped storage in the Peninsular but no data is currently available.
 # https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
 
-from bs4 import BeautifulSoup
-from collections import defaultdict
 import datetime
-from dateutil import parser
+from collections import defaultdict
 from logging import getLogger
-from pytz import timezone
-import requests
 from xml.etree import ElementTree
+
+import requests
+from bs4 import BeautifulSoup
+from dateutil import parser
+from pytz import timezone
 
 fuel_mix_url = 'https://www.gso.org.my/SystemData/FuelMix.aspx'
 current_gen_url = 'https://www.gso.org.my/SystemData/CurrentGen.aspx'

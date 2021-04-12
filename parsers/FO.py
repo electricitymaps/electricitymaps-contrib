@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
-import arrow
-from .lib.validation import validate
 from logging import getLogger
+
+import arrow
 import requests
+
+from .lib.validation import validate
 
 MAP_GENERATION = {
     'Vand': 'hydro',

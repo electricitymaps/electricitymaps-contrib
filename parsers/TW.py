@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+
 import arrow
-import requests
-import pandas
 import dateutil
+import pandas
+import requests
 
 
 def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=None):

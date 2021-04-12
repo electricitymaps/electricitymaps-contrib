@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
 
-import arrow
+import logging
 import math
 
-from . import statnett
-from . import ENTSOE
-from . import DK
-import logging
+import arrow
 import pandas as pd
 import requests
+
+from . import DK, ENTSOE, statnett
 
 
 def fetch_production(zone_key='NL', session=None, target_datetime=None,

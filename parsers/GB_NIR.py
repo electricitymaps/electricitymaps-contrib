@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 
+import logging
 from datetime import datetime
 from io import StringIO
 
-import logging
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
