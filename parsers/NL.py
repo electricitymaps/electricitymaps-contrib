@@ -12,7 +12,7 @@ import requests
 
 
 def fetch_production(zone_key='NL', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__), energieopwek_nl=True):
+                     logger=logging.getLogger(__name__), energieopwek_nl=False):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
     else:
