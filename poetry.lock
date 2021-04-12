@@ -612,12 +612,12 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "pytest-enabler", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [extras]
-parsers = ["arrow", "beautifulsoup4", "demjson", "eiapy", "html5lib", "imageio", "lxml", "mock", "pandas", "Pillow", "pytesseract", "ree", "requests", "tablib", "opencv-python", "xlrd", "freezegun", "signalr-client-threads"]
+parsers = ["arrow", "beautifulsoup4", "demjson", "eiapy", "html5lib", "imageio", "lxml", "mock", "pandas", "Pillow", "pytesseract", "ree", "requests", "tablib", "opencv-python", "xlrd", "freezegun", "signalr-client-threads", "tqdm"]
 
 [metadata]
 lock-version = "1.1"
 python-versions = '>= 3.6, < 3.8'
-content-hash = "bbd1aaf15ea98ced81c5a22f977b10ea655cbc4ced7a5505363509973878eb42"
+content-hash = "f73d4d7a06ee86dea5264a2faf25b428e512c8351148947aad23d9289105177c"
 
 [metadata.files]
 arrow = [

@@ -63,7 +63,8 @@ parsers = [
     "opencv-python",
     "xlrd",
     "freezegun",
-    "signalr-client-threads"
+    "signalr-client-threads",
+    "tqdm"
 ]
 
 [build-system]
