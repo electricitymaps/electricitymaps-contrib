@@ -52,6 +52,7 @@ const thirdpartyGeos = readNDJSON('./build/tmp_thirdparty.json').concat([
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-MO.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-NI.geojson')),
     JSON.parse(fs.readFileSync('./third_party_maps/US-HI-OA.geojson')),
+    JSON.parse(fs.readFileSync('./third_party_maps/CL-SEN.geojson')),
   ]);
 
 const USSimplifiedGeos = [JSON.parse(fs.readFileSync('./third_party_maps/US_simplified/US-CAL-BANC.geojson'))].concat([//Balancing Authority Of Northern California
@@ -302,9 +303,10 @@ const zoneDefinitions = [
   { zoneName: 'CI', type: 'country', id: 'CIV'},
   //{ zoneName: 'CL-SING', type: 'states', countryId: 'CHL', states: ['CL.AP', 'CL.TA', 'CL.AN']},
   //{ zoneName: 'CL', type: 'country', id: 'CHL'},
-  { zoneName: 'CL-SEN', type: 'administrations', administrations: ['CHL-2693', 'CHL-2694', 'CHL-2695', 'CHL-2696', 'CHL-2697', 'CHL-2699', 'CHL-2698', 'CHL-2703', 'CHL-2705', 'CHL-2702', 'CHL-2700', 'CHL-2701', 'CHL-2704']},
+  { zoneName: 'CL-SEN', type: 'subunits', subunits: ['CL-SEN']},
   { zoneName: 'CL-SEM', countryId: 'CHL', stateId: 'CL.MA', type: 'state' },
   { zoneName: 'CL-SEA', countryId: 'CHL', stateId: 'CL.AI', type: 'state' },
+  { zoneName: 'CL-CHP', type: 'subunits', subunits: ['CHP']},
   { zoneName: 'CM', type: 'country', id: 'CMR'},
   { zoneName: 'CN', type: 'country', id: 'CHN'},
   { zoneName: 'CO', type: 'country', id: 'COL'},

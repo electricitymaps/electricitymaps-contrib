@@ -57,7 +57,7 @@ OPENNEM_STORAGE_CATEGORIES = {
     'battery': ['BATTERY_DISCHARGING', 'BATTERY_CHARGING'],
     'hydro': ['PUMPS'],
 }
-SOURCE = 'opennem.org'
+SOURCE = 'opennem.org.au'
 
 
 def dataset_to_df(dataset):
@@ -128,7 +128,8 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
     logger.debug('Preparing capacities..')
     if data_type == 'power' and zone_key:
         # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
-        df['SOLAR_ROOFTOP'] = df['SOLAR_ROOFTOP'].interpolate(limit=5)
+        if 'SOLAR_ROOFTOP' in df:
+            df['SOLAR_ROOFTOP'] = df['SOLAR_ROOFTOP'].interpolate(limit=5)
         # Parse capacity data
         capacities = dict([
             (obj['id'].split('.')[-2].upper(), obj.get('x_capacity_at_present'))
@@ -193,6 +194,8 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
             'wind': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['wind']),
             'biomass': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['biomass']),
             'solar': sum_vector(capacities, OPENNEM_PRODUCTION_CATEGORIES['solar']),
+            'hydro storage': capacities.get(OPENNEM_STORAGE_CATEGORIES['hydro'][0]),
+            'battery storage': capacities.get(OPENNEM_STORAGE_CATEGORIES['battery'][0]),
         },
         'source': SOURCE,
         'zoneKey': zone_key,

@@ -189,7 +189,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
-- Canada (Québec): [Hydro-Québec](http://www.hydroquebec.com/generation/)
+- Canada (Québec): [Hydro-Québec](https://www.hydroquebec.com/generation/generating-stations.html)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
 - Canada (Yukon)
   - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)
@@ -199,6 +199,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
+- Chile (Easter Island) : [SASIPA](https://www.sasipa.cl/estado-del-suministro)
 - Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
 - Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
@@ -252,10 +253,12 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
   - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
-- India: [mercomindia](https://mercomindia.com/solar-indias-installed-power-capacity/)
-- India (Andhra Pradesh): [wikipedia.org](https://en.wikipedia.org/wiki/Power_sector_of_Andhra_Pradesh)
-- India (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
-- India (Chhattisgarh, Delhi, Gujarat, Karnataka, Punjab, Uttar Pradesh): [National Power Portal](https://npp.gov.in/dashBoard/cp-map-dashboard)
+- India:
+  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
+  - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
+  - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
+  - other: [NPP](https://npp.gov.in/publishedReports)
+  - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
@@ -294,7 +297,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1366706440291946496)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1369599054116757505)
   - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Wind: [URE](https://twitter.com/pse_pl/status/1303252305832271873)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
