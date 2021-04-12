@@ -1,15 +1,13 @@
-#!/usr/bin/env python3
 
-import arrow
 import datetime
-import requests
 import urllib
-import pandas as pd
-
-from bs4 import BeautifulSoup
-from dateutil import tz
 from io import StringIO
 
+import arrow
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from dateutil import tz
 
 MX_PRODUCTION_URL = "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
 MX_EXCHANGE_URL = 'https://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'

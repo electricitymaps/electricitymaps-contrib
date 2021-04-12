@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
 
 from requests import Session
-from .lib import web
-from .lib import zonekey
-from .lib import IN
+
+from .lib import IN, web, zonekey
 
 
 def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logger=None):

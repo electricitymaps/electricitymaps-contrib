@@ -1,16 +1,15 @@
-#!/usr/bin/env python3
 
-import arrow
 import json
 import logging
 import math
-
-import pandas as pd
-import requests
 import xml.etree.ElementTree as ET
 
-from .lib.validation import validate, validate_production_diffs
+import arrow
+import pandas as pd
+import requests
+
 from .lib.utils import get_token
+from .lib.validation import validate, validate_production_diffs
 
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 

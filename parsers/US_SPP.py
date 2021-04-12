@@ -1,13 +1,12 @@
-#!usr/bin/env python3
-
 """Parser for the Southwest Power Pool area of the United States."""
 
-from dateutil import parser, tz
+import datetime
 from io import StringIO
 from logging import getLogger
-import datetime
+
 import pandas as pd
 import requests
+from dateutil import parser, tz
 
 HISTORIC_GENERATION_BASE_URL = 'https://marketplace.spp.org/file-browser-api/download/generation-mix-historical?path=%2F'
 

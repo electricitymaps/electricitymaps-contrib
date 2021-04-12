@@ -1,11 +1,7 @@
-#!/usr/bin/env python3
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
 
-# Numpy and PIL are used to process the image
+import arrow
 import numpy as np
+import requests
 from PIL import Image
 
 

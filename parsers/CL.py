@@ -1,12 +1,12 @@
-#!/usr/bin/env python3
-
 """Parser for the electricity grid of Chile"""
 
-import arrow
 import logging
-import requests
 from collections import defaultdict
 from operator import itemgetter
+
+import arrow
+import requests
+
 from .lib.validation import validate
 
 # Historical API

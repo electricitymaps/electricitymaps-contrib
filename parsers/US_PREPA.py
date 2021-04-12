@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Real-time parser for Puerto Rico.
 
 Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx
@@ -7,13 +5,12 @@ Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us
 The electricity authority is known in English as PREPA (Puerto Rico Electric Power Authority) and in Spanish as AEEPR (Autoridad de Energía Eléctrica Puerto Rico)
 """
 
+import json
 import logging
 import re
-# The arrow library is used to handle datetimes
+
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
-import json
 
 timezone_name = 'America/Puerto_Rico'
 GENERATION_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/combustibles.aspx"

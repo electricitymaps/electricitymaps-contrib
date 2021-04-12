@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
 
 from urllib.parse import urlencode
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
 
 from .lib.exceptions import ParserException

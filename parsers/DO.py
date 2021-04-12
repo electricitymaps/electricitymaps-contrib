@@ -1,15 +1,14 @@
-#!/usr/bin/env python3
+
+import logging
+from collections import defaultdict
+from math import isnan
+from operator import itemgetter
 
 import arrow
-from bs4 import BeautifulSoup
-from collections import defaultdict
-import logging
-from math import isnan
 import numpy as np
-from operator import itemgetter
 import pandas as pd
 import requests
-
+from bs4 import BeautifulSoup
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.

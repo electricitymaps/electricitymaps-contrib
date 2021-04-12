@@ -2,10 +2,12 @@
 # coding=utf-8
 
 import re
-import requests
 from datetime import datetime
-from dateutil import parser as dparser, tz
+
+import requests
 from bs4 import BeautifulSoup
+from dateutil import parser as dparser
+from dateutil import tz
 
 #URL of the power system summary: http://epso.am/poweren.htm
 #URL of the detailled SCADA-page: http://epso.am/scada.htm

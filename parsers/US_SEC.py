@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Parser for the Seminole Electric Cooperative in Florida, USA.
 
 Combines hourly gas and coal production data from EIA with hourly solar generation from http://apps.seminole.coop/db/cs/ . Both generally lag a day or so behind, and sometimes as much as 10d behind.

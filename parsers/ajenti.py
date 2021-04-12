@@ -7,9 +7,10 @@
 
 import json
 import logging
+
 import arrow
-from signalr import Connection
 from requests import Session
+from signalr import Connection
 
 ZONE_PARAMS = {
     'AUS-TAS-KI': {

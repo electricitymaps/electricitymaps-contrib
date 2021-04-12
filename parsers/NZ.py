@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
-
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
 
 import json
+
+import arrow
+import requests
 from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'

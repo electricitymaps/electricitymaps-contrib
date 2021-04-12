@@ -1,9 +1,10 @@
+
 import datetime
 from collections import defaultdict
 
 import arrow
-import requests
 import pytz
+import requests
 
 SVK_URL = 'http://www.svk.se/ControlRoom/GetProductionHistory/' \
           '?productionDate={date}&countryCode={zoneKey}'

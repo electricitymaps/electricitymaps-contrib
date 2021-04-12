@@ -1,12 +1,10 @@
-#!/usr/bin/env python3
 # coding=utf-8
-import logging
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
 
+import logging
 import re
+
+import arrow
+import requests
 from bs4 import BeautifulSoup
 
 from . import occtonet

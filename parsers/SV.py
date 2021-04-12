@@ -1,12 +1,12 @@
-#!/usr/bin/env python3
 
-import arrow
-from bs4 import BeautifulSoup
-import requests
 import json
 import re
 from collections import defaultdict
 from operator import itemgetter
+
+import arrow
+import requests
+from bs4 import BeautifulSoup
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # El Salvador does have wind generation but there is no data available.

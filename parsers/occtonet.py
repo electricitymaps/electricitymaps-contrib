@@ -1,13 +1,11 @@
-#!/usr/bin/env python3
 # coding=utf-8
-import logging
-import pandas as pd
-# The arrow library is used to handle datetimes
-import arrow
-# The request library is used to fetch content through HTTP
-import requests
 
+import logging
 from io import StringIO
+
+import arrow
+import pandas as pd
+import requests
 
 # Abbreviations:
 # JP-HKD : Hokkaido

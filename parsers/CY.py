@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
-import logging
+
 import datetime
+import logging
 import sys
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
-# BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
+
 
 class CyprusParser:
     CAPACITY_KEYS = {

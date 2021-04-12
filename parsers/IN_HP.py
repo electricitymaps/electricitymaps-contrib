@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Parser for Himachal Pradesh (Indian State)."""
 
 import datetime
@@ -9,7 +7,6 @@ from enum import Enum
 import arrow
 import requests
 from bs4 import BeautifulSoup
-
 
 DATA_URL = 'https://hpsldc.com/intra-state-power-transaction/'
 ZONE_KEY = 'IN-HP'

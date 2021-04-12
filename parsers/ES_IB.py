@@ -1,17 +1,12 @@
-#!/usr/bin/env python3
 
 import logging
+
 from arrow import get
+from ree import BalearicIslands, Formentera, Ibiza, Mallorca, Menorca
 from requests import Session
-from ree import (Formentera, Ibiza,
-                 Mallorca, Menorca,
-                 BalearicIslands)
-# package "ree" is used to parse data from www.ree.es // maintained on github by @hectorespert
 
 from .lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
-
-## Guess we'll need to figure these out later?! Adapted from ES-CN:
 
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.

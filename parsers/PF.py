@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
 
+import json
 import logging
+import re
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
-import re
-import json
-import arrow
 
 TZ = 'Pacific/Tahiti'
 

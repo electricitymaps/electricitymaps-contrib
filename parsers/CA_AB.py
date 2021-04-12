@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
 
-import arrow
-from bs4 import BeautifulSoup
 import datetime
 import re
-import requests
+
+import arrow
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 from pytz import timezone
 
 ab_timezone = 'Canada/Mountain'

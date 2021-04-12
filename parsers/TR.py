@@ -1,12 +1,13 @@
-#!/usr/bin/env python3
 
-import requests
-import re
-import json
-import arrow
-import logging
-from bs4 import BeautifulSoup
 import datetime as dt
+import json
+import logging
+import re
+
+import arrow
+import requests
+from bs4 import BeautifulSoup
+
 from .lib import zonekey
 
 SEARCH_DATA = re.compile(r'var gunlukUretimEgrisiData = (?P<data>.*);')

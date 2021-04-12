@@ -1,14 +1,11 @@
-#!/usr/bin/env python3
-
 """Parser for the Bonneville Power Administration area of the USA."""
 
-
-from io import StringIO
-import arrow
 import logging
+from io import StringIO
+
+import arrow
 import pandas as pd
 import requests
-
 
 GENERATION_URL = 'https://transmission.bpa.gov/business/operations/Wind/baltwg.txt'
 

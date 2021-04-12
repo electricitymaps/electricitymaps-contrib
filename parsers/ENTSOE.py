@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
 """
@@ -13,18 +12,18 @@ Generation Forecast
 Consumption Forecast
 """
 import itertools
-import numpy as np
-from bs4 import BeautifulSoup
+import logging
+import re
 from collections import defaultdict
 
 import arrow
-import logging, os, re
-import requests
-
+import numpy as np
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
+from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
-from .lib.utils import sum_production_dicts, get_token
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
