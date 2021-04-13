@@ -1,6 +1,9 @@
 import arrow
 import requests
 
+LOAD_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
+MIX_URL = "https://www.nspower.ca/library/CurrentLoad/CurrentMix.json"
+
 
 def _get_ns_info(requests_obj, logger):
     zone_key = "CA-NS"
@@ -31,11 +34,8 @@ def _get_ns_info(requests_obj, logger):
         "wind": 700,
     }
 
-    mix_url = "https://www.nspower.ca/library/CurrentLoad/CurrentMix.json"
-    mix_data = requests_obj.get(mix_url).json()
-
-    load_url = "https://www.nspower.ca/library/CurrentLoad/CurrentLoad.json"
-    load_data = requests_obj.get(load_url).json()
+    mix_data = requests_obj.get(MIX_URL).json()
+    load_data = requests_obj.get(LOAD_URL).json()
 
     production = []
     imports = []

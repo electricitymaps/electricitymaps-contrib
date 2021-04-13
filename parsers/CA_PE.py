@@ -5,6 +5,8 @@ import requests
 
 timezone = "Canada/Atlantic"
 
+URL = "https://wdf.princeedwardisland.ca/workflow"
+
 
 def _find_pei_key(pei_list, sought_key):
     matching_item = [
@@ -20,10 +22,9 @@ def _find_pei_key(pei_list, sought_key):
 
 
 def _get_pei_info(requests_obj):
-    url = "https://wdf.princeedwardisland.ca/workflow"
     request = {"featureName": "WindEnergy"}
     headers = {"Content-Type": "application/json"}
-    response = requests_obj.post(url, data=json.dumps(request), headers=headers)
+    response = requests_obj.post(URL, data=json.dumps(request), headers=headers)
 
     raw_data = response.json().get("data", [])
 

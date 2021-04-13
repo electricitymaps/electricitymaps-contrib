@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 
 timezone = "America/Whitehorse"
 
+URL = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
+
 
 def fetch_production(zone_key="CA-YT", session=None, target_datetime=None, logger=None):
     """
@@ -45,8 +47,7 @@ def fetch_production(zone_key="CA-YT", session=None, target_datetime=None, logge
 
     requests_obj = session or requests.session()
 
-    url = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
-    response = requests_obj.get(url)
+    response = requests_obj.get(URL)
 
     soup = BeautifulSoup(response.text, "html.parser")
 

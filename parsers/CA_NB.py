@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 
 timezone = "Canada/Atlantic"
 
+URL = "https://tso.nbpower.com/Public/en/SystemInformation_realtime.asp"
+
 
 def _get_new_brunswick_flows(requests_obj):
     """
@@ -12,18 +14,12 @@ def _get_new_brunswick_flows(requests_obj):
     The page returns current time and says "Times at which values are sampled may vary by as much as 5 minutes."
     """
 
-    url = "https://tso.nbpower.com/Public/en/SystemInformation_realtime.asp"
-    response = requests_obj.get(url)
-
+    response = requests_obj.get(URL)
     soup = BeautifulSoup(response.text, "html.parser")
-
     table = soup.find("table", attrs={"bordercolor": "#191970"})
-
     rows = table.find_all("tr")
-
     headers = rows[1].find_all("td")
     values = rows[2].find_all("td")
-
     flows = {
         headers[i].text.strip(): float(row.text.strip()) for i, row in enumerate(values)
     }

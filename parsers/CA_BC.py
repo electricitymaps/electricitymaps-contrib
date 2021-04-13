@@ -9,6 +9,7 @@ import requests
 
 timezone = "Canada/Pacific"
 
+URL = "https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt"
 
 def fetch_exchange(
     zone_key1=None, zone_key2=None, session=None, target_datetime=None, logger=None
@@ -18,8 +19,7 @@ def fetch_exchange(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt"
-    response = r.get(url)
+    response = r.get(URL)
     obj = response.text.split("\r\n")[1].replace("\r", "").split(",")
 
     datetime = arrow.get(
