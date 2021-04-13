@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
 
@@ -9,10 +8,8 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
-
 import requests
 from dateutil import parser, tz
-
 from .ENTSOE import merge_production_outputs
 from .lib.utils import get_token
 from .lib.validation import validate

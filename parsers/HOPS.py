@@ -1,12 +1,9 @@
-#!/usr/bin/env python3
-
 """Parser for power production in Croatia"""
 
 import arrow
 import requests
 import logging
 import pandas as pd
-
 from datetime import datetime
 
 URL = "https://www.hops.hr/Home/PowerExchange"

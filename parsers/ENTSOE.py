@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 # coding=utf-8
-
 """
 Parser that uses the ENTSOE API to return the following data types.
 
@@ -12,17 +10,15 @@ Day-ahead Price
 Generation Forecast
 Consumption Forecast
 """
+
 import itertools
 import numpy as np
 from bs4 import BeautifulSoup
 from collections import defaultdict
-
 import arrow
-import logging, os, re
+import logging, re
 import requests
-
 import pandas as pd
-
 from .lib.validation import validate
 from .lib.utils import sum_production_dicts, get_token
 

@@ -1,5 +1,3 @@
-#!usr/bin/env python3
-
 """Parser for the Southwest Power Pool area of the United States."""
 
 from dateutil import parser, tz

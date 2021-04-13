@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
-
-# Parser for Peninsular Malaysia (West Malaysia).
-# This does not include the states of Sarawak and Sarawak.
-# There is pumped storage in the Peninsular but no data is currently available.
-# https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
+"""
+Parser for Peninsular Malaysia (West Malaysia).
+This does not include the states of Sarawak and Sarawak.
+There is pumped storage in the Peninsular but no data is currently available.
+https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
+"""
 
 from bs4 import BeautifulSoup
 from collections import defaultdict

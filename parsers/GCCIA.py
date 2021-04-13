@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 # coding=utf-8
-
 """
 This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (only consumption, production data is not available)
 Kuwait has a good data source and parser of its own, but should it become unavailable this parser can return data for Kuwait as well

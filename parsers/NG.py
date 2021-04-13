@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Parser for the electricity grid of Nigeria"""
 
 import arrow

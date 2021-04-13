@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
 import datetime as dt
 import logging
-
 import arrow
 import pandas as pd
 import requests

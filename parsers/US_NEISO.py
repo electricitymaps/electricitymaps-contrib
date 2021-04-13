@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
-
-
 """Real time parser for the New England ISO (NEISO) area."""
+
 import arrow
 from collections import defaultdict
 import logging

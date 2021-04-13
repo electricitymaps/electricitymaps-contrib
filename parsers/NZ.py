@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
-
 import json
 from bs4 import BeautifulSoup
 

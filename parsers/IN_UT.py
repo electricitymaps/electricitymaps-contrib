@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 
 import arrow
 import logging
-
 from .lib import web
 
 

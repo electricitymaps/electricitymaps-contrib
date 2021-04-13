@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Parser for the Seminole Electric Cooperative in Florida, USA.
 Combines hourly gas and coal production data from EIA with hourly solar generation from http://apps.seminole.coop/db/cs/ .
@@ -11,9 +9,7 @@ https://github.com/tmrowco/electricitymap-contrib/issues/1713
 
 import logging
 from datetime import timezone
-
 import pandas as pd
-
 from . import EIA
 from .ENTSOE import merge_production_outputs
 

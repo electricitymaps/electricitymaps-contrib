@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-
 """Parser for the PJM area of the United States."""
 
 import json
 import re
-
 import arrow
 import demjson
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-
 from .lib.utils import get_token
 
 # Used for consumption forecast data.

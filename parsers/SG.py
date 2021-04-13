@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
 
 from collections import defaultdict
 import logging
 import re
-
 import arrow
 from PIL import Image
 from pytesseract import image_to_string

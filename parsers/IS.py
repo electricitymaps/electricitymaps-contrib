@@ -1,15 +1,8 @@
-#!python3
+
 import logging
 import datetime
-
-# The arrow library is used to handle datetimes
 import arrow
-
-# The request library is used to fetch content through HTTP
 import requests
-
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(

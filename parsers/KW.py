@@ -1,15 +1,16 @@
-#!/usr/bin/env python3
 # coding=utf-8
-
-# This parser returns Kuwait's electricity system load (assumed to be equal to electricity production)
-# Source: Ministry of Electricity and Water / State of Kuwait
-# URL: https://www.mew.gov.kw/en/
-# Scroll down to see the system load gauge
-# Shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; https://www.iea.org/statistics/?country=KUWAIT&indicator=ElecGenByFuel)
+"""
+This parser returns Kuwait's electricity system load (assumed to be equal to electricity production)
+Source: Ministry of Electricity and Water / State of Kuwait
+URL: https://www.mew.gov.kw/en/
+Scroll down to see the system load gauge
+Shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; https://www.iea.org/statistics/?country=KUWAIT&indicator=ElecGenByFuel)
+"""
 
 import arrow
 import requests
 import re
+
 
 def fetch_production(zone_key='KW', target_datetime=None, session=None, logger=None):
     if target_datetime:

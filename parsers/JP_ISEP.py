@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
-import os
+
 import re
-import json
 import logging
 import requests
 import datetime
-
 import pandas as pd
 
 url = 'https://isep-energychart.com/en/graphics/electricityproduction/?region={region}&period_year={year}&period_month={month}&period_day={day}&period_length=1day&display_format=residual_demand'

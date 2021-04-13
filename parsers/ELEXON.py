@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
 # coding=utf-8
-
 """
 Parser that uses the ELEXON API to return the following data types.
 
@@ -12,14 +10,12 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
-import os
 import arrow
 import logging
 import requests
 import datetime as dt
 import pandas as pd
 from io import StringIO
-
 from .lib.validation import validate
 from .lib.utils import get_token
 

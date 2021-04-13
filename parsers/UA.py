@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import arrow
 import dateutil
@@ -9,9 +8,9 @@ tec - same as `tes` but also working as central heater,
       main fuel is gas, in critical situations - black oil
 gesgaes - hydro run of river and poundage
 consumptiongaespump - hydro pumped storage
-vde - renewable sources - mostly wind at nighttimes and solar peaks during the day
-
+vde - renewable sources - mostly wind at nighttimes and solar peaks during the day.
 """
+
 MAP_GENERATION = {
     'aes': 'nuclear',
     'tec': 'gas',

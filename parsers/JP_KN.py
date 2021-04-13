@@ -1,23 +1,15 @@
-#!/usr/bin/env python3
+
 import logging
 import datetime
-
-
 from PIL import Image
 from pytesseract import image_to_string
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 from io import BytesIO
 import re
-
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
 from .JP import fetch_production as JP_fetch_production
-
-# please try to write PEP8 compliant code (use a linter). One of PEP8's
-# requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(zone_key='JP-KN', session=None,

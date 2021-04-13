@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import arrow
 from bs4 import BeautifulSoup

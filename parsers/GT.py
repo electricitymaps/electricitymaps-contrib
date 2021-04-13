@@ -1,11 +1,7 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
-# The pandas library is used to manipulate real time data
 import pandas as pd
 
 tz_gt = 'America/Guatemala'

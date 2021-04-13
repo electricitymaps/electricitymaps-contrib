@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
-
 """Parser for Himachal Pradesh (Indian State)."""
 
 import datetime
 import logging
 from enum import Enum
-
 import arrow
 import requests
 from bs4 import BeautifulSoup

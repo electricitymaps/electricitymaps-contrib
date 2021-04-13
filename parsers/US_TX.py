@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-
 """Parser for the ERCOT area of the United States. (~85% of Texas)"""
 
 import csv
 import io
 import logging
 import zipfile
-
 import arrow
 import requests
 from lxml import html
-
 from .lib.exceptions import ParserException
 
 # This xpath gets the second cell in a row which has a cell that contains parameterized text

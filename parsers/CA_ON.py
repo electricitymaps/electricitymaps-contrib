@@ -1,16 +1,9 @@
-#!/usr/bin/env python3
 
 from datetime import timedelta, timezone
 import logging
 import xml.etree.ElementTree as ET
-
-# The arrow library is used to handle datetimes
 import arrow
-
-# The request library is used to fetch content through HTTP
 import requests
-
-# pandas processes tabular data
 import pandas as pd
 
 """

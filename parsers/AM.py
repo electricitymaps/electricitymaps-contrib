@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
-import arrow
 import re
 import requests
 from datetime import datetime

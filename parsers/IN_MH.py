@@ -1,3 +1,4 @@
+
 from PIL import Image, ImageOps
 import pytesseract
 import cv2

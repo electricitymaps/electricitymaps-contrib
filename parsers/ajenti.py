@@ -7,7 +7,6 @@ About the data, the feed we get seems to be counters with a 2 seconds interval.
 That means that if we fetch these counters every 15 minutes, we only are reading "instantaneous" metters that could differ from the total quantity of energies at play. To get the very exact data, we would need to have a parser running constanty to collect those 2-sec interval counters.
 """
 
-import asyncio
 import json
 import logging
 import arrow

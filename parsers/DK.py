@@ -1,7 +1,8 @@
+
 import logging
 import pandas as pd
-import arrow  # the arrow library is used to handle datetimes
-import requests  # the request library is used to fetch content through HTTP
+import arrow
+import requests
 import pytz
 import time
 import json

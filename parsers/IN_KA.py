@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 from requests import Session
 from .lib.exceptions import ParserException

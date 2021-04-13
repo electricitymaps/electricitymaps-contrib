@@ -1,15 +1,11 @@
-#!/usr/bin/env python3
 
 import arrow
 import json
 import logging
-import os
 import math
-
 import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
-
 from .lib.validation import validate, validate_production_diffs
 from .lib.utils import get_token
 

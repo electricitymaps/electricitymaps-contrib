@@ -1,5 +1,3 @@
-#!usr/bin/env python3
-
 """Parser for the Idaho Power Comapny area of the United States."""
 
 from dateutil import parser, tz

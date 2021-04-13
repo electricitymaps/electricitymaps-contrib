@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Parser for the MISO area of the United States."""
 
 import logging

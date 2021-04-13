@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
 
 import arrow
 import math
-
 from . import statnett
 from . import ENTSOE
 from . import DK

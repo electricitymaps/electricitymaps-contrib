@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import arrow
 from bs4 import BeautifulSoup
@@ -10,10 +9,11 @@ from operator import itemgetter
 import pandas as pd
 import requests
 
-
-# This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
-# The data is in MWh but since it is updated hourly we can view it as MW.
-# Solar generation now has some data available but multiple projects are planned/under construction.
+"""
+This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
+The data is in MWh but since it is updated hourly we can view it as MW.
+Solar generation now has some data available but multiple projects are planned/under construction.
+"""
 
 url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
 

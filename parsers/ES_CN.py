@@ -1,10 +1,6 @@
-#!/usr/bin/env python3
 
 import logging
-
-# The arrow library is used to handle datetimes
 from arrow import get
-# The request library is used to fetch content through HTTP
 from requests import Session
 from ree import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
                  LaPalma, Tenerife)

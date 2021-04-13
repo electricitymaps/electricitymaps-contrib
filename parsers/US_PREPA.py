@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Real-time parser for Puerto Rico.
 Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us/Pages/Generaci%C3%B3n.aspx
@@ -8,9 +6,7 @@ The electricity authority is known in English as PREPA (Puerto Rico Electric Pow
 
 import logging
 import re
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
 import requests
 import json
 

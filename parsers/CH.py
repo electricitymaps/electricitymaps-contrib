@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 
 import arrow
-
 from . import ENTSOE
 import logging
 import requests
