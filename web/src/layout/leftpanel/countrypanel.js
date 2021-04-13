@@ -25,6 +25,7 @@ import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissio
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
+import CountryDisclaimer from '../../components/countrydisclaimer';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 
 import { dispatchApplication } from '../../store';
@@ -124,7 +125,7 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser } = data;
+  const { hasParser, disclaimer } = data;
   const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
@@ -160,6 +161,7 @@ const CountryPanel = ({
                   {datetime ? moment(datetime).format('LL LT') : ''}
                 </div>
               </div>
+              {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
             </div>
           </div>
         </div>
