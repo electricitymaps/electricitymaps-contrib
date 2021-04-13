@@ -1,7 +1,8 @@
 
+import re
+
 import arrow
 import dateutil
-import re
 import requests
 from bs4 import BeautifulSoup
 

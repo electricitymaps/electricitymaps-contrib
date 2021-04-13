@@ -1,8 +1,9 @@
 
-import arrow
 import logging
-from .lib import web
 
+import arrow
+
+from .lib import web
 
 ENDPOINT = 'http://uksldc.in/real-time-data.php'
 

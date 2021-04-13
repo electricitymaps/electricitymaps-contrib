@@ -1,7 +1,8 @@
 
+import json
+
 import arrow
 import requests
-import json
 from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'

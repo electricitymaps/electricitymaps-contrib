@@ -1,10 +1,11 @@
 
-import logging
 import datetime
+import logging
 import re
-import tablib
+
 import arrow
 import requests
+import tablib
 
 
 def fetch_production(zone_key='XK', session=None,

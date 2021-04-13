@@ -1,8 +1,7 @@
 
 from requests import Session
-from .lib import web
-from .lib import zonekey
-from .lib import IN
+
+from .lib import IN, web, zonekey
 
 plants = {
     "CCGT-Bawana": "Gas",

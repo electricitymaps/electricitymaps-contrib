@@ -1,8 +1,8 @@
 # coding=utf-8
 
 import arrow
-import requests
 import pandas as pd
+import requests
 
 tz_gt = 'America/Guatemala'
 

@@ -1,8 +1,10 @@
 
-import arrow
-from . import ENTSOE
 import logging
+
+import arrow
 import requests
+
+from . import ENTSOE
 
 
 def fetch_swiss_exchanges(session, target_datetime, logger):

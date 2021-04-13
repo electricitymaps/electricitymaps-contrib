@@ -1,9 +1,10 @@
 
-import arrow
 import re
+from logging import getLogger
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
-from logging import getLogger
 
 LOAD_URL = 'http://kpx.or.kr/eng/index.do'
 

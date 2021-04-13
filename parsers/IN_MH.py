@@ -1,11 +1,12 @@
 
-from PIL import Image, ImageOps
-import pytesseract
-import cv2
-from imageio import imread
-import numpy as np
-import arrow
 import logging
+
+import arrow
+import cv2
+import numpy as np
+import pytesseract
+from imageio import imread
+from PIL import Image, ImageOps
 
 url = 'https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg'
 

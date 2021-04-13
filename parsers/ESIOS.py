@@ -1,7 +1,9 @@
 
 from urllib.parse import urlencode
+
 import arrow
 import requests
+
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 

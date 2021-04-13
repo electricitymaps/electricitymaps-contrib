@@ -1,8 +1,9 @@
 # coding=utf-8
 
-import arrow
 import json
 import logging
+
+import arrow
 import requests
 
 # APIs

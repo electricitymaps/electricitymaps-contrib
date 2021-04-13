@@ -1,8 +1,9 @@
 # coding=utf-8
 """Parser for Moldova."""
 
-import arrow
 from operator import itemgetter
+
+import arrow
 import requests
 
 TYPE_MAPPING = {

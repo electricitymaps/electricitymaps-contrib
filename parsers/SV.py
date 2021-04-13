@@ -9,13 +9,14 @@ See: https://gastechinsights.com/article/what-energa-del-pacficos-lng-to-power-p
 Thanks to jarek for figuring out how to make the correct POST request to the data url.
 """
 
-import arrow
-from bs4 import BeautifulSoup
-import requests
 import json
 import re
 from collections import defaultdict
 from operator import itemgetter
+
+import arrow
+import requests
+from bs4 import BeautifulSoup
 
 url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
 

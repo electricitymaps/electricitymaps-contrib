@@ -1,9 +1,10 @@
 # coding=utf-8
 
+import logging
+
 import arrow
 import requests
 from bs4 import BeautifulSoup
-import logging
 
 
 def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):

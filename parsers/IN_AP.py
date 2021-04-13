@@ -1,6 +1,7 @@
 
 from requests import Session
-from .lib import zonekey, IN, web
+
+from .lib import IN, web, zonekey
 
 
 def fetch_production(zone_key='IN-AP', session=None, target_datetime=None, logger=None):

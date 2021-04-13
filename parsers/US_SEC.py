@@ -9,7 +9,9 @@ https://github.com/tmrowco/electricitymap-contrib/issues/1713
 
 import logging
 from datetime import timezone
+
 import pandas as pd
+
 from . import EIA
 from .ENTSOE import merge_production_outputs
 

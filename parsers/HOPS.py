@@ -1,10 +1,11 @@
 """Parser for power production in Croatia"""
 
-import arrow
-import requests
 import logging
-import pandas as pd
 from datetime import datetime
+
+import arrow
+import pandas as pd
+import requests
 
 URL = "https://www.hops.hr/Home/PowerExchange"
 

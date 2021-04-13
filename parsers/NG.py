@@ -1,10 +1,10 @@
 """Parser for the electricity grid of Nigeria"""
 
-import arrow
 import logging
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
-
 
 LIVE_PRODUCTION_API_URL = "https://www.niggrid.org/GenerationLoadProfileBinary?readingDate={0}&readingTime={1}"
 TYPE_MAPPING = {"hydro": "hydro", "gas": "gas", "gas/steam": "gas", "steam": "gas"}

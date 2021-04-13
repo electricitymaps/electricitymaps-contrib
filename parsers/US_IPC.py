@@ -1,10 +1,10 @@
 """Parser for the Idaho Power Comapny area of the United States."""
 
-from dateutil import parser, tz
 from itertools import groupby
 from logging import getLogger
-import requests
 
+import requests
+from dateutil import parser, tz
 
 # NOTE No pumped storage yet but future ideas can be found at the following url.
 # https://docs.idahopower.com/pdfs/AboutUs/PlanningForFuture/irp/IRP.pdf

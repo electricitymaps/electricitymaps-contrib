@@ -1,14 +1,16 @@
 
-import logging
 import datetime
-from PIL import Image
-from pytesseract import image_to_string
-from bs4 import BeautifulSoup
-from urllib.request import urlopen, Request
-from io import BytesIO
+import logging
 import re
+from io import BytesIO
+from urllib.request import Request, urlopen
+
 import arrow
 import requests
+from bs4 import BeautifulSoup
+from PIL import Image
+from pytesseract import image_to_string
+
 from .JP import fetch_production as JP_fetch_production
 
 

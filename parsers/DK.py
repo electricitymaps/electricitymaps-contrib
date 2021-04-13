@@ -1,13 +1,14 @@
 
-import logging
-import pandas as pd
-import arrow
-import requests
-import pytz
-import time
 import json
-from .lib.exceptions import ParserException
+import logging
+import time
 
+import arrow
+import pandas as pd
+import pytz
+import requests
+
+from .lib.exceptions import ParserException
 
 ids = {
     'real_time': '06380963-b7c6-46b7-aec5-173d15e4648b',

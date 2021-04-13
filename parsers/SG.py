@@ -1,11 +1,12 @@
 
-from collections import defaultdict
 import logging
 import re
+from collections import defaultdict
+
 import arrow
+import requests
 from PIL import Image
 from pytesseract import image_to_string
-import requests
 
 TIMEZONE = 'Asia/Singapore'
 

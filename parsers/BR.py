@@ -1,9 +1,10 @@
 
 from collections import defaultdict
+
 import arrow
 import requests
-from .lib.validation import validate
 
+from .lib.validation import validate
 
 url = 'http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
 

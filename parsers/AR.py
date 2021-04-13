@@ -1,8 +1,9 @@
 
 import itertools
+import logging
 import re
 import string
-import logging
+
 import arrow
 import requests
 from bs4 import BeautifulSoup

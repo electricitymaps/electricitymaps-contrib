@@ -1,7 +1,9 @@
-import arrow
+
 import logging
-import requests
+
+import arrow
 import pandas as pd
+import requests
 from tqdm import tqdm
 
 ZONE_KEY_TO_REGION = {

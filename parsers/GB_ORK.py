@@ -1,8 +1,9 @@
 """Parser for the Orkney Islands"""
 
+import logging
+
 import arrow
 import dateutil
-import logging
 import requests
 from bs4 import BeautifulSoup
 

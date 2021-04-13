@@ -1,7 +1,7 @@
 
 import arrow
-import requests
 import numpy as np
+import requests
 from PIL import Image
 
 

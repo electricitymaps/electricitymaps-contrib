@@ -1,10 +1,12 @@
 
-import logging
 import datetime
+import logging
 import sys
+
 import arrow
 import requests
 from bs4 import BeautifulSoup
+
 
 class CyprusParser:
     CAPACITY_KEYS = {

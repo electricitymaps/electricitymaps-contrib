@@ -1,10 +1,12 @@
 # coding=utf-8
 
 import logging
+import re
+
 import arrow
 import requests
-import re
 from bs4 import BeautifulSoup
+
 from . import occtonet
 
 

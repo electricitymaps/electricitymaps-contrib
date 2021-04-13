@@ -4,11 +4,12 @@ Fetches data from various pages embedded as an iframe at https://aeepr.com/en-us
 The electricity authority is known in English as PREPA (Puerto Rico Electric Power Authority) and in Spanish as AEEPR (Autoridad de Energía Eléctrica Puerto Rico)
 """
 
+import json
 import logging
 import re
+
 import arrow
 import requests
-import json
 
 timezone_name = 'America/Puerto_Rico'
 GENERATION_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/combustibles.aspx"

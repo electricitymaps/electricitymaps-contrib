@@ -1,13 +1,15 @@
 
-import re
 import collections
+import itertools
+import re
+from logging import getLogger
 from operator import itemgetter
+
 import arrow
 import requests
-import itertools
-from .lib import zonekey, web, IN
+
+from .lib import IN, web, zonekey
 from .lib.validation import validate
-from logging import getLogger
 
 SLDCGUJ_URL = 'http://www.sldcguj.com/RealTimeData/PrintPage.php?page=realtimedemand.php'
 

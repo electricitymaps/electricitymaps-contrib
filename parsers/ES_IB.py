@@ -1,10 +1,10 @@
 
 import logging
+
 from arrow import get
+from ree import BalearicIslands, Formentera, Ibiza, Mallorca, Menorca
 from requests import Session
-from ree import (Formentera, Ibiza,
-                 Mallorca, Menorca,
-                 BalearicIslands)
+
 from .lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
 

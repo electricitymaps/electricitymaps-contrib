@@ -1,8 +1,9 @@
 
-import arrow
 import json
-import requests
 import re
+
+import arrow
+import requests
 
 tz_bo = 'America/La_Paz'
 

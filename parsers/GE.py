@@ -1,9 +1,11 @@
 
-import logging
 import datetime
-import pandas as pd
+import logging
+
 import arrow
+import pandas as pd
 import requests
+
 
 def fetch_production(zone_key='GE', session=None, target_datetime: datetime.datetime=None,
                      logger: logging.Logger=None):

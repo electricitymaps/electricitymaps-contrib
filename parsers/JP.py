@@ -1,9 +1,11 @@
 # coding=utf-8
 
-import logging
-import arrow
 import datetime as dt
+import logging
+
+import arrow
 import pandas as pd
+
 from parsers import occtonet
 
 # Abbreviations

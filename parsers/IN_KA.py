@@ -1,9 +1,8 @@
 
 from requests import Session
+
+from .lib import IN, web, zonekey
 from .lib.exceptions import ParserException
-from .lib import web
-from .lib import zonekey
-from .lib import IN
 
 
 def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None):

@@ -1,8 +1,8 @@
 # coding=utf-8
 
 import arrow
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 TYPE_MAPPING = {                        # Real values around midnight
     u'АЕЦ': 'nuclear',                  # 2000

@@ -3,7 +3,6 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-
 timezone = 'Canada/Atlantic'
 
 

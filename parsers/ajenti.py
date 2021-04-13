@@ -9,9 +9,10 @@ That means that if we fetch these counters every 15 minutes, we only are reading
 
 import json
 import logging
+
 import arrow
-from signalr import Connection
 from requests import Session
+from signalr import Connection
 
 ZONE_PARAMS = {
     'AUS-TAS-KI': {

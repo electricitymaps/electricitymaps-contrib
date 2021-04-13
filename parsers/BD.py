@@ -1,10 +1,10 @@
 """Parser for Bangladesh."""
 
-import arrow
-from datetime import datetime
 import logging
-import pandas as pd
+from datetime import datetime
 
+import arrow
+import pandas as pd
 
 GENERATION_MAPPING = {'Gas (Public)': 'gas_public',
                       'Gas (Private)': 'gas_private',

@@ -166,8 +166,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    from pprint import pprint
     import logging
+    from pprint import pprint
     test_logger = logging.getLogger()
 
     print('fetch_production() ->')

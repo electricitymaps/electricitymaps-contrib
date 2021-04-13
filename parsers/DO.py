@@ -1,19 +1,20 @@
-
-import arrow
-from bs4 import BeautifulSoup
-from collections import defaultdict
-import logging
-from math import isnan
-import numpy as np
-from operator import itemgetter
-import pandas as pd
-import requests
-
 """
 This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 The data is in MWh but since it is updated hourly we can view it as MW.
 Solar generation now has some data available but multiple projects are planned/under construction.
 """
+
+import logging
+from collections import defaultdict
+from math import isnan
+from operator import itemgetter
+
+import arrow
+import numpy as np
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+
 
 url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
 

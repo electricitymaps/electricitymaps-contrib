@@ -4,6 +4,7 @@ from collections import defaultdict
 from datetime import timedelta
 from operator import itemgetter
 from urllib.error import HTTPError
+
 import arrow
 import pandas as pd
 from arrow.parser import ParserError

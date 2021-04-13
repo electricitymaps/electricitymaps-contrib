@@ -1,10 +1,11 @@
 
-from datetime import timedelta, timezone
 import logging
 import xml.etree.ElementTree as ET
+from datetime import timedelta, timezone
+
 import arrow
-import requests
 import pandas as pd
+import requests
 
 """
 Some notes about timestamps:

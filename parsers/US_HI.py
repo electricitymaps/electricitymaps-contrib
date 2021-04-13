@@ -1,6 +1,7 @@
 
-import logging
 import datetime
+import logging
+
 import arrow
 import requests
 

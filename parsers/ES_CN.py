@@ -1,12 +1,13 @@
 
 import logging
+
 from arrow import get
-from requests import Session
-from ree import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
+from ree import (ElHierro, Gomera, GranCanaria, LanzaroteFuerteventura,
                  LaPalma, Tenerife)
+from requests import Session
+
 from .lib.exceptions import ParserException
 from .lib.validation import validate
-
 
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.

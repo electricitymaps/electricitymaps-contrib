@@ -1,8 +1,8 @@
 
 import json
+
 import arrow
 import requests
-
 
 timezone = 'Canada/Atlantic'
 

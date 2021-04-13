@@ -1,10 +1,11 @@
 # coding=utf-8
 
 import logging
-import pandas as pd
-import arrow
-import requests
 from io import StringIO
+
+import arrow
+import pandas as pd
+import requests
 
 # Abbreviations:
 # JP-HKD : Hokkaido

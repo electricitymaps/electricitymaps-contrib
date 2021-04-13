@@ -1,8 +1,8 @@
 
-import arrow
 import logging
-import requests
 
+import arrow
+import requests
 
 exchanges_mapping = {
     'BY->LT': [

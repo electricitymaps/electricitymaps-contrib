@@ -1,7 +1,8 @@
 """Parser for all of India"""
 
-import arrow
 import logging
+
+import arrow
 import requests
 from bs4 import BeautifulSoup
 

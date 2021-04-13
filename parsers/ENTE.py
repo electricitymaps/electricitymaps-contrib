@@ -1,12 +1,11 @@
-
-import arrow
-import requests
-
 """
 This parser gets all real time interconnection flows from the Central American Electrical Interconnection System (SIEPAC).
 map for reference:
 https://www.enteoperador.org/flujos-regionales-en-tiempo-real/
 """
+
+import arrow
+import requests
 
 DATA_URL = 'https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic'
 

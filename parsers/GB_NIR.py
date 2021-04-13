@@ -1,11 +1,13 @@
 
+import logging
 from datetime import datetime
 from io import StringIO
-import logging
+
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
+
 from .lib.validation import validate
 
 production_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx'

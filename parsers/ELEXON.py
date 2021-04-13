@@ -10,14 +10,16 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
-import arrow
-import logging
-import requests
 import datetime as dt
-import pandas as pd
+import logging
 from io import StringIO
-from .lib.validation import validate
+
+import arrow
+import pandas as pd
+import requests
+
 from .lib.utils import get_token
+from .lib.validation import validate
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
