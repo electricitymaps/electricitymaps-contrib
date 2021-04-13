@@ -1,14 +1,12 @@
 """
 Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
-
-Aggregates and standardizes data from most of the US ISOs,
-and exposes them via a unified API.
-
-Requires an API key, set in the EIA_KEY environment variable. Get one here:
+Aggregates and standardizes data from most of the US ISOs, and exposes them via a unified API.
+Requires an API key, set in the EIA_KEY environment variable.
+Get one here:
 https://www.eia.gov/opendata/register.php
 """
 
-import datetime
+from datetime import timedelta 
 
 import requests
 from dateutil import parser, tz
@@ -485,7 +483,7 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
         utc = tz.gettz('UTC')
         #eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
         end = target_datetime.astimezone(utc).strftime('%Y%m%dT%HZ')
-        start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime('%Y%m%dT%HZ')
+        start = (target_datetime.astimezone(utc) - timedelta(days=1)).strftime('%Y%m%dT%HZ')
         raw_data = series.get_data(start=start, end=end)
     else:
         # Get the last 24 hours available.

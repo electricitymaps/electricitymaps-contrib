@@ -1,6 +1,6 @@
 """Parser for the Southwest Power Pool area of the United States."""
 
-import datetime
+import datetime as dt
 from io import StringIO
 from logging import getLogger
 
@@ -104,7 +104,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
     """
 
     if target_datetime is not None:
-        current_year = datetime.datetime.now().year
+        current_year = dt.datetime.now().year
         target_year = target_datetime.year
 
         #Check if datetime is too far in the past
@@ -124,7 +124,7 @@ def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, lo
 
         raw_data['GMT MKT Interval'] = pd.to_datetime(raw_data['GMT MKT Interval'], utc=True)
         end = target_datetime
-        start = target_datetime - datetime.timedelta(days=1)
+        start = target_datetime - dt.timedelta(days=1)
         start = max(start, raw_data['GMT MKT Interval'].min())
         raw_data = raw_data[(raw_data['GMT MKT Interval'] >= start)&(raw_data['GMT MKT Interval']<= end)]
     else:
@@ -194,9 +194,9 @@ def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, l
     """
 
     if not target_datetime:
-        target_datetime = datetime.datetime.now()
+        target_datetime = dt.datetime.now()
 
-    if isinstance(target_datetime, datetime.datetime):
+    if isinstance(target_datetime, dt.datetime):
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
@@ -229,9 +229,9 @@ def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=
     """
 
     if not target_datetime:
-        target_datetime = datetime.datetime.now()
+        target_datetime = dt.datetime.now()
 
-    if isinstance(target_datetime, datetime.datetime):
+    if isinstance(target_datetime, dt.datetime):
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)

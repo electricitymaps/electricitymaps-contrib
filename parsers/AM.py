@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import re
-from datetime import datetime
+from datetime import datetime as dt
 
 import requests
 from bs4 import BeautifulSoup
@@ -80,7 +80,7 @@ def fetch_production(zone_key='AM', session=None, target_datetime=None, logger=N
 
     time_data = [s for s in data_split if "time2" in s][0]
     yerevan = tz.gettz('Asia/Yerevan')
-    date_time = dparser.parse(time_data.split()[3], default=datetime.now(yerevan), fuzzy=True)
+    date_time = dparser.parse(time_data.split()[3], default=dt.now(yerevan), fuzzy=True)
 
     #Operating solar, wind and biomass plants exist in small numbers, but are not reported yet
     data = {
@@ -137,7 +137,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     time_data = [s for s in data_split if "time2" in s][0]
     yerevan = tz.gettz('Asia/Yerevan')
-    date_time = dparser.parse(time_data.split()[3], default=datetime.now(yerevan), fuzzy=True)
+    date_time = dparser.parse(time_data.split()[3], default=dt.now(yerevan), fuzzy=True)
 
 
     if sorted_keys == 'AM->NKR':

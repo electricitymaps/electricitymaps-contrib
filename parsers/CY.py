@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import logging
 import sys
 
@@ -75,7 +75,7 @@ class CyprusParser:
             data.append(datum)
         return data
 
-    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+    def fetch_production(self, target_datetime: dt) -> list:
         if target_datetime is None:
             url = 'https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/'
         else:
@@ -96,7 +96,7 @@ class CyprusParser:
         return data
 
 def fetch_production(zone_key='CY', session=None,
-        target_datetime: datetime.datetime = None,
+        target_datetime: dt = None,
         logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """
     Requests the last known production mix (in MW) of a given country.
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     target_datetime = None
     if len(sys.argv) == 4:
-        target_datetime = datetime.datetime(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+        target_datetime = dt(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
 
     print('fetch_production() ->')
     for datum in fetch_production(target_datetime=target_datetime):

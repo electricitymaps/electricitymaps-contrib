@@ -1,5 +1,5 @@
 
-import datetime
+import datetime as dt
 import logging
 import re
 
@@ -9,7 +9,7 @@ import tablib
 
 
 def fetch_production(zone_key='XK', session=None,
-        target_datetime: datetime.datetime = None,
+        target_datetime: dt.datetime = None,
         logger: logging.Logger = logging.getLogger(__name__)):
     """
     Requests the last known production mix (in MW) of a given country.
@@ -37,7 +37,7 @@ def fetch_production(zone_key='XK', session=None,
         if time is None:
             break
         if isinstance(time, float):
-            time = datetime.time(hour=round(time * 24) % 24)
+            time = dt.time(hour=round(time * 24) % 24)
         time_str = time.strftime('%H:%M')
         assert 'TC KOSOVA' in row[3], 'Parser assumes only coal data'
         prod = float(row[2])

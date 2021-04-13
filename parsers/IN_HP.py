@@ -1,6 +1,6 @@
 """Parser for Himachal Pradesh (Indian State)."""
 
-import datetime
+from datetime import datetime as dt
 import logging
 from enum import Enum
 
@@ -66,7 +66,7 @@ PLANT_NAMES_TO_TYPES = {
 
 
 def fetch_production(zone_key=ZONE_KEY, session=None,
-                     target_datetime: datetime.datetime = None,
+                     target_datetime: dt = None,
                      logger: logging.Logger = logging.getLogger(__name__)):
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)."""
     r = session or requests.session()

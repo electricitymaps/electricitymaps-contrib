@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import logging
 
 import arrow
@@ -7,7 +7,7 @@ import pandas as pd
 import requests
 
 
-def fetch_production(zone_key='GE', session=None, target_datetime: datetime.datetime=None,
+def fetch_production(zone_key='GE', session=None, target_datetime: dt=None,
                      logger: logging.Logger=None):
     """
     Requests the last known production mix (in MW) of a given country.

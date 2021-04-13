@@ -5,7 +5,7 @@ There is pumped storage in the Peninsular but no data is currently available.
 https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
 """
 
-import datetime
+from datetime import datetime as dt
 from collections import defaultdict
 from logging import getLogger
 from xml.etree import ElementTree
@@ -74,7 +74,7 @@ def get_data(session=None):
 def convert_time_str(ts):
     """Converts a unicode time string into an aware datetime object."""
 
-    dt_naive = datetime.datetime.strptime(ts, '%m/%d/%Y %I:%M:%S %p')
+    dt_naive = dt.strptime(ts, '%m/%d/%Y %I:%M:%S %p')
     localtz = timezone('Asia/Kuala_Lumpur')
     dt_aware = localtz.localize(dt_naive)
 

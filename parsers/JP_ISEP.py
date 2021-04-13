@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import logging
 import re
 
@@ -71,7 +71,7 @@ def process_data(df):
 
 
 def fetch_production(zone_key='JP', session=None,
-                     target_datetime: datetime.datetime = None,
+                     target_datetime: dt = None,
                      logger: logging.Logger = logging.getLogger(__name__)):
     """
     Requests the historic production mix (in MW) of japan.
@@ -117,7 +117,7 @@ def fetch_production(zone_key='JP', session=None,
 
 
 def fetch_consumption(zone_key='JP', session=None,
-                     target_datetime: datetime.datetime = None,
+                     target_datetime: dt = None,
                      logger: logging.Logger = logging.getLogger(__name__)):
     """
     Requests the historic consumption mix (in MW) of japan.

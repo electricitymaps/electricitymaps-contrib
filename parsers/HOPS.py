@@ -1,7 +1,6 @@
 """Parser for power production in Croatia"""
 
 import logging
-from datetime import datetime
 
 import arrow
 import pandas as pd
@@ -19,7 +18,6 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
     """
     r = session or requests.session()
 
-    dt = datetime.strptime(feed_date, '%Y-%m-%d %H:%M:%S')
     # Get all available files
     dates_url = "https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/dates.json"
     response = r.get(dates_url)

@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import re
 
 import arrow
@@ -14,7 +14,7 @@ ab_timezone = 'Canada/Mountain'
 def convert_time_str(ts):
     """Takes a time string and converts into an aware datetime object."""
 
-    dt_naive = datetime.datetime.strptime(ts, ' %b %d, %Y %H:%M')
+    dt_naive = dt.strptime(ts, ' %b %d, %Y %H:%M')
     localtz = timezone('Canada/Mountain')
     dt_aware = localtz.localize(dt_naive)
 

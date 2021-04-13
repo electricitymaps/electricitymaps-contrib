@@ -8,7 +8,7 @@ https://github.com/tmrowco/electricitymap-contrib/issues/1713
 """
 
 import logging
-from datetime import timezone
+from datetime import timezone as tz
 
 import pandas as pd
 
@@ -44,7 +44,7 @@ def fetch_solar(session=None, logger=logging.getLogger(__name__)):
 
     return [{
         'zoneKey': 'US-SEC',
-        'datetime': row['Date/Time (UTC)'].to_pydatetime().replace(tzinfo=timezone.utc),
+        'datetime': row['Date/Time (UTC)'].to_pydatetime().replace(tzinfo=tz.utc),
         'production': {'solar': row['kW'] / 1000.0},
         'storage': {},  # required by merge_production_outputs
         'source': 'apps.seminole.coop',

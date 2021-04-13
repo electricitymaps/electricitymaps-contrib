@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import urllib
 from io import StringIO
 
@@ -47,7 +47,7 @@ DATA_CACHE = {}
 
 def parse_date(date, hour):
     tzoffset = tz.tzoffset("CST", -3600 * 6)
-    dt = datetime.datetime.strptime(date, "%d/%m/%Y")
+    dt = dt.strptime(date, "%d/%m/%Y")
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
 
@@ -190,7 +190,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    print(fetch_production("MX", target_datetime=datetime.datetime(year=2019, month=7, day=1)))
+    print(fetch_production("MX", target_datetime=dt(year=2019, month=7, day=1)))
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange("MX-NO", "MX-NW"))
     print("fetch_exchange(MX-OR, MX-PN)")

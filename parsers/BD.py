@@ -1,7 +1,7 @@
 """Parser for Bangladesh."""
 
 import logging
-from datetime import datetime
+from datetime import datetime as dt
 
 import arrow
 import pandas as pd
@@ -134,7 +134,7 @@ def excel_handler(shifted_target_datetime, logger):
     if shifted_target_datetime <= arrow.get('20180111', 'YYYYMMDD'):
         OLD_FORMAT = True
 
-    XLS_SPAN = (datetime(2018, 1, 12), datetime(2018, 1, 13), datetime(2018, 1, 14))
+    XLS_SPAN = (dt(2018, 1, 12), dt(2018, 1, 13), dt(2018, 1, 14))
 
     XLS_END = False
     if shifted_target_datetime.naive in XLS_SPAN:

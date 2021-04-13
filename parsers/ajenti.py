@@ -14,6 +14,7 @@ import arrow
 from requests import Session
 from signalr import Connection
 
+
 ZONE_PARAMS = {
     'AUS-TAS-KI': {
         "hub": "TagHub",
@@ -52,7 +53,6 @@ class SignalR:
     def get_value(self, hub, method):
         self.res = {}
         with Session() as session:
-            #create a connection
             connection = Connection(self.url, session)
             chat = connection.register_hub(hub)
             chat.client.on(method, self.update_res)

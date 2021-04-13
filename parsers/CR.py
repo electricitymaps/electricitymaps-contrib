@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import datetime as dt
+from datetime import time
 import logging
 
 import arrow
@@ -171,7 +171,7 @@ def fetch_production(zone_key='CR', session=None,
     # data lag.
     today = arrow.get().to(TIMEZONE).date()
     if target_datetime.date() == today:
-        target_datetime = target_datetime if target_datetime.time() >= dt.time(1, 30) \
+        target_datetime = target_datetime if target_datetime.time() >= time(1, 30) \
             else target_datetime.shift(days=-1)
 
     if target_datetime < arrow.get('2012-07-01'):

@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 import logging
 
 import arrow
@@ -9,7 +9,7 @@ import requests
 def fetch_production(
     zone_key="IS",
     session=None,
-    target_datetime: datetime.datetime = None,
+    target_datetime: dt = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
     """

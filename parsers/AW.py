@@ -1,5 +1,5 @@
 
-import datetime
+from datetime import datetime as dt
 
 import arrow
 import requests
@@ -23,7 +23,7 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
     solar = top_data['TotalSolar']
 
     # We're using Fossil data to get timestamp in correct time zone
-    local_date_time = datetime.datetime.strptime(fossil['timestamp'], "%Y-%m-%d %H:%M:%S.%f")
+    local_date_time = dt.strptime(fossil['timestamp'], "%Y-%m-%d %H:%M:%S.%f")
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, 'America/Aruba')
 
     data = {

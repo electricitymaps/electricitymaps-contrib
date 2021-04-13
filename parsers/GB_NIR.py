@@ -1,6 +1,6 @@
 
 import logging
-from datetime import datetime
+from datetime import datetime as dt
 from io import StringIO
 
 import pandas as pd
@@ -48,7 +48,7 @@ def get_data(url, target_datetime, session=None):
         target_date = target_datetime.date()
     else:
         # get the latest data
-        target_date = datetime.now().date()
+        target_date = dt.now().date()
 
     month = target_date.month
     day = target_date.day
