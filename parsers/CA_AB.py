@@ -28,8 +28,8 @@ def fetch_production(zone_key="CA-AB", session=None, target_datetime=None, logge
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet"
-    response = r.get(url)
+    URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet"
+    response = r.get(URL)
 
     soup = BeautifulSoup(response.content, "html.parser")
     findtime = soup.find("td", text=re.compile("Last Update")).get_text()
@@ -74,8 +74,8 @@ def fetch_price(zone_key="CA-AB", session=None, target_datetime=None, logger=Non
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/"
-    response = r.get(url)
+    URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/"
+    response = r.get(URL)
 
     df_prices = pd.read_html(response.text, match="Price", index_col=0, header=0)
     prices = df_prices[1]
@@ -111,8 +111,8 @@ def fetch_exchange(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet"
-    response = r.get(url)
+    URL = "http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet"
+    response = r.get(URL)
     df_exchanges = pd.read_html(
         response.text, match="INTERCHANGE", skiprows=0, index_col=0
     )

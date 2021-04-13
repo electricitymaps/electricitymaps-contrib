@@ -3,16 +3,17 @@ from datetime import datetime as dt
 import arrow
 import requests
 
+URL = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
+
 
 def fetch_production(zone_key="AW", session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
     # User agent is mandatory or services answers 404
     headers = {"user-agent": "electricitymap.org"}
-    response = r.get(url, headers=headers)
+    response = r.get(URL, headers=headers)
     aruba_json = response.json()
     top_data = aruba_json["dashboard_top_data"]
 

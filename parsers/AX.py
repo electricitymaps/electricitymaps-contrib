@@ -143,6 +143,7 @@ def _get_masks(session=None):
     
     return dict(zip(shorts,masks))
     
+URL = 'http://194.110.178.135/grafik/stamnat.php'
 
 def _fetch_data(session=None):
     # Load masks for reading numbers from the image
@@ -152,9 +153,8 @@ def _fetch_data(session=None):
     # Download the updating image from Kraftnät Åland
     r = session or requests.session()
     
-    url = 'http://194.110.178.135/grafik/stamnat.php'
     
-    im = Image.open(r.get(url, stream=True).raw)
+    im = Image.open(r.get(URL, stream=True).raw)
     # Get timestamp
     fetchtime = arrow.utcnow().floor('second').to('Europe/Mariehamn')
     
@@ -204,7 +204,7 @@ def _fetch_data(session=None):
             if im1 == mapping[abr]:
                 FIFlow.append(abr)
     FIFlow = "".join(FIFlow)
-    FIFlow = round(float(FIFlow),1)
+    FIFlow = round(float(FIFlow), 1)
 
 
     # The shown total consumption is not reliable according to the TSO
@@ -335,7 +335,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     # from country1 to country2
     
     #  AX is before both FI and SE
-    data['netFlow'] =  round(-1*netFlow,1)
+    data['netFlow'] =  round(-1 * netFlow, 1)
 
     return data
 

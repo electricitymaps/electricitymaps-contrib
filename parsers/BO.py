@@ -6,6 +6,8 @@ import requests
 
 tz_bo = "America/La_Paz"
 
+URL_INIT = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
+URL_TOKEN = "https://www.cndc.bo/gene/index.php"
 
 def extract_xsrf_token(html):
     """Extracts XSRF token from the source code of the generation graph page."""
@@ -47,13 +49,10 @@ def fetch_production(zone_key="BO", session=None, target_datetime=None, logger=N
     # Define actual and previous day (for midnight data).
     formatted_date = now.format("YYYY-MM-DD")
 
-    # initial path for url to request
-    url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
-
     # XSRF token for the initial request
-    xsrf_token = extract_xsrf_token(r.get("https://www.cndc.bo/gene/index.php").text)
+    xsrf_token = extract_xsrf_token(r.get(URL_TOKEN).text)
 
-    resp = r.get(url_init.format(formatted_date), headers={"x-csrf-token": xsrf_token})
+    resp = r.get(URL_INIT.format(formatted_date), headers={"x-csrf-token": xsrf_token})
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
     payload = []
@@ -95,13 +94,10 @@ def fetch_generation_forecast(
     # Define actual and previous day (for midnight data).
     formatted_date = now.format("YYYY-MM-DD")
 
-    # initial path for url to request
-    url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
-
     # XSRF token for the initial request
-    xsrf_token = extract_xsrf_token(r.get("https://www.cndc.bo/gene/index.php").text)
+    xsrf_token = extract_xsrf_token(r.get(URL_TOKEN).text)
 
-    resp = r.get(url_init.format(formatted_date), headers={"x-csrf-token": xsrf_token})
+    resp = r.get(URL_INIT.format(formatted_date), headers={"x-csrf-token": xsrf_token})
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
     payload = []

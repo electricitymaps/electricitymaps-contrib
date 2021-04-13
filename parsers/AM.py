@@ -55,11 +55,12 @@ soup_content_variables_mapping = {
     "[28]": "sparum2",
 }
 
+URL = "http://epso.am/poweren.htm"
+
 
 def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=None):
     r = session or requests.session()
-    url = "http://epso.am/poweren.htm"
-    response = r.get(url)
+    response = r.get(URL)
     response.encoding = "utf-8"
     html_doc = response.text
     start_string = "<script type='text/javascript'>"
@@ -107,7 +108,7 @@ def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=N
             "wind": None,
         },
         "storage": {"hydro": 0, "battery": 0},
-        "source": "http://epso.am/poweren.htm",
+        "source": URL,
     }
 
     return data
@@ -120,8 +121,7 @@ def fetch_exchange(
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()
-    url = "http://epso.am/poweren.htm"
-    response = r.get(url)
+    response = r.get(URL)
     response.encoding = "utf-8"
     html_doc = response.text
     start_string = "<script type='text/javascript'>"
@@ -170,7 +170,7 @@ def fetch_exchange(
         "sortedZoneKeys": sorted_keys,
         "datetime": date_time,
         "netFlow": netflow,
-        "source": "http://epso.am/poweren.htm",
+        "source": URL,
     }
     return exchange
 

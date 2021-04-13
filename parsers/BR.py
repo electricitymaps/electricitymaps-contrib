@@ -5,7 +5,7 @@ import requests
 
 from .lib.validation import validate
 
-url = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
+URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
 
 generation_mapping = {
     u"nuclear": "nuclear",
@@ -48,7 +48,7 @@ def get_data(session, logger):
     """Requests generation data in json format."""
 
     s = session or requests.session()
-    json_data = s.get(url).json()
+    json_data = s.get(URL).json()
     return json_data
 
 

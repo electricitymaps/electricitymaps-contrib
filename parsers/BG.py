@@ -17,6 +17,8 @@ TYPE_MAPPING = {  # Real values around midnight
     u"Товар РБ": "consumption",  # 3175
 }
 
+URL = "http://www.eso.bg/?did=124"
+
 
 def time_string_converter(ts):
     """Converts time strings into aware datetime objects."""
@@ -33,8 +35,7 @@ def fetch_production(zone_key="BG", session=None, target_datetime=None, logger=N
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "http://www.eso.bg/?did=124"
-    response = r.get(url)
+    response = r.get(URL)
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
 
