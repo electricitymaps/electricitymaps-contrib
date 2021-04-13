@@ -151,14 +151,11 @@ const CountryPanel = ({
           </Link>
           <div className="country-name-time">
             <div className="country-name-time-table">
-              <div style={{ display: 'table-cell' }}>
+              <div>
                 <img id="country-flag" className="flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
-
-              <div style={{ display: 'table-cell' }}>
-                <div className="country-name">
-                  {getFullZoneName(zoneId)}
-                </div>
+              <div style={{ flexGrow: 1 }}>
+                <div className="country-name">{getFullZoneName(zoneId)}</div>
                 <div className="country-time">
                   {datetime ? moment(datetime).format('LL LT') : ''}
                 </div>
