@@ -105,9 +105,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given region.
-    """
+    """Requests the last known production mix (in MW) of a given region."""
 
     dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
 
@@ -175,9 +173,7 @@ def fetch_price(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power price per MWh of a given region.
-    """
+    """Requests the last known power price per MWh of a given region."""
 
     # "HOEP" below is "Hourly Ontario Energy Price".
     # There also exists a 5-minute price, but its archives only go back roughly 4 days
@@ -215,9 +211,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power exchange (in MW) between two regions.
-    """
+    """Requests the last known power exchange (in MW) between two regions."""
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 

@@ -77,9 +77,7 @@ def fetch_production(
     target_datetime: dt = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    """
-    Requests the historic production mix (in MW) of japan.
-    """
+    """Requests the historic production mix (in MW) of japan."""
     if target_datetime is None:
         # This data is only available with approx 4 month delay
         raise NotImplementedError(
@@ -124,9 +122,7 @@ def fetch_consumption(
     target_datetime: dt = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    """
-    Requests the historic consumption mix (in MW) of japan.
-    """
+    """Requests the historic consumption mix (in MW) of japan."""
     if target_datetime is None:
         # This data is only available with approx 4 month delay
         raise NotImplementedError(

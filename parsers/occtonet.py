@@ -41,9 +41,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     # get target date in time zone Asia/Tokyo
     query_date = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
 
@@ -103,11 +101,8 @@ def fetch_exchange_forecast(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-):
-    """
-    Gets exchange forecast between two specified zones.
-    Returns a list of dictionaries.
-    """
+) -> list:
+    """Gets exchange forecast between two specified zones."""
     # get target date in time zone Asia/Tokyo
     query_date = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
     # Forecasts ahead of current date are not available

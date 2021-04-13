@@ -22,9 +22,7 @@ GENERATION_MAPPING = {
 
 
 def get_json_data(session) -> dict:
-    """
-    Requests json data and extracts generation information.
-    """
+    """Requests json data and extracts generation information."""
     s = session or requests.Session()
     req = s.get(GENERATION_LINK, verify=False)
     raw_json_data = req.json()
@@ -80,9 +78,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -116,9 +112,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
     raw_data = get_json_data(session)
     dt = get_datetime(session)

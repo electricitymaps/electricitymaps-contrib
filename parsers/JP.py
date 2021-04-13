@@ -185,9 +185,7 @@ def fetch_consumption_forecast(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ) -> list:
-    """
-    Gets consumption forecast for specified zone.
-    """
+    """Gets consumption forecast for specified zone."""
     # Currently past dates not implemented for areas with no date in their demand csv files
     if target_datetime and zone_key == "JP-HKD":
         raise NotImplementedError("Past dates not yet implemented for selected region")
@@ -324,9 +322,7 @@ def fetch_price(
 
 
 def parse_dt(row):
-    """
-    Parses timestamps from date and time.
-    """
+    """Parses timestamps from date and time."""
     if "AM" in row["Time"] or "PM" in row["Time"]:
         timestamp = (
             arrow.get(

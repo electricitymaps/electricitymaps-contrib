@@ -231,9 +231,7 @@ def thermal_production(df, logger) -> dict:
 
 
 def total_production(df) -> dict:
-    """
-    Takes DataFrame and finds generation totals for each hour.
-    """
+    """Takes DataFrame and finds generation totals for each hour."""
 
     vals = []
     # The Dominican Republic does not observe daylight savings time.
@@ -291,9 +289,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

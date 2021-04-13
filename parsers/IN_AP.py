@@ -4,7 +4,7 @@ from .lib import IN, web, zonekey
 
 
 def fetch_production(zone_key="IN-AP", session=None, target_datetime=None, logger=None):
-    """Fetch Andhra Pradesh  production"""
+    """Fetch Andhra Pradesh  production."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -56,7 +56,7 @@ def fetch_production(zone_key="IN-AP", session=None, target_datetime=None, logge
 def fetch_consumption(
     zone_key="IN-AP", session=None, target_datetime=None, logger=None
 ):
-    """Fetch Andhra Pradesh consumption"""
+    """Fetch Andhra Pradesh consumption."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

@@ -17,9 +17,7 @@ def fetch_production(
     target_datetime=None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         return fetch_historical_production(target_datetime, zone_key)
 
@@ -195,9 +193,7 @@ def fetch_MX_exchange(s):
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     s = session or requests.Session()

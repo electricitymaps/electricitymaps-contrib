@@ -92,9 +92,7 @@ def get_data(url, target_datetime, session=None):
 
 
 def add_default_tz(timestamp):
-    """
-    Adds Northern Ireland timezone to datetime object if tz = None.
-    """
+    """Adds Northern Ireland timezone to datetime object if tz = None."""
 
     NIR = tz.gettz("Europe/Belfast")
     modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or NIR)
@@ -103,9 +101,7 @@ def add_default_tz(timestamp):
 
 
 def create_production_df(text_data):
-    """
-    Turns thermal csv data into a usable dataframe.
-    """
+    """Turns thermal csv data into a usable dataframe."""
 
     cols_to_use = [0, 1, 2, 3, 4, 5]
     df_production = pd.read_csv(StringIO(text_data), usecols=cols_to_use)
@@ -115,9 +111,7 @@ def create_production_df(text_data):
 
 
 def create_exchange_df(text_data):
-    """
-    Turns exchange csv data into a usable dataframe.
-    """
+    """Turns exchange csv data into a usable dataframe."""
 
     df_exchange = pd.read_csv(StringIO(text_data))
     df_exchange.fillna(0.0, inplace=True)
@@ -126,9 +120,7 @@ def create_exchange_df(text_data):
 
 
 def production_processor(df) -> list:
-    """
-    Creates quarter hour datapoints for thermal production.
-    """
+    """Creates quarter hour datapoints for thermal production."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -148,9 +140,7 @@ def production_processor(df) -> list:
 
 
 def moyle_processor(df) -> list:
-    """
-    Creates quarter hour datapoints for GB exchange.
-    """
+    """Creates quarter hour datapoints for GB exchange."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -167,9 +157,7 @@ def moyle_processor(df) -> list:
 
 
 def IE_processor(df) -> list:
-    """
-    Creates quarter hour datapoints for IE exchange.
-    """
+    """Creates quarter hour datapoints for IE exchange."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -192,9 +180,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
 
     production_data = get_data(production_url, target_datetime)
     production_df = create_production_df(production_data)
@@ -225,9 +211,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
 
     exchange_data = get_data(exchange_url, target_datetime)
     exchange_dataframe = create_exchange_df(exchange_data)

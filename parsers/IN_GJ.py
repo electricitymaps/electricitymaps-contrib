@@ -45,11 +45,8 @@ station_map = {
 }
 
 
-def split_and_sum(expression):
-    """
-    Avoid using literal_eval for simple addition expressions.
-    Returns sum of all positive numbers.
-    """
+def split_and_sum(expression) -> float:
+    """Avoid using literal_eval for simple addition expressions."""
 
     split_vals = expression.split("+")
     float_vals = [float(v) for v in split_vals]
@@ -145,9 +142,7 @@ def fetch_data(zone_key, session=None, logger=None):
 def fetch_production(
     zone_key="IN-GJ", session=None, target_datetime=None, logger=getLogger("IN-GJ")
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     session = session or requests.session()
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

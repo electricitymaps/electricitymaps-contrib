@@ -26,9 +26,7 @@ def fetch(session=None):
 
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
             "This parser is not able to retrieve data for past dates"
@@ -85,9 +83,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=None,
 ):
-    """
-    Requests the last known power exchange (in MW) between New Zealand's two islands.
-    """
+    """Requests the last known power exchange (in MW) between New Zealand's two islands."""
     if target_datetime:
         raise NotImplementedError(
             "This parser is not able to retrieve data for past dates"

@@ -221,9 +221,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1="CR", zone_key2="NI", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two regions.
-    """
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

@@ -58,9 +58,7 @@ def _get_pei_info(requests_obj):
 
 
 def fetch_production(zone_key="CA-PE", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -95,9 +93,7 @@ def fetch_production(zone_key="CA-PE", session=None, target_datetime=None, logge
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two regions.
-    """
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

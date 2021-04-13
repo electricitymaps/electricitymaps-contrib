@@ -6,8 +6,7 @@ import pytz
 import requests
 
 SVK_URL = (
-    "http://www.svk.se/ControlRoom/GetProductionHistory/"
-    "?productionDate={date}&countryCode={zoneKey}"
+    "http://www.svk.se/ControlRoom/GetProductionHistory/?productionDate={date}&countryCode={zoneKey}"
 )
 
 # what the value refer to (FYI)

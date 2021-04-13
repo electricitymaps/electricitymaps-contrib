@@ -56,9 +56,9 @@ def parse_date(date, hour):
 
 def fetch_csv_for_date(dt, session=None):
     """
-    Fetches the whole month of the give datetime
-    returns the data as a DataFrame
-    throws an exception data is not available
+    Fetches the whole month of the give datetime.
+    returns the data as a DataFrame.
+    throws an exception data is not available.
     """
     if not session:
         session = requests.session()
@@ -170,11 +170,8 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     return data
 
 
-def fetch_MX_exchange(sorted_zone_keys, s):
-    """
-    Finds current flow between two Mexican control areas.
-    Returns a float.
-    """
+def fetch_MX_exchange(sorted_zone_keys, s) -> float:
+    """Finds current flow between two Mexican control areas."""
 
     req = s.get(MX_EXCHANGE_URL)
     soup = BeautifulSoup(req.text, "html.parser")
@@ -197,9 +194,7 @@ def fetch_MX_exchange(sorted_zone_keys, s):
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     if sorted_zone_keys not in EXCHANGES:

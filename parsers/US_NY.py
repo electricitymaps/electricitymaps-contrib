@@ -31,9 +31,7 @@ mapping = {
 
 
 def read_csv_data(url):
-    """
-    Gets csv data from a url and returns a dataframe.
-    """
+    """Gets csv data from a url and returns a dataframe."""
 
     csv_data = pd.read_csv(url)
 
@@ -41,9 +39,7 @@ def read_csv_data(url):
 
 
 def timestamp_converter(timestamp_string):
-    """
-    Converts timestamps in nyiso data into aware datetime objects.
-    """
+    """Converts timestamps in nyiso data into aware datetime objects."""
     try:
         dt_naive = arrow.get(timestamp_string, "MM/DD/YYYY HH:mm:ss")
     except ParserError:
@@ -94,9 +90,7 @@ def data_parser(df) -> list:
 
 
 def fetch_production(zone_key="US-NY", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         # ensure we have an arrow object
         target_datetime = arrow.get(target_datetime)
@@ -139,9 +133,7 @@ def fetch_production(zone_key="US-NY", session=None, target_datetime=None, logge
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     url = (
         "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"
     )

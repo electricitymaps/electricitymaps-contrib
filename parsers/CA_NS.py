@@ -144,9 +144,7 @@ def _get_ns_info(requests_obj, logger):
 
 
 def fetch_production(zone_key="CA-NS", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError(
             "This parser is unable to give information more than 24 hours in the past"

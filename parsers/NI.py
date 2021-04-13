@@ -126,11 +126,11 @@ def get_production_from_map(requests_obj) -> tuple:
 
 def get_production_from_summary(requests_obj) -> tuple:
     """
-    Get information from SUMMARY_URL. This is updated once an hour, on the hour.
+    Get information from SUMMARY_URL.
+    This is updated once an hour, on the hour.
     Units are the same as in MAP_URL.
     Values match the values reported in MAP_URL on the hour very closely, within 1-3%.
-    However, unlike get_production_from_map(), this includes solar generation,
-    which, although small, is nice to specify.
+    However, unlike get_production_from_map(), this includes solar generation, which, although small, is nice to specify.
     """
 
     type_translator = {
@@ -191,9 +191,7 @@ def get_production_from_summary(requests_obj) -> tuple:
 def fetch_production(
     zone_key="NI", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last known production mix (in MW) of Nicaragua.
-    """
+    """Requests the last known production mix (in MW) of Nicaragua."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -269,9 +267,7 @@ def fetch_exchange(
 def fetch_price(
     zone_key="NI", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the most recent known power prices in Nicaragua grid.
-    """
+    """Requests the most recent known power prices in Nicaragua grid."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

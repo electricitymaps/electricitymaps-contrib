@@ -421,9 +421,7 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_consumption(domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A65',
         'processType': 'A16',
@@ -436,8 +434,7 @@ def query_consumption(domain, session, target_datetime=None):
         check_response(response, query_consumption.__name__)
 
 
-def query_production(in_domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
+def query_production(in_domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A75',
         'processType': 'A16',  # Realised
@@ -450,9 +447,7 @@ def query_production(in_domain, session, target_datetime=None):
         check_response(response, query_production.__name__)
 
 
-def query_production_per_units(psr_type, domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_production_per_units(psr_type, domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A73',
         'processType': 'A16',
@@ -467,9 +462,7 @@ def query_production_per_units(psr_type, domain, session, target_datetime=None):
         check_response(response, query_production_per_units.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_exchange(in_domain, out_domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A11',
         'in_Domain': in_domain,
@@ -482,12 +475,8 @@ def query_exchange(in_domain, out_domain, session, target_datetime=None):
         check_response(response, query_exchange.__name__)
 
 
-def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None):
-    """
-    Gets exchange forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
-    """
-
+def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None) -> str:
+    """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
     params = {
         'documentType': 'A09',  # Finalised schedule
         'in_Domain': in_domain,
@@ -500,9 +489,7 @@ def query_exchange_forecast(in_domain, out_domain, session, target_datetime=None
         check_response(response, query_exchange_forecast.__name__)
 
 
-def query_price(domain, session, target_datetime=None):
-    """Returns a string object if the query succeeds."""
-
+def query_price(domain, session, target_datetime=None) -> str:
     params = {
         'documentType': 'A44',
         'in_Domain': domain,
@@ -515,11 +502,8 @@ def query_price(domain, session, target_datetime=None):
         check_response(response, query_price.__name__)
 
 
-def query_generation_forecast(in_domain, session, target_datetime=None):
-    """
-    Gets generation forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
-    """
+def query_generation_forecast(in_domain, session, target_datetime=None) -> str:
+    """Gets generation forecast for 48 hours ahead and previous 24 hours."""
 
     # Note: this does not give a breakdown of the production
     params = {
@@ -534,11 +518,8 @@ def query_generation_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_consumption_forecast(in_domain, session, target_datetime=None):
-    """
-    Gets consumption forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
-    """
+def query_consumption_forecast(in_domain, session, target_datetime=None) -> str:
+    """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
         'documentType': 'A65',  # Load Forecast
@@ -552,11 +533,8 @@ def query_consumption_forecast(in_domain, session, target_datetime=None):
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_wind_solar_production_forecast(in_domain, session, target_datetime=None):
-    """
-    Gets consumption forecast for 48 hours ahead and previous 24 hours.
-    Returns a string object if the query succeeds.
-    """
+def query_wind_solar_production_forecast(in_domain, session, target_datetime=None) -> str:
+    """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
         'documentType': 'A69',  # Forecast
@@ -582,9 +560,7 @@ def datetime_from_position(start, position, resolution):
     raise NotImplementedError('Could not recognise resolution %s' % resolution)
 
 
-def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False):
-    """Returns a tuple containing two lists."""
-
+def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -609,9 +585,7 @@ def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_
     return values, datetimes
 
 
-def parse_production(xml_text):
-    """Returns a tuple containing two lists."""
-
+def parse_production(xml_text) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -643,17 +617,16 @@ def parse_production(xml_text):
     return productions, datetimes
 
 
-def parse_self_consumption(xml_text):
+def parse_self_consumption(xml_text) -> dict:
     """
-    Parses the XML text and returns a dict of datetimes to the total self-consumption
-    value from all sources.
+    Parses the XML text and returns a dict of datetimes to the total self-consumption value from all sources.
     Self-consumption is the electricity used by a generation source.
     This is defined as any consumption source (i.e. outBiddingZone_Domain.mRID)
     that is not storage, e.g. consumption for B04 (Fossil Gas) is counted as
     self-consumption, but consumption for B10 (Hydro Pumped Storage) is not.
 
-    In most cases, total self-consumption is reported by ENTSOE as 0, therefore the returned
-    dict only includes datetimes where the value > 0.
+    In most cases, total self-consumption is reported by ENTSOE as 0,
+    therefore the returned dict only includes datetimes where the value > 0.
     """
 
     if not xml_text: return None
@@ -676,8 +649,7 @@ def parse_self_consumption(xml_text):
     return res
 
 
-def parse_production_per_units(xml_text):
-    """Returns a dict indexed by the (datetime, unit_key) key."""
+def parse_production_per_units(xml_text) -> dict:
     values = {}
 
     if not xml_text:
@@ -715,9 +687,7 @@ def parse_production_per_units(xml_text):
     return values.values()
 
 
-def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
-    """Returns a tuple containing two lists."""
-
+def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tuple:
     if not xml_text:
         return None
     quantities = quantities or []
@@ -748,9 +718,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None):
     return quantities, datetimes
 
 
-def parse_price(xml_text):
-    """Returns a tuple containing three lists."""
-
+def parse_price(xml_text) -> tuple:
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, 'html.parser')
@@ -771,7 +739,7 @@ def parse_price(xml_text):
     return prices, currencies, datetimes
 
 
-def validate_production(datapoint, logger):
+def validate_production(datapoint, logger) -> bool:
     """
     Production data can sometimes be available but clearly wrong.
 
@@ -780,7 +748,6 @@ def validate_production(datapoint, logger):
     could not function in this scenario.
 
     This function checks datapoints for a selection of countries and returns
-    False if invalid and True otherwise.
     """
 
     zone_key = datapoint['zoneKey']
@@ -805,8 +772,8 @@ def get_wind(values):
 
 
 def fetch_consumption(zone_key, session=None, target_datetime=None,
-                      logger=logging.getLogger(__name__)):
-    """Gets consumption for a specified zone, returns a dictionary."""
+                      logger=logging.getLogger(__name__)) -> dict:
+    """Gets consumption for a specified zone."""
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
@@ -976,9 +943,7 @@ def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
 
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)) -> list:
-    """
-    Returns a list of all production units and production values.
-    """
+    """Return production units and production values."""
     if not session:
         session = requests.session()
     domain = ENTSOE_EIC_MAPPING[zone_key]
@@ -1057,9 +1022,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
                             logger=logging.getLogger(__name__)) -> list:
-    """
-    Gets exchange forecast between two specified zones.
-    """
+    """Gets exchange forecast between two specified zones."""
     if not session:
         session = requests.session()
     sorted_zone_keys = sorted([zone_key1, zone_key2])
@@ -1106,9 +1069,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
 
 def fetch_price(zone_key, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)) -> list:
-    """
-    Gets day-ahead price for specified zone.
-    """
+    """Gets day-ahead price for specified zone."""
     # Note: This is day-ahead prices
     if not session:
         session = requests.session()
@@ -1135,9 +1096,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
 
 def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
                               logger=logging.getLogger(__name__)) -> list:
-    """
-    Gets generation forecast for specified zone.
-    """
+    """Gets generation forecast for specified zone."""
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
@@ -1160,9 +1119,7 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
 
 def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)) -> list:
-    """
-    Gets consumption forecast for specified zone.
-    """
+    """Gets consumption forecast for specified zone."""
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]

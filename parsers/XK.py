@@ -13,9 +13,7 @@ def fetch_production(
     target_datetime: dt.datetime = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.session()
     if target_datetime is None:
         url = "https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/Prodhimi%20aktual%20gjenerimi%20faktik%20i%20energjise%20elektrike.xlsx"

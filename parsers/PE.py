@@ -32,9 +32,7 @@ def parse_date(item):
 def fetch_production(
     zone_key="PE", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

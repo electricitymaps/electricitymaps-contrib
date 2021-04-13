@@ -18,9 +18,7 @@ GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 
 def get_data(session) -> dict:
-    """
-    Requests html then extracts generation data.
-    """
+    """Requests html then extracts generation data."""
 
     s = session or requests.Session()
     req = s.get(GENERATION_URL)
@@ -46,9 +44,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")

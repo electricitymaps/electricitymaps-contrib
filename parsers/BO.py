@@ -8,7 +8,7 @@ tz_bo = "America/La_Paz"
 
 
 def extract_xsrf_token(html):
-    """Extracts XSRF token from the source code of the generation graph page"""
+    """Extracts XSRF token from the source code of the generation graph page."""
     return re.search(r'var ttoken = "([a-f0-9]+)";', html).group(1)
 
 
@@ -36,9 +36,7 @@ def template_forecast_response(zone_key, datetime, source):
 
 
 def fetch_production(zone_key="BO", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         now = arrow.get(target_datetime)
     else:

@@ -29,9 +29,7 @@ OLD_GENERATION_MAPPING = {
 
 
 def timestamp_converter(raw_timestamp, target_datetime):
-    """
-    Converts string timestamp (e.g. 10:00:00) to arrow object.
-    """
+    """Converts string timestamp (e.g. 10:00:00) to arrow object."""
 
     hour, minute = raw_timestamp.split(":")[0:2]
     try:
@@ -86,9 +84,7 @@ def new_format_converter(df, logger):
 
 
 def production_processer(df, target_datetime, old_format=False) -> list:
-    """
-    Takes dataframe and extracts all production data and timestamps.
-    """
+    """Takes dataframe and extracts all production data and timestamps."""
 
     if old_format:
         MAPPING = OLD_GENERATION_MAPPING
@@ -115,9 +111,7 @@ def production_processer(df, target_datetime, old_format=False) -> list:
 
 
 def exchange_processer(df, target_datetime, old_format=False) -> list:
-    """
-    Takes dataframe and extracts all exchange data and timestamps.
-    """
+    """Takes dataframe and extracts all exchange data and timestamps."""
 
     # Positive means import from India hence sign reversal needed for EM.
     processed_data = []
@@ -205,9 +199,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
 
     if not target_datetime:
         raise NotImplementedError(
@@ -245,9 +237,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     if not target_datetime:
         raise NotImplementedError(
             """This parser is only able to get historical

@@ -116,9 +116,7 @@ def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=N
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()

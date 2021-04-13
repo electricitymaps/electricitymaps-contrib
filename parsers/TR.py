@@ -48,12 +48,8 @@ def as_float(prod):
     return prod
 
 
-def get_last_data_idx(productions):
-    """
-    Find index of the last production
-    :param productions: list of 24 production dict objects
-    :return: (int) index of the newest data or -1 if no data (empty day)
-    """
+def get_last_data_idx(productions) -> int:
+    """Find index of the last production"""
     for i in range(len(productions)):
         if productions[i]["total"] < 1000:
             return i - 1
@@ -110,9 +106,7 @@ def fetch_price(
 
 
 def fetch_production(zone_key="TR", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

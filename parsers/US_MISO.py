@@ -38,11 +38,8 @@ def get_json_data(logger, session=None):
     return json_data
 
 
-def data_processer(json_data, logger):
-    """
-    Identifies any unknown fuel types and logs a warning.
-    Returns a tuple containing datetime object and production dictionary.
-    """
+def data_processer(json_data, logger) -> tuple:
+    """Identifies any unknown fuel types and logs a warning."""
 
     generation = json_data["Fuel"]["Type"]
 
@@ -82,9 +79,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -106,9 +101,7 @@ def fetch_production(
 def fetch_wind_forecast(
     zone_key="US-MISO", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the day ahead wind forecast (in MW) of a given zone.
-    """
+    """Requests the day ahead wind forecast (in MW) of a given zone."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

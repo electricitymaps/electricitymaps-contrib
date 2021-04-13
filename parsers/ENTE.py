@@ -3,6 +3,7 @@ This parser gets all real time interconnection flows from the Central American E
 map for reference:
 https://www.enteoperador.org/flujos-regionales-en-tiempo-real/
 """
+from __future__ import annotations
 
 import arrow
 import requests
@@ -39,10 +40,9 @@ def fetch_production(zone_key="HN", session=None, target_datetime=None, logger=N
     return data
 
 
-def extract_exchange(raw_data, exchange):
+def extract_exchange(raw_data, exchange) -> float | None:
     """
     Extracts flow value and direction for a given exchange.
-    Returns a float or None.
     """
     search_value = JSON_MAPPING[exchange]
 
@@ -64,9 +64,7 @@ def extract_exchange(raw_data, exchange):
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Gets an exchange pair from the SIEPAC system.
-    """
+    """Gets an exchange pair from the SIEPAC system."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

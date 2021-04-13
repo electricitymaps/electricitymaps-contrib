@@ -131,9 +131,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Fetches 5-minute frequency exchange data for Danish bidding zones from api.energidataservice.dk
-    """
+    """Fetches 5-minute frequency exchange data for Danish bidding zones from api.energidataservice.dk"""
     r = session or requests.session()
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 

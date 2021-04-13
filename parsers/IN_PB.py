@@ -27,9 +27,7 @@ def calculate_average_timestamp(timestamps):
 
 
 def fetch_production(zone_key="IN-PB", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
             "The IN-PB production parser is not yet able to parse past dates"
@@ -72,9 +70,7 @@ def fetch_production(zone_key="IN-PB", session=None, target_datetime=None, logge
 def fetch_consumption(
     zone_key="IN-PB", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known consumption (in MW) of a given zone.
-    """
+    """Requests the last known consumption (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
             "The IN-PB consumption parser is not yet able to parse past dates"

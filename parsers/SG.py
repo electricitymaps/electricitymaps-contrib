@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 import re
 from collections import defaultdict
@@ -50,11 +52,10 @@ There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session, logger):
+def get_solar(session, logger) -> float | None:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
-    Returns a float or None.
     """
 
     url = SOLAR_URL
@@ -154,7 +155,8 @@ def sg_period_to_hour(period_str):
     Singapore electricity markets are split into 48 periods.
     Period 1 starts at 00:00 Singapore time.
     Period 9 starts at 04:00.
-    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes."""
+    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes.
+    """
     return (float(period_str) - 1) / 2.0
 
 
@@ -173,9 +175,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of Singapore.
-    """
+    """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

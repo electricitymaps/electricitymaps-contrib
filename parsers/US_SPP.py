@@ -43,12 +43,11 @@ def get_data(url, session=None):
     return df
 
 
-def data_processor(df, logger):
+def data_processor(df, logger) -> list:
     """
     Takes a dataframe and logging instance as input.
     Checks for new generation types and logs a warning if any are found.
     Parses the dataframe row by row removing unneeded keys.
-    Returns a list of 2 element tuples, each containing a datetime object and production dictionary.
     """
 
     # Remove leading whitespace in column headers.
@@ -109,9 +108,7 @@ def data_processor(df, logger):
 def fetch_production(
     zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
         current_year = dt.datetime.now().year
@@ -167,9 +164,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last 24 hours of power exchange (in MW) between two zones.
-    """
+    """Requests the last 24 hours of power exchange (in MW) between two zones."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -210,9 +205,7 @@ def fetch_exchange(
 def fetch_load_forecast(
     zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the load forecast (in MW) of a given zone.
-    """
+    """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
         target_datetime = dt.datetime.now()
@@ -251,9 +244,7 @@ def fetch_load_forecast(
 def fetch_wind_solar_forecasts(
     zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the load forecast (in MW) of a given zone.
-    """
+    """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
         target_datetime = dt.datetime.now()

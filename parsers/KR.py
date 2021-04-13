@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 from logging import getLogger
 
@@ -65,7 +67,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     return unified_timestamp
 
 
-def check_hydro_capacity(plant_name, value, logger):
+def check_hydro_capacity(plant_name, value, logger) -> bool | ValueError:
     """
     Makes sure that generation for each hydro plant isn't above listed capacity.
     Returns True or raises ValueError.
@@ -92,7 +94,7 @@ def check_hydro_capacity(plant_name, value, logger):
         return True
 
 
-def fetch_hydro(session, logger)  -> tuple:
+def fetch_hydro(session, logger) -> tuple:
     req = session.get(HYDRO_URL, verify=False)
     soup = BeautifulSoup(req.content, "html.parser")
     table = soup.find("div", {"class": "dep02Sec"})
@@ -187,9 +189,7 @@ def fetch_load(session) -> tuple:
 def fetch_production(
     zone_key="KR", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

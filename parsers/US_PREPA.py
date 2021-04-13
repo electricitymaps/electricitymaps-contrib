@@ -22,7 +22,7 @@ TIMESTAMP_URL = "https://aeepr.com/es-pr/generacion/Documents/CostosCombustible.
 
 
 def extract_data(html):
-    """Extracts data from the source code of an HTML page with a FusionCharts chart"""
+    """Extracts data from the source code of an HTML page with a FusionCharts chart."""
     dataSource = re.search(r"dataSource: (\{.+\}\]\})\}\);", html).group(
         1
     )  # Extract object with data
@@ -39,12 +39,7 @@ def extract_data(html):
 def convert_timestamp(
     zone_key, timestamp_string, logger: logging.Logger = logging.getLogger(__name__)
 ):
-    """
-    Converts timestamp fetched from website into timezone-aware datetime object
-    Arguments:
-    ----------
-    timestamp_string: timestamp in the format 06/01/2020 08:40:00 AM
-    """
+    """Converts timestamp fetched from website into timezone-aware datetime object."""
     timestamp_string = re.sub(
         r"\s+", " ", timestamp_string
     )  # Replace double spaces with one
@@ -64,9 +59,7 @@ def fetch_production(
     target_datetime=None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given region.
-    """
+    """Requests the last known production mix (in MW) of a given region."""
 
     global renewable_output
 

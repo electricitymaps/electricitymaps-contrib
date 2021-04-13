@@ -47,9 +47,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

@@ -53,9 +53,7 @@ def get_data(session, logger):
 
 
 def production_processor(json_data, zone_key) -> tuple:
-    """
-    Extracts data timestamp and sums regional data into totals by key.
-    """
+    """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = arrow.get(json_data["Data"])
     totals = defaultdict(lambda: 0.0)
@@ -84,9 +82,7 @@ def production_processor(json_data, zone_key) -> tuple:
 
 
 def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -139,9 +135,7 @@ def fetch_exchange(
 def fetch_region_exchange(
     region1, region2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two Brazilian regions.
-    """
+    """Requests the last known power exchange (in MW) between two Brazilian regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

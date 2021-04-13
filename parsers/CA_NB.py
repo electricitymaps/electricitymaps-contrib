@@ -7,7 +7,7 @@ timezone = "Canada/Atlantic"
 
 def _get_new_brunswick_flows(requests_obj):
     """
-    Gets current electricity flows in and out of New Brunswick.
+    Get current electricity flows in and out of New Brunswick.
     There is no reported data timestamp in the page.
     The page returns current time and says "Times at which values are sampled may vary by as much as 5 minutes."
     """
@@ -74,9 +74,7 @@ def fetch_production(zone_key="CA-NB", session=None, target_datetime=None, logge
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two regions.
-    """
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

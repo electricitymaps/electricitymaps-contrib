@@ -36,9 +36,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
         timestamp = arrow.get(target_datetime).to("Africa/Lagos").replace(minute=0)

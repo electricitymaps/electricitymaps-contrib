@@ -69,9 +69,7 @@ def fetch_production(zone_key="CA-AB", session=None, target_datetime=None, logge
 
 
 def fetch_price(zone_key="CA-AB", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known power price of a given country.
-    """
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -108,9 +106,7 @@ def fetch_exchange(
     target_datetime=None,
     logger=None,
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

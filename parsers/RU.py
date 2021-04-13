@@ -47,9 +47,7 @@ tz = "Europe/Moscow"
 
 
 def fetch_production(zone_key="RU", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -116,8 +114,7 @@ def fetch_production(zone_key="RU", session=None, target_datetime=None, logger=N
     return data
 
 
-def response_checker(json_content):
-    """Returns False if input is empty list or all zero values, else True."""
+def response_checker(json_content) -> bool:
     flow_values = json_content["Flows"]
 
     if not flow_values:
@@ -138,9 +135,7 @@ def response_checker(json_content):
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime:
         today = arrow.get(target_datetime, "YYYYMMDD")
     else:

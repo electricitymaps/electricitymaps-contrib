@@ -633,9 +633,7 @@ def fetch_price(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known power price of a given country.
-    """
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     s = session or requests.Session()
@@ -699,9 +697,7 @@ def convert_str_to_float(junk) -> float:
 
 
 def generation_finder(data, gen_type) -> float:
-    """
-    Finds all generation matching requested type in a list.
-    """
+    """Finds all generation matching requested type in a list."""
 
     find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
     generation_total = sum([data[i] for i in find_generation])
@@ -863,9 +859,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -918,9 +912,7 @@ def direction_finder(direction, exchange):
 
 
 def tie_finder(exchange_url, exchange, session) -> float:
-    """
-    Finds tie data using div tag style attribute.
-    """
+    """Finds tie data using div tag style attribute."""
 
     req = session.get(exchange_url)
     soup = BeautifulSoup(req.text, "html.parser")
@@ -938,9 +930,7 @@ def tie_finder(exchange_url, exchange, session) -> float:
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
 
     # Only hourly data is available.
     if target_datetime:

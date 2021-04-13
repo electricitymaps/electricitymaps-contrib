@@ -35,9 +35,7 @@ def get_data_live(session, logger):
 
 
 def production_processor_live(json_tot, json_ren) -> list:
-    """
-    Extracts generation data and timestamp into dictionary.
-    """
+    """Extracts generation data and timestamp."""
 
     gen_total = json_tot["data"][0]["values"]
 
@@ -82,9 +80,7 @@ def production_processor_live(json_tot, json_ren) -> list:
 
 
 def production_processor_historical(raw_data) -> list:
-    """
-    Takes raw json data and groups by datetime while mapping generation to type.
-    """
+    """Takes raw json data and groups by datetime while mapping generation to type."""
 
     clean_datapoints = []
     for datapoint in raw_data:
@@ -130,9 +126,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is None:
         gen_tot, gen_ren = get_data_live(session, logger)

@@ -55,8 +55,7 @@ IMAGE_CORE_URL = "https://www.kepco.co.jp/"
 
 def getImageText(imgUrl, lang):
     """
-    Fetches image based on URL, crops it and tries to extract
-    text from the image.
+    Fetches image, crops it and extract text from the image.
     """
     req = Request(imgUrl, headers={"User-Agent": "Mozilla/5.0"})
     img_bytes = urlopen(req).read()
@@ -83,9 +82,7 @@ def extractCapacity(tr):
 
 
 def extractOperationPercentage(tr):
-    """
-    Operation percentage is located on images of type .gif
-    """
+    """Operation percentage is located on images of type .gif"""
     td = tr.findAll("img")
     if len(td) == 0:
         return None
@@ -105,7 +102,7 @@ def extractOperationPercentage(tr):
 def extractTime(soup):
     """
     Time is located in an image.
-    It tries to decipher the text containing the data and assumes there will only be 4 digits making up the datetime.
+    Decipher the text containing the data and assumes there will only be 4 digits making up the datetime.
     """
     imgRelative = soup.findAll("img", {"class": "time-data"})[0]["src"]
     imgUrlFull = IMAGE_CORE_URL + imgRelative

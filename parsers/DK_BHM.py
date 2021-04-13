@@ -19,9 +19,7 @@ def _fetch_data(session=None):
 def fetch_production(
     zone_key="DK-BHM", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -43,9 +41,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1="DK-BHM", zone_key2="SE", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
 
     obj = _fetch_data(session)
 

@@ -13,9 +13,7 @@ timezone = "Canada/Pacific"
 def fetch_exchange(
     zone_key1=None, zone_key2=None, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

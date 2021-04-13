@@ -15,7 +15,7 @@ plants = {
 def fetch_consumption(
     zone_key="IN-DL", session=None, target_datetime=None, logger=None
 ):
-    """Fetch Delhi consumption"""
+    """Fetch Delhi consumption."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -41,7 +41,7 @@ def fetch_consumption(
 
 
 def fetch_production(zone_key="IN-DL", session=None, target_datetime=None, logger=None):
-    """Fetch Delhi production"""
+    """Fetch Delhi production."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

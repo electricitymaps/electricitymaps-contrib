@@ -94,9 +94,7 @@ def data_processer(raw_data, logger) -> list:
 def fetch_production(
     zone_key="US-IPC", session=None, target_datetime=None, logger=getLogger(__name__)
 ):
-    """
-    Requests the last known production mix (in MW) of a given zone.
-    """
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")

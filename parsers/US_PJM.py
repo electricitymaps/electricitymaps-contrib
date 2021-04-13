@@ -107,9 +107,7 @@ def extract_data(session=None) -> tuple:
 
 
 def data_processer(data) -> dict:
-    """
-    Takes a list of dictionaries and extracts generation type and value from each.
-    """
+    """Takes a list of dictionaries and extracts generation type and value from each."""
 
     production = {}
     for point in data:
@@ -123,9 +121,7 @@ def data_processer(data) -> dict:
 def fetch_consumption_forecast_7_days(
     zone_key="US-PJM", session=None, target_datetime=None, logger=None
 ) -> list:
-    """
-    Gets consumption forecast for specified zone.
-    """
+    """Gets consumption forecast for specified zone."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -160,9 +156,7 @@ def fetch_consumption_forecast_7_days(
 def fetch_production(
     zone_key="US-PJM", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -190,9 +184,7 @@ def add_default_tz(timestamp):
 
 
 def get_miso_exchange(session=None) -> tuple:
-    """
-    Current exchange status between PJM and MISO.
-    """
+    """Current exchange status between PJM and MISO."""
 
     map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
 
@@ -227,7 +219,7 @@ def get_miso_exchange(session=None) -> tuple:
 
 def get_exchange_data(interface, session=None) -> list:
     """
-    This function can fetch 5min data for any PJM interface in the current day.
+    Fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
     """
 
@@ -306,9 +298,7 @@ def combine_NY_exchanges() -> list:
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two zones.
-    """
+    """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -355,9 +345,7 @@ def fetch_exchange(
 
 
 def fetch_price(zone_key="US-PJM", session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known power price of a given country.
-    """
+    """Requests the last known power price of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

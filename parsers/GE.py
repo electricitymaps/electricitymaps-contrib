@@ -12,9 +12,7 @@ def fetch_production(
     target_datetime: dt = None,
     logger: logging.Logger = None,
 ):
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.session()
 
     if target_datetime is None:
@@ -89,9 +87,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1="GE", zone_key2="TR", session=None, target_datetime=None, logger=None
 ):
-    """
-    Requests the last known power exchange (in MW) between two countries.
-    """
+    """Requests the last known power exchange (in MW) between two countries."""
 
     exch_map = {
         "AM->GE": "armeniaSum",

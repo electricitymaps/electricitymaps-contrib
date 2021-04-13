@@ -109,9 +109,7 @@ def fetch_production(
     target_datetime: dt = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ) -> list:
-    """
-    Requests the last known production mix (in MW) of a given country.
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 
     parser = CyprusParser(session or requests.session(), logger)
