@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
 # coding=utf-8
 
 # This parser returns Israel's electricity system load (assumed to be equal to electricity production)
 # Source: Israel Electric Corporation
 # URL: https://www.iec.co.il/en/pages/default.aspx
 # Shares of Electricity production in 2018: 65.6% oil, 34.4% gas (source: IEA; https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source)
-
 
 import re
 
@@ -68,22 +66,6 @@ def fetch_production(zone_key="IL", session=None, logger=None):
 
     return data
 
-
-# def fetch_consumption(zone_key='IL', session=None, target_datetime=None, logger=None):
-#     int_list = fetch()
-
-#     load = int_list[0]
-#     consumption = {}
-#     consumption['unknown'] = load
-
-#     data = {
-#         'zoneKey': zone_key,
-#         'datetime': arrow.now("Asia/Jerusalem").datetime,
-#         'consumption': consumption,
-#         'source': IEC_URL
-#     }
-
-#     return data
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
