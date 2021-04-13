@@ -6,14 +6,9 @@ timezone = "America/Whitehorse"
 
 
 def fetch_production(zone_key="CA-YT", session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given region
-
-    Arguments:
-    zone_key       -- ignored here, only information for CA-YT is returned
-    session (optional) -- request session passed in order to re-use an existing session
     """
+    Requests the last known production mix (in MW) of a given region.
 
-    """
     We are using Yukon Energy's data from
     http://www.yukonenergy.ca/energy-in-yukon/electricity-101/current-energy-consumption
 

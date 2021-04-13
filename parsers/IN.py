@@ -17,10 +17,9 @@ GENERATION_MAPPING = {
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 
-def get_data(session):
+def get_data(session) -> dict:
     """
     Requests html then extracts generation data.
-    Returns a dictionary.
     """
 
     s = session or requests.Session()

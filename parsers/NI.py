@@ -91,16 +91,13 @@ def get_time_from_system_map(text):
     return datetime_datetime
 
 
-def get_production_from_map(requests_obj):
+def get_production_from_map(requests_obj) -> tuple:
     """
     Get frequently-updated information on MAP_URL.
-    This page is programmed to refresh every 10 seconds, and the timestamp
-    in its text indicates that the information is updated every 10 to 30 seconds.
-
+    This page is programmed to refresh every 10 seconds,
+    and the timestamp in its text indicates that the information is updated every 10 to 30 seconds.
     However, it seems to bundle in solar generation with generation at another plant.
     get_production_from_summary() includes solar explictly.
-
-    :return: tuple(production, datetime_datetime)
     """
 
     response = requests_obj.get(MAP_URL)
@@ -127,17 +124,13 @@ def get_production_from_map(requests_obj):
     return production, data_datetime
 
 
-def get_production_from_summary(requests_obj):
+def get_production_from_summary(requests_obj) -> tuple:
     """
     Get information from SUMMARY_URL. This is updated once an hour, on the hour.
-
     Units are the same as in MAP_URL.
     Values match the values reported in MAP_URL on the hour very closely, within 1-3%.
-
     However, unlike get_production_from_map(), this includes solar generation,
     which, although small, is nice to specify.
-
-    :return: tuple(production, datetime_datetime)
     """
 
     type_translator = {
@@ -200,10 +193,6 @@ def fetch_production(
 ):
     """
     Requests the last known production mix (in MW) of Nicaragua.
-
-    Arguments:
-    zone_key       -- ignored here, only information for NI is returned
-    session (optional) -- request session passed in order to re-use an existing session
     """
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

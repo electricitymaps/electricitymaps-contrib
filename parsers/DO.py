@@ -86,11 +86,10 @@ thermal_plants = {
 }
 
 
-def get_data(session=None):
+def get_data(session=None) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
-    Returns a list.
     """
 
     data = []
@@ -120,11 +119,10 @@ def floater(item):
         return item
 
 
-def chunker(big_lst):
+def chunker(big_lst) -> dict:
     """
     Breaks a big list into a list of lists.
     Removes any list with no data then turns remaining lists into key:value pairs with first element from the list being the key.
-    Returns a dictionary.
     """
 
     chunks = [big_lst[x : x + 27] for x in range(0, len(big_lst), 27)]
@@ -141,11 +139,10 @@ def chunker(big_lst):
     return chunked_list
 
 
-def data_formatter(data):
+def data_formatter(data) -> dict:
     """
     Takes data and finds relevant sections.
     Formats and breaks data into usable parts.
-    Returns a nested dictionary.
     """
 
     find_thermal_index = data.index(u"GRUPO: T\xe9rmica")
@@ -185,11 +182,10 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df, logger):
+def thermal_production(df, logger) -> dict:
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
-    Sums type instances and returns a dictionary.
     """
 
     therms = []
@@ -234,10 +230,9 @@ def thermal_production(df, logger):
     return therms
 
 
-def total_production(df):
+def total_production(df) -> dict:
     """
     Takes DataFrame and finds generation totals for each hour.
-    Returns a dictionary.
     """
 
     vals = []

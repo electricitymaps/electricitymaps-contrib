@@ -21,10 +21,9 @@ GENERATION_MAPPING = {
 }
 
 
-def get_json_data(session):
+def get_json_data(session) -> dict:
     """
     Requests json data and extracts generation information.
-    Returns a dictionary.
     """
     s = session or requests.Session()
     req = s.get(GENERATION_LINK, verify=False)

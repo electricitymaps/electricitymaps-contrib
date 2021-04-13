@@ -44,12 +44,11 @@ exchange_mapping = {
 }
 
 
-def extract_data(session=None):
+def extract_data(session=None) -> tuple:
     """
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
     Finds generation data inside script tag.
-    Returns a tuple of generation data and datetime.
     """
 
     s = session or requests.Session()
@@ -107,10 +106,9 @@ def extract_data(session=None):
     return data, dt
 
 
-def data_processer(data):
+def data_processer(data) -> dict:
     """
     Takes a list of dictionaries and extracts generation type and value from each.
-    Returns a dictionary.
     """
 
     production = {}
@@ -124,10 +122,9 @@ def data_processer(data):
 
 def fetch_consumption_forecast_7_days(
     zone_key="US-PJM", session=None, target_datetime=None, logger=None
-):
+) -> list:
     """
     Gets consumption forecast for specified zone.
-    Returns a list of dictionaries.
     """
 
     if target_datetime:
@@ -192,10 +189,9 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session=None):
+def get_miso_exchange(session=None) -> tuple:
     """
     Current exchange status between PJM and MISO.
-    Returns a tuple containing flow and timestamp.
     """
 
     map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
@@ -229,11 +225,10 @@ def get_miso_exchange(session=None):
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session=None):
+def get_exchange_data(interface, session=None) -> list:
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
-    Returns a list of tuples.
     """
 
     base_url = "http://www.pjm.com/Charts/InterfaceChart.aspx?open="
@@ -278,11 +273,10 @@ def get_exchange_data(interface, session=None):
     return converted_flows
 
 
-def combine_NY_exchanges():
+def combine_NY_exchanges() -> list:
     """
     Combination function for the 4 New York interfaces.
     Timestamps are checked to ensure correct combination.
-    Returns a list of tuples.
     """
 
     nyiso = get_exchange_data("nyiso", session=None)

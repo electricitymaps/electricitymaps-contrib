@@ -181,12 +181,7 @@ def fetch_production(
 def fetch_consumption(
     zone_key="IN-GJ", session=None, target_datetime=None, logger=getLogger("IN-GJ")
 ):
-    """
-    Method to get consumption data of Gujarat
-    :param zone_key:
-    :param session:
-    :return:
-    """
+    """Get consumption data of Gujarat."""
     session = session or requests.session()
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

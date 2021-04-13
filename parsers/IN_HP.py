@@ -156,8 +156,7 @@ def get_table_rows(soup, container_class, table_name):
 def combine_gen(gen1, gen2):
     """
     Combines two dictionaries of generation data.
-    Currently only does Hydro and Unknown as there are
-    no other types in the data source.
+    Currently only does Hydro and Unknown as there are no other types in the data source.
     """
     return {
         GenType.HYDRO.value: round(

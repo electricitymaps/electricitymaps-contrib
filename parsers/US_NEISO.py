@@ -60,11 +60,10 @@ def get_json_data(target_datetime, params, session=None):
     return raw_data
 
 
-def production_data_processer(raw_data, logger):
+def production_data_processer(raw_data, logger) -> list:
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
-    Maps generation to type and returns a list of tuples.
     """
 
     other_keys = {"BeginDateMs", "Renewables", "BeginDate", "Other"}

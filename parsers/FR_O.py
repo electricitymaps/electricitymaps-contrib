@@ -23,8 +23,6 @@ zone_key_mapping = {
     "RE": "Réunion",
 }
 
-# -------------- Parametrized properties functions -------------- #
-
 
 def get_param(zone_key: None, target_datetime: None):
     if target_datetime is None:
@@ -75,8 +73,6 @@ def get_date_name(zone_key: None, target_datetime: None):
         return "date_heure"
 
 
-# -------------- Bagasse / Coal Repartitions -------------- #
-
 # Depending on the month, this correspond more or less to bagasse or coal.
 # This map is an clumsy approximation using harvesting period and annual
 # percentage of biomass used. Here, we use  17.17% for this percentage
@@ -116,7 +112,6 @@ MAP_GENERATION_BAGASSE_COAL_GUADELOUPE = {
     12: {"coal": 1, "biomass": 0},
 }
 
-# -------------- Thermal Repartitions -------------- #
 # These approximations are made from this document :
 # https://opendata-corse-outremer.edf.fr/api/datasets/1.0/courbe-de-charge-de-la-production-delectricite-par-filiere/attachments/bilan_electrique_edf_sei_2017_pdf/
 

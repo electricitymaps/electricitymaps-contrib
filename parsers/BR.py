@@ -52,10 +52,9 @@ def get_data(session, logger):
     return json_data
 
 
-def production_processor(json_data, zone_key):
+def production_processor(json_data, zone_key) -> tuple:
     """
     Extracts data timestamp and sums regional data into totals by key.
-    Maps keys to type and returns a tuple.
     """
 
     dt = arrow.get(json_data["Data"])

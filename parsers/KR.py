@@ -92,8 +92,7 @@ def check_hydro_capacity(plant_name, value, logger):
         return True
 
 
-def fetch_hydro(session, logger):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_hydro(session, logger)  -> tuple:
     req = session.get(HYDRO_URL, verify=False)
     soup = BeautifulSoup(req.content, "html.parser")
     table = soup.find("div", {"class": "dep02Sec"})
@@ -129,8 +128,7 @@ def fetch_hydro(session, logger):
     return total, dt
 
 
-def fetch_nuclear(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_nuclear(session) -> tuple:
     plant_dts = []
     total = 0.0
     for url in NUCLEAR_URLS:
@@ -163,8 +161,7 @@ def fetch_nuclear(session):
     return total, dt
 
 
-def fetch_load(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
+def fetch_load(session) -> tuple:
     req = session.get(LOAD_URL)
     soup = BeautifulSoup(req.content, "html.parser")
 

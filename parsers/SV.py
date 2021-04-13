@@ -70,14 +70,13 @@ def get_data(session=None):
     return datareq
 
 
-def data_parser(datareq):
+def data_parser(datareq) -> list:
     """
     Accepts a requests response.text object.
     Slices the object down to a smaller size then converts to usable json.
     Loads the data as json then finds the 'result' key.
     Uses regex to find the start and endpoints of the actual data.
     Splits the data into datapoints then cleans them up for processing.
-    Returns a list of lists.
     """
 
     double_json = datareq.text[len("0|/*DX*/(") : -1]
@@ -110,13 +109,12 @@ def data_parser(datareq):
     return clean_data
 
 
-def data_processer(data):
+def data_processer(data) -> list:
     """
     Takes data in the form of a list of lists.
     Converts each list to a dictionary.
     Joins dictionaries based on shared datetime key.
     Maps generation to type.
-    Returns a list of dictionaries.
     """
 
     converted = []

@@ -30,11 +30,7 @@ GENERATION_MAPPING = {
 TIMEZONE = tz.gettz("America/Boise")
 
 
-def get_data(session=None):
-    """Returns a list of dictionaries."""
-
-    s = session or requests.Session()
-
+def get_data(session=None) -> list:
     req = requests.get(PRODUCTION_URL)
     json_data = req.json()
     raw_data = json_data["list"]
@@ -51,11 +47,10 @@ def timestamp_converter(timestamp):
     return dt_aware
 
 
-def data_processer(raw_data, logger):
+def data_processer(raw_data, logger) -> list:
     """
     Groups dictionaries by datetime key.
     Removes unneeded keys and logs any new ones.
-    Returns a list of tuples containing (datetime object, dictionary).
     """
 
     dt_key = lambda x: x["datetime"]

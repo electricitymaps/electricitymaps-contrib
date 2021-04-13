@@ -617,10 +617,8 @@ tie_mapping = {
 }
 
 
-def webparser(req):
-    """
-    Takes content from webpage and returns all text as a list of strings.
-    """
+def webparser(req) -> list:
+    """Fetch webpage content."""
 
     soup = BeautifulSoup(req.content, "html.parser")
     figs = soup.find_all("div", class_="r11")
@@ -690,11 +688,7 @@ def get_datetime(session=None):
     return {"datetime": datetime}
 
 
-def dataformat(junk):
-    """
-    Takes string data with only digits and returns it as a float.
-    """
-
+def convert_str_to_float(junk) -> float:
     formatted = []
     for item in junk:
         if not any(char in item for char in string.ascii_letters):
@@ -704,10 +698,9 @@ def dataformat(junk):
     return formatted
 
 
-def generation_finder(data, gen_type):
+def generation_finder(data, gen_type) -> float:
     """
     Finds all generation matching requested type in a list.
-    Sums together and returns a float.
     """
 
     find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
@@ -716,10 +709,10 @@ def generation_finder(data, gen_type):
     return float(generation_total)
 
 
-def get_thermal(session, logger):
+def get_thermal(session, logger) -> dict:
     """
-    Requests thermal generation data then parses and sorts by type.  Nuclear is included.
-    Returns a dictionary.
+    Requests thermal generation data then parses and sorts by type.
+    Nuclear is included.
     """
 
     # Need to persist session in order to get ControlID and ReportSession so we can send second request
@@ -759,7 +752,7 @@ def get_thermal(session, logger):
         pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
-    formatted_data = dataformat(data)
+    formatted_data = convert_str_to_float(data)
     mapped_data = [power_plant_type.get(x, x) for x in formatted_data]
 
     for idx, item in enumerate(mapped_data):
@@ -797,11 +790,10 @@ def get_thermal(session, logger):
     }
 
 
-def get_hydro_and_renewables(session, logger):
+def get_hydro_and_renewables(session, logger) -> dict:
     """
     Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
-    Returns a dictionary.
     """
 
     s = session or requests.Session()
@@ -832,7 +824,7 @@ def get_hydro_and_renewables(session, logger):
         pagenumber += 1
 
     data = list(itertools.chain.from_iterable(full_table))
-    formatted_data = dataformat(data)
+    formatted_data = convert_str_to_float(data)
     mapped_data = [power_plant_type.get(x, x) for x in formatted_data]
 
     for idx, item in enumerate(mapped_data):
@@ -925,10 +917,9 @@ def direction_finder(direction, exchange):
         )
 
 
-def tie_finder(exchange_url, exchange, session):
+def tie_finder(exchange_url, exchange, session) -> float:
     """
     Finds tie data using div tag style attribute.
-    Returns a float.
     """
 
     req = session.get(exchange_url)

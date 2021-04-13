@@ -184,10 +184,9 @@ def fetch_consumption_forecast(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-):
+) -> list:
     """
     Gets consumption forecast for specified zone.
-    Returns a list of dictionaries.
     """
     # Currently past dates not implemented for areas with no date in their demand csv files
     if target_datetime and zone_key == "JP-HKD":

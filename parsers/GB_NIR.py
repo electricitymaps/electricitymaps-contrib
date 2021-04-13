@@ -125,10 +125,9 @@ def create_exchange_df(text_data):
     return df_exchange
 
 
-def production_processor(df):
+def production_processor(df) -> list:
     """
     Creates quarter hour datapoints for thermal production.
-    Returns a list.
     """
 
     datapoints = []
@@ -148,10 +147,9 @@ def production_processor(df):
     return datapoints
 
 
-def moyle_processor(df):
+def moyle_processor(df) -> list:
     """
     Creates quarter hour datapoints for GB exchange.
-    Returns a list.
     """
 
     datapoints = []
@@ -168,10 +166,9 @@ def moyle_processor(df):
     return datapoints
 
 
-def IE_processor(df):
+def IE_processor(df) -> list:
     """
     Creates quarter hour datapoints for IE exchange.
-    Returns a list.
     """
 
     datapoints = []

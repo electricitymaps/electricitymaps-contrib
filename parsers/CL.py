@@ -34,10 +34,9 @@ def get_data_live(session, logger):
     return json_total, json_ren
 
 
-def production_processor_live(json_tot, json_ren):
+def production_processor_live(json_tot, json_ren) -> list:
     """
     Extracts generation data and timestamp into dictionary.
-    Returns a list of dictionaries for all of the available "live" data, usually that day.
     """
 
     gen_total = json_tot["data"][0]["values"]
@@ -82,10 +81,9 @@ def production_processor_live(json_tot, json_ren):
     return mapped_totals
 
 
-def production_processor_historical(raw_data):
+def production_processor_historical(raw_data) -> list:
     """
     Takes raw json data and groups by datetime while mapping generation to type.
-    Returns a list of dictionaries.
     """
 
     clean_datapoints = []

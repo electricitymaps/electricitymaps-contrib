@@ -80,12 +80,7 @@ def fetch_data(zone_key="IN-UP", session=None):
 
 
 def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
-    """
-    Method to get production data of Uttar Pradesh
-    :param zone_key:
-    :param value_map:
-    :return:
-    """
+    """Get production data of Uttar Pradesh."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -103,12 +98,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
 
 
 def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
-    """
-    Method to get consumption data of Uttar Pradesh
-    :param zone_key
-    :param value_map
-    :return:
-    """
+    """Get consumption data of Uttar Pradesh."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

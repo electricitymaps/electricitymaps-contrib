@@ -81,10 +81,9 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def data_processer(rawdata, logger):
+def data_processer(rawdata, logger) -> tuple:
     """
     Takes in raw data and converts it into a usable form.
-    Returns a tuple.
     """
 
     converted_time_string = convert_time_str(rawdata[0])
@@ -144,10 +143,9 @@ def fetch_production(zone_key="MY-WM", session=None, target_datetime=None, logge
     return production
 
 
-def extract_hidden_values(req):
+def extract_hidden_values(req) -> dict:
     """
     Gets current aspx page values to enable post requests to be sent.
-    Returns a dictionary.
     """
 
     soup = BeautifulSoup(req.content, "html.parser")
@@ -175,10 +173,9 @@ def extract_hidden_values(req):
     return hidden_values
 
 
-def xml_processor(text):
+def xml_processor(text) -> list:
     """
     Creates xml elementtree from response.text object.
-    Returns a list of tuples in the form (datetime, float).
     """
 
     raw_data = ElementTree.fromstring(text)
@@ -245,10 +242,9 @@ def post_to_extract(tie, hidden_values, session):
     return req.text
 
 
-def zip_and_merge(egat_data, hvdc_data, logger):
+def zip_and_merge(egat_data, hvdc_data, logger) -> list:
     """
     Joins the EGAT and HVDC ties that form the MY-WM->TH exchange.
-    Returns a list of tuples in the form (datetime, float).
     """
 
     merged_data = zip(egat_data, hvdc_data)

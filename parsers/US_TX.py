@@ -157,8 +157,8 @@ def fetch_consumption(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-):
-    """Gets consumption for a specified zone, returns a dictionary."""
+) -> dict:
+    """Gets consumption for a specified zone."""
 
     realtime_datetime, demand, ties = get_realtime_data(logger, session=session)
 

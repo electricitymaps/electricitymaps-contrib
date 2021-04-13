@@ -124,13 +124,14 @@ def parse_percent(val):
 
 def parse_price(price_str):
     """Turns values like "$70.57/MWh" into 70.57"""
-
     return float(price_str.replace("$", "").replace("/MWh", ""))
 
 
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
-    """Parses a common pattern in Singapore JSON response format. Examples:
-
+    """
+    Parses a common pattern in Singapore JSON response format.
+    
+    Examples:
     [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
         => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
 
@@ -174,10 +175,6 @@ def fetch_production(
 ):
     """
     Requests the last known production mix (in MW) of Singapore.
-
-    Arguments:
-    zone_key       -- ignored here, only information for SG is returned
-    session (optional) -- request session passed in order to re-use an existing session
     """
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

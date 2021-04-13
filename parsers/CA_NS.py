@@ -167,9 +167,8 @@ def fetch_exchange(
 
     Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick (CA-NB).
     (An exchange with Newfoundland, "Maritime Link", is scheduled to open in "late 2017").
-
-    The API for Nova Scotia only specifies imports. When NS is exporting energy,
-    the API returns 0.
+    The API for Nova Scotia only specifies imports.
+    When NS is exporting energy, the API returns 0.
     """
     if target_datetime:
         raise NotImplementedError(
