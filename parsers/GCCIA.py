@@ -33,11 +33,12 @@ TIME_ZONE_MAPPING = {
     "SA": "Asia/Riyadh",
 }
 
+URL = "https://www.gccia.com.sa/"
+
 
 def fetch_consumption(zone_key, session=None, logger=None):
     r = session or requests.session()
-    url = "https://www.gccia.com.sa/"
-    response = r.get(url)
+    response = r.get(URL)
 
     pattern = COUNTRY_CODE_MAPPING[zone_key] + '-mw-val">\s*(\d+)'
 
@@ -50,7 +51,7 @@ def fetch_consumption(zone_key, session=None, logger=None):
         "zoneKey": zone_key,
         "datetime": arrow.now(TIME_ZONE_MAPPING[zone_key]).datetime,
         "consumption": consumption,
-        "source": "www.gccia.com.sa",  # URL won't work without WWW
+        "source": URL,
     }
 
     return datapoint

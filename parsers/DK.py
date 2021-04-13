@@ -49,8 +49,8 @@ def fetch_production(
         ids["energy_bal"], zone, timestamp
     )
 
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
-    response = r.get(url)
+    URL = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
+    response = r.get(URL)
 
     # raise errors for responses with an error or no data
     retry_count = 0
@@ -121,6 +121,7 @@ def fetch_production(
         for f in ["solar", "wind"] + fuels:
             data["production"][f] = df.loc[dt, f]
         output.append(data)
+
     return output
 
 
@@ -176,8 +177,8 @@ def fetch_exchange(
         exch_map[sorted_keys], ids["real_time"], zone, timestamp
     )
 
-    url = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
-    response = r.get(url)
+    URL = "https://api.energidataservice.dk/datastore_search_sql?sql={}".format(sqlstr)
+    response = r.get(URL)
 
     # raise errors for responses with an error or no data
     retry_count = 0
@@ -230,6 +231,7 @@ def fetch_exchange(
         data["datetime"] = data["datetime"].replace(tzinfo=pytz.utc)
         data["netFlow"] = df.loc[dt, "netFlow"]
         output.append(data)
+
     return output
 
 

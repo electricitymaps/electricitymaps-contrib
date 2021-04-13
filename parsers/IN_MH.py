@@ -7,11 +7,11 @@ import pytesseract
 from imageio import imread
 from PIL import Image, ImageOps
 
-url = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
+URL = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
 
 # specifies locations of data in the image
 # (x,y,x,y) = upper left, lower right corner of rectangle
-locations = {
+LOCATIONS = {
     "MS WIND": {"label": (595, 934, 692, 961), "value": (785, 934, 844, 934 + 25)},
     "SOLAR TTL": {"label": (592, 577, 715, 605), "value": (772, 578, 814, 578 + 25)},
     "MS SOLAR": {"label": (595, 963, 705, 984), "value": (785, 955, 848, 955 + 25)},
@@ -54,7 +54,7 @@ locations = {
     "PIONEER": {"label": (592, 910, 694, 929), "value": (814, 906, 844, 906 + 25)},
 }
 
-generation_map = {
+GENERATION_MAP = {
     "biomass": {"add": ["COGEN"], "subtract": []},
     "coal": {
         "add": [
@@ -141,10 +141,10 @@ def fetch_production(
         "source": "mahasldc.in",
     }
 
-    image = imread(url)
+    image = imread(URL)
     image = Image.fromarray(image)  # create PIL image
 
-    imgs = [read(loc["value"], image) for loc in locations.values()]
+    imgs = [read(loc["value"], image) for loc in LOCATIONS.values()]
 
     # string together all image sections and recognize resulting line
     imgs_line = np.hstack(list(np.asarray(i) for i in imgs[:]))
@@ -154,13 +154,13 @@ def fetch_production(
 
     # generate dict from string list
     values = {}
-    for count, key in enumerate(locations):
+    for count, key in enumerate(LOCATIONS):
         values[key] = max([float(text[count]), 0])
 
     # fraction of central state production that is exchanged with Maharashtra
     share = values["CS EXCH"] / values["CS GEN. TTL."]
 
-    for type, plants in generation_map.items():
+    for type, plants in GENERATION_MAP.items():
         for plant in plants["add"]:
             fac = (
                 share if plant in CS else 1

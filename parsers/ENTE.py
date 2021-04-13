@@ -41,9 +41,7 @@ def fetch_production(zone_key="HN", session=None, target_datetime=None, logger=N
 
 
 def extract_exchange(raw_data, exchange) -> float | None:
-    """
-    Extracts flow value and direction for a given exchange.
-    """
+    """Extracts flow value and direction for a given exchange."""
     search_value = JSON_MAPPING[exchange]
 
     interconnection = None

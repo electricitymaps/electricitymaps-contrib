@@ -29,7 +29,9 @@ REVERSE_EXCHANGES = [
     "CA-ON->US-NY-NYIS",
     "MX-NE->US-TEX-ERCO",
     "MX-NO->US-TEX-ERCO",
-    "US-SW-PNM->US-SW-SRP",  # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
+    "US-SW-PNM->US-SW-SRP",
+    # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not.
+    # Probably because it is unidirectional
 ]
 
 
@@ -439,7 +441,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
                     }
                 )
 
-            # replace small negative values (>-5) with 0s This is necessary for solar
+            # replace small negative values (>-5) with 0s, This is necessary for solar
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
@@ -485,7 +487,7 @@ def fetch_exchange(
     return exchange
 
 
-def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logger=None):
+def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logger=None) -> list:
     """Fetches and converts a data series."""
 
     s = session or requests.Session()
@@ -525,7 +527,7 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
     ]
 
 
-def main():
+if __name__ == "__main__":
     "Main method, never used by the Electricity Map backend, but handy for testing."
     from pprint import pprint
 
@@ -534,7 +536,3 @@ def main():
     pprint(fetch_production_mix("US-TN"))
     pprint(fetch_consumption("US-CAR"))
     pprint(fetch_exchange("MX-BC", "US-CA"))
-
-
-if __name__ == "__main__":
-    main()

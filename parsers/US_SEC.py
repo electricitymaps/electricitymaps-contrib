@@ -15,6 +15,8 @@ import pandas as pd
 from . import EIA
 from .ENTSOE import merge_production_outputs
 
+URL = "http://apps.seminole.coop/db/cs/render.ashx?ItemPath=/Applications/Solar+Dashboard/Cooperative+Solar+-+Data&Format=EXCEL&rptHDInterval=Week&rptHDOffset=0"
+
 
 def fetch_production(
     zone_key="US-SEC",
@@ -58,8 +60,7 @@ def fetch_unknown(
 
 
 def fetch_solar(session=None, logger=logging.getLogger(__name__)):
-    url = "http://apps.seminole.coop/db/cs/render.ashx?ItemPath=/Applications/Solar+Dashboard/Cooperative+Solar+-+Data&Format=EXCEL&rptHDInterval=Week&rptHDOffset=0"
-    df = pd.read_excel(url, sheet_name="Hourly", skiprows=[0])
+    df = pd.read_excel(URL, sheet_name="Hourly", skiprows=[0])
 
     return [
         {
@@ -73,13 +74,9 @@ def fetch_solar(session=None, logger=logging.getLogger(__name__)):
     ]
 
 
-def main():
+if __name__ == "__main__":
     """Main method, not used by the ElectricityMap backend, just for testing."""
     import pprint
 
     print("fetch_production() ->")
     print(pprint.pprint(fetch_production()))
-
-
-if __name__ == "__main__":
-    main()

@@ -3,20 +3,21 @@ import dateutil
 import pandas
 import requests
 
+URL = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
+tz = "Asia/Taipei"
+
 
 def fetch_production(zone_key="TW", session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    url = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
     s = session or requests.Session()
-    response = s.get(url)
+    response = s.get(URL)
     data = response.json()
 
     dumpDate = data[""]
     prodData = data["aaData"]
 
-    tz = "Asia/Taipei"
     dumpDate = arrow.get(dumpDate, "YYYY-MM-DD HH:mm").replace(
         tzinfo=dateutil.tz.gettz(tz)
     )

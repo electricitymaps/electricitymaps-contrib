@@ -11,12 +11,11 @@ from dateutil import parser, tz
 
 from .lib.utils import get_token
 
-# Used for consumption forecast data.
 API_ENDPOINT = "https://api.pjm.com/api/v1/"
-# Used for both production and price data.
-url = "http://www.pjm.com/markets-and-operations.aspx"
+URL = "http://www.pjm.com/markets-and-operations.aspx"
+MAP_URL = "http://pjm.com/markets-and-operations/interregional-map.aspx"
 
-mapping = {
+MAPPING = {
     "Coal": "coal",
     "Gas": "gas",
     "Hydro": "hydro",
@@ -29,7 +28,7 @@ mapping = {
     "Wind": "wind",
 }
 
-exchange_mapping = {
+EXCHANGE_MAPPING = {
     "nyiso": "NYIS|NYIS",
     "neptune": "NEPTUNE|SAYR",
     "linden": "LINDENVFT|LINDEN",
@@ -52,7 +51,7 @@ def extract_data(session=None) -> tuple:
     """
 
     s = session or requests.Session()
-    req = requests.get(url)
+    req = requests.get(URL)
     soup = BeautifulSoup(req.content, "html.parser")
 
     try:
@@ -111,7 +110,7 @@ def data_processer(data) -> dict:
 
     production = {}
     for point in data:
-        gen_type = mapping[point["name"]]
+        gen_type = MAPPING[point["name"]]
         gen_value = float(point["y"])
         production[gen_type] = production.get(gen_type, 0.0) + gen_value
 
@@ -185,11 +184,8 @@ def add_default_tz(timestamp):
 
 def get_miso_exchange(session=None) -> tuple:
     """Current exchange status between PJM and MISO."""
-
-    map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
-
     s = session or requests.Session()
-    req = s.get(map_url)
+    req = s.get(MAP_URL)
     soup = BeautifulSoup(req.content, "html.parser")
 
     find_div = soup.find("div", {"id": "body_0_flow1", "class": "flow"})
@@ -224,7 +220,7 @@ def get_exchange_data(interface, session=None) -> list:
     """
 
     base_url = "http://www.pjm.com/Charts/InterfaceChart.aspx?open="
-    url = base_url + exchange_mapping[interface]
+    url = base_url + EXCHANGE_MAPPING[interface]
 
     s = session or requests.Session()
     req = s.get(url)

@@ -3,8 +3,7 @@ import dateutil
 import requests
 
 """
-tec - same as `tes` but also working as central heater,
-      main fuel is gas, in critical situations - black oil
+tec - same as `tes` but also working as central heater, main fuel is gas, in critical situations - black oil
 gesgaes - hydro run of river and poundage
 consumptiongaespump - hydro pumped storage
 vde - renewable sources - mostly wind at nighttimes and solar peaks during the day.
@@ -28,20 +27,18 @@ MAP_STORAGE = {
 }
 
 tz = "Europe/Kiev"
-
+URL = "https://ua.energy/wp-admin/admin-ajax.php"
 
 def fetch_production(zone_key="UA", session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     r = session or requests.session()
-
     data = []
     today = arrow.now(tz=tz).format("DD.MM.YYYY")
-    url = "https://ua.energy/wp-admin/admin-ajax.php"
     postdata = {"action": "get_data_oes", "report_date": today, "type": "day"}
 
     response = r.post(
-        url, postdata, headers={"User-Agent": "electricitymap-parser/1.0"}
+        URL, postdata, headers={"User-Agent": "electricitymap-parser/1.0"}
     )
 
     for serie in response.json():

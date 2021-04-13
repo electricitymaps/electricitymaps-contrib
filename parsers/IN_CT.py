@@ -2,18 +2,18 @@ from requests import Session
 
 from .lib import IN, web, zonekey
 
+URL = "http://117.239.199.203/csptcl/GEN.aspx"
+
 
 def fetch_consumption(
     zone_key="IN-CT", session=None, target_datetime=None, logger=None
 ):
+    """Fetch Chhattisgarh consumption."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    """Fetch Chhattisgarh consumption."""
     zonekey.assert_zone_key(zone_key, "IN-CT")
-    html = web.get_response_soup(
-        zone_key, "http://117.239.199.203/csptcl/GEN.aspx", session
-    )
+    html = web.get_response_soup(zone_key, URL, session)
 
     india_date_time = IN.read_datetime_from_span_id(html, "L34", "hh:m DD-MM-YY")
 
@@ -36,9 +36,7 @@ def fetch_production(zone_key="IN-CT", session=None, target_datetime=None, logge
     """Fetch Chhattisgarh production."""
     zonekey.assert_zone_key(zone_key, "IN-CT")
 
-    html = web.get_response_soup(
-        zone_key, "http://117.239.199.203/csptcl/GEN.aspx", session
-    )
+    html = web.get_response_soup(zone_key, URL, session)
 
     india_date_time = IN.read_datetime_from_span_id(html, "L34", "hh:m DD-MM-YY")
 

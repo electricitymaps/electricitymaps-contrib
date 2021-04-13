@@ -9,8 +9,8 @@ from dateutil import parser, tz
 
 from .lib.validation import validate
 
-production_url = "http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx"
-exchange_url = "http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx"
+PRODUCTION_URL = "http://ws.soni.ltd.uk/DownloadCentre/aspx/FuelMix.aspx"
+EXCHANGE_URL = "http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx"
 # Positive values in the .csv represent imports to Northern Ireland from GB / IR.
 # Negative values in the .csv represent exports from Northern Ireland to GB / IR.
 
@@ -182,7 +182,7 @@ def fetch_production(
 ):
     """Requests the last known production mix (in MW) of a given country."""
 
-    production_data = get_data(production_url, target_datetime)
+    production_data = get_data(PRODUCTION_URL, target_datetime)
     production_df = create_production_df(production_data)
     production = production_processor(production_df)
 
@@ -213,7 +213,7 @@ def fetch_exchange(
 ):
     """Requests the last known power exchange (in MW) between two countries."""
 
-    exchange_data = get_data(exchange_url, target_datetime)
+    exchange_data = get_data(EXCHANGE_URL, target_datetime)
     exchange_dataframe = create_exchange_df(exchange_data)
     if "->".join(sorted([zone_key1, zone_key2])) == "GB->GB-NIR":
         moyle = moyle_processor(exchange_dataframe)

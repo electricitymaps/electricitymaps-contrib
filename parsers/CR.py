@@ -107,6 +107,8 @@ POWER_PLANTS = {
 }
 
 CHARACTERISTIC_NAME = "Angostura"
+PRODUCTION_URL = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
+EXCHANGE_URL = "http://www.enteoperador.org/newsite/flash/data.csv"
 
 
 def empty_record(zone_key):
@@ -194,9 +196,7 @@ def fetch_production(
 
     # Do not use existing session as some amount of cache is taking place
     r = requests.session()
-    url = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
-    response = r.get(url)
-
+    response = r.get(PRODUCTION_URL)
     soup = BeautifulSoup(response.text, "html.parser")
     jsf_view_state = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
 
@@ -206,7 +206,7 @@ def fetch_production(
         ("formPosdespacho_SUBMIT", 1),
         ("javax.faces.ViewState", jsf_view_state),
     ]
-    response = r.post(url, data=data)
+    response = r.post(PRODUCTION_URL, data=data)
 
     # tell pandas which table to use by providing CHARACTERISTIC_NAME
     df = pd.read_html(
@@ -227,9 +227,7 @@ def fetch_exchange(
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    df = pd.read_csv(
-        "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
-    )
+    df = pd.read_csv(EXCHANGE_URL, index_col=False)
 
     if sorted_zone_keys == "CR->NI":
         flow = df["NICR"][0]

@@ -15,9 +15,9 @@ from bs4 import BeautifulSoup
 from dateutil import parser
 from pytz import timezone
 
-fuel_mix_url = "https://www.gso.org.my/SystemData/FuelMix.aspx"
-current_gen_url = "https://www.gso.org.my/SystemData/CurrentGen.aspx"
-exchanges_url = "https://www.gso.org.my/SystemData/TieLine.aspx"
+FUEL_MIX_URL = "https://www.gso.org.my/SystemData/FuelMix.aspx"
+CURRENT_GEN_URL = "https://www.gso.org.my/SystemData/CurrentGen.aspx"
+EXCHANGE_URL = "https://www.gso.org.my/SystemData/TieLine.aspx"
 
 # Exchange with Thailand made up of EGAT and HVDC ties. Singapore exchange is PLTG tie.
 
@@ -40,8 +40,8 @@ def get_data(session=None):
     """
 
     s = session or requests.Session()
-    mixreq = s.get(fuel_mix_url)
-    genreq = s.get(current_gen_url)
+    mixreq = s.get(FUEL_MIX_URL)
+    genreq = s.get(CURRENT_GEN_URL)
     mixsoup = BeautifulSoup(mixreq.content, "html.parser")
     gensoup = BeautifulSoup(genreq.content, "html.parser")
 
@@ -190,7 +190,7 @@ def post_to_switch(tie, session):
     Returns a response object.
     """
 
-    req = session.get(exchanges_url)
+    req = session.get(EXCHANGE_URL)
     hidden_values = extract_hidden_values(req)
 
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
@@ -205,7 +205,7 @@ def post_to_switch(tie, session):
         "ctl00$MainContent$Plot": "Plot",
     }
 
-    switch_req = session.post(exchanges_url, headers=headers, data=switch_tie)
+    switch_req = session.post(EXCHANGE_URL, headers=headers, data=switch_tie)
 
     return switch_req
 
@@ -229,7 +229,7 @@ def post_to_extract(tie, hidden_values, session):
         "ctl00$MainContent$ctl21.y": 7,
     }
 
-    req = session.post(exchanges_url, headers=headers, data=postdata)
+    req = session.post(EXCHANGE_URL, headers=headers, data=postdata)
 
     return req.text
 
@@ -275,7 +275,7 @@ def fetch_exchange(
 
     if sortedcodes == "MY-WM->TH":
         # Get the EGAT data.
-        req = s.get(exchanges_url)
+        req = s.get(EXCHANGE_URL)
         egat_hidden_values = extract_hidden_values(req)
         egat_data = post_to_extract("EGAT", egat_hidden_values, s)
 
@@ -289,7 +289,7 @@ def fetch_exchange(
 
         data = zip_and_merge(processed_egat, processed_hvdc, logger)
     elif sortedcodes == "MY-WM->SG":
-        req = s.get(exchanges_url)
+        req = s.get(EXCHANGE_URL)
         pltg_switch_req = post_to_switch("PLTG", s)
 
         pltg_hidden_values = extract_hidden_values(pltg_switch_req)

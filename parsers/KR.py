@@ -55,8 +55,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
             if second_difference > 3600:
                 # more than 1 hour difference
                 raise ValueError(
-                    """South Korea generation data is more than 1 hour apart,
-                                 saw {} hours difference""".format(
+                    """South Korea generation data is more than 1 hour apart, saw {} hours difference""".format(
                         second_difference / 3600
                     )
                 )

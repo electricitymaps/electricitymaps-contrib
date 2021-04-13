@@ -12,6 +12,11 @@ from pytesseract import image_to_string
 
 from .JP import fetch_production as JP_fetch_production
 
+URL = (
+    "https://www.kepco.co.jp/energy_supply/energy/nuclear_power/info/monitor/live_unten"
+)
+IMAGE_CORE_URL = "https://www.kepco.co.jp/"
+
 
 def fetch_production(
     zone_key="JP-KN",
@@ -44,13 +49,8 @@ def fetch_production(
 
     latest["production"]["nuclear"] = nuclear_mw
     latest["production"]["unknown"] = latest["production"]["unknown"] - nuclear_mw
+
     return latest
-
-
-URL = (
-    "https://www.kepco.co.jp/energy_supply/energy/nuclear_power/info/monitor/live_unten"
-)
-IMAGE_CORE_URL = "https://www.kepco.co.jp/"
 
 
 def getImageText(imgUrl, lang):
@@ -64,6 +64,7 @@ def getImageText(imgUrl, lang):
     img = img.crop((0, (height / 8), 160, height))
     # cropping the image, makes it easier to read for tesseract
     text = image_to_string(img, lang=lang)
+
     return text
 
 
@@ -87,7 +88,9 @@ def extractOperationPercentage(tr):
     if len(td) == 0:
         return None
     img = td[0]
+
     URL = IMAGE_CORE_URL + img["src"]
+
     if ".gif" in URL:
         text = getImageText(URL, "eng")
         # will return a number and percentage eg ("104%"). Sometimes a little more eg: ("104% 4...")
@@ -118,6 +121,7 @@ def extractTime(soup):
         .floor("minute")
         .datetime
     )
+
     return nuclear_datetime
 
 
@@ -141,6 +145,7 @@ def get_nuclear_production():
         kw = capacity * operation_percentage
         total_kw = total_kw + kw
     nuclear_mw = total_kw / 1000.0  # convert to mw
+
     return (nuclear_mw, nuclear_datetime)
 
 

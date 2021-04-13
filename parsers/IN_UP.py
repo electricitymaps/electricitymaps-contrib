@@ -6,12 +6,14 @@ from requests import Session
 
 from .lib import web
 
+URL = "http://www.upsldc.org/real-time-data"
+
 
 def fetch_data(zone_key="IN-UP", session=None):
 
     time_now = arrow.now(tz="Asia/Kolkata")
 
-    html_params = {
+    HTML_PARAMS = {
         "p_p_id": "upgenerationsummary_WAR_UPSLDCDynamicDisplayportlet",
         "p_p_lifecycle": 2,
         "p_p_state": "normal",
@@ -24,7 +26,7 @@ def fetch_data(zone_key="IN-UP", session=None):
         "_upgenerationsummary_WAR_UPSLDCDynamicDisplayportlet_cmd": "realtimedata",
     }
 
-    key_map = {
+    KEY_MAP = {
         "total hydro generation": "hydro",
         "total thermal up generation": "unknown",
         "cogen-sent out": "unknown",
@@ -35,9 +37,9 @@ def fetch_data(zone_key="IN-UP", session=None):
     response_objects = literal_eval(
         web.get_response_with_params(
             zone_key,
-            "http://www.upsldc.org/real-time-data",
+            URL,
             session,
-            params=html_params,
+            params=HTML_PARAMS,
         ).text.lower()
     )
     india_date = arrow.get(
@@ -62,17 +64,17 @@ def fetch_data(zone_key="IN-UP", session=None):
 
     for obj in response_objects:
         val = json.loads(list(obj.values())[0])
-        if "point_desc" in val and val["point_desc"] in key_map:
-            if key_map[val["point_desc"]] == "demand":
+        if "point_desc" in val and val["point_desc"] in KEY_MAP:
+            if KEY_MAP[val["point_desc"]] == "demand":
                 value_map["consumption"]["demand"] = float(val["point_val"])
             else:
-                check = value_map["production"][key_map[val["point_desc"]]]
+                check = value_map["production"][KEY_MAP[val["point_desc"]]]
                 if check is None:
-                    value_map["production"][key_map[val["point_desc"]]] = float(
+                    value_map["production"][KEY_MAP[val["point_desc"]]] = float(
                         val["point_val"]
                     )
                 else:
-                    value_map["production"][key_map[val["point_desc"]]] += float(
+                    value_map["production"][KEY_MAP[val["point_desc"]]] += float(
                         val["point_val"]
                     )
 

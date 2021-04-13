@@ -6,72 +6,21 @@ import logging
 import arrow
 import requests
 
-# APIs
 HISTORICAL_API_ENDPOINT = (
     "https://opendata-corse-outremer.edf.fr/api/records/1.0/search/"
 )
 REAL_TIME_APIS = {"RE": "https://opendata-reunion.edf.fr/api/records/1.0/search/"}
-# Sources
+
 HISTORICAL_SOURCE = "https://opendata-corse-outremer.edf.fr"
 REAL_TIME_SOURCES = {"RE": "opendata-reunion.edf.fr"}
-# Managed zones
-zone_key_mapping = {
+
+ZONE_KEY_MAPPING = {
     "FR-COR": "Corse",
     "GF": "Guyane",
     "GP": "Guadeloupe",
     "MQ": "Martinique",
     "RE": "Réunion",
 }
-
-
-def get_param(zone_key: None, target_datetime: None):
-    if target_datetime is None:
-        params = {
-            "RE": {
-                "dataset": "prod-electricite-temps-reel",
-                "timezone": "Indian/Reunion",
-                "sort": "date",
-                "rows": 288,
-            }
-        }
-        return params[zone_key]
-    else:
-        datetime = arrow.get(target_datetime, tz="Europe/Paris")
-        formatted_from = datetime.shift(days=-1).format("DD/MM/YYYY")
-        formatted_to = datetime.format("DD/MM/YYYY")
-        return {
-            "dataset": "courbe-de-charge-de-la-production-delectricite-par-filiere",
-            "timezone": "Europe/Paris",
-            "q": "date_heure >= {} AND date_heure <= {}".format(
-                formatted_from, formatted_to
-            ),
-            "sort": "date_heure",
-            "rows": 24,
-            "facet": "territoire",
-            "refine.territoire": zone_key_mapping[zone_key],
-        }
-
-
-def get_api(zone_key: None, target_datetime: None):
-    if target_datetime is None:
-        return REAL_TIME_APIS[zone_key]
-    else:
-        return HISTORICAL_API_ENDPOINT
-
-
-def get_source(zone_key: None, target_datetime: None):
-    if target_datetime is None:
-        return REAL_TIME_SOURCES[zone_key]
-    else:
-        return HISTORICAL_SOURCE
-
-
-def get_date_name(zone_key: None, target_datetime: None):
-    if target_datetime is None:
-        return "date"
-    else:
-        return "date_heure"
-
 
 # Depending on the month, this correspond more or less to bagasse or coal.
 # This map is an clumsy approximation using harvesting period and annual
@@ -92,6 +41,7 @@ MAP_GENERATION_BAGASSE_COAL_REUNION = {
     11: {"coal": 0.6, "biomass": 0.4},
     12: {"coal": 0.77, "biomass": 0.23},
 }
+
 # Depending on the month, this correspond more or less to bagasse or coal.
 # This map is an clumsy approximation using harvesting period and annual
 # percentage of biomass used. Here, we use  20% for this percentage
@@ -122,7 +72,7 @@ MAP_GENERATION_DIESEL_GAS_GUYANNE = {"gas": 0.2261, "oil": 0.7739}
 MAP_GENERATION_DIESEL_GAS_CORSE = {"gas": 0.0196, "oil": 0.9804}
 
 # Thermal sources by region
-thermal_mapping = {
+THERMAL_MAPPING = {
     "FR-COR": [
         {
             "name": "thermique_mwh",
@@ -181,7 +131,7 @@ thermal_mapping = {
 }
 
 # Non-thermal sources names in api
-sources_mapping = {
+SOURCES_MAPPING = {
     "biomass": ["bioenergies_mwh", "bioenergies"],
     "hydro": ["hydraulique_mwh", "hydraulique"],
     "solar": ["photovoltaique_mwh", "photovoltaique", "photovoltaique_avec_stockage"],
@@ -189,6 +139,55 @@ sources_mapping = {
     "geothermal": ["geothermie_mwh"],
     "gas": ["biogaz"],
 }
+
+
+def get_param(zone_key: None, target_datetime: None):
+    if target_datetime is None:
+        params = {
+            "RE": {
+                "dataset": "prod-electricite-temps-reel",
+                "timezone": "Indian/Reunion",
+                "sort": "date",
+                "rows": 288,
+            }
+        }
+        return params[zone_key]
+    else:
+        datetime = arrow.get(target_datetime, tz="Europe/Paris")
+        formatted_from = datetime.shift(days=-1).format("DD/MM/YYYY")
+        formatted_to = datetime.format("DD/MM/YYYY")
+        return {
+            "dataset": "courbe-de-charge-de-la-production-delectricite-par-filiere",
+            "timezone": "Europe/Paris",
+            "q": "date_heure >= {} AND date_heure <= {}".format(
+                formatted_from, formatted_to
+            ),
+            "sort": "date_heure",
+            "rows": 24,
+            "facet": "territoire",
+            "refine.territoire": ZONE_KEY_MAPPING[zone_key],
+        }
+
+
+def get_api(zone_key: None, target_datetime: None):
+    if target_datetime is None:
+        return REAL_TIME_APIS[zone_key]
+    else:
+        return HISTORICAL_API_ENDPOINT
+
+
+def get_source(zone_key: None, target_datetime: None):
+    if target_datetime is None:
+        return REAL_TIME_SOURCES[zone_key]
+    else:
+        return HISTORICAL_SOURCE
+
+
+def get_date_name(zone_key: None, target_datetime: None):
+    if target_datetime is None:
+        return "date"
+    else:
+        return "date_heure"
 
 
 def fetch_production(
@@ -240,8 +239,8 @@ def fetch_production(
                 },
             }
             # Non-thermal sources
-            for source_mapping_key in sources_mapping:
-                current_sources = sources_mapping[source_mapping_key]
+            for source_mapping_key in SOURCES_MAPPING:
+                current_sources = SOURCES_MAPPING[source_mapping_key]
                 for current_source in current_sources:
                     if current_source in fields:
                         value = fields[current_source]
@@ -249,8 +248,8 @@ def fetch_production(
                             result["production"][source_mapping_key] += value
 
             # Thermal sources
-            for k in range(0, len(thermal_mapping[zone_key])):
-                current_thermal = thermal_mapping[zone_key][k]
+            for k in range(0, len(THERMAL_MAPPING[zone_key])):
+                current_thermal = THERMAL_MAPPING[zone_key][k]
                 current_type = current_thermal["type"]
                 current_source = None
                 if current_thermal["monthly_variation"]:

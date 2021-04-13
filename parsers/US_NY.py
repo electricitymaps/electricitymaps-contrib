@@ -19,7 +19,7 @@ from arrow.parser import ParserError
 
 # Pumped storage is present but is not split into a separate category.
 
-mapping = {
+MAPPING = {
     "Dual Fuel": "gas",
     "Natural Gas": "gas",
     "Nuclear": "nuclear",
@@ -71,7 +71,7 @@ def data_parser(df) -> list:
 
     mapped_generation = []
     for item in ordered:
-        mapped_types = [(mapping.get(k, k), v) for k, v in item.items()]
+        mapped_types = [(MAPPING.get(k, k), v) for k, v in item.items()]
 
         # Need to avoid multiple 'unknown' keys overwriting.
         complete_production = defaultdict(lambda: 0.0)

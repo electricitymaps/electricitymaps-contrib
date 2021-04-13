@@ -6,15 +6,17 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
+BASE_URL = "https://tsoc.org.cy/electrical-system/"
+
+CAPACITY_KEYS = {
+    "Συμβατική Εγκατεστημένη Ισχύς": "oil",
+    "Αιολική Εγκατεστημένη Ισχύς": "wind",
+    "Φωτοβολταϊκή Εγκατεστημένη Ισχύς": "solar",
+    "Εγκατεστημένη Ισχύς Βιομάζας": "biomass",
+}
+
 
 class CyprusParser:
-    CAPACITY_KEYS = {
-        "Συμβατική Εγκατεστημένη Ισχύς": "oil",
-        "Αιολική Εγκατεστημένη Ισχύς": "wind",
-        "Φωτοβολταϊκή Εγκατεστημένη Ισχύς": "solar",
-        "Εγκατεστημένη Ισχύς Βιομάζας": "biomass",
-    }
-
     session = None
     logger: logging.Logger = None
 
@@ -33,6 +35,7 @@ class CyprusParser:
             key = self.CAPACITY_KEYS.get(values[0])
             if key:
                 capacity[key] = float(values[1])
+
         return capacity
 
     def parse_production(self, html, capacity: dict) -> list:
@@ -76,30 +79,31 @@ class CyprusParser:
                         production["biomass"] = midnight_biomass
                         production["solar"] = float(val) - midnight_biomass
             data.append(datum)
+
         return data
 
     def fetch_production(self, target_datetime: dt) -> list:
         if target_datetime is None:
-            url = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
+            URL = "{BASE_URL}total-daily-system-generation-on-the-transmission-system/"
         else:
             # convert target datetime to local datetime
-            url_date = (
+            DATE_URL = (
                 arrow.get(target_datetime).to("Asia/Nicosia").format("DD-MM-YYYY")
             )
-            url = f"https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days"
+            URL = f"{BASE_URL}archive-total-daily-system-generation-on-the-transmission-system/?startdt={DATE_URL}&enddt=%2B1days"
 
-        res = self.session.get(url)
+        res = self.session.get(URL)
         assert (
             res.status_code == 200
-        ), f"CY parser: GET {url} returned {res.status_code}"
+        ), f"CY parser: GET {URL} returned {res.status_code}"
 
         html = BeautifulSoup(res.text, "lxml")
-
         capacity = self.parse_capacity(html)
         data = self.parse_production(html, capacity)
 
         if len(data) == 0:
             self.warn("No production data returned for Cyprus")
+
         return data
 
 
@@ -113,6 +117,7 @@ def fetch_production(
     assert zone_key == "CY"
 
     parser = CyprusParser(session or requests.session(), logger)
+
     return parser.fetch_production(target_datetime)
 
 

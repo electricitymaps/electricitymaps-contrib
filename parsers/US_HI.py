@@ -14,8 +14,7 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.session()
     if target_datetime is None:
-        url_date = arrow.get()
-        url = "https://www.islandpulse.org/api/mix?limit=1"
+        URL = "https://www.islandpulse.org/api/mix?limit=1"
     else:
         # WHEN HISTORICAL DATA IS AVAILABLE
         # convert target datetime to local datetime
@@ -25,7 +24,7 @@ def fetch_production(
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    res = r.get(url)
+    res = r.get(URL)
 
     obj = res.json()
     raw_data = obj[0]

@@ -17,6 +17,8 @@ MAP_GENERATION = {
     "Tidal": "unknown",
 }
 
+URL = "https://www.sev.fo/api/realtimemap/now"
+
 
 def map_generation_type(raw_generation_type):
     return MAP_GENERATION.get(raw_generation_type, None)
@@ -29,8 +31,7 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "https://www.sev.fo/api/realtimemap/now"
-    response = r.get(url)
+    response = r.get(URL)
     obj = response.json()
 
     data = {

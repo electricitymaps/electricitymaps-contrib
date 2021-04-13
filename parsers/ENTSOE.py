@@ -371,6 +371,9 @@ VALIDATIONS = {
     },
 }
 
+ZONE_KEY_AGGREGATES = {
+    'IT-SO': ['IT-CA', 'IT-SO'],
+}
 
 class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
@@ -582,6 +585,7 @@ def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_
             datetime = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(datetime)
+
     return values, datetimes
 
 
@@ -614,6 +618,7 @@ def parse_production(xml_text) -> tuple:
                 datetimes.append(datetime)
                 productions.append(defaultdict(lambda: 0))
                 productions[-1][psr_type] = quantity if is_production else -1 * quantity
+
     return productions, datetimes
 
 
@@ -629,7 +634,8 @@ def parse_self_consumption(xml_text) -> dict:
     therefore the returned dict only includes datetimes where the value > 0.
     """
 
-    if not xml_text: return None
+    if not xml_text:
+        return None
     soup = BeautifulSoup(xml_text, 'html.parser')
     res = {}
     for timeseries in soup.find_all('timeseries'):
@@ -646,6 +652,7 @@ def parse_self_consumption(xml_text) -> dict:
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             res[datetime] = res[datetime] + quantity if datetime in res else quantity
+
     return res
 
 
@@ -684,6 +691,7 @@ def parse_production_per_units(xml_text) -> dict:
                     'unitKey': unit_key,
                     'unitName': unit_name
                 }
+
     return values.values()
 
 
@@ -715,6 +723,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tupl
             except ValueError:  # Not in list
                 quantities.append(quantity)
                 datetimes.append(datetime)
+
     return quantities, datetimes
 
 
@@ -736,18 +745,17 @@ def parse_price(xml_text) -> tuple:
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             datetimes.append(datetime)
             currencies.append(currency)
+
     return prices, currencies, datetimes
 
 
 def validate_production(datapoint, logger) -> bool:
     """
+    Checks datapoints for a selection of countries and returns
+
     Production data can sometimes be available but clearly wrong.
-
-    The most common occurrence is when the production total is very low and
-    main generation types are missing.  In reality a country's electrical grid
-    could not function in this scenario.
-
-    This function checks datapoints for a selection of countries and returns
+    The most common occurrence is when the production total is very low and main generation types are missing.
+    In reality a country's electrical grid could not function in this scenario.
     """
 
     zone_key = datapoint['zoneKey']
@@ -771,13 +779,16 @@ def get_wind(values):
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None,
-                      logger=logging.getLogger(__name__)) -> dict:
+def fetch_consumption(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> dict:
     """Gets consumption for a specified zone."""
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab consumption
     parsed = parse_scalar(
         query_consumption(domain, session, target_datetime=target_datetime),
         only_outBiddingZone_Domain=True)
@@ -826,8 +837,12 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         return data
 
 
-def fetch_production(zone_key, session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)) -> list:
+def fetch_production(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
@@ -835,10 +850,8 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     if not session:
         session = requests.session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
-    # Grab production
     parsed = parse_production(
-        query_production(domain, session,
-                         target_datetime=target_datetime))
+        query_production(domain, session, target_datetime=target_datetime))
 
     if not parsed:
         return None
@@ -877,7 +890,8 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
         for d in data:
             for k, v in d['production'].items():
-                if v is None: continue
+                if v is None:
+                    continue
                 if v < 0 and v > -50:
                     # Set small negative values to 0
                     logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
@@ -887,16 +901,11 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     return list(filter(lambda x: validate_production(x, logger), data))
 
 
-ZONE_KEY_AGGREGATES = {
-    'IT-SO': ['IT-CA', 'IT-SO'],
-}
-
-
 # TODO: generalize and move to lib.utils so other parsers can reuse it. (it's
 # currently used by US_SEC.)
-def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
+def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None) -> list:
     """
-    Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a production list.
+    Given multiple parser outputs, sum the production and storage of corresponding datetimes.
     This will drop rows where the datetime is missing in at least a parser_output.
     """
     if len(parser_outputs) == 0:
@@ -913,36 +922,44 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
         to_return = to_return.join(
             prod_and_storage, how='inner', rsuffix='_other')
         to_return['production'] = to_return.apply(
-            lambda row: sum_production_dicts(row.production,
-                                             row.production_other),
+            lambda row: sum_production_dicts(row.production, row.production_other),
             axis=1)
         to_return['storage'] = to_return.apply(
             lambda row: sum_production_dicts(row.storage, row.storage_other),
             axis=1)
         to_return = to_return[['production', 'storage']]
 
-    return [{
+    return [
+        {
         'datetime': dt.to_pydatetime(),
         'production': row.production,
         'storage': row.storage,
         'source': merge_source,
         'zoneKey': merge_zone_key,
-    } for dt, row in to_return.iterrows()]
+    } for dt, row in to_return.iterrows()
+    ]
 
 
-def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)):
+def fetch_production_aggregate(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+):
     if zone_key not in ZONE_KEY_AGGREGATES:
         raise ValueError('Unknown aggregate key %s' % zone_key)
 
     return merge_production_outputs(
         [fetch_production(k, session, target_datetime, logger)
-         for k in ZONE_KEY_AGGREGATES[zone_key]],
-        zone_key)
+         for k in ZONE_KEY_AGGREGATES[zone_key]], zone_key)
 
 
-def fetch_production_per_units(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)) -> list:
+def fetch_production_per_units(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """Return production units and production values."""
     if not session:
         session = requests.session()
@@ -970,8 +987,13 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None,
     return data
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=logging.getLogger(__name__)) -> list:
+def fetch_exchange(
+    zone_key1,
+    zone_key2,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -1020,8 +1042,13 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
     return data
 
 
-def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
-                            logger=logging.getLogger(__name__)) -> list:
+def fetch_exchange_forecast(
+    zone_key1,
+    zone_key2,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = requests.session()
@@ -1067,10 +1094,13 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
     return data
 
 
-def fetch_price(zone_key, session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)) -> list:
+def fetch_price(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """Gets day-ahead price for specified zone."""
-    # Note: This is day-ahead prices
     if not session:
         session = requests.session()
     if zone_key in ENTSOE_PRICE_DOMAIN_OVERRIDE:
@@ -1094,8 +1124,12 @@ def fetch_price(zone_key, session=None, target_datetime=None,
         return data
 
 
-def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
-                              logger=logging.getLogger(__name__)) -> list:
+def fetch_generation_forecast(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """Gets generation forecast for specified zone."""
     if not session:
         session = requests.session()
@@ -1117,8 +1151,12 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
         return data
 
 
-def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)) -> list:
+def fetch_consumption_forecast(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """Gets consumption forecast for specified zone."""
     if not session:
         session = requests.session()
@@ -1140,8 +1178,12 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
         return data
 
 
-def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)) -> list:
+def fetch_wind_solar_forecasts(
+    zone_key,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__)
+) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
@@ -1151,8 +1193,7 @@ def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab production
     parsed = parse_production(
-        query_wind_solar_production_forecast(domain, session,
-                                             target_datetime=target_datetime))
+        query_wind_solar_production_forecast(domain, session, target_datetime=target_datetime))
 
     if not parsed:
         return None

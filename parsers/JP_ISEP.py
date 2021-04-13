@@ -5,7 +5,7 @@ import re
 import pandas as pd
 import requests
 
-url = "https://isep-energychart.com/en/graphics/electricityproduction/?region={region}&period_year={year}&period_month={month}&period_day={day}&period_length=1day&display_format=residual_demand"
+URL = "https://isep-energychart.com/en/graphics/electricityproduction/?region={region}&period_year={year}&period_month={month}&period_day={day}&period_length=1day&display_format=residual_demand"
 timezone = "Japan"
 
 MAP_ZONE_TO_REGION_NAME = {
@@ -35,7 +35,7 @@ COLUMN_MAP = {
 
 
 def get_data(region, year, month, day):
-    r = requests.get(url.format(region=region, year=year, month=month, day=day))
+    r = requests.get(URL.format(region=region, year=year, month=month, day=day))
 
     assert r.status_code == 200, "Could not get url"
 

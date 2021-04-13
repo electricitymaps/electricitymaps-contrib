@@ -157,11 +157,10 @@ def fetch_price(
     formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
     formatted_to = now.format("DD/MM/YYYY")
 
-    url = (
-        "http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&da"
-        "teDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
+    URL = (
+        "http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&dateDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
     )
-    response = r.get(url)
+    response = r.get(URL)
     obj = ET.fromstring(response.content)
     datas = {}
 

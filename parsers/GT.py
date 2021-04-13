@@ -17,9 +17,10 @@ MAP_GENERATION = {
     "geothermal": u"Geotérmica",
 }
 
+URL_INIT = "https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/"
+
 
 def fetch_hourly_production(zone_key, obj, hour, date):
-
     # output frame
     data = {
         "zoneKey": zone_key,
@@ -60,9 +61,8 @@ def fetch_production(zone_key="GT", session=None, target_datetime=None, logger=N
     data = [dict() for h in range(actual_hour + 1)]
 
     # initial path for url to request
-    url_init = "https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/"
     # Start with data for midnight
-    url = url_init + past_formatted_date
+    url = URL_INIT + past_formatted_date
     # Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
@@ -74,7 +74,7 @@ def fetch_production(zone_key="GT", session=None, target_datetime=None, logger=N
 
     # Fill data for the other hours until actual hour
     if actual_hour > 1:
-        url = url_init + formatted_date
+        url = URL_INIT + formatted_date
         # Request and rearange in DF
         r = session or requests.session()
         response = r.get(url)
@@ -120,11 +120,8 @@ def fetch_consumption(zone_key="GT", session=None, target_datetime=None, logger=
     actual_hour = now.hour
     data = [dict() for h in range(actual_hour + 1)]
 
-    # initial path for url to request
-    url_init = "https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/"
-
     # Start with data for midnight
-    url = url_init + past_formatted_date
+    url = URL_INIT + past_formatted_date
     # Request and rearange in DF
     r = session or requests.session()
     response = r.get(url)
@@ -136,7 +133,7 @@ def fetch_consumption(zone_key="GT", session=None, target_datetime=None, logger=
 
     # Fill data for the other hours until actual hour
     if actual_hour > 1:
-        url = url_init + formatted_date
+        url = URL_INIT + formatted_date
         # Request and rearange in DF
         r = session or requests.session()
         response = r.get(url)

@@ -22,6 +22,7 @@ MAP_GENERATION = {
     "EÓLICA": "wind",
 }
 
+URL = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
 def parse_date(item):
     return arrow.get(item["Nombre"], "YYYY/MM/DD hh:mm:ss").replace(
@@ -37,10 +38,7 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
-
     current_date = arrow.now(tz=tz)
-
     today = current_date.format("DD/MM/YYYY")
     yesterday = current_date.shift(days=-1).format("DD/MM/YYYY")
     end_date = current_date.shift(days=+1).format("DD/MM/YYYY")
@@ -48,11 +46,11 @@ def fetch_production(
     # To guarantee a full 24 hours of data we must make 2 requests.
 
     response_today = r.post(
-        url, data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
+        URL, data={"fechaInicial": today, "fechaFinal": end_date, "indicador": 0}
     )
 
     response_yesterday = r.post(
-        url, data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
+        URL, data={"fechaInicial": yesterday, "fechaFinal": today, "indicador": 0}
     )
 
     data_today = response_today.json()["GraficoTipoCombustible"]["Series"]

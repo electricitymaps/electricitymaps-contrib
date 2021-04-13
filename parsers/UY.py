@@ -17,7 +17,7 @@ MAP_GENERATION = {
 INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
-
+URL = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
 
 def get_salto_grande(session):
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
@@ -41,8 +41,7 @@ def get_salto_grande(session):
 
 def parse_page(session):
     r = session or requests.session()
-    url = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
-    response = requests.get(url)
+    response = requests.get(URL)
     soup = BeautifulSoup(response.text, "html.parser")
 
     datefield = soup.find(

@@ -5,6 +5,9 @@ import arrow
 import pandas as pd
 import requests
 
+URL = "http://www.gse.com.ge/apps/gsebackend/rest/map"
+BASE_URL = "http://gse.com.ge/apps/gsebackend/rest/diagramDownload"
+
 
 def fetch_production(
     zone_key="GE",
@@ -23,8 +26,7 @@ def fetch_production(
             "windPowerData": "wind",
         }
 
-        url = "http://www.gse.com.ge/apps/gsebackend/rest/map"
-        response = r.get(url)
+        response = r.get(URL)
         obj = response.json()
 
         obj["typeSum"]["timestamp"] = arrow.now("Asia/Tbilisi").floor("minute").datetime
@@ -53,12 +55,12 @@ def fetch_production(
         date = arrow.get(target_datetime).to("Asia/Tbilisi")
         formatted_from = date.format("YYYY-MM-DDT00:00:00")
         formatted_to = date.format("YYYY-MM-DDT23:00:00")
-        base_url = "http://gse.com.ge/apps/gsebackend/rest/diagramDownload"
+
         url_parameters = (
             "?fromDate={}.0000Z&"
             "toDate={}.0000Z&type=FACT&lang=EN".format(formatted_from, formatted_to)
         )
-        url = base_url + url_parameters
+        url = BASE_URL + url_parameters
         # Download the xls file and parse the table it contains
         data = pd.read_excel(url, skiprows=2).iloc[2:6, 3:27]
         data.index = ["gas", "hydro", "wind", "solar"]
@@ -100,8 +102,7 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     else:
-        url = "http://www.gse.com.ge/apps/gsebackend/rest/map"
-        response = r.get(url)
+        response = r.get(URL)
         obj = response.json()
 
         exch = "->".join(sorted([zone_key1, zone_key2]))

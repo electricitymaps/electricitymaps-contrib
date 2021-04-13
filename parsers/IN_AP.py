@@ -2,6 +2,8 @@ from requests import Session
 
 from .lib import IN, web, zonekey
 
+URL = "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx"
+
 
 def fetch_production(zone_key="IN-AP", session=None, target_datetime=None, logger=None):
     """Fetch Andhra Pradesh  production."""
@@ -12,7 +14,7 @@ def fetch_production(zone_key="IN-AP", session=None, target_datetime=None, logge
 
     html = web.get_response_soup(
         zone_key,
-        "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx",
+        URL,
         session,
     )
     india_date = IN.read_datetime_from_span_id(
@@ -64,7 +66,7 @@ def fetch_consumption(
 
     html = web.get_response_soup(
         zone_key,
-        "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx",
+        URL,
         session,
     )
     india_date = IN.read_datetime_from_span_id(

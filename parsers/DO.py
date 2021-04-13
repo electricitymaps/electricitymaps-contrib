@@ -16,7 +16,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-url = "http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx"
+URL = "http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx"
 
 total_mapping = {
     u"Total T\xe9rmico": "Thermal",
@@ -94,7 +94,7 @@ def get_data(session=None) -> list:
 
     data = []
     s = session or requests.Session()
-    data_req = s.get(url)
+    data_req = s.get(URL)
     soup = BeautifulSoup(data_req.content, "lxml")
 
     tbs = soup.find("table", id="PostdespachoUnidadesTermicasGrid_DXMainTable")
@@ -257,11 +257,8 @@ def total_production(df) -> dict:
     return vals
 
 
-def merge_production(thermal, total):
-    """
-    Takes thermal generation and total generation and merges them using 'datetime' key.
-    Returns a defaultdict.
-    """
+def merge_production(thermal, total) -> defaultdict:
+    """Takes thermal generation and total generation and merges them using 'datetime' key."""
 
     d = defaultdict(dict)
     for each in (thermal, total):

@@ -18,9 +18,9 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-url = "http://estadistico.ut.com.sv/OperacionDiaria.aspx"
+URL = "http://estadistico.ut.com.sv/OperacionDiaria.aspx"
 
-generation_map = {
+GENERATION_MAP = {
     0: "biomass",
     1: "wind",
     2: "geothermal",
@@ -41,7 +41,7 @@ def get_data(session=None):
     """
 
     s = session or requests.Session()
-    pagereq = s.get(url)
+    pagereq = s.get(URL)
 
     soup = BeautifulSoup(pagereq.content, "html.parser")
 
@@ -65,7 +65,7 @@ def get_data(session=None):
         "DXCss": DXCss,
     }
 
-    datareq = s.post(url, data=postdata)
+    datareq = s.post(URL, data=postdata)
 
     return datareq
 
@@ -136,7 +136,7 @@ def data_processer(data) -> list:
 
     mapped_data = []
     for point in joined_data:
-        point = {generation_map[num]: val for num, val in point.items()}
+        point = {GENERATION_MAP[num]: val for num, val in point.items()}
         point["datetime"] = get_datetime(point["datetime"])
         mapped_data.append(point)
 

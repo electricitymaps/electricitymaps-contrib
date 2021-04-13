@@ -7,9 +7,9 @@ from collections import defaultdict
 import arrow
 import requests
 
-url = "https://www.iso-ne.com/ws/wsclient"
+URL = "https://www.iso-ne.com/ws/wsclient"
 
-generation_mapping = {
+GENERATION_MAPPING = {
     "Coal": "coal",
     "NaturalGas": "gas",
     "Wind": "wind",
@@ -53,7 +53,7 @@ def get_json_data(target_datetime, params, session=None):
 
     s = session or requests.Session()
 
-    req = s.post(url, data=postdata)
+    req = s.post(URL, data=postdata)
     json_data = req.json()
     raw_data = json_data[0]["data"]
 
@@ -67,7 +67,7 @@ def production_data_processer(raw_data, logger) -> list:
     """
 
     other_keys = {"BeginDateMs", "Renewables", "BeginDate", "Other"}
-    known_keys = generation_mapping.keys() | other_keys
+    known_keys = GENERATION_MAPPING.keys() | other_keys
 
     unmapped = set()
     clean_data = []
@@ -99,7 +99,7 @@ def production_data_processer(raw_data, logger) -> list:
         production = defaultdict(lambda: 0.0)
         for k, v in datapoint.items():
             # Need to avoid duplicate keys overwriting.
-            production[generation_mapping[k]] += v
+            production[GENERATION_MAPPING[k]] += v
 
         # move small negative values to 0
         for k, v in production.items():

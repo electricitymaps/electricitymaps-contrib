@@ -8,29 +8,17 @@ import pandas as pd
 
 from parsers import occtonet
 
-# Abbreviations
-# JP-HKD : Hokkaido
-# JP-TH  : Tohoku
-# JP-TK  : Tokyo area
-# JP-CB  : Chubu
-# JP-HR  : Hokuriku
-# JP-KN  : Kansai
-# JP-SK  : Shikoku
-# JP-KY  : Kyushu
-# JP-ON  : Okinawa
-# JP-CG  : Chūgoku
-
-sources = {
-    "JP-HKD": "denkiyoho.hepco.co.jp",
-    "JP-TH": "setsuden.nw.tohoku-epco.co.jp",
-    "JP-TK": "www.tepco.co.jp",
-    "JP-CB": "denki-yoho.chuden.jp",
-    "JP-HR": "www.rikuden.co.jp/denki-yoho",
-    "JP-KN": "www.kepco.co.jp",
-    "JP-SK": "www.yonden.co.jp",
-    "JP-CG": "www.energia.co.jp",
-    "JP-KY": "www.kyuden.co.jp/power_usages/pc.html",
-    "JP-ON": "www.okiden.co.jp/denki/",
+SOURCES = {
+    "JP-HKD": "denkiyoho.hepco.co.jp", # Hokkaido
+    "JP-TH": "setsuden.nw.tohoku-epco.co.jp", # Tohoku
+    "JP-TK": "www.tepco.co.jp", # okyo area
+    "JP-CB": "denki-yoho.chuden.jp", # Chubu
+    "JP-HR": "www.rikuden.co.jp/denki-yoho", # Hokuriku
+    "JP-KN": "www.kepco.co.jp", # Kansai
+    "JP-SK": "www.yonden.co.jp", # Shikoku
+    "JP-CG": "www.energia.co.jp", # Kyushu
+    "JP-KY": "www.kyuden.co.jp/power_usages/pc.html", # Okinawa
+    "JP-ON": "www.okiden.co.jp/denki/", # Chūgoku
 }
 
 
@@ -65,7 +53,7 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": df.loc[i, "unknown"],
             },
-            "source": "occtonet.or.jp, {}".format(sources[zone_key]),
+            "source": "occtonet.or.jp, {}".format(SOURCES[zone_key]),
         }
         datalist.append(data)
     return datalist
@@ -252,7 +240,7 @@ def fetch_consumption_forecast(
                 "zoneKey": zone_key,
                 "datetime": df.loc[i, "datetime"].to_pydatetime(),
                 "value": float(df.loc[i, "fcst"]),
-                "source": sources[zone_key],
+                "source": SOURCES[zone_key],
             }
         )
     return data

@@ -131,7 +131,7 @@ def parse_price(price_str):
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
     """
     Parses a common pattern in Singapore JSON response format.
-    
+
     Examples:
     [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
         => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')

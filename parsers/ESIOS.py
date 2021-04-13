@@ -29,9 +29,9 @@ def fetch_exchange(
     end_date = utc.ceil("hour").isoformat()
     dates = {"start_date": start_date, "end_date": end_date}
     query = urlencode(dates)
-    url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
+    URL = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
 
-    response = ses.get(url, headers=headers)
+    response = ses.get(URL, headers=headers)
     if response.status_code != 200 or not response.text:
         raise ParserException(
             "ESIOS", "Response code: {0}".format(response.status_code)

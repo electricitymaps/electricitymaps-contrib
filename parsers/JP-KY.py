@@ -9,6 +9,10 @@ from bs4 import BeautifulSoup
 
 from . import occtonet
 
+URL = "https://www.kyuden.co.jp/td_power_usages/pc.html"
+URL_SENDAI = "http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?A=s_power.fdat&B=ncp_state.fdat&_=1520532401043"
+URL_GENKAI = "http://www.kyuden.co.jp/php/nuclear/genkai/rename.php?A=g_power.fdat&B=ncp_state.fdat&_=1520532904073"
+
 
 def fetch_production(
     zone_key="JP-KY",
@@ -37,9 +41,8 @@ def fetch_production(
         "storage": {},
         "source": "www.kyuden.co.jp",
     }
-    # url for consumption and solar
-    url = "https://www.kyuden.co.jp/td_power_usages/pc.html"
-    r = requests.get(url)
+
+    r = requests.get(URL)
     r.encoding = "utf-8"
     html = r.text
     soup = BeautifulSoup(html, "lxml")
@@ -78,26 +81,12 @@ def fetch_production(
     # convert from 万kW to MW
     solar = float(solar) * 10
 
-    # add nuclear power plants
-    # Sendai and Genkai
-    url_s = "".join(
-        [
-            "http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?",
-            "A=s_power.fdat&B=ncp_state.fdat&_=1520532401043",
-        ]
-    )
-    url_g = "".join(
-        [
-            "http://www.kyuden.co.jp/php/nuclear/genkai/rename.php?",
-            "A=g_power.fdat&B=ncp_state.fdat&_=1520532904073",
-        ]
-    )
-    sendai = requests.get(url_s).text
+    sendai = requests.get(URL_SENDAI).text
     sendai = re.findall(
         "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
         sendai,
     )
-    genkai = requests.get(url_g).text
+    genkai = requests.get(URL_GENKAI).text
     genkai = re.findall(
         "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
         genkai,

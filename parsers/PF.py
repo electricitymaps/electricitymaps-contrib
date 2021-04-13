@@ -18,12 +18,12 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.Session()
     if target_datetime is None:
-        url = "https://www.edt.pf/transition-energetique-innovation"
+        URL = "https://www.edt.pf/transition-energetique-innovation"
     else:
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    res = r.get(url)
+    res = r.get(URL)
     assert res.status_code == 200, (
         "Exception when fetching production for "
         "{}: error when calling url={}".format(zone_key, url)

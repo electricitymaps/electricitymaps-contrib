@@ -6,13 +6,14 @@ PRODUCTION_MAPPING = {
     "biomass": "factory",
     "solar": "solar_cells",
 }
+URL = "http://bornholm.powerlab.dk/visualizer/latestdata"
 
 
 def _fetch_data(session=None):
     r = session or requests.session()
-    url = "http://bornholm.powerlab.dk/visualizer/latestdata"
-    response = r.get(url)
+    response = r.get(URL)
     obj = response.json()
+
     return obj
 
 

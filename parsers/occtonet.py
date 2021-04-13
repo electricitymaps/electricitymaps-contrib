@@ -7,30 +7,17 @@ import arrow
 import pandas as pd
 import requests
 
-# Abbreviations:
-# JP-HKD : Hokkaido
-# JP-TH  : Tohoku (incl. Niigata)
-# JP-TK  : Tokyo area (Kanto)
-# JP-CB  : Chubu
-# JP-HR  : Hokuriku
-# JP-KN  : Kansai
-# JP-CG  : Chugoku
-# JP-SK  : Shikoku
-# JP-KY  : Kyushu
-# JP-ON  : Okinawa
-
-
-exchange_mapping = {
-    "JP-HKD->JP-TH": [1],
-    "JP-TH->JP-TK": [2],
-    "JP-CB->JP-TK": [3],
-    "JP-CB->JP-KN": [4],
-    "JP-CB->JP-HR": [5, 11],
-    "JP-HR->JP-KN": [6],
-    "JP-CG->JP-KN": [7],
-    "JP-KN->JP-SK": [8],
-    "JP-CG->JP-SK": [9],
-    "JP-CG->JP-KY": [10],
+EXCHANGE_MAPPING = {
+    "JP-HKD->JP-TH": [1], # Hokkaido
+    "JP-TH->JP-TK": [2], # Tohoku (incl. Niigata)
+    "JP-CB->JP-TK": [3], # Tokyo area (Kanto)
+    "JP-CB->JP-KN": [4], # Chubu
+    "JP-CB->JP-HR": [5, 11], # Hokuriku
+    "JP-HR->JP-KN": [6], # Kansai
+    "JP-CG->JP-KN": [7], # Chugoku
+    "JP-KN->JP-SK": [8], # Shikoku
+    "JP-CG->JP-SK": [9], # Kyushu
+    "JP-CG->JP-KY": [10], # Okinawa
 }
 
 
@@ -46,7 +33,7 @@ def fetch_exchange(
     query_date = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    exch_id = exchange_mapping[sortedZoneKeys]
+    exch_id = EXCHANGE_MAPPING[sortedZoneKeys]
     r = session or requests.session()
     # Login to occtonet
     Cookies = get_cookies(r)
@@ -112,7 +99,7 @@ def fetch_exchange_forecast(
         )
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
-    exch_id = exchange_mapping[sortedZoneKeys]
+    exch_id = EXCHANGE_MAPPING[sortedZoneKeys]
     # Login to occtonet
     r = session or requests.session()
     Cookies = get_cookies(r)
@@ -213,8 +200,7 @@ def get_request_token(session, payload, cookies):
     s = session
     payload["fwExtention.actionSubType"] = "ok"
     r = s.post(
-        "http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C?"
-        + "fwExtention.pathInfo=CA01S070C&fwExtention.prgbrh=0",
+        "http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C?fwExtention.pathInfo=CA01S070C&fwExtention.prgbrh=0",
         cookies=cookies,
         data=payload,
     )
@@ -238,8 +224,7 @@ def get_exchange(session, payload, cookies):
     s = session
     payload["fwExtention.actionSubType"] = "download"
     r = s.post(
-        "http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C?"
-        + "fwExtention.pathInfo=CA01S070C&fwExtention.prgbrh=0",
+        "http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C?fwExtention.pathInfo=CA01S070C&fwExtention.prgbrh=0",
         cookies=cookies,
         data=payload,
     )

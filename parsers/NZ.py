@@ -5,12 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 
 timezone = "Pacific/Auckland"
-
+URL = "https://www.transpower.co.nz/power-system-live-data"
 
 def fetch(session=None):
     r = session or requests.session()
-    url = "https://www.transpower.co.nz/power-system-live-data"
-    response = r.get(url)
+    response = r.get(URL)
     soup = BeautifulSoup(response.text, "html.parser")
     for item in soup.find_all("script"):
         if "src" in item.attrs:

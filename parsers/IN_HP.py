@@ -139,6 +139,7 @@ def get_isgs_gen(soup, logger: logging.Logger):
             logger.error(
                 "Error importing data from row: {}".format(row), extra={"key": ZONE_KEY}
             )
+
     return gen
 
 

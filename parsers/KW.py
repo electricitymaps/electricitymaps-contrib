@@ -12,6 +12,7 @@ import re
 import arrow
 import requests
 
+URL = "https://www.mew.gov.kw/en"
 
 def fetch_production(zone_key="KW", target_datetime=None, session=None, logger=None):
     if target_datetime:
@@ -34,8 +35,7 @@ def fetch_production(zone_key="KW", target_datetime=None, session=None, logger=N
 
 def fetch_consumption(zone_key="KW", session=None, logger=None):
     r = session or requests.session()
-    url = "https://www.mew.gov.kw/en"
-    response = r.get(url)
+    response = r.get(URL)
     load = re.findall(r"\((\d{4,5})\)", response.text)
     load = int(load[0])
     consumption = load

@@ -5,12 +5,11 @@ import logging
 import requests
 from dateutil import parser, tz
 
-mix_url = (
-    "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType"
-    "=getfuelmix&returnType=json"
+MIX_URL = (
+    "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getfuelmix&returnType=json"
 )
 
-mapping = {
+MAPPING = {
     "Coal": "coal",
     "Natural Gas": "gas",
     "Nuclear": "nuclear",
@@ -19,7 +18,7 @@ mapping = {
     "Other": "unknown",
 }
 
-wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json"
+WIND_FORECAST_URL = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType=getWindForecast&returnType=json"
 
 # To quote the MISO data source;
 # "The category listed as “Other” is the combination of Hydro, Pumped Storage Hydro, Diesel, Demand Response Resources,
@@ -33,7 +32,7 @@ def get_json_data(logger, session=None):
     """Returns 5 minute generation data in json format."""
 
     s = session or requests.session()
-    json_data = s.get(mix_url).json()
+    json_data = s.get(MIX_URL).json()
 
     return json_data
 
@@ -46,7 +45,7 @@ def data_processer(json_data, logger) -> tuple:
     production = {}
     for fuel in generation:
         try:
-            k = mapping[fuel["CATEGORY"]]
+            k = MAPPING[fuel["CATEGORY"]]
         except KeyError as e:
             logger.warning(
                 "Key '{}' is missing from the MISO fuel mapping.".format(
@@ -107,7 +106,7 @@ def fetch_wind_forecast(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     s = session or requests.Session()
-    req = s.get(wind_forecast_url)
+    req = s.get(WIND_FORECAST_URL)
     raw_json = req.json()
     raw_data = raw_json["Forecast"]
 

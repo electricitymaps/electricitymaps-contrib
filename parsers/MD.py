@@ -15,8 +15,8 @@ TYPE_MAPPING = {
     u"tmva1024": "gas",  # CERS Moldovenească (fuel mix 2017 99.92% gas, 0.08% oil) #7 index
 }
 
-display_url = "http://www.moldelectrica.md/ro/activity/system_state"
-data_url = "http://www.moldelectrica.md/utils/load4.php"
+DISPLAY_URL = "http://www.moldelectrica.md/ro/activity/system_state"
+DATA_URL = "http://www.moldelectrica.md/utils/load4.php"
 
 
 def get_data(session=None) -> list:
@@ -25,8 +25,8 @@ def get_data(session=None) -> list:
     s = session or requests.Session()
 
     # In order for the data url to return data, cookies from the display url must be obtained then reused.
-    response = s.get(display_url, verify=False)
-    data_response = s.get(data_url, verify=False)
+    response = s.get(DISPLAY_URL, verify=False)
+    data_response = s.get(DATA_URL, verify=False)
     raw_data = data_response.text
     try:
         data = [float(i) for i in raw_data.split(",")]

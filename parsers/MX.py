@@ -51,6 +51,7 @@ def parse_date(date, hour):
     tzoffset = tz.tzoffset("CST", -3600 * 6)
     dt = datetime.strptime(date, "%d/%m/%Y")
     dt = datetime.replace(hour=int(hour) - 1, tzinfo=tzoffset)
+
     return dt
 
 

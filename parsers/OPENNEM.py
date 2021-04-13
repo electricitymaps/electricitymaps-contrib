@@ -96,6 +96,7 @@ def generate_url(zone_key, is_flow, target_datetime, logger):
     else:
         # Contains flows and production combined
         url = f"https://data.opennem.org.au/v3/clients/em/latest.json"
+
     return url
 
 

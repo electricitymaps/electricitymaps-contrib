@@ -33,6 +33,7 @@ def get_connection(soup, connection_name):
     for cell in cells:
         if cell.text == connection_name:
             return float(cell.find_next_sibling().text)
+
     return 0
 
 
@@ -47,6 +48,7 @@ def get_datetime(soup, zone_key, logger):
             return datetime.datetime
 
     logger.warning("Datetime could not be read from webpage.", extra={"key": zone_key})
+
     return None
 
 

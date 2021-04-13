@@ -5,12 +5,8 @@ import requests
 
 exchanges_mapping = {
     "BY->LT": ["BY->LT"],
-    "DE->DK-DK1": [
-        "DE->DK1",
-    ],
-    "DE->DK-DK2": [
-        "DE->DK2",
-    ],
+    "DE->DK-DK1": ["DE->DK1"],
+    "DE->DK-DK2": ["DE->DK2"],
     "DE->SE": ["DE->SE4"],
     "DE->SE-SE4": ["DE->SE4"],
     "DK-DK1->NO": ["DK1->NO2"],
@@ -28,9 +24,7 @@ exchanges_mapping = {
     "FI->RU": ["FI->RU"],
     "FI->RU-1": ["FI->RU"],
     "FI->SE": ["FI->SE1", "FI->SE3"],
-    "FI->SE-SE1": [
-        "FI->SE1",
-    ],
+    "FI->SE-SE1": ["FI->SE1"],
     "FI->SE-SE3": ["FI->SE3"],
     "LT->LV": ["LT->LV"],
     "LT->SE": ["LT->SE4"],
@@ -56,9 +50,7 @@ exchanges_mapping = {
     "NO-NO4->RU": ["NO4->RU"],
     "NO-NO4->RU-1": ["NO4->RU"],
     "NO-NO4->SE": ["NO4->SE1", "NO4->SE2"],
-    "PL->SE": [
-        "PL->SE4",
-    ],
+    "PL->SE": ["PL->SE4"],
     "PL->SE-SE4": ["PL->SE4"],
     "SE-SE1->SE-SE2": ["SE1->SE2"],
     "SE-SE2->SE-SE3": ["SE1->SE2"],
