@@ -24,6 +24,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.delays = zoneConfig.delays;
+  zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });

@@ -92,6 +92,9 @@
           "type": "string"
         }
       },
+      "disclaimer": {
+        "type": "string"
+      },
       "parsers": {
         "type": "object",
         "additionalProperties": false,
