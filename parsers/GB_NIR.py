@@ -183,32 +183,7 @@ def IE_processor(df):
 def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """
-    Requests the last known production mix (in MW) of a given country
-        Arguments:
-        zone_key (optional) -- used in case a parser is able to fetch multiple countries
-        session (optional)      -- request session passed in order to re-use an existing session
-        Return:
-        A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'datetime': '2017-01-01T00:00:00Z',
-          'production': {
-              'biomass': 0.0,
-              'coal': 0.0,
-              'gas': 0.0,
-              'hydro': 0.0,
-              'nuclear': null,
-              'oil': 0.0,
-              'solar': 0.0,
-              'wind': 0.0,
-              'geothermal': 0.0,
-              'unknown': 0.0
-          },
-          'storage': {
-              'hydro': -10.0,
-          },
-          'source': 'mysource.com'
-        }
+    Requests the last known production mix (in MW) of a given country.
     """
 
     production_data = get_data(production_url, target_datetime)
@@ -237,18 +212,8 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known power exchange (in MW) between two countries.
     """
 
     exchange_data = get_data(exchange_url, target_datetime)

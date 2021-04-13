@@ -27,7 +27,9 @@ OLD_GENERATION_MAPPING = {'GAS': 'gas_public',
 
 
 def timestamp_converter(raw_timestamp, target_datetime):
-    """Converts string timestamp (e.g. 10:00:00) to arrow object."""
+    """
+    Converts string timestamp (e.g. 10:00:00) to arrow object.
+    """
 
     hour, minute = raw_timestamp.split(':')[0:2]
     try:
@@ -76,8 +78,10 @@ def new_format_converter(df, logger):
 
 
 def production_processer(df, target_datetime, old_format=False):
-    """Takes dataframe and extracts all production data and timestamps.
-    Returns a list of 2 element tuples in form (dict, arrow object)."""
+    """
+    Takes dataframe and extracts all production data and timestamps.
+    Returns a list of 2 element tuples in form (dict, arrow object).
+    """
 
     if old_format:
         MAPPING = OLD_GENERATION_MAPPING
@@ -98,8 +102,10 @@ def production_processer(df, target_datetime, old_format=False):
 
 
 def exchange_processer(df, target_datetime, old_format=False):
-    """Takes dataframe and extracts all exchange data and timestamps.
-    Returns a list of 2 element tuples in form (dict, arrow object)."""
+    """
+    Takes dataframe and extracts all exchange data and timestamps.
+    Returns a list of 2 element tuples in form (dict, arrow object).
+    """
 
     # Positive means import from India hence sign reversal needed for EM.
     processed_data = []
@@ -113,7 +119,8 @@ def exchange_processer(df, target_datetime, old_format=False):
 
 
 def excel_handler(shifted_target_datetime, logger):
-    """Decides which url to request based on supplied arrow object.
+    """
+    Decides which url to request based on supplied arrow object.
     Converts returned excel data into dataframe, format of data varies by date.
     Returns a tuple containing (dataframe, bool).
     """
@@ -169,32 +176,7 @@ def excel_handler(shifted_target_datetime, logger):
 
 def fetch_production(zone_key = 'BD', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional) -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    Requests the last known production mix (in MW) of a given country.
     """
 
     if not target_datetime:
@@ -223,20 +205,8 @@ def fetch_production(zone_key = 'BD', session=None, target_datetime=None, logger
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
+    """
+    Requests the last known power exchange (in MW) between two zones.
     """
     if not target_datetime:
         raise NotImplementedError("""This parser is only able to get historical

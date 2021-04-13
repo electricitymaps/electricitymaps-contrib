@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-# This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (only consumption, production data is not available)
-# Kuwait has a good data source and parser of its own, but should it become unavailable this parser can return data for Kuwait as well
-# Source: Gulf Cooperation Council Interconnection Authority
-# URL: https://www.gccia.com.sa/
-# Scroll down to see the system demand map
-# Kuwait shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; https://www.iea.org/statistics/?country=KUWAIT&indicator=ElecGenByFuel)
-# TODO get this data for the other countries as well
+"""
+This parser returns Gulf Cooperation Council countries (United Arab Emirates, Bahrain, Saudi Arabia, Oman, Qatar, and Kuwait) electricity demand (only consumption, production data is not available)
+Kuwait has a good data source and parser of its own, but should it become unavailable this parser can return data for Kuwait as well
+Source: Gulf Cooperation Council Interconnection Authority
+URL: https://www.gccia.com.sa/
+Scroll down to see the system demand map
+Kuwait shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; https://www.iea.org/statistics/?country=KUWAIT&indicator=ElecGenByFuel)
+TODO get this data for the other countries as well
+"""
 
 import arrow
 import requests

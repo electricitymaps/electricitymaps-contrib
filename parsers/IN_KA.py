@@ -8,7 +8,7 @@ from .lib import IN
 
 
 def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
-    """Fetch Karnataka consumption"""
+    """Fetch Karnataka consumption."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -30,7 +30,7 @@ def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logg
 
 
 def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
-    """Fetch Karnataka  production"""
+    """Fetch Karnataka  production."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

@@ -150,8 +150,10 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
 
 
 def sg_period_to_hour(period_str):
-    """Singapore electricity markets are split into 48 periods.
-    Period 1 starts at 00:00 Singapore time. Period 9 starts at 04:00.
+    """
+    Singapore electricity markets are split into 48 periods.
+    Period 1 starts at 00:00 Singapore time.
+    Period 9 starts at 04:00.
     This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes."""
     return (float(period_str) - 1) / 2.0
 
@@ -167,7 +169,8 @@ def sg_data_to_datetime(data):
 
 def fetch_production(zone_key='SG', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of Singapore.
+    """
+    Requests the last known production mix (in MW) of Singapore.
 
     Arguments:
     zone_key       -- ignored here, only information for SG is returned
@@ -233,7 +236,8 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
 
 
 def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
-    """Requests the most recent known power prices in Singapore (USEP).
+    """
+    Requests the most recent known power prices in Singapore (USEP).
 
     See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
     We use USEP here: "The Uniform Singapore Energy Price (USEP) is the uniform price of energy
@@ -243,20 +247,6 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     There are also price forecasts for future prices at https://www.emcsg.com/marketdata/priceinformation
     that appears to extend to end of day in Singapore, so up to 24 hours into the future,
     however we don't currently use this.
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Singapore is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'currency': 'EUR',
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

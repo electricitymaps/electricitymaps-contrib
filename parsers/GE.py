@@ -7,42 +7,8 @@ import requests
 
 def fetch_production(zone_key='GE', session=None, target_datetime: datetime.datetime=None,
                      logger: logging.Logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key: used in case a parser is able to fetch multiple countries
-    session: request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. If past data is not available, raise a NotImplementedError. Beware that the
-      provided target_datetime is UTC.
-    logger: an instance of a `logging.Logger`. Information logged will be publicly available so that
-      correct execution of the logger can be checked. All Exceptions will automatically be logged,
-      so when something's wrong, simply raise an Exception (with an explicit text). Use
-      `logger.warning` or `logger.info` for information that can useful to check if the parser is
-      working correctly.
-      
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known production mix (in MW) of a given country.
     """
     r = session or requests.session()
     
@@ -114,28 +80,8 @@ def fetch_production(zone_key='GE', session=None, target_datetime: datetime.date
 
 def fetch_exchange(zone_key1='GE', zone_key2='TR', session=None, target_datetime=None,
                    logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. If past data is not available, raise a NotImplementedError. Beware that the
-      provided target_datetime is UTC.
-    logger: an instance of a `logging.Logger`. Information logged will be publicly available so that
-      correct execution of the logger can be checked. All Exceptions will automatically be logged,
-      so when something's wrong, simply raise an Exception (with an explicit text). Use
-      `logger.warning` or `logger.info` for information that can useful to check if the parser is
-      working correctly.
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known power exchange (in MW) between two countries.
     """
     
     exch_map = {'AM->GE':'armeniaSum', 'AZ->GE':'azerbaijanSum',

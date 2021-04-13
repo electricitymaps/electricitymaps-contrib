@@ -191,7 +191,8 @@ def get_production_from_summary(requests_obj):
 
 
 def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the last known production mix (in MW) of Nicaragua.
+    """
+    Requests the last known production mix (in MW) of Nicaragua.
 
     Arguments:
     zone_key       -- ignored here, only information for NI is returned
@@ -227,23 +228,7 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=g
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the 2nd country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-
-    where net flow is from DK into NO
+    """Requests the last known power exchange (in MW) between two regions.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -287,30 +272,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
 
 def fetch_price(zone_key='NI', session=None, target_datetime=None, logger=getLogger(__name__)):
-    """Requests the most recent known power prices in Nicaragua grid
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Nicaragua is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A list of dictionaries in the form:
-    [
-        {
-          'zoneKey': 'FR',
-          'currency': EUR,
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        },
-        {
-          'zoneKey': 'FR',
-          'currency': EUR,
-          'datetime': '2017-01-01T00:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
-    ]
+    """
+    Requests the most recent known power prices in Nicaragua grid.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

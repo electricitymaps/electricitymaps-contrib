@@ -679,7 +679,7 @@ def parse_self_consumption(xml_text):
 
 
 def parse_production_per_units(xml_text):
-    """Returns a dict indexed by the (datetime, unit_key) key"""
+    """Returns a dict indexed by the (datetime, unit_key) key."""
     values = {}
 
     if not xml_text:
@@ -864,9 +864,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
 def fetch_production(zone_key, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """
-    Gets values and corresponding datetimes for all production types in the
-    specified zone. Removes any values that are in the future or don't have
-    a datetime associated with them.
+    Gets values and corresponding datetimes for all production types in the specified zone.
+    Removes any values that are in the future or don't have a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
     if not session:
@@ -933,10 +932,8 @@ ZONE_KEY_AGGREGATES = {
 # currently used by US_SEC.)
 def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
     """
-    Given multiple parser outputs, sum the production and storage
-    of corresponding datetimes to create a production list.
-    This will drop rows where the datetime is missing in at least a
-    parser_output.
+    Given multiple parser outputs, sum the production and storage of corresponding datetimes to create a production list.
+    This will drop rows where the datetime is missing in at least a parser_output.
     """
     if len(parser_outputs) == 0:
         return []
@@ -983,8 +980,7 @@ def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)):
     """
-    Returns a list of all production units and production values as a list
-    of dictionaries
+    Returns a list of all production units and production values as a list of dictionaries.
     """
     if not session:
         session = requests.session()
@@ -1198,9 +1194,8 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
 def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)):
     """
-    Gets values and corresponding datetimes for all production types in the
-    specified zone. Removes any values that are in the future or don't have
-    a datetime associated with them.
+    Gets values and corresponding datetimes for all production types in the specified zone.
+    Removes any values that are in the future or don't have a datetime associated with them.
     Returns a list of dictionaries that have been validated.
     """
     if not session:

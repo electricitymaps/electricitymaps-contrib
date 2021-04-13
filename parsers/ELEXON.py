@@ -315,8 +315,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())

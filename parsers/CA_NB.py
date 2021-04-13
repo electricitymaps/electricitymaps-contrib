@@ -41,36 +41,9 @@ def _get_new_brunswick_flows(requests_obj):
 
 
 def fetch_production(zone_key='CA-NB', session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key       -- ignored here, only information for CA-NB is returned
-    session (optional) -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
     """
-    """
+    Requests the last known production mix (in MW) of a given country.
+
     In this case, we are calculating the amount of electricity generated
     in New Brunswick, versus imported and exported elsewhere.
     """
@@ -104,21 +77,8 @@ def fetch_production(zone_key='CA-NB', session=None, target_datetime=None, logge
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code (use format like "CA-QC" for sub-country regions)
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
+    """
+    Requests the last known power exchange (in MW) between two regions.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

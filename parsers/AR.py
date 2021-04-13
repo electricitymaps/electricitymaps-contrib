@@ -607,7 +607,9 @@ tie_mapping = {'CL-SEN': "position:absolute; top:349; left:585",
 
 
 def webparser(req):
-    """Takes content from webpage and returns all text as a list of strings"""
+    """
+    Takes content from webpage and returns all text as a list of strings.
+    """
 
     soup = BeautifulSoup(req.content, 'html.parser')
     figs = soup.find_all("div", class_="r11")
@@ -618,20 +620,8 @@ def webparser(req):
 
 def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
-    Requests the last known power price of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-      """
+    Requests the last known power price of a given country.
+    """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     s = session or requests.Session()
@@ -667,7 +657,8 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
 
 def get_datetime(session=None):
     """
-    Generation data is updated hourly.  Makes request then finds most recent hour available.
+    Generation data is updated hourly.
+    Makes request then finds most recent hour available.
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
     """
 
@@ -684,7 +675,9 @@ def get_datetime(session=None):
 
 
 def dataformat(junk):
-    """Takes string data with only digits and returns it as a float."""
+    """
+    Takes string data with only digits and returns it as a float.
+    """
 
     formatted = []
     for item in junk:
@@ -696,7 +689,8 @@ def dataformat(junk):
 
 
 def generation_finder(data, gen_type):
-    """Finds all generation matching requested type in a list.
+    """
+    Finds all generation matching requested type in a list.
     Sums together and returns a float.
     """
 
@@ -779,9 +773,11 @@ def get_thermal(session, logger):
 
 
 def get_hydro_and_renewables(session, logger):
-    """Requests hydro generation data then parses into a usable format.
+    """
+    Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
-    Returns a dictionary."""
+    Returns a dictionary.
+    """
 
     s = session or requests.Session()
     r = s.get(hurl)
@@ -837,33 +833,7 @@ def get_hydro_and_renewables(session, logger):
 
 def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    target_datetime: if we want to parser for a specific time and not latest
-    logger: where to log useful information
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    Requests the last known production mix (in MW) of a given country.
     """
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -898,9 +868,8 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
 
 def direction_finder(direction, exchange):
     """
-    Uses the 'src' attribute of an "img" tag to find the
-    direction of flow. In the data source small arrow images
-    are used to show flow direction.
+    Uses the 'src' attribute of an "img" tag to find the direction of flow.
+    In the data source small arrow images are used to show flow direction.
     """
 
     if direction == "/uflujpot.nsf/f90.gif":
@@ -933,25 +902,8 @@ def tie_finder(exchange_url, exchange, session):
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-
-    Arguments:
-    zone_key1, zone_key2: specifies which exchange to get
-    session: requests session passed in order to re-use an existing session,
-      not used here due to difficulty providing it to pandas
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
+    """
+    Requests the last known power exchange (in MW) between two zones.
     """
 
     # Only hourly data is available.

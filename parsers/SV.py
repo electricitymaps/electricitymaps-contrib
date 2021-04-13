@@ -33,7 +33,8 @@ generation_map = {
 
 def get_data(session=None):
     """
-    Makes a get request to data url.  Parses the response then makes a post request to the same url using
+    Makes a get request to data url.
+    Parses the response then makes a post request to the same url using
     parsed parameters from the get request.
     Returns a requests response object.
     """
@@ -67,9 +68,11 @@ def get_data(session=None):
 
 def data_parser(datareq):
     """
-    Accepts a requests response.text object.  Slices the object down to a smaller size then converts
-    to usable json.  Loads the data as json then finds the 'result' key.  Uses regex to find the start
-    and endpoints of the actual data.  Splits the data into datapoints then cleans them up for processing.
+    Accepts a requests response.text object.
+    Slices the object down to a smaller size then converts to usable json.
+    Loads the data as json then finds the 'result' key.
+    Uses regex to find the start and endpoints of the actual data.
+    Splits the data into datapoints then cleans them up for processing.
     Returns a list of lists.
     """
 
@@ -105,8 +108,10 @@ def data_parser(datareq):
 
 def data_processer(data):
     """
-    Takes data in the form of a list of lists.  Converts each list to a dictionary.
-    Joins dictionaries based on shared datetime key.  Maps generation to type.
+    Takes data in the form of a list of lists.
+    Converts each list to a dictionary.
+    Joins dictionaries based on shared datetime key.
+    Maps generation to type.
     Returns a list of dictionaries.
     """
 
@@ -138,31 +143,7 @@ def data_processer(data):
 
 def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None):
     """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    Requests the last known production mix (in MW) of a given country.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

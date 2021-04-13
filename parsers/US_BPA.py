@@ -38,9 +38,8 @@ def timestamp_converter(timestamp):
 
 def data_processor(df, logger):
     """
-    Takes a dataframe and drops all generation rows that are empty or more
-    than 1 day old. Turns each row into a dictionary and removes any generation
-    types that are unknown.
+    Takes a dataframe and drops all generation rows that are empty or more than 1 day old.
+    Turns each row into a dictionary and removes any generation types that are unknown.
     Returns a list of tuples in the form (datetime, production).
     """
 
@@ -78,32 +77,7 @@ def data_processor(df, logger):
 
 def fetch_production(zone_key='US-BPA', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     """
-    Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
+    Requests the last known production mix (in MW) of a given zone.
     """
 
     if target_datetime:

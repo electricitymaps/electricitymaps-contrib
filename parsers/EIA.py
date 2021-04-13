@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
+"""
+Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
 
 Aggregates and standardizes data from most of the US ISOs,
 and exposes them via a unified API.
