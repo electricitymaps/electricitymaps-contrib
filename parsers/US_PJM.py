@@ -346,7 +346,7 @@ def fetch_price(zone_key="US-PJM", session=None, target_datetime=None, logger=No
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     s = session or requests.Session()
-    req = requests.get(url)
+    req = requests.get(URL)
     soup = BeautifulSoup(req.content, "html.parser")
 
     price_tag = soup.find("span", class_="rtolmpico")

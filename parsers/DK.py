@@ -61,7 +61,7 @@ def fetch_production(
         # Wait and retry
         logger.warn("Retrying..")
         time.sleep(5 ** retry_count)
-        response = r.get(url)
+        response = r.get(URL)
     if response.status_code != 200:
         j = response.json()
         if "error" in j and "info" in j["error"]:
@@ -189,7 +189,7 @@ def fetch_exchange(
         # Wait and retry
         logger.warn("Retrying..")
         time.sleep(5 ** retry_count)
-        response = r.get(url)
+        response = r.get(URL)
     if response.status_code != 200:
         j = response.json()
         if "error" in j and "info" in j["error"]:

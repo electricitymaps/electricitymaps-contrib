@@ -26,7 +26,7 @@ def fetch_production(
     res = r.get(URL)
     assert res.status_code == 200, (
         "Exception when fetching production for "
-        "{}: error when calling url={}".format(zone_key, url)
+        "{}: error when calling url={}".format(zone_key, URL)
     )
 
     soup = BeautifulSoup(res.text, "lxml")
