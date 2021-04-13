@@ -4,8 +4,11 @@ import logging
 import arrow
 import pandas as pd
 import requests
+<<<<<<< HEAD
 
 from tqdm import tqdm
+=======
+>>>>>>> eb885e2182564c6e3cada0ad790150d56a878137
 
 ZONE_KEY_TO_REGION = {
     'AUS-NSW': 'NSW1',
