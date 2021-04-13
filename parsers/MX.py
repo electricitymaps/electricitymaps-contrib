@@ -1,4 +1,4 @@
-from datetime import datetime as dt
+from datetime import datetime
 import urllib
 from io import StringIO
 
@@ -49,8 +49,8 @@ DATA_CACHE = {}
 
 def parse_date(date, hour):
     tzoffset = tz.tzoffset("CST", -3600 * 6)
-    dt = dt.strptime(date, "%d/%m/%Y")
-    dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
+    dt = datetime.strptime(date, "%d/%m/%Y")
+    dt = datetime.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
 
 
@@ -58,7 +58,7 @@ def fetch_csv_for_date(dt, session=None):
     """
     Fetches the whole month of the give datetime.
     returns the data as a DataFrame.
-    throws an exception data is not available.
+    throws an exception data is not available
     """
     if not session:
         session = requests.session()
@@ -217,7 +217,7 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    print(fetch_production("MX", target_datetime=dt(year=2019, month=7, day=1)))
+    print(fetch_production("MX", target_datetime=datetime(year=2019, month=7, day=1)))
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange("MX-NO", "MX-NW"))
     print("fetch_exchange(MX-OR, MX-PN)")

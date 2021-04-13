@@ -1,4 +1,4 @@
-from datetime import datetime as dt
+import datetime
 from collections import defaultdict
 
 import arrow
@@ -48,7 +48,7 @@ def fetch_production(zone_key="SE", session=None, target_datetime=None, logger=N
         if not name:
             continue
         for value in sub_data["data"]:
-            dt = dt.fromtimestamp(value["x"] / 1000)
+            dt = datetime.datetime.fromtimestamp(value["x"] / 1000)
             prod = value["y"]
             productions[dt][name] += prod
 
@@ -57,7 +57,7 @@ def fetch_production(zone_key="SE", session=None, target_datetime=None, logger=N
     # SVK returns almost a point per minute, but only nuclear is updated
     # with that granularity. Other points are updated every hour, at minute 6
     to_return = []
-    last_inserted_datetime = dt(2010, 1, 1)
+    last_inserted_datetime = datetime.datetime(2010, 1, 1)
     for dt in datetimes:
         if (dt - last_inserted_datetime).total_seconds() < 3200 or dt.minute < 7:
             continue
