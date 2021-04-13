@@ -1,4 +1,3 @@
-
 import re
 from logging import getLogger
 
@@ -6,26 +5,29 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-LOAD_URL = 'http://kpx.or.kr/eng/index.do'
+LOAD_URL = "http://kpx.or.kr/eng/index.do"
 
-HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
+HYDRO_URL = "https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203"
 
-NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
-                'http://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
-                'http://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
-                'http://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
-                'http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312']
+NUCLEAR_URLS = [
+    "http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302",
+    "http://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303",
+    "http://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305",
+    "http://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304",
+    "http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312",
+]
 
-HYDRO_CAPACITIES = {'Hwacheon': 108,
-                    'Chuncheon': 63,
-                    'Anheung': 0.6,
-                    'Uiam': 47,
-                    'Cheongpyeong': 140,
-                    'Paldang': 120,
-                    'Goesan': 3,
-                    'Chilbo': 35,
-                    'Boseonggang': 4.5
-                    }
+HYDRO_CAPACITIES = {
+    "Hwacheon": 108,
+    "Chuncheon": 63,
+    "Anheung": 0.6,
+    "Uiam": 47,
+    "Cheongpyeong": 140,
+    "Paldang": 120,
+    "Goesan": 3,
+    "Chilbo": 35,
+    "Boseonggang": 4.5,
+}
 
 # Gangneung hydro plant used only for peak load and backup, capacity info not available.
 # Euiam hydro plant, no info available.
@@ -40,7 +42,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     if timestamps.count(timestamps[0]) == len(timestamps):
         unified_timestamp = timestamps[0]
     else:
-        average_timestamp = sum([dt.timestamp for dt in timestamps])/len(timestamps)
+        average_timestamp = sum([dt.timestamp for dt in timestamps]) / len(timestamps)
         unified_timestamp = arrow.get(average_timestamp)
 
     if check_delta:
@@ -50,11 +52,15 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
 
             if second_difference > 3600:
                 # more than 1 hour difference
-                raise ValueError("""South Korea generation data is more than 1 hour apart,
-                                 saw {} hours difference""".format(second_difference/3600))
+                raise ValueError(
+                    """South Korea generation data is more than 1 hour apart,
+                                 saw {} hours difference""".format(
+                        second_difference / 3600
+                    )
+                )
 
     if with_tz:
-        unified_timestamp = unified_timestamp.replace(tzinfo='Asia/Seoul')
+        unified_timestamp = unified_timestamp.replace(tzinfo="Asia/Seoul")
 
     return unified_timestamp
 
@@ -68,11 +74,19 @@ def check_hydro_capacity(plant_name, value, logger):
         max_value = HYDRO_CAPACITIES[plant_name]
     except KeyError:
         if value != 0.0:
-            logger.warning('New hydro plant seen - {} - {}MW'.format(plant_name, value), extra={'key': 'KR'})
+            logger.warning(
+                "New hydro plant seen - {} - {}MW".format(plant_name, value),
+                extra={"key": "KR"},
+            )
         return True
 
     if value > max_value:
-        logger.warning('{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value), extra={'key': 'KR'})
+        logger.warning(
+            "{} reports {}MW generation with capacity of {}MW - discarding".format(
+                plant_name, value, max_value
+            ),
+            extra={"key": "KR"},
+        )
         raise ValueError
     else:
         return True
@@ -81,7 +95,7 @@ def check_hydro_capacity(plant_name, value, logger):
 def fetch_hydro(session, logger):
     """Returns 2 element tuple in form (float, arrow object)."""
     req = session.get(HYDRO_URL, verify=False)
-    soup = BeautifulSoup(req.content, 'html.parser')
+    soup = BeautifulSoup(req.content, "html.parser")
     table = soup.find("div", {"class": "dep02Sec"})
 
     rows = table.find_all("tr")
@@ -121,7 +135,7 @@ def fetch_nuclear(session):
     total = 0.0
     for url in NUCLEAR_URLS:
         req = session.get(url)
-        soup = BeautifulSoup(req.content, 'html.parser')
+        soup = BeautifulSoup(req.content, "html.parser")
         table = soup.find("tbody")
         rows = table.find_all("tr")
 
@@ -152,10 +166,10 @@ def fetch_nuclear(session):
 def fetch_load(session):
     """Returns 2 element tuple in form (float, arrow object)."""
     req = session.get(LOAD_URL)
-    soup = BeautifulSoup(req.content, 'html.parser')
+    soup = BeautifulSoup(req.content, "html.parser")
 
     load_tag = soup.find("div", {"class": "actual"})
-    present_load = load_tag.find("dt", text=re.compile(r'Present Load'))
+    present_load = load_tag.find("dt", text=re.compile(r"Present Load"))
     value = present_load.find_next("dd").text.strip()
 
     # remove MW units
@@ -164,21 +178,23 @@ def fetch_load(session):
     load = float(num.replace(",", ""))
 
     date_tag = load_tag.find("p", {"class": "date"})
-    despaced = re.sub(r'\s+', '', date_tag.text)
+    despaced = re.sub(r"\s+", "", date_tag.text)
 
     # remove (day_of_week) part
-    dejunked = re.sub(r'\(.*?\)', ' ', despaced)
+    dejunked = re.sub(r"\(.*?\)", " ", despaced)
     dt = arrow.get(dejunked, "YYYY.MM.DD HH:mm")
 
     return load, dt
 
 
-def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger=getLogger(__name__)):
+def fetch_production(
+    zone_key="KR", session=None, target_datetime=None, logger=getLogger(__name__)
+):
     """
     Requests the last known production mix (in MW) of a given zone.
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     s = session or requests.Session()
 
@@ -193,23 +209,16 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
     unknown = load - nuclear - hydro
 
     production = {
-                  'production': {
-                    'nuclear': nuclear,
-                    'hydro': hydro,
-                    'unknown': unknown
-                  },
-                   'source': 'khnp.co.kr, kpx.or.kr',
-                   'zoneKey': zone_key,
-                   'datetime': dt_aware.datetime,
-                   'storage': {
-                     'hydro': None,
-                     'battery': None
-                  }
-                  }
+        "production": {"nuclear": nuclear, "hydro": hydro, "unknown": unknown},
+        "source": "khnp.co.kr, kpx.or.kr",
+        "zoneKey": zone_key,
+        "datetime": dt_aware.datetime,
+        "storage": {"hydro": None, "battery": None},
+    }
 
     return production
 
 
-if __name__ == '__main__':
-    print('fetch_production() -> ')
+if __name__ == "__main__":
+    print("fetch_production() -> ")
     print(fetch_production())

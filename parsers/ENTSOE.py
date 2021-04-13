@@ -12,18 +12,17 @@ Consumption Forecast
 """
 
 import itertools
-import logging
-import re
+import numpy as np
+from bs4 import BeautifulSoup
 from collections import defaultdict
 
 import arrow
-import numpy as np
-import pandas as pd
+import logging, re
 import requests
-from bs4 import BeautifulSoup
+import pandas as pd
 
-from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
+from .lib.utils import sum_production_dicts, get_token
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {

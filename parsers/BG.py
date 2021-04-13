@@ -4,47 +4,47 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-TYPE_MAPPING = {                        # Real values around midnight
-    u'АЕЦ': 'nuclear',                  # 2000
-    u'Кондензационни ТЕЦ': 'coal',      # 1800
-    u'Топлофикационни ТЕЦ': 'gas',      # 146
-    u'Заводски ТЕЦ': 'gas',             # 147
-    u'ВЕЦ': 'hydro',                    # 7
-    u'Малки ВЕЦ': 'hydro',              # 74
-    u'ВяЕЦ': 'wind',                    # 488
-    u'ФЕЦ': 'solar',                    # 0
-    u'Био ТЕЦ': 'biomass',              # 29
-    u'Товар РБ': 'consumption',         # 3175
+TYPE_MAPPING = {  # Real values around midnight
+    u"АЕЦ": "nuclear",  # 2000
+    u"Кондензационни ТЕЦ": "coal",  # 1800
+    u"Топлофикационни ТЕЦ": "gas",  # 146
+    u"Заводски ТЕЦ": "gas",  # 147
+    u"ВЕЦ": "hydro",  # 7
+    u"Малки ВЕЦ": "hydro",  # 74
+    u"ВяЕЦ": "wind",  # 488
+    u"ФЕЦ": "solar",  # 0
+    u"Био ТЕЦ": "biomass",  # 29
+    u"Товар РБ": "consumption",  # 3175
 }
 
 
 def time_string_converter(ts):
     """Converts time strings into aware datetime objects."""
 
-    dt_naive = arrow.get(ts, 'DD.MM.YYYY HH:mm:ss')
-    dt_aware = dt_naive.replace(tzinfo='Europe/Sofia').datetime
+    dt_naive = arrow.get(ts, "DD.MM.YYYY HH:mm:ss")
+    dt_aware = dt_naive.replace(tzinfo="Europe/Sofia").datetime
 
     return dt_aware
 
 
-def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key="BG", session=None, target_datetime=None, logger=None):
     """
     Requests the last known production mix (in MW) of a given country.
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = 'http://www.eso.bg/?did=124'
+    url = "http://www.eso.bg/?did=124"
     response = r.get(url)
     html = response.text
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BeautifulSoup(html, "html.parser")
 
     try:
         time_div = soup.find("div", {"class": "dashboardCaptionDiv"})
-        bold = time_div.find('b')
+        bold = time_div.find("b")
     except AttributeError:
-        raise LookupError('No data currently available for Bulgaria.')
+        raise LookupError("No data currently available for Bulgaria.")
 
     time_string = bold.string
     dt = time_string_converter(time_string)
@@ -65,18 +65,18 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
         production[k] = production.get(k, 0.0) + v
 
     data = {
-        'zoneKey': zone_key,
-        'production': production,
-        'storage': {},
-        'source': 'eso.bg',
-        'datetime': dt
+        "zoneKey": zone_key,
+        "production": production,
+        "storage": {},
+        "source": "eso.bg",
+        "datetime": dt,
     }
 
     return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())

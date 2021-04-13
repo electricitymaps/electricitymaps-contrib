@@ -4,17 +4,17 @@ import arrow
 import pandas as pd
 import requests
 
-tz_gt = 'America/Guatemala'
+tz_gt = "America/Guatemala"
 
 MAP_GENERATION = {
-    'biomass': u'Biogas',
-    'coal': 'Turbina de Vapor',
-    'gas': 'Turbina de Gas',
-    'hydro': u'Hidroeléctrica',
-    'oil': 'Motor Reciprocante',
-    'solar': 'Fotovoltaica',
-    'wind': u'Eólico',
-    'geothermal': u'Geotérmica',
+    "biomass": u"Biogas",
+    "coal": "Turbina de Vapor",
+    "gas": "Turbina de Gas",
+    "hydro": u"Hidroeléctrica",
+    "oil": "Motor Reciprocante",
+    "solar": "Fotovoltaica",
+    "wind": u"Eólico",
+    "geothermal": u"Geotérmica",
 }
 
 
@@ -22,41 +22,45 @@ def fetch_hourly_production(zone_key, obj, hour, date):
 
     # output frame
     data = {
-        'zoneKey': zone_key,
-        'production': {},
-        'storage': {},
-        'source': 'amm.org.gt',
+        "zoneKey": zone_key,
+        "production": {},
+        "storage": {},
+        "source": "amm.org.gt",
     }
 
     # Fill datetime variable
-    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime
+    data["datetime"] = (
+        arrow.get(date, "DD/MM/YYYY").replace(tzinfo=tz_gt, hour=hour).datetime
+    )
 
     # Fill the sources with the MAP_GENERATION frame
     for i_type in MAP_GENERATION.keys():
-        val = obj[obj['tipo'] == MAP_GENERATION[i_type]].potencia.iloc[0]
-        if i_type == 'oil' and val > -1:
+        val = obj[obj["tipo"] == MAP_GENERATION[i_type]].potencia.iloc[0]
+        if i_type == "oil" and val > -1:
             # Set to 0 values that are not too small
             val = max(0, val)
-        data['production'][i_type] = val
+        data["production"][i_type] = val
 
     return data
 
 
-def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key="GT", session=None, target_datetime=None, logger=None):
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
-    formatted_date = now.format('DD/MM/YYYY')
-    past_formatted_date = arrow.get(formatted_date, 'DD/MM/YYYY').shift(days=-1).format('DD/MM/YYYY')
+    formatted_date = now.format("DD/MM/YYYY")
+    past_formatted_date = (
+        arrow.get(formatted_date, "DD/MM/YYYY").shift(days=-1).format("DD/MM/YYYY")
+    )
 
     # Define output frame
     actual_hour = now.hour
     data = [dict() for h in range(actual_hour + 1)]
 
     # initial path for url to request
-    url_init = 'https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
+    url_init = "https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/"
     # Start with data for midnight
     url = url_init + past_formatted_date
     # Request and rearange in DF
@@ -64,7 +68,7 @@ def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=N
     response = r.get(url)
     obj = response.json()
     obj_df = pd.DataFrame(obj)
-    obj_h = obj_df[obj_df.hora == '24']
+    obj_h = obj_df[obj_df.hora == "24"]
     data_temp = fetch_hourly_production(zone_key, obj_h, 0, formatted_date)
     data[0] = data_temp
 
@@ -87,33 +91,37 @@ def fetch_production(zone_key='GT', session=None, target_datetime=None, logger=N
 def fetch_hourly_consumption(zone_key, obj, hour, date):
     # output frame
     data = {
-        'zoneKey': zone_key,
-        'consumption': {},
-        'source': 'amm.org.gt',
+        "zoneKey": zone_key,
+        "consumption": {},
+        "source": "amm.org.gt",
     }
     # Fill datetime variable
-    data['datetime'] = arrow.get(date, 'DD/MM/YYYY').replace(tzinfo=tz_gt, hour=hour).datetime
+    data["datetime"] = (
+        arrow.get(date, "DD/MM/YYYY").replace(tzinfo=tz_gt, hour=hour).datetime
+    )
     # Fill consumption variable
-    data['consumption'] = obj[obj['tipo'] == 'Dem SNI'].potencia.iloc[0]
+    data["consumption"] = obj[obj["tipo"] == "Dem SNI"].potencia.iloc[0]
 
     return data
 
 
-def fetch_consumption(zone_key='GT', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key="GT", session=None, target_datetime=None, logger=None):
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     # Define actual and last day (for midnight data)
     now = arrow.now(tz=tz_gt)
-    formatted_date = now.format('DD/MM/YYYY')
-    past_formatted_date = arrow.get(formatted_date, 'DD/MM/YYYY').shift(days=-1).format('DD/MM/YYYY')
+    formatted_date = now.format("DD/MM/YYYY")
+    past_formatted_date = (
+        arrow.get(formatted_date, "DD/MM/YYYY").shift(days=-1).format("DD/MM/YYYY")
+    )
 
     # Define output frame
     actual_hour = now.hour
     data = [dict() for h in range(actual_hour + 1)]
 
     # initial path for url to request
-    url_init = 'https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/'
+    url_init = "https://wl12.amm.org.gt//AMM_LectorDePotencias-AMM_GraficasWs-context-root/jersey/CargaPotencias/graficaAreaScada/"
 
     # Start with data for midnight
     url = url_init + past_formatted_date
@@ -122,7 +130,7 @@ def fetch_consumption(zone_key='GT', session=None, target_datetime=None, logger=
     response = r.get(url)
     obj = response.json()
     obj_df = pd.DataFrame(obj)
-    obj_h = obj_df[obj_df.hora == '24']
+    obj_h = obj_df[obj_df.hora == "24"]
     data_temp = fetch_hourly_consumption(zone_key, obj_h, 0, formatted_date)
     data[0] = data_temp
 
@@ -142,9 +150,9 @@ def fetch_consumption(zone_key='GT', session=None, target_datetime=None, logger=
     return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())
-    print('fetch_consumption() ->')
+    print("fetch_consumption() ->")
     print(fetch_consumption())

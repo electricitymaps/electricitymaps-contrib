@@ -12,17 +12,20 @@ from dateutil import parser, tz
 # Renewable energy (PURPA) is likely bought with credits from outside the Utility
 # area and not supplied to customers. For that reason those types are commented out.
 
-PRODUCTION_URL = 'https://api.idahopower.com/IdaStream/Api/V1/GenerationAndDemand/Subset'
+PRODUCTION_URL = (
+    "https://api.idahopower.com/IdaStream/Api/V1/GenerationAndDemand/Subset"
+)
 
-GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
-                      'Hydro': 'hydro',
-                      'Coal': 'coal',
-                      'Diesel': 'oil',
-                      'PURPA/Non-Utility Wind': 'wind',
-                      'Natural Gas': 'gas',
-                      'PURPA/Non-Utility Solar': 'solar',
-                      'PURPA Other': 'biomass'
-                      }
+GENERATION_MAPPING = {
+    "Non-Utility Geothermal": "geothermal",
+    "Hydro": "hydro",
+    "Coal": "coal",
+    "Diesel": "oil",
+    "PURPA/Non-Utility Wind": "wind",
+    "Natural Gas": "gas",
+    "PURPA/Non-Utility Solar": "solar",
+    "PURPA Other": "biomass",
+}
 
 TIMEZONE = tz.gettz("America/Boise")
 
@@ -34,7 +37,7 @@ def get_data(session=None):
 
     req = requests.get(PRODUCTION_URL)
     json_data = req.json()
-    raw_data = json_data['list']
+    raw_data = json_data["list"]
 
     return raw_data
 
@@ -55,10 +58,10 @@ def data_processer(raw_data, logger):
     Returns a list of tuples containing (datetime object, dictionary).
     """
 
-    dt_key = lambda x: x['datetime']
+    dt_key = lambda x: x["datetime"]
     grouped = groupby(raw_data, dt_key)
 
-    keys_to_ignore = {'Load', 'Net Purchases', 'Inadvertent'}
+    keys_to_ignore = {"Load", "Net Purchases", "Inadvertent"}
     known_keys = GENERATION_MAPPING.keys() | keys_to_ignore
 
     unmapped = set()
@@ -69,7 +72,7 @@ def data_processer(raw_data, logger):
 
         production = {}
         for gen_type in generation:
-            production[gen_type['name']] = float(gen_type['data'])
+            production[gen_type["name"]] = float(gen_type["data"])
 
         current_keys = production.keys() | set()
         unknown_keys = current_keys - known_keys
@@ -85,18 +88,23 @@ def data_processer(raw_data, logger):
         parsed_data.append((dt, production))
 
     for key in unmapped:
-        logger.warning('Key \'{}\' in US-IPC is not mapped to type.'.format(key), extra={'key': 'US-IPC'})
+        logger.warning(
+            "Key '{}' in US-IPC is not mapped to type.".format(key),
+            extra={"key": "US-IPC"},
+        )
 
     return parsed_data
 
 
-def fetch_production(zone_key = 'US-IPC', session=None, target_datetime=None, logger=getLogger(__name__)):
+def fetch_production(
+    zone_key="US-IPC", session=None, target_datetime=None, logger=getLogger(__name__)
+):
     """
     Requests the last known production mix (in MW) of a given zone.
     """
 
     if target_datetime is not None:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     raw_data = get_data(session=session)
     processed_data = data_processer(raw_data, logger)
@@ -104,11 +112,11 @@ def fetch_production(zone_key = 'US-IPC', session=None, target_datetime=None, lo
     production_data = []
     for item in processed_data:
         datapoint = {
-          'zoneKey': zone_key,
-          'datetime': item[0],
-          'production': item[1],
-          'storage': {},
-          'source': 'idahopower.com'
+            "zoneKey": zone_key,
+            "datetime": item[0],
+            "production": item[1],
+            "storage": {},
+            "source": "idahopower.com",
         }
 
         production_data.append(datapoint)
@@ -116,8 +124,8 @@ def fetch_production(zone_key = 'US-IPC', session=None, target_datetime=None, lo
     return production_data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())
