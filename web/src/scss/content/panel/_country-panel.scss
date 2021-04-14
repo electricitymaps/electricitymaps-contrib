@@ -9,7 +9,7 @@
         margin: 0;
         display: block;
         overflow-y: scroll;
-        -webkit-overflow-scrolling: touch; 
+        -webkit-overflow-scrolling: touch;
         -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
         margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
     }
@@ -43,7 +43,8 @@
 }
 
 .country-name-time-table {
-    display: table;
+    display: flex;
+    justify-content: space-between;
     margin-left: 1.2rem;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .country-table {
-    width: 100%;    
+    width: 100%;
 }
 
 .country-table-container {
