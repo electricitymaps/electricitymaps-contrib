@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 
-import { __ } from '../helpers/translation';
 import Tooltip from './tooltip';
 
 const MATERIAL_ICON_NAME = 'error';
