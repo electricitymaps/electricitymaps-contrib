@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 timezone = 'Canada/Newfoundland'
 
 
-def fetch_production(zone_key='CA-NL-NL', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='CA-NL-NF', session=None, target_datetime=None, logger=None):
     """Requests the last known production mix (in MW) of a given country
 
     Arguments:
@@ -60,7 +60,7 @@ def fetch_production(zone_key='CA-NL-NL', session=None, target_datetime=None, lo
     system = soup.find('div', {"id": "sysgen"})
     ps = system.findAll("p")
 
-    unknownMw = ps[0].text.replace("MW", "").strip()
+    unknownMw = float(ps[0].text.replace("MW", "").strip())
     updatedAt = arrow.get(ps[1].find("span").text, "M/D/YYYY H:m A", tzinfo=timezone)
 
 

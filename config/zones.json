@@ -966,35 +966,14 @@
     },
     "timezone": null
   },
-  "CA-NL": {
-    "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
-    "capacity": {
-      "biomass": 15,
-      "hydro": 6726.806,
-      "oil": 590,
-      "wind": 54.3
-    },
-    "flag_file_name": "ca.png",
-    "timezone": null,
-    "bounding_box": [
-      [
-        -68.3080677526246,
-        46.118353583000186
-      ],
-      [
-        -52.11660722599996,
-        60.87274609304416
-      ]
-    ]
-  },
-  "CA-NL-NL": {
+  "CA-NL-NF": {
     "_comment": "https://nlhydro.com/system-information/supply-and-demand/ This is just the island of Newfoundland",
     "capacity": {},
     "flag_file_name": "ca.png",
-    "timezone": "Canada/Newfoundland",
+    "timezone": "America/St_Johns",
     "bounding_box": null,
     "parsers": {
-      "production": "CA_NL_NL.fetch_production"
+      "production": "CA_NL_NF.fetch_production"
     },
     "contributors": [
       "https://github.com/byronwilliams"
