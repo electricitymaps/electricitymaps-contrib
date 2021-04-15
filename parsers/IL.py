@@ -4,8 +4,12 @@ Israel's electricity system load parser.
 Source: Israel Electric Corporation
 URL: https://www.iec.co.il/en/pages/default.aspx
 
-Shares of Electricity production in 2018: 65.6% oil, 34.4% gas
-(source: IEA; https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source)
+Shares of Electricity production in 2019:
+    64.0% Gas
+    31.0% Coal
+    1.0% oil,
+    4.0% Renewables
+    (source: IEA; https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source)
 """
 
 import re
