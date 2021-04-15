@@ -153,7 +153,7 @@ const SharedHeader = ({
   logo,
 }) => (
   <Wrapper inverted={inverted} collapsed={collapsed}>
-    <a href="/map">
+    <a href="https://www.electricitymap.org/map">
       <Logo src={logo} alt="logo" />
     </a>
     <ResponsiveMenu collapsed={collapsed}>
