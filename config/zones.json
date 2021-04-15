@@ -6842,7 +6842,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 10
+      "solar": 10,
       "unknown": 0,
       "wind": 1496.4
     },
@@ -6861,7 +6861,7 @@
     "capacity": {
       "battery storage": 3,
       "biomass": 417.9,
-      "coal": 729.9
+      "coal": 729.9,
       "gas": 2277.5,
       "geothermal": 18,
       "hydro": 21708.1,
@@ -7344,7 +7344,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 2.7,
-      "solar": 0.5
+      "solar": 0.5,
       "unknown": 0,
       "wind": 502.9
     },
