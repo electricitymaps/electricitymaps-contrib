@@ -6,6 +6,7 @@ import arrow
 import logging
 import requests
 from collections import defaultdict
+from datetime import datetime
 from operator import itemgetter
 from .lib.validation import validate
 
@@ -20,7 +21,6 @@ TYPE_MAPPING = {'hidraulica': 'hydro',
                 'eolica': 'wind',
                 'solar': 'solar',
                 'geotermica': 'geothermal'}
-
 
 def get_data_live(session, logger):
     """Requests live generation data in json format."""
@@ -102,53 +102,16 @@ def production_processor_historical(raw_data):
         combined[elem['datetime']].update(elem)
 
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
-
-    # For consistency with live API, hydro and geothermal must be squeezed into unknown
-    for datapoint in ordered_data:
-        if 'unknown' not in datapoint:
-            datapoint['unknown'] = 0
-        if 'hydro' in datapoint:
-            datapoint['unknown'] += datapoint['hydro']
-            del datapoint['hydro']
-        if 'geothermal' in datapoint:
-            datapoint['unknown'] += datapoint['geothermal']
-            del datapoint['geothermal']
-
     return ordered_data
 
 
-def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day, a string in the form YYYYMMDD
-    logger (optional) -- handles logging when parser is run
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
-
-    if target_datetime is None:
+def fetch_production(zone_key : str ='CL-SEN', session : requests.session = None, target_datetime: datetime=None, logger:logging.Logger = logging.getLogger(__name__)):
+    # Live parser disabled because of a insuffcient breakdown of Unknown.
+    # It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
+    # We can reenable if we find a way to get the Hydro production
+    ENABLE_LIVE_PARSER = False
+    
+    if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
 
         processed_data = production_processor_live(gen_tot, gen_ren)
@@ -173,7 +136,7 @@ def fetch_production(zone_key='CL', session=None, target_datetime=None, logger=l
             data.append(datapoint)
 
         return data
-
+    
     arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
