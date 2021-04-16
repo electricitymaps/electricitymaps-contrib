@@ -6677,7 +6677,7 @@
   "US-MIDW-LGEE": {
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
     "capacity": {
-      "battery storage": ,
+      "battery storage": 0,
       "biomass": 2,
       "coal": 5807.2,
       "gas": 4011.6,
