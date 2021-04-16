@@ -13,14 +13,17 @@ from .lib.validation import validate
 # Historical API
 API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrales_tecnologia_horario?"
 # Live API
-API_BASE_URL_LIVE_TOT = 'http://panelapp.coordinadorelectrico.cl/api/chart/demanda'
-API_BASE_URL_LIVE_REN = 'http://panelapp.coordinadorelectrico.cl/api/chart/ernc'  # ERNC = energias renovables no convencionales
+API_BASE_URL_LIVE_TOT = "http://panelapp.coordinadorelectrico.cl/api/chart/demanda"
+API_BASE_URL_LIVE_REN = "http://panelapp.coordinadorelectrico.cl/api/chart/ernc"  # ERNC = energias renovables no convencionales
 
-TYPE_MAPPING = {'hidraulica': 'hydro',
-                'termica': 'unknown',
-                'eolica': 'wind',
-                'solar': 'solar',
-                'geotermica': 'geothermal'}
+TYPE_MAPPING = {
+    "hidraulica": "hydro",
+    "termica": "unknown",
+    "eolica": "wind",
+    "solar": "solar",
+    "geotermica": "geothermal",
+}
+
 
 def get_data_live(session, logger):
     """Requests live generation data in json format."""
@@ -38,19 +41,21 @@ def production_processor_live(json_tot, json_ren):
     Returns a list of dictionaries for all of the available "live" data, usually that day.
     """
 
-    gen_total = json_tot['data'][0]['values']
+    gen_total = json_tot["data"][0]["values"]
 
-    if json_ren['data'][1]['key'] == 'ENERGÍA SOLAR':
-        rawgen_sol = json_ren['data'][1]['values']
+    if json_ren["data"][1]["key"] == "ENERGÍA SOLAR":
+        rawgen_sol = json_ren["data"][1]["values"]
     else:
         raise RuntimeError(
-            f"Unexpected data label. Expected 'ENERGÍA SOLAR' and got {json_ren['data'][1]['key']}")
+            f"Unexpected data label. Expected 'ENERGÍA SOLAR' and got {json_ren['data'][1]['key']}"
+        )
 
-    if json_ren['data'][0]['key'] == 'ENERGÍA EÓLICA':
-        rawgen_wind = json_ren['data'][0]['values']
+    if json_ren["data"][0]["key"] == "ENERGÍA EÓLICA":
+        rawgen_wind = json_ren["data"][0]["values"]
     else:
         raise RuntimeError(
-            f"Unexpected data label. Expected 'ENERGÍA EÓLICA' and got {json_ren['data'][0]['key']}")
+            f"Unexpected data label. Expected 'ENERGÍA EÓLICA' and got {json_ren['data'][0]['key']}"
+        )
 
     mapped_totals = []
 
@@ -67,10 +72,12 @@ def production_processor_live(json_tot, json_ren):
                 wind = pair[1]
                 break
 
-        datapoint['datetime'] = arrow.get(dt / 1000, tzinfo='Chile/Continental').datetime
-        datapoint['unknown'] = (total[1] - wind - solar)
-        datapoint['wind'] = wind
-        datapoint['solar'] = solar
+        datapoint["datetime"] = arrow.get(
+            dt / 1000, tzinfo="Chile/Continental"
+        ).datetime
+        datapoint["unknown"] = total[1] - wind - solar
+        datapoint["wind"] = wind
+        datapoint["solar"] = solar
         mapped_totals.append(datapoint)
 
     return mapped_totals
@@ -84,14 +91,16 @@ def production_processor_historical(raw_data):
     clean_datapoints = []
     for datapoint in raw_data:
         clean_datapoint = {}
-        date, hour = datapoint['fecha'], datapoint['hora']
+        date, hour = datapoint["fecha"], datapoint["hora"]
         hour -= 1  # `hora` starts at 1
-        date = arrow.get(date, "YYYY-MM-DD", tzinfo='Chile/Continental').shift(hours=hour)
-        clean_datapoint['datetime'] = date.datetime
+        date = arrow.get(date, "YYYY-MM-DD", tzinfo="Chile/Continental").shift(
+            hours=hour
+        )
+        clean_datapoint["datetime"] = date.datetime
 
-        gen_type_es = datapoint['tipo_central']
+        gen_type_es = datapoint["tipo_central"]
         mapped_gen_type = TYPE_MAPPING[gen_type_es]
-        value_mw = float(datapoint['generacion_sum'])
+        value_mw = float(datapoint["generacion_sum"])
 
         clean_datapoint[mapped_gen_type] = value_mw
 
@@ -99,18 +108,23 @@ def production_processor_historical(raw_data):
 
     combined = defaultdict(dict)
     for elem in clean_datapoints:
-        combined[elem['datetime']].update(elem)
+        combined[elem["datetime"]].update(elem)
 
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
     return ordered_data
 
 
-def fetch_production(zone_key : str ='CL-SEN', session : requests.session = None, target_datetime: datetime=None, logger:logging.Logger = logging.getLogger(__name__)):
+def fetch_production(
+    zone_key: str = "CL-SEN",
+    session: requests.session = None,
+    target_datetime: datetime = None,
+    logger: logging.Logger = logging.getLogger(__name__),
+):
     # Live parser disabled because of a insuffcient breakdown of Unknown.
     # It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
     # We can reenable if we find a way to get the Hydro production
     ENABLE_LIVE_PARSER = False
-    
+
     if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
 
@@ -119,53 +133,54 @@ def fetch_production(zone_key : str ='CL-SEN', session : requests.session = None
         data = []
 
         for production_data in processed_data:
-            dt = production_data.pop('datetime')
+            dt = production_data.pop("datetime")
 
             datapoint = {
-                'zoneKey': zone_key,
-                'datetime': dt,
-                'production': production_data,
-                'storage': {
-                    'hydro': None,
+                "zoneKey": zone_key,
+                "datetime": dt,
+                "production": production_data,
+                "storage": {
+                    "hydro": None,
                 },
-                'source': 'coordinadorelectrico.cl'
+                "source": "coordinadorelectrico.cl",
             }
-            datapoint = validate(datapoint, logger,
-                                 remove_negative=True, floor=1000)
+            datapoint = validate(datapoint, logger, remove_negative=True, floor=1000)
 
             data.append(datapoint)
 
         return data
-    
+
     arr_target_datetime = arrow.get(target_datetime)
     start = arr_target_datetime.shift(days=-1).format("YYYY-MM-DD")
     end = arr_target_datetime.format("YYYY-MM-DD")
 
-    date_component = 'fecha__gte={}&fecha__lte={}'.format(start, end)
+    date_component = "fecha__gte={}&fecha__lte={}".format(start, end)
 
     # required for access
-    headers = {'Referer': 'https://www.coordinador.cl/operacion/graficos/operacion-real/generacion-real-del-sistema/',
-               'Origin': 'https://www.coordinador.cl'}
+    headers = {
+        "Referer": "https://www.coordinador.cl/operacion/graficos/operacion-real/generacion-real-del-sistema/",
+        "Origin": "https://www.coordinador.cl",
+    }
 
     s = session or requests.Session()
     url = API_BASE_URL + date_component
 
     req = s.get(url, headers=headers)
-    raw_data = req.json()['aggs']
+    raw_data = req.json()["aggs"]
     processed_data = production_processor_historical(raw_data)
 
     data = []
     for production_data in processed_data:
-        dt = production_data.pop('datetime')
+        dt = production_data.pop("datetime")
 
         datapoint = {
-            'zoneKey': zone_key,
-            'datetime': dt,
-            'production': production_data,
-            'storage': {
-                'hydro': None,
+            "zoneKey": zone_key,
+            "datetime": dt,
+            "production": production_data,
+            "storage": {
+                "hydro": None,
             },
-            'source': 'coordinador.cl'
+            "source": "coordinador.cl",
         }
 
         data.append(datapoint)
@@ -176,7 +191,7 @@ def fetch_production(zone_key : str ='CL-SEN', session : requests.session = None
 
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())
     # For fetching historical data instead, try:
     print(fetch_production(target_datetime=arrow.get("20200220", "YYYYMMDD")))
