@@ -37,7 +37,10 @@ def flatten_list(_2d_list) -> list:
     return flat_list
 
 
-def fetch_production(zone_key="IL", session=None, logger=None) -> dict:
+def fetch_production(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+        
     first = get(IEC_PRODUCTION)
     first.cookies
     second = get(IEC_PRODUCTION, cookies=first.cookies)
