@@ -1261,6 +1261,9 @@
     "parsers": {
       "production": "CL.fetch_production"
     },
+    "delays": {
+      "production": 24
+    },
     "timezone": "America/Santiago"
   },
   "CL-SEA": {
