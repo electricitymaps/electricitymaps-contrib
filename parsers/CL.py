@@ -16,6 +16,11 @@ API_BASE_URL = "https://sipub.coordinador.cl/api/v1/recursos/generacion_centrale
 API_BASE_URL_LIVE_TOT = "http://panelapp.coordinadorelectrico.cl/api/chart/demanda"
 API_BASE_URL_LIVE_REN = "http://panelapp.coordinadorelectrico.cl/api/chart/ernc"  # ERNC = energias renovables no convencionales
 
+# Live parser disabled because of a insuffcient breakdown of Unknown.
+# It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
+# We can reenable if we find a way to get the Hydro production
+ENABLE_LIVE_PARSER = False
+
 TYPE_MAPPING = {
     "hidraulica": "hydro",
     "termica": "unknown",
@@ -111,6 +116,19 @@ def production_processor_historical(raw_data):
         combined[elem["datetime"]].update(elem)
 
     ordered_data = sorted(combined.values(), key=itemgetter("datetime"))
+
+    if ENABLE_LIVE_PARSER:
+        # For consistency with live API, hydro and geothermal must be squeezed into unknown
+        for datapoint in ordered_data:
+            if 'unknown' not in datapoint:
+                datapoint['unknown'] = 0
+            if 'hydro' in datapoint:
+                datapoint['unknown'] += datapoint['hydro']
+                del datapoint['hydro']
+            if 'geothermal' in datapoint:
+                datapoint['unknown'] += datapoint['geothermal']
+                del datapoint['geothermal']
+
     return ordered_data
 
 
@@ -120,11 +138,6 @@ def fetch_production(
     target_datetime: datetime = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
-    # Live parser disabled because of a insuffcient breakdown of Unknown.
-    # It lumps Hydro & Geothermal into unknown which makes it difficult to calculate a proper CFE%/co2 intensity
-    # We can reenable if we find a way to get the Hydro production
-    ENABLE_LIVE_PARSER = False
-
     if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
 
