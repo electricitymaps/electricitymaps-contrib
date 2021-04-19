@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
+from __future__ import annotations
+
 import logging
 import re
+from collections import defaultdict
 
 import arrow
+import requests
 from PIL import Image
 from pytesseract import image_to_string
-import requests
-from __future__ import annotations
 
 TIMEZONE = 'Asia/Singapore'
 
