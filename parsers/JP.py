@@ -69,8 +69,8 @@ def fetch_production(zone_key='JP-TK', session=None, target_datetime=None,
 def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
                         logger=logging.getLogger(__name__)):
     """
-    Calculates production from consumption and imports for a given area
-    All production is mapped to unknown
+    Calculates production from consumption and imports for a given area.
+    All production is mapped to unknown.
     """
     exch_map = {
         'JP-HKD': ['JP-TH'],
@@ -109,8 +109,8 @@ def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
 def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
                          logger=logging.getLogger(__name__)):
     """
-    Returns the consumption for an area as a pandas DataFrame
-    For JP-CB the consumption file includes solar production
+    Returns the consumption for an area as a pandas DataFrame.
+    For JP-CB the consumption file includes solar production.
     """
     datestamp = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y%m%d')
     consumption_url = {
@@ -159,11 +159,8 @@ def fetch_consumption_df(zone_key='JP-TK', target_datetime=None,
 
 
 def fetch_consumption_forecast(zone_key='JP-KY', session=None, target_datetime=None,
-                               logger=logging.getLogger(__name__)):
-    """
-    Gets consumption forecast for specified zone.
-    Returns a list of dictionaries.
-    """
+                               logger=logging.getLogger(__name__)) -> list:
+    """Gets consumption forecast for specified zone."""
     # Currently past dates not implemented for areas with no date in their demand csv files
     if target_datetime and zone_key == 'JP-HKD':
         raise NotImplementedError(
@@ -263,9 +260,7 @@ def fetch_price(zone_key='JP-TK', session=None, target_datetime=None,
 
 
 def parse_dt(row):
-    """
-    Parses timestamps from date and time
-    """
+    """Parses timestamps from date and time."""
     if 'AM' in row['Time'] or 'PM' in row['Time']:
         timestamp = arrow.get(' '.join([row['Date'], row['Time']]).replace('/', '-'),
                               'YYYY-M-D H:mm A').replace(tzinfo='Asia/Tokyo').datetime

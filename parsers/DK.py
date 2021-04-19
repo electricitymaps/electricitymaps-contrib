@@ -21,7 +21,6 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     for Danish bidding zones
 
     NOTE: Missing historical wind/solar data @ 2017-08-01
-
     """
     r = session or requests.session()
     

@@ -8,6 +8,7 @@ import arrow
 from PIL import Image
 from pytesseract import image_to_string
 import requests
+from __future__ import annotations
 
 TIMEZONE = 'Asia/Singapore'
 
@@ -56,11 +57,10 @@ TYPE_MAPPINGS = {
 }
 
 
-def get_solar(session, logger):
+def get_solar(session, logger) -> float | None:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
-    Returns a float or None.
     """
 
     url = SOLAR_URL
@@ -134,7 +134,8 @@ def parse_price(price_str):
 
 
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
-    """Parses a common pattern in Singapore JSON response format. Examples:
+    """
+    Parses a common pattern in Singapore JSON response format. Examples:
 
     [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
         => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
@@ -167,12 +168,7 @@ def sg_data_to_datetime(data):
 
 def fetch_production(zone_key='SG', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of Singapore.
-
-    Arguments:
-    zone_key       -- ignored here, only information for SG is returned
-    session (optional) -- request session passed in order to re-use an existing session
-    """
+    """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -232,8 +228,9 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
     }
 
 
-def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
-    """Requests the most recent known power prices in Singapore (USEP).
+def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None) -> dict:
+    """
+    Requests the most recent known power prices in Singapore (USEP).
 
     See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
     We use USEP here: "The Uniform Singapore Energy Price (USEP) is the uniform price of energy
@@ -243,20 +240,6 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     There are also price forecasts for future prices at https://www.emcsg.com/marketdata/priceinformation
     that appears to extend to end of day in Singapore, so up to 24 hours into the future,
     however we don't currently use this.
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Singapore is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'currency': 'EUR',
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

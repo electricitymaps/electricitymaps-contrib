@@ -32,9 +32,7 @@ mapping = {
 
 
 def read_csv_data(url):
-    """
-    Gets csv data from a url and returns a dataframe.
-    """
+    """Gets csv data from a url and returns a dataframe."""
 
     csv_data = pd.read_csv(url)
 
@@ -42,9 +40,7 @@ def read_csv_data(url):
 
 
 def timestamp_converter(timestamp_string):
-    """
-    Converts timestamps in nyiso data into aware datetime objects.
-    """
+    """Converts timestamps in nyiso data into aware datetime objects."""
     try:
         dt_naive = arrow.get(timestamp_string, 'MM/DD/YYYY HH:mm:ss')
     except ParserError:
@@ -54,11 +50,10 @@ def timestamp_converter(timestamp_string):
     return dt_aware
 
 
-def data_parser(df):
+def data_parser(df) -> list:
     """
     Takes dataframe and loops over rows to form dictionaries consisting of datetime and generation type.
     Merges these dictionaries using datetime key.
-    Maps to type and returns a list of tuples containing datetime string and production.
     """
 
     chunks = []
@@ -95,41 +90,8 @@ def data_parser(df):
     return mapped_generation
 
 
-def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given zone
-
-    Arguments:
-    zone_key: used in case a parser is able to fetch multiple zones
-    session: requests session passed in order to re-use an existing session,
-      not used here due to difficulty providing it to pandas
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logger=None) -> list:
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         # ensure we have an arrow object
         target_datetime = arrow.get(target_datetime)
@@ -165,27 +127,8 @@ def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logge
     return production_mix
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-
-    Arguments:
-    zone_key1, zone_key2: specifies which exchange to get
-    session: requests session passed in order to re-use an existing session,
-      not used here due to difficulty providing it to pandas
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> list:
+    """Requests the last known power exchange (in MW) between two zones."""
     url = 'http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv'
 
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
