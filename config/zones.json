@@ -618,7 +618,7 @@
       "nuclear": 5943,
       "oil": 313,
       "solar": 4788,
-      "wind": 4670.8
+      "wind": 4833
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1260,6 +1260,9 @@
     ],
     "parsers": {
       "production": "CL.fetch_production"
+    },
+    "delays": {
+      "production": 24
     },
     "timezone": "America/Santiago"
   },
