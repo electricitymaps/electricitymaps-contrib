@@ -3388,11 +3388,15 @@
       ]
     ],
     "capacity": {
-      "nuclear": 22529,
-      "coal": 36709,
-      "oil": 4155,
-      "gas": 37838,
-      "hydro": 1789
+      "biomass": 1320,
+      "coal": 36721,
+      "gas": 41828,
+      "hydro": 1806,
+      "hydro storage": 4700,
+      "nuclear": 23250,
+      "oil": 2159,
+      "solar": 15697,
+      "wind": 1692
     },
     "contributors": [
       "https://github.com/systemcatch",
