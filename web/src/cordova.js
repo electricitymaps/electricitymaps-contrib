@@ -1,4 +1,4 @@
-import { select } from 'd3-selection';
+import { select, selectAll } from 'd3-selection';
 
 import { history } from './helpers/router';
 import { store } from './store';
@@ -28,25 +28,31 @@ export const cordovaApp = {
   onDeviceReady() {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
-      // TODO(olc): What about Xr and Xs?
-      const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
-        ? 30
-        : 20;
+
+      const safeAreaTop = 'env(safe-area-inset-top, 20px)';
+      const safeAreaBottom = 'env(safe-area-inset-bottom, 0px)';
+
       select('#header')
-        .style('padding-top', `${extraPadding}px`);
+        .style('padding-top', safeAreaTop); // note: this selects nothing
+
       select('#mobile-header')
-        .style('padding-top', `${extraPadding}px`);
+        .style('padding-top', safeAreaTop);
 
       select('.controls-container')
-        .style('margin-top', `${extraPadding}px`);
+        .style('margin-top', safeAreaTop);
 
-      select('.flash-message .inner')
-        .style('padding-top', `${extraPadding}px`);
+      selectAll('.flash-message .inner')
+        .style('padding-top', safeAreaTop);
 
       select('.mapboxgl-zoom-controls')
-        .style('transform', `translate(0,${extraPadding}px)`);
+        .style('transform', `translate(0,${safeAreaTop})`);
       select('.layer-buttons-container')
-        .style('transform', `translate(0,${extraPadding}px)`);
+        .style('transform', `translate(0,${safeAreaTop})`);
+
+      select('#tab')
+        .style('padding-bottom', safeAreaBottom);
+      select('.modal')
+        .style('margin-bottom', safeAreaBottom);
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
