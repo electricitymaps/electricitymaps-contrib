@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const TooltipContent = React.memo(({
-  isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage,
+  isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage, isMissingWindAndOrSolar
 }) => {
   if (!hasParser) {
     return (
@@ -54,6 +54,14 @@ const TooltipContent = React.memo(({
           <div className="country-col-headline">{__('country-panel.renewable')}</div>
         </div>
       </div>
+      <div id="tooltip-missing-wind-solar" className="country-missing-wind-solar">
+        <div className="country-missing-wind-solar-message">
+          {isMissingWindAndOrSolar && <span>&#9888;</span>}
+        </div>
+        <div className="country-missing-wind-solar-message">
+          {isMissingWindAndOrSolar && <h5>{__('tooltips.missingWindAndOrSolar')}</h5>}
+        </div>
+      </div>
     </div>
   );
 });
@@ -65,6 +73,8 @@ const MapCountryTooltip = ({
   onClose,
 }) => {
   if (!zoneData) return null;
+  // Determines if a zone with data is missing solar and/or wind data
+  const isMissingWindAndOrSolar = ((zoneData.production.wind == null) || (zoneData.production.solar == null)) && zoneData.co2intensity != undefined;
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
@@ -97,6 +107,7 @@ const MapCountryTooltip = ({
         co2intensity={co2intensity}
         fossilFuelPercentage={fossilFuelPercentage}
         renewablePercentage={renewablePercentage}
+        isMissingWindAndOrSolar={isMissingWindAndOrSolar}
       />
     </Tooltip>
   );

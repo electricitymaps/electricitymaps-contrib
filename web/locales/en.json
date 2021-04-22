@@ -95,7 +95,8 @@
         "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
         "selectLanguage": "Select language",
         "lowCarbDescription": "Includes renewables and nuclear",
-        "dataIsDelayed": "Data is delayed"
+        "dataIsDelayed": "Data is delayed",
+        "missingWindAndOrSolar": "Missing wind and/or solar data"
     },
     "misc": {
         "maintitle": "Live CO₂ emissions of electricity consumption",

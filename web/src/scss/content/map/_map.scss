@@ -63,6 +63,12 @@
             display: none;
         }
     }
+
+    .country-missing-wind-solar-message {
+        color: darkorange;
+        display: inline-block;
+        margin: auto;
+    }
 }
 
 .country-spot-price,
