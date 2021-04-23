@@ -1,4 +1,4 @@
-import { select, selectAll } from 'd3-selection';
+import { select } from 'd3-selection';
 
 import { history } from './helpers/router';
 import { store } from './store';
@@ -29,30 +29,55 @@ export const cordovaApp = {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
 
-      const safeAreaTop = 'env(safe-area-inset-top, 20px)';
-      const safeAreaBottom = 'env(safe-area-inset-bottom, 0px)';
+      var styles = function (top, bottom) {
+        return `
+        /* TODO: this selects nothing, header on iPad still overlaps with the status bar */
+        #header {
+          padding-top: ${top};
+        }
 
-      select('#header')
-        .style('padding-top', safeAreaTop); // note: this selects nothing
+        #mobile-header {
+          padding-top: ${top};
+        }
 
-      select('#mobile-header')
-        .style('padding-top', safeAreaTop);
+        @include respond-to('small') {
+          .controls-container {
+            margin-top: ${top};
+          }
+          .flash-message .inner {
+            padding-top: ${top};
+          }
+          .mapboxgl-zoom-controls {
+            transform: translate(0, ${top});
+          }
+          .layer-buttons-container {
+            transform: translate(0, ${top});
+          }
 
-      select('.controls-container')
-        .style('margin-top', safeAreaTop);
+          #tab {
+            padding-bottom: ${bottom};
+          }
+          .modal {
+            padding-bottom: ${bottom};
+          }
+        }
+        `
+      };
 
-      selectAll('.flash-message .inner')
-        .style('padding-top', safeAreaTop);
-
-      select('.mapboxgl-zoom-controls')
-        .style('transform', `translate(0,${safeAreaTop})`);
-      select('.layer-buttons-container')
-        .style('transform', `translate(0,${safeAreaTop})`);
-
-      select('#tab')
-        .style('padding-bottom', safeAreaBottom);
-      select('.modal')
-        .style('margin-bottom', safeAreaBottom);
+      select("head")
+        .append("style")
+        .text(`
+            /* iOS 10 */
+            ${styles('20px', '0px')}
+            /* iOS 11.0 */
+            @supports(padding-top: constant(safe-area-inset-top)) {
+              ${styles('constant(safe-area-inset-top), 20px)', 'constant(safe-area-inset-bottom, 0px)')}
+            }
+            /* iOS 11+ */
+            @supports(padding-top: env(safe-area-inset-top)) {
+              ${styles('env(safe-area-inset-top, 20px)', 'env(safe-area-inset-bottom, 0px)')}
+            }
+          `)
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
