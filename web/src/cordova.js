@@ -29,7 +29,7 @@ export const cordovaApp = {
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
 
-      var styles = function (top, bottom) {
+      const styles = function (top, bottom) {
         return `
         /* TODO: this selects nothing, header on iPad still overlaps with the status bar */
         #header {
