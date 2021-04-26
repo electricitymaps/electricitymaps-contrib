@@ -71,7 +71,7 @@ export const cordovaApp = {
             ${styles('20px', '0px')}
             /* iOS 11.0 */
             @supports(padding-top: constant(safe-area-inset-top)) {
-              ${styles('constant(safe-area-inset-top), 20px)', 'constant(safe-area-inset-bottom, 0px)')}
+              ${styles('constant(safe-area-inset-top, 20px)', 'constant(safe-area-inset-bottom, 0px)')}
             }
             /* iOS 11+ */
             @supports(padding-top: env(safe-area-inset-top)) {
