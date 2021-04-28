@@ -169,7 +169,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Australia 
+- Australia
   - Other: [OpenNEM](https://opennem.org.au/facilities/all/)
   - Solar: [APVI](https://pv-map.apvi.org.au/historical)
 - Austria
@@ -231,7 +231,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - French Polynesia:
   - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
-- Germany: 
+- Germany:
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
@@ -335,8 +335,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Geothermal: [IRENA](https://www.irena.org/IRENADocuments/Statistical_Profiles/Europe/Sweden_Europe_RE_SP.pdf)
   - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
   - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
-  - Nuclear: [Vattenfall](https://group.vattenfall.com/se/var-verksamhet/forsmark/produktion)
-  - Nuclear 2: [OKG](https://www.okg.se/sv/Om-OKG/)
+  - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland
