@@ -7,8 +7,6 @@ import requests
 import pandas as pd
 import numpy as np
 
-from tqdm import tqdm
-
 ZONE_KEY_TO_REGION = {
     'AUS-NSW': 'NSW1',
     'AUS-QLD': 'QLD1',
@@ -199,7 +197,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
         },
         'source': SOURCE,
         'zoneKey': zone_key,
-    } for dt, row in tqdm(df.iterrows())]
+    } for dt, row in df.iterrows()]
 
     # Validation
     logger.debug('Validating..')
