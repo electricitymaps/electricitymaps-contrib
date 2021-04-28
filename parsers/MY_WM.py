@@ -156,7 +156,10 @@ def extract_hidden_values(req) -> dict:
 
 
 def xml_processor(text) -> list:
-    """Creates xml element tree from response.text object."""
+    """
+    Creates xml element tree from response.text object.
+    Returns a list of tuples in the form (datetime, float).
+    """
 
     raw_data = ElementTree.fromstring(text)
 
@@ -221,7 +224,10 @@ def post_to_extract(tie, hidden_values, session):
 
 
 def zip_and_merge(egat_data, hvdc_data, logger) -> list:
-    """Joins the EGAT and HVDC ties that form the MY-WM->TH exchange."""
+    """
+    Joins the EGAT and HVDC ties that form the MY-WM->TH exchange.
+    Returns a list of tuples in the form (datetime, float).
+    """
 
     merged_data = zip(egat_data, hvdc_data)
 

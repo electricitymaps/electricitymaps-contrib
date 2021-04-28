@@ -40,6 +40,8 @@ def data_processor(df, logger) -> list:
     """
     Takes a dataframe and drops all generation rows that are empty or more than 1 day old.
     Turns each row into a dictionary and removes any generation types that are unknown.
+
+    :return: list of tuples in the form of (datetime, production).
     """
 
     df = df.dropna(thresh=2)

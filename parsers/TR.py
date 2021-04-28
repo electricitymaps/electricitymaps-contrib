@@ -50,7 +50,10 @@ def as_float(prod):
 
 
 def get_last_data_idx(productions) -> int:
-    """Find index of the last production."""
+    """
+    Find index of the last production.
+    :return: (int) index of the newest data or -1 if no data (empty day).
+    """
     for i in range(len(productions)):
         if productions[i]['total'] < 1000:
             return i - 1

@@ -48,6 +48,8 @@ def data_processor(df, logger) -> list:
     Takes a dataframe and logging instance as input.
     Checks for new generation types and logs a warning if any are found.
     Parses the dataframe row by row removing unneeded keys.
+
+    :return: list of tuples containing a datetime object and production dictionary.
     """
 
     # Remove leading whitespace in column headers.

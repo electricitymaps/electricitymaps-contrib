@@ -54,6 +54,8 @@ def data_parser(df) -> list:
     """
     Takes dataframe and loops over rows to form dictionaries consisting of datetime and generation type.
     Merges these dictionaries using datetime key.
+
+    :return: list of tuples containing datetime string and production.
     """
 
     chunks = []

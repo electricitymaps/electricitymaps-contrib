@@ -76,7 +76,10 @@ def new_format_converter(df, logger):
 
 
 def production_processer(df, target_datetime, old_format=False) -> list:
-    """Takes dataframe and extracts all production data and timestamps."""
+    """
+    Takes dataframe and extracts all production data and timestamps.
+    Returns a list of 2 element tuples in form (dict, arrow object).
+    """
 
     if old_format:
         MAPPING = OLD_GENERATION_MAPPING
@@ -97,7 +100,10 @@ def production_processer(df, target_datetime, old_format=False) -> list:
 
 
 def exchange_processer(df, target_datetime, old_format=False) -> list:
-    """Takes dataframe and extracts all exchange data and timestamps."""
+    """
+    Takes dataframe and extracts all exchange data and timestamps.
+    Returns a list of 2 element tuples in form (dict, arrow object).
+    """
 
     # Positive means import from India hence sign reversal needed for EM.
     processed_data = []
@@ -114,6 +120,7 @@ def excel_handler(shifted_target_datetime, logger) -> tuple:
     """
     Decides which url to request based on supplied arrow object.
     Converts returned excel data into dataframe, format of data varies by date.
+    Returns a tuple containing (dataframe, bool).
     """
 
     # NOTE file named 11-01-2019 actually covers 10-01-2019, pattern repeats!

@@ -96,6 +96,8 @@ def get_production_from_map(requests_obj) -> tuple:
 
     However, it seems to bundle in solar generation with generation at another plant.
     get_production_from_summary() includes solar explictly.
+
+    :return: tuple(production, datetime_datetime).
     """
 
     response = requests_obj.get(MAP_URL)
@@ -130,6 +132,8 @@ def get_production_from_summary(requests_obj) -> tuple:
 
     However, unlike get_production_from_map(), this includes solar generation,
     which, although small, is nice to specify.
+
+    :return: tuple(production, datetime_datetime).
     """
 
     type_translator = {

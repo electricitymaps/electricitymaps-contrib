@@ -51,6 +51,8 @@ def extract_data(session=None) -> tuple:
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
     Finds generation data inside script tag.
+
+    :return: tuple of generation data and datetime.
     """
 
     s = session or requests.Session()
@@ -185,7 +187,10 @@ def add_default_tz(timestamp):
 
 
 def get_miso_exchange(session=None) -> tuple:
-    """Current exchange status between PJM and MISO."""
+    """
+    Current exchange status between PJM and MISO.
+    :return: tuple containing flow and timestamp.
+    """
 
     map_url = 'http://pjm.com/markets-and-operations/interregional-map.aspx'
 

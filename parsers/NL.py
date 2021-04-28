@@ -213,4 +213,3 @@ def get_production_data_energieopwek(date, session=None):
 
 if __name__ == '__main__':
     print(fetch_production())
-    
