@@ -118,17 +118,17 @@ def get_solar(session, logger) -> float | None:
     return solar
 
 
-def parse_megawatt_value(val):
+def parse_megawatt_value(val) -> int:
     """Turns values like "5,156MW" and "26MW" into 5156 and 26 respectively."""
     return int(val.replace(',', '').replace('MW', ''))
 
 
-def parse_percent(val):
+def parse_percent(val) -> float:
     """Turns values like "97.92%" into 0.9792."""
     return float(val.replace('%', '')) / 100
 
 
-def parse_price(price_str):
+def parse_price(price_str) -> float:
     """Turns values like "$70.57/MWh" into 70.57"""
 
     return float(price_str.replace('$', '').replace('/MWh', ''))
@@ -151,10 +151,12 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
     return [list_item[sought_key] for list_item in l if list_item[filter_key] == filter_value][0]
 
 
-def sg_period_to_hour(period_str):
-    """Singapore electricity markets are split into 48 periods.
-    Period 1 starts at 00:00 Singapore time. Period 9 starts at 04:00.
-    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes."""
+def sg_period_to_hour(period_str) -> float:
+    """
+    Singapore electricity markets are split into 48 periods.
+    Period 1 starts at 00:00 Singapore time, Period 9 starts at 04:00.
+    Returns hours since midnight, possibly with 0.5 to indicate 30 minutes.
+    """
     return (float(period_str) - 1) / 2.0
 
 
@@ -168,7 +170,7 @@ def sg_data_to_datetime(data):
 
 
 def fetch_production(zone_key='SG', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

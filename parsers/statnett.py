@@ -209,7 +209,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=l
 
 
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
-                                   target_datetime=None, logger=logging.getLogger(__name__)):
+                                   target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
     # Convert bidding zone names into statnett zones
     bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2] ]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])

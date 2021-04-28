@@ -22,10 +22,8 @@ INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 SALTO_GRANDE_URL = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
 
 
-def get_salto_grande(session):
-    """
-    Finds the current generation from the Salto Grande Dam that is allocated to Uruguay.
-    """
+def get_salto_grande(session) -> float:
+    """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     current_time = arrow.now('UTC-3')
     if current_time.minute < 30:
@@ -94,7 +92,7 @@ def parse_page(session):
     return obj
 
 
-def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

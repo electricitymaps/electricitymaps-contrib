@@ -20,7 +20,7 @@ CELL_MAPPING = {
 }
 
 
-def template_response(zone_key, datetime, source):
+def template_response(zone_key, datetime, source) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,
@@ -64,7 +64,7 @@ def fetch_production(
     return [result]
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
 
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -94,7 +94,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 
     return exchange
 
-def fetch_consumption(zone_key = 'IQ', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key = 'IQ', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

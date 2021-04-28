@@ -12,7 +12,7 @@ FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
-                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+                     logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         return fetch_historical_production(target_datetime, zone_key)
@@ -133,7 +133,7 @@ def fetch_historical_data(target_datetime, zone_key='US-CA'):
     return daily_data, import_data
 
 
-def fetch_MX_exchange(s):
+def fetch_MX_exchange(s) -> float:
     req = s.get(MX_EXCHANGE_URL)
     soup = BeautifulSoup(req.text, 'html.parser')
     exchange_div = soup.find("div", attrs={'id': 'IntercambioUSA-BCA'})

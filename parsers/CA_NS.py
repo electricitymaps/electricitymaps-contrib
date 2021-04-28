@@ -141,7 +141,8 @@ def fetch_production(zone_key='CA-NS', session=None, target_datetime=None, logge
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
-    """Requests the last known power exchange (in MW) between two regions.
+    """
+    Requests the last known power exchange (in MW) between two regions.
 
     Note: As of early 2017, Nova Scotia only has an exchange with New Brunswick (CA-NB).
     (An exchange with Newfoundland, "Maritime Link", is scheduled to open in "late 2017").

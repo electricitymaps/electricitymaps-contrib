@@ -19,7 +19,7 @@ def extract_name_tech(company):
     return parts[0], TYPE_MAPPING[tech]
 
 
-def template_response(zone_key, datetime, source):
+def template_response(zone_key, datetime, source) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,

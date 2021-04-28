@@ -70,7 +70,7 @@ PLANT_NAMES_TO_TYPES = {
 
 def fetch_production(zone_key=ZONE_KEY, session=None,
                      target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
     r = session or requests.session()
     if target_datetime is None:

@@ -85,7 +85,7 @@ def dataset_to_df(dataset):
     return df
 
 
-def generate_url(zone_key, is_flow, target_datetime, logger):
+def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
         # We will fetch since the beginning of the current month
@@ -98,6 +98,7 @@ def generate_url(zone_key, is_flow, target_datetime, logger):
     else:
         # Contains flows and production combined
         url = f'https://data.opennem.org.au/v3/clients/em/latest.json'
+
     return url
 
 
@@ -216,7 +217,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
     return objs
 
 
-def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     df = fetch_main_df('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
@@ -228,7 +229,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
     } for dt, row in df.iterrows()]
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)
     df = fetch_main_df('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)

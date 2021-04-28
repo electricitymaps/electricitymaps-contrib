@@ -153,27 +153,17 @@ ENTSOE_EIC_MAPPING = {
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'AT->IT-NO': [ENTSOE_DOMAIN_MAPPINGS['AT'], ENTSOE_DOMAIN_MAPPINGS['IT']],
     'BY->UA': [ENTSOE_DOMAIN_MAPPINGS['BY'], '10Y1001C--00003F'],
-    'DE->DK-DK1': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-                   ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
-    'DE->DK-DK2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-                   ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
-    'DE->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-                   ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
-    'DK-DK2->SE': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
-                   ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
-    'DE->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-                   ENTSOE_DOMAIN_MAPPINGS['NO-NO2']],
+    'DE->DK-DK1': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'], ENTSOE_DOMAIN_MAPPINGS['DK-DK1']],
+    'DE->DK-DK2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'], ENTSOE_DOMAIN_MAPPINGS['DK-DK2']],
+    'DE->SE-SE4': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'], ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'DK-DK2->SE': [ENTSOE_DOMAIN_MAPPINGS['DK-DK2'], ENTSOE_DOMAIN_MAPPINGS['SE-SE4']],
+    'DE->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'], ENTSOE_DOMAIN_MAPPINGS['NO-NO2']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
-    'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'],
-                  ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
-    'IT-CSO->ME': [ENTSOE_DOMAIN_MAPPINGS['IT'],
-                   ENTSOE_DOMAIN_MAPPINGS['ME']],
-    'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'],
-                   ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
-    'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'],
-                   ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
-    'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'],
-                   ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
+    'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'], ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
+    'IT-CSO->ME': [ENTSOE_DOMAIN_MAPPINGS['IT'], ENTSOE_DOMAIN_MAPPINGS['ME']],
+    'NO-NO3->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO3'], ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
+    'NO-NO4->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO4'], ENTSOE_DOMAIN_MAPPINGS['SE-SE2']],
+    'NO-NO1->SE': [ENTSOE_DOMAIN_MAPPINGS['NO-NO1'], ENTSOE_DOMAIN_MAPPINGS['SE-SE3']],
     'PL->UA': [ENTSOE_DOMAIN_MAPPINGS['PL'], '10Y1001A1001A869'],
     'IT-SIC->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['IT-SIC'], ENTSOE_DOMAIN_MAPPINGS['IT-CA']],
 }
@@ -312,8 +302,15 @@ VALIDATIONS = {
         # and when those are missing this can indicate that others are missing as well.
         # We have also never seen unknown being 0.
         # Usual load is in 30 to 80 GW range.
-        'required': ['coal', 'gas', 'nuclear', 'wind',
-                     'biomass', 'hydro', 'unknown'],
+        'required': [
+            'coal',
+            'gas',
+            'nuclear',
+            'wind',
+            'biomass',
+            'hydro',
+            'unknown'
+            ],
         'expected_range': (20000, 100000),
     },
     'EE': {
@@ -590,6 +587,7 @@ def parse_scalar(xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_
             datetime = datetime_from_position(datetime_start, position, resolution)
             values.append(value)
             datetimes.append(datetime)
+
     return values, datetimes
 
 
@@ -635,8 +633,8 @@ def parse_self_consumption(xml_text):
     that is not storage, e.g. consumption for B04 (Fossil Gas) is counted as
     self-consumption, but consumption for B10 (Hydro Pumped Storage) is not.
 
-    In most cases, total self-consumption is reported by ENTSOE as 0, therefore the returned
-    dict only includes datetimes where the value > 0.
+    In most cases, total self-consumption is reported by ENTSOE as 0,
+    therefore the returned dict only includes datetimes where the value > 0.
     """
 
     if not xml_text: return None
@@ -656,6 +654,7 @@ def parse_self_consumption(xml_text):
             position = int(entry.find_all('position')[0].contents[0])
             datetime = datetime_from_position(datetime_start, position, resolution)
             res[datetime] = res[datetime] + quantity if datetime in res else quantity
+
     return res
 
 
@@ -694,6 +693,7 @@ def parse_production_per_units(xml_text) -> dict:
                     'unitKey': unit_key,
                     'unitName': unit_name
                 }
+
     return values.values()
 
 
@@ -726,6 +726,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tupl
             except ValueError:  # Not in list
                 quantities.append(quantity)
                 datetimes.append(datetime)
+
     return quantities, datetimes
 
 
@@ -748,6 +749,7 @@ def parse_price(xml_text) -> tuple:
             prices.append(float(entry.find_all('price.amount')[0].contents[0]))
             datetimes.append(datetime)
             currencies.append(currency)
+
     return prices, currencies, datetimes
 
 
@@ -755,12 +757,10 @@ def validate_production(datapoint, logger) -> bool:
     """
     Production data can sometimes be available but clearly wrong.
 
-    The most common occurrence is when the production total is very low and
-    main generation types are missing.  In reality a country's electrical grid
-    could not function in this scenario.
+    The most common occurrence is when the production total is very low and main generation types are missing.
+    In reality a country's electrical grid could not function in this scenario.
 
-    This function checks datapoints for a selection of countries and returns
-    False if invalid and True otherwise.
+    This function checks datapoints for a selection of countries and returns False if invalid and True otherwise.
     """
 
     zone_key = datapoint['zoneKey']
@@ -797,10 +797,9 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
     if parsed:
         quantities, datetimes = parsed
 
-        # Add power plant self-consumption data. This is reported as part of the
-        # production data by ENTSOE.
-        # self_consumption is a dict of datetimes to the total self-consumption value
-        # from all sources.
+        # Add power plant self-consumption data.
+        # This is reported as part of the production data by ENTSOE.
+        # self_consumption is a dict of datetimes to the total self-consumption value from all sources.
         # Only datetimes where the value > 0 are included.
         self_consumption = parse_self_consumption(
             query_production(domain, session,

@@ -108,8 +108,7 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
     return data
 
 
-def response_checker(json_content):
-    """Returns False if input is empty list or all zero values, else True."""
+def response_checker(json_content) -> bool:
     flow_values = json_content['Flows']
 
     if not flow_values:

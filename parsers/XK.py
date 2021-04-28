@@ -16,7 +16,7 @@ import requests
 
 def fetch_production(zone_key='XK', session=None,
         target_datetime: datetime.datetime = None,
-        logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+        logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.session()
     if target_datetime is None:
@@ -73,8 +73,7 @@ def fetch_production(zone_key='XK', session=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     for datum in fetch_production():

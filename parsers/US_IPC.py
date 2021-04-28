@@ -29,9 +29,7 @@ GENERATION_MAPPING = {'Non-Utility Geothermal': 'geothermal',
 TIMEZONE = tz.gettz("America/Boise")
 
 
-def get_data(session=None):
-    """Returns a list of dictionaries."""
-
+def get_data(session=None) -> list:
     s = session or requests.Session()
 
     req = requests.get(PRODUCTION_URL)
@@ -50,7 +48,7 @@ def timestamp_converter(timestamp):
     return dt_aware
 
 
-def data_processer(raw_data, logger):
+def data_processer(raw_data, logger) -> list:
     """
     Groups dictionaries by datetime key.
     Removes unneeded keys and logs any new ones.

@@ -6,7 +6,7 @@ from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -28,7 +28,7 @@ def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

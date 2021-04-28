@@ -76,7 +76,7 @@ def data_processor(df, logger) -> list:
     return processed_data
 
 
-def fetch_production(zone_key='US-BPA', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+def fetch_production(zone_key='US-BPA', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime:
