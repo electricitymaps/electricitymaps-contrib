@@ -382,6 +382,14 @@
             "countryName": "Canada",
             "zoneName": "Terranova e Labrador"
         },
+        "CA-NL-LB": {
+            "countryName": "Canada",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Canada",
+            "zoneName": "Terranova"
+        },
         "CA-NS": {
             "countryName": "Canada",
             "zoneName": "Nuova Scozia"
