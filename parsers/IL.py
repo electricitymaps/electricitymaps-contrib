@@ -89,7 +89,7 @@ def fetch_consumption(
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "consumption": {"unknown": consumption[0]},
+        "consumption": consumption[0],
         "source": IEC_URL,
     }
 
