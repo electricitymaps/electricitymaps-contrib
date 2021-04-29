@@ -651,7 +651,7 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
     return data
 
 
-def get_datetime(session=None):
+def get_datetime(session=None) -> dict:
     """
     Generation data is updated hourly.
     Makes request then finds most recent hour available.
@@ -886,7 +886,7 @@ def tie_finder(exchange_url, exchange, session) -> float:
     return netflow
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> list:
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
 
     # Only hourly data is available.
