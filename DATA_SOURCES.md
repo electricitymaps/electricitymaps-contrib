@@ -339,9 +339,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland
-  - Solar: [IREAN](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2019/Mar/IRENA_RE_Capacity_Statistics_2019.pdf)
-  - Nuclear: [BKW](https://www.bkw.ch/fr/le-groupe-bkw/notre-infrastructure/centrale-nucleaire-de-muehleberg/desaffectation/lapercu/#Home)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+  - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
+  - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Turkey:
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
