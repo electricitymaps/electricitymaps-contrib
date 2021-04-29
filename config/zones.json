@@ -2529,7 +2529,8 @@
     ],
     "parsers": {
       "production": "IL.fetch_production",
-      "consumption": "IL.fetch_consumption"
+      "consumption": "IL.fetch_consumption",
+      "price": "IL.fetch_price"
     },
     "timezone": "Asia/Jerusalem"
   },

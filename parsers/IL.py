@@ -22,9 +22,7 @@ IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
-IEC_PRICE = (
-    "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
-)
+IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
 TZ = "Asia/Jerusalem"
 
 
@@ -57,14 +55,20 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
-def fetch_price() -> str:
-    """Fetch price from IEC dashboard."""
+def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
+    """Fetch price from IEC table."""
     response = get(IEC_PRICE)
     soup = BeautifulSoup(response.content, "lxml")
 
     price = soup.find("td", class_="ms-rteTableEvenCol-6")
 
-    return price.p.text
+    return {
+        "zoneKey": zone_key,
+        "currency": "NIS",
+        "datetime": arrow.now(TZ).datetime,
+        "price": price.p.text,
+        "source": IEC_URL,
+    }
 
 
 def fetch_production(
@@ -83,7 +87,6 @@ def fetch_production(
         "datetime": arrow.now(TZ).datetime,
         "production": {"unknown": production[0] + production[1]},
         "source": IEC_URL,
-        "price": price,
     }
 
 
@@ -112,3 +115,5 @@ if __name__ == "__main__":
     print(fetch_production())
     print("fetch_consumption() ->")
     print(fetch_consumption())
+    print("fetch_price() ->")
+    print(fetch_price())
