@@ -55,27 +55,14 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
-def fetch_price_date():
-    """Fetch updated price date."""
-    response = get(IEC_PRICE)
+with get(IEC_PRICE) as response:
     soup = BeautifulSoup(response.content, "lxml")
-
-    date_str = soup.find("span", lang="HE").text
-    date_str = date_str.split(sep=" - ")
-    date_str = date_str.pop(1)
-
-    date = arrow.get(date_str, "DD.MM.YYYY")
-
-    return date
 
 
 def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
     """Fetch price from IEC table."""
     if target_datetime is not None:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    response = get(IEC_PRICE)
-    soup = BeautifulSoup(response.content, "lxml")
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     price = soup.find("td", class_="ms-rteTableEvenCol-6")
 
@@ -86,6 +73,17 @@ def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) 
         "price": float(price.p.text),
         "source": IEC_URL,
     }
+
+
+def fetch_price_date():
+    """Fetch updated price date."""
+    date_str = soup.find("span", lang="HE").text
+    date_str = date_str.split(sep=" - ")
+    date_str = date_str.pop(1)
+
+    date = arrow.get(date_str, "DD.MM.YYYY")
+
+    return date
 
 
 def fetch_production(
@@ -113,7 +111,6 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = fetch_all()
-
     consumption = [float(item) for item in data]
 
     # all mapped to unknown as there is no available breakdown
@@ -133,3 +130,5 @@ if __name__ == "__main__":
     print(fetch_consumption())
     print("fetch_price() ->")
     print(fetch_price())
+    print("fetch_price_date() ->")
+    print(fetch_price_date())
