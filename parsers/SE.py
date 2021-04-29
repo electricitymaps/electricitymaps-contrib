@@ -57,7 +57,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
 
     # SVK returns almost a point per minute, but only nuclear is updated
     # with that granularity. Other points are updated every hour, at minute 6
-    data = []
+    to_return = []
     last_inserted_datetime = datetime.datetime(2010, 1, 1)
     for dt in datetimes:
         if ((dt - last_inserted_datetime).total_seconds() < 3200
@@ -65,7 +65,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
             continue
         last_inserted_datetime = dt
         prod = productions[dt]
-        data.append({
+        to_return.append({
             'production': dict(prod),
             'datetime': dt.replace(minute=0).replace(tzinfo=pytz.utc),
             'zoneKey': 'SE',
@@ -73,7 +73,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None,
             'source': 'svk.se'
         })
 
-    return data
+    return to_return
 
 
 if __name__ == '__main__':

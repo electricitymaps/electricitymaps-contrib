@@ -670,7 +670,7 @@ def get_datetime(session=None):
     return {'datetime': datetime}
 
 
-def dataformat(junk) -> float:
+def dataformat(junk) -> list:
     """Format string to float."""
 
     formatted = []

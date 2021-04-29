@@ -14,12 +14,8 @@ ids = {
 }
 
 
-def fetch_production(
-    zone_key='DK-DK1',
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__)
-) -> dict:
+def fetch_production(zone_key='DK-DK1', session=None, target_datetime=None,
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones

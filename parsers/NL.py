@@ -69,7 +69,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # Because other exchanges and consumption data is only available per hour
         # we floor the timpstamp to hour and group by hour with averaging of netFlow
         df_dk['datetime'] = df_dk['datetime'].dt.floor('H')
-        exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean',
+        exchange_DK = df_dk.groupby(['datetime']).aggregate({'netFlow' : 'mean', 
             'sortedZoneKeys': 'max', 'source' : 'max'}).reset_index()
 
         # because averaging with high precision numbers leads to rounding errors

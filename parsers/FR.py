@@ -81,7 +81,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
     df = df.loc[:, ['date_heure'] + present_fuels]
     df[present_fuels] = df[present_fuels].astype(float)
 
-    datapoints = []
+    datapoints = list()
     for row in df.iterrows():
         production = dict()
         for key, value in MAP_GENERATION.items():

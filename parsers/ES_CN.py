@@ -4,19 +4,13 @@ import logging
 
 # The arrow library is used to handle datetimes
 from arrow import get
-from ree import (
-    ElHierro,
-    Gomera,
-    GranCanaria,
-    LanzaroteFuerteventura,
-    LaPalma,
-    Tenerife
-    )
 # The request library is used to fetch content through HTTP
 from requests import Session
-
+from ree import (ElHierro, GranCanaria, Gomera, LanzaroteFuerteventura,
+                 LaPalma, Tenerife)
 from .lib.exceptions import ParserException
 from .lib.validation import validate
+
 
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.

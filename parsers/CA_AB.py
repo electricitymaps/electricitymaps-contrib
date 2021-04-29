@@ -124,10 +124,10 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
 
 def isfloat(value) -> bool:
     try:
-        float(value)
-        return True
+      float(value)
+      return True
     except ValueError:
-        return False
+      return False
 
 
 if __name__ == '__main__':

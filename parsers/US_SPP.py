@@ -101,8 +101,7 @@ def data_processor(df, logger) -> list:
 
 
 def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)) -> dict:
-    """
-    Requests the last known production mix (in MW) of a given zone."""
+    """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
         current_year = datetime.datetime.now().year

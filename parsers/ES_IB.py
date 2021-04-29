@@ -79,12 +79,8 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     return data
 
 
-def fetch_production(
-    zone_key,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__)
-) -> list:
+def fetch_production(zone_key, session=None, target_datetime=None,
+                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
