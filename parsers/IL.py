@@ -55,6 +55,20 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
+def fetch_price_date():
+    """Fetch updated price date."""
+    response = get(IEC_PRICE)
+    soup = BeautifulSoup(response.content, "lxml")
+
+    date_str = soup.find("span", lang="HE").text
+    date_str = date_str.split(sep=" - ")
+    date_str = date_str.pop(1)
+
+    date = arrow.get(date_str, "DD.MM.YYYY")
+
+    return date
+
+
 def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
     """Fetch price from IEC table."""
     if target_datetime is not None:
@@ -68,7 +82,7 @@ def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) 
     return {
         "zoneKey": zone_key,
         "currency": "NIS",
-        "datetime": arrow.now(TZ).datetime,
+        "datetime": fetch_price_date(),
         "price": float(price.p.text),
         "source": IEC_URL,
     }
