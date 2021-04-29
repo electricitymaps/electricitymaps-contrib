@@ -78,7 +78,6 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = fetch_all()
-    price = fetch_price()
     production = [float(item) for item in data]
 
     # all mapped to unknown as there is no available breakdown
