@@ -2524,10 +2524,12 @@
     },
     "contributors": [
       "https://github.com/alixunderplatz",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/yuvalabou"
     ],
     "parsers": {
-      "production": "IL.fetch_production"
+      "production": "IL.fetch_production",
+      "consumption": "IL.fetch_consumption"
     },
     "timezone": "Asia/Jerusalem"
   },

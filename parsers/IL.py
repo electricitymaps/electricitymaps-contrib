@@ -26,21 +26,8 @@ PRICE = "50.66"  # Price is determined yearly
 TZ = "Asia/Jerusalem"
 
 
-def flatten_list(_2d_list) -> list:
-    flat_list = []
-    for element in _2d_list:
-        if type(element) is list:
-            for item in element:
-                flat_list.append(item)
-        else:
-            flat_list.append(element)
-    return flat_list
-
-
-def fetch_production(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-        
+def fetch_all() -> list:
+    """Fetch info from IEC dashboard."""
     first = get(IEC_PRODUCTION)
     first.cookies
     second = get(IEC_PRODUCTION, cookies=first.cookies)
@@ -54,19 +41,56 @@ def fetch_production(zone_key="IL", session=None, target_datetime=None, logger=N
         value = re.findall("\d+", value.text.replace(",", ""))
         cleaned_list.append(value)
 
-    cleaned_list = flatten_list(cleaned_list)
+    def flatten_list(_2d_list) -> list:
+        """Flatten the list."""
+        flat_list = []
+        for element in _2d_list:
+            if type(element) is list:
+                for item in element:
+                    flat_list.append(item)
+            else:
+                flat_list.append(element)
+        return flat_list
 
-    production = [float(item) for item in cleaned_list]
+    return flatten_list(cleaned_list)
+
+
+def fetch_production(
+    zone_key="IL", session=None, target_datetime=None, logger=None
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    data = fetch_all()
+
+    production = [float(item) for item in data]
 
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "production": {
-            "unknown": production[0] + production[1]
-        },
+        "production": {"unknown": production[0] + production[1]},
         "source": IEC_URL,
         "price": PRICE,
+    }
+
+
+def fetch_consumption(
+    zone_key="IL", session=None, target_datetime=None, logger=None
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    data = fetch_all()
+
+    consumption = [float(item) for item in data]
+
+    # all mapped to unknown as there is no available breakdown
+    return {
+        "zoneKey": zone_key,
+        "datetime": arrow.now(TZ).datetime,
+        "consumption": consumption[0],
+        "source": IEC_URL,
     }
 
 
@@ -74,3 +98,5 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print("fetch_production() ->")
     print(fetch_production())
+    print("fetch_consumption() ->")
+    print(fetch_consumption())
