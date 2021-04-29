@@ -135,41 +135,33 @@ def validate(datapoint, logger, **kwargs):
 
     Examples
     --------
-        test_datapoint = {
-            'zoneKey': 'FR',
-            'datetime': '2017-01-01T00:00:00Z',
-                'production': {
-                    'biomass': 50.0,
-                    'coal': 478.0,
-                    'gas': 902.7,
-                    'hydro': 190.1,
-                    'nuclear': None,
-                    'oil': 0.0,
-                    'solar': 20.0,
-                    'wind': 40.0,
-                    'geothermal': 0.0,
-                    'unknown': 6.0
-                },
-                'storage': {
-                    'hydro': -10.0,
-                },
-                'source': 'mysource.com'
-            }
-
-        validate(datapoint, None, required=['gas'], expected_range=(100, 2000))
-            datapoint
-        validate(datapoint, None, required=['not_a_production_type'])
-            None
-        validate(
-            datapoint,
-            None,
-            required=['gas'],
-            expected_range={
-                'solar': (0, 1000),
-                'wind': (100, 2000)
-                }
-            )
-            datapoint
+    >>> test_datapoint = {
+    >>>   'zoneKey': 'FR',
+    >>>   'datetime': '2017-01-01T00:00:00Z',
+    >>>       'production': {
+    >>>           'biomass': 50.0,
+    >>>           'coal': 478.0,
+    >>>           'gas': 902.7,
+    >>>           'hydro': 190.1,
+    >>>           'nuclear': None,
+    >>>           'oil': 0.0,
+    >>>           'solar': 20.0,
+    >>>           'wind': 40.0,
+    >>>           'geothermal': 0.0,
+    >>>           'unknown': 6.0
+    >>>       },
+    >>>       'storage': {
+    >>>           'hydro': -10.0,
+    >>>       },
+    >>>       'source': 'mysource.com'
+    >>> }
+    >>> validate(datapoint, None, required=['gas'], expected_range=(100, 2000))
+    datapoint
+    >>> validate(datapoint, None, required=['not_a_production_type'])
+    None
+    >>> validate(datapoint, None, required=['gas'],
+    >>>          expected_range={'solar': (0, 1000), 'wind': (100, 2000)})
+    datapoint
     """
     if logger is None:
         logger = getLogger(__name__)
