@@ -57,6 +57,9 @@ def fetch_all() -> list:
 
 def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
     """Fetch price from IEC table."""
+    if target_datetime is not None:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
     response = get(IEC_PRICE)
     soup = BeautifulSoup(response.content, "lxml")
 
@@ -66,7 +69,7 @@ def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) 
         "zoneKey": zone_key,
         "currency": "NIS",
         "datetime": arrow.now(TZ).datetime,
-        "price": price.p.text,
+        "price": float(price.p.text),
         "source": IEC_URL,
     }
 
