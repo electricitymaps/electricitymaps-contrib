@@ -169,7 +169,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
 - Aruba: [WEB Aruba](https://www.webaruba.com/energy-production/power-production-figures)
-- Australia 
+- Australia
   - Other: [OpenNEM](https://opennem.org.au/facilities/all/)
   - Solar: [APVI](https://pv-map.apvi.org.au/historical)
 - Austria
@@ -231,7 +231,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - French Polynesia:
   - Hydro & Solar: [service-public.pf](https://www.service-public.pf/sde/wp-content/uploads/sites/15/2021/02/BEPF-2019-VF_online_mail_light_compressed.pdf)
   - Thermal: [service-public.pf](https://www.service-public.pf/sde/documentation-2/rapports-delegataires)
-- Germany: 
+- Germany:
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
@@ -259,6 +259,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
   - other: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
+- Japan:
+  - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
 - Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/EN/Installed%20capacity%20of%20production%20units.pdf)
 - Kuwait
   - Gas & oil: [KAPSARC](https://datasource.kapsarc.org/api/datasets/1.0/kuwait-power-plants-database/attachments/power_plants_xlsx/)
@@ -316,7 +318,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [Energy Market Authority](https://www.ema.gov.sg/cmsmedia/Publications_and_Statistics/Publications/SES/2016/Singapore%20Energy%20Statistics%202016.pdf)
 - Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- South Korea: [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
+- South Korea:
+  - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
+  - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
 - Spain:
   - Biomass: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Gas, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
@@ -331,8 +335,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Geothermal: [IRENA](https://www.irena.org/IRENADocuments/Statistical_Profiles/Europe/Sweden_Europe_RE_SP.pdf)
   - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
   - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
-  - Nuclear: [Vattenfall](https://group.vattenfall.com/se/var-verksamhet/forsmark/produktion)
-  - Nuclear 2: [OKG](https://www.okg.se/sv/Om-OKG/)
+  - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Switzerland
@@ -347,6 +350,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - United Arab Emirates: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
+             [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
