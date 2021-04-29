@@ -3358,14 +3358,15 @@
   },
   "JP-TK": {
     "capacity": {
-      "gas": 29251,
-      "hydro": 2195,
-      "hydro storage": 7678,
-      "oil": 8692,
-      "coal": 1200,
-      "nuclear": 17306,
-      "solar": 32,
-      "wind": 18
+      "gas": 48124,
+      "hydro": 3150,
+      "hydro storage": 7150,
+      "oil": 10050,
+      "coal": 8370,
+      "nuclear": 0,
+      "solar": 11900,
+      "wind": 440,
+      "biomass": 440
     },
     "contributors": [
       "https://github.com/tmslaine",
