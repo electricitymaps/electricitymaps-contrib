@@ -22,7 +22,9 @@ IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
-PRICE = "50.66"  # Price is determined yearly
+IEC_PRICE = (
+    "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
+)
 TZ = "Asia/Jerusalem"
 
 
@@ -55,6 +57,16 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
+def fetch_price() -> str:
+    """Fetch price from IEC dashboard."""
+    response = get(IEC_PRICE)
+    soup = BeautifulSoup(response.content, "lxml")
+
+    price = soup.find("td", class_="ms-rteTableEvenCol-6")
+
+    return price.p.text
+
+
 def fetch_production(
     zone_key="IL", session=None, target_datetime=None, logger=None
 ) -> dict:
@@ -62,7 +74,7 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = fetch_all()
-
+    price = fetch_price()
     production = [float(item) for item in data]
 
     # all mapped to unknown as there is no available breakdown
@@ -71,7 +83,7 @@ def fetch_production(
         "datetime": arrow.now(TZ).datetime,
         "production": {"unknown": production[0] + production[1]},
         "source": IEC_URL,
-        "price": PRICE,
+        "price": price,
     }
 
 
