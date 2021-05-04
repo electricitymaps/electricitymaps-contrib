@@ -55,33 +55,32 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
-with get(IEC_PRICE) as response:
-    soup = BeautifulSoup(response.content, "lxml")
-
-
 def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
     """Fetch price from IEC table."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    with get(IEC_PRICE) as response:
+        soup = BeautifulSoup(response.content, "lxml")
 
     price = soup.find("td", class_="ms-rteTableEvenCol-6")
 
     return {
         "zoneKey": zone_key,
         "currency": "NIS",
-        "datetime": fetch_price_date(),
+        "datetime": extract_price_date(soup),
         "price": float(price.p.text),
         "source": IEC_URL,
     }
 
 
-def fetch_price_date():
+def extract_price_date(soup):
     """Fetch updated price date."""
     date_str = soup.find("span", lang="HE").text
     date_str = date_str.split(sep=" - ")
     date_str = date_str.pop(1)
 
-    date = arrow.get(date_str, "DD.MM.YYYY")
+    date = arrow.get(date_str, "DD.MM.YYYY").datetime
 
     return date
 
@@ -130,5 +129,3 @@ if __name__ == "__main__":
     print(fetch_consumption())
     print("fetch_price() ->")
     print(fetch_price())
-    print("fetch_price_date() ->")
-    print(fetch_price_date())
