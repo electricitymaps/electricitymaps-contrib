@@ -22,25 +22,12 @@ IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
-PRICE = "50.66"  # Price is determined yearly
+IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
 TZ = "Asia/Jerusalem"
 
 
-def flatten_list(_2d_list) -> list:
-    flat_list = []
-    for element in _2d_list:
-        if type(element) is list:
-            for item in element:
-                flat_list.append(item)
-        else:
-            flat_list.append(element)
-    return flat_list
-
-
-def fetch_production(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-        
+def fetch_all() -> list:
+    """Fetch info from IEC dashboard."""
     first = get(IEC_PRODUCTION)
     first.cookies
     second = get(IEC_PRODUCTION, cookies=first.cookies)
@@ -54,19 +41,83 @@ def fetch_production(zone_key="IL", session=None, target_datetime=None, logger=N
         value = re.findall("\d+", value.text.replace(",", ""))
         cleaned_list.append(value)
 
-    cleaned_list = flatten_list(cleaned_list)
+    def flatten_list(_2d_list) -> list:
+        """Flatten the list."""
+        flat_list = []
+        for element in _2d_list:
+            if type(element) is list:
+                for item in element:
+                    flat_list.append(item)
+            else:
+                flat_list.append(element)
+        return flat_list
 
-    production = [float(item) for item in cleaned_list]
+    return flatten_list(cleaned_list)
+
+
+def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
+    """Fetch price from IEC table."""
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    with get(IEC_PRICE) as response:
+        soup = BeautifulSoup(response.content, "lxml")
+
+    price = soup.find("td", class_="ms-rteTableEvenCol-6")
+
+    return {
+        "zoneKey": zone_key,
+        "currency": "NIS",
+        "datetime": extract_price_date(soup),
+        "price": float(price.p.text),
+        "source": IEC_URL,
+    }
+
+
+def extract_price_date(soup):
+    """Fetch updated price date."""
+    date_str = soup.find("span", lang="HE").text
+    date_str = date_str.split(sep=" - ")
+    date_str = date_str.pop(1)
+
+    date = arrow.get(date_str, "DD.MM.YYYY").datetime
+
+    return date
+
+
+def fetch_production(
+    zone_key="IL", session=None, target_datetime=None, logger=None
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    data = fetch_all()
+    production = [float(item) for item in data]
 
     # all mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "production": {
-            "unknown": production[0] + production[1]
-        },
+        "production": {"unknown": production[0] + production[1]},
         "source": IEC_URL,
-        "price": PRICE,
+    }
+
+
+def fetch_consumption(
+    zone_key="IL", session=None, target_datetime=None, logger=None
+) -> dict:
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    data = fetch_all()
+    consumption = [float(item) for item in data]
+
+    # all mapped to unknown as there is no available breakdown
+    return {
+        "zoneKey": zone_key,
+        "datetime": arrow.now(TZ).datetime,
+        "consumption": consumption[0],
+        "source": IEC_URL,
     }
 
 
@@ -74,3 +125,7 @@ if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
     print("fetch_production() ->")
     print(fetch_production())
+    print("fetch_consumption() ->")
+    print(fetch_consumption())
+    print("fetch_price() ->")
+    print(fetch_price())

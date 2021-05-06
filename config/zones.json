@@ -1201,23 +1201,23 @@
         47.808380127
       ]
     ],
-    "_comment": "Nuclear powerplant Muhleberg shuts down -373MW, update Hydro and hydro storage from entsoe.eu, solar : www.irena.org",
-    "capacity": {
-      "biomass": 240,
+        "capacity": {
+      "biomass": 611.4,
       "coal": 0,
-      "gas": 55,
+      "gas": 284.3,
       "geothermal": 0,
-      "hydro": 6193,
-      "hydro storage": 6681,
-      "nuclear": 3000,
-      "oil": 0,
-      "solar": 2246,
-      "wind": 76
+      "hydro": 11116.7,
+      "hydro storage": 4485,
+      "nuclear": 3014.6,
+      "oil": 0.4,
+      "solar": 2648.5,
+      "wind": 88.6
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/postronium",
-      "https://github.com/Kikof2"
+      "https://github.com/Kikof2",
+      "https://github.com/KabelWlan"
     ],
     "disclaimer": "Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.",
     "parsers": {
@@ -2524,10 +2524,13 @@
     },
     "contributors": [
       "https://github.com/alixunderplatz",
-      "https://github.com/jarek"
+      "https://github.com/jarek",
+      "https://github.com/yuvalabou"
     ],
     "parsers": {
-      "production": "IL.fetch_production"
+      "production": "IL.fetch_production",
+      "consumption": "IL.fetch_consumption",
+      "price": "IL.fetch_price"
     },
     "timezone": "Asia/Jerusalem"
   },
@@ -3356,14 +3359,15 @@
   },
   "JP-TK": {
     "capacity": {
-      "gas": 29251,
-      "hydro": 2195,
-      "hydro storage": 7678,
-      "oil": 8692,
-      "coal": 1200,
-      "nuclear": 17306,
-      "solar": 32,
-      "wind": 18
+      "gas": 48124,
+      "hydro": 3150,
+      "hydro storage": 7150,
+      "oil": 10050,
+      "coal": 8370,
+      "nuclear": 0,
+      "solar": 11900,
+      "wind": 440,
+      "biomass": 440
     },
     "contributors": [
       "https://github.com/tmslaine",
@@ -4642,9 +4646,9 @@
       "coal": 0,
       "gas": 698,
       "hydro": 15945,
-      "nuclear": 7801,
+      "nuclear": 6882,
       "oil": 2251,
-      "solar": 698,
+      "solar": 1089,
       "wind": 8984,
       "geothermal": 0
     },
