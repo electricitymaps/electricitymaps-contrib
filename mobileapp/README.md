@@ -12,8 +12,7 @@ A few prerequisite:
 To build the JavaScript:
 
 ```
-cd ../ && docker-compose build web
-cd mobileapp && ./build.sh
+docker-compose build web && ./build.sh
 ```
 
 When installing for first time, run:
