@@ -9,7 +9,7 @@ A few prerequisite:
 - Run `npm install`
 - Optional (required for some internal Tomorrow builds): download `GoogleService-Info.plist` from Firebase
 
-If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `src/cordova.js`.
+If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
 To build the JavaScript:
 
