@@ -6,8 +6,10 @@ A few prerequisite:
 
 - iOS: install cocoapods
 - Run `npm install -g cordova@9.0.0 code-push-cli@2.1.9`
-- Download `GoogleService-Info.plist` from Firebase (any alternative for contributors?)
 - Run `npm install`
+- Optional (required for some internal Tomorrow builds): download `GoogleService-Info.plist` from Firebase
+
+If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `src/cordova.js`.
 
 To build the JavaScript:
 
@@ -165,9 +167,10 @@ var pathToManifest = path.join(
 );
 ```
 
-### iOS: Module 'Firebase' not found
+### iOS: Building for iOS, but the embedded framework 'Sentry.framework' was built for iOS + iOS Simulator.
 
-```bash
-cd platforms/ios
-pod install
+```
+cordova platform remove ios && cordova platform add ios
+cordova plugin remove sentry-cordova
+cordova prepare
 ```
