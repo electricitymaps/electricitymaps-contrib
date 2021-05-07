@@ -39,27 +39,24 @@ export const cordovaApp = {
         #mobile-header {
           padding-top: ${top};
         }
+        .controls-container {
+          margin-top: ${top};
+        }
+        .flash-message .inner {
+          padding-top: ${top};
+        }
+        .mapboxgl-zoom-controls {
+          transform: translate(0, ${top});
+        }
+        .layer-buttons-container {
+          transform: translate(0, ${top});
+        }
 
-        @include respond-to('small') {
-          .controls-container {
-            margin-top: ${top};
-          }
-          .flash-message .inner {
-            padding-top: ${top};
-          }
-          .mapboxgl-zoom-controls {
-            transform: translate(0, ${top});
-          }
-          .layer-buttons-container {
-            transform: translate(0, ${top});
-          }
-
-          #tab {
-            padding-bottom: ${bottom};
-          }
-          .modal {
-            padding-bottom: ${bottom};
-          }
+        #tab {
+          padding-bottom: ${bottom};
+        }
+        .modal {
+          padding-bottom: ${bottom};
         }
         `
       };
