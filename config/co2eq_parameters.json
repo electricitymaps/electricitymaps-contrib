@@ -214,6 +214,16 @@
           "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
           "value": 131
         }
+        ,
+        "hydro discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
+        }
+        ,
+        "battery discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
+        }
       },
       "CL-SEN" : {
         "unknown": {
