@@ -41,7 +41,7 @@ def fetch_price(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ) -> dict[str, Any]:
-    """Requests the last known power price of a given country."""
+    """Requests the last known power price."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     s = session or requests.Session()
@@ -197,7 +197,6 @@ def get_hydro_and_renewables(session, logger) -> dict[str, float]:
     """
     Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
-    Returns a dictionary.
     """
 
     s = session or requests.Session()
@@ -267,7 +266,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ) -> dict[str, Any]:
-    """Requests the last known production mix (in MW) of a given country."""
+    """Requests the last known production mix (in MW)."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
