@@ -16,7 +16,7 @@ from const import (
     T_URL,
     TH_URL,
     TIE_MAPPING,
-    URL
+    URL,
 )
 
 try:
@@ -28,21 +28,26 @@ except NameError:
 def webparser(req):
     """Takes content from webpage and returns all text as a list of strings."""
 
-    soup = BeautifulSoup(req.content, 'html.parser')
+    soup = BeautifulSoup(req.content, "html.parser")
     figs = soup.find_all("div", class_="r11")
     data_table = [unicode(tag.get_text()) for tag in figs]
 
     return data_table
 
 
-def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict[str, Any]:
+def fetch_price(
+    zone_key="AR",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> dict[str, Any]:
     """Requests the last known power price of a given country."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
     s = session or requests.Session()
     price_req = s.get(CAMMESA_URL)
-    psoup = BeautifulSoup(price_req.content, 'html.parser')
-    find_price = psoup.find('td', class_="cssFuncionesLeft", align="left")
+    psoup = BeautifulSoup(price_req.content, "html.parser")
+    find_price = psoup.find("td", class_="cssFuncionesLeft", align="left")
 
     try:
         price_text = find_price.getText()
@@ -50,22 +55,22 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
         # Strip all whitespace and isolate number.
         # Convert to float.
         price_nws = "".join(price_text.split())
-        lprice = price_nws.rpartition(':')[2]
-        rprice = lprice.split('[')[0]
-        price = float(rprice.replace(',', '.'))
+        lprice = price_nws.rpartition(":")[2]
+        rprice = lprice.split("[")[0]
+        price = float(rprice.replace(",", "."))
 
     except (AttributeError, ValueError):
         # Price element not present or no price stated.
         price = None
 
-    datetime = arrow.now('UTC-3').floor('hour').datetime
+    datetime = arrow.now("UTC-3").floor("hour").datetime
 
     return {
-        'zoneKey': zone_key,
-        'currency': 'ARS',
-        'datetime': datetime,
-        'price': price,
-        'source': 'portalweb.cammesa.com'
+        "zoneKey": zone_key,
+        "currency": "ARS",
+        "datetime": datetime,
+        "price": price,
+        "source": "portalweb.cammesa.com",
     }
 
 
@@ -81,12 +86,12 @@ def get_datetime(session=None):
     # https://en.wikipedia.org/wiki/Time_in_Argentina
     s = session or requests.Session()
     rt = s.get(URL)
-    timesoup = BeautifulSoup(rt.content, 'html.parser')
+    timesoup = BeautifulSoup(rt.content, "html.parser")
     find_hour = timesoup.find("option", selected="selected", value="1").getText()
-    at = arrow.now('UTC-3').floor('hour')
+    at = arrow.now("UTC-3").floor("hour")
     datetime = (at.replace(hour=int(find_hour), minute=0, second=0)).datetime
 
-    return {'datetime': datetime}
+    return {"datetime": datetime}
 
 
 def dataformat(junk) -> list:
@@ -94,7 +99,7 @@ def dataformat(junk) -> list:
     formatted = []
     for item in junk:
         if not any(char in item for char in string.ascii_letters):
-            item = float(item.replace(',', '.'))
+            item = float(item.replace(",", "."))
         formatted.append(item)
 
     return formatted
@@ -119,8 +124,8 @@ def get_thermal(session, logger) -> dict[str, float]:
     r = s.get(URL)
     pat = re.search("ControlID=[^&]*", r.text).group()
     spat = re.search("ReportSession=[^&]*", r.text).group()
-    cid = pat.rpartition('=')[2]
-    rs = spat.rpartition('=')[2]
+    cid = pat.rpartition("=")[2]
+    rs = spat.rpartition("=")[2]
     full_table = []
 
     # 'En Reserva' plants are not generating and can be ignored.
@@ -130,14 +135,20 @@ def get_thermal(session, logger) -> dict[str, float]:
     reserves = False
 
     while not reserves:
-        t = s.get(T_URL, params={'ControlID': cid, 'ReportSession': rs,
-                                'PageNumber': '{}'.format(pagenumber)})
+        t = s.get(
+            T_URL,
+            params={
+                "ControlID": cid,
+                "ReportSession": rs,
+                "PageNumber": "{}".format(pagenumber),
+            },
+        )
         text_only = webparser(t)
-        if 'Estado' in text_only:
+        if "Estado" in text_only:
             for item in text_only:
                 if len(item) == 1 and item in string.ascii_letters:
                     text_only.remove(item)
-        if 'En Reserva' in text_only:
+        if "En Reserva" in text_only:
             reserves = True
             continue
         full_table.append(text_only)
@@ -150,34 +161,35 @@ def get_thermal(session, logger) -> dict[str, float]:
     for idx, item in enumerate(mapped_data):
         try:
             # avoids including titles and headings
-            if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
+            if all((item.isupper(), item.isalnum(), item != "MERCADO")):
                 if item in EXCLUDED_PLANTS:
                     continue
                 logger.warning(
-                    '{} is missing from the AR plant mapping!'.format(item),
-                    extra={'key': 'AR'})
-                mapped_data[idx] = 'unknown'
+                    "{} is missing from the AR plant mapping!".format(item),
+                    extra={"key": "AR"},
+                )
+                mapped_data[idx] = "unknown"
         except AttributeError:
             # not a string....
             continue
 
-    nuclear_generation = generation_finder(mapped_data, 'nuclear')
-    oil_generation = generation_finder(mapped_data, 'oil')
-    coal_generation = generation_finder(mapped_data, 'coal')
-    biomass_generation = generation_finder(mapped_data, 'biomass')
-    gas_generation = generation_finder(mapped_data, 'gas')
-    unknown_generation = generation_finder(mapped_data, 'unknown')
+    nuclear_generation = generation_finder(mapped_data, "nuclear")
+    oil_generation = generation_finder(mapped_data, "oil")
+    coal_generation = generation_finder(mapped_data, "coal")
+    biomass_generation = generation_finder(mapped_data, "biomass")
+    gas_generation = generation_finder(mapped_data, "gas")
+    unknown_generation = generation_finder(mapped_data, "unknown")
 
     if unknown_generation < 0.0:
         unknown_generation = 0.0
 
     return {
-        'gas': gas_generation,
-        'nuclear': nuclear_generation,
-        'coal': coal_generation,
-        'unknown': unknown_generation,
-        'oil': oil_generation,
-        'biomass': biomass_generation
+        "gas": gas_generation,
+        "nuclear": nuclear_generation,
+        "coal": coal_generation,
+        "unknown": unknown_generation,
+        "oil": oil_generation,
+        "biomass": biomass_generation,
     }
 
 
@@ -192,8 +204,8 @@ def get_hydro_and_renewables(session, logger) -> dict[str, float]:
     r = s.get(H_URL)
     pat = re.search("ControlID=[^&]*", r.text).group()
     spat = re.search("ReportSession=[^&]*", r.text).group()
-    cid = pat.rpartition('=')[2]
-    rs = spat.rpartition('=')[2]
+    cid = pat.rpartition("=")[2]
+    rs = spat.rpartition("=")[2]
     full_table = []
 
     pagenumber = 1
@@ -203,13 +215,13 @@ def get_hydro_and_renewables(session, logger) -> dict[str, float]:
         t = s.get(
             TH_URL,
             params={
-                'ControlID': cid,
-                'ReportSession': rs,
-                'PageNumber': '{}'.format(pagenumber)
-            }
+                "ControlID": cid,
+                "ReportSession": rs,
+                "PageNumber": "{}".format(pagenumber),
+            },
         )
         text_only = webparser(t)
-        if 'En Reserva' in text_only:
+        if "En Reserva" in text_only:
             reserves = True
             continue
         full_table.append(text_only)
@@ -222,60 +234,66 @@ def get_hydro_and_renewables(session, logger) -> dict[str, float]:
     for idx, item in enumerate(mapped_data):
         try:
             # avoids including titles and headings
-            if all((item.isupper(), item.isalnum(), item != 'MERCADO')):
+            if all((item.isupper(), item.isalnum(), item != "MERCADO")):
                 if item in EXCLUDED_PLANTS:
                     continue
                 logger.warning(
-                    '{} is missing from the AR plant mapping!'.format(item),
-                    extra={'key': 'AR'})
-                mapped_data[idx] = 'unknown'
+                    "{} is missing from the AR plant mapping!".format(item),
+                    extra={"key": "AR"},
+                )
+                mapped_data[idx] = "unknown"
         except AttributeError:
             # not a string....
             continue
 
-    hydro_generation = generation_finder(mapped_data, 'hydro')
-    solar_generation = generation_finder(mapped_data, 'solar')
-    wind_generation = generation_finder(mapped_data, 'wind')
-    unknown_generation = generation_finder(mapped_data, 'unknown')
-    hydro_storage_generation = generation_finder(mapped_data, 'hydro_storage')
+    hydro_generation = generation_finder(mapped_data, "hydro")
+    solar_generation = generation_finder(mapped_data, "solar")
+    wind_generation = generation_finder(mapped_data, "wind")
+    unknown_generation = generation_finder(mapped_data, "unknown")
+    hydro_storage_generation = generation_finder(mapped_data, "hydro_storage")
 
     return {
-        'hydro': hydro_generation,
-        'wind': wind_generation,
-        'solar': solar_generation,
-        'unknown': unknown_generation,
-        'hydro_storage': hydro_storage_generation
+        "hydro": hydro_generation,
+        "wind": wind_generation,
+        "solar": solar_generation,
+        "unknown": unknown_generation,
+        "hydro_storage": hydro_storage_generation,
     }
 
 
-def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict[str, Any]:
+def fetch_production(
+    zone_key="AR",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     gdt = get_datetime(session=None)
     thermal = get_thermal(session, logger)
     hydro = get_hydro_and_renewables(session, logger)
 
     # discharging is given positive value in data, opposite to EM
-    hydro_storage = hydro.pop('hydro_storage')
+    hydro_storage = hydro.pop("hydro_storage")
     if hydro_storage == 0.0:
         em_hydro_storage = hydro_storage
     else:
-        em_hydro_storage = hydro_storage*-1
+        em_hydro_storage = hydro_storage * -1
 
-    unknown = thermal.pop('unknown') + hydro.pop('unknown')
+    unknown = thermal.pop("unknown") + hydro.pop("unknown")
     production = {**hydro, **thermal}
-    production['unknown'] = unknown
+    production["unknown"] = unknown
 
     return {
-        'zoneKey': zone_key,
-        'datetime': gdt['datetime'],
-        'production': production,
-        'storage': {
-            'hydro': em_hydro_storage,
+        "zoneKey": zone_key,
+        "datetime": gdt["datetime"],
+        "production": production,
+        "storage": {
+            "hydro": em_hydro_storage,
         },
-        'source': 'portalweb.cammesa.com'
+        "source": "portalweb.cammesa.com",
     }
 
 
@@ -292,76 +310,86 @@ def direction_finder(direction, exchange):
         # flow to Argentina
         return -1
     else:
-        raise ValueError('Flow direction for {} cannot be determined, got {}'.format(exchange, direction))
+        raise ValueError(
+            "Flow direction for {} cannot be determined, got {}".format(
+                exchange, direction
+            )
+        )
 
 
 def tie_finder(exchange_url, exchange, session) -> float:
     """Finds tie data using div tag style attribute."""
     req = session.get(exchange_url)
-    soup = BeautifulSoup(req.text, 'html.parser')
+    soup = BeautifulSoup(req.text, "html.parser")
 
-    tie = soup.find("div", style = TIE_MAPPING[exchange])
+    tie = soup.find("div", style=TIE_MAPPING[exchange])
     flow = float(tie.text)
     direction_tag = tie.find_next("img")
-    direction = direction_finder(direction_tag['src'], exchange)
+    direction = direction_finder(direction_tag["src"], exchange)
 
-    netflow = flow*direction
+    netflow = flow * direction
 
     return netflow
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict[str, Any]:
+def fetch_exchange(
+    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+) -> dict[str, Any]:
     """Requests the last known power exchange (in MW) between two zones."""
     # Only hourly data is available.
     if target_datetime:
-        lookup_time = arrow.get(target_datetime).floor('hour').format('DD/MM/YYYY HH:mm')
+        lookup_time = (
+            arrow.get(target_datetime).floor("hour").format("DD/MM/YYYY HH:mm")
+        )
     else:
-        current_time = arrow.now('UTC-3')
+        current_time = arrow.now("UTC-3")
         if current_time.minute < 30:
             # Data for current hour seems to be available after 30mins.
             current_time = current_time.shift(hours=-1)
-        lookup_time = current_time.floor('hour').format('DD/MM/YYYY HH:mm')
+        lookup_time = current_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
-    sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+    sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
 
-    if sortedcodes == 'AR->CL-SEN':
-        base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Unifilar de NOA&'
+    if sortedcodes == "AR->CL-SEN":
+        base_url = (
+            "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Unifilar de NOA&"
+        )
     else:
-        base_url = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
+        base_url = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
     exchange_url = base_url + lookup_time
 
     s = session or requests.Session()
 
-    if sortedcodes == 'AR->UY':
-        first_tie = tie_finder(exchange_url, 'UY_1', s)
-        second_tie = tie_finder(exchange_url, 'UY_2', s)
+    if sortedcodes == "AR->UY":
+        first_tie = tie_finder(exchange_url, "UY_1", s)
+        second_tie = tie_finder(exchange_url, "UY_2", s)
         flow = first_tie + second_tie
-    elif sortedcodes == 'AR->PY':
-        flow = tie_finder(exchange_url, 'PY', s)
-    elif sortedcodes == 'AR->CL-SEN':
-        flow = tie_finder(exchange_url, 'CL-SEN', s)
+    elif sortedcodes == "AR->PY":
+        flow = tie_finder(exchange_url, "PY", s)
+    elif sortedcodes == "AR->CL-SEN":
+        flow = tie_finder(exchange_url, "CL-SEN", s)
     else:
-        raise NotImplementedError('This exchange is not currently implemented')
+        raise NotImplementedError("This exchange is not currently implemented")
 
     return {
-        'sortedZoneKeys': sortedcodes,
-        'datetime': arrow.now('UTC-3').datetime,
-        'netFlow': flow,
-        'source': 'cammesa.com'
+        "sortedZoneKeys": sortedcodes,
+        "datetime": arrow.now("UTC-3").datetime,
+        "netFlow": flow,
+        "source": "cammesa.com",
     }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())
-    print('fetch_price() ->')
+    print("fetch_price() ->")
     print(fetch_price())
-    print('fetch_exchange(AR, PY) ->')
-    print(fetch_exchange('AR', 'PY'))
-    print('fetch_exchange(AR, UY) ->')
-    print(fetch_exchange('AR', 'UY'))
-    print('fetch_exchange(AR, CL-SEN) ->')
-    print(fetch_exchange('AR', 'CL-SEN'))
+    print("fetch_exchange(AR, PY) ->")
+    print(fetch_exchange("AR", "PY"))
+    print("fetch_exchange(AR, UY) ->")
+    print(fetch_exchange("AR", "UY"))
+    print("fetch_exchange(AR, CL-SEN) ->")
+    print(fetch_exchange("AR", "CL-SEN"))
