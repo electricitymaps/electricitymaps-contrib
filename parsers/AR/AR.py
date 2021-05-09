@@ -9,7 +9,7 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-from .const.AR_const import (
+from .const import (
     CAMMESA_URL,
     EXCLUDED_PLANTS,
     H_URL,
