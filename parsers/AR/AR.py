@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import itertools
 import logging
 import re
@@ -9,7 +7,7 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-from .const import (
+from const import (
     CAMMESA_URL,
     EXCLUDED_PLANTS,
     H_URL,
@@ -41,7 +39,7 @@ except NameError:
 
 
 def webparser(req):
-    """Takes content from webpage and returns all text as a list of strings"""
+    """Takes content from webpage and returns all text as a list of strings."""
 
     soup = BeautifulSoup(req.content, 'html.parser')
     figs = soup.find_all("div", class_="r11")
@@ -51,21 +49,7 @@ def webparser(req):
 
 
 def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known power price of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-      """
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     s = session or requests.Session()
@@ -88,7 +72,7 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
 
     datetime = arrow.now('UTC-3').floor('hour').datetime
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'currency': 'ARS',
         'datetime': datetime,
@@ -96,12 +80,11 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
         'source': 'portalweb.cammesa.com'
     }
 
-    return data
-
 
 def get_datetime(session=None):
     """
-    Generation data is updated hourly.  Makes request then finds most recent hour available.
+    Generation data is updated hourly.
+    Makes request then finds most recent hour available.
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
     """
 
@@ -130,7 +113,8 @@ def dataformat(junk):
 
 
 def generation_finder(data, gen_type):
-    """Finds all generation matching requested type in a list.
+    """
+    Finds all generation matching requested type in a list.
     Sums together and returns a float.
     """
 
@@ -142,7 +126,8 @@ def generation_finder(data, gen_type):
 
 def get_thermal(session, logger):
     """
-    Requests thermal generation data then parses and sorts by type.  Nuclear is included.
+    Requests thermal generation data then parses and sorts by type.
+    Nuclear is included.
     Returns a dictionary.
     """
 
@@ -204,18 +189,22 @@ def get_thermal(session, logger):
     if unknown_generation < 0.0:
         unknown_generation = 0.0
 
-    return {'gas': gas_generation,
-            'nuclear': nuclear_generation,
-            'coal': coal_generation,
-            'unknown': unknown_generation,
-            'oil': oil_generation,
-            'biomass': biomass_generation}
+    return {
+        'gas': gas_generation,
+        'nuclear': nuclear_generation,
+        'coal': coal_generation,
+        'unknown': unknown_generation,
+        'oil': oil_generation,
+        'biomass': biomass_generation
+    }
 
 
 def get_hydro_and_renewables(session, logger):
-    """Requests hydro generation data then parses into a usable format.
+    """
+    Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
-    Returns a dictionary."""
+    Returns a dictionary.
+    """
 
     s = session or requests.Session()
     r = s.get(H_URL)
@@ -229,8 +218,14 @@ def get_hydro_and_renewables(session, logger):
     reserves = False
 
     while not reserves:
-        t = s.get(TH_URL, params={'ControlID': cid, 'ReportSession': rs,
-                                 'PageNumber': '{}'.format(pagenumber)})
+        t = s.get(
+            TH_URL,
+            params={
+                'ControlID': cid,
+                'ReportSession': rs,
+                'PageNumber': '{}'.format(pagenumber)
+            }
+        )
         text_only = webparser(t)
         if 'En Reserva' in text_only:
             reserves = True
@@ -262,43 +257,17 @@ def get_hydro_and_renewables(session, logger):
     unknown_generation = generation_finder(mapped_data, 'unknown')
     hydro_storage_generation = generation_finder(mapped_data, 'hydro_storage')
 
-    return {'hydro': hydro_generation,
-            'wind': wind_generation,
-            'solar': solar_generation,
-            'unknown': unknown_generation,
-            'hydro_storage': hydro_storage_generation}
+    return {
+        'hydro': hydro_generation,
+        'wind': wind_generation,
+        'solar': solar_generation,
+        'unknown': unknown_generation,
+        'hydro_storage': hydro_storage_generation
+    }
 
 
 def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    target_datetime: if we want to parser for a specific time and not latest
-    logger: where to log useful information
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -317,7 +286,7 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
     production = {**hydro, **thermal}
     production['unknown'] = unknown
 
-    production_mix = {
+    return {
         'zoneKey': zone_key,
         'datetime': gdt['datetime'],
         'production': production,
@@ -327,14 +296,11 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
         'source': 'portalweb.cammesa.com'
     }
 
-    return production_mix
-
 
 def direction_finder(direction, exchange):
     """
-    Uses the 'src' attribute of an "img" tag to find the
-    direction of flow. In the data source small arrow images
-    are used to show flow direction.
+    Uses the 'src' attribute of an "img" tag to find the direction of flow.
+    In the data source small arrow images are used to show flow direction.
     """
 
     if direction == "/uflujpot.nsf/f90.gif":
@@ -367,25 +333,7 @@ def tie_finder(exchange_url, exchange, session):
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1, zone_key2: specifies which exchange to get
-    session: requests session passed in order to re-use an existing session,
-      not used here due to difficulty providing it to pandas
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
-
+    """Requests the last known power exchange (in MW) between two zones."""
     # Only hourly data is available.
     if target_datetime:
         lookup_time = arrow.get(target_datetime).floor('hour').format('DD/MM/YYYY HH:mm')
@@ -418,14 +366,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     else:
         raise NotImplementedError('This exchange is not currently implemented')
 
-    exchange = {
-      'sortedZoneKeys': sortedcodes,
-      'datetime': arrow.now('UTC-3').datetime,
-      'netFlow': flow,
-      'source': 'cammesa.com'
+    return {
+        'sortedZoneKeys': sortedcodes,
+        'datetime': arrow.now('UTC-3').datetime,
+        'netFlow': flow,
+        'source': 'cammesa.com'
     }
-
-    return exchange
 
 
 if __name__ == '__main__':
