@@ -2,6 +2,7 @@ import itertools
 import logging
 import re
 import string
+from typing import Any
 
 import arrow
 import requests
@@ -34,7 +35,7 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict[str, Any]:
     """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -88,9 +89,8 @@ def get_datetime(session=None):
     return {'datetime': datetime}
 
 
-def dataformat(junk):
+def dataformat(junk) -> list:
     """Takes string data with only digits and returns it as a float."""
-
     formatted = []
     for item in junk:
         if not any(char in item for char in string.ascii_letters):
@@ -100,25 +100,19 @@ def dataformat(junk):
     return formatted
 
 
-def generation_finder(data, gen_type):
-    """
-    Finds all generation matching requested type in a list.
-    Sums together and returns a float.
-    """
-
+def generation_finder(data, gen_type) -> float:
+    """Finds all generation matching requested type in a list."""
     find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
     generation_total = sum([data[i] for i in find_generation])
 
     return float(generation_total)
 
 
-def get_thermal(session, logger):
+def get_thermal(session, logger) -> dict[str, float]:
     """
     Requests thermal generation data then parses and sorts by type.
     Nuclear is included.
-    Returns a dictionary.
     """
-
     # Need to persist session in order to get ControlID and ReportSession so we can send second request for table data.
     # Both these variables change on each new request.
     s = session or requests.Session()
@@ -187,7 +181,7 @@ def get_thermal(session, logger):
     }
 
 
-def get_hydro_and_renewables(session, logger):
+def get_hydro_and_renewables(session, logger) -> dict[str, float]:
     """
     Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
@@ -254,7 +248,7 @@ def get_hydro_and_renewables(session, logger):
     }
 
 
-def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -301,12 +295,8 @@ def direction_finder(direction, exchange):
         raise ValueError('Flow direction for {} cannot be determined, got {}'.format(exchange, direction))
 
 
-def tie_finder(exchange_url, exchange, session):
-    """
-    Finds tie data using div tag style attribute.
-    Returns a float.
-    """
-
+def tie_finder(exchange_url, exchange, session) -> float:
+    """Finds tie data using div tag style attribute."""
     req = session.get(exchange_url)
     soup = BeautifulSoup(req.text, 'html.parser')
 
@@ -320,7 +310,7 @@ def tie_finder(exchange_url, exchange, session):
     return netflow
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict[str, Any]:
     """Requests the last known power exchange (in MW) between two zones."""
     # Only hourly data is available.
     if target_datetime:
