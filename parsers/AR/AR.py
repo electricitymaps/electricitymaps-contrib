@@ -23,20 +23,6 @@ try:
 except NameError:
     unicode = str  # Python 3
 
-# This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
-# for Argentina.  Currently wind and solar power are small contributors and not monitored but this is
-# likely to change in the future.
-
-# Useful links.
-# https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
-# https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
-# http://globalenergyobservatory.org/countryid/10#
-# http://www.industcards.com/st-other-argentina.htm
-
-
-# Map of power plants to generation type.
-# http://portalweb.cammesa.com/memnet1/revistas/estacional/base_gen.html
-
 
 def webparser(req):
     """Takes content from webpage and returns all text as a list of strings."""
@@ -60,7 +46,8 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
     try:
         price_text = find_price.getText()
 
-        # Strip all whitespace and isolate number.  Convert to float.
+        # Strip all whitespace and isolate number.
+        # Convert to float.
         price_nws = "".join(price_text.split())
         lprice = price_nws.rpartition(':')[2]
         rprice = lprice.split('[')[0]
@@ -88,7 +75,8 @@ def get_datetime(session=None):
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
     """
 
-    # Argentina does not currently observe daylight savings time.  This may change from year to year!
+    # Argentina does not currently observe daylight savings time.
+    # This may change from year to year!
     # https://en.wikipedia.org/wiki/Time_in_Argentina
     s = session or requests.Session()
     rt = s.get(URL)
@@ -131,8 +119,8 @@ def get_thermal(session, logger):
     Returns a dictionary.
     """
 
-    # Need to persist session in order to get ControlID and ReportSession so we can send second request
-    # for table data.  Both these variables change on each new request.
+    # Need to persist session in order to get ControlID and ReportSession so we can send second request for table data.
+    # Both these variables change on each new request.
     s = session or requests.Session()
     r = s.get(URL)
     pat = re.search("ControlID=[^&]*", r.text).group()
