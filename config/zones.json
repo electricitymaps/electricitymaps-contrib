@@ -1338,10 +1338,12 @@
       ]
     ],
     "capacity": {
-      "geothermal": 473,
-      "hydro": 2363,
+      "biomass": 71,
+      "geothermal": 261.86,
+      "hydro": 2343.166,
       "nuclear": 0,
-      "wind": 595,
+      "solar": 5.4,
+      "wind": 410.915,
       "unknown": 69
     },
     "contributors": [

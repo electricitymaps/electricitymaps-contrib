@@ -1,0 +1,167 @@
+from __future__ import annotations
+
+import datetime as dt
+import logging
+from pprint import pprint
+from typing import Any
+
+import arrow
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+from const import CHARACTERISTIC_NAME, DATE_FORMAT, POWER_PLANTS, TIMEZONE
+
+
+def empty_record(zone_key) -> dict[str, Any]:
+    return {
+        "zoneKey": zone_key,
+        "capacity": {},
+        "production": {
+            "biomass": 0.0,
+            "coal": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "nuclear": 0.0,
+            "oil": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+            "geothermal": 0.0,
+            "unknown": 0.0,
+        },
+        "storage": {},
+        "source": "grupoice.com",
+    }
+
+
+def df_to_data(zone_key, day, df, logger) -> list:
+    df = df.dropna(axis=1, how="any")
+    # Check for empty dataframe
+    if df.shape == (1, 1):
+        return []
+    df = df.drop(["Intercambio Sur", "Intercambio Norte", "Total"], errors="ignore")
+    df = df.iloc[:, :-1]
+
+    results = []
+    unknown_plants = set()
+    hour = 0
+    for column in df:
+        data = empty_record(zone_key)
+        data_time = day.replace(hour=hour, minute=0, second=0, microsecond=0).datetime
+        for index, value in df[column].items():
+            source = POWER_PLANTS.get(index)
+            if not source:
+                source = "unknown"
+                unknown_plants.add(index)
+            data["datetime"] = data_time
+            data["production"][source] += max(0.0, value)
+        hour += 1
+        results.append(data)
+
+    for plant in unknown_plants:
+        logger.warning(
+            u"{} is not mapped to generation type".format(plant),
+            extra={"key": zone_key},
+        )
+
+    return results
+
+
+def fetch_production(
+    zone_key="CR",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> list | None:
+    # ensure we have an arrow object.
+    # if no target_datetime is specified, this defaults to now.
+    target_datetime = arrow.get(target_datetime).to(TIMEZONE)
+
+    # if before 01:30am on the current day then fetch previous day due to
+    # data lag.
+    today = arrow.get().to(TIMEZONE).date()
+    if target_datetime.date() == today:
+        target_datetime = (
+            target_datetime
+            if target_datetime.time() >= dt.time(1, 30)
+            else target_datetime.shift(days=-1)
+        )
+
+    if target_datetime < arrow.get("2012-07-01"):
+        # data availability limit found by manual trial and error
+        logger.error(
+            "CR API does not provide data before 2012-07-01, {} was requested".format(
+                target_datetime
+            ),
+            extra={"key": zone_key},
+        )
+        return None
+
+    # Do not use existing session as some amount of cache is taking place
+    r = requests.session()
+    url = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
+    response = r.get(url)
+
+    soup = BeautifulSoup(response.text, "html.parser")
+    jsf_view_state = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
+
+    data = [
+        ("formPosdespacho:txtFechaInicio_input", target_datetime.format(DATE_FORMAT)),
+        ("formPosdespacho:pickFecha", ""),
+        ("formPosdespacho_SUBMIT", 1),
+        ("javax.faces.ViewState", jsf_view_state),
+    ]
+    response = r.post(url, data=data)
+
+    # tell pandas which table to use by providing CHARACTERISTIC_NAME
+    df = pd.read_html(
+        response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0
+    )[0]
+
+    results = df_to_data(zone_key, target_datetime, df, logger)
+
+    return results
+
+
+def fetch_exchange(
+    zone_key1="CR", zone_key2="NI", session=None, target_datetime=None, logger=None
+) -> dict[str, Any]:
+    """Requests the last known power exchange (in MW) between two regions."""
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
+
+    df = pd.read_csv(
+        "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
+    )
+
+    if sorted_zone_keys == "CR->NI":
+        flow = df["NICR"][0]
+    elif sorted_zone_keys == "CR->PA":
+        flow = -1 * df["CRPA"][0]
+    else:
+        raise NotImplementedError("This exchange pair is not implemented")
+
+    return {
+        "datetime": arrow.now(TIMEZONE).datetime,
+        "sortedZoneKeys": sorted_zone_keys,
+        "netFlow": flow,
+        "source": "enteoperador.org",
+    }
+
+
+if __name__ == "__main__":
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
+    print("fetch_production() ->")
+    pprint(fetch_production())
+
+    # this should work
+    print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
+    pprint(fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z")))
+
+    # this should return "Missing data"
+    print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
+    fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z"))
+
+    print("fetch_exchange() ->")
+    print(fetch_exchange())
