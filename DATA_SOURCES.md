@@ -342,9 +342,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey:
-  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [TEİAŞ](https://www.teias.gov.tr/)
+- Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - United States of America

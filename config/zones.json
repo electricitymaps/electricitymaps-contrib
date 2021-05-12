@@ -4883,16 +4883,16 @@
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
     "capacity": {
       "battery storage": 0,
-      "biomass": 983,
-      "coal": 19350,
-      "gas": 26637,
-      "geothermal": 1515,
-      "hydro": 28503,
+      "biomass": 1163.7,
+      "coal": 20322.6,
+      "gas": 25717.7,
+      "geothermal": 1647,
+      "hydro": 31345.3,
       "hydro storage": 0,
-      "oil": 306,
-      "solar": 5996,
-      "unknown": 124,
-      "wind": 7591
+      "oil": 257.6,
+      "solar": 7065.4,
+      "unknown": 372.3,
+      "wind": 9484.9
     },
     "contributors": [
       "https://github.com/corradio",
