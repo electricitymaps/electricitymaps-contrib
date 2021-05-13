@@ -636,7 +636,6 @@
     "timezone": "Europe/Brussels"
   },
   "BG": {
-    "_comment": "hydro incl. 864 MW of pumped storage",
     "bounding_box": [
       [
         22.3805257504,
@@ -649,10 +648,11 @@
     ],
     "capacity": {
       "biomass": 80,
-      "coal": 4365,
+      "coal": 4445,
       "gas": 1361,
       "geothermal": 0,
-      "hydro": 3211,
+      "hydro": 2737,
+      "hydro storage": 931,
       "nuclear": 2000,
       "oil": 0.3,
       "solar": 1087,
@@ -4649,7 +4649,7 @@
       "nuclear": 6882,
       "oil": 2251,
       "solar": 1089,
-      "wind": 8984,
+      "wind": 10297,
       "geothermal": 0
     },
     "contributors": [
@@ -4883,16 +4883,16 @@
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
     "capacity": {
       "battery storage": 0,
-      "biomass": 983,
-      "coal": 19350,
-      "gas": 26637,
-      "geothermal": 1515,
-      "hydro": 28503,
+      "biomass": 1163.7,
+      "coal": 20322.6,
+      "gas": 25717.7,
+      "geothermal": 1647,
+      "hydro": 31345.3,
       "hydro storage": 0,
-      "oil": 306,
-      "solar": 5996,
-      "unknown": 124,
-      "wind": 7591
+      "oil": 257.6,
+      "solar": 7065.4,
+      "unknown": 372.3,
+      "wind": 9484.9
     },
     "contributors": [
       "https://github.com/corradio",
