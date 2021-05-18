@@ -106,13 +106,13 @@
   },
   "AR": {
     "capacity": {
-      "biomass": 48,
-      "gas": 22892,
-      "hydro": 11310,
+      "biomass": 122,
+      "gas": 23669,
+      "hydro": 11344,
       "nuclear": 1755,
-      "oil": 1654,
-      "solar": 449,
-      "wind": 1724
+      "oil": 1646,
+      "solar": 759,
+      "wind": 2990
     },
     "contributors": [
       "https://github.com/systemcatch",
