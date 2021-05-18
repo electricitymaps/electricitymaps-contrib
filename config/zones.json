@@ -3878,14 +3878,17 @@
   },
   "NO": {
     "capacity": {
+      "biomass": 113.3,
       "coal": 0,
-      "gas": 634,
+      "gas": 473.4,
       "geothermal": 0,
-      "hydro": 32440,
+      "hydro": 33033,
+      "hydro storage": 1438,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
-      "wind": 3644
+      "solar": 160,
+      "unknown": 112.6,
+      "wind": 3977
     },
     "contributors": [
       "https://github.com/corradio"
@@ -3909,14 +3912,17 @@
   },
   "NO-NO1": {
     "capacity": {
+      "biomass": 46,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
-      "hydro": 3592,
+      "hydro": 3751,
+      "hydro storage": 1,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 170
+      "unknown": 0,
+      "wind": 209
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3940,13 +3946,16 @@
   },
   "NO-NO2": {
     "capacity": {
+      "biomass": 22.3,
       "coal": 0,
-      "gas": 5,
+      "gas": 35.8,
       "geothermal": 0,
-      "hydro": 11317,
+      "hydro": 10468,
+      "hydro storage": 892,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
+      "unknown": 14,
       "wind": 1287
     },
     "parsers": {
@@ -3971,14 +3980,17 @@
   },
   "NO-NO3": {
     "capacity": {
+      "biomass": 17.7,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
-      "hydro": 4571,
+      "hydro": 4709,
+      "hydro storage": 87,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 1498
+      "unknown": 46.8,
+      "wind": 1788
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4002,14 +4014,17 @@
   },
   "NO-NO4": {
     "capacity": {
+      "biomass": 0.3,
       "coal": 0,
-      "gas": 270,
+      "gas": 248,
       "geothermal": 0,
-      "hydro": 5088,
+      "hydro": 5197,
+      "hydro storage": 2,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
-      "wind": 689
+      "unknown": 39.3,
+      "wind": 693
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4033,13 +4048,16 @@
   },
   "NO-NO5": {
     "capacity": {
+      "biomass": 27,
       "coal": 0,
-      "gas": 359,
+      "gas": 189.6,
       "geothermal": 0,
-      "hydro": 7873,
+      "hydro": 7658,
+      "hydro storage": 457,
       "nuclear": 0,
       "oil": 0,
       "solar": 0,
+      "unknown": 12.5,
       "wind": 0
     },
     "parsers": {
