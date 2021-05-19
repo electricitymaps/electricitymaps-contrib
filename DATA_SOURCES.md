@@ -164,7 +164,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 - Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
-- Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
+- Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
 - Armenia
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
@@ -185,7 +185,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
-- Bulgaria: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Bulgaria:
+  - Hydro: [NEK](https://nek.bg/index.php/en/our-business/electricity-generation)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
@@ -290,10 +292,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Nigeria: [SO Grid](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway
-  - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
-  - Wind: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vindkraft/vindkraftdata/)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
@@ -333,7 +332,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sweden
   - Biomass, Geothermal: [IRENA](https://www.irena.org/IRENADocuments/Statistical_Profiles/Europe/Sweden_Europe_RE_SP.pdf)
-  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
+  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/statistik/2017-3)
   - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
   - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
