@@ -259,7 +259,7 @@
             "zoneName": "Tasmanien"
         },
         "AUS-TAS-KI": {
-            "countryName": "Tasmanien",
+            "countryName": "Australien",
             "zoneName": "King Island"
         },
         "AUS-TAS-FI": {
@@ -378,7 +378,15 @@
         },
         "CA-NL": {
             "countryName": "Kanada",
-            "zoneName": "Newfoundland and Labrador"
+            "zoneName": "Newfoundland och Labrador"
+        },
+        "CA-NL-LB": {
+            "countryName": "Kanada",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Kanada",
+            "zoneName": "Newfoundland"
         },
         "CA-NB": {
             "countryName": "Kanada",
