@@ -43,6 +43,7 @@ testfixtures = "6.0.0"
 lint = 'scripts:lint'
 test = 'scripts:test'
 test-parser = 'test_parser:test_parser'
+test_parser = 'test_parser:test_parser'
 
 [tool.poetry.extras]
 parsers = [

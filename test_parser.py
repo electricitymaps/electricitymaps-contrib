@@ -21,7 +21,7 @@ from parsers.lib.quality import (
 )
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
 
 
 @click.command()
