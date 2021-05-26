@@ -55,7 +55,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Iceland: [LANDSNET](https://amper.landsnet.is/generation/api/Values)
 - Ireland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Israel: [IEC](https://www.iec.co.il/en/pages/default.aspx)
-- israel: [LNRG](https://www.lnrg.technology/)
+- israel: [LNRG](https://www.lnrg.technology/2020/08/30/overview-of-the-israeli-electricity-market-2020/)
 - Italy: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - India: [meritindia](http://meritindia.in/)
 - India (Andhra Pradesh): [CORE Dashboard](https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx)
