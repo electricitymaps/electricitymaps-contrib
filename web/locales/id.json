@@ -414,15 +414,15 @@
             "zoneName": "Pulau Cook"
         },
         "CL-SING-SIC": {
-            "countryName": "Chile",
+            "countryName": "Chili",
             "zoneName": "SING/SIC"
         },
         "CL-SEM": {
-            "countryName": "Chile",
+            "countryName": "Chili",
             "zoneName": "SEM"
         },
         "CL-SEA": {
-            "countryName": "Chile",
+            "countryName": "Chili",
             "zoneName": "SEA"
         },
         "CM": {
@@ -480,7 +480,7 @@
             "zoneName": "Dominika"
         },
         "DO": {
-            "zoneName": "Republik Dominican"
+            "zoneName": "Republik Dominika"
         },
         "DZ": {
             "zoneName": "Algeria"
@@ -495,7 +495,7 @@
             "zoneName": "Mesir"
         },
         "EH": {
-            "zoneName": "Western Sahara"
+            "zoneName": "Sahara Barat"
         },
         "ER": {
             "zoneName": "Eritrea"
@@ -572,21 +572,21 @@
             "zoneName": "Gabon"
         },
         "GB": {
-            "zoneName": "Inggris Raya"
+            "zoneName": "Britania Raya"
         },
         "GB-NIR": {
             "zoneName": "Irlandia Utara"
         },
         "GB-ORK": {
-            "countryName": "Inggris Raya",
+            "countryName": "Britania Raya",
             "zoneName": "Pulau Orkney"
         },
         "GB-SHI": {
-            "countryName": "Inggris Raya",
+            "countryName": "Britania Raya",
             "zoneName": "Pulau Shetland"
         },
         "GB-ZET": {
-            "countryName": "Inggris Raya",
+            "countryName": "Britania Raya",
             "zoneName": "Pulau Shetland"
         },
         "GD": {
