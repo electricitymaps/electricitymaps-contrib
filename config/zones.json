@@ -1065,11 +1065,11 @@
   "CA-ON": {
     "capacity": {
       "biomass": 295,
-      "gas": 11270,
-      "hydro": 9065,
+      "gas": 11317,
+      "hydro": 9060,
       "nuclear": 13009,
       "solar": 478,
-      "wind": 4486,
+      "wind": 4786,
       "coal": 0
     },
     "contributors": [
