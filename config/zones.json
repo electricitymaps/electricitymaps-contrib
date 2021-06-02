@@ -1292,20 +1292,6 @@
     ],
     "timezone": "America/Punta_Arenas"
   },
-  "CL-SIC": {
-    "_todo": "remove. See https://github.com/tmrowco/tmrow/issues/3188",
-    "bounding_box": [
-      [
-        -74.71,
-        -44.02
-      ],
-      [
-        -66.88,
-        -17.39
-      ]
-    ],
-    "timezone": "Chile/Continental"
-  },
   "CL-CHP": {
     "bounding_box": [
       [
