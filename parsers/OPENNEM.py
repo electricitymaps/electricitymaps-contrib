@@ -123,6 +123,13 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
     ]
     logger.debug('Concatenating datasets..')
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
+
+    # Sometimes we get twice the columns. In that case, only return the first one
+    is_duplicated_column = df.columns.duplicated(keep='last')
+    if is_duplicated_column.sum():
+        logger.warning(f'Dropping columns {df.columns[is_duplicated_column]} that appear more than once')
+        df = df.loc[:, is_duplicated_column]
+
     logger.debug('Preparing capacities..')
     if data_type == 'power' and zone_key:
         # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
