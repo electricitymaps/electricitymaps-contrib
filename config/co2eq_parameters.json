@@ -184,6 +184,13 @@
           "value": 597.2654373454017
         }
       },
+      "CA-NB": {
+        "unknown": {
+          "_comment": "Source: https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-new-brunswick.html",
+          "source": "2018 Provincial and Territorial Energy Profiles - New Brunswick",
+          "value": 223
+        }
+      },
       "CA-NS": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
