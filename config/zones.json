@@ -2014,7 +2014,7 @@
     "capacity": {
       "battery storage": 7,
       "biomass": 1579,
-      "coal": 2977,
+      "coal": 2397,
       "gas": 12218,
       "geothermal": 16,
       "hydro": 18743.6955,
@@ -2026,6 +2026,7 @@
       "unknown": 1366
     },
     "contributors": [
+      "https://github.com/brandongalbraith",
       "https://github.com/corradio",
       "https://github.com/lorrieq",
       "https://github.com/nessie2013"
