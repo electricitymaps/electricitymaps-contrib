@@ -9,7 +9,6 @@ import { useRefWidthHeightObserver } from '../hooks/viewport';
 const PADDING_X = 13;
 const PADDING_Y = 10;
 
-
 const Wrapper = styled.svg`
   width: 100%;
   height: 30px;
@@ -18,7 +17,7 @@ const Wrapper = styled.svg`
 
   .tick {
     text {
-      fill: #000000;
+      fill: ${({ theme }) => theme.text};
     }
     line {
       stroke: none;
@@ -32,21 +31,13 @@ const Wrapper = styled.svg`
 
 const spreadOverDomain = (scale, count) => {
   const [x1, x2] = extent(scale.domain());
-  return range(count).map(v => x1 + (x2 - x1) * v / (count - 1));
+  return range(count).map((v) => x1 + ((x2 - x1) * v) / (count - 1));
 };
 
-const HorizontalColorbar = ({
-  colorScale,
-  currentValue,
-  id,
-  markerColor,
-  ticksCount = 5,
-}) => {
+const HorizontalColorbar = ({ colorScale, currentValue, id, markerColor, ticksCount = 5 }) => {
   const { ref, width, height } = useRefWidthHeightObserver(2 * PADDING_X, 2 * PADDING_Y);
 
-  const linearScale = scaleLinear()
-    .domain(extent(colorScale.domain()))
-    .range([0, width]);
+  const linearScale = scaleLinear().domain(extent(colorScale.domain())).range([0, width]);
 
   // Render an empty SVG if the dimensions are not positive
   if (width <= 0 || height <= 0) {
@@ -61,11 +52,7 @@ const HorizontalColorbar = ({
             <stop key={value} offset={index / 9} stopColor={colorScale(value)} />
           ))}
         </linearGradient>
-        <rect
-          fill={`url(#${id}-gradient)`}
-          width={width}
-          height={height}
-        />
+        <rect fill={`url(#${id}-gradient)`} width={width} height={height} />
         {isFinite(currentValue) && (
           <line
             stroke={markerColor}
@@ -91,9 +78,11 @@ const HorizontalColorbar = ({
           fontFamily="sans-serif"
           textAnchor="middle"
         >
-          {spreadOverDomain(linearScale, ticksCount).map(t => (
+          {spreadOverDomain(linearScale, ticksCount).map((t) => (
             <g key={`tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
-              <text fill="currentColor" y="8" dy="0.81em">{Math.round(t)}</text>
+              <text fill="currentColor" y="8" dy="0.81em">
+                {Math.round(t)}
+              </text>
             </g>
           ))}
         </g>

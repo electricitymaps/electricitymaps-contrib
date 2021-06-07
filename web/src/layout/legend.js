@@ -18,20 +18,22 @@ const LegendsContainer = styled.div`
   bottom: 0px;
   right: 0px;
   float: left;
-  background-color: #fafafa;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
   border-radius: 6px;
   padding: 12px 10px 10px 10px;
   margin: 16px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
   z-index: 99;
   transition: width 0.4s, height 0.4s;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 0.8rem;
   user-select: none;
-  
+
   // Apply specific styles if the legend is collapsed
-  ${props => props.isCollapsed
-    && css`
+  ${(props) =>
+    props.isCollapsed &&
+    css`
       width: 90px;
       height: 18px;
       padding: 6px 10px 10px;
@@ -58,7 +60,7 @@ const ToggleLegendButton = styled.i`
 `;
 
 const StyledMobileHeader = styled.div`
-  text-align: ${props => (props.isCollapsed ? 'left' : 'center')};
+  text-align: ${(props) => (props.isCollapsed ? 'left' : 'center')};
   font-weight: bold;
   margin-bottom: 5px;
 
@@ -77,31 +79,24 @@ const MobileHeader = ({ onToggle, isOpen }) => (
   </StyledMobileHeader>
 );
 
-const LegendItem = ({
-  isEnabled, label, unit, children,
-}) => (!isEnabled ? null : (
-  <LegendItemWrapper>
-    <div>
-      {label} <small>({unit})</small>
-    </div>
-    {children}
-  </LegendItemWrapper>
-));
+const LegendItem = ({ isEnabled, label, unit, children }) =>
+  !isEnabled ? null : (
+    <LegendItemWrapper>
+      <div>
+        {label} <small>({unit})</small>
+      </div>
+      {children}
+    </LegendItemWrapper>
+  );
 
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
   windColorbarValue: state.application.windColorbarValue,
 });
 
-const Legend = ({
-  co2ColorbarValue,
-  legendVisible,
-  solarColorbarValue,
-  windColorbarValue,
-}) => {
+const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColorbarValue }) => {
   const co2ColorScale = useCo2ColorScale();
   const solarEnabled = useSolarEnabled();
   const windEnabled = useWindEnabled();
@@ -126,11 +121,11 @@ const Legend = ({
           </LegendItem>
           <LegendItem
             label={__('legends.solarpotential')}
-            unit={(
+            unit={
               <span>
                 W/m<span className="sup">2</span>
               </span>
-            )}
+            }
             isEnabled={solarEnabled}
           >
             <HorizontalColorbar
