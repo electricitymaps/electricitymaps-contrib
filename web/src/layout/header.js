@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import SharedHeader from '../components/sharedheader';
 
-const logo = resolvePath('images/electricitymap-logo.svg');
+const logoBlack = resolvePath('images/electricitymap-logo.svg');
+const logoWhite = resolvePath('images/electricitymap-logo-white.svg');
 
 const headerLinks = [
   {
@@ -30,10 +32,15 @@ const Container = styled.div`
   height: 58px;
 `;
 
-const Header = () => (
-  <Container className="small-screen-hidden">
-    <SharedHeader logo={logo} links={headerLinks} />
-  </Container>
-);
+const Header = () => {
+  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
+  const logo = brightModeEnabled ? logoBlack : logoWhite;
+
+  return (
+    <Container className="small-screen-hidden">
+      <SharedHeader logo={logo} links={headerLinks} />
+    </Container>
+  );
+};
 
 export default Header;
