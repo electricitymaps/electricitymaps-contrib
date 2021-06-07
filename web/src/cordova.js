@@ -43,10 +43,8 @@ export const cordovaApp = {
       select('.flash-message .inner')
         .style('padding-top', `${extraPadding}px`);
 
-      select('.mapboxgl-zoom-controls')
-        .style('transform', `translate(0,${extraPadding}px)`);
-      select('.layer-buttons-container')
-        .style('transform', `translate(0,${extraPadding}px)`);
+      select('#zoom-controls').style('transform', `translate(0,${extraPadding}px)`);
+      select('.layer-buttons-container').style('transform', `translate(0,${extraPadding}px)`);
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });

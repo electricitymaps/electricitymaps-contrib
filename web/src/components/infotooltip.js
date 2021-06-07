@@ -8,22 +8,24 @@ const Wrapper = styled.div`
   position: absolute;
   transition: all 0.4s;
 
-  ${props => (props.visible ? css`
-    opacity: 1;
-    transform: translateX(0px);
-    visibility: visible;
-  ` : css`
-    opacity: 0;
-    transform: translateX(10px);
-    visibility: hidden;
-  `)}
+  ${(props) =>
+    props.visible
+      ? css`
+          opacity: 1;
+          transform: translateX(0px);
+          visibility: visible;
+        `
+      : css`
+          opacity: 0;
+          transform: translateX(10px);
+          visibility: hidden;
+        `}
 `;
 
 const Content = styled.div`
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.background};
   border-radius: 4px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-  color: black;
+  box-shadow: 0px 0px 10px 0px ${({ theme }) => theme.shadowColor};
   font-size: 0.9rem;
   padding: 5px 10px;
   text-align: center;

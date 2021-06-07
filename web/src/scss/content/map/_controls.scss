@@ -5,34 +5,12 @@
     display: flex;
     flex-direction: column;
 
-    & > div{
+    & > div {
         position: relative;
     }
 
     @include respond-to('small') {
-        top: 148px;   
-    }
-}
-
-.layer-button {
-    background-color: $lighter-gray;
-    border-radius: 6px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-    width: 35px;
-    height: 35px;
-    margin-bottom: 10px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 58% 57%;
-    border: none;
-    outline: none;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.4s;
-
-    &:hover {
-        background-color: $white;
-        box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
+        top: 148px;
     }
 }
 
@@ -46,57 +24,13 @@
     }
 }
 
-.layer-button-tooltip {
-    position: absolute;
-    left: -168px;
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    top: 4px;
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0px);
-    transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
-
-    .tooltip-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .tooltip-text {
-        background-color:$lighter-gray;
-        color: black;
-        border-radius: 4px;
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 5px 10px;
-        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
-    }
-
-    .arrow {
-        display:none;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 7.5px 0 7.5px 10px;
-        border-color: transparent transparent transparent $lighter-gray;
-    }
-
-    &.hidden {
-        visibility: hidden;
-        opacity: 0;
-        transform: translateX(10px);
-    }
-}
-
 #language-select-container {
-    background-color:$lighter-gray;
+    background-color: $lighter-gray;
     color: black;
     border-radius: 4px;
     font-size: 0.9rem;
     padding: 5px 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
     position: absolute;
     left: -184px;
     width: 150px;
@@ -140,19 +74,19 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .checkbox-container input {
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+/* Create a custom checkbox */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -160,32 +94,32 @@
     width: 21px;
     border-radius: 6px;
     background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .checkbox-container:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .checkbox-container input:checked ~ .checkmark {
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
     background-color: #074ddb;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
-    content: "";
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: '';
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .checkbox-container input:checked ~ .checkmark:after {
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .checkbox-container .checkmark:after {
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
     left: 7px;
     top: 4px;
     width: 4px;
@@ -195,4 +129,4 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}

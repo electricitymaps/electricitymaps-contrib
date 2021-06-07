@@ -5,14 +5,9 @@ import React, {
   useEffect,
 } from 'react';
 import { Portal } from 'react-portal';
-import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import {
-  debounce,
-  isEmpty,
-  map,
-  noop,
-  size,
-} from 'lodash';
+import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import { debounce, isEmpty, map, noop, size } from 'lodash';
+import { ZoomControls } from './zoomcontrols';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -218,21 +213,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <div
-            className="mapboxgl-zoom-controls"
-            style={{
-              boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
-              position: 'absolute',
-              right: '24px',
-              top: '24px',
-            }}
-          >
-            <NavigationControl
-              showCompass={false}
-              zoomInLabel=""
-              zoomOutLabel=""
-            />
-          </div>
+          <ZoomControls />
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
