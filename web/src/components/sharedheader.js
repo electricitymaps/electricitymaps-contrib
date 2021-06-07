@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 
 const Wrapper = styled.header`
   align-items: center;
-  background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.background};
+  box-shadow: 0 0 6px 1px ${({ theme }) => theme.shadowColor};
   box-sizing: border-box;
-  color: black;
+  color: ${({ theme }) => theme.text};
   display: flex;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 15px;
@@ -19,11 +19,15 @@ const Wrapper = styled.header`
   width: 100vw;
   z-index: 3;
 
-  ${props => props.collapsed && `
+  ${(props) =>
+    props.collapsed &&
+    `
     padding: 0 24px;
   `};
 
-  ${props => props.inverted && `
+  ${(props) =>
+    props.inverted &&
+    `
     background: transparent;
     color: white;
     box-shadow: none;
@@ -44,7 +48,7 @@ const Logo = styled.img`
 
 const linkUnderline = css`
   &:after {
-    background: #62B252;
+    background: #62b252;
     bottom: 0;
     content: '';
     display: block;
@@ -70,7 +74,9 @@ const Link = styled.a`
     text-shadow: 0.5px 0 0 currentColor;
   }
 
-  ${props => props.active && `
+  ${(props) =>
+    props.active &&
+    `
     text-shadow: 0.5px 0 0 currentColor;
     ${linkUnderline}
   `}
@@ -86,7 +92,9 @@ const MenuDrawerBackground = styled.div`
   width: 100vw;
   height: 100vh;
 
-  ${props => props.visible && `
+  ${(props) =>
+    props.visible &&
+    `
     display: block;
   `};
 `;
@@ -108,7 +116,9 @@ const MenuDrawerContent = styled.div`
   width: 100vw;
   z-index: 1;
 
-  ${props => props.visible && `
+  ${(props) =>
+    props.visible &&
+    `
     transform: translateY(0);
   `};
 `;
@@ -146,12 +156,7 @@ const ResponsiveMenu = ({ children, collapsed }) => {
   );
 };
 
-const SharedHeader = ({
-  collapsed = false,
-  inverted = false,
-  links = [],
-  logo,
-}) => (
+const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo }) => (
   <Wrapper inverted={inverted} collapsed={collapsed}>
     <a href="/map">
       <Logo src={logo} alt="logo" />
