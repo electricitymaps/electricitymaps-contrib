@@ -7,6 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
+import { ThemeProvider } from 'styled-components';
 import Header from './header';
 import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
@@ -19,6 +20,7 @@ import { __ } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
+import { useTheme } from '../hooks/theme';
 import {
   useClientVersionFetch,
   useGridDataPolling,
@@ -50,6 +52,7 @@ const Main = ({
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
+  const theme = useTheme();
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -66,7 +69,7 @@ const Main = ({
   useConditionalSolarDataPolling();
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <div
         style={{
           position: 'fixed', /* This is done in order to ensure that dragging will not affect the body */
@@ -130,7 +133,7 @@ const Main = ({
         <Tabs />
       </div>
       <OnboardingModal />
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 
