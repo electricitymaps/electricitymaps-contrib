@@ -546,6 +546,16 @@
     "timezone": "Europe/Mariehamn"
   },
   "AZ": {
+    "bounding_box": [
+      [
+        44.27455855300013,
+        37.892644755000035
+      ],
+      [
+        51.125743035000085,
+        42.390441590000094
+      ]
+    ],
     "timezone": null
   },
   "BA": {
@@ -884,6 +894,16 @@
     "timezone": null
   },
   "BZ": {
+    "bounding_box": [
+      [
+        -89.73651220799991,
+        15.379651999000075
+      ],
+      [
+        -87.28307044199994,
+        18.99075876900004
+      ]
+    ],
     "timezone": null
   },
   "CA-AB": {
@@ -1207,7 +1227,7 @@
         47.808380127
       ]
     ],
-        "capacity": {
+    "capacity": {
       "biomass": 611.4,
       "coal": 0,
       "gas": 284.3,
@@ -1319,6 +1339,16 @@
     "timezone": "Pacific/Easter"
   },
   "CN": {
+    "bounding_box": [
+      [
+        73.10225630700006,
+        15.27537669500009
+      ],
+      [
+        135.27257938700006,
+        54.06944447900007
+      ]
+    ],
     "timezone": null
   },
   "CR": {
@@ -2875,9 +2905,29 @@
     }
   },
   "IQ-KUR": {
+    "bounding_box": [
+      [
+        41.85723840300011,
+        34.01280325000005
+      ],
+      [
+        46.827073608000035,
+        37.87549753800006
+      ]
+    ],
     "timezone": null
   },
   "IR": {
+    "bounding_box": [
+      [
+        43.51486332200011,
+        24.559408165000036
+      ],
+      [
+        63.81962813300004,
+        40.271526998000084
+      ]
+    ],
     "timezone": null
   },
   "IS": {
@@ -3450,6 +3500,16 @@
     "timezone": "Asia/Kuwait"
   },
   "KZ": {
+    "bounding_box": [
+      [
+        45.97827884900005,
+        40.08465566000011
+      ],
+      [
+        87.82379602100013,
+        55.93455027300003
+      ]
+    ],
     "timezone": null
   },
   "LT": {
@@ -3660,6 +3720,16 @@
     "timezone": "Europe/Skopje"
   },
   "MN": {
+    "bounding_box": [
+      [
+        87.23570886300013,
+        41.086144918000016
+      ],
+      [
+        120.40702681500011,
+        52.62958404600003
+      ]
+    ],
     "timezone": null
   },
   "MQ": {
@@ -3735,27 +3805,107 @@
     "timezone": null
   },
   "MX-BC": {
+    "bounding_box": [
+      [
+        -118.86880422899992,
+        22.37215511800008
+      ],
+      [
+        -108.91362465499992,
+        33.21283640500009
+      ]
+    ],
     "timezone": null
   },
   "MX-CE": {
+    "bounding_box": [
+      [
+        -100.01069047658422,
+        17.392189846084534
+      ],
+      [
+        -96.22812130395499,
+        21.325344143417453
+      ]
+    ],
     "timezone": null
   },
   "MX-NE": {
+    "bounding_box": [
+      [
+        -101.71565100768782,
+        21.719780991999187
+      ],
+      [
+        -96.63927161399994,
+        28.293549303557484
+      ]
+    ],
     "timezone": null
   },
   "MX-NO": {
+    "bounding_box": [
+      [
+        -109.65359025758431,
+        21.8191030954315
+      ],
+      [
+        -99.30696277711047,
+        32.277751364000025
+      ]
+    ],
     "timezone": null
   },
   "MX-NW": {
+    "bounding_box": [
+      [
+        -115.53974260094026,
+        21.9489659687045
+      ],
+      [
+        -104.88862626838755,
+        32.99936330200008
+      ]
+    ],
     "timezone": null
   },
   "MX-OC": {
+    "bounding_box": [
+      [
+        -115.29857337099992,
+        17.415988111000047
+      ],
+      [
+        -97.5001883613038,
+        25.66554433840048
+      ]
+    ],
     "timezone": null
   },
   "MX-OR": {
+    "bounding_box": [
+      [
+        -102.67957149932522,
+        14.046279476000095
+      ],
+      [
+        -89.87985327199993,
+        22.98054026911808
+      ]
+    ],
     "timezone": null
   },
   "MX-PN": {
+    "bounding_box": [
+      [
+        -92.98614402599992,
+        17.301963603000004
+      ],
+      [
+        -86.20059160099993,
+        22.123439846000053
+      ]
+    ],
     "timezone": null
   },
   "MY-WM": {
@@ -4231,6 +4381,16 @@
     ]
   },
   "PY": {
+    "bounding_box": [
+      [
+        -63.15035721899994,
+        -28.08684214299994
+      ],
+      [
+        -53.74528885899994,
+        -18.78672861699995
+      ]
+    ],
     "timezone": null
   },
   "PA": {
@@ -4932,6 +5092,16 @@
     "timezone": "America/El_Salvador"
   },
   "TH": {
+    "bounding_box": [
+      [
+        96.85140100100011,
+        5.129890035000059
+      ],
+      [
+        106.15099776200003,
+        20.94500640900013
+      ]
+    ],
     "timezone": null
   },
   "TR": {
@@ -5835,11 +6005,11 @@
       "solar": 383.4,
       "unknown": 0,
       "wind": 0
-   },
-   "contributors": [
+    },
+    "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/robertahunt",
-     "https://github.com/KabelWlan"
+      "https://github.com/KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -5874,11 +6044,11 @@
       "solar": 988.1,
       "unknown": 31.9,
       "wind": 440.5
-   },
-   "contributors": [
+    },
+    "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/robertahunt",
-     "https://github.com/KabelWlan"
+      "https://github.com/KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -7584,7 +7754,7 @@
   },
   "US-NW-WACM": {
     "comment": "Western Area Power Administration - Rocky Mountain Region",
-        "capacity": {
+    "capacity": {
       "battery storage": 8.2,
       "biomass": 3.2,
       "coal": 5929.6,
@@ -8372,9 +8542,29 @@
     "timezone": "Europe/Belgrade"
   },
   "ZA": {
+    "bounding_box": [
+      [
+        15.969981316000087,
+        -47.46575286299992
+      ],
+      [
+        38.47779381600009,
+        -21.626451924999927
+      ]
+    ],
     "timezone": null
   },
   "ZM": {
-    "timezone": null
+    "timezone": null,
+    "bounding_box": [
+      [
+        21.47987756300006,
+        -18.569231871999946
+      ],
+      [
+        34.17420251500005,
+        -7.694124042999917
+      ]
+    ]
   }
 }
