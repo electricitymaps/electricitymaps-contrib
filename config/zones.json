@@ -545,6 +545,9 @@
     },
     "timezone": "Europe/Mariehamn"
   },
+  "AZ": {
+    "timezone": null
+  },
   "BA": {
     "bounding_box": [
       [
@@ -878,6 +881,9 @@
       "price": "ENTSOE.fetch_price",
       "production": "ENTSOE.fetch_production"
     },
+    "timezone": null
+  },
+  "BZ": {
     "timezone": null
   },
   "CA-AB": {
@@ -1311,6 +1317,9 @@
       "https://github.com/autipial"
     ],
     "timezone": "Pacific/Easter"
+  },
+  "CN": {
+    "timezone": null
   },
   "CR": {
     "bounding_box": [
@@ -2865,6 +2874,12 @@
       "consumption": "IQ.fetch_consumption"
     }
   },
+  "IQ-KUR": {
+    "timezone": null
+  },
+  "IR": {
+    "timezone": null
+  },
   "IS": {
     "bounding_box": [
       [
@@ -3434,6 +3449,9 @@
     },
     "timezone": "Asia/Kuwait"
   },
+  "KZ": {
+    "timezone": null
+  },
   "LT": {
     "bounding_box": [
       [
@@ -3641,6 +3659,9 @@
     },
     "timezone": "Europe/Skopje"
   },
+  "MN": {
+    "timezone": null
+  },
   "MQ": {
     "bounding_box": [
       [
@@ -3711,6 +3732,30 @@
       "MX-OR",
       "MX-PN"
     ],
+    "timezone": null
+  },
+  "MX-BC": {
+    "timezone": null
+  },
+  "MX-CE": {
+    "timezone": null
+  },
+  "MX-NE": {
+    "timezone": null
+  },
+  "MX-NO": {
+    "timezone": null
+  },
+  "MX-NW": {
+    "timezone": null
+  },
+  "MX-OC": {
+    "timezone": null
+  },
+  "MX-OR": {
+    "timezone": null
+  },
+  "MX-PN": {
     "timezone": null
   },
   "MY-WM": {
@@ -4184,6 +4229,9 @@
         26.885972398000035
       ]
     ]
+  },
+  "PY": {
+    "timezone": null
   },
   "PA": {
     "bounding_box": [
@@ -4882,6 +4930,9 @@
       "production": "SV.fetch_production"
     },
     "timezone": "America/El_Salvador"
+  },
+  "TH": {
+    "timezone": null
   },
   "TR": {
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
@@ -8319,5 +8370,11 @@
       "production": 48
     },
     "timezone": "Europe/Belgrade"
+  },
+  "ZA": {
+    "timezone": null
+  },
+  "ZM": {
+    "timezone": null
   }
 }
