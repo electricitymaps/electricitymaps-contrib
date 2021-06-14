@@ -7651,7 +7651,7 @@
     "capacity": {
       "battery storage": 49.6,
       "biomass": 517.7,
-      "coal": 531.2,
+      "coal": 0,
       "gas": 27098.2,
       "geothermal": 0,
       "hydro": 4690.2,
@@ -7665,7 +7665,8 @@
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "https://github.com/KabelWlan",
+      "https://github.com/brandongalbraith"
     ],
     "flag_file_name": "us.png",
     "parsers": {
