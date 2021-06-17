@@ -42,7 +42,7 @@ class CyprusParser:
         data = []
         table = html.find(id='production_graph_data')
         columns = [th.string for th in table.find_all('th')]
-        midnight_biomass = 0.0
+        biomass_estimate = 0.0
         for tr in table.tbody.find_all('tr'):
             values = [td.string for td in tr.find_all('td')]
             if None in values or '' in values:
@@ -63,17 +63,16 @@ class CyprusParser:
                 elif col == 'Συμβατική Παραγωγή':
                     production['oil'] = float(val)
                 elif col == 'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)':
-                    # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage) and there
-                    # is zero sunlight in the middle of the night (https://www.timeanddate.com/sun/cyprus/nicosia),
-                    # we use the biomass+solar generation reported at 0:00 to determine the portion of biomass+solar
-                    # which constitutes biomass
-                    if len(data) == 0:
-                        midnight_biomass = float(val)
-                        production['biomass'] = midnight_biomass
-                        production['solar'] = 0.0
-                    else:
-                        production['biomass'] = midnight_biomass
-                        production['solar'] = float(val) - midnight_biomass
+                    # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)
+                    # and there is no sunlight between 10pm and 3am (https://www.timeanddate.com/sun/cyprus/nicosia),
+                    # we use the nightly biomass+solar generation reported to determine the portion of biomass+solar
+                    # which constitutes biomass.
+                    value = float(val)
+                    hour = datum['datetime'].hour
+                    if hour < 3 or hour >= 22:
+                        biomass_estimate = value
+                    production['biomass'] = biomass_estimate
+                    production['solar'] = max(value - biomass_estimate, 0.0)
             data.append(datum)
         return data
 

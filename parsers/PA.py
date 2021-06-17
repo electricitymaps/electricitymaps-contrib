@@ -7,8 +7,18 @@ import arrow
 import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
+# Extracting some data using regex
+import re
+import json
 
 import logging
+
+
+def extract_pie_chart_data(html):
+  """Extracts generation breakdown pie chart data from the source code of the page"""
+  dataSource = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)#Extract object with data
+  dataSource = re.sub(r"(name|value|color)", r'"\1"', dataSource) #Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+  return json.loads(dataSource)
 
 
 def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)):
@@ -53,7 +63,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     soup = BeautifulSoup(html_doc, 'html.parser')
 
     #Parse production from pie chart
-    productions = soup.find('table', {'class': 'sitr-pie-layout'}).find_all('span')
+    productions = extract_pie_chart_data(html_doc) #[{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
     map_generation = {
       'Hídrica': 'hydro',
       'Eólica': 'wind',
@@ -79,16 +89,16 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         'storage': {},
         'source': 'https://www.cnd.com.pa/',
     }
-    for prod in productions:
-        prod_data = prod.string.split(' ')
-        production_mean = map_generation[prod_data[0]]
-        production_value = float(prod_data[1])
-        data['production'][production_mean] = production_value
+    for prod in productions: #{name:"Hídrica 1342.54 (80.14%)", ...}
+        prod_data = prod['name'].split(' ') #"Hídrica 1342.54 (80.14%)"
+        production_type = map_generation[prod_data[0]] #Hídrica
+        production_value = float(prod_data[1]) #1342.54
+        data['production'][production_type] = production_value
 
     #Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
     thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
     #Make sure the table header is indeed "Térmicas (MW)" (in case the tables are re-arranged)
-    thermal_production_breakdown_table_header = thermal_production_breakdown.select('thead > tr > td > span')[0].string
+    thermal_production_breakdown_table_header = thermal_production_breakdown.parent.parent.parent.select('> .tile-title')[0].string
     assert ('Térmicas' in thermal_production_breakdown_table_header), (
       "Exception when extracting thermal generation breakdown for {}: table header does not contain "
       "'Térmicas' but is instead named {}".format(zone_key, thermal_production_breakdown_table_header)
@@ -186,7 +196,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     data['production']['unknown'] = round(data['production']['unknown'],13)
 
     # Parse the datetime and return a python datetime object
-    spanish_date = soup.find('div', {'class': 'sitr-update'}).find('span').string
+    spanish_date = soup.find('h3', {'class': 'sitr-update'}).string
     date = arrow.get(spanish_date, 'DD-MMMM-YYYY H:mm:ss', locale="es", tzinfo="America/Panama")
     data['datetime'] = date.datetime
 
