@@ -10,8 +10,10 @@ import arrow
 import requests
 from bs4 import BeautifulSoup
 
-
-DATA_URL = 'https://hpsldc.com/intra-state-power-transaction/'
+# This URL is called from within the
+# https://hpsldc.com/intra-state-power-transaction/
+# page to load the data.
+DATA_URL = 'https://hpsldc.com/wp-admin/admin-ajax.php'
 ZONE_KEY = 'IN-HP'
 TZ = 'Asia/Kolkata'
 
@@ -78,10 +80,9 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
     else:
         raise NotImplementedError(
             'This parser is not yet able to parse past dates')
-    res = r.get(url)
-    assert res.status_code == 200, 'Exception when fetching production for ' \
-                                   '{}: {} error when calling url={}'.format(
-                                       zone_key, res.status_code, url)
+    res = r.post(url, {'action': 'intra_state_power_transaction'})
+    assert res.status_code == 200, f'Exception when fetching production for ' \
+                                   '{zone_key}: {res.status_code} error when calling url={url}'
     soup = BeautifulSoup(res.text, 'html.parser')
     return {
         'zoneKey': ZONE_KEY,
@@ -106,8 +107,9 @@ def get_state_gen(soup, logger: logging.Logger):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[1].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            logger.error('Error importing data from row: {}'.format(
-                row), extra={"key": ZONE_KEY})
+            logger.error(
+                f'Error importing data from row: {row}', extra={"key": ZONE_KEY}
+            )
     return gen
 
 
@@ -119,7 +121,8 @@ def get_isgs_gen(soup, logger: logging.Logger):
     """
     table_name = '(B1)ISGS(HPSLDC WEB PORTAL)'
     gen = {GenType.HYDRO.value: 0.0, GenType.UNKNOWN.value: 0.0}
-    # Read all rows except the first (headers) and last two (OTHERISGS and Total).
+    # Read all rows except the first (headers) and last two (OTHERISGS and
+    # Total).
     for row in get_table_rows(soup, 'table_4', table_name)[1:-2]:
         try:
             cols = row.find_all('td')
@@ -132,8 +135,9 @@ def get_isgs_gen(soup, logger: logging.Logger):
             gen_type = PLANT_NAMES_TO_TYPES[cols[0].text]
             gen[gen_type.value] += float(cols[2].text)
         except (AttributeError, KeyError, IndexError, ValueError):
-            logger.error('Error importing data from row: {}'.format(
-                row), extra={"key": ZONE_KEY})
+            logger.error(
+                f'Error importing data from row: {row}', extra={"key": ZONE_KEY}
+            )
     return gen
 
 
@@ -145,14 +149,16 @@ def get_table_rows(soup, container_class, table_name):
         if len(rows) == 0:
             raise ValueError
         return rows
-    except (AttributeError, ValueError):
-        raise Exception('Error reading table {}'.format(table_name))
+    except (AttributeError, ValueError) as err:
+        raise Exception(f'Error reading table {table_name}: {err}')
 
 
 def combine_gen(gen1, gen2):
     """
     Combines two dictionaries of generation data.
-    Currently only does Hydro and Unknown as there are no other types in the data source.
+
+    Currently only does Hydro and Unknown as there are no other types in the
+    data source.
     """
     return {
         GenType.HYDRO.value: round(gen1[GenType.HYDRO.value] + gen2[GenType.HYDRO.value], 2),
@@ -164,7 +170,8 @@ def combine_gen(gen1, gen2):
 def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None,
                       logger=logging.getLogger(__name__)):
     # Not currently implemented as this function is not used by the map,
-    # but if required the data is available as 'Demand Met' on https://hpsldc.com/
+    # but if required the data is available as 'Demand Met' on
+    # https://hpsldc.com/
     raise NotImplementedError('Fetch production not implemented')
 
 
