@@ -418,7 +418,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
                 0 > point['value'] >= negative_threshold:
                 point['value'] = 0
 
-            if type == 'hydro' and point['value'] < 0:
+            if type == 'hydro' and point['value'] and point['value'] < 0:
                 point.update({
                     'production': {},# required by merge_production_outputs()
                     'storage': {type: point.pop('value')},
