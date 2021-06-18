@@ -12,7 +12,7 @@ from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
 
-def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None, logger=None):
+def fetch_exchange(zone_key1='ES', zone_key2='MA', session=None, token=None, logger=None) -> list:
 
     # Get ESIOS token
     token = token or get_token('ESIOS_TOKEN')

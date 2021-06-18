@@ -187,7 +187,7 @@ def read(location, source):
 
 # TODO: this function actually fetches consumption data
 def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> dict:
 
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -215,17 +215,17 @@ def fetch_production(zone_key='IN-MH', session=None, target_datetime = None,
     image = Image.fromarray(image)  # create PIL image
 
     imgs    = [ read(loc['value'],image) for loc in locations.values() ] 
-        
+
     # string together all image sections and recognize resulting line
     imgs_line = np.hstack( list(np.asarray(i) for i in imgs[:]) )  
     imgs_line = Image.fromarray( imgs_line)
     text = pytesseract.image_to_string(imgs_line, lang='digits_comma', config='--psm 7')
     text = text.split(' ')
-    
+
     # generate dict from string list
     values = {}
     for count,key in enumerate(locations):
-        values[key]=max( [float(text[count]),0] )
+        values[key]=max( [float(text[count]),0])
 
     # fraction of central state production that is exchanged with Maharashtra
     share = values['CS EXCH'] / values['CS GEN. TTL.']

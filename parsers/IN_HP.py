@@ -19,10 +19,9 @@ TZ = 'Asia/Kolkata'
 
 
 class GenType(Enum):
-    """Enum for plant generation types found in the data.
-
-    Enum values are the keys for the production dictionary returned
-    from fetch_production().
+    """
+    Enum for plant generation types found in the data.
+    Enum values are the keys for the production dictionary returned from fetch_production().
     """
     HYDRO = 'hydro'
     UNKNOWN = 'unknown'
@@ -73,7 +72,7 @@ PLANT_NAMES_TO_TYPES = {
 
 def fetch_production(zone_key=ZONE_KEY, session=None,
                      target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
     r = session or requests.session()
     if target_datetime is None:
@@ -96,8 +95,7 @@ def fetch_production(zone_key=ZONE_KEY, session=None,
 def get_state_gen(soup, logger: logging.Logger):
     """
     Gets the total generation by type from state powerplants (MW).
-
-    Data is from the table titled GENERATION OF HP(Z)
+    Data is from the table titled GENERATION OF HP(Z).
     """
     table_name = 'GENERATION OF HP(Z)'
     gen = {GenType.HYDRO.value: 0.0, GenType.UNKNOWN.value: 0.0}
@@ -118,9 +116,8 @@ def get_state_gen(soup, logger: logging.Logger):
 def get_isgs_gen(soup, logger: logging.Logger):
     """
     Gets the total generation by type from ISGS powerplants (MW).
-
     ISGS means Inter-State Generating Station: one owned by multiple states.
-    Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL)
+    Data is from the table titled (B1)ISGS(HPSLDC WEB PORTAL).
     """
     table_name = '(B1)ISGS(HPSLDC WEB PORTAL)'
     gen = {GenType.HYDRO.value: 0.0, GenType.UNKNOWN.value: 0.0}

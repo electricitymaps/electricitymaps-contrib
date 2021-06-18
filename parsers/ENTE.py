@@ -2,6 +2,7 @@
 
 import arrow
 import requests
+from __future__ import annotations
 
 
 # This parser gets all real time interconnection flows from the
@@ -20,13 +21,14 @@ JSON_MAPPING = {"GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
                 "CR->NI": "5SISTEMA.LT230.INTER_NET_CR.CMW.MW",
                 "CR->PA": "6SISTEMA.LT230.INTER_NET_PAN.CMW.MW"}
 
-def fetch_production(zone_key='HN', session=None, target_datetime=None, logger=None):
-    # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
-    
+def fetch_production(zone_key='HN', session=None, target_datetime=None, logger=None) -> dict:
+
     r = session or requests.session()
     response = r.get(DATA_URL).json()
+
+    # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
     production = round(response[56]['value'], 1)
-     
+
     dt = arrow.now('UTC-6').floor('minute')
 
     data = {
@@ -40,11 +42,8 @@ def fetch_production(zone_key='HN', session=None, target_datetime=None, logger=N
 
     return data
 
-def extract_exchange(raw_data, exchange):
-    """
-    Extracts flow value and direction for a given exchange.
-    Returns a float or None.
-    """
+def extract_exchange(raw_data, exchange) -> float | None:
+    """Extracts flow value and direction for a given exchange."""
     search_value = JSON_MAPPING[exchange]
 
     interconnection = None
@@ -62,18 +61,8 @@ def extract_exchange(raw_data, exchange):
     return interconnection
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """
-    Gets an exchange pair from the SIEPAC system.
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'CR->PA',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
+    """Gets an exchange pair from the SIEPAC system."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -88,10 +77,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     flow = round(extract_exchange(raw_data, sorted_zones), 1)
     dt = arrow.now('UTC-6').floor('minute')
 
-    exchange = {'sortedZoneKeys': sorted_zones,
-                'datetime': dt.datetime,
-                'netFlow': flow,
-                'source': 'enteoperador.org'}
+    exchange = {
+        'sortedZoneKeys': sorted_zones,
+        'datetime': dt.datetime,
+        'netFlow': flow,
+        'source': 'enteoperador.org'
+        }
 
     return exchange
 

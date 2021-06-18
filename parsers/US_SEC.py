@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-"""Parser for the Seminole Electric Cooperative in Florida, USA.
+"""
+Parser for the Seminole Electric Cooperative in Florida, USA.
 
 Combines hourly gas and coal production data from EIA with hourly solar generation from http://apps.seminole.coop/db/cs/ . Both generally lag a day or so behind, and sometimes as much as 10d behind.
 
@@ -23,6 +24,7 @@ def fetch_production(zone_key='US-SEC', session=None, target_datetime=None,
     unknown = fetch_unknown(zone_key=zone_key, session=session,
                             target_datetime=target_datetime, logger=logger)
     solar = fetch_solar(session=session, logger=logger)
+
     return merge_production_outputs((unknown, solar), zone_key,
                                     merge_source='eia.org, apps.seminole.coop')
 
@@ -40,7 +42,7 @@ def fetch_unknown(zone_key='US-SEC', session=None, target_datetime=None,
     return data
 
 
-def fetch_solar(session=None, logger=logging.getLogger(__name__)):
+def fetch_solar(session=None, logger=logging.getLogger(__name__)) -> list:
     url = 'http://apps.seminole.coop/db/cs/render.ashx?ItemPath=/Applications/Solar+Dashboard/Cooperative+Solar+-+Data&Format=EXCEL&rptHDInterval=Week&rptHDOffset=0'
     df = pd.read_excel(url, sheet_name='Hourly', skiprows=[0])
 
@@ -53,12 +55,8 @@ def fetch_solar(session=None, logger=logging.getLogger(__name__)):
     } for _, row in df.iterrows()]
 
 
-def main():
+if __name__ == '__main__':
     """Main method, not used by the ElectricityMap backend, just for testing."""
     import pprint
     print('fetch_production() ->')
     print(pprint.pprint(fetch_production()))
-
-
-if __name__ == '__main__':
-    main()

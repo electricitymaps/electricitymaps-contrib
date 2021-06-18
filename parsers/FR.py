@@ -32,14 +32,14 @@ MAP_HYDRO = [
     'pompage'
 ]
 
-def is_not_nan_and_truthy(v):
+def is_not_nan_and_truthy(v) -> bool:
     if isinstance(v, float) and math.isnan(v):
         return False
     return bool(v)
 
 
 def fetch_production(zone_key='FR', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         to = arrow.get(target_datetime, 'Europe/Paris')
     else:
@@ -136,7 +136,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 
 
 def fetch_price(zone_key, session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)):
+                logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         now = arrow.get(target_datetime, tz='Europe/Paris')
     else:

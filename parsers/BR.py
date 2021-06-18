@@ -64,11 +64,8 @@ def get_data(session, logger):
     return json_data
 
 
-def production_processor(json_data, zone_key):
-    """
-    Extracts data timestamp and sums regional data into totals by key.
-    Maps keys to type and returns a tuple.
-    """
+def production_processor(json_data, zone_key) -> tuple:
+    """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = arrow.get(json_data['Data'])
     totals = defaultdict(lambda: 0.0)
@@ -91,35 +88,8 @@ def production_processor(json_data, zone_key):
     return dt, mapped_totals
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key, session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -142,22 +112,8 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     return datapoint
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -179,23 +135,8 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     return data
 
 
-def fetch_region_exchange(region1, region2, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known power exchange (in MW) between two Brazilian regions.
-    Arguments:
-    region1           -- the first region
-    region2           -- the second region; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_region_exchange(region1, region2, session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two Brazilian regions."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

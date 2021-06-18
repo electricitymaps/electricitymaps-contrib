@@ -12,36 +12,8 @@ FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key: used in case a parser is able to fetch multiple countries
-    session: request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+                     logger: logging.Logger = logging.getLogger(__name__)) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         return fetch_historical_production(target_datetime, zone_key)
 
@@ -161,7 +133,7 @@ def fetch_historical_data(target_datetime, zone_key='US-CA'):
     return daily_data, import_data
 
 
-def fetch_MX_exchange(s):
+def fetch_MX_exchange(s) -> float:
     req = s.get(MX_EXCHANGE_URL)
     soup = BeautifulSoup(req.text, 'html.parser')
     exchange_div = soup.find("div", attrs={'id': 'IntercambioUSA-BCA'})
@@ -179,23 +151,8 @@ def fetch_MX_exchange(s):
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-    Arguments:
-    zone_key1: the first country code
-    zone_key2: the second country code; order of the two codes in params
-      doesn't matter
-    session: request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+                   logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     s = session or requests.Session()
