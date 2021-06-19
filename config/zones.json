@@ -1464,7 +1464,7 @@
     ],
     "capacity": {
       "battery storage": 280,
-      "biomass": 8550,
+      "biomass": 8560,
       "coal": 43950,
       "gas": 30500,
       "geothermal": 47,
@@ -1472,14 +1472,15 @@
       "hydro storage": 9810,
       "nuclear": 8114,
       "oil": 4380,
-      "solar": 54520,
+      "solar": 56040,
       "unknown": 3700,
-      "wind": 62590
+      "wind": 63170
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/bohne13",
-      "https://github.com/chiefymuc"
+      "https://github.com/chiefymuc",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
