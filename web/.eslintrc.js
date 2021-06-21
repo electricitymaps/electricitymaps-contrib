@@ -1,4 +1,6 @@
 /* eslint-env node */
+const prettierConfig = require('./.prettierrc.js');
+
 module.exports = {
   parser: 'babel-eslint',
   extends: [
@@ -7,18 +9,20 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
+    'prettier',
+    'prettier/react',
   ],
-  plugins: ['jest', 'react-hooks'],
-  "globals": {
-    "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
-    "VERSION": "readonly",
-    "locale": "readonly",
-    "codePush": "readonly",
-    "device": "readonly",
-    "cordova": "readonly",
-    "resolvePath": "readonly",
-    "universalLinks": "readonly",
-    "InstallMode": "readonly",
+  plugins: ['jest', 'react-hooks', 'prettier'],
+  globals: {
+    ELECTRICITYMAP_PUBLIC_TOKEN: 'readonly',
+    VERSION: 'readonly',
+    locale: 'readonly',
+    codePush: 'readonly',
+    device: 'readonly',
+    cordova: 'readonly',
+    resolvePath: 'readonly',
+    universalLinks: 'readonly',
+    InstallMode: 'readonly',
   },
   env: {
     es6: true,
@@ -57,6 +61,8 @@ module.exports = {
     },
   ],
   rules: {
+    'prettier/prettier': ['error', prettierConfig],
+
     'prefer-destructuring': [
       'error',
       {
@@ -76,7 +82,7 @@ module.exports = {
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
-    'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
 
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
@@ -92,9 +98,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
 
     // Rules we want to enable one day
-    'curly': 'off',
+    curly: 'off',
     'no-nested-ternary': 'off',
-    'max-len': ['off', {'code': 120}],
     'no-underscore-dangle': 'off',
     'react/jsx-one-expression-per-line': 'off',
 
