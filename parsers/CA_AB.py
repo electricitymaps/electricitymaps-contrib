@@ -48,18 +48,26 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
         'datetime': dt,
         'zoneKey': zone_key,
         'production': {
-            'coal': float(total_net_generation['COAL']),
             'gas': float(total_net_generation['GAS']),
             'hydro': float(total_net_generation['HYDRO']),
+            'solar': float(total_net_generation['SOLAR']),
             'wind': float(total_net_generation['WIND']),
-            'unknown': float(total_net_generation['OTHER'])
+            'biomass': float(total_net_generation['OTHER']),
+            'unknown': float(total_net_generation['DUAL FUEL']),
+            'coal': float(total_net_generation['COAL'])
+        },
+         'storage': {
+             'battery storage': float(total_net_generation['ENERGY STORAGE'])
         },
         'capacity': {
-            'coal': float(maximum_capability['COAL']),
             'gas': float(maximum_capability['GAS']),
             'hydro': float(maximum_capability['HYDRO']),
+            'battery storage': float(maximum_capability['ENERGY STORAGE']),
+            'solar': float(maximum_capability['SOLAR']),
             'wind': float(maximum_capability['WIND']),
-            'unknown': float(maximum_capability['OTHER'])
+            'biomass': float(maximum_capability['OTHER']),
+            'unknown': float(maximum_capability['DUAL FUEL']),
+            'coal': float(maximum_capability['COAL'])
         },
         'source': 'ets.aeso.ca',
     }
