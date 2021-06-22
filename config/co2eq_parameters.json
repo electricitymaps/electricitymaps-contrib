@@ -185,8 +185,8 @@
         }
         ,
         "battery discharge": {
-          "source": "https://www.aeso.ca/aeso/electricity-in-alberta/",
-          "value": 585
+          "source": "https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-alberta.html",
+          "value": 597
         }
       },
       "CA-NS": {
