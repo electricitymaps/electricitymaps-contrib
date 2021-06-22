@@ -179,9 +179,14 @@
         }
       },
       "CA-AB": {
-        "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 597.2654373454017
+        "unknown": {
+          "_comment": "dual fuel power plants: assumption of 50% coal and 50% natural gas",
+          "value": 655
+        }
+        ,
+        "battery discharge": {
+          "source": "https://www.aeso.ca/aeso/electricity-in-alberta/",
+          "value": 585
         }
       },
       "CA-NS": {
