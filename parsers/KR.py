@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import Union
 import arrow
 import re
 import requests
@@ -59,7 +60,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     return unified_timestamp
 
 
-def check_hydro_capacity(plant_name, value, logger) -> bool | ValueError:
+def check_hydro_capacity(plant_name, value, logger) -> Union[bool, ValueError]:
     """Makes sure that generation for each hydro plant isn't above listed capacity."""
     try:
         max_value = HYDRO_CAPACITIES[plant_name]

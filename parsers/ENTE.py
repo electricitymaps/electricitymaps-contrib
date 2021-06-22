@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
+from __future__ import annotations
 import arrow
 import requests
-from __future__ import annotations
 
 
 # This parser gets all real time interconnection flows from the
