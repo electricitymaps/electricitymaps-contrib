@@ -616,8 +616,8 @@ parsers = ["arrow", "beautifulsoup4", "demjson", "eiapy", "html5lib", "imageio",
 
 [metadata]
 lock-version = "1.1"
-python-versions = '>= 3.6, < 3.8'
-content-hash = "f06887dbff2273c90b93d2e6b1b0a64ac89702a3f1efa0baea7c7d1174a38ca2"
+python-versions = '>= 3.7, < 4.0'
+content-hash = "1d86940f1850ba5e976299fee1f7ba5f5668a045c48074e50318b4f28ab1ca1d"
 
 [metadata.files]
 arrow = [
