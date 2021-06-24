@@ -5,17 +5,23 @@ import subprocess
 import sys
 
 
-def _run(cmd):
-    assert isinstance(cmd, str)
-    r = subprocess.run(cmd + " ".join(sys.argv[1:]), shell=True).returncode
+def _run(cmd: str):
+    cmd_with_args = f"{cmd} {' '.join(sys.argv[1:])}"
+    print(f"⚙︎ {cmd_with_args}")
+    r = subprocess.run(cmd_with_args, shell=True).returncode
     if r != 0:
+        print(f"FAILED: {cmd}")
         sys.exit(r)
 
 
 def lint():
-    _run("flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics")
+    _run(
+        "flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics"
+    )
     for path in ["tests", "electricitymap", "*.py"]:
-        _run(f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence")
+        _run(
+            f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence"
+        )
 
 
 def test():
