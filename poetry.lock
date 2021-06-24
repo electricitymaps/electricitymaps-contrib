@@ -408,20 +408,20 @@ requests = "*"
 
 [[package]]
 name = "requests"
-version = "2.20.1"
+version = "2.25.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
-chardet = ">=3.0.2,<3.1.0"
-idna = ">=2.5,<2.8"
-urllib3 = ">=1.21.1,<1.25"
+chardet = ">=3.0.2,<5"
+idna = ">=2.5,<3"
+urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
-security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)"]
+security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
@@ -621,7 +621,7 @@ parsers = ["arrow", "beautifulsoup4", "demjson", "eiapy", "html5lib", "imageio",
 [metadata]
 lock-version = "1.1"
 python-versions = '>= 3.7, < 4.0'
-content-hash = "bec79f09ce4bfca53a4e97ca0dee7f28bbcf7b390475499d3ba60b8c55c761fc"
+content-hash = "5138db9b0748436ae5f3504f184bf63556c55f2c1c5836039d22de5f19bbaa41"
 
 [metadata.files]
 arrow = [
@@ -949,8 +949,8 @@ ree = [
     {file = "ree-2.2.1.tar.gz", hash = "sha256:4cf77ad4a5b168e281a3ebde181581a7d88c455f4dc22597c7fb33e3453b3fc8"},
 ]
 requests = [
-    {file = "requests-2.20.1-py2.py3-none-any.whl", hash = "sha256:65b3a120e4329e33c9889db89c80976c5272f56ea92d3e74da8a463992e3ff54"},
-    {file = "requests-2.20.1.tar.gz", hash = "sha256:ea881206e59f41dbd0bd445437d792e43906703fff75ca8ff43ccdb11f33f263"},
+    {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
+    {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
 ]
 requests-mock = [
     {file = "requests-mock-1.3.0.tar.gz", hash = "sha256:bd86970d6c52cc97071f5185aa594de6a997a5ca63b3bb36aceb9bb9db49294b"},
