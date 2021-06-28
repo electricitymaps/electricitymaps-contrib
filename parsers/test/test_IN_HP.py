@@ -16,7 +16,7 @@ class Test_IN_HP(unittest.TestCase):
         self.session.mount('https://', self.adapter)
         response_text = resource_string("parsers.test.mocks", "IN_HP.html")
         self.adapter.register_uri(
-            "GET", IN_HP.DATA_URL, text=str(response_text))
+            "POST", IN_HP.DATA_URL, text=str(response_text))
 
     def test_fetch_production(self):
         try:
@@ -26,7 +26,7 @@ class Test_IN_HP(unittest.TestCase):
                 self.assertEqual(data['source'], 'hpsldc.com')
                 self.assertIsNotNone(data['datetime'])
                 self.assertEqual(data['production'], {
-                    'hydro': 360.42, 'unknown': 115.4})
+                    'hydro': 4238.05, 'unknown': 323.44})
                 # Check rows that failed to parse in each table were logged correctly.
                 logs = log.actual()
                 self.assertEqual(len(logs), 2)

@@ -97,39 +97,8 @@ def _parse_ieso_hour(output, target_dt):
 
 
 def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of a given region
-
-    Arguments:
-    zone_key (optional): ignored here, only information for CA-ON is returned
-    session (optional): request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'CA-ON',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+                     logger=logging.getLogger(__name__)) -> list:
+    """Requests the last known production mix (in MW) of a given region."""
 
     dt, xml = _fetch_ieso_xml(target_datetime, session, logger, PRODUCTION_URL)
 
@@ -191,26 +160,8 @@ def fetch_production(zone_key='CA-ON', session=None, target_datetime=None,
 
 
 def fetch_price(zone_key='CA-ON', session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)):
-    """Requests the last known power price per MWh of a given region
-
-    Arguments:
-    zone_key: ignored here, only information for CA-ON is returned
-    session: requests session passed in order to re-use an existing session,
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+                logger=logging.getLogger(__name__)) -> dict:
+    """Requests the last known power price per MWh of a given region."""
 
     # "HOEP" below is "Hourly Ontario Energy Price".
     # There also exists a 5-minute price, but its archives only go back roughly 4 days
@@ -241,26 +192,8 @@ def fetch_price(zone_key='CA-ON', session=None, target_datetime=None,
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=logging.getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1: the first region code
-    zone_key2: the second region code; order of the two codes in params doesn't matter
-    session: requests session passed in order to re-use an existing session,
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    [{
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }]
-    """
+                   logger=logging.getLogger(__name__)) -> list:
+    """Requests the last known power exchange (in MW) between two regions."""
 
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 

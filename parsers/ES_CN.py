@@ -66,10 +66,10 @@ def fetch_island_data(zone_key, session):
         raise ParserException(zone_key, 'Can\'t read this country code {0}'.format(zone_key))
 
 
-def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logger=None) -> list:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses)
     data = []
@@ -87,10 +87,10 @@ def fetch_consumption(zone_key='ES-CN', session=None, target_datetime=None, logg
 
 
 def fetch_production(zone_key, session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses)
     data = []

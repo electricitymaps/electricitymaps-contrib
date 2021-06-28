@@ -7,7 +7,7 @@ from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Karnataka consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -29,7 +29,7 @@ def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Karnataka  production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -120,9 +120,9 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
 
     # cogen type is sugarcane bagasee. Proof in Issue #1867
     cogen_value = IN.read_value_from_span_id(ncep_html, 'lbl_tc')
-    
+
     biomass_value = IN.read_value_from_span_id(ncep_html, 'lbl_tb')
-    
+
     #cogen_value is generated from sugarcane bagasse
     biomass_value += cogen_value
 

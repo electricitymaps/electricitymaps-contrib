@@ -83,7 +83,7 @@ def dataset_to_df(dataset):
     return df
 
 
-def generate_url(zone_key, is_flow, target_datetime, logger):
+def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
         # We will fetch since the beginning of the current month
@@ -96,6 +96,7 @@ def generate_url(zone_key, is_flow, target_datetime, logger):
     else:
         # Contains flows and production combined
         url = f'https://data.opennem.org.au/v3/clients/em/latest.json'
+
     return url
 
 
@@ -123,6 +124,13 @@ def fetch_main_df(data_type, zone_key=None, sorted_zone_keys=None, session=None,
     ]
     logger.debug('Concatenating datasets..')
     df = pd.concat([dataset_to_df(ds) for ds in filtered_datasets], axis=1)
+
+    # Sometimes we get twice the columns. In that case, only return the first one
+    is_duplicated_column = df.columns.duplicated(keep='last')
+    if is_duplicated_column.sum():
+        logger.warning(f'Dropping columns {df.columns[is_duplicated_column]} that appear more than once')
+        df = df.loc[:, is_duplicated_column]
+
     logger.debug('Preparing capacities..')
     if data_type == 'power' and zone_key:
         # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
@@ -214,7 +222,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
     return objs
 
 
-def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     df = fetch_main_df('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
     return [{
@@ -226,7 +234,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
     } for dt, row in df.iterrows()]
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)
     df = fetch_main_df('power', sorted_zone_keys=sorted_zone_keys, session=session, target_datetime=target_datetime, logger=logger)

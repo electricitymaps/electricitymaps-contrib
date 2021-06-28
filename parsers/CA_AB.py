@@ -21,36 +21,8 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -93,23 +65,8 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
     }
 
 
-def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
-    """Requests the last known power price of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -137,22 +94,8 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -179,7 +122,7 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
     }
 
 
-def isfloat(value):
+def isfloat(value) -> bool:
     try:
       float(value)
       return True

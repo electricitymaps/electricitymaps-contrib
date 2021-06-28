@@ -105,7 +105,7 @@ def fetch_exchange(zone_key1='IN-UP', zone_key2='IN-UT', session=None,
 
 
 def fetch_production(zone_key='IN-UT', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> dict:
     soup = web.get_response_soup(zone_key, ENDPOINT)
     datetime = get_datetime(soup, zone_key, logger)
     production = get_production_values(soup, zone_key, logger)

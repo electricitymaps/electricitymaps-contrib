@@ -8,13 +8,8 @@ import requests
 timezone = 'America/Whitehorse'
 
 
-def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given region
-
-    Arguments:
-    zone_key       -- ignored here, only information for CA-YT is returned
-    session (optional) -- request session passed in order to re-use an existing session
-    """
+def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known production mix (in MW) of a given region."""
 
     """
     We are using Yukon Energy's data from
@@ -43,8 +38,8 @@ def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logge
 
     Per https://en.wikipedia.org/wiki/List_of_generating_stations_in_Yukon
     Yukon Energy operates about 98% of Yukon's hydro capacity, the only exception is
-    the small 1.3 MW Fish Lake dam operated by ATCO/Yukon Electrical. That's small enough
-    to not matter, I think.
+    the small 1.3 MW Fish Lake dam operated by ATCO/Yukon Electrical.
+    That's small enough to not matter, I think.
 
     There is also a small 0.81 MW wind farm, its current generation is not available.
     """

@@ -1,20 +1,25 @@
 # Locales
 
 ## Creating a new locale
-Use [this](https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements) list to find your ISO 3166-1 Alpha-2 code.  
-The code has to be lower case (You have to convert it).
-  
-Then create a file named YOUR_LOCALE.json in this directory with this content: "{}" (without the Double Quotation Marks).  
-  
+
+We use a combination of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language codes and [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) country codes for our locale codes. The language code comes first, optionally followed by a country code if there are multiple locales for a language, separated by a hyphen (-). For example, Brazilian Portuguese is denoted by `pt-br`.
+
+Create a file named YOUR_LOCALE.json in this directory with this content: "{}" (without the Double Quotation Marks). You will also need to update the files [web/locales-config.json](../locales-config.json) and [mobileapp/www/index.html](../../mobileapp/www/index.html).
+
 Then start using the tool as described below.
 
 ## Translating strings missing in your locale
-We wrote a little tool for this task:  
+
+We wrote a little tool for this task:
+
 ```bash
 node translation-helper.js
 ```
-You will be asked to select a language to translate.  
+
+You will be asked to select a language to translate.
+
 Running the tool looks like this:
+
 ```
 Languages you can translate: ar, da, de, es, fr, hr, it, ja, nl, pl, pt-br, ru, sv, zh-cn, zh-hk, zh-tw
 Which language do you want to translate: de

@@ -166,7 +166,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 - Albania: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
-- Argentina: [Cammesa](https://www.cammesa.com/linfomen.nsf/MINFOMEN?OpenFrameSet)
+- Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
 - Armenia
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Nuclear, Gas: [wikipedia.org](https://en.wikipedia.org/wiki/List_of_power_stations_in_Armenia)
@@ -187,7 +187,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bolivia: [CNDC](http://www.cndc.bo/agentes/generacion.php)
 - Bosnia and Herzegovina: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Brazil: [ONS](http://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/capacidade_instalada.aspx)
-- Bulgaria: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Bulgaria:
+  - Hydro: [NEK](https://nek.bg/index.php/en/our-business/electricity-generation)
+  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
@@ -223,6 +225,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
 - Finland
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Nuclear: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
   - Geothermal, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -294,16 +297,13 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
 - Nigeria: [SO Grid](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway
-  - Hydro: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vannkraft/vannkraftdatabase/)
-  - Wind: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/vindkraft/vindkraftdata/)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1369599054116757505)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1402177689285505026)
   - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Wind: [URE](https://twitter.com/pse_pl/status/1303252305832271873)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -311,6 +311,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Puerto Rico:[EIA](https://www.eia.gov/electricity/data/eia860M/)
 - Qatar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Romania:
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)
@@ -337,7 +338,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sweden
   - Biomass, Geothermal: [IRENA](https://www.irena.org/IRENADocuments/Statistical_Profiles/Europe/Sweden_Europe_RE_SP.pdf)
-  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/wp-content/uploads/2020/02/Statistics-and-forecast-Svensk-Vindenergi-feb-2020-FINAL.pdf)
+  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/statistik/2017-3)
   - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
   - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
@@ -346,21 +347,19 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey:
-  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [TEİAŞ](https://www.teias.gov.tr/)
+- Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
-             [EIA](https://www.eia.gov/electricity/data/eia860M/)
+  - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
-  - NYISO: [NYISO Gold Book](https://home.nyiso.com/wp-content/uploads/2017/12/2017_Gold-Book.pdf)
+  - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
@@ -390,6 +389,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Germany ⇄ Norway: ["NordLink": 1400MW](https://en.wikipedia.org/wiki/NORD.LINK)
 - Great Britain ⇄ Belgium: ["Nemo Link": 1000 MW](https://en.wikipedia.org/wiki/Nemo_Link)
 - Great Britain ⇄ North Ireland: ["Moyle": 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
+- Great Britain ⇄ Norway: ["North Sea Link": 1400MW](https://en.wikipedia.org/wiki/North_Sea_Link)
 - Great Britain ⇄ Ireland: ["East-West Interconnector": 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/HVDC_Cross-Channel) & ["IFA2": 1000 MW](https://en.wikipedia.org/wiki/IFA-2)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)

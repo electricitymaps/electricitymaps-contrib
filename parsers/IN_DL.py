@@ -14,11 +14,11 @@ plants = {
     "TOWMP-Okhla": "G2E"
 }
 
-def fetch_consumption(zone_key='IN-DL', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-DL', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Delhi consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
-    
+
     zonekey.assert_zone_key(zone_key, 'IN-DL')
     html = web.get_response_soup(zone_key, 'http://www.delhisldc.org/Redirect.aspx', session)
 
@@ -36,7 +36,7 @@ def fetch_consumption(zone_key='IN-DL', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_production(zone_key='IN-DL', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-DL', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Delhi production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
