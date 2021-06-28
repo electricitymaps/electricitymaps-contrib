@@ -2518,11 +2518,16 @@
     ],
     "capacity": {
       "coal": 4840,
-      "gas": 9213,
-      "hydro": 6,
-      "solar": 3300,
-      "wind": 42,
-      "unknown": 1899
+      "gas": 12776,
+      "solar": 1962,
+      "wind": 28,
+      "hydro": 6.72,
+      "hydro storage": 150.0,
+      "biomass" : 27,
+      "nuclear": 0,
+      "oil": 44,
+      "geothermal": 0,
+      "unknown": 175
     },
     "contributors": [
       "https://github.com/alixunderplatz",
