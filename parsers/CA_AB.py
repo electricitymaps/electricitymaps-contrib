@@ -56,8 +56,8 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
             'unknown': float(total_net_generation['DUAL FUEL']),
             'coal': float(total_net_generation['COAL'])
         },
-         'storage': {
-             'battery storage': float(total_net_generation['ENERGY STORAGE'])
+        'storage': {
+            'battery': float(total_net_generation['ENERGY STORAGE'])
         },
         'capacity': {
             'gas': float(maximum_capability['GAS']),
