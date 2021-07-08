@@ -15,7 +15,7 @@ import requests
 # The data is in MWh but since it is updated hourly we can view it as MW.
 # Solar generation now has some data available but multiple projects are planned/under construction.
 
-url = 'http://190.122.102.21:8084/reportesgraficos/reportepostdespacho.aspx'
+url = 'https://apps.oc.org.do/reportesgraficos/reportepostdespacho.aspx'
 
 total_mapping = {
                 u'Total T\xe9rmico': 'Thermal',
