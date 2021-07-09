@@ -76,8 +76,8 @@ class Zone(StrictBaseModel):
     delays: Optional[Delays]
     disclaimer: Optional[str]
     flag_file_name: Optional[str]
-    parsers: Optional[Parsers]
-    subZoneNames: Optional[List[str]]
+    parsers: Parsers = Parsers()
+    sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
     timezone: Optional[str]
 
     class Config:
