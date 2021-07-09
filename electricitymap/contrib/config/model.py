@@ -4,10 +4,15 @@ from typing import Callable, Dict, List, NewType, Tuple, Optional
 from pydantic import BaseModel, Field, NonNegativeInt, PositiveInt
 from pydantic.utils import import_string
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
+from electricitymap.contrib.config import (
+    EXCHANGES_CONFIG,
+    ZONES_CONFIG,
+    ZONE_NEIGHBOURS,
+    ZoneKey,
+    Point,
+)
 
-# we could cast this to a NamedTuple with x/y accessors
-Point = NewType("Point", Tuple[float, float])
+# NOTE: we could cast Point to a NamedTuple with x/y accessors
 
 
 class StrictBaseModel(BaseModel):
