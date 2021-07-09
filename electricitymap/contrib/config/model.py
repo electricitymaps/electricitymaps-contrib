@@ -79,6 +79,10 @@ class Zone(StrictBaseModel):
     parsers: Parsers = Parsers()
     sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
     timezone: Optional[str]
+    key: ZoneKey  # This is not part of zones.json, but added here to enable self referencing
+
+    def neighbors(self) -> List[ZoneKey]:
+        return ZONE_NEIGHBOURS.get(self.key, [])
 
     class Config:
         # To allow for both comment and _comment.
@@ -110,5 +114,11 @@ class ConfigModel(StrictBaseModel):
     # TODO: maybe extend with config/co2eq_parameters.json
 
 
-def load_model() -> ConfigModel:
+def _load_config_model() -> ConfigModel:
+    for zone_key, zone in ZONES_CONFIG.items():
+        zone["key"] = zone_key
+
     return ConfigModel(exchanges=EXCHANGES_CONFIG, zones=ZONES_CONFIG)
+
+
+CONFIG_MODEL = _load_config_model()
