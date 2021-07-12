@@ -2848,17 +2848,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 1963,
-      "coal": 19213,
-      "gas": 549,
-      "hydro": 3410,
-      "nuclear": 289,
+      "biomass": 2117,
+      "coal": 23729,
+      "gas": 1493.14,
+      "hydro": 550.7,
+      "nuclear": 440,
       "oil": 0,
-      "solar": 1095,
+      "solar": 1840.28,
       "wind": 0
     },
     "contributors": [
-      "https://github.com/sahitya-pavurala"
+      "https://github.com/sahitya-pavurala",
+      "https://github.com/pierresegonne"
     ],
     "flag_file_name": "in.png",
     "parsers": {
