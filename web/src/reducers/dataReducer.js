@@ -202,7 +202,7 @@ module.exports = (state = initialDataState, action) => {
 
     case 'SOLAR_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingSolar: false, solar: null, solarDataError: "solar error" };
+      return { ...state, isLoadingSolar: false, solar: null, solarDataError: translation.translate('solarDataError') };
     }
 
     case 'WIND_DATA_FETCH_REQUESTED': {
@@ -215,7 +215,7 @@ module.exports = (state = initialDataState, action) => {
 
     case 'WIND_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingWind: false, wind: null, windDataError: "wind error" };
+      return { ...state, isLoadingWind: false, wind: null, windDataError: translation.translate('windDataError') };
     }
 
     default:
