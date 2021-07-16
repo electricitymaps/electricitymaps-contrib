@@ -22,10 +22,9 @@ export const StyledInput = styled.input`
 
 // TODO: Test performance
 export const TimeSliderInput = ({
-  onChange, value, nightTimeSets, min, max,
+  onChange, value, nightTimeSets, isValueAtNight, min, max,
 }) => {
-  const isValueInNight = true; // TODO: Make this dynamic
-  const timeClass = isValueInNight ? 'night' : 'day';
+  const timeClass = isValueAtNight ? 'night' : 'day';
   return (
     <StyledInput
       type="range"

@@ -73,6 +73,7 @@ const TimeSlider = ({
       end: Math.min(100, gradientScale(end)),
     },
   ]);
+  
 
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
@@ -88,12 +89,18 @@ const TimeSlider = ({
     ? datetimes[anchoredTimeIndex].valueOf()
     : null;
 
+
+  
+  const timeOnGradient = gradientScale(selectedTimeValue || anchoredTimeValue || endTimeValue);
+  const isSelectedTimeDuringNight =  nightTimeSets.some(({start, end}) => timeOnGradient >= start && timeOnGradient <= end)
+
   return (
     <div className={className}>
       <TimeSliderInput
         onChange={handleChangeAndInput}
         value={selectedTimeValue || anchoredTimeValue || endTimeValue}
         nightTimeSets={nightTimeSets}
+        isValueAtNight={isSelectedTimeDuringNight}
         min={startTimeValue}
         max={endTimeValue}
       />
