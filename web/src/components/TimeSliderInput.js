@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 
 const COLORS = {
   DAY: '#EFEFEF',
-  NIGHT: '#666', // TODO: Find proper color
+  NIGHT: 'rgba(0, 0, 0, 0.15)',
 };
 
 const getStyling = sets => sortBy(sets, 'end')
