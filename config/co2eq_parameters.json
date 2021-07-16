@@ -179,9 +179,14 @@
         }
       },
       "CA-AB": {
-        "hydro discharge": {
+        "unknown": {
+          "_comment": "dual fuel power plants: assumption of 50% coal and 50% natural gas",
+          "value": 655
+        }
+        ,
+        "battery discharge": {
           "source": "2017 average by Tomorrow",
-          "value": 597.2654373454017
+          "value": 597
         }
       },
       "CA-NS": {
@@ -213,6 +218,16 @@
           "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
           "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
           "value": 131
+        }
+        ,
+        "hydro discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
+        }
+        ,
+        "battery discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
         }
       },
       "CL-SEN" : {

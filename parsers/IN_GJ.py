@@ -41,11 +41,8 @@ station_map = {
 }
 
 
-def split_and_sum(expression):
-    """
-    Avoid using literal_eval for simple addition expressions.
-    Returns sum of all positive numbers.
-    """
+def split_and_sum(expression) -> float:
+    """Avoid using literal_eval for simple addition expressions."""
 
     split_vals = expression.split('+')
     float_vals = [float(v) for v in split_vals]
@@ -131,38 +128,8 @@ def fetch_data(zone_key, session=None, logger=None):
 
 
 def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None,
-                     logger=getLogger('IN-GJ')):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key: specifies which zone to get
-    session: request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+                     logger=getLogger('IN-GJ')) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
     session = session or requests.session()
     if target_datetime:
         raise NotImplementedError(
@@ -197,13 +164,8 @@ def fetch_production(zone_key='IN-GJ', session=None, target_datetime=None,
 
 
 def fetch_consumption(zone_key='IN-GJ', session=None, target_datetime=None,
-                      logger=getLogger('IN-GJ')):
-    """
-    Method to get consumption data of Gujarat
-    :param zone_key:
-    :param session:
-    :return:
-    """
+                      logger=getLogger('IN-GJ')) -> dict:
+    """Method to get consumption data of Gujarat."""
     session = session or requests.session()
     if target_datetime:
         raise NotImplementedError(

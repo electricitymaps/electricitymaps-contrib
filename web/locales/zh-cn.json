@@ -97,6 +97,31 @@
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的电力从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量从 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 汇入",
     "ofCO2eqPerMinute": "of CO₂eq per minute",
+    "theMap": {
+        "groupName": "地图",
+        "mapColors-question": "在地图上的颜色是什么意思?",
+        "mapColors-answer": "我们通过在地图上的每一个地区消耗的单位电能所排放的温室气体量(也就是 <a href=\"#carbonIntensity\" class=\"entry-link\">碳强度</a>)来对地区进行着色，当地区的颜色越绿，代表这个地区的用电越环保",
+        "mapArrows-question": "地图上地区之间的箭头代表着什么?",
+        "mapArrows-answer": "地区之间的箭头代表着地区之间的电力的物理流动 (电力进口，电力出口): 当箭头闪烁的越快, 相应的代表的流动越快. 电力的流动是重要的, 因为当你从邻近地区进口一些电力同时, 你也同时继承了生产这些电力的碳排放量.",
+        "mapSolarWindButtons-question": "地图上的“太阳”和“风”的按钮有什么作用",
+        "mapSolarWindButtons-answer": "当按下这些按钮，地图会显示实时风速和日照强度，从而给出不同地区转向太阳能和风能的替代能源的潜力，请注意，这只是一个简单的指标，因为安装风力涡轮机和太阳能电池的实际潜力还取决于很多其他因素。",
+        "mapNuclearColors-question": "为什么核动力的国家在地图上显示为绿色的?",
+        "mapNuclearColors-answer": "核能生产的碳强度非常低 (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >来源</a>), 因此核动力的国家在地图上显示为绿色的.但这并不代表不存在与核能相关的其他环境问题（其他形式的能源生产也有同样的问题，但这些问题与温室气体的排放无关，因此不在此地图显示的范围之内",
+        "mapColorBlind-question": "我有色盲症，应该如何阅读这个地图？",
+        "mapColorBlind-answer": "可以通过启用“色盲模式”的设置来更改地图上显示的颜色。 “色盲模式”位于桌面版程序左侧面板的底部以及手机版程序的“信息”选项卡中"
+    },
+    "mapAreas": {
+        "groupName": "地图上的地区",
+        "noData-question": "为什么我所在地区显示无可用数据?",
+        "noData-answer": "要么是因为该地区的数据源暂时不可用，要么是因为我们尚未为该区域设置任何数据源。 您可以 <a href=\"#contribute\" class=\"entry-link\">帮我们添加新的数据源</a>.",
+        "whySmallAreas-question": "为什么将世界划分为较小的地区，而不仅仅是显示国家平均值",
+        "whySmallAreas-answer": "这些地区是我们拥有数据的最小地理区域。通过以最高的粒度级别访问信息，不同地区的用电者可以更精准地了解他们所消耗的电的来源以及与之相关的气候影响。",
+        "divideExistingArea-question": "可以将我所在的地区划分为更小的部分吗",
+        "divideExistingArea-answer": "当然可以，如果该区域的每个部分区域都存在单独的数据源。 您可以 <a href=\"#contribute\" class=\"entry-link\">帮我们添加新的数据源</a>",
+        "seeHistoricalData-question": "我可以查看某个地区比24小时更早的历史记录吗？",
+        "seeHistoricalData-answer": "您可以通过我们的网站上的 <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">数据库</a>购买对我们所有历史数据的访问权限。"
+    },
+    
     "zoneShortName": {
         "AL": {
             "zoneName": "阿尔巴尼亚"

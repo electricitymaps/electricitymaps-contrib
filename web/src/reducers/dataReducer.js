@@ -24,6 +24,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.delays = zoneConfig.delays;
+  zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -86,6 +87,10 @@ module.exports = (state = initialDataState, action) => {
       Object.keys(newGrid.zones).forEach((key) => {
         const zone = Object.assign({}, newGrid.zones[key]);
         zone.co2intensity = undefined;
+        zone.fossilFuelRatio = undefined;
+        zone.fossilFuelRatioProduction = undefined;
+        zone.renewableRatio = undefined;
+        zone.renewableRatioProduction = undefined;
         zone.exchange = {};
         zone.production = {};
         zone.productionCo2Intensities = {};

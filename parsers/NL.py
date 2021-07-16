@@ -134,10 +134,10 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # if for some reason theré's no unknown value
         if not 'unknown' in p['production'] or p['production']['unknown'] == None:
             p['production']['unknown'] = 0
-        
+
         Z = sum([x or 0 for x in p['production'].values()])
         # Only calculate the difference if the datetime exists
-        # If total ENTSOE reported production (Z) is less than total generation 
+        # If total ENTSOE reported production (Z) is less than total generation
         # (calculated from consumption and imports), then there must be some
         # unknown production missing, so we add the difference.
         # The difference can actually be negative, because consumption is based
@@ -153,7 +153,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
 
 
 def fetch_production_energieopwek_nl(session=None, target_datetime=None,
-                                     logger=logging.getLogger(__name__)):
+                                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()
 
@@ -213,4 +213,3 @@ def get_production_data_energieopwek(date, session=None):
 
 if __name__ == '__main__':
     print(fetch_production())
-    

@@ -285,7 +285,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
 
 def fetch_production(zone_key='GB', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> dict:
     session = session or requests.session()
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
@@ -315,8 +315,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())

@@ -378,6 +378,14 @@
             "countryName": "Canada",
             "zoneName": "Newfoundland and Labrador"
           },
+          "CA-NL-LB": {
+            "countryName": "Canada",
+            "zoneName": "Labrador"
+          },
+          "CA-NL-NF": {
+            "countryName": "Canada",
+            "zoneName": "Newfoundland"
+          },
           "CA-NB": {
             "countryName": "Canada",
             "zoneName": "New Brunswick"
@@ -446,6 +454,10 @@
           "CL-SEN": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico Nacional"
+          },
+          "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Easter Island"
           },
           "CM": {
             "zoneName": "Cameroon"

@@ -85,9 +85,7 @@ def get_data(url, target_datetime, session=None):
 
 
 def add_default_tz(timestamp):
-    """
-    Adds Northern Ireland timezone to datetime object if tz = None.
-    """
+    """Adds Northern Ireland timezone to datetime object if tz = None."""
 
     NIR = tz.gettz('Europe/Belfast')
     modified_timestamp = timestamp.replace(tzinfo=timestamp.tzinfo or NIR)
@@ -119,11 +117,8 @@ def create_exchange_df(text_data):
     return df_exchange
 
 
-def production_processor(df):
-    """
-    Creates quarter hour datapoints for thermal production.
-    Returns a list.
-    """
+def production_processor(df) -> list:
+    """Creates quarter hour datapoints for thermal production."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -141,11 +136,8 @@ def production_processor(df):
     return datapoints
 
 
-def moyle_processor(df):
-    """
-    Creates quarter hour datapoints for GB exchange.
-    Returns a list.
-    """
+def moyle_processor(df) -> list:
+    """Creates quarter hour datapoints for GB exchange."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -160,11 +152,8 @@ def moyle_processor(df):
     return datapoints
 
 
-def IE_processor(df):
-    """
-    Creates quarter hour datapoints for IE exchange.
-    Returns a list.
-    """
+def IE_processor(df) -> list:
+    """Creates quarter hour datapoints for IE exchange."""
 
     datapoints = []
     for index, row in df.iterrows():
@@ -181,35 +170,8 @@ def IE_processor(df):
 
 
 def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given country
-        Arguments:
-        zone_key (optional) -- used in case a parser is able to fetch multiple countries
-        session (optional)      -- request session passed in order to re-use an existing session
-        Return:
-        A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'datetime': '2017-01-01T00:00:00Z',
-          'production': {
-              'biomass': 0.0,
-              'coal': 0.0,
-              'gas': 0.0,
-              'hydro': 0.0,
-              'nuclear': null,
-              'oil': 0.0,
-              'solar': 0.0,
-              'wind': 0.0,
-              'geothermal': 0.0,
-              'unknown': 0.0
-          },
-          'storage': {
-              'hydro': -10.0,
-          },
-          'source': 'mysource.com'
-        }
-    """
+                     logger=logging.getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
 
     production_data = get_data(production_url, target_datetime)
     production_df = create_production_df(production_data)
@@ -236,20 +198,8 @@ def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
     return production_mix_by_quarter_hour
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two countries."""
 
     exchange_data = get_data(exchange_url, target_datetime)
     exchange_dataframe = create_exchange_df(exchange_data)

@@ -36,7 +36,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighboring countries in order to green their image while still importing from it.
-We published our methodology [here](https://arxiv.org/abs/1812.06679).
+You can read more in our blog post [here](https://tmrow.com/blog/flow-tracing).
 
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
