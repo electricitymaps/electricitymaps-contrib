@@ -7,7 +7,7 @@ const COLORS = {
   NIGHT: 'rgba(0, 0, 0, 0.15)',
 };
 
-const getStyling = sets => sortBy(sets, 'end')
+const createGradient = sets => sortBy(sets, 'end')
   .map(
     ({ start, end }) => `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`,
   )
@@ -16,7 +16,7 @@ const getStyling = sets => sortBy(sets, 'end')
 export const StyledInput = styled.input`
   --time-gradient: linear-gradient(
     90deg,
-    ${props => getStyling(props.nightSets)}
+    ${props => createGradient(props.nightSets)}
   );
 `;
 
