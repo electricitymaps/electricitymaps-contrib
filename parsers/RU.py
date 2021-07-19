@@ -37,7 +37,7 @@ exchange_ids = {'CN->RU-AS': 764,
                 'AZ->RU-1': 598,
                 'BY->RU': 321,
                 'BY->RU-1': 321,
-                'RU->UA': 880,
+                'RU-1->UA-CR': 5688,
                 'RU-1->UA':880}
 
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
@@ -221,8 +221,8 @@ if __name__ == '__main__':
     print(fetch_exchange('BY', 'RU'))
     print('fetch_exchange(BY, RU-1) ->')
     print(fetch_exchange('BY', 'RU-1'))
-    print('fetch_exchange(RU, UA) ->')
-    print(fetch_exchange('RU', 'UA'))
+    print('fetch_exchange(RU-1, UA-CR) ->')
+    print(fetch_exchange('RU-1', 'UA-CR'))
     print('fetch_exchange(RU-1, UA) ->')
     print(fetch_exchange('RU-1', 'UA'))
     print('fetch_exchange(RU-1, RU-2) ->')
