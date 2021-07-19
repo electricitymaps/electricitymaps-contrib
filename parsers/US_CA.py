@@ -7,7 +7,8 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 import logging
 
-FUEL_SOURCE_CSV = 'http://www.caiso.com/outlook/SP/fuelsource.csv'
+CAISO_PROXY = 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app'
+FUEL_SOURCE_CSV = f'{CAISO_PROXY}/outlook/SP/fuelsource.csv'
 
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
