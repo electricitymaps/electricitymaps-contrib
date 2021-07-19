@@ -1308,7 +1308,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "RU.fetch_exchange"
     },
     "rotation": 0
   },
