@@ -24,21 +24,21 @@ MAP_GENERATION = {
     'P_REN': 'solar'
 }
 
-exchange_ids = {'CN->RU-AS': 764,
-                'MN->RU': 276,
-                'MN->RU-2': 276,
-                'KZ->RU': 785,
-                'KZ->RU-1': 2394,
-                'KZ->RU-2': 344,
-                'RU-1->RU-2': 139,
-                'GE->RU': 752,
-                'GE->RU-1': 752,
+exchange_ids = {'RU-AS->CN': 764,
+                'RU->MN': 276,
+                'RU-2->MN': 276,
+                'RU->KZ': 785,
+                'RU-1->KZ': 2394,
+                'RU-2->KZ': 344,
+                'RU-2->RU-1': 139,
+                'RU->GE': 752,
+                'RU-1->GE': 752,
                 'AZ->RU': 598,
                 'AZ->RU-1': 598,
                 'BY->RU': 321,
                 'BY->RU-1': 321,
                 'RU-1->UA-CR': 5688,
-                'RU-1->UA':880}
+                'UA->RU-1': 880}
 
 # Each exchange is contained in a div tag with a "data-id" attribute that is unique.
 
@@ -161,8 +161,15 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
             continue
 
     sortedcodes = '->'.join(sorted([zone_key1, zone_key2]))
+    reversesortedcodes = '->'.join(sorted([zone_key1, zone_key2], reverse=True))
 
-    if sortedcodes not in exchange_ids.keys():
+    if sortedcodes in exchange_ids.keys():
+        exchange_id = exchange_ids[sortedcodes]
+        direction = 1
+    elif reversesortedcodes in exchange_ids.keys():
+        exchange_id = exchange_ids[reversesortedcodes]
+        direction = -1
+    else:
         raise NotImplementedError('This exchange pair is not implemented.')
 
     exchange_id = exchange_ids[sortedcodes]
@@ -171,7 +178,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     for datapoint, hour in datapoints:
         try:
             exchange = [item for item in datapoint if item['Id'] == exchange_id][0]
-            flow = exchange.get('NumValue')
+            flow = exchange.get('NumValue') * direction
         except KeyError:
             # flow is unknown or not available
             flow = None
