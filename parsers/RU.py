@@ -37,6 +37,9 @@ exchange_ids = {'RU-AS->CN': 764,
                 'AZ->RU-1': 598,
                 'BY->RU': 321,
                 'BY->RU-1': 321,
+                'RU->FI': 187,
+                'RU-1->FI': 187,
+                'RU-KGD->LT': 212,
                 'RU-1->UA-CR': 5688,
                 'UA->RU-1': 880}
 
