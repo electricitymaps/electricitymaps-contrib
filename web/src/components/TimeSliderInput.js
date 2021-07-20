@@ -16,7 +16,7 @@ const createGradient = sets => sortBy(sets, 'end')
 export const StyledInput = styled.input`
   --time-gradient: linear-gradient(
     90deg,
-    ${props => createGradient(props.nightSets)}
+    ${props => createGradient(props.nightTimeSets)}
   );
 `;
 
@@ -29,7 +29,7 @@ export const TimeSliderInput = ({
     <StyledInput
       type="range"
       className={`time-slider-input ${timeClass}`}
-      nightSets={nightTimeSets}
+      nightTimeSets={nightTimeSets}
       onChange={onChange}
       onInput={onChange}
       value={value}
