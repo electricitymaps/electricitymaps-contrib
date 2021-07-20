@@ -126,7 +126,6 @@ export function useCurrentNightTimes() {
       ? history[history.length - 1].stateDatetime
       : datetimeStr);
     do {
-      console.log('got it')
       // Get last nightTime
       const nightStart = getSunset(latitude, longitude, baseDatetime);
       let nightEnd = getSunrise(latitude, longitude, baseDatetime);
@@ -134,8 +133,8 @@ export function useCurrentNightTimes() {
       if (nightStart.getTime() > nightEnd.getTime()) {
         nightEnd = moment(nightEnd).add(1, 'day').toDate();
       }
-      // Ignore nights that start after the latest time we have
-      // or that finish before the earliest time we have
+      // Only use nights that start before the latest time we have
+      // and that finishes after the earliest time we have
       if (nightStart.getTime() < latest.getTime() && nightEnd.getTime() > earliest.getTime()) {
         nightTimes.push([nightStart, nightEnd]);
       }
