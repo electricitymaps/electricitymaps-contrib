@@ -126,6 +126,7 @@ export function useCurrentNightTimes() {
       ? history[history.length - 1].stateDatetime
       : datetimeStr);
     do {
+      console.log('got it')
       // Get last nightTime
       const nightStart = getSunset(latitude, longitude, baseDatetime);
       let nightEnd = getSunrise(latitude, longitude, baseDatetime);
@@ -146,6 +147,8 @@ export function useCurrentNightTimes() {
 
       // Iterate to previous day
       baseDatetime = moment(baseDatetime).subtract(1, 'day').toDate();
+      // The looping logic is handled inside the "do" block
+      // eslint-disable-next-line no-constant-condition
     } while (true);
   }, [zone, datetimeStr, history]);
 }
