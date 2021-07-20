@@ -20,7 +20,7 @@ export const StyledInput = styled.input`
   );
 `;
 
-// TODO: Test performance
+
 export const TimeSliderInput = ({
   onChange, value, nightTimeSets, isValueAtNight, min, max,
 }) => {

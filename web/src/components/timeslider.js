@@ -48,7 +48,6 @@ const TimeSlider = ({
   endTime,
 }) => {
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
-  // const { ref: ref2 } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
 
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
   const nightTimes = useCurrentNightTimes();
@@ -73,7 +72,7 @@ const TimeSlider = ({
       end: Math.min(100, gradientScale(end)),
     },
   ]);
-  
+
 
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
@@ -90,7 +89,7 @@ const TimeSlider = ({
     : null;
 
 
-  
+
   const timeOnGradient = gradientScale(selectedTimeValue || anchoredTimeValue || endTimeValue);
   const isSelectedTimeDuringNight =  nightTimeSets.some(({start, end}) => timeOnGradient >= start && timeOnGradient <= end)
 
