@@ -3307,6 +3307,17 @@
     ]
   },
   "JP-KN": {
+    "capacity": {
+      "gas": 17222,
+      "hydro": 3540,
+      "hydro storage": 5234,
+      "oil": 7800,
+      "coal": 2301,
+      "nuclear": 9768,
+      "solar": 4962,
+      "wind": 146,
+      "biomass": 0
+    },
     "contributors": [
       "https://github.com/tmslaine",
       "https://github.com/lorrieq",
