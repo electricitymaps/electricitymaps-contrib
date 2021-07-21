@@ -75,7 +75,8 @@ jobs:
           name: Build
           command: |
             set -euo pipefail
-            docker-compose build mockserver web
+            time docker-compose build mockserver
+            time docker-compose build web
             # Make sure files are available outside of container
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
