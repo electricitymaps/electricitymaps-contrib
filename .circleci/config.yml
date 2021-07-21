@@ -49,7 +49,7 @@ jobs:
 
   lint_js:
     docker:
-      - image: node:12.22-alpine
+      - image: circleci/node:12.13
     steps:
       - checkout
       - restore_cache:
