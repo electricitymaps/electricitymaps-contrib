@@ -65,42 +65,6 @@ jobs:
           paths:
             - "web/node_modules"
 
-  build_test:
-    machine:
-      image: circleci/classic:201808-01
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          name: Build
-          command: |
-            set -euo pipefail
-            docker-compose build
-            # Make sure files are available outside of container
-            CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
-            docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
-          no_output_timeout: 30m
-      - run:
-          name: Start environment
-          command: |
-            set -euo pipefail
-            # Only start the `web` and `mockserver` containers
-            # and avoid the `watch` container from starting and compiling
-            # the already built frontend
-            docker-compose up -d web mockserver
-            sleep 20
-            docker-compose logs web
-      - run:
-          name: Run tests
-          command: |
-            docker-compose ps
-            curl --fail -i http://localhost:8000/
-            curl --fail -i http://localhost:8000/v1/co2?countryCode=FR
-            curl --fail -i http://localhost:8000/v1/exchanges?countryCode=FR
-            curl --fail -i http://localhost:8000/v1/production?countryCode=FR
-            curl --fail -i http://localhost:8000/v1/price?countryCode=FR
-            curl --fail -i http://localhost:8000/v2/history?countryCode=FR
-
 workflows:
   version: 2
   all:
@@ -109,9 +73,3 @@ workflows:
       - lint_js
       - lint_json
       - test_js
-      - build_test:
-          requires:
-            - lint_js
-            - verify_python
-            - lint_json
-            - test_js
