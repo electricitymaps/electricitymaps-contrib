@@ -2569,14 +2569,14 @@
   },
   "IN": {
     "capacity": {
-      "solar": 34600,
-      "wind": 37700,
-      "coal": 206405,
-      "hydro": 50818,
-      "gas": 24957,
+      "solar": 40100,
+      "wind": 39200,
+      "coal": 208624.5,
+      "hydro": 51116,
+      "gas": 24924,
       "nuclear": 6780,
-      "oil": 510,
-      "biomass": 8000
+      "oil": 509.7,
+      "biomass": 10100
     },
     "contributors": [
       "https://github.com/systemcatch"
@@ -2598,14 +2598,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 477,
-      "coal": 10585,
-      "gas": 4067,
-      "hydro": 1673,
+      "biomass": 506.9,
+      "coal": 11590,
+      "gas": 4898.5,
+      "hydro": 1610,
       "nuclear": 127,
       "oil": 37,
-      "solar": 3610,
-      "wind": 4092
+      "solar": 4203,
+      "wind": 4096.7
     },
     "contributors": [
       "https://github.com/hectorespert"
@@ -2629,13 +2629,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 245,
-      "coal": 12169,
+      "biomass": 244.9,
+      "coal": 23688,
       "gas": 0,
-      "hydro": 230,
-      "nuclear": 48,
+      "hydro": 120,
+      "nuclear": 0,
       "oil": 0,
-      "solar": 231,
+      "solar": 252.5,
       "wind": 0
     },
     "contributors": [
@@ -2661,13 +2661,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 0,
-      "coal": 4404,
-      "gas": 2115,
-      "hydro": 723,
-      "nuclear": 103,
+      "biomass": 52,
+      "coal": 0,
+      "gas": 2208,
+      "hydro": 0,
+      "nuclear": 0,
       "oil": 0,
-      "solar": 165,
+      "solar": 193,
       "wind": 0
     },
     "contributors": [
@@ -2692,14 +2692,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 77,
-      "coal": 16621,
-      "gas": 6587,
-      "hydro": 772,
-      "nuclear": 559,
+      "biomass": 77.3,
+      "coal": 16092,
+      "gas": 7551,
+      "hydro": 1990,
+      "nuclear": 440,
       "oil": 0,
-      "solar": 2948,
-      "wind": 7542
+      "solar": 4430.8,
+      "wind": 8561.8
     },
     "contributors": [
       "https://github.com/sahitya-pavurala"
@@ -2723,13 +2723,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 7,
-      "coal": 152,
-      "gas": 62,
-      "nuclear": 29,
-      "hydro": 2924,
+      "biomass": 9.2,
+      "coal": 0,
+      "gas": 0,
+      "nuclear": 0,
+      "hydro": 9920,
       "oil": 0,
-      "solar": 33,
+      "solar": 42.7,
       "wind": 0
     },
     "contributors": [
@@ -2753,14 +2753,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 1605,
-      "coal": 10283,
+      "biomass": 1888.3,
+      "coal": 9480,
       "gas": 0,
-      "hydro": 3587,
-      "nuclear": 698,
-      "oil": 25,
-      "solar": 3657,
-      "wind": 4791
+      "hydro": 3644.2,
+      "nuclear": 880,
+      "oil": 25.2,
+      "solar": 7355.2,
+      "wind": 4938.6
     },
     "contributors": [
       "https://github.com/hectorespert"
@@ -2784,14 +2784,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 2516,
-      "coal": 26339,
-      "gas": 3513,
-      "hydro": 3332,
-      "nuclear": 390,
+      "biomass": 2597,
+      "coal": 24966,
+      "gas": 3207,
+      "hydro": 3047,
+      "nuclear": 1400,
       "oil": 0,
-      "solar": 1802,
-      "wind": 5000
+      "solar": 2290,
+      "wind": 5000.3
     },
     "contributors": [
       "https://github.com/GitMatze",
@@ -2816,13 +2816,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 317,
-      "coal": 8352,
-      "gas": 414,
-      "hydro": 3809,
-      "nuclear": 197,
+      "biomass": 484.3,
+      "coal": 5680,
+      "gas": 0,
+      "hydro": 1096.3,
+      "nuclear": 0,
       "oil": 0,
-      "solar": 947,
+      "solar": 959.5,
       "wind": 0
     },
     "contributors": [
@@ -2848,13 +2848,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 2117,
+      "biomass": 2117.3,
       "coal": 23729,
-      "gas": 1493.14,
-      "hydro": 550.7,
+      "gas": 1493.1,
+      "hydro": 501.6,
       "nuclear": 440,
       "oil": 0,
-      "solar": 1840.28,
+      "solar": 1712.5,
       "wind": 0
     },
     "contributors": [
@@ -2879,6 +2879,16 @@
         31.292794
       ]
     ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 450,
+      "hydro": 3855.4,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/alixunderplatz",
       "https://github.com/lorrieq"
