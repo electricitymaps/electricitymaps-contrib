@@ -3,7 +3,12 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: node:12.22-alpine
+      - image: node:12.22
+
+commands:
+  fast-checkout:
+    steps:
+      - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" .
 
 jobs:
   verify_python:
@@ -36,7 +41,7 @@ jobs:
   lint_json:
     executor: js-exec
     steps:
-      - checkout
+      - fast-checkout
       - run:
           command: |
             npm install -g jsonlint-mod
@@ -45,7 +50,7 @@ jobs:
   test_js:
     executor: js-exec
     steps:
-      - checkout
+      - fast-checkout
       - run:
           command: |
             npm install -g jest
@@ -54,7 +59,7 @@ jobs:
   lint_js:
     executor: js-exec
     steps:
-      - checkout
+      - fast-checkout
       - restore_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
       - run:
@@ -62,7 +67,7 @@ jobs:
             set -eux -o pipefail
             cd web
             yarn
-            yarn lint
+            yarn lint --quiet
       - save_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
@@ -72,7 +77,7 @@ jobs:
     machine:
       image: ubuntu-2004:202104-01
     steps:
-      - checkout
+      - fast-checkout
       - run:
           name: Build
           command: |
