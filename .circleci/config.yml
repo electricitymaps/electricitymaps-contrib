@@ -49,7 +49,7 @@ jobs:
 
   lint_js:
     docker:
-      - image: circleci/node:12.13
+      - image: node:12.13-alphine
     steps:
       - checkout
       - restore_cache:
@@ -76,7 +76,6 @@ jobs:
           command: |
             set -euo pipefail
             time docker-compose build mockserver
-            time docker-compose build web
             # Make sure files are available outside of container
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
