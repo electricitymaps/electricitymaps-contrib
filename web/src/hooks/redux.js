@@ -11,21 +11,15 @@ import { getCenteredZoneViewport } from '../helpers/map';
 
 export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
-  const histories = useSelector(state => state.data.histories);
+  const histories = useSelector((state) => state.data.histories);
 
-  return useMemo(
-    () => histories[zoneId] || [],
-    [histories, zoneId],
-  );
+  return useMemo(() => histories[zoneId] || [], [histories, zoneId]);
 }
 
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(
-    () => zoneHistory.map(d => moment(d.stateDatetime).toDate()),
-    [zoneHistory],
-  );
+  return useMemo(() => zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -33,11 +27,11 @@ export function useCurrentZoneHistoryDatetimes() {
 // the graph (when not inferable from historyData timestamps).
 export function useCurrentZoneHistoryEndTime() {
   const customDatetime = useCustomDatetime();
-  const gridDatetime = useSelector(state => (state.data.grid || {}).datetime);
+  const gridDatetime = useSelector((state) => (state.data.grid || {}).datetime);
 
   return useMemo(
     () => moment(customDatetime || gridDatetime).format(),
-    [customDatetime, gridDatetime],
+    [customDatetime, gridDatetime]
   );
 }
 
@@ -53,21 +47,18 @@ export function useCurrentZoneHistoryStartTime() {
 export function useCurrentZoneData() {
   const { zoneId } = useParams();
   const zoneHistory = useCurrentZoneHistory();
-  const zoneTimeIndex = useSelector(state => state.application.selectedZoneTimeIndex);
-  const grid = useSelector(state => state.data.grid);
+  const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const grid = useSelector((state) => state.data.grid);
 
-  return useMemo(
-    () => {
-      if (!zoneId || !grid) {
-        return null;
-      }
-      if (zoneTimeIndex === null) {
-        return grid.zones[zoneId];
-      }
-      return zoneHistory[zoneTimeIndex];
-    },
-    [zoneId, zoneHistory, zoneTimeIndex, grid],
-  );
+  return useMemo(() => {
+    if (!zoneId || !grid) {
+      return null;
+    }
+    if (zoneTimeIndex === null) {
+      return grid.zones[zoneId];
+    }
+    return zoneHistory[zoneTimeIndex];
+  }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 
 export function useCurrentZoneExchangeKeys() {
@@ -75,43 +66,45 @@ export function useCurrentZoneExchangeKeys() {
   // and fallback on current zone data
   const zoneHistory = useCurrentZoneHistory();
   const currentZoneData = useCurrentZoneData();
-  const isConsumption = useSelector(state => state.application.electricityMixMode === 'consumption');
-
-  return useMemo(
-    () => {
-      if (!isConsumption) {
-        return [];
-      }
-      const exchangeKeys = new Set();
-      const zoneHistoryOrCurrent = zoneHistory || [currentZoneData];
-      zoneHistoryOrCurrent.forEach((zoneData) => {
-        keys(zoneData.exchange).forEach(k => exchangeKeys.add(k));
-      });
-      return sortBy(Array.from(exchangeKeys));
-    },
-    [isConsumption, zoneHistory, currentZoneData],
+  const isConsumption = useSelector(
+    (state) => state.application.electricityMixMode === 'consumption'
   );
+
+  return useMemo(() => {
+    if (!isConsumption) {
+      return [];
+    }
+    const exchangeKeys = new Set();
+    const zoneHistoryOrCurrent = zoneHistory || [currentZoneData];
+    zoneHistoryOrCurrent.forEach((zoneData) => {
+      keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
+    });
+    return sortBy(Array.from(exchangeKeys));
+  }, [isConsumption, zoneHistory, currentZoneData]);
 }
 
 export function useLoadingOverlayVisible() {
-  const mapInitializing = useSelector(state => state.application.isLoadingMap);
-  const gridInitializing = useSelector(state => state.data.isLoadingGrid && !state.data.hasInitializedGrid);
-  const solarInitializing = useSelector(state => state.data.isLoadingSolar && !state.data.solar);
-  const windInitializing = useSelector(state => state.data.isLoadingWind && !state.data.wind);
+  const mapInitializing = useSelector((state) => state.application.isLoadingMap);
+  const gridInitializing = useSelector(
+    (state) => state.data.isLoadingGrid && !state.data.hasInitializedGrid
+  );
+  const solarInitializing = useSelector((state) => state.data.isLoadingSolar && !state.data.solar);
+  const windInitializing = useSelector((state) => state.data.isLoadingWind && !state.data.wind);
   return mapInitializing || gridInitializing || solarInitializing || windInitializing;
 }
 
 export function useSmallLoaderVisible() {
-  const gridLoading = useSelector(state => state.data.isLoadingGrid);
-  const solarLoading = useSelector(state => state.data.isLoadingSolar);
-  const windLoading = useSelector(state => state.data.isLoadingWind);
+  const gridLoading = useSelector((state) => state.data.isLoadingGrid);
+  const solarLoading = useSelector((state) => state.data.isLoadingSolar);
+  const windLoading = useSelector((state) => state.data.isLoadingWind);
   return gridLoading || solarLoading || windLoading;
 }
 
 export function useCurrentNightTimes() {
   const { zoneId } = useParams();
-  const zone = useSelector(state => state.data.grid.zones[zoneId]);
-  const datetimeStr = useSelector(state => state.data.grid.datetime);
+  const zone = useSelector((state) => state.data.grid.zones[zoneId]);
+
+  const datetimeStr = useSelector((state) => state.data.grid.datetime);
   const history = useCurrentZoneHistory();
 
   return useMemo(() => {
@@ -121,10 +114,13 @@ export function useCurrentNightTimes() {
     const { latitude, longitude } = getCenteredZoneViewport(zone);
     const nightTimes = [];
     let baseDatetime = moment(datetimeStr).startOf('day').toDate();
+
     const earliest = history && history[0] && new Date(history[0].stateDatetime);
-    const latest = new Date((history && history[history.length - 1])
-      ? history[history.length - 1].stateDatetime
-      : datetimeStr);
+    const latest = new Date(
+      history && history[history.length - 1]
+        ? history[history.length - 1].stateDatetime
+        : datetimeStr
+    );
     do {
       // Get last nightTime
       const nightStart = getSunset(latitude, longitude, baseDatetime);
