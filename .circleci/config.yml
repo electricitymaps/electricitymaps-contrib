@@ -1,4 +1,10 @@
-version: 2
+version: 2.1
+
+executors:
+  js-exec:
+    docker:
+      - image: node:12.22-alpine
+
 jobs:
   verify_python:
     docker:
@@ -28,28 +34,25 @@ jobs:
             - ".venv"
 
   lint_json:
-    docker:
-      - image: circleci/node:12.13
+    executor: js-exec
     steps:
       - checkout
       - run:
           command: |
-            sudo npm install -g jsonlint-mod
-            jsonlint config/*.json web/locales/*.json
+            npm install -g jsonlint-mod
+            jsonlint -q config/*.json web/locales/*.json
 
   test_js:
-    docker:
-      - image: circleci/node:12.13
+    executor: js-exec
     steps:
       - checkout
       - run:
           command: |
-            sudo npm install -g jest
+            npm install -g jest
             jest
 
   lint_js:
-    docker:
-      - image: circleci/node:12.13
+    executor: js-exec
     steps:
       - checkout
       - restore_cache:
@@ -57,13 +60,29 @@ jobs:
       - run:
           command: |
             set -eux -o pipefail
-            pushd web
+            cd web
             yarn
             yarn lint
       - save_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
             - "web/node_modules"
+
+  build_test:
+    machine:
+      image: ubuntu-2004:202104-01
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: |
+            set -euo pipefail
+            time docker-compose build mockserver
+            time docker-compose build web
+            # Make sure files are available outside of container
+            CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
+            docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
+          no_output_timeout: 30m
 
 workflows:
   version: 2
@@ -73,3 +92,9 @@ workflows:
       - lint_js
       - lint_json
       - test_js
+      - build_test:
+          requires:
+            - lint_js
+            - verify_python
+            - lint_json
+            - test_js

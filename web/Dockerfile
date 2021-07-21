@@ -1,8 +1,8 @@
-FROM node:12.13.1
+FROM node:12.22-alpine
 WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
-RUN apt-get update && apt-get install -y jq unzip
+RUN apk update && apk add jq unzip curl
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn
@@ -12,7 +12,7 @@ RUN mkdir -p public/dist/
 ADD web/third_party_maps ./third_party_maps
 ADD web/generate-geometries.js web/topogen.sh ./
 ADD web/src/world.json ./src/world.json
-RUN bash topogen.sh
+RUN /bin/sh topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
