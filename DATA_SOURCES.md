@@ -255,9 +255,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
   - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
 - Italy
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
-  - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
-  - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
+  - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
+  - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
   - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
   - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
