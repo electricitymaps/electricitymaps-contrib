@@ -66,6 +66,7 @@ jobs:
           command: |
             set -eux -o pipefail
             cd web
+            echo "now it should be cached!"
             yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
             yarn lint --quiet
       - save_cache:
