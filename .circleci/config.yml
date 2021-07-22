@@ -90,13 +90,15 @@ jobs:
           name: Build
           command: |
             set -euo pipefail
-            echo "with cache!"
+            mkdir tmp_modules && setopt -s glob_dots && mv web/node_modules/* tmp_modules
             time docker-compose build mockserver
             time docker-compose build web
             # Make sure files are available outside of container
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
-          no_output_timeout: 30m
+          no_output_timeout:
+            #[ ! -f node_modules.tar.gz ] && tar -cf node_modules.tar.gz --directory=node_modules .
+            30m
       # - run:
       #     name: Start environment
       #     command: |
