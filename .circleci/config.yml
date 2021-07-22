@@ -90,6 +90,7 @@ jobs:
           name: Build
           command: |
             set -euo pipefail
+            echo "with cache!"
             time docker-compose build mockserver
             time docker-compose build web
             # Make sure files are available outside of container
