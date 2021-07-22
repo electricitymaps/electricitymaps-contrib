@@ -62,9 +62,9 @@ jobs:
       - fast-checkout
       - restore_cache:
           keys:
-            - v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
-            - v8_node_modules-{{ arch }}-{{ .Branch }}-
-            - v8_node_modules-{{ arch }}-
+            - v9_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+            - v9_node_modules-{{ .Branch }}-
+            - v9_node_modules-
       - run:
           command: |
             set -eux -o pipefail
@@ -72,7 +72,7 @@ jobs:
             yarn install --frozen-lockfile
             yarn lint --quiet
       - save_cache:
-          key: v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          key: v9_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
             - web/node_modules
 
@@ -83,13 +83,14 @@ jobs:
       - fast-checkout
       - restore_cache:
           keys:
-            - v2_node_build_test-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
-            - v2_node_build_test-{{ .Branch }}-
-            - v2_node_build_test-
+            - v9_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+            - v9_node_modules-{{ .Branch }}-
+            - v9_node_modules-
       - run:
           name: Build
           command: |
             set -euo pipefail
+            cat web/node_modules/.yarn-integrity | head -n 50
             mkdir tmp_modules && setopt -s glob_dots && mv web/node_modules/* tmp_modules
             time docker-compose build mockserver
             time docker-compose build web

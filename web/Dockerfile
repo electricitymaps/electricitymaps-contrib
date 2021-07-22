@@ -6,6 +6,7 @@ WORKDIR /home/src/electricitymap/contrib/web
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 COPY tmp_modules ./node_modules
+cat node_modules/.yarn-integrity | head -n 50
 RUN yarn install --frozen-lockfile --verbose
 
 # Generate map
