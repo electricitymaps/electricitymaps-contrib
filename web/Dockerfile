@@ -5,7 +5,7 @@ WORKDIR /home/src/electricitymap/contrib/web
 RUN apk add jq unzip curl
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
-RUN yarn
+RUN yarn install --frozen-lockfile
 
 # Generate map
 RUN mkdir -p public/dist/
