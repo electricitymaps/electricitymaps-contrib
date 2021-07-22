@@ -8,7 +8,7 @@ executors:
 commands:
   fast-checkout:
     steps:
-      - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" .
+      - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
 
 jobs:
   verify_python:
