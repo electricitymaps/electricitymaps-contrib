@@ -69,7 +69,6 @@ jobs:
           command: |
             set -eux -o pipefail
             cd web
-            mkdir -p node_modules/
             yarn install --frozen-lockfile
             yarn lint --quiet
       - save_cache:
@@ -91,6 +90,7 @@ jobs:
           name: Build
           command: |
             set -euo pipefail
+            mkdir -p web/node_modules/
             time docker-compose build mockserver
             time docker-compose build web
             # Make sure files are available outside of container
