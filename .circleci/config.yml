@@ -17,16 +17,11 @@ commands:
             - v7_node_modules-{{ .Branch }}-
             - v7_node_modules-
   js-cache-save:
-    parameters:
-      path:
-        type: string
-        default: ""
     steps:
       - save_cache:
           key: v7_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
             - ~/.cache/yarn
-            - << parameters.path >>
             #- web/node_modules
             #- /usr/local/share/.cache/yarn
 
@@ -80,8 +75,7 @@ jobs:
     executor: js-exec
     steps:
       - fast-checkout
-      - js-cache-restore:
-          path: web/node_modules
+      - js-cache-restore
       - run:
           command: |
             set -eux -o pipefail
