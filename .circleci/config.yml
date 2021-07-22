@@ -69,6 +69,7 @@ jobs:
           command: |
             set -eux -o pipefail
             cd web
+            mkdir -p node_modules/
             yarn install --frozen-lockfile
             yarn lint --quiet
       - save_cache:
