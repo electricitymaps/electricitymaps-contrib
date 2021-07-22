@@ -12,13 +12,19 @@ commands:
   js-cache-restore:
     steps:
       - restore_cache:
-          key: v2_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          keys:
+            - v4_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+            - v4_node_modules-{{ .Branch }}-
+            - v4_node_modules-
   js-cache-save:
     steps:
       - save_cache:
-          key: v2_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          key: v4_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - web/node_modules
+            - /home/src/electricitymap/contrib/web/node_modules
+            #- ~/.cache/yarn
+            #/usr/local/share/.cache/yarn
 
 jobs:
   verify_python:
@@ -75,8 +81,7 @@ jobs:
           command: |
             set -eux -o pipefail
             cd web
-            echo "now it should be cached!"
-            yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+            yarn install --frozen-lockfile
             yarn lint --quiet
       - js-cache-save
 
@@ -85,7 +90,11 @@ jobs:
       image: ubuntu-2004:202104-01
     steps:
       - fast-checkout
-      - js-cache-restore
+      - restore_cache:
+          keys:
+            - v4_bt_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+            - v4_bt_node_modules-{{ .Branch }}-
+            - v4_bt_node_modules-
       - run:
           name: Build
           command: |
@@ -96,7 +105,10 @@ jobs:
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
           no_output_timeout: 30m
-      - js-cache-save
+      - save_cache:
+          key: v4_bt_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          paths:
+            - /home/src/electricitymap/contrib/web/node_modules
 
 workflows:
   version: 2
