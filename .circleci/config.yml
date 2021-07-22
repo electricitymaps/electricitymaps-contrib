@@ -61,7 +61,7 @@ jobs:
     steps:
       - fast-checkout
       - restore_cache:
-          key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          key: 2node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
       - run:
           command: |
             set -eux -o pipefail
@@ -69,7 +69,7 @@ jobs:
             yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
             yarn lint --quiet
       - save_cache:
-          key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          key: 2node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
             - ~/.cache/yarn
 
