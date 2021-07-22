@@ -2,7 +2,7 @@ FROM node:12.22-alpine
 WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
-RUN apk update && apk add jq unzip curl
+RUN apk add jq unzip curl
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn

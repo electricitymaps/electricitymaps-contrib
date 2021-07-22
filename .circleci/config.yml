@@ -78,6 +78,8 @@ jobs:
       image: ubuntu-2004:202104-01
     steps:
       - fast-checkout
+      - restore_cache:
+          key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
       - run:
           name: Build
           command: |
@@ -88,6 +90,10 @@ jobs:
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
           no_output_timeout: 30m
+      - save_cache:
+          key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          paths:
+            - "web/node_modules"
 
 workflows:
   version: 2
