@@ -10,22 +10,6 @@ commands:
     steps:
       - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
 
-  js-cache-restore:
-    steps:
-  js-cache-save:
-    steps:
-      - restore_cache:
-          keys:
-            - v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
-            - v8_node_modules-{{ arch }}-{{ .Branch }}-
-            - v8_node_modules-{{ arch }}-
-      - save_cache:
-          key: v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-            #- web/node_modules
-            #- /usr/local/share/.cache/yarn
-
 jobs:
   verify_python:
     docker:
@@ -76,14 +60,21 @@ jobs:
     executor: js-exec
     steps:
       - fast-checkout
-      - js-cache-restore
+      - restore_cache:
+          keys:
+            - v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+            - v8_node_modules-{{ arch }}-{{ .Branch }}-
+            - v8_node_modules-{{ arch }}-
       - run:
           command: |
             set -eux -o pipefail
             cd web
             yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
             yarn lint --quiet
-      - js-cache-save
+      - save_cache:
+          key: v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
+          paths:
+            - web/node_modules
 
   build_test:
     machine:
@@ -95,11 +86,6 @@ jobs:
             - v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
             - v8_node_modules-{{ arch }}-{{ .Branch }}-
             - v8_node_modules-{{ arch }}-
-      # - restore_cache:
-      #     keys:
-      #       - v5_bt_node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
-      #       - v5_bt_node_modules-{{ .Branch }}-
-      #       - v5_bt_node_modules-
       - run:
           name: Build
           command: |
