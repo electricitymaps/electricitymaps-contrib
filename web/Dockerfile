@@ -4,8 +4,10 @@ WORKDIR /home/src/electricitymap/contrib/web
 # Install dependencies
 RUN apk add jq unzip curl
 ADD web/package.json ./package.json
+RUN mkdir -p web/node_modules
+ADD web/node_modules/ ./node_modules/
 ADD web/yarn.lock ./yarn.lock
-RUN yarn install --frozen-lockfile --verbose --cache-folder ~/.cache/yarn
+RUN yarn install --frozen-lockfile --verbose
 
 # Generate map
 RUN mkdir -p public/dist/

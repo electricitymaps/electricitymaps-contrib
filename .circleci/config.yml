@@ -69,7 +69,7 @@ jobs:
           command: |
             set -eux -o pipefail
             cd web
-            yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+            yarn install --frozen-lockfile
             yarn lint --quiet
       - save_cache:
           key: v8_node_modules-{{ arch }}-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
