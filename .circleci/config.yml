@@ -3,11 +3,12 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: node:12.22
+      - image: node:12.22-alpine
 
 commands:
   fast-checkout:
     steps:
+      - run: command -v apk >/dev/null && command apk add git "$@" || exit 0
       - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
 
 jobs:
