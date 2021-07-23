@@ -2,12 +2,12 @@ FROM node:12.22-alpine
 WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
-#RUN apk add jq unzip curl
+RUN apk add jq unzip curl
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
 
-Generate map
+# Generate map
 RUN mkdir -p public/dist/
 ADD web/third_party_maps ./third_party_maps
 ADD web/generate-geometries.js web/topogen.sh ./
