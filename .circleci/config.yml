@@ -8,8 +8,12 @@ executors:
 commands:
   fast-checkout:
     steps:
-      - run: command -v apk >/dev/null && command apk add git "$@" || exit 0
-      - run: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
+      - run: 
+          name: install git (if required)
+          command: command -v apk >/dev/null && command apk add git "$@" || exit 0
+      - run: 
+          name: fast-checkout
+          command: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
 
 jobs:
   verify_python:
