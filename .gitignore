@@ -20,5 +20,3 @@ dist
 ## Pycharm IDE
 .idea
 .vscode
-
-tmp_modules/
