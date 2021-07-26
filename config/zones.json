@@ -3678,19 +3678,22 @@
     ],
     "capacity": {
       "biomass": 6,
-      "gas": 335,
+      "gas": 1263,
       "hydro": 64,
       "solar": 4,
       "wind": 29,
-      "unknown": 2520
+      "coal": 1600
     },
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
       "https://github.com/nessie2013",
-      "https://github.com/lgrigoryeva1"
+      "https://github.com/lgrigoryeva1",
+      "https://github.com/Impelon"
     ],
     "parsers": {
+      "consumption": "MD.fetch_consumption",
+      "price": "MD.fetch_price",
       "production": "MD.fetch_production"
     },
     "timezone": "Europe/Chisinau"
