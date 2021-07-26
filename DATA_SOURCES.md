@@ -258,10 +258,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
-  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
-  - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
-  - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
-  - other: [NPP](https://npp.gov.in/publishedReports)
+  - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
+  - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
