@@ -1,20 +1,12 @@
-from datetime import timedelta, timezone
-import logging
-
-# The arrow library is used to handle datetimes
-#import arrow
-
-# The request library is used to fetch content through HTTP
 import requests
-# pandas processes tabular data
-#import pandas as pd
-
-from pprint import pprint
 import json
+import logging
+from pprint import pprint
+# The arrow library is used to handle datetimes
+import arrow
 
 PRODUCTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json"
 CONSUMPTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json"
-
 
 def fetch_production(
     zone_key="CA-QC",
@@ -47,7 +39,7 @@ def fetch_production(
 
             return {
                 "zoneKey": zone_key,
-                "datetime": elem["date"],
+                "datetime": arrow.get(elem["date"]).datetime,
                 "production": {
                     "biomass": 0.0,
                     "coal": 0.0,
@@ -64,7 +56,7 @@ def fetch_production(
             }
 
 
-def fetch_consumption(zone_key="CA-QC", session=None, logger=None):
+def fetch_consumption(zone_key="CA-QC", session=None, target_datetime=None, logger=None):
     data = _fetch_quebec_consumption()
     for elem in reversed(data["details"]):
         if "demandeTotal" in elem["valeurs"]:
@@ -88,7 +80,7 @@ def _fetch_quebec_production() -> str:
     response = requests.get(PRODUCTION_URL)
 
     if not response.ok:
-        pass
+        logger.info('CA-QC: failed getting requested production data from hydroquebec - URL {}'.format(PRODUCTION_URL))
     return response.json()
 
 
@@ -96,31 +88,13 @@ def _fetch_quebec_consumption() -> str:
     response = requests.get(CONSUMPTION_URL)
 
     if not response.ok:
-        pass
+        logger.info('CA-QC: failed getting requested consumption data from hydroquebec - URL {}'.format(CONSUMPTION_URL))
     return response.json()
 
-
-def _to_english(data: str) -> str:
-
-    MAP_GENERATION = {
-        "hydraulique": "hydro",
-        "thermique": "thermal",
-        "solaire": "solar",
-        "eolien": "wind",
-        "autres": "other",
-        "valeurs": "values",
-    }
-
-    for k, v in MAP_GENERATION.items():
-        data = data.replace(k, v)
-
-    return data
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    from pprint import pprint
-    import logging
     test_logger = logging.getLogger()
     pprint(fetch_consumption(logger=None))
 

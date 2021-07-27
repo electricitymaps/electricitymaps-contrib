@@ -1160,12 +1160,11 @@
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/pjakobsen",
-      "https://github.com/losttenko"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
-      "price": "CA_QC.fetch_price",
-      "production": "CA_ON.fetch_production"
+      "consumption": "CA_QC.fetch_consumption",
+      "production": "CA_QC.fetch_production"
     },
     "timezone": "America/Montreal",
     "bounding_box": [
