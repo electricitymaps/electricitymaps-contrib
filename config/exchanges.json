@@ -1308,7 +1308,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "RU.fetch_exchange"
     },
     "rotation": 0
   },
@@ -2369,6 +2369,16 @@
       "exchange": "RU.fetch_exchange"
     },
     "rotation": -135
+  },
+  "RU-1->UA-CR": {
+    "lonlat": [
+      36.60,
+      45.25
+    ],
+    "parsers": {
+      "exchange": "RU.fetch_exchange"
+    },
+    "rotation": -90
   },
   "SE-SE1->SE-SE2": {
     "parsers": {

@@ -443,6 +443,10 @@
         "CK": {
             "zoneName": "Isole Cook"
         },
+        "CL-CHP": {
+            "countryName": "Cile",
+            "zoneName": "Isola di Pasqua"
+        },
         "CL-SEA": {
             "countryName": "Cile",
             "zoneName": "Sistema Eléctrico de Aysén"
@@ -1180,7 +1184,7 @@
             "zoneName": "Perù"
         },
         "PF": {
-            "zoneName": "Polinesia Francese"
+            "zoneName": "Polinesia francese"
         },
         "PG": {
             "zoneName": "Papua Nuova Guinea"
@@ -1240,17 +1244,19 @@
         },
         "RU-1": {
             "countryName": "Russia",
-            "zoneName": "Russia europea ed Ural"
+            "zoneName": "Russia europea e Ural"
         },
         "RU-2": {
             "countryName": "Russia",
             "zoneName": "Siberia"
         },
-        "RU-EU": {
-            "zoneName": "Russia"
-        },
         "RU-AS": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "Est"
+        },
+        "RU-EU": {
+            "countryName": "Russia",
+            "zoneName": "Artide"
         },
         "RU-KGD": {
             "countryName": "Russia",
@@ -1375,8 +1381,8 @@
             "zoneName": "Ucraina"
         },
         "UA-CR": {
-            "countryName": "Crimea",
-            "zoneName": "Ucraina"
+            "countryName": "Ucraina",
+            "zoneName": "Crimea"
         },
         "UG": {
             "zoneName": "Uganda"
