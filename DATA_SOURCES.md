@@ -272,7 +272,10 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [FAS](<http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf>)
+  - Gas (CET-1 & CET-2 Chişinău): [Termoelectrica](https://www.termoelectrica.md/ro_RO/despre/informatii-tehnice/)
+  - Gas (CET-Nord): [CET-Nord](https://www.cet-nord.md/en/transparent/tep)
+  - Gas and coal (CERS Moldovenească): [MOLDGRES](http://moldgres.com/o-predpriyatii/equipment)
+  - Summary as permanent document (slightly outdated): [FAS](<http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf>)
 - Montenegro
   - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
