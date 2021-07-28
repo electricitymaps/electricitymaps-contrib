@@ -1148,18 +1148,22 @@
   },
   "CA-QC": {
     "capacity": {
-      "biomass": 374,
-      "geothermal":436,
-      "gas": 11317,
-      "hydro": 40211,
-      "nuclear": 13009,
-      "solar": 478,
-      "wind": 3772,
-      "coal": 0
+      "biomass": 257,
+      "coal": 0,
+      "gas": 411,
+      "geothermal": 0,
+      "hydro": 42180,
+      "nuclear": 0,
+      "oil": 131,
+      "solar": 10,
+      "unknown": 1056,
+      "wind": 3508
     },
     "contributors": [
       "https://github.com/jarek",
       "https://github.com/pjakobsen",
+      "https://github.com/madsnedergaard",
+      "https://github.com/KabelWlan"
     ],
     "flag_file_name": "ca.png",
     "parsers": {

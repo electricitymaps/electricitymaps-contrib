@@ -8,7 +8,8 @@ import arrow
 
 PRODUCTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json"
 CONSUMPTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json"
-tz_obj = timezone(timedelta(hours=-4), name="GMT-4")
+# Reluctant to call it 'timezone', since we are importing 'timezone' from datetime
+timezone_id = 'America/Montreal'
 
 def fetch_production(
     zone_key="CA-QC",
@@ -41,7 +42,7 @@ def fetch_production(
 
             return {
                 "zoneKey": zone_key,
-                "datetime": arrow.get(elem["date"], tzinfo=tz_obj).datetime,
+                "datetime":  arrow.get(elem["date"], tzinfo=timezone_id).datetime,
                 "production": {
                     "biomass": 0.0,
                     "coal": 0.0,
@@ -64,7 +65,7 @@ def fetch_consumption(zone_key="CA-QC", session=None, target_datetime=None, logg
         if "demandeTotal" in elem["valeurs"]:
             return {
                 "zoneKey": zone_key,
-                "datetime": arrow.get(elem["date"], tzinfo=tz_obj).datetime,
+                "datetime": arrow.get(elem["date"], tzinfo=tzone).datetime,
                 "consumption": elem["valeurs"]["demandeTotal"],
                 "source": "hydroquebec.com",
             }
@@ -90,7 +91,6 @@ if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     test_logger = logging.getLogger()
-    pprint(fetch_consumption(logger=None))
 
     print('fetch_production() ->')
     pprint(fetch_production(logger=test_logger))
