@@ -2,11 +2,13 @@ import requests
 import json
 import logging
 from pprint import pprint
+from datetime import timedelta, timezone
 # The arrow library is used to handle datetimes
 import arrow
 
 PRODUCTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json"
 CONSUMPTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json"
+tz_obj = timezone(timedelta(hours=-4), name="GMT-4")
 
 def fetch_production(
     zone_key="CA-QC",
@@ -39,7 +41,7 @@ def fetch_production(
 
             return {
                 "zoneKey": zone_key,
-                "datetime": arrow.get(elem["date"]).datetime,
+                "datetime": arrow.get(elem["date"], tzinfo=tz_obj).datetime,
                 "production": {
                     "biomass": 0.0,
                     "coal": 0.0,
@@ -62,18 +64,10 @@ def fetch_consumption(zone_key="CA-QC", session=None, target_datetime=None, logg
         if "demandeTotal" in elem["valeurs"]:
             return {
                 "zoneKey": zone_key,
-                "datetime": elem["date"],
+                "datetime": arrow.get(elem["date"], tzinfo=tz_obj).datetime,
                 "consumption": elem["valeurs"]["demandeTotal"],
                 "source": "hydroquebec.com",
             }
-
-
-def fetch_price(zone_key='CA-QC', session=None, target_datetime=None, logger=None) -> dict:
-    """Requests the last known power price of a given region, country, province, state, or territory."""
-    pass
-
-def fetch_exchange(zone_key1='CA-QC', session=None, target_datetime=None, logger=None) -> dict:
-    pass
 
 
 def _fetch_quebec_production() -> str:

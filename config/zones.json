@@ -1166,7 +1166,7 @@
       "consumption": "CA_QC.fetch_consumption",
       "production": "CA_QC.fetch_production"
     },
-    "timezone": "America/Montreal",
+    "timezone": "America/Toronto",
     "bounding_box": [
       [
         -80.26561438699991,
