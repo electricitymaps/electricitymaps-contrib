@@ -606,9 +606,9 @@
           "value": 462.73049119238584
         },
         "unknown": {
-          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/2804#issuecomment-750944105",
-          "source": "CBS 2019 & ENTSO-E. Assumes 67.5% gas, 18.1% biomass, 5% oil, 0.3% hydro, rest unknown equivalent",
-          "value": 468
+          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/3015#issuecomment-888154930",
+          "source": "2020 average by Tomorrow. See disclaimer",
+          "value": 342
         }
       },
       "NO-NO1": {

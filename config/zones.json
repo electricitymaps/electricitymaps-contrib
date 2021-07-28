@@ -4095,6 +4095,7 @@
       "https://github.com/PaulCornelissen",
       "https://github.com/nessie2013"
     ],
+    "disclaimer": "The data provider (ENTSO-E) underreports solar and wind production. The unknown emission factor is adjusted to account for this.",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
