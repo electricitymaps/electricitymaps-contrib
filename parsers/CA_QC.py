@@ -65,7 +65,7 @@ def fetch_consumption(zone_key="CA-QC", session=None, target_datetime=None, logg
         if "demandeTotal" in elem["valeurs"]:
             return {
                 "zoneKey": zone_key,
-                "datetime": arrow.get(elem["date"], tzinfo=tzone).datetime,
+                "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
                 "consumption": elem["valeurs"]["demandeTotal"],
                 "source": "hydroquebec.com",
             }
