@@ -18,7 +18,7 @@ The file `topogen.sh` does the following:
 and added to the `web/build` folder
 - other data (at 12.01.2018, only Canaries Islands) is added to the `build` folder
 - the module `shp2json` is used to convert the shp data to the GeoJSON format
-- `generate-geometries.js` is then called
+- `geo/generate-geometries.js` is then called
 
 ### `generate-geometries.js`
 
@@ -39,9 +39,9 @@ The final file is named `world.json` and is the one sent to the client.
 ## `generate-zone-bounding-boxes.js`
 
 You can create bounding boxes for new or existing zones in `config/zones.json`:
-1) Run: `docker-compose run --rm web ./topogen.sh`
+1) Run: `docker-compose run --rm web ./geo/topogen.sh`
 2) Update the zone you want to update in `config/zones.json` with `"bounding_box": null`
-3) Run: `node generate-zone-bounding-boxes.js`
+3) Run: `node geo/generate-zone-bounding-boxes.js`
 
 ## Useful tips
 

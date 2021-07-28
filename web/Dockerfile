@@ -9,10 +9,10 @@ RUN yarn install --frozen-lockfile
 
 # Generate map
 RUN mkdir -p public/dist/
-ADD web/third_party_maps ./third_party_maps
-ADD web/generate-geometries.js web/topogen.sh ./
+ADD web/geo/third_party_maps ./geo/third_party_maps
+ADD web/geo/generate-geometries.js web/geo/topogen.sh ./
 ADD web/src/world.json ./src/world.json
-RUN time /bin/sh topogen.sh
+RUN time bash geo/topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 

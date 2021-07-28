@@ -13,9 +13,9 @@ steps:
       ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
     inputs:
       # geometries
-      - generate-geometries.js
-      - topogen.sh
-      - third_party_maps
+      - geo/enerate-geometries.js
+      - geo/topogen.sh
+      - geo/third_party_maps
       # source code
       - ../config/{exchanges,zones}.json
       - locales
@@ -26,7 +26,7 @@ steps:
       - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
-      - bash topogen.sh
+      - bash geo/topogen.sh
       - yarn build-release
     outputs:
       - src/world.json
