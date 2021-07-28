@@ -4103,7 +4103,7 @@
       "price": "ENTSOE.fetch_price",
       "production": "NL.fetch_production"
     },
-    "timezone": null
+    "timezone": "Europe/Amsterdam"
   },
   "NO": {
     "capacity": {
