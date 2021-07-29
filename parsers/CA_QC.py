@@ -1,8 +1,6 @@
 import requests
-import json
 import logging
 from pprint import pprint
-from datetime import timedelta, timezone
 # The arrow library is used to handle datetimes
 import arrow
 
@@ -71,7 +69,7 @@ def fetch_consumption(zone_key="CA-QC", session=None, target_datetime=None, logg
             }
 
 
-def _fetch_quebec_production() -> str:
+def _fetch_quebec_production(logger=logging.getLogger(__name__)) -> str:
     response = requests.get(PRODUCTION_URL)
 
     if not response.ok:
@@ -79,7 +77,7 @@ def _fetch_quebec_production() -> str:
     return response.json()
 
 
-def _fetch_quebec_consumption() -> str:
+def _fetch_quebec_consumption(logger=logging.getLogger(__name__)) -> str:
     response = requests.get(CONSUMPTION_URL)
 
     if not response.ok:
