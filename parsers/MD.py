@@ -160,7 +160,7 @@ def get_data(session=None) -> list:
 
 def fetch_price(zone_key='MD', session=None, target_datetime=None, logger=None) -> dict:
     """
-    Returns the static price of electricity as specified here:
+    Returns the static price of electricity (0.145 MDL per kWh) as specified here:
     https://moldelectrica.md/ro/activity/tariff
     It is defined by the following government-agency decision,
     which is still in effect at the time of writing this (July 2021):
@@ -170,7 +170,7 @@ def fetch_price(zone_key='MD', session=None, target_datetime=None, logger=None) 
         raise NotImplementedError('This parser is not yet able to parse past dates for price')
 
     dt = arrow.now('Europe/Chisinau').datetime
-    return template_price_response(zone_key, dt, '0.145')
+    return template_price_response(zone_key, dt, 145.0)
 
 
 def fetch_consumption(zone_key='MD', session=None, target_datetime=None, logger=None) -> dict:
