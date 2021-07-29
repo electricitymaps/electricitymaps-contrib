@@ -10,7 +10,7 @@ RUN yarn install --frozen-lockfile
 # Generate map
 RUN mkdir -p public/dist/
 ADD web/geo/third_party_maps ./geo/third_party_maps
-ADD web/geo/generate-geometries.js web/geo/topogen.sh ./
+ADD web/geo/generate-geometries.js web/geo/geometries-config.js web/geo/topogen.sh ./geo/
 ADD web/src/world.json ./src/world.json
 RUN bash topogen.sh
 
