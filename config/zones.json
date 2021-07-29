@@ -1147,19 +1147,29 @@
     "timezone": "America/Halifax"
   },
   "CA-QC": {
-    "_comment": "https://www.hydroquebec.com/generation/generating-stations.html",
     "capacity": {
       "biomass": 257,
       "coal": 0,
       "gas": 411,
-      "hydro": 36765,
+      "geothermal": 0,
+      "hydro": 42180,
       "nuclear": 0,
       "oil": 131,
-      "solar": 0,
+      "solar": 10,
       "unknown": 1056,
       "wind": 3508
     },
+    "contributors": [
+      "https://github.com/jarek",
+      "https://github.com/pjakobsen",
+      "https://github.com/madsnedergaard",
+      "https://github.com/KabelWlan"
+    ],
     "flag_file_name": "ca.png",
+    "parsers": {
+      "consumption": "CA_QC.fetch_consumption",
+      "production": "CA_QC.fetch_production"
+    },
     "timezone": "America/Toronto",
     "bounding_box": [
       [
