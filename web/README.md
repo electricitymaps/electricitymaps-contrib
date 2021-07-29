@@ -7,7 +7,7 @@ The world map data is open source and provided by [NACIS](http://nacis.org/initi
 To generate a new world.json run the following command from the web directory after making changes:
 
 ```sh
-docker-compose run --rm web ./topogen.sh
+docker-compose run --rm web ./geo/topogen.sh
 ```
 
 ### `topogen.sh`
