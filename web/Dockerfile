@@ -12,7 +12,7 @@ RUN mkdir -p public/dist/
 ADD web/geo/third_party_maps ./geo/third_party_maps
 ADD web/geo/generate-geometries.js web/geo/geometries-config.js web/geo/topogen.sh ./geo/
 ADD web/src/world.json ./src/world.json
-RUN time bash geo/topogen.sh
+RUN time /bin/sh geo/topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
