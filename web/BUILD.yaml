@@ -13,7 +13,7 @@ steps:
       ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
     inputs:
       # geometries
-      - geo/enerate-geometries.js
+      - geo/generate-geometries.js
       - geo/topogen.sh
       - geo/third_party_maps
       # source code
