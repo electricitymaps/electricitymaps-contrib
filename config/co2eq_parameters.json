@@ -1223,13 +1223,22 @@
       },
       "CA-BC": {
         "_source": "List of Generating Stations in BC (Wikipedia)",
-        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia",
         "powerOriginRatios": {
           "biomass": 0.09,
           "hydro": 0.88,
           "wind": 0.01,
           "gas": 0.01,
           "unknown": 0.01
+        }
+      },
+      "CA-MB": {
+        "_source": "Statistics Canada - average production in 2020",
+        "_url": "https://docs.google.com/spreadsheets/d/1gobOiDRBsxKEKQPG2x5o2Qx17bQLXTSJLtF1JeasKWI/edit?usp=sharing",
+        "powerOriginRatios": {
+          "hydro": 0.9715,
+          "wind": 0.0254,
+          "gas": 0.003
         }
       },
       "CA-NB": {
