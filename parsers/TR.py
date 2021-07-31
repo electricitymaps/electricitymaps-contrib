@@ -19,7 +19,7 @@ PRICE_URL = 'https://seffaflik.epias.com.tr/transparency/piyasalar/' \
 
 MAP_GENERATION = {
     'akarsu': 'hydro',
-    'barajli': 'hydro',
+    'barajli': 'hydro storage',
     'dogalgaz': 'gas',
     'lng': 'gas',
     'lpg': 'gas',
