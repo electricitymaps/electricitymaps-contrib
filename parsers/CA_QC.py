@@ -44,13 +44,20 @@ def fetch_production(
                 "production": {
                     "biomass": 0.0,
                     "coal": 0.0,
-                    "gas": 0.0,
+
+                    # per https://github.com/tmrowco/electricitymap-contrib/issues/3218 , thermal generation
+                    # is at Bécancour gas turbine. It is reported with a delay, and data source returning 0.0
+                    # can indicate either no generation or not-yet-reported generation.
+                    # To handle this, if reported value is 0.0, overwrite it to None, so that backend can know
+                    # this is not entirely reliable and might be updated later.
+                    "gas": if_exists(elem, "thermal") or None,
+
                     "hydro": if_exists(elem, "hydro"),
                     "nuclear": 0.0,
                     "oil": 0.0,
                     "solar": if_exists(elem, "solar"),
                     "wind": if_exists(elem, "wind"),
-                    "geothermal": if_exists(elem, "geothermal"),
+                    "geothermal": 0.0,
                     "unknown": if_exists(elem, "unknown"),
                 },
                 "source": "hydroquebec.com",
