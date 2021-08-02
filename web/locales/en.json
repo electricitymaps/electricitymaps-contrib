@@ -83,6 +83,8 @@
         "representing": "representing",
         "ofemissions": "of emissions",
         "withcarbonintensity": "with a carbon intensity of",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
@@ -1244,17 +1246,19 @@
           },
           "RU-1": {
             "countryName": "Russia",
-            "zoneName": "European Russia and Ural"
+            "zoneName": "Europe-Ural"
           },
           "RU-2": {
             "countryName": "Russia",
             "zoneName": "Siberia"
           },
           "RU-EU": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "Arctic"
           },
           "RU-AS": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "East"
           },
           "RU-KGD": {
             "countryName": "Russia",
@@ -1379,8 +1383,8 @@
             "zoneName": "Ukraine"
           },
           "UA-CR": {
-            "countryName": "Crimea",
-            "zoneName": "Ukraine"
+            "countryName": "Ukraine",
+            "zoneName": "Crimea"
           },
           "UG": {
             "zoneName": "Uganda"
