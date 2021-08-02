@@ -121,7 +121,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
+- Turkey: [ytbs](https://ytbsbilgi.teias.gov.tr/ytbsbilgi/frm_istatistikler.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
