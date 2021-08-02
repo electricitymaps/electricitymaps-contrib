@@ -30,6 +30,7 @@ const LanguageSelect = () => {
       <ButtonToggle
         onChange={toggleLanguagesVisible}
         tooltip={__('tooltips.selectLanguage')}
+        ariaLabel={__('tooltips.selectLanguage')}
         icon="language_select"
       />
       {languagesVisible && (
