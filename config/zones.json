@@ -1148,16 +1148,17 @@
   },
   "CA-QC": {
     "capacity": {
-      "biomass": 257,
+      "biomass": 374,
       "coal": 0,
-      "gas": 411,
+      "gas": 436,
       "geothermal": 0,
-      "hydro": 42180,
+      "hydro": 40211,
       "nuclear": 0,
       "oil": 131,
       "solar": 10,
       "unknown": 1056,
-      "wind": 3508
+      "wind": 3772
+
     },
     "contributors": [
       "https://github.com/jarek",
