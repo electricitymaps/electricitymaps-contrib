@@ -5,22 +5,12 @@ executors:
     docker:
       - image: node:12.22-alpine
 
-commands:
-  fast-checkout:
-    steps:
-      - run: 
-          name: install git (if required)
-          command: command -v apk >/dev/null && command apk add git "$@" || exit 0
-      - run: 
-          name: fast-checkout
-          command: git clone --depth 1 https://github.com/tmrowco/electricitymap-contrib.git --branch "$CIRCLE_BRANCH" --single-branch .
-
 jobs:
   verify_python:
     docker:
       - image: circleci/python:3.7.9
     steps:
-      - fast-checkout
+      - checkout
       - restore_cache:
           key: venv-{{ checksum "poetry.lock" }}
       - run:
@@ -46,7 +36,7 @@ jobs:
   lint_json:
     executor: js-exec
     steps:
-      - fast-checkout
+      - checkout
       - run:
           command: |
             npm install -g jsonlint-mod
@@ -55,7 +45,7 @@ jobs:
   test_js:
     executor: js-exec
     steps:
-      - fast-checkout
+      - checkout
       - run:
           command: |
             npm install -g jest
@@ -64,7 +54,7 @@ jobs:
   lint_js:
     executor: js-exec
     steps:
-      - fast-checkout
+      - checkout
       - restore_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
       - run:
@@ -83,7 +73,7 @@ jobs:
       image: circleci/classic:201808-01
       docker_layer_caching: true
     steps:
-      - fast-checkout
+      - checkout
       - run:
           name: Build
           command: |
