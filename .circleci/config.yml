@@ -39,7 +39,7 @@ jobs:
       - checkout
       - run:
           command: |
-            npm install -g jsonlint-mod
+            sudo npm install -g jsonlint-mod
             jsonlint -q config/*.json web/locales/*.json
 
   test_js:
@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run:
           command: |
-            npm install -g jest
+            sudo npm install -g jest
             jest
 
   lint_js:
