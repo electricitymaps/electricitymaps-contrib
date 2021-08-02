@@ -3,7 +3,7 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: node:12.22-alpine
+      - image: circleci/node:12.13
 
 jobs:
   verify_python:
