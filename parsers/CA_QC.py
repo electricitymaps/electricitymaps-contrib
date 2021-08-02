@@ -25,11 +25,10 @@ def fetch_production(
             "thermique": "thermal",
             "solaire": "solar",
             "eolien": "wind",
-            #autres is all renewable, and mostly biomass.  See Github    #3218
+            # autres is all renewable, and mostly biomass.  See Github    #3218
             "autres": "biomass",
             "valeurs": "values",
             "biomass":0.0
-
         }
         english = {v: k for k, v in english.items()}
         try:
@@ -55,9 +54,7 @@ def fetch_production(
                     # 3218, Québec's thermal generation is at Bécancour gas turbine.
                     # It is reported with a delay, and data source returning 0.0 can indicate either no generation or not-yet-reported generation.
                     # Thus, if value is 0.0, overwrite it to None, so that backend can know this is not entirely reliable and might be updated later.
-                    # Furthermore, hermal is not a key recognized by Electricity Map.
-                    # Everything connected to Hydro-Québec grid described as "thermal" is fueled by natural gas
-                    # (Bécancour station), so we use "gas" as Electricity Map key for what Hydro-Québec calls "thermal".
+                    # Furthermore, thermal is not a key recognized by Electricity Map.
                     "gas": None if if_exists(elem, "thermal") == 0 else if_exists(elem, "thermal"),
                     # There are no geothermal electricity generation stations in Québec (and all of Canada for that matter).
                     "geothermal": 0.0,

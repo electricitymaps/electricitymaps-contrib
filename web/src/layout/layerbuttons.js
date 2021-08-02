@@ -35,6 +35,7 @@ export default () => {
         <ButtonToggle
           active={windEnabled}
           tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+          ariaLabel={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
           icon="weather/wind"
         />
       </Link>
@@ -42,6 +43,7 @@ export default () => {
         <ButtonToggle
           active={solarEnabled}
           tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+          ariaLabel={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
           icon="weather/sun"
         />
       </Link>
@@ -49,6 +51,7 @@ export default () => {
         active={brightModeEnabled}
         onChange={toggleBrightMode}
         tooltip={__('tooltips.toggleDarkMode')}
+        ariaLabel={__('tooltips.toggleDarkMode')}
         icon="brightmode"
       />
     </div>
