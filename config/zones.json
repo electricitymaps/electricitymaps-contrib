@@ -4760,7 +4760,8 @@
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -4827,8 +4828,24 @@
     ]
   },
   "RU-AS": {
+    "contributors": [
+      "https://github.com/JeanBaptisteScellier"
+    ],
     "flag_file_name": "ru.png",
-    "timezone": null
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow",
+    "bounding_box": [
+      [
+        105.5,
+        42.2
+      ],
+      [
+        163,
+        77
+      ]
+    ]
   },
   "RU-EU": {
     "flag_file_name": "ru.png",
