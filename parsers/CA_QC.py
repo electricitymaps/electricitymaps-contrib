@@ -25,8 +25,9 @@ def fetch_production(
             "thermique": "thermal",
             "solaire": "solar",
             "eolien": "wind",
-            "autres": "unknown",
-            "valeurs": "values",
+            # autres is all renewable, and mostly biomass.  See Github    #3218
+            "autres": "biomass",
+            "valeurs": "values"
         }
         english = {v: k for k, v in english.items()}
         try:
@@ -42,21 +43,18 @@ def fetch_production(
                 "zoneKey": zone_key,
                 "datetime":  arrow.get(elem["date"], tzinfo=timezone_id).datetime,
                 "production": {
-                    "biomass": 0.0,
+                    "biomass": if_exists(elem, "biomass"),
                     "coal": 0.0,
-
-                    # per https://github.com/tmrowco/electricitymap-contrib/issues/3218 , thermal generation
-                    # is at Bécancour gas turbine. It is reported with a delay, and data source returning 0.0
-                    # can indicate either no generation or not-yet-reported generation.
-                    # To handle this, if reported value is 0.0, overwrite it to None, so that backend can know
-                    # this is not entirely reliable and might be updated later.
-                    "gas": if_exists(elem, "thermal") or None,
-
                     "hydro": if_exists(elem, "hydro"),
                     "nuclear": 0.0,
                     "oil": 0.0,
                     "solar": if_exists(elem, "solar"),
                     "wind": if_exists(elem, "wind"),
+                    # See Github issue #3218, Québec's thermal generation is at Bécancour gas turbine.
+                    # It is reported with a delay, and data source returning 0.0 can indicate either no generation or not-yet-reported generation.
+                    # Thus, if value is 0.0, overwrite it to None, so that backend can know this is not entirely reliable and might be updated later.
+                    "gas": if_exists(elem, "thermal") or None,
+                    # There are no geothermal electricity generation stations in Québec (and all of Canada for that matter).
                     "geothermal": 0.0,
                     "unknown": if_exists(elem, "unknown"),
                 },
