@@ -121,8 +121,12 @@ module.exports = (state = initialDataState, action) => {
         });
         // Set date
         zone.datetime = action.payload.datetime;
+
+        if (!zone.production || Object.values(zone.production).every(v => v === null)) {
+          return;
+        }
+
         // Validate data
-        if (!zone.production) return;
         modeOrder.forEach((mode) => {
           if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
           // Check missing values
