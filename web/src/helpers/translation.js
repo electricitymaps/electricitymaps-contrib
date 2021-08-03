@@ -1,6 +1,8 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable prefer-spread */
 // TODO: re-enable rules
+// TODO: move to LinguiJS or react-intl that doesn't depend on the global
+// object or a node.js process running.
 
 import { vsprintf } from 'sprintf-js';
 
@@ -19,10 +21,9 @@ function translateWithLocale(locale, keyStr) {
 }
 
 export function translate() {
-  // Will use the `locale` global variable
   const args = Array.prototype.slice.call(arguments);
   // Prepend locale
-  args.unshift(locale);
+  args.unshift(window.locale);
   return translateWithLocale.apply(null, args);
 }
 
