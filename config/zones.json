@@ -4785,7 +4785,8 @@
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -4852,8 +4853,24 @@
     ]
   },
   "RU-AS": {
+    "contributors": [
+      "https://github.com/JeanBaptisteScellier"
+    ],
     "flag_file_name": "ru.png",
-    "timezone": null
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow",
+    "bounding_box": [
+      [
+        105.5,
+        42.2
+      ],
+      [
+        163,
+        77
+      ]
+    ]
   },
   "RU-EU": {
     "flag_file_name": "ru.png",
@@ -4878,6 +4895,20 @@
       [
         23.348351684000107,
         55.78995961500016
+      ]
+    ],
+    "flag_file_name": "ru.png",
+    "timezone": null
+  },
+  "RU-FE": {
+    "bounding_box": [
+      [
+        141.5,
+        43.3
+      ],
+      [
+        179.9,
+        71.6
       ]
     ],
     "flag_file_name": "ru.png",
