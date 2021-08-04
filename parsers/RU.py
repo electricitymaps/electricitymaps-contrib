@@ -209,6 +209,7 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
         # Default values
         row['production']['biomass'] = None
         row['production']['geothermal'] = None
+        row['production']['solar'] = None
 
         data.append(row)
 
