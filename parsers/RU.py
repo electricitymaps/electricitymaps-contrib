@@ -67,10 +67,10 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
 
         # Select the time range
         min_datetime = max([df.index.min() for df in dfs.values()])
+        if min_datetime > dfs['RU-AS'].index.min():
+            min_datetime = min_datetime - pd.Timedelta(30, 'm')
         max_datetime = min([df.index.max() for df in dfs.values()])
-        if max_datetime < dfs['RU-AS'].index.max():
-            max_datetime = max_datetime + pd.Timedelta(30, 'm')
-        index = pd.date_range(min_datetime, max_datetime, freq='30T')
+        index = pd.date_range(min_datetime, max_datetime, freq='30T', name='datetime')
         dfs_prod = list(map(lambda df: df.reindex(index).bfill(), dfs.values()))
 
         # Compute the sum
