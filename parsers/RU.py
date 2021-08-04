@@ -175,8 +175,6 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     else:
         raise NotImplementedError('This exchange pair is not implemented.')
 
-    exchange_id = exchange_ids[sortedcodes]
-
     data = []
     for datapoint, hour in datapoints:
         try:

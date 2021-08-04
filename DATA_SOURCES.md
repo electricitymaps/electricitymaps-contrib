@@ -121,7 +121,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Turkey: [ytbs](https://ytbs.teias.gov.tr/ytbs/frm_login.jsf)
+- Turkey: [ytbs](https://ytbsbilgi.teias.gov.tr/ytbsbilgi/frm_istatistikler.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
 - United States of America
@@ -255,14 +255,11 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
   - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
 - Italy
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
-  - Per Region Renewable: [Terna](https://www.terna.it/en/electric-system/statistical-data-forecast/evolution-electricity-market)
-  - Wind & Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=ITA)
+  - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
+  - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
 - India:
-  - solar: [MNRE.GOV.IN](https://www.mnre.gov.in/solar/current-status/)
-  - wind: [MNRE.GOV.IN](https://www.mnre.gov.in/wind/current-status/)
-  - biomass: [MNRE.GOV.IN](https://www.mnre.gov.in/bio-energy/current-status)
-  - other: [NPP](https://npp.gov.in/publishedReports)
+  - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
+  - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
@@ -275,7 +272,10 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [FAS](<http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf>)
+  - Gas (CET-1 & CET-2 Chişinău): [Termoelectrica](https://www.termoelectrica.md/ro_RO/despre/informatii-tehnice/)
+  - Gas (CET-Nord): [CET-Nord](https://www.cet-nord.md/en/transparent/tep)
+  - Gas and coal (CERS Moldovenească): [MOLDGRES](http://moldgres.com/o-predpriyatii/equipment)
+  - Summary as permanent document (slightly outdated): [FAS](<http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf>)
 - Montenegro
   - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
@@ -324,9 +324,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - South Korea:
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
   - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
-- Spain:
-  - Biomass: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Gas, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
+- Spain
+  - Geothermal, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
   - Other: [REE](https://www.ree.es/es/datos/publicaciones/boletines-mensuales)
 - Spain (Canary Islands)
   - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)

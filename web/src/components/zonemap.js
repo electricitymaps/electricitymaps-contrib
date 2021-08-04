@@ -13,6 +13,7 @@ import {
   noop,
   size,
 } from 'lodash';
+import { __ } from '../helpers/translation';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -229,8 +230,8 @@ const ZoneMap = ({
           >
             <NavigationControl
               showCompass={false}
-              zoomInLabel=""
-              zoomOutLabel=""
+              zoomInLabel={__('tooltips.zoomIn')}
+              zoomOutLabel={__('tooltips.zoomOut')}
             />
           </div>
         </Portal>
