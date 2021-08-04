@@ -77,11 +77,13 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
         df_prod = reduce(lambda x, y: x+y, dfs_prod)
 
         # Format to dict
-        df_prod = df_prod.apply(dict, axis=1).rename('production').reset_index()
+        df_prod = df_prod.apply(dict, axis=1).reset_index(name='production')
         df_prod['zoneKey'] = 'RU'
         df_prod['storage'] = [{} for i in range(len(df_prod))]
         df_prod['source'] = 'so-ups.ru'
         data = df_prod.to_dict('records')
+        for row in data:
+            row['datetime'] = row['datetime'].to_pydatetime()
 
         return data
 
