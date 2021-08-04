@@ -34,7 +34,7 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
-    url = 'http://www.eso.bg/?did=124'
+    url = 'http://www.eso.bg/doc?124'
     response = r.get(url)
     html = response.text
     soup = BeautifulSoup(html, 'html.parser')

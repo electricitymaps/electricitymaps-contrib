@@ -83,6 +83,8 @@
         "representing": "representing",
         "ofemissions": "of emissions",
         "withcarbonintensity": "with a carbon intensity of",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
