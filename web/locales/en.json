@@ -109,9 +109,9 @@
         "faq": "Frequently Asked Questions"
     },
     "wind": "wind",
-    "windDataError": "Wind data is unavailable",
+    "windDataError": "Wind data is currently unavailable",
     "solar": "solar",
-    "solarDataError": "Solar data is unavailable",
+    "solarDataError": "Solar data is currently unavailable",
     "hydro": "hydro",
     "hydro storage": "hydro storage",
     "battery storage": "battery storage",
