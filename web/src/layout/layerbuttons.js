@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { __ } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
@@ -30,10 +30,13 @@ export default () => {
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
+  const Link = ({ to, hasError, children }) =>
+  !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
+
   return (
     <div className="layer-buttons-container">
       <LanguageSelect />
-      <Link to={windToggledLocation}>
+      <Link to={windToggledLocation} hasError={windDataError}>
         <ButtonToggle
           active={windEnabled}
           tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
@@ -41,7 +44,7 @@ export default () => {
           icon="weather/wind"
         />
       </Link>
-      <Link to={solarToggledLocation}>
+      <Link to={solarToggledLocation} hasError={solarDataError}>
         <ButtonToggle
           active={solarEnabled}
           tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}

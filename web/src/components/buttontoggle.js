@@ -9,16 +9,11 @@ const Wrapper = styled.div`
 
 const Button = styled.button`
   background-color: #FFFFFF;
-  background-image: url(${props => {
-    if(props.active) {
-      if(props.errorMessage) {
-        return resolvePath(`images/${props.icon}_active_error.svg`)
-      }
-      return resolvePath(`images/${props.icon}_active.svg`)
-    } else  {
-      return resolvePath(`images/${props.icon}.svg`)
-    }
-  }});
+  background-image: url(${props => (
+    props.active
+      ? resolvePath(`images/${props.icon}_active.svg`)
+      : resolvePath(`images/${props.icon}.svg`)
+  )});
 `;
 
 const ButtonToggle = ({
@@ -52,7 +47,7 @@ const ButtonToggle = ({
         <div className="layer-button-tooltip">
           <div className="tooltip-container">
             <div className="tooltip-text">
-              <div>{tooltip}</div>
+              { !errorMessage && (<div>{tooltip}</div>)}
               { active && errorMessage && (
                 <div className='tooltip-error'>{errorMessage}</div>
               )}
