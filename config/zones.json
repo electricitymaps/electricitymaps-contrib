@@ -2784,6 +2784,7 @@
     "timezone": null
   },
   "IN-MH": {
+    "comment": "partial source: installed capacity in Jun-2021 https://cea.nic.in/dashboard/?lang=en",
     "bounding_box": [
       [
         72.79941,
@@ -2797,17 +2798,19 @@
     "capacity": {
       "biomass": 2597,
       "coal": 24966,
-      "gas": 3427.6,
+      "gas": 3207.08,
       "hydro": 3047,
       "nuclear": 1400,
       "oil": 0,
       "solar": 2295,
-      "wind": 5010.8
+      "wind": 5010.8,
+      "unknown": 480.55
     },
     "contributors": [
       "https://github.com/GitMatze",
       "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/Manu1400"
     ],
     "flag_file_name": "in.png",
     "parsers": {
