@@ -1158,7 +1158,6 @@
       "solar": 10,
       "unknown": 1056,
       "wind": 3772
-
     },
     "contributors": [
       "https://github.com/jarek",
@@ -2559,8 +2558,8 @@
       "solar": 1962,
       "wind": 28,
       "hydro": 6.72,
-      "hydro storage": 150.0,
-      "biomass" : 27,
+      "hydro storage": 150,
+      "biomass": 27,
       "nuclear": 0,
       "oil": 44,
       "geothermal": 0,
@@ -4863,12 +4862,12 @@
     "timezone": "Europe/Moscow",
     "bounding_box": [
       [
-        105.5,
-        42.2
+        105.0401526228452,
+        41.79511139500006
       ],
       [
-        163,
-        77
+        163.3469389183963,
+        77.62579987200007
       ]
     ]
   },
