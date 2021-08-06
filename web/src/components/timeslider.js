@@ -17,7 +17,8 @@ const getTimeScale = (rangeEnd, datetimes, startTime, endTime) => scaleTime()
     startTime ? moment(startTime).toDate() : first(datetimes),
     endTime ? moment(endTime).toDate() : last(datetimes),
   ])
-  .range([0, rangeEnd]);
+  .range([0, rangeEnd])
+  .nice(25);
 
 const createChangeAndInputHandler = (
   datetimes,

@@ -15,7 +15,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || !Object.keys(zoneData.production).length) && !zonesThatCanHaveZeroProduction.includes(zoneId);
+  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || Object.values(zoneData.production).every(v => v === null)) && !zonesThatCanHaveZeroProduction.includes(zoneId);
   const zoneIsMissingParser = !zoneData.hasParser;
   const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
   const isRealtimeData = zoneTimeIndex === null;

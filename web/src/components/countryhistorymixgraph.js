@@ -47,9 +47,14 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
     // Add production
     modeOrder.forEach((k) => {
       const isStorage = k.indexOf('storage') !== -1;
-      const value = isStorage
+      let value = isStorage
         ? -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')])
         : (d.production || {})[k];
+
+      if (value === null) {
+        value = undefined;
+      }
+
       // in GW or MW
       obj[k] = value / valueFactor;
       if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
