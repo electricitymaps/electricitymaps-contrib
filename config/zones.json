@@ -1045,10 +1045,11 @@
     ],
     "capacity": {
       "biomass": 90.1,
-      "coal": 1232,
+      "coal": 1252,
       "gas": 637,
       "hydro": 418,
-      "wind": 567
+      "wind": 567,
+      "oil": 222
     },
     "contributors": [
       "https://github.com/jarek",
