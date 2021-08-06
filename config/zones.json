@@ -1206,7 +1206,8 @@
   "CA-YT": {
     "contributors": [
       "https://github.com/jarek",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/Manu1400"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1224,7 +1225,9 @@
       ]
     ],
     "capacity": {
-      "hydro": 92
+      "battery storage": 0,
+      "hydro": 92,
+      "solar": 0.0104
     }
   },
   "CH": {
