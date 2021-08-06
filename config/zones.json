@@ -1227,7 +1227,10 @@
     "capacity": {
       "battery storage": 0,
       "hydro": 92,
-      "solar": 0.0104
+      "nuclear": 0,
+      "solar": 0.0104,
+      "wind": 0.81,
+      "unknown": 23.1796
     }
   },
   "CH": {
