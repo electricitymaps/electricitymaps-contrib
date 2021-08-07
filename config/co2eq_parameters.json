@@ -180,7 +180,7 @@
       },
       "CA-AB": {
         "unknown": {
-          "_comment": "dual fuel power plants: assumption of 50% coal and 50% natural gas",
+          "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
           "value": 655
         }
         ,
