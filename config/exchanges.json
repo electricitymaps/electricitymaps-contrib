@@ -169,6 +169,10 @@
     "rotation": 180
   },
   "AUS-NSW->AUS-QLD": {
+    "capacity": [
+      -1200,
+      700
+    ],
     "lonlat": [
       146.503228,
       -29.054874
@@ -179,6 +183,10 @@
     "rotation": 0
   },
   "AUS-NSW->AUS-VIC": {
+    "capacity": [
+      -170,
+      170
+    ],
     "lonlat": [
       145.308829,
       -35.850801
@@ -189,6 +197,10 @@
     "rotation": 180
   },
   "AUS-SA->AUS-VIC": {
+    "capacity": [
+      -870,
+      870
+    ],
     "lonlat": [
       140.965561,
       -35.784766
