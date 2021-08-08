@@ -371,7 +371,7 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Albania ⇄ Greece: [533 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Australia (New South Wales) ⇄ Australia (Queensland) ["QNI": 700MW (NSW -> QLD) 1200MW (QLD -> NSW)](https://en.wikipedia.org/wiki/Queensland_%E2%80%93_New_South_Wales_Interconnector) and ["N-Q-MNSP1": 180MW](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf)
-- Australia (Victoria) ⇄ Australia (New South Wales) ["VNI": 170MW](https://www.transgrid.com.au/what-we-do/projects/current-projects/Victoria%20to%20NSW%20Interconnector) 
+- Australia (Victoria) ⇄ Australia (New South Wales) ["VIC1-NSW1": 1600MW (VIC -> NSW) 1350MW (NSW -> VIC)](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf)  ["VNI": 170MW](https://www.transgrid.com.au/what-we-do/projects/current-projects/Victoria%20to%20NSW%20Interconnector) 
 - Australia (Victoria) ⇄ Australia (South Australia) ["Heywood interconnector": 650 MW](https://en.wikipedia.org/wiki/Heywood_interconnector) and ["Murraylink": 220MW](https://en.wikipedia.org/wiki/Murraylink)
 - Australia (Victoria) ⇄ Australia (Tasmania): ["Basslink": 500 MW (regular) or 630 MW (temporarily)](https://en.wikipedia.org/wiki/Basslink)
 - Belgium ⇄ Germany ["Alegro": 1000MW](https://www.elia.be/en/infrastructure-and-projects/infrastructure-projects/alegro?clang=en)
