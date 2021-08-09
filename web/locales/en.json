@@ -1260,6 +1260,10 @@
             "countryName": "Russia",
             "zoneName": "East"
           },
+          "RU-FE": {
+              "countryName": "Russia",
+              "zoneName": "Far East"
+          },
           "RU-KGD": {
             "countryName": "Russia",
             "zoneName": "Kaliningrad"
