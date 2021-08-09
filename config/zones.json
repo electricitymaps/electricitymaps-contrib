@@ -907,6 +907,12 @@
     "timezone": null
   },
   "CA-AB": {
+    "capacity": {
+      "nuclear": 0,
+      "geothermal": 0,
+      "oil": 0,
+      "hydro storage": 0
+    },
     "contributors": [
       "https://github.com/mlucchini"
     ],
