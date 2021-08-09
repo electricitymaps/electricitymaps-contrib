@@ -72,7 +72,7 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
             dfs[subzone_key] = df_prod
 
         # Compute the sum
-        df_prod = reduce(lambda x, y: x+y, dfs).dropna()
+        df_prod = reduce(lambda x, y: x+y, dfs.values()).dropna()
 
         # Format to dict
         df_prod = df_prod.apply(dict, axis=1).reset_index(name='production')
