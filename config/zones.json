@@ -907,6 +907,12 @@
     "timezone": null
   },
   "CA-AB": {
+    "capacity": {
+      "nuclear": 0,
+      "geothermal": 0,
+      "oil": 0,
+      "hydro storage": 0
+    },
     "contributors": [
       "https://github.com/mlucchini"
     ],
@@ -1158,7 +1164,6 @@
       "solar": 10,
       "unknown": 1056,
       "wind": 3772
-
     },
     "contributors": [
       "https://github.com/jarek",
@@ -2559,8 +2564,8 @@
       "solar": 1962,
       "wind": 28,
       "hydro": 6.72,
-      "hydro storage": 150.0,
-      "biomass" : 27,
+      "hydro storage": 150,
+      "biomass": 27,
       "nuclear": 0,
       "oil": 44,
       "geothermal": 0,
@@ -4788,7 +4793,8 @@
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -4855,8 +4861,24 @@
     ]
   },
   "RU-AS": {
+    "contributors": [
+      "https://github.com/JeanBaptisteScellier"
+    ],
     "flag_file_name": "ru.png",
-    "timezone": null
+    "parsers": {
+      "production": "RU.fetch_production"
+    },
+    "timezone": "Europe/Moscow",
+    "bounding_box": [
+      [
+        105.0401526228452,
+        41.79511139500006
+      ],
+      [
+        163.3469389183963,
+        77.62579987200007
+      ]
+    ]
   },
   "RU-EU": {
     "flag_file_name": "ru.png",
@@ -4881,6 +4903,20 @@
       [
         23.348351684000107,
         55.78995961500016
+      ]
+    ],
+    "flag_file_name": "ru.png",
+    "timezone": null
+  },
+  "RU-FE": {
+    "bounding_box": [
+      [
+        141.5,
+        43.3
+      ],
+      [
+        179.9,
+        71.6
       ]
     ],
     "flag_file_name": "ru.png",
