@@ -104,6 +104,12 @@
     },
     "timezone": "Asia/Yerevan"
   },
+  "AO": {
+    "_comment": "Installed Capacity 3129 MW (year: unknown) source: http://www.sapp.co.zw/demand-and-supply",
+    "capacity": {
+      "unknown": 3129
+    }
+  },
   "AR": {
     "capacity": {
       "biomass": 122,
