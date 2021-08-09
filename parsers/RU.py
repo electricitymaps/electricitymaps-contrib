@@ -62,14 +62,17 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
         for subzone_key in ['RU-1', 'RU-2', 'RU-AS']:
             data = fetch_production(subzone_key, session, target_datetime, logger)
             df = pd.DataFrame(data).set_index('datetime')
-            dfs[subzone_key] = df['production'].apply(pd.Series).fillna(0)
+            df_prod = df['production'].apply(pd.Series).fillna(0)
+
             # Set a 30 minutes frequency
             if subzone_key in ['RU-1', 'RU-2']:
-                df_30m_index = df.index.union(df.index + pd.Timedelta(minutes=30))
-                df = df.reindex(df_30m_index).ffill()
+                df_30m_index = df_prod.index.union(df_prod.index + pd.Timedelta(minutes=30))
+                df_prod = df_prod.reindex(df_30m_index).ffill()
+
+            dfs[subzone_key] = df_prod
 
         # Compute the sum
-        df_prod = reduce(lambda x, y: x+y, dfs_prod).dropna()
+        df_prod = reduce(lambda x, y: x+y, dfs).dropna()
 
         # Format to dict
         df_prod = df_prod.apply(dict, axis=1).reset_index(name='production')
