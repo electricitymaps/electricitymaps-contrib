@@ -10,9 +10,8 @@ from functools import reduce
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)
 # RU-AS: Russia East Power System (2nd synchronous zone)
-# Be careful with hours: data at t on API side corresponds to
+# Handling of hours: data at t on API side corresponds to
 # production / consumption from t to t+1
-# So if you want data at t, give t-1 to the API
 
 BASE_EXCHANGE_URL = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?'
 
@@ -64,17 +63,13 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
             data = fetch_production(subzone_key, session, target_datetime, logger)
             df = pd.DataFrame(data).set_index('datetime')
             dfs[subzone_key] = df['production'].apply(pd.Series).fillna(0)
-
-        # Select the time range
-        min_datetime = max([df.index.min() for df in dfs.values()])
-        if min_datetime > dfs['RU-AS'].index.min():
-            min_datetime = min_datetime - pd.Timedelta(30, 'm')
-        max_datetime = min([df.index.max() for df in dfs.values()])
-        index = pd.date_range(min_datetime, max_datetime, freq='30T', name='datetime')
-        dfs_prod = list(map(lambda df: df.reindex(index).bfill(), dfs.values()))
+            # Set a 30 minutes frequency
+            if subzone_key in ['RU-1', 'RU-2']:
+                df_30m_index = df.index.union(df.index + pd.Timedelta(minutes=30))
+                df = df.reindex(df_30m_index).ffill()
 
         # Compute the sum
-        df_prod = reduce(lambda x, y: x+y, dfs_prod)
+        df_prod = reduce(lambda x, y: x+y, dfs_prod).dropna()
 
         # Format to dict
         df_prod = df_prod.apply(dict, axis=1).reset_index(name='production')
@@ -140,13 +135,13 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
 
         # Date
-        hour = '%02d' % (int(datapoint['INTERVAL']) + 1)
+        hour = '%02d' % (int(datapoint['INTERVAL']))
         datetime = arrow.get('%s %s' % (date, hour), 'YYYY.MM.DD HH', tzinfo=tz)
         row['datetime'] = datetime.datetime
-        current_dt = arrow.now(tz).datetime
+        last_dt = arrow.now(tz).shift(hours=-1).datetime
 
         # Drop datapoints in the future
-        if row['datetime'] > current_dt:
+        if row['datetime'] > last_dt:
             continue
 
         # Default values
@@ -198,12 +193,11 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
         # Date
         hour = datapoint['fHour']
         datetime = arrow.get('%s %s' % (date, hour), 'YYYY.MM.DD HH:mm', tzinfo=tz)
-        datetime = datetime.shift(minutes=30)
         row['datetime'] = datetime.datetime
-        current_dt = arrow.now(tz).datetime
+        last_dt = arrow.now(tz).shift(minutes=-30).datetime
 
         # Drop datapoints in the future
-        if row['datetime'] > current_dt:
+        if row['datetime'] > last_dt:
             continue
 
         # Default values
