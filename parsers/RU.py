@@ -72,7 +72,7 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
             dfs[subzone_key] = df_prod
 
         # Compute the sum
-        df_prod = reduce(lambda x, y: x+y, dfs).dropna()
+        df_prod = reduce(lambda x, y: x+y, dfs.values()).dropna()
 
         # Format to dict
         df_prod = df_prod.apply(dict, axis=1).reset_index(name='production')
@@ -303,7 +303,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 if __name__ == '__main__':
     print('fetch_production() ->')
     print(fetch_production())
-    print('fetch_production(RU-1) ->')
+    """print('fetch_production(RU-1) ->')
     print(fetch_production('RU-1'))
     print('fetch_production(RU-2) ->')
     print(fetch_production('RU-2'))
@@ -338,4 +338,4 @@ if __name__ == '__main__':
     print('fetch_exchange(RU-1, UA) ->')
     print(fetch_exchange('RU-1', 'UA'))
     print('fetch_exchange(RU-1, RU-2) ->')
-    print(fetch_exchange('RU-1', 'RU-2'))
+    print(fetch_exchange('RU-1', 'RU-2'))"""
