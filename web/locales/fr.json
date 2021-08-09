@@ -1169,12 +1169,16 @@
             "zoneName": "Îles Chatham"
         },
         "NZ-NZN": {
-            "countryName": "Nouvelle Zélande",
+            "countryName": "Nouvelle-Zélande",
             "zoneName": "Île du Nord"
         },
         "NZ-NZS": {
-            "countryName": "Nouvelle Zélande",
+            "countryName": "Nouvelle-Zélande",
             "zoneName": "Île du Sud"
+        },
+        "NZ-NZST": {
+          "countryName": "Nouvelle-Zélande",
+          "zoneName": "Île Stewart"
         },
         "OM": {
             "zoneName": "Oman"
@@ -1504,6 +1508,278 @@
         "US-TX": {
             "countryName": "États-Unis d’Amérique",
             "zoneName": "Texas"
+        },
+        "US-CAL-BANC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Balancing Authority Of Northern California"
+        },
+        "US-CAL-CISO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "California Independent System Operator"
+        },
+        "US-CAL-IID": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Imperial Irrigation District"
+        },
+        "US-CAL-LDWP": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Los Angeles Department Of Water And Power"
+        },
+        "US-CAL-TIDC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Turlock Irrigation District"
+        },
+        "US-CAR-CPLE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Duke Energy Progress East"
+        },
+        "US-CAR-CPLW": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Duke Energy Progress West"
+        },
+        "US-CAR-DUK": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Duke Energy Carolinas"
+        },
+        "US-CAR-SC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "South Carolina Public Service Authority"
+        },
+        "US-CAR-SCEG": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "South Carolina Electric & Gas Company"
+        },
+        "US-CAR-YAD": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
+        },
+        "US-CENT-SPA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Southwestern Power Administration"
+        },
+        "US-CENT-SWPP": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Southwest Power Pool"
+        },
+        "US-FLA-FMPP": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Florida Municipal Power Pool"
+        },
+        "US-FLA-FPC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Duke Energy Florida Inc"
+        },
+        "US-FLA-FPL": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Florida Power & Light Company"
+        },
+        "US-FLA-GVL": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Gainesville Regional Utilities"
+        },
+        "US-FLA-HST": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "City Of Homestead"
+        },
+        "US-FLA-JEA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "JEA"
+        },
+        "US-FLA-NSB": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Utilities Commission Of New Smyrna Beach"
+        },
+        "US-FLA-SEC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Seminole Electric Cooperative"
+        },
+        "US-FLA-TAL": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "City Of Tallahassee"
+        },
+        "US-FLA-TEC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Tampa Electric Company"
+        },
+        "US-MIDA-OVEC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Ohio Valley Electric Corporation"
+        },
+        "US-MIDA-PJM": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "PJM Interconnection, Llc"
+        },
+        "US-MIDW-AECI": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Associated Electric Cooperative, Inc."
+        },
+        "US-MIDW-EEI": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Electric Energy, Inc."
+        },
+        "US-MIDW-GLHB": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "GridLiance"
+        },
+        "US-MIDW-LGEE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
+        },
+        "US-MIDW-MISO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+        },
+        "US-NE-ISNE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Iso New England Inc."
+        },
+        "US-NW-AVA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Avista Corporation"
+        },
+        "US-NW-AVRN": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Avangrid Renewables Cooperative"
+        },
+        "US-NW-BPAT": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Bonneville Power Administration"
+        },
+        "US-NW-CHPD": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "PUD No. 1 Of Chelan County"
+        },
+        "US-NW-DOPD": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "PUD No. 1 Of Douglas County"
+        },
+        "US-NW-GCPD": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "PUD No. 2 Of Grant County, Washington"
+        },
+        "US-NW-GRID": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Gridforce Energy Management, Llc"
+        },
+        "US-NW-GWA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Naturener Power Watch, Llc (Gwa)"
+        },
+        "US-NW-IPCO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Idaho Power Company"
+        },
+        "US-NW-NEVP": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Nevada Power Company"
+        },
+        "US-NW-NWMT": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Northwestern Energy"
+        },
+        "US-NW-PACE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Pacificorp East"
+        },
+        "US-NW-PACW": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Pacificorp West"
+        },
+        "US-NW-PGE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Portland General Electric Company"
+        },
+        "US-NW-PSCO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Public Service Company Of Colorado"
+        },
+        "US-NW-PSEI": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Puget Sound Energy"
+        },
+        "US-NW-SCL": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Seattle City Light"
+        },
+        "US-NW-TPWR": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
+        },
+        "US-NW-WACM": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Western Area Power Administration - Rocky Mountain Region"
+        },
+        "US-NW-WAUW": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Western Area Power Administration UGP West"
+        },
+        "US-NW-WWA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Naturener Wind Watch, Llc"
+        },
+        "US-NY-NYIS": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "New York Independent System Operator"
+        },
+        "US-SE-AEC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Powersouth Energy Cooperative"
+        },
+        "US-SE-SEPA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Southeastern Power Administration"
+        },
+        "US-SE-SOCO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Southern Company Services, Inc. - Trans"
+        },
+        "US-SW-AZPS": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Arizona Public Service Company"
+        },
+        "US-SW-DEAA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Arlington Valley, LLC"
+        },
+        "US-SW-EPE": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "El Paso Electric Company"
+        },
+        "US-SW-GRIF": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Griffith Energy, LLC"
+        },
+        "US-SW-GRMA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Gila River Power, LLC"
+        },
+        "US-SW-HGMA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "New Harquahala Generating Company, LLC"
+        },
+        "US-SW-PNM": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Public Service Company Of New Mexico"
+        },
+        "US-SW-SRP": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Salt River Project"
+        },
+        "US-SW-TEPC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Tucson Electric Power Company"
+        },
+        "US-SW-WALC": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Western Area Power Administration - Desert Southwest Region"
+        },
+        "US-TEN-TVA": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Tennessee Valley Authority"
+        },
+        "US-TEX-ERCO": {
+          "countryName": "États-Unis d’Amérique",
+          "zoneName": "Electric Reliability Council Of Texas, Inc."
         },
         "UY": {
             "zoneName": "Uruguay"
