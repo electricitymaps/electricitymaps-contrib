@@ -34,7 +34,7 @@ EXCHANGE_MAPPING_DICTIONARY = {
     },
     'AUS-SA->AUS-VIC': {
         'region_id': 'SA1->VIC1',
-        'direction': -1,
+        'direction': 1,
     },
     'AUS-TAS->AUS-VIC': {
         'region_id': 'TAS1->VIC1',
