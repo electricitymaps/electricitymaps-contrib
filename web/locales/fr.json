@@ -253,7 +253,15 @@
         },
         "AUS-TAS-KI": {
             "countryName": "Australie",
-            "zoneName": "Tasmanie (Île King)"
+            "zoneName": "Île King"
+        },
+        "AUS-TAS-FI": {
+          "countryName": "Australie",
+          "zoneName": "Île Flinders"
+        },
+        "AUS-TAS-CBI": {
+          "countryName": "Australie",
+          "zoneName": "Île du Cap Barren"
         },
         "AUS-VIC": {
             "countryName": "Australie",
@@ -347,7 +355,7 @@
             "zoneName": "Biélorussie"
         },
         "BZ": {
-            "zoneName": "Belize"
+            "zoneName": "Bélize"
         },
         "CA-AB": {
             "countryName": "Canada",
@@ -364,6 +372,14 @@
         "CA-NL": {
             "countryName": "Canada",
             "zoneName": "Terre-Neuve-et-Labrador"
+        },
+        "CA-NL-LB": {
+          "countryName": "Canada",
+          "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+          "countryName": "Canada",
+          "zoneName": "Terre-Neuve"
         },
         "CA-NB": {
             "countryName": "Canada",
@@ -408,7 +424,7 @@
             "zoneName": "République démocratique du Congo"
         },
         "CF": {
-            "zoneName": "République centrafricaine"
+            "zoneName": "Centrafrique"
         },
         "CG": {
             "zoneName": "République du Congo"
@@ -507,16 +523,16 @@
             "zoneName": "Algérie"
         },
         "EC": {
-            "zoneName": "Equateur"
+            "zoneName": "Équateur"
         },
         "EE": {
             "zoneName": "Estonie"
         },
         "EG": {
-            "zoneName": "Egypte"
+            "zoneName": "Égypte"
         },
         "EH": {
-            "zoneName": "Sahara Occidental"
+            "zoneName": "Sahara occidental"
         },
         "ER": {
             "zoneName": "Érythrée"
@@ -554,7 +570,7 @@
         },
         "ES-CN-IG": {
             "countryName": "Espagne",
-            "zoneName": "Ile de la Gomera"
+            "zoneName": "La Gomera"
         },
         "ES-CN-LP": {
             "countryName": "Espagne",
@@ -574,7 +590,7 @@
             "zoneName": "Fidji"
         },
         "FK": {
-            "zoneName": "Malouines"
+            "zoneName": "Îles Malouines"
         },
         "FM": {
             "zoneName": "Micronésie"
@@ -599,15 +615,15 @@
             "zoneName": "Irlande du Nord"
         },
         "GB-ORK": {
-            "countryName": "Grande Bretagne",
+            "countryName": "Grande-Bretagne",
             "zoneName": "Orcades"
         },
         "GB-SHI": {
-            "countryName": "Grande Bretagne",
+            "countryName": "Grande-Bretagne",
             "zoneName": "Shetland"
         },
         "GB-ZET": {
-            "countryName": "Grande Bretagne",
+            "countryName": "Grande-Bretagne",
             "zoneName": "Shetland"
         },
         "GD": {
@@ -699,7 +715,7 @@
         },
         "IN-AN": {
             "countryName": "Inde",
-            "zoneName": "Andaman and Nicobar Islands"
+            "zoneName": "Îles Andaman-et-Nicobar"
         },
         "IN-AP": {
             "countryName": "Inde",
@@ -727,7 +743,7 @@
         },
         "IN-DN": {
             "countryName": "Inde",
-            "zoneName": "Dadra et Nagar Haveli"
+            "zoneName": "Dadra et Nagar Haveli et Daman et Diu"
         },
         "IN-GA": {
             "countryName": "Inde",
@@ -751,7 +767,7 @@
         },
         "IN-JK": {
             "countryName": "Inde",
-            "zoneName": "Jammu and Kashmir"
+            "zoneName": "Jammu-et-Cachemire"
         },
         "IN-KA": {
             "countryName": "Inde",
@@ -759,7 +775,7 @@
         },
         "IN-KL": {
             "countryName": "Inde",
-            "zoneName": "Kerala"
+            "zoneName": "Kérala"
         },
         "IN-MH": {
             "countryName": "Inde",
@@ -787,15 +803,15 @@
         },
         "IN-OR": {
             "countryName": "Inde",
-            "zoneName": "Orissa"
+            "zoneName": "Odisha"
         },
         "IN-PB": {
             "countryName": "Inde",
-            "zoneName": "Punjab"
+            "zoneName": "Pendjab"
         },
         "IN-PY": {
             "countryName": "Inde",
-            "zoneName": "Pondicherry"
+            "zoneName": "Pondichéry"
         },
         "IN-RJ": {
             "countryName": "Inde",
@@ -823,7 +839,7 @@
         },
         "IN-WB": {
             "countryName": "Inde",
-            "zoneName": "West Bengal"
+            "zoneName": "Bengale-occidental"
         },
         "IO": {
             "zoneName": "Territoire britannique de l’océan Indien"
@@ -915,10 +931,10 @@
         },
         "JP-TK": {
             "countryName": "Japon",
-            "zoneName": "Tokyo"
+            "zoneName": "Kantō"
         },
         "KE": {
-            "zoneName": "Kenya"
+            "zoneName": "Kénya"
         },
         "KG": {
             "zoneName": "Kirghizistan"
@@ -966,10 +982,10 @@
             "zoneName": "Sri Lanka"
         },
         "LR": {
-            "zoneName": "Liberia"
+            "zoneName": "Libéria"
         },
         "LS": {
-            "zoneName": "Lesotho"
+            "zoneName": "Lésotho"
         },
         "LT": {
             "zoneName": "Lituanie"
@@ -981,7 +997,7 @@
             "zoneName": "Lettonie"
         },
         "LY": {
-            "zoneName": "Libya"
+            "zoneName": "Libye"
         },
         "MA": {
             "zoneName": "Maroc"
@@ -1003,7 +1019,7 @@
             "zoneName": "Madagascar"
         },
         "MH": {
-            "zoneName": "Îles Marshall"
+            "zoneName": "Marshall"
         },
         "MK": {
             "zoneName": "Macédoine du Nord"
@@ -1015,7 +1031,7 @@
             "zoneName": "Birmanie"
         },
         "MN": {
-            "zoneName": "Mongolia"
+            "zoneName": "Mongolie"
         },
         "MO": {
             "zoneName": "Macao"
@@ -1050,7 +1066,7 @@
         },
         "MX-BC": {
             "countryName": "Mexique",
-            "zoneName": "Baja California"
+            "zoneName": "Basse-Californie"
         },
         "MX-CE": {
             "countryName": "Mexique",
@@ -1070,11 +1086,11 @@
         },
         "MX-OC": {
             "countryName": "Mexique",
-            "zoneName": "Occidental"
+            "zoneName": "Ouest"
         },
         "MX-OR": {
             "countryName": "Mexique",
-            "zoneName": "Oriental"
+            "zoneName": "Est"
         },
         "MX-PN": {
             "countryName": "Mexique",
@@ -1082,11 +1098,11 @@
         },
         "MY-EM": {
             "countryName": "Malaisie",
-            "zoneName": "Borneo"
+            "zoneName": "Bornéo"
         },
         "MY-WM": {
             "countryName": "Malaisie",
-            "zoneName": "Peninsule"
+            "zoneName": "Péninsule"
         },
         "MZ": {
             "zoneName": "Mozambique"
@@ -1104,7 +1120,7 @@
             "zoneName": "Île Norfolk"
         },
         "NG": {
-            "zoneName": "Nigeria"
+            "zoneName": "Nigéria"
         },
         "NI": {
             "zoneName": "Nicaragua"
@@ -1117,23 +1133,23 @@
         },
         "NO-NO1": {
             "countryName": "Norvège",
-            "zoneName": "Norvège du Sud-Est"
+            "zoneName": "Sud-Est"
         },
         "NO-NO2": {
             "countryName": "Norvège",
-            "zoneName": "Norvège du Sud-Ouest"
+            "zoneName": "Sud-Ouest"
         },
         "NO-NO3": {
             "countryName": "Norvège",
-            "zoneName": "Norvège Centre"
+            "zoneName": "Centre"
         },
         "NO-NO4": {
             "countryName": "Norvège",
-            "zoneName": "Norvège Nord"
+            "zoneName": "Nord"
         },
         "NO-NO5": {
             "countryName": "Norvège",
-            "zoneName": "Norvège Ouest"
+            "zoneName": "Ouest"
         },
         "NP": {
             "zoneName": "Népal"
@@ -1189,7 +1205,7 @@
             "zoneName": "Saint-Pierre-et-Miquelon"
         },
         "PN": {
-            "zoneName": "Îles Pitcairn"
+            "zoneName": "Île Pitcairn"
         },
         "PR": {
             "zoneName": "Porto Rico"
@@ -1282,7 +1298,7 @@
             "zoneName": "Slovénie"
         },
         "SJ": {
-            "zoneName": "Svalbard et ile Jan Mayen"
+            "zoneName": "Svalbard et l'île Jan Mayen"
         },
         "SK": {
             "zoneName": "Slovaquie"
@@ -1291,7 +1307,7 @@
             "zoneName": "Sierra Leone"
         },
         "SM": {
-            "zoneName": "Sain Marin"
+            "zoneName": "Saint-Marin"
         },
         "SN": {
             "zoneName": "Sénégal"
@@ -1306,20 +1322,20 @@
             "zoneName": "Soudan du Sud"
         },
         "ST": {
-            "zoneName": "Sao Tomé et Principe"
+            "zoneName": "Sao Tomé-et-Principe"
         },
         "SV": {
             "zoneName": "Salvador"
         },
         "SX": {
-            "countryName": "Saint Martin",
-            "zoneName": "Pays-Bas"
+            "countryName": "Pays-Bas",
+            "zoneName": "Saint-Martin"
         },
         "SY": {
             "zoneName": "Syrie"
         },
         "SZ": {
-            "zoneName": "Swaziland"
+            "zoneName": "Eswatini"
         },
         "TC": {
             "zoneName": "Îles Turques-et-Caïques"
@@ -1358,7 +1374,7 @@
             "zoneName": "Turquie"
         },
         "TT": {
-            "zoneName": "Trinité et Tobago"
+            "zoneName": "Trinité-et-Tobago"
         },
         "TV": {
             "zoneName": "Tuvalu"
@@ -1496,16 +1512,16 @@
             "zoneName": "Ouzbékistan"
         },
         "VA": {
-            "zoneName": "Cité du Vatican"
+            "zoneName": "Vatican"
         },
         "VC": {
-            "zoneName": "Saint-Vincent-et-les Grenadines"
+            "zoneName": "Saint-Vincent-et-les-Grenadines"
         },
         "VE": {
-            "zoneName": "Venezuela"
+            "zoneName": "Vénézuéla"
         },
         "VG": {
-            "countryName": "Îles Vierges",
+            "countryName": "Grande-Bretagne",
             "zoneName": "Îles Vierges britanniques"
         },
         "VI": {
