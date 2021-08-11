@@ -180,7 +180,7 @@
       },
       "CA-AB": {
         "unknown": {
-          "_comment": "dual fuel power plants: assumption of 50% coal and 50% natural gas",
+          "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
           "value": 655
         }
         ,
@@ -703,16 +703,23 @@
       },
       "RU-1": {
         "unknown": {
-          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 7.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 88.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 524 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
-          "source": "assumes 88% gas, 8% coal, <1% oil, 4% other",
-          "value": 524
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
+          "source": "assumes 89% gas, 7% coal, <1% oil, 4% other",
+          "value": 517
         }
       },
       "RU-2": {
         "unknown": {
-          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 86.7% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.3% * 490 g/kWh (gas) + 4.6% * 700 g/kWh (other)= 786 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
-          "source": "assumes 87% coal, 8% gas, <1% oil, 5% other",
-          "value": 786
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1% * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
+          "source": "assumes 86% coal, 9% gas, <1% oil, 5% other",
+          "value": 784
+        }
+      },
+      "RU-AS": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1% * 490 g/kWh (gas) = 687 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Extreme East zone",
+          "source": "assumes 60% coal, 40% gas, <1% oil",
+          "value": 687
         }
       },
       "SE": {

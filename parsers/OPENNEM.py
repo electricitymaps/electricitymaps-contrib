@@ -29,12 +29,12 @@ EXCHANGE_MAPPING_DICTIONARY = {
         'direction': 1,
     },
     'AUS-NSW->AUS-VIC': {
-        'region_id': 'VIC1->NSW1',
+        'region_id': 'NSW1->VIC1',
         'direction': 1,
     },
     'AUS-SA->AUS-VIC': {
-        'region_id': 'VIC1->SA1',
-        'direction': -1,
+        'region_id': 'SA1->VIC1',
+        'direction': 1,
     },
     'AUS-TAS->AUS-VIC': {
         'region_id': 'TAS1->VIC1',
