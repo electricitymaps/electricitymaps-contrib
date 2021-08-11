@@ -182,8 +182,6 @@ module.exports = (state = initialDataState, action) => {
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
             hasParser: true,
-            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
           })),
         },
       };
