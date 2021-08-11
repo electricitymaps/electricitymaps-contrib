@@ -44,39 +44,46 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
     const obj = {
       datetime: moment(d.stateDatetime).toDate(),
     };
-    // Add production
-    modeOrder.forEach((k) => {
-      const isStorage = k.indexOf('storage') !== -1;
-      let value = isStorage
-        ? -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')])
-        : (d.production || {})[k];
 
-      if (value === null) {
-        value = undefined;
-      }
+    const hasProductionData = d.production && Object.values(d.production).some(v => v !== null);
 
-      // in GW or MW
-      obj[k] = value / valueFactor;
-      if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
-        // in tCO₂eq/min
-        if (isStorage && obj[k] >= 0) {
-          obj[k] *= (d.dischargeCo2Intensities || {})[k.replace(' storage', '')] / 1e3 / 60.0;
-        } else {
-          obj[k] *= (d.productionCo2Intensities || {})[k] / 1e3 / 60.0;
+    if (hasProductionData) {
+      // Add production
+      modeOrder.forEach((k) => {
+        const isStorage = k.indexOf('storage') !== -1;
+        let value = isStorage
+          ? -1 * Math.min(0, (d.storage || {})[k.replace(' storage', '')])
+          : (d.production || {})[k];
+
+        if (value === null) {
+          value = undefined;
         }
-      }
-    });
-    if (electricityMixMode === 'consumption') {
-      // Add exchange
-      forEach(d.exchange, (value, key) => {
+
         // in GW or MW
-        obj[key] = Math.max(0, value / valueFactor);
-        if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
+        obj[k] = value / valueFactor;
+        if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
           // in tCO₂eq/min
-          obj[key] *= (d.exchangeCo2Intensities || {})[key] / 1e3 / 60.0;
+          if (isStorage && obj[k] >= 0) {
+            obj[k] *= (d.dischargeCo2Intensities || {})[k.replace(' storage', '')] / 1e3 / 60.0;
+          } else {
+            obj[k] *= (d.productionCo2Intensities || {})[k] / 1e3 / 60.0;
+          }
         }
       });
+
+      if (electricityMixMode === 'consumption') {
+        // Add exchange
+        forEach(d.exchange, (value, key) => {
+          // in GW or MW
+          obj[key] = Math.max(0, value / valueFactor);
+          if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
+            // in tCO₂eq/min
+            obj[key] *= (d.exchangeCo2Intensities || {})[key] / 1e3 / 60.0;
+          }
+        });
+      }
     }
+
     // Keep a pointer to original data
     obj.meta = d;
     return obj;
