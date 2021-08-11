@@ -1,9 +1,8 @@
 steps:
 
   prepare:
-    image: node:10.15.3
+    image: node:12
     inputs:
-      # packages
       - package.json
       - yarn.lock
     commands:

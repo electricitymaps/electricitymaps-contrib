@@ -57,8 +57,10 @@ const getValueScale = (height, totalValues) => scaleLinear()
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   if (!data || !data[0]) return [];
+
   const stackedData = stack()
     .offset(stackOffsetDiverging)
+    .value((d, key) => d[key] === null ? undefined : d[key])
     .keys(layerKeys)(data);
   return layerKeys.map((key, ind) => ({
     key,
