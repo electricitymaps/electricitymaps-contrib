@@ -925,10 +925,9 @@ function getZoneFeatures(zoneDefinitions, geos) {
 }
 
 const webGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos);
-const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos); //should be changed back to USOriginalGeos
+const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USOriginalGeos);
 
 const webZones = getZones(zoneDefinitions, webGeos);
-const backendZones = getZones(zoneDefinitions, backendGeos);
 
 const zonesMoreDetails = getZonesMoreDetails(zoneDefinitions, webGeos, webZones);
 const zoneFeatures = getZoneFeatures(zoneDefinitions, backendGeos)
@@ -944,7 +943,7 @@ fs.writeFileSync(`${zonegeometriesFolder}/zonegeometries.json`, zoneFeatures.map
 // Convert to TopoJSON
 const topojson = require('topojson');
 let topo = topojson.topology(webZones);
-
+let topoMoreDetails = null;
 // merge contiguous Florida counties in US-FL and US-SEC so that we only see the
 // outer region boundary line(s), not the interior county boundary lines.
 // Example: https://bl.ocks.org/mbostock/5416405
