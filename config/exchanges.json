@@ -924,6 +924,7 @@
     "rotation": 90
   },
   "DK-DK1->NL": {
+    "_comment": "700MW from COBRAcable https://en.wikipedia.org/wiki/COBRAcable",
     "capacity": [
       -700,
       700
