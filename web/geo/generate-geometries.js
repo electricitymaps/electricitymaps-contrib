@@ -11,13 +11,18 @@ const {
   zoneDefinitions,
 } = require('./geometries-config');
 
-console.log('generate-geometries: starting!')
+console.log('generate-geometries: starting!');
 
 const DIST_FOLDER = path.resolve(__dirname, '../public/dist');
 
 const SRC_FOLDER = path.resolve(__dirname, '../src');
 
-
+/**
+ * Merges a list of GeoJSON Polygons or MultiPolygons into a single multi-polygon.
+ * This allows to merge a group of geometries into a single one.
+ * According to  "zoneDefinition" in "geometries-config.js", a single GeoJSON MultiPolygon is
+ * created for each zone by grouping all geometries corresponding to that zone.
+ */
 function geomerge() {
   // Convert both into multipolygon
   const geos = Array.prototype.slice.call(arguments).filter((d) => d != null);
@@ -154,7 +159,10 @@ const toListOfFeatures = (zones) => {
     });
 };
 
-//Adds the zones from topo2 to topo1
+/**
+ * Adds the zones from topo2 to topo1.
+ * Be aware that this function modifies the supplied variables!
+*/
 function mergeTopoJsonSingleZone(topo1, topo2) {
   const srcArcsLength = topo1.arcs.length;
   // Copy Zones from topo2 to topo1
@@ -233,50 +241,67 @@ function getZoneFeatures(zoneDefinitions, geos) {
   return zoneFeatures;
 }
 
+
+/**
+ * Shrinks the topojson file by simplifiying the polygons.
+ * @param {Object} baseTopo - TopoJSON object
+ * @param {Object} baseTopoDetails - TopoJSON object
+ * @returns {Object} - TopoJSON object
+*/
+function shrinkAndMergeTopoJson(baseTopo, baseTopoDetails) {
+  let topo = baseTopo;
+  let topoMoreDetails = baseTopoDetails;
+
+  // merge contiguous Florida counties in US-FL and US-SEC so that we only see the
+  // outer region boundary line(s), not the interior county boundary lines.
+  // Example: https://bl.ocks.org/mbostock/5416405
+  // Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
+  //topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
+  //topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
+
+  // Simplify all countries
+  topo = topojson.presimplify(topo);
+  topo = topojson.simplify(topo, 0.01);
+  topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
+
+  // Simplify to 0.001 zonesMoreDetails zones
+  topoMoreDetails = topojson.presimplify(topoMoreDetails);
+  topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
+
+  // Merge topoMoreDetails into topo
+  mergeTopoJsonSingleZone(topo, topoMoreDetails);
+
+  topo = topojson.quantize(topo, 1e5);
+
+  return topo;
+}
+
 // The following data includes simplified shapes and should only be used for display zones on the map
 const webGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos);
-const webZones = getZones(zoneDefinitions, webGeos);
-const zonesMoreDetails = getZonesMoreDetails(zoneDefinitions, webGeos, webZones);
+const zones = getZones(zoneDefinitions, webGeos);
+const zonesMoreDetails = getZonesMoreDetails(zoneDefinitions, webGeos, zones);
+
+// Convert from GeoJSON to TopoJSON which is a more compressed format than geoJSON.
+// It only stores arcs that are used multiple times once.
+const topo = topojson.topology(zones);
+const topoDetails = topojson.topology(zonesMoreDetails);
+const mergedTopo = shrinkAndMergeTopoJson(topo, topoDetails);
+
+fs.writeFileSync(`${SRC_FOLDER}/world.json`, JSON.stringify(mergedTopo));
+
 
 // The following data includes complex shapes and should only be used in the backend to query by lon/lat
 const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos); //should be changed back to USOriginalGeos
-// const backendZones = getZones(zoneDefinitions, backendGeos);
 const backendZoneFeatures = getZoneFeatures(zoneDefinitions, backendGeos);
 
-// Write unsimplified list of geojson, without state merges including overlapping US zones
 if (!fs.existsSync(DIST_FOLDER)) {
   fs.mkdirSync(DIST_FOLDER);
 }
+
+// Write unsimplified list of geojson, without state merges including overlapping US zones
 fs.writeFileSync(
   `${DIST_FOLDER}/zonegeometries.json`,
   backendZoneFeatures.map(JSON.stringify).join('\n')
 );
 
-// Convert to TopoJSON
-let topo = topojson.topology(webZones);
-let topoMoreDetails = null;
-
- // merge contiguous Florida counties in US-FL and US-SEC so that we only see the
-// outer region boundary line(s), not the interior county boundary lines.
-// Example: https://bl.ocks.org/mbostock/5416405
-// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
-//topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
-//topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
-
-// Simplify all countries
-topo = topojson.presimplify(topo);
-topo = topojson.simplify(topo, 0.01);
-topo = topojson.filter(topo, topojson.filterWeight(topo, 0.009));
-
-// Simplify to 0.001 zonesMoreDetails zones
-topoMoreDetails = topojson.topology(zonesMoreDetails);
-topoMoreDetails = topojson.presimplify(topoMoreDetails);
-topoMoreDetails = topojson.simplify(topoMoreDetails, 0.001);
-
-// Merge topoMoreDetails into topo
-mergeTopoJsonSingleZone(topo, topoMoreDetails);
-
-topo = topojson.quantize(topo, 1e5);
-fs.writeFileSync(`${SRC_FOLDER}/world.json`, JSON.stringify(topo));
-
-console.log('generate-geometries: done!')
+console.log('generate-geometries: done!');
