@@ -1,4 +1,3 @@
-const { isEmpty } = require('lodash');
 const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
