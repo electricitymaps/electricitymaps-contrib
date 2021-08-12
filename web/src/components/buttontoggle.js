@@ -48,7 +48,7 @@ const ButtonToggle = ({
           <div className="tooltip-container">
             <div className="tooltip-text">
               { !errorMessage && (<div>{tooltip}</div>)}
-              { active && errorMessage && (
+              { errorMessage && (
                 <div className='tooltip-error'>{errorMessage}</div>
               )}
             </div>
