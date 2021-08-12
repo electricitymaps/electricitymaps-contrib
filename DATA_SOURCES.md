@@ -61,7 +61,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Gujarat): [sldcguj](https://www.sldcguj.com/RealTimeData/RealTimeDemand.php)
 - India (Himachal Pradesh): [HPSLDC](https://hpsldc.com/intra-state-power-transaction/)
 - India (Maharashtra) [mahasldc](https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg)
-- India (Karnataka): [kptclsldc.com](http://kptclsldc.com/StateGen.aspx)
+- India (Karnataka): [kptclsldc.in](http://kptclsldc.in/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
