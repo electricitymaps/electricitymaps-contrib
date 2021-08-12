@@ -35,8 +35,6 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
       className={className}
       transform={transform}
       fill="none"
-      fontSize="10"
-      fontFamily="sans-serif"
       textAnchor="middle"
       style={{ pointerEvents: 'none' }}
     >
