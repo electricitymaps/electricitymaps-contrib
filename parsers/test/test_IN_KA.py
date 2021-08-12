@@ -15,13 +15,13 @@ class Test_IN_KA(unittest.TestCase):
 
     def test_fetch_consumption(self):
         response_text = resource_string("parsers.test.mocks", "IN_KA_Default.html")
-        self.adapter.register_uri("GET", "http://kptclsldc.com/Default.aspx", content=response_text)
+        self.adapter.register_uri("GET", "http://kptclsldc.in/Default.aspx", content=response_text)
 
         try:
             data = IN_KA.fetch_consumption('IN-KA', self.session)
             self.assertIsNotNone(data)
             self.assertEqual(data['zoneKey'], 'IN-KA')
-            self.assertEqual(data['source'], 'kptclsldc.com')
+            self.assertEqual(data['source'], 'kptclsldc.in')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['consumption'])
             self.assertEqual(data['consumption'], 7430.0)
@@ -30,15 +30,15 @@ class Test_IN_KA(unittest.TestCase):
 
     def test_fetch_production(self):
         response_text = resource_string("parsers.test.mocks", "IN_KA_StateGen.html")
-        self.adapter.register_uri("GET", "http://kptclsldc.com/StateGen.aspx", content=response_text)
+        self.adapter.register_uri("GET", "http://kptclsldc.in/StateGen.aspx", content=response_text)
         response_text = resource_string("parsers.test.mocks", "IN_KA_StateNCEP.html")
-        self.adapter.register_uri("GET", "http://kptclsldc.com/StateNCEP.aspx", content=response_text)
+        self.adapter.register_uri("GET", "http://kptclsldc.in/StateNCEP.aspx", content=response_text)
 
         try:
             data = IN_KA.fetch_production('IN-KA', self.session)
             self.assertIsNotNone(data)
             self.assertEqual(data['zoneKey'], 'IN-KA')
-            self.assertEqual(data['source'], 'kptclsldc.com')
+            self.assertEqual(data['source'], 'kptclsldc.in')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
             self.assertEqual(data['production']['hydro'], 1108.0)
