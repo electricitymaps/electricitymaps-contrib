@@ -5062,6 +5062,7 @@
     ]
   },
   "SG": {
+    "_comment": "capacity as at end March 2020, Sources: Energy Market Company (EMC), SP PowerGrid Ltd (SPPG) & Energy Market Authority (EMA). dataset: https://www.ema.gov.sg/statistic.aspx?sta_sid=20140730XofavKNX5Ti7",
     "bounding_box": [
       [
         103.14039147200003,
@@ -5073,16 +5074,18 @@
       ]
     ],
     "capacity": {
-      "biomass": 257,
-      "gas": 10344,
-      "solar": 231.26
+      "biomass": 256.8,
+      "gas": 10671.41,
+      "solar": 290.167862138,
+      "hydro": 1363.6
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/jarek",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/Manu1400"
     ],
     "parsers": {
       "price": "SG.fetch_price",
