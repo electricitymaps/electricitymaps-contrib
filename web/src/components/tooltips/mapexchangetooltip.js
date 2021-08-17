@@ -12,7 +12,7 @@ const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
   const netFlow = Math.abs(Math.round(exchangeData.netFlow));
   const zoneFrom = exchangeData.countryCodes[isExporting ? 0 : 1];
   const zoneTo = exchangeData.countryCodes[isExporting ? 1 : 0];
-  const netFlowFormated = new Intl.NumberFormat().format(netFlow);
+  const netFlowFormatted = new Intl.NumberFormat().format(netFlow);
 
   return (
     <Tooltip id="exchange-tooltip" position={position} onClose={onClose}>
