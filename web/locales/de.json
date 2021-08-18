@@ -96,7 +96,9 @@
         "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
         "dataIsDelayed": "Die Daten sind verzögert",
         "representing": "macht",
-        "ofemissions": "der Emissionen aus"
+        "ofemissions": "der Emissionen aus",
+        "zoomIn": "Rein zoomen",
+        "zoomOut": "Raus zoomen"
     },
     "misc": {
         "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
@@ -359,6 +361,14 @@
         "CA-NL": {
             "countryName": "Kanada",
             "zoneName": "Newfoundland and Labrador"
+        },
+        "CA-NL-LB": {
+            "countryName": "Kanada",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Kanada",
+            "zoneName": "Neufundland"
         },
         "CA-NB": {
             "countryName": "Kanada",
@@ -1097,10 +1107,12 @@
             "zoneName": "Russland"
         },
         "RU-EU": {
-            "zoneName": "Russland"
+            "zoneName": "Russland",
+            "countryName": "Arktis"
         },
         "RU-AS": {
-            "zoneName": "Russland"
+            "zoneName": "Russland",
+            "countryName": "Osten"
         },
         "RU-1": {
             "countryName": "Russland",
@@ -1113,6 +1125,10 @@
         "RU-KGD": {
             "countryName": "Russland",
             "zoneName": "Kaliningrad"
+        },
+        "RU-FE": {
+            "countryName": "Russland",
+            "zoneName": "Fernost"
         },
         "RW": {
             "zoneName": "Ruanda"
