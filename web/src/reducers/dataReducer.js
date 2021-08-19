@@ -1,4 +1,3 @@
-const { isEmpty } = require('lodash');
 const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
@@ -123,8 +122,12 @@ module.exports = (state = initialDataState, action) => {
         });
         // Set date
         zone.datetime = action.payload.datetime;
+
+        if (!zone.production || Object.values(zone.production).every(v => v === null)) {
+          return;
+        }
+
         // Validate data
-        if (!zone.production) return;
         modeOrder.forEach((mode) => {
           if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
           // Check missing values
@@ -180,8 +183,6 @@ module.exports = (state = initialDataState, action) => {
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
             hasParser: true,
-            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
           })),
         },
       };

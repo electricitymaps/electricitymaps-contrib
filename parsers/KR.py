@@ -18,13 +18,13 @@ NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020
                 'http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312']
 
 HYDRO_CAPACITIES = {'Hwacheon': 108,
-                    'Chuncheon': 63,
+                    'Chuncheon': 62.28,
                     'Anheung': 0.6,
-                    'Uiam': 47,
-                    'Cheongpyeong': 140,
+                    'Uiam': 46.5,
+                    'Cheongpyeong': 139.6,
                     'Paldang': 120,
-                    'Goesan': 3,
-                    'Chilbo': 35,
+                    'Goesan': 2.8,
+                    'Chilbo': 34.8,
                     'Boseonggang': 4.5
                     }
 

@@ -46,6 +46,9 @@
         <meta name="msapplication-TileImage" content="<%= resolvePath('images/ms-icon-144x144.png') %>">
         <meta name="theme-color" content="#ffffff">
 
+        <!-- Pre-connect to improve performances -->
+        <link rel="preconnect" href="https://api.electricitymap.org/">
+
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/styles.' + stylesHash + '.css') %>">
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/vendor.' + vendorStylesHash + '.css') %>">

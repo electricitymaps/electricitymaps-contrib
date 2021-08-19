@@ -44,8 +44,8 @@ zones.forEach((zone) => {
 zones = JSON.parse(fs.readFileSync('../config/zones.json', 'utf8'));
 
 for (const [zone, bbox] of Object.entries(boundingBoxes)) {
-  // do not add new entries to zones.json, do not add RU
-  if (!(zone in zones) || zone === 'RU' || zone === 'RU-AS')
+  // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
+  if (!(zone in zones) || zone === 'RU' || zone === 'RU-FE')
     continue;
   // do not modifiy current bounding boxes
   if (zones[zone].bounding_box)

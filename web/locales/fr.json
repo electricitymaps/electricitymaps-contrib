@@ -1232,17 +1232,23 @@
         },
         "RU-1": {
             "countryName": "Russie",
-            "zoneName": "Russie européenne et Ural"
+            "zoneName": "Europe-Oural"
         },
         "RU-2": {
             "countryName": "Russie",
             "zoneName": "Sibérie"
         },
         "RU-EU": {
-            "zoneName": "Russie"
+            "countryName": "Russie",
+            "zoneName": "Arctique"
         },
         "RU-AS": {
-            "zoneName": "Russie"
+            "countryName": "Russie",
+            "zoneName": "Orient"
+        },
+        "RU-FE": {
+            "countryName": "Russie",
+            "zoneName": "Extrême-Orient"
         },
         "RU-KGD": {
             "countryName": "Russie",
@@ -1367,8 +1373,8 @@
             "zoneName": "Ukraine"
         },
         "UA-CR": {
-            "countryName": "Crimée",
-            "zoneName": "Ukraine"
+            "zoneName": "Crimée",
+            "countryName": "Ukraine"
         },
         "UG": {
             "zoneName": "Ouganda"

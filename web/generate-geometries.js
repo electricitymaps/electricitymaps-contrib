@@ -593,7 +593,8 @@ const zoneDefinitions = [
     'RUS-2400', 'RUS-2606', 'RUS-2605', 'RUS-2610', 'RUS-2397', 'RUS-2403',
     'RUS-2399', 'RUS-2603', 'RUS-2167', 'RUS-2401', 'RUS-2602', 'RUS-2402']},
   { zoneName: 'RU-EU', type: 'administrations', administrations: ['RUS-2354', 'RUS-2383', 'RUS-2381']},
-  { zoneName: 'RU-AS', type: 'administrations', administrations: ['RUS-2321', 'RUS-2609', 'RUS-2611', 'RUS-2612', 'RUS-2613', 'RUS-2614', 'RUS-2615', 'RUS-2616', 'RUS-3468']},
+  { zoneName: 'RU-AS', type: 'administrations', administrations: ['RUS-2609', 'RUS-2611', 'RUS-2612', 'RUS-2613', 'RUS-2614']},
+  { zoneName: 'RU-FE', type: 'administrations', administrations: ['RUS-2321', 'RUS-2615', 'RUS-2616', 'RUS-3468']},
   { zoneName: 'RU-KGD', type: 'administrations', administrations: ['RUS-2324']},
   { zoneName: 'RW', type: 'country', id: 'RWA'},
   { zoneName: 'SA', type: 'country', id: 'SAU'},
@@ -924,10 +925,9 @@ function getZoneFeatures(zoneDefinitions, geos) {
 }
 
 const webGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos);
-const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USSimplifiedGeos); //should be changed back to USOriginalGeos
+const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USOriginalGeos);
 
 const webZones = getZones(zoneDefinitions, webGeos);
-const backendZones = getZones(zoneDefinitions, backendGeos);
 
 const zonesMoreDetails = getZonesMoreDetails(zoneDefinitions, webGeos, webZones);
 const zoneFeatures = getZoneFeatures(zoneDefinitions, backendGeos)
@@ -943,7 +943,7 @@ fs.writeFileSync(`${zonegeometriesFolder}/zonegeometries.json`, zoneFeatures.map
 // Convert to TopoJSON
 const topojson = require('topojson');
 let topo = topojson.topology(webZones);
-
+let topoMoreDetails = null;
 // merge contiguous Florida counties in US-FL and US-SEC so that we only see the
 // outer region boundary line(s), not the interior county boundary lines.
 // Example: https://bl.ocks.org/mbostock/5416405

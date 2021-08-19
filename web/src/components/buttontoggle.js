@@ -22,6 +22,7 @@ const ButtonToggle = ({
   onChange,
   tooltip,
   errorMessage = null,
+  ariaLabel,
 }) => {
   const isMobile = useSelector(state => state.application.isMobile);
 
@@ -42,6 +43,7 @@ const ButtonToggle = ({
         active={active}
         icon={icon}
         errorMessage={errorMessage}
+        aria-label={ariaLabel}
       />
       {tooltipVisible && !isEmpty(tooltip) && (
         <div className="layer-button-tooltip">

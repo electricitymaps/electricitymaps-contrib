@@ -41,6 +41,7 @@ export default () => {
           active={windEnabled}
           tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
           errorMessage={windDataError}
+          ariaLabel={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
           icon="weather/wind"
         />
       </Link>
@@ -49,6 +50,7 @@ export default () => {
           active={solarEnabled}
           tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
           errorMessage={solarDataError}
+          ariaLabel={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
           icon="weather/sun"
         />
       </Link>
@@ -56,6 +58,7 @@ export default () => {
         active={brightModeEnabled}
         onChange={toggleBrightMode}
         tooltip={__('tooltips.toggleDarkMode')}
+        ariaLabel={__('tooltips.toggleDarkMode')}
         icon="brightmode"
       />
     </div>

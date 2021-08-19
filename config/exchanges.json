@@ -169,6 +169,10 @@
     "rotation": 180
   },
   "AUS-NSW->AUS-QLD": {
+    "capacity": [
+      -1380,
+      880
+    ],
     "lonlat": [
       146.503228,
       -29.054874
@@ -179,6 +183,10 @@
     "rotation": 0
   },
   "AUS-NSW->AUS-VIC": {
+    "capacity": [
+      -1770,
+      1520
+    ],
     "lonlat": [
       145.308829,
       -35.850801
@@ -189,6 +197,10 @@
     "rotation": 180
   },
   "AUS-SA->AUS-VIC": {
+    "capacity": [
+      -870,
+      870
+    ],
     "lonlat": [
       140.965561,
       -35.784766
@@ -534,6 +546,10 @@
     "rotation": 0
   },
   "CA-AB->CA-BC": {
+    "capacity": [
+      -1000,
+      800
+    ],
     "lonlat": [
       -119.811359,
       53.797027
@@ -544,6 +560,10 @@
     "rotation": -90
   },
   "CA-AB->CA-SK": {
+    "capacity": [
+      -153,
+      153
+    ],
     "lonlat": [
       -109.986644,
       54.883208
@@ -554,6 +574,10 @@
     "rotation": 90
   },
   "CA-AB->US-NW-NWMT": {
+     "capacity": [
+      -315,
+      310
+    ],
     "lonlat": [
       -111.920238,
       49.016577
@@ -924,6 +948,7 @@
     "rotation": 90
   },
   "DK-DK1->NL": {
+    "_comment": "700MW from COBRAcable https://en.wikipedia.org/wiki/COBRAcable",
     "capacity": [
       -700,
       700
@@ -1308,7 +1333,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "RU.fetch_exchange"
     },
     "rotation": 0
   },
@@ -2369,6 +2394,16 @@
       "exchange": "RU.fetch_exchange"
     },
     "rotation": -135
+  },
+  "RU-1->UA-CR": {
+    "lonlat": [
+      36.60,
+      45.25
+    ],
+    "parsers": {
+      "exchange": "RU.fetch_exchange"
+    },
+    "rotation": -90
   },
   "SE-SE1->SE-SE2": {
     "parsers": {
