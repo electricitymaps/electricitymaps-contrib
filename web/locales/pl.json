@@ -591,6 +591,9 @@
             "countryName": "Indie",
             "zoneName": "Bengal Zachodni"
           },
+          "IO": {
+            "zoneName": "Brytyjskie Terytorium Oceanu Indyjskiego"
+          },
           "IQ": {
             "zoneName": "Irak"
           },
@@ -599,6 +602,33 @@
           },
           "IT": {
             "zoneName": "Włochy"
+          },
+          "IT-CNO": {
+            "countryName": "Włochy",
+            "zoneName": "Centralna północ"
+          },
+          "IT-CSO": {
+            "countryName": "Włochy",
+            "zoneName": "Centralne południe"
+          },
+          "IT-NO": {
+            "countryName": "Włochy",
+            "zoneName": "Północ"
+          },
+          "IT-SAR": {
+            "countryName": "Włochy",
+            "zoneName": "Sardynia"
+          },
+          "IT-SIC": {
+            "countryName": "Włochy",
+            "zoneName": "Sycylia"
+          },
+          "IT-SO": {
+            "countryName": "Włochy",
+            "zoneName": "Południe"
+          },
+          "JE": {
+            "zoneName": "Jersey"
           },
           "JM": {
             "zoneName": "Jamajka"
@@ -609,6 +639,46 @@
           "JP": {
             "zoneName": "Japonia"
           },
+          "JP-CB": {
+            "countryName": "Japonia",
+            "zoneName": "Region Chūbu"
+          },
+          "JP-CG": {
+            "countryName": "Japonia",
+            "zoneName": "Region Chūgoku"
+          },
+          "JP-HKD": {
+            "countryName": "Japonia",
+            "zoneName": "Hokkaido"
+          },
+          "JP-HR": {
+            "countryName": "Japonia",
+            "zoneName": "Region Hokuriku"
+          },
+          "JP-KN": {
+            "countryName": "Japonia",
+            "zoneName": "Kansai"
+          },
+          "JP-KY": {
+            "countryName": "Japonia",
+            "zoneName": "Kiusiu"
+          },
+          "JP-ON": {
+            "countryName": "Japonia",
+            "zoneName": "Okinawa"
+          },
+          "JP-SK": {
+            "countryName": "Japonia",
+            "zoneName": "Sikoku"
+          },
+          "JP-TH": {
+            "countryName": "Japonia",
+            "zoneName": "Region Tōhoku"
+          },
+          "JP-TK": {
+            "countryName": "Japonia",
+            "zoneName": "Tokio"
+          },
           "KE": {
             "zoneName": "Kenia"
           },
@@ -617,6 +687,9 @@
           },
           "KH": {
             "zoneName": "Kambodża"
+          },
+          "KI": {
+            "zoneName": "Kiribati"
           },
           "KM": {
             "zoneName": "Komory"
@@ -660,11 +733,23 @@
           "MG": {
             "zoneName": "Madagaskar"
           },
+          "MH": {
+            "zoneName": "Wyspy Marshalla"
+          },
           "MK": {
             "zoneName": "Macedonia Północna"
           },
           "MM": {
             "zoneName": "Mjanma"
+          },
+          "MO": {
+            "zoneName": "Makau"
+          },
+          "MP": {
+            "zoneName": "Mariany Północne"
+          },
+          "MP": {
+            "zoneName": "Martynika"
           },
           "MR": {
             "zoneName": "Mauretania"
@@ -672,8 +757,43 @@
           "MT": {
             "zoneName": "Malta"
           },
+          "MV": {
+            "zoneName": "Malediwy"
+          },
           "MX": {
             "zoneName": "Meksyk"
+          },
+          "MX-BC": {
+            "countryName": "Meksyk",
+            "zoneName": "Kalifornia Dolna"
+          },
+          "MX-CE": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Centralny"
+          },
+          "MX-NE": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północno Wschodni"
+          },
+          "MX-NO": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północny"
+          },
+          "MX-NW": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północno zachodni"
+          },
+          "MX-OC": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Zachodni"
+          },
+          "MX-OR": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Południowo Zachoni"
+          },
+          "MX-PN": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Południowo Wschodni"
           },
           "MY-EM": {
             "countryName": "Malezja",
@@ -685,6 +805,12 @@
           },
           "MZ": {
             "zoneName": "Mozambik"
+          },
+          "NC": {
+            "zoneName": "Nowa Kaledonia"
+          },
+          "NF": {
+            "zoneName": "Wyspa Norfolk"
           },
           "NI": {
             "zoneName": "Nikaragua"
@@ -718,6 +844,14 @@
             "countryName": "Norwegia",
             "zoneName": "Norwegia zachodnia"
           },
+          "NZ-NZA": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspy Auckland"
+          },
+          "NZ-NZC": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspy Chatham"
+          },
           "NZ-NZN": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspa Północna"
@@ -725,6 +859,10 @@
           "NZ-NZS": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspa Południowa"
+          },
+          "NZ-NZST": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspa Stewart"
           },
           "PA": {
             "zoneName": "Panama"
@@ -740,6 +878,9 @@
           },
           "PL": {
             "zoneName": "Polska"
+          },
+          "PM": {
+            "zoneName": "Saint-Pierre i Miquelon"
           },
           "PS": {
             "zoneName": "Palestyna"
@@ -775,6 +916,10 @@
           },
           "RU-AS": {
             "zoneName": "Rosja"
+          },
+          "RU-FE": {
+            "countryName": "Rosja",
+            "zoneName": "Rosyjski Daleki Wschód"
           },
           "RU-1": {
             "countryName": "Rosja",
@@ -849,46 +994,46 @@
             "zoneName": "Ukraina"
           },
           "US": {
-            "zoneName": "USA"
+            "zoneName": "Stany Zjednoczone Ameryki"
           },
           "US-AK": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Alaska"
           },
           "US-BPA": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć BPA"
           },
           "US-CA": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Kalifornia"
           },
           "US-IPC": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć IPC"
           },
           "US-MISO": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć MISO"
           },
           "US-NEISO": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Nowa Anglia"
           },
           "US-NY": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Nowy Jork"
           },
           "US-PJM": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć PJM"
           },
           "US-SPP": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć SPP"
           },
           "US-HI": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Hawaje"
           },
           "UY": {
@@ -984,3 +1129,4 @@
         "mapArrows-answer": "Strzałki między regionami wskazują fizyczny przepływ (import i eksport) energii elektrycznej między nimi: Im szybciej migają, tym jest on szybszy. Przepływ energii elektrycznej jest ważny, ponieważ importując energię elektryczną z sąsiednich obszarów importujesz również emisję dwutlenku węgla związaną z jej produkcją."
     }
 }
+
