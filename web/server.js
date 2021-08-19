@@ -32,9 +32,6 @@ const STATIC_PATH = process.env.STATIC_PATH || (`${__dirname}/public`);
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
 app.disable('etag'); // Disable etag generation (except for static)
 app.use((req, res, next) => {
-  if (!req.secure) {
-      return res.redirect('https://' + req.headers.host + req.url);
-  }
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
