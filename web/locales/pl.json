@@ -99,7 +99,7 @@
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
         "retrynow": "Spróbuj teraz",
         "database-ad": "Szukasz danych historycznych? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-        "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na użądzeniu? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+        "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
         "legend": "Legenda",
         "faq": "Najczęściej Zadawane Pytania",
         "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL."
