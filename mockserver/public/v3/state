@@ -625,14 +625,12 @@
                 "exchange": {
                     "CA-NS": -0.0,
                     "CA-PE": -189.0,
-                    "CA-QC": 1048.0,
-                    "US-NEISO": -978.0
+                    "CA-QC": 1048.0
                 },
                 "exchangeCo2Intensities": {
                     "CA-NS": 203.6516418200225,
                     "CA-PE": 203.6516418200225,
-                    "CA-QC": 203.6516418200225,
-                    "US-NEISO": 203.6516418200225
+                    "CA-QC": 203.6516418200225
                 },
                 "maxProduction": 2971.0,
                 "production": {
@@ -669,15 +667,11 @@
                 "datetime": "2018-02-01T12:00:00-05:00",
                 "exchange": {
                     "CA-MB": -143.0,
-                    "CA-QC": 0,
-                    "US-MISO": -1019.0,
-                    "US-NY": -1450.0
+                    "CA-QC": 0
                 },
                 "exchangeCo2Intensities": {
                     "CA-MB": 383.7862106335652,
-                    "CA-QC": 383.7862106335652,
-                    "US-MISO": 383.7862106335652,
-                    "US-NY": 383.7862106335652
+                    "CA-QC": 383.7862106335652
                 },
                 "maxProduction": 9955.0,
                 "production": {
@@ -2419,10 +2413,8 @@
             },
             "MX-BC": {
                 "exchange": {
-                    "US-CA": 182.0
                 },
                 "exchangeCo2Intensities": {
-                    "US-CA": 41.540237806412875
                 }
             },
             "MX-CE": {
@@ -3442,48 +3434,6 @@
                 },
                 "totalProduction": 23114
             },
-            "US": {
-                "exchange": {
-                    "CA-AB": -250.0,
-                    "CA-BC": 146.0,
-                    "MX-NE": -118.0,
-                    "MX-NO": 0.0
-                },
-                "exchangeCo2Intensities": {
-                    "CA-AB": null,
-                    "CA-BC": null,
-                    "MX-NE": null,
-                    "MX-NO": null
-                }
-            },
-            "US-CA": {
-                "co2intensity": 41.540237806412875,
-                "datetime": "2018-07-20T11:15:00-07:00",
-                "exchange": {
-                    "MX-BC": -182.0
-                },
-                "exchangeCo2Intensities": {
-                    "MX-BC": 41.540237806412875
-                },
-                "maxProduction": 10135.0,
-                "production": {
-                    "biomass": 574.0,
-                    "coal": 19.0,
-                    "gas": 9069.0,
-                    "geothermal": 930.0,
-                    "hydro": 2284.0,
-                    "nuclear": 2263.0,
-                    "solar": 10135.0,
-                    "unknown": 0.0,
-                    "wind": 605.0
-                },
-                "source": "caiso.com",
-                "storage": {
-                    "battery": 20.0
-                },
-                "totalProduction": 25879.0,
-                "zoneKey": "US-CA"
-            },
             "US-CAL-BANC": {
                 "co2intensity": 688.976849575107,
                 "countryCode": "US-CAL-BANC",
@@ -4088,40 +4038,6 @@
                 },
                 "totalProduction": 84578.0
             },
-            "US-MISO": {
-                "co2intensity": 478.2454921116224,
-                "countryCode": "US-MISO",
-                "datetime": "2018-01-25T07:25:00-05:00",
-                "exchange": {
-                    "CA-ON": 1019.0,
-                    "US-PJM": 662.0
-                },
-                "exchangeCo2Intensities": {
-                    "CA-ON": 383.7862106335652,
-                    "US-PJM": 340.80912619056454
-                },
-                "maxProduction": 44102.0,
-                "production": {
-                    "coal": 44102.0,
-                    "gas": 22574.0,
-                    "nuclear": 12222.0,
-                    "unknown": 3266.0,
-                    "wind": 2244.0
-                },
-                "source": "misoenergy.org",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 84578.0
-            },
-            "US-MN": {
-                "exchange": {
-                    "CA-ON": -80.0
-                },
-                "exchangeCo2Intensities": {
-                    "CA-ON": null
-                }
-            },
             "US-NE-ISNE": {
                 "co2intensity": 512.1429848121749,
                 "countryCode": "US-NE-ISNE",
@@ -4141,35 +4057,6 @@
                     "hydro": null
                 },
                 "totalProduction": 84578.0
-            },
-            "US-NEISO": {
-                "co2intensity": 63.69375580502007,
-                "countryCode": "US-NEISO",
-                "datetime": "2018-01-10T07:37:28-05:00",
-                "exchange": {
-                    "CA-NB": 978.0,
-                    "US-NY": 711.19
-                },
-                "exchangeCo2Intensities": {
-                    "CA-NB": 203.6516418200225,
-                    "US-NY": 476.9964021556446
-                },
-                "maxProduction": 6515.0,
-                "production": {
-                    "biomass": 837.0,
-                    "coal": 992.0,
-                    "gas": 6515.0,
-                    "hydro": 1190.0,
-                    "nuclear": 3351.0,
-                    "oil": 46.0,
-                    "solar": 2.0,
-                    "wind": 544.0
-                },
-                "source": "iso-ne.com",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 13477.0
             },
             "US-NW-AVA": {
                 "co2intensity": 564.7966830433186,
@@ -4591,34 +4478,6 @@
                 },
                 "totalProduction": 84578.0
             },
-            "US-NY": {
-                "co2intensity": 476.9964021556446,
-                "countryCode": "US-NY",
-                "datetime": "2018-01-15T08:55:00-05:00",
-                "exchange": {
-                    "CA-ON": 1450.0,
-                    "US-NEISO": -711.19,
-                    "US-PJM": 1576.0
-                },
-                "exchangeCo2Intensities": {
-                    "CA-ON": 383.7862106335652,
-                    "US-NEISO": 476.9964021556446,
-                    "US-PJM": 340.80912619056454
-                },
-                "maxProduction": 5878.0,
-                "production": {
-                    "gas": 3703.0,
-                    "hydro": 3280.0,
-                    "nuclear": 5418.0,
-                    "unknown": 5878.0,
-                    "wind": 453.0
-                },
-                "source": "nyiso.com",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 18732.0
-            },
             "US-NY-NYIS": {
                 "co2intensity": 242.1698417659238,
                 "countryCode": "US-NY-NYIS",
@@ -4638,36 +4497,6 @@
                     "hydro": null
                 },
                 "totalProduction": 84578.0
-            },
-            "US-PJM": {
-                "co2intensity": 340.80912619056454,
-                "countryCode": "US-PJM",
-                "datetime": "2018-01-30T05:00:00-05:00",
-                "exchange": {
-                    "US-MISO": -662.0,
-                    "US-NY": -1576.0
-                },
-                "exchangeCo2Intensities": {
-                    "US-MISO": 340.80912619056454,
-                    "US-NY": 340.80912619056454
-                },
-                "maxProduction": 35400.8,
-                "production": {
-                    "coal": 32229.5,
-                    "gas": 23821.3,
-                    "hydro": 852.3,
-                    "nuclear": 35400.8,
-                    "oil": 219.3,
-                    "solar": 1.1,
-                    "unknown": 824.2,
-                    "wind": 1784.9
-                },
-                "source": "pjm.com",
-                "storage": {
-                    "battery": null,
-                    "hydro": null
-                },
-                "totalProduction": 95133.40000000002
             },
             "US-SE-AEC": {
                 "co2intensity": 750.3835043317265,
@@ -4728,26 +4557,6 @@
                     "hydro": null
                 },
                 "totalProduction": 84578.0
-            },
-            "US-SPP": {
-                "co2intensity": 343.74401444159054,
-                "datetime": "2018-03-19T16:15:00+00:00",
-                "maxProduction": 12983.0,
-                "production": {
-                    "biomass": 9.6,
-                    "coal": 9688.5,
-                    "gas": 4315.0,
-                    "hydro": 1361.4,
-                    "nuclear": 2009.4,
-                    "oil": 40.0,
-                    "solar": 191.4,
-                    "unknown": 26.7,
-                    "wind": 12983.0
-                },
-                "source": "spp.org",
-                "storage": {},
-                "totalProduction": 30625.0,
-                "zoneKey": "US-SPP"
             },
             "US-SW-AZPS": {
                 "co2intensity": 58.88076726603657,
@@ -5374,13 +5183,6 @@
                 "sortedCountryCodes": "CA-NB->CA-QC",
                 "source": "tso.nbpower.com"
             },
-            "CA-NB->US-NEISO": {
-                "co2intensity": 203.6516418200225,
-                "datetime": "2018-01-15T14:15:00+00:00",
-                "netFlow": 978.0,
-                "sortedCountryCodes": "CA-NB->US-NEISO",
-                "source": "tso.nbpower.com"
-            },
             "CA-ON->CA-QC": {
                 "co2intensity": 383.7862106335652,
                 "datetime": "2018-02-01T12:00:00-05:00",
@@ -5393,27 +5195,6 @@
                 "datetime": "2018-01-15T08:00:00-05:00",
                 "netFlow": 1069.0,
                 "sortedCountryCodes": "CA-ON->US-MI",
-                "source": "gridwatch.ca"
-            },
-            "CA-ON->US-MISO": {
-                "co2intensity": 383.7862106335652,
-                "datetime": "2018-02-01T12:00:00-05:00",
-                "netFlow": 1019.0,
-                "sortedCountryCodes": "CA-ON->US-MISO",
-                "source": "gridwatch.ca"
-            },
-            "CA-ON->US-MN": {
-                "co2intensity": null,
-                "datetime": "2018-01-15T08:00:00-05:00",
-                "netFlow": -80.0,
-                "sortedCountryCodes": "CA-ON->US-MN",
-                "source": "gridwatch.ca"
-            },
-            "CA-ON->US-NY": {
-                "co2intensity": 383.7862106335652,
-                "datetime": "2018-02-01T12:00:00-05:00",
-                "netFlow": 1450.0,
-                "sortedCountryCodes": "CA-ON->US-NY",
                 "source": "gridwatch.ca"
             },
             "CH->DE": {
@@ -6039,13 +5820,6 @@
                 "sortedCountryCodes": "MN->RU",
                 "source": "so-ups.ru"
             },
-            "MX-BC->US-CA": {
-                "co2intensity": 41.540237806412875,
-                "datetime": "2018-07-20T11:17:10.270611-07:00",
-                "netFlow": -182.0,
-                "sortedCountryCodes": "MX-BC->US-CA",
-                "source": "cenace.gob.mx"
-            },
             "MX-CE->MX-OC": {
                 "co2intensity": null,
                 "datetime": "2018-08-10T04:05:21.078231-07:00",
@@ -6311,27 +6085,6 @@
                 "netFlow": 405.0,
                 "sortedCountryCodes": "SK->UA",
                 "source": "entsoe.eu"
-            },
-            "US-MISO->US-PJM": {
-                "co2intensity": 340.80912619056454,
-                "datetime": "2018-01-30T06:34:56-05:00",
-                "netFlow": -662.0,
-                "sortedCountryCodes": "US-MISO->US-PJM",
-                "source": "pjm.com"
-            },
-            "US-NEISO->US-NY": {
-                "co2intensity": 476.9964021556446,
-                "datetime": "2018-01-15T09:20:00-05:00",
-                "netFlow": -711.19,
-                "sortedCountryCodes": "US-NEISO->US-NY",
-                "source": "nyiso.com"
-            },
-            "US-NY->US-PJM": {
-                "co2intensity": 340.80912619056454,
-                "datetime": "2018-01-30T06:30:00-05:00",
-                "netFlow": -1576.0,
-                "sortedCountryCodes": "US-NY->US-PJM",
-                "source": "pjm.com"
             }
         }
     }
