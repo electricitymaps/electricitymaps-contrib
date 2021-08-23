@@ -1353,21 +1353,6 @@
           "UM": {
             "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
           },
-          "US": {
-            "zoneName": "Hoa Kỳ"
-          },
-          "US-AL": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "California"
-          },
           "US-HI-HA": {
             "countryName": "Hoa Kỳ",
             "zoneName": "Hawaii"
@@ -1399,58 +1384,6 @@
           "US-HI-OA": {
             "countryName": "Hoa Kỳ",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "North Carolina"
-          },
-          "US-NEISO": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "New England"
-          },
-          "US-NV": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "New York"
-          },
-          "US-OR": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "South Carolina"
-          },
-          "US-SPP": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Hoa Kỳ",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "ERCOT"
           },
           "UY": {
             "zoneName": "Uruguay"

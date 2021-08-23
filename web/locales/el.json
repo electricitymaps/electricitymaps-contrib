@@ -1358,25 +1358,6 @@
         "UM": {
             "zoneName": "United States Minor Outlying Islands"
         },
-        "US": {
-            "zoneName": "Ηνωμένες Πολιτείες Αμερικής"
-        },
-        "US-AK": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Alaska"
-        },
-        "US-AL": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
             "zoneName": "Hawaii"
@@ -1408,58 +1389,6 @@
         "US-HI-OA": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "North Carolina"
-        },
-        "US-NEISO": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "New England"
-        },
-        "US-NV": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "South Carolina"
-        },
-        "US-SPP": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",

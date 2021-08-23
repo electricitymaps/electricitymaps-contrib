@@ -944,12 +944,6 @@ fs.writeFileSync(`${zonegeometriesFolder}/zonegeometries.json`, zoneFeatures.map
 const topojson = require('topojson');
 let topo = topojson.topology(webZones);
 let topoMoreDetails = null;
-// merge contiguous Florida counties in US-FL and US-SEC so that we only see the
-// outer region boundary line(s), not the interior county boundary lines.
-// Example: https://bl.ocks.org/mbostock/5416405
-// Background: https://github.com/tmrowco/electricitymap-contrib/issues/1713#issuecomment-517704023
-//topo.objects['US-FL'] = topojson.mergeArcs(topo, [topo.objects['US-FL']]);
-//topo.objects['US-SEC'] = topojson.mergeArcs(topo, [topo.objects['US-SEC']]);
 
 // Simplify all countries
 topo = topojson.presimplify(topo);
