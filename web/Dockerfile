@@ -1,8 +1,8 @@
-FROM node:12.22-alpine
+FROM node:12.22
 WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
-RUN apk add jq unzip curl
+RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
