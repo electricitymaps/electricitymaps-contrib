@@ -12,7 +12,7 @@ RUN mkdir -p public/dist/
 ADD web/third_party_maps ./third_party_maps
 ADD web/generate-geometries.js web/topogen.sh ./
 ADD web/src/world.json ./src/world.json
-RUN time /bin/sh topogen.sh
+RUN /bin/sh topogen.sh
 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
@@ -20,8 +20,8 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 # (note: this will override the world.json that was previously created)
 ADD config /home/src/electricitymap/contrib/config
 ADD web ./
-RUN time yarn lint
-RUN time yarn build-release
+RUN yarn lint
+RUN yarn build-release
 
 EXPOSE 8000
 ENV PORT 8000
