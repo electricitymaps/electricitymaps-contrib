@@ -3186,13 +3186,13 @@
   },
   "US-MIDA-PJM->US-NY-NYIS": {
     "lonlat": [
-      -79.76175,
-      41.99881
+      -77.069,
+      42.0
     ],
     "parsers": {
       "exchange": "US_PJM.fetch_exchange"
     },
-    "rotation": -124
+    "rotation": 0
   },
   "US-MIDA-PJM->US-TEN-TVA": {
     "lonlat": [
@@ -3326,13 +3326,13 @@
   },
   "US-NE-ISNE->US-NY-NYIS": {
     "lonlat": [
-      -73.42846218673135,
-      40.67877481619715
+      -73.279,
+      42.739
     ],
     "parsers": {
       "exchange": "US_NY.fetch_exchange"
     },
-    "rotation": -105
+    "rotation": -90
   },
   "US-NW-AVA->US-NW-BPAT": {
     "lonlat": [
