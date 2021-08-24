@@ -50,6 +50,8 @@ const initialDataState = {
   isLoadingWind: false,
   solar: null,
   wind: null,
+  solarDataError: null,
+  windDataError: null,
 };
 
 module.exports = (state = initialDataState, action) => {
@@ -192,7 +194,7 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'SOLAR_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingSolar: true };
+      return { ...state, isLoadingSolar: true, solarDataError: null };
     }
 
     case 'SOLAR_DATA_FETCH_SUCCEEDED': {
@@ -200,12 +202,12 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'SOLAR_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingSolar: false, solar: null };
+      // TODO: create specialized messages based on http error response
+      return { ...state, isLoadingSolar: false, solar: null, solarDataError: translation.translate('solarDataError') };
     }
 
     case 'WIND_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingWind: true };
+      return { ...state, isLoadingWind: true, windDataError: null };
     }
 
     case 'WIND_DATA_FETCH_SUCCEEDED': {
@@ -213,8 +215,8 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'WIND_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingWind: false, wind: null };
+      // TODO: create specialized messages based on http error response
+      return { ...state, isLoadingWind: false, wind: null, windDataError: translation.translate('windDataError') };
     }
 
     default:
