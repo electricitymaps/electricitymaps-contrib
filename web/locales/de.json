@@ -1258,41 +1258,6 @@
         "UM": {
             "zoneName": "United States Minor Outlying Islands"
         },
-        "US": {
-            "zoneName": "USA"
-        },
-        "US-BPA": {
-            "countryName": "USA",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "USA",
-            "zoneName": "CAISO"
-        },
-        "US-IPC": {
-            "countryName": "USA",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "USA",
-            "zoneName": "MISO"
-        },
-        "US-NEISO": {
-            "countryName": "USA",
-            "zoneName": "NEISO"
-        },
-        "US-NY": {
-            "countryName": "USA",
-            "zoneName": "NYISO"
-        },
-        "US-PJM": {
-            "countryName": "USA",
-            "zoneName": "PJM"
-        },
-        "US-SPP": {
-            "countryName": "USA",
-            "zoneName": "SPP"
-        },
         "US-HI": {
             "zoneName": "Hawaii",
             "countryName": "Vereinigte Staaten von Amerika"
@@ -1426,10 +1391,6 @@
             "countryName": "Mexiko",
             "zoneName": "Halbinsel"
         },
-        "US-SVERI": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "SVERI"
-        },
         "GB-ORK": {
             "countryName": "Großbritannien",
             "zoneName": "Orkney Islands"
@@ -1481,34 +1442,6 @@
         "ES-IB-ME": {
             "countryName": "Spanien",
             "zoneName": "Menorca"
-        },
-        "US-AL": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Alabama"
-        },
-        "US-NC": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "North Carolina"
-        },
-        "US-NV": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Nevada"
-        },
-        "US-OR": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Oregon"
-        },
-        "US-SC": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "South Carolina"
-        },
-        "US-TN": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Texas"
         },
         "AUS-TAS-KI": {
             "countryName": "Tasmanien",

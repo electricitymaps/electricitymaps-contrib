@@ -1355,21 +1355,6 @@
           "UM": {
             "zoneName": "Yhdysvaltain pienet erillissaaret"
           },
-          "US": {
-            "zoneName": "Yhydsvallat"
-          },
-          "US-AL": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Kalifornia"
-          },
           "US-HI-HA": {
             "countryName": "Yhdysvallat",
             "zoneName": "Havaiji"
@@ -1401,58 +1386,6 @@
           "US-HI-OA": {
             "countryName": "Yhdysvallat",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Pohjois-Carolina"
-          },
-          "US-NEISO": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "New England"
-          },
-          "US-NV": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "New York"
-          },
-          "US-OR": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Etelä-Carolina"
-          },
-          "US-SPP": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Yhdysvallat",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Yhdysvallat",
-            "zoneName": "ERCOT"
           },
           "US-CAL-BANC": {
             "countryName": "Yhdysvallat",

@@ -1358,25 +1358,6 @@
         "UM": {
             "zoneName": "アメリカ合衆国領有小離島"
         },
-        "US": {
-            "zoneName": "アメリカ合衆国"
-        },
-        "US-AK": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "アラスカ"
-        },
-        "US-AL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "アラバマ"
-        },
-        "US-BPA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "カリフォルニア"
-        },
         "US-HI-HA": {
             "countryName": "アメリカ合衆国",
             "zoneName": "ハワイ"
@@ -1408,58 +1389,6 @@
         "US-HI-OA": {
             "countryName": "アメリカ合衆国",
             "zoneName": "オアフ"
-        },
-        "US-IPC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ノースカロライナ"
-        },
-        "US-NEISO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ニューイングランド"
-        },
-        "US-NV": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ネバダ"
-        },
-        "US-NY": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ニューヨーク"
-        },
-        "US-OR": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "オレゴン"
-        },
-        "US-PJM": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "サウスカロライナ"
-        },
-        "US-SPP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "テネシー"
-        },
-        "US-TX": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "アメリカ合衆国",

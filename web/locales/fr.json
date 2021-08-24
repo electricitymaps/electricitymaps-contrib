@@ -1382,25 +1382,6 @@
         "UM": {
             "zoneName": "Îles mineures éloignées des États-Unis"
         },
-        "US": {
-            "zoneName": "États-Unis d’Amérique"
-        },
-        "US-AK": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Alaska"
-        },
-        "US-AL": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Californie"
-        },
         "US-HI": {
             "countryName": "États-Unis d’Amérique",
             "zoneName": "Hawaï"
@@ -1436,58 +1417,6 @@
         "US-HI-OA": {
             "countryName": "États Unis d’Amérique",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Caroline du Nord"
-        },
-        "US-NEISO": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Nouvelle Angleterre"
-        },
-        "US-NV": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Caroline du Sud"
-        },
-        "US-SPP": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "États-Unis d’Amérique",
-            "zoneName": "Texas"
         },
         "UY": {
             "zoneName": "Uruguay"
