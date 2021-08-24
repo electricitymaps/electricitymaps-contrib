@@ -32,8 +32,8 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
         'Small hydro': 'hydro',
         'Coal': 'coal',
         'Nuclear': 'nuclear',
-        'Natural gas': 'gas',
-        'Large hydro': 'hydro',
+        'Natural Gas': 'gas',
+        'Large Hydro': 'hydro',
         'Other': 'unknown'
     }
     storage_map = {

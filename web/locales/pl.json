@@ -16,16 +16,16 @@
             "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
         },
         "view2": {
-            "header": "Zobacz ile CO₂ jest aktualnie emitowane przy produkcji twojej energii elektrycznej",
-            "text": "Regiony świata są kolorowane według intensywności emisji CO₂, wliczając potencjał tworzenia efektu cieplarnianego, jednostkowo według zużywanej tam energii elektrycznej. Zieleńsze odcienie oznaczają bardziej przyjazną dla klimatu energię elektryczną."
+            "header": "Zobacz ile CO₂ jest aktualnie emitowane podczas produkcji twojej energii elektrycznej, w czasie rzeczywistym",
+            "text": "Regiony świata są kolorowane według intensywności emisji CO₂ (uwzględniając wszystkie gazy cieplarniane) zużywanej tam energii elektrycznej. Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu."
         },
         "view3": {
             "header": "Dowiedz się skąd pochodzi twój prąd",
-            "text": "Strzałki wykazują, gdzie i ile energii płynie pomiedzy regionami. Kliknij region aby dowiedzieć się więcej o źródłach energii elektrycznej tam zużywanej."
+            "text": "Strzałki na mapie wskazują przepływy energii elektrycznej pomiędzy różnymi obszarami. Kliknij obszar, aby zobaczyć więcej informacji o pochodzeniu jego energii elektrycznej."
         },
         "view4": {
-            "header": "Aktualne warunki wiatrowe i słoneczne",
-            "text": "Produkcja wiatrowa i słoneczna zależą od pogody. Użyj przycisków \"wiatr\" i \"słońce\" aby zobaczyć aktualne prędkości wiatru i nasłonecznienie dookoła świata."
+            "header": "Warunki wiatrowe i słoneczne w czasie rzeczywistym",
+            "text": "Produkcja energii wiatrowej i słonecznej zależy od pogody. Naćiśnij przyciski \"wiatr\" i \"słońce\", aby wyświetlić siłę wiatru i nasłonecznienie w czasie rzeczywistym na całym świecie."
         }
     },
     "country-panel": {
@@ -45,7 +45,7 @@
         "now": "Obecnie"
     },
     "left-panel": {
-        "zone-list-header-title": "Wpływ na klimat",
+        "zone-list-header-title": "Wpływ na klimat według obszaru",
         "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
         "search": "Szukaj"
     },
@@ -57,12 +57,12 @@
         "emissions24h": "Emisja w ciągu ostatnich 24 godzin",
         "emissionsproduction24h": "Emisja wyprodukowana w ciągu ostatnich 24 godzin",
         "electricityproduction24h": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin",
-        "Getdata": "Sprawdź dane historyczne i API z prognozą"
+        "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API electricityMap"
     },
     "footer": {
         "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
         "here": "tutaj",
-        "faq-text": "Coś niejasne? Sprawdź nasze",
+        "faq-text": "Coś jest niejasne? Sprawdź nasze",
         "faq": "najczęściej zadawane pytania."
     },
     "legends": {
@@ -99,10 +99,10 @@
         "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
         "retrynow": "Spróbuj teraz",
         "database-ad": "Szukasz danych historycznych? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-        "api-ad": "Chcesz mieć aktualne dane w twoich aplikacjach lub urządzeniach? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+        "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
         "legend": "Legenda",
         "faq": "Najczęściej Zadawane Pytania",
-        "webgl-not-supported": "Nie można zrenderować mapy, ponieważ używana przeglądarka nie wspiera WebGL."
+        "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL."
     },
     "wind": "wiatrowa",
     "solar": "słoneczna",
@@ -114,7 +114,7 @@
     "geothermal": "geotermalna",
     "gas": "gazowa",
     "coal": "węglowa",
-    "oil": "olejowa",
+    "oil": "naftowa",
     "unknown": "nieznana",
 
     "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
@@ -591,6 +591,9 @@
             "countryName": "Indie",
             "zoneName": "Bengal Zachodni"
           },
+          "IO": {
+            "zoneName": "Brytyjskie Terytorium Oceanu Indyjskiego"
+          },
           "IQ": {
             "zoneName": "Irak"
           },
@@ -599,6 +602,33 @@
           },
           "IT": {
             "zoneName": "Włochy"
+          },
+          "IT-CNO": {
+            "countryName": "Włochy",
+            "zoneName": "Centralna północ"
+          },
+          "IT-CSO": {
+            "countryName": "Włochy",
+            "zoneName": "Centralne południe"
+          },
+          "IT-NO": {
+            "countryName": "Włochy",
+            "zoneName": "Północ"
+          },
+          "IT-SAR": {
+            "countryName": "Włochy",
+            "zoneName": "Sardynia"
+          },
+          "IT-SIC": {
+            "countryName": "Włochy",
+            "zoneName": "Sycylia"
+          },
+          "IT-SO": {
+            "countryName": "Włochy",
+            "zoneName": "Południe"
+          },
+          "JE": {
+            "zoneName": "Jersey"
           },
           "JM": {
             "zoneName": "Jamajka"
@@ -609,6 +639,46 @@
           "JP": {
             "zoneName": "Japonia"
           },
+          "JP-CB": {
+            "countryName": "Japonia",
+            "zoneName": "Region Chūbu"
+          },
+          "JP-CG": {
+            "countryName": "Japonia",
+            "zoneName": "Region Chūgoku"
+          },
+          "JP-HKD": {
+            "countryName": "Japonia",
+            "zoneName": "Hokkaido"
+          },
+          "JP-HR": {
+            "countryName": "Japonia",
+            "zoneName": "Region Hokuriku"
+          },
+          "JP-KN": {
+            "countryName": "Japonia",
+            "zoneName": "Kansai"
+          },
+          "JP-KY": {
+            "countryName": "Japonia",
+            "zoneName": "Kiusiu"
+          },
+          "JP-ON": {
+            "countryName": "Japonia",
+            "zoneName": "Okinawa"
+          },
+          "JP-SK": {
+            "countryName": "Japonia",
+            "zoneName": "Sikoku"
+          },
+          "JP-TH": {
+            "countryName": "Japonia",
+            "zoneName": "Region Tōhoku"
+          },
+          "JP-TK": {
+            "countryName": "Japonia",
+            "zoneName": "Tokio"
+          },
           "KE": {
             "zoneName": "Kenia"
           },
@@ -617,6 +687,9 @@
           },
           "KH": {
             "zoneName": "Kambodża"
+          },
+          "KI": {
+            "zoneName": "Kiribati"
           },
           "KM": {
             "zoneName": "Komory"
@@ -660,11 +733,23 @@
           "MG": {
             "zoneName": "Madagaskar"
           },
+          "MH": {
+            "zoneName": "Wyspy Marshalla"
+          },
           "MK": {
             "zoneName": "Macedonia Północna"
           },
           "MM": {
             "zoneName": "Mjanma"
+          },
+          "MO": {
+            "zoneName": "Makau"
+          },
+          "MP": {
+            "zoneName": "Mariany Północne"
+          },
+          "MP": {
+            "zoneName": "Martynika"
           },
           "MR": {
             "zoneName": "Mauretania"
@@ -672,8 +757,43 @@
           "MT": {
             "zoneName": "Malta"
           },
+          "MV": {
+            "zoneName": "Malediwy"
+          },
           "MX": {
             "zoneName": "Meksyk"
+          },
+          "MX-BC": {
+            "countryName": "Meksyk",
+            "zoneName": "Kalifornia Dolna"
+          },
+          "MX-CE": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Centralny"
+          },
+          "MX-NE": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północno Wschodni"
+          },
+          "MX-NO": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północny"
+          },
+          "MX-NW": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Północno zachodni"
+          },
+          "MX-OC": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Zachodni"
+          },
+          "MX-OR": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Południowo Zachoni"
+          },
+          "MX-PN": {
+            "countryName": "Meksyk",
+            "zoneName": "Meksyk Południowo Wschodni"
           },
           "MY-EM": {
             "countryName": "Malezja",
@@ -685,6 +805,12 @@
           },
           "MZ": {
             "zoneName": "Mozambik"
+          },
+          "NC": {
+            "zoneName": "Nowa Kaledonia"
+          },
+          "NF": {
+            "zoneName": "Wyspa Norfolk"
           },
           "NI": {
             "zoneName": "Nikaragua"
@@ -718,6 +844,14 @@
             "countryName": "Norwegia",
             "zoneName": "Norwegia zachodnia"
           },
+          "NZ-NZA": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspy Auckland"
+          },
+          "NZ-NZC": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspy Chatham"
+          },
           "NZ-NZN": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspa Północna"
@@ -725,6 +859,10 @@
           "NZ-NZS": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspa Południowa"
+          },
+          "NZ-NZST": {
+            "countryName": "Nowa Zelandia",
+            "zoneName": "Wyspa Stewart"
           },
           "PA": {
             "zoneName": "Panama"
@@ -740,6 +878,9 @@
           },
           "PL": {
             "zoneName": "Polska"
+          },
+          "PM": {
+            "zoneName": "Saint-Pierre i Miquelon"
           },
           "PS": {
             "zoneName": "Palestyna"
@@ -775,6 +916,10 @@
           },
           "RU-AS": {
             "zoneName": "Rosja"
+          },
+          "RU-FE": {
+            "countryName": "Rosja",
+            "zoneName": "Rosyjski Daleki Wschód"
           },
           "RU-1": {
             "countryName": "Rosja",
@@ -849,46 +994,46 @@
             "zoneName": "Ukraina"
           },
           "US": {
-            "zoneName": "USA"
+            "zoneName": "Stany Zjednoczone Ameryki"
           },
           "US-AK": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Alaska"
           },
           "US-BPA": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć BPA"
           },
           "US-CA": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Kalifornia"
           },
           "US-IPC": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć IPC"
           },
           "US-MISO": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć MISO"
           },
           "US-NEISO": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Nowa Anglia"
           },
           "US-NY": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Nowy Jork"
           },
           "US-PJM": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć PJM"
           },
           "US-SPP": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "sieć SPP"
           },
           "US-HI": {
-            "countryName": "USA",
+            "countryName": "Stany Zjednoczone Ameryki",
             "zoneName": "Hawaje"
           },
           "UY": {
@@ -979,8 +1124,9 @@
     "theMap": {
         "groupName": "Mapa",
         "mapColors-question": "Co oznaczają kolory na mapie?",
-        "mapColors-answer": "Regiony na mapie kolorujemy na podstawie ilości emitowanych gazów cieplarnianych przypadających na każdą zużytą jednostkę energii elektrycznej (jej <a href=\"#carbonIntensity\" class=\"entry-link\"> intensywności emisji dwutlenku węgla </a>). Im bardziej zielony kolor, tym bardziej przyjazne dla klimatu zużycie energii elektrycznej.",
+        "mapColors-answer": "Regiony na mapie kolorujemy na podstawie ilości emitowanych gazów cieplarnianych przypadających na każdą zużytą jednostkę energii elektrycznej (jej <a href=\"#carbonIntensity\" class=\"entry-link\"> intensywności emisji dwutlenku węgla </a>). Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu.",
         "mapArrows-question": "Co oznaczają strzałki między regionami na mapie?",
         "mapArrows-answer": "Strzałki między regionami wskazują fizyczny przepływ (import i eksport) energii elektrycznej między nimi: Im szybciej migają, tym jest on szybszy. Przepływ energii elektrycznej jest ważny, ponieważ importując energię elektryczną z sąsiednich obszarów importujesz również emisję dwutlenku węgla związaną z jej produkcją."
     }
 }
+
