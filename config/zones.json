@@ -4369,11 +4369,13 @@
     ],
     "contributors": [
       "https://github.com/BobGrun",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/davidcole1340"
     ],
     "flag_file_name": "nz.png",
     "parsers": {
-      "production": "NZ.fetch_production"
+      "production": "NZ.fetch_production",
+      "price": "NZ.fetch_price"
     },
     "timezone": "Pacific/Auckland"
   },
@@ -4390,11 +4392,13 @@
     ],
     "contributors": [
       "https://github.com/BobGrun",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/davidcole1340"
     ],
     "flag_file_name": "nz.png",
     "parsers": {
-      "production": "NZ.fetch_production"
+      "production": "NZ.fetch_production",
+      "price": "NZ.fetch_price"
     },
     "timezone": "Pacific/Auckland"
   },

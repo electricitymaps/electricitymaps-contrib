@@ -10,6 +10,9 @@ from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'
 
+NZ_NZN_PRICE_REGIONS = set(['region{}'.format(i) for i in range(1, 9)])
+NZ_NZS_PRICE_REGIONS = set(['region{}'.format(i) for i in range(9, 14)])
+
 
 def fetch(session=None):
     r = session or requests.session()
@@ -26,6 +29,47 @@ def fetch(session=None):
         break
     return obj
 
+def fetch_price(zone_key='NZ-NZN', session=None, target_datetime=None, logger=None) -> dict:
+    """
+    Requests the current price of electricity based on the zone key.
+
+    Note that since EM6 breaks the electricity price down into regions while electricitymap breaks
+    it down into the North and South islands, the regions are averaged out for each island.
+    """
+    if target_datetime:
+        raise NotImplementedError('This parser is not able to retrieve data for past dates')
+
+    r = session or requests.session()
+    url = 'https://em6live.co.nz'
+    response = r.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    prices = soup.find(id='priceList')
+    region_prices = []
+
+    if zone_key == 'NZ-NZN':
+        regions = NZ_NZN_PRICE_REGIONS
+    elif zone_key == 'NZ-NZS':
+        regions = NZ_NZS_PRICE_REGIONS
+    else:
+        raise NotImplementedError('Unsupported zone_key %s' % zone_key)
+    
+    for item in prices.find_all('li'):
+        region = item['id']
+        if region in regions:
+            price = float(item.get_text().replace('$', '').replace(',', ''))
+            region_prices.append(price)
+
+    avg_price = sum(region_prices) / len(region_prices)
+    time = soup.find(id='overviewPrice').find(class_='updateStamp')
+    datetime = arrow.get(time.get_text(), 'DD/MM/YY HH:mm', tzinfo='Pacific/Auckland')
+
+    return {
+        'datetime': datetime.datetime,
+        'price': avg_price,
+        'currency': 'NZD',
+        'source': 'em6live.co.nz',
+        'zoneKey': zone_key
+    }
 
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=None) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -97,10 +141,13 @@ def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_
 
     return data
 
-
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    print('fetch_price(NZ-NZN) ->')
+    print(fetch_price('NZ-NZN'))
+    print('fetch_price(NZ-NZS) ->')
+    print(fetch_price('NZ-NZS'))
     print('fetch_production(NZ-NZN) ->')
     print(fetch_production('NZ-NZN'))
     print('fetch_production(NZ-NZS) ->')
