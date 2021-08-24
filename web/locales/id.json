@@ -1350,21 +1350,6 @@
         "UM": {
             "zoneName": "Pulau Outlying Amerika Serikat"
         },
-        "US": {
-            "zoneName": "Amerika Serikat"
-        },
-        "US-AL": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Amerika Serikat",
             "zoneName": "Hawaii"
@@ -1396,58 +1381,6 @@
         "US-HI-OA": {
             "countryName": "Amerika Serikat",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "North Carolina"
-        },
-        "US-NEISO": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "New England"
-        },
-        "US-NV": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "South Carolina"
-        },
-        "US-SPP": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Amerika Serikat",
-            "zoneName": "ERCOT"
         },
         "UY": {
             "zoneName": "Uruguay"

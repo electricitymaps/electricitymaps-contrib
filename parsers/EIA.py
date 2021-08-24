@@ -62,15 +62,6 @@ NEGATIVE_PRODUCTION_THRESHOLDS = {
 
 
 EXCHANGES = {
-#Old exchanges with old zones, to be updated/removed once clients have had time to switch
-    'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
-    'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-SPP->US-TX': 'EBA.SWPP-ERCO.ID.H',
-    'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
-    'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
-    'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
-    'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H',
-
 #Exchanges to non-US BAs
     'MX-BC->US-CAL-CISO': 'EBA.CISO-CFE.ID.H', #Unable to verify if MX-BC is correct
     'CA-SK->US-CENT-SWPP': 'EBA.SWPP-SPC.ID.H',
@@ -246,28 +237,6 @@ EXCHANGES = {
 # or https://www.eia.gov/opendata/qb.php?category=3390101
 # List includes regions and Balancing Authorities.
 REGIONS = {
-    #Old regions, to be updated/removed once clients have had time to switch
-    'US-BPA': 'BPAT',
-    'US-CA': 'CAL',
-    'US-CAR': 'CAR',
-    'US-DUK': 'DUK', #Duke Energy Carolinas
-    'US-SPP': 'CENT',
-    'US-FL': 'FLA',
-    'US-PJM': 'MIDA',
-    'US-MISO': 'MIDW',
-    'US-NEISO': 'NE',
-    'US-NEVP': 'NEVP', #Nevada Power Company
-    'US-NY': 'NY',
-    'US-NW': 'NW',
-    'US-SC': 'SC', #South Carolina Public Service Authority
-    'US-SE': 'SE',
-    'US-SEC': 'SEC',
-    'US-SOCO': 'SOCO', #Southern Company Services Inc - Trans
-    'US-SWPP': 'SWPP', #Southwest Power Pool
-    'US-SVERI': 'SW',
-    'US-TN': 'TEN',
-    'US-TX': 'TEX',
-
 #New regions - EIA
     'US-CAL-BANC': 'BANC', #Balancing Authority Of Northern California
     'US-CAL-CISO': 'CISO', #California Independent System Operator
@@ -509,11 +478,11 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
 def main():
     "Main method, never used by the Electricity Map backend, but handy for testing."
     from pprint import pprint
-    pprint(fetch_consumption_forecast('US-NY'))
+    pprint(fetch_consumption_forecast('US-CAL-BANC'))
     pprint(fetch_production('US-SEC'))
-    pprint(fetch_production_mix('US-TN'))
-    pprint(fetch_consumption('US-CAR'))
-    pprint(fetch_exchange('MX-BC', 'US-CA'))
+    pprint(fetch_production_mix('US-MIDW-GLHB'))
+    pprint(fetch_consumption('US-MIDW-LGEE'))
+    pprint(fetch_exchange('US-CAL-BANC', 'US-NW-BPAT'))
 
 
 if __name__ == '__main__':

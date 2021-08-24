@@ -1351,21 +1351,6 @@
           "UM": {
             "zoneName": "미국령 군소 제도"
           },
-          "US": {
-            "zoneName": "미국"
-          },
-          "US-AL": {
-            "countryName": "미국",
-            "zoneName": "앨라배마 주"
-          },
-          "US-BPA": {
-            "countryName": "미국",
-            "zoneName": "워싱턴 주"
-          },
-          "US-CA": {
-            "countryName": "미국",
-            "zoneName": "캘리포니아 주"
-          },
           "US-HI-HA": {
             "countryName": "미국",
             "zoneName": "하와이섬"
@@ -1397,58 +1382,6 @@
           "US-HI-OA": {
             "countryName": "미국",
             "zoneName": "오아후섬"
-          },
-          "US-IPC": {
-            "countryName": "미국",
-            "zoneName": "아이다호 주"
-          },
-          "US-MISO": {
-            "countryName": "미국",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "미국",
-            "zoneName": "노스캐롤라이나 주"
-          },
-          "US-NEISO": {
-            "countryName": "미국",
-            "zoneName": "뉴잉글랜드"
-          },
-          "US-NV": {
-            "countryName": "미국",
-            "zoneName": "네바다 주"
-          },
-          "US-NY": {
-            "countryName": "미국",
-            "zoneName": "뉴욕 주"
-          },
-          "US-OR": {
-            "countryName": "미국",
-            "zoneName": "오레곤 주"
-          },
-          "US-PJM": {
-            "countryName": "미국",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "미국",
-            "zoneName": "사우스캐롤라이나 주"
-          },
-          "US-SPP": {
-            "countryName": "미국",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "미국",
-            "zoneName": "마리조나 / 뉴멕시코"
-          },
-          "US-TN": {
-            "countryName": "미국",
-            "zoneName": "테네시 주"
-          },
-          "US-TX": {
-            "countryName": "미국",
-            "zoneName": "텍사스"
           },
           "UY": {
             "zoneName": "우루과이"

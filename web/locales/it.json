@@ -1390,25 +1390,6 @@
         "UM": {
             "zoneName": "Isole minori esterne degli Stati Uniti d'America"
         },
-        "US": {
-            "zoneName": "Stati Uniti d'America"
-        },
-        "US-AL": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Alabama"
-        },
-        "US-AK": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Alaska"
-        },
-        "US-BPA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Bonneville Power Administration"
-        },
-        "US-CA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Hawaii"
@@ -1440,58 +1421,6 @@
         "US-HI-OA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Idaho Power Company"
-        },
-        "US-MISO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Midcontinent Independent System Operator, Inc."
-        },
-        "US-NC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Carolina del Nord"
-        },
-        "US-NEISO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Nuova Inghilterra"
-        },
-        "US-NV": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Pennsylvania-New Jersey-Maryland Interconnection"
-        },
-        "US-SC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Carolina del Sud"
-        },
-        "US-SPP": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Southwest Power Pool, Inc."
-        },
-        "US-SVERI": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Southwest Variable Energy Resource Initiative"
-        },
-        "US-TN": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Electric Reliability Council of Texas"
         },
         "US-CAL-BANC": {
             "countryName": "Stati Uniti d'America",

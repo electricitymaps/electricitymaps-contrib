@@ -1385,25 +1385,6 @@
         "UM": {
             "zoneName": "Ühendriikide hajasaared"
         },
-        "US": {
-            "zoneName": "Ameerika Ühendriigid"
-        },
-        "US-AK": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Alaska"
-        },
-        "US-AL": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Hawaii"
@@ -1435,58 +1416,6 @@
         "US-HI-OA": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Põhja-Carolina"
-        },
-        "US-NEISO": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Uus-Inglismaa"
-        },
-        "US-NV": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Lõuna-Carolina"
-        },
-        "US-SPP": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "Ameerika Ühendriigid",

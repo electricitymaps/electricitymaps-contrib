@@ -1356,25 +1356,6 @@
           "UM": {
             "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
           },
-          "US": {
-            "zoneName": "Estados Unidos da América"
-          },
-          "US-AK": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Alasca"
-          },
-          "US-AL": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Califórnia"
-          },
           "US-HI-HA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Havaí"
@@ -1406,58 +1387,6 @@
           "US-HI-OA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Carolina do Norte"
-          },
-          "US-NEISO": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nova Inglaterra"
-          },
-          "US-NV": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nova york"
-          },
-          "US-OR": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Carolina do Sul"
-          },
-          "US-SPP": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Estados Unidos da América",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "ERCOT"
           },
           "US-CAL-BANC": {
             "countryName": "Estados Unidos da América",

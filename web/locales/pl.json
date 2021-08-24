@@ -993,49 +993,6 @@
           "UA": {
             "zoneName": "Ukraina"
           },
-          "US": {
-            "zoneName": "Stany Zjednoczone Ameryki"
-          },
-          "US-AK": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "Alaska"
-          },
-          "US-BPA": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "sieć BPA"
-          },
-          "US-CA": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "Kalifornia"
-          },
-          "US-IPC": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "sieć IPC"
-          },
-          "US-MISO": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "sieć MISO"
-          },
-          "US-NEISO": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "Nowa Anglia"
-          },
-          "US-NY": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "Nowy Jork"
-          },
-          "US-PJM": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "sieć PJM"
-          },
-          "US-SPP": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "sieć SPP"
-          },
-          "US-HI": {
-            "countryName": "Stany Zjednoczone Ameryki",
-            "zoneName": "Hawaje"
-          },
           "UY": {
             "zoneName": "Urugwaj"
           },
