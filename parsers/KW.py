@@ -12,7 +12,7 @@ import arrow
 import requests
 import re
 
-def fetch_production(zone_key='KW', target_datetime=None, session=None, logger=None):
+def fetch_production(zone_key='KW', session=None, target_datetime=None, logger=None):
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
