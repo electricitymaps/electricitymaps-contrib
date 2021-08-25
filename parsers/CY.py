@@ -76,7 +76,7 @@ class CyprusParser:
             data.append(datum)
         return data
 
-    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+    def fetch_production(self, session=None, target_datetime: datetime.datetime = None, logger=None) -> list:
         if target_datetime is None:
             url = 'https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/'
         else:
