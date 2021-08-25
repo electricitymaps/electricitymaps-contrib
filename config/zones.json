@@ -5467,21 +5467,22 @@
     ]
   },
   "US-HI-OA": {
-    "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
     "capacity": {
-      "biomass": 256.5,
-      "coal": 0,
+      "battery storage": 1,
+      "biomass": 157.7,
+      "coal": 203,
       "gas": 0,
       "geothermal": 0,
       "hydro": 0,
-      "oil": 0,
-      "solar": 781,
-      "wind": 171,
+      "oil": 1528.9,
+      "solar": 198,
+      "wind": 126.6,
       "unknown": 0
     },
     "contributors": [
       "https://github.com/kepiej",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -5511,7 +5512,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 72.2,
-      "solar": 310.1,
+      "solar": 322.1,
       "unknown": 0,
       "wind": 0
     },
@@ -5541,18 +5542,18 @@
   "US-CAL-CISO": {
     "comment": "California Independent System Operator",
     "capacity": {
-      "battery storage": 735.4,
-      "biomass": 1177.9,
+      "battery storage": 1384.8,
+      "biomass": 1174.8,
       "coal": 62.5,
-      "gas": 32964.7,
+      "gas": 33011.8,
       "geothermal": 2103.5,
-      "hydro": 6716.3,
+      "hydro": 6704.3,
       "hydro storage": 2094.4,
       "nuclear": 2323,
       "oil": 391.5,
-      "solar": 14850.8,
+      "solar": 15006.4,
       "unknown": 99.7,
-      "wind": 5961.3
+      "wind": 6022.5
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -5589,7 +5590,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 24.9,
-      "solar": 383.4,
+      "solar": 386.4,
       "unknown": 0,
       "wind": 0
     },
@@ -5698,15 +5699,15 @@
     "comment": "Duke Energy Progress East",
     "capacity": {
       "battery storage": 0,
-      "biomass": 356.6,
-      "coal": 3373.9,
+      "biomass": 409.1,
+      "coal": 3321.4,
       "gas": 6489.8,
       "geothermal": 0,
       "hydro": 228,
       "hydro storage": 0,
       "nuclear": 3722.7,
       "oil": 282.1,
-      "solar": 1511.1,
+      "solar": 1562.1,
       "unknown": 54,
       "wind": 0
     },
@@ -5776,7 +5777,7 @@
     "comment": "Duke Energy Carolinas",
     "capacity": {
       "battery storage": 0,
-      "biomass": 100.2,
+      "biomass": 90.9,
       "coal": 7045.1,
       "gas": 10719,
       "geothermal": 0,
@@ -5784,7 +5785,7 @@
       "hydro storage": 2070,
       "nuclear": 7517.5,
       "oil": 143.4,
-      "solar": 2213.6,
+      "solar": 2241.5,
       "unknown": 0,
       "wind": 0
     },
@@ -5968,18 +5969,18 @@
   "US-CENT-SWPP": {
     "comment": "Southwest Power Pool",
     "capacity": {
-      "battery storage": 25,
-      "biomass": 345.8,
+      "battery storage": 26.4,
+      "biomass": 344.2,
       "coal": 22064.3,
-      "gas": 36392.2,
+      "gas": 36306.1,
       "geothermal": 0,
       "hydro": 3104.1,
       "hydro storage": 259.2,
       "nuclear": 2068.7,
-      "oil": 2181.4,
-      "solar": 396.4,
+      "oil": 2185.4,
+      "solar": 404.8,
       "unknown": 62,
-      "wind": 25352.5
+      "wind": 26150.3
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6010,7 +6011,7 @@
     "capacity": {
       "battery storage": 0,
       "biomass": 0,
-      "coal": 1292.8,
+      "coal": 929,
       "gas": 3119.3,
       "geothermal": 0,
       "hydro": 0,
@@ -6048,7 +6049,7 @@
     "comment": "Duke Energy Florida Inc",
     "capacity": {
       "battery storage": 0,
-      "biomass": 269.2,
+      "biomass": 255.2,
       "coal": 1478.4,
       "gas": 11223.9,
       "geothermal": 0,
@@ -6095,7 +6096,7 @@
       "hydro storage": 0,
       "nuclear": 3797.2,
       "oil": 261.5,
-      "solar": 2796.8,
+      "solar": 2945.8,
       "unknown": 0,
       "wind": 0
     },
@@ -6212,7 +6213,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 248.4,
-      "solar": 37.5,
+      "solar": 35.1,
       "unknown": 0,
       "wind": 0
     },
@@ -6422,18 +6423,18 @@
   "US-MIDA-PJM": {
     "comment": "Pjm Interconnection, Llc",
     "capacity": {
-      "battery storage": 300.7,
-      "biomass": 2330.3,
-      "coal": 49679.5,
-      "gas": 98749.2,
+      "battery storage": 310.7,
+      "biomass": 2332.3,
+      "coal": 48944,
+      "gas": 99523,
       "geothermal": 0,
       "hydro": 3308.7,
       "hydro storage": 5103.3,
       "nuclear": 34466.6,
-      "oil": 6963.6,
-      "solar": 4894.3,
+      "oil": 6082.6,
+      "solar": 5114.7,
       "unknown": 133.2,
-      "wind": 10171.5
+      "wind": 10420.7
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6472,8 +6473,8 @@
       "nuclear": 0,
       "oil": 164.7,
       "solar": 2.5,
-      "unknown": 941.4,
-      "wind": 0
+      "unknown": 0,
+      "wind": 941.4
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6559,7 +6560,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 11.5,
-      "solar": 10,
+      "solar": 13,
       "unknown": 0,
       "wind": 0
     },
@@ -6589,16 +6590,16 @@
   "US-MIDW-MISO": {
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
     "capacity": {
-      "battery storage": 55.4,
+      "battery storage": 57.9,
       "biomass": 2487.4,
-      "coal": 61158.4,
-      "gas": 82858.1,
+      "coal": 58976.5,
+      "gas": 83309.2,
       "geothermal": 0,
-      "hydro": 2428,
-      "hydro storage": 2414.8,
+      "hydro": 2463,
+      "hydro storage": 2416.8,
       "nuclear": 13080.8,
-      "oil": 5047.2,
-      "solar": 2204.2,
+      "oil": 5023.5,
+      "solar": 2304,
       "unknown": 624.7,
       "wind": 27159.1
     },
@@ -6632,16 +6633,16 @@
   "US-NE-ISNE": {
     "comment": "Iso New England Inc.",
     "capacity": {
-      "battery storage": 107.6,
+      "battery storage": 159,
       "biomass": 1613.9,
       "coal": 559.2,
-      "gas": 19607.8,
+      "gas": 19886,
       "geothermal": 0,
       "hydro": 1918.6,
       "hydro storage": 1799,
       "nuclear": 3404.9,
-      "oil": 6325,
-      "solar": 1535,
+      "oil": 6069,
+      "solar": 1637.1,
       "unknown": 0,
       "wind": 1504.4
     },
@@ -6995,12 +6996,12 @@
       "biomass": 35.2,
       "coal": 809,
       "gas": 7828.2,
-      "geothermal": 782.8,
+      "geothermal": 785.8,
       "hydro": 12.8,
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 21,
-      "solar": 1845.8,
+      "solar": 2046.7,
       "unknown": 7.5,
       "wind": 150
     },
@@ -7117,9 +7118,9 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 413.7,
+      "solar": 411.7,
       "unknown": 0,
-      "wind": 714.3
+      "wind": 694.3
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7148,7 +7149,7 @@
     "comment": "Portland General Electric Company",
     "capacity": {
       "battery storage": 5,
-      "biomass": 14.7,
+      "biomass": 15.9,
       "coal": 0,
       "gas": 2115.3,
       "geothermal": 0,
@@ -7156,7 +7157,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 133,
+      "solar": 135.5,
       "unknown": 0,
       "wind": 716.5
     },
@@ -7192,10 +7193,10 @@
       "gas": 6510,
       "geothermal": 0,
       "hydro": 55.2,
-      "hydro storage": 300,
+      "hydro storage": 150,
       "nuclear": 0,
       "oil": 33.2,
-      "solar": 548.5,
+      "solar": 628.5,
       "unknown": 0,
       "wind": 4490.8
     },
@@ -7345,7 +7346,7 @@
       "battery storage": 8.2,
       "biomass": 3.2,
       "coal": 5929.6,
-      "gas": 1928.8,
+      "gas": 1931.8,
       "geothermal": 0,
       "hydro": 704.3,
       "hydro storage": 208.5,
@@ -7353,7 +7354,7 @@
       "oil": 158.8,
       "solar": 192.2,
       "unknown": 11.5,
-      "wind": 805.6
+      "wind": 885.6
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7457,16 +7458,16 @@
   "US-NY-NYIS": {
     "comment": "New York Independent System Operator",
     "capacity": {
-      "battery storage": 49.6,
+      "battery storage": 51.6,
       "biomass": 517.7,
       "coal": 0,
-      "gas": 27098.2,
+      "gas": 27105.7,
       "geothermal": 0,
       "hydro": 4690.2,
       "hydro storage": 1240,
       "nuclear": 3398.4,
-      "oil": 3858.8,
-      "solar": 666.9,
+      "oil": 3853.7,
+      "solar": 701.4,
       "unknown": 20,
       "wind": 1989.2
     },
@@ -7545,7 +7546,7 @@
       "hydro storage": 328,
       "nuclear": 0,
       "oil": 0,
-      "solar": 26.4,
+      "solar": 25.4,
       "unknown": 0,
       "wind": 0
     },
@@ -7582,7 +7583,7 @@
       "hydro storage": 1306.6,
       "nuclear": 6054.4,
       "oil": 1284.8,
-      "solar": 2609.4,
+      "solar": 2764.4,
       "unknown": 0,
       "wind": 0
     },
@@ -7621,7 +7622,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 123.8,
-      "solar": 757.5,
+      "solar": 757,
       "unknown": 0,
       "wind": 174.3
     },
@@ -7849,7 +7850,7 @@
       "oil": 30.4,
       "solar": 369.9,
       "unknown": 1.1,
-      "wind": 1230.8
+      "wind": 1372
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7877,7 +7878,7 @@
   "US-SW-SRP": {
     "comment": "Salt River Project",
     "capacity": {
-      "battery storage": 20,
+      "battery storage": 45,
       "biomass": 0,
       "coal": 821.8,
       "gas": 8265.6,
@@ -7916,7 +7917,7 @@
   "US-SW-TEPC": {
     "comment": "Tucson Electric Power Company",
     "capacity": {
-      "battery storage": 20,
+      "battery storage": 50,
       "biomass": 0,
       "coal": 1765.8,
       "gas": 965.7,
@@ -7925,7 +7926,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 456.5,
+      "solar": 455,
       "unknown": 0,
       "wind": 279.8
     },
@@ -8003,7 +8004,7 @@
       "hydro storage": 1808.6,
       "nuclear": 8474.8,
       "oil": 74.6,
-      "solar": 293,
+      "solar": 520,
       "unknown": 0,
       "wind": 28.8
     },
@@ -8033,18 +8034,18 @@
   "US-TEX-ERCO": {
     "comment": "Electric Reliability Council Of Texas, Inc.",
     "capacity": {
-      "battery storage": 223.1,
+      "battery storage": 342.9,
       "biomass": 189.5,
       "coal": 15217.2,
-      "gas": 64842,
+      "gas": 64745.5,
       "geothermal": 0,
       "hydro": 569.7,
       "hydro storage": 0,
       "nuclear": 5138.6,
-      "oil": 111.8,
-      "solar": 6042,
+      "oil": 113.1,
+      "solar": 7261,
       "unknown": 234.7,
-      "wind": 28384
+      "wind": 29401.1
     },
     "contributors": [
       "https://github.com/systemcatch",
