@@ -27,13 +27,13 @@ mkdir -p $BUILD_PATH
 
 if [ ! -e "$BUILD_PATH/${COUNTRIES_FILENAME}.zip" ]; then
   echo "Downloading ${COUNTRIES_FILENAME}.zip"
-  curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip ${BASE_URL}/${COUNTRIES_FILENAME}.zip
+  curl -z $BUILD_PATH/${COUNTRIES_FILENAME}.zip -o $BUILD_PATH/${COUNTRIES_FILENAME}.zip ${BASE_URL}/${COUNTRIES_FILENAME}.zip
 fi
 unzip -od $BUILD_PATH $BUILD_PATH/${COUNTRIES_FILENAME}.zip
 
 if [ ! -e "$BUILD_PATH/${STATES_FILENAME}.zip" ]; then
   echo "Downloading ${STATES_FILENAME}.zip"
-  curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip ${BASE_URL}/${STATES_FILENAME}.zip
+  curl -z $BUILD_PATH/${STATES_FILENAME}.zip -o $BUILD_PATH/${STATES_FILENAME}.zip ${BASE_URL}/${STATES_FILENAME}.zip
 fi
 unzip -od $BUILD_PATH $BUILD_PATH/${STATES_FILENAME}.zip
 
