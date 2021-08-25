@@ -60,19 +60,30 @@ const mapStateToProps = state => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
 
+// Hide the panel completely if looking at the map on small screens.
+const Container = styled.div`
+  @media (max-width: 767px) {
+    display: ${location.pathname === '/map' ?  'none !important': 'flex'};
+  }
+`;
+
+const LeftPanelCollapseButton = styled.div`
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+`;
+
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
 
   usePageViewsTracker();
 
-  // Hide the panel completely if looking at the map on small screens.
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
-  const smallScreenHiddenClass = location.pathname === '/map' ? 'small-screen-hidden' : '';
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
 
   return (
-    <div className={`panel left-panel ${collapsedClass} ${smallScreenHiddenClass}`}>
+    <Container className={`panel left-panel ${collapsedClass}`}>
 
       <div id="mobile-header" className="large-screen-hidden brightmode">
         <div className="header-content">
@@ -86,15 +97,15 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         </div>
       </div>
 
-      <div
+      <LeftPanelCollapseButton
         id="left-panel-collapse-button"
-        className={`small-screen-hidden ${collapsedClass}`}
+        className={`${collapsedClass}`}
         onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
         role="button"
         tabIndex="0"
       >
         <i className="material-icons">arrow_drop_down</i>
-      </div>
+      </LeftPanelCollapseButton>
 
       {/* Render different content based on the current route */}
       <Switch>
@@ -106,7 +117,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         <Route path="/faq" component={FAQPanel} />
         {/* TODO: Consider adding a 404 page  */}
       </Switch>
-    </div>
+    </Container>
   );
 };
 

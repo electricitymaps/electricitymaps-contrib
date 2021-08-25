@@ -3,6 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
+import styled from 'styled-components';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -39,6 +40,12 @@ const mapStateToProps = state => ({
   hasConnectionWarning: state.data.hasConnectionWarning,
   version: state.application.version,
 });
+
+const Watermark = styled.div`
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+`;
 
 const Main = ({
   brightModeEnabled,
@@ -83,11 +90,11 @@ const Main = ({
           <LeftPanel />
           <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
             <Map />
-            <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
+            <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
-            </div>
+            </Watermark>
             <Legend />
             <div className="controls-container">
               <Toggle

@@ -14,6 +14,7 @@ import {
 import { connect, useSelector } from 'react-redux';
 import { noop } from 'lodash';
 import moment from 'moment';
+import styled from 'styled-components';
 
 // Components
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
@@ -140,6 +141,13 @@ const CountryPanel = ({
     dispatchApplication('tableDisplayEmissions', false);
     trackEvent('switchToCountryProduction');
   };
+  
+  // Verify that `IconContainer` is a good name
+  const IconContainer = styled.small`
+   @media (max-width: 767px) {
+    display: none !important;
+  }
+  `;
 
   return (
     <div className="country-panel">
@@ -224,10 +232,10 @@ const CountryPanel = ({
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
               </span>
               <br />
-              <small className="small-screen-hidden">
+              <IconContainer>
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-              </small>
+              </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
                 tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
@@ -240,10 +248,10 @@ const CountryPanel = ({
                 }
               </span>
               <br />
-              <small className="small-screen-hidden">
+              <IconContainer>
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-              </small>
+              </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
 
