@@ -15,8 +15,8 @@ function readNDJSON(filePath) {
 
 const countryGeos = readNDJSON('./build/tmp_countries.json');
 const stateGeos = readNDJSON('./build/tmp_states.json');
-const thirdpartyGeos = [].concat([
-  readNDJSON('./build/tmp_thirdparty.json'),
+const defaultThirdPartyGeos = readNDJSON('./build/tmp_thirdparty.json');
+const customThirdPartyGeos = [
   require('./third_party_maps/DK-DK2-without-BHM.json'),
   require('./third_party_maps/NO-NO1.json'),
   require('./third_party_maps/NO-NO2.json'),
@@ -55,8 +55,10 @@ const thirdpartyGeos = [].concat([
   readGeoJson('./third_party_maps/US-HI-OA.geojson'),
   readGeoJson('./third_party_maps/CL-SEN.geojson'),
   readGeoJson('./third_party_maps/CA-NL-LB.geojson'),
-  readGeoJson('./third_party_maps/CA-NL-NF.geojson'),
-]);
+  readGeoJson('./third_party_maps/CA-NL-NF.geojson')
+];
+
+const thirdpartyGeos = defaultThirdPartyGeos.concat(customThirdPartyGeos);
 
 const USSimplifiedGeos = [].concat([
   readGeoJson('./third_party_maps/US_simplified/US-CAL-BANC.geojson'), //Balancing Authority Of Northern California

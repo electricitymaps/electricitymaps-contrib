@@ -1,5 +1,3 @@
-const topojson = require('topojson');
-
 /**
  * Merges a list of GeoJSON Polygons or MultiPolygons into a single multi-polygon.
  * This allows to merge a group of geometries into a single one.
