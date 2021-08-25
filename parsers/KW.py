@@ -18,8 +18,11 @@ def fetch_production(zone_key='KW', target_datetime=None, session=None, logger=N
 
     # Kuwait very rarely imports power, so we assume that production is equal to consumption
     # "Kuwait imports power in an emergency and only for a few hours at a time"
-    # See https://github.com/tmrowco/electricitymap-contrib/pull/2457#pullrequestreview-408781556 
-    consumption = fetch_consumption(zone_key=zone_key, session=session, logger=logger)
+    # See https://github.com/tmrowco/electricitymap-contrib/pull/2457#pullrequestreview-408781556
+    consumption_dict = fetch_consumption(
+        zone_key=zone_key, session=session, logger=logger
+    )
+    consumption = consumption_dict["consumption"]
 
     datapoint = {
         'zoneKey': zone_key,
