@@ -12,10 +12,10 @@ STATES_FILTER="['AUS', 'AZE', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'ESP', 'GBR', '
 CURRENT_PATH=`dirname "$0"`
 BUILD_PATH=$CURRENT_PATH/build
 
-if [ "$CURRENT_PATH" == "geo" ]; then
-  PARENT="./"
+if [ "$CURRENT_PATH" == "geo" ] || [ "$CURRENT_PATH" == "./geo" ]; then
+  PARENT="."
 else
-  PARENT="../"
+  PARENT=".."
 fi
 
 NODE_MODULES_PATH="$PARENT/node_modules/.bin"
