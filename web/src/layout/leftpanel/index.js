@@ -73,6 +73,12 @@ const LeftPanelCollapseButton = styled.div`
   }
 `;
 
+const MobileHeader = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
+
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
@@ -85,7 +91,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
   return (
     <Container className={`panel left-panel ${collapsedClass}`}>
 
-      <div id="mobile-header" className="large-screen-hidden brightmode">
+      <MobileHeader id="mobile-header" className="brightmode">
         <div className="header-content">
           <div className="logo">
             <div className="image" id="electricitymap-logo" />
@@ -95,7 +101,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
             <LastUpdatedTime />
           </div>
         </div>
-      </div>
+      </MobileHeader>
 
       <LeftPanelCollapseButton
         id="left-panel-collapse-button"

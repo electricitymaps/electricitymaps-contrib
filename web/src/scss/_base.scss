@@ -32,12 +32,6 @@ body {
     display: none !important;
 }
 
-.large-screen-hidden {
-    @include respond-to('medium-up') {
-        display: none !important;
-    }
-}
-
 hr {
     background-color: $light-gray;
     color: $light-gray;

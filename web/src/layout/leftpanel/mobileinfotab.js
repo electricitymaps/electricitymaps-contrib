@@ -5,11 +5,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { __ } from '../../helpers/translation';
 import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
+
+const SocialButtons = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
 
 const MobileInfoTab = () => {
   const isMediumUpScreen = useIsMediumUpScreen();
@@ -95,7 +102,7 @@ const MobileInfoTab = () => {
           <br />
         </p>
       </div>
-      <div className="social-buttons large-screen-hidden">
+      <SocialButtons className="social-buttons">
         <div>
           { /* Facebook share */}
           <div
@@ -118,7 +125,7 @@ const MobileInfoTab = () => {
             </a>
           </span>
         </div>
-      </div>
+      </SocialButtons>
 
       <div className="mobile-faq-header">
         {__('misc.faq')}

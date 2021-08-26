@@ -40,6 +40,12 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
+const SocialButtons = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
+
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
 
@@ -292,7 +298,7 @@ const CountryPanel = ({
           </div>
         )}
 
-        <div className="social-buttons large-screen-hidden">
+        <SocialButtons className="social-buttons>
           <div>
             { /* Facebook share */}
             <div
@@ -315,7 +321,7 @@ const CountryPanel = ({
               </a>
             </span>
           </div>
-        </div>
+        </SocialButtons>
       </div>
     </div>
   );
