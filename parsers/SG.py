@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
+from __future__ import annotations
+
 import logging
 import re
+from collections import defaultdict
 
 import arrow
+import requests
 from PIL import Image
 from pytesseract import image_to_string
-import requests
 
 TIMEZONE = 'Asia/Singapore'
 
 TICKER_URL = 'https://www.emcsg.com/ChartServer/blue/ticker'
+
+SOLAR_URL = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -54,18 +58,19 @@ TYPE_MAPPINGS = {
 }
 
 
-def get_solar(session, logger):
+def get_solar(session, logger) -> float | None:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
-    Returns a float or None.
     """
 
-    url = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
+    url = SOLAR_URL
     solar_image = Image.open(session.get(url, stream=True).raw)
 
-    gray = solar_image.convert('L')
-    threshold_filter = lambda x: 0 if x < 77 else 255
+    w, h = solar_image.size
+    text_only = solar_image.crop((w*0.53125, h*0.74375, w*0.9296875, h*0.91875))
+    gray = text_only.convert('L')
+    threshold_filter = lambda x: 0 if x < 10 else 255
     black_white = gray.point(threshold_filter, '1')
 
     text = image_to_string(black_white, lang='eng')
@@ -86,7 +91,7 @@ def get_solar(session, logger):
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
-    if diff.seconds > 3600:
+    if diff.total_seconds() > 3600:
         msg = ('Singapore solar data is too old to use, '
                'parsed data timestamp was {}.').format(solar_dt)
         logger.warning(msg, extra={'key': 'SG'})
@@ -113,24 +118,25 @@ def get_solar(session, logger):
     return solar
 
 
-def parse_megawatt_value(val):
+def parse_megawatt_value(val) -> int:
     """Turns values like "5,156MW" and "26MW" into 5156 and 26 respectively."""
     return int(val.replace(',', '').replace('MW', ''))
 
 
-def parse_percent(val):
+def parse_percent(val) -> float:
     """Turns values like "97.92%" into 0.9792."""
     return float(val.replace('%', '')) / 100
 
 
-def parse_price(price_str):
+def parse_price(price_str) -> float:
     """Turns values like "$70.57/MWh" into 70.57"""
 
     return float(price_str.replace('$', '').replace('/MWh', ''))
 
 
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
-    """Parses a common pattern in Singapore JSON response format. Examples:
+    """
+    Parses a common pattern in Singapore JSON response format. Examples:
 
     [d['Value'] for d in energy_section if d['Label'] == 'Demand'][0]
         => find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
@@ -145,10 +151,12 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
     return [list_item[sought_key] for list_item in l if list_item[filter_key] == filter_value][0]
 
 
-def sg_period_to_hour(period_str):
-    """Singapore electricity markets are split into 48 periods.
-    Period 1 starts at 00:00 Singapore time. Period 9 starts at 04:00.
-    This function returns hours since midnight, possibly with 0.5 to indicate 30 minutes."""
+def sg_period_to_hour(period_str) -> float:
+    """
+    Singapore electricity markets are split into 48 periods.
+    Period 1 starts at 00:00 Singapore time, Period 9 starts at 04:00.
+    Returns hours since midnight, possibly with 0.5 to indicate 30 minutes.
+    """
     return (float(period_str) - 1) / 2.0
 
 
@@ -162,13 +170,8 @@ def sg_data_to_datetime(data):
 
 
 def fetch_production(zone_key='SG', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of Singapore.
-
-    Arguments:
-    zone_key       -- ignored here, only information for SG is returned
-    session (optional) -- request session passed in order to re-use an existing session
-    """
+                     logger=logging.getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -228,8 +231,9 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
     }
 
 
-def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
-    """Requests the most recent known power prices in Singapore (USEP).
+def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None) -> dict:
+    """
+    Requests the most recent known power prices in Singapore (USEP).
 
     See https://www.emcsg.com/marketdata/guidetoprices for details of what different prices in the data source mean.
     We use USEP here: "The Uniform Singapore Energy Price (USEP) is the uniform price of energy
@@ -239,20 +243,6 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None):
     There are also price forecasts for future prices at https://www.emcsg.com/marketdata/priceinformation
     that appears to extend to end of day in Singapore, so up to 24 hours into the future,
     however we don't currently use this.
-
-    Arguments:
-    zone_key (optional) -- ignored, only information for Singapore is returned
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-        {
-          'zoneKey': 'FR',
-          'currency': 'EUR',
-          'datetime': '2017-01-01T01:00:00Z',
-          'price': 0.0,
-          'source': 'mysource.com'
-        }
     """
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

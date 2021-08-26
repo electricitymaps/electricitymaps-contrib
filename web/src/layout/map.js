@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 
 import thirdPartyServices from '../services/thirdparty';
+import { __ } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
@@ -24,6 +25,7 @@ import WindLayer from '../components/layers/windlayer';
 const debouncedReleaseMoving = debounce(() => { dispatchApplication('isMovingMap', false); }, 200);
 
 export default () => {
+  const webGLSupported = useSelector(state => state.application.webGLSupported);
   const isHoveringExchange = useSelector(state => state.application.isHoveringExchange);
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
   const callerLocation = useSelector(state => state.application.callerLocation);
@@ -56,8 +58,11 @@ export default () => {
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
       }
 
-      // Map loading is finished, lower the overlay shield.
-      dispatchApplication('isLoadingMap', false);
+      // Map loading is finished, lower the overlay shield with
+      // a bit of delay to allow the background to render first.
+      setTimeout(() => {
+        dispatchApplication('isLoadingMap', false);
+      }, 100);
 
       // Track and notify that WebGL is supported.
       dispatchApplication('webGLSupported', true);
@@ -107,7 +112,7 @@ export default () => {
     () => () => {
       history.push({ pathname: '/map', search: location.search });
     },
-    [history],
+    [history, location],
   );
 
   const handleZoneClick = useMemo(
@@ -116,7 +121,7 @@ export default () => {
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
     },
-    [trackEvent, history],
+    [trackEvent, history, location],
   );
 
   const handleZoneMouseEnter = useMemo(
@@ -141,14 +146,33 @@ export default () => {
   );
 
   const handleViewportChange = useMemo(
-    () => ({ latitude, longitude, zoom }) => {
+    () => ({
+      width,
+      height,
+      latitude,
+      longitude,
+      zoom,
+    }) => {
       dispatchApplication('isMovingMap', true);
-      dispatchApplication('mapViewport', { latitude, longitude, zoom });
+      dispatchApplication('mapViewport', {
+        width,
+        height,
+        latitude,
+        longitude,
+        zoom,
+      });
       // TODO: Try tying this to internal map state
       // somehow to remove the need for debouncing.
       debouncedReleaseMoving();
     },
     [],
+  );
+
+  const handleResize = useMemo(
+    () => ({ width, height }) => {
+      handleViewportChange({ ...viewport, width, height });
+    },
+    [viewport],
   );
 
   // Animate map transitions only after the map has been loaded.
@@ -157,10 +181,16 @@ export default () => {
 
   return (
     <React.Fragment>
+      <div id="webgl-error" className={`flash-message ${!webGLSupported ? 'active' : ''}`}>
+        <div className="inner">
+          {__('misc.webgl-not-supported')}
+        </div>
+      </div>
       {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
           zoneData={tooltipZoneData}
           position={tooltipPosition}
+          onClose={() => setTooltipZoneData(null)}
         />
       )}
       <ZoneMap
@@ -168,6 +198,7 @@ export default () => {
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
         onMouseMove={handleMouseMove}
+        onResize={handleResize}
         onSeaClick={handleSeaClick}
         onViewportChange={handleViewportChange}
         onZoneClick={handleZoneClick}

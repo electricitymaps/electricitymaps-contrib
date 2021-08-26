@@ -59,8 +59,6 @@
         "Getdata": "Get historical data, marginal and forecast API"
     },
     "footer": {
-        "likethisvisu": "Like the visualization?",
-        "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
         "faq-text": "Anything unclear? Check out our",
         "faq": "frequently asked questions.",
@@ -186,11 +184,11 @@
         "whoAreYou-question": "Who are you?",
         "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
         "feedback-question": "Can I give you some feedback?",
-        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricity.com\">send us an email!</a>",
+        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
         "contribute-question": "Can I contribute to your project?",
         "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Can we work together?",
-        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@tmrow.com\">Send us an email!</a>",
+        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
         "disclaimer-question": "Disclaimer",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
@@ -1355,21 +1353,6 @@
           "UM": {
             "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
           },
-          "US": {
-            "zoneName": "Hoa Kỳ"
-          },
-          "US-AL": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "California"
-          },
           "US-HI-HA": {
             "countryName": "Hoa Kỳ",
             "zoneName": "Hawaii"
@@ -1401,58 +1384,6 @@
           "US-HI-OA": {
             "countryName": "Hoa Kỳ",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "North Carolina"
-          },
-          "US-NEISO": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "New England"
-          },
-          "US-NV": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "New York"
-          },
-          "US-OR": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "South Carolina"
-          },
-          "US-SPP": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Hoa Kỳ",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "ERCOT"
           },
           "UY": {
             "zoneName": "Uruguay"

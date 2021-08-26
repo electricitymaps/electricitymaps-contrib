@@ -50,8 +50,10 @@ POWER_PLANTS = {
     u'Garita': 'hydro',
     u'Guápiles': 'oil',
     u'Hidrozarcas': 'hydro',
+    u'Jorge Manuel Dengo': 'hydro',
     u'La Esperanza (CoopeL)': 'hydro',
     u'La Joya': 'hydro',
+    u'Las Pailas II': 'geothermal',
     u'Los Negros': 'hydro',
     u'Los Negros II': 'hydro',
     u'Los Santos': 'wind',
@@ -204,25 +206,8 @@ def fetch_production(zone_key='CR', session=None,
     return results
 
 
-def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-
-    where net flow is from DK into NO
-    """
+def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

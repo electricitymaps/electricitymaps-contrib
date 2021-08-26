@@ -21,18 +21,20 @@ url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
 
 generation_map = {
     0: 'biomass',
-    1: 'geothermal',
-    2: 'hydro',
-    3: 'interconnection',
-    4: 'thermal',
-    5: 'solar',
+    1: 'wind',
+    2: 'geothermal',
+    3: 'hydro',
+    4: 'interconnection',
+    5: 'thermal',
+    6: 'solar',
     'datetime': 'datetime'
 }
 
 
 def get_data(session=None):
     """
-    Makes a get request to data url.  Parses the response then makes a post request to the same url using
+    Makes a get request to data url.
+    Parses the response then makes a post request to the same url using
     parsed parameters from the get request.
     Returns a requests response object.
     """
@@ -64,12 +66,14 @@ def get_data(session=None):
     return datareq
 
 
-def data_parser(datareq):
+def data_parser(datareq) -> list:
     """
-    Accepts a requests response.text object.  Slices the object down to a smaller size then converts
-    to usable json.  Loads the data as json then finds the 'result' key.  Uses regex to find the start
-    and endpoints of the actual data.  Splits the data into datapoints then cleans them up for processing.
-    Returns a list of lists.
+    Accepts a requests response.text object.
+    Slices the object down to a smaller size then converts to usable json.
+    Loads the data as json then finds the 'result' key.
+    Uses regex to find the start
+    and endpoints of the actual data.
+    Splits the data into datapoints then cleans them up for processing.
     """
 
     double_json = datareq.text[len('0|/*DX*/('):-1]
@@ -102,11 +106,12 @@ def data_parser(datareq):
     return clean_data
 
 
-def data_processer(data):
+def data_processer(data) -> list:
     """
-    Takes data in the form of a list of lists.  Converts each list to a dictionary.
-    Joins dictionaries based on shared datetime key.  Maps generation to type.
-    Returns a list of dictionaries.
+    Takes data in the form of a list of lists.
+    Converts each list to a dictionary.
+    Joins dictionaries based on shared datetime key.
+    Maps generation to type.
     """
 
     converted = []
@@ -135,34 +140,8 @@ def data_processer(data):
     return mapped_data
 
 
-def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -182,7 +161,7 @@ def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=N
                 'nuclear': 0.0,
                 'oil': hour.get('thermal', 0.0),
                 'solar': hour.get('solar', 0.0),
-                'wind': None,
+                'wind': hour.get('wind', 0.0),
                 'geothermal': hour.get('geothermal', 0.0),
                 'unknown': 0.0
             },

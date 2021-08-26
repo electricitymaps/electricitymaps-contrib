@@ -24,6 +24,7 @@ const CountryPanelProductionTooltip = ({
   mode,
   position,
   zoneData,
+  onClose,
 }) => {
   if (!zoneData) return null;
 
@@ -49,6 +50,9 @@ const CountryPanelProductionTooltip = ({
   const usage = isFinite(electricity) && Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
   const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
 
+  const emissions = isFinite(electricity) && Math.abs(electricity * co2Intensity * 1000);
+  const totalEmissions = getTotalElectricity(zoneData, true);
+
   const co2IntensitySource = isStorage
     ? (zoneData.dischargeCo2IntensitySources || {})[resource]
     : (zoneData.productionCo2IntensitySources || {})[resource];
@@ -64,7 +68,7 @@ const CountryPanelProductionTooltip = ({
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
 
   return (
-    <Tooltip id="countrypanel-production-tooltip" position={position}>
+    <Tooltip id="countrypanel-production-tooltip" position={position} onClose={onClose}>
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio
@@ -82,6 +86,15 @@ const CountryPanelProductionTooltip = ({
             value={usage}
             total={capacity}
             format={format}
+          />
+          <br />
+          <br />
+          {__('tooltips.representing')} <b>{getRatioPercent(emissions, totalEmissions)} %</b> {__('tooltips.ofemissions')}
+          <br />
+          <MetricRatio
+            value={emissions}
+            total={totalEmissions}
+            format={formatCo2}
           />
         </React.Fragment>
       )}

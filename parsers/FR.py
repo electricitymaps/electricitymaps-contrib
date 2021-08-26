@@ -11,6 +11,7 @@ import requests
 import xml.etree.ElementTree as ET
 
 from .lib.validation import validate, validate_production_diffs
+from .lib.utils import get_token
 
 API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
 
@@ -31,14 +32,14 @@ MAP_HYDRO = [
     'pompage'
 ]
 
-def is_not_nan_and_truthy(v):
+def is_not_nan_and_truthy(v) -> bool:
     if isinstance(v, float) and math.isnan(v):
         return False
     return bool(v)
 
 
 def fetch_production(zone_key='FR', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         to = arrow.get(target_datetime, 'Europe/Paris')
     else:
@@ -57,10 +58,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
         'rows': 100
     }
 
-    if 'RESEAUX_ENERGIES_TOKEN' not in os.environ:
-        raise Exception(
-            'No RESEAUX_ENERGIES_TOKEN found! Please add it into secrets.env!')
-    params['apikey'] = os.environ['RESEAUX_ENERGIES_TOKEN']
+    params['apikey'] = get_token('RESEAUX_ENERGIES_TOKEN')
 
     # make request and create dataframe with response
     response = r.get(API_ENDPOINT, params=params)
@@ -121,7 +119,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
             'storage': storage,
             'source': 'opendata.reseaux-energies.fr'
         }
-        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro'])
+        datapoint = validate(datapoint, logger, required=['nuclear', 'hydro', 'gas'])
         datapoints.append(datapoint)
 
     max_diffs = {
@@ -138,7 +136,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 
 
 def fetch_price(zone_key, session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)):
+                logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
         now = arrow.get(target_datetime, tz='Europe/Paris')
     else:
@@ -159,7 +157,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
             continue
 
         start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/Paris')
-        
+
         for item in donnesMarche:
             if item.get('granularite') != 'Global':
                 continue

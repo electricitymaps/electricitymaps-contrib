@@ -6,8 +6,15 @@ import { arc } from 'd3-shape';
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 // TODO: re-enable rule
 
+/*
+  Note: Motion has a bug https://github.com/chenglou/react-motion/issues/567
+  that causes a Warning: Can't perform a React state update on an unmounted component
+  including Motion.startAnimationIfNecessary in the stack trace.
+*/
+
 const CircularGauge = React.memo(({
   fontSize = '1rem',
+  onClick,
   onMouseMove,
   onMouseOut,
   onMouseOver,
@@ -23,6 +30,7 @@ const CircularGauge = React.memo(({
 
   return (
     <div
+      onClick={e => onClick && onClick(e.clientX, e.clientY)}
       onMouseOver={() => onMouseOver && onMouseOver()}
       onMouseOut={() => onMouseOut && onMouseOut()}
       onMouseMove={e => onMouseMove && onMouseMove(e.clientX, e.clientY)}

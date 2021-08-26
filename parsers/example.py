@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 import logging
 import datetime
 
@@ -7,14 +7,17 @@ import arrow
 # The request library is used to fetch content through HTTP
 import requests
 
+from __future__ import annotations
+
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(zone_key='FR', session=None,
                      target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
-    """Requests the last known production mix (in MW) of a given country
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+    """
+    Requests the last known production mix (in MW) of a given country.
 
     Arguments:
     ----------
@@ -108,8 +111,9 @@ def fetch_production(zone_key='FR', session=None,
 
 
 def fetch_price(zone_key='FR', session=None, target_datetime=None,
-                logger=logging.getLogger(__name__)):
-    """Requests the last known power price of a given country
+                logger=logging.getLogger(__name__)) -> dict:
+    """
+    Requests the last known power price of a given country.
 
     Arguments:
     ----------
@@ -169,8 +173,9 @@ def fetch_price(zone_key='FR', session=None, target_datetime=None,
 
 
 def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
-                   target_datetime=None, logger=logging.getLogger(__name__)):
-    """Requests the last known power exchange (in MW) between two countries
+                   target_datetime=None, logger=logging.getLogger(__name__)) -> dict | None:
+    """
+    Requests the last known power exchange (in MW) between two countries.
 
     Arguments:
     ----------
@@ -240,8 +245,7 @@ def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())

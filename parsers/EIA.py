@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
+"""
+Parser for U.S. Energy Information Administration, https://www.eia.gov/ .
 
 Aggregates and standardizes data from most of the US ISOs,
 and exposes them via a unified API.
@@ -8,16 +9,13 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
-import os
 
-import arrow
-from dateutil import parser, tz
-os.environ.setdefault('EIA_KEY', 'eia_key')
-from eiapy import Series
 import requests
+from dateutil import parser, tz
 
-from .lib.validation import validate
 from .ENTSOE import merge_production_outputs
+from .lib.utils import get_token
+from .lib.validation import validate
 
 #Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
 REVERSE_EXCHANGES = [
@@ -64,15 +62,6 @@ NEGATIVE_PRODUCTION_THRESHOLDS = {
 
 
 EXCHANGES = {
-#Old exchanges with old zones, to be updated/removed once clients have had time to switch
-    'US-CA->MX-BC': 'EBA.CISO-CFE.ID.H',
-    'US-BPA->US-IPC': 'EBA.BPAT-IPCO.ID.H',
-    'US-SPP->US-TX': 'EBA.SWPP-ERCO.ID.H',
-    'US-MISO->US-PJM': 'EBA.MISO-PJM.ID.H',
-    'US-MISO->US-SPP': 'EBA.MISO-SWPP.ID.H',
-    'US-NEISO->US-NY': 'EBA.ISNE-NYIS.ID.H',
-    'US-NY->US-PJM': 'EBA.NYIS-PJM.ID.H',
-
 #Exchanges to non-US BAs
     'MX-BC->US-CAL-CISO': 'EBA.CISO-CFE.ID.H', #Unable to verify if MX-BC is correct
     'CA-SK->US-CENT-SWPP': 'EBA.SWPP-SPC.ID.H',
@@ -246,30 +235,8 @@ EXCHANGES = {
 
 # based on https://www.eia.gov/beta/electricity/gridmonitor/dashboard/electric_overview/US48/US48
 # or https://www.eia.gov/opendata/qb.php?category=3390101
-# List includes regions and Balancing Authorities. 
+# List includes regions and Balancing Authorities.
 REGIONS = {
-    #Old regions, to be updated/removed once clients have had time to switch
-    'US-BPA': 'BPAT',
-    'US-CA': 'CAL',
-    'US-CAR': 'CAR',
-    'US-DUK': 'DUK', #Duke Energy Carolinas
-    'US-SPP': 'CENT',
-    'US-FL': 'FLA',
-    'US-PJM': 'MIDA',
-    'US-MISO': 'MIDW',
-    'US-NEISO': 'NE',
-    'US-NEVP': 'NEVP', #Nevada Power Company
-    'US-NY': 'NY',
-    'US-NW': 'NW',
-    'US-SC': 'SC', #South Carolina Public Service Authority
-    'US-SE': 'SE',
-    'US-SEC': 'SEC',
-    'US-SOCO': 'SOCO', #Southern Company Services Inc - Trans
-    'US-SWPP': 'SWPP', #Southwest Power Pool
-    'US-SVERI': 'SW',
-    'US-TN': 'TEN',
-    'US-TX': 'TEX',
-
 #New regions - EIA
     'US-CAL-BANC': 'BANC', #Balancing Authority Of Northern California
     'US-CAL-CISO': 'CISO', #California Independent System Operator
@@ -386,7 +353,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         mix = _fetch_series(zone_key, series, session=session,
                             target_datetime=target_datetime, logger=logger)
 
-        # EIA does not currently split production from the Virgil Summer C 
+        # EIA does not currently split production from the Virgil Summer C
         # plant across the two owning/ utilizing BAs:
         # US-CAR-SCEG and US-CAR-SC,
         # but attributes it all to US-CAR-SCEG
@@ -417,11 +384,11 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
                 .get(type, NEGATIVE_PRODUCTION_THRESHOLDS['default'])
 
             if type != 'hydro' and \
-                    point['value'] < 0 and \
-                    point['value'] >= negative_threshold:
+                point['value'] and \
+                0 > point['value'] >= negative_threshold:
                 point['value'] = 0
 
-            if type == 'hydro' and point['value'] < 0:
+            if type == 'hydro' and point['value'] and point['value'] < 0:
                 point.update({
                     'production': {},# required by merge_production_outputs()
                     'storage': {type: point.pop('value')},
@@ -436,7 +403,26 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
-    return merge_production_outputs(mixes, zone_key, merge_source='eia.gov')
+    # Some of the returned mixes could be for older timeframes.
+    # Fx the latest oil data could be 6 months old.
+    # In this case we want to discard the old data as we won't be able to merge it
+    timeframes = [
+        sorted(map(lambda x: x['datetime'], mix))
+        for mix in mixes
+    ]
+    latest_timeframe = max(timeframes, key=lambda x: x[-1])
+
+
+    correct_mixes = []
+    for mix in mixes:
+        correct_mix = []
+        for production_in_mix in mix:
+            if production_in_mix['datetime'] in latest_timeframe:
+                correct_mix.append(production_in_mix)
+        if len(correct_mix) > 0:
+            correct_mixes.append(correct_mix)
+
+    return merge_production_outputs(correct_mixes, zone_key, merge_source='eia.gov')
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
@@ -457,10 +443,12 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
                   logger=None):
     """Fetches and converts a data series."""
-    key = os.environ['EIA_KEY']
-    assert key and key != 'eia_key', key
 
     s = session or requests.Session()
+
+    # local import to avoid the exception that happens if EIAPY token is not set
+    # even if this module is unused
+    from eiapy import Series
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:
@@ -490,11 +478,11 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None,
 def main():
     "Main method, never used by the Electricity Map backend, but handy for testing."
     from pprint import pprint
-    pprint(fetch_consumption_forecast('US-NY'))
+    pprint(fetch_consumption_forecast('US-CAL-BANC'))
     pprint(fetch_production('US-SEC'))
-    pprint(fetch_production_mix('US-TN'))
-    pprint(fetch_consumption('US-CAR'))
-    pprint(fetch_exchange('MX-BC', 'US-CA'))
+    pprint(fetch_production_mix('US-MIDW-GLHB'))
+    pprint(fetch_consumption('US-MIDW-LGEE'))
+    pprint(fetch_exchange('US-CAL-BANC', 'US-NW-BPAT'))
 
 
 if __name__ == '__main__':

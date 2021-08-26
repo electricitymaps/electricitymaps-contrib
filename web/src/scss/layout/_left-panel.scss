@@ -39,10 +39,9 @@
 .left-panel {
     color: $black;
     padding: 0;
-    width: 28vw;
-    min-width: 24rem;
+    width: calc(14vw + 16rem);
     background-color: $lighter-gray;
-    position: fixed;
+    position: absolute;
     box-shadow: 0 24px 15px rgba(0,0,0,0.2);
     z-index: 2;
     display: flex;
@@ -72,7 +71,7 @@
 
     .title {
         font-size: 1.3rem;
-        font-family: $primary-font;
+        font-family: $headline-font;
     }
 
     .axis {
@@ -115,7 +114,7 @@
     }
 
     @include respond-to('medium-up') {
-        height: 100vh; /* Should only be set on desktop */
+        height: 100%; /* Should only be set on desktop */
     }
 
     @include respond-to('small') {
@@ -159,6 +158,7 @@
 
 .left-panel .left-panel-toolbar-title,
 .left-panel-zone-details .country-name {
+    font-family: $headline-font;
     font-size: 1.2rem;
     line-height: 1.5rem;
 }

@@ -1,0 +1,55 @@
+steps:
+  prepare:
+    image: node:10.19.0-alpine
+    inputs:
+      - package.json
+      - package-lock.json
+    commands:
+      - apk add --no-cache git imagemagick
+      # Install gsutil
+      - apk add --no-cache curl bash python3
+      - curl https://sdk.cloud.google.com | bash > /dev/null
+      - npm ci
+      - npm install -g cordova@9.0.0 code-push-cli@2.1.9
+
+  build:
+    inputs:
+      - ../web/public
+      - ../web/{locales,src,views/pages/index.ejs}
+      - ../web/locales-config.json
+      - www/index.html
+      - ./icon*.png
+      - generate-index.js
+      - config.xml
+      - res/screen/ios
+      - sentry.properties
+    commands:
+      - cp -r ../web/public/ www/electricitymap
+      - cp -r ../web/locales/ .
+      - cp ../web/locales-config.json ./locales-config.json
+      - cp -r ../web/src .
+      # Generate bundle
+      - node generate-index.js
+      # Generate icons
+      - node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
+      - node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
+      # Set Sentry auth-token
+      - echo "auth-token=${BRICK_SENTRY_AUTH_TOKEN:-unknown}" >> sentry.properties
+
+  deploy:
+    commands:
+      # Prepare
+      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/google-services.json .
+      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/GoogleService-Info.plist .
+      - cordova prepare
+      # Release to staging
+      - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
+      - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
+      - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
+      # Promote
+      - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
+      - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
+    secrets:
+      gcloud:
+        src: ~/.config/gcloud
+        target: /root/.config/gcloud

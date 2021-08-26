@@ -10,14 +10,14 @@ const GraphHoverLine = React.memo(({
   markerHideHandler,
   selectedLayerIndex,
   selectedTimeIndex,
-  svgRef,
+  svgNode,
 }) => {
   const layer = layers && layers[selectedLayerIndex];
   const fill = layer && layer.markerFill;
   const datapoint = layer && layer.datapoints && layer.datapoints[selectedTimeIndex];
 
   const x = datetimes && datetimes[selectedTimeIndex] && timeScale(datetimes[selectedTimeIndex]);
-  const y = datapoint && datapoint[1] && valueScale(datapoint[1]);
+  const y = datapoint && isFinite(datapoint[1]) && valueScale(datapoint[1]);
 
   const showVerticalLine = isFinite(x);
   const showMarker = isFinite(x) && isFinite(y);
@@ -25,11 +25,11 @@ const GraphHoverLine = React.memo(({
   // Marker callbacks
   useEffect(() => {
     if (showMarker) {
-      if (markerUpdateHandler && svgRef.current) {
+      if (markerUpdateHandler && svgNode) {
         markerUpdateHandler(
           {
-            x: svgRef.current.getBoundingClientRect().left + x,
-            y: svgRef.current.getBoundingClientRect().top + y,
+            x: svgNode.getBoundingClientRect().left + x,
+            y: svgNode.getBoundingClientRect().top + y,
           },
           datapoint.data,
           layer.key,
@@ -38,7 +38,7 @@ const GraphHoverLine = React.memo(({
     } else if (markerHideHandler) {
       markerHideHandler();
     }
-  }, [markerUpdateHandler, markerHideHandler, svgRef.current, showMarker, x, y, datapoint, layer]);
+  }, [markerUpdateHandler, markerHideHandler, svgNode, showMarker, x, y, datapoint, layer]);
 
   return (
     <React.Fragment>

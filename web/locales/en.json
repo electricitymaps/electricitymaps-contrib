@@ -41,6 +41,7 @@
         "helpfrom": "with help from",
         "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
         "noLiveData": "Live data is temporarily unavailable for this area",
+        "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
         "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
         "now": "Now"
     },
@@ -57,11 +58,9 @@
         "electricityorigin24h": "Origin of electricity in the last 24 hours",
         "electricityproduction24h": "Electricity production in the last 24 hours",
         "electricityprices24h": "Electricity prices in the last 24 hours",
-        "Getdata": "Get historical data, marginal and forecast API"
+        "Getdata": "Get hourly historical, live, and forecast data with electricityMap API"
     },
     "footer": {
-        "likethisvisu": "Like the visualization?",
-        "loveyourfeedback": "We'd love your feedback",
         "foundbugs": "Found bugs or have ideas? Report them",
         "faq-text": "Anything unclear? Check out our",
         "faq": "frequently asked questions.",
@@ -81,7 +80,11 @@
         "carbonintensityexport": "Carbon intensity of export",
         "ofinstalled": "of installed capacity",
         "utilizing": "utilizing",
+        "representing": "representing",
+        "ofemissions": "of emissions",
         "withcarbonintensity": "with a carbon intensity of",
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
@@ -93,12 +96,14 @@
         "consumption": "consumption",
         "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
         "selectLanguage": "Select language",
-        "lowCarbDescription": "Includes renewables and nuclear"
+        "lowCarbDescription": "Includes renewables and nuclear",
+        "dataIsDelayed": "Data is delayed"
     },
     "misc": {
         "maintitle": "Live CO₂ emissions of electricity consumption",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+        "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
         "retrynow": "Retry now",
         "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
@@ -106,14 +111,16 @@
         "faq": "Frequently Asked Questions"
     },
     "wind": "wind",
+    "windDataError": "Wind data is currently unavailable",
     "solar": "solar",
+    "solarDataError": "Solar data is currently unavailable",
     "hydro": "hydro",
     "hydro storage": "hydro storage",
     "battery storage": "battery storage",
     "biomass": "biomass",
     "nuclear": "nuclear",
     "geothermal": "geothermal",
-    "gas": "gas",
+    "gas": "natural gas",
     "coal": "coal",
     "oil": "oil",
     "unknown": "unknown",
@@ -151,7 +158,7 @@
         "divideExistingArea-question": "Can you divide my area into smaller parts?",
         "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
         "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "Our methods",
@@ -186,13 +193,13 @@
     "aboutUs": {
         "groupName": "About us",
         "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
         "feedback-question": "Can I give you some feedback?",
-        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricity.com\">send us an email!</a>",
+        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
         "contribute-question": "Can I contribute to your project?",
         "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Can we work together?",
-        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@tmrow.com\">Send us an email!</a>",
+        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
         "disclaimer-question": "Disclaimer",
         "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
@@ -254,8 +261,16 @@
             "zoneName": "Tasmania"
           },
           "AUS-TAS-KI": {
-            "countryName": "Tasmania",
+            "countryName": "Australia",
             "zoneName": "King Island"
+          },
+          "AUS-TAS-FI": {
+            "countryName": "Australia",
+            "zoneName": "Flinders Island"
+          },
+          "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
           },
           "AUS-VIC": {
             "countryName": "Australia",
@@ -264,6 +279,10 @@
           "AUS-WA": {
             "countryName": "Australia",
             "zoneName": "Western Australia"
+          },
+          "AUS-WA-RI": {
+            "countryName": "Australia",
+            "zoneName": "Rottnest Island"
           },
           "AW": {
             "zoneName": "Aruba"
@@ -363,6 +382,14 @@
             "countryName": "Canada",
             "zoneName": "Newfoundland and Labrador"
           },
+          "CA-NL-LB": {
+            "countryName": "Canada",
+            "zoneName": "Labrador"
+          },
+          "CA-NL-NF": {
+            "countryName": "Canada",
+            "zoneName": "Newfoundland"
+          },
           "CA-NB": {
             "countryName": "Canada",
             "zoneName": "New Brunswick"
@@ -420,17 +447,21 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
-          "CL-SING-SIC": {
+          "CL-SEA": {
             "countryName": "Chile",
-            "zoneName": "SING/SIC"
+            "zoneName": "Sistema Eléctrico de Aysén"
           },
           "CL-SEM": {
             "countryName": "Chile",
-            "zoneName": "SEM"
+            "zoneName": "Sistema Eléctrico de Magallanes"
           },
-          "CL-SEA": {
+          "CL-SEN": {
             "countryName": "Chile",
-            "zoneName": "SEA"
+            "zoneName": "Sistema Eléctrico Nacional"
+          },
+          "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Easter Island"
           },
           "CM": {
             "zoneName": "Cameroon"
@@ -1143,6 +1174,10 @@
             "countryName": "New Zealand",
             "zoneName": "South Island"
           },
+          "NZ-NZST": {
+            "countryName": "New Zealand",
+            "zoneName": "Stewart Island"
+          },
           "OM": {
             "zoneName": "Oman"
           },
@@ -1213,17 +1248,23 @@
           },
           "RU-1": {
             "countryName": "Russia",
-            "zoneName": "European Russia and Ural"
+            "zoneName": "Europe-Ural"
           },
           "RU-2": {
             "countryName": "Russia",
             "zoneName": "Siberia"
           },
           "RU-EU": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "Arctic"
           },
           "RU-AS": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "East"
+          },
+          "RU-FE": {
+              "countryName": "Russia",
+              "zoneName": "Far East"
           },
           "RU-KGD": {
             "countryName": "Russia",
@@ -1348,29 +1389,14 @@
             "zoneName": "Ukraine"
           },
           "UA-CR": {
-            "countryName": "Crimea",
-            "zoneName": "Ukraine"
+            "countryName": "Ukraine",
+            "zoneName": "Crimea"
           },
           "UG": {
             "zoneName": "Uganda"
           },
           "UM": {
             "zoneName": "United States Minor Outlying Islands"
-          },
-          "US": {
-            "zoneName": "United States of America"
-          },
-          "US-AL": {
-            "countryName": "United States of America",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "United States of America",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "United States of America",
-            "zoneName": "California"
           },
           "US-HI-HA": {
             "countryName": "United States of America",
@@ -1403,58 +1429,6 @@
           "US-HI-OA": {
             "countryName": "United States of America",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "United States of America",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "United States of America",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "United States of America",
-            "zoneName": "North Carolina"
-          },
-          "US-NEISO": {
-            "countryName": "United States of America",
-            "zoneName": "New England"
-          },
-          "US-NV": {
-            "countryName": "United States of America",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "United States of America",
-            "zoneName": "New York"
-          },
-          "US-OR": {
-            "countryName": "United States of America",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "United States of America",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "United States of America",
-            "zoneName": "South Carolina"
-          },
-          "US-SPP": {
-            "countryName": "United States of America",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "United States of America",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "United States of America",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "United States of America",
-            "zoneName": "ERCOT"
           },
           "US-CAL-BANC": {
             "countryName": "United States of America",
@@ -1762,6 +1736,9 @@
           },
           "WS": {
             "zoneName": "Samoa"
+          },
+          "XK": {
+            "zoneName": "Kosovo"
           },
           "XX": {
             "zoneName": "Northern Cyprus"

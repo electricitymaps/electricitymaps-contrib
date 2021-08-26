@@ -32,7 +32,7 @@ MAP_STORAGE = {
 tz = 'Europe/Kiev'
 
 
-def fetch_production(zone_key='UA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='UA', session=None, target_datetime=None, logger=None) -> list:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     r = session or requests.session()
@@ -46,7 +46,7 @@ def fetch_production(zone_key='UA', session=None, target_datetime=None, logger=N
         'type': 'day'
     }
 
-    response = r.post(url, postdata)
+    response = r.post(url, postdata, headers={'User-Agent': 'electricitymap-parser/1.0'})
 
     for serie in response.json():
         row = {

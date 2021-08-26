@@ -6,7 +6,8 @@ import {
 } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
-import { handleRequestError, protectedJsonRequest, textRequest } from '../helpers/api';
+import { handleRequestError, protectedJsonRequest } from '../helpers/api';
+import { clientVersionRequest } from '../helpers/client';
 import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
@@ -16,7 +17,7 @@ import {
 
 function* fetchClientVersion() {
   try {
-    const version = yield call(textRequest, '/clientVersion');
+    const version = yield call(clientVersionRequest);
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
   } catch (err) {
     handleRequestError(err);
@@ -26,7 +27,7 @@ function* fetchClientVersion() {
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
   try {
-    const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}`);
+    const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}&preview=1`);
     yield put({ type: 'ZONE_HISTORY_FETCH_SUCCEEDED', zoneId, payload });
   } catch (err) {
     yield put({ type: 'ZONE_HISTORY_FETCH_FAILED' });
@@ -34,10 +35,9 @@ function* fetchZoneHistory(action) {
   }
 }
 
-function* fetchGridData(action) {
-  const { datetime } = action.payload;
+function* fetchGridData() {
   try {
-    const payload = yield call(protectedJsonRequest, datetime ? `/v3/state?datetime=${datetime}` : '/v3/state');
+    const payload = yield call(protectedJsonRequest, '/v3/state?preview=1');
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });

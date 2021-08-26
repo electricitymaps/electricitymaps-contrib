@@ -1,7 +1,7 @@
 .zone-time-slider {
     bottom: 0;
     height: 65px;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 1.5rem;
     background: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -27,7 +27,8 @@
 }
 
 .time-slider-axis .tick {
-    font-size: 12px;
+    font-size: .85em;
+    font-family: "Open Sans", sans-serif;
     line { opacity: 0.5; }
 }
 
@@ -36,55 +37,88 @@
     width: 100%;
     margin-top: 5px;
     height: 26px;
-    background: transparent; 
+    background: transparent;
     padding: 0;
     overflow: visible;
     border: none;
+    margin: 5px 0;
 
     &:focus {
-    	outline: none;  
+    	outline: none;
   	}
 }
 
-/* Sliders needs to be styled independently for different browsers:
-  https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
-*/
-  
-/* WebKit/Blink */
+// Sliders needs to be styled independently for different browsers:
+// https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
 
-.time-slider-input::-webkit-slider-thumb {
+// Using mixins here as webkit doesn't show any styling if the two classes are grouped (like ".one, .two {}")
+@mixin thumb {
     -webkit-appearance: none;
     height: 26px;
     width: 26px;
-    border-radius: 17px;    
+    border-radius: 17px;
     background: #ffffff;
     cursor: pointer;
     margin-top: -8px;
     transition: box-shadow 0.4s;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
     border: 1px solid lightgray;
+    background-position: center center;
+    background-size: 12px;
+    background-repeat: no-repeat;
+
+    &:hover {
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+    }
 }
 
-.time-slider-input:hover::-webkit-slider-thumb{
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-}
-
-.time-slider-input::-webkit-slider-runnable-track {
+@mixin track {
     width: 100%;
     height: 12px;
     border-radius: 4px;
     cursor: pointer;
     background: $light-gray;
     box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
-}
+    background: var(--time-gradient);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
 
-  /* IE */
+.time-slider-input {
+  // Webkit
+    &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
+      background-image: url("../images/timeslider-night.svg");
+    }
+    &.day::-webkit-slider-thumb {
+      background-image: url("../images/timeslider-sun.svg");
+    }
+    &::-webkit-slider-thumb {
+      @include thumb;
+    }
+    &::-webkit-slider-runnable-track {
+      @include track;
+    }
+    // Firefox
+    &.night::-moz-range-thumb {
+      background-image: url("../images/timeslider-night.svg");
+    }
+    &.day::-moz-range-thumb {
+      background-image: url("../images/timeslider-sun.svg");
+    }
+    &::-moz-range-thumb {
+      @include thumb;
+    }
+    &::-moz-range-track {
+      @include track;
+    }
+  }
 
+
+// IE
 .time-slider-input::-ms-track {
     width: 100%;
     height: 0px;
     cursor: pointer;
-    animate: 0.2s;
     background: transparent;
     border-color: transparent;
     color: transparent;
@@ -107,31 +141,4 @@
     border-radius: 17px;
     background: #ffffff;
     cursor: pointer;
-}
-
-  /* Firefox */
-
-.time-slider-input::-moz-range-thumb {
-    height: 24px;
-    width: 24px;
-    border-radius: 17px;
-    border: none;
-    background: #ffffff;
-    cursor: pointer;
-    transition: box-shadow 0.4s;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-}
-
-.time-slider-input:hover::-moz-range-thumb{
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-}
-  
-.time-slider-input::-moz-range-track {
-    width: 100%;
-    height: 6px;
-    cursor: pointer;
-    background: $light-gray;
-    border-radius: 3px;
-    margin-left: 10px;
-    margin-right: 10px;
 }

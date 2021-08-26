@@ -1,8 +1,8 @@
 export const themes = {
   colorblindDark: {
     co2Scale: {
-      steps: [0, 150, 600, 750, 800],
-      colors: ['#FCFAC4', '#FAB484', '#F57965', '#DA4D6B', '#DA4D6B'],
+      steps: [0, 200, 400, 600, 800],
+      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
     },
     oceanColor: '#33414A',
     strokeWidth: 0.3,
@@ -23,8 +23,8 @@ export const themes = {
   },
   colorblindBright: {
     co2Scale: {
-      steps: [0, 150, 600, 750, 800],
-      colors: ['#FCFAC4', '#FAB484', '#F57965', '#DA4D6B', '#DA4D6B'],
+      steps: [0, 200, 400, 600, 800],
+      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
     },
     oceanColor: '#FAFAFA',
     strokeWidth: 0.3,

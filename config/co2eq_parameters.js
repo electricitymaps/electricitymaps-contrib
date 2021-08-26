@@ -5,7 +5,11 @@ const co2eqParameters = require('./co2eq_parameters.json');
 exports.footprintOf = function(mode, zoneKey) {
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];
   const override = (co2eqParameters.emissionFactors.zoneOverrides[zoneKey] || {})[mode];
-  return (override || defaultFootprint || {}).value;
+  const value = (override || defaultFootprint).value;
+  if (value == null) {
+    throw new Error(`Couldn't find footprint of ${mode} for ${zoneKey}`);
+  }
+  return value;
 };
 exports.sourceOf = function(mode, zoneKey) {
   const defaultFootprint = co2eqParameters.emissionFactors.defaults[mode];
@@ -13,15 +17,21 @@ exports.sourceOf = function(mode, zoneKey) {
   return (override || defaultFootprint || {}).source;
 };
 
-exports.defaultExportIntensityOf = zoneKey =>
-  (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
-    co2eqParameters.fallbackZoneMixes.defaults).carbonIntensity;
+exports.defaultExportIntensityOf = zoneKey => {
+  const mix = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] ||
+    co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
+  // Compute footprint
+  // Note that all mix values sum to 1 so we can simply do a scalar product
+  return Object.entries(mix)
+    .map(([mode, v]) => v * exports.footprintOf(mode, zoneKey))
+    .reduce((a, b) => a + b, 0);
+}
 
 exports.defaultRenewableRatioOf = (zoneKey) => {
     // if `zoneKey` has ratios in co2eqparameters, then use those ratios
-  const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
+  const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] ||
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
-    
+
   return Object.keys(ratios)
     // only keep the keys that are renewable
     .filter(fuelKey => exports.renewableAccessor(zoneKey, fuelKey, 1) === 1)
@@ -32,10 +42,10 @@ exports.defaultRenewableRatioOf = (zoneKey) => {
 }
 
 exports.defaultFossilFuelRatioOf = (zoneKey) => {
-  //if zonekey has ratios in co2eqparameters, then those ratios
-  const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
+  // if zonekey has ratios in co2eqparameters, then those ratios
+  const ratios = (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] ||
     co2eqParameters.fallbackZoneMixes.defaults).powerOriginRatios;
-  
+
   return Object.keys(ratios)
     // only keep the keys that are renewable
     .filter(fuelKey => exports.fossilFuelAccessor(zoneKey, fuelKey, 1) === 1)
@@ -49,7 +59,7 @@ exports.fossilFuelAccessor = (zoneKey, k, v) => {
   return (k == 'coal' ||
           k == 'gas' ||
           k == 'oil' ||
-          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA' && zoneKey !== 'SG')) ||
+          (k === 'unknown' && (zoneKey !== 'GB-ORK' && zoneKey !== 'UA' && zoneKey !== 'SG' && zoneKey !== 'PR' && zoneKey !== 'FO')) ||
           k == 'other') ? 1 : 0;
 }
 
@@ -60,8 +70,8 @@ exports.renewableAccessor = (zoneKey, k, v) => {
 }
 
 exports.defaultPowerOriginRatio = (zoneKey, fuelKey) => {
-  //if no ratios found for that zoneKey, use defaults
-  return (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] || 
+  // if no ratios found for that zoneKey, use defaults
+  return (co2eqParameters.fallbackZoneMixes.zoneOverrides[zoneKey] ||
                  co2eqParameters.fallbackZoneMixes.defaults)
                     .powerOriginRatios[fuelKey];
 }

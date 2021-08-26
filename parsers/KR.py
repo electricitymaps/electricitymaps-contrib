@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import Union
 import arrow
 import re
 import requests
@@ -8,7 +9,7 @@ from logging import getLogger
 
 LOAD_URL = 'http://kpx.or.kr/eng/index.do'
 
-HYDRO_URL = 'http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
+HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
 NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
                 'http://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
@@ -17,13 +18,13 @@ NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020
                 'http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312']
 
 HYDRO_CAPACITIES = {'Hwacheon': 108,
-                    'Chuncheon': 63,
+                    'Chuncheon': 62.28,
                     'Anheung': 0.6,
-                    'Uiam': 47,
-                    'Cheongpyeong': 140,
+                    'Uiam': 46.5,
+                    'Cheongpyeong': 139.6,
                     'Paldang': 120,
-                    'Goesan': 3,
-                    'Chilbo': 35,
+                    'Goesan': 2.8,
+                    'Chilbo': 34.8,
                     'Boseonggang': 4.5
                     }
 
@@ -32,7 +33,8 @@ HYDRO_CAPACITIES = {'Hwacheon': 108,
 
 
 def timestamp_processor(timestamps, with_tz=False, check_delta=False):
-    """Compares naive arrow objects, returning the average.
+    """
+    Compares naive arrow objects, returning the average.
     Optionally can determine if timestamps are too disparate to be used.
     Returns an arrow object, with optional timezone.
     """
@@ -58,10 +60,8 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     return unified_timestamp
 
 
-def check_hydro_capacity(plant_name, value, logger):
-    """Makes sure that generation for each hydro plant isn't above listed capacity.
-    Returns True or raises ValueError.
-    """
+def check_hydro_capacity(plant_name, value, logger) -> Union[bool, ValueError]:
+    """Makes sure that generation for each hydro plant isn't above listed capacity."""
     try:
         max_value = HYDRO_CAPACITIES[plant_name]
     except KeyError:
@@ -78,7 +78,7 @@ def check_hydro_capacity(plant_name, value, logger):
 
 def fetch_hydro(session, logger):
     """Returns 2 element tuple in form (float, arrow object)."""
-    req = session.get(HYDRO_URL)
+    req = session.get(HYDRO_URL, verify=False)
     soup = BeautifulSoup(req.content, 'html.parser')
     table = soup.find("div", {"class": "dep02Sec"})
 
@@ -171,41 +171,12 @@ def fetch_load(session):
     return load, dt
 
 
-def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger=getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional) -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger=getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
-    s=session or requests.Session()
+    s = session or requests.Session()
 
     hydro, hydro_dt = fetch_hydro(s, logger)
     nuclear, nuclear_dt = fetch_nuclear(s)

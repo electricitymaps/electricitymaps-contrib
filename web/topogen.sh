@@ -4,6 +4,8 @@ set -eu -o pipefail
 # Download 10m in order to get smaller states like AU.CT
 RESOLUTION=10m
 COUNTRIES_FILENAME=ne_${RESOLUTION}_admin_0_map_subunits
+BASE_URL=https://naturalearth.s3.amazonaws.com/${RESOLUTION}_cultural
+
 
 STATES_FILENAME=ne_${RESOLUTION}_admin_1_states_provinces_lakes
 STATES_FILTER="['AUS', 'AZE', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'ESP', 'GBR', 'GRC', 'IND', 'ITA', 'JPN', 'MEX', 'MYS', 'RUS', 'USA']"
@@ -11,16 +13,17 @@ STATES_FILTER="['AUS', 'AZE', 'BIH', 'BRA', 'CAN', 'CHL', 'DNK', 'ESP', 'GBR', '
 NODE_MODULES_PATH="node_modules/.bin"
 
 mkdir -p build
+mkdir -p public/dist
 
 if [ ! -e "build/${COUNTRIES_FILENAME}.zip" ]; then
   echo "Downloading ${COUNTRIES_FILENAME}.zip"
-  curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip https://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${COUNTRIES_FILENAME}.zip
+  curl -z build/${COUNTRIES_FILENAME}.zip -o build/${COUNTRIES_FILENAME}.zip ${BASE_URL}/${COUNTRIES_FILENAME}.zip
 fi
 unzip -od build build/${COUNTRIES_FILENAME}.zip
 
 if [ ! -e "build/${STATES_FILENAME}.zip" ]; then
   echo "Downloading ${STATES_FILENAME}.zip"
-  curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip https://naciscdn.org/naturalearth/${RESOLUTION}/cultural/${STATES_FILENAME}.zip
+  curl -z build/${STATES_FILENAME}.zip -o build/${STATES_FILENAME}.zip ${BASE_URL}/${STATES_FILENAME}.zip
 fi
 unzip -od build build/${STATES_FILENAME}.zip
 
@@ -64,6 +67,7 @@ echo 'Parsing 3rd party..'
 )> build/tmp_thirdparty.json
 
 # Generate final geometries
+echo 'Generating geometries..'
 node generate-geometries.js
 
-echo 'Done'
+echo 'Done!'

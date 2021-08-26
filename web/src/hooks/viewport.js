@@ -1,47 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export function useWidthObserver(ref, offset = 0) {
+export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [node, setNode] = useState(null); // The DOM node
 
-  // Resize hook
-  useEffect(() => {
-    const updateWidth = () => {
-      if (ref.current) {
-        const newWidth = ref.current.getBoundingClientRect().width - offset;
-        if (newWidth !== width) { setWidth(newWidth); }
+  // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
+  const ref = useCallback((newNode) => {
+    // This callback will be called once the ref
+    // returned has been attached to `node`.
+    const update = () => {
+      if (newNode !== null) {
+        const newWidth = newNode.getBoundingClientRect().width - offsetX;
+        const newHeight = newNode.getBoundingClientRect().height - offsetY;
+        setWidth(newWidth);
+        setHeight(newHeight);
+        setNode(newNode);
       }
     };
-    // Set initial width
-    updateWidth();
+    // Set initial width (the usage of setTimeout solves race conditions on mobile)
+    setTimeout(() => {
+      update();
+    }, 0);
     // Update container width on every resize
-    window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', update);
     return () => {
-      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', update);
     };
-  });
+  }, [offsetX, offsetY]);
 
-  return width;
+  return {
+    ref, width, height, node,
+  };
 }
 
-export function useHeightObserver(ref, offset = 0) {
-  const [height, setHeight] = useState(0);
+export function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({});
 
   // Resize hook
   useEffect(() => {
-    const updateHeight = () => {
-      if (ref.current) {
-        const newHeight = ref.current.getBoundingClientRect().height - offset;
-        if (newHeight !== height) { setHeight(newHeight); }
+    const updateSize = () => {
+      if (
+        windowSize.width !== window.innerWidth
+        || windowSize.height !== window.innerHeight
+      ) {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
       }
     };
-    // Set initial height
-    updateHeight();
-    // Update height on every resize
-    window.addEventListener('resize', updateHeight);
+    // Set initial size
+    updateSize();
+    // Add window listeners
+    window.addEventListener('resize', updateSize);
     return () => {
-      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('resize', updateSize);
     };
   });
 
-  return height;
+  return windowSize;
+}
+
+export function useIsSmallScreen() {
+  const { width } = useWindowSize();
+  return width < 768;
+}
+
+export function useIsMediumUpScreen() {
+  const { width } = useWindowSize();
+  return width >= 768;
 }

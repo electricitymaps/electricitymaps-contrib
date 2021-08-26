@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   first,
   last,
@@ -18,7 +18,7 @@ import GraphBackground from './graphbackground';
 import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
-import { useWidthObserver, useHeightObserver } from '../../hooks/viewport';
+import { useRefWidthHeightObserver } from '../../hooks/viewport';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
@@ -57,8 +57,10 @@ const getValueScale = (height, totalValues) => scaleLinear()
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   if (!data || !data[0]) return [];
+
   const stackedData = stack()
     .offset(stackOffsetDiverging)
+    .value((d, key) => d[key] === null ? undefined : d[key])
     .keys(layerKeys)(data);
   return layerKeys.map((key, ind) => ({
     key,
@@ -133,9 +135,12 @@ const AreaGraph = React.memo(({
   */
   height = '10em',
 }) => {
-  const ref = useRef(null);
-  const containerWidth = useWidthObserver(ref, Y_AXIS_WIDTH);
-  const containerHeight = useHeightObserver(ref, X_AXIS_HEIGHT);
+  const {
+    ref,
+    width: containerWidth,
+    height: containerHeight,
+    node,
+  } = useRefWidthHeightObserver(Y_AXIS_WIDTH, X_AXIS_HEIGHT);
 
   // Build layers
   const layers = useMemo(
@@ -160,6 +165,25 @@ const AreaGraph = React.memo(({
 
   return (
     <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
+      <GraphBackground
+        timeScale={timeScale}
+        valueScale={valueScale}
+        datetimes={datetimes}
+        mouseMoveHandler={backgroundMouseMoveHandler}
+        mouseOutHandler={backgroundMouseOutHandler}
+        isMobile={isMobile}
+        svgNode={node}
+      />
+      <AreaGraphLayers
+        layers={layers}
+        datetimes={datetimes}
+        timeScale={timeScale}
+        valueScale={valueScale}
+        mouseMoveHandler={layerMouseMoveHandler}
+        mouseOutHandler={layerMouseOutHandler}
+        isMobile={isMobile}
+        svgNode={node}
+      />
       <TimeAxis
         scale={timeScale}
         transform={`translate(-1 ${containerHeight - 1})`}
@@ -171,25 +195,6 @@ const AreaGraph = React.memo(({
         width={containerWidth}
         height={containerHeight}
       />
-      <GraphBackground
-        timeScale={timeScale}
-        valueScale={valueScale}
-        datetimes={datetimes}
-        mouseMoveHandler={backgroundMouseMoveHandler}
-        mouseOutHandler={backgroundMouseOutHandler}
-        isMobile={isMobile}
-        svgRef={ref}
-      />
-      <AreaGraphLayers
-        layers={layers}
-        datetimes={datetimes}
-        timeScale={timeScale}
-        valueScale={valueScale}
-        mouseMoveHandler={layerMouseMoveHandler}
-        mouseOutHandler={layerMouseOutHandler}
-        isMobile={isMobile}
-        svgRef={ref}
-      />
       <GraphHoverLine
         layers={layers}
         timeScale={timeScale}
@@ -199,7 +204,7 @@ const AreaGraph = React.memo(({
         markerHideHandler={markerHideHandler}
         selectedLayerIndex={selectedLayerIndex}
         selectedTimeIndex={selectedTimeIndex}
-        svgRef={ref}
+        svgNode={node}
       />
     </svg>
   );

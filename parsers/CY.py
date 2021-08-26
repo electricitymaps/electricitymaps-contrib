@@ -1,195 +1,118 @@
 #!/usr/bin/env python3
+import logging
+import datetime
+import sys
 
+# The arrow library is used to handle datetimes
 import arrow
+# The request library is used to fetch content through HTTP
 import requests
+# BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
-import re
 
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
+class CyprusParser:
+    CAPACITY_KEYS = {
+        'Συμβατική Εγκατεστημένη Ισχύς': 'oil',
+        'Αιολική Εγκατεστημένη Ισχύς': 'wind',
+        'Φωτοβολταϊκή Εγκατεστημένη Ισχύς': 'solar',
+        'Εγκατεστημένη Ισχύς Βιομάζας': 'biomass'
+    }
 
+    session = None
+    logger: logging.Logger = None
 
-def fetch_total_and_wind_production(session=None):
-    """Returns an array that contains [time, total production, wind production] like below
-        ['00:00', 689.0, 18.0],
-        ['00:15', 680.0, 17.0],
-        ['00:30', 673.0, 12.0]
-    """
-    r = session or requests.session()
-    url = 'http://www.dsm.org.cy/en/daily-system-generation-on-the-transmission-system-mw/total-daily-system-generation-mw'
-    response = r.get(url)
-    html = response.text    # we have an html page from the url above that contains the raw data for the generation table
-    soup = BeautifulSoup(html, 'html.parser')
+    def __init__(self, session, logger: logging.Logger):
+        self.session = session
+        self.logger = logger
 
-    # first we ensure the column headers are what we expect, otherwise exception
-    header = soup.find_all('tr')[0].find_all('th')
-    if (header[0].string != 'Time' or
-            header[1].string != 'Generation Forecast' or
-            header[2].string != 'Actual Generation (MW)' or
-            header[3].string != 'Total Available Generation Capacity' or
-            header[4].string != 'Wind Farms Generation'):
-        raise Exception('Mapping for Cyprus has changed')
+    def warn(self, text: str) -> None:
+        self.logger.warning(text, extra={'key': 'CY'})
 
-    # now we can parse the table to find all the lines that contain actual and wind values
-    rows = soup.find_all('tr')[1:]
-    res = []
-    for row in rows:
-        cols = row.find_all('td')
-        try:
-            time = cols[0].string
-            actual = float(cols[2].string)
-            wind = float(cols[4].string)
-            res.append([time, actual, wind])
-        except (TypeError, ValueError):
-            pass    # this ensure we read only the columns we have actual and wind production
+    def parse_capacity(self, html) -> dict:
+        capacity = {}
+        table = html.find(id='production_graph_static_data')
+        for tr in table.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
+            key = self.CAPACITY_KEYS.get(values[0])
+            if key:
+                capacity[key] = float(values[1])
+        return capacity
 
-    return res
+    def parse_production(self, html, capacity: dict) -> list:
+        data = []
+        table = html.find(id='production_graph_data')
+        columns = [th.string for th in table.find_all('th')]
+        biomass_estimate = 0.0
+        for tr in table.tbody.find_all('tr'):
+            values = [td.string for td in tr.find_all('td')]
+            if None in values or '' in values:
+                break
+            production = {}
+            datum = {
+                'zoneKey': 'CY',
+                'production': production,
+                'capacity': capacity,
+                'storage': {},
+                'source': 'tsoc.org.cy'
+            }
+            for col, val in zip(columns, values):
+                if col == 'Timestamp':
+                    datum['datetime'] = arrow.get(val).replace(tzinfo='Asia/Nicosia').datetime
+                elif col == 'Αιολική Παραγωγή':
+                    production['wind'] = float(val)
+                elif col == 'Συμβατική Παραγωγή':
+                    production['oil'] = float(val)
+                elif col == 'Εκτίμηση Διεσπαρμένης Παραγωγής (Φωτοβολταϊκά και Βιομάζα)':
+                    # Because solar is explicitly listed as "Solar PV" (so no thermal with energy storage)
+                    # and there is no sunlight between 10pm and 3am (https://www.timeanddate.com/sun/cyprus/nicosia),
+                    # we use the nightly biomass+solar generation reported to determine the portion of biomass+solar
+                    # which constitutes biomass.
+                    value = float(val)
+                    hour = datum['datetime'].hour
+                    if hour < 3 or hour >= 22:
+                        biomass_estimate = value
+                    production['biomass'] = biomass_estimate
+                    production['solar'] = max(value - biomass_estimate, 0.0)
+            data.append(datum)
+        return data
 
+    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+        if target_datetime is None:
+            url = 'https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/'
+        else:
+            # convert target datetime to local datetime
+            url_date = arrow.get(target_datetime).to('Asia/Nicosia').format('DD-MM-YYYY')
+            url = f'https://tsoc.org.cy/electrical-system/archive-total-daily-system-generation-on-the-transmission-system/?startdt={url_date}&enddt=%2B1days'
 
-def fetch_solar_production_estimation(session=None):
-    """
-    returns an array that contains [time, solar], like the following
-        ['0:0', 0.0]
-        ['0:15', 0.0]
-        ['0:30', 0.0]
-    """
-    r = session or requests.session()
-    url = 'http://www.dsm.org.cy/en/objects/reusable-objects/daily-wind-and-solar-farms-generation-mw'
-    response = r.get(url)
-    html = response.text
-    soup = BeautifulSoup(html, 'html.parser')
-    res = []
+        res = self.session.get(url)
+        assert res.status_code == 200, f'CY parser: GET {url} returned {res.status_code}'
 
-    # this is getting ugly, we are searching for the javascript code of the page used to draw the chart
-    # solar data is estimated and doesn't appear on the xls on their website
-    script = soup.find_all(string=re.compile('google\.visualization\.DataTable'))
-    if len(script) > 0:
-        # in the js code we search fo the point values
-        data_pts = re.findall('data\.addRows\((.*)\)', script[0])
-        if data_pts:
-            data_pts = str(data_pts[0]).split(',')  # split all the elements in the list
-            data_pts = [d.replace(']', '').replace('[', '').replace('null', '') for d in data_pts]  # remove useless
-            data_pts = [data_pts[i:i + 5] for i in xrange(0, len(data_pts), 5)]         # group the elements 5 by 5
-            # data_pts is now a list like below containing [hour, minute, second, wind, solar]
-            # ['1', '45', '00', '5', '0'],
-            # ['2', '0', '00', '4', '0'],
-            # ['2', '15', '00', '', '']
-            for point in data_pts:
-                try:
-                    time = str(point[0]) + ':' + str(point[1])
-                    solar = float(point[4])
-                    res.append([time, solar])
-                except (TypeError, ValueError):
-                    pass  # we should end up only with values where solar is populated
-    return res
+        html = BeautifulSoup(res.text, 'lxml')
 
+        capacity = self.parse_capacity(html)
+        data = self.parse_production(html, capacity)
 
-def merge_production(total_and_wind, solar):
-    """ Merge the two productions, we assume the prod2 array can be empty or missing or have additional values
-    we will also return only the times present on prod1 array
+        if len(data) == 0:
+            self.warn('No production data returned for Cyprus')
+        return data
 
-    Arguments
-    prod1: contains [time, total, wind]
-        ['00:00', 689.0, 18.0],
-        ['00:15', 680.0, 17.0],
-        ['00:30', 673.0, 12.0]
+def fetch_production(zone_key='CY', session=None,
+        target_datetime: datetime.datetime = None,
+        logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
+    assert zone_key == 'CY'
 
-    prod2: contains [time, solar]
-        ['0:0', 0.0]
-        ['0:15', 0.0]
-        ['0:30', 0.0]
-    """
-
-    # first we create a result dict (res) that will contain {time: total, wind}
-    res = dict()
-    for v in total_and_wind:
-        hour = int(v[0].split(':')[0])
-        minute = int(v[0].split(':')[1])
-        res[arrow.now('Europe/Nicosia').floor('day').replace(hour=hour, minute=minute)] = {
-            'total': v[1],
-            'wind': v[2]
-        }
-
-    # then we create an temporary dict (res2) that contains {time: solar}
-    res2 = dict()
-    for v in solar:
-        hour = int(v[0].split(':')[0])
-        minute = int(v[0].split(':')[1])
-        res2[arrow.now('Europe/Nicosia').floor('day').replace(hour=hour, minute=minute)] = {
-            'solar': v[1],
-        }
-
-    # then we browse the result dict and see if the temporary set contains the same time, if yes we merge
-    for r in res:
-        if r in res2:
-            res[r]['solar'] = res2[r]['solar']
-
-    return res
-
-
-def fetch_production(zone_key='CY', session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    An array of dictionary in the form:
-    [{
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }]
-    """
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    total_and_wind_production = fetch_total_and_wind_production()               # [time, total, wind]
-    solar_production = fetch_solar_production_estimation()                      # [time, solar]
-    production = merge_production(total_and_wind_production, solar_production)  # merge the two arrays
-
-    data = []
-    for time in production:
-        data.append({
-            'zoneKey': zone_key,
-            'production': {
-                'solar': production[time].get('solar', 0.0),
-                'wind': production[time].get('wind', 0.0),
-                # as discussed in issue 122 on github, put all the non wind/solar as oil.
-                # also, as we only have the total production, we should deduce solar and wind
-                'oil': production[time].get('total', 0.0) - production[time].get('solar', 0.0) - production[time].get('wind', 0.0)
-            },
-            'storage': {},
-            'source': 'dsm.org.cy',
-            'datetime': time.datetime,
-        })
-
-    return sorted(data, key=lambda point: point['datetime'])
+    parser = CyprusParser(session or requests.session(), logger)
+    return parser.fetch_production(target_datetime)
 
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
+    target_datetime = None
+    if len(sys.argv) == 4:
+        target_datetime = datetime.datetime(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+
     print('fetch_production() ->')
-    # print fetch_production()
-    res = fetch_production()
-    for r in res:
-        print(r)
+    for datum in fetch_production(target_datetime=target_datetime):
+        print(datum)

@@ -1,32 +1,23 @@
-#header{
-    background-color: transparent;
-    z-index: 2;
-    position: fixed;
-    right: 0;
-    top: 10px;
-    color: $white;
-    min-height: 50px; /* required for old Safari */
-
-    &.brightmode {
-        color: $black;
-    }
-
-    @include respond-to('small') {
-        display:none;
-        min-height: 50px; /* required for old Safari */
-        left: 0;
-        top: 0;
-        z-index: 2;
-    }
-}
-
 #mobile-header {
+    #electricitymap-logo {
+        background-image: url(../images/electricitymap-logo.svg);
+        background-size: cover;
+    }
+
+    .logo .image {
+        display: inline-block;
+        height: 21px;
+        width:139px;
+        margin-right: 4px;
+        margin-top:1.5px;
+    }
+
     @include respond-to('small') {
         min-height: 50px;
         box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
         z-index: 999; /* required for the box-shadow to overlay everything */
 
-        .header-content{
+        .header-content {
             display: flex;
             justify-content: space-between;
             width: 100%;
@@ -49,91 +40,3 @@
         }
     }
 }
-
-#header-content {
-    display: flex;
-    width: 100%;
-    font-size: 1.0rem;
-    height: 50px;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    padding-left: 15px;
-    padding-right: 15px;
-    line-height: 24px;
-
-    /* Force width to include padding */
-    box-sizing: border-box;
-
-    & > div,
-    & > span {
-        vertical-align: middle;
-    }
-
-    a {
-        color: $white;
-        transition: color 0.4s;
-
-        &:hover {
-            color: #4178AC !important;
-            text-decoration: none;
-        }
-    }
-
-    .logo {
-        display: inline;
-        font-family: $primary-font;
-
-        .image {
-            vertical-align: text-top;
-        }
-
-        @include respond-to('small') {
-            margin-right: auto;
-        }
-    }
-
-    .maintitle,
-    .live {
-        color: $white;
-        transition: color 0.4s;
-    }
-
-    .right-header {
-        display: block;
-        float: right;
-        text-align: right;
-        font-size: 0.6em;
-    }
-
-    &.brightmode {
-        a,
-        .maintitle,
-        .live {
-            color: $black;
-        }
-    }
-}
-
-#header-content,
-#mobile-header {
-    .logo .image {
-        display: inline-block;
-        height: 21px;
-        width:139px;
-        margin-right: 4px;
-        margin-top:1.5px;
-    }
-}
-
-#header-content.brightmode,
-#mobile-header {
-    #electricitymap-logo{
-        background-image: url(../images/electricitymap-logo.svg);
-    }
-}
-
-#electricitymap-logo{
-    background-image: url(../images/electricitymap-logo-white.svg);
-    background-size: cover;
-}
-

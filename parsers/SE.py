@@ -31,7 +31,7 @@ MAPPING = {
 
 
 def fetch_production(zone_key='SE', session=None, target_datetime=None,
-                     logger=None):
+                     logger=None) -> list:
     # parse target_datetime - and convert None to now
     target_datetime = arrow.get(target_datetime).datetime
     url = SVK_URL.format(date=target_datetime.strftime('%Y-%m-%d'),

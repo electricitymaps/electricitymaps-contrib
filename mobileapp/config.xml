@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.2.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tmrow.electricitymap" version="1.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>electricityMap</name>
     <description>
         electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
@@ -20,17 +20,24 @@
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
+        <!-- uncomment for staging build instead  -->
+        <!-- <preference name="CodePushDeploymentKey" value="qKUKXX9JQbat9M56RY54obDyV02BEJ-bjzkpG" /> -->
         <preference name="AndroidLaunchMode" value="singleInstance" />
         <preference name="SplashMaintainAspectRatio" value="true" />
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
+        <preference name="android-minSdkVersion" value="19" />
         <preference name="android-targetSdkVersion" value="28" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
         <preference name="CodePushDeploymentKey" value="4uQpHGlWRd7qOyIq-JNAhvjsYXcsEJ-bjzkpG" />
+        <!-- uncomment for staging build instead  -->
+        <!-- <preference name="CodePushDeploymentKey" value="EgyH71oYOglC8w-se8f-EDACw0KtEJ-bjzkpG" /> -->
         <preference name="StatusBarStyle" value="default" />
+        <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
@@ -41,23 +48,17 @@
         <host name="www.electricitymap.org" scheme="https" />
         <host name="www.electricitymap.org" scheme="http" />
     </universal-links>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-globalization" spec="^1.0.9" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
-    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
-    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="1267173759989113" />
-        <variable name="APP_NAME" value="electricityMap" />
-    </plugin>
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
+    <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
-    <plugin name="cordova-plugin-firebase-analytics" spec="^0.13.0">
+    <plugin name="cordova-plugin-code-push" spec="^1.12.5" />
+    <plugin name="sentry-cordova" spec="^0.16.2" />
+    <engine name="android" spec="^8.1.0" />
+    <plugin name="cordova-plugin-firebase-analytics" spec="^4.1.2">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
-    <plugin name="cordova-plugin-code-push" spec="^1.11.13" />
-    <plugin name="sentry-cordova" spec="^0.16.2" />
-    <engine name="android" spec="^6.4.0" />
-    <engine name="ios" spec="^5.1.1" />
 </widget>

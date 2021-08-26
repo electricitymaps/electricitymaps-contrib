@@ -12,12 +12,11 @@ from datetime import datetime
 URL = "https://www.hops.hr/Home/PowerExchange"
 
 
-def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__name__)):
+def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__name__)) -> float:
     """
     Calls extra resource at https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/<dd.m.yyyy>.json
     to get Solar power production in MW.
     :param feed_date: date_time string from the original HOPS feed
-    :return: Float
     """
     r = session or requests.session()
 
@@ -36,8 +35,6 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
     solar_production_dt = pd.Timestamp(feed_date, tz='Europe/Zagreb').floor('1h')
     try:
         solar = df['Value'].loc[solar_production_dt]
-        # Value is in string format and needs to be converted to float
-        solar = float(solar.replace(",", "."))
         # Converting to MW
         solar *= 0.001
     except KeyError:

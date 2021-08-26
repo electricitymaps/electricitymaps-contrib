@@ -38,7 +38,7 @@ export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
   const exchange = (zoneData.exchange || {})[mode];
   const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
 
-  return exchange > 0
+  return exchange >= 0
     ? (
       exchangeCo2Intensity
     ) : (
@@ -49,7 +49,15 @@ export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
 }
 
 export function getTotalElectricity(zoneData, displayByEmissions) {
+  const productionValue = displayByEmissions
+    ? zoneData.totalCo2Production
+    : zoneData.totalProduction;
+
+  if (productionValue == null) {
+    return NaN;
+  }
+
   return displayByEmissions
-    ? (zoneData.totalCo2Production + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO₂eq/h
-    : (zoneData.totalProduction + zoneData.totalDischarge + zoneData.totalImport);
+    ? (productionValue + zoneData.totalCo2Discharge + zoneData.totalCo2Import) // gCO₂eq/h
+    : (productionValue + zoneData.totalDischarge + zoneData.totalImport);
 }

@@ -13,6 +13,7 @@ import {
   noop,
   size,
 } from 'lodash';
+import { __ } from '../helpers/translation';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -23,6 +24,7 @@ const ZoneMap = ({
   onMapLoaded = noop,
   onMapError = noop,
   onMouseMove = noop,
+  onResize = noop,
   onSeaClick = noop,
   onViewportChange = noop,
   onZoneClick = noop,
@@ -42,6 +44,7 @@ const ZoneMap = ({
   const ref = useRef(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
+  const [isSupported, setIsSupported] = useState(true);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -113,6 +116,7 @@ const ZoneMap = ({
   useEffect(
     () => {
       if (!ReactMapGL.supported()) {
+        setIsSupported(false);
         onMapError('WebGL not supported');
       }
     },
@@ -175,6 +179,11 @@ const ZoneMap = ({
     [hoveredZoneId],
   );
 
+  // Don't render map nor any of the layers if WebGL is not supported.
+  if (!isSupported) {
+    return null;
+  }
+
   return (
     <div className="zone-map" style={style} ref={wrapperRef}>
       <ReactMapGL
@@ -190,14 +199,15 @@ const ZoneMap = ({
         scrollZoom={scrollZoom}
         mapStyle={mapStyle}
         maxZoom={10}
+        onBlur={handleMouseOut}
         onClick={handleClick}
         onError={onMapError}
         onLoad={onMapLoaded}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
-        onBlur={handleMouseOut}
         onMouseDown={handleDragStart}
         onMouseUp={handleDragEnd}
+        onResize={onResize}
         onTouchStart={handleDragStart}
         onTouchEnd={handleDragEnd}
         onWheel={handleWheel}
@@ -220,8 +230,8 @@ const ZoneMap = ({
           >
             <NavigationControl
               showCompass={false}
-              zoomInLabel=""
-              zoomOutLabel=""
+              zoomInLabel={__('tooltips.zoomIn')}
+              zoomOutLabel={__('tooltips.zoomOut')}
             />
           </div>
         </Portal>

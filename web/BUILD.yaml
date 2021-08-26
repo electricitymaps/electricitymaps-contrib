@@ -1,16 +1,16 @@
 steps:
 
   prepare:
-    image: node:10.15.3
+    image: node:12
     inputs:
-      # packages
       - package.json
       - yarn.lock
     commands:
       - yarn
 
-  # This script is used to generate zonegeometries.json
   build:
+    environment:
+      ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
     inputs:
       # geometries
       - generate-geometries.js
@@ -18,9 +18,26 @@ steps:
       - third_party_maps
       # source code
       - ../config/{exchanges,zones}.json
+      - locales
+      - ./{locales-config.json,translation-status.js}
+      - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json}
+      - src
+      - views
+      - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
-      - mkdir -p src
       - bash topogen.sh
+      - yarn build-release
     outputs:
-      - public/dist/zonegeometries.json
+      - src/world.json
+      - public/dist
+    tag: eu.gcr.io/tmrow-152415/electricitymap_web
+
+  deploy:
+    image: google/cloud-sdk:243.0.0
+    commands:
+      - gsutil -m cp -a public-read -r public/* gs://static.electricitymap.org/public_web
+    secrets:
+      gcloud:
+        src: ~/.config/gcloud
+        target: /root/.config/gcloud

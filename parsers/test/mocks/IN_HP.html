@@ -1,0 +1,985 @@
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="print-none top-section-bp mt-10">
+			<div>
+				<a href="https://hpsldc.com" rel="nofollow">Home</a>&nbsp;&nbsp;&#187;&nbsp;&nbsp;Scheduling
+				&nbsp;&nbsp;&#187;&nbsp;&nbsp; <a href="https://hpsldc.com/intra-state-reports">
+					Intra State Power Transaction
+				</a>
+			</div>
+		</div>
+		<div class="print-none row mb-20 con-tain" style="margin-top: -20px;">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+				<h1 class="pseudo_border">Intra State Power Transaction (Real Time data​)</h1>
+			</div>
+		</div>
+		<div class="both_m_y viewsch-header" style="width: auto!important;">
+			<form method="post" action="" class="flex sm-flex">
+				<div class="year_section ml-10">
+					<div class="select_m sm-mb-5">
+						<label class="mb-0">Date</label>
+						<input type="date" name="get_date" class="date-pick onchange_date" id="input_date" value="2021-05-16">
+                        </div>
+					</div>
+					<div class="months_section" style="margin-left: 25px;">
+						<div class="select_m view-ml">
+							<label class="revision-lab mb-0 ml-10">Revision</label>
+							<select id="input_revision" name="revision" class="ml-10 revision">
+                                                                <option  value="204">204</option>
+                                                                <option selected='selected' value="203">203</option>
+                                                            </select>
+							<label class="print-none ml-20 mb-0">Block</label>
+							<select id="input_block" name="block_no" class="block_no ml-10">
+                                                                <option selected='selected' value="93">Block 93(23:00-23:15)</option>
+                                                            </select>
+						</div>
+					</div>
+			</form>
+		</div>
+		<div class="all_table mb-20">
+			<div class="table_1">
+				<table style="text-align: center;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="2" style="font-size: 16px;">NR.HP(SCADA System) </td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc" style="width: 170px;">SCHEDULEOFHP(V)</td>
+							<td class="tc" style="width: 70px;">177.76</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 170px;">DRAWLOFHP(X-Y)</td>
+							<td class="tc" style="width: 70px;">111.98</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 170px;">OD(+)/UD(-)=[(X-Y)-(V)]</td>
+							<td class="tc" style="width: 70px;">-73.01</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 170px;">FC(50HZ)</td>
+							<td class="tc" style="width: 70px;">-105.95</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 170px;">DEMANDOFHP(X-Y)+(Z)</td>
+							<td class="tc" style="width: 70px;">915.79</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 170px;">REGIONALLOAD(NR)</td>
+							<td class="tc" style="width: 70px;">50814.19</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_2" style="margin-left: 10px">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="13" style="font-size: 16px;">(A)NR.HP(NRLDC WEB PORTAL)</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="width: 96px;" class="tc" rowspan="2">NR.HPSLDC</td>
+							<td style="width: 70px;" class="tc">ISGS</td>
+							<td style="width: 70px;" class="tc">STOA</td>
+							<td style="width: 70px;" class="tc">IEX</td>
+							<td style="width: 70px;" class="tc">PXI</td>
+							<td style="width: 70px;" class="tc">LTA</td>
+							<td style="width: 70px;" class="tc">URS</td>
+							<td style="width: 70px;" class="tc">RRAS</td>
+							<td style="width: 70px;" class="tc">SCED</td>
+							<td style="width: 70px;" class="tc">REMC</td>
+							<td style="width: 70px;" class="tc">RTM_PXI</td>
+							<td style="width: 70px;" class="tc">RTM_IEX</td>
+							<td style="width: 70px;" class="tc">Net SCH(V)</td>
+						</tr>
+						<tr>
+							<td class="tc">1204.66</td>
+							<td class="tc">-495.80</td>
+							<td class="tc">-591.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">60.30</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">-0.40</td>
+							<td class="tc">177.76 </td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<div class="table_3" style="margin-left: 10px">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" rowspan="2">STATE ENTITY</td>
+							<td colspan="14" class="tc" style="font-size: 16px;">(B)HPSLDC.SE(HPSLDC WEB PORTAL)</td>
+						</tr>
+						<tr>
+							<td class="tc" style="width: 70px;">ISGS</td>
+							<td class="tc" style="width: 70px;">STOA</td>
+							<td class="tc" style="width: 70px;">IEX</td>
+							<td class="tc" style="width: 70px;">PXI</td>
+							<td class="tc" style="width: 70px;">LTA</td>
+							<td class="tc" style="width: 70px;">URS</td>
+							<td class="tc" style="width: 70px;">RRAS</td>
+							<td class="tc" style="width: 70px;">SCED</td>
+							<td class="tc" style="width: 70px;">REMC</td>
+							<td class="tc" style="width: 70px;">RTM_PXI</td>
+							<td class="tc" style="width: 70px;">RTM_IEX</td>
+							<td class="tc" style="width: 70px;">Net Sch(V)</td>
+							<td class="tc" style="width: 90px;">Actual(X-Y)</td>
+							<td class="tc" style="width: 70px;">OD/UD</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- HPSEBL -->
+						<tr>
+							<td class="tc">HPSEBL</td>
+							<!-- <td class="tc"></td> -->
+							<td class="tc">777.73</td>
+							<td class="tc">-282.60</td>
+							<td class="tc">-225.00</td>
+							<!-- PIX -->
+							<td class="tc">0.00</td>
+							<td class="tc">75.85</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">345.98</td>
+
+							<!--  <td class="tc"><?php// echo sprintf("%0.2f",($response_data['hpseblalltotal']['net_total']+$response_data['hpsebl']['hpseblttl']+$response_data['hpsebl']['OTHERISGS']+$response_data['hpseblenergy18to31']['gohpfinalTotal'])-($response_data['hpseblalltotal']['totalisgs']));?></td> -->
+
+							<td class="tc">319.14</td>
+
+							<!-- <td class="tc"></td> -->
+
+							<td class="tc">-26.83 </td>
+
+						</tr>
+						<!-- GoHP -->
+						<tr>
+							<td class="tc">GoHP</td>
+							<!-- isgs -->
+							<!-- <td class="tc"></td> -->
+
+							<td class="tc">426.93</td>
+							<!-- stoa -->
+							<td class="tc">-154.70</td>
+							<!-- iex -->
+							<td class="tc">-265.10</td>
+							<!-- PIX -->
+							<td class="tc">0.00</td>
+							<!-- lta -->
+							<td class="tc">0.00</td>
+							<!-- urs -->
+							<td class="tc">0.00</td>
+
+							<td class="tc">0</td>
+
+							<td class="tc">0</td>
+
+							<td class="tc">0.00</td>
+							<td class="tc">
+								0
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">7.13</td>
+
+							<!-- <td class="tc"></td> -->
+
+							<td class="tc">
+								-4.81
+							</td>
+							<td class="tc">-11.94
+							</td>
+
+							<!-- <td class="tc"><?php// echo sprintf("%0.2f",$response_data['gohpDrawal']['value']-($response_data['gohpalltotal']['net_total']-$response_data['gohpalltotal']['totalisgs'])+$response_data['gohp']['gohparr'][4]['block']); ?></td> -->
+
+						</tr>
+						<tr>
+							<td class="tc">OA-(Gen.)</td>
+							<td class="tc">0</td>
+							<td class="tc">-58.50</td>
+							<td class="tc">-100.90</td>
+							<td class="tc">0</td>
+							<td class="tc">-15.55</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">-0.40</td>
+							<td class="tc">-175.35</td>
+							<td class="tc">-202.35</td>
+							<td class="tc">-27.00</td>
+						</tr>
+						<tr>
+							<td class="tc">OA-(Cons.)</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">Total</td>
+							<td class="tc">
+								1204.66 </td>
+							<td class="tc">
+								-495.80 </td>
+							<td class="tc">
+								-591.00 </td>
+							<td class="tc">
+								0.00 </td>
+							<td class="tc">
+								60.30 </td>
+							<td class="tc">
+								0.00 </td>
+							<td class="tc">0</td>
+							<td class="tc">0</td>
+							<td class="tc">
+								0.00 </td>
+							<td class="tc">
+								0.00 </td>
+
+							<!-- Changes -->
+							<td class="tc">
+								-0.40 </td>
+
+							<td class="tc">
+								177.76 </td>
+
+							<!--  <td class="tc">-->
+							<!--  </td> -->
+							<!-- <td class="tc"> <?php// $total_Actual_X_Y = sprintf("%0.2f",(
+                          //  ($response_data['table1'][1]['value']
+                          //    -$response_data['plantgeneratordata']['total']
+                          //    - $response_data['oaCdata']['contotal']['cnetttl']
+                          //    -$response_data['gohpDrawal']['value']) 
+                          //    + $response_data['plantgeneratordata']['total']
+                          //    +$response_data['oaCdata']['contotal']['cnetttl'])
+                          //    +$response_data['gohpDrawal']['value']);
+
+                           // echo $total_Actual_X_Y;?>         <!--  </td> -->
+							<td class="tc">
+								111.98
+							</td>
+
+							<td class="tc">-65.77</td>
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table_4" style="margin-left: 10px; height: 250px;">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="9" style="font-size: 16px;">(B1)ISGS(HPSLDC WEB PORTAL)</td>
+						</tr>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td colspan="6"></td>
+							<td class="tc" colspan="4">HPSLDC.SE</td>
+							<!-- <td colspan="2">HPSLDC.SE</td> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>COMPANY</td>
+							<td>STATION</td>
+							<td>CAPACITY(MW)</td>
+							<td>PLANTGEN</td>
+							<td>NR.HPSCHEDULE</td>
+							<td>GoHPSCHEDULE</td>
+							<td>HPSEBLSCHEDULE</td>
+							<td style="width: 100px">GoHP ISGS Sch Share in HPSEBL Sch</td>
+							<td style="width: 137px">Total HPSEBL Sch = GoHP and HPSEBL Sch</td>
+						</tr>
+						<tr>
+							<td rowspan="5">NHPC</td>
+							<td class="tc">BSIUL</td>
+							<td class="tc">(3X60)</td>
+							<td class="tc">126.89</td>
+							<td class="tc">13.91</td>
+							<td class="tc">13.91</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">CHAMERA1</td>
+							<td class="tc">(3X180) static</td>
+							<td class="tc">528.49</td>
+							<td class="tc">76.77</td>
+							<td class="tc">61.83</td>
+							<td class="tc">14.94</td>
+							<td class="tc">0.00</td>
+							<td class="tc">14.94</td>
+						</tr>
+						<tr>
+							<td class="tc">CHAMERA2</td>
+							<td class="tc">(3X100)</td>
+							<td class="tc">295.70</td>
+							<td class="tc">44.87</td>
+							<td class="tc">34.36</td>
+							<td class="tc">10.51</td>
+							<td class="tc">0.00</td>
+							<td class="tc">10.51</td>
+						</tr>
+						<tr>
+							<td class="tc">CHAMERA3</td>
+							<td class="tc">(3X77)</td>
+							<td class="tc">227.20</td>
+							<td class="tc">19.09</td>
+							<td class="tc">19.09</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">PARBATI3</td>
+							<td class="tc">(4X130)</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td rowspan="2">SJVNL</td>
+							<td class="tc">NJPC</td>
+							<td class="tc">(6X250)</td>
+							<td class="tc">1440.17</td>
+							<td class="tc">493.27</td>
+							<td class="tc">162.30</td>
+							<td class="tc">330.97</td>
+							<td class="tc">0.00</td>
+							<td class="tc">330.97</td>
+						</tr>
+						<tr>
+							<td class="tc">RAMPUR</td>
+							<td class="tc">(6X68.67)</td>
+							<td class="tc">398.00</td>
+							<td class="tc">156.03</td>
+							<td class="tc">48.40</td>
+							<td class="tc">107.63</td>
+							<td class="tc">0.00</td>
+							<td class="tc">107.63</td>
+						</tr>
+                        <tr>
+                            <td>UNKNOWN ISGS PLANT (added for unit test)</td>
+                            <td></td>
+                            <td></td>
+                            <td class="tc">0</td>
+                            <td class="tc">274.19</td>
+                            <td class="tc">0</td>
+                            <td class="tc">274.19</td>
+                        </tr>
+						<tr>
+							<td>NTPC</td>
+							<td class="tc">KOLDAM</td>
+							<td class="tc">(4X200)</td>
+							<td class="tc">734.00</td>
+							<td class="tc">187.46</td>
+							<td class="tc">87.04</td>
+							<td class="tc">100.43</td>
+							<td class="tc">0.00</td>
+							<td class="tc">100.43</td>
+						</tr>
+						<tr>
+							<td>OTHERISGS</td>
+							<td></td>
+							<td></td>
+							<td class="tc">0</td>
+							<td class="tc">213.25</td>
+							<td class="tc">0</td>
+							<td class="tc">213.25</td>
+							<td class="tc">0</td>
+							<td class="tc">213.25</td>
+						</tr>
+						<tr>
+							<td>TOTAL</td>
+							<td></td>
+							<td></td>
+							<td class="tc">3750.45</td>
+							<td class="tc">1204.66</td>
+							<!-- <td class="tc"></td> -->
+							<td class="tc">426.93</td>
+							<td class="tc">777.73</td>
+							<td class="tc">0.00</td>
+							<td class="tc">777.73</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_5">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td style="width: 200px" class="tc">GENERATION OF HP(Z)</td>
+							<td style="width: 70px" class="tc">MW</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>BASPA(3X100MW)</td>
+							<td class="tc">109.35</td>
+						</tr>
+						<tr>
+							<td>BHABA(3X40MW)</td>
+							<td class="tc">60.00</td>
+						</tr>
+						<tr>
+							<td>GIRI(2X30MW)</td>
+							<td class="tc">18.74</td>
+						</tr>
+						<tr>
+							<td>LARJI(3X42MW)</td>
+							<td class="tc">64.90</td>
+						</tr>
+						<tr>
+							<td>BASSI(4X16.5MW)</td>
+							<td class="tc">60.00</td>
+						</tr>
+						<tr>
+							<td>MALANA(2X43MW)</td>
+							<td class="tc">74.36</td>
+						</tr>
+						<tr>
+							<td>ANDHRA(3X5.65MW)</td>
+							<td class="tc">14.00</td>
+						</tr>
+						<tr>
+							<td>GHANVI(2X11.25MW)</td>
+							<td class="tc">9.22</td>
+						</tr>
+						<tr>
+							<td>KASHANG(3X65MW)</td>
+							<td class="tc">40.00</td>
+						</tr>
+						<tr>
+							<td>Sawra Kuddu (3x37MW)</td>
+							<td class="tc">37.03</td>
+						</tr>
+						<tr>
+							<td>MICROP/HMONITORED(HPSEBL)</td>
+							<td class="tc">18.43</td>
+						</tr>
+                        <tr>
+                            <td >UNKNOWN HP PLANT (added for unit test)</td>
+                            <td class="tc">99.00</td>
+                        </tr>
+						<tr>
+							<td>IPPsP/HMONITORED</td>
+							<td class="tc">118.01</td>
+						</tr>
+						<tr>
+							<td>MICROP/HUNMONITORED</td>
+							<td class="tc">187.00</td>
+						</tr>
+						<tr>
+							<td class="tc">Total</td>
+							<td class="tc">811.04</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table_6">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td style="width: 400px" class="tc" colspan="2"><b class="bld_dsm">DSM Rate</b>
+								16-05-2021 11:04:52 PM </td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc">
+								466.68 </td>
+							<td class="tc">Paise/KWh</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table_7">
+				<table style="text-align: center; margin-top: 10px;">
+					<tbody>
+						<tr>
+							<td
+								style="width: 100px; font-weight: 600; background-color: #92278f !important;color: #fff;">
+								NRLDCFREQUENCY </td>
+							<td class="tc" style="width: 100px; font-weight: 600;">
+								49.95 </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+			<div class="table_8" style="margin-left: 10px">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td colspan="6" style="text-align: center;font-size: 16px;">( B2) OA-GENERATORS</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc">S.No.</td>
+							<td>HYDRO POWER PLANTS</td>
+							<td>GENERATION</td>
+							<td style="min-width:106px;">NET SCHEDULE</td>
+							<td>ACTUAL</td>
+							<td>DEVIATION</td>
+						</tr>
+						<tr>
+							<td class="tc">1</td>
+							<td class="fix_width"><b>1201-OAG</b> M/s Integrated Kashang HPPCL (Kashang- 3x65 MW HEP)
+							</td>
+							<td class="tc">40.00</td>
+							<td class="tc">-33.20</td>
+							<td class="tc">-38.00</td>
+							<td class="tc">-4.80</td>
+						</tr>
+						<tr>
+							<td class="tc">2</td>
+							<td class="fix_width"><b>1202-OAG</b> M/s Yogindera Power Ltd (Baner Sangam- 2x2.5 MW SHEP)
+							</td>
+							<td class="tc">1.99</td>
+							<td class="tc">-1.40</td>
+							<td class="tc">-1.89</td>
+							<td class="tc">-0.49</td>
+						</tr>
+						<tr>
+							<td class="tc">3</td>
+							<td class="fix_width"><b>1203-OAG</b> M/s Nanti Hydro Power Pvt Ltd (Upper Nanti- 2x6.75 MW)
+							</td>
+							<td class="tc">5.84</td>
+							<td class="tc">-5.12</td>
+							<td class="tc">-5.55</td>
+							<td class="tc">-0.43</td>
+						</tr>
+						<tr>
+							<td class="tc">4</td>
+							<td class="fix_width"><b>1204-OAG</b> M/s Sandhya Hydro Power Projects Balargha Pvt. Ltd.
+								(Balargha- 3x3 MW SHEP)</td>
+							<td class="tc">9.61</td>
+							<td class="tc">-7.40</td>
+							<td class="tc">-9.13</td>
+							<td class="tc">-1.73</td>
+						</tr>
+						<tr>
+							<td class="tc">5</td>
+							<td class="fix_width"><b>1205-OAG</b> M/s I A Hydro Energy Pvt. Ltd. (Chanju - 3x12 MW HEP)
+							</td>
+							<td class="tc">15.90</td>
+							<td class="tc">-16.50</td>
+							<td class="tc">-15.10</td>
+							<td class="tc">1.40</td>
+						</tr>
+						<tr>
+							<td class="tc">6</td>
+							<td class="fix_width"><b>1206-OAG</b> M/s Baragarh Hydro Power Co. Pvt. Ltd. Prini (Lower
+								Aleo- 2x1.25 MW SHEP)</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">7</td>
+							<td class="fix_width"><b>1207-OAG</b> M/s Malana Power Company Ltd (Malana-I- 2x43 MW HEP)
+							</td>
+							<td class="tc">59.49</td>
+							<td class="tc">-35.00</td>
+							<td class="tc">-56.52</td>
+							<td class="tc">-21.52</td>
+						</tr>
+						<tr>
+							<td class="tc">8</td>
+							<td class="fix_width"><b>1208-OAG</b> M/s Goodwill Energy Enterprises(Kut- 3x8 MW SHEP)</td>
+							<td class="tc">16.99</td>
+							<td class="tc">-16.70</td>
+							<td class="tc">-16.14</td>
+							<td class="tc">0.56</td>
+						</tr>
+						<tr>
+							<td class="tc">9</td>
+							<td class="fix_width"><b>1209-OAG</b> M/s Kanchanjunga Power Company Pvt. Ltd. (Baragaon-
+								3x8 MW)</td>
+							<td class="tc">19.84</td>
+							<td class="tc">-18.00</td>
+							<td class="tc">-18.85</td>
+							<td class="tc">-0.85</td>
+						</tr>
+						<tr>
+							<td class="tc">10</td>
+							<td class="fix_width"><b>1210-OAG</b> M/s Suryakanta Hydro Energies Pvt. Ltd. (Lower Nanti-
+								2x7 MW)</td>
+							<td class="tc">5.46</td>
+							<td class="tc">-4.36</td>
+							<td class="tc">-5.18</td>
+							<td class="tc">-0.82</td>
+						</tr>
+						<tr>
+							<td class="tc">11</td>
+							<td class="fix_width"><b>1212-OAG</b> M/s Taranda Hydro Power Pvt. Ltd.(Rala- 2x6.5 MW)</td>
+							<td class="tc">5.67</td>
+							<td class="tc">-6.07</td>
+							<td class="tc">-5.38</td>
+							<td class="tc">0.69</td>
+						</tr>
+						<tr>
+							<td class="tc">12</td>
+							<td class="fix_width"><b>1211-OAG</b> M/s Everest Power Pvt. Ltd (Malana-II HEP- 2x50 MW) S2
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">13</td>
+							<td class="fix_width"><b>1213-OAG</b> M/s Sawra Kuddu HPPCL (3x37MW HEP)</td>
+							<td class="tc">32.22</td>
+							<td class="tc">-31.60</td>
+							<td class="tc">-30.61</td>
+							<td class="tc">0.99</td>
+						</tr>
+						<tr>
+							<td class="tc"></td>
+							<td class="tc">OPGSsHYDROSUM</td>
+							<td class="tc">213.00</td>
+							<td class="tc">-175.35</td>
+							<td class="tc">-202.35</td>
+							<td class="tc">-27.00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="table_9">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="6" style="font-size: 16px;"> (B3) OA-CONSUMERS</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc">S.No.</td>
+							<td class="tc">O.A.CONSUMER</td>
+							<td class="tc">LOAD</td>
+							<td class="tc">NET SCHEDULE</td>
+							<td class="tc">ACTUAL</td>
+							<td class="tc">DEVIATION</td>
+						</tr>
+						<tr>
+							<td class="tc">1</td>
+							<td style="min-width: 332px;"><b>0401-OAC</b> M/s ACC Ltd., Gagal Cement Works, Barmana</td>
+							<td class="tc">36.04</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">2</td>
+							<td style="min-width: 332px;"><b>0402-OAC</b> M/s UltraTech Cement Limited Unit- Bagheri
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">3</td>
+							<td style="min-width: 332px;"><b>0403-OAC</b> M/s Ambuja Cements Ltd., Unit - Suli</td>
+							<td class="tc">26.56</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">4</td>
+							<td style="min-width: 332px;"><b>0404-OAC</b> M/s Amba Shakti Ispat Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">5</td>
+							<td style="min-width: 332px;"><b>0405-OAC</b> M/s Ambuja Cement Ltd. (Unit- Rauri)</td>
+							<td class="tc">17.06</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">6</td>
+							<td style="min-width: 332px;"><b>0406-OAC</b> M/s Ambuja Cement Ltd. (Unit- Nalagarh)</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">7</td>
+							<td style="min-width: 332px;"><b>0407-OAC</b> M/s Birla Textile Mills (A Unit of
+								SutlejTextiles and Industries Ltd.)</td>
+							<td class="tc">8.41</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">8</td>
+							<td style="min-width: 332px;"><b>0408-OAC</b> M/s H.M. Steels Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">9</td>
+							<td style="min-width: 332px;"><b>0409-OAC</b> M/s Indorama Industries Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">10</td>
+							<td style="min-width: 332px;"><b>0410-OAC</b> M/s INOX Air Products Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">11</td>
+							<td style="min-width: 332px;"><b>0411-OAC</b> M/s J B Rolling Mills Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">12</td>
+							<td style="min-width: 332px;"><b>0412-OAC</b> M/s UltraTech Cement Limited Unit- Baga Cement
+								Works</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">13</td>
+							<td style="min-width: 332px;"><b>0413-OAC</b> M/s Pasupati Spinning and Weaving Mills Ltd.
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">14</td>
+							<td style="min-width: 332px;"><b>0414-OAC</b> M/s Su-Kam Power Systems Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">15</td>
+							<td style="min-width: 332px;"><b>0415-OAC</b> M/s Sun Pharmaceutical Industries Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">16</td>
+							<td style="min-width: 332px;"><b>0416-OAC</b> M/s Winsome Textile Industries Ltd (Unit-I)
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">17</td>
+							<td style="min-width: 332px;"><b>0417-OAC</b> M/s Dr. Reddys Laboratories Ltd. Formulation
+								Baddi-I</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">18</td>
+							<td style="min-width: 332px;"><b>0418-OAC</b> M/s Dr. Reddys Laboratories Ltd. Formulation
+								Baddi -II</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">19</td>
+							<td style="min-width: 332px;"><b>0419-OAC</b> M/s Macleods Pharmaceutical Ltd.</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc">20</td>
+							<td style="min-width: 332px;"><b>0420-OAC</b> M/s Winsome Textile Industries Ltd (Unit-II)
+							</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="tc" colspan="2">OACONSUMER`sSUM</td>
+							<td class="tc">88.07</td>
+							<td class="tc">0.00</td>
+
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_10">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="7" style="font-size: 16px;"> Intra State Transaction (Inside HP
+								Periphery)</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc">Entity</td>
+							<td class="tc">Generation</td>
+
+							<!--  <td class="tc">M/s ACC Ltd., Gagal Cement Works, Barmana </td>
+                <td class="tc">Ambuja Cement Ltd. (Unit- Rauri)</td> -->
+							<td class="tc">Actual</td>
+							<td class="tc">Injection</td>
+						</tr>
+
+						<tr>
+							<td class="tc">Good Will</td>
+							<td class="tc">16.99</td>
+							<td class="tc">0.00</td>
+							<td class="tc">16.99</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_11">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="4" style="font-size: 16px;">GOHP Share</td>
+						</tr>
+						<tr>
+							<td class="tc mw-100">Hydro Plant</td>
+							<td class="tc mw-100">Generation</td>
+							<td class="tc mw-100">GoHP Share</td>
+							<td class="tc">Injection</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="mw-410">(1211-OAG) M/s Everest Power Pvt. Ltd (Malana-II HEP- 2x50 MW) S2</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+							<td class="tc">0.00</td>
+						</tr>
+						<tr>
+							<td class="mw-410">(1207-OAG) M/s Malana Power Company Ltd (Malana-I- 2x43 MW HEP</td>
+							<td class="tc">74.36</td>
+							<td class="tc">14.87</td>
+							<td class="tc">59.49</td>
+						</tr>
+						<tr>
+							<td class="mw-410">(1213-OAG) M/s Sawra Kuddu HPPCL (Sawra Kuddu 3x37MW HEP)</td>
+							<td class="tc">37.03</td>
+							<td class="tc">4.81</td>
+							<td class="tc">32.22</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_12">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc mw-450" colspan="4" style="font-size: 16px;">Injection of SHP's at 400/220/32
+								kV Substation LAHAL</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Salun + Kurwasi -2 (on 33kv Line)</td>
+							<td class="tc">
+								0.00 </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table_add_on">
+				<table style="text-align: center; margin-top: 10px;">
+					<thead>
+						<tr style="background-color: #92278f !important; color: #fff; font-weight: 600;">
+							<td class="tc" colspan="7" style="font-size: 16px;">Sandhya</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tc">Entity</td>
+							<td class="tc">Generation</td>
+							<td class="tc">ACTUAL</td>
+							<td class="tc">Injection</td>
+						</tr>
+						<tr>
+							<td class="tc mw-450">M/s Sandhya Hydro Power Projects Balargha Pvt. Ltd. (Balargha- 3x3 MW
+								SHEP)</td>
+							<td class="tc">9.61</td>
+							<td class="tc">0.00</td>
+							<td class="tc">9.61</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

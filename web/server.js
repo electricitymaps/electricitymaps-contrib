@@ -15,7 +15,7 @@ const {
   getSingleTranslationStatusJSON,
   getTranslationStatusJSON,
   getTranslationStatusSVG,
-} = require(__dirname + '/translation-status');
+} = require(`${__dirname}/translation-status`);
 const {
   localeToFacebookLocale,
   supportedFacebookLocales,
@@ -26,7 +26,7 @@ const app = express();
 const server = http.Server(app);
 
 // Constants
-const STATIC_PATH = process.env['STATIC_PATH'] || (__dirname + '/public');
+const STATIC_PATH = process.env.STATIC_PATH || (`${__dirname}/public`);
 
 // * Common
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
@@ -46,7 +46,7 @@ i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
   locales,
-  directory: __dirname + '/locales',
+  directory: `${__dirname}/locales`,
   defaultLocale: 'en',
   queryParameter: 'lang',
   objectNotation: true,
@@ -85,23 +85,17 @@ function translateWithLocale(locale, keyStr) {
 // * Long-term caching
 function getHash(key, ext, obj) {
   let filename;
-  if (typeof obj.assetsByChunkName[key] == 'string') {
+  if (typeof obj.assetsByChunkName[key] === 'string') {
     filename = obj.assetsByChunkName[key];
   } else {
     // assume list
     filename = obj.assetsByChunkName[key]
-      .filter((d) => d.match(new RegExp('\.' + ext + '$')))[0]
+      .filter(d => d.match(new RegExp(`\.${ext}$`)))[0];
   }
-  return filename.replace('.' + ext, '').replace(key + '.', '');
+  return filename.replace(`.${ext}`, '').replace(`${key}.`, '');
 }
 
 const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
-
-// * Error handling
-function handleError(err) {
-  if (!err) return;
-  console.error(err);
-}
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/clientVersion', (req, res) => res.send(version));
@@ -115,10 +109,8 @@ app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(lo
 app.get('/translationstatus/:language', (req, res) => res.json(getSingleTranslationStatusJSON(req.params.language)));
 
 // API
-app.get('/v1/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.get('/v2/*', (req, res) =>
-  res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 
 // Source maps
 app.all('/dist/*.map', (req, res, next) => {
@@ -143,20 +135,20 @@ app.use('/', (req, res) => {
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
   const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
-  const isNonWWW = req.get('host') === 'electricitymap.org' ||
-    req.get('host') === 'live.electricitymap.org';
-  const isStaging = req.get('host') === 'staging.electricitymap.org';
+  const isNonWWW = req.get('host') === 'electricitymap.org'
+    || req.get('host') === 'live.electricitymap.org';
+  const isStaging = req.get('host').includes('staging');
   const isHTTPS = req.secure;
   const isLocalhost = req.hostname === 'localhost'; // hostname is without port
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
   if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-    res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
+    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
   // Redirect all non-HTTPS and non localhost
   // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
   // Node only receives HTTP traffic.
   } else if (false && !isHTTPS && !isLocalhost) {
-    res.redirect(301, 'https://www.electricitymap.org' + req.originalUrl);
+    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
@@ -166,7 +158,7 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    const fullUrl = 'https://www.electricitymap.org' + req.originalUrl;
+    const fullUrl = `https://www.electricitymap.org${req.originalUrl}`;
 
     // basic auth for premium access
     if (process.env.BASIC_AUTH_CREDENTIALS) {
@@ -186,19 +178,17 @@ app.use('/', (req, res) => {
         res.end('Access denied');
         return;
       }
-      res.cookie('electricitymap-token', process.env['ELECTRICITYMAP_TOKEN']);
+      res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
     res.render('pages/index', {
-      alternateUrls: locales.map(function(l) {
+      alternateUrls: locales.map((l) => {
         if (fullUrl.indexOf('lang') !== -1) {
-          return fullUrl.replace('lang=' + req.query.lang, 'lang=' + l)
-        } else {
-          if (Object.keys(req.query).length) {
-            return fullUrl + '&lang=' + l;
-          } else {
-            return fullUrl.replace('?', '') + '?lang=' + l;
-          }
+          return fullUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
         }
+        if (Object.keys(req.query).length) {
+          return `${fullUrl}&lang=${l}`;
+        }
+        return `${fullUrl.replace('?', '')}?lang=${l}`;
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
@@ -207,14 +197,22 @@ app.use('/', (req, res) => {
       // Make the paths absolute as that's required for BrowserHistory routing
       // to work normally and it's also ok when used with the https:// protocol
       // as resources are mounted to a fixed location.
-      resolvePath: function(relativePath) { return '/' + relativePath; },
+      // Note: `resolvePath` is executed on the client as well,
+      // as it is used in react components. We can't therefore include any variables
+      // in its closure. It would be better to pass a `pathPrefix` instead.
+      resolvePath: (!isProduction || isStaging)
+        ? relativePath => `/${relativePath}`
+        : relativePath =>
+          // Note we here point to static hosting in order to make
+          // sure we can serve older bundle versions
+          `https://static.electricitymap.org/public_web/${relativePath}`,
       fullUrl,
       locale,
-      locales: { en: localeConfigs['en'], [locale]: localeConfigs[locale] },
+      locales: { en: localeConfigs.en, [locale]: localeConfigs[locale] },
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale],
       supportedFBLocales: supportedFacebookLocales,
-      '__': function() {
+      __() {
         const argsArray = Array.prototype.slice.call(arguments);
         // Prepend the first argument which is the locale
         argsArray.unshift(locale);
@@ -224,7 +222,13 @@ app.use('/', (req, res) => {
   }
 });
 
+if (isProduction) {
+  app.get('/*', (req, res) =>
+    // Redirect all requests except root to static
+    res.redirect(`https://static.electricitymap.org/public_web${req.originalUrl}`));
+}
+
 // Start the application
-server.listen(process.env['PORT'], () => {
-  console.log(`Listening on *:${process.env['PORT']}`);
+server.listen(process.env.PORT, () => {
+  console.log(`Listening on *:${process.env.PORT}`);
 });
