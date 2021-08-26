@@ -40,45 +40,39 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const SocialButtons = styled.div`
-  @media (min-width: 768px) {
-    display: none !important;
-  }
-`;
-
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-
+  
   const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge {...props} />;
   }
-
+  
   const fossilFuelRatio = electricityMixMode === 'consumption'
-    ? d.fossilFuelRatio
-    : d.fossilFuelRatioProduction;
+  ? d.fossilFuelRatio
+  : d.fossilFuelRatioProduction;
   const countryLowCarbonPercentage = fossilFuelRatio !== null
-    ? 100 - (fossilFuelRatio * 100)
-    : null;
-
+  ? 100 - (fossilFuelRatio * 100)
+  : null;
+  
   return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
 const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-
+  
   const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge {...props} />;
   }
-
+  
   const renewableRatio = electricityMixMode === 'consumption'
-    ? d.renewableRatio
-    : d.renewableRatioProduction;
+  ? d.renewableRatio
+  : d.renewableRatioProduction;
   const countryRenewablePercentage = renewableRatio !== null
-    ? renewableRatio * 100
-    : null;
-
+  ? renewableRatio * 100
+  : null;
+  
   return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
@@ -89,6 +83,17 @@ const mapStateToProps = state => ({
   zones: state.data.grid.zones,
 });
 
+const SocialButtons = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
+
+const Flag = styled.img`
+  vertical-align: bottom;
+  padding-right: .8rem;
+`;
+
 const CountryPanel = ({
   electricityMixMode,
   isMobile,
@@ -96,21 +101,21 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-
+  
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
-
+  
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-
+  
   const data = useCurrentZoneData() || {};
-
+  
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',
     search: location.search,
   };
-
+  
   // Back button keyboard navigation
   useEffect(
     () => {
@@ -167,7 +172,7 @@ const CountryPanel = ({
           <div className="country-name-time">
             <div className="country-name-time-table">
               <div>
-                <img id="country-flag" className="flag" alt="" src={flagUri(zoneId, 24)} />
+                <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
               <div style={{ flexGrow: 1 }}>
                 <div className="country-name">{getFullZoneName(zoneId)}</div>
@@ -298,7 +303,7 @@ const CountryPanel = ({
           </div>
         )}
 
-        <SocialButtons className="social-buttons>
+        <SocialButtons className="social-buttons">
           <div>
             { /* Facebook share */}
             <div
