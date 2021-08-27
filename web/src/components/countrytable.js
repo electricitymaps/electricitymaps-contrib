@@ -40,6 +40,15 @@ const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
 
+const CountryTableSVG = styled.svg`
+    width: 100%;
+  `;
+
+const CountryTableContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
   const resource = mode.replace(' storage', '');
@@ -252,12 +261,8 @@ const CountryCarbonEmissionsTable = React.memo(({
     return `${t} t/min`;
   };
 
-  const CountryTable = styled.svg`
-    width: 100%;
-  `;
-
-  return (
-    <CountryTable height={height} style={{ overflow: 'visible' }}>
+    return (
+    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -312,7 +317,7 @@ const CountryCarbonEmissionsTable = React.memo(({
           </Row>
         ))}
       </g>
-    </CountryTable>
+    </CountryTableSVG>
   );
 });
 
@@ -372,12 +377,8 @@ const CountryElectricityProductionTable = React.memo(({
     return `${t * 1e-3} GW`;
   };
 
-  const CountryTable = styled.svg`
-    width: 100%;
-  `;
-
   return (
-    <CountryTable height={height} style={{ overflow: 'visible' }}>
+    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -444,7 +445,7 @@ const CountryElectricityProductionTable = React.memo(({
           </Row>
         ))}
       </g>
-    </CountryTable>
+    </CountryTableSVG>
   );
 });
 
@@ -500,7 +501,7 @@ const CountryTable = ({
   const height = exchangeY + exchangeHeight;
 
   return (
-    <div className="country-table-container" ref={ref}>
+    <CountryTableContainer ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
           data={data}
@@ -545,7 +546,7 @@ const CountryTable = ({
         />
       )}
       <CountryTableOverlayIfNoData />
-    </div>
+    </CountryTableContainer>
   );
 };
 
