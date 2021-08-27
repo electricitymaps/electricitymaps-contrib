@@ -41,6 +41,11 @@ const mapStateToProps = state => ({
   version: state.application.version,
 });
 
+const MapContainer = styled.div`
+  @media (max-width: 767px) {
+    display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
+  }
+`;
 const Watermark = styled.div`
   @media (max-width: 767px) {
     display: none !important;
@@ -88,7 +93,7 @@ const Main = ({
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
-          <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
+          <MapContainer id="map-container">
             <Map />
             <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
@@ -108,7 +113,7 @@ const Main = ({
               />
             </div>
             <LayerButtons />
-          </div>
+          </MapContainer>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">

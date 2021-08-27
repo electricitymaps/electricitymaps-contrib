@@ -3,6 +3,7 @@
 // TODO: re-enable rules
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { dispatchApplication } from '../../store';
 import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
@@ -22,6 +23,12 @@ const handleZoneTimeIndexChange = (timeIndex) => {
 const mapStateToProps = state => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
+
+const SocialButtons = styled.div`
+  @media (max-width: 767px) {
+    display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
+  }
+`;
 
 const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
   const datetimes = useCurrentZoneHistoryDatetimes();
@@ -43,7 +50,7 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
           startTime={startTime}
           endTime={endTime}
         />
-        <div className="social-buttons small-screen-hidden">
+        <SocialButtons className="social-buttons">
           <div>
             { /* Facebook share */}
             <div
@@ -66,7 +73,7 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
               </a>
             </span>
           </div>
-        </div>
+        </SocialButtons>
       </div>
     </div>
   );
