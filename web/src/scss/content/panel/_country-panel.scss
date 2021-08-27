@@ -15,47 +15,6 @@
     }
 }
 
-.country-panel-wrap {
-    overflow-y: scroll;
-    padding: 0 1.5rem;
-
-    .bysource {
-        font-size: smaller;
-        position: relative;
-        top: 0.8rem;
-    }
-
-    @include respond-to('small') {
-        position: relative;
-        padding-top: 0;
-        overflow: hidden;
-    }
-}
-
-.country-name-time {
-    font-size: smaller;
-    margin-left: 25px;
-
-    .flag {
-	  vertical-align: bottom;
-	  padding-right: 0.8rem;
-	}
-}
-
-.country-name-time-table {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 1.2rem;
-}
-
-.country-time {
-  white-space: nowrap;
-}
-
-.country-table {
-    width: 100%;
-}
-
 .country-table-container {
     width: 100%;
     position: relative;

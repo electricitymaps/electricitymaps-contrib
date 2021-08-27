@@ -79,6 +79,12 @@ const MobileHeader = styled.div`
   }
 `;
 
+const RightHeader = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
+
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
@@ -96,10 +102,10 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
           <div className="logo">
             <div className="image" id="electricitymap-logo" />
           </div>
-          <div className="right-header large-screen-hidden">
+          <RightHeader className="right-header">
             {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
-          </div>
+          </RightHeader>
         </div>
       </MobileHeader>
 

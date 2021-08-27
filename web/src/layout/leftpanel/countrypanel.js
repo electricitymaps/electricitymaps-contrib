@@ -94,6 +94,43 @@ const Flag = styled.img`
   padding-right: .8rem;
 `;
 
+const CountryTime = styled.div`
+  white-space: nowrap;
+`;
+
+const IconContainer = styled.small`
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+`;
+
+const CountryNameTime = styled.div`
+  font-size: smaller;
+  margin-left: 25px;
+`;
+
+const CountryNameTimeTable = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1.2rem
+`;
+const CountryPanelWrap = styled.div`
+  overflow-y: scroll;
+  padding: 0 1.5rem;
+
+  @media (max-width: 767px) {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+  }
+`;
+
+const BySource = styled.div`
+  font-size: smaller;
+  position: relative;
+  top: 0.8rem;
+`;
+
 const CountryPanel = ({
   electricityMixMode,
   isMobile,
@@ -153,12 +190,6 @@ const CountryPanel = ({
     trackEvent('switchToCountryProduction');
   };
   
-  // Verify that `IconContainer` is a good name
-  const IconContainer = styled.small`
-   @media (max-width: 767px) {
-    display: none !important;
-  }
-  `;
 
   return (
     <div className="country-panel">
@@ -169,20 +200,20 @@ const CountryPanel = ({
               <i className="material-icons" aria-hidden="true">arrow_back</i>
             </span>
           </Link>
-          <div className="country-name-time">
-            <div className="country-name-time-table">
+          <CountryNameTime>
+            <CountryNameTimeTable>
               <div>
                 <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
               <div style={{ flexGrow: 1 }}>
                 <div className="country-name">{getFullZoneName(zoneId)}</div>
-                <div className="country-time">
+                <CountryTime>
                   {datetime ? moment(datetime).format('LL LT') : ''}
-                </div>
+                </CountryTime>
               </div>
               {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
-            </div>
-          </div>
+            </CountryNameTimeTable>
+          </CountryNameTime>
         </div>
 
         {hasParser && (
@@ -228,12 +259,12 @@ const CountryPanel = ({
         )}
       </div>
 
-      <div className="country-panel-wrap">
+      <CountryPanelWrap>
         {hasParser ? (
           <React.Fragment>
-            <div className="bysource">
+            <BySource>
               {__('country-panel.bysource')}
-            </div>
+            </BySource>
 
             <CountryTable />
 
@@ -327,7 +358,7 @@ const CountryPanel = ({
             </span>
           </div>
         </SocialButtons>
-      </div>
+      </CountryPanelWrap>
     </div>
   );
 };

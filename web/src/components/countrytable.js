@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
+import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
@@ -251,8 +252,12 @@ const CountryCarbonEmissionsTable = React.memo(({
     return `${t} t/min`;
   };
 
+  const CountryTable = styled.svg`
+    width: 100%;
+  `;
+
   return (
-    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
+    <CountryTable height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -307,7 +312,7 @@ const CountryCarbonEmissionsTable = React.memo(({
           </Row>
         ))}
       </g>
-    </svg>
+    </CountryTable>
   );
 });
 
@@ -367,8 +372,12 @@ const CountryElectricityProductionTable = React.memo(({
     return `${t * 1e-3} GW`;
   };
 
+  const CountryTable = styled.svg`
+    width: 100%;
+  `;
+
   return (
-    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
+    <CountryTable height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -435,7 +444,7 @@ const CountryElectricityProductionTable = React.memo(({
           </Row>
         ))}
       </g>
-    </svg>
+    </CountryTable>
   );
 });
 

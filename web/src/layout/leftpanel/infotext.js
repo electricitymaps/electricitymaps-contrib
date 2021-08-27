@@ -6,10 +6,10 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { __ } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
-import styled from 'styled-components';
 
 const Container = styled.div`
   @media (max-width: 767px) {
