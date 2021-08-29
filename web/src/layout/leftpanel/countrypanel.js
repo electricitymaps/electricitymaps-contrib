@@ -131,6 +131,33 @@ const BySource = styled.div`
   top: 0.8rem;
 `;
 
+const CountryHistoryTitle = styled.span`
+  font-size: 1.1em;
+`;
+
+const CountryTableHeaderInner = styled.div`
+  display: flex;
+  flex-basis: 33.3%;
+  justify-content: space-between;
+`;
+
+const CountryPanelStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  margin: 0;
+  flex: 1 1 0px;
+
+  @media (max-width: 767px) {
+    margin: 0;
+    display: block;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
+    margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
+  }
+`;
+
 const CountryPanel = ({
   electricityMixMode,
   isMobile,
@@ -192,7 +219,7 @@ const CountryPanel = ({
   
 
   return (
-    <div className="country-panel">
+    <CountryPanelStyled>
       <div id="country-table-header">
         <div className="left-panel-zone-details-toolbar">
           <Link to={parentPage}>
@@ -218,7 +245,7 @@ const CountryPanel = ({
 
         {hasParser && (
           <React.Fragment>
-            <div className="country-table-header-inner">
+            <CountryTableHeaderInner>
               <CarbonIntensitySquare value={co2Intensity} withSubtext />
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
@@ -243,7 +270,7 @@ const CountryPanel = ({
                 </div>
                 <div className="country-col-headline">{__('country-panel.renewable')}</div>
               </div>
-            </div>
+            </CountryTableHeaderInner>
             <div className="country-show-emissions-wrap">
               <div className="menu">
                 <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
@@ -270,9 +297,9 @@ const CountryPanel = ({
 
             <hr />
             <div className="country-history">
-              <span className="country-history-title">
+              <CountryHistoryTitle>
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
-              </span>
+              </CountryHistoryTitle>
               <br />
               <IconContainer>
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
@@ -283,12 +310,12 @@ const CountryPanel = ({
                 tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
               )}
 
-              <span className="country-history-title">
+              <CountryHistoryTitle>
                 {tableDisplayEmissions
                   ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                   : __(`country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
                 }
-              </span>
+              </CountryHistoryTitle>
               <br />
               <IconContainer>
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
@@ -297,9 +324,9 @@ const CountryPanel = ({
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
 
-              <span className="country-history-title">
+              <CountryHistoryTitle>
                 {__('country-history.electricityprices24h')}
-              </span>
+              </CountryHistoryTitle>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
               {isLoadingHistories ? <LoadingPlaceholder height="7.2em" /> : <CountryHistoryPricesGraph />}
             </div>
@@ -359,7 +386,7 @@ const CountryPanel = ({
           </div>
         </SocialButtons>
       </CountryPanelWrap>
-    </div>
+    </CountryPanelStyled>
   );
 };
 

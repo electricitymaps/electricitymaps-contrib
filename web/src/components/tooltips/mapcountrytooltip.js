@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { __ } from '../../helpers/translation';
+import styled from 'styled-components';
 
 import CircularGauge from '../circulargauge';
 import CarbonIntensitySquare from '../carbonintensitysquare';
@@ -12,9 +13,16 @@ const mapStateToProps = state => ({
   electricityMixMode: state.application.electricityMixMode,
 });
 
+
 const TooltipContent = React.memo(({
   isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage,
 }) => {
+  const CountryTableHeaderInner = styled.div`
+    display: flex;
+    flex-basis: 33.3%;
+    justify-content: space-between;
+  `;
+
   if (!hasParser) {
     return (
       <div className="no-parser-text">
@@ -38,7 +46,7 @@ const TooltipContent = React.memo(({
   }
   return (
     <div className="zone-details">
-      <div className="country-table-header-inner">
+      <CountryTableHeaderInner>
         <CarbonIntensitySquare value={co2intensity} />
         <div className="country-col country-lowcarbon-wrap">
           <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
@@ -53,7 +61,7 @@ const TooltipContent = React.memo(({
           </div>
           <div className="country-col-headline">{__('country-panel.renewable')}</div>
         </div>
-      </div>
+      </CountryTableHeaderInner>
     </div>
   );
 });
