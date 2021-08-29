@@ -41,15 +41,10 @@ const mapStateToProps = state => ({
   version: state.application.version,
 });
 
-const MapContainer = styled.div`
-  @media (max-width: 767px) {
-    display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
-  }
-`;
 const Watermark = styled.div`
-  @media (max-width: 767px) {
-    display: none !important;
-  }
+@media (max-width: 767px) {
+  display: none !important;
+}
 `;
 
 const Main = ({
@@ -62,21 +57,27 @@ const Main = ({
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
-
+  
   const showLoadingOverlay = useLoadingOverlayVisible();
-
+  
   // Check for the latest client version once initially.
   useClientVersionFetch();
-
+  
   // Start grid data polling as soon as the app is mounted.
   useGridDataPolling();
-
+  
   // Poll wind data if the toggle is enabled.
   useConditionalWindDataPolling();
-
+  
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
-
+  
+  const MapContainer = styled.div`
+    @media (max-width: 767px) {
+      display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
+    }
+  `;
+  
   return (
     <React.Fragment>
       <div
