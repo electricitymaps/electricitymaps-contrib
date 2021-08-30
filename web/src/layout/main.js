@@ -47,6 +47,12 @@ const Watermark = styled.div`
 }
 `;
 
+const MapContainer = styled.div`
+  @media (max-width: 767px) {
+    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
+  }
+`;
+
 const Main = ({
   brightModeEnabled,
   electricityMixMode,
@@ -72,11 +78,6 @@ const Main = ({
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
   
-  const MapContainer = styled.div`
-    @media (max-width: 767px) {
-      display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
-    }
-  `;
   
   return (
     <React.Fragment>
@@ -94,7 +95,7 @@ const Main = ({
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
-          <MapContainer id="map-container">
+          <MapContainer pathname={location.pathname} id="map-container">
             <Map />
             <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">

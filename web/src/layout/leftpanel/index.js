@@ -79,6 +79,13 @@ const RightHeader = styled.div`
 }
 `;
 
+// Hide the panel completely if looking at the map on small screens.
+const Container = styled.div`
+  @media (max-width: 767px) {
+    display: ${props => props.pathname === '/map' ?  'none !important': 'flex'};
+  }
+`;
+
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
@@ -88,15 +95,9 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
   
-  // Hide the panel completely if looking at the map on small screens.
-  const Container = styled.div`
-    @media (max-width: 767px) {
-      display: ${location.pathname === '/map' ?  'none !important': 'flex'};
-    }
-  `;
 
   return (
-    <Container className={`panel left-panel ${collapsedClass}`}>
+    <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
 
       <MobileHeader id="mobile-header" className="brightmode">
         <div className="header-content">
