@@ -231,14 +231,14 @@
           "AQ": {
             "zoneName": "Antarctica"
           },
+          "AR": {
+            "zoneName": "Argentina"
+          },
           "AS": {
             "zoneName": "American Samoa"
           },
           "AT": {
             "zoneName": "Austria"
-          },
-          "AR": {
-            "zoneName": "Argentina"
           },
           "AUS-NSW": {
             "countryName": "Australia",
@@ -260,6 +260,10 @@
             "countryName": "Australia",
             "zoneName": "Tasmania"
           },
+          "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
+          },
           "AUS-TAS-KI": {
             "countryName": "Australia",
             "zoneName": "King Island"
@@ -267,10 +271,6 @@
           "AUS-TAS-FI": {
             "countryName": "Australia",
             "zoneName": "Flinders Island"
-          },
-          "AUS-TAS-CBI": {
-            "countryName": "Australia",
-            "zoneName": "Cape Barren Island"
           },
           "AUS-VIC": {
             "countryName": "Australia",
@@ -378,6 +378,10 @@
             "countryName": "Canada",
             "zoneName": "Manitoba"
           },
+          "CA-NB": {
+            "countryName": "Canada",
+            "zoneName": "New Brunswick"
+          },
           "CA-NL": {
             "countryName": "Canada",
             "zoneName": "Newfoundland and Labrador"
@@ -390,17 +394,13 @@
             "countryName": "Canada",
             "zoneName": "Newfoundland"
           },
-          "CA-NB": {
+          "CA-NS": {
             "countryName": "Canada",
-            "zoneName": "New Brunswick"
+            "zoneName": "Nova Scotia"
           },
           "CA-NT": {
             "countryName": "Canada",
             "zoneName": "Northwest Territories"
-          },
-          "CA-NS": {
-            "countryName": "Canada",
-            "zoneName": "Nova Scotia"
           },
           "CA-NU": {
             "countryName": "Canada",
@@ -447,6 +447,10 @@
           "CK": {
             "zoneName": "Cook Islands"
           },
+          "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Easter Island"
+          },
           "CL-SEA": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico de Aysén"
@@ -458,10 +462,6 @@
           "CL-SEN": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico Nacional"
-          },
-          "CL-CHP": {
-            "countryName": "Chile",
-            "zoneName": "Easter Island"
           },
           "CM": {
             "zoneName": "Cameroon"
@@ -1254,13 +1254,13 @@
             "countryName": "Russia",
             "zoneName": "Siberia"
           },
-          "RU-EU": {
-            "countryName": "Russia",
-            "zoneName": "Arctic"
-          },
           "RU-AS": {
             "countryName": "Russia",
             "zoneName": "East"
+          },
+          "RU-EU": {
+            "countryName": "Russia",
+            "zoneName": "Arctic"
           },
           "RU-FE": {
               "countryName": "Russia",
@@ -1504,7 +1504,7 @@
           },
           "US-FLA-JEA": {
             "countryName": "United States of America",
-            "zoneName": "JEA"
+            "zoneName": "Jacksonville Electric Authority"
           },
           "US-FLA-NSB": {
             "countryName": "United States of America",
