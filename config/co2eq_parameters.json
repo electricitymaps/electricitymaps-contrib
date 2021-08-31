@@ -737,8 +737,8 @@
         "unknown": {
           "_comment": "Uses the 2019 (2021 edition) eurostat production values for the sources in unknown",
           "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-balance-sheets-February-2021-edition.zip/4b1d6665-f303-be7d-a7e5-1e0da16ec0d9?t=1612709565471",
-          "source": "assumes 77.18% biomass, 11.22% oil based thermal, 6.35% gas, 4.04% solar, 1.22% peat",
-          "value": 293.1
+          "source": "assumes 77.22% biomass, 11.2% oil based thermal, 6.33% gas, 4.03% solar, 1.21% peat",
+          "value": 292.9
         }
       },
       "SG": {
