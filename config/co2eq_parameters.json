@@ -182,8 +182,7 @@
         "unknown": {
           "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
           "value": 655
-        }
-        ,
+        },
         "battery discharge": {
           "source": "2017 average by Tomorrow",
           "value": 597
@@ -218,19 +217,17 @@
           "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
           "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
           "value": 131
-        }
-        ,
+        },
         "hydro discharge": {
           "source": "2020 average by Tomorrow",
           "value": 87.03
-        }
-        ,
+        },
         "battery discharge": {
           "source": "2020 average by Tomorrow",
           "value": 87.03
         }
       },
-      "CL-SEN" : {
+      "CL-SEN": {
         "unknown": {
           "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
           "value": 491.8
@@ -1285,7 +1282,7 @@
           "unknown": 0.15258490420002668,
           "wind": 0.0
         }
-         },
+      },
       "CH": {
         "_source": "Bundesamt für Statistik, Gesamtenergiestatistik 2019",
         "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",

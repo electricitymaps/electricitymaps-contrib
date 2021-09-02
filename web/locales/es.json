@@ -116,17 +116,14 @@
     "coal": "carbón",
     "oil": "petróleo",
     "unknown": "desconocido",
-
     "electricityComesFrom": "<b>%1$s %%</b> de la electricidad de <img id=\"country-flag\"></img> <b>%2$s</b> es producida por %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> de las emisiones de <img id=\"country-flag\"></img> <b>%2$s</b> es producida por %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> de la electricidad de <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> de las emisiones de <img id=\"country-flag\"></img> <b>%2$s</b> se almacena utilizando %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> de la electricidad de <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> de las emisiones de <img id=\"country-flag\"></img> <b>%2$s</b> se exporta a <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> de la electricidad de <img id=\"country-flag\"></img> <b>%2$s</b> se importa de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> de las emisiones de <img id=\"country-flag\"></img> <b>%2$s</b> se importa de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "de CO₂eq por minuto",
     "theMap": {
         "groupName": "El mapa",

@@ -54,11 +54,9 @@
         "carbonintensity": "Koolstofintensiteit",
         "crossborderexport": "uitvoer over de landsgrenzen",
         "carbonintensityexport": "Koolstofintensiteit van uitvoer",
-
         "ofinstalled": "van de geïnstalleerde capaciteit",
         "utilizing": "gebruikt",
         "withcarbonintensity": "met een koolstofintensiteit van",
-        
         "showWindLayer": "Show wind layer",
         "hideWindLayer": "Hide wind layer",
         "showSolarLayer": "Show solar layer",
@@ -94,157 +92,153 @@
     "coal": "steen-/bruinkool",
     "oil": "olie",
     "unknown": "onbekend",
-
     "electricityComesFrom": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> is afkomstig van %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt opgeslagen dmv %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt uitgevoerd naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt uitgevoerd naar <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> van de elektriciteit in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> van de uitstoot in <img id=\"country-flag\"></img> <b>%2$s</b> wordt ingevoerd vanuit <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "CO₂eq per minuut",
-
     "zoneShortName": {
         "AL": {
             "zoneName": "Albanië"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "Oostenrijk"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "Åland"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "Bosnië-Herzegovina"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "België"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "Bulgarije"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "Wit-Rusland"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "Zwitserland"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "Tsjechië"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "Duitsland"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "Denemarken"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "Estland"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "Spanje"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "Finland"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "Frankrijk"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "Groot-Brittannië"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "Noord-Ierland"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "Griekenland"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "Kroatië"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "Hongarije"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "Ierland"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "IJsland"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "Italië"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "Litouwen"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "Luxemburg"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "Letland"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "Moldavië"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "Montenegro"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "Noord-Macedonië"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "Malta"
-          },
-          "NKR": {
+        },
+        "NKR": {
             "zoneName": "Nagorno-Karabach"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "Nederland"
-          },
-          "NO": {
+        },
+        "NO": {
             "zoneName": "Noorwegen"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "Peru"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "Polen"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "Portugal"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "Roemenië"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "Servië"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "Rusland"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "Zweden"
-          },
-          "SG": {
+        },
+        "SG": {
             "zoneName": "Singapore"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "Slovenië"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "Slowakije"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "Turkije"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "Taiwan"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "Oekraïne"
-          }
+        }
     }
 }

@@ -118,17 +118,14 @@
     "coal": "άνθρακας",
     "oil": "πετρέλαιο",
     "unknown": "άγνωστη",
-
     "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
     "theMap": {
         "groupName": "Ο χάρτης",
