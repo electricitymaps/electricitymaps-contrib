@@ -7,10 +7,10 @@
         "contribute": "Bidrag ved at <a href=\"%s\" target=\"_blank\">tilføje dit område</a>"
     },
     "left-panel": {
-      "zone-list-header-title": "Klimapåvirkning per region",
-      "zone-list-header-subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
-      "search": "Søg efter region"
-  },
+        "zone-list-header-title": "Klimapåvirkning per region",
+        "zone-list-header-subtitle": "Sorteret efter CO₂-intensitet fra elforbruget (gCO₂eq/kWh)",
+        "search": "Søg efter region"
+    },
     "country-panel": {
         "source": "kilde",
         "carbonintensity": "CO₂-intensitet",
@@ -79,10 +79,10 @@
         "retrynow": "Prøv igen nu"
     },
     "mobile-main-menu": {
-      "map": "electricityMap",
-      "areas": "Regioner",
-      "about": "Om kortet"
-  },
+        "map": "electricityMap",
+        "areas": "Regioner",
+        "about": "Om kortet"
+    },
     "wind": "Vind",
     "solar": "Sol",
     "hydro": "Hydro",
@@ -95,185 +95,181 @@
     "coal": "Kul",
     "oil": "Olie",
     "unknown": "Ukendt",
-
     "electricityComesFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> kommer fra %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> lagres vha. %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> eksporteres til <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> af elektricitet i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> af CO₂-udledninger i <img id=\"country-flag\"></img> <b>%2$s</b> importeres fra <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "af CO₂-ækvivalenter per minut",
-
     "zoneShortName": {
         "AL": {
             "zoneName": "Albanien"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "Østrig"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "Åland"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "Bosnien-Hercegovina"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "Belgien"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "Bulgarien"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "Belarus"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "Schweiz"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "Tjekkiet"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "Tyskland"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "Danmark"
-          },
-          "DK-DK1": {
+        },
+        "DK-DK1": {
             "countryName": "Danmark",
             "zoneName": "Vestdanmark"
-          },
-          "DK-DK2": {
+        },
+        "DK-DK2": {
             "countryName": "Danmark",
             "zoneName": "Østdanmark"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "Estland"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "Spanien"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "Finland"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "Frankrig"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "Storbritannien"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "Nordirland"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "Grækenland"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "Kroatien"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "Ungarn"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "Irland"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "Island"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "Italien"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "Litauen"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "Luxemburg"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "Letland"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "Moldavien"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "Montenegro"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "Nordmakedonien"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "Malta"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "Holland"
-          },
-          "NO": {
+        },
+        "NO": {
             "zoneName": "Norge"
-          },
-          "NO-NO1": {
+        },
+        "NO-NO1": {
             "countryName": "Norge",
             "zoneName": "Sydøstnorge"
-          },
-          "NO-NO2": {
+        },
+        "NO-NO2": {
             "countryName": "Norge",
             "zoneName": "Sydvestnorge"
-          },
-          "NO-NO3": {
+        },
+        "NO-NO3": {
             "countryName": "Norge",
             "zoneName": "Midtnorge"
-          },
-          "NO-NO4": {
+        },
+        "NO-NO4": {
             "countryName": "Norge",
             "zoneName": "Nordnorge"
-          },
-          "NO-NO5": {
+        },
+        "NO-NO5": {
             "countryName": "Norge",
             "zoneName": "Vestnorge"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "Peru"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "Polen"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "Portugal"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "Rumænien"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "Serbien"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "Rusland"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "Sverige"
-          },
-          "SG": {
+        },
+        "SG": {
             "zoneName": "Singapore"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "Slovenien"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "Slovakiet"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "Tyrkiet"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "Taiwan"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "Ukraine"
-          },
-          "UY": {
+        },
+        "UY": {
             "zoneName": "Uruguay"
-          }      
+        }
     }
 }
