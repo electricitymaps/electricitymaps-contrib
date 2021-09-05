@@ -31,7 +31,6 @@
         "carbonintensity": "كثافة الكربون",
         "crossborderexport": "التصدير عبر الحدود",
         "carbonintensityexport": "كثافة الكربون للتصجير",
-
         "ofinstalled": "من السعة المثبتة",
         "utilizing": "استخدام",
         "withcarbonintensity": "بكثافة كربونية "
@@ -54,351 +53,347 @@
     "coal": "فحم",
     "oil": "نفط",
     "unknown": "غير معروف",
-
     "electricityComesFrom": "<b>%1$s %%</b> من الكهرباء <img id=\"country-flag\"></img> <b>%2$s</b> مصدره  %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> من الانبعاثات<img id=\"country-flag\"></img> <b>%2$s</b> مصدره %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b>مخزنة باستخدام  %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> مخزنة باستخدام %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تصدر إلى <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> من الكهرباء في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> من الانبعاثات في <img id=\"country-flag\"></img> <b>%2$s</b> تستورد من <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "of CO₂eq per minute",
-
     "zoneShortName": {
         "AD": {
             "zoneName": "أندورا"
-          },
-          "AL": {
+        },
+        "AL": {
             "zoneName": "ألبانيا"
-          },
-          "AM": {
+        },
+        "AM": {
             "zoneName": "أرمينيا"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "النمسا"
-          },
-          "AR": {
+        },
+        "AR": {
             "zoneName": "الأرجنتين"
-          },
-          "AUS-NSW": {
+        },
+        "AUS-NSW": {
             "countryName": "أستراليا",
             "zoneName": "نيو ساوث ويلز"
-          },
-          "AUS-NT": {
+        },
+        "AUS-NT": {
             "countryName": "أستراليا",
             "zoneName": "الإقليم الشمالي"
-          },
-          "AUS-QLD": {
+        },
+        "AUS-QLD": {
             "countryName": "أستراليا",
             "zoneName": "كوينزلاند"
-          },
-          "AUS-SA": {
+        },
+        "AUS-SA": {
             "countryName": "أستراليا",
             "zoneName": "جنوب أستراليا"
-          },
-          "AUS-TAS": {
+        },
+        "AUS-TAS": {
             "countryName": "أستراليا",
             "zoneName": "تاسمانيا"
-          },
-          "AUS-VIC": {
+        },
+        "AUS-VIC": {
             "countryName": "أستراليا",
             "zoneName": "فيكتوريا"
-          },
-          "AUS-WA": {
+        },
+        "AUS-WA": {
             "countryName": "أستراليا",
             "zoneName": "أستراليا الغربية"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "جزر_أولاند"
-          },
-          "AZ": {
+        },
+        "AZ": {
             "zoneName": "أذربيجان"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "البوسنة والهرسك"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "بلجيكا"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "بلغاريا"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "بيلاروسا"
-          },
-          "CA-AB": {
+        },
+        "CA-AB": {
             "countryName": "كندا",
             "zoneName": "ألبرتا"
-          },
-          "CA-BC": {
+        },
+        "CA-BC": {
             "countryName": "كندا",
             "zoneName": "كولومبيا البريطانية"
-          },
-          "CA-MB": {
+        },
+        "CA-MB": {
             "countryName": "كندا",
             "zoneName": "مانيتوبا"
-          },
-          "CA-NL": {
+        },
+        "CA-NL": {
             "countryName": "كندا",
             "zoneName": "نويفاوندلاند ولابرادو"
-          },
-          "CA-NB": {
+        },
+        "CA-NB": {
             "countryName": "كندا",
             "zoneName": "نيو برونزويك"
-          },
-          "CA-NT": {
+        },
+        "CA-NT": {
             "countryName": "كندا",
             "zoneName": "الأقاليم الشمالية الجنوبية"
-          },
-          "CA-NS": {
+        },
+        "CA-NS": {
             "countryName": "كندا",
             "zoneName": "نوفا سكوتيا"
-          },
-          "CA-NU": {
+        },
+        "CA-NU": {
             "countryName": "كندا",
             "zoneName": "نونافوت"
-          },
-          "CA-ON": {
+        },
+        "CA-ON": {
             "countryName": "كندا",
             "zoneName": "أونتاريو"
-          },
-          "CA-PE": {
+        },
+        "CA-PE": {
             "countryName": "كندا",
             "zoneName": "جزيرة الأمير إدوارد"
-          },
-          "CA-QC": {
+        },
+        "CA-QC": {
             "countryName": "Cكندا",
             "zoneName": "كيبيك"
-          },
-          "CA-SK": {
+        },
+        "CA-SK": {
             "countryName": "كندا",
             "zoneName": "ساسكاتشيوان"
-          },
-          "CA-YT": {
+        },
+        "CA-YT": {
             "countryName": "كندا",
             "zoneName": "يوكون"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "سويسرا"
-          },
-          "CR": {
+        },
+        "CR": {
             "zoneName": "كوستاريكا"
-          },
-          "CY": {
+        },
+        "CY": {
             "zoneName": "قبرص"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "تشيكيا"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "ألمانيا"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "الدنمارك"
-          },
-          "DZ": {
+        },
+        "DZ": {
             "zoneName": "الجزائر"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "إستونيا"
-          },
-          "EG": {
+        },
+        "EG": {
             "zoneName": "مصر"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "إسبانيا"
-          },
-          "ES-IB": {
+        },
+        "ES-IB": {
             "countryName": "إسبانيا",
             "zoneName": "جزر البليار"
-          },
-          "ES-CN": {
+        },
+        "ES-CN": {
             "countryName": "إسبانيا",
             "zoneName": "جزر الكناري"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "فنلندا"
-          },
-          "FO": {
+        },
+        "FO": {
             "zoneName": "جزر فارو"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "فرنسا"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "بريطانيا العظمى"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "إيرلندا الشمالية"
-          },
-          "GE": {
+        },
+        "GE": {
             "zoneName": "جورجيا"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "اليونان"
-          },
-          "GT": {
+        },
+        "GT": {
             "zoneName": "غواتيمالا"
-          },
-          "HN": {
+        },
+        "HN": {
             "zoneName": "هندوراس"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "كرواتيا"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "هنغاريا"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "أيرلندا"
-          },
-          "IL": {
+        },
+        "IL": {
             "zoneName": "إسرائيل"
-          },
-          "IQ": {
+        },
+        "IQ": {
             "zoneName": "العراق"
-          },
-          "IR": {
+        },
+        "IR": {
             "zoneName": "إيران"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "آيسلندا"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "إيطاليا"
-          },
-          "JO": {
+        },
+        "JO": {
             "zoneName": "الاردن"
-          },
-          "KZ": {
+        },
+        "KZ": {
             "zoneName": "كازاخستان"
-          },
-          "LB": {
+        },
+        "LB": {
             "zoneName": "لبنان"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "ليتوانيا"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "لوكسمبورغ"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "لاتفيا"
-          },
-          "LY": {
+        },
+        "LY": {
             "zoneName": "ليبيا"
-          },
-          "MA": {
+        },
+        "MA": {
             "zoneName": "المغرب"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "مولدوفا"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "الجبل الاسود"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "شمال مقدونيا"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "مالطا"
-          },
-          "NI": {
+        },
+        "NI": {
             "zoneName": "نيكاراغوا"
-          },
-          "NKR": {
+        },
+        "NKR": {
             "zoneName": "مرتفعات قرة باغ"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "هولندا"
-          },
-          "NO": {
+        },
+        "NO": {
             "zoneName": "نورواي"
-          },
-          "NZ-NZN": {
+        },
+        "NZ-NZN": {
             "countryName": "نيوزلندا",
             "zoneName": "الجزيرة الشمالية"
-          },
-          "NZ-NZS": {
+        },
+        "NZ-NZS": {
             "countryName": "نيوزلندا",
             "zoneName": "الجزيرة الجنوبية"
-          },
-          "PA": {
+        },
+        "PA": {
             "zoneName": "بنما"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "البيرو"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "بولندا"
-          },
-          "PS": {
+        },
+        "PS": {
             "zoneName": "دولة فلسطين"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "البرتغال"
-          },
-          "PT-AC": {
+        },
+        "PT-AC": {
             "countryName": "البرتغال",
             "zoneName": "أزورس"
-          },
-          "PT-MA": {
+        },
+        "PT-MA": {
             "countryName": "البرتغال",
             "zoneName": "ماديرا"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "رومانيا"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "صربيا"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "روسيا"
-          },
-          "SA": {
+        },
+        "SA": {
             "zoneName": "المملكة العربية السعودية"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "السويد"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "سلوفينيا"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "سلوفايكا"
-          },
-          "SV": {
+        },
+        "SV": {
             "zoneName": "السلفادور"
-          },
-          "SY": {
+        },
+        "SY": {
             "zoneName": "سوريا"
-          },
-          "TM": {
+        },
+        "TM": {
             "zoneName": "تركمانستان"
-          },
-          "TN": {
+        },
+        "TN": {
             "zoneName": "تونس"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "تركيا"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "تايوان"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "أوكرانيا"
-          },
-          "US": {
+        },
+        "US": {
             "zoneName": "الولايات المتحدة الأمريكية"
-          },
-          "UY": {
+        },
+        "UY": {
             "zoneName": "أورغواي"
-          },
-          "UZ": {
+        },
+        "UZ": {
             "zoneName": "أوزبكستان"
-          }
+        }
     }
 }
