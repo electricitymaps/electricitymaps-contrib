@@ -92,7 +92,7 @@
         "production": "produkcja",
         "consumption": "konsumpcja",
         "selectLanguage": "Wybierz język",
-        "lowCarbDescription": "Zawiera nieskoemisyjne i jądrowe źródła energii"
+        "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
     },
     "misc": {
         "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
