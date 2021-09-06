@@ -31,7 +31,6 @@
         "carbonintensity": "碳強度",
         "crossborderexport": "跨境出口",
         "carbonintensityexport": "出口碳強度",
-
         "ofinstalled": "的裝載容量",
         "utilizing": "利用",
         "withcarbonintensity": "具有碳強度"
@@ -51,280 +50,276 @@
     "coal": "煤炭",
     "oil": "石油",
     "unknown": "未知",
-
     "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力來自 %3$s",
     "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量來自 %3$s",
     "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力使用 %3$s 儲存",
     "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量使用 %3$s 儲存",
-
     "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力被匯出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量被匯出到 <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的電力從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b> <b>%1$s %%</b> 的排放量從 <img id=\"country-exchange-flag\"></img> <b>%3$s</b> 匯入",
-
     "ofCO2eqPerMinute": "of CO₂eq per minute",
-
     "zoneShortName": {
         "AL": {
             "zoneName": "阿爾巴尼亞"
-          },
-          "AM": {
+        },
+        "AM": {
             "zoneName": "亞美尼亞"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "奧地利"
-          },
-          "AUS-NSW": {
+        },
+        "AUS-NSW": {
             "zoneName": "澳大利亞（新南威爾士州）"
-          },
-          "AUS-NT": {
+        },
+        "AUS-NT": {
             "zoneName": "澳大利亞（北領地）"
-          },
-          "AUS-QLD": {
+        },
+        "AUS-QLD": {
             "zoneName": "澳大利亞（昆士蘭州）"
-          },
-          "AUS-SA": {
+        },
+        "AUS-SA": {
             "zoneName": "澳大利亞（南澳大利亞）"
-          },
-          "AUS-TAS": {
+        },
+        "AUS-TAS": {
             "zoneName": "澳大利亞（塔斯馬尼亞）"
-          },
-          "AUS-VIC": {
+        },
+        "AUS-VIC": {
             "zoneName": "澳大利亞（維多利亞）"
-          },
-          "AUS-WA": {
+        },
+        "AUS-WA": {
             "zoneName": "澳大利亞（西澳大利亞）"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "奧蘭群島"
-          },
-          "AZ": {
+        },
+        "AZ": {
             "zoneName": "阿塞拜疆"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "波斯尼亞和黑塞哥維那"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "比利時"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "保加利亞"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "白俄羅斯"
-          },
-          "CA-AB": {
+        },
+        "CA-AB": {
             "zoneName": "加拿大（阿爾伯塔）"
-          },
-          "CA-BC": {
+        },
+        "CA-BC": {
             "zoneName": "加拿大（不列顛哥倫比亞省）"
-          },
-          "CA-MB": {
+        },
+        "CA-MB": {
             "zoneName": "加拿大（馬尼托巴省）"
-          },
-          "CA-NB": {
+        },
+        "CA-NB": {
             "zoneName": "加拿大（新不倫瑞克）"
-          },
-          "CA-NS": {
+        },
+        "CA-NS": {
             "zoneName": "加拿大（新斯科舍省）"
-          },
-          "CA-ON": {
+        },
+        "CA-ON": {
             "zoneName": "加拿大（安大略省）"
-          },
-          "CA-PE": {
+        },
+        "CA-PE": {
             "zoneName": "加拿大（太子港）"
-          },
-          "CA-QC": {
+        },
+        "CA-QC": {
             "zoneName": "加拿大（魁北克）"
-          },
-          "CA-SK": {
+        },
+        "CA-SK": {
             "zoneName": "加拿大（薩斯喀徹溫省）"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "瑞士"
-          },
-          "CN": {
+        },
+        "CN": {
             "zoneName": "中國"
-          },
-          "CY": {
+        },
+        "CY": {
             "zoneName": "塞浦路斯"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "捷克"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "德國"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "丹麥"
-          },
-          "DZ": {
+        },
+        "DZ": {
             "zoneName": "阿爾及利亞"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "愛沙尼亞"
-          },
-          "EG": {
+        },
+        "EG": {
             "zoneName": "埃及"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "西班牙"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "芬蘭"
-          },
-          "FO": {
+        },
+        "FO": {
             "zoneName": "法羅群島"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "法國"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "英國"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "北愛爾蘭"
-          },
-          "GE": {
+        },
+        "GE": {
             "zoneName": "格魯吉亞"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "希臘"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "克羅地亞"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "匈牙利"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "愛爾蘭"
-          },
-          "IL": {
+        },
+        "IL": {
             "zoneName": "以色列"
-          },
-          "IQ": {
+        },
+        "IQ": {
             "zoneName": "伊拉克"
-          },
-          "IR": {
+        },
+        "IR": {
             "zoneName": "伊朗"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "冰島"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "義大利"
-          },
-          "JO": {
+        },
+        "JO": {
             "zoneName": "約旦"
-          },
-          "JP": {
+        },
+        "JP": {
             "zoneName": "日本"
-          },
-          "KR": {
+        },
+        "KR": {
             "zoneName": "南韓"
-          },
-          "KZ": {
+        },
+        "KZ": {
             "zoneName": "哈薩克斯坦"
-          },
-          "LB": {
+        },
+        "LB": {
             "zoneName": "黎巴嫩"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "立陶宛"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "盧森堡"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "拉脫維亞"
-          },
-          "LY": {
+        },
+        "LY": {
             "zoneName": "利比亞"
-          },
-          "MA": {
+        },
+        "MA": {
             "zoneName": "摩洛哥"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "摩爾多瓦"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "黑山共和國"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "北馬其頓"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "馬耳他"
-          },
-          "NKR": {
+        },
+        "NKR": {
             "zoneName": "納戈爾諾-卡拉巴赫"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "荷蘭"
-          },
-          "NO": {
+        },
+        "NO": {
             "zoneName": "挪威"
-          },
-          "NZ-NZN": {
+        },
+        "NZ-NZN": {
             "zoneName": "紐西蘭（北島）"
-          },
-          "NZ-NZS": {
+        },
+        "NZ-NZS": {
             "zoneName": "紐西蘭（南島）"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "波蘭"
-          },
-          "PS": {
+        },
+        "PS": {
             "zoneName": "巴勒斯坦"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "葡萄牙"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "羅馬尼亞"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "塞爾維亞"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "俄羅斯"
-          },
-          "SA": {
+        },
+        "SA": {
             "zoneName": "沙烏地阿拉伯"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "瑞典"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "斯洛維尼亞"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "斯洛伐克"
-          },
-          "SY": {
+        },
+        "SY": {
             "zoneName": "敘利亞"
-          },
-          "TM": {
+        },
+        "TM": {
             "zoneName": "土庫曼斯坦"
-          },
-          "TN": {
+        },
+        "TN": {
             "zoneName": "突尼西亞"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "土耳其"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "台灣"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "烏克蘭"
-          },
-          "US": {
+        },
+        "US": {
             "zoneName": "美國"
-          },
-          "UZ": {
+        },
+        "UZ": {
             "zoneName": "烏茲別克"
-          }
+        }
     }
 }

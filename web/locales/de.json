@@ -191,7 +191,7 @@
         "whoAreYou-question": "Wer sind Sie?",
         "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
         "feedback-question": "Kann ich Ihnen Feedback geben?",
-        "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@electricitymap.com\">senden Sie uns eine E-Mail!</a>",
+        "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@electricitymap.org\">senden Sie uns eine E-Mail!</a>",
         "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
         "contribute-answer": "Ja, gerne! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
         "workTogether-question": "Können wir zusammenarbeiten?",
