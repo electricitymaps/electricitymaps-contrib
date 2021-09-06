@@ -3814,26 +3814,6 @@
                 },
                 "totalProduction": 84578.0
             },
-            "US-FLA-NSB": {
-                "co2intensity": 450.1188333319356,
-                "countryCode": "US-FLA-NSB",
-                "datetime": "2018-01-25T07:25:00-05:00",
-                "exchange": {},
-                "exchangeCo2Intensities": {},
-                "maxProduction": 44102.0,
-                "production": {
-                    "coal": 44102.0,
-                    "gas": 22574.0,
-                    "nuclear": 12392.0,
-                    "unknown": 3266.0,
-                    "wind": 2244.0
-                },
-                "source": "misoenergy.org",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 84578.0
-            },
             "US-FLA-SEC": {
                 "co2intensity": 191.16762840551013,
                 "countryCode": "US-FLA-SEC",
@@ -3918,26 +3898,6 @@
                     "CA-ON": 352.9637032017247
                 }
             },
-            "US-MIDA-OVEC": {
-                "co2intensity": 278.3973533718498,
-                "countryCode": "US-MIDA-OVEC",
-                "datetime": "2018-01-25T07:25:00-05:00",
-                "exchange": {},
-                "exchangeCo2Intensities": {},
-                "maxProduction": 44102.0,
-                "production": {
-                    "coal": 44102.0,
-                    "gas": 22574.0,
-                    "nuclear": 12392.0,
-                    "unknown": 3266.0,
-                    "wind": 2244.0
-                },
-                "source": "misoenergy.org",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 84578.0
-            },
             "US-MIDA-PJM": {
                 "co2intensity": 79.41081517465322,
                 "countryCode": "US-MIDA-PJM",
@@ -3961,26 +3921,6 @@
             "US-MIDW-AECI": {
                 "co2intensity": 212.48944274070834,
                 "countryCode": "US-MIDW-AECI",
-                "datetime": "2018-01-25T07:25:00-05:00",
-                "exchange": {},
-                "exchangeCo2Intensities": {},
-                "maxProduction": 44102.0,
-                "production": {
-                    "coal": 44102.0,
-                    "gas": 22574.0,
-                    "nuclear": 12392.0,
-                    "unknown": 3266.0,
-                    "wind": 2244.0
-                },
-                "source": "misoenergy.org",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 84578.0
-            },
-            "US-MIDW-EEI": {
-                "co2intensity": 135.52923670316918,
-                "countryCode": "US-MIDW-EEI",
                 "datetime": "2018-01-25T07:25:00-05:00",
                 "exchange": {},
                 "exchangeCo2Intensities": {},
@@ -4621,26 +4561,6 @@
             "US-SW-GRIF": {
                 "co2intensity": 477.3322148925056,
                 "countryCode": "US-SW-GRIF",
-                "datetime": "2018-01-25T07:25:00-05:00",
-                "exchange": {},
-                "exchangeCo2Intensities": {},
-                "maxProduction": 44102.0,
-                "production": {
-                    "coal": 44102.0,
-                    "gas": 22574.0,
-                    "nuclear": 12392.0,
-                    "unknown": 3266.0,
-                    "wind": 2244.0
-                },
-                "source": "misoenergy.org",
-                "storage": {
-                    "hydro": null
-                },
-                "totalProduction": 84578.0
-            },
-            "US-SW-GRMA": {
-                "co2intensity": 139.37476873221257,
-                "countryCode": "US-SW-GRMA",
                 "datetime": "2018-01-25T07:25:00-05:00",
                 "exchange": {},
                 "exchangeCo2Intensities": {},
