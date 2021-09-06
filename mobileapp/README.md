@@ -11,7 +11,7 @@ A few prerequisite:
 
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
-To build the JavaScript:
+To build the JavaScript (you need to export BRICK_ELECTRICITYMAP_PUBLIC_TOKEN in order to access the API):
 
 ```
 docker-compose build web && ./build.sh
