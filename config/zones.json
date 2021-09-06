@@ -5537,7 +5537,12 @@
         -120.084803325,
         41.868139
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-CISO": {
     "comment": "California Independent System Operator",
@@ -5615,7 +5620,12 @@
         -113.962511,
         34.535375
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-LDWP": {
     "comment": "Los Angeles Department Of Water And Power",
@@ -5654,7 +5664,12 @@
         -117.104019502,
         37.963081
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-TIDC": {
     "comment": "Turlock Irrigation District",
@@ -5693,7 +5708,12 @@
         -119.868765123,
         38.209221358
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-CPLE": {
     "comment": "Duke Energy Progress East",
@@ -5732,7 +5752,12 @@
         -75.53103,
         37.04465
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-CPLW": {
     "comment": "Duke Energy Progress West",
@@ -5771,7 +5796,12 @@
         -81.19208,
         36.7872800000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-DUK": {
     "comment": "Duke Energy Carolinas",
@@ -5810,7 +5840,12 @@
         -77.75453,
         37.0883200000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-SC": {
     "comment": "South Carolina Public Service Authority",
@@ -5849,7 +5884,12 @@
         -78.04086,
         35.334748543
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-SCEG": {
     "comment": "South Carolina Electric & Gas Company",
@@ -5888,7 +5928,12 @@
         -78.92575821,
         35.2360579840001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-YAD": {
     "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
@@ -5925,7 +5970,10 @@
         -79.4523525239999,
         36.2042064670001
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-CENT-SPA": {
     "comment": "Southwestern Power Administration",
@@ -5964,7 +6012,12 @@
         -89.033722,
         40.781817
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CENT-SWPP": {
     "comment": "Southwest Power Pool",
@@ -6043,7 +6096,12 @@
         -79.53074,
         30.69435
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-FPC": {
     "comment": "Duke Energy Florida Inc",
@@ -6082,7 +6140,12 @@
         -79.99125,
         31.214009
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-FPL": {
     "comment": "Florida Power & Light Company",
@@ -6121,7 +6184,12 @@
         -79.53074,
         31.33017
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-GVL": {
     "comment": "Gainesville Regional Utilities",
@@ -6160,7 +6228,12 @@
         -81.54976,
         30.44528
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-HST": {
     "comment": "City Of Homestead",
@@ -6199,7 +6272,12 @@
         -79.61802,
         26.47902
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-JEA": {
     "comment": "Jea",
@@ -6238,7 +6316,12 @@
         -80.848769105,
         31.50107
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-NSB": {
     "comment": "New Smyrna Beach, Utilities Commission Of",
@@ -6262,7 +6345,12 @@
         -80.23297,
         29.92717
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-SEC": {
     "comment": "Seminole Electric Cooperative",
@@ -6301,7 +6389,12 @@
         -80.123257233,
         31.2115600000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-TAL": {
     "comment": "City Of Tallahassee",
@@ -6340,7 +6433,12 @@
         -83.591841,
         31.123546
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-TEC": {
     "comment": "Tampa Electric Company",
@@ -6379,7 +6477,12 @@
         -81.1327000919999,
         28.9295718550001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDA-OVEC": {
     "comment": "Ohio Valley Electric Corporation",
@@ -6418,7 +6521,12 @@
         -82.285891,
         39.6975850000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDA-PJM": {
     "comment": "Pjm Interconnection, Llc",
@@ -6497,7 +6605,12 @@
         -88.5987499999999,
         41.779649115
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDW-EEI": {
     "comment": "Electric Energy, Inc.",
@@ -6534,7 +6647,10 @@
         -87.9829,
         37.83698
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-MIDW-GLHB": {
     "comment": "GridLiance",
@@ -6546,7 +6662,10 @@
     "parsers": {
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": "US/Central"
+    "timezone": "US/Central",
+    "delays": {
+      "production": 30
+    }
   },
   "US-MIDW-LGEE": {
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
@@ -6585,7 +6704,12 @@
         -82.355720806,
         39.4703334770001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDW-MISO": {
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
@@ -6616,6 +6740,8 @@
       "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
     },
     "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
       "production": 30
     },
     "timezone": "US/Central",
@@ -6706,7 +6832,12 @@
         -113.68675,
         49.50073
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-AVRN": {
     "comment": "Avangrid Renewables Cooperative",
@@ -6733,7 +6864,10 @@
     "parsers": {
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": "US/Pacific"
+    "timezone": "US/Pacific",
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-BPAT": {
     "comment": "Bonneville Power Administration",
@@ -6772,7 +6906,12 @@
         -105.50971,
         49.50244
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-CHPD": {
     "comment": "Public Utility District No. 1 Of Chelan County",
@@ -6811,7 +6950,12 @@
         -119.359734,
         49.050725
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-DOPD": {
     "comment": "Pud No. 1 Of Douglas County",
@@ -6850,7 +6994,12 @@
         -118.335197,
         49.500448
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-GCPD": {
     "comment": "Public Utility District No. 2 Of Grant County, Washington",
@@ -6889,7 +7038,12 @@
         -118.473872746,
         48.462236509
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-GRID": {
     "comment": "Gridforce Energy Management, Llc",
@@ -6911,7 +7065,10 @@
         -118.363136292,
         46.366308212
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-GWA": {
     "comment": "Naturener Power Watch, Llc (Gwa)",
@@ -6948,7 +7105,10 @@
         -111.05112648,
         49.491411209
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-IPCO": {
     "comment": "Idaho Power Company",
@@ -6987,7 +7147,12 @@
         -111.08807,
         47.1707900000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-NEVP": {
     "comment": "Nevada Power Company",
@@ -7026,7 +7191,12 @@
         -111.0849,
         42.5017700000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-NWMT": {
     "comment": "Northwestern Energy (Nwmt)",
@@ -7065,7 +7235,12 @@
         -103.53947,
         49.5011000000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PACE": {
     "comment": "Pacificorp - East",
@@ -7104,7 +7279,12 @@
         -104.15314,
         45.5057600000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PACW": {
     "comment": "Pacificorp - West",
@@ -7143,7 +7323,12 @@
         -115.96327,
         47.5893300000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PGE": {
     "comment": "Portland General Electric Company",
@@ -7182,7 +7367,12 @@
         -121.156917718,
         46.4057731890001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PSCO": {
     "comment": "Public Service Company Of Colorado",
@@ -7221,7 +7411,12 @@
         -102.094762152,
         41.7250704890001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PSEI": {
     "comment": "Puget Sound Energy",
@@ -7260,7 +7455,12 @@
         -119.816106194,
         49.502493024
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-SCL": {
     "comment": "Seattle City Light",
@@ -7299,7 +7499,12 @@
         -121.725915999,
         48.277929
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-TPWR": {
     "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
@@ -7338,7 +7543,12 @@
         -120.56592,
         48.28046
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WACM": {
     "comment": "Western Area Power Administration - Rocky Mountain Region",
@@ -7377,7 +7587,12 @@
         -95.95176,
         48.07463
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WAUW": {
     "comment": "Western Area Power Administration Ugp West",
@@ -7416,7 +7631,12 @@
         -102.051328941,
         49.1340949710001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WWA": {
     "comment": "Naturener Wind Watch, Llc",
@@ -7453,7 +7673,10 @@
         -110.887711776,
         49.498921
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NY-NYIS": {
     "comment": "New York Independent System Operator",
@@ -7532,7 +7755,12 @@
         -84.3581394658229,
         34.4502982778481
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SE-SEPA": {
     "comment": "Southeastern Power Administration",
@@ -7569,7 +7797,10 @@
         -83.357543,
         33.075117
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SE-SOCO": {
     "comment": "Southern Company Services, Inc. - Trans",
@@ -7608,7 +7839,12 @@
         -80.251429,
         35.5013030000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-AZPS": {
     "comment": "Arizona Public Service Company",
@@ -7647,7 +7883,12 @@
         -108.777145881,
         36.784585904
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-DEAA": {
     "comment": "Arlington Valley, Llc - Avba",
@@ -7684,7 +7925,10 @@
         -112.375976563,
         33.877473831
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-EPE": {
     "comment": "El Paso Electric Company",
@@ -7723,7 +7967,12 @@
         -98.29803,
         33.98024
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-GRIF": {
     "comment": "Griffith Energy, Llc",
@@ -7760,7 +8009,10 @@
         -112.998666763,
         35.717744827
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-GRMA": {
     "comment": "Gila River Power, Llc",
@@ -7797,7 +8049,10 @@
         -111.760446548,
         33.5380344390001
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-HGMA": {
     "comment": "New Harquahala Generating Company, Llc - Hgba",
@@ -7834,7 +8089,10 @@
         -112.449426651,
         34.847730637
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-PNM": {
     "comment": "Public Service Company Of New Mexico",
@@ -7873,7 +8131,12 @@
         -101.52796,
         44.59554275
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-SRP": {
     "comment": "Salt River Project",
@@ -7912,7 +8175,12 @@
         -110.438901961,
         34.54817
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-TEPC": {
     "comment": "Tucson Electric Power Company",
@@ -7951,7 +8219,12 @@
         -110.070620884,
         36.710648233
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-WALC": {
     "comment": "Western Area Power Administration - Desert Southwest Region",
@@ -7990,7 +8263,12 @@
         -105.02991,
         44.1167400000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-TEN-TVA": {
     "comment": "Tennessee Valley Authority",
@@ -8029,7 +8307,12 @@
         -81.14647784,
         38.101846827
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-TEX-ERCO": {
     "comment": "Electric Reliability Council Of Texas, Inc.",
@@ -8070,6 +8353,8 @@
       ]
     ],
     "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
       "production": 30
     }
   },
