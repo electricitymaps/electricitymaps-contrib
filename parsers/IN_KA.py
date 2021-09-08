@@ -38,7 +38,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
 
     html = web.get_response_soup(zone_key, 'http://kptclsldc.in/StateGen.aspx', session)
 
-    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
+    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss')
 
     # RTPS Production: https://en.wikipedia.org/wiki/Raichur_Thermal_Power_Station
     rtps_value = IN.read_value_from_span_id(html, 'lblrtptot')
@@ -115,7 +115,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
     ncep_date_time = IN.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
 
     # Check ncep date is similar than state gen date
-    if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
+    if abs((india_date_time - ncep_date_time).seconds) > 600:
         raise ParserException('IN-KA', 'NCEP or State datetime is not valid') 
 
     # cogen type is sugarcane bagasee. Proof in Issue #1867
