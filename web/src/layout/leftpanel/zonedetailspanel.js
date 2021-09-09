@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 
 const SocialButtons = styled.div`
   @media (max-width: 767px) {
-    display: ${location.pathname !== '/map' ? 'none !important' : 'block' };
+    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
   }
 `;
 
