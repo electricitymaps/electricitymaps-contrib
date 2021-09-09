@@ -182,8 +182,7 @@
         "unknown": {
           "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
           "value": 655
-        }
-        ,
+        },
         "battery discharge": {
           "source": "2017 average by Tomorrow",
           "value": 597
@@ -218,19 +217,17 @@
           "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
           "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
           "value": 131
-        }
-        ,
+        },
         "hydro discharge": {
           "source": "2020 average by Tomorrow",
           "value": 87.03
-        }
-        ,
+        },
         "battery discharge": {
           "source": "2020 average by Tomorrow",
           "value": 87.03
         }
       },
-      "CL-SEN" : {
+      "CL-SEN": {
         "unknown": {
           "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
           "value": 491.8
@@ -735,8 +732,10 @@
           "value": 46.02408724838775
         },
         "unknown": {
-          "source": "assumes 76% biomass, 12% oil based thermal, 7% gas, 3% solar, 2% peat",
-          "value": 306
+          "_comment": "Uses the 2019 (2021 edition) eurostat production values for the sources in unknown",
+          "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-balance-sheets-February-2021-edition.zip/4b1d6665-f303-be7d-a7e5-1e0da16ec0d9?t=1612709565471",
+          "source": "assumes 77.22% biomass, 11.2% oil based thermal, 6.33% gas, 4.03% solar, 1.21% peat",
+          "value": 292.9
         }
       },
       "SG": {
@@ -1285,7 +1284,7 @@
           "unknown": 0.15258490420002668,
           "wind": 0.0
         }
-         },
+      },
       "CH": {
         "_source": "Bundesamt für Statistik, Gesamtenergiestatistik 2019",
         "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",

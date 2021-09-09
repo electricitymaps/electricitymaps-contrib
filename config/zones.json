@@ -5467,21 +5467,22 @@
     ]
   },
   "US-HI-OA": {
-    "_comment": "biomass includes 68.5 MW of Waste-to-energy and 188 MW of biodiesel.",
     "capacity": {
-      "biomass": 256.5,
-      "coal": 0,
+      "battery storage": 1,
+      "biomass": 157.7,
+      "coal": 203,
       "gas": 0,
       "geothermal": 0,
       "hydro": 0,
-      "oil": 0,
-      "solar": 781,
-      "wind": 171,
+      "oil": 1528.9,
+      "solar": 198,
+      "wind": 126.6,
       "unknown": 0
     },
     "contributors": [
       "https://github.com/kepiej",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -5511,7 +5512,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 72.2,
-      "solar": 310.1,
+      "solar": 322.1,
       "unknown": 0,
       "wind": 0
     },
@@ -5536,23 +5537,28 @@
         -120.084803325,
         41.868139
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-CISO": {
     "comment": "California Independent System Operator",
     "capacity": {
-      "battery storage": 735.4,
-      "biomass": 1177.9,
+      "battery storage": 1384.8,
+      "biomass": 1174.8,
       "coal": 62.5,
-      "gas": 32964.7,
+      "gas": 33011.8,
       "geothermal": 2103.5,
-      "hydro": 6716.3,
+      "hydro": 6704.3,
       "hydro storage": 2094.4,
       "nuclear": 2323,
       "oil": 391.5,
-      "solar": 14850.8,
+      "solar": 15006.4,
       "unknown": 99.7,
-      "wind": 5961.3
+      "wind": 6022.5
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -5589,7 +5595,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 24.9,
-      "solar": 383.4,
+      "solar": 386.4,
       "unknown": 0,
       "wind": 0
     },
@@ -5614,7 +5620,12 @@
         -113.962511,
         34.535375
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-LDWP": {
     "comment": "Los Angeles Department Of Water And Power",
@@ -5653,7 +5664,12 @@
         -117.104019502,
         37.963081
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAL-TIDC": {
     "comment": "Turlock Irrigation District",
@@ -5692,21 +5708,26 @@
         -119.868765123,
         38.209221358
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-CPLE": {
     "comment": "Duke Energy Progress East",
     "capacity": {
       "battery storage": 0,
-      "biomass": 356.6,
-      "coal": 3373.9,
+      "biomass": 409.1,
+      "coal": 3321.4,
       "gas": 6489.8,
       "geothermal": 0,
       "hydro": 228,
       "hydro storage": 0,
       "nuclear": 3722.7,
       "oil": 282.1,
-      "solar": 1511.1,
+      "solar": 1562.1,
       "unknown": 54,
       "wind": 0
     },
@@ -5731,7 +5752,12 @@
         -75.53103,
         37.04465
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-CPLW": {
     "comment": "Duke Energy Progress West",
@@ -5770,13 +5796,18 @@
         -81.19208,
         36.7872800000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-DUK": {
     "comment": "Duke Energy Carolinas",
     "capacity": {
       "battery storage": 0,
-      "biomass": 100.2,
+      "biomass": 90.9,
       "coal": 7045.1,
       "gas": 10719,
       "geothermal": 0,
@@ -5784,7 +5815,7 @@
       "hydro storage": 2070,
       "nuclear": 7517.5,
       "oil": 143.4,
-      "solar": 2213.6,
+      "solar": 2241.5,
       "unknown": 0,
       "wind": 0
     },
@@ -5809,7 +5840,12 @@
         -77.75453,
         37.0883200000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-SC": {
     "comment": "South Carolina Public Service Authority",
@@ -5848,7 +5884,12 @@
         -78.04086,
         35.334748543
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-SCEG": {
     "comment": "South Carolina Electric & Gas Company",
@@ -5887,7 +5928,12 @@
         -78.92575821,
         35.2360579840001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CAR-YAD": {
     "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
@@ -5924,7 +5970,10 @@
         -79.4523525239999,
         36.2042064670001
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-CENT-SPA": {
     "comment": "Southwestern Power Administration",
@@ -5963,23 +6012,28 @@
         -89.033722,
         40.781817
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-CENT-SWPP": {
     "comment": "Southwest Power Pool",
     "capacity": {
-      "battery storage": 25,
-      "biomass": 345.8,
+      "battery storage": 26.4,
+      "biomass": 344.2,
       "coal": 22064.3,
-      "gas": 36392.2,
+      "gas": 36306.1,
       "geothermal": 0,
       "hydro": 3104.1,
       "hydro storage": 259.2,
       "nuclear": 2068.7,
-      "oil": 2181.4,
-      "solar": 396.4,
+      "oil": 2185.4,
+      "solar": 404.8,
       "unknown": 62,
-      "wind": 25352.5
+      "wind": 26150.3
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6010,7 +6064,7 @@
     "capacity": {
       "battery storage": 0,
       "biomass": 0,
-      "coal": 1292.8,
+      "coal": 929,
       "gas": 3119.3,
       "geothermal": 0,
       "hydro": 0,
@@ -6042,13 +6096,18 @@
         -79.53074,
         30.69435
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-FPC": {
     "comment": "Duke Energy Florida Inc",
     "capacity": {
       "battery storage": 0,
-      "biomass": 269.2,
+      "biomass": 255.2,
       "coal": 1478.4,
       "gas": 11223.9,
       "geothermal": 0,
@@ -6081,7 +6140,12 @@
         -79.99125,
         31.214009
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-FPL": {
     "comment": "Florida Power & Light Company",
@@ -6095,7 +6159,7 @@
       "hydro storage": 0,
       "nuclear": 3797.2,
       "oil": 261.5,
-      "solar": 2796.8,
+      "solar": 2945.8,
       "unknown": 0,
       "wind": 0
     },
@@ -6120,7 +6184,12 @@
         -79.53074,
         31.33017
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-GVL": {
     "comment": "Gainesville Regional Utilities",
@@ -6159,7 +6228,12 @@
         -81.54976,
         30.44528
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-HST": {
     "comment": "City Of Homestead",
@@ -6198,7 +6272,12 @@
         -79.61802,
         26.47902
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-JEA": {
     "comment": "Jea",
@@ -6212,7 +6291,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 248.4,
-      "solar": 37.5,
+      "solar": 35.1,
       "unknown": 0,
       "wind": 0
     },
@@ -6237,7 +6316,12 @@
         -80.848769105,
         31.50107
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-NSB": {
     "comment": "New Smyrna Beach, Utilities Commission Of",
@@ -6261,7 +6345,12 @@
         -80.23297,
         29.92717
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-SEC": {
     "comment": "Seminole Electric Cooperative",
@@ -6300,7 +6389,12 @@
         -80.123257233,
         31.2115600000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-TAL": {
     "comment": "City Of Tallahassee",
@@ -6339,7 +6433,12 @@
         -83.591841,
         31.123546
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-FLA-TEC": {
     "comment": "Tampa Electric Company",
@@ -6378,7 +6477,12 @@
         -81.1327000919999,
         28.9295718550001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDA-OVEC": {
     "comment": "Ohio Valley Electric Corporation",
@@ -6417,23 +6521,28 @@
         -82.285891,
         39.6975850000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDA-PJM": {
     "comment": "Pjm Interconnection, Llc",
     "capacity": {
-      "battery storage": 300.7,
-      "biomass": 2330.3,
-      "coal": 49679.5,
-      "gas": 98749.2,
+      "battery storage": 310.7,
+      "biomass": 2332.3,
+      "coal": 48944,
+      "gas": 99523,
       "geothermal": 0,
       "hydro": 3308.7,
       "hydro storage": 5103.3,
       "nuclear": 34466.6,
-      "oil": 6963.6,
-      "solar": 4894.3,
+      "oil": 6082.6,
+      "solar": 5114.7,
       "unknown": 133.2,
-      "wind": 10171.5
+      "wind": 10420.7
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6472,8 +6581,8 @@
       "nuclear": 0,
       "oil": 164.7,
       "solar": 2.5,
-      "unknown": 941.4,
-      "wind": 0
+      "unknown": 0,
+      "wind": 941.4
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -6496,7 +6605,12 @@
         -88.5987499999999,
         41.779649115
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDW-EEI": {
     "comment": "Electric Energy, Inc.",
@@ -6533,7 +6647,10 @@
         -87.9829,
         37.83698
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-MIDW-GLHB": {
     "comment": "GridLiance",
@@ -6545,7 +6662,10 @@
     "parsers": {
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": "US/Central"
+    "timezone": "US/Central",
+    "delays": {
+      "production": 30
+    }
   },
   "US-MIDW-LGEE": {
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
@@ -6559,7 +6679,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 11.5,
-      "solar": 10,
+      "solar": 13,
       "unknown": 0,
       "wind": 0
     },
@@ -6584,21 +6704,26 @@
         -82.355720806,
         39.4703334770001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-MIDW-MISO": {
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
     "capacity": {
-      "battery storage": 55.4,
+      "battery storage": 57.9,
       "biomass": 2487.4,
-      "coal": 61158.4,
-      "gas": 82858.1,
+      "coal": 58976.5,
+      "gas": 83309.2,
       "geothermal": 0,
-      "hydro": 2428,
-      "hydro storage": 2414.8,
+      "hydro": 2463,
+      "hydro storage": 2416.8,
       "nuclear": 13080.8,
-      "oil": 5047.2,
-      "solar": 2204.2,
+      "oil": 5023.5,
+      "solar": 2304,
       "unknown": 624.7,
       "wind": 27159.1
     },
@@ -6615,6 +6740,8 @@
       "productionPerModeForecast": "US_MISO.fetch_wind_forecast"
     },
     "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
       "production": 30
     },
     "timezone": "US/Central",
@@ -6632,16 +6759,16 @@
   "US-NE-ISNE": {
     "comment": "Iso New England Inc.",
     "capacity": {
-      "battery storage": 107.6,
+      "battery storage": 159,
       "biomass": 1613.9,
       "coal": 559.2,
-      "gas": 19607.8,
+      "gas": 19886,
       "geothermal": 0,
       "hydro": 1918.6,
       "hydro storage": 1799,
       "nuclear": 3404.9,
-      "oil": 6325,
-      "solar": 1535,
+      "oil": 6069,
+      "solar": 1637.1,
       "unknown": 0,
       "wind": 1504.4
     },
@@ -6705,7 +6832,12 @@
         -113.68675,
         49.50073
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-AVRN": {
     "comment": "Avangrid Renewables Cooperative",
@@ -6732,7 +6864,10 @@
     "parsers": {
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": "US/Pacific"
+    "timezone": "US/Pacific",
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-BPAT": {
     "comment": "Bonneville Power Administration",
@@ -6771,7 +6906,12 @@
         -105.50971,
         49.50244
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-CHPD": {
     "comment": "Public Utility District No. 1 Of Chelan County",
@@ -6810,7 +6950,12 @@
         -119.359734,
         49.050725
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-DOPD": {
     "comment": "Pud No. 1 Of Douglas County",
@@ -6849,7 +6994,12 @@
         -118.335197,
         49.500448
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-GCPD": {
     "comment": "Public Utility District No. 2 Of Grant County, Washington",
@@ -6888,7 +7038,12 @@
         -118.473872746,
         48.462236509
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-GRID": {
     "comment": "Gridforce Energy Management, Llc",
@@ -6910,7 +7065,10 @@
         -118.363136292,
         46.366308212
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-GWA": {
     "comment": "Naturener Power Watch, Llc (Gwa)",
@@ -6947,7 +7105,10 @@
         -111.05112648,
         49.491411209
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NW-IPCO": {
     "comment": "Idaho Power Company",
@@ -6986,7 +7147,12 @@
         -111.08807,
         47.1707900000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-NEVP": {
     "comment": "Nevada Power Company",
@@ -6995,12 +7161,12 @@
       "biomass": 35.2,
       "coal": 809,
       "gas": 7828.2,
-      "geothermal": 782.8,
+      "geothermal": 785.8,
       "hydro": 12.8,
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 21,
-      "solar": 1845.8,
+      "solar": 2046.7,
       "unknown": 7.5,
       "wind": 150
     },
@@ -7025,7 +7191,12 @@
         -111.0849,
         42.5017700000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-NWMT": {
     "comment": "Northwestern Energy (Nwmt)",
@@ -7064,7 +7235,12 @@
         -103.53947,
         49.5011000000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PACE": {
     "comment": "Pacificorp - East",
@@ -7103,7 +7279,12 @@
         -104.15314,
         45.5057600000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PACW": {
     "comment": "Pacificorp - West",
@@ -7117,9 +7298,9 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 413.7,
+      "solar": 411.7,
       "unknown": 0,
-      "wind": 714.3
+      "wind": 694.3
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7142,13 +7323,18 @@
         -115.96327,
         47.5893300000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PGE": {
     "comment": "Portland General Electric Company",
     "capacity": {
       "battery storage": 5,
-      "biomass": 14.7,
+      "biomass": 15.9,
       "coal": 0,
       "gas": 2115.3,
       "geothermal": 0,
@@ -7156,7 +7342,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 133,
+      "solar": 135.5,
       "unknown": 0,
       "wind": 716.5
     },
@@ -7181,7 +7367,12 @@
         -121.156917718,
         46.4057731890001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PSCO": {
     "comment": "Public Service Company Of Colorado",
@@ -7192,10 +7383,10 @@
       "gas": 6510,
       "geothermal": 0,
       "hydro": 55.2,
-      "hydro storage": 300,
+      "hydro storage": 150,
       "nuclear": 0,
       "oil": 33.2,
-      "solar": 548.5,
+      "solar": 628.5,
       "unknown": 0,
       "wind": 4490.8
     },
@@ -7220,7 +7411,12 @@
         -102.094762152,
         41.7250704890001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-PSEI": {
     "comment": "Puget Sound Energy",
@@ -7259,7 +7455,12 @@
         -119.816106194,
         49.502493024
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-SCL": {
     "comment": "Seattle City Light",
@@ -7298,7 +7499,12 @@
         -121.725915999,
         48.277929
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-TPWR": {
     "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
@@ -7337,7 +7543,12 @@
         -120.56592,
         48.28046
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WACM": {
     "comment": "Western Area Power Administration - Rocky Mountain Region",
@@ -7345,7 +7556,7 @@
       "battery storage": 8.2,
       "biomass": 3.2,
       "coal": 5929.6,
-      "gas": 1928.8,
+      "gas": 1931.8,
       "geothermal": 0,
       "hydro": 704.3,
       "hydro storage": 208.5,
@@ -7353,7 +7564,7 @@
       "oil": 158.8,
       "solar": 192.2,
       "unknown": 11.5,
-      "wind": 805.6
+      "wind": 885.6
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7376,7 +7587,12 @@
         -95.95176,
         48.07463
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WAUW": {
     "comment": "Western Area Power Administration Ugp West",
@@ -7415,7 +7631,12 @@
         -102.051328941,
         49.1340949710001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-NW-WWA": {
     "comment": "Naturener Wind Watch, Llc",
@@ -7452,21 +7673,24 @@
         -110.887711776,
         49.498921
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-NY-NYIS": {
     "comment": "New York Independent System Operator",
     "capacity": {
-      "battery storage": 49.6,
+      "battery storage": 51.6,
       "biomass": 517.7,
       "coal": 0,
-      "gas": 27098.2,
+      "gas": 27105.7,
       "geothermal": 0,
       "hydro": 4690.2,
       "hydro storage": 1240,
       "nuclear": 3398.4,
-      "oil": 3858.8,
-      "solar": 666.9,
+      "oil": 3853.7,
+      "solar": 701.4,
       "unknown": 20,
       "wind": 1989.2
     },
@@ -7531,7 +7755,12 @@
         -84.3581394658229,
         34.4502982778481
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SE-SEPA": {
     "comment": "Southeastern Power Administration",
@@ -7545,7 +7774,7 @@
       "hydro storage": 328,
       "nuclear": 0,
       "oil": 0,
-      "solar": 26.4,
+      "solar": 25.4,
       "unknown": 0,
       "wind": 0
     },
@@ -7568,7 +7797,10 @@
         -83.357543,
         33.075117
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SE-SOCO": {
     "comment": "Southern Company Services, Inc. - Trans",
@@ -7582,7 +7814,7 @@
       "hydro storage": 1306.6,
       "nuclear": 6054.4,
       "oil": 1284.8,
-      "solar": 2609.4,
+      "solar": 2764.4,
       "unknown": 0,
       "wind": 0
     },
@@ -7607,7 +7839,12 @@
         -80.251429,
         35.5013030000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-AZPS": {
     "comment": "Arizona Public Service Company",
@@ -7621,7 +7858,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 123.8,
-      "solar": 757.5,
+      "solar": 757,
       "unknown": 0,
       "wind": 174.3
     },
@@ -7646,7 +7883,12 @@
         -108.777145881,
         36.784585904
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-DEAA": {
     "comment": "Arlington Valley, Llc - Avba",
@@ -7683,7 +7925,10 @@
         -112.375976563,
         33.877473831
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-EPE": {
     "comment": "El Paso Electric Company",
@@ -7722,7 +7967,12 @@
         -98.29803,
         33.98024
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-GRIF": {
     "comment": "Griffith Energy, Llc",
@@ -7759,7 +8009,10 @@
         -112.998666763,
         35.717744827
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-GRMA": {
     "comment": "Gila River Power, Llc",
@@ -7796,7 +8049,10 @@
         -111.760446548,
         33.5380344390001
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-HGMA": {
     "comment": "New Harquahala Generating Company, Llc - Hgba",
@@ -7833,7 +8089,10 @@
         -112.449426651,
         34.847730637
       ]
-    ]
+    ],
+    "delays": {
+      "production": 30
+    }
   },
   "US-SW-PNM": {
     "comment": "Public Service Company Of New Mexico",
@@ -7849,7 +8108,7 @@
       "oil": 30.4,
       "solar": 369.9,
       "unknown": 1.1,
-      "wind": 1230.8
+      "wind": 1372
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -7872,12 +8131,17 @@
         -101.52796,
         44.59554275
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-SRP": {
     "comment": "Salt River Project",
     "capacity": {
-      "battery storage": 20,
+      "battery storage": 45,
       "biomass": 0,
       "coal": 821.8,
       "gas": 8265.6,
@@ -7911,12 +8175,17 @@
         -110.438901961,
         34.54817
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-TEPC": {
     "comment": "Tucson Electric Power Company",
     "capacity": {
-      "battery storage": 20,
+      "battery storage": 50,
       "biomass": 0,
       "coal": 1765.8,
       "gas": 965.7,
@@ -7925,7 +8194,7 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 0,
-      "solar": 456.5,
+      "solar": 455,
       "unknown": 0,
       "wind": 279.8
     },
@@ -7950,7 +8219,12 @@
         -110.070620884,
         36.710648233
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-SW-WALC": {
     "comment": "Western Area Power Administration - Desert Southwest Region",
@@ -7989,7 +8263,12 @@
         -105.02991,
         44.1167400000001
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-TEN-TVA": {
     "comment": "Tennessee Valley Authority",
@@ -8003,7 +8282,7 @@
       "hydro storage": 1808.6,
       "nuclear": 8474.8,
       "oil": 74.6,
-      "solar": 293,
+      "solar": 520,
       "unknown": 0,
       "wind": 28.8
     },
@@ -8028,23 +8307,28 @@
         -81.14647784,
         38.101846827
       ]
-    ]
+    ],
+    "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
+      "production": 30
+    }
   },
   "US-TEX-ERCO": {
     "comment": "Electric Reliability Council Of Texas, Inc.",
     "capacity": {
-      "battery storage": 223.1,
+      "battery storage": 342.9,
       "biomass": 189.5,
       "coal": 15217.2,
-      "gas": 64842,
+      "gas": 64745.5,
       "geothermal": 0,
       "hydro": 569.7,
       "hydro storage": 0,
       "nuclear": 5138.6,
-      "oil": 111.8,
-      "solar": 6042,
+      "oil": 113.1,
+      "solar": 7261,
       "unknown": 234.7,
-      "wind": 28384
+      "wind": 29401.1
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -8069,6 +8353,8 @@
       ]
     ],
     "delays": {
+      "consumption": 30,
+      "consumptionForecast": 30,
       "production": 30
     }
   },

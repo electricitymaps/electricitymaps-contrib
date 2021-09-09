@@ -83,6 +83,8 @@
         "representing": "Rappresentando il",
         "ofemissions": "di emissioni",
         "withcarbonintensity": "Con un'intensità di carbonio di:",
+        "zoomIn": "Zoom +",
+        "zoomOut": "Zoom -",
         "showWindLayer": "Mostra livello del vento",
         "hideWindLayer": "Nascondi livello del vento",
         "showSolarLayer": "Mostra livello del sole",
@@ -109,7 +111,9 @@
         "faq": "Domande poste frequentemente"
     },
     "wind": "Eolico",
+    "windDataError": "Dati sull'eolico attualmente non disponibili",
     "solar": "Fotovoltaico",
+    "solarDataError": "Dati sul fotovoltaico attualmente non disponibili",
     "hydro": "Idroelettrico",
     "hydro storage": "Accumulo idro.",
     "battery storage": "Batterie accu.",
@@ -120,17 +124,14 @@
     "coal": "Carbone",
     "oil": "Petrolio",
     "unknown": "Sconosciuto",
-
     "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
     "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-
     "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "di CO₂eq per minuto",
     "theMap": {
         "groupName": "La mappa",
@@ -1257,6 +1258,10 @@
         "RU-EU": {
             "countryName": "Russia",
             "zoneName": "Artide"
+        },
+        "RU-FE": {
+            "countryName": "Russia",
+            "zoneName": "Estremo Oriente"
         },
         "RU-KGD": {
             "countryName": "Russia",
