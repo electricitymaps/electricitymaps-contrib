@@ -135,8 +135,9 @@ app.use('/', (req, res) => {
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
   const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
-  const isNonWWW = req.get('host') === 'electricitymap.org'
-    || req.get('host') === 'live.electricitymap.org';
+  const isNonWWW = req.get('host').includes('electricitymap.org')
+    || req.get('host') !== 'www.electricitymap.org';
+  const isExcludedFromRedirect = req.get('host') === 'app.electricitymap.org'; // Temporary
   const isStaging = req.get('host').includes('staging');
   const isHTTPS = req.secure;
   const isLocalhost = req.hostname === 'localhost'; // hostname is without port
