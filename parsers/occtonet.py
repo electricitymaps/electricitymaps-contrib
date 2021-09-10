@@ -3,7 +3,7 @@
 import datetime
 from io import StringIO
 import logging
-from typing import Dict, Union
+from typing import Dict, List, Union
 
 import arrow
 import pandas as pd
@@ -43,38 +43,8 @@ exchange_mapping = {
     "JP-CG->JP-KY": [10],  # 関門連系線 [Kanmon Interconnection Line]
 }
 
-"""
-Flow:
-    1. Get cookies ?
-    2. Get headers ?
-    3. Get csv file ?
-    Question is, why do we get a invalid request when calling the same url with the same formdata and headers from python ?
-"""
-
-
-example_formdata = {
-    "ajaxToken": "",
-    "downloadKey": "20210909212517_CA01S070C",
-    "fwExtention.actionSubType": "download",
-    "fwExtention.formId": "CA01S070P",
-    "fwExtention.jsonString": "",
-    "fwExtention.pagingTargetTable": "",
-    "fwExtention.pathInfo": "CA01S070C",
-    "fwExtention.prgbrh": "0",
-    "msgArea": " ・マージンには需給調整市場の連系線確保量が含まれております。",
-    "requestToken": "a6b6b90b848abe5de98fd561d2ed9fe4f2b48961c2b2dc74",
-    "requestTokenBk": "",
-    "searchReqHdn": "[検索条件]対象連系線:周波数変換設備,指定日:2021/09/09",
-    "simFlgHdn": "",
-    "sntkTgtRklCdHdn": "15",
-    "spcDay": "2021/09/09",
-    "spcDayHdn": "20210909",
-    "tgtRkl": "03",
-    "tgtRklHdn": "01,北海道・本州間電力連系設備,02,相馬双葉幹線,03,周波数変換設備,04,三重東近江線,05,南福光連系所・南福光変電所の連系設備,06,越前嶺南線,07,西播東岡山線・山崎智頭線,08,阿南紀北直流幹線,09,本四連系線,10,関門連系線,11,北陸フェンス",
-    "transitionContextKey": "DEFAULT",
-    "updDaytime": "2021年09月09日 21時20分更新",
-    "wExtention.actionType": "reference",
-}
+SOURCE_URL = "occtonet.occto.or.jp"
+EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
 
 
 def fetch_exchange(
@@ -84,54 +54,51 @@ def fetch_exchange(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ) -> dict:
+    """Requests the last known power exchange (in MW) between two zones."""
     if not session:
             session = requests.session()
-
-    """Requests the last known power exchange (in MW) between two zones."""
-    # get target date in time zone Asia/Tokyo
+    
     query_date = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
 
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exch_id = exchange_mapping[sortedZoneKeys]
     
-    # Login to occtonet
-    Cookies = get_cookies(session)
+    cookies = get_cookies(session)
+
     df = pd.DataFrame()
     for i in range(len(exch_id)):
-        # 
-        Headers = get_headers(session, exch_id[i], query_date, Cookies)
+        # TODO reformat that piece of code
+        Headers = get_headers(session, exch_id[i], query_date)
         # Query data
-        Headers = get_request_token(session, Headers, Cookies)
-        _df = get_exchange(session, Headers, Cookies)
+        Headers = get_request_token(session, Headers)
+        _df = get_exchange(session, Headers)
         if df.empty:
             df = _df
         else:
-            _df.set_index(["Date", "Time"])
             df += _df
             df.reset_index()
 
+    # TODO determine if this is needed
     # fix occurrences of 24:00hrs
-    list24 = list(df.index[df["Time"] == "24:00"])
+    list24 = list(df[(df.index.hour == 24) & (df.index.minute == 0)].index)
     for idx in list24:
         df.loc[idx, "Date"] = (
             arrow.get(df.loc[idx, "Date"]).shift(days=1).strftime("%Y/%m/%d")
         )
         df.loc[idx, "Time"] = "00:00"
+
     # correct flow direction, if needed
     flows_to_revert = ["JP-CB->JP-TK", "JP-CG->JP-KN", "JP-CG->JP-SK"]
     if sortedZoneKeys in flows_to_revert:
         df["netFlow"] = -1 * df["netFlow"]
 
-    df["source"] = "occtonet.occto.or.jp"
-    print("fetch_exchange")
-    df["datetime"] = df.apply(parse_dt, axis=1)
+    df["source"] = SOURCE_URL
 
     df["sortedZoneKeys"] = sortedZoneKeys
-    df = df[["source", "datetime", "netFlow", "sortedZoneKeys"]]
+    df = df[EXCHANGE_COLUMNS]
+    df = df.reset_index()
 
     results = df.to_dict("records")
-    for result in results:
-        result["datetime"] = result["datetime"].to_pydatetime()
     return results
 
 
@@ -143,6 +110,7 @@ def fetch_exchange_forecast(
     logger=logging.getLogger(__name__),
 ) -> list:
     """Gets exchange forecast between two specified zones."""
+    # TODO align implementation with fetch_exchange
     if not session:
         session = requests.session()
 
@@ -157,18 +125,15 @@ def fetch_exchange_forecast(
     sortedZoneKeys = "->".join(sorted([zone_key1, zone_key2]))
     exch_id = exchange_mapping[sortedZoneKeys]
 
-    # Login to occtonet
-    # This seems to work
-    # But seems useless
-    Cookies = get_cookies(session)
+    cookies = get_cookies(session)
 
     df = pd.DataFrame()
     for i in range(len(exch_id)):
         # 
-        Headers = get_headers(session, exch_id[i], query_date, Cookies)
+        Headers = get_headers(session, exch_id[i], query_date)
         # Query data
-        Headers = get_request_token(session, Headers, Cookies)
-        _df = get_exchange_fcst(session, Headers, Cookies)
+        Headers = get_request_token(session, Headers)
+        _df = get_exchange_fcst(session, Headers)
         if df.empty:
             df = _df
         else:
@@ -176,6 +141,7 @@ def fetch_exchange_forecast(
             df += _df
             df.reset_index()
 
+    # TODO is this needed ?
     # fix possible occurrences of 24:00hrs
     list24 = list(df.index[df["Time"] == "24:00"])
     for idx in list24:
@@ -183,22 +149,21 @@ def fetch_exchange_forecast(
             arrow.get(str(df.loc[idx, "Date"])).shift(days=1).strftime("%Y/%m/%d")
         )
         df.loc[idx, "Time"] = "00:00"
+
     # correct flow direction, if needed
     flows_to_revert = ["JP-CB->JP-TK", "JP-CG->JP-KN", "JP-CG->JP-SK"]
     if sortedZoneKeys in flows_to_revert:
         df["netFlow"] = -1 * df["netFlow"]
+
     # Add zonekey, source
-    df["source"] = "occtonet.occto.or.jp"
-    print("fetch_exchange_forecast")
-    df["datetime"] = df.apply(parse_dt, axis=1)
+    df["source"] = SOURCE_URL
     df["sortedZoneKeys"] = sortedZoneKeys
-    df = df[["source", "datetime", "netFlow", "sortedZoneKeys"]]
+    df = df[EXCHANGE_COLUMNS]
+    df = df.reset_index()
+
     # Format output
     results = df.to_dict("records")
-    for result in results:
-        result["datetime"] = result["datetime"].to_pydatetime()
     return results
-
 
 def get_cookies(
     session: Union[requests.Session, None] = None
@@ -213,31 +178,8 @@ def get_headers(
     session: requests.Session,
     exch_id: int,
     date: str,
-    cookies: requests.cookies.RequestsCookieJar,
 ):
-    payload = {
-        "ajaxToken": "",
-        "downloadKey": "",
-        "fwExtention.actionSubType": "headerInput",
-        "fwExtention.actionType": "reference",
-        "fwExtention.formId": "CA01S070P",
-        "fwExtention.jsonString": "",
-        "fwExtention.pagingTargetTable": "",
-        "fwExtention.pathInfo": "CA01S070C",
-        "fwExtention.prgbrh": "0",
-        "msgArea": "",
-        "requestToken": "",
-        "requestTokenBk": "",
-        "searchReqHdn": "",
-        "simFlgHdn": "",
-        "sntkTgtRklCdHdn": "",
-        "spcDay": date,
-        "spcDayHdn": "",
-        "tgtRkl": "{:02d}".format(exch_id),
-        "transitionContextKey": "DEFAULT",
-        "updDaytime": "",
-    }
-    payload = {
+    form_data = {
         "ajaxToken": "",
         "downloadKey": "",
         "fwExtention.actionSubType": "headerInput",
@@ -263,7 +205,7 @@ def get_headers(
 
     r = session.post(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
-        data=payload,
+        data=form_data,
     )
     headers = r.text
     headers = eval(headers.replace("false", "False").replace("null", "None"))
@@ -272,28 +214,27 @@ def get_headers(
             "Headers not available due to {}".format(headers["root"]["errMessage"])
         )
     else:
-        payload["msgArea"] = headers["root"]["bizRoot"]["header"]["msgArea"]["value"]
-        payload["searchReqHdn"] = headers["root"]["bizRoot"]["header"]["searchReqHdn"][
+        form_data["msgArea"] = headers["root"]["bizRoot"]["header"]["msgArea"]["value"]
+        form_data["searchReqHdn"] = headers["root"]["bizRoot"]["header"]["searchReqHdn"][
             "value"
         ]
-        payload["spcDayHdn"] = headers["root"]["bizRoot"]["header"]["spcDayHdn"][
+        form_data["spcDayHdn"] = headers["root"]["bizRoot"]["header"]["spcDayHdn"][
             "value"
         ]
-        payload["updDaytime"] = headers["root"]["bizRoot"]["header"]["updDaytime"][
+        form_data["updDaytime"] = headers["root"]["bizRoot"]["header"]["updDaytime"][
             "value"
         ]
-    return payload
+    return form_data
 
 
 def get_request_token(
     session: requests.Session,
-    payload: Dict[str, str],
-    cookies: requests.cookies.RequestsCookieJar,
+    form_data: Dict[str, str],
 ):
-    payload["fwExtention.actionSubType"] = "ok"
+    form_data["fwExtention.actionSubType"] = "ok"
     r = session.post(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
-        data=payload,
+        data=form_data,
     )
     headers = r.text
     headers = eval(headers.replace("false", "False").replace("null", "None"))
@@ -302,52 +243,39 @@ def get_request_token(
             "Request token not available due to {}".format(headers["root"]["errFields"])
         )
     else:
-        payload["downloadKey"] = headers["root"]["bizRoot"]["header"]["downloadKey"][
+        form_data["downloadKey"] = headers["root"]["bizRoot"]["header"]["downloadKey"][
             "value"
         ]
-        payload["requestToken"] = headers["root"]["bizRoot"]["header"]["requestToken"][
+        form_data["requestToken"] = headers["root"]["bizRoot"]["header"]["requestToken"][
             "value"
         ]
-    return payload
+    return form_data
 
-# TODO check difference between forecast and not?
-def get_exchange(session, payload, cookies):
-    s = session
-    payload["fwExtention.actionSubType"] = "download"
-    r = s.post(
+
+def _get_exchange(session: requests.Session, form_data: Dict[str, str], columns: List[str]):
+    def parse_dt(str_dt: str) -> datetime:
+        return arrow.get(str_dt).replace(tzinfo="Asia/Tokyo").datetime
+    form_data["fwExtention.actionSubType"] = "download"
+    r = session.post(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
-        data=payload,
+        data=form_data,
     )
     r.encoding = "shift-jis"
     df = pd.read_csv(StringIO(r.text), delimiter=",")
-    df = df[["対象日付", "対象時刻", "潮流実績"]]
-    df.columns = ["Date", "Time", "netFlow"]
+    df = df[columns]
+    df.columns = ["date", "time", "netFlow"]
+    df.loc[:, "datetime"] = (df.date + " " + df.time).apply(lambda x: parse_dt(x))
+    df = df.set_index("datetime")
+    df = df.drop(columns=["date", "time"])
     df = df.dropna()
     return df
 
-
-def get_exchange_fcst(session, payload, cookies):
-    s = session
-    payload["fwExtention.actionSubType"] = "download"
-    r = s.post(
-        "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
-        data=payload,
-    )
-    r.encoding = "shift-jis"
-    df = pd.read_csv(StringIO(r.text), delimiter=",")
-    df = df[["対象日付", "対象時刻", "計画潮流(順方向)"]]
-    df.columns = ["Date", "Time", "netFlow"]
-    df = df.dropna()
-    return df
+def get_exchange(session, form_data):
+    return _get_exchange(session, form_data, ["対象日付", "対象時刻", "潮流実績"])
 
 
-def parse_dt(row):
-    print(row)
-    return (
-        arrow.get(" ".join([row["Date"], row["Time"]]).replace("/", "-"))
-        .replace(tzinfo="Asia/Tokyo")
-        .datetime
-    )
+def get_exchange_fcst(session, form_data):
+    return _get_exchange(session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"])
 
 
 if __name__ == "__main__":
