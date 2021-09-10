@@ -158,7 +158,10 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    const fullUrl = `https://www.electricitymap.org${req.originalUrl}`;
+    let canonicalUrl = `https://www.electricitymap.org${req.baseUrl + req.path}`;
+    if(req.query.lang) {
+      canonicalUrl += `?lang=${req.query.lang}`;
+    }
 
     // basic auth for premium access
     if (process.env.BASIC_AUTH_CREDENTIALS) {
@@ -182,13 +185,10 @@ app.use('/', (req, res) => {
     }
     res.render('pages/index', {
       alternateUrls: locales.map((l) => {
-        if (fullUrl.indexOf('lang') !== -1) {
-          return fullUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
+        if (canonicalUrl.indexOf('lang') !== -1) {
+          return canonical.replace(`lang=${req.query.lang}`, `lang=${l}`);
         }
-        if (Object.keys(req.query).length) {
-          return `${fullUrl}&lang=${l}`;
-        }
-        return `${fullUrl.replace('?', '')}?lang=${l}`;
+        return `${canonicalUrl}?lang=${l}`;
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
@@ -206,7 +206,7 @@ app.use('/', (req, res) => {
           // Note we here point to static hosting in order to make
           // sure we can serve older bundle versions
           `https://static.electricitymap.org/public_web/${relativePath}`,
-      fullUrl,
+      canonicalUrl,
       locale,
       locales: { en: localeConfigs.en, [locale]: localeConfigs[locale] },
       supportedLocales: locales,
