@@ -41,7 +41,7 @@ class Test_IN_KA(unittest.TestCase):
             self.assertEqual(data['source'], 'kptclsldc.in')
             self.assertIsNotNone(data['datetime'])
             self.assertIsNotNone(data['production'])
-            self.assertEqual(data['production']['hydro'], 1108.0)
+            self.assertEqual(data['production']['hydro'], 2434.0)
             self.assertIsNotNone(data['storage'])
         except Exception as ex:
             self.fail("IN_KA.fetch_production() raised Exception: {0}".format(ex.message))
