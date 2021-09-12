@@ -38,7 +38,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
 
     html = web.get_response_soup(zone_key, 'http://kptclsldc.in/StateGen.aspx', session)
 
-    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'MM/DD/YYYY HH:mm:ss')
+    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'DD/MM/YYYY HH:mm:ss')
 
     # RTPS Production: https://en.wikipedia.org/wiki/Raichur_Thermal_Power_Station
     rtps_value = IN.read_value_from_span_id(html, 'lblrtptot')
