@@ -2,7 +2,6 @@
 # coding=utf-8
 import datetime
 from io import StringIO
-import json
 import logging
 from typing import Dict, List, Union
 
@@ -164,7 +163,7 @@ def get_form_data(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
         data=form_data,
     )
-    response_content = json.loads(r.text)
+    response_content = r.json()
 
     if response_content["root"]["errMessage"]:
         raise RuntimeError(
@@ -191,7 +190,7 @@ def get_form_data(
         "https://occtonet3.occto.or.jp/public/dfw/RP11/OCCTO/SD/CA01S070C",
         data=form_data,
     )
-    response_content = json.loads(r.text)
+    response_content = r.json()
 
     if response_content["root"]["errFields"]:
         raise RuntimeError(
