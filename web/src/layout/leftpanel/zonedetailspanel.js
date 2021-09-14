@@ -3,6 +3,7 @@
 // TODO: re-enable rules
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { dispatchApplication } from '../../store';
 import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
@@ -14,19 +15,27 @@ import {
 import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';
+import { useLocation } from 'react-router-dom';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
+
+const SocialButtons = styled.div`
+  @media (max-width: 767px) {
+    display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
+  }
+`;
 
 const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
   const datetimes = useCurrentZoneHistoryDatetimes();
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
+  const location = useLocation();
 
   // Fetch history for the current zone if it hasn't been fetched yet.
   useConditionalZoneHistoryFetch();
@@ -43,22 +52,22 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
           startTime={startTime}
           endTime={endTime}
         />
-        <div className="social-buttons small-screen-hidden">
+        <SocialButtons className="social-buttons" pathname={location.pathname}>
           <div>
-            { /* Facebook share */}
+            {/* Facebook share */}
             <div
               className="fb-share-button"
               data-href="https://www.electricitymap.org/"
               data-layout="button_count"
             />
-            { /* Twitter share */}
+            {/* Twitter share */}
             <a
               className="twitter-share-button"
               data-url="https://www.electricitymap.org"
               data-via="electricitymap"
               data-lang={locale}
             />
-            { /* Slack */}
+            {/* Slack */}
             <span className="slack-button">
               <a href="https://slack.tmrow.com" target="_blank" className="slack-btn">
                 <span className="slack-ico" />
@@ -66,7 +75,7 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
               </a>
             </span>
           </div>
-        </div>
+        </SocialButtons>
       </div>
     </div>
   );

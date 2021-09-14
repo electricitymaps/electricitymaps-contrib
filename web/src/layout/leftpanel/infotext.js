@@ -6,12 +6,19 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { __ } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
+const Container = styled.div`
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+`;
+
 export default () => (
-  <div className="info-text small-screen-hidden">
+  <Container className="info-text">
     <ColorBlindCheckbox />
     <p>
       {__('panel-initial-text.thisproject')}
@@ -70,5 +77,5 @@ export default () => (
         </span>
       </div>
     </div>
-  </div>
+  </Container>
 );

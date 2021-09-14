@@ -3,6 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
+import styled from 'styled-components';
 import { connect, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -40,6 +41,18 @@ const mapStateToProps = state => ({
   version: state.application.version,
 });
 
+const Watermark = styled.div`
+@media (max-width: 767px) {
+  display: none !important;
+}
+`;
+
+const MapContainer = styled.div`
+  @media (max-width: 767px) {
+    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
+  }
+`;
+
 const Main = ({
   brightModeEnabled,
   electricityMixMode,
@@ -50,21 +63,22 @@ const Main = ({
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
-
+  
   const showLoadingOverlay = useLoadingOverlayVisible();
-
+  
   // Check for the latest client version once initially.
   useClientVersionFetch();
-
+  
   // Start grid data polling as soon as the app is mounted.
   useGridDataPolling();
-
+  
   // Poll wind data if the toggle is enabled.
   useConditionalWindDataPolling();
-
+  
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
-
+  
+  
   return (
     <React.Fragment>
       <div
@@ -81,13 +95,13 @@ const Main = ({
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
-          <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
+          <MapContainer pathname={location.pathname} id="map-container">
             <Map />
-            <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
+            <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
               <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
-            </div>
+            </Watermark>
             <Legend />
             <div className="controls-container">
               <Toggle
@@ -101,7 +115,7 @@ const Main = ({
               />
             </div>
             <LayerButtons />
-          </div>
+          </MapContainer>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
