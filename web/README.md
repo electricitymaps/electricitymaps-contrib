@@ -2,23 +2,7 @@
 
 ## Local development
 
-1. install dependencies:
-
-```sh
-yarn install
-```
-
-2. start the node.js webserver:
-```sh
-PORT=6000 yarn server-dev  
-```
-
-3. start the webpack build:
-```sh
-yarn run watch
-```
-
-4. open http://localhost:6000 (after doing changes you need to reload the page)
+See [local development setup](https://github.com/tmrowco/electricitymap-contrib/wiki/Set-up-local-environment#running-the-frontend-map) in the wiki.
 
 
 ## How is world.json generated?
