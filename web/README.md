@@ -1,5 +1,10 @@
 *This file should host other explanations. Yours are welcome.*
 
+## Local development
+
+See [local development setup](https://github.com/tmrowco/electricitymap-contrib/wiki/Set-up-local-environment#running-the-frontend-map) in the wiki.
+
+
 ## How is world.json generated?
 
 The world map data is open source and provided by [NACIS](http://nacis.org/initiatives/natural-earth/).
