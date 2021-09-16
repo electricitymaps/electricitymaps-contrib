@@ -3141,26 +3141,6 @@
     },
     "rotation": -22
   },
-  "US-MIDA-OVEC->US-MIDW-LGEE": {
-    "lonlat": [
-      -83.385637,
-      39.055197
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -118
-  },
-  "US-MIDA-OVEC->US-MIDA-PJM": {
-    "lonlat": [
-      -83.30918,
-      39.041477
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -100
-  },
   "US-MIDA-PJM->US-MIDW-LGEE": {
     "lonlat": [
       -84.69935455639735,
