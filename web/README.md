@@ -1,5 +1,26 @@
 *This file should host other explanations. Yours are welcome.*
 
+## Local development
+
+1. install dependencies:
+
+```sh
+yarn install
+```
+
+2. start the node.js webserver:
+```sh
+PORT=6000 yarn server-dev  
+```
+
+3. start the webpack build:
+```sh
+yarn run watch
+```
+
+4. open http://localhost:6000 (after doing changes you need to reload the page)
+
+
 ## How is world.json generated?
 
 The world map data is open source and provided by [NACIS](http://nacis.org/initiatives/natural-earth/).
