@@ -3031,16 +3031,6 @@
     },
     "rotation": -4
   },
-  "US-FLA-FPC->US-FLA-NSB": {
-    "lonlat": [
-      -81.35555771109858,
-      28.98610783549209
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -107
-  },
   "US-FLA-FPL->US-FLA-HST": {
     "lonlat": [
       -80.1213099999999,
@@ -3100,16 +3090,6 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": -53
-  },
-  "US-FLA-FPL->US-FLA-NSB": {
-    "lonlat": [
-      -81.15018,
-      29.26587
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -175
   },
   "US-FLA-JEA->US-FLA-SEC": {
     "lonlat": [

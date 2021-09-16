@@ -6323,35 +6323,6 @@
       "production": 30
     }
   },
-  "US-FLA-NSB": {
-    "comment": "New Smyrna Beach, Utilities Commission Of",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix",
-      "consumption": "EIA.fetch_consumption",
-      "consumptionForecast": "EIA.fetch_consumption_forecast"
-    },
-    "timezone": "US/Eastern",
-    "bounding_box": [
-      [
-        -82.18057,
-        28.1131300000001
-      ],
-      [
-        -80.23297,
-        29.92717
-      ]
-    ],
-    "delays": {
-      "consumption": 30,
-      "consumptionForecast": 30,
-      "production": 30
-    }
-  },
   "US-FLA-SEC": {
     "comment": "Seminole Electric Cooperative",
     "capacity": {
