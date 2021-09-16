@@ -137,19 +137,15 @@ EXCHANGES = {
     'US-FLA-FPC->US-FLA-SEC': 'EBA.FPC-SEC.ID.H',
     'US-FLA-FPC->US-SE-SOCO': 'EBA.FPC-SOCO.ID.H',
     'US-FLA-FPC->US-FLA-TEC': 'EBA.FPC-TEC.ID.H',
-    'US-FLA-FPC->US-FLA-NSB': 'EBA.FPC-NSB.ID.H',
     'US-FLA-FPL->US-FLA-HST': 'EBA.FPL-HST.ID.H',
     'US-FLA-FPL->US-FLA-GVL': 'EBA.FPL-GVL.ID.H',
     'US-FLA-FPL->US-FLA-JEA': 'EBA.FPL-JEA.ID.H',
     'US-FLA-FPL->US-FLA-SEC': 'EBA.FPL-SEC.ID.H',
     'US-FLA-FPL->US-SE-SOCO': 'EBA.FPL-SOCO.ID.H',
     'US-FLA-FPL->US-FLA-TEC': 'EBA.FPL-TEC.ID.H',
-    'US-FLA-FPL->US-FLA-NSB': 'EBA.FPL-NSB.ID.H',
     'US-FLA-JEA->US-FLA-SEC': 'EBA.JEA-SEC.ID.H',
     'US-FLA-SEC->US-FLA-TEC': 'EBA.SEC-TEC.ID.H',
     'US-FLA-TAL->US-SE-SOCO': 'EBA.TAL-SOCO.ID.H',
-    'US-MIDA-OVEC->US-MIDW-LGEE': 'EBA.OVEC-LGEE.ID.H',
-    'US-MIDA-OVEC->US-MIDA-PJM': 'EBA.OVEC-PJM.ID.H',
     'US-MIDA-PJM->US-MIDW-LGEE': 'EBA.PJM-LGEE.ID.H',
     'US-MIDA-PJM->US-MIDW-MISO': 'EBA.PJM-MISO.ID.H',
     'US-MIDA-PJM->US-NY-NYIS': 'EBA.PJM-NYIS.ID.H',
@@ -216,7 +212,6 @@ EXCHANGES = {
     'US-SE-AEC->US-SE-SOCO': 'EBA.AEC-SOCO.ID.H',
     'US-SE-SEPA->US-SE-SOCO': 'EBA.SEPA-SOCO.ID.H',
     'US-SE-SOCO->US-TEN-TVA': 'EBA.SOCO-TVA.ID.H',
-    'US-SW-AZPS->US-SW-GRMA': 'EBA.AZPS-GRMA.ID.H',
     'US-SW-AZPS->US-SW-PNM': 'EBA.AZPS-PNM.ID.H',
     'US-SW-AZPS->US-SW-SRP': 'EBA.AZPS-SRP.ID.H',
     'US-SW-AZPS->US-SW-TEPC': 'EBA.AZPS-TEPC.ID.H',
@@ -257,11 +252,9 @@ REGIONS = {
     'US-FLA-GVL': 'GVL', #Gainesville Regional Utilities
     'US-FLA-HST': 'HST', #City Of Homestead
     'US-FLA-JEA': 'JEA', #Jea
-    'US-FLA-NSB': 'NSB', #New Smyrna Beach, Utilities Commission Of
     'US-FLA-SEC': 'SEC', #Seminole Electric Cooperative
     'US-FLA-TAL': 'TAL', #City Of Tallahassee
     'US-FLA-TEC': 'TEC', #Tampa Electric Company
-    'US-MIDA-OVEC': 'OVEC', #Ohio Valley Electric Corporation
     'US-MIDA-PJM': 'PJM', #Pjm Interconnection, Llc
     'US-MIDW-AECI': 'AECI', #Associated Electric Cooperative, Inc.
     'US-MIDW-EEI': 'EEI', #Electric Energy, Inc.
@@ -298,7 +291,6 @@ REGIONS = {
     'US-SW-DEAA': 'DEAA', #Arlington Valley, Llc - Avba
     'US-SW-EPE': 'EPE', #El Paso Electric Company
     'US-SW-GRIF': 'GRIF', #Griffith Energy, Llc
-    'US-SW-GRMA': 'GRMA', #Gila River Power, Llc
     'US-SW-HGMA': 'HGMA', #New Harquahala Generating Company, Llc - Hgba
     'US-SW-PNM': 'PNM', #Public Service Company Of New Mexico
     'US-SW-SRP': 'SRP', #Salt River Project
