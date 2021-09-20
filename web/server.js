@@ -147,7 +147,7 @@ app.use('/', (req, res) => {
     if (req.query.fb_locale) {
       // Locales are formatted according to
       // https://developers.facebook.com/docs/internationalization/#locales
-      lr = req.query.fb_locale.split('_', 2);
+      const lr = req.query.fb_locale.split('_', 2);
       res.setLocale(lr[0]);
     }
     const { locale } = res;
