@@ -179,7 +179,7 @@ app.use('/', (req, res) => {
     res.render('pages/index', {
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
-          return canonical.replace(`lang=${req.query.lang}`, `lang=${l}`);
+          return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
         }
         return `${canonicalUrl}?lang=${l}`;
       }),
