@@ -42,8 +42,8 @@ module.exports = {
   plugins: [
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
-      chunkFilename: '[name].' + (isProduction ? '[chunkhash]' : 'dev') + '.css',
+      filename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
+      chunkFilename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     function () {

@@ -90,7 +90,7 @@ function getHash(key, ext, obj) {
   } else {
     // assume list
     filename = obj.assetsByChunkName[key]
-      .filter(d => d.match(new RegExp(`\.${ext}$`)))[0];
+      .filter(d => d.match(new RegExp(`.${ext}$`)))[0];
   }
   return filename.replace(`.${ext}`, '').replace(`${key}.`, '');
 }
@@ -138,23 +138,16 @@ app.use('/', (req, res) => {
   const isNonWWW = req.get('host') === 'electricitymap.org'
     || req.get('host') === 'live.electricitymap.org';
   const isStaging = req.get('host').includes('staging');
-  const isHTTPS = req.secure;
-  const isLocalhost = req.hostname === 'localhost'; // hostname is without port
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
   if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
-  // Redirect all non-HTTPS and non localhost
-  // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
-  // Node only receives HTTP traffic.
-  } else if (false && !isHTTPS && !isLocalhost) {
     res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
       // Locales are formatted according to
       // https://developers.facebook.com/docs/internationalization/#locales
-      lr = req.query.fb_locale.split('_', 2);
+      const lr = req.query.fb_locale.split('_', 2);
       res.setLocale(lr[0]);
     }
     const { locale } = res;
@@ -186,7 +179,7 @@ app.use('/', (req, res) => {
     res.render('pages/index', {
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
-          return canonical.replace(`lang=${req.query.lang}`, `lang=${l}`);
+          return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
         }
         return `${canonicalUrl}?lang=${l}`;
       }),
