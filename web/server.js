@@ -90,7 +90,7 @@ function getHash(key, ext, obj) {
   } else {
     // assume list
     filename = obj.assetsByChunkName[key]
-      .filter(d => d.match(new RegExp(`\.${ext}$`)))[0];
+      .filter(d => d.match(new RegExp(`.${ext}$`)))[0];
   }
   return filename.replace(`.${ext}`, '').replace(`${key}.`, '');
 }
