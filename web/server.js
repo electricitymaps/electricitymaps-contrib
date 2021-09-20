@@ -138,16 +138,9 @@ app.use('/', (req, res) => {
   const isNonWWW = req.get('host') === 'electricitymap.org'
     || req.get('host') === 'live.electricitymap.org';
   const isStaging = req.get('host').includes('staging');
-  const isHTTPS = req.secure;
-  const isLocalhost = req.hostname === 'localhost'; // hostname is without port
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
   if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
-  // Redirect all non-HTTPS and non localhost
-  // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
-  // Node only receives HTTP traffic.
-  } else if (false && !isHTTPS && !isLocalhost) {
     res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
