@@ -131,17 +131,15 @@ app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' :
 
 // App routes (managed by React Router)
 app.use('/', (req, res) => {
-  // On electricitymap.tmrow.co,
-  // redirect everyone except the Facebook crawler,
-  // else, we will lose all likes
-  const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
-  const isNonWWW = req.get('host') === 'electricitymap.org'
-    || req.get('host') === 'live.electricitymap.org';
+  const isNonAppDomain = req.get('host') !== 'app.electricitymap.org';
   const isStaging = req.get('host').includes('staging');
+  const isFacebookRobot = (req.headers['user-agent'] || '').indexOf('facebookexternalhit') !== -1;
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
-  if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
+  // redirect everyone except the Facebook crawler,
+  // else, we will lose all likes
+  if (!isStaging && isProduction && isNonAppDomain && !isFacebookRobot) {
+    res.redirect(301, `https://app.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
@@ -151,7 +149,7 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    let canonicalUrl = `https://www.electricitymap.org${req.baseUrl + req.path}`;
+    let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
     if(req.query.lang) {
       canonicalUrl += `?lang=${req.query.lang}`;
     }
