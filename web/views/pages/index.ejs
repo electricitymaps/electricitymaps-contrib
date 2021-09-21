@@ -9,10 +9,11 @@
         <meta property="og:type" content="website" />
         <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
+
         <meta property="og:locale" content="<%= FBLocale %>" />
-        <% for(var i=0; i<supportedFBLocales.length; i++) {%>
+<% for(var i=0; i<supportedFBLocales.length; i++) { -%>
         <meta property="og:locale:alternate" content="<%= supportedFBLocales[i] %>" />
-        <% } %>
+<% } %>
         <meta property="fb:app_id" content="1267173759989113" />
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@corradio">
@@ -59,14 +60,14 @@
         <link href="<%= resolvePath('css/MaterialIcons.css') %>" rel="stylesheet">
 
         <!-- Language -->
-        <% for(var i=0; i<alternateUrls.length; i++) {%>
+<% for(var i=0; i<alternateUrls.length; i++) { -%>
         <link rel="alternate" href="<%- alternateUrls[i] %>" hreflang="<%= supportedLocales[i] %>" />
-        <% } %>
-        <% if (typeof canonicalUrl != 'undefined') { %>
+<% } %>
+        <!-- Canonical -->
+<% if (typeof canonicalUrl != 'undefined') { -%>
         <link rel="alternate" href="<%- canonicalUrl.replace(/[?|&]lang=[^&]*/, '') %>" hreflang="x-default" />
         <link rel="canonical" href="<%- canonicalUrl %>" />
-        <% } %>
-
+<% } %>
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
