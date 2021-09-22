@@ -145,7 +145,7 @@ def _get_masks(session=None):
     return dict(zip(shorts,masks))
 
 
-def _fetch_data(session=None):
+def _fetch_data(session=None) -> dict:
     # Load masks for reading numbers from the image
     # Create a dictionary of symbols and their pixel masks
     mapping = _get_masks(session)
@@ -254,12 +254,15 @@ def _fetch_data(session=None):
     # The production that is not fossil fuel or wind based is unknown
     # Impossible to estimate with current data
     # UProd = TotProd - WProd - FProd
-
-    obj = dict({'production':TotProd,'consumption':Cons,'wind':WProd,
-               'fossil':FProd,'SE3->AX':SE3Flow,
-               'FI->AX':FIFlow,'fetchtime':fetchtime})
-
-    return obj
+    return {
+        'production': TotProd,
+        'consumption': Cons,
+        'wind': WProd,
+        'fossil': FProd,
+        'SE3->AX': SE3Flow,
+        'FI->AX': FIFlow,
+        'fetchtime': fetchtime
+        }
 
 
 def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=None) -> dict:
@@ -269,41 +272,39 @@ def fetch_production(zone_key='AX', session=None, target_datetime=None, logger=N
 
     obj = _fetch_data(session)
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'production': {},
         'storage': {},
         'source': 'kraftnat.aland.fi',
-        'datetime': arrow.get(obj['fetchtime']).datetime
+        'datetime': arrow.get(obj['fetchtime']).datetime,
+        'production': {
+            'biomass': None,
+            'coal': 0,
+            'gas': 0,
+            'hydro': None,
+            'nuclear': 0,
+            'oil': obj['fossil'],
+            'solar': None,
+            'wind': obj['wind'],
+            'geothermal': None,
+            'unknown': None,
+        }
     }
-    data['production']['biomass'] = None
-    data['production']['coal'] = 0
-    data['production']['gas'] = 0
-    data['production']['hydro'] = None
-    data['production']['nuclear'] = 0
-    data['production']['oil'] = obj['fossil']
-    data['production']['solar'] = None
-    data['production']['wind'] = obj['wind']
-    data['production']['geothermal'] = None
-    data['production']['unknown'] = None
-
-    return data
 
 
-def fetch_consumption(zone_key='AX', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='AX', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     obj = _fetch_data(session)
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'datetime': arrow.get(obj['fetchtime']).datetime,
         'consumption': obj['consumption'],
         'source': 'kraftnat.aland.fi'
     }
-
-    return data
 
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
@@ -336,7 +337,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     # from country1 to country2
 
     #  AX is before both FI and SE
-    data['netFlow'] =  round(-1*netFlow,1)
+    data['netFlow'] =  round(-1 * netFlow, 1)
 
     return data
 
