@@ -1,7 +1,6 @@
 import re
 from datetime import datetime
 
-import arrow
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as dparser
@@ -9,6 +8,9 @@ from dateutil import tz
 
 # URL of the power system summary: http://epso.am/poweren.htm
 # URL of the detailled SCADA-page: http://epso.am/scada.htm
+
+SOURCE = "http://epso.am/poweren.htm"
+TZ = "Asia/Yerevan"
 
 POWER_PLANT_MAPPING = {
     "var atom": "nuclear",  # atom = 'atomnaya elektro stantsiya'
@@ -54,10 +56,14 @@ SOUP_CONTENT_VARIABLES_MAPPING = {
     "[28]": "sparum2",
 }
 
+REGEX = "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?"
 
-def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=None):
+
+def fetch_production(
+    zone_key="AM", session=None, target_datetime=None, logger=None
+) -> dict:
     r = session or requests.session()
-    url = "http://epso.am/poweren.htm"
+    url = SOURCE
     response = r.get(url)
     response.encoding = "utf-8"
     html_doc = response.text
@@ -68,26 +74,18 @@ def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=N
     data_string = soup.find(text=re.compile("var"))
     data_split = data_string.split("\r\n")
 
-    gas_tes = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[10]
-    )
+    gas_tes = re.findall(REGEX, data_split[10])
     gas_total = float(gas_tes[0])
 
-    hydro_ges = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[11]
-    )
-    hydro_altern = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[8]
-    )
+    hydro_ges = re.findall(REGEX, data_split[11])
+    hydro_altern = re.findall(REGEX, data_split[8])
     hydro_total = float(hydro_ges[0]) + float(hydro_altern[0])
 
-    nuclear_atom = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[9]
-    )
+    nuclear_atom = re.findall(REGEX, data_split[9])
     nuclear_total = float(nuclear_atom[0])
 
     time_data = [s for s in data_split if "time2" in s][0]
-    yerevan = tz.gettz("Asia/Yerevan")
+    yerevan = tz.gettz(TZ)
     date_time = dparser.parse(
         time_data.split()[3], default=datetime.now(yerevan), fuzzy=True
     )
@@ -108,7 +106,7 @@ def fetch_production(zone_key="AM", session=None, target_datetime=None, logger=N
             "wind": None,
         },
         "storage": {"hydro": 0, "battery": 0},
-        "source": "http://epso.am/poweren.htm",
+        "source": SOURCE,
     }
 
 
@@ -119,7 +117,7 @@ def fetch_exchange(
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()
-    url = "http://epso.am/poweren.htm"
+    url = SOURCE
     response = r.get(url)
     response.encoding = "utf-8"
     html_doc = response.text
@@ -129,31 +127,20 @@ def fetch_exchange(
     soup = BeautifulSoup(html_doc[start_index:stop_index], "html.parser")
     data_string = soup.find(text=re.compile("var"))
     data_split = data_string.split("\r\n")
-    GE_1 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[1]
-    )
-    GE_2 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[2]
-    )
-    GE_3 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[3]
-    )
-    NKR_1 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[4]
-    )
-    NKR_2 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[5]
-    )
-    IR_1 = re.findall(
-        "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", data_split[6]
-    )
+
+    GE_1 = re.findall(REGEX, data_split[1])
+    GE_2 = re.findall(REGEX, data_split[2])
+    GE_3 = re.findall(REGEX, data_split[3])
+    NKR_1 = re.findall(REGEX, data_split[4])
+    NKR_2 = re.findall(REGEX, data_split[5])
+    IR_1 = re.findall(REGEX, data_split[6])
 
     AM_NKR = float(NKR_1[0]) + float(NKR_2[0])
     AM_GE = float(GE_1[0]) + float(GE_2[0]) + float(GE_3[0])
     AM_IR = float(IR_1[0])
 
     time_data = [s for s in data_split if "time2" in s][0]
-    yerevan = tz.gettz("Asia/Yerevan")
+    yerevan = tz.gettz(TZ)
     date_time = dparser.parse(
         time_data.split()[3], default=datetime.now(yerevan), fuzzy=True
     )
@@ -171,7 +158,7 @@ def fetch_exchange(
         "sortedZoneKeys": sorted_keys,
         "datetime": date_time,
         "netFlow": netflow,
-        "source": "http://epso.am/poweren.htm",
+        "source": SOURCE,
     }
 
 
