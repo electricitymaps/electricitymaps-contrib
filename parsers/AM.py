@@ -63,8 +63,7 @@ def fetch_production(
     zone_key="AM", session=None, target_datetime=None, logger=None
 ) -> dict:
     r = session or requests.session()
-    url = SOURCE
-    response = r.get(url)
+    response = r.get(SOURCE)
     response.encoding = "utf-8"
     html_doc = response.text
     start_string = "<script type='text/javascript'>"
@@ -117,8 +116,7 @@ def fetch_exchange(
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()
-    url = SOURCE
-    response = r.get(url)
+    response = r.get(SOURCE)
     response.encoding = "utf-8"
     html_doc = response.text
     start_string = "<script type='text/javascript'>"
