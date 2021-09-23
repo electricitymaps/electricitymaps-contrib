@@ -32,7 +32,7 @@ sources = {
     "JP-CG": "www.energia.co.jp",
     "JP-KY": "www.kyuden.co.jp/power_usages/pc.html",
     "JP-ON": "www.okiden.co.jp/denki/",
-        }
+}
 
 
 def fetch_production(
@@ -67,7 +67,7 @@ def fetch_production(
                 "unknown": df.loc[i, "unknown"],
             },
             "source": "occtonet.or.jp, {}".format(sources[zone_key]),
-            }
+        }
         datalist.append(data)
 
     return datalist
@@ -94,7 +94,7 @@ def fetch_production_df(
         "JP-CG": ["JP-KN", "JP-SK", "JP-KY"],
         "JP-ON": [],
         "JP-KY": ["JP-CG"],
-        }
+    }
     df = fetch_consumption_df(zone_key, target_datetime)
     df["imports"] = 0
     for zone in exch_map[zone_key]:
@@ -129,7 +129,10 @@ def fetch_consumption_df(
     Returns the consumption for an area as a pandas DataFrame.
     For JP-CB the consumption file includes solar production.
     """
-    datestamp = arrow.get(target_datetime).to('Asia/Tokyo').strftime('%Y%m%d')
+    ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
+    if target_datetime is not None and zone_key in ZONES_ONLY_LIVE:
+         raise NotImplementedError('This parser can only fetch live data')
+    datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
         "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
             datestamp
@@ -151,7 +154,7 @@ def fetch_consumption_df(
             datestamp
         ),
         "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
-        }
+    }
 
     # First roughly 40 rows of the consumption files have hourly data,
     # the parser skips to the rows with 5-min actual values
@@ -224,7 +227,7 @@ def fetch_consumption_forecast(
             datestamp
         ),
         "JP-ON": "https://www.okiden.co.jp/denki2/juyo_10_{}.csv".format(datestamp),
-                   }
+    }
     # Skip non-tabular data at the start of source files
     if zone_key == "JP-KN":
         startrow = 16
