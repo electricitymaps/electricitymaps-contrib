@@ -88,7 +88,12 @@ def fetch_production_df(zone_key='JP-TK', session=None, target_datetime=None,
     df = fetch_consumption_df(zone_key, target_datetime)
     df['imports'] = 0
     for zone in exch_map[zone_key]:
-        df2 = occtonet.fetch_exchange(zone_key, zone, target_datetime)
+        df2 = occtonet.fetch_exchange(
+            zone_key1=zone_key,
+            zone_key2=zone,
+            session=session,
+            target_datetime=target_datetime,
+        )
         df2 = pd.DataFrame(df2)
         exchname = df2.loc[0, 'sortedZoneKeys']
         df2 = df2[['datetime', 'netFlow']]
