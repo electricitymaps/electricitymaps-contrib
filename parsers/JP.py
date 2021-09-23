@@ -33,6 +33,7 @@ sources = {
     "JP-KY": "www.kyuden.co.jp/power_usages/pc.html",
     "JP-ON": "www.okiden.co.jp/denki/",
 }
+ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
 def fetch_production(
@@ -129,7 +130,6 @@ def fetch_consumption_df(
     Returns the consumption for an area as a pandas DataFrame.
     For JP-CB the consumption file includes solar production.
     """
-    ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
     if target_datetime is not None and zone_key in ZONES_ONLY_LIVE:
          raise NotImplementedError('This parser can only fetch live data')
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
