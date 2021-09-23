@@ -3576,6 +3576,25 @@
     ],
     "timezone": null
   },
+  "LK": {
+    "contributors": [
+      "https://github.com/byronwilliams"
+    ],
+    "parsers": {
+      "production": "LK.fetch_production"
+    },
+    "timezone": "Asia/Colombo",
+    "bounding_box": [
+      [
+        79.15577233200005,
+        5.42373281500015
+      ],
+      [
+        82.39031009200008,
+        10.329575914000145
+      ]
+    ]
+  },
   "LT": {
     "bounding_box": [
       [
