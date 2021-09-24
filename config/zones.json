@@ -5231,6 +5231,13 @@
     "timezone": "America/El_Salvador"
   },
   "TH": {
+    "contributors": [
+      "https://github.com/byronwilliams"
+    ],
+    "parsers": {
+      "production": "TH.fetch_production"
+    },
+    "timezone": "Asia/Bangkok",
     "bounding_box": [
       [
         96.85140100100011,
@@ -5240,8 +5247,7 @@
         106.15099776200003,
         20.94500640900013
       ]
-    ],
-    "timezone": null
+    ]
   },
   "TR": {
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
