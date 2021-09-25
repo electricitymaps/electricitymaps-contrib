@@ -2,6 +2,8 @@
 import logging
 import datetime
 import re
+import pandas as pd
+
 
 # Tablib is used to parse XLSX files
 import tablib
@@ -20,7 +22,7 @@ def fetch_production(zone_key='XK', session=None,
     """Requests the last known production mix (in MW) of a given country."""
     r = session or requests.session()
     if target_datetime is None:
-        url = 'https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/Prodhimi%20aktual%20gjenerimi%20faktik%20i%20energjise%20elektrike.xlsx'
+        url = 'https://www.kostt.com/Content/ViewFiles/Transparency/LoadForecast/Realizimi%20ditor.xlsx'
     else:
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise NotImplementedError(
@@ -28,28 +30,53 @@ def fetch_production(zone_key='XK', session=None,
 
     res = r.get(url)
     assert res.status_code == 200, 'XK (Kosovo) parser: GET {} returned {}'.format(url, res.status_code)
+    excel_data=pd.read_excel(url, index = False, usecols = 5, header=None)
 
-    sheet = tablib.Dataset().load(res.content, headers=False)
 
-    productions = {} # by time
-    for i in range(5, 1000):
-        try:
-            row = sheet[i]
-        except IndexError:
-            break
-        time = row[1]
-        if time is None:
-            break
-        if isinstance(time, float):
-            time = datetime.time(hour=round(time * 24) % 24)
-        time_str = time.strftime('%H:%M')
-        assert 'TC KOSOVA' in row[3], 'Parser assumes only coal data'
-        prod = float(row[2])
-        productions[time_str] = productions.get(time_str, 0.0) + prod
 
-    date_match = re.search(r'ACTUAL\s+GENERATION\s+FOR\s+DAY\s+(\d+)\.(\d+)\.(\d+)', sheet[1][1])
-    assert date_match is not None, 'Date not found in spreadsheet'
-    date_str = date_match.group(3) + '-' + date_match.group(2) + '-' + date_match.group(1) + ' '
+
+    #getting time data
+    time_date_list = excel_data.iloc[13:37, 3:4].values 
+    time_list = []
+    for timedate in time_date_list:
+        time_date_str = str(timedate)
+        time_str = time_date_str.split("(")
+        unformatted_time_str = time_str[1].replace(',', '').replace(']', '').replace(')', '')
+        formatted_time_str = unformatted_time_str.split(' ')
+        if(int(formatted_time_str[3])<10):
+            time_list.append(" 0" + formatted_time_str[3] + ":" + formatted_time_str[4] + "0")
+        else:
+            time_list.append(" " + formatted_time_str[3] + ":" + formatted_time_str[4] + "0")
+
+
+
+
+    #getting energy production data 
+    unformatted_prod_list = excel_data.iloc[13:37, 4:5].values 
+    prod_list = []
+    for prod in unformatted_prod_list:
+        prod_str = str(prod)
+        unformatted_prod_str = prod_str.replace('[', '')
+        formatted_prod_str = unformatted_prod_str.split(']')
+        prod_list.append(formatted_prod_str[0])
+
+
+    
+    
+    # creating production dictionary with time and production energy
+    productions = {} 
+    for k in range(0,24):
+        productions[time_list[k]] = prod_list[k]
+
+
+
+    # getting date
+    date = excel_data.iloc[5, 3]
+    unformatted_date_str = str(date)
+    formatted_date_str = unformatted_date_str.split(" ")
+    date_str = formatted_date_str[0]
+
+
 
     data = []
     for time_str, prod in productions.items():
@@ -62,7 +89,7 @@ def fetch_production(zone_key='XK', session=None,
         data.append({
             'zoneKey': zone_key,
             'production': {
-                'coal': prod
+                'unknown': prod
             },
             'storage': {},
             'source': 'kostt.com',
