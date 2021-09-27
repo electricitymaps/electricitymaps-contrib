@@ -99,8 +99,8 @@
         "newversion": "¡Hay disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
         "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
         "retrynow": "Vuelve a intentarlo",
-        "database-ad": "¿Buscas datos históricos? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
-        "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
+        "database-ad": "¿Buscas datos históricos? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
+        "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
         "legend": "Leyenda",
         "faq": "Preguntas frecuentes"
     },
