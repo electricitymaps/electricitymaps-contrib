@@ -96,8 +96,8 @@
         "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
         "newversion": "새 버전이 출시되었습니다! 누르세요 <a onClick=\"location.reload(true);\">here</a> to reload.",
         "retrynow": "지금 다시 눌러보세요",
-        "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
-        "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
+        "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
+        "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
         "legend": "범주",
         "faq": "자주 묻는 질문"
     },
@@ -144,7 +144,7 @@
         "divideExistingArea-question": "나의 지역도 더 작은 부분으로 나눌 수 있습니까?",
         "divideExistingArea-answer": "물론입니다. 해당 영역의 각 부분에 대해 별도의 데이터 소스가 있는 경우. <a href=\"#contribute\" class=\"entry-link\">사용자는 새로운 데이터를 우리에게 제공함으로써 우리를 도울 수 있습니다.</a>",
         "seeHistoricalData-question": "지역의 더 많은 역사를 24시간 안에 받아 볼 수 있습니까?",
-        "seeHistoricalData-answer": "당신은 우리의 <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스를</a> 통해 모든 우리의 역사적 데이터를 구매할 수 있습니다."
+        "seeHistoricalData-answer": "당신은 우리의 <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스를</a> 통해 모든 우리의 역사적 데이터를 구매할 수 있습니다."
     },
     "methodology": {
         "groupName": "접근 방법/연구 방법",
@@ -172,9 +172,9 @@
         "dataOrigins-question": "어떻게 데이터를 얻나요?",
         "dataOrigins-answer": "저희는 전력망이나, 공식 에이전시 등을 통해 공개적으로 접근 가능한 모든 데이터를 다룹니다. 각 섹션을 클릭하시면 데이터의 출처를 더 자세히 알 수 있습니다.",
         "dataDownload-question": "데이터를 다운로드 받을 수 있나요?",
-        "dataDownload-answer": "<a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스</a>에서 구입하시면 모든 데이터에 접근 가능합니다.",
+        "dataDownload-answer": "<a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스</a>에서 구입하시면 모든 데이터에 접근 가능합니다.",
         "dataIntegration-question": "여기 데이터를 실시간으로 내 어플리케이션이나 장치에 실시간으로 업데이트 할 수 있나요?",
-        "dataIntegration-answer": "네!! 구입하시면 <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">실시간 API</a>, 에 접근할 수 있습니다. 향후 예측도 포함되어 있습니다."
+        "dataIntegration-answer": "네!! 구입하시면 <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">실시간 API</a>, 에 접근할 수 있습니다. 향후 예측도 포함되어 있습니다."
     },
     "aboutUs": {
         "groupName": "About us",

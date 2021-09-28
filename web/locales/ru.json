@@ -83,8 +83,8 @@
         "oops": "Ой! У нас возникли проблемы с доступом к серверу. Подождите несколько секунд.",
         "newversion": "Доступна новая версия! Нажмите <a onClick=\"location.reload(true);\">здесь</a> чтобы обновить сайт.",
         "retrynow": "Повторить попытку",
-        "database-ad": "Ищите исторические данные? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
-        "api-ad": "Хотите получить данные в прямом эфире для приложения или электронного устройства? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
+        "database-ad": "Ищите исторические данные? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
+        "api-ad": "Хотите получить данные в прямом эфире для приложения или электронного устройства? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
         "legend": "Легенда",
         "faq": "Часто Задаваемые Вопросы"
     },
@@ -1418,7 +1418,7 @@
         "divideExistingArea-question": "Можете ли вы разделить мою зону на меньшие части?",
         "divideExistingArea-answer": "Конечно, если мы сможем получить данные разделенные для каждого участка этой зоны. Вы можете <a href=\"#contribute\" class=\"entry-link\">помочь добавив новые источники данных</a>",
         "seeHistoricalData-question": "Могу ли я просмотреть историю определенного региона дальше чем 24 часа?",
-        "seeHistoricalData-answer": "Вы можете купить доступ ко всей нашей <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">исторической базе</a>."
+        "seeHistoricalData-answer": "Вы можете купить доступ ко всей нашей <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">исторической базе</a>."
     },
     "methodology": {
         "groupName": "Наши методы",
@@ -1430,7 +1430,7 @@
         "dataOrigins-question": "Как вы получаете данные?",
         "dataDownload-question": "Могу ли я скачать эти данные?",
         "dataIntegration-question": "Могу ли я интегрировать ваши данные в реальном времени в свое приложение или устройство?",
-        "dataIntegration-answer": "Да! Вы можете купить доступ <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">к нашему API</a>, которое так же предоставляет ближайшие прогнозы."
+        "dataIntegration-answer": "Да! Вы можете купить доступ <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">к нашему API</a>, которое так же предоставляет ближайшие прогнозы."
     },
     "aboutUs": {
         "groupName": "О нас",

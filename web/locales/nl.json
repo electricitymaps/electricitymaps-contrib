@@ -75,8 +75,8 @@
         "oops": "Oeps! Er zijn moeilijkheden om de server te bereiken. We proberen opnieuw over een paar seconden.",
         "newversion": "Een nieuwe versie is beschikbaar! Klik <a onClick=\"location.reload(true);\">hier</a> om opnieuw te laden.",
         "retrynow": "Probeer opnieuw",
-        "database-ad": "Looking for historical data? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+        "database-ad": "Looking for historical data? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
         "legend": "Legenda",
         "faq": "Veelgestelde vragen"
     },

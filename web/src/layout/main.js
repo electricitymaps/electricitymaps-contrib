@@ -98,7 +98,7 @@ const Main = ({
           <MapContainer pathname={location.pathname} id="map-container">
             <Map />
             <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
+              <a href="http://www.tmrow.com/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
                 <div id="built-by-tomorrow" />
               </a>
             </Watermark>
