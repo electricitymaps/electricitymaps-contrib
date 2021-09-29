@@ -69,12 +69,12 @@ def production_processor(json_data, zone_key) -> tuple:
     # BR_CS contains the Itaipu Dam.
     # We merge the hydro keys into one, then remove unnecessary keys.
     totals["hydro"] = (
-        totals.get(u"hidraulica", 0.0)
-        + totals.get(u"itaipu50HzBrasil", 0.0)
-        + totals.get(u"itaipu60Hz", 0.0)
+        totals.get("hidraulica", 0.0)
+        + totals.get("itaipu50HzBrasil", 0.0)
+        + totals.get("itaipu60Hz", 0.0)
     )
-    entriesToRemove = (u"hidraulica", u"itaipu50HzBrasil", u"itaipu60Hz", u"total")
-    for k in entriesToRemove:
+    entries_to_remove = ("hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total")
+    for k in entries_to_remove:
         totals.pop(k, None)
 
     mapped_totals = {
