@@ -1,3 +1,4 @@
+import logging
 import re
 from datetime import datetime
 
@@ -60,8 +61,14 @@ REGEX = "[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?"
 
 
 def fetch_production(
-    zone_key="AM", session=None, target_datetime=None, logger=None
+    zone_key="AM",
+    session=None,
+    target_datetime=None,
+    logger: logging.Logger = logging.getLogger(__name__),
 ) -> dict:
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
     r = session or requests.session()
     response = r.get(SOURCE)
     response.encoding = "utf-8"
@@ -71,6 +78,11 @@ def fetch_production(
     stop_index = html_doc.find("left:")
     soup = BeautifulSoup(html_doc[start_index:stop_index], "html.parser")
     data_string = soup.find(text=re.compile("var"))
+
+    if data_string is None:
+        logger.warning(f"Could not parse {html_doc}")
+        raise ValueError("Empty data object scraped, cannot be parsed.")
+
     data_split = data_string.split("\r\n")
 
     gas_tes = re.findall(REGEX, data_split[10])
@@ -113,6 +125,9 @@ def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     r = session or requests.session()
