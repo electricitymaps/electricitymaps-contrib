@@ -114,6 +114,8 @@ def fetch_exchange(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     gd = get_data(session, logger)
+    dt = arrow.get(gd["Data"]).datetime
+    scc = "->".join(sorted([zone_key1, zone_key2]))
 
     if zone_key1 in COUNTRIES_EXCHANGE.keys():
         country_exchange = COUNTRIES_EXCHANGE[zone_key1]
@@ -121,14 +123,9 @@ def fetch_exchange(
     if zone_key2 in COUNTRIES_EXCHANGE.keys():
         country_exchange = COUNTRIES_EXCHANGE[zone_key2]
 
-    net_flow = gd["internacional"][country_exchange["name"]] * country_exchange["flow"]
+    nf = gd["internacional"][country_exchange["name"]] * country_exchange["flow"]
 
-    return {
-        "datetime": arrow.get(gd["Data"]).datetime,
-        "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "netFlow": net_flow,
-        "source": SOURCE,
-    }
+    return {"datetime": dt, "sortedZoneKeys": scc, "netFlow": nf, "source": SOURCE}
 
 
 def fetch_region_exchange(
