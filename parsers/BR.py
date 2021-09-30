@@ -72,12 +72,10 @@ def production_processor(json_data, zone_key) -> tuple:
         + totals.get("itaipu50HzBrasil", 0.0)
         + totals.get("itaipu60Hz", 0.0)
     )
-    entries_to_remove = ("hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total")
-    for k in entries_to_remove:
-        totals.pop(k, None)
-
+    entries_to_remove = {"hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total"}
     mapped_totals = {
         GENERATION_MAPPING.get(name, "unknown"): val for name, val in totals.items()
+        if name not in entries_to_remove
     }
 
     return dt, mapped_totals
