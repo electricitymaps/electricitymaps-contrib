@@ -9,7 +9,7 @@ from .lib.validation import validate
 URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
 SOURCE = "ons.org.br"
 
-GENERATION_MAPPINGE = {
+GENERATION_MAPPING = {
     "nuclear": "nuclear",
     "eolica": "wind",
     "termica": "unknown",
