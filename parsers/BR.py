@@ -5,7 +5,6 @@ import requests
 
 from .lib.validation import validate
 
-
 URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
 SOURCE = "ons.org.br"
 
@@ -74,7 +73,8 @@ def production_processor(json_data, zone_key) -> tuple:
     )
     entries_to_remove = {"hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total"}
     mapped_totals = {
-        GENERATION_MAPPING.get(name, "unknown"): val for name, val in totals.items()
+        GENERATION_MAPPING.get(name, "unknown"): val
+        for name, val in totals.items()
         if name not in entries_to_remove
     }
 
@@ -121,11 +121,12 @@ def fetch_exchange(
     if zone_key2 in COUNTRIES_EXCHANGE.keys():
         country_exchange = COUNTRIES_EXCHANGE[zone_key2]
 
+    net_flow = gd["internacional"][country_exchange["name"]] * country_exchange["flow"]
+
     return {
         "datetime": arrow.get(gd["Data"]).datetime,
         "sortedZoneKeys": "->".join(sorted([zone_key1, zone_key2])),
-        "netFlow": gd["internacional"][country_exchange["name"]]
-        * country_exchange["flow"],
+        "netFlow": net_flow,
         "source": SOURCE,
     }
 
