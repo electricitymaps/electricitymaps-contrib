@@ -1,5 +1,4 @@
 from collections import defaultdict
-from parsers.BD import GENERATION_MAPPING
 
 import arrow
 import requests
