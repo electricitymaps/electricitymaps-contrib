@@ -302,7 +302,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
@@ -318,7 +318,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://data.electricitymap.org/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
@@ -366,13 +366,13 @@ const CountryPanel = ({
             { /* Facebook share */}
             <div
               className="fb-share-button"
-              data-href="https://www.electricitymap.org/"
+              data-href="https://app.electricitymap.org/"
               data-layout="button_count"
             />
             { /* Twitter share */}
             <a
               className="twitter-share-button"
-              data-url="https://www.electricitymap.org"
+              data-url="https://app.electricitymap.org"
               data-via="electricitymap"
               data-lang={locale}
             />

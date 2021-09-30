@@ -12,15 +12,15 @@ const headerLinks = [
   },
   {
     label: 'Open Source',
-    href: 'https://api.electricitymap.org/open-source?utm_source=electricitymap.org&utm_medium=referral',
+    href: 'https://api.electricitymap.org/open-source?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
     label: 'Blog',
-    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
+    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
     label: 'Get our data',
-    href: 'https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral',
+    href: 'https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral',
   },
 ];
 
