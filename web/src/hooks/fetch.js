@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { isEmpty } from 'lodash';
 
@@ -7,19 +7,6 @@ import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
 import { useCustomDatetime, useWindEnabled, useSolarEnabled } from './router';
 import { useCurrentZoneHistory } from './redux';
-
-export function useClientVersionFetch() {
-  const clientType = useSelector(state => state.application.clientType);
-  const isLocalhost = useSelector(state => state.application.isLocalhost);
-  const dispatch = useDispatch();
-
-  // We only check the latest client version if running in browser on non-localhost.
-  useEffect(() => {
-    if (clientType === 'web' && !isLocalhost) {
-      dispatch({ type: 'CLIENT_VERSION_FETCH_REQUESTED' });
-    }
-  }, [clientType, isLocalhost]);
-}
 
 export function useConditionalZoneHistoryFetch() {
   const { zoneId } = useParams();

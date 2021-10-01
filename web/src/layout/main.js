@@ -4,7 +4,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -21,7 +21,6 @@ import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
-  useClientVersionFetch,
   useGridDataPolling,
   useConditionalWindDataPolling,
   useConditionalSolarDataPolling,
@@ -30,6 +29,9 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
+import useSWR from 'swr';
+
+const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -38,7 +40,6 @@ const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
-  version: state.application.version,
 });
 
 const Watermark = styled.div`
@@ -53,32 +54,40 @@ const MapContainer = styled.div`
   }
 `;
 
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
 const Main = ({
   brightModeEnabled,
   electricityMixMode,
   hasConnectionWarning,
-  version,
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
-  
+  const clientType = useSelector(state => state.application.clientType);
+  const isLocalhost = useSelector(state => state.application.isLocalhost);
+
   const showLoadingOverlay = useLoadingOverlayVisible();
-  
-  // Check for the latest client version once initially.
-  useClientVersionFetch();
-  
+
   // Start grid data polling as soon as the app is mounted.
   useGridDataPolling();
-  
+
   // Poll wind data if the toggle is enabled.
   useConditionalWindDataPolling();
-  
+
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
-  
-  
+
+  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const clientVersion = clientVersionData && clientVersionData.version;
+
+  let isClientVersionOutdated = false;
+  // We only check the latest client version if running in browser on non-localhost.
+  if (clientVersion && clientType === 'web' && !isLocalhost) {
+    isClientVersionOutdated = isNewClientVersion(clientVersion);
+  }
+
   return (
     <React.Fragment>
       <div
@@ -133,7 +142,7 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
+          <div id="new-version" className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}>
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>

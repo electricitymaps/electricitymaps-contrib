@@ -98,7 +98,7 @@ function getHash(key, ext, obj) {
 const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/clientVersion', (req, res) => res.send(version));
+app.get('/clientVersion', (req, res) => res.json({version}));
 
 // Translation status
 app.get('/translationstatus/badges.svg', (req, res) => {
