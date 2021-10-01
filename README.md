@@ -1,4 +1,4 @@
-# electricityMap
+# ElectricityMap
 
 [![Slack Status](https://slack.tmrow.com/badge.svg)](https://slack.tmrow.com) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 
@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ## Contribute
 
-Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
+Thank you for your interest. Please Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
 
