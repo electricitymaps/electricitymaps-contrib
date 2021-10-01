@@ -88,6 +88,10 @@
                 Sentry.init({
                     dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
                     release: '<%= bundleHash %>',
+                    ignoreErrors: [
+                        // Non actionable errors:
+                        "invalid pixel coordinate"
+                    ]
                 });
             }
         </script>
