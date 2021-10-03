@@ -117,11 +117,7 @@ def fetch_exchange(
     dt = arrow.get(data["Data"]).datetime
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    if zone_key1 in COUNTRIES_EXCHANGE:
-        country_exchange = COUNTRIES_EXCHANGE[zone_key1]
-
-    if zone_key2 in COUNTRIES_EXCHANGE:
-        country_exchange = COUNTRIES_EXCHANGE[zone_key2]
+    country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(zone_key2)
 
     net_flow = data["internacional"][country_exchange["name"]] * country_exchange["flow"]
 
