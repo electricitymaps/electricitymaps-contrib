@@ -45,7 +45,7 @@ COUNTRIES_EXCHANGE = {
 }
 
 
-def get_data(session, logger):
+def get_data(session):
     """Requests generation data in json format."""
     s = session or requests.session()
     json_data = s.get(URL).json()
@@ -86,8 +86,8 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None) 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
-    generation = production_processor(gd, zone_key)
+    data = get_data(session)
+    generation = production_processor(data, zone_key)
 
     datapoint = {
         "zoneKey": zone_key,
@@ -113,9 +113,9 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
-    dt = arrow.get(gd["Data"]).datetime
-    scc = "->".join(sorted([zone_key1, zone_key2]))
+    data = get_data(session)
+    dt = arrow.get(data["Data"]).datetime
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     if zone_key1 in COUNTRIES_EXCHANGE.keys():
         country_exchange = COUNTRIES_EXCHANGE[zone_key1]
@@ -123,9 +123,9 @@ def fetch_exchange(
     if zone_key2 in COUNTRIES_EXCHANGE.keys():
         country_exchange = COUNTRIES_EXCHANGE[zone_key2]
 
-    nf = gd["internacional"][country_exchange["name"]] * country_exchange["flow"]
+    net_flow = data["internacional"][country_exchange["name"]] * country_exchange["flow"]
 
-    return {"datetime": dt, "sortedZoneKeys": scc, "netFlow": nf, "source": SOURCE}
+    return {"datetime": dt, "sortedZoneKeys": sorted_zone_keys, "netFlow": net_flow, "source": SOURCE}
 
 
 def fetch_region_exchange(
@@ -135,14 +135,14 @@ def fetch_region_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
-    dt = arrow.get(gd["Data"]).datetime
-    scc = "->".join(sorted([region1, region2]))
+    data = get_data(session)
+    dt = arrow.get(data["Data"]).datetime
+    sorted_regions = "->".join(sorted([region1, region2]))
 
-    exchange = REGION_EXCHANGES[scc]
-    nf = gd["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[scc]
+    exchange = REGION_EXCHANGES[sorted_regions]
+    net_flow = data["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[sorted_regions]
 
-    return {"datetime": dt, "sortedZoneKeys": scc, "netFlow": nf, "source": SOURCE}
+    return {"datetime": dt, "sortedZoneKeys": sorted_regions, "netFlow": net_flow, "source": SOURCE}
 
 
 if __name__ == "__main__":
