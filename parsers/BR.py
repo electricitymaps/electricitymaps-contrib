@@ -87,12 +87,12 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None) 
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     data = get_data(session)
-    generation = production_processor(data, zone_key)
+    timestamp, production = production_processor(data, zone_key)
 
     datapoint = {
         "zoneKey": zone_key,
-        "datetime": generation[0].datetime,
-        "production": generation[1],
+        "datetime": timestamp.datetime,
+        "production": production,
         "storage": {
             "hydro": None,
         },
