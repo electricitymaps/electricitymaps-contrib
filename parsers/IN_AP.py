@@ -5,7 +5,9 @@ URL = "https://core.ap.gov.in/CMDashBoard/UserInterface/Power/PowerReport.aspx"
 ZONE_KEY = 'IN-AP'
 TIME_FORMAT = 'DD-MM-YYYY HH:mm'
 SOURCE = 'core.ap.gov.in'
-def fetch_production(zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None):
+
+
+def fetch_production(zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Andhra Pradesh  production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -27,7 +29,7 @@ def fetch_production(zone_key=ZONE_KEY, session=None, target_datetime=None, logg
     cgs_value = IN.read_value_from_span_id(html, 'MainContent_lblCGS')
     ipp_value = IN.read_value_from_span_id(html, 'MainContent_lblIPPS')
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'production': {
@@ -48,10 +50,8 @@ def fetch_production(zone_key=ZONE_KEY, session=None, target_datetime=None, logg
         'source': SOURCE,
     }
 
-    return data
 
-
-def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Andhra Pradesh consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -63,14 +63,12 @@ def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None, log
 
     demand_value = IN.read_value_from_span_id(html, 'MainContent_lblGridDemand')
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'datetime': india_date.datetime,
         'consumption': demand_value,
         'source': SOURCE
     }
-
-    return data
 
 
 if __name__ == '__main__':
