@@ -17,7 +17,7 @@
         },
         "view2": {
             "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
-            "text": "As áreas através do mundo são coloridas pela sua Intencidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
+            "text": "As áreas através do mundo são coloridas pela sua Intensidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
         },
         "view3": {
             "header": "Saiba de onde sua eletricidade vem",
@@ -42,7 +42,8 @@
         "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
         "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
         "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
-        "now": "Agora"
+        "now": "Agora",
+        "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real não podem ser mostrados."
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático",
@@ -91,7 +92,12 @@
         "consumption": "consumo",
         "cpinfo": "<b>consumo</b> leva em consideração importações e exportações, <b>produção</b> as ignora",
         "selectLanguage": "Selecione a linguagem",
-        "lowCarbDescription": "Inclui renováveis e nucleares"
+        "lowCarbDescription": "Inclui renováveis e nucleares",
+        "representing": "representando",
+        "ofemissions": "de emissões",
+        "zoomIn": "Aumentar zoom",
+        "zoomOut": "Diminuir zoom",
+        "dataIsDelayed": "Dados estão atrasados"
     },
     "misc": {
         "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
@@ -168,7 +174,10 @@
         "homeSolarPanel-question": "E se eu tiver um painel solar instalado em minha casa?",
         "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que você consome diretamente do seu painel solar (fora da rede) não faz parte de nossas medições. No entanto, se o seu painel solar estiver fornecendo energia na sua rede de energia local, sua produção está incluída em nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como na França e no Reino Unido).",
         "emissionsPerCapita-question": "Por que você não mostra emissões per capita?",
-        "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso."
+        "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso.",
+        "consumptionFocus-question": "Porque você calcula a intencidade de carbono gerada pela eletricidade consumida ao invés da produzida?",
+        "consumptionFocus-answer": "Nós acreditamos que cidadãos devem ser responsáveis pela energia que eles consomem, e não pela energia que é produzida na area que eles vivem. Além disso, acreditamos que áreas não deveriam ser capazes de 'falsificar' um baixo impacto ambiental por simplesmente realocar produção de energia não limpa para outras áreas, e depois importar energia dessas mesmas áreas.",
+        "guaranteesOfOrigin-question": "O que são certificados verdes e como eles são levados em conta?"
     },
     "data": {
         "groupName": "Nossos dados",
@@ -190,7 +199,9 @@
         "workTogether-question": "Podemos trabalhar juntos?",
         "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@electricitymap.org\">Envie-nos um email!</a>",
         "disclaimer-question": "Aviso legal",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente."
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
+        "contribute-question": "Como posso contribuir com o projeto?",
+        "contribute-answer": "Sim! O ElectricityMap é um projeto de código aberto, possibilitado apenas por nossos colaboradores voluntários. Se você quer ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, criando novas funcionalidades ou corrigindo bugs, fique à vontade para se juntar a nós no <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>."
     },
     "zoneShortName": {
         "AD": {
@@ -1216,10 +1227,12 @@
             "zoneName": "Sibéria"
         },
         "RU-EU": {
-            "zoneName": "Rússia"
+            "zoneName": "Rússia",
+            "countryName": "Rússia"
         },
         "RU-AS": {
-            "zoneName": "Rússia"
+            "zoneName": "Rússia",
+            "countryName": "Rússia"
         },
         "RU-KGD": {
             "countryName": "Rússia",
@@ -1709,6 +1722,47 @@
         },
         "ZW": {
             "zoneName": "Zimbábue"
+        },
+        "AUS-TAS-CBI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Cape Barren"
+        },
+        "AUS-TAS-FI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Flinders"
+        },
+        "AUS-WA-RI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Rottnest"
+        },
+        "CA-NL-LB": {
+            "countryName": "Canadá",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Canadá",
+            "zoneName": "Newfoundland"
+        },
+        "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Ilha de Páscoa"
+        },
+        "IN-TN": {
+            "countryName": "Índia",
+            "zoneName": "Tamil Nadu"
+        },
+        "NZ-NZST": {
+            "countryName": "Nova Zelândia",
+            "zoneName": "Ilha Stewart"
+        },
+        "RU-FE": {
+            "countryName": "Rússia",
+            "zoneName": "Extremo Oriente"
+        },
+        "XK": {
+            "zoneName": "Kosovo"
         }
-    }
+    },
+    "windDataError": "Dados do vento estão indisponíveis",
+    "solarDataError": "Dados solares estão indisponíveis"
 }
