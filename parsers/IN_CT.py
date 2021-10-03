@@ -15,14 +15,12 @@ def fetch_consumption(zone_key='IN-CT', session=None, target_datetime=None, logg
 
     demand_value = IN.read_value_from_span_id(html, 'L26')
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
         'source': 'cspc.co.in'
     }
-
-    return data
 
 
 def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logger=None) -> dict:
@@ -48,7 +46,7 @@ def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logge
 
     bango_value = IN.read_value_from_span_id(html, 'L16')
 
-    data = {
+    return {
         'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'production': {
@@ -57,8 +55,6 @@ def fetch_production(zone_key='IN-CT', session=None, target_datetime=None, logge
         },
         'source': 'cspc.co.in',
     }
-
-    return data
 
 
 if __name__ == '__main__':
