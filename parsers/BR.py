@@ -117,11 +117,20 @@ def fetch_exchange(
     dt = arrow.get(data["Data"]).datetime
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(zone_key2)
+    country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(
+        zone_key2
+    )
 
-    net_flow = data["internacional"][country_exchange["name"]] * country_exchange["flow"]
+    net_flow = (
+        data["internacional"][country_exchange["name"]] * country_exchange["flow"]
+    )
 
-    return {"datetime": dt, "sortedZoneKeys": sorted_zone_keys, "netFlow": net_flow, "source": SOURCE}
+    return {
+        "datetime": dt,
+        "sortedZoneKeys": sorted_zone_keys,
+        "netFlow": net_flow,
+        "source": SOURCE,
+    }
 
 
 def fetch_region_exchange(
@@ -136,9 +145,16 @@ def fetch_region_exchange(
     sorted_regions = "->".join(sorted([region1, region2]))
 
     exchange = REGION_EXCHANGES[sorted_regions]
-    net_flow = data["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[sorted_regions]
+    net_flow = (
+        data["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[sorted_regions]
+    )
 
-    return {"datetime": dt, "sortedZoneKeys": sorted_regions, "netFlow": net_flow, "source": SOURCE}
+    return {
+        "datetime": dt,
+        "sortedZoneKeys": sorted_regions,
+        "netFlow": net_flow,
+        "source": SOURCE,
+    }
 
 
 if __name__ == "__main__":
