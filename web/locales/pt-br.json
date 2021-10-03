@@ -43,7 +43,7 @@
         "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
         "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
         "now": "Agora",
-        "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real não podem ser mostrados."
+        "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis."
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático",
@@ -69,7 +69,7 @@
     "legends": {
         "windpotential": "Potencial da força do vento",
         "solarpotential": "Potencial solar",
-        "colorblindmode": "modo para daltônicos",
+        "colorblindmode": "Modo para daltônicos",
         "carbonintensity": "Intensidade de carbono"
     },
     "tooltips": {
@@ -1763,6 +1763,6 @@
             "zoneName": "Kosovo"
         }
     },
-    "windDataError": "Dados do vento estão indisponíveis",
+    "windDataError": "Dados eólicos estão indisponíveis",
     "solarDataError": "Dados solares estão indisponíveis"
 }
