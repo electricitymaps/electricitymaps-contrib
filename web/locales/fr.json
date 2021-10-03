@@ -102,8 +102,8 @@
         "retrynow": "Réessayez maintenant",
         "legend": "Légende",
         "faq": "Foire Aux Questions",
-        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un œil à notre base de données.</a>",
-        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>",
+        "database-ad": "Vous recherchez des données historiques ? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Jetez un œil à notre base de données.</a>",
+        "api-ad": "Vous voulez des données en temps réel pour votre application ou votre appareil ? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Explorez notre API !</a>",
         "webgl-not-supported": "La carte ne peut pas être rendue car ce navigateur ne supporte pas WebGL."
     },
     "wind": "éolien",
@@ -149,7 +149,7 @@
         "divideExistingArea-question": "Pouvez-vous diviser ma zone en petites parties ?",
         "divideExistingArea-answer": "Bien sûr, s’il existe des sources de données distinctes pour chaque partie de la zone. Vous pouvez <a href=\"#contribute\" class=\"entry-link\">nous aider à ajouter de nouvelles sources de données</a>.",
         "seeHistoricalData-question": "Puis-je voir l’historique de plus de 24 heures d’une région ?",
-        "seeHistoricalData-answer": "Vous pouvez acheter un accès à toutes nos données historiques via notre <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>."
+        "seeHistoricalData-answer": "Vous pouvez acheter un accès à toutes nos données historiques via notre <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>."
     },
     "methodology": {
         "groupName": "Nos méthodes",
@@ -177,9 +177,9 @@
         "dataOrigins-question": "Comment obtenez-vous vos données ?",
         "dataOrigins-answer": "Nous calculons toutes nos données à partir de données accessibles au public, publiées par les opérateurs de réseaux électriques, les agences officielles et autres. Vous pouvez cliquer sur une zone pour voir plus de détails sur les origines de ces données.",
         "dataDownload-question": "Puis-je télécharger vos données ?",
-        "dataDownload-answer": "Vous pouvez acheter un accès à toutes nos données dans notre <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>.",
+        "dataDownload-answer": "Vous pouvez acheter un accès à toutes nos données dans notre <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de données</a>.",
         "dataIntegration-question": "Puis-je intégrer vos données en temps réel dans mon application ou mon appareil?",
-        "dataIntegration-answer": "Oui ! Nous vendons l’accès à l’API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l’avenir."
+        "dataIntegration-answer": "Oui ! Nous vendons l’accès à l’API <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">en temps réel</a>, qui inclut les prévisions pour l’avenir."
     },
     "aboutUs": {
         "groupName": "À propos de nous",
