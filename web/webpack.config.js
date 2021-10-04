@@ -5,9 +5,9 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const isProduction = process.env.NODE_ENV === 'production';
+const version = require('./version.js');
 
-const { version } = require('./package.json');
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
