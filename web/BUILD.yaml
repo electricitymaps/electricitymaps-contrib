@@ -18,7 +18,7 @@ steps:
       # source code
       - ../config/{exchanges,zones}.json
       - locales
-      - ./{locales-config.json,translation-status.js}
+      - ./{locales-config.json,version.js,translation-status.js}
       - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json}
       - src
       - views
