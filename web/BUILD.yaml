@@ -26,8 +26,8 @@ steps:
     commands:
       - mkdir -p public/dist
       - bash geo/topogen.sh
-      - yarn build-release
       - yarn update-version
+      - yarn build-release
     outputs:
       - src/world.json
       - public/dist
