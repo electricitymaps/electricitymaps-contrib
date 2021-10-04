@@ -11,7 +11,7 @@ steps:
   build:
     environment:
       ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
-      BRICK_DRONE_COMMIT_SHA: ${BRICK_DRONE_COMMIT_SHA:-unknown}
+      COMMIT_SHA: ${BRICK_DRONE_COMMIT_SHA:-unknown}
     inputs:
       # geometries
       - geo
