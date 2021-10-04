@@ -152,7 +152,7 @@ function mergeTopoJsonSingleZone(topo1, topo2) {
     // Relocate arc into zone by adding srcArcsLength
     topo1.objects[zoneName].arcs.forEach((arcList1) => {
       arcList1.forEach((arcList2) => {
-        for (i = 0; i < arcList2.length; i++) {
+        for (let i = 0; i < arcList2.length; i++) {
           arcList2[i] += srcArcsLength;
         }
       });

@@ -20,16 +20,16 @@ function generateArrows(prefix, scaleTheme) {
   const keys = d3.range(0, 800 + 80, 80);
   keys.forEach((k) => { colors[k] = co2color(k) });
 
-  for (let co2value in colors) {
+  for (const co2value in colors) {
     // generate specific color
     console.log([
       'public/images/arrow-template.png',
-      '+level-colors', 'transparent,'+colors[co2value],
+      '+level-colors', `transparent,${colors[co2value]}`,
       `public/images/${prefix}arrow-${co2value}.png`
     ])
     child_process.spawn('convert', [
       'public/images/arrow-template.png',
-      '+level-colors', 'transparent,'+colors[co2value],
+      '+level-colors', `transparent,${colors[co2value]}`,
       `public/images/${prefix}arrow-${co2value}.png`
     ]).on('close', (code) => {
       if (code !== 0) {
@@ -73,7 +73,7 @@ function generateArrows(prefix, scaleTheme) {
           child.on('close', (code) => {
             if(code !== 0) {
               console.log('child exited with code', code, 'for args', args);
-              console.log('command: ', 'convert ' + args.join(' '));
+              console.log('command: ', `convert ${  args.join(' ')}`);
               return;
             }
 

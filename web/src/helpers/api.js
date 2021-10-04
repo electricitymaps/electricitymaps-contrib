@@ -18,7 +18,7 @@ function isUsingLocalEndpoint() {
 }
 
 export function getEndpoint() {
-  return isUsingLocalEndpoint() ? 'http://localhost:9000' : 'https://api.electricitymap.org';
+  return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
 }
 
 export function protectedJsonRequest(path) {

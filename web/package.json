@@ -42,6 +42,7 @@
     "sprintf-js": "^1.1.2",
     "styled-components": "^5.0.1",
     "sunrise-sunset-js": "^2.2.1",
+    "swr": "^1.0.1",
     "topojson": "^3.0.2",
     "url-search-params-polyfill": "^8.1.0"
   },
@@ -90,7 +91,8 @@
     "build-release": "export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
-    "lint": "eslint src",
+    "lint": "eslint geo src *.js",
+    "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development"

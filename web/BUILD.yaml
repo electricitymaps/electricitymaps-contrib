@@ -11,6 +11,7 @@ steps:
   build:
     environment:
       ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
+      COMMIT_SHA: ${BRICK_DRONE_COMMIT_SHA:-unknown}
     inputs:
       # geometries
       - geo
@@ -26,6 +27,7 @@ steps:
       - mkdir -p public/dist
       - bash geo/topogen.sh
       - yarn build-release
+      - yarn update-version
     outputs:
       - src/world.json
       - public/dist

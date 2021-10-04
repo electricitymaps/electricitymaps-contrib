@@ -6,7 +6,7 @@ import json
 import re
 
 import arrow
-import demjson
+import demjson3 as demjson
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
