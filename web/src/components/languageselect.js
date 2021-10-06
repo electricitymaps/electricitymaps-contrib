@@ -35,6 +35,14 @@ const LanguageSelect = () => {
       />
       {languagesVisible && (
         <div id="language-select-container">
+          <div id="close-language-select-container">
+            <ButtonToggle
+              onChange={toggleLanguagesVisible}
+              tooltip={__('tooltips.selectLanguage')}
+              ariaLabel={__('tooltips.selectLanguage')}
+              icon="language_select"
+            />
+          </div>
           {map(languageNames, (language, key) => (
             <li key={key} onClick={() => handleLanguageSelect(key)}>
               {language}
