@@ -2,7 +2,17 @@ const fs = require('fs');
 const path = require('path');
 
 function readGeoJson(filePath) {
-  return JSON.parse(fs.readFileSync(path.resolve(__dirname, filePath)));
+  const json = JSON.parse(fs.readFileSync(path.resolve(__dirname, filePath)));
+  return extractFeature(json);
+}
+
+function extractFeature(json) {
+  const {features} = json;
+  if (features) {
+    if (features.length > 1) throw Error("Geometries may only contain a single feature");
+    return features[0];
+  }
+  return json;
 }
 
 function readNDJSON(filePath) {
