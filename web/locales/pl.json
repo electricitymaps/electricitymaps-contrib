@@ -120,7 +120,7 @@
         "mapColorBlind-answer": "Możesz zmieniać kolory wyświetlane na mapie, włączając ustawienie ”tryb bezbarwny”. Znajduje się on na dole lewego panelu na pulpicie oraz w zakładce informacyjnej w aplikacji mobilnej."
     },
     "mapAreas": {
-        "groupName": "Obszary na mpaie",
+        "groupName": "Obszary na mapie",
         "noData-question": "Dlaczego dane dla mojego obszaru są niedostępne?",
         "noData-answer": "Albo dlatego, że źródła obszaru są chwilowo niedostępne, albo nie mamy jeszcze skonfigurowanych żadnych źródł dla tego obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc w dodawaniu nowych źródeł danych</a>.",
         "whySmallAreas-question": "Dlaczego dzielicie państwa na mniejsze obszary zamiast pokazywać średniej wartości dla danego państwa? ???",
