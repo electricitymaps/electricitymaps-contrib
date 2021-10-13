@@ -132,7 +132,7 @@
     },
     "methodology": {
         "groupName": "Nasze metody",
-        "carbonIntensity-question": "Co to jest \"Intensywność emisji CO₂\"?",
+        "carbonIntensity-question": "Co to jest „Intensywność emisji CO₂”?",
         "carbonIntensity-answer": "Intensywność emisji CO₂ (w gCO₂eq/kWh - gramach ekwiwalentów dwutlenku węgla wyemitowanego na kilowatogodzinę zużytej energii elektrycznej). <br><br>Mierzymy emisje zużycia energii elektrycznej (nie produkcji), co oznacza wszystkie emisje gazów cieplarnianych (zarówno CO₂, jaki i innych gazów cieplarnianych, takich jak metan), które zostały wykorzystane do produkcji energii elektrycznej zużywanej na danym obszarze, biorąc pod uwagę intensywność emisji CO₂ importowanej z innych obszarów. Stosujemy podejście analizy cyklu życia (LCA, life cycle analysis), co oznacza, że bierzemy pod uwagę emisje z całego cyklu życia elektrowni (budowa, produkcja paliw, emisje eksploatacyjne i likwidacja).",
         "consumptionFocus-question": "Dlaczego obliczacie intensywność emisji CO₂ zużycia energii elektrycznej zamiast jej produkcji?",
         "consumptionFocus-answer": "Uważamy, że obywatele powinni być odpowiedzialni za zużywaną przez nich energię elektryczną, a nie za energię elektryczną wytwarzaną w obszarze, w którym akurat mieszkają. Co więcej uważamy, że obszary nie powinny być w stanie 'udawać' niskiego wpływu na klimat, po prostu przenosząc produkcję brudnej energii na inne obszary, a następnie ją z nich importując.",
