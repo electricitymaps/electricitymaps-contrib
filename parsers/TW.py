@@ -37,6 +37,10 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
     production = pd.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity', 'output']
 
+    # check output values coincide with total capacity by fuel type
+    check_values = production.output <= production.capacity
+    assert check_values.loc[~check_values.index.isin(["Co-Gen"])].all() # HACK: Co-Gen capacity is underestimated
+
     coal_capacity = production.loc['Coal'].capacity + production.loc['IPP-Coal'].capacity
     gas_capacity = production.loc['LNG'].capacity + production.loc['IPP-LNG'].capacity
     oil_capacity = production.loc['Oil'].capacity + production.loc['Diesel'].capacity
