@@ -4,7 +4,7 @@
         "opensource": "Open Source",
         "see": "zie",
         "datasources": "databronnen",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
+        "contribute": "Participeer meer door <a href=\"%s\" target=\"_blank\">jouw land toe te voegen</a>"
     },
     "mobile-main-menu": {
         "map": "electricityMap",
@@ -24,7 +24,7 @@
         "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
         "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
         "noParserInfo": "We hebben op dit moment geen informatie over dit gebied.<br/> Wil je dit helpen oplossen? Help mee door <a href=\"%s\" target=\"_blank\">gebiedsinformatie toe te voegen</a>.",
-        "now": "Now"
+        "now": "Nu"
     },
     "left-panel": {
         "zone-list-header-title": "Invloed op klimaat per Gebied",
