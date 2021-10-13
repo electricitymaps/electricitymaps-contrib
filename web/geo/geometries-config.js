@@ -126,6 +126,7 @@ const USSimplifiedGeos = [].concat([
   readGeoJson('./third_party_maps/US_simplified/US-SE-SEPA.geojson'), //Southeastern Power Administration
   readGeoJson('./third_party_maps/US_simplified/US-SE-SOCO.geojson'), //Southern Company Services, Inc. - Trans
   readGeoJson('./third_party_maps/US_simplified/US-SW-AZPS.geojson'), //Arizona Public Service Company
+  // NOTE: removed as the geometry is very small
   // readGeoJson('./third_party_maps/US_simplified/US-SW-DEAA.geojson'), //Arlington Valley, Llc - Avba
   readGeoJson('./third_party_maps/US_simplified/US-SW-EPE.geojson'), //El Paso Electric Company
   readGeoJson('./third_party_maps/US_simplified/US-SW-GRIF.geojson'), //Griffith Energy, Llc
