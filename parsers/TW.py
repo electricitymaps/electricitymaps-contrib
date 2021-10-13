@@ -28,12 +28,12 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
 
     objData['fueltype'] = objData.fueltype.str.split('(').str[1]
     objData['fueltype'] = objData.fueltype.str.split(')').str[0]
-    objData['capacity'] = pd.to_numeric(objData['capacity'], errors='coerce')
-    objData['output'] = pd.to_numeric(objData['output'], errors='coerce')
+    objData.loc[:,['capacity', 'output']] = objData[['capacity', 'output']].apply(pd.to_numeric, errors='coerce')
+    assert not objData.capacity.isna().all(), "capacity data is entirely NaN - input column order may have changed"
+    assert not objData.output.isna().all(), "output data is entirely NaN - input column order may have changed"
 
-    objData.drop(columns=['additional_1', 'additional_2', 'percentage'], axis=1, inplace=True)
-
-    # summing because object returned is for each power plant and operational units
+    objData.drop(columns=['additional_1', 'name', 'additional_2', 'percentage'], axis=1, inplace=True)
+    # summing because items in returned object are for each power plant and operational units
     production = pd.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity', 'output']
 
