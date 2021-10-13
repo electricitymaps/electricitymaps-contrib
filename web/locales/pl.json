@@ -117,7 +117,7 @@
         "mapNuclearColors-question": "Dlaczego kraje zasilane energią jądrową są oznaczone na mapie kolorem zielonym?",
         "mapNuclearColors-answer": "Produkcja energii jądrowej charakteryzuje się bardzo niską emisyjnością (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), i kraje zasilane energią jądrową są zatem zaznaczone kolorem zielonym. To nie oznacza, że nie ma innych wyzwań środowiskowych związanych z energetyką jądrową (jak ma to również miejsce z innymi źródłami), ale te wyzwania nie są związane z emisjią gazów cieplarnianych i dlatego są poza zakresem tej mapy.",
         "mapColorBlind-question": "Mam ślepotę barw. Jak mogę odczytywać waszą mapę?",
-        "mapColorBlind-answer": "Możesz zmieniać kolory wyświetlane na mapie, włączając ustawienie ”tryb bezbarwny”. Znajduje się on na dole lewego panelu na pulpicie oraz w zakładce informacyjnej w aplikacji mobilnej."
+        "mapColorBlind-answer": "Możesz zmieniać kolory wyświetlane na mapie, włączając ustawienie „tryb bezbarwny”. Znajduje się on na dole lewego panelu na pulpicie oraz w zakładce informacyjnej w aplikacji mobilnej."
     },
     "mapAreas": {
         "groupName": "Obszary na mapie",
