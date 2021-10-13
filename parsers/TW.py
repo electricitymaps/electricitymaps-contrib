@@ -28,11 +28,12 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
 
     objData['fueltype'] = objData.fueltype.str.split('(').str[1]
     objData['fueltype'] = objData.fueltype.str.split(')').str[0]
-    objData.drop('additional', axis=1, inplace=True)
-    objData.drop('percentage', axis=1, inplace=True)
-
     objData['capacity'] = pd.to_numeric(objData['capacity'], errors='coerce')
     objData['output'] = pd.to_numeric(objData['output'], errors='coerce')
+
+    objData.drop(columns=['additional_1', 'additional_2', 'percentage'], axis=1, inplace=True)
+
+    # summing because object returned is for each power plant and operational units
     production = pd.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity', 'output']
 
