@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import arrow
-import requests
-import pandas
 import dateutil
+import pandas as pd
+import requests
 
 
 def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=None) -> dict:
@@ -20,19 +20,20 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
     tz = 'Asia/Taipei'
     dumpDate = arrow.get(dumpDate, 'YYYY-MM-DD HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
 
-    objData = pandas.DataFrame(prodData)
+    objData = pd.DataFrame(prodData)
 
-    objData.columns = ['fueltype', 'name', 'capacity', 'output', 'percentage',
-                       'additional']
+    columns = ['fueltype', 'additional_1', 'name', 'capacity', 'output', 'percentage', 'additional_2']
+    assert len(objData.iloc[0]) == len(columns), "number of input columns changed"
+    objData.columns = columns
 
     objData['fueltype'] = objData.fueltype.str.split('(').str[1]
     objData['fueltype'] = objData.fueltype.str.split(')').str[0]
     objData.drop('additional', axis=1, inplace=True)
     objData.drop('percentage', axis=1, inplace=True)
 
-    objData['capacity'] = pandas.to_numeric(objData['capacity'], errors='coerce')
-    objData['output'] = pandas.to_numeric(objData['output'], errors='coerce')
-    production = pandas.DataFrame(objData.groupby('fueltype').sum())
+    objData['capacity'] = pd.to_numeric(objData['capacity'], errors='coerce')
+    objData['output'] = pd.to_numeric(objData['output'], errors='coerce')
+    production = pd.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity', 'output']
 
     coal_capacity = production.loc['Coal'].capacity + production.loc['IPP-Coal'].capacity
