@@ -7,22 +7,12 @@ import {
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleRequestError, protectedJsonRequest } from '../helpers/api';
-import { clientVersionRequest } from '../helpers/client';
 import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
   getGfsTargetTimeAfter,
   fetchGfsForecast,
 } from '../helpers/gfs';
-
-function* fetchClientVersion() {
-  try {
-    const version = yield call(clientVersionRequest);
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
-  } catch (err) {
-    handleRequestError(err);
-  }
-}
 
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
@@ -102,7 +92,6 @@ export default function* () {
   yield takeLatest('WIND_DATA_FETCH_REQUESTED', fetchWindData);
   yield takeLatest('SOLAR_DATA_FETCH_REQUESTED', fetchSolarData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
-  yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);
   // Analytics
   yield takeLatest('TRACK_EVENT', trackEvent);
 }
