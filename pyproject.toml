@@ -30,7 +30,7 @@ xlrd = {version="1.2.0", optional=true}
 freezegun = {version="0.3.15", optional=true}
 signalr-client-threads = {version="0.0.12", optional=true}
 tqdm = {version="^4.60.0", optional=true}
-demjson3 = "3.0.5"
+demjson3 = {version="3.0.5", optional=true}
 
 [tool.poetry.dev-dependencies]
 click = "8.0.1"

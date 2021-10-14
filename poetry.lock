@@ -83,7 +83,7 @@ name = "demjson3"
 version = "3.0.5"
 description = "encoder, decoder, and lint/validator for JSON (JavaScript Object Notation) compliant with RFC 7159"
 category = "main"
-optional = false
+optional = true
 python-versions = "*"
 
 [[package]]
