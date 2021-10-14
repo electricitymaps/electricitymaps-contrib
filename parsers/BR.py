@@ -30,7 +30,6 @@ REGION_EXCHANGES = {
     "BR-N->BR-NE": "norteFic_nordeste",
 }
 
-
 REGION_EXCHANGES_DIRECTIONS = {
     "BR-CS->BR-S": -1,
     "BR-CS->BR-NE": 1,
