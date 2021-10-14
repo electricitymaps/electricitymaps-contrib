@@ -4025,8 +4025,16 @@
     ]
   },
   "NG": {
+    "capacity": {
+      "gas": 11972,
+      "hydro": 2062,
+      "solar": 7,
+      "wind": 10,
+      "unknown": 2333
+    },
     "contributors": [
-      "https://github.com/byronwilliams"
+      "https://github.com/byronwilliams",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "NG.fetch_production"
