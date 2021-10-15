@@ -10,6 +10,9 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
 
+Languages Utilized: Python, Javascript, HTML, SCSS<sup>*</sup>, EJS<sup>*</sup>, Shell<sup>*</sup>, Other<sup>*</sup>.
+<sub>* Indicates less than 5% used</sub>
+
 Here are some of the ways you can contribute:
 
 - [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
@@ -20,9 +23,15 @@ Here are some of the ways you can contribute:
 - [Translating the app](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
 - [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
 
-Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
+## Communicate 
+
+Join us on [Slack](https://slack.tmrow.com) Please reach out if you wish to discuss development or need help to get started.
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
+
+## Use and share our data
+
+You can access data on how carbon intesive electricity is quantified in more than 50 countries which can be used in your projects through an API. To find out how click here [Get Our Data](https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral)
 
 ## Frequently asked questions
 
