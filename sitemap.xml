@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <url>
+        <loc>https://app.electricitymap.org/</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=ar</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=cs</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=da</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=de</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=el</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=en</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=es</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=et</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=fi</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=fr</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=hr</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=id</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=it</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=ja</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=ko</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=nl</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=pl</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=pt-br</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=ru</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=sk</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=sv</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=vi</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=zh-cn</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=zh-hk</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://app.electricitymap.org/map?lang=zh-tw</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/open-source/</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://www.tmrow.com/blog/</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/#product</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/#company</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://api.electricitymap.org/research</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+    <url>
+        <loc>https://static.electricitymap.org/api/docs/index.html</loc>
+        <lastmod>2021-10-17T17:23:48+00:00</lastmod>
+    </url>
+
+</urlset>
