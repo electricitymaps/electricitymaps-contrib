@@ -1,6 +1,8 @@
 const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area } = require("@turf/turf")
 const fs = require("fs");
-const newFileCallback = fileName => console.log("Created new file: " + fileName);
+const zones = require("../../config/zones.json");
+
+const newFileCallback = fileName => console.log(`Created new file: ${  fileName}`);
 const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
     typeof fileName === "string" ?
         JSON.parse(fs.readFileSync(fileName, encoding, () => callBack())) :
@@ -17,8 +19,12 @@ const fc = getJSON("./world.geojson");
 validateGeometry(fc)
 
 function validateGeometry(fc) {
-    // countGaps(fc);
     ensureComplexity(fc)
+    // check match with zones.json
+    countGaps(fc);
+    // ensure no neighbouring ids
+    ensureNoNeighbouringIds(fc);
+    // find line intersections
     // find overlaps
     // find complexity
     // ensure ids
@@ -53,13 +59,13 @@ function generateTopojson() {
 /* Helper functions */
 
 function ensureComplexity(fc) {
-        
+
 }
 
 function countGaps(fc) {
     const dissolved = getPolygons(dissolve(getPolygons(fc)));
     writeJSON("./tmp/dissolved.geojson", dissolved)
-    let holes = getHoles(dissolved);
+    const holes = getHoles(dissolved);
     console.log(holes.features.length);
     writeJSON("./tmp/holes.geojson", holes)
 
@@ -67,13 +73,15 @@ function countGaps(fc) {
 
 
 function getPolygons(data) {
+   /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
+   /* all helper functions should rely on its output */
     const handlePolygon = (feature, props) => polygon(getCoords(feature), props)
     const handleMultiPolygon = (feature, props) => getCoords(feature).map(coord => polygon(coord, props));
     const handleGeometryCollection = (feature) => feature.geometries.map((ft) => getType(ft) === "Polygon" ? handlePolygon(ft) : handleMultiPolygon(ft));
 
     const polygons = [];
 
-    const dataGeojsonType = getType(data)
+    const dataGeojsonType = getType(data);
     if (dataGeojsonType !== "FeatureCollection") {
         data = featureCollection([data]);
     }
@@ -87,7 +95,7 @@ function getPolygons(data) {
                 polygons.push(...handleMultiPolygon(feature, feature.properties))
                 break;
             default:
-                throw Error("Encountered unhandled type: " + type);
+                throw Error(`Encountered unhandled type: ${  type}`);
         }
     })
 
@@ -109,3 +117,28 @@ function getHoles(fc) {
     });
     return featureCollection(holes);
 }
+
+function ensureNoNeighbouringIds(fc) {
+    const groupById = (arr, key) => {
+      const initialValue = {};
+      return arr.reduce((acc, cval) => {
+        const myAttribute = cval.properties[key];
+        acc[myAttribute] = [...(acc[myAttribute] || []), cval]
+        return acc;
+      }, initialValue);
+    };
+
+    const zonesWithNeighbouringIds = [];
+    const featuresPerId = groupById(getPolygons(fc).features, "id");
+    Object.entries(featuresPerId).forEach(([zoneId, polygons]) => {
+        const dissolved = dissolve(featureCollection(polygons));
+        if ((dissolved.features.length !== polygons.length) && (polygons.length > 0)) {
+          zonesWithNeighbouringIds.push(zoneId);
+        }
+    });
+
+    console.log('Number of zones with neighbouring IDs:')
+    console.log(zonesWithNeighbouringIds.length);
+    console.log(zonesWithNeighbouringIds);
+}
+
