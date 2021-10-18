@@ -17,7 +17,8 @@ const fc = getJSON("./world.geojson");
 validateGeometry(fc)
 
 function validateGeometry(fc) {
-    countGaps(fc);
+    // countGaps(fc);
+    ensureComplexity(fc)
     // find overlaps
     // find complexity
     // ensure ids
@@ -50,6 +51,10 @@ function generateTopojson() {
 
 
 /* Helper functions */
+
+function ensureComplexity(fc) {
+        
+}
 
 function countGaps(fc) {
     const dissolved = getPolygons(dissolve(getPolygons(fc)));
