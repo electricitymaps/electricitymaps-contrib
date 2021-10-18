@@ -1,5 +1,6 @@
-const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area } = require("@turf/turf")
+const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area, convex } = require("@turf/turf")
 const fs = require("fs");
+const { features } = require("process");
 const newFileCallback = fileName => console.log("Created new file: " + fileName);
 const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
     typeof fileName === "string" ?
@@ -10,7 +11,8 @@ const writeJSON = (fileName, obj, callBack = newFileCallback, encoding = 'utf8')
     fs.writeFile(fileName, JSON.stringify(obj), encoding, () => callBack(fileName));
 
 const config = {
-    MIN_AREA_HOLES: 800000000
+    MIN_AREA_HOLES: 800000000,
+    MAX_CONVEX_DEVIATION: 0.7
 }
 
 const fc = getJSON("./world.geojson");
@@ -18,7 +20,7 @@ validateGeometry(fc)
 
 function validateGeometry(fc) {
     // countGaps(fc);
-    ensureComplexity(fc)
+    getComplexPolygons(fc)
     // find overlaps
     // find complexity
     // ensure ids
@@ -52,8 +54,23 @@ function generateTopojson() {
 
 /* Helper functions */
 
-function ensureComplexity(fc) {
-        
+function getComplexPolygons(fc) {
+    // https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.73.1045&rep=rep1&type=pdf
+    // calculate deviation from the convex hull and returns array of polygons with high complexity
+    const polygons = getPolygons(fc);
+    const complexPols = [];
+    featureEach(polygons, (pol) => {
+        try {
+            const conv = convex(pol);
+            const deviation = (area(conv) - area(pol)) / area(conv)
+            if (deviation > config.MAX_CONVEX_DEVIATION) {
+                complexPols.push(pol);
+            }
+        } catch (error) {
+            console.log("Failed to calculate complexity for", pol.properties.id);
+        }
+    });
+    return complexPols;
 }
 
 function countGaps(fc) {
@@ -109,3 +126,4 @@ function getHoles(fc) {
     });
     return featureCollection(holes);
 }
+
