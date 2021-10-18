@@ -20,17 +20,15 @@ const fc = getJSON("./world.geojson");
 validateGeometry(fc)
 
 function validateGeometry(fc) {
-    // countGaps(fc);
-    getComplexPolygons(fc)
+    validateProperties(fc);
     matchWithZonesJSON(fc);
+    getComplexPolygons(fc);
     countGaps(fc);
     ensureNoNeighbouringIds(fc);
-    // find line intersections
     countOverlaps(fc);
-    // ensure ids
+
     // ensure physical consistency
     // ensure geojson specification
-    // bound on complexity
 }
 
 function detectChanges() {
@@ -57,6 +55,24 @@ function generateTopojson() {
 
 
 /* Helper functions */
+function validateProperties(fc) {
+    const propertiesValidator = (properties) => {
+        let validProperties = true;
+        validProperties &= ('zoneName' in properties);
+        return validProperties;
+    }
+
+    const invalidPropertiesPolygons = [];
+    featureEach(getPolygons(fc), (ft, ftIdx) => {
+        if (!propertiesValidator(ft.properties)) {
+          invalidPropertiesPolygons.push(ft);
+        }
+    })
+    if (invalidPropertiesPolygons.length > 0) {
+      console.log(`${invalidPropertiesPolygons.length} polygons with invalid properties`);
+      console.log(invalidPropertiesPolygons)
+    }
+}
 
 function getComplexPolygons(fc) {
     // https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.73.1045&rep=rep1&type=pdf
@@ -71,7 +87,7 @@ function getComplexPolygons(fc) {
                 complexPols.push(pol);
             }
         } catch (error) {
-            console.log("Failed to calculate complexity for", pol.properties.id);
+            console.log("Failed to calculate complexity for", pol.properties.zoneName);
         }
     });
     return complexPols;
@@ -80,8 +96,8 @@ function getComplexPolygons(fc) {
 function matchWithZonesJSON(fc) {
     const superfluousZones = [];
     featureEach(fc, (ft, ftIdx) => {
-      if (!(ft.properties.id in zones)) {
-        superfluousZones.push(ft.properties.id);
+      if (!(ft.properties.zoneName in zones)) {
+        superfluousZones.push(ft.properties.zoneName);
       }
     });
     if (superfluousZones.length > 0) {
@@ -201,9 +217,9 @@ function countOverlaps(fc) {
     if (numberOverlaps > 0) {
       const overlapIDs = new Set();
       overlaps.forEach((overlapWithI, i) => {
-        const zone1 = polygons.features[i].properties.id;
+        const zone1 = polygons.features[i].properties.zoneName;
         overlapWithI.forEach((j, idx) => {
-          const zone2 = polygons.features[j].properties.id;
+          const zone2 = polygons.features[j].properties.zoneName;
           const overlappingZones = [zone1, zone2];
           overlappingZones.sort();
           overlapIDs.add(`${overlappingZones[0]} & ${overlappingZones[1]}`)
