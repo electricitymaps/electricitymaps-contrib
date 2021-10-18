@@ -19,7 +19,8 @@ const fc = getJSON("./world.geojson");
 validateGeometry(fc)
 
 function validateGeometry(fc) {
-    ensureComplexity(fc)
+    matchWithZonesJSON(fc);
+    ensureComplexity(fc);
     // check match with zones.json
     countGaps(fc);
     // ensure no neighbouring ids
@@ -58,6 +59,19 @@ function generateTopojson() {
 
 /* Helper functions */
 
+function matchWithZonesJSON(fc) {
+    const superfluousZones = [];
+    featureEach(fc, (ft, ftIdx) => {
+      if (!(ft.properties.id in zones)) {
+        superfluousZones.push(ft.properties.id);
+      }
+    });
+    if (superfluousZones.length > 0) {
+      console.log(`${superfluousZones.length} superfluous zones still in world.geojson:`);
+      console.log(superfluousZones);
+    }
+}
+
 function ensureComplexity(fc) {
 
 }
@@ -66,7 +80,7 @@ function countGaps(fc) {
     const dissolved = getPolygons(dissolve(getPolygons(fc)));
     writeJSON("./tmp/dissolved.geojson", dissolved)
     const holes = getHoles(dissolved);
-    console.log(holes.features.length);
+    console.log(`${holes.features.length} holes left.`);
     writeJSON("./tmp/holes.geojson", holes)
 
 }
@@ -137,8 +151,7 @@ function ensureNoNeighbouringIds(fc) {
         }
     });
 
-    console.log('Number of zones with neighbouring IDs:')
-    console.log(zonesWithNeighbouringIds.length);
+    console.log(`${zonesWithNeighbouringIds.length} zones with neighbouring IDs:`)
     console.log(zonesWithNeighbouringIds);
 }
 
