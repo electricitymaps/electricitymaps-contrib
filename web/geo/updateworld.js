@@ -1,4 +1,4 @@
-const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon } = require("@turf/turf")
+const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area } = require("@turf/turf")
 const fs = require("fs");
 const newFileCallback = fileName => console.log("Created new file: " + fileName);
 const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
@@ -9,17 +9,21 @@ const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
 const writeJSON = (fileName, obj, callBack = newFileCallback, encoding = 'utf8') =>
     fs.writeFile(fileName, JSON.stringify(obj), encoding, () => callBack(fileName));
 
+const config = {
+    MIN_AREA_HOLES: 800000000
+}
 
 const fc = getJSON("./world.geojson");
 validateGeometry(fc)
 
 function validateGeometry(fc) {
     countGaps(fc);
-    // find line intersections
     // find overlaps
-    // find gaps
     // find complexity
     // ensure ids
+    // ensure physical consistency
+    // ensure geojson specification
+    // bound on complexity
 }
 
 function detectChanges() {
@@ -92,9 +96,11 @@ function getHoles(fc) {
         if (coords.length > 1) {
             for (let i = 1; i < coords.length; i++) {
                 const pol = polygon([coords[i]]);
-                holes.push(pol);
+                if (area(pol) < config.MIN_AREA_HOLES) {
+                    holes.push(pol);
+                }
             }
         }
-    })
+    });
     return featureCollection(holes);
 }
