@@ -1,4 +1,4 @@
-const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area, convex } = require("@turf/turf")
+const { area, bbox, bboxPolygon, convex, dissolve, getCoords, getType, featureEach, featureCollection, intersect, polygon, truncate, unkinkPolygon } = require("@turf/turf")
 const fs = require("fs");
 const zones = require("../../config/zones.json");
 
@@ -23,13 +23,10 @@ function validateGeometry(fc) {
     // countGaps(fc);
     getComplexPolygons(fc)
     matchWithZonesJSON(fc);
-    // check match with zones.json
     countGaps(fc);
-    // ensure no neighbouring ids
     ensureNoNeighbouringIds(fc);
     // find line intersections
-    // find overlaps
-    // find complexity
+    countOverlaps(fc);
     // ensure ids
     // ensure physical consistency
     // ensure geojson specification
@@ -130,7 +127,7 @@ function getPolygons(data) {
         }
     })
 
-    return featureCollection(polygons);
+    return truncate(featureCollection(polygons), {precision: 6});
 }
 
 function getHoles(fc) {
@@ -172,3 +169,47 @@ function ensureNoNeighbouringIds(fc) {
     console.log(zonesWithNeighbouringIds);
 }
 
+function countOverlaps(fc) {
+    const polygons = getPolygons(fc);
+    // 1. Build bounding box overlaps adjacency list
+    const bboxes = [];
+    featureEach(polygons, (ft, ftIdx) => {
+        bboxes.push(bboxPolygon(bbox(ft)));
+    });
+
+    const overlaps = [];
+    const intersects = [];
+    for (let i = 0; i < bboxes.length; i++) {
+      const overlapIdx = [];
+      for (let j = i + 1; j < bboxes.length; j++) {
+        if (intersect(bboxes[i], bboxes[j])) {
+          const intsct = intersect(polygons.features[i], polygons.features[j])
+          if ((intsct) && (area(intsct) > 500000)) {
+              overlapIdx.push(j);
+              intersects.push(intsct);
+          }
+        }
+      }
+      overlaps.push(overlapIdx)
+    }
+    writeJSON("./tmp/countOverlapsIntersects.geojson", featureCollection(intersects))
+
+    const numberOverlaps = overlaps.reduce((acc, cval) => {
+      const newAcc = acc + cval.length;
+      return newAcc;
+    }, 0)
+    if (numberOverlaps > 0) {
+      const overlapIDs = new Set();
+      overlaps.forEach((overlapWithI, i) => {
+        const zone1 = polygons.features[i].properties.id;
+        overlapWithI.forEach((j, idx) => {
+          const zone2 = polygons.features[j].properties.id;
+          const overlappingZones = [zone1, zone2];
+          overlappingZones.sort();
+          overlapIDs.add(`${overlappingZones[0]} & ${overlappingZones[1]}`)
+        })
+      })
+      console.log(`${numberOverlaps} overlaps detected:`);
+      console.log(overlapIDs)
+    }
+}
