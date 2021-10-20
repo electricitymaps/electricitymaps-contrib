@@ -17,7 +17,7 @@ const config = {
 }
 
 const fc = getJSON("./world.geojson");
-validateGeometry(fc)
+// validateGeometry(fc)
 
 function validateGeometry(fc) {
     // countGaps(fc);
@@ -172,3 +172,4 @@ function ensureNoNeighbouringIds(fc) {
     console.log(zonesWithNeighbouringIds);
 }
 
+module.exports = {getPolygons}
