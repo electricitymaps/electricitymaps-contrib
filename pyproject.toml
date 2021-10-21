@@ -50,7 +50,7 @@ test_parser = 'test_parser:test_parser'
 parsers = [
     "arrow",
     "beautifulsoup4",
-    "demjson",
+    "demjson3",
     "eiapy",
     "html5lib",
     "imageio",
