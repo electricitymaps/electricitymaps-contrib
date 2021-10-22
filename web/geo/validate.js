@@ -2,17 +2,12 @@ const { area, bbox, bboxPolygon, convex, dissolve, getCoords, getType, featureEa
 const zones = require("../../config/zones.json");
 const { getPolygons, getHoles, writeJSON } = require("./utilities")
 
-const config = {
-    MIN_AREA_HOLES: 800000000,
-    MAX_CONVEX_DEVIATION: 0.7
-}
-
-function validateGeometry(fc) {
+function validateGeometry(fc, config) {
     checkGeometryValidity(fc)
     validateProperties(fc);
-    matchWithZonesJSON(fc);
-    getComplexPolygons(fc);
-    countGaps(fc);
+    // matchWithZonesJSON(fc);
+    getComplexPolygons(fc, config);
+    countGaps(fc, config);
     ensureNoNeighbouringIds(fc);
     countOverlaps(fc);
 }
@@ -40,22 +35,29 @@ function validateProperties(fc) {
     }
 }
 
-function getComplexPolygons(fc) {
+function getComplexPolygons(fc, config) {
     // https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.73.1045&rep=rep1&type=pdf
     // calculate deviation from the convex hull and returns array of polygons with high complexity
     const polygons = getPolygons(fc);
+    const complexPolsNames = [];
     const complexPols = [];
     featureEach(polygons, (pol) => {
         try {
             const conv = convex(pol);
             const deviation = (area(conv) - area(pol)) / area(conv)
             if (deviation > config.MAX_CONVEX_DEVIATION) {
-                complexPols.push(pol);
+              complexPolsNames.push(pol.properties.zoneName);
+              complexPols.push(pol);
             }
         } catch (error) {
             console.log("Failed to calculate complexity for", pol.properties.zoneName);
         }
     });
+    if (complexPolsNames.length > 0) {
+        console.log(`${complexPolsNames.length} complex polygons found:`);
+        console.log(complexPolsNames);
+        writeJSON("./tmp/complexZones.geojson", featureCollection(complexPols));
+    }
     return complexPols;
 }
 
@@ -72,13 +74,14 @@ function matchWithZonesJSON(fc) {
     }
 }
 
-function countGaps(fc) {
+function countGaps(fc, config) {
     const dissolved = getPolygons(dissolve(getPolygons(fc)));
-    writeJSON("./tmp/dissolved.geojson", dissolved)
     const holes = getHoles(dissolved, config.MIN_AREA_HOLES);
-    console.log(`${holes.features.length} holes left.`);
-    writeJSON("./tmp/holes.geojson", holes)
-
+    if (holes.features.length > 0) {
+        writeJSON("./tmp/dissolved.geojson", dissolved);
+        console.log(`${holes.features.length} holes left.`);
+        writeJSON("./tmp/holes.geojson", holes);
+    }
 }
 
 function ensureNoNeighbouringIds(fc) {
@@ -100,8 +103,10 @@ function ensureNoNeighbouringIds(fc) {
         }
     });
 
-    console.log(`${zonesWithNeighbouringIds.length} zones with neighbouring IDs:`)
-    console.log(zonesWithNeighbouringIds);
+    if (zonesWithNeighbouringIds.length > 0) {
+        console.log(`${zonesWithNeighbouringIds.length} zones with neighbouring IDs:`)
+        console.log(zonesWithNeighbouringIds);
+    }
 }
 
 function countOverlaps(fc) {
