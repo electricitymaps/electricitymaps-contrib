@@ -1,15 +1,12 @@
 const topojsonClient = require("topojson-client");
 const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area, convex, multiPolygon, booleanEqual } = require("@turf/turf")
 const fs = require("fs");
-const { getPolygons } = require("./utilities")
+const { getPolygons, writeJSON } = require("./utilities")
 const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
     typeof fileName === "string" ?
         JSON.parse(fs.readFileSync(fileName, encoding, () => callBack())) :
         fileName;
 
-
-const newFC = getJSON("world.geojson");
-const curFC = topoToGeojson(getJSON("world.json"));
 
 function topoToGeojson(topo) {
     let features = [];
@@ -29,18 +26,20 @@ function getModifications(curFC, newFC) {
     const modified = []
     const zoneNames = [... new Set(curFC.features.map(x => x.properties.zoneName))];
     zoneNames.forEach((name) => {
-        const curArea = area(getCombinedFeature(curFC, name));
-        const newArea = area(getCombinedFeature(newFC, name));
-        if (Math.abs(curArea - newArea) > 1) {
+        try {
+            const curArea = area(getCombinedFeature(curFC, name));
+            const newArea = area(getCombinedFeature(newFC, name));
+            const pctAreaDiff = Math.abs(curArea - newArea) / curArea // accounts for lossy conversion between topojson and geojson
+            if (pctAreaDiff > 0.0001) {
+                modified.push(name);
+            }
+        } catch (error) {
+            // assumes the zone is modified
             modified.push(name)
         }
-    })
+    });
 
-    if (modified.length) {
-        console.log("The following zones have been modified:\n");
-        modified.forEach((x) => console.log(x))
-        console.log("_________________");
-    }
+    return modified;
 }
 
 
@@ -52,9 +51,39 @@ function getCombinedFeature(fc, id) {
     } else return polygons[0];
 }
 
-function detectChanges(newFC) {
-    getModifications(curFC, newFC)
+function getAdditions(curFC, newFC) {
+    const added = [];
+    curFC.features.filter(x => {
+        const id = x.properties.zoneName;
+        if (!newFC.features.some(x2 => x2.properties.zoneName === id)) {
+            added.push(id);
+        }
+    })
+    return added
+}
 
+function getDeletions(curFC, newFC) {
+    const deletions = [];
+    newFC.features.filter(x => {
+        const id = x.properties.zoneName;
+        if (!curFC.features.some(x2 => x2.properties.zoneName === id)) {
+            if (x.geometry) // TODO REMOVE
+                deletions.push(id);
+        }
+    })
+    return deletions;
+}
+
+function detectChanges(newFC) {
+    const curFC = topoToGeojson(getJSON("world.json"));
+    const deletions = getDeletions(curFC, newFC)
+    const additions = getAdditions(curFC, newFC)
+    let modified = getModifications(curFC, newFC).filter(x => !(deletions.includes(x) || additions.includes(x)));
+
+
+    modified.forEach(x => console.log("MODIFIED:", x))
+    deletions.forEach(x => console.log("ADDED:", x))
+    additions.forEach(x => console.log("DELETED:", x))
 }
 
 module.exports = { detectChanges }

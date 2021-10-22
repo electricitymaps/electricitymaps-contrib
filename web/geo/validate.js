@@ -8,12 +8,17 @@ const config = {
 }
 
 function validateGeometry(fc) {
+    checkGeometryValidity(fc)
     validateProperties(fc);
     matchWithZonesJSON(fc);
     getComplexPolygons(fc);
     countGaps(fc);
     ensureNoNeighbouringIds(fc);
     countOverlaps(fc);
+}
+
+function checkGeometryValidity(fc) {
+    // check that all geometries are valid
 }
 
 function validateProperties(fc) {
