@@ -9799,7 +9799,7 @@ topojson-server@3.0.0:
   dependencies:
     commander "2"
 
-topojson-server@3.x:
+topojson-server@3.x, topojson-server@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/topojson-server/-/topojson-server-3.0.1.tgz#d2b3ec095b6732299be76a48406111b3201a34f5"
   integrity sha512-/VS9j/ffKr2XAOjlZ9CgyyeLmgJ9dMwq6Y0YEON8O7p/tGGk+dCWnrE03zEdu7i4L7YsFZLEPZPzCvcB7lEEXw==

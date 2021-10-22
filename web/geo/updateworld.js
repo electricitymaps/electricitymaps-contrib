@@ -6,7 +6,7 @@ const { getJSON } = require("./utilities")
 const { generateTopojson } = require("./generateTopojson")
 
 const config = {
-    WORLD_PATH: "./world3.geojson",
+    WORLD_PATH: "./world.geojson",
     MIN_AREA_HOLES: 800000000,
     MAX_CONVEX_DEVIATION: 0.7
 }
