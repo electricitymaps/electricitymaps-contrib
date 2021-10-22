@@ -675,7 +675,8 @@
       "https://github.com/yurukov",
       "https://github.com/ultibo",
       "https://github.com/systemcatch",
-      "https://github.com/bogomil"
+      "https://github.com/bogomil",
+      "https://github.com/Pantkowsky"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3746,7 +3747,8 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/Pantkowsky"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4588,7 +4590,8 @@
       "https://github.com/corradio",
       "https://github.com/wojciej",
       "https://github.com/nessie2013",
-      "https://github.com/filipc"
+      "https://github.com/filipc",
+      "https://github.com/Pantkowsky"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
