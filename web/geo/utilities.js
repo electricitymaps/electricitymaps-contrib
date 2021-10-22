@@ -57,4 +57,8 @@ const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
 const writeJSON = (fileName, obj, callBack = newFileCallback, encoding = 'utf8') =>
     fs.writeFile(fileName, JSON.stringify(obj), encoding, () => callBack(fileName));
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON }
+function log(message) {
+    console.log("\x1b[31m%s\x1b[0m", `ERROR: ${message}`);
+}    
+
+module.exports = { getPolygons, getHoles, writeJSON, getJSON, log }

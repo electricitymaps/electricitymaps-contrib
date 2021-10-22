@@ -12,10 +12,8 @@ function topoToGeojson(topo) {
     let features = [];
     Object.keys(topo.objects).forEach((obj) => {
         const feature = topojsonClient.feature(topo, topo.objects[obj]);
-        if (feature.geometry) {
+        if (feature.geometry) { // TODO: remove this line after updating world.geojson
             features.push(feature);
-        } else {
-            // console.log("Warning, empty geometry in current world.json");
         }
     });
     const fc = featureCollection(features);
@@ -67,23 +65,28 @@ function getDeletions(curFC, newFC) {
     newFC.features.filter(x => {
         const id = x.properties.zoneName;
         if (!curFC.features.some(x2 => x2.properties.zoneName === id)) {
-            if (x.geometry) // TODO REMOVE
-                deletions.push(id);
+            deletions.push(id)
         }
     })
     return deletions;
 }
 
 function detectChanges(newFC) {
+    newFC = featureCollection(newFC.features.filter(x => x.geometry.coordinates.length)); // TODO: remove this line
+    console.log("Detecting changes...");
     const curFC = topoToGeojson(getJSON("world.json"));
     const deletions = getDeletions(curFC, newFC)
     const additions = getAdditions(curFC, newFC)
-    let modified = getModifications(curFC, newFC).filter(x => !(deletions.includes(x) || additions.includes(x)));
+    const modified = getModifications(curFC, newFC).filter(x => !(deletions.includes(x) || additions.includes(x)));
 
 
     modified.forEach(x => console.log("MODIFIED:", x))
-    deletions.forEach(x => console.log("ADDED:", x))
-    additions.forEach(x => console.log("DELETED:", x))
+    deletions.forEach(x => console.log("DELETED:", x))
+    additions.forEach(x => console.log("ADDED:", x))
+
+    if (!(modified.length + additions.length + deletions.length)) {
+        console.log("No changes detected!");
+    }
 }
 
 module.exports = { detectChanges }

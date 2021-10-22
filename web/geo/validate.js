@@ -1,19 +1,27 @@
-const { area, bbox, bboxPolygon, convex, dissolve, getCoords, getType, featureEach, featureCollection, intersect, polygon, truncate, unkinkPolygon } = require("@turf/turf")
+const { area, bbox, bboxPolygon, convex, dissolve, getCoords, getType, featureEach, featureCollection, intersect, polygon, truncate, unkinkPolygon, getGeom } = require("@turf/turf")
 const zones = require("../../config/zones.json");
-const { getPolygons, getHoles, writeJSON } = require("./utilities")
+const { getPolygons, getHoles, writeJSON, log } = require("./utilities")
 
 function validateGeometry(fc, config) {
-    checkGeometryValidity(fc)
-    validateProperties(fc);
-    // matchWithZonesJSON(fc);
-    getComplexPolygons(fc, config);
-    countGaps(fc, config);
-    ensureNoNeighbouringIds(fc);
-    countOverlaps(fc);
+    console.log("Validating geometries...");
+    const summary = {
+        count_nullGeometries: checkGeometryNotNull(fc),
+        count_invalidProperties: validateProperties(fc),
+        count_notInZones: matchWithZonesJSON(fc),
+        count_complexPolygons: getComplexPolygons(fc, config),
+        count_gaps: countGaps(fc, config),
+        count_neighboringIds: ensureNoNeighbouringIds(fc),
+        count_overlaps: countOverlaps(fc) 
+    }
+    console.log("\nVALIDATION SUMMARY\n");
+    console.log(summary);
+    console.log("_________");
 }
 
-function checkGeometryValidity(fc) {
-    // check that all geometries are valid
+function checkGeometryNotNull(fc) {
+    const nullGeometries = fc.features.filter(ft => !getGeom(ft).coordinates.length).map(ft => ft.properties.zoneName);
+    nullGeometries.forEach(x => log(`${x} has null geometry`))
+    return nullGeometries.length;
 }
 
 function validateProperties(fc) {
@@ -26,13 +34,13 @@ function validateProperties(fc) {
     const invalidPropertiesPolygons = [];
     featureEach(getPolygons(fc), (ft, ftIdx) => {
         if (!propertiesValidator(ft.properties)) {
-            invalidPropertiesPolygons.push(ft);
+            invalidPropertiesPolygons.push(ftIdx);
         }
     })
     if (invalidPropertiesPolygons.length > 0) {
-        console.log(`${invalidPropertiesPolygons.length} polygons with invalid properties`);
-        console.log(invalidPropertiesPolygons)
+        invalidPropertiesPolygons.forEach(x => log(`feature (idx ${x}) missing properties`))
     }
+    return invalidPropertiesPolygons.length;
 }
 
 function getComplexPolygons(fc, config) {
@@ -50,38 +58,37 @@ function getComplexPolygons(fc, config) {
               complexPols.push(pol);
             }
         } catch (error) {
-            console.log("Failed to calculate complexity for", pol.properties.zoneName);
+            log(`${pol.properties.zoneName} cannot calculate complexity`)
         }
     });
     if (complexPolsNames.length > 0) {
-        console.log(`${complexPolsNames.length} complex polygons found:`);
-        console.log(complexPolsNames);
-        writeJSON("./tmp/complexZones.geojson", featureCollection(complexPols));
+        complexPolsNames.forEach(x => log(`${x} is too complex`))
     }
-    return complexPols;
+    return complexPols.length;
 }
 
 function matchWithZonesJSON(fc) {
-    const superfluousZones = [];
+    const features = [];
     featureEach(fc, (ft, ftIdx) => {
         if (!(ft.properties.zoneName in zones)) {
-            superfluousZones.push(ft.properties.zoneName);
+            features.push(ft.properties.zoneName);
         }
     });
-    if (superfluousZones.length > 0) {
-        console.log(`${superfluousZones.length} superfluous zones still in world.geojson:`);
-        console.log(superfluousZones);
+    if (features.length > 0) {
+        features.forEach(x => log(`${x} not in zones.json`))
     }
+    return features.length;
 }
 
 function countGaps(fc, config) {
     const dissolved = getPolygons(dissolve(getPolygons(fc)));
     const holes = getHoles(dissolved, config.MIN_AREA_HOLES);
     if (holes.features.length > 0) {
-        writeJSON("./tmp/dissolved.geojson", dissolved);
+        writeJSON("./tmp/gaps.geojson", holes);
         console.log(`${holes.features.length} holes left.`);
-        writeJSON("./tmp/holes.geojson", holes);
+        holes.features.forEach(_ => log(`Found gap, see ./tmp/gaps.geojson`))
     }
+    return holes.features.length;
 }
 
 function ensureNoNeighbouringIds(fc) {
@@ -104,9 +111,9 @@ function ensureNoNeighbouringIds(fc) {
     });
 
     if (zonesWithNeighbouringIds.length > 0) {
-        console.log(`${zonesWithNeighbouringIds.length} zones with neighbouring IDs:`)
-        console.log(zonesWithNeighbouringIds);
+        zonesWithNeighbouringIds.forEach(x => log(`${x} has neighbor with identical ID`))
     }
+    return zonesWithNeighbouringIds.length;
 }
 
 function countOverlaps(fc) {
@@ -148,9 +155,9 @@ function countOverlaps(fc) {
                 overlapIDs.add(`${overlappingZones[0]} & ${overlappingZones[1]}`)
             })
         })
-        console.log(`${numberOverlaps} overlaps detected:`);
-        console.log(overlapIDs)
+        overlapIDs.forEach(x => log(`${x} overlaps`))
     }
+    return numberOverlaps;
 }
 
 module.exports = { validateGeometry };
