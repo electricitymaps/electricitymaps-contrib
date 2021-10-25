@@ -1,3 +1,4 @@
+import json
 import unittest
 
 from electricitymap.contrib.config import ZONES_CONFIG
@@ -18,6 +19,14 @@ class ZonesJsonTestcase(unittest.TestCase):
             sub_zones = values.get("subZoneNames", [])
             for sub_zone in sub_zones:
                 self.assertIn(sub_zone, ZONE_KEYS)
+
+
+def test_zones_match_geometries():
+    world_geometries = json.load(open("../web/geo/world.geojson"))
+    world_geometries_zone_keys = set()
+    for ft in world_geometries["features"]:
+        world_geometries_zone_keys.add(ft["properties"]["zoneName"])
+    assert world_geometries_zone_keys == set(ZONES_CONFIG.keys())
 
 
 if __name__ == "__main__":
