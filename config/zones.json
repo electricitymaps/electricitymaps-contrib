@@ -2410,6 +2410,18 @@
     },
     "timezone": null
   },
+  "HK": {
+    "bounding_box": [
+      [
+        113.337331576,
+        21.677069403000075
+      ],
+      [
+        114.90129642000011,
+        23.06394603200009
+      ]
+    ]
+  },
   "HN": {
     "bounding_box": [
       [
@@ -2509,6 +2521,18 @@
       "production": "ENTSOE.fetch_production"
     },
     "timezone": "Europe/Budapest"
+  },
+  "ID": {
+    "bounding_box": [
+      [
+        94.51270592500003,
+        -11.422621351999908
+      ],
+      [
+        141.47762699400005,
+        6.410101630000042
+      ]
+    ]
   },
   "IE": {
     "_comment": "hydro incl. 292 MW pumped storage",
