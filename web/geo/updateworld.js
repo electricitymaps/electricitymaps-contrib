@@ -5,7 +5,7 @@ const { generateTopojson } = require("./generateTopojson")
 
 const config = {
     WORLD_PATH: "./new_world.geojson",
-    OUT_PATH: "./tmpworld.json", // TODO: change
+    OUT_PATH: "./world.json",
     MIN_AREA_HOLES: 600000000,
     MAX_CONVEX_DEVIATION: 0.708
 }
