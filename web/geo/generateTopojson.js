@@ -2,13 +2,13 @@ const { topology } = require("topojson-server");
 const { writeJSON } = require("./utilities")
 
 
-function generateTopojson(fc) {
+function generateTopojson(fc, {OUT_PATH}) {
   console.log("Generating new world.json");
   const topo = topology({
     world: fc,
   });
 
-  writeJSON("./world.json", topo)
+  writeJSON(OUT_PATH, topo)
 }
 
 module.exports = { generateTopojson };

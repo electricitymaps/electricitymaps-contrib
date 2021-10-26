@@ -1,7 +1,8 @@
 const topojsonClient = require("topojson-client");
-const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area, convex, multiPolygon, booleanEqual } = require("@turf/turf")
+const {  getCoords, featureCollection, area, multiPolygon } = require("@turf/turf")
 const fs = require("fs");
-const { getPolygons, writeJSON } = require("./utilities")
+const { getPolygons } = require("./utilities");
+
 const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
     typeof fileName === "string" ?
         JSON.parse(fs.readFileSync(fileName, encoding, () => callBack())) :
@@ -9,7 +10,7 @@ const getJSON = (fileName, encoding = "utf8", callBack = () => { }) =>
 
 
 function topoToGeojson(topo) {
-    let features = [];
+    const features = [];
     Object.keys(topo.objects).forEach((obj) => {
         const feature = topojsonClient.feature(topo, topo.objects[obj]);
         if (feature.geometry) { // TODO: remove this line after updating world.geojson
@@ -45,7 +46,7 @@ function getCombinedFeature(fc, id) {
     // returns polygon or multipolygon
     const polygons = fc.features.filter(x => x.properties.zoneName === id);
     if (polygons.length > 1) {
-        return multiPolygon(polygons.map(x => getCoords(x)), { id: id, zoneName: id }); // TODO remove id
+        return multiPolygon(polygons.map(x => getCoords(x)), { zoneName: id }); // TODO remove id
     } else return polygons[0];
 }
 

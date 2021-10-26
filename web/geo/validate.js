@@ -1,4 +1,4 @@
-const { area, bbox, bboxPolygon, convex, dissolve, getCoords, getType, featureEach, featureCollection, intersect, polygon, truncate, unkinkPolygon, getGeom } = require("@turf/turf")
+const { area, bbox, bboxPolygon, convex, dissolve, featureEach, featureCollection, intersect, getGeom } = require("@turf/turf")
 const zones = require("../../config/zones.json");
 const { getPolygons, getHoles, writeJSON, log } = require("./utilities")
 
@@ -69,13 +69,13 @@ function getComplexPolygons(fc, config) {
 
 function matchWithZonesJSON(fc) {
     const features = [];
-    featureEach(fc, (ft, ftIdx) => {
+    featureEach(fc, (ft) => {
         if (!(ft.properties.zoneName in zones)) {
             features.push(ft.properties.zoneName);
         }
     });
     if (features.length > 0) {
-        features.forEach(x => log(`${x} not in zones.json`))
+        // features.forEach(x => log(`${x} not in zones.json`))
     }
     return features.length;
 }
@@ -85,7 +85,6 @@ function countGaps(fc, config) {
     const holes = getHoles(dissolved, config.MIN_AREA_HOLES);
     if (holes.features.length > 0) {
         writeJSON("./tmp/gaps.geojson", holes);
-        console.log(`${holes.features.length} holes left.`);
         holes.features.forEach(_ => log(`Found gap, see ./tmp/gaps.geojson`))
     }
     return holes.features.length;
@@ -102,7 +101,7 @@ function ensureNoNeighbouringIds(fc) {
     };
 
     const zonesWithNeighbouringIds = [];
-    const featuresPerId = groupById(getPolygons(fc).features, "id");
+    const featuresPerId = groupById(getPolygons(fc).features, "zoneName");
     Object.entries(featuresPerId).forEach(([zoneId, polygons]) => {
         const dissolved = dissolve(featureCollection(polygons));
         if ((dissolved.features.length !== polygons.length) && (polygons.length > 0)) {
@@ -120,7 +119,7 @@ function countOverlaps(fc) {
     const polygons = getPolygons(fc);
     // 1. Build bounding box overlaps adjacency list
     const bboxes = [];
-    featureEach(polygons, (ft, ftIdx) => {
+    featureEach(polygons, (ft) => {
         bboxes.push(bboxPolygon(bbox(ft)));
     });
 
@@ -148,7 +147,7 @@ function countOverlaps(fc) {
         const overlapIDs = new Set();
         overlaps.forEach((overlapWithI, i) => {
             const zone1 = polygons.features[i].properties.zoneName;
-            overlapWithI.forEach((j, idx) => {
+            overlapWithI.forEach((j) => {
                 const zone2 = polygons.features[j].properties.zoneName;
                 const overlappingZones = [zone1, zone2];
                 overlappingZones.sort();

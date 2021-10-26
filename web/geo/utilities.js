@@ -1,4 +1,4 @@
-const { polygon, getCoords, getType, featureEach, featureCollection, dissolve, unkinkPolygon, area, convex, multiPolygon, booleanEqual, truncate } = require("@turf/turf")
+const { polygon, getCoords, getType, featureEach, featureCollection, area, truncate } = require("@turf/turf")
 const fs = require("fs")
 
 function getPolygons(data) {
@@ -6,12 +6,12 @@ function getPolygons(data) {
     /* all helper functions should rely on its output */
      const handlePolygon = (feature, props) => polygon(getCoords(feature), props)
      const handleMultiPolygon = (feature, props) => getCoords(feature).map(coord => polygon(coord, props));
-     const handleGeometryCollection = (feature) => feature.geometries.map((ft) => getType(ft) === "Polygon" ? handlePolygon(ft) : handleMultiPolygon(ft));
  
      const polygons = [];
  
      const dataGeojsonType = getType(data);
      if (dataGeojsonType !== "FeatureCollection") {
+         // eslint-disable-next-line no-param-reassign
          data = featureCollection([data]);
      }
      featureEach(data, (feature) => {
