@@ -15,13 +15,13 @@ Languages Utilized: Python, Javascript, HTML, SCSS<sup>*</sup>, EJS<sup>*</sup>,
 
 Here are some of the ways you can contribute:
 
-- [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
-- [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser)
+- [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser) - Python, HTML
+- [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser) - Python, HTML
 - [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
 - [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
 - [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
-- [Translating the app](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
-- [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
+- [Translating the app](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org) - HTML
+- [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities) - Javascript
 
 ## Communicate 
 
@@ -29,9 +29,11 @@ Join us on [Slack](https://slack.tmrow.com) Please reach out if you wish to disc
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
 
+Standards: Be Kind, Respect Others, Comment Well, Ask Questions in Slack
+
 ## Use and share our data
 
-You can access data on how carbon intesive electricity is quantified in more than 50 countries which can be used in your projects through an API. To find out how click here [Get Our Data](https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral)
+You can access data on how carbon intesive electricity is quantified in more than 50 countries which can be used in your projects through an API. To find out how click here [Get Our Data](https://static.electricitymap.org/api/docs/index.html)
 
 ## Frequently asked questions
 
