@@ -3,6 +3,8 @@ const path = require('path');
 
 const args = process.argv.slice(2);
 
+const { getJSON } = require("./utilities")
+
 function readNDJSON(filePath) {
   return fs
     .readFileSync(path.resolve(__dirname, filePath), 'utf8')
@@ -11,7 +13,7 @@ function readNDJSON(filePath) {
     .map(JSON.parse);
 }
 
-let zones = readNDJSON('../public/dist/zonegeometries.json');
+let zones = getJSON('./world.geojson');
 if (args.length > 0) {
   zones = zones.filter((d) => d.properties.zoneName === args[0]);
 }
@@ -19,7 +21,7 @@ if (args.length > 0) {
 let allCoords = [];
 const boundingBoxes = {};
 
-zones.forEach((zone) => {
+zones.features.forEach((zone) => {
   allCoords = [];
   zone.geometry.coordinates.forEach((coords1) => {
     coords1[0].forEach((coord) => allCoords.push(coord));
