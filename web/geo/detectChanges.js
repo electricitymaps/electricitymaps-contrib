@@ -72,10 +72,11 @@ function getDeletions(curFC, newFC) {
     return deletions;
 }
 
-function detectChanges(newFC) {
+function detectChanges(newFC, {OUT_PATH}) {
+    // eslint-disable-next-line no-param-reassign
     newFC = featureCollection(newFC.features.filter(x => x.geometry.coordinates.length)); // TODO: remove this line
     console.log("Detecting changes...");
-    const curFC = topoToGeojson(getJSON("world.json"));
+    const curFC = topoToGeojson(getJSON(OUT_PATH));
     const deletions = getDeletions(curFC, newFC)
     const additions = getAdditions(curFC, newFC)
     const modified = getModifications(curFC, newFC).filter(x => !(deletions.includes(x) || additions.includes(x)));
