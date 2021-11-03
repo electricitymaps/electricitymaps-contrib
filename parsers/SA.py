@@ -49,7 +49,7 @@ def fetch_consumption(zone_key='SA', session=None, logger=None):
         'zoneKey': zone_key,
         'datetime': arrow.now('Asia/ٌRiyadh').datetime,
         'consumption': consumption,
-        'source': 'https://www.bloomberg.com'
+        'source': 'bloomberg.com'
     }
 
     return datapoint
