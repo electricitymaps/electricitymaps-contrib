@@ -4974,8 +4974,22 @@
     "timezone": null
   },
   "SA": {
+
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 26753,
+      "hydro": 1000,
+      "nuclear": 0,
+      "oil": 26603,
+      "solar": 388,
+      "wind": 3,
+      "geothermal": 0
+    },
     "contributors": [
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/Suwailem1"
+
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
