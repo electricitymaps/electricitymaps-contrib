@@ -52,10 +52,6 @@ const MobileInfoTab = () => {
 
   return (
     <div className="mobile-info-tab">
-      <div className="mobile-watermark brightmode">
-        <a href="http://www.tmrow.com/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-          <img src={resolvePath('images/built-by-tomorrow.svg')} alt="" />
-        </a>
         <div className="socialicons">
           <div
             className="fb-like"
@@ -72,7 +68,6 @@ const MobileInfoTab = () => {
             data-show-count="false"
             data-lang={locale}
           />
-        </div>
       </div>
 
       <div className="info-text">
