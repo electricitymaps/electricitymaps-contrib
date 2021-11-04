@@ -125,6 +125,14 @@ MAP_GENERATION_DIESEL_GAS_REUNION = {
     'gas': 0.1202,
     'oil': 0.8798
 }
+#(RE) API update: - gas suppression
+MAP_GENERATION_REUNION_OIL= {
+    'oil': 1
+}
+MAP_GENERATION_REUNION_COAL= {
+    'coal': 1
+}
+
 MAP_GENERATION_DIESEL_GAS_MARTINIQUE = {
     'gas': 0.1247,
     'oil': 0.8753
@@ -141,6 +149,7 @@ MAP_GENERATION_DIESEL_GAS_CORSE = {
     'gas': 0.0196,
     'oil': 0.9804
 }
+
 
 # Thermal sources by region
 thermal_mapping = {
@@ -197,6 +206,23 @@ thermal_mapping = {
             'name': 'thermique',
             'monthly_variation': False,
             'type': MAP_GENERATION_DIESEL_GAS_REUNION
+        }
+
+        #(RE) API update
+        {
+            'name': 'turbine_a_combustion',
+            'monthly_variation': False,
+            'type': MAP_GENERATION_REUNION_OIL
+        }
+        {
+            'name': 'diesel',
+            'monthly_variation': False,
+            'type': MAP_GENERATION_REUNION_OIL
+        }
+        {
+            'name': 'charbon',
+            'monthly_variation': False,
+            'type': MAP_GENERATION_REUNION_COAL
         }
     ],
 }
