@@ -42,12 +42,6 @@ const mapStateToProps = state => ({
   hasConnectionWarning: state.data.hasConnectionWarning,
 });
 
-const Watermark = styled.div`
-@media (max-width: 767px) {
-  display: none !important;
-}
-`;
-
 const MapContainer = styled.div`
   @media (max-width: 767px) {
     display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
@@ -57,7 +51,6 @@ const MapContainer = styled.div`
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Main = ({
-  brightModeEnabled,
   electricityMixMode,
   hasConnectionWarning,
 }) => {
@@ -106,11 +99,6 @@ const Main = ({
           <LeftPanel />
           <MapContainer pathname={location.pathname} id="map-container">
             <Map />
-            <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-                <div id="built-by-tomorrow" />
-              </a>
-            </Watermark>
             <Legend />
             <div className="controls-container">
               <Toggle

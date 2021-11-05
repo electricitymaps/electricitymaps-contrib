@@ -3,8 +3,8 @@
         "thisproject": "Dit project is",
         "opensource": "Open Source",
         "see": "zie",
-        "datasources": "data bronnen",
-        "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your country</a>"
+        "datasources": "databronnen",
+        "contribute": "Participeer mee door <a href=\"%s\" target=\"_blank\">jouw land toe te voegen</a>"
     },
     "mobile-main-menu": {
         "map": "electricityMap",
@@ -19,12 +19,12 @@
         "electricityproduction": "Elektriciteitsproductie",
         "bysource": "per bron",
         "emissions": "CO₂ uitstoot",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
-        "helpfrom": "met hulp van",
+        "addeditsource": "<a href=\"%s\" target=\"_blank\">voeg een bron toe, of wijzig deze</a>",
+        "helpfrom": "met de hulp van",
         "noDataAtTimestamp": "Data is tijdelijk niet beschikbaar op dit geselecteerde tijdstip",
         "noLiveData": "Live data is tijdelijk niet beschikbaar voor dit gebied",
-        "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
-        "now": "Now"
+        "noParserInfo": "We hebben op dit moment geen informatie over dit gebied.<br/> Wil je dit helpen oplossen? Help mee door <a href=\"%s\" target=\"_blank\">gebiedsinformatie toe te voegen</a>.",
+        "now": "Nu"
     },
     "left-panel": {
         "zone-list-header-title": "Invloed op klimaat per Gebied",
@@ -47,7 +47,7 @@
     "legends": {
         "windpotential": "potentieel aan Windenergie",
         "solarpotential": "potentieel aan Zonne-energie",
-        "colorblindmode": "kleurenblind modus",
+        "colorblindmode": "Modus voor kleurenblinden",
         "carbonintensity": "Koolstofintensiteit"
     },
     "tooltips": {
@@ -66,7 +66,7 @@
         "temporaryDataOutage": "Data tijdelijk niet beschikbaar",
         "production": "productie",
         "consumption": "consumptie",
-        "cpinfo": "<b>consumptie</b> houd rekening met in- en uitvoer, <b>productie</b> doet dat niet",
+        "cpinfo": "<b>consumptie</b> houdt rekening met in- en uitvoer, <b>productie</b> doet dat niet",
         "selectLanguage": "Selecteer taal",
         "lowCarbDescription": "Inclusief hernieuwbaar en nucleair"
     },
@@ -239,6 +239,21 @@
         },
         "UA": {
             "zoneName": "Oekraïne"
+        },
+        "PF": {
+            "zoneName": "Frans-Polynesië"
+        },
+        "DO": {
+            "zoneName": "Dominicaanse Republiek"
+        },
+        "IL": {
+            "zoneName": "Israël"
+        },
+        "KW": {
+            "zoneName": "Koeweit"
+        },
+        "GE": {
+            "zoneName": "Georgië"
         }
     }
 }
