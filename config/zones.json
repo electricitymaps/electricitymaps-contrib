@@ -4992,8 +4992,8 @@
 
     ],
     "parsers": {
-      "consumption": "GCCIA.fetch_consumption",
-      "production": "GCCIA.fetch_production"
+      "consumption": "SA.fetch_consumption",
+      "production": "SA.fetch_production"
       
     },
     "timezone": "Asia/Riyadh",
