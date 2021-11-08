@@ -215,8 +215,12 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
                 continue
             if v < 0 and v > -50:
                 # Set small negative values to 0
-                logger.warning(f'Setting small value of {k} ({v}) to 0.',
-                               extra={'key': zone_key})
+                logger.warning(
+                    {
+                        "message": f"Setting small value of {k} ({v}) to 0.",
+                        "zone_key": zone_key,
+                    }
+                )
                 obj['production'][k] = 0
 
     return objs

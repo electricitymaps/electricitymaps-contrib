@@ -108,7 +108,10 @@ def get_state_gen(soup, logger: logging.Logger):
             gen[gen_type.value] += float(cols[1].text)
         except (AttributeError, KeyError, IndexError, ValueError):
             logger.error(
-                f'Error importing data from row: {row}', extra={"key": ZONE_KEY}
+                {
+                    "message": f"Error importing data from row: {row}",
+                    "zone_key": ZONE_KEY,
+                }
             )
     return gen
 

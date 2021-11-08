@@ -127,8 +127,12 @@ def fetch_production(zone_key='TR', session=None, target_datetime=None, logger=N
                     if prod_type in MAP_GENERATION.keys():
                         data['production'][MAP_GENERATION[prod_type]] += prod_val
                     elif prod_type not in ['total', 'uluslarasi', 'saat']:
-                        logger.warning('Warning: %s (%d) is missing in mapping!' % (prod_type, prod_val))
-
+                        logger.warning(
+                            {
+                                'message': f'Warning: {prod_type} ({prod_val}) is missing in mapping!',
+                                'zone_key': zone_key,
+                            }
+                        )
                 try:
                     data['datetime'] = tr_datetime.replace(hour=int(datapoint['saat'])).datetime
                 except ValueError:

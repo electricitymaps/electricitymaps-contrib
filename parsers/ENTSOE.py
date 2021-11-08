@@ -812,7 +812,11 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
                 i = datetimes.index(dt)
             except ValueError:
                 logger.warning(
-                    f'No corresponding consumption value found for self-consumption at {dt}')
+                    {
+                        'message':f'No corresponding consumption value found for self-consumption at {dt}',
+                        'zone_key': zone_key
+                    }
+                )
                 continue
             quantities[i] += value
 
@@ -830,7 +834,12 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
         # data is available for a given TZ a few minutes before production data is.
         dt, quantity = datetimes[-1].datetime, quantities[-1]
         if dt not in self_consumption:
-            logger.warning(f'Self-consumption data not yet available for {zone_key} at {dt}')
+            logger.warning(
+                {
+                    'message': f'Self-consumption data not yet available for {zone_key} at {dt}',
+                    'zone_key': zone_key
+                }
+            )
         data = {
             'zoneKey': zone_key,
             'datetime': dt,
@@ -895,8 +904,12 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                 if v is None: continue
                 if v < 0 and v > -50:
                     # Set small negative values to 0
-                    logger.warning('Setting small value of %s (%s) to 0.' % (k, v),
-                                   extra={'key': zone_key})
+                    logger.warning(
+                        {
+                            'message': f'Setting small value of {k} ({v}) to 0.',
+                            'zone_key': zone_key
+                        }
+                    )
                     d['production'][k] = 0
 
     return list(filter(lambda x: validate_production(x, logger), data))
@@ -974,7 +987,12 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None,
                 v['datetime'] = v['datetime'].datetime
                 v['source'] = 'entsoe.eu'
                 if not v['unitName'] in ENTSOE_UNITS_TO_ZONE:
-                    logger.warning('Unknown unit %s with id %s' % (v['unitName'], v['unitKey']))
+                    logger.warning(
+                        {
+                            'message': 'Unknown unit %s with id %s' % (v['unitName'], v['unitKey']),
+                            'zone_key': zone_key
+                        }
+                    )
                 else:
                     v['zoneKey'] = ENTSOE_UNITS_TO_ZONE[v['unitName']]
                     if v['zoneKey'] == zone_key:

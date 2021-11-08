@@ -57,7 +57,12 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
             production = float(csv[ca_gen_type][i])
             
             if production < 0 and (mapped_gen_type == 'solar' or mapped_gen_type == 'nuclear'):
-                logger.warn(ca_gen_type + ' production for US_CA was reported as less than 0 and was clamped')
+                logger.warning(
+                    {
+                        'message': f'{ca_gen_type} production for US_CA was reported as less than 0 and was clamped',
+                        'zone_key': zone_key,
+                    }
+                )
                 production = 0.0
             
             # if another mean of production created a value, sum them up

@@ -14,10 +14,10 @@ def has_value_for_key(datapoint, key, logger):
     value = datapoint["production"].get(key, None)
     if value is None or math.isnan(value):
         logger.warning(
-            "Required generation type {} is missing from {}".format(
-                key, datapoint["zoneKey"]
-            ),
-            extra={"key": datapoint["zoneKey"]},
+            {
+                "message": f"Required generation type {key} is missing from {datapoint['zoneKey']}",
+                "zone_key": datapoint["zoneKey"],
+            }
         )
         return None
     return True

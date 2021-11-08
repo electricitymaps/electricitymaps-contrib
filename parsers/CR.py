@@ -162,9 +162,12 @@ def df_to_data(zone_key, day, df, logger):
         results.append(data)
 
     for plant in unknown_plants:
-        logger.warning(u'{} is not mapped to generation type'.format(plant),
-                       extra={'key': zone_key})
-
+        logger.warning(
+            {
+                "message": f"{format(plant)}is not mapped to generation type",
+                "zone_key": zone_key,
+            }
+        )
     return results
 
 

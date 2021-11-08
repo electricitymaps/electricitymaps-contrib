@@ -66,11 +66,21 @@ def check_hydro_capacity(plant_name, value, logger) -> Union[bool, ValueError]:
         max_value = HYDRO_CAPACITIES[plant_name]
     except KeyError:
         if value != 0.0:
-            logger.warning('New hydro plant seen - {} - {}MW'.format(plant_name, value), extra={'key': 'KR'})
+            logger.warning(
+                {
+                    'message': 'New hydro plant seen - {plant_name} - {value}MW',
+                    'zone_key': 'KR',
+                }
+            )
         return True
 
     if value > max_value:
-        logger.warning('{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value), extra={'key': 'KR'})
+        logger.warning(
+            {
+                'messsage': '{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value),
+                'zone_key': 'KR',
+            }
+        )
         raise ValueError
     else:
         return True

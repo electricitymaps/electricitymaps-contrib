@@ -153,7 +153,12 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
           data['production'][unit_fuel_type] += unit_generation
           data['production']['unknown'] -= unit_generation
       else:
-        logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
+        logger.warning(
+            {
+                "message": f"{format(unit_name)}is not mapped to generation type",
+                "zone_key": zone_key,
+            }
+        )
 
     #Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
     #presumably because they aren't updated at the exact same moment.
