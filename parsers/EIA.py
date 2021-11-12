@@ -403,6 +403,10 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             point = validate(point, logger=logger, remove_negative=True)
         mixes.append(mix)
 
+    if not mixes:
+        logger.warning(f'No production mix data found for {zone_key}')
+        return []
+
     # Some of the returned mixes could be for older timeframes.
     # Fx the latest oil data could be 6 months old.
     # In this case we want to discard the old data as we won't be able to merge it
