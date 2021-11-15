@@ -9,6 +9,7 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
+from logging import error
 
 import requests
 from dateutil import parser, tz
@@ -486,8 +487,15 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
         # Get the last 24 hours available.
         raw_data = series.last(24)
 
-    if "error" in raw_data["data"]:
-        raise ValueError(raw_data["data"]["error"])
+    eia_error_message = None
+    # check nested key with forgiveness
+    try:
+        eia_error_message = raw_data["data"]["error"]
+    except KeyError:
+        pass
+    if eia_error_message:
+        logger.error(f"EIA error: {eia_error_message}")
+        return []
 
     # UTC timestamp with no offset returned.
     if not raw_data.get("series"):
