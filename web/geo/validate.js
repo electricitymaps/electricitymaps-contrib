@@ -12,7 +12,7 @@ function validateGeometry(fc, config) {
         count_gaps: countGaps(fc, config),
         count_neighboringIds: ensureNoNeighbouringIds(fc),
         count_overlaps: countOverlaps(fc) 
-    }
+    };
     console.log("\nVALIDATION SUMMARY\n");
     console.log(summary);
     console.log("_________");
