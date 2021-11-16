@@ -487,12 +487,7 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
         # Get the last 24 hours available.
         raw_data = series.last(24)
 
-    eia_error_message = None
-    # check nested key with forgiveness
-    try:
-        eia_error_message = raw_data["data"]["error"]
-    except KeyError:
-        pass
+    eia_error_message = raw_data.get("data", {}).get("error")
     if eia_error_message:
         logger.error(f"EIA error: {eia_error_message}")
         return []
