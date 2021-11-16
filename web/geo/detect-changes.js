@@ -13,9 +13,7 @@ function topoToGeojson(topo) {
     const features = [];
     Object.keys(topo.objects).forEach((obj) => {
         const feature = topojsonClient.feature(topo, topo.objects[obj]);
-        if (feature.geometry) { // TODO: remove this line after updating world.geojson
-            features.push(feature);
-        }
+        features.push(feature);
     });
     const fc = featureCollection(features);
     return getPolygons(fc)

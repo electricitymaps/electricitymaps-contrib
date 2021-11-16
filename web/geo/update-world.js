@@ -1,7 +1,7 @@
 const { validateGeometry } = require("./validate");
-const { detectChanges } = require("./detectChanges")
+const { detectChanges } = require("./detect-changes")
 const { getJSON } = require("./utilities")
-const { generateTopojson } = require("./generateTopojson")
+const { generateTopojson } = require("./generate-topojson")
 
 const config = {
     WORLD_PATH: "./world.geojson",
