@@ -174,6 +174,7 @@ app.use('/', (req, res) => {
       }
       res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
+
     res.render('pages/index', {
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
@@ -223,3 +224,5 @@ if (isProduction) {
 server.listen(process.env.PORT, () => {
   console.log(`Listening on *:${process.env.PORT}`);
 });
+
+module.exports = {app, server};
