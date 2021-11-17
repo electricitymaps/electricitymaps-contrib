@@ -16,7 +16,7 @@ const headerLinks = [
   },
   {
     label: 'Blog',
-    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=app.electricitymap.org&utm_medium=referral',
+    href: 'https://api.electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
     label: 'Get our data',
