@@ -12,7 +12,8 @@ def refetch_frequency(frequency: timedelta):
 
     def wrap(f):
         def wrapped_f(*args, **kwargs):
-            f(*args, **kwargs)
+            result = f(*args, **kwargs)
+            return result
 
         wrapped_f.REFETCH_FREQUENCY = frequency
         return wrapped_f
