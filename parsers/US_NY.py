@@ -20,6 +20,8 @@ import pandas as pd
 # Pumped storage is present but is not split into a separate category.
 from arrow.parser import ParserError
 
+from parsers.lib.config import refetch_frequency
+
 mapping = {
     'Dual Fuel': 'gas',
     'Natural Gas': 'gas',
@@ -91,7 +93,7 @@ def data_parser(df) -> list:
 
     return mapped_generation
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='US-NY', session=None, target_datetime=None, logger=None) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
