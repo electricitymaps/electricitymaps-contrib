@@ -42,16 +42,16 @@ jobs:
             sudo npm install -g jsonlint-mod
             jsonlint -q config/*.json web/locales/*.json
 
-  test_js:
+  verify_config_js:
     executor: js-exec
     steps:
       - checkout
       - run:
           command: |
             sudo npm install -g jest
-            jest
+            jest config
 
-  lint_js:
+  verify_web_js:
     executor: js-exec
     steps:
       - checkout
@@ -62,7 +62,7 @@ jobs:
             set -eux -o pipefail
             cd web
             yarn install --frozen-lockfile
-            yarn lint --quiet
+            yarn verify
       - save_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
@@ -109,12 +109,12 @@ workflows:
   all:
     jobs:
       - verify_python
-      - lint_js
+      - verify_config_js
       - lint_json
-      - test_js
+      - verify_web_js
       - build_test:
           requires:
-            - lint_js
             - verify_python
+            - verify_config_js
             - lint_json
-            - test_js
+            - verify_web_js
