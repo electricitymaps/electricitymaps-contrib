@@ -9,13 +9,11 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
-from logging import error
 
 import requests
 from dateutil import parser, tz
 
 from .ENTSOE import merge_production_outputs
-from .lib.utils import get_token
 from .lib.validation import validate
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
