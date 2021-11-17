@@ -43,10 +43,8 @@
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
     </platform>
     <universal-links>
-        <host name="electricitymap.org" scheme="https" />
-        <host name="electricitymap.org" scheme="http" />
-        <host name="www.electricitymap.org" scheme="https" />
-        <host name="www.electricitymap.org" scheme="http" />
+        <host name="app.electricitymap.org" scheme="https" />
+        <host name="app.electricitymap.org" scheme="http" />
     </universal-links>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
