@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-# The arrow library is used to handle datetimes
 import json
 import re
+from datetime import datetime
+from typing import List, NamedTuple, Optional
 
 import arrow
 import requests
@@ -12,15 +13,25 @@ tz_bo = "America/La_Paz"
 SOURCE = "cndc.bo"
 
 
+class HourlyProduction(NamedTuple):
+    datetime: datetime
+    forecast: Optional[float]
+    total: Optional[float]
+    thermo: Optional[float]
+    hydro: Optional[float]
+    wind: Optional[float]
+    solar: Optional[float]
+    bagasse: Optional[float]
+
+
 def extract_xsrf_token(html):
     """Extracts XSRF token from the source code of the generation graph page."""
     return re.search(r'var ttoken = "([a-f0-9]+)";', html).group(1)
 
 
-def fetch_production(
-    zone_key="BO", session=None, target_datetime=None, logger=None
-) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
+def fetch_data(
+    session=None, target_datetime=None, logger=None
+) -> List[HourlyProduction]:
     if target_datetime is not None:
         now = arrow.get(target_datetime)
     else:
@@ -40,10 +51,11 @@ def fetch_production(
     resp = r.get(url_init.format(formatted_date), headers={"x-csrf-token": xsrf_token})
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
-    payload = []
+
+    result: List[HourlyProduction] = []
 
     for hour_row in hour_rows:
-        [hour, _forecast, total, thermo, hydro, wind, solar, _bagasse] = hour_row
+        [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row
 
         if target_datetime is None and hour > now.hour:
             continue
@@ -54,76 +66,73 @@ def fetch_production(
             timestamp = now
 
         if target_datetime is not None and hour < 24:
-            timestamp = timestamp.replace(hour=hour - 1)
+            timestamp = timestamp.replace(
+                hour=hour - 1, minute=0, second=0, microsecond=0
+            )
 
-        # NOTE: that thermo includes gas + oil are mixed, so this is unknown for now
-        modes_extracted = [hydro, solar, wind]
+        result.append(
+            HourlyProduction(
+                datetime=timestamp.datetime,
+                forecast=forecast,
+                total=total,
+                thermo=thermo,
+                hydro=hydro,
+                wind=wind,
+                solar=solar,
+                bagasse=bagasse,
+            )
+        )
 
-        if total is None or None in modes_extracted:
+    return result
+
+
+def fetch_production(
+    zone_key="BO", session=None, target_datetime=None, logger=None
+) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
+    payload = []
+
+    for row in fetch_data(
+        session=session, target_datetime=target_datetime, logger=logger
+    ):
+        # NOTE: thermo includes gas + oil mixed, so we set these as unknown for now
+        modes_extracted = [row.hydro, row.solar, row.wind]
+
+        if row.total is None or None in modes_extracted:
             continue
 
-        hour_resp = {
-            "zoneKey": zone_key,
-            "datetime": timestamp.datetime,
-            "production": {
-                "hydro": hydro,
-                "solar": solar,
-                "unknown": total - sum(modes_extracted),
-                "wind": wind,
-            },
-            "storage": {},
-            "source": SOURCE,
-        }
-
-        payload.append(hour_resp)
+        payload.append(
+            {
+                "zoneKey": zone_key,
+                "datetime": row.datetime,
+                "production": {
+                    "hydro": row.hydro,
+                    "solar": row.solar,
+                    "unknown": row.total - sum(modes_extracted),
+                    "wind": row.wind,
+                },
+                "storage": {},
+                "source": SOURCE,
+            }
+        )
 
     return payload
 
 
 def fetch_generation_forecast(
     zone_key="BO", session=None, target_datetime=None, logger=None
-):
-    if target_datetime is not None:
-        now = arrow.get(target_datetime)
-    else:
-        now = arrow.now(tz=tz_bo)
-
-    r = session or requests.session()
-
-    # Define actual and previous day (for midnight data).
-    formatted_date = now.format("YYYY-MM-DD")
-
-    # initial path for url to request
-    url_init = "https://www.cndc.bo/gene/dat/gene.php?fechag={0}"
-
-    # XSRF token for the initial request
-    xsrf_token = extract_xsrf_token(r.get("https://www.cndc.bo/gene/index.php").text)
-
-    resp = r.get(url_init.format(formatted_date), headers={"x-csrf-token": xsrf_token})
-
-    hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
-    payload = []
-
-    for hour_row in hour_rows:
-        [hour, forecast, *_rest] = hour_row
-
-        if hour == 24:
-            timestamp = now.shift(days=1)
-        else:
-            timestamp = now
-
-        zeroed = timestamp.replace(hour=hour - 1, minute=0, second=0, microsecond=0)
-
-        hour_resp = {
+) -> list:
+    return [
+        {
             "zoneKey": zone_key,
-            "datetime": zeroed.datetime,
-            "value": forecast,
+            "datetime": row.datetime,
+            "value": row.forecast,
             "source": SOURCE,
         }
-
-        payload.append(hour_resp)
-
-    return payload
+        for row in fetch_data(
+            session=session, target_datetime=target_datetime, logger=logger
+        )
+    ]
 
 
 if __name__ == "__main__":
