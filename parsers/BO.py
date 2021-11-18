@@ -9,33 +9,12 @@ import requests
 
 tz_bo = "America/La_Paz"
 
+SOURCE = "cndc.bo"
+
 
 def extract_xsrf_token(html):
     """Extracts XSRF token from the source code of the generation graph page."""
     return re.search(r'var ttoken = "([a-f0-9]+)";', html).group(1)
-
-
-def template_response(zone_key, datetime, source):
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime,
-        "production": {
-            "hydro": 0.0,
-            "unknown": 0,  # Gas + Oil are mixed, so unknown for now
-            "wind": 0,
-        },
-        "storage": {},
-        "source": source,
-    }
-
-
-def template_forecast_response(zone_key, datetime, source):
-    return {
-        "zoneKey": zone_key,
-        "datetime": datetime,
-        "value": None,
-        "source": source,
-    }
 
 
 def fetch_production(
@@ -64,7 +43,7 @@ def fetch_production(
     payload = []
 
     for hour_row in hour_rows:
-        [hour, forecast, _total, thermo, hydro, wind, _unknown] = hour_row
+        [hour, _forecast, total, thermo, hydro, wind, solar, _bagasse] = hour_row
 
         if target_datetime is None and hour > now.hour:
             continue
@@ -77,10 +56,24 @@ def fetch_production(
         if target_datetime is not None and hour < 24:
             timestamp = timestamp.replace(hour=hour - 1)
 
-        hour_resp = template_response(zone_key, timestamp.datetime, "cndc.bo")
-        hour_resp["production"]["unknown"] = thermo
-        hour_resp["production"]["hydro"] = hydro
-        hour_resp["production"]["wind"] = wind
+        # NOTE: that thermo includes gas + oil are mixed, so this is unknown for now
+        modes_extracted = [hydro, solar, wind]
+
+        if total is None or None in modes_extracted:
+            continue
+
+        hour_resp = {
+            "zoneKey": zone_key,
+            "datetime": timestamp.datetime,
+            "production": {
+                "hydro": hydro,
+                "solar": solar,
+                "unknown": total - sum(modes_extracted),
+                "wind": wind,
+            },
+            "storage": {},
+            "source": SOURCE,
+        }
 
         payload.append(hour_resp)
 
@@ -112,7 +105,7 @@ def fetch_generation_forecast(
     payload = []
 
     for hour_row in hour_rows:
-        [hour, forecast, _total, _thermo, _hydro, _wind, _unknown] = hour_row
+        [hour, forecast, *_rest] = hour_row
 
         if hour == 24:
             timestamp = now.shift(days=1)
@@ -121,8 +114,12 @@ def fetch_generation_forecast(
 
         zeroed = timestamp.replace(hour=hour - 1, minute=0, second=0, microsecond=0)
 
-        hour_resp = template_forecast_response(zone_key, zeroed.datetime, "cndc.bo")
-        hour_resp["value"] = forecast
+        hour_resp = {
+            "zoneKey": zone_key,
+            "datetime": zeroed.datetime,
+            "value": forecast,
+            "source": SOURCE,
+        }
 
         payload.append(hour_resp)
 
