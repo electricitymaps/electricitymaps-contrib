@@ -83,10 +83,10 @@ def fetch_production(
 def fetch_generation_forecast(
     zone_key="BO", session=None, target_datetime=None, logger=None
 ):
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    now = arrow.now(tz=tz_bo)
+    if target_datetime is not None:
+        now = arrow.get(target_datetime)
+    else:
+        now = arrow.now(tz=tz_bo)
 
     r = session or requests.session()
 
