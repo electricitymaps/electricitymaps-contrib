@@ -11,51 +11,67 @@ A few prerequisite:
 
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
-To build the JavaScript (you need to export BRICK_ELECTRICITYMAP_PUBLIC_TOKEN in order to access the API):
+To build the JavaScript:
 
-```
+```bash
 docker-compose build web && ./build.sh
+```
+
+If you want to access the public API you will need a token:
+```bash
+docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.sh
 ```
 
 When installing for first time, run:
 
-```
+```bash
 cordova prepare
 ```
 
 To build the cordova app:
 
-```
+```bash
 export SENTRY_SKIP_AUTO_RELEASE=true
 cordova build {ios,android}
 ```
 
 To run the app:
 
-```
+```bash
 cordova run {ios,android}
+```
+
+In case you want to use xcode:
+
+```bash
+open platforms/ios/electricityMap.xcworkspace
 ```
 
 To do a release build (android):
 
-```
+```bash
 cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey
 ```
 
 To do a release build (ios):
 
-```
+```bash
 cordova build ios --release
 ```
 
-To push a new release:
+To push a new cordova release:
 
-```
+```bash
 code-push release-cordova electricitymap-{ios,android} {ios,android}
 code-push promote electricitymap-{ios,android} Staging Production
 ```
 
 Note about releases: bumping the release number will cause a new binary to be created. All code-push updates are tied to a binary version, meaning that apps will only update to code-push updates that are compatible with their binary version.
+
+To push a new store release:
+* Update the version in config.xml
+* Run `cordova prepare`
+* Make release builds (previously explained)
 
 ## App/Play Store Release Checklist
 
@@ -76,7 +92,7 @@ while building for ios, you should run `pod install` from the `platforms/ios` di
 
 If you get a blank screen on iOS, as https://github.com/Microsoft/cordova-plugin-code-push/issues/434 hardcodes the cordova-plugin-file version, you must:
 
-```
+```bash
 cordova plugin rm cordova-plugin-file --force
 cordova plugin rm cordova-plugin-file-transfer --force
 cordova plugin add cordova-plugin-file@latest
@@ -84,6 +100,16 @@ cordova plugin add cordova-plugin-file-transfer@latest
 ```
 
 If the Android icons are not working, check the AndroidManifest.xml and double check that the key "@mipmap/ic_launcher" is correctly set (and not @mipmap/icon)
+
+If you get "No known instance method for selector 'userAgent' in CDVFileTransfer.m", then follow information from https://github.com/apache/cordova-plugin-file-transfer/issues/258#issuecomment-956233758
+
+If you get "env: node: No such file or directory", then it means you don't have node set up at /usr/local/bin/node (you might be using nvm).
+This will create a symlink from /usr/local/bin/node to your current node version:
+
+```bash
+ln -s $(eval which node) /usr/local/bin/node
+```
+
 
 ### Cannot find module '../../src/plugman/platforms/ios'
 
@@ -169,7 +195,7 @@ var pathToManifest = path.join(
 
 ### iOS: Building for iOS, but the embedded framework 'Sentry.framework' was built for iOS + iOS Simulator.
 
-```
+```bash
 cordova platform remove ios && cordova platform add ios
 cordova plugin remove sentry-cordova
 cordova prepare
