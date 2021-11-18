@@ -20,6 +20,8 @@ import datetime as dt
 import pandas as pd
 from io import StringIO
 
+from parsers.lib.config import refetch_frequency
+
 from .lib.validation import validate
 from .lib.utils import get_token
 
@@ -274,7 +276,7 @@ def _fetch_wind(target_datetime=None):
 
     return df[['datetime', 'Wind']]
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
     session = session or requests.session()
@@ -283,7 +285,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                           logger)
     return data
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_production(zone_key='GB', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)) -> dict:
     session = session or requests.session()

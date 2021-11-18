@@ -13,6 +13,8 @@ import datetime
 import requests
 from dateutil import parser, tz
 
+from parsers.lib.config import refetch_frequency
+
 from .ENTSOE import merge_production_outputs
 from .lib.validation import validate
 
@@ -309,6 +311,7 @@ DEMAND_SERIES = "EBA.%s-ALL.D.H"
 FORECAST_SERIES = "EBA.%s-ALL.DF.H"
 
 
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key, session=None, target_datetime=None, logger=None
 ):
@@ -330,7 +333,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
         logger=logger,
     )
 
-
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     consumption = _fetch_series(
         zone_key,
@@ -344,7 +347,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
 
     return consumption
 
-
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=None):
     mixes = []
     for type, code in TYPES.items():
@@ -437,7 +440,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
 
     return merge_production_outputs(correct_mixes, zone_key, merge_source="eia.gov")
 
-
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_exchange(
     zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ):
