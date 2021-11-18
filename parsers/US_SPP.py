@@ -10,6 +10,8 @@ import datetime
 import pandas as pd
 import requests
 
+from parsers.lib.config import refetch_frequency
+
 HISTORIC_GENERATION_BASE_URL = 'https://marketplace.spp.org/file-browser-api/download/generation-mix-historical?path=%2F'
 
 GENERATION_URL = 'https://marketplace.spp.org/chart-api/gen-mix/asFile'
@@ -100,6 +102,7 @@ def data_processor(df, logger) -> list:
     return processed_data
 
 
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_production(zone_key = 'US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
 
@@ -220,6 +223,7 @@ def fetch_load_forecast(zone_key='US-SPP', session=None, target_datetime=None, l
     return data
 
 
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_wind_solar_forecasts(zone_key='US-SPP', session=None, target_datetime=None, logger=getLogger(__name__)) -> list:
     """Requests the load forecast (in MW) of a given zone."""
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import StringIO
 from operator import itemgetter
 
@@ -10,6 +10,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
+
+from parsers.lib.config import refetch_frequency
 
 from .lib.validation import validate
 
@@ -168,7 +170,7 @@ def IE_processor(df) -> list:
 
     return datapoints
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='GB-NIR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of a given country."""

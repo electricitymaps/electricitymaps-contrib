@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+from datetime import timedelta
 import arrow
 import dateutil
 import pandas as pd
 import requests
 
+from parsers.lib.config import refetch_frequency
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')

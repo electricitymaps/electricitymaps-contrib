@@ -8,6 +8,7 @@ import arrow
 import pandas as pd
 
 from parsers import occtonet
+from parsers.lib.config import refetch_frequency
 
 # Abbreviations
 # JP-HKD : Hokkaido
@@ -35,7 +36,7 @@ sources = {
 }
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_production(
     zone_key="JP-TK",
     session=None,
@@ -268,7 +269,7 @@ def fetch_consumption_forecast(
 
     return data
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_price(
     zone_key="JP-TK",
     session=None,
