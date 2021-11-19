@@ -36,7 +36,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
             {'. '}
             {'Help us identify the problem by taking a look at the '}
             <a
-              href="https://storage.googleapis.com/electricitymap-parser-logs/index.html"
+              href={`https://storage.googleapis.com/electricitymap-parser-logs/${zoneId}.html`}
               target="_blank"
               rel="noopener noreferrer"
             >
