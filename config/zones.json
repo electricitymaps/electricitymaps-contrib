@@ -5156,7 +5156,8 @@
       "wind": 15
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "https://github.com/PETILLON-Sebastien",
+      "https://github.com/RobinFrcd"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
