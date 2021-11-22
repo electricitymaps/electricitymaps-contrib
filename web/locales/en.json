@@ -105,8 +105,8 @@
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
         "retrynow": "Retry now",
-        "database-ad": "Looking for historical data? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+        "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+        "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
         "legend": "Legend",
         "faq": "Frequently Asked Questions"
     },
@@ -155,7 +155,7 @@
         "divideExistingArea-question": "Can you divide my area into smaller parts?",
         "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
         "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "Our methods",
@@ -183,9 +183,9 @@
         "dataOrigins-question": "How do you get your data?",
         "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
         "dataDownload-question": "Can I download your data?",
-        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
     },
     "aboutUs": {
         "groupName": "About us",
