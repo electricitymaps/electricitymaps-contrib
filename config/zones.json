@@ -5040,7 +5040,7 @@
     ],
     "capacity": {
       "biomass": 729,
-      "coal": 628,
+      "coal": 0,
       "gas": 4585,
       "geothermal": 29,
       "hydro": 4372,
