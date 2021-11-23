@@ -58,4 +58,4 @@ The electricityMap doesn't use scheduled generation data or make assumptions abo
 Yes, providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example, we already split several countries into states and grid regions.
 
 **How can I get access to historical data or the live API?**
-All this and more can be found **[here](https://api.electricitymap.org/)**.
+All this and more can be found **[here](https://electricitymap.org/)**.
