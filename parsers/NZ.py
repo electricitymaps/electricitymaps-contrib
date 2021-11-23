@@ -12,7 +12,7 @@ timezone = 'Pacific/Auckland'
 
 NZ_NZN_PRICE_REGIONS = set(['region{}'.format(i) for i in range(1, 9)])
 NZ_NZS_PRICE_REGIONS = set(['region{}'.format(i) for i in range(9, 14)])
-
+NZ_PRICE_REGIONS = set(['region{}'.format(i) for i in range(1, 14)])
 
 def fetch(session=None):
     r = session or requests.session()
@@ -50,6 +50,8 @@ def fetch_price(zone_key='NZ-NZN', session=None, target_datetime=None, logger=No
         regions = NZ_NZN_PRICE_REGIONS
     elif zone_key == 'NZ-NZS':
         regions = NZ_NZS_PRICE_REGIONS
+    elif zone_key == 'NZ':
+        regions = NZ_PRICE_REGIONS
     else:
         raise NotImplementedError('Unsupported zone_key %s' % zone_key)
     
