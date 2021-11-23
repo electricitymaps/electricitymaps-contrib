@@ -4746,6 +4746,30 @@
     "flag_file_name": "nz.png",
     "timezone": "Pacific/Auckland"
   },
+  "NZ": {
+    "bounding_box": [
+      [
+        166.054687,
+        -47.638394
+      ],
+      [
+        178.798828,
+        -34.168835
+      ]
+    ],
+    "contributors": [
+      "https://github.com/BobGrun",
+      "https://github.com/corradio",
+      "https://github.com/davidcole1340"
+      "https://github.com/drc38"
+    ],
+    "flag_file_name": "nz.png",
+    "parsers": {
+      "price": "NZ.fetch_price",
+      "production": "NZ.fetch_production"
+    },
+    "timezone": "Pacific/Auckland"
+  },
   "NZ-NZN": {
     "bounding_box": [
       [
