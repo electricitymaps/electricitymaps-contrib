@@ -98,8 +98,8 @@
         "oops": "Meillä on vaikeuksia palvelimen saavuttamisessa. Yritämme uudelleen muutamassa sekunnissa.",
         "newversion": "Uusi versio saatavilla! Päivitä <a onClick=\"location.reload(true);\">tästä</a>.",
         "retrynow": "Yritä uudelleen nyt",
-        "database-ad": "Etsitkö historiallista tietoa? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tutustu tietokantaamme!</a>",
-        "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
+        "database-ad": "Etsitkö historiallista tietoa? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tutustu tietokantaamme!</a>",
+        "api-ad": "Haluatko live-tietoja sovelluksessasi tai laitteessasi? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kokeile meidän API:ta!</a>",
         "legend": "Selite",
         "faq": "Usein Kysytyt Kysymykset"
     },
@@ -146,7 +146,7 @@
         "divideExistingArea-question": "Voitko jakaa alueeni pienempiin osiin?",
         "divideExistingArea-answer": "Toki, jos alueen jokaiselle osalle on olemassa erilliset tietolähteet. Voit <a href=\"#contribute\" class=\"entry-link\">auttaa meitä lisäämällä uusia tietolähteitä</a>",
         "seeHistoricalData-question": "Voinko nähdä alueen historian, joka on vanhempi kuin 24 tuntia?",
-        "seeHistoricalData-answer": "Voit ostaa pääsyn kaikkiin historiallisiin tietoihimme <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">tietokantamme</a> kautta."
+        "seeHistoricalData-answer": "Voit ostaa pääsyn kaikkiin historiallisiin tietoihimme <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">tietokantamme</a> kautta."
     },
     "methodology": {
         "groupName": "Menetelmämme",
@@ -174,9 +174,9 @@
         "dataOrigins-question": "Kuinka saatte datanne?",
         "dataOrigins-answer": "Laskemme kaikki tietomme julkisesti saatavilla olevista tiedoista, jotka sähköverkko-operaattorit, viralliset virastot ja muut ovat julkaisseet. Voit klikata aluetta nähdäksesi tarkempia tietoja sen alkuperästä.",
         "dataDownload-question": "Voinko ladata datasi?",
-        "dataDownload-answer": "Voit ostaa pääsyn kaikkiin tietoihimme <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">tietokannassamme</a>.",
+        "dataDownload-answer": "Voit ostaa pääsyn kaikkiin tietoihimme <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">tietokannassamme</a>.",
         "dataIntegration-question": "Voinko integroida tietosi reaaliaikaisesti sovellukseeni tai laitteeseeni?",
-        "dataIntegration-answer": "Kyllä! Myymme pääsyä <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaaliaikaiseen API:hin</a>, joka sisältää ennusteita."
+        "dataIntegration-answer": "Kyllä! Myymme pääsyä <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaaliaikaiseen API:hin</a>, joka sisältää ennusteita."
     },
     "aboutUs": {
         "groupName": "Tietoa meistä",

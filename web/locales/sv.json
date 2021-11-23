@@ -103,8 +103,8 @@
         "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
         "webgl-not-supported": "Kartan kan inte renderas då denna webbläsare inte stöder WebGL.",
         "retrynow": "Försök igen",
-        "database-ad": "Letar du efter historisk data? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
-        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
+        "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
+        "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
         "legend": "Förklaring",
         "faq": "Vanliga frågor"
     },
@@ -151,7 +151,7 @@
         "divideExistingArea-question": "Kan ni dela in min region i mindre delar?",
         "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss genom att lägga till datakällor</a>",
         "seeHistoricalData-question": "Kan jag se historik för en region längre tillbaka än 24 timmar?",
-        "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
+        "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
     },
     "methodology": {
         "groupName": "Våra metoder",
@@ -180,9 +180,9 @@
         "dataOrigins-question": "Hur får ni er data?",
         "dataOrigins-answer": "Vi beräknar all vi data från publik tillgänglig data publicerad av elnätsoperatörer, officiella myndigheter eller andra. Du kan klicka på en region för att se mer detaljer om ursprunget för dess data.",
         "dataDownload-question": "Kan jag ladda ned er data?",
-        "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>.",
+        "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>.",
         "dataIntegration-question": "Kan jag integrera er live-data i min applikation eller utrustning?",
-        "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
+        "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
     },
     "aboutUs": {
         "groupName": "Om oss",
