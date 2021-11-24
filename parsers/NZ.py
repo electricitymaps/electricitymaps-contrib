@@ -103,7 +103,6 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
             'geothermal': productions.get('Geothermal', {'generation': 0.0})['generation'],
             'wind': productions.get('Wind', {'generation': 0.0})['generation'],
             'hydro': productions.get('Hydro', {'generation': 0.0})['generation'],
-            'battery': productions.get('Battery', {'generation': 0.0})['generation'],
             'unknown': productions.get('Co-Gen', {'generation': 0.0})['generation'],
             'nuclear': 0  # famous issue in NZ politics
         },
@@ -114,11 +113,13 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
             'geothermal': productions.get('Geothermal', {'capacity': 0.0})['capacity'],
             'wind': productions.get('Wind', {'capacity': 0.0})['capacity'],
             'hydro': productions.get('Hydro', {'capacity': 0.0})['capacity'],
-            'battery': productions.get('Battery', {'capacity': 0.0})['capacity'],
+            'battery storage': productions.get('Battery', {'capacity': 0.0})['capacity'],
             'unknown': productions.get('Co-Gen', {'capacity': 0.0})['capacity'],
             'nuclear': 0  # famous issue in NZ politics
         },
-        'storage': {},
+        'storage': {
+            'battery': productions.get('Battery', {'generation': 0.0})['generation'],
+        },
         'source': 'transpower.co.nz',
     }
 
