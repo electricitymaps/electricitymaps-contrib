@@ -15,17 +15,9 @@ TYPE_MAPPING = {                        # Real values around midnight
     u'ВяЕЦ': 'wind',                    # 488
     u'ФЕЦ': 'solar',                    # 0
     u'Био ТЕЦ': 'biomass',              # 29
+    u'Био ЕЦ': 'biomass',               # 29
     u'Товар РБ': 'consumption',         # 3175
 }
-
-
-def time_string_converter(ts):
-    """Converts time strings into aware datetime objects."""
-
-    dt_naive = arrow.get(ts, 'DD.MM.YYYY HH:mm:ss')
-    dt_aware = dt_naive.replace(tzinfo='Europe/Sofia').datetime
-
-    return dt_aware
 
 
 def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=None) -> dict:
@@ -34,30 +26,15 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
-    url = 'http://www.eso.bg/doc?124'
-    response = r.get(url)
-    html = response.text
-    soup = BeautifulSoup(html, 'html.parser')
-
-    try:
-        time_div = soup.find("div", {"class": "dashboardCaptionDiv"})
-        bold = time_div.find('b')
-    except AttributeError:
-        raise LookupError('No data currently available for Bulgaria.')
-
-    time_string = bold.string
-    dt = time_string_converter(time_string)
-
-    table = soup.find("table", {"class": "table-condensed"})
-    rows = table.findChildren("tr")
+    url = 'http://www.eso.bg/api/rabota_na_EEC_json.php'
+    response = r.get(url).json()
 
     datapoints = []
-    for row in rows[1:-1]:
-        gen_tag = row.find("td")
-        gen = gen_tag.text
-        val_tag = gen_tag.findNext("td")
-        val = float(val_tag.find("b").text)
-        datapoints.append((TYPE_MAPPING[gen], val))
+    for row in response:
+        for k in TYPE_MAPPING.keys():
+            if row[0].startswith(k):
+                datapoints.append((TYPE_MAPPING[k], row[1]))
+                break
 
     production = {}
     for k, v in datapoints:
@@ -68,7 +45,7 @@ def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=N
         'production': production,
         'storage': {},
         'source': 'eso.bg',
-        'datetime': dt
+        'datetime': arrow.utcnow().datetime
     }
 
     return data
