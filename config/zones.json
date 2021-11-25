@@ -700,7 +700,8 @@
       "https://github.com/ultibo",
       "https://github.com/systemcatch",
       "https://github.com/bogomil",
-      "https://github.com/Pantkowsky"
+      "https://github.com/Pantkowsky",
+      "https://github.com/MindFreeze"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
