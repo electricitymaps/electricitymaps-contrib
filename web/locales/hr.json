@@ -96,8 +96,8 @@
         "oops": "Ups! Došlo je do problema kod kontaktiranja servera. Pokušat ćemo opet za nekoliko sekundi.",
         "newversion": "Nova verzija je dostupna! Klikni <a onClick=\"location.reload(true);\">ovdje</a> za ponovno učitavanje.",
         "retrynow": "Pokušaj opet",
-        "database-ad": "Tražiš povijesne podatke? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
-        "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
+        "database-ad": "Tražiš povijesne podatke? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
+        "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
         "legend": "Legenda",
         "faq": "Često postavljana pitanja"
     },
@@ -144,7 +144,7 @@
         "divideExistingArea-question": "Možete li podijeliti moje područje na manje dijelove?",
         "divideExistingArea-answer": "Naravno, ako postoje nezavisni izvori podataka za svaki dio područja. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
         "seeHistoricalData-question": "Mogu li vidjeti povijest za područje više od 24 sata unazad?",
-        "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
+        "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
     },
     "methodology": {
         "groupName": "Naše metode",
@@ -166,9 +166,9 @@
         "dataOrigins-question": "Otkud dobivate podatke?",
         "dataOrigins-answer": "Svi izračuni su dobiveni iz javno dostpnih podaka, objavljenih od rukovodioca elektičnih mreža, službenih agencija i drugih. Možeš kliknuti na pojedina područja za više informacija o izvoru pojedinih podataka.",
         "dataDownload-question": "Mogu li skinuti vaše podatke?",
-        "dataDownload-answer": "Možeš nabaviti pristup svim podacima u našoj <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">bazi podataka</a>.",
+        "dataDownload-answer": "Možeš nabaviti pristup svim podacima u našoj <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">bazi podataka</a>.",
         "dataIntegration-question": "Mogu li integrirati vaše podake uživo u svoju aplikaciju ili uređaj?",
-        "dataIntegration-answer": "Da! Prodajemo pristup <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">našem API-u</a>, koji uključuje i predviđanja za budućnost."
+        "dataIntegration-answer": "Da! Prodajemo pristup <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">našem API-u</a>, koji uključuje i predviđanja za budućnost."
     },
     "aboutUs": {
         "groupName": "O nama",

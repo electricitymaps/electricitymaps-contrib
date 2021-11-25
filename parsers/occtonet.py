@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # coding=utf-8
 import datetime
-from io import StringIO
 import logging
+from io import StringIO
 from typing import Dict, List, Union
 
 import arrow
 import pandas as pd
 import requests
-
 
 # Abbreviations:
 # JP-HKD : Hokkaido

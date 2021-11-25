@@ -52,10 +52,6 @@ const MobileInfoTab = () => {
 
   return (
     <div className="mobile-info-tab">
-      <div className="mobile-watermark brightmode">
-        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-          <img src={resolvePath('images/built-by-tomorrow.svg')} alt="" />
-        </a>
         <div className="socialicons">
           <div
             className="fb-like"
@@ -72,7 +68,6 @@ const MobileInfoTab = () => {
             data-show-count="false"
             data-lang={locale}
           />
-        </div>
       </div>
 
       <div className="info-text">
@@ -107,13 +102,13 @@ const MobileInfoTab = () => {
           { /* Facebook share */}
           <div
             className="fb-share-button"
-            data-href="https://www.electricitymap.org/"
+            data-href="https://app.electricitymap.org/"
             data-layout="button_count"
           />
           { /* Twitter share */}
           <a
             className="twitter-share-button"
-            data-url="https://www.electricitymap.org"
+            data-url="https://app.electricitymap.org"
             data-via="electricitymap"
             data-lang={locale}
           />

@@ -5,7 +5,8 @@ import requests
 from collections import defaultdict
 
 
-GENERATION_URL = "http://www.pstcl.org:9091/scadadata/pbGenData2"
+GENERATION_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/pbGenData2"
+DATE_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/dynamicData"
 
 GENERATION_MAPPING = {"totalHydro": "hydro",
                       "totalThermal": "coal",
@@ -30,33 +31,27 @@ def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logge
         raise NotImplementedError('The IN-PB production parser is not yet able to parse past dates')
 
     s = session or requests.Session()
-    req = s.get(GENERATION_URL)
+    data_req = s.get(GENERATION_URL)
+    timestamp_req = s.get(DATE_URL)
 
-    raw_data = req.json()
-
-    timestamps = []
-    valid_data = []
-    for key in raw_data.keys():
-        if key in GENERATION_MAPPING.keys():
-            valid_data.append((key, raw_data[key]["value"]))
-            timestamps.append(raw_data[key]["chartDate"])
-
-    arr_dt = calculate_average_timestamp(timestamps)
-
-    mapped_generation = [(GENERATION_MAPPING.get(gen_type), val) for (gen_type, val) in valid_data]
-    production = defaultdict(lambda: 0.0)
-
-    # Sum values for duplicate keys.
-    for key, val in mapped_generation:
-        production[key] += val
+    raw_data = data_req.json()
+    timestamp_data = timestamp_req.json()
 
     data = {"zoneKey": zone_key,
-            "datetime": arr_dt.datetime,
-            "production": dict(production),
+            "datetime": arrow.get(timestamp_data["updateDate"], "DD-MM-YYYY HH:mm:ss",  tzinfo="Asia/Kolkata").datetime,
+            "production": {
+                "hydro": 0.0,
+                "coal": 0.0,
+                "biomass": 0.0,
+                "solar": 0.0,
+            },
             "storage": {},
             "source": "punjasldc.org"}
 
-    return data
+    for from_key, to_key in GENERATION_MAPPING.items():
+        data["production"][to_key] += max(0, raw_data[from_key]["value"])
+
+    return [data]
 
 
 def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None) -> dict:

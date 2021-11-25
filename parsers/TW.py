@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+from datetime import timedelta
 import arrow
-import requests
-import pandas
 import dateutil
+import pandas as pd
+import requests
 
+from parsers.lib.config import refetch_frequency
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -20,20 +23,26 @@ def fetch_production(zone_key='TW', session=None, target_datetime=None, logger=N
     tz = 'Asia/Taipei'
     dumpDate = arrow.get(dumpDate, 'YYYY-MM-DD HH:mm').replace(tzinfo=dateutil.tz.gettz(tz))
 
-    objData = pandas.DataFrame(prodData)
+    objData = pd.DataFrame(prodData)
 
-    objData.columns = ['fueltype', 'name', 'capacity', 'output', 'percentage',
-                       'additional']
+    columns = ['fueltype', 'additional_1', 'name', 'capacity', 'output', 'percentage', 'additional_2']
+    assert len(objData.iloc[0]) == len(columns), "number of input columns changed"
+    objData.columns = columns
 
     objData['fueltype'] = objData.fueltype.str.split('(').str[1]
     objData['fueltype'] = objData.fueltype.str.split(')').str[0]
-    objData.drop('additional', axis=1, inplace=True)
-    objData.drop('percentage', axis=1, inplace=True)
+    objData.loc[:,['capacity', 'output']] = objData[['capacity', 'output']].apply(pd.to_numeric, errors='coerce')
+    assert not objData.capacity.isna().all(), "capacity data is entirely NaN - input column order may have changed"
+    assert not objData.output.isna().all(), "output data is entirely NaN - input column order may have changed"
 
-    objData['capacity'] = pandas.to_numeric(objData['capacity'], errors='coerce')
-    objData['output'] = pandas.to_numeric(objData['output'], errors='coerce')
-    production = pandas.DataFrame(objData.groupby('fueltype').sum())
+    objData.drop(columns=['additional_1', 'name', 'additional_2', 'percentage'], axis=1, inplace=True)
+    # summing because items in returned object are for each power plant and operational units
+    production = pd.DataFrame(objData.groupby('fueltype').sum())
     production.columns = ['capacity', 'output']
+
+    # check output values coincide with total capacity by fuel type
+    check_values = production.output <= production.capacity
+    assert check_values.loc[~check_values.index.isin(["Co-Gen"])].all(), "output > capacity" # HACK: Co-Gen capacity is underestimated
 
     coal_capacity = production.loc['Coal'].capacity + production.loc['IPP-Coal'].capacity
     gas_capacity = production.loc['LNG'].capacity + production.loc['IPP-LNG'].capacity
