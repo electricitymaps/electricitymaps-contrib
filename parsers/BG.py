@@ -2,7 +2,6 @@
 # coding=utf-8
 
 import arrow
-from bs4 import BeautifulSoup
 import requests
 
 TYPE_MAPPING = {                        # Real values around midnight
