@@ -2,7 +2,17 @@ const fs = require('fs');
 const path = require('path');
 
 function readGeoJson(filePath) {
-  return JSON.parse(fs.readFileSync(path.resolve(__dirname, filePath)));
+  const json = JSON.parse(fs.readFileSync(path.resolve(__dirname, filePath)));
+  return extractFeature(json);
+}
+
+function extractFeature(json) {
+  const {features} = json;
+  if (features) {
+    if (features.length > 1) throw Error("Geometries may only contain a single feature");
+    return features[0];
+  }
+  return json;
 }
 
 function readNDJSON(filePath) {
@@ -116,7 +126,8 @@ const USSimplifiedGeos = [].concat([
   readGeoJson('./third_party_maps/US_simplified/US-SE-SEPA.geojson'), //Southeastern Power Administration
   readGeoJson('./third_party_maps/US_simplified/US-SE-SOCO.geojson'), //Southern Company Services, Inc. - Trans
   readGeoJson('./third_party_maps/US_simplified/US-SW-AZPS.geojson'), //Arizona Public Service Company
-  readGeoJson('./third_party_maps/US_simplified/US-SW-DEAA.geojson'), //Arlington Valley, Llc - Avba
+  // NOTE: removed as the geometry is very small
+  // readGeoJson('./third_party_maps/US_simplified/US-SW-DEAA.geojson'), //Arlington Valley, Llc - Avba
   readGeoJson('./third_party_maps/US_simplified/US-SW-EPE.geojson'), //El Paso Electric Company
   readGeoJson('./third_party_maps/US_simplified/US-SW-GRIF.geojson'), //Griffith Energy, Llc
   readGeoJson('./third_party_maps/US_simplified/US-SW-GRMA.geojson'), //Gila River Power, Llc

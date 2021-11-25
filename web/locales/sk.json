@@ -92,8 +92,8 @@
         "oops": "Achjaj! Máme problém v komunikácii so serverom. Skúsime to opäť o pár sekúnd.",
         "newversion": "Nová verzia je dostupná! Klikni <a onClick=\"location.reload(true);\">tu</a> pre znovunačítanie.",
         "retrynow": "Zopakuj teraz",
-        "database-ad": "Hladáte historické dáta? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Skontrolujte našu databázu!</a>",
-        "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
+        "database-ad": "Hladáte historické dáta? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Skontrolujte našu databázu!</a>",
+        "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
         "legend": "Legenda",
         "faq": "Často kladené otázky"
     },
@@ -140,7 +140,7 @@
         "divideExistingArea-question": "Môžete rozdeliť moju oblasť na menšie?",
         "divideExistingArea-answer": "Určite, ak existujú separátne zdroje dát pre každú časť danej oblasti. Môžete <a href=\"#contribute\" class=\"entry-link\">nám pomôcť pridaním nových dátovych zdrojov</a>.",
         "seeHistoricalData-question": "Môžem zobraziť históriu oblasti staršiu ako 24 hodín?",
-        "seeHistoricalData-answer": "Môžete, ak si zakúpite prístup k všetkým historickým dátam prostredníctvom <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databázy</a>"
+        "seeHistoricalData-answer": "Môžete, ak si zakúpite prístup k všetkým historickým dátam prostredníctvom <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databázy</a>"
     },
     "methodology": {
         "groupName": "Naše metódy",
@@ -168,9 +168,9 @@
         "dataOrigins-question": "Ako získavate vaše dáta?",
         "dataOrigins-answer": "Všetky naše dáta spracúvame z verejne prístupných zdrojov publikovaných operátormi elektrických rozvodných sietí, oficiálnych agentúr atď. Kliknutím na konkrétnu oblasť sa zobrazia detailnejšie informácie o pôvode dát.",
         "dataDownload-question": "Môžem si stiahnuť vaše dáta?",
-        "dataDownload-answer": "Môžete si zakúpiť prístup k všetkým naším dátam v našej <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>.",
+        "dataDownload-answer": "Môžete si zakúpiť prístup k všetkým naším dátam v našej <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>.",
         "dataIntegration-question": "Môžem integrovať vaše dáta do mojej aplikácie alebo zariadenia?",
-        "dataIntegration-answer": "Áno! Predávame prístup do <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, ktoré zahrňuje budúce predpovede."
+        "dataIntegration-answer": "Áno! Predávame prístup do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, ktoré zahrňuje budúce predpovede."
     },
     "aboutUs": {
         "groupName": "O nás",

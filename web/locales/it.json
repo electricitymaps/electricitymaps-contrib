@@ -105,8 +105,8 @@
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
         "webgl-not-supported": "La mappa non può essere mostrata perché questo browser non supporta WebGL.",
         "retrynow": "Riprova ora",
-        "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
-        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
+        "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
+        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
         "legend": "Legenda",
         "faq": "Domande poste frequentemente"
     },
@@ -155,7 +155,7 @@
         "divideExistingArea-question": "Potete dividere la mia area in parti più piccole?",
         "divideExistingArea-answer": "Certamente, se esitono fonti separate per ogni parte di quest'area. Puoi <a href=\"#contribute\" class=\"entry-link\">aiutare aggiungendo nuove fonti di dati</a>",
         "seeHistoricalData-question": "Posso vedere la cronologia di un area per un periodo più lungo di 24 ore?",
-        "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "I nostri metodi",
@@ -183,9 +183,9 @@
         "dataOrigins-question": "Dove prendete i dati?",
         "dataOrigins-answer": "Prendiamo tutti i dati da dati liberamente accessibili, pubblicati dagli operatori di linea, dalle agenzie ufficiali, ed altri. Puoi cliccare su un'area per vedere più specifiche sulle origini dei dati.",
         "dataDownload-question": "Posso scaricare i vostri dati?",
-        "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Possono integrare i vostri dati in tempo reale nella mia applicazione o nel mio dispositivo?",
-        "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
+        "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
     },
     "aboutUs": {
         "groupName": "Informazioni su di noi",

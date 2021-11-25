@@ -7,6 +7,8 @@ import requests
 import pandas as pd
 import numpy as np
 
+from parsers.lib.config import refetch_frequency
+
 ZONE_KEY_TO_REGION = {
     'AUS-NSW': 'NSW1',
     'AUS-QLD': 'QLD1',
@@ -159,7 +161,7 @@ def sum_vector(pd_series, keys, transform=None):
     else:
         return None
 
-
+@refetch_frequency(datetime.timedelta(days=21))
 def fetch_production(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     df, capacities = fetch_main_df('power', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     # Drop interconnectors
@@ -221,7 +223,7 @@ def fetch_production(zone_key=None, session=None, target_datetime=None, logger=l
 
     return objs
 
-
+@refetch_frequency(datetime.timedelta(days=21))
 def fetch_price(zone_key=None, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     df = fetch_main_df('price', zone_key=zone_key, session=session, target_datetime=target_datetime, logger=logger)
     df = df.loc[~df['PRICE'].isna()]  # Only keep prices that are defined
@@ -233,7 +235,7 @@ def fetch_price(zone_key=None, session=None, target_datetime=None, logger=loggin
         'zoneKey': zone_key,
     } for dt, row in df.iterrows()]
 
-
+@refetch_frequency(datetime.timedelta(days=21))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = '->'.join(sorted_zone_keys)

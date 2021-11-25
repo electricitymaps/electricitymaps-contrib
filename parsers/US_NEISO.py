@@ -2,11 +2,14 @@
 
 
 """Real time parser for the New England ISO (NEISO) area."""
+from datetime import timedelta
 import arrow
 from collections import defaultdict
 import logging
 import requests
 import time
+
+from parsers.lib.config import refetch_frequency
 
 url = 'https://www.iso-ne.com/ws/wsclient'
 
@@ -114,7 +117,7 @@ def production_data_processer(raw_data, logger) -> list:
 
     return sorted(clean_data)
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country."""
 

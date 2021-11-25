@@ -105,8 +105,8 @@
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
         "retrynow": "Erneut versuchen",
-        "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
-        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
+        "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
+        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
         "faq": "Häufig gestellte Fragen",
         "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
@@ -154,7 +154,7 @@
         "divideExistingArea-question": "Können Sie meinen Bereich in kleinere Teile aufteilen?",
         "divideExistingArea-answer": "Das ist möglich, sofern es für diese Region eigene Datenquellen gibt. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
         "seeHistoricalData-question": "Kann ich die Zeitreihe eines Bereiches sehen, die weiter als 24 Stunden zurückliegt?",
-        "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
+        "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
     },
     "methodology": {
         "groupName": "Unsere Methoden",
@@ -182,9 +182,9 @@
         "dataOrigins-question": "Wie erhalten Sie Ihre Daten?",
         "dataOrigins-answer": "Wir berechnen alle unsere Daten aus öffentlich zugänglichen Datenquellen, die von Stromnetzbetreibern, Behörden und anderen Institutionen veröffentlicht werden. Sie können auf eine Region klicken, um mehr über die Herkunft der Daten zu erfahren.",
         "dataDownload-question": "Kann ich Ihre Daten herunterladen?",
-        "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
+        "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
         "dataIntegration-question": "Kann ich Ihre Daten in Echtzeit in meine Anwendung oder mein Gerät integrieren?",
-        "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
+        "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
     },
     "aboutUs": {
         "groupName": "Über uns",
