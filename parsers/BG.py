@@ -41,7 +41,7 @@ def fetch_production(
 
     response = res.json()
 
-    logger.debug(f"Raw generation breakdown: {response}", extra={"key": zone_key})
+    logger.debug(f"Raw generation breakdown: {response}")
 
     datapoints = []
     for row in response:
