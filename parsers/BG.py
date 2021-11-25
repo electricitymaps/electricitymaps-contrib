@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+import logging
+
 import arrow
 import requests
 
@@ -19,14 +21,27 @@ TYPE_MAPPING = {                        # Real values around midnight
 }
 
 
-def fetch_production(zone_key='BG', session=None, target_datetime=None, logger=None) -> dict:
+def fetch_production(
+    zone_key="BG",
+    session=None,
+    target_datetime=None,
+    logger: logging.Logger = logging.getLogger(__name__),
+) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://www.eso.bg/api/rabota_na_EEC_json.php'
-    response = r.get(url).json()
+    res = r.get(url)
+
+    assert (
+        res.status_code == 200
+    ), f"Exception when fetching production for {zone_key}: error when calling url={url}"
+
+    response = res.json()
+
+    logger.debug(f"Raw generation breakdown: {response}", extra={"key": zone_key})
 
     datapoints = []
     for row in response:
