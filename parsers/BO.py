@@ -96,7 +96,8 @@ def fetch_production(
         session=session, target_datetime=target_datetime, logger=logger
     ):
         # NOTE: thermo includes gas + oil mixed, so we set these as unknown for now
-        modes_extracted = [row.hydro, row.solar, row.wind]
+        # The modes here should match the ones we extract in the production payload
+        modes_extracted = [row.hydro, row.solar, row.wind, row.bagasse]
 
         if row.total is None or None in modes_extracted:
             continue
@@ -106,6 +107,7 @@ def fetch_production(
                 "zoneKey": zone_key,
                 "datetime": row.datetime,
                 "production": {
+                    "biomass": row.bagasse,
                     "hydro": row.hydro,
                     "solar": row.solar,
                     "unknown": row.total - sum(modes_extracted),
