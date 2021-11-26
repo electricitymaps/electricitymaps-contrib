@@ -770,7 +770,8 @@
     },
     "contributors": [
       "https://github.com/igorarduin",
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/skovhus"
     ],
     "parsers": {
       "generationForecast": "BO.fetch_generation_forecast",
