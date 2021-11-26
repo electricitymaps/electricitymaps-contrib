@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from copy import copy
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 import math
 import requests
@@ -9,12 +9,14 @@ import arrow
 import numpy as np
 import pandas as pd
 
+from parsers.lib.config import refetch_frequency
+
 from . import statnett
 from . import ENTSOE
 from . import DK
 
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='NL', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__), energieopwek_nl=False):
     if target_datetime is None:

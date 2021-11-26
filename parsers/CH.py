@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
+import logging
+from datetime import timedelta
+
 import arrow
+import requests
+
+from parsers.lib.config import refetch_frequency
 
 from . import ENTSOE
-import logging
-import requests
 
 
 def fetch_swiss_exchanges(session, target_datetime, logger):
@@ -38,6 +42,7 @@ def fetch_swiss_consumption(session, target_datetime, logger):
     return {c['datetime']: c['consumption'] for c in consumptions}
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='CH', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     """

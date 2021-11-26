@@ -99,8 +99,8 @@
         "newversion": "¡Hay disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
         "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
         "retrynow": "Vuelve a intentarlo",
-        "database-ad": "¿Buscas datos históricos? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
-        "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
+        "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
+        "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
         "legend": "Leyenda",
         "faq": "Preguntas frecuentes"
     },
@@ -147,7 +147,7 @@
         "divideExistingArea-question": "¿Se puede dividir mi zona en partes más pequeñas?",
         "divideExistingArea-answer": "Sí, pero necesitamos datos para cada subdivisión de la zona. Puedes <a href=\"#contribute\" class=\"entry-link\">echarnos una mano añadiendo nuevas fuentes de datos</a>",
         "seeHistoricalData-question": "¿Puedo ver los datos históricos de una zona más allá de las 24 horas que se muestran?",
-        "seeHistoricalData-answer": "Puedes adquirir el acceso a todos los datos históricos que tenemos en nuestra <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>."
+        "seeHistoricalData-answer": "Puedes adquirir el acceso a todos los datos históricos que tenemos en nuestra <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>."
     },
     "methodology": {
         "groupName": "Nuestros métodos",
@@ -175,9 +175,9 @@
         "dataOrigins-question": "¿De dónde obtenéis los datos?",
         "dataOrigins-answer": "Calculamos la intensidad de carbono con los datos que hacen públicos los operadores de red eléctrica, agencias oficiales y otros. Puedes hacer clic en una zona para ver información específica sobre las fuentes de los datos.",
         "dataDownload-question": "¿Puedo descargarme vuestros datos?",
-        "dataDownload-answer": "Puedes acceder previo pago a todos los datos de nuestra <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>.",
+        "dataDownload-answer": "Puedes acceder previo pago a todos los datos de nuestra <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>.",
         "dataIntegration-question": "¿Puedo integrar vuestros datos en tiempo real en mi aplicación o dispositivo?",
-        "dataIntegration-answer": "¡Claro! Puedes adquirir los datos en <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">nuestra API en tiempo real</a>, que incluye pronósticos a veinticuatro horas vista."
+        "dataIntegration-answer": "¡Claro! Puedes adquirir los datos en <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">nuestra API en tiempo real</a>, que incluye pronósticos a veinticuatro horas vista."
     },
     "aboutUs": {
         "groupName": "Sobre nosotros",
