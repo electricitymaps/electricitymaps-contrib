@@ -10,7 +10,7 @@ steps:
       - apk add --no-cache curl bash python3
       - curl https://sdk.cloud.google.com | bash > /dev/null
       - npm ci
-      - npm install -g cordova@9.0.0 code-push-cli@2.1.9
+      - npm install -g cordova@10.0.0 code-push-cli@3.0.0
 
   build:
     inputs:
