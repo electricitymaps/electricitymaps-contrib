@@ -1,3 +1,4 @@
+from datetime import timedelta
 import logging
 import pandas as pd
 import arrow  # the arrow library is used to handle datetimes
@@ -5,6 +6,8 @@ import requests  # the request library is used to fetch content through HTTP
 import pytz
 import time
 import json
+
+from parsers.lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 
 
@@ -13,7 +16,7 @@ ids = {
     'energy_bal': '02356e88-7c4e-4ee9-b896-275d217cc1b9'
 }
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='DK-DK1', session=None, target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """

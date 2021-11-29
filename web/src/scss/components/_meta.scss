@@ -13,9 +13,6 @@
 	    text-decoration: none;
 	}
 
-	&.brightmode #built-by-tomorrow{
-	    background-image: url(../images/built-by-tomorrow.svg)
-	}
 }
 
 .mobile-watermark {
@@ -29,13 +26,6 @@
     img {
         width: 280px;
     }
-}
-
-#built-by-tomorrow{
-    background-image: url(../images/built-by-tomorrow-white.svg);
-    background-size: cover;
-    width: 154px;
-    height: 24px;
 }
 
 .social-buttons {
