@@ -206,19 +206,19 @@ thermal_mapping = {
             'name': 'thermique',
             'monthly_variation': False,
             'type': MAP_GENERATION_DIESEL_GAS_REUNION
-        }
+        },
 
         #(RE) API update
         {
             'name': 'turbine_a_combustion',
             'monthly_variation': False,
             'type': MAP_GENERATION_REUNION_OIL
-        }
+        },
         {
             'name': 'diesel',
             'monthly_variation': False,
             'type': MAP_GENERATION_REUNION_OIL
-        }
+        },
         {
             'name': 'charbon',
             'monthly_variation': False,
