@@ -18,7 +18,9 @@ export function useConditionalZoneHistoryFetch() {
   useEffect(() => {
     if (customDatetime) {
       console.error('Can\'t fetch history when a custom date is provided!');
-    } else if (zoneId && isEmpty(historyData)) {
+    } else if (zoneId && isArray(historyData) && historyData.length === 0) {
+      console.error('No history data available right now!');
+    } else if (zoneId && isNull(historyData)) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId } });
     }
   }, [zoneId, historyData, customDatetime]);
