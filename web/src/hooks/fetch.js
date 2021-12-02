@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { isEmpty } from 'lodash';
+import { isArray, isNull } from 'lodash';
 
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
