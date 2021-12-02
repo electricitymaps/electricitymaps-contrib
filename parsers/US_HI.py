@@ -5,6 +5,7 @@ import datetime
 import arrow
 import requests
 
+URL = 'https://www.islandpulse.org/api/mix?limit=1'
 
 def fetch_production(zone_key='US-HI-OA', session=None,
                      target_datetime: datetime.datetime = None,
@@ -13,18 +14,17 @@ def fetch_production(zone_key='US-HI-OA', session=None,
     r = session or requests.session()
     if target_datetime is None:
         url_date = arrow.get()
-        url = 'https://www.islandpulse.org/api/mix?limit=1'
     else:
         # WHEN HISTORICAL DATA IS AVAILABLE
         # convert target datetime to local datetime
         #url_date = arrow.get(target_datetime).to("Pacific/Honolulu")
-        #url = 'https://www.islandpulse.org/api/mix?date={}'.format(url_date.date())
+        #URL = 'https://www.islandpulse.org/api/mix?date={}'.format(url_date.date())
 
         # WHEN HISTORICAL DATA IS NOT AVAILABLE
         raise NotImplementedError(
             'This parser is not yet able to parse past dates')
 
-    res = r.get(url)
+    res = r.get(URL)
 
     obj = res.json()
     raw_data = obj[0]
@@ -37,12 +37,20 @@ def fetch_production(zone_key='US-HI-OA', session=None,
           'wind': float(raw_data['WindFarm'])
     }
 
-    dt = arrow.get(raw_data['dateTime']).to(tz="Pacific/Honolulu").datetime
+    # ensure the energy production data was captured less than 2 hours ago
+    energy_dt = arrow.get(raw_data['dateTime']).to(tz="Pacific/Honolulu").datetime
+    hi_dt = arrow.now("Pacific/Honolulu")
+    diff = hi_dt - energy_dt
+    if diff.total_seconds() > 7200:
+        msg = ('Hawaii data is too old to use, '
+               'parsed data timestamp was {0}.').format(energy_dt)
+        logger.warning(msg, extra={'key': 'US-HI-OA'})
+        return None
 
     data = {
         'zoneKey': zone_key,
         'production': production,
-        'datetime': dt,
+        'datetime': energy_dt,
         'storage': {},
         'source': 'islandpulse.org'
     }
