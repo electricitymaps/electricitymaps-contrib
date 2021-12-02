@@ -18,7 +18,7 @@ function* fetchZoneHistory(action) {
   const { zoneId, features } = action.payload;
   let queryParamString = `?countryCode=${zoneId}&preview=1`;
 
-  if (features) {
+  if (features.length > 0) {
     queryParamString += `&feature=${features.join(',')}`;
   }
 
@@ -33,9 +33,9 @@ function* fetchZoneHistory(action) {
 
 function* fetchGridData(action) {
   const { features } = action.payload || {};
-
   let queryParamString = '?preview=1';
-  if (features) {
+
+  if (features.length > 0) {
     queryParamString += `&feature=${features.join(',')}`;
   }
   try {
