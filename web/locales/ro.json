@@ -105,8 +105,8 @@
         "newversion": "O nouă versiune e disponibilă! Apăsați <a onClick=\"location.reload(true);\">here</a> pentru a reîncărca.",
         "webgl-not-supported": "Harta nu poate fi afișată pentru că acest browser nu este compatibil cu WebGL.",
         "retrynow": "Reîncercați acum",
-        "database-ad": "Căutați date din trecut? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Verificați în baza noastră de date!</a>",
-        "api-ad": "Doriți date în timp real în aplicația sau dispozitivul dumneavoastră? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Încercați API-ul nostru!</a>",
+        "database-ad": "Căutați date din trecut? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Verificați în baza noastră de date!</a>",
+        "api-ad": "Doriți date în timp real în aplicația sau dispozitivul dumneavoastră? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Încercați API-ul nostru!</a>",
         "legend": "Legendă",
         "faq": "Întrebări frecvente"
     },
@@ -155,7 +155,7 @@
         "divideExistingArea-question": "Puteți diviza o zonă în părți mai mici?",
         "divideExistingArea-answer": "Desigur, dacă există surse de date pentru fiecare parte. Ne puteți ajuta cu <a href=\"#contribute\" class=\"entry-link\">noi surse de date</a>",
         "seeHistoricalData-question": "Pot să văd istoricul unei zone mai mult de 24 de ore în trecut?",
-        "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecție de date</a>."
+        "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecție de date</a>."
     },
     "methodology": {
         "groupName": "Metodele noastre",
@@ -183,9 +183,9 @@
         "dataOrigins-question": "De unde obțineți datele?",
         "dataOrigins-answer": "Folosim date făcute publice, publicate de operatori de rețele electrice, agenții oficiale și altele. Dați click pe o zonă pentru a afla mai multe detalii despre originea datelor.",
         "dataDownload-question": "Pot să downloadez datele?",
-        "dataDownload-answer": "Puteți cumpăra acces la toată <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecția noastră de date</a>.",
+        "dataDownload-answer": "Puteți cumpăra acces la toată <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecția noastră de date</a>.",
         "dataIntegration-question": "Pot integra datele voastre în timp real în aplicația / dispozitivul meu?",
-        "dataIntegration-answer": "Da! Vindem acces la <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API-ul în timp real</a>, care include predicții pe viitor."
+        "dataIntegration-answer": "Da! Vindem acces la <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API-ul în timp real</a>, care include predicții pe viitor."
     },
     "aboutUs": {
         "groupName": "Despre noi",
