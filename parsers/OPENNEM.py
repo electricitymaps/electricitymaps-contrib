@@ -1,5 +1,6 @@
 import datetime
 import logging
+from typing import Dict, List, Mapping, Tuple
 
 import arrow
 import pandas as pd
@@ -87,6 +88,67 @@ def dataset_to_df(dataset):
     return df
 
 
+def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
+    if "SOLAR_ROOFTOP" in df:
+        # at present, solar rooftop data comes in each 30 mins.
+        # Resample data to not require interpolation
+        return df.resample("30T").mean()
+    return df
+
+
+def get_capacities(filtered_datasets: List[Mapping], region: str) -> pd.Series:
+    # Parse capacity data
+    capacities = dict(
+        [
+            (obj["id"].split(".")[-2].upper(), obj.get("x_capacity_at_present"))
+            for obj in filtered_datasets
+            if obj["region"] == region
+        ]
+    )
+    return pd.Series(capacities)
+
+
+def sum_vector(pd_series, keys, ignore_nans=False):
+    # Only consider keys that are in the pd_series
+    filtered_keys = pd_series.index.intersection(keys)
+
+    # Require all present keys to be non-null
+    pd_series_filtered = pd_series.loc[filtered_keys]
+    nan_filter = pd_series_filtered.notnull().all() | ignore_nans
+    if filtered_keys.size and nan_filter:
+        return pd_series_filtered.fillna(0).sum()
+    else:
+        return None
+
+
+def filter_production_objs(
+    objs: List[Dict], logger=logging.getLogger(__name__)
+) -> List[Dict]:
+    def filter_solar_production(obj: Dict) -> bool:
+        if (
+            "solar" in obj.get("production", {})
+            and obj["production"]["solar"] is not None
+        ):
+            return True
+        return False
+
+    all_filters = [filter_solar_production]
+
+    filtered_objs = []
+    for obj in objs:
+        _valid = True
+        for f in all_filters:
+            _valid &= f(obj)
+        if _valid:
+            filtered_objs.append(obj)
+        else:
+            logger.warning(
+                f"Entry for {obj['datetime']} is dropped because it does not pass the production filter."
+            )
+
+    return filtered_objs
+
+
 def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
@@ -106,13 +168,52 @@ def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
     return url
 
 
-def fetch_main_df(
-    data_type,
+def fetch_main_price_df(
     zone_key=None,
     sorted_zone_keys=None,
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
+) -> pd.DataFrame:
+    return _fetch_main_df(
+        "price",
+        zone_key=zone_key,
+        sorted_zone_keys=sorted_zone_keys,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )[0]
+
+
+def fetch_main_power_df(
+    zone_key=None,
+    sorted_zone_keys=None,
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> Tuple[pd.DataFrame, pd.Series]:
+    df, region, filtered_datasets = _fetch_main_df(
+        "power",
+        zone_key=zone_key,
+        sorted_zone_keys=sorted_zone_keys,
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+    # Solar rooftop is a special case
+    df = process_solar_rooftop(df)
+    logger.debug("Preparing capacities..")
+    capacities = get_capacities(filtered_datasets, region)
+    return df, capacities
+
+
+def _fetch_main_df(
+    data_type,
+    zone_key,
+    sorted_zone_keys,
+    session,
+    target_datetime,
+    logger,
 ):
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
@@ -154,38 +255,7 @@ def fetch_main_df(
         )
         df = df.loc[:, is_duplicated_column]
 
-    if data_type == "power" and zone_key:
-        # SOLAR_ROOFTOP is only given at 30 min interval, so let's interpolate it
-        if "SOLAR_ROOFTOP" in df:
-            # TODO decide 5 or 10
-            # I set it to 10 to make sure to minimise impact of NaNs we receive from opennem
-            # https://github.com/opennem/opennem/issues/40
-            df["SOLAR_ROOFTOP"] = df["SOLAR_ROOFTOP"].interpolate(limit=10)
-        logger.debug("Preparing capacities..")
-        # Parse capacity data
-        capacities = dict(
-            [
-                (obj["id"].split(".")[-2].upper(), obj.get("x_capacity_at_present"))
-                for obj in filtered_datasets
-                if obj["region"] == region
-            ]
-        )
-        return df, pd.Series(capacities)
-    else:
-        return df
-
-
-def sum_vector(pd_series, keys, ignore_nans=False):
-    # Only consider keys that are in the pd_series
-    filtered_keys = pd_series.index.intersection(keys)
-
-    # Require all present keys to be non-null
-    pd_series_filtered = pd_series.loc[filtered_keys]
-    nan_filter = pd_series_filtered.notnull().all() | ignore_nans
-    if filtered_keys.size and nan_filter:
-        return pd_series_filtered.fillna(0).sum()
-    else:
-        return None
+    return df, region, filtered_datasets
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -195,8 +265,7 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    df, capacities = fetch_main_df(
-        "power",
+    df, capacities = fetch_main_power_df(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
@@ -224,11 +293,7 @@ def fetch_production(
                 # We here assume all rooftop solar is fed to the grid
                 # This assumption should be checked and we should here only report
                 # grid-level generation
-                # TODO: This will accept NaNs from solar rooftop, but this is a temp fix until we know
-                # why we get NaNs from opennem https://github.com/opennem/opennem/issues/40
-                "solar": sum_vector(
-                    row, OPENNEM_PRODUCTION_CATEGORIES["solar"], ignore_nans=True
-                ),
+                "solar": sum_vector(row, OPENNEM_PRODUCTION_CATEGORIES["solar"]),
             },
             "storage": {
                 # opennem reports charging as negative, we here should report as positive
@@ -258,6 +323,8 @@ def fetch_production(
         for dt, row in df.iterrows()
     ]
 
+    objs = filter_production_objs(objs)
+
     # Validation
     logger.debug("Validating..")
     for obj in objs:
@@ -281,8 +348,7 @@ def fetch_price(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ) -> list:
-    df = fetch_main_df(
-        "price",
+    df = fetch_main_price_df(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
@@ -311,8 +377,7 @@ def fetch_exchange(
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
-    df = fetch_main_df(
-        "power",
+    df = fetch_main_power_df(
         sorted_zone_keys=sorted_zone_keys,
         session=session,
         target_datetime=target_datetime,
