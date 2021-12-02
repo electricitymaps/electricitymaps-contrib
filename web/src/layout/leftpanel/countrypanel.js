@@ -302,7 +302,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
@@ -318,7 +318,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
