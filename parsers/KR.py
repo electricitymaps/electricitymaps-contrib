@@ -25,11 +25,12 @@ HYDRO_CAPACITIES = {'Hwacheon': 108,
                     'Paldang': 120,
                     'Goesan': 2.8,
                     'Chilbo': 34.8,
-                    'Boseonggang': 4.5
+                    'Boseonggang': 4.5,
+                    'Euiam': 14.8,
+                    'Seomjingang': 8
                     }
 
 # Gangneung hydro plant used only for peak load and backup, capacity info not available.
-# Euiam hydro plant, no info available.
 
 
 def timestamp_processor(timestamps, with_tz=False, check_delta=False):
