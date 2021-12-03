@@ -48,7 +48,7 @@ function getCombinedFeature(fc, id) {
     } else return polygons[0];
 }
 
-function getAdditions(curFC, newFC) {
+function getDeletions(curFC, newFC) {
     const added = [];
     curFC.features.filter(x => {
         const id = x.properties.zoneName;
@@ -59,7 +59,7 @@ function getAdditions(curFC, newFC) {
     return added
 }
 
-function getDeletions(curFC, newFC) {
+function getAdditions(curFC, newFC) {
     const deletions = [];
     newFC.features.filter(x => {
         const id = x.properties.zoneName;
@@ -71,8 +71,6 @@ function getDeletions(curFC, newFC) {
 }
 
 function detectChanges(newFC, {OUT_PATH}) {
-    // eslint-disable-next-line no-param-reassign
-    newFC = featureCollection(newFC.features.filter(x => x.geometry.coordinates.length)); // TODO: remove this line
     console.log("Detecting changes...");
     const curFC = topoToGeojson(getJSON(OUT_PATH));
     const deletions = getDeletions(curFC, newFC)
