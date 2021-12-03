@@ -5,14 +5,6 @@ const args = process.argv.slice(2);
 
 const { getJSON } = require("./utilities")
 
-function readNDJSON(filePath) {
-  return fs
-    .readFileSync(path.resolve(__dirname, filePath), 'utf8')
-    .split('\n')
-    .filter((d) => d !== '')
-    .map(JSON.parse);
-}
-
 let zones = getJSON('./world.geojson');
 if (args.length > 0) {
   zones = zones.filter((d) => d.properties.zoneName === args[0]);
