@@ -5,6 +5,15 @@ export function useSearchParams() {
   return new URLSearchParams(useLocation().search);
 }
 
+export function useFeatureToggle() {
+  const searchParams = useSearchParams();
+
+  return useMemo(() => {
+    const featureToggles = searchParams.get('feature');
+    return featureToggles ? featureToggles.split(',') : [];
+  }, [searchParams]);
+}
+
 export function useCustomDatetime() {
   return useSearchParams().get('datetime');
 }
