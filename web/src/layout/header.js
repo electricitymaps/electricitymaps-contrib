@@ -7,8 +7,12 @@ const logo = resolvePath('images/electricitymap-logo.svg');
 
 const headerLinks = [
   {
-    label: 'Live',
+    label: 'Live Map',
     active: true,
+  },
+  {
+    label: 'Our Company',
+    href: 'https://electricitymap.org/company?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
     label: 'Open Source',
@@ -19,9 +23,17 @@ const headerLinks = [
     href: 'https://electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
-    label: 'Get our data',
-    href: 'https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral',
+    lable: 'Get Our Data',
+    href: 'https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral',
   },
+  {
+    label: 'Use our data',
+    href: 'https://static.electricitymap.org/api/docs/index.html',
+  },
+  {
+    label: 'Contribute to the OSP',
+    href: 'https://github.com/electricityMap/electricitymap-contrib'
+  }
 ];
 
 const Container = styled.div`
