@@ -110,13 +110,21 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
-    df_exchanges = pd.read_html(response.text, match='INTERCHANGE', skiprows=0, index_col=0)
+    df_exchanges = pd.read_html(
+        response.text,
+        match="INTERCHANGE",
+        skiprows=0,
+        index_col=0,
+        header=[0, 1],
+    )
+
+    exchange_data = df_exchanges[0]["INTERCHANGE"]["ACTUAL FLOW"]
 
     flows = {
-        'CA-AB->CA-BC': df_exchanges[1][1]['British Columbia'],
-        'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
-        'CA-AB->US-MT': df_exchanges[1][1]['Montana'],
-        'CA-AB->US-NW-NWMT': df_exchanges[1][1]['Montana']
+        "CA-AB->CA-BC": exchange_data["British Columbia"],
+        "CA-AB->CA-SK": exchange_data["Saskatchewan"],
+        "CA-AB->US-MT": exchange_data["Montana"],
+        "CA-AB->US-NW-NWMT": exchange_data["Montana"],
     }
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     if sortedZoneKeys not in flows:
