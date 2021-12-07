@@ -20,11 +20,11 @@ def fetch_consumption(zone_key=ZONE_KEY, session=None, target_datetime=None, log
         decoded_content = response.content.decode(response.encoding)
         consumption = float(decoded_content.strip('"'))
         date_header = response.headers.get('date')
-        consumption_date = arrow.get(date_header, 'ddd, DD MMM YYYY HH:mm:ss ZZZ')
+        consumption_date = arrow.get(date_header, 'ddd, DD MMM YYYY HH:mm:ss ZZZ').datetime
 
         return {
             'zoneKey': zone_key,
-            'datetime': consumption_date.isoformat(),
+            'datetime': consumption_date,
             'consumption': consumption,
             'source': SOURCE
         }
