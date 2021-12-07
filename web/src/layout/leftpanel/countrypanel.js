@@ -201,7 +201,7 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser, isEstimated } = data;
+  const { hasParser, estimationMethod } = data;
   let { disclaimer } = data;
   const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
@@ -209,7 +209,7 @@ const CountryPanel = ({
     : data.co2intensityProduction;
 
 
-  if (isEstimated) {
+  if (estimationMethod !== null) {
     disclaimer = __('country-panel.estimatedDisclaimer');
   }
 
