@@ -7,6 +7,6 @@ The world.geojson file is a geojson file containing all geographies and metadata
 To update geographies on the app
 
 1. Create manual changes on world.geojson
-2. Run updateworld.js
+2. Run `node update-world.js`
 
 This will validate and generate the new world.json file which is a compressed version of the world.geojson.
