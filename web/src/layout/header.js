@@ -15,22 +15,6 @@ const headerLinks = [
     href: 'https://electricitymap.org/company?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
-    label: 'Open Source',
-    href: 'https://electricitymap.org/open-source?utm_source=app.electricitymap.org&utm_medium=referral',
-  },
-  {
-    label: 'Blog',
-    href: 'https://electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
-  },
-  {
-    lable: 'Get Our Data',
-    href: 'https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral',
-  },
-  {
-    label: 'Use our data',
-    href: 'https://static.electricitymap.org/api/docs/index.html',
-  },
-  {
     label: 'Contribute to the OSP',
     href: 'https://github.com/electricityMap/electricitymap-contrib'
   }
