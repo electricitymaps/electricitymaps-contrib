@@ -8,7 +8,7 @@ import { useCurrentZoneData } from '../hooks/redux';
 const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
   const isRealtimeData = zoneTimeIndex === null;
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
-  const isEstimatedData = zoneData.isEstimated;
+  const isEstimatedData = zoneData.estimationMethod !== null;
 
   let message = __('country-panel.noDataAtTimestamp');
   if (isRealtimeData) {
@@ -37,11 +37,12 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || Object.values(zoneData.production).every(v => v === null)) && !zonesThatCanHaveZeroProduction.includes(zoneId);
-  const zoneIsMissingParser = !zoneData.hasParser;
-  const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
+  const zoneHasProductionData = (zoneData.production && Object.values(zoneData.production).every(v => v !== null)) || zonesThatCanHaveZeroProduction.includes(zoneId);
+  const isEstimated = zoneData.estimationMethod !== null;
 
-  if (!zoneHasData) {
+  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || !isEstimated;
+
+  if (shouldHideOverlay) {
     return null;
   }
 
