@@ -42,7 +42,7 @@
         "noDataAtTimestamp": "Data is temporarily unavailable for the selected time",
         "noLiveData": "Live data is temporarily unavailable for this area",
         "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
-        "dataIsEstimated": "Data for this region is delayed. Real-time values are estimated. Read more about our estimation methodology <a href=\"https://github.com/tmrowco/electricitymap/\" target=\"_blank\">here</a>.",
+        "dataIsEstimated": "Data for this region is delayed. Real-time values are estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
         "estimatedDisclaimer": "The real-time data is estimated based on the data from the source and the assumptions of the model. The data is not guaranteed to be accurate.",
         "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
         "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
