@@ -15,9 +15,15 @@ import {
 } from '../helpers/gfs';
 
 function* fetchZoneHistory(action) {
-  const { zoneId } = action.payload;
+  const { zoneId, features } = action.payload;
+  let queryParamString = `?countryCode=${zoneId}&preview=1`;
+
+  if (features.length > 0) {
+    queryParamString += `&feature=${features.join(',')}`;
+  }
+
   try {
-    const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}&preview=1`);
+    const payload = yield call(protectedJsonRequest, `/v3/history${queryParamString}`);
     yield put({ type: 'ZONE_HISTORY_FETCH_SUCCEEDED', zoneId, payload });
   } catch (err) {
     yield put({ type: 'ZONE_HISTORY_FETCH_FAILED' });
@@ -25,9 +31,15 @@ function* fetchZoneHistory(action) {
   }
 }
 
-function* fetchGridData() {
+function* fetchGridData(action) {
+  const { features } = action.payload || {};
+  let queryParamString = '?preview=1';
+
+  if (features.length > 0) {
+    queryParamString += `&feature=${features.join(',')}`;
+  }
   try {
-    const payload = yield call(protectedJsonRequest, '/v3/state?preview=1');
+    const payload = yield call(protectedJsonRequest, `/v3/state${queryParamString}`);
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });

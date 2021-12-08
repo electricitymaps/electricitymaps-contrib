@@ -1,40 +1,45 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { isEmpty } from 'lodash';
+import { isArray, isNull } from 'lodash';
 
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
-import { useCustomDatetime, useWindEnabled, useSolarEnabled } from './router';
+import { useCustomDatetime, useWindEnabled, useSolarEnabled, useFeatureToggle } from './router';
 import { useCurrentZoneHistory } from './redux';
 
 export function useConditionalZoneHistoryFetch() {
   const { zoneId } = useParams();
   const historyData = useCurrentZoneHistory();
   const customDatetime = useCustomDatetime();
+  const features = useFeatureToggle();
+
   const dispatch = useDispatch();
 
   // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
   useEffect(() => {
     if (customDatetime) {
       console.error('Can\'t fetch history when a custom date is provided!');
-    } else if (zoneId && isEmpty(historyData)) {
-      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId } });
+    } else if (zoneId && isArray(historyData) && historyData.length === 0) {
+      console.error('No history data available right now!');
+    } else if (zoneId && isNull(historyData)) {
+      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features } });
     }
   }, [zoneId, historyData, customDatetime]);
 }
 
 export function useGridDataPolling() {
   const datetime = useCustomDatetime();
+  const features = useFeatureToggle();
   const dispatch = useDispatch();
 
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
     let pollInterval;
-    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features } });
     if (!datetime) {
       pollInterval = setInterval(() => {
-        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features } });
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
