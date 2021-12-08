@@ -3,17 +3,25 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
+    "code-push": "^3.0.1",
     "cordova-android": "^8.1.0",
-    "cordova-ios": "^6.2.0",
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-code-push": "^1.12.5",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-firebase-analytics": "^4.1.2",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.3",
-    "cordova-plugin-whitelist": "^1.3.5",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-plugin-zip": "^3.1.0",
     "cordova-support-android-plugin": "^1.0.2",
     "cordova-support-google-services": "^1.3.2",
     "ejs": "^2.7.4",
-    "i18n": "^0.8.3"
+    "i18n": "^0.8.3",
+    "sentry-cordova": "^0.16.2"
   },
   "repository": {
     "type": "git",
@@ -25,17 +33,18 @@
   },
   "cordova": {
     "plugins": {
+      "cordova-plugin-whitelist": {},
       "cordova-plugin-globalization": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-zip": {},
+      "cordova-plugin-code-push": {},
+      "sentry-cordova": {},
       "cordova-support-google-services": {},
       "cordova-plugin-firebase-analytics": {},
-      "cordova-universal-links-plugin": {},
-      "cordova-plugin-whitelist": {},
-      "sentry-cordova": {
-        "SENTRY_ANDROID_SDK_VERSION": "4.1.0"
-      },
-      "cordova-plugin-code-push": {}
+      "cordova-universal-links-plugin": {}
     },
     "platforms": [
       "android",
@@ -43,15 +52,7 @@
     ]
   },
   "devDependencies": {
-    "app-icon": "^0.13.2",
-    "code-push": "^3.0.1",
-    "cordova-plugin-advanced-http": "^3.2.2",
-    "cordova-plugin-code-push": "^2.0.0",
-    "cordova-plugin-device": "^2.0.3",
-    "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-zip": "^3.1.0",
-    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git",
-    "sentry-cordova": "^1.0.0"
+    "app-icon": "^0.13.1",
+    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git"
   }
 }

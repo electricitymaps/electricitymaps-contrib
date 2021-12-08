@@ -2,12 +2,12 @@
 
 ##
 
-A few prerequisites:
+A few prerequisite:
 
 - iOS: install cocoapods
-- Run `npm install -g cordova@10.0.0 code-push-cli@2.1.9`
+- Run `npm install -g cordova@9.0.0 code-push-cli@2.1.9`
 - Run `npm install`
-- Optional (required for some internal builds): download `GoogleService-Info.plist` from Firebase
+- Optional (required for some internal Tomorrow builds): download `GoogleService-Info.plist` from Firebase
 
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
@@ -20,6 +20,12 @@ docker-compose build web && ./build.sh
 If you want to access the public API you will need a token:
 ```bash
 docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.sh
+```
+
+When installing for first time, run:
+
+```bash
+cordova prepare
 ```
 
 To build the cordova app:
@@ -40,10 +46,6 @@ In case you want to use xcode:
 ```bash
 open platforms/ios/electricityMap.xcworkspace
 ```
-
-Note when building from XCode, one has to remember to run `cordova prepare ios` before each build. This will push the `www/` files into the iOS platform. Without this, the `www` files won't be updated.
-This is not required when using `cordova build` (it automatically runs `cordova prepare`).
-
 
 To do a release build (android):
 
@@ -68,7 +70,7 @@ Note about releases: bumping the release number will cause a new binary to be cr
 
 To push a new store release:
 * Update the version in config.xml
-* Run `cordova prepare` if you're planning to build directly from XCode
+* Run `cordova prepare`
 * Make release builds (previously explained)
 
 ## App/Play Store Release Checklist
@@ -189,4 +191,12 @@ var pathToManifest = path.join(
   "main",
   "AndroidManifest.xml"
 );
+```
+
+### iOS: Building for iOS, but the embedded framework 'Sentry.framework' was built for iOS + iOS Simulator.
+
+```bash
+cordova platform remove ios && cordova platform add ios
+cordova plugin remove sentry-cordova
+cordova prepare
 ```
