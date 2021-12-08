@@ -19,7 +19,7 @@ function* fetchZoneHistory(action) {
   let queryParamString = `?countryCode=${zoneId}&preview=1`;
 
   if (features.length > 0) {
-    queryParamString += `&feature=${features.join(',')}`;
+    queryParamString += features.map(f => `&${f}=true`);
   }
 
   try {
@@ -33,13 +33,19 @@ function* fetchZoneHistory(action) {
 
 function* fetchGridData(action) {
   const { features } = action.payload || {};
-  let queryParamString = '?preview=1';
+  let endpoint = '/v3/state?preview=1';
+
+  if (features.includes('estimations')) {
+    endpoint = `/v4/state?preview=1`;
+  }
 
   if (features.length > 0) {
-    queryParamString += `&feature=${features.join(',')}`;
+    endpoint += features.map(f => `&${f}=true`);
   }
+
+
   try {
-    const payload = yield call(protectedJsonRequest, `/v3/state${queryParamString}`);
+    const payload = yield call(protectedJsonRequest, endpoint);
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
