@@ -44,7 +44,6 @@
     "sunrise-sunset-js": "^2.2.1",
     "swr": "^1.0.1",
     "topojson": "^3.0.2",
-    "topojson-server": "^3.0.1",
     "url-search-params-polyfill": "^8.1.0"
   },
   "devDependencies": {
@@ -82,6 +81,7 @@
     "sass-loader": "^8.0.0",
     "shapefile": "^0.6.2",
     "topojson-client": "^3.1.0",
+    "topojson-server": "^3.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
@@ -98,7 +98,8 @@
     "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
-    "watch-poll": "webpack --watch --watch-poll --progress --mode development"
+    "watch-poll": "webpack --watch --watch-poll --progress --mode development",
+    "update-world": "node ./geo/update-world.js"
   },
   "browserslist": [
     "defaults",
