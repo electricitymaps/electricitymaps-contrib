@@ -10,9 +10,9 @@ from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'
 
-NZ_NZN_PRICE_REGIONS = set(['region{}'.format(i) for i in range(1, 9)])
-NZ_NZS_PRICE_REGIONS = set(['region{}'.format(i) for i in range(9, 14)])
-NZ_PRICE_REGIONS = set(['region{}'.format(i) for i in range(1, 14)])
+NZ_NZN_PRICE_REGIONS = set([i for i in range(1, 9)])
+NZ_NZS_PRICE_REGIONS = set([i for i in range(9, 14)])
+NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
 
 def fetch(session=None):
     r = session or requests.session()
@@ -29,21 +29,20 @@ def fetch(session=None):
         break
     return obj
 
-def fetch_price(zone_key='NZ-NZN', session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(zone_key='NZ', session=None, target_datetime=None, logger=None) -> dict:
     """
     Requests the current price of electricity based on the zone key.
 
-    Note that since EM6 breaks the electricity price down into regions while electricitymap breaks
-    it down into the North and South islands, the regions are averaged out for each island.
+    Note that since EM6 breaks the electricity price down into regions, 
+    the regions are averaged out for each island.
     """
     if target_datetime:
         raise NotImplementedError('This parser is not able to retrieve data for past dates')
 
     r = session or requests.session()
-    url = 'https://em6live.co.nz'
-    response = r.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    prices = soup.find(id='priceList')
+    url = 'https://api.em6.co.nz/ords/em6/data_api/region/price/'
+    response = requests.get(url, verify=False)
+    obj = response.json()
     region_prices = []
 
     if zone_key == 'NZ-NZN':
@@ -55,21 +54,21 @@ def fetch_price(zone_key='NZ-NZN', session=None, target_datetime=None, logger=No
     else:
         raise NotImplementedError('Unsupported zone_key %s' % zone_key)
     
-    for item in prices.find_all('li'):
-        region = item['id']
+    for item in obj.get("items"):
+        region = item.get("grid_zone_id")
         if region in regions:
-            price = float(item.get_text().replace('$', '').replace(',', ''))
+            time = item.get("timestamp")
+            price = float(item.get("price"))
             region_prices.append(price)
 
     avg_price = sum(region_prices) / len(region_prices)
-    time = soup.find(id='overviewPrice').find(class_='updateStamp')
-    datetime = arrow.get(time.get_text(), 'DD/MM/YY HH:mm', tzinfo='Pacific/Auckland')
+    datetime = arrow.get(time, tzinfo='UTC')
 
     return {
         'datetime': datetime.datetime,
         'price': avg_price,
         'currency': 'NZD',
-        'source': 'em6live.co.nz',
+        'source': 'api.em6.co.nz',
         'zoneKey': zone_key
     }
 
@@ -156,6 +155,8 @@ if __name__ == '__main__':
     print(fetch_price('NZ-NZN'))
     print('fetch_price(NZ-NZS) ->')
     print(fetch_price('NZ-NZS'))
+    print('fetch_price(NZ) ->')
+    print(fetch_price('NZ'))
     print('fetch_production(NZ-NZN) ->')
     print(fetch_production('NZ-NZN'))
     print('fetch_production(NZ-NZS) ->')
