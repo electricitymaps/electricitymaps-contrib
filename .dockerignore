@@ -12,6 +12,6 @@ datascience
 
 web/node_modules
 web/public/dist
-web/zonegeometries.json
+#web/zonegeometries.json
 
 screenshots*

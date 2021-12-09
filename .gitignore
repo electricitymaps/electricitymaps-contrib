@@ -1,6 +1,7 @@
 *.pyc
 *.env
 web/public/dist
+!web/public/dist/zonegeometries.json
 web/node_modules
 .ipynb_checkpoints/
 *.pyproj
