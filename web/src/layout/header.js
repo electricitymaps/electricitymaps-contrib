@@ -15,6 +15,10 @@ const headerLinks = [
     href: 'https://electricitymap.org/company?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
+    label: 'Blog',
+    href: 'https://electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
+  },
+  {
     label: 'Contribute to the OSP',
     href: 'https://github.com/electricityMap/electricitymap-contrib'
   }
