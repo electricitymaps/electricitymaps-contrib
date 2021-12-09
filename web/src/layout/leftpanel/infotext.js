@@ -17,6 +17,9 @@ const Container = styled.div`
   }
 `;
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="ujw4FTrG"></script>
+
 export default () => (
   <Container className="info-text">
     <ColorBlindCheckbox />
@@ -56,11 +59,9 @@ export default () => (
     <div className="social-buttons">
       <div>
         { /* Facebook share */}
-        <div
-          className="fb-share-button"
-          data-href="https://app.electricitymap.org/"
-          data-layout="button_count"
-        />
+          <div class="fb-share-button" data-href="https://app.electricitymap.org" data-layout="button" data-size="small">
+          <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fapp.electricitymap.org%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+          </div>
         { /* Twitter share */}
         <a
           className="twitter-share-button"
