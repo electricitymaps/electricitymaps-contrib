@@ -5,7 +5,29 @@ import { useParams } from 'react-router-dom';
 import { __ } from '../helpers/translation';
 import { useCurrentZoneData } from '../hooks/redux';
 
-const mapStateToProps = state => ({
+const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
+  const isRealtimeData = zoneTimeIndex === null;
+  const isDataDelayed = zoneData.delays && zoneData.delays.production;
+  const isEstimatedData = zoneData.estimationMethod !== null;
+
+  let message = __('country-panel.noDataAtTimestamp');
+  if (isRealtimeData) {
+    const link = `https://storage.googleapis.com/electricitymap-parser-logs/${zoneId}.html`;
+    message = `${__('country-panel.noLiveData')}. ${__('country-panel.helpUs', link)}`;
+  }
+
+  if (isDataDelayed) {
+    message = __('country-panel.dataIsDelayed', zoneData.delays.production);
+  }
+
+  if (isEstimatedData) {
+    message = __('country-panel.dataIsEstimated');
+  }
+
+  return message;
+};
+
+const mapStateToProps = (state) => ({
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
@@ -15,37 +37,26 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasNotProductionDataAtTimestamp = (!zoneData.production || Object.values(zoneData.production).every(v => v === null)) && !zonesThatCanHaveZeroProduction.includes(zoneId);
-  const zoneIsMissingParser = !zoneData.hasParser;
-  const zoneHasData = zoneHasNotProductionDataAtTimestamp && !zoneIsMissingParser;
-  const isRealtimeData = zoneTimeIndex === null;
-  const isDataDelayed = zoneData.delays && zoneData.delays.production;
+  const zoneHasProductionData = (zoneData.production && Object.values(zoneData.production).every(v => v !== null)) || zonesThatCanHaveZeroProduction.includes(zoneId);
+  const isEstimated = zoneData.estimationMethod !== null;
 
-  if (!zoneHasData) return null;
-  let message = isRealtimeData ? __('country-panel.noLiveData') : __('country-panel.noDataAtTimestamp');
-  if (isDataDelayed) {
-    message = __('country-panel.dataIsDelayed', zoneData.delays.production);
+  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || !isEstimated;
+
+  if (shouldHideOverlay) {
+    return null;
   }
+
+  const message = getMessage(zoneId, zoneData, zoneTimeIndex);
+
   return (
     <div className="no-data-overlay visible">
       <div className="no-data-overlay-background" />
-      <div className="no-data-overlay-message">
-        {message}
-        {(!isRealtimeData || isDataDelayed) ? null : (
-          <React.Fragment>
-            {'. '}
-            {'Help us identify the problem by taking a look at the '}
-            <a
-              href={`https://storage.googleapis.com/electricitymap-parser-logs/${zoneId}.html`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              runtime logs
-            </a>
-            , or contact our data provider.
-          </React.Fragment>
-        )}
-      </div>
+      <div
+        className="no-data-overlay-message"
+        dangerouslySetInnerHTML={{
+          __html: message,
+        }}
+      />
     </div>
   );
 };
