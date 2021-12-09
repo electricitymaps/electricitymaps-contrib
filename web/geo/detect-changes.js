@@ -1,19 +1,14 @@
 const topojsonClient = require('topojson-client');
 const { getCoords, featureCollection, area, multiPolygon } = require('@turf/turf');
-const { getPolygons, getJSON, writeJSON } = require('./utilities');
+const { getPolygons, getJSON } = require('./utilities');
 
 function topoToGeojson(topo) {
   const features = [];
   Object.keys(topo.objects).forEach((obj) => {
     const feature = topojsonClient.feature(topo, topo.objects[obj]);
-    feature.properties['zoneName'] = obj
-    if (feature.geometry) {
       features.push(feature);
-    }
   });
   const fc = featureCollection(features);
-  console.log(fc.features.length)
-  writeJSON("test.geojson", fc);
   return getPolygons(fc);
 }
 
@@ -87,4 +82,4 @@ function detectChanges(newFC, { OUT_PATH }) {
   }
 }
 
-module.exports = { detectChanges, topoToGeojson };
+module.exports = { detectChanges };
