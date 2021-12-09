@@ -111,7 +111,7 @@
     "geothermal": "geotermální",
     "gas": "plyn",
     "coal": "uhlí",
-    "oil": "olej",
+    "oil": "ropa",
     "unknown": "neznámé",
     "electricityComesFrom": "<b>%1$s %%</b> elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> emisí z elektřiny dostupné v <img id=\"country-flag\"></img> <b>%2$s</b> pochází z %3$s",
