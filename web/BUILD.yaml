@@ -25,6 +25,7 @@ steps:
       - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
+      - bash geo/topogen.sh
       - yarn update-version
       - yarn build-release
     outputs:
