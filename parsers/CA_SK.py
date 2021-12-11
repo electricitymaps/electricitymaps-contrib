@@ -3,7 +3,7 @@ from __future__ import annotations
 import arrow
 import requests
 
-from parsers.lib.exceptions import ParserException
+from .lib.exceptions import ParserException
 
 CONSUMPTION_URL = 'https://www.saskpower.com/ignitionapi/Content/GetNetLoad'
 SOURCE = 'saskpower.com'
