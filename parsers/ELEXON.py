@@ -303,11 +303,12 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
             else:
                 entry['production']['wind'] = None
 
-    required = ['coal', 'gas', 'nuclear']
+    required = ['coal', 'gas', 'nuclear', 'wind']
     expected_range = {
         'coal': (0, 10000),
         'gas': (100, 30000),
-        'nuclear': (100, 20000)
+        'nuclear': (100, 20000),
+        'wind': (0, 30000),
     }
     data = [x for x in data
             if validate(
