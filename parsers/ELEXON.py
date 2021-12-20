@@ -238,7 +238,7 @@ def _fetch_wind(target_datetime=None):
 
     # line up with B1620 (main production report) search range
     d = target_datetime.date()
-    start = d - dt.timedelta(hours=24)
+    start = d - dt.timedelta(hours=48)
     end = dt.datetime.combine(d + dt.timedelta(days=1), dt.time(0))
 
     session = requests.session()
