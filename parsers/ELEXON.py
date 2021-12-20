@@ -12,18 +12,18 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
-import os
-import arrow
-import logging
-import requests
 import datetime as dt
-import pandas as pd
+import logging
 from io import StringIO
+
+import arrow
+import pandas as pd
+import requests
 
 from parsers.lib.config import refetch_frequency
 
-from .lib.validation import validate
 from .lib.utils import get_token
+from .lib.validation import validate
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
