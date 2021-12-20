@@ -77,4 +77,8 @@ echo 'Parsing 3rd party..'
 )> $BUILD_PATH/tmp_thirdparty.json
 
 # Generate final geometries
-node $CURRENT_PATH/generate-geometries.js
+if [[ $# -eq 1 ]] && [[ $1 == '--ignore-world' ]] ; then
+    node $CURRENT_PATH/generate-geometries.js --ignore-world
+else
+    node $CURRENT_PATH/generate-geometries.js
+fi
