@@ -68,7 +68,11 @@ def get_solar(session, logger) -> float | None:
     solar_image = Image.open(session.get(url, stream=True).raw)
 
     w, h = solar_image.size
-    text_only = solar_image.crop((w*0.53125, h*0.74375, w*0.9296875, h*0.91875))
+    crop_left = int(w * 0.65)
+    crop_top = int(h * 0.74)
+    crop_right = int(w * 0.93)
+    crop_bottom = int(h * 0.92)
+    text_only = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
     gray = text_only.convert('L')
     threshold_filter = lambda x: 0 if x < 10 else 255
     black_white = gray.point(threshold_filter, '1')
