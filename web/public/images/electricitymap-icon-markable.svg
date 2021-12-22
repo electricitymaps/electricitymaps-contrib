@@ -1,4 +1,4 @@
-<!-- Same as electricitymap-icon.svg but with more margins to make it maskable, achierved only using the viewBox attributes -->
+<!-- Same as electricitymap-icon.svg but with more margins to make it maskable, achieved only using the viewBox attributes -->
 <svg xmlns="http://www.w3.org/2000/svg" width="117" height="117" viewBox="-30 -40 177 177">
   <path d="M10.29 12.042 0 95.742l16.4-5.998 5.279-10.581L9.558 83.66l8.014-65.187 16.488-4.149 16.486 5.652 7.003-6.064-23.139-7.94zm78.03 3.909 12.111 4.019 7.122 63.894-22.261-8.931-25.25 10.627-8.123-3.453-7.584 5.483 15.692 6.668 25.338-10.663L117 96.285l-9.174-82.303-16.525-5.484z"/>
   <path d="m84.842 1.582-51.148 46.87c-1.225 1.121-1.038 2.677.412 3.479l7.957 4.404a2.875 2.875 0 0 1 1.084 4.025L24.918 90.789c-.85 1.42-.468 1.755.857.747l54.968-41.853c1.336-1.017 1.156-2.341-.376-2.977l-10.482-4.348a2.823 2.823 0 0 1-1.473-3.869L85.753 2.271c.428-.893.457-1.364.154-1.364-.207 0-.569.22-1.065.675Z"/>
