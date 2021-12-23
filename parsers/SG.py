@@ -8,7 +8,7 @@ from collections import defaultdict
 
 import arrow
 import requests
-from PIL import Image
+from PIL import Image, ImageOps
 from pytesseract import image_to_string
 
 TIMEZONE = 'Asia/Singapore'
@@ -67,30 +67,9 @@ def get_solar(session, logger) -> float | None:
     url = SOLAR_URL
     solar_image = Image.open(session.get(url, stream=True).raw)
 
-    w, h = solar_image.size
-    crop_left = int(w * 0.65)
-    crop_top = int(h * 0.74)
-    crop_right = int(w * 0.93)
-    crop_bottom = int(h * 0.92)
-    text_only = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
-    gray = text_only.convert('L')
-    threshold_filter = lambda x: 0 if x < 10 else 255
-    black_white = gray.point(threshold_filter, '1')
+    solar_mw = __detect_output_from_solar_image(solar_image, logger)
+    solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
 
-    text = image_to_string(black_white, lang='eng')
-
-    try:
-        pattern = r'Est. PV Output: (.*)MWac'
-        val = re.search(pattern, text, re.MULTILINE).group(1)
-
-        time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
-        time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
-    except AttributeError:
-        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
-        logger.warning(msg, extra={'key': 'SG'})
-        return None
-
-    solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
     singapore_dt = arrow.now('Asia/Singapore')
     diff = singapore_dt - solar_dt
 
@@ -101,25 +80,7 @@ def get_solar(session, logger) -> float | None:
         logger.warning(msg, extra={'key': 'SG'})
         return None
 
-    # At night format changes from 0.00 to 0
-    # tesseract cannot distinguish singular 0 and O in font provided by image.
-    # This try/except will make sure no invalid data is returned.
-    try:
-        solar = float(val)
-    except ValueError:
-        if len(val) == 1 and 'O' in val:
-            solar = 0.0
-        else:
-            msg = "Singapore solar data is unreadable - got {}.".format(val)
-            logger.warning(msg, extra={'key': 'SG'})
-            return None
-    else:
-        if solar > 400.0:
-            msg = "Solar generation is way over capacity - got {}".format(val)
-            logger.warning(msg, extra={'key': 'SG'})
-            return None
-
-    return solar
+    return solar_mw
 
 
 def parse_megawatt_value(val) -> int:
@@ -269,6 +230,70 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None) 
         'price': price,
         'source': 'emcsg.com'
     }
+
+
+def __detect_datetime_from_solar_image(solar_image, logger):
+    w, h = solar_image.size
+    crop_left = int(w * 0.75)
+    crop_top = int(h * 0.87)
+    crop_right = int(w * 0.93)
+    crop_bottom = int(h * 0.92)
+    time_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
+
+    # Recent versions of Tesseract do much better with dark text on light background. This was true for this image,
+    # as well, to detect the timestamp characters correctly.
+    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
+    inverted_img = ImageOps.invert(time_img)
+    text = image_to_string(inverted_img, lang='eng', config='--psm 7 -c tessedit_char_whitelist="0123456789:- "')
+
+    try:
+        time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
+        time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
+    except AttributeError:
+        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
+        logger.warning(msg, extra={'key': 'SG'})
+        return None
+
+    solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
+    return solar_dt
+
+
+def __detect_output_from_solar_image(solar_image, logger):
+    w, h = solar_image.size
+    crop_left = int(w * 0.65)
+    crop_top = int(h * 0.74)
+    crop_right = int(w * 0.93)
+    crop_bottom = int(h * 0.80)
+    output_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
+
+    # Detection works better with dark text on light background.
+    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
+    inverted_img = ImageOps.invert(output_img)
+    gray_img = inverted_img.convert('L')
+    text = image_to_string(gray_img, lang='eng', config='--psm 7')
+
+    try:
+        pattern = r'Est. PV Output: (.*)MWac'
+        val = re.search(pattern, text, re.MULTILINE).group(1)
+    except AttributeError:
+        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
+        logger.warning(msg, extra={'key': 'SG'})
+        return None
+
+    # At night format changes from 0.00 to 0
+    # tesseract cannot distinguish singular 0 and O in font provided by image.
+    # This try/except will make sure no invalid data is returned.
+    try:
+        solar_mw = float(val)
+    except ValueError:
+        if val == 'O':
+            solar_mw = 0.0
+        else:
+            msg = "Singapore solar data is unreadable - got {}.".format(val)
+            logger.warning(msg, extra={'key': 'SG'})
+            return None
+
+    return solar_mw
 
 
 if __name__ == '__main__':
