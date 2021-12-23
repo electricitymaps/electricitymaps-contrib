@@ -239,12 +239,8 @@ def __detect_datetime_from_solar_image(solar_image, logger):
     crop_right = int(w * 0.93)
     crop_bottom = int(h * 0.92)
     time_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
-
-    # Recent versions of Tesseract do much better with dark text on light background. This was true for this image,
-    # as well, to detect the timestamp characters correctly.
-    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
-    inverted_img = ImageOps.invert(time_img)
-    text = image_to_string(inverted_img, lang='eng', config='--psm 7 -c tessedit_char_whitelist="0123456789:- "')
+    processed_img = __preprocess_image_for_ocr(time_img)
+    text = image_to_string(processed_img, lang='eng', config='--psm 7 -c tessedit_char_whitelist="0123456789:- "')
 
     try:
         time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
@@ -265,12 +261,8 @@ def __detect_output_from_solar_image(solar_image, logger):
     crop_right = int(w * 0.93)
     crop_bottom = int(h * 0.80)
     output_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
-
-    # Detection works better with dark text on light background.
-    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
-    inverted_img = ImageOps.invert(output_img)
-    gray_img = inverted_img.convert('L')
-    text = image_to_string(gray_img, lang='eng', config='--psm 7')
+    processed_img = __preprocess_image_for_ocr(output_img)
+    text = image_to_string(processed_img, lang='eng', config='--psm 7')
 
     try:
         pattern = r'Est. PV Output: (.*)MWac'
@@ -294,6 +286,23 @@ def __detect_output_from_solar_image(solar_image, logger):
             return None
 
     return solar_mw
+
+
+def __preprocess_image_for_ocr(img):
+    """
+    Perform a number of image pre-processing recommendations to improve success of character recognition.
+
+    :param img: the image to be processed
+    :return: pre-processed image, optimized for optical character recognition (OCR)
+    """
+    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
+    inverted_img = ImageOps.invert(img)  # assumes black background of Singapore solar output image
+    dark_text_on_light_bg = inverted_img.convert('L')
+
+    # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#missing-borders
+    img_with_border = ImageOps.expand(dark_text_on_light_bg, border=2)
+
+    return img_with_border
 
 
 if __name__ == '__main__':
