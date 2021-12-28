@@ -761,12 +761,12 @@
       ]
     ],
     "capacity": {
-      "biomass": 46.22,
+      "biomass": 61,
       "hydro": 734.84,
       "nuclear": 0,
-      "solar": 115.07,
-      "unknown": 2273.22,
-      "wind": 27
+      "solar": 165.08,
+      "unknown": 2501.03,
+      "wind": 102.6
     },
     "contributors": [
       "https://github.com/igorarduin",
