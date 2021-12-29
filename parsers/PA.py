@@ -160,7 +160,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     # Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
     # TODO we might want to use the sum of the production of all thermal units instead of this workaround,
     # because now we're still reporting small *postive* amounts of "ghost" thermal production
-    if data['production']['unknown'] < 0 and data['production']['unknown'] > -10:
+    if 0 > data['production']['unknown'] > -10:
         logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
         data['production']['unknown'] = 0
 
