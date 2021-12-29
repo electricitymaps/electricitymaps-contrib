@@ -91,6 +91,8 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         'BLM 6': 'oil',  # [7] Sheet "C-GE-1A-2 CapInstXEmp"
         'BLM 8': 'oil',  # [7] Sheet "C-GE-1A-2 CapInstXEmp"
         'BLM 9': 'oil',  # [7] Sheet "C-GE-1A-2 CapInstXEmp" mentions no fuel type, and given all other units are accounted for this must be the heat recovery boiler for the 3 diesel-fired units mentioned in [2]
+        'CADASA 1': 'biomass',  # [9]
+        'CADASA 2': 'biomass',  # [9]
         'Cativá 1': 'oil',  # [1][2]
         'Cativá 2': 'oil',  # [1][2]
         'Cativá 3': 'oil',  # [1][2]
@@ -143,6 +145,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     # 6. https://www.etesa.com.pa/documentos/Tomo_II__Plan_Indicativo_de_Generacin_2019__2033.pdf page 142
     # 7. http://168.77.210.79/energia/wp-content/uploads/sites/2/2020/08/2-CEE-1970-2019-GE-Generaci%C3%B3n-El%C3%A9ctrica.xls (via http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
     # 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
+    # 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
     for thermal_production_unit in thermal_production_units:
         unit_name_and_generation = thermal_production_unit.find_all('td')
         unit_name = unit_name_and_generation[0].string
