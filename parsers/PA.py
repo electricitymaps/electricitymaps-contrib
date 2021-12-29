@@ -147,8 +147,8 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         unit_name_and_generation = thermal_production_unit.find_all('td')
         unit_name = unit_name_and_generation[0].string
         unit_generation = float(unit_name_and_generation[1].string)
-        if(unit_name in map_thermal_generation_unit_name_to_fuel_type):
-            if(unit_generation > 0):  # Ignore self-consumption
+        if unit_name in map_thermal_generation_unit_name_to_fuel_type:
+            if unit_generation > 0:  # Ignore self-consumption
                 unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
                 data['production'][unit_fuel_type] += unit_generation
                 data['production']['unknown'] -= unit_generation
