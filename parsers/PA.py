@@ -16,9 +16,9 @@ import logging
 
 def extract_pie_chart_data(html):
     """Extracts generation breakdown pie chart data from the source code of the page"""
-    dataSource = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)  # Extract object with data
-    dataSource = re.sub(r"(name|value|color)", r'"\1"', dataSource)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
-    return json.loads(dataSource)
+    data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)  # Extract object with data
+    data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+    return json.loads(data_source)
 
 
 def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
