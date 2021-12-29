@@ -129,6 +129,14 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         'PanAm 7': 'oil',  # [6][7]
         'PanAm 8': 'oil',  # [6][7]
         'PanAm 9': 'oil',  # [6][7]
+        'Sparkle Power 1': 'oil',  # [10]
+        'Sparkle Power 2': 'oil',  # [10]
+        'Sparkle Power 3': 'oil',  # [10]
+        'Sparkle Power 4': 'oil',  # [10]
+        'Sparkle Power 5': 'oil',  # [10]
+        'Sparkle Power 6': 'oil',  # [10]
+        'Sparkle Power 7': 'oil',  # [10]
+        'Sparkle Power 8': 'oil',  # [10]
         'Termocolón 1': 'oil',  # [6] (spelled "Termo Colón")
         'Termocolón 2': 'oil',  # [6] (spelled "Termo Colón")
         'Termocolón 3': 'oil',  # [6] (spelled "Termo Colón")
@@ -146,6 +154,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
     # 7. http://168.77.210.79/energia/wp-content/uploads/sites/2/2020/08/2-CEE-1970-2019-GE-Generaci%C3%B3n-El%C3%A9ctrica.xls (via http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
     # 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
     # 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
+    # 10. https://www.asep.gob.pa/wp-content/uploads/electricidad/concesiones_licencias/concesiones_licencias/2021/listado_licencias_abr27.pdf
     for thermal_production_unit in thermal_production_units:
         unit_name_and_generation = thermal_production_unit.find_all('td')
         unit_name = unit_name_and_generation[0].string
