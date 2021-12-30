@@ -17,6 +17,7 @@ import logging
 
 TIMEZONE = 'America/Panama'
 EXCHANGE_URL = 'https://sitr.cnd.com.pa/m/pub/int.html'
+CONSUMPTION_URL = 'https://sitr.cnd.com.pa/m/pub/sin.html'
 
 
 def extract_pie_chart_data(html):
@@ -231,12 +232,37 @@ def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
 
     return data
 
+def fetch_consumption(
+    zone_key="PA", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    r = session or requests.session()
+    url = CONSUMPTION_URL
+
+    response = r.get(url)
+    assert response.status_code == 200
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    consumption_div = soup.find_all('div', {'class': 'widget-small info coloured-icon'})[0]
+    consumption_val = consumption_div.find('h4').contents[0].split()[0]
+
+    data = {
+        'consumption': consumption_val,
+        'datetime': arrow.now(TIMEZONE).datetime,
+        'source': url,
+        "zoneKey": zone_key,
+    }
+
+    return data
+
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
-    print('fetch_exchange("CR", "PA") ->')
-    print(fetch_exchange("CR", "PA"))
-    print('fetch_exchange("PA", "SV") ->')
-    print(fetch_exchange("PA", "SV"))
+    print('fetch_exchange() ->')
+    print(fetch_exchange())
+    print('fetch_consumption() ->')
+    print(fetch_consumption())
