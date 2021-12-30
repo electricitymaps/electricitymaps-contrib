@@ -234,6 +234,9 @@ def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
 
 def fetch_consumption(
     zone_key="PA", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+    """
+      Fetches consumption of Panama.
+    """
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
