@@ -7,11 +7,16 @@ import arrow
 import requests
 # The BeautifulSoup library is used to parse HTML
 from bs4 import BeautifulSoup
+
+import pandas as pd
+
 # Extracting some data using regex
 import re
 import json
-
 import logging
+
+TIMEZONE = 'America/Panama'
+EXCHANGE_URL = 'https://sitr.cnd.com.pa/m/pub/int.html'
 
 
 def extract_pie_chart_data(html):
@@ -174,9 +179,64 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
 
     return data
 
+def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
+                   target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+    """
+    Requests the last known power exchange (in MW) between two countries.
+    """
+
+    if target_datetime:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
+    
+    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+
+    r = session or requests.session()
+    url = EXCHANGE_URL
+
+    response = r.get(url)
+    assert response.status_code == 200
+
+    df = pd.read_html(response.text)[0]
+
+    # A positive value on website indicates a flow from country specified to PA.
+
+    net_flow_cr = round(float(df[4][1]) + float(df[4][3]) + float(df[4][5]) + float(df[1][8]) + float(df[1][10]), 2)
+    net_flow_ni = round(float(df[4][8]) + float(df[4][10]) + float(df[4][13]) + float(df[4][15]), 2)
+    net_flow_hn = round(float(df[1][13]) + float(df[1][15]) + float(df[1][18]) + float(df[1][20]) + float(df[1][23]), 2)
+    net_flow_sv = round(float(df[4][18]) + float(df[4][20]) + float(df[1][26]) + float(df[1][28]), 2)
+    net_flow_gt = round(float(df[4][23]) + float(df[4][26]) + float(df[4][28]) + float(df[1][31]), 2)
+
+    net_flows = {
+      "CR->PA": net_flow_cr, # Costa Rica to Panama
+      "GT->PA": net_flow_gt, # Guatemala to Panama
+      "HN->PA": net_flow_hn, # Honduras to Panama
+      "NI->PA": net_flow_ni, # Nicaragua to Panama
+      "PA->SV": net_flow_sv, # Panama to El Salvador
+    }
+
+    # Invert sign of flows to account for correct flow direction
+    net_flows["PA->SV"] = -1 * net_flows["PA->SV"]
+
+    if sorted_zone_keys not in net_flows:
+        raise NotImplementedError(
+            'This exchange pair is not implemented: {}'.format(sorted_zone_keys))
+    
+    data = {
+        'datetime': arrow.now(TIMEZONE).datetime,
+        'netFlow': net_flows[sorted_zone_keys],
+        'sortedZoneKeys': sorted_zone_keys,
+        'source': url
+    }
+
+    return data
 
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())
+    print('fetch_exchange("CR", "PA") ->')
+    print(fetch_exchange("CR", "PA"))
+    print('fetch_exchange("PA", "SV") ->')
+    print(fetch_exchange("PA", "SV"))
