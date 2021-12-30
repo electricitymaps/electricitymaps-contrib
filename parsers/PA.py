@@ -14,7 +14,7 @@ import json
 import logging
 
 
-PRODUCTION_URL = 'http://sitr.cnd.com.pa/m/pub/gen.html'
+PRODUCTION_URL = 'https://sitr.cnd.com.pa/m/pub/gen.html'
 
 
 def extract_pie_chart_data(html):
