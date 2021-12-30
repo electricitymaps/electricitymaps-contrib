@@ -14,6 +14,9 @@ import json
 import logging
 
 
+PRODUCTION_URL = 'http://sitr.cnd.com.pa/m/pub/gen.html'
+
+
 def extract_pie_chart_data(html):
     """Extracts generation breakdown pie chart data from the source code of the page"""
     data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)  # Extract object with data
@@ -28,7 +31,7 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
 
     # Fetch page and load into BeautifulSoup
     r = session or requests.session()
-    url = 'http://sitr.cnd.com.pa/m/pub/gen.html'
+    url = PRODUCTION_URL
     response = r.get(url)
     response.encoding = 'utf-8'
     html_doc = response.text
