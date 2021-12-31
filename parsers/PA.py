@@ -187,8 +187,7 @@ def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
     """
 
     if target_datetime:
-        raise NotImplementedError(
-            'This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
     
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
@@ -201,13 +200,14 @@ def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
     df = pd.read_html(response.text)[0]
 
     # A positive value on website indicates a flow from country specified to PA.
-
     net_flow_cr = round(float(df[4][1]) + float(df[4][3]) + float(df[4][5]) + float(df[1][8]) + float(df[1][10]), 2)
-    net_flow_ni = round(float(df[4][8]) + float(df[4][10]) + float(df[4][13]) + float(df[4][15]), 2)
-    net_flow_hn = round(float(df[1][13]) + float(df[1][15]) + float(df[1][18]) + float(df[1][20]) + float(df[1][23]), 2)
-    net_flow_sv = round(float(df[4][18]) + float(df[4][20]) + float(df[1][26]) + float(df[1][28]), 2)
     net_flow_gt = round(float(df[4][23]) + float(df[4][26]) + float(df[4][28]) + float(df[1][31]), 2)
+    net_flow_hn = round(float(df[1][13]) + float(df[1][15]) + float(df[1][18]) + float(df[1][20]) + float(df[1][23]), 2)
+    net_flow_ni = round(float(df[4][8]) + float(df[4][10]) + float(df[4][13]) + float(df[4][15]), 2)
 
+    # invert sign to account for direction in alphabetical order
+    net_flow_sv = -1 * round(float(df[4][18]) + float(df[4][20]) + float(df[1][26]) + float(df[1][28]), 2)
+    
     net_flows = {
       "CR->PA": net_flow_cr, # Costa Rica to Panama
       "GT->PA": net_flow_gt, # Guatemala to Panama
@@ -216,12 +216,8 @@ def fetch_exchange(zone_key1='CR', zone_key2='PA', session=None,
       "PA->SV": net_flow_sv, # Panama to El Salvador
     }
 
-    # Invert sign of flows to account for correct flow direction
-    net_flows["PA->SV"] = -1 * net_flows["PA->SV"]
-
     if sorted_zone_keys not in net_flows:
-        raise NotImplementedError(
-            'This exchange pair is not implemented: {}'.format(sorted_zone_keys))
+        raise NotImplementedError(f"This exchange pair is not implemented: {sorted_zone_keys}")
     
     data = {
         'datetime': arrow.now(TIMEZONE).datetime,
