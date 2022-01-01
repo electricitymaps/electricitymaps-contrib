@@ -1569,7 +1569,7 @@
       "geothermal": 47,
       "hydro": 4860,
       "hydro storage": 9810,
-      "nuclear": 8114,
+      "nuclear": 4055,
       "oil": 4380,
       "solar": 58410,
       "unknown": 3700,
@@ -1580,7 +1580,8 @@
       "https://github.com/bohne13",
       "https://github.com/chiefymuc",
       "https://github.com/nessie2013",
-      "https://github.com/IV1T3"
+      "https://github.com/IV1T3",
+      "https://github.com/sin"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
