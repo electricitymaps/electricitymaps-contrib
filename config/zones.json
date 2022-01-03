@@ -4898,7 +4898,8 @@
       "https://github.com/IV1T3"
     ],
     "parsers": {
-      "production": "PA.fetch_production"
+      "production": "PA.fetch_production",
+      "consumption": "PA.fetch_consumption"
     },
     "timezone": "America/Panama"
   },
