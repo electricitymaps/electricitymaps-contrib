@@ -195,7 +195,11 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
 
         # Date
         hour = datapoint['fHour']
-        datetime = arrow.get('%s %s' % (date, hour), 'YYYY.MM.DD HH:mm', tzinfo=tz)
+
+        if len(hour) == 1:
+            hour = '0' + hour
+
+        datetime = arrow.get('%s %s' % (date, hour), 'YYYY.MM.DD HH', tzinfo=tz)
         row['datetime'] = datetime.datetime
         last_dt = arrow.now(tz).shift(minutes=-30).datetime
 
