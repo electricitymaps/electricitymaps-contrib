@@ -1,4 +1,3 @@
-const { isEmpty } = require('lodash');
 const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
@@ -24,6 +23,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.delays = zoneConfig.delays;
+  zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
 Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
@@ -50,6 +50,8 @@ const initialDataState = {
   isLoadingWind: false,
   solar: null,
   wind: null,
+  solarDataError: null,
+  windDataError: null,
 };
 
 module.exports = (state = initialDataState, action) => {
@@ -86,6 +88,10 @@ module.exports = (state = initialDataState, action) => {
       Object.keys(newGrid.zones).forEach((key) => {
         const zone = Object.assign({}, newGrid.zones[key]);
         zone.co2intensity = undefined;
+        zone.fossilFuelRatio = undefined;
+        zone.fossilFuelRatioProduction = undefined;
+        zone.renewableRatio = undefined;
+        zone.renewableRatioProduction = undefined;
         zone.exchange = {};
         zone.production = {};
         zone.productionCo2Intensities = {};
@@ -116,8 +122,12 @@ module.exports = (state = initialDataState, action) => {
         });
         // Set date
         zone.datetime = action.payload.datetime;
+
+        if (!zone.production || Object.values(zone.production).every(v => v === null)) {
+          return;
+        }
+
         // Validate data
-        if (!zone.production) return;
         modeOrder.forEach((mode) => {
           if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
           // Check missing values
@@ -173,8 +183,6 @@ module.exports = (state = initialDataState, action) => {
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
             hasParser: true,
-            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
           })),
         },
       };
@@ -186,7 +194,7 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'SOLAR_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingSolar: true };
+      return { ...state, isLoadingSolar: true, solarDataError: null };
     }
 
     case 'SOLAR_DATA_FETCH_SUCCEEDED': {
@@ -194,12 +202,12 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'SOLAR_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingSolar: false, solar: null };
+      // TODO: create specialized messages based on http error response
+      return { ...state, isLoadingSolar: false, solar: null, solarDataError: translation.translate('solarDataError') };
     }
 
     case 'WIND_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingWind: true };
+      return { ...state, isLoadingWind: true, windDataError: null };
     }
 
     case 'WIND_DATA_FETCH_SUCCEEDED': {
@@ -207,8 +215,8 @@ module.exports = (state = initialDataState, action) => {
     }
 
     case 'WIND_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingWind: false, wind: null };
+      // TODO: create specialized messages based on http error response
+      return { ...state, isLoadingWind: false, wind: null, windDataError: translation.translate('windDataError') };
     }
 
     default:

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { isArray, isFinite, noop } from 'lodash';
+import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
@@ -38,6 +39,15 @@ const PADDING_X = 5;
 const RECT_OPACITY = 0.8;
 const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
+
+const CountryTableSVG = styled.svg`
+    width: 100%;
+  `;
+
+const CountryTableContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
 
 const getProductionData = data => modeOrder.map((mode) => {
   const isStorage = mode.indexOf('storage') !== -1;
@@ -251,8 +261,8 @@ const CountryCarbonEmissionsTable = React.memo(({
     return `${t} t/min`;
   };
 
-  return (
-    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
+    return (
+    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -307,7 +317,7 @@ const CountryCarbonEmissionsTable = React.memo(({
           </Row>
         ))}
       </g>
-    </svg>
+    </CountryTableSVG>
   );
 });
 
@@ -329,10 +339,12 @@ const CountryElectricityProductionTable = React.memo(({
 
   // Use the whole history to determine the min/max,
   // fallback on current data
-  const history = useCurrentZoneHistory();
+  const history = useCurrentZoneHistory() || [];
   const [minPower, maxPower] = useMemo(
     () => {
-      const historyOrCurrent = history || [data];
+      const historyOrCurrent = history.length
+        ? history
+        : [data];
       return [
         d3Min(historyOrCurrent.map(zoneData => Math.min(
           -zoneData.maxStorageCapacity || 0,
@@ -366,7 +378,7 @@ const CountryElectricityProductionTable = React.memo(({
   };
 
   return (
-    <svg className="country-table" height={height} style={{ overflow: 'visible' }}>
+    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
       <Axis
         formatTick={formatTick}
         height={height}
@@ -433,7 +445,7 @@ const CountryElectricityProductionTable = React.memo(({
           </Row>
         ))}
       </g>
-    </svg>
+    </CountryTableSVG>
   );
 });
 
@@ -489,7 +501,7 @@ const CountryTable = ({
   const height = exchangeY + exchangeHeight;
 
   return (
-    <div className="country-table-container" ref={ref}>
+    <CountryTableContainer ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
           data={data}
@@ -534,7 +546,7 @@ const CountryTable = ({
         />
       )}
       <CountryTableOverlayIfNoData />
-    </div>
+    </CountryTableContainer>
   );
 };
 

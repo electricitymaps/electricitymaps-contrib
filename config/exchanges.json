@@ -43,21 +43,21 @@
     },
     "rotation": 0
   },
-  "AM->NKR":{
+  "AM->NKR": {
     "lonlat": [
       46.0,
       39.75
-     ],
+    ],
     "parsers": {
       "exchange": "AM.fetch_exchange"
     },
     "rotation": 90
   },
-  "AM->IR":{
+  "AM->IR": {
     "lonlat": [
       46.3,
       38.9
-      ],
+    ],
     "parsers": {
       "exchange": "AM.fetch_exchange"
     },
@@ -169,32 +169,44 @@
     "rotation": 180
   },
   "AUS-NSW->AUS-QLD": {
+    "capacity": [
+      -1380,
+      880
+    ],
     "lonlat": [
       146.503228,
       -29.054874
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 0
   },
   "AUS-NSW->AUS-VIC": {
+    "capacity": [
+      -1770,
+      1520
+    ],
     "lonlat": [
       145.308829,
       -35.850801
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 180
   },
   "AUS-SA->AUS-VIC": {
+    "capacity": [
+      -870,
+      870
+    ],
     "lonlat": [
       140.965561,
       -35.784766
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 90
   },
@@ -208,7 +220,7 @@
       -39.836207
     ],
     "parsers": {
-      "exchange": "AU.fetch_exchange"
+      "exchange": "OPENNEM.fetch_exchange"
     },
     "rotation": 0
   },
@@ -293,7 +305,7 @@
   "BD->IN": {
     "lonlat": [
       88.736559,
-      23.361290
+      23.36129
     ],
     "parsers": {
       "exchange": "BD.fetch_exchange"
@@ -495,17 +507,17 @@
   },
   "BR-S->UY": {
     "lonlat": [
-       -54.982242,
-       -31.301863
+      -54.982242,
+      -31.301863
     ],
     "parsers": {
-       "exchange": "BR.fetch_exchange"
+      "exchange": "BR.fetch_exchange"
     },
     "rotation": -150
   },
   "BR-S->PY": {
     "lonlat": [
-      -54.449260,
+      -54.44926,
       -24.749974
     ],
     "parsers": {
@@ -513,7 +525,7 @@
     },
     "rotation": 110
   },
-  "BY->RU-1":{
+  "BY->RU-1": {
     "lonlat": [
       31.141039,
       54.483721
@@ -523,10 +535,10 @@
     },
     "rotation": 90
   },
-  "BZ->MX-PN":{
+  "BZ->MX-PN": {
     "lonlat": [
       -88.627,
-      18.240
+      18.24
     ],
     "parsers": {
       "exchange": "MX.fetch_exchange"
@@ -534,6 +546,10 @@
     "rotation": 0
   },
   "CA-AB->CA-BC": {
+    "capacity": [
+      -1000,
+      800
+    ],
     "lonlat": [
       -119.811359,
       53.797027
@@ -544,6 +560,10 @@
     "rotation": -90
   },
   "CA-AB->CA-SK": {
+    "capacity": [
+      -153,
+      153
+    ],
     "lonlat": [
       -109.986644,
       54.883208
@@ -554,6 +574,10 @@
     "rotation": 90
   },
   "CA-AB->US-NW-NWMT": {
+    "capacity": [
+      -315,
+      310
+    ],
     "lonlat": [
       -111.920238,
       49.016577
@@ -586,7 +610,7 @@
   "CA-MB->US-MIDW-MISO": {
     "lonlat": [
       -97.5788,
-      49.0000
+      49.0
     ],
     "parsers": {
       "exchange": "EIA.fetch_exchange"
@@ -726,7 +750,7 @@
     },
     "rotation": 180
   },
-  "CN->RU-AS":{
+  "CN->RU-AS": {
     "lonlat": [
       123.275128,
       53.541248
@@ -855,7 +879,7 @@
     ],
     "lonlat": [
       7.2,
-      55.90
+      55.9
     ],
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
@@ -909,10 +933,10 @@
     "rotation": -45
   },
   "DK-DK1->DK-DK2": {
-     "capacity": [
+    "capacity": [
       -600,
       600
-     ],
+    ],
     "lonlat": [
       10.948508,
       55.407235
@@ -924,6 +948,7 @@
     "rotation": 90
   },
   "DK-DK1->NL": {
+    "_comment": "700MW from COBRAcable https://en.wikipedia.org/wiki/COBRAcable",
     "capacity": [
       -700,
       700
@@ -1053,7 +1078,7 @@
       400
     ],
     "lonlat": [
-      2.230,
+      2.23,
       40.271
     ],
     "parsers": {
@@ -1219,9 +1244,7 @@
       9.123283,
       41.293785
     ],
-    "parsers": {
-
-    },
+    "parsers": {},
     "rotation": 0
   },
   "GB->GB-NIR": {
@@ -1293,6 +1316,10 @@
       2.44819,
       57.266334
     ],
+    "capacity": [
+      -1400,
+      1400
+    ],
     "parsers": {
       "exchange": "ELEXON.fetch_exchange"
     },
@@ -1304,7 +1331,7 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "RU.fetch_exchange"
     },
     "rotation": 0
   },
@@ -1345,7 +1372,7 @@
   "GT->HN": {
     "lonlat": [
       -89.231,
-      14.860
+      14.86
     ],
     "parsers": {
       "exchange": "ENTE.fetch_exchange"
@@ -1502,7 +1529,7 @@
   "HU->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       22.526994,
@@ -1536,15 +1563,21 @@
   "IQ->IQ-KUR": {
     "lonlat": [
       43.676,
-      35.470
+      35.47
     ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
     "rotation": 0
   },
-  "IQ->IR":{
+  "IQ->IR": {
     "lonlat": [
       47.834,
       31.784
     ],
+    "parsers": {
+      "exchange": "IQ.fetch_exchange"
+    },
     "rotation": 90
   },
   "IT-CNO->IT-CSO": {
@@ -1709,7 +1742,7 @@
   "JP-CG->JP-SK": {
     "lonlat": [
       133.81,
-      34.40
+      34.4
     ],
     "parsers": {
       "exchange": "occtonet.fetch_exchange",
@@ -1851,7 +1884,7 @@
   "MD->UA": {
     "capacity": [
       -700,
-      0
+      700
     ],
     "lonlat": [
       29.218978,
@@ -1922,7 +1955,7 @@
     },
     "rotation": -10
   },
-  "MX-CE->MX-OC":{
+  "MX-CE->MX-OC": {
     "lonlat": [
       -99.102,
       19.041
@@ -1932,7 +1965,7 @@
     },
     "rotation": -35
   },
-  "MX-CE->MX-OR":{
+  "MX-CE->MX-OR": {
     "lonlat": [
       -97.328,
       18.094
@@ -1942,7 +1975,7 @@
     },
     "rotation": 150
   },
-  "MX-NE->MX-NO":{
+  "MX-NE->MX-NO": {
     "lonlat": [
       -101.151,
       26.323
@@ -1952,7 +1985,7 @@
     },
     "rotation": -90
   },
-  "MX-NE->MX-OC":{
+  "MX-NE->MX-OC": {
     "lonlat": [
       -100.371,
       23.221
@@ -1962,9 +1995,9 @@
     },
     "rotation": -160
   },
-  "MX-NE->MX-OR":{
+  "MX-NE->MX-OR": {
     "lonlat": [
-      -98.130,
+      -98.13,
       22.345
     ],
     "parsers": {
@@ -1972,7 +2005,7 @@
     },
     "rotation": 170
   },
-  "MX-NO->MX-NW":{
+  "MX-NO->MX-NW": {
     "lonlat": [
       -108.721,
       29.325
@@ -1982,7 +2015,7 @@
     },
     "rotation": -90
   },
-  "MX-NW->MX-OC":{
+  "MX-NW->MX-OC": {
     "lonlat": [
       -105.557,
       22.675
@@ -1992,7 +2025,7 @@
     },
     "rotation": 145
   },
-  "MX-NO->MX-OC":{
+  "MX-NO->MX-OC": {
     "lonlat": [
       -103.755,
       23.946
@@ -2002,7 +2035,7 @@
     },
     "rotation": 150
   },
-  "MX-NE->US-TEX-ERCO":{
+  "MX-NE->US-TEX-ERCO": {
     "lonlat": [
       -98.042,
       26.057
@@ -2012,7 +2045,7 @@
     },
     "rotation": 0
   },
-  "MX-NO->US-TEX-ERCO":{
+  "MX-NO->US-TEX-ERCO": {
     "lonlat": [
       -107.292,
       31.709
@@ -2022,34 +2055,34 @@
     },
     "rotation": 0
   },
-  "MX-OC->MX-OR":{
+  "MX-OC->MX-OR": {
     "lonlat": [
       -101.272,
-      18.480
+      18.48
     ],
     "parsers": {
       "exchange": "MX.fetch_exchange"
     },
     "rotation": 145
   },
-  "MX-OR->MX-PN":{
+  "MX-OR->MX-PN": {
     "lonlat": [
       -92.175,
-      18.250
+      18.25
     ],
     "parsers": {
       "exchange": "MX.fetch_exchange"
     },
     "rotation": 90
   },
-  "NA->ZA":{
+  "NA->ZA": {
     "lonlat": [
       18.512,
       -28.893
     ],
     "rotation": 165
   },
-  "NA->ZM":{
+  "NA->ZM": {
     "lonlat": [
       24.2441,
       -17.4922
@@ -2192,13 +2225,12 @@
       600
     ],
     "lonlat": [
-      12.248420,
+      12.24842,
       63.462916
     ],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
-
     },
     "rotation": 90
   },
@@ -2297,7 +2329,7 @@
   "PL->UA": {
     "capacity": [
       -235,
-      0
+      235
     ],
     "lonlat": [
       24.097224,
@@ -2325,7 +2357,7 @@
   "RO->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       24.821959,
@@ -2360,6 +2392,16 @@
     },
     "rotation": -135
   },
+  "RU-1->UA-CR": {
+    "lonlat": [
+      36.6,
+      45.25
+    ],
+    "parsers": {
+      "exchange": "RU.fetch_exchange"
+    },
+    "rotation": -90
+  },
   "SE-SE1->SE-SE2": {
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -2378,7 +2420,7 @@
   "SK->UA": {
     "capacity": [
       -650,
-      0
+      650
     ],
     "lonlat": [
       22.384512,
@@ -2388,76 +2430,6 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 90
-  },
-  "US->US-CA": {
-    "lonlat": [
-      -115.846,
-      35.962
-    ],
-    "parsers": {
-      "exchange": "US_CA.fetch_exchange"
-    },
-    "rotation": -135
-  },
-  "US-BPA->US-IPC": {
-    "lonlat": [
-      -117.070,
-      47.369
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": 90
-  },
-  "US-MISO->US-PJM": {
-    "lonlat": [
-      -84.803,
-      40.221
-    ],
-    "parsers": {
-      "exchange": "US_PJM.fetch_exchange"
-    },
-    "rotation": 90
-  },
-  "US-MISO->US-SPP": {
-    "lonlat": [
-      -96.460,
-      44.371
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -90
-  },
-  "US-NEISO->US-NY": {
-    "lonlat": [
-      -73.279,
-      42.739
-    ],
-    "parsers": {
-      "exchange": "US_NY.fetch_exchange"
-    },
-    "rotation": -90
-  },
-  "US-NY->US-PJM": {
-    "lonlat": [
-      -77.069,
-      42.0
-    ],
-    "parsers": {
-      "exchange": "US_PJM.fetch_exchange"
-    },
-    "rotation": 180
-  },
-  "US-SPP->US-TX": {
-    "lonlat": [
-      -96.855,
-      33.761
-    ],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": 180
   },
   "US-CAL-BANC->US-NW-BPAT": {
     "lonlat": [
@@ -3211,13 +3183,13 @@
   },
   "US-MIDA-PJM->US-NY-NYIS": {
     "lonlat": [
-      -79.76175,
-      41.99881
+      -77.069,
+      42.0
     ],
     "parsers": {
       "exchange": "US_PJM.fetch_exchange"
     },
-    "rotation": -124
+    "rotation": 0
   },
   "US-MIDA-PJM->US-TEN-TVA": {
     "lonlat": [
@@ -3351,13 +3323,13 @@
   },
   "US-NE-ISNE->US-NY-NYIS": {
     "lonlat": [
-      -73.42846218673135,
-      40.67877481619715
+      -73.279,
+      42.739
     ],
     "parsers": {
       "exchange": "US_NY.fetch_exchange"
     },
-    "rotation": -105
+    "rotation": -90
   },
   "US-NW-AVA->US-NW-BPAT": {
     "lonlat": [
@@ -3819,7 +3791,6 @@
     },
     "rotation": -24
   },
-
   "US-SE-AEC->US-SE-SOCO": {
     "lonlat": [
       -85.14527626961316,

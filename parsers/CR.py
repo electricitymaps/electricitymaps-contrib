@@ -20,6 +20,7 @@ POWER_PLANTS = {
     u'Balsa Inferior': 'hydro',
     u'Barranca': 'oil',
     u'Barro Morado': 'geothermal',
+    u'Belén': 'hydro',
     u'Bijagua': 'hydro',
     u'Birris12': 'hydro',
     u'Birris3': 'hydro',
@@ -35,12 +36,15 @@ POWER_PLANTS = {
     u'Chiripa': 'wind',
     u'Chocosuelas': 'hydro',
     u'Chucás': 'hydro',
+    u'Cote': 'hydro',
     u'Cubujuquí': 'hydro',
     u'Daniel Gutiérrez': 'hydro',
     u'Dengo': 'hydro',
     u'Don Pedro': 'hydro',
     u'Doña Julia': 'hydro',
     u'Echandi': 'hydro',
+    u'Electriona': 'hydro',
+    u'El Encanto': 'hydro',
     u'El Angel': 'hydro',
     u'El Angel Ampliación': 'hydro',
     u'El Embalse': 'hydro',
@@ -85,6 +89,7 @@ POWER_PLANTS = {
     u'Reventazón': 'hydro',
     u'Río Lajas': 'hydro',
     u'Río Macho': 'hydro',
+    u'Río Segundo': 'hydro',
     u'San Antonio': 'oil',
     u'San Lorenzo (C)': 'hydro',
     u'Sandillal': 'hydro',
@@ -100,6 +105,7 @@ POWER_PLANTS = {
     u'Tuis (JASEC)': 'hydro',
     u'Valle Central': 'wind',
     u'Vara Blanca': 'hydro',
+    u'Ventanas': 'hydro',
     u'Ventanas-Garita': 'hydro',
     u'Vientos de La Perla': 'wind',
     u'Vientos de Miramar': 'wind',
@@ -206,25 +212,8 @@ def fetch_production(zone_key='CR', session=None,
     return results
 
 
-def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-
-    where net flow is from DK into NO
-    """
+def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

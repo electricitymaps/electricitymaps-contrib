@@ -57,8 +57,10 @@ const getValueScale = (height, totalValues) => scaleLinear()
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
   if (!data || !data[0]) return [];
+
   const stackedData = stack()
     .offset(stackOffsetDiverging)
+    .value((d, key) => d[key] === null ? undefined : d[key])
     .keys(layerKeys)(data);
   return layerKeys.map((key, ind) => ({
     key,
@@ -163,17 +165,6 @@ const AreaGraph = React.memo(({
 
   return (
     <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
-      <TimeAxis
-        scale={timeScale}
-        transform={`translate(-1 ${containerHeight - 1})`}
-        className="x axis"
-      />
-      <ValueAxis
-        scale={valueScale}
-        label={valueAxisLabel}
-        width={containerWidth}
-        height={containerHeight}
-      />
       <GraphBackground
         timeScale={timeScale}
         valueScale={valueScale}
@@ -192,6 +183,17 @@ const AreaGraph = React.memo(({
         mouseOutHandler={layerMouseOutHandler}
         isMobile={isMobile}
         svgNode={node}
+      />
+      <TimeAxis
+        scale={timeScale}
+        transform={`translate(-1 ${containerHeight - 1})`}
+        className="x axis"
+      />
+      <ValueAxis
+        scale={valueScale}
+        label={valueAxisLabel}
+        width={containerWidth}
+        height={containerHeight}
       />
       <GraphHoverLine
         layers={layers}

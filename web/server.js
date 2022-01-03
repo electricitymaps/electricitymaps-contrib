@@ -8,7 +8,7 @@ const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
 const { vsprintf } = require('sprintf-js');
-const { version } = require('./package.json');
+const version = require('./version.js');
 
 // Custom module
 const {
@@ -90,7 +90,7 @@ function getHash(key, ext, obj) {
   } else {
     // assume list
     filename = obj.assetsByChunkName[key]
-      .filter(d => d.match(new RegExp(`\.${ext}$`)))[0];
+      .filter(d => d.match(new RegExp(`.${ext}$`)))[0];
   }
   return filename.replace(`.${ext}`, '').replace(`${key}.`, '');
 }
@@ -98,7 +98,7 @@ function getHash(key, ext, obj) {
 const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/clientVersion', (req, res) => res.send(version));
+app.get('/clientVersion', (req, res) => res.json({version}));
 
 // Translation status
 app.get('/translationstatus/badges.svg', (req, res) => {
@@ -131,34 +131,28 @@ app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' :
 
 // App routes (managed by React Router)
 app.use('/', (req, res) => {
-  // On electricitymap.tmrow.co,
-  // redirect everyone except the Facebook crawler,
-  // else, we will lose all likes
-  const isTmrowCo = req.get('host').indexOf('electricitymap.tmrow') !== -1;
-  const isNonWWW = req.get('host') === 'electricitymap.org'
-    || req.get('host') === 'live.electricitymap.org';
-  const isStaging = req.get('host') === 'staging.electricitymap.org';
-  const isHTTPS = req.secure;
-  const isLocalhost = req.hostname === 'localhost'; // hostname is without port
+  const isNonAppDomain = req.get('host') !== 'app.electricitymap.org';
+  const isStaging = req.get('host').includes('staging');
+  const isFacebookRobot = (req.headers['user-agent'] || '').indexOf('facebookexternalhit') !== -1;
 
   // Redirect all non-facebook, non-staging, non-(www.* or *.tmrow.co)
-  if (!isStaging && (isNonWWW || isTmrowCo) && (req.headers['user-agent'] || '').indexOf('facebookexternalhit') == -1) {
-    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
-  // Redirect all non-HTTPS and non localhost
-  // Warning: this can't happen here because Cloudfare is the HTTPS proxy.
-  // Node only receives HTTP traffic.
-  } else if (false && !isHTTPS && !isLocalhost) {
-    res.redirect(301, `https://www.electricitymap.org${req.originalUrl}`);
+  // redirect everyone except the Facebook crawler,
+  // else, we will lose all likes
+  if (!isStaging && isProduction && isNonAppDomain && !isFacebookRobot) {
+    res.redirect(301, `https://app.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
       // Locales are formatted according to
       // https://developers.facebook.com/docs/internationalization/#locales
-      lr = req.query.fb_locale.split('_', 2);
+      const lr = req.query.fb_locale.split('_', 2);
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    const fullUrl = `https://www.electricitymap.org${req.originalUrl}`;
+    let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
+    if(req.query.lang) {
+      canonicalUrl += `?lang=${req.query.lang}`;
+    }
 
     // basic auth for premium access
     if (process.env.BASIC_AUTH_CREDENTIALS) {
@@ -182,13 +176,10 @@ app.use('/', (req, res) => {
     }
     res.render('pages/index', {
       alternateUrls: locales.map((l) => {
-        if (fullUrl.indexOf('lang') !== -1) {
-          return fullUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
+        if (canonicalUrl.indexOf('lang') !== -1) {
+          return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
         }
-        if (Object.keys(req.query).length) {
-          return `${fullUrl}&lang=${l}`;
-        }
-        return `${fullUrl.replace('?', '')}?lang=${l}`;
+        return `${canonicalUrl}?lang=${l}`;
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
@@ -206,7 +197,7 @@ app.use('/', (req, res) => {
           // Note we here point to static hosting in order to make
           // sure we can serve older bundle versions
           `https://static.electricitymap.org/public_web/${relativePath}`,
-      fullUrl,
+      canonicalUrl,
       locale,
       locales: { en: localeConfigs.en, [locale]: localeConfigs[locale] },
       supportedLocales: locales,

@@ -59,10 +59,10 @@
         "Getdata": "Nađi povijesne podatke i API s prognozom"
     },
     "footer": {
-      "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
-      "faq-text": "Nešto ti je nejasno? Provjeri naša",
-      "faq": "često postavljana pitanja.",
-      "here": "ovdje"
+        "foundbugs": "Pronašao si grešku ili imaš ideje? Prijavi ih",
+        "faq-text": "Nešto ti je nejasno? Provjeri naša",
+        "faq": "često postavljana pitanja.",
+        "here": "ovdje"
     },
     "legends": {
         "windpotential": "Potencijal energije vjetra",
@@ -96,8 +96,8 @@
         "oops": "Ups! Došlo je do problema kod kontaktiranja servera. Pokušat ćemo opet za nekoliko sekundi.",
         "newversion": "Nova verzija je dostupna! Klikni <a onClick=\"location.reload(true);\">ovdje</a> za ponovno učitavanje.",
         "retrynow": "Pokušaj opet",
-        "database-ad": "Tražiš povijesne podatke? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
-        "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
+        "database-ad": "Tražiš povijesne podatke? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Pogledaj u našu bazu podataka!</a>",
+        "api-ad": "Želiš podatke uživo za svoju aplikaciju ili uređaj? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Isprobaj naš API!</a>",
         "legend": "Legenda",
         "faq": "Često postavljana pitanja"
     },
@@ -113,17 +113,14 @@
     "coal": "ugljen",
     "oil": "naftna",
     "unknown": "nepoznata",
-
     "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> dostupne električne energije",
     "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija električne energije",
     "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> pohranjene električne energije",
     "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s energija čini <b>%1$s %%</b> emisija pohranjene električne energije",
-
     "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se izvozi u <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisija električne energije se uvozi iz <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "CO₂eq po minuti",
     "theMap": {
         "groupName": "Karta",
@@ -139,1322 +136,1263 @@
         "mapColorBlind-answer": "Možeš promijeniti boje na karti označavanjem prikaza za daltoniste koji se nalazi na dnu lijevog panela u desktop modu odnosno na panelu s informacijama u mobilnoj aplikaciji."
     },
     "mapAreas": {
-      "groupName": "Područja na mapi",
-      "noData-question": "Zašto su podaci za moje područje nedostupni?",
-      "noData-answer": "Bilo zbog trenutne nedostupnosti izvora podataka ili jer izvori podataka još nisu podešeni za to područje. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
-      "whySmallAreas-question": "Zašto dijelite svijet na manja područja umjesto da jednostavno pokažete podatke po državi?",
-      "whySmallAreas-answer": "Prikazujemo najmanja zemljopisna područja za koja imamo podatke. Pristup informacijama veće granularnosti omogućuje potrošaćima struje u raznim područjima donošenje informiranijih odluka o izvorima struje koju koriste i njihovim utjecajima na klimu.",
-      "divideExistingArea-question": "Možete li podijeliti moje područje na manje dijelove?",
-      "divideExistingArea-answer": "Naravno, ako postoje nezavisni izvori podataka za svaki dio područja. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
-      "seeHistoricalData-question": "Mogu li vidjeti povijest za područje više od 24 sata unazad?",
-      "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
-  },
-  "methodology": {
-      "groupName": "Naše metode",
-      "carbonIntensity-question": "Što je \"faktor emisije\"?",
-      "carbonIntensity-answer": "Faktor emisije je mjera emisije stakleničnih plinova vezana uz proizvodnju potrošene struje (u gCO₂eq/kWh - grami ekvivalenta ugljikovog dioksida emitiranih po kilovat-satu iskorištene struje). <br><br>Mjerimo emisije iskorištene struje (ne proizvedene), dakle emisije svih stakleničnih plinova (CO₂ kao i drugih, poput metana) koji su ušli u proizvodnju struje potrošene na nekom području, uzimajući u obzir i faktor emisije struje uvezene iz drugih područja. Koristimo life cycle analysis (LCA) pristup, što znači da uzimamo u obzir emisije nastale tokom cijelog ciklusa proizvodnje u pogonima (izgradnja, proizvodnja goriva, operativne emisije i zatvaranje pogona).",
-      "consumptionFocus-question": "Zašto računate faktor emisije potrošene struje umjesto proizvedene?",
-      "consumptionFocus-answer": "Vjerujemo u odgovornost svakog građanina prema struji koju koriste, a ne za struju koja je proizvedena na području u kojem ispadne da žive. Štoviše, vjerujemo da područja ne bi smijela biti u mogućnosti lažirati niski utjecaj na klimu jednostavnim premještanjem štetne proizvodnje u druga područja i naknadnim uvoženjem struje iz istih.",
-      "renewableLowCarbonDifference-question": "U čemu je razlika između “obnovljive” i “nisko-emisijske” energije?",
-      "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije se bazira na izvorima obnovljive energije poput vode, vjetra, sunca, kao i geotermalne energije. Proizvodnja energije niskih emisija znači da proizvodnja uključuje vrlo niske emisije stakleničnih plinova, poput na primjer proizvodnje nuklearne energije.",
-      "importsAndExports-question": "Uzimate li u obzir i uvoze i izvoze struje?",
-      "importsAndExports-answer": "Da. Uvozi i izvozi su prikazani na karti malim <a href=\"#mapArrows\" class=\"entry-link\">strelicama između susjednih područja</a>. Za prikaz detaljnih informacija, klikni na željeno područje.",
-      "emissionsOfStored-question": "Što je sa emisijama uzrokovanim proizvodnjom struje koja se pohranjuje u baterije ili služi za punjenje rezervoara?",
-      "emissionsOfStored-answer": "Pošto se trenutno samo mali dio struje pohranjuje, nepreciznost u modeliranju tih emisija ne bi trebala imati veliki utjecaj an ukupni rezultat. Ipak, kako važnost pohranjene struje raste, nadamo se da ćemo je uskoro moći potpuno uključiti u naš model.",
-      "emissionsPerCapita-question": "Zašto ne prikazujete emisije po stanovniku?",
-      "emissionsPerCapita-answer": "Dio struje iskorištene na nekom području se koristi za proizvodnju materijalnih dobara i proizvoda koji se kasnije izvoze i koriste na drugim područjima. Ta proizvodnja (te stoga i njena potrošena struja kao i emisije vezane uz potrošnju) je motivirana potrošnjom proizvoda u <em>uvoznim područjima</em>, a ne na izvornom području proizvodnje. Vjerujemo da bi građani trebali biti odgovorni samo za ono što koriste, ne i za proizvode proizvedene na području na kojem žive a koje sami ne koriste. U tom smislu, prikaz emisija potrošene struje po stanovniku je varljiv."
+        "groupName": "Područja na mapi",
+        "noData-question": "Zašto su podaci za moje područje nedostupni?",
+        "noData-answer": "Bilo zbog trenutne nedostupnosti izvora podataka ili jer izvori podataka još nisu podešeni za to područje. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
+        "whySmallAreas-question": "Zašto dijelite svijet na manja područja umjesto da jednostavno pokažete podatke po državi?",
+        "whySmallAreas-answer": "Prikazujemo najmanja zemljopisna područja za koja imamo podatke. Pristup informacijama veće granularnosti omogućuje potrošaćima struje u raznim područjima donošenje informiranijih odluka o izvorima struje koju koriste i njihovim utjecajima na klimu.",
+        "divideExistingArea-question": "Možete li podijeliti moje područje na manje dijelove?",
+        "divideExistingArea-answer": "Naravno, ako postoje nezavisni izvori podataka za svaki dio područja. Pomozi nam u <a href=\"#contribute\" class=\"entry-link\">dodavanju novih izvora podataka</a>.",
+        "seeHistoricalData-question": "Mogu li vidjeti povijest za područje više od 24 sata unazad?",
+        "seeHistoricalData-answer": "Možeš nabaviti pristup svim našim povijesnim podacima preko naše <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">baze podataka</a>."
+    },
+    "methodology": {
+        "groupName": "Naše metode",
+        "carbonIntensity-question": "Što je \"faktor emisije\"?",
+        "carbonIntensity-answer": "Faktor emisije je mjera emisije stakleničnih plinova vezana uz proizvodnju potrošene struje (u gCO₂eq/kWh - grami ekvivalenta ugljikovog dioksida emitiranih po kilovat-satu iskorištene struje). <br><br>Mjerimo emisije iskorištene struje (ne proizvedene), dakle emisije svih stakleničnih plinova (CO₂ kao i drugih, poput metana) koji su ušli u proizvodnju struje potrošene na nekom području, uzimajući u obzir i faktor emisije struje uvezene iz drugih područja. Koristimo life cycle analysis (LCA) pristup, što znači da uzimamo u obzir emisije nastale tokom cijelog ciklusa proizvodnje u pogonima (izgradnja, proizvodnja goriva, operativne emisije i zatvaranje pogona).",
+        "consumptionFocus-question": "Zašto računate faktor emisije potrošene struje umjesto proizvedene?",
+        "consumptionFocus-answer": "Vjerujemo u odgovornost svakog građanina prema struji koju koriste, a ne za struju koja je proizvedena na području u kojem ispadne da žive. Štoviše, vjerujemo da područja ne bi smijela biti u mogućnosti lažirati niski utjecaj na klimu jednostavnim premještanjem štetne proizvodnje u druga područja i naknadnim uvoženjem struje iz istih.",
+        "renewableLowCarbonDifference-question": "U čemu je razlika između “obnovljive” i “nisko-emisijske” energije?",
+        "renewableLowCarbonDifference-answer": "Proizvodnja obnovljive energije se bazira na izvorima obnovljive energije poput vode, vjetra, sunca, kao i geotermalne energije. Proizvodnja energije niskih emisija znači da proizvodnja uključuje vrlo niske emisije stakleničnih plinova, poput na primjer proizvodnje nuklearne energije.",
+        "importsAndExports-question": "Uzimate li u obzir i uvoze i izvoze struje?",
+        "importsAndExports-answer": "Da. Uvozi i izvozi su prikazani na karti malim <a href=\"#mapArrows\" class=\"entry-link\">strelicama između susjednih područja</a>. Za prikaz detaljnih informacija, klikni na željeno područje.",
+        "emissionsOfStored-question": "Što je sa emisijama uzrokovanim proizvodnjom struje koja se pohranjuje u baterije ili služi za punjenje rezervoara?",
+        "emissionsOfStored-answer": "Pošto se trenutno samo mali dio struje pohranjuje, nepreciznost u modeliranju tih emisija ne bi trebala imati veliki utjecaj an ukupni rezultat. Ipak, kako važnost pohranjene struje raste, nadamo se da ćemo je uskoro moći potpuno uključiti u naš model.",
+        "emissionsPerCapita-question": "Zašto ne prikazujete emisije po stanovniku?",
+        "emissionsPerCapita-answer": "Dio struje iskorištene na nekom području se koristi za proizvodnju materijalnih dobara i proizvoda koji se kasnije izvoze i koriste na drugim područjima. Ta proizvodnja (te stoga i njena potrošena struja kao i emisije vezane uz potrošnju) je motivirana potrošnjom proizvoda u <em>uvoznim područjima</em>, a ne na izvornom području proizvodnje. Vjerujemo da bi građani trebali biti odgovorni samo za ono što koriste, ne i za proizvode proizvedene na području na kojem žive a koje sami ne koriste. U tom smislu, prikaz emisija potrošene struje po stanovniku je varljiv."
     },
     "data": {
-      "groupName": "Naši podaci",
-      "dataOrigins-question": "Otkud dobivate podatke?",
-      "dataOrigins-answer": "Svi izračuni su dobiveni iz javno dostpnih podaka, objavljenih od rukovodioca elektičnih mreža, službenih agencija i drugih. Možeš kliknuti na pojedina područja za više informacija o izvoru pojedinih podataka.",
-      "dataDownload-question": "Mogu li skinuti vaše podatke?",
-      "dataDownload-answer": "Možeš nabaviti pristup svim podacima u našoj <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">bazi podataka</a>.",
-      "dataIntegration-question": "Mogu li integrirati vaše podake uživo u svoju aplikaciju ili uređaj?",
-      "dataIntegration-answer": "Da! Prodajemo pristup <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">našem API-u</a>, koji uključuje i predviđanja za budućnost."
+        "groupName": "Naši podaci",
+        "dataOrigins-question": "Otkud dobivate podatke?",
+        "dataOrigins-answer": "Svi izračuni su dobiveni iz javno dostpnih podaka, objavljenih od rukovodioca elektičnih mreža, službenih agencija i drugih. Možeš kliknuti na pojedina područja za više informacija o izvoru pojedinih podataka.",
+        "dataDownload-question": "Mogu li skinuti vaše podatke?",
+        "dataDownload-answer": "Možeš nabaviti pristup svim podacima u našoj <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">bazi podataka</a>.",
+        "dataIntegration-question": "Mogu li integrirati vaše podake uživo u svoju aplikaciju ili uređaj?",
+        "dataIntegration-answer": "Da! Prodajemo pristup <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">našem API-u</a>, koji uključuje i predviđanja za budućnost."
     },
     "aboutUs": {
-      "groupName": "O nama",
-      "whoAreYou-question": "Tko ste vi?",
-      "whoAreYou-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, mali dansko-francuski start-up razvija i održava ovaj projekt. Naš cilj je pomoći čovječanstvu u dostizanju održivog postojanja kvantificirajući učinak naših dnevnih odluka na klimu i čineći podatke široko dostupnima.",
-      "feedback-question": "Mogu li vam dati povratne informacije?",
-      "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:hello@electricitymap.org\">pošalji email!</a>",
-      "contribute-question": "Mogu li doprinijeti projektu?",
-      "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
-      "workTogether-question": "Možemo li surađivati?",
-      "workTogether-answer": "Aktivno tražimo nove mogućnosti surađivanja. <a href=\"mailto:hello@electricitymap.org\">Pošalji nam email!</a>",
-      "disclaimer-question": "Izjava o odricanju odgovornosti",
-      "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> objavljuje podatke i slike na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> u svrhu informiranja. Ne daje nikakve tvrdnje o ispravnosti podataka, niti daje ikakav oblik garancije i uzima za pravo promijeniti sadržaj u bilo kojem trenutku ili ukloniti dijelove bez prethodnog informiranja. Tomorrow ne preuzima odgovornost za nikakvu štetu ili troškove uzrokovane nepouzdanošću, nepotpunošću ili zastarjelosti podaka na mapi ili informaciji izvedenoj iz tih podataka. Nije dopušteno uključiti ovu web stranicu ili bilo koje njene pojedine dijelove u drugu web stranicu bez prijašnjeg formalnog pismenog dopuštenja.<br><br> Sva intelektualna vlasnička prava pripadaju pravim vlasnicima i davateljima licence. Kopiranje, distribucija i bilo kakvo korištenje ovih sadržaja (posebno energetskih podataka) nije dozvoljeno bez pismene dozvole Tomorrow-a, osim u slučajima pokrivenim propisima obveznog prava (npr. prava o citiranju), osim iznimnih odredbi za specifične sadržaje.<br><br> Ova odredba je ažurirana s vremena na vrijeme."
+        "groupName": "O nama",
+        "whoAreYou-question": "Tko ste vi?",
+        "whoAreYou-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, mali dansko-francuski start-up razvija i održava ovaj projekt. Naš cilj je pomoći čovječanstvu u dostizanju održivog postojanja kvantificirajući učinak naših dnevnih odluka na klimu i čineći podatke široko dostupnima.",
+        "feedback-question": "Mogu li vam dati povratne informacije?",
+        "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:hello@electricitymap.org\">pošalji email!</a>",
+        "contribute-question": "Mogu li doprinijeti projektu?",
+        "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
+        "workTogether-question": "Možemo li surađivati?",
+        "workTogether-answer": "Aktivno tražimo nove mogućnosti surađivanja. <a href=\"mailto:hello@electricitymap.org\">Pošalji nam email!</a>",
+        "disclaimer-question": "Izjava o odricanju odgovornosti",
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> objavljuje podatke i slike na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> u svrhu informiranja. Ne daje nikakve tvrdnje o ispravnosti podataka, niti daje ikakav oblik garancije i uzima za pravo promijeniti sadržaj u bilo kojem trenutku ili ukloniti dijelove bez prethodnog informiranja. Tomorrow ne preuzima odgovornost za nikakvu štetu ili troškove uzrokovane nepouzdanošću, nepotpunošću ili zastarjelosti podaka na mapi ili informaciji izvedenoj iz tih podataka. Nije dopušteno uključiti ovu web stranicu ili bilo koje njene pojedine dijelove u drugu web stranicu bez prijašnjeg formalnog pismenog dopuštenja.<br><br> Sva intelektualna vlasnička prava pripadaju pravim vlasnicima i davateljima licence. Kopiranje, distribucija i bilo kakvo korištenje ovih sadržaja (posebno energetskih podataka) nije dozvoljeno bez pismene dozvole Tomorrow-a, osim u slučajima pokrivenim propisima obveznog prava (npr. prava o citiranju), osim iznimnih odredbi za specifične sadržaje.<br><br> Ova odredba je ažurirana s vremena na vrijeme."
     },
     "zoneShortName": {
-          "AD": {
+        "AD": {
             "zoneName": "Andora"
-          },
-          "AE": {
+        },
+        "AE": {
             "zoneName": "Ujedinjeni Arapski Emirati"
-          },
-          "AF": {
+        },
+        "AF": {
             "zoneName": "Afganistan"
-          },
-          "AG": {
+        },
+        "AG": {
             "zoneName": "Antigva i Barbuda"
-          },
-          "AI": {
+        },
+        "AI": {
             "zoneName": "Angvila"
-          },
-          "AL": {
+        },
+        "AL": {
             "zoneName": "Albanija"
-          },
-          "AM": {
+        },
+        "AM": {
             "zoneName": "Armenija"
-          },
-          "AO": {
+        },
+        "AO": {
             "zoneName": "Angola"
-          },
-          "AQ": {
+        },
+        "AQ": {
             "zoneName": "Antarktika"
-          },
-          "AS": {
+        },
+        "AS": {
             "zoneName": "Američka Samoa"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "Austrija"
-          },
-          "AR": {
+        },
+        "AR": {
             "zoneName": "Argentina"
-          },
-          "AUS-NSW": {
+        },
+        "AUS-NSW": {
             "countryName": "Australija",
             "zoneName": "Novi Južni Wales"
-          },
-          "AUS-NT": {
+        },
+        "AUS-NT": {
             "countryName": "Australija",
             "zoneName": "Sjeverni teritorij"
-          },
-          "AUS-QLD": {
+        },
+        "AUS-QLD": {
             "countryName": "Australija",
             "zoneName": "Queensland"
-          },
-          "AUS-SA": {
+        },
+        "AUS-SA": {
             "countryName": "Australija",
             "zoneName": "Južna Australija"
-          },
-          "AUS-TAS": {
+        },
+        "AUS-TAS": {
             "countryName": "Australija",
             "zoneName": "Tasmanija"
-          },
-          "AUS-TAS-KI": {
+        },
+        "AUS-TAS-KI": {
             "countryName": "Tasmanija",
             "zoneName": "King Island"
-          },
-          "AUS-VIC": {
+        },
+        "AUS-VIC": {
             "countryName": "Australija",
             "zoneName": "Viktorija"
-          },
-          "AUS-WA": {
+        },
+        "AUS-WA": {
             "countryName": "Australija",
             "zoneName": "Zapadna Australija"
-          },
-          "AW": {
+        },
+        "AW": {
             "zoneName": "Aruba"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "Ålandski Otoci"
-          },
-          "AZ": {
+        },
+        "AZ": {
             "zoneName": "Azerbejdžan"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "Bosna i Hercegovina"
-          },
-          "BB": {
+        },
+        "BB": {
             "zoneName": "Barbados"
-          },
-          "BD": {
+        },
+        "BD": {
             "zoneName": "Bangladeš"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "Belgija"
-          },
-          "BF": {
+        },
+        "BF": {
             "zoneName": "Burkina Faso"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "Bugarska"
-          },
-          "BH": {
+        },
+        "BH": {
             "zoneName": "Bahrein"
-          },
-          "BI": {
+        },
+        "BI": {
             "zoneName": "Burundi"
-          },
-          "BJ": {
+        },
+        "BJ": {
             "zoneName": "Benin"
-          },
-          "BM": {
+        },
+        "BM": {
             "zoneName": "Bermuda"
-          },
-          "BN": {
+        },
+        "BN": {
             "zoneName": "Brunej"
-          },
-          "BO": {
+        },
+        "BO": {
             "zoneName": "Bolivija"
-          },
-          "BQ": {
+        },
+        "BQ": {
             "zoneName": "Karipska Nizozemska"
-          },
-          "BR-CS": {
+        },
+        "BR-CS": {
             "countryName": "Brazil",
             "zoneName": "Središnji Brazil"
-          },
-          "BR-N": {
+        },
+        "BR-N": {
             "countryName": "Brazil",
             "zoneName": "Sjeverni Brazil"
-          },
-          "BR-NE": {
+        },
+        "BR-NE": {
             "countryName": "Brazil",
             "zoneName": "Sjeveroistočni Brazil"
-          },
-          "BR-S": {
+        },
+        "BR-S": {
             "countryName": "Brazil",
             "zoneName": "Južni Brazil"
-          },
-          "BS": {
+        },
+        "BS": {
             "zoneName": "Bahami"
-          },
-          "BT": {
+        },
+        "BT": {
             "zoneName": "Butan"
-          },
-          "BV": {
+        },
+        "BV": {
             "zoneName": "Otok Bouvet"
-          },
-          "BW": {
+        },
+        "BW": {
             "zoneName": "Botsvana"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "Bjelorusija"
-          },
-          "BZ": {
+        },
+        "BZ": {
             "zoneName": "Belize"
-          },
-          "CA-AB": {
+        },
+        "CA-AB": {
             "countryName": "Kanada",
             "zoneName": "Alberta"
-          },
-          "CA-BC": {
+        },
+        "CA-BC": {
             "countryName": "Kanada",
             "zoneName": "Britanska Kolumbija"
-          },
-          "CA-MB": {
+        },
+        "CA-MB": {
             "countryName": "Kanada",
             "zoneName": "Manitoba"
-          },
-          "CA-NL": {
+        },
+        "CA-NL": {
             "countryName": "Kanada",
             "zoneName": "Newfoundland i Labrador"
-          },
-          "CA-NB": {
+        },
+        "CA-NB": {
             "countryName": "Kanada",
             "zoneName": "Novi Brunswick"
-          },
-          "CA-NT": {
+        },
+        "CA-NT": {
             "countryName": "Kanada",
             "zoneName": "Sjeveroistočni teritorij"
-          },
-          "CA-NS": {
+        },
+        "CA-NS": {
             "countryName": "Kanada",
             "zoneName": "Nova Scotia"
-          },
-          "CA-NU": {
+        },
+        "CA-NU": {
             "countryName": "Kanada",
             "zoneName": "Nunavut"
-          },
-          "CA-ON": {
+        },
+        "CA-ON": {
             "countryName": "Kanada",
             "zoneName": "Ontario"
-          },
-          "CA-PE": {
+        },
+        "CA-PE": {
             "countryName": "Kanada",
             "zoneName": "Otok Princa Edwarda"
-          },
-          "CA-QC": {
+        },
+        "CA-QC": {
             "countryName": "Kanada",
             "zoneName": "Québec"
-          },
-          "CA-SK": {
+        },
+        "CA-SK": {
             "countryName": "Kanada",
             "zoneName": "Saskatchewan"
-          },
-          "CA-YT": {
+        },
+        "CA-YT": {
             "countryName": "Kanada",
             "zoneName": "Yukon"
-          },
-          "CC": {
+        },
+        "CC": {
             "zoneName": "Kokosovi otoci"
-          },
-          "CD": {
+        },
+        "CD": {
             "zoneName": "DR Kongo"
-          },
-          "CF": {
+        },
+        "CF": {
             "zoneName": "Srednjoafrička Republika"
-          },
-          "CG": {
+        },
+        "CG": {
             "zoneName": "Kongo"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "Švicarska"
-          },
-          "CI": {
+        },
+        "CI": {
             "zoneName": "Obala Bjelokosti"
-          },
-          "CK": {
+        },
+        "CK": {
             "zoneName": "Cookovo Otočje"
-          },
-          "CL-SEM": {
+        },
+        "CL-SEN": {
+            "countryName": "Čile",
+            "zoneName": "SEN"
+        },
+        "CL-SEM": {
             "countryName": "Čile",
             "zoneName": "SEM"
-          },
-          "CL-SEA": {
+        },
+        "CL-SEA": {
             "countryName": "Čile",
             "zoneName": "SEA"
-          },
-          "CM": {
+        },
+        "CL-CHP": {
+            "countryName": "Čile",
+            "zoneName": "Uskršnji otok"
+        },
+        "CM": {
             "zoneName": "Kamerun"
-          },
-          "CN": {
+        },
+        "CN": {
             "zoneName": "Kina"
-          },
-          "CO": {
+        },
+        "CO": {
             "zoneName": "Kolumbija"
-          },
-          "CR": {
+        },
+        "CR": {
             "zoneName": "Kostarika"
-          },
-          "CU": {
+        },
+        "CU": {
             "zoneName": "Kuba"
-          },
-          "CV": {
+        },
+        "CV": {
             "zoneName": "Zelenortska Republika"
-          },
-          "CW": {
+        },
+        "CW": {
             "zoneName": "Curaçao"
-          },
-          "CX": {
+        },
+        "CX": {
             "zoneName": "Božićni Otok"
-          },
-          "CY": {
+        },
+        "CY": {
             "zoneName": "Cipar"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "Češka"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "Njemačka"
-          },
-          "DJ": {
+        },
+        "DJ": {
             "zoneName": "Džibuti"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "Danska"
-          },
-          "DK-DK1": {
+        },
+        "DK-DK1": {
             "countryName": "Danska",
             "zoneName": "Zapadna Danska"
-          },
-          "DK-DK2": {
+        },
+        "DK-DK2": {
             "countryName": "Danska",
             "zoneName": "Istočna Danska"
-          },
-          "DK-BHM": {
+        },
+        "DK-BHM": {
             "countryName": "Danska",
             "zoneName": "Bornholm"
-          },
-          "DM": {
+        },
+        "DM": {
             "zoneName": "Dominika"
-          },
-          "DO": {
+        },
+        "DO": {
             "zoneName": "Dominikanska Republika"
-          },
-          "DZ": {
+        },
+        "DZ": {
             "zoneName": "Alžir"
-          },
-          "EC": {
+        },
+        "EC": {
             "zoneName": "Ekvador"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "Estonija"
-          },
-          "EG": {
+        },
+        "EG": {
             "zoneName": "Egipat"
-          },
-          "EH": {
+        },
+        "EH": {
             "zoneName": "Zapadna Sahara"
-          },
-          "ER": {
+        },
+        "ER": {
             "zoneName": "Eritreja"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "Španjolska"
-          },
-          "ES-IB-FO": {
+        },
+        "ES-IB-FO": {
             "countryName": "Španjolska",
             "zoneName": "Formentera"
-          },
-          "ES-IB-IZ": {
+        },
+        "ES-IB-IZ": {
             "countryName": "Španjolska",
             "zoneName": "Ibiza"
-          },
-          "ES-IB-MA": {
+        },
+        "ES-IB-MA": {
             "countryName": "Španjolska",
             "zoneName": "Mallorca"
-          },
-          "ES-IB-ME": {
+        },
+        "ES-IB-ME": {
             "countryName": "Španjolska",
             "zoneName": "Menorca"
-          },
-          "ES-CN-FVLZ": {
+        },
+        "ES-CN-FVLZ": {
             "countryName": "Španjolska",
             "zoneName": "Fuerteventura/Lanzarote"
-          },
-          "ES-CN-GC": {
+        },
+        "ES-CN-GC": {
             "countryName": "Španjolska",
             "zoneName": "Gran Canaria"
-          },
-          "ES-CN-HI": {
+        },
+        "ES-CN-HI": {
             "countryName": "Španjolska",
             "zoneName": "El Hierro"
-          },
-          "ES-CN-IG": {
+        },
+        "ES-CN-IG": {
             "countryName": "Španjolska",
             "zoneName": "La Gomera"
-          },
-          "ES-CN-LP": {
+        },
+        "ES-CN-LP": {
             "countryName": "Španjolska",
             "zoneName": "La Palma"
-          },
-          "ES-CN-TE": {
+        },
+        "ES-CN-TE": {
             "countryName": "Španjolska",
             "zoneName": "Tenerifi"
-          },
-          "ET": {
+        },
+        "ET": {
             "zoneName": "Etiopija"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "Finska"
-          },
-          "FJ": {
+        },
+        "FJ": {
             "zoneName": "Fidži"
-          },
-          "FK": {
+        },
+        "FK": {
             "zoneName": "Falklandsko Otočje"
-          },
-          "FM": {
+        },
+        "FM": {
             "zoneName": "Mikronezija"
-          },
-          "FO": {
+        },
+        "FO": {
             "zoneName": "Farojsko Otočje"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "Francuska"
-          },
-          "FR-COR": {
+        },
+        "FR-COR": {
             "countryName": "Francuska",
             "zoneName": "Korzika"
-          },
-          "GA": {
+        },
+        "GA": {
             "zoneName": "Gabon"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "Velika Britanija"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "Južna Irska"
-          },
-          "GB-ORK": {
+        },
+        "GB-ORK": {
             "countryName": "Velika Britanija",
             "zoneName": "Otočje Orkney"
-          },
-          "GB-SHI": {
+        },
+        "GB-SHI": {
             "countryName": "Velika Britanija",
             "zoneName": "Shetland Otoci"
-          },
-          "GB-ZET": {
+        },
+        "GB-ZET": {
             "countryName": "Velika Britanija",
             "zoneName": "Shetland Otoci"
-          },
-          "GD": {
+        },
+        "GD": {
             "zoneName": "Grenada"
-          },
-          "GE": {
+        },
+        "GE": {
             "zoneName": "Gruzija"
-          },
-          "GF": {
+        },
+        "GF": {
             "zoneName": "Francuska Gvajana"
-          },
-          "GG": {
+        },
+        "GG": {
             "zoneName": "Guernsey"
-          },
-          "GH": {
+        },
+        "GH": {
             "zoneName": "Gana"
-          },
-          "GI": {
+        },
+        "GI": {
             "zoneName": "Gibraltar"
-          },
-          "GL": {
+        },
+        "GL": {
             "zoneName": "Grenland"
-          },
-          "GM": {
+        },
+        "GM": {
             "zoneName": "Gambija"
-          },
-          "GN": {
+        },
+        "GN": {
             "zoneName": "Gvineja"
-          },
-          "GP": {
+        },
+        "GP": {
             "zoneName": "Gvadalupa"
-          },
-          "GQ": {
+        },
+        "GQ": {
             "zoneName": "Ekvatorijalna Gvineja"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "Grčka"
-          },
-          "GR-IS": {
+        },
+        "GR-IS": {
             "countryName": "Grčka",
             "zoneName": "Egejski Otoci"
-          },
-          "GS": {
+        },
+        "GS": {
             "zoneName": "Južna Georgija i otočje Južni Sandwich"
-          },
-          "GT": {
+        },
+        "GT": {
             "zoneName": "Gvatemala"
-          },
-          "GU": {
+        },
+        "GU": {
             "zoneName": "Guam"
-          },
-          "GW": {
+        },
+        "GW": {
             "zoneName": "Gvineja Bisau"
-          },
-          "GY": {
+        },
+        "GY": {
             "zoneName": "Gvajana"
-          },
-          "HK": {
+        },
+        "HK": {
             "zoneName": "Hong Kong"
-          },
-          "HM": {
+        },
+        "HM": {
             "zoneName": "Otok Heard i otočje McDonald"
-          },
-          "HN": {
+        },
+        "HN": {
             "zoneName": "Honduras"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "Hrvatska"
-          },
-          "HT": {
+        },
+        "HT": {
             "zoneName": "Haiti"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "Mađarska"
-          },
-          "ID": {
+        },
+        "ID": {
             "zoneName": "Indonezija"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "Irska"
-          },
-          "IL": {
+        },
+        "IL": {
             "zoneName": "Izrael"
-          },
-          "IM": {
+        },
+        "IM": {
             "zoneName": "Otok Man"
-          },
-          "IN-AN": {
+        },
+        "IN-AN": {
             "countryName": "Indija",
             "zoneName": "Otoci Andaman i Nicobar"
-          },
-          "IN-AP": {
+        },
+        "IN-AP": {
             "countryName": "Indija",
             "zoneName": "Andhra Pradesh"
-          },
-          "IN-AR": {
+        },
+        "IN-AR": {
             "countryName": "Indija",
             "zoneName": "Arunachal Pradesh"
-          },
-          "IN-AS": {
+        },
+        "IN-AS": {
             "countryName": "Indija",
             "zoneName": "Asam"
-          },
-          "IN-BR": {
+        },
+        "IN-BR": {
             "countryName": "Indija",
             "zoneName": "Bihar"
-          },
-          "IN-CT": {
+        },
+        "IN-CT": {
             "countryName": "Indija",
             "zoneName": "Chhattisgarh"
-          },
-          "IN-DL": {
+        },
+        "IN-DL": {
             "countryName": "Indija",
             "zoneName": "Delhi"
-          },
-          "IN-DN": {
+        },
+        "IN-DN": {
             "countryName": "India",
             "zoneName": "Dadra i Nagar Haveli"
-          },
-          "IN-GA": {
+        },
+        "IN-GA": {
             "countryName": "Indija",
             "zoneName": "Goa"
-          },
-          "IN-GJ": {
+        },
+        "IN-GJ": {
             "countryName": "Indija",
             "zoneName": "Gudžarat"
-          },
-          "IN-HP": {
+        },
+        "IN-HP": {
             "countryName": "Indija",
             "zoneName": "Himachal Pradesh"
-          },
-          "IN-HR": {
+        },
+        "IN-HR": {
             "countryName": "Indija",
             "zoneName": "Hariana"
-          },
-          "IN-JH": {
+        },
+        "IN-JH": {
             "countryName": "Indija",
             "zoneName": "Jharkhand"
-          },
-          "IN-JK": {
+        },
+        "IN-JK": {
             "countryName": "Indija",
             "zoneName": "Jammu i Kashmir"
-          },
-          "IN-KA": {
+        },
+        "IN-KA": {
             "countryName": "Indija",
             "zoneName": "Karnataka"
-          },
-          "IN-KL": {
+        },
+        "IN-KL": {
             "countryName": "Indija",
             "zoneName": "Kerala"
-          },
-          "IN-MH": {
+        },
+        "IN-MH": {
             "countryName": "Indija",
             "zoneName": "Maharashtra"
-          },
-          "IN-ML": {
+        },
+        "IN-ML": {
             "countryName": "Indija",
             "zoneName": "Meghalaya"
-          },
-          "IN-MN": {
+        },
+        "IN-MN": {
             "countryName": "Indija",
             "zoneName": "Manipur"
-          },
-          "IN-MP": {
+        },
+        "IN-MP": {
             "countryName": "Indija",
             "zoneName": "Madhya Pradesh"
-          },
-          "IN-MZ": {
+        },
+        "IN-MZ": {
             "countryName": "Indija",
             "zoneName": "Mizoram"
-          },
-          "IN-NL": {
+        },
+        "IN-NL": {
             "countryName": "Indija",
             "zoneName": "Nagaland"
-          },
-          "IN-OR": {
+        },
+        "IN-OR": {
             "countryName": "Indija",
             "zoneName": "Orisa"
-          },
-          "IN-PB": {
+        },
+        "IN-PB": {
             "countryName": "Indija",
             "zoneName": "Punjab"
-          },
-          "IN-PY": {
+        },
+        "IN-PY": {
             "countryName": "Indija",
             "zoneName": "Puducherry"
-          },
-          "IN-RJ": {
+        },
+        "IN-RJ": {
             "countryName": "Indija",
             "zoneName": "Radžastan"
-          },
-          "IN-SK": {
+        },
+        "IN-SK": {
             "countryName": "Indija",
             "zoneName": "Sikkim"
-          },
-          "IN-TR": {
+        },
+        "IN-TR": {
             "countryName": "Indija",
             "zoneName": "Tripura"
-          },
-          "IN-UP": {
+        },
+        "IN-UP": {
             "countryName": "Indija",
             "zoneName": "Uttar Pradesh"
-          },
-          "IN-UT": {
+        },
+        "IN-UT": {
             "countryName": "Indija",
             "zoneName": "Uttarakhand"
-          },
-          "IN-WB": {
+        },
+        "IN-WB": {
             "countryName": "Indija",
             "zoneName": "Zapadni Bengal"
-          },
-          "IO": {
+        },
+        "IO": {
             "zoneName": "Britanski Indijskooceanski teritorij"
-          },
-          "IQ": {
+        },
+        "IQ": {
             "zoneName": "Irak"
-          },
-          "IQ-KUR": {
+        },
+        "IQ-KUR": {
             "countryName": "Irak",
             "zoneName": "Kurdistan"
-          },
-          "IR": {
+        },
+        "IR": {
             "zoneName": "Iran"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "Island"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "Italija"
-          },
-          "IT-CNO": {
+        },
+        "IT-CNO": {
             "countryName": "Italija",
             "zoneName": "Srednji Sjever"
-          },
-          "IT-CSO": {
+        },
+        "IT-CSO": {
             "countryName": "Italija",
             "zoneName": "Srednji Jug"
-          },
-          "IT-NO": {
+        },
+        "IT-NO": {
             "countryName": "Italija",
             "zoneName": "Sjever"
-          },
-          "IT-SAR": {
+        },
+        "IT-SAR": {
             "countryName": "Italija",
             "zoneName": "Sardinija"
-          },
-          "IT-SIC": {
+        },
+        "IT-SIC": {
             "countryName": "Italija",
             "zoneName": "Sicilija"
-          },
-          "IT-SO": {
+        },
+        "IT-SO": {
             "countryName": "Italija",
             "zoneName": "Jug"
-          },
-          "JE": {
+        },
+        "JE": {
             "zoneName": "Jersey"
-          },
-          "JM": {
+        },
+        "JM": {
             "zoneName": "Jamajka"
-          },
-          "JO": {
+        },
+        "JO": {
             "zoneName": "Jordan"
-          },
-          "JP-CB": {
+        },
+        "JP-CB": {
             "countryName": "Japan",
             "zoneName": "Chūbu"
-          },
-          "JP-CG": {
+        },
+        "JP-CG": {
             "countryName": "Japan",
             "zoneName": "Chūgoku"
-          },
-          "JP-HKD": {
+        },
+        "JP-HKD": {
             "countryName": "Japan",
             "zoneName": "Hokkaidō"
-          },
-          "JP-HR": {
+        },
+        "JP-HR": {
             "countryName": "Japan",
             "zoneName": "Hokuriku"
-          },
-          "JP-KN": {
+        },
+        "JP-KN": {
             "countryName": "Japan",
             "zoneName": "Kansai"
-          },
-          "JP-KY": {
+        },
+        "JP-KY": {
             "countryName": "Japan",
             "zoneName": "Kyūshū"
-          },
-          "JP-ON": {
+        },
+        "JP-ON": {
             "countryName": "Japan",
             "zoneName": "Okinawa"
-          },
-          "JP-SK": {
+        },
+        "JP-SK": {
             "countryName": "Japan",
             "zoneName": "Shikoku"
-          },
-          "JP-TH": {
+        },
+        "JP-TH": {
             "countryName": "Japan",
             "zoneName": "Tōhoku"
-          },
-          "JP-TK": {
+        },
+        "JP-TK": {
             "countryName": "Japan",
             "zoneName": "Tokio"
-          },
-          "KE": {
+        },
+        "KE": {
             "zoneName": "Kenija"
-          },
-          "KG": {
+        },
+        "KG": {
             "zoneName": "Kirgistan"
-          },
-          "KH": {
+        },
+        "KH": {
             "zoneName": "Kambodža"
-          },
-          "KI": {
+        },
+        "KI": {
             "zoneName": "Kiribati"
-          },
-          "KM": {
+        },
+        "KM": {
             "zoneName": "Komori"
-          },
-          "KN": {
+        },
+        "KN": {
             "zoneName": "Sveti Kristofor i Nevis"
-          },
-          "KP": {
+        },
+        "KP": {
             "zoneName": "Sjeverna Koreja"
-          },
-          "KR": {
+        },
+        "KR": {
             "zoneName": "Južna Koreja"
-          },
-          "KW": {
+        },
+        "KW": {
             "zoneName": "Kuvajt"
-          },
-          "KY": {
+        },
+        "KY": {
             "zoneName": "Kajmanski otoci"
-          },
-          "KZ": {
+        },
+        "KZ": {
             "zoneName": "Kazahstan"
-          },
-          "LA": {
+        },
+        "LA": {
             "zoneName": "Laos"
-          },
-          "LB": {
+        },
+        "LB": {
             "zoneName": "Libanon"
-          },
-          "LC": {
+        },
+        "LC": {
             "zoneName": "Sveta Lucija"
-          },
-          "LI": {
+        },
+        "LI": {
             "zoneName": "Lihtenštajn"
-          },
-          "LK": {
+        },
+        "LK": {
             "zoneName": "Šri Lanka"
-          },
-          "LR": {
+        },
+        "LR": {
             "zoneName": "Liberija"
-          },
-          "LS": {
+        },
+        "LS": {
             "zoneName": "Lesoto"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "Litva"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "Luksemburg"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "Latvija"
-          },
-          "LY": {
+        },
+        "LY": {
             "zoneName": "Libija"
-          },
-          "MA": {
+        },
+        "MA": {
             "zoneName": "Maroko"
-          },
-          "MC": {
+        },
+        "MC": {
             "zoneName": "Monako"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "Moldavija"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "Crna Gora"
-          },
-          "MF": {
+        },
+        "MF": {
             "countryName": "Sveti Martin",
             "zoneName": "Francuska"
-          },
-          "MG": {
+        },
+        "MG": {
             "zoneName": "Madagaskar"
-          },
-          "MH": {
+        },
+        "MH": {
             "zoneName": "Maršalovi Otoci"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "Sjeverna Makedonija"
-          },
-          "ML": {
+        },
+        "ML": {
             "zoneName": "Mali"
-          },
-          "MM": {
+        },
+        "MM": {
             "zoneName": "Mjanmar"
-          },
-          "MN": {
+        },
+        "MN": {
             "zoneName": "Mongolija"
-          },
-          "MO": {
+        },
+        "MO": {
             "zoneName": "Makao"
-          },
-          "MP": {
+        },
+        "MP": {
             "zoneName": "Sjevernomarijanski otoci"
-          },
-          "MQ": {
+        },
+        "MQ": {
             "zoneName": "Martinik"
-          },
-          "MR": {
+        },
+        "MR": {
             "zoneName": "Mauretanija"
-          },
-          "MS": {
+        },
+        "MS": {
             "zoneName": "Montserrat"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "Malta"
-          },
-          "MU": {
+        },
+        "MU": {
             "zoneName": "Mauricijus"
-          },
-          "MV": {
+        },
+        "MV": {
             "zoneName": "Maldivi"
-          },
-          "MW": {
+        },
+        "MW": {
             "zoneName": "Malavi"
-          },
-          "MX": {
+        },
+        "MX": {
             "zoneName": "Meksiko"
-          },
-          "MX-BC": {
+        },
+        "MX-BC": {
             "countryName": "Meksiko",
             "zoneName": "Baja California"
-          },
-          "MX-CE": {
+        },
+        "MX-CE": {
             "countryName": "Meksiko",
             "zoneName": "Središnji"
-          },
-          "MX-NE": {
+        },
+        "MX-NE": {
             "countryName": "Meksiko",
             "zoneName": "Sjeveroistočni"
-          },
-          "MX-NO": {
+        },
+        "MX-NO": {
             "countryName": "Meksiko",
             "zoneName": "Sjeverni"
-          },
-          "MX-NW": {
+        },
+        "MX-NW": {
             "countryName": "Meksiko",
             "zoneName": "Sjeverozapadni"
-          },
-          "MX-OC": {
+        },
+        "MX-OC": {
             "countryName": "Meksiko",
             "zoneName": "Zapadni"
-          },
-          "MX-OR": {
+        },
+        "MX-OR": {
             "countryName": "Meksiko",
             "zoneName": "Istočni"
-          },
-          "MX-PN": {
+        },
+        "MX-PN": {
             "countryName": "Meksiko",
             "zoneName": "Poluotok"
-          },
-          "MY-EM": {
+        },
+        "MY-EM": {
             "countryName": "Malezija",
             "zoneName": "Borneo"
-          },
-          "MY-WM": {
+        },
+        "MY-WM": {
             "countryName": "Malezija",
             "zoneName": "Zapadna Malezija"
-          },
-          "MZ": {
+        },
+        "MZ": {
             "zoneName": "Mozambik"
-          },
-          "NA": {
+        },
+        "NA": {
             "zoneName": "Namibija"
-          },
-          "NC": {
+        },
+        "NC": {
             "zoneName": "Nova Kaledonija"
-          },
-          "NE": {
+        },
+        "NE": {
             "zoneName": "Niger"
-          },
-          "NF": {
+        },
+        "NF": {
             "zoneName": "Otok Norfolk"
-          },
-          "NG": {
+        },
+        "NG": {
             "zoneName": "Nigerija"
-          },
-          "NI": {
+        },
+        "NI": {
             "zoneName": "Nikaragva"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "Nizozemska"
-          },
-          "NO-NO1": {
+        },
+        "NO-NO1": {
             "countryName": "Norveška",
             "zoneName": "Jugoistočna Norveška"
-          },
-          "NO-NO2": {
+        },
+        "NO-NO2": {
             "countryName": "Norveška",
             "zoneName": "Jugozapadna Norveška"
-          },
-          "NO-NO3": {
+        },
+        "NO-NO3": {
             "countryName": "Norveška",
             "zoneName": "Središnja Norveška"
-          },
-          "NO-NO4": {
+        },
+        "NO-NO4": {
             "countryName": "Norveška",
             "zoneName": "Sjeverna Norveška"
-          },
-          "NO-NO5": {
+        },
+        "NO-NO5": {
             "countryName": "Norveška",
             "zoneName": "Zapadna Norveška"
-          },
-          "NP": {
+        },
+        "NP": {
             "zoneName": "Nepal"
-          },
-          "NR": {
+        },
+        "NR": {
             "zoneName": "Nauru"
-          },
-          "NU": {
+        },
+        "NU": {
             "zoneName": "Niue"
-          },
-          "NZ-NZA": {
+        },
+        "NZ-NZA": {
             "countryName": "Novi Zeland",
             "zoneName": "Aucklandsko Otočje"
-          },
-          "NZ-NZC": {
+        },
+        "NZ-NZC": {
             "countryName": "Novi Zeland",
             "zoneName": "Otočje Chatham"
-          },
-          "NZ-NZN": {
+        },
+        "NZ-NZN": {
             "countryName": "Novi Zeland",
             "zoneName": "Sjeverni Otok"
-          },
-          "NZ-NZS": {
+        },
+        "NZ-NZS": {
             "countryName": "Novi Zeland",
             "zoneName": "Južni Otok"
-          },
-          "OM": {
+        },
+        "OM": {
             "zoneName": "Oman"
-          },
-          "PA": {
+        },
+        "PA": {
             "zoneName": "Panama"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "Peru"
-          },
-          "PF": {
+        },
+        "PF": {
             "zoneName": "Francuska Polinezija"
-          },
-          "PG": {
+        },
+        "PG": {
             "zoneName": "Papua-Nova Gvineja"
-          },
-          "PH": {
+        },
+        "PH": {
             "zoneName": "Filipini"
-          },
-          "PK": {
+        },
+        "PK": {
             "zoneName": "Pakistan"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "Poljska"
-          },
-          "PM": {
+        },
+        "PM": {
             "zoneName": "Sveti Petar i Mikelon"
-          },
-          "PN": {
+        },
+        "PN": {
             "zoneName": "Pitcairnovo Otočje"
-          },
-          "PR": {
+        },
+        "PR": {
             "zoneName": "Puerto Rico"
-          },
-          "PS": {
+        },
+        "PS": {
             "zoneName": "Palestina"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "Portugal"
-          },
-          "PT-AC": {
+        },
+        "PT-AC": {
             "countryName": "Portugal",
             "zoneName": "Azori"
-          },
-          "PT-MA": {
+        },
+        "PT-MA": {
             "countryName": "Portugal",
             "zoneName": "Madera"
-          },
-          "PW": {
+        },
+        "PW": {
             "zoneName": "Palau"
-          },
-          "PY": {
+        },
+        "PY": {
             "zoneName": "Paragvaj"
-          },
-          "QA": {
+        },
+        "QA": {
             "zoneName": "Katar"
-          },
-          "RE": {
+        },
+        "RE": {
             "zoneName": "Réunion"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "Rumunjska"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "Srbija"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "Rusija"
-          },
-          "RU-1": {
+        },
+        "RU-1": {
             "countryName": "Rusija",
             "zoneName": "Europska Rusija i Ural"
-          },
-          "RU-2": {
+        },
+        "RU-2": {
             "countryName": "Rusija",
             "zoneName": "Sibir"
-          },
-          "RU-EU": {
+        },
+        "RU-EU": {
             "zoneName": "Rusija"
-          },
-          "RU-AS": {
+        },
+        "RU-AS": {
             "zoneName": "Rusija"
-          },
-          "RU-KGD": {
+        },
+        "RU-KGD": {
             "countryName": "Rusija",
             "zoneName": "Kaliningrad"
-          },
-          "RW": {
+        },
+        "RW": {
             "zoneName": "Ruanda"
-          },
-          "SA": {
+        },
+        "SA": {
             "zoneName": "Saudijska Arabija"
-          },
-          "SB": {
+        },
+        "SB": {
             "zoneName": "Solomonsko Otočje"
-          },
-          "SC": {
+        },
+        "SC": {
             "zoneName": "Sejšeli"
-          },
-          "SD": {
+        },
+        "SD": {
             "zoneName": "Sudan"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "Švedska"
-          },
-          "SG": {
+        },
+        "SG": {
             "zoneName": "Singapur"
-          },
-          "SH": {
+        },
+        "SH": {
             "zoneName": "Sveta Helena"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "Slovenija"
-          },
-          "SJ": {
+        },
+        "SJ": {
             "zoneName": "Svalbard i Jan Mayen"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "Slovačka"
-          },
-          "SL": {
+        },
+        "SL": {
             "zoneName": "Sierra Leone"
-          },
-          "SM": {
+        },
+        "SM": {
             "zoneName": "San Marino"
-          },
-          "SN": {
+        },
+        "SN": {
             "zoneName": "Senegal"
-          },
-          "SO": {
+        },
+        "SO": {
             "zoneName": "Somalija"
-          },
-          "SR": {
+        },
+        "SR": {
             "zoneName": "Surinam"
-          },
-          "SS": {
+        },
+        "SS": {
             "zoneName": "Južni Sudan"
-          },
-          "ST": {
+        },
+        "ST": {
             "zoneName": "Sveti Toma i Princip"
-          },
-          "SV": {
+        },
+        "SV": {
             "zoneName": "Salvador"
-          },
-          "SX": {
+        },
+        "SX": {
             "countryName": "Sveti Martin",
             "zoneName": "Nizozemska"
-          },
-          "SY": {
+        },
+        "SY": {
             "zoneName": "Sirija"
-          },
-          "SZ": {
+        },
+        "SZ": {
             "zoneName": "Esvatini"
-          },
-          "TC": {
+        },
+        "TC": {
             "zoneName": "Otoci Turks i Caicos"
-          },
-          "TD": {
+        },
+        "TD": {
             "zoneName": "Čad"
-          },
-          "TF": {
+        },
+        "TF": {
             "zoneName": "Francuski južni teritoriji"
-          },
-          "TG": {
+        },
+        "TG": {
             "zoneName": "Togo"
-          },
-          "TH": {
+        },
+        "TH": {
             "zoneName": "Tajland"
-          },
-          "TJ": {
+        },
+        "TJ": {
             "zoneName": "Tadžikistan"
-          },
-          "TK": {
+        },
+        "TK": {
             "zoneName": "Tokelau"
-          },
-          "TL": {
+        },
+        "TL": {
             "zoneName": "Istočni Timor"
-          },
-          "TM": {
+        },
+        "TM": {
             "zoneName": "Turkmenistan"
-          },
-          "TN": {
+        },
+        "TN": {
             "zoneName": "Tunis"
-          },
-          "TO": {
+        },
+        "TO": {
             "zoneName": "Tonga"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "Turska"
-          },
-          "TT": {
+        },
+        "TT": {
             "zoneName": "Trinidad i Tobago"
-          },
-          "TV": {
+        },
+        "TV": {
             "zoneName": "Tuvalu"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "Tajvan"
-          },
-          "TZ": {
+        },
+        "TZ": {
             "zoneName": "Tanzanija"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "Ukrajina"
-          },
-          "UA-CR": {
+        },
+        "UA-CR": {
             "countryName": "Krimea",
             "zoneName": "Ukrajina"
-          },
-          "UG": {
+        },
+        "UG": {
             "zoneName": "Uganda"
-          },
-          "UM": {
+        },
+        "UM": {
             "zoneName": "Mali udaljeni otoci SAD-a"
-          },
-          "US": {
-            "zoneName": "Sjedinjene Američke Države"
-          },
-          "US-AL": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Kalifornija"
-          },
-          "US-IPC": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Sjeverna Karolina"
-          },
-          "US-NEISO": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Nova Engleska"
-          },
-          "US-NV": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "New York"
-          },
-          "US-OR": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Južna Karolina"
-          },
-          "US-SPP": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Sjedinjene Američke Države",
-            "zoneName": "ERCOT"
-          },
-          "UY": {
+        },
+        "UY": {
             "zoneName": "Urugvaj"
-          },
-          "UZ": {
+        },
+        "UZ": {
             "zoneName": "Uzbekistan"
-          },
-          "VA": {
+        },
+        "VA": {
             "zoneName": "Vatikan"
-          },
-          "VC": {
+        },
+        "VC": {
             "zoneName": "Sveti Vincent i Grenadini"
-          },
-          "VE": {
+        },
+        "VE": {
             "zoneName": "Venezuela"
-          },
-          "VG": {
+        },
+        "VG": {
             "countryName": "Djevičanski otoci",
             "zoneName": "Djevičanski otoci"
-          },
-          "VI": {
+        },
+        "VI": {
             "countryName": "Sjedinjene Američke Države",
             "zoneName": "Djevičanski otoci"
-          },
-          "VN": {
+        },
+        "VN": {
             "zoneName": "Vijetnam"
-          },
-          "VU": {
+        },
+        "VU": {
             "zoneName": "Vanuatu"
-          },
-          "WF": {
+        },
+        "WF": {
             "zoneName": "Wallis i Futuna"
-          },
-          "WS": {
+        },
+        "WS": {
             "zoneName": "Samoa"
-          },
-          "XX": {
+        },
+        "XX": {
             "zoneName": "Sjeverni Cipar"
-          },
-          "YE": {
+        },
+        "YE": {
             "zoneName": "Jemen"
-          },
-          "YT": {
+        },
+        "YT": {
             "zoneName": "Mayotte"
-          },
-          "ZA": {
+        },
+        "ZA": {
             "zoneName": "Južna Afrika"
-          },
-          "ZM": {
+        },
+        "ZM": {
             "zoneName": "Zambija"
-          },
-          "ZW": {
+        },
+        "ZW": {
             "zoneName": "Zimbabve"
-          }
+        }
     }
 }

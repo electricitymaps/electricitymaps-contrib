@@ -21,36 +21,8 @@ def convert_time_str(ts):
     return dt_aware
 
 
-def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
-    """Requests the last known production mix (in MW) of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -76,40 +48,33 @@ def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logge
         'datetime': dt,
         'zoneKey': zone_key,
         'production': {
-            'coal': float(total_net_generation['COAL']),
             'gas': float(total_net_generation['GAS']),
             'hydro': float(total_net_generation['HYDRO']),
+            'solar': float(total_net_generation['SOLAR']),
             'wind': float(total_net_generation['WIND']),
-            'unknown': float(total_net_generation['OTHER'])
+            'biomass': float(total_net_generation['OTHER']),
+            'unknown': float(total_net_generation['DUAL FUEL']),
+            'coal': float(total_net_generation['COAL'])
+        },
+        'storage': {
+            'battery': float(total_net_generation['ENERGY STORAGE'])
         },
         'capacity': {
-            'coal': float(maximum_capability['COAL']),
             'gas': float(maximum_capability['GAS']),
             'hydro': float(maximum_capability['HYDRO']),
+            'battery storage': float(maximum_capability['ENERGY STORAGE']),
+            'solar': float(maximum_capability['SOLAR']),
             'wind': float(maximum_capability['WIND']),
-            'unknown': float(maximum_capability['OTHER'])
+            'biomass': float(maximum_capability['OTHER']),
+            'unknown': float(maximum_capability['DUAL FUEL']),
+            'coal': float(maximum_capability['COAL'])
         },
         'source': 'ets.aeso.ca',
     }
 
 
-def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None):
-    """Requests the last known power price of a given country
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -137,35 +102,29 @@ def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=Non
     return [data[k] for k in sorted(data.keys())]
 
 
-def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     r = session or requests.session()
     url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
     response = r.get(url)
-    df_exchanges = pd.read_html(response.text, match='INTERCHANGE', skiprows=0, index_col=0)
+    df_exchanges = pd.read_html(
+        response.text,
+        match="INTERCHANGE",
+        skiprows=0,
+        index_col=0,
+        header=[0, 1],
+    )
+
+    exchange_data = df_exchanges[0]["INTERCHANGE"]["ACTUAL FLOW"]
 
     flows = {
-        'CA-AB->CA-BC': df_exchanges[1][1]['British Columbia'],
-        'CA-AB->CA-SK': df_exchanges[1][1]['Saskatchewan'],
-        'CA-AB->US-MT': df_exchanges[1][1]['Montana'],
-        'CA-AB->US-NW-NWMT': df_exchanges[1][1]['Montana']
+        "CA-AB->CA-BC": exchange_data["British Columbia"],
+        "CA-AB->CA-SK": exchange_data["Saskatchewan"],
+        "CA-AB->US-MT": exchange_data["Montana"],
+        "CA-AB->US-NW-NWMT": exchange_data["Montana"],
     }
     sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
     if sortedZoneKeys not in flows:
@@ -179,7 +138,7 @@ def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_da
     }
 
 
-def isfloat(value):
+def isfloat(value) -> bool:
     try:
       float(value)
       return True

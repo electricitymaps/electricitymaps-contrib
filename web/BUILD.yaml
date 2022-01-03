@@ -1,9 +1,8 @@
 steps:
 
   prepare:
-    image: node:10.15.3
+    image: node:12
     inputs:
-      # packages
       - package.json
       - yarn.lock
     commands:
@@ -12,22 +11,22 @@ steps:
   build:
     environment:
       ELECTRICITYMAP_PUBLIC_TOKEN: ${BRICK_ELECTRICITYMAP_PUBLIC_TOKEN:-unknown}
+      COMMIT_SHA: ${BRICK_DRONE_COMMIT_SHA:-unknown}
     inputs:
       # geometries
-      - generate-geometries.js
-      - topogen.sh
-      - third_party_maps
+      - geo
       # source code
       - ../config/{exchanges,zones}.json
       - locales
-      - ./{locales-config.json,translation-status.js}
+      - ./{locales-config.json,version.js,translation-status.js}
       - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json}
       - src
       - views
-      - ./{.babelrc,.eslintrc,server.js,webpack.config.js}
+      - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
-      - bash topogen.sh
+      - bash geo/topogen.sh
+      - yarn update-version
       - yarn build-release
     outputs:
       - src/world.json

@@ -3,7 +3,8 @@
 // TODO(olc): re-enable this rule
 
 import React from 'react';
-import { connect, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
 
@@ -21,7 +22,6 @@ import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import {
-  useClientVersionFetch,
   useGridDataPolling,
   useConditionalWindDataPolling,
   useConditionalSolarDataPolling,
@@ -30,6 +30,9 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
+import useSWR from 'swr';
+
+const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -38,26 +41,31 @@ const mapStateToProps = state => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
-  version: state.application.version,
   currentDate: (state.data.grid || {}).datetime,
 });
 
+const MapContainer = styled.div`
+  @media (max-width: 767px) {
+    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
+  }
+`;
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
+
 const Main = ({
-  brightModeEnabled,
   electricityMixMode,
   hasConnectionWarning,
-  version,
   currentDate,
+  brightModeEnabled,
 }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
+  const clientType = useSelector(state => state.application.clientType);
+  const isLocalhost = useSelector(state => state.application.isLocalhost);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
-
-  // Check for the latest client version once initially.
-  useClientVersionFetch();
 
   // Start grid data polling as soon as the app is mounted.
   useGridDataPolling();
@@ -67,6 +75,15 @@ const Main = ({
 
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
+
+  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const clientVersion = clientVersionData && clientVersionData.version;
+
+  let isClientVersionOutdated = false;
+  // We only check the latest client version if running in browser on non-localhost.
+  if (clientVersion && clientType === 'web' && !isLocalhost) {
+    isClientVersionOutdated = isNewClientVersion(clientVersion);
+  }
 
   return (
     <React.Fragment>
@@ -83,13 +100,8 @@ const Main = ({
         {headerVisible && <Header />}
         <div id="inner">
           <LoadingOverlay visible={showLoadingOverlay} />
-          <div id="map-container" className={location.pathname !== '/map' ? 'small-screen-hidden' : ''}>
+          <MapContainer pathname={location.pathname} id="map-container">
             <Map />
-            <div id="watermark" className={`watermark small-screen-hidden ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-                <div id="built-by-tomorrow" />
-              </a>
-            </div>
             <Legend />
             <div className="controls-container">
               <Toggle
@@ -104,9 +116,9 @@ const Main = ({
             </div>
             <LayerButtons />
             <div className="text-title" style={{ color: brightModeEnabled ? '#000' : '#fff' }}>
-              {moment(currentDate).format('MMMM YYYY')}
+              {moment(datetime).format('MMMM YYYY')}
             </div>
-          </div>
+          </MapContainer>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
@@ -124,7 +136,7 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isNewClientVersion(version) ? 'active' : ''}`}>
+          <div id="new-version" className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}>
             <div className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
             </div>

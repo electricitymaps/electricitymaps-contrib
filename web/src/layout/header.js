@@ -12,15 +12,15 @@ const headerLinks = [
   },
   {
     label: 'Open Source',
-    href: 'https://api.electricitymap.org/open-source?utm_source=electricitymap.org&utm_medium=referral',
+    href: 'https://electricitymap.org/open-source?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
     label: 'Blog',
-    href: 'https://www.tmrow.com/blog/tags/electricitymap?utm_source=electricitymap.org&utm_medium=referral',
+    href: 'https://electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
   },
   {
-    label: 'API',
-    href: 'https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral',
+    label: 'Get our data',
+    href: 'https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral',
   },
 ];
 
@@ -28,10 +28,13 @@ const Container = styled.div`
   /* This makes sure the map and the other content doesn't
   go under the SharedHeader which has a fixed position. */
   height: 58px;
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
 const Header = () => (
-  <Container className="small-screen-hidden">
+  <Container>
     <SharedHeader logo={logo} links={headerLinks} />
   </Container>
 );

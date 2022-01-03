@@ -94,15 +94,19 @@
         "cpinfo": "<b>Verbrauch</b> bezieht Importe und Exporte mit ein, <b>Produktion</b> ignoriert sie",
         "selectLanguage": "Sprache auswählen",
         "lowCarbDescription": "Beinhaltet regenerative Energien und Kernenergie",
-        "dataIsDelayed": "Die Daten sind verzögert"
+        "dataIsDelayed": "Die Daten sind verzögert",
+        "representing": "macht",
+        "ofemissions": "der Emissionen aus",
+        "zoomIn": "Rein zoomen",
+        "zoomOut": "Raus zoomen"
     },
     "misc": {
         "maintitle": "CO₂-Emissionen des Stromverbrauchs in Echtzeit",
         "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
         "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
         "retrynow": "Erneut versuchen",
-        "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
-        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
+        "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
+        "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
         "legend": "Legende",
         "faq": "Häufig gestellte Fragen",
         "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
@@ -150,7 +154,7 @@
         "divideExistingArea-question": "Können Sie meinen Bereich in kleinere Teile aufteilen?",
         "divideExistingArea-answer": "Das ist möglich, sofern es für diese Region eigene Datenquellen gibt. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
         "seeHistoricalData-question": "Kann ich die Zeitreihe eines Bereiches sehen, die weiter als 24 Stunden zurückliegt?",
-        "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
+        "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
     },
     "methodology": {
         "groupName": "Unsere Methoden",
@@ -178,16 +182,16 @@
         "dataOrigins-question": "Wie erhalten Sie Ihre Daten?",
         "dataOrigins-answer": "Wir berechnen alle unsere Daten aus öffentlich zugänglichen Datenquellen, die von Stromnetzbetreibern, Behörden und anderen Institutionen veröffentlicht werden. Sie können auf eine Region klicken, um mehr über die Herkunft der Daten zu erfahren.",
         "dataDownload-question": "Kann ich Ihre Daten herunterladen?",
-        "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
+        "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
         "dataIntegration-question": "Kann ich Ihre Daten in Echtzeit in meine Anwendung oder mein Gerät integrieren?",
-        "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
+        "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
     },
     "aboutUs": {
         "groupName": "Über uns",
         "whoAreYou-question": "Wer sind Sie?",
         "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
         "feedback-question": "Kann ich Ihnen Feedback geben?",
-        "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@electricitymap.com\">senden Sie uns eine E-Mail!</a>",
+        "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@electricitymap.org\">senden Sie uns eine E-Mail!</a>",
         "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
         "contribute-answer": "Ja, gerne! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
         "workTogether-question": "Können wir zusammenarbeiten?",
@@ -358,6 +362,14 @@
             "countryName": "Kanada",
             "zoneName": "Newfoundland and Labrador"
         },
+        "CA-NL-LB": {
+            "countryName": "Kanada",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Kanada",
+            "zoneName": "Neufundland"
+        },
         "CA-NB": {
             "countryName": "Kanada",
             "zoneName": "New Brunswick"
@@ -419,10 +431,6 @@
             "countryName": "Chile",
             "zoneName": "SING"
         },
-        "CL-SIC": {
-            "countryName": "Chile",
-            "zoneName": "SIC"
-        },
         "CL-SEM": {
             "countryName": "Chile",
             "zoneName": "SEM"
@@ -430,6 +438,10 @@
         "CL-SEA": {
             "countryName": "Chile",
             "zoneName": "SEA"
+        },
+        "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Osterinsel"
         },
         "CM": {
             "zoneName": "Kamerun"
@@ -1095,10 +1107,12 @@
             "zoneName": "Russland"
         },
         "RU-EU": {
-            "zoneName": "Russland"
+            "zoneName": "Russland",
+            "countryName": "Arktis"
         },
         "RU-AS": {
-            "zoneName": "Russland"
+            "zoneName": "Russland",
+            "countryName": "Osten"
         },
         "RU-1": {
             "countryName": "Russland",
@@ -1111,6 +1125,10 @@
         "RU-KGD": {
             "countryName": "Russland",
             "zoneName": "Kaliningrad"
+        },
+        "RU-FE": {
+            "countryName": "Russland",
+            "zoneName": "Fernost"
         },
         "RW": {
             "zoneName": "Ruanda"
@@ -1239,41 +1257,6 @@
         },
         "UM": {
             "zoneName": "United States Minor Outlying Islands"
-        },
-        "US": {
-            "zoneName": "USA"
-        },
-        "US-BPA": {
-            "countryName": "USA",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "USA",
-            "zoneName": "CAISO"
-        },
-        "US-IPC": {
-            "countryName": "USA",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "USA",
-            "zoneName": "MISO"
-        },
-        "US-NEISO": {
-            "countryName": "USA",
-            "zoneName": "NEISO"
-        },
-        "US-NY": {
-            "countryName": "USA",
-            "zoneName": "NYISO"
-        },
-        "US-PJM": {
-            "countryName": "USA",
-            "zoneName": "PJM"
-        },
-        "US-SPP": {
-            "countryName": "USA",
-            "zoneName": "SPP"
         },
         "US-HI": {
             "zoneName": "Hawaii",
@@ -1408,10 +1391,6 @@
             "countryName": "Mexiko",
             "zoneName": "Halbinsel"
         },
-        "US-SVERI": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "SVERI"
-        },
         "GB-ORK": {
             "countryName": "Großbritannien",
             "zoneName": "Orkney Islands"
@@ -1463,34 +1442,6 @@
         "ES-IB-ME": {
             "countryName": "Spanien",
             "zoneName": "Menorca"
-        },
-        "US-AL": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Alabama"
-        },
-        "US-NC": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "North Carolina"
-        },
-        "US-NV": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Nevada"
-        },
-        "US-OR": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Oregon"
-        },
-        "US-SC": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "South Carolina"
-        },
-        "US-TN": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Vereinigte Staaten von Amerika",
-            "zoneName": "Texas"
         },
         "AUS-TAS-KI": {
             "countryName": "Tasmanien",
@@ -1814,6 +1765,22 @@
         },
         "XK": {
             "zoneName": "Kosovo"
+        },
+        "AUS-TAS-FI": {
+            "countryName": "Australien",
+            "zoneName": "Flinders Island"
+        },
+        "AUS-TAS-CBI": {
+            "countryName": "Australien",
+            "zoneName": "Cape Barren Island"
+        },
+        "AUS-WA-RI": {
+            "countryName": "Australien",
+            "zoneName": "Rottnest Island"
+        },
+        "NZ-NZST": {
+            "countryName": "Neuseeland",
+            "zoneName": "Stewart Island"
         }
     },
     "mobile-info-tab": {

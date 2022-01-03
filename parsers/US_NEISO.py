@@ -2,11 +2,14 @@
 
 
 """Real time parser for the New England ISO (NEISO) area."""
+from datetime import timedelta
 import arrow
 from collections import defaultdict
 import logging
 import requests
 import time
+
+from parsers.lib.config import refetch_frequency
 
 url = 'https://www.iso-ne.com/ws/wsclient'
 
@@ -61,11 +64,10 @@ def get_json_data(target_datetime, params, session=None):
     return raw_data
 
 
-def production_data_processer(raw_data, logger):
+def production_data_processer(raw_data, logger) -> list:
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
-    Maps generation to type and returns a list of tuples.
     """
 
     other_keys = {'BeginDateMs', 'Renewables', 'BeginDate', 'Other'}
@@ -115,40 +117,9 @@ def production_data_processer(raw_data, logger):
 
     return sorted(clean_data)
 
-
-def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key: specifies which zone to get
-    session: request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+@refetch_frequency(timedelta(days=1))
+def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
 
     postdata = {
         '_nstmp_chartTitle': 'Fuel+Mix+Graph',
@@ -178,25 +149,8 @@ def fetch_production(zone_key='US-NEISO', session=None, target_datetime=None, lo
     return production_mix
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-
-    Arguments:
-    zone_key1, zone_key2: specifies which exchange to get
-    session (optional): request session passed in order to re-use an existing session
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    [{
-      'sortedZoneKeys': 'CA-QC->US-NEISO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }]
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> list:
+    """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
 
     # For directions, note that ISO-NE always reports its import as negative

@@ -5,7 +5,8 @@ import requests
 from collections import defaultdict
 
 
-GENERATION_URL = "http://www.pstcl.org:9091/scadadata/pbGenData2"
+GENERATION_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/pbGenData2"
+DATE_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/dynamicData"
 
 GENERATION_MAPPING = {"totalHydro": "hydro",
                       "totalThermal": "coal",
@@ -24,87 +25,37 @@ def calculate_average_timestamp(timestamps):
     return arr_average_timestamp
 
 
-def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional)      -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='IN-PB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError('The IN-PB production parser is not yet able to parse past dates')
 
     s = session or requests.Session()
-    req = s.get(GENERATION_URL)
+    data_req = s.get(GENERATION_URL)
+    timestamp_req = s.get(DATE_URL)
 
-    raw_data = req.json()
-
-    timestamps = []
-    valid_data = []
-    for key in raw_data.keys():
-        if key in GENERATION_MAPPING.keys():
-            valid_data.append((key, raw_data[key]["value"]))
-            timestamps.append(raw_data[key]["chartDate"])
-
-    arr_dt = calculate_average_timestamp(timestamps)
-
-    mapped_generation = [(GENERATION_MAPPING.get(gen_type), val) for (gen_type, val) in valid_data]
-    production = defaultdict(lambda: 0.0)
-
-    # Sum values for duplicate keys.
-    for key, val in mapped_generation:
-        production[key] += val
+    raw_data = data_req.json()
+    timestamp_data = timestamp_req.json()
 
     data = {"zoneKey": zone_key,
-            "datetime": arr_dt.datetime,
-            "production": dict(production),
+            "datetime": arrow.get(timestamp_data["updateDate"], "DD-MM-YYYY HH:mm:ss",  tzinfo="Asia/Kolkata").datetime,
+            "production": {
+                "hydro": 0.0,
+                "coal": 0.0,
+                "biomass": 0.0,
+                "solar": 0.0,
+            },
             "storage": {},
             "source": "punjasldc.org"}
 
-    return data
+    for from_key, to_key in GENERATION_MAPPING.items():
+        data["production"][to_key] += max(0, raw_data[from_key]["value"])
+
+    return [data]
 
 
-def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known consumption (in MW) of a given zone
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple zones
-    session (optional)      -- request session passed in order to re-use an existing session
-    target_datetime (optional) -- used if parser can fetch data for a specific day
-    logger (optional) -- handles logging when parser is run as main
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': 2832.5,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_consumption(zone_key='IN-PB', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known consumption (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError('The IN-PB consumption parser is not yet able to parse past dates')
 

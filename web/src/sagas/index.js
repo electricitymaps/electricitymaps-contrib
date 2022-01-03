@@ -7,7 +7,6 @@ import {
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleRequestError, protectedJsonRequest } from '../helpers/api';
-import { clientVersionRequest } from '../helpers/client';
 import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
@@ -15,19 +14,10 @@ import {
   fetchGfsForecast,
 } from '../helpers/gfs';
 
-function* fetchClientVersion() {
-  try {
-    const version = yield call(clientVersionRequest);
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'version', value: version });
-  } catch (err) {
-    handleRequestError(err);
-  }
-}
-
 function* fetchZoneHistory(action) {
   const { zoneId } = action.payload;
   try {
-    const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}`);
+    const payload = yield call(protectedJsonRequest, `/v3/history?countryCode=${zoneId}&preview=1`);
     yield put({ type: 'ZONE_HISTORY_FETCH_SUCCEEDED', zoneId, payload });
   } catch (err) {
     yield put({ type: 'ZONE_HISTORY_FETCH_FAILED' });
@@ -36,9 +26,9 @@ function* fetchZoneHistory(action) {
 }
 
 function* fetchGridData(action) {
-  const { datetime } = action.payload;
+  const { datetime } = action.payload || {};
   try {
-    const payload = yield call(protectedJsonRequest, datetime ? `/v3/state?datetime=${datetime}` : '/v3/state');
+    const payload = yield call(protectedJsonRequest, `/v3/state?preview=1&datetime=${datetime}`);
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     // Do not center the map based on browser location
     // yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
@@ -107,7 +97,6 @@ export default function* () {
   yield takeLatest('WIND_DATA_FETCH_REQUESTED', fetchWindData);
   yield takeLatest('SOLAR_DATA_FETCH_REQUESTED', fetchSolarData);
   yield takeLatest('ZONE_HISTORY_FETCH_REQUESTED', fetchZoneHistory);
-  yield takeLatest('CLIENT_VERSION_FETCH_REQUESTED', fetchClientVersion);
   // Analytics
   yield takeLatest('TRACK_EVENT', trackEvent);
 }

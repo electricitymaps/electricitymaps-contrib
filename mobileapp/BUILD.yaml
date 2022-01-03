@@ -10,7 +10,7 @@ steps:
       - apk add --no-cache curl bash python3
       - curl https://sdk.cloud.google.com | bash > /dev/null
       - npm ci
-      - npm install -g cordova@9.0.0 code-push-cli@2.1.9
+      - npm install -g cordova@10.0.0 code-push-cli@3.0.0
 
   build:
     inputs:
@@ -44,11 +44,11 @@ steps:
       - cordova prepare
       # Release to staging
       - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
-      - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
-      - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest}
+      - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
+      - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
       # Promote
-      - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError
-      - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError
+      - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
+      - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
     secrets:
       gcloud:
         src: ~/.config/gcloud

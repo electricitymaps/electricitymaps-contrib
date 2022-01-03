@@ -5,6 +5,8 @@ import arrow
 import requests
 import pytz
 
+from parsers.lib.config import refetch_frequency
+
 SVK_URL = 'http://www.svk.se/ControlRoom/GetProductionHistory/' \
           '?productionDate={date}&countryCode={zoneKey}'
 
@@ -29,9 +31,9 @@ MAPPING = {
     3: 'hydro'
 }
 
-
+@refetch_frequency(datetime.timedelta(days=1))
 def fetch_production(zone_key='SE', session=None, target_datetime=None,
-                     logger=None):
+                     logger=None) -> list:
     # parse target_datetime - and convert None to now
     target_datetime = arrow.get(target_datetime).datetime
     url = SVK_URL.format(date=target_datetime.strftime('%Y-%m-%d'),

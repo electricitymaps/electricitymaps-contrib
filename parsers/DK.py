@@ -1,3 +1,4 @@
+from datetime import timedelta
 import logging
 import pandas as pd
 import arrow  # the arrow library is used to handle datetimes
@@ -5,6 +6,8 @@ import requests  # the request library is used to fetch content through HTTP
 import pytz
 import time
 import json
+
+from parsers.lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 
 
@@ -13,26 +16,25 @@ ids = {
     'energy_bal': '02356e88-7c4e-4ee9-b896-275d217cc1b9'
 }
 
-
-def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+@refetch_frequency(timedelta(days=1))
+def fetch_production(zone_key='DK-DK1', session=None, target_datetime=None,
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones
 
     NOTE: Missing historical wind/solar data @ 2017-08-01
-
     """
     r = session or requests.session()
-    
+
     if zone_key not in ['DK-DK1', 'DK-DK2']:
         raise NotImplementedError(
             'fetch_production() for {} not implemented'.format(zone_key))
-    
+
     zone = zone_key[-3:]
-    
+
     timestamp = arrow.get(target_datetime).strftime('%Y-%m-%d %H:%M')
-    
+
     # fetch hourly energy balance from recent hours
     sqlstr = 'SELECT "HourUTC" as timestamp, "Biomass", "Waste", \
                      "OtherRenewable", "FossilGas" as gas, "FossilHardCoal" as coal, \
@@ -43,8 +45,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
                      "HourUTC" >= (timestamp\'{2}\'-INTERVAL \'24 hours\') AND \
                      "HourUTC" <= timestamp\'{2}\' \
                      ORDER BY "HourUTC" ASC'.format(ids['energy_bal'], zone, timestamp)
-                     
-    
+
     url = 'https://api.energidataservice.dk/datastore_search_sql?sql={}'.format(sqlstr)
     response = r.get(url)
 
@@ -79,19 +80,19 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
     df.index = pd.DatetimeIndex(df.index)
     # drop empty rows from energy balance
     df.dropna(how='all', inplace=True)
-    
+
     # Divide waste into 55% renewable and 45% non-renewable parts according to
     # https://ens.dk/sites/ens.dk/files/Statistik/int.reporting_2016.xls (visited Jan 24th, 2019)
     df['unknown'] = 0.45 * df['Waste'] # Report fossil waste as unknown
     df['renwaste'] = 0.55 * df['Waste']
     # Report biomass, renewable waste and other renewables (biogas etc.) as biomass
     df['biomass'] = df.filter(['Biomass', 'renwaste', 'OtherRenewable']).sum(axis=1)
-    
+
     fuels = ['biomass', 'coal', 'oil', 'gas', 'unknown', 'hydro']
     # Format output as a list of dictionaries
     output = []
     for dt in df.index:
-        
+
         data = {
               'zoneKey': zone_key,
               'datetime': None,
@@ -110,7 +111,7 @@ def fetch_production(zone_key='DK-DK1', session=None,target_datetime=None,
               'storage': {},
               'source': 'api.energidataservice.dk'
             }
-        
+
         data['datetime'] = dt.to_pydatetime()
         data['datetime'] = data['datetime'].replace(tzinfo=pytz.utc)
         for f in ['solar', 'wind'] + fuels:
@@ -127,7 +128,7 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
     """
     r = session or requests.session()
     sorted_keys = '->'.join(sorted([zone_key1, zone_key2]))
-    
+
     # pick the correct zone to search
     if 'DK1' in sorted_keys and 'DK2' in sorted_keys:
         zone = 'DK1'
@@ -153,12 +154,11 @@ def fetch_exchange(zone_key1='DK-DK1', zone_key2='DK-DK2', session=None,
         'DK-DK2->SE': '("ExchangeSweden" - "BornholmSE4")',  # Exchange from Bornholm to Sweden is included in "ExchangeSweden"
         'DK-DK2->SE-SE4': '("ExchangeSweden" - "BornholmSE4")',  # but Bornholm island is reported separately from DK-DK2 in eMap
         'DK-BHM->SE': '"BornholmSE4"',
-         
     }
     if sorted_keys not in exch_map:
         raise NotImplementedError(
             'Exchange {} not implemented'.format(sorted_keys))
-    
+
     timestamp = arrow.get(target_datetime).strftime('%Y-%m-%d %H:%M')
 
     # fetch real-time/5-min data

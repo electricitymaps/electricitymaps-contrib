@@ -41,6 +41,7 @@
         "helpfrom": "con l'aiuto di",
         "noDataAtTimestamp": "Dati temporaneamente non disponibili per l'ora selezionata",
         "noLiveData": "Dati in tempo reale temporaneamente non disponibili per quest'area",
+        "dataIsDelayed": "I dati per questa regione possono essere in ritardo di %s ore. I dati in tempo reale non possono essere mostrati.",
         "noParserInfo": "Non abbiamo ancora informazioni per quest'area.<br/> Vuoi aiutarci a sistemare questo problema? Puoi contribuire <a href=\"%s\" target=\"_blank\">aggiungendo i dati dell'area</a>.",
         "now": "Ora"
     },
@@ -79,7 +80,11 @@
         "carbonintensityexport": "Intensità di carbonio nell'esportazione",
         "ofinstalled": "della capacità installata",
         "utilizing": "Utilizzando il",
+        "representing": "Rappresentando il",
+        "ofemissions": "di emissioni",
         "withcarbonintensity": "Con un'intensità di carbonio di:",
+        "zoomIn": "Zoom +",
+        "zoomOut": "Zoom -",
         "showWindLayer": "Mostra livello del vento",
         "hideWindLayer": "Nascondi livello del vento",
         "showSolarLayer": "Mostra livello del sole",
@@ -91,7 +96,8 @@
         "consumption": "Consumo",
         "cpinfo": "Il <b>consumo</b> considera importazioni ed esportazioni, la <b>produzione</b> li ignora",
         "selectLanguage": "Seleziona la lingua",
-        "lowCarbDescription": "Include rinnovabili e nucleare"
+        "lowCarbDescription": "Include rinnovabili e nucleare",
+        "dataIsDelayed": "I dati sono in ritardo"
     },
     "misc": {
         "maintitle": "Emissioni di CO₂ in tempo reale del consumo elettrico",
@@ -99,13 +105,15 @@
         "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
         "webgl-not-supported": "La mappa non può essere mostrata perché questo browser non supporta WebGL.",
         "retrynow": "Riprova ora",
-        "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
-        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
+        "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
+        "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
         "legend": "Legenda",
         "faq": "Domande poste frequentemente"
     },
     "wind": "Eolico",
+    "windDataError": "Dati sull'eolico attualmente non disponibili",
     "solar": "Fotovoltaico",
+    "solarDataError": "Dati sul fotovoltaico attualmente non disponibili",
     "hydro": "Idroelettrico",
     "hydro storage": "Accumulo idro.",
     "battery storage": "Batterie accu.",
@@ -116,17 +124,14 @@
     "coal": "Carbone",
     "oil": "Petrolio",
     "unknown": "Sconosciuto",
-
     "electricityComesFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "emissionsComeFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> proviene dal/dalla %3$s",
     "electricityStoredUsing": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
     "emissionsStoredUsing": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è accumulato usando il/la %3$s",
-
     "electricityExportedTo": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è esportata in <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "Il <b>%1$s %%</b> dell'elettricità di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "Il <b>%1$s %%</b> delle emissioni di CO₂ di <img id=\"country-flag\"></img> <b>%2$s</b> è importato da <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "di CO₂eq per minuto",
     "theMap": {
         "groupName": "La mappa",
@@ -150,7 +155,7 @@
         "divideExistingArea-question": "Potete dividere la mia area in parti più piccole?",
         "divideExistingArea-answer": "Certamente, se esitono fonti separate per ogni parte di quest'area. Puoi <a href=\"#contribute\" class=\"entry-link\">aiutare aggiungendo nuove fonti di dati</a>",
         "seeHistoricalData-question": "Posso vedere la cronologia di un area per un periodo più lungo di 24 ore?",
-        "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "I nostri metodi",
@@ -178,16 +183,16 @@
         "dataOrigins-question": "Dove prendete i dati?",
         "dataOrigins-answer": "Prendiamo tutti i dati da dati liberamente accessibili, pubblicati dagli operatori di linea, dalle agenzie ufficiali, ed altri. Puoi cliccare su un'area per vedere più specifiche sulle origini dei dati.",
         "dataDownload-question": "Posso scaricare i vostri dati?",
-        "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Possono integrare i vostri dati in tempo reale nella mia applicazione o nel mio dispositivo?",
-        "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
+        "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
     },
     "aboutUs": {
         "groupName": "Informazioni su di noi",
         "whoAreYou-question": "Chi siete?",
         "whoAreYou-answer": "Electricity Map è sviluppata e mantenuta da <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, una piccola start-up francodanese. Il nostro obiettivo è aiutare l'umanità a raggiungere uno stato di esistenza sostenibile quantificando, e rendendo largamente accessibile l'accesso alla visione dell'impatto climatico che hanno le nostre scelte di tutti i giorni.",
         "feedback-question": "Posso darvi un parere?",
-        "feedback-answer": "Certamente! Riempi il <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">nostro modello</a> o <a href=\"mailto:hello@electricitymap.com\">mandaci una email!</a>",
+        "feedback-answer": "Certamente! Riempi il <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">nostro modello</a> o <a href=\"mailto:hello@electricitymap.org\">mandaci una email!</a>",
         "contribute-question": "Posso contribuire al progetto?",
         "contribute-answer": "Sì! Electricity Map è un progetto open-source, reso possibile dai nostri contributori volontari. Se vuoi aiutarci a sviluppare la mappa, sia aggiungendo fonti per nuove aree, sia aggiungendo nuove funzioni o risolvendo bug, sentiti libero di unirti al nostro <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
         "workTogether-question": "Possiamo lavorare insieme?",
@@ -252,8 +257,16 @@
             "countryName": "Australia",
             "zoneName": "Tasmania"
         },
+        "AUS-TAS-CBI": {
+            "countryName": "Australia",
+            "zoneName": "Cape Barren Island"
+        },
+        "AUS-TAS-FI": {
+            "countryName": "Australia",
+            "zoneName": "Flinders Island"
+        },
         "AUS-TAS-KI": {
-            "countryName": "Tasmania",
+            "countryName": "Australia",
             "zoneName": "King"
         },
         "AUS-VIC": {
@@ -263,6 +276,10 @@
         "AUS-WA": {
             "countryName": "Australia",
             "zoneName": "Australia occidentale"
+        },
+        "AUS-WA-RI": {
+            "countryName": "Australia",
+            "zoneName": "Isola Rottnest"
         },
         "AW": {
             "zoneName": "Aruba"
@@ -310,7 +327,7 @@
             "zoneName": "Bolivia"
         },
         "BQ": {
-            "zoneName": "Isole BES"
+            "zoneName": "Paesi Bassi caraibici"
         },
         "BR-CS": {
             "countryName": "Brasile",
@@ -366,6 +383,14 @@
             "countryName": "Canada",
             "zoneName": "Terranova e Labrador"
         },
+        "CA-NL-LB": {
+            "countryName": "Canada",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Canada",
+            "zoneName": "Terranova"
+        },
         "CA-NS": {
             "countryName": "Canada",
             "zoneName": "Nuova Scozia"
@@ -418,6 +443,10 @@
         },
         "CK": {
             "zoneName": "Isole Cook"
+        },
+        "CL-CHP": {
+            "countryName": "Cile",
+            "zoneName": "Isola di Pasqua"
         },
         "CL-SEA": {
             "countryName": "Cile",
@@ -515,7 +544,7 @@
         },
         "ES-IB-IZ": {
             "countryName": "Spagna",
-            "zoneName": "Iviza"
+            "zoneName": "Ibiza"
         },
         "ES-IB-MA": {
             "countryName": "Spagna",
@@ -1142,6 +1171,10 @@
             "countryName": "Nuova Zelanda",
             "zoneName": "Isola del Sud"
         },
+        "NZ-NZST": {
+            "countryName": "Nuova Zelanda",
+            "zoneName": "Stewart"
+        },
         "OM": {
             "zoneName": "Oman"
         },
@@ -1152,7 +1185,7 @@
             "zoneName": "Perù"
         },
         "PF": {
-            "zoneName": "Polinesia Francese"
+            "zoneName": "Polinesia francese"
         },
         "PG": {
             "zoneName": "Papua Nuova Guinea"
@@ -1212,17 +1245,23 @@
         },
         "RU-1": {
             "countryName": "Russia",
-            "zoneName": "Russia europea ed Ural"
+            "zoneName": "Russia europea e Ural"
         },
         "RU-2": {
             "countryName": "Russia",
             "zoneName": "Siberia"
         },
-        "RU-EU": {
-            "zoneName": "Russia"
-        },
         "RU-AS": {
-            "zoneName": "Russia"
+            "countryName": "Russia",
+            "zoneName": "Est"
+        },
+        "RU-EU": {
+            "countryName": "Russia",
+            "zoneName": "Artide"
+        },
+        "RU-FE": {
+            "countryName": "Russia",
+            "zoneName": "Estremo Oriente"
         },
         "RU-KGD": {
             "countryName": "Russia",
@@ -1347,33 +1386,14 @@
             "zoneName": "Ucraina"
         },
         "UA-CR": {
-            "countryName": "Crimea",
-            "zoneName": "Ucraina"
+            "countryName": "Ucraina",
+            "zoneName": "Crimea"
         },
         "UG": {
             "zoneName": "Uganda"
         },
         "UM": {
             "zoneName": "Isole minori esterne degli Stati Uniti d'America"
-        },
-        "US": {
-            "zoneName": "Stati Uniti d'America"
-        },
-        "US-AL": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Alabama"
-        },
-        "US-AK": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Alaska"
-        },
-        "US-BPA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Bonneville Power Administration"
-        },
-        "US-CA": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "California"
         },
         "US-HI-HA": {
             "countryName": "Stati Uniti d'America",
@@ -1406,58 +1426,6 @@
         "US-HI-OA": {
             "countryName": "Stati Uniti d'America",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Midcontinent Independent System Operator, Inc."
-        },
-        "US-NC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Carolina del Nord"
-        },
-        "US-NEISO": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Nuova Inghilterra"
-        },
-        "US-NV": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Pennsylvania-New Jersey-Maryland Interconnection"
-        },
-        "US-SC": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Carolina del Sud"
-        },
-        "US-SPP": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Southwest Power Pool, Inc."
-        },
-        "US-SVERI": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Southwest Variable Energy Resource Initiative"
-        },
-        "US-TN": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Stati Uniti d'America",
-            "zoneName": "Electric Reliability Council of Texas"
         },
         "US-CAL-BANC": {
             "countryName": "Stati Uniti d'America",

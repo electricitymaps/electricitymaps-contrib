@@ -20,6 +20,8 @@ import datetime as dt
 import pandas as pd
 from io import StringIO
 
+from parsers.lib.config import refetch_frequency
+
 from .lib.validation import validate
 from .lib.utils import get_token
 
@@ -274,7 +276,7 @@ def _fetch_wind(target_datetime=None):
 
     return df[['datetime', 'Wind']]
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
     session = session or requests.session()
@@ -283,9 +285,9 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                           logger)
     return data
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_production(zone_key='GB', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger=logging.getLogger(__name__)) -> dict:
     session = session or requests.session()
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
@@ -315,8 +317,7 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy
-    for testing."""
+    """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     print('fetch_production() ->')
     print(fetch_production())

@@ -7,13 +7,13 @@ from .lib import zonekey
 from .lib import IN
 
 
-def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
+def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Karnataka consumption"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     zonekey.assert_zone_key(zone_key, 'IN-KA')
-    html = web.get_response_soup(zone_key, 'http://kptclsldc.com/Default.aspx', session)
+    html = web.get_response_soup(zone_key, 'http://kptclsldc.in/Default.aspx', session)
 
     india_date_time = IN.read_datetime_from_span_id(html, 'Label6', 'DD/MM/YYYY HH:mm')
 
@@ -23,22 +23,22 @@ def fetch_consumption(zone_key='IN-KA', session=None, target_datetime=None, logg
         'zoneKey': zone_key,
         'datetime': india_date_time.datetime,
         'consumption': demand_value,
-        'source': 'kptclsldc.com'
+        'source': 'kptclsldc.in'
     }
 
     return data
 
 
-def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logger=None) -> dict:
     """Fetch Karnataka  production"""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     zonekey.assert_zone_key(zone_key, 'IN-KA')
 
-    html = web.get_response_soup(zone_key, 'http://kptclsldc.com/StateGen.aspx', session)
+    html = web.get_response_soup(zone_key, 'http://kptclsldc.in/StateGen.aspx', session)
 
-    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'M/D/YYYY h:mm:ss A')
+    india_date_time = IN.read_datetime_from_span_id(html, 'lbldate', 'DD/MM/YYYY HH:mm:ss')
 
     # RTPS Production: https://en.wikipedia.org/wiki/Raichur_Thermal_Power_Station
     rtps_value = IN.read_value_from_span_id(html, 'lblrtptot')
@@ -111,18 +111,18 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
     cgs_value = IN.read_value_from_span_id(html, 'lblcgs')
 
     # NCEP (Non-Conventional Energy Production)
-    ncep_html = web.get_response_soup(zone_key, 'http://kptclsldc.com/StateNCEP.aspx', session)
+    ncep_html = web.get_response_soup(zone_key, 'http://kptclsldc.in/StateNCEP.aspx', session)
     ncep_date_time = IN.read_datetime_from_span_id(ncep_html, 'Label1', 'DD/MM/YYYY HH:mm:ss')
 
     # Check ncep date is similar than state gen date
-    if abs(india_date_time.timestamp - ncep_date_time.timestamp) > 600:
+    if abs((india_date_time - ncep_date_time).seconds) > 600:
         raise ParserException('IN-KA', 'NCEP or State datetime is not valid') 
 
     # cogen type is sugarcane bagasee. Proof in Issue #1867
     cogen_value = IN.read_value_from_span_id(ncep_html, 'lbl_tc')
-    
+
     biomass_value = IN.read_value_from_span_id(ncep_html, 'lbl_tb')
-    
+
     #cogen_value is generated from sugarcane bagasse
     biomass_value += cogen_value
 
@@ -159,7 +159,7 @@ def fetch_production(zone_key='IN-KA', session=None, target_datetime=None, logge
         'storage': {
             'hydro': 0.0
         },
-        'source': 'kptclsldc.com',
+        'source': 'kptclsldc.in',
     }
 
     return data

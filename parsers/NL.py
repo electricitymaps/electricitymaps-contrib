@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
+from copy import copy
+from datetime import datetime, timedelta
+import logging
+import math
+import requests
 
 import arrow
-import math
+import numpy as np
+import pandas as pd
+
+from parsers.lib.config import refetch_frequency
 
 from . import statnett
 from . import ENTSOE
 from . import DK
-import logging
-import pandas as pd
-import requests
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='NL', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__), energieopwek_nl=True):
+                     logger=logging.getLogger(__name__), energieopwek_nl=False):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
     else:
@@ -134,10 +140,10 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         # if for some reason theré's no unknown value
         if not 'unknown' in p['production'] or p['production']['unknown'] == None:
             p['production']['unknown'] = 0
-        
+
         Z = sum([x or 0 for x in p['production'].values()])
         # Only calculate the difference if the datetime exists
-        # If total ENTSOE reported production (Z) is less than total generation 
+        # If total ENTSOE reported production (Z) is less than total generation
         # (calculated from consumption and imports), then there must be some
         # unknown production missing, so we add the difference.
         # The difference can actually be negative, because consumption is based
@@ -146,6 +152,15 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
         if p['datetime'] in df_total_generations and Z < df_total_generations[p['datetime']]:
             p['production']['unknown'] = round((
                     df_total_generations[p['datetime']] - Z + p['production']['unknown']), 3)
+    
+    # Add capacities
+    solar_capacity_df = get_solar_capacities()
+    wind_capacity_df = get_wind_capacities()
+    for p in productions:
+        p["capacity"] = {
+            "solar": get_solar_capacity_at(p["datetime"], solar_capacity_df),
+            "wind": get_wind_capacity_at(p["datetime"], wind_capacity_df)
+        }
 
     # Filter invalid
     # We should probably add logging to this
@@ -153,7 +168,7 @@ def fetch_production(zone_key='NL', session=None, target_datetime=None,
 
 
 def fetch_production_energieopwek_nl(session=None, target_datetime=None,
-                                     logger=logging.getLogger(__name__)):
+                                     logger=logging.getLogger(__name__)) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()
 
@@ -211,6 +226,68 @@ def get_production_data_energieopwek(date, session=None):
 
     return df
 
+def get_wind_capacity_at(date: datetime, wind_capacity_df: pd.DataFrame) -> float:
+    in_service_mask = ((wind_capacity_df["Start date"] <= date) & (date <= wind_capacity_df["End date"])) | ((wind_capacity_df["Start date"] <= date) & (wind_capacity_df["End date"].isnull()))
+    return np.array(wind_capacity_df[in_service_mask]["#"] * wind_capacity_df[in_service_mask].kW).sum() / 1000
+
+def get_wind_capacities() -> pd.DataFrame:
+    url_wind_capacities = "https://windstats.nl/windstats1/ajax/statsJSON.cfm?minKW=0&maxKW=999999&gemeente=&provincie="
+    r = requests.get(url_wind_capacities)
+    installations_df = pd.DataFrame(columns=["Project", "#", "Brand", "kW", "Municipality", "Province", "Start date", "End date"])
+    all_installations_data = r.json()["dataList"]
+    for row in all_installations_data:
+        entry = {
+            "Project": row[0].split(">")[1].split("</a")[0],
+            "#": row[1],
+            "Brand": row[2],
+            "kW": row[3],
+            "Municipality": row[4],
+            "Province": row[5],
+            "Start date": row[6],
+            "End date": row[8],
+        }
+        installations_df = installations_df.append(entry, ignore_index=True)
+    installations_df.kW = installations_df.kW.astype(float)
+    installations_df["#"] = installations_df["#"].astype(int)
+    installations_df["Start date"] = pd.to_datetime(installations_df["Start date"]).dt.tz_localize("utc")
+    installations_df["End date"] = pd.to_datetime(installations_df["End date"]).dt.tz_localize("utc")
+    return installations_df
+
+def get_solar_capacity_at(date: datetime, solar_capacity_df: pd.DataFrame) -> float:
+    latest_year = date.year
+    while True:
+        # Latest capacity for the year to date might not have been published yet, so revert back to latest known year
+        if solar_capacity_df[solar_capacity_df.index.year == latest_year]["capacity (MW)"].empty:
+            latest_year -= 1
+        else:
+            return float(solar_capacity_df[solar_capacity_df.index.year == latest_year]["capacity (MW)"][0])
+
+def get_solar_capacities() -> pd.DataFrame:
+    solar_capacity_base_url = "https://opendata.cbs.nl/ODataApi/odata/82610ENG/UntypedDataSet?$filter=((EnergySourcesTechniques+eq+%27E006590+%27))+and+("
+
+    START_YEAR = 2010
+    end_year = arrow.now().year
+
+    years = list(range(START_YEAR, end_year + 1))
+    url_solar_capacity = copy(solar_capacity_base_url)
+
+    for i, year in enumerate(years):
+        if i == len(years) - 1:
+            url_solar_capacity += f"(Periods+eq+%27{year}JJ00%27))"
+        else:
+            url_solar_capacity += f"(Periods+eq+%27{year}JJ00%27)+or+"
+
+    r = requests.get(url_solar_capacity)
+
+    solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
+    for yearly_row in r.json()["value"]:
+        capacity = float(yearly_row["ElectricalCapacityEndOfYear_8"])
+        datetime = arrow.get(yearly_row["Periods"].split("JJ")[0]).format()
+        solar_capacity_df = solar_capacity_df.append({"datetime": datetime, "capacity (MW)": capacity}, ignore_index=True)
+    solar_capacity_df.datetime = pd.to_datetime(solar_capacity_df.datetime)
+    solar_capacity_df = solar_capacity_df.set_index("datetime")
+
+    return solar_capacity_df
+
 if __name__ == '__main__':
     print(fetch_production())
-    

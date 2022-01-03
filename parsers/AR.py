@@ -37,6 +37,7 @@ power_plant_type = {
     'ACAJTG06': 'gas',
     'ACAJTV07': 'gas',
     'ACHIEO': 'wind',
+    'ACONDI01': 'oil',
     'ADTOHI': 'hydro',
     'AESPTG01': 'gas',
     'AESPTG02': 'gas',
@@ -59,6 +60,7 @@ power_plant_type = {
     'ANCHDI02': 'oil',
     'ANCHDI03': 'oil',
     'ANCHDI04': 'oil',
+    'ANPCFV': 'solar',
     'APARTV01': 'gas',
     'AR21EO': 'wind',
     'ARA2EO': 'wind',
@@ -108,19 +110,23 @@ power_plant_type = {
     'BRC1DI02': 'oil',
     'BRC2DI02': 'oil',
     'BRCHTG01': 'gas',
+    'BRCHTV01': 'gas',
     'BRKETG01': 'gas',
     'BRKETG02': 'gas',
     'BRKETG03': 'gas',
     'BRKETG04': 'gas',
     'BROWTG01': 'gas',
     'BROWTG02': 'gas',
+    'BRSOTV01': 'gas',
     'BSASTG01': 'gas',
     'BSASTV01': 'gas',
+    'BSROTV01': 'gas',
     'BVILDI01': 'oil',
     'CACHDI01': 'gas',
     'CACHHI': 'hydro',
     'CADIHI': 'hydro',
     'CAFADI01': 'gas',
+    'CAFAFV': 'solar',
     'CAIMDI01': 'oil',
     'CAIMDI02': 'oil',
     'CAIMDI03': 'oil',
@@ -133,6 +139,9 @@ power_plant_type = {
     'CASTDI01': 'oil',
     'CATADI01': 'oil',
     'CATDDI01': 'oil',
+    'CAU1FV': 'solar',
+    'CAU2FV': 'solar',
+    'CAU3FV': 'solar',
     'CAVIDI01': 'oil',
     'CCOLHI': 'hydro',
     'CCORHI': 'hydro',
@@ -154,9 +163,13 @@ power_plant_type = {
     'CHILDI01': 'oil',
     'CHLEDI01': 'oil',
     'CHNOEO': 'wind',
+    'CHN2EO': 'wind',
+    'CHN3EO': 'wind',
+    'CHN4EO': 'wind',
     'CHOCHI': 'hydro',
     'CIPODI01': 'oil',
     'CIPOHI': 'hydro',
+    'CITRDI01': 'oil',
     'COLBDI01': 'oil',
     'COMODI01': 'gas',
     'CONDHI': 'hydro',
@@ -200,9 +213,11 @@ power_plant_type = {
     'ELOMDI01': 'gas',
     'EMBANUCL': 'nuclear',
     'ENE1EO': 'wind',
+    'EN1MEO': 'wind',
     'ENRSDI01': 'oil',
     'ENSETG01': 'gas',
     'ESCAHI': 'hydro',
+    'ESCOTV01': 'gas',
     'ESQDDI01': 'oil',
     'ETIGHI': 'hydro',
     'EZEITG01': 'gas',
@@ -214,7 +229,9 @@ power_plant_type = {
     'FRIATG01': 'gas',
     'FSIMHI': 'hydro',
     'FUTAHI': 'hydro',
+    'GALVDI01': 'oil',
     'GARAEO': 'wind',
+    'GARRTV01': 'gas',
     'GBELTG01': 'gas',
     'GBELTG02': 'gas',
     'GBELTV01': 'gas',
@@ -222,9 +239,14 @@ power_plant_type = {
     'GEBATG01': 'gas',
     'GEBATG02': 'gas',
     'GEBATG03': 'gas',
+    'GEBATG04': 'gas',
     'GEBATV01': 'gas',
+    'GEBATV02': 'gas',
+    'GIG1DI01': 'oil',
+    'GNV1EO': 'wind',
     'GNV2EO': 'wind',
     'GOYDDI01': 'oil',
+    'GRIOEO': 'wind',
     'GUEMTG01': 'gas',
     'GUEMTV11': 'gas',
     'GUEMTV12': 'gas',
@@ -250,6 +272,7 @@ power_plant_type = {
     'LBLADI01': 'oil',
     'LCA2TG01': 'gas',
     'LCAMTG01': 'gas',
+    'LCA2EO': 'wind',
     'LCASEO': 'wind',
     'LDCUHI': 'hydro',
     'LDCUTG22': 'gas',
@@ -273,6 +296,7 @@ power_plant_type = {
     'LEVADI01': 'oil',
     'LEVATG01': 'gas',
     'LEVATG02': 'gas',
+    'LHEREO': 'wind',
     'LIBEDI01': 'oil',
     'LINCDI01': 'oil',
     'LLANFV': 'solar',
@@ -282,10 +306,14 @@ power_plant_type = {
     'LOBODI01': 'oil',
     'LOM1EO': 'wind',
     'LOM2EO': 'wind',
+    'LOM3EO': 'wind',
     'LOM4EO': 'wind',
+    'LOM5EO': 'wind',
+    'LOM6EO': 'wind',
     'LPALDI01': 'oil',
     'LPAZDI01': 'oil',
     'LPLADI01': 'oil',
+    'LPLCTG01': 'gas',
     'LQUIHI': 'hydro',
     'LREYHB': 'hydro_storage',
     'LRIDDI01': 'oil',
@@ -299,9 +327,11 @@ power_plant_type = {
     'LROBDI01': 'oil',
     'LUJBTG01': 'gas',
     'LUJBTG02': 'gas',
+    'LUNLHI': 'hydro',
     'LVARDI01': 'oil',
     'LVINHI': 'hydro',
     'MAGDDI01': 'oil',
+    'MAL1EO': 'wind',
     'MANAEO': 'wind',
     'MANQEO': 'wind',
     'MAT3TG01': 'gas',
@@ -334,6 +364,7 @@ power_plant_type = {
     'MDPATV08': 'gas',
     'MESEDI01': 'oil',
     'MIR1DI01': 'oil',
+    'MIRAEO': 'wind',
     'MJUADI01': 'oil',
     'MMARTG01': 'gas',
     'MMARTG02': 'gas',
@@ -350,6 +381,7 @@ power_plant_type = {
     'NECOTV03': 'gas',
     'NECOTV04': 'gas',
     'NESPDI02': 'oil',
+    'NEU1EO': 'wind',
     'NIH1HI': 'hydro',
     'NIH4HI': 'hydro',
     'NOMODI01': 'gas',
@@ -368,6 +400,7 @@ power_plant_type = {
     'OLIVEO': 'wind',
     'OLPADI01': 'oil',
     'ORADDI01': 'oil',
+    'PACUDI01': 'oil',
     'PAGUHI': 'hydro',
     'PAMEEO': 'wind',
     'PAMODI01': 'oil',
@@ -382,6 +415,7 @@ power_plant_type = {
     'PEDRTG02': 'gas',
     'PEDRTG03': 'gas',
     'PEHUDI01': 'oil',
+    'PERGDI01': 'oil',
     'PERZDI01': 'oil',
     'PERZDI02': 'oil',
     'PERZDI03': 'oil',
@@ -456,6 +490,8 @@ power_plant_type = {
     'ROJOTG01': 'gas',
     'ROJOTG02': 'gas',
     'ROJOTG03': 'gas',
+    'ROJOTG04': 'gas',
+    'ROJOTV01': 'gas',
     'ROMEHI': 'hydro',
     'RREYHI': 'hydro',
     'RSAUDI01': 'oil',
@@ -463,6 +499,7 @@ power_plant_type = {
     'RTERTG02': 'gas',
     'RUFIDI01': 'oil',
     'SALOHI': 'hydro',
+    'SAL2TG01': 'gas',
     'SANADI01': 'oil',
     'SANDFV': 'solar',
     'SANDHI': 'hydro',
@@ -470,6 +507,7 @@ power_plant_type = {
     'SARCTG22': 'gas',
     'SARCTG23': 'gas',
     'SAUJFV': 'solar',
+    'SCABDI01': 'oil',
     'SCHADI01': 'oil',
     'SCTPDI01': 'oil',
     'SERTTG01': 'gas',
@@ -506,13 +544,17 @@ power_plant_type = {
     'SSALDI01': 'oil',
     'SVICDI01': 'oil',
     'TABATV01': 'gas',
+    'TAMBFV': 'solar',
     'TANDTG01': 'gas',
     'TANDTG02': 'gas',
     'TANDTV01': 'gas',
     'TARDDI01': 'oil',
+    'TBENHI': 'hydro',
     'TELLDI01': 'oil',
+    'TEROEO': 'wind',
     'TERVDI01': 'oil',
     'TICITV01': 'gas',
+    'TIGODI01': 'oil',
     'TIMBTG01': 'gas',
     'TIMBTG02': 'gas',
     'TIMBTV01': 'gas',
@@ -549,6 +591,8 @@ power_plant_type = {
     'VOBLTG01': 'gas',
     'VOBLTG02': 'gas',
     'VOBLTV01': 'gas',
+    'VSECEO': 'wind',
+    'VTBGDI01': 'oil',
     'VTUDDI01': 'oil',
     'VTUEDI01': 'oil',
     'YACYHI': 'hydro',
@@ -616,22 +660,8 @@ def webparser(req):
     return data_table
 
 
-def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known power price of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'currency': EUR,
-      'datetime': '2017-01-01T00:00:00Z',
-      'price': 0.0,
-      'source': 'mysource.com'
-    }
-      """
+def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+    """Requests the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
     s = session or requests.Session()
@@ -665,9 +695,10 @@ def fetch_price(zone_key='AR', session=None, target_datetime=None, logger=loggin
     return data
 
 
-def get_datetime(session=None):
+def get_datetime(session=None) -> dict:
     """
-    Generation data is updated hourly.  Makes request then finds most recent hour available.
+    Generation data is updated hourly.
+    Makes request then finds most recent hour available.
     Returns an arrow datetime object using UTC-3 for timezone and zero for minutes and seconds.
     """
 
@@ -683,8 +714,8 @@ def get_datetime(session=None):
     return {'datetime': datetime}
 
 
-def dataformat(junk):
-    """Takes string data with only digits and returns it as a float."""
+def dataformat(junk) -> list:
+    """Format string to float."""
 
     formatted = []
     for item in junk:
@@ -695,10 +726,8 @@ def dataformat(junk):
     return formatted
 
 
-def generation_finder(data, gen_type):
-    """Finds all generation matching requested type in a list.
-    Sums together and returns a float.
-    """
+def generation_finder(data, gen_type) -> float:
+    """Finds all generation matching requested type in a list."""
 
     find_generation = [i + 2 for i, x in enumerate(data) if x == gen_type]
     generation_total = sum([data[i] for i in find_generation])
@@ -706,10 +735,10 @@ def generation_finder(data, gen_type):
     return float(generation_total)
 
 
-def get_thermal(session, logger):
+def get_thermal(session, logger) -> dict:
     """
-    Requests thermal generation data then parses and sorts by type.  Nuclear is included.
-    Returns a dictionary.
+    Requests thermal generation data then parses and sorts by type.
+    Nuclear is included.
     """
 
     # Need to persist session in order to get ControlID and ReportSession so we can send second request
@@ -778,10 +807,11 @@ def get_thermal(session, logger):
             'biomass': biomass_generation}
 
 
-def get_hydro_and_renewables(session, logger):
-    """Requests hydro generation data then parses into a usable format.
+def get_hydro_and_renewables(session, logger) -> dict:
+    """
+    Requests hydro generation data then parses into a usable format.
     There's sometimes solar and wind plants included in the data.
-    Returns a dictionary."""
+    """
 
     s = session or requests.Session()
     r = s.get(hurl)
@@ -835,36 +865,8 @@ def get_hydro_and_renewables(session, logger):
             'hydro_storage': hydro_storage_generation}
 
 
-def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    target_datetime: if we want to parser for a specific time and not latest
-    logger: where to log useful information
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -898,9 +900,8 @@ def fetch_production(zone_key='AR', session=None, target_datetime=None, logger=l
 
 def direction_finder(direction, exchange):
     """
-    Uses the 'src' attribute of an "img" tag to find the
-    direction of flow. In the data source small arrow images
-    are used to show flow direction.
+    Uses the 'src' attribute of an "img" tag to find the direction of flow.
+    In the data source small arrow images are used to show flow direction.
     """
 
     if direction == "/uflujpot.nsf/f90.gif":
@@ -913,11 +914,8 @@ def direction_finder(direction, exchange):
         raise ValueError('Flow direction for {} cannot be determined, got {}'.format(exchange, direction))
 
 
-def tie_finder(exchange_url, exchange, session):
-    """
-    Finds tie data using div tag style attribute.
-    Returns a float.
-    """
+def tie_finder(exchange_url, exchange, session) -> float:
+    """Finds tie data using div tag style attribute."""
 
     req = session.get(exchange_url)
     soup = BeautifulSoup(req.text, 'html.parser')
@@ -932,27 +930,8 @@ def tie_finder(exchange_url, exchange, session):
     return netflow
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two zones
-
-    Arguments:
-    zone_key1, zone_key2: specifies which exchange to get
-    session: requests session passed in order to re-use an existing session,
-      not used here due to difficulty providing it to pandas
-    target_datetime: the datetime for which we want production data. If not provided, we should
-      default it to now. The provided target_datetime is timezone-aware in UTC.
-    logger: an instance of a `logging.Logger`; all raised exceptions are also logged automatically
-
-    Return:
-    A list of dictionaries in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two zones."""
 
     # Only hourly data is available.
     if target_datetime:

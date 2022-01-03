@@ -1,21 +1,33 @@
 #!/usr/bin/env python3
+"""
+Usage: poetry run test_parser FR production
+"""
 
-from parsers.lib.quality import validate_consumption, validate_production, validate_exchange, ValidationError
 import time
-
+import sys
 import pprint
-import arrow
-import click
 import datetime
 import logging
 
-from utils.parsers import PARSER_KEY_TO_DICT
+import arrow
+import click
+
+from electricitymap.contrib.parsers.lib.parsers import PARSER_KEY_TO_DICT
+from parsers.lib.quality import (
+    validate_consumption,
+    validate_production,
+    validate_exchange,
+    ValidationError,
+)
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
 
 
 @click.command()
-@click.argument('zone')
-@click.argument('data-type', default='production')
-@click.option('--target_datetime', default=None, show_default=True)
+@click.argument("zone")
+@click.argument("data-type", default="production")
+@click.option("--target_datetime", default=None, show_default=True)
 def test_parser(zone, data_type, target_datetime):
     """
 
@@ -48,15 +60,16 @@ def test_parser(zone, data_type, target_datetime):
     start = time.time()
 
     parser = PARSER_KEY_TO_DICT[data_type][zone]
-    if data_type in ['exchange', 'exchangeForecast']:
-        args = zone.split('->')
+    if data_type in ["exchange", "exchangeForecast"]:
+        args = zone.split("->")
     else:
         args = [zone]
-    res = parser(*args, target_datetime=target_datetime, logger=logging.getLogger(__name__))
+    res = parser(
+        *args, target_datetime=target_datetime, logger=logging.getLogger(__name__)
+    )
 
     if not res:
-        print('Error: parser returned nothing ({})'.format(res))
-        return
+        raise ValueError('Error: parser returned nothing ({})'.format(res))
 
     elapsed_time = time.time() - start
     if isinstance(res, (list, tuple)):
@@ -65,11 +78,10 @@ def test_parser(zone, data_type, target_datetime):
         res_list = [res]
 
     try:
-        dts = [e['datetime'] for e in res_list]
+        dts = [e["datetime"] for e in res_list]
     except:
-        print('Parser output lacks `datetime` key for at least some of the '
+        raise ValueError('Parser output lacks `datetime` key for at least some of the '
               'ouput. Full ouput: \n\n{}\n'.format(res))
-        return
     
     assert all([type(e['datetime']) is datetime.datetime for e in res_list]), \
         'Datetimes must be returned as native datetime.datetime objects'
@@ -79,33 +91,39 @@ def test_parser(zone, data_type, target_datetime):
     max_dt_warning = ''
     if not target_datetime:
         max_dt_warning = (
-            ' :( >2h from now !!!'
+            " :( >2h from now !!!"
             if (arrow.utcnow() - last_dt).total_seconds() > 2 * 3600
-            else ' -- OK, <2h from now :) (now={} UTC)'.format(arrow.utcnow()))
+            else " -- OK, <2h from now :) (now={} UTC)".format(arrow.utcnow())
+        )
 
     print("Parser result:")
     pp = pprint.PrettyPrinter(width=120)
     pp.pprint(res)
-    print('\n'.join(['---------------------',
-                     'took {:.2f}s'.format(elapsed_time),
-                     'min returned datetime: {} UTC'.format(first_dt),
-                     'max returned datetime: {} UTC {}'.format(
-                         last_dt, max_dt_warning), ]))
-    
+    print(
+        "\n".join(
+            [
+                "---------------------",
+                "took {:.2f}s".format(elapsed_time),
+                "min returned datetime: {} UTC".format(first_dt),
+                "max returned datetime: {} UTC {}".format(last_dt, max_dt_warning),
+            ]
+        )
+    )
+
     if type(res) == dict:
         res = [res]
     for event in res:
         try:
-            if data_type == 'production':
+            if data_type == "production":
                 validate_production(event, zone)
-            elif data_type == 'consumption':
+            elif data_type == "consumption":
                 validate_consumption(event, zone)
-            elif data_type == 'exchange':
+            elif data_type == "exchange":
                 validate_exchange(event, zone)
         except ValidationError as e:
-            print('Validation failed: {}'.format(e))
+            logger.warning('Validation failed @ {}: {}'.format(event['datetime'], e))
 
-    
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # pylint: disable=no-value-for-parameter
     print(test_parser())

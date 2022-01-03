@@ -179,9 +179,13 @@
         }
       },
       "CA-AB": {
-        "hydro discharge": {
+        "unknown": {
+          "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
+          "value": 655
+        },
+        "battery discharge": {
           "source": "2017 average by Tomorrow",
-          "value": 597.2654373454017
+          "value": 597
         }
       },
       "CA-NS": {
@@ -208,7 +212,22 @@
           "value": 40.98482440401805
         }
       },
-      "CL-SEN" : {
+      "CH": {
+        "unknown": {
+          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
+          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
+          "value": 131
+        },
+        "hydro discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
+        },
+        "battery discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
+        }
+      },
+      "CL-SEN": {
         "unknown": {
           "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
           "value": 491.8
@@ -584,9 +603,9 @@
           "value": 462.73049119238584
         },
         "unknown": {
-          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/2804#issuecomment-750944105",
-          "source": "CBS 2019 & ENTSO-E. Assumes 67.5% gas, 18.1% biomass, 5% oil, 0.3% hydro, rest unknown equivalent",
-          "value": 468
+          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/3015#issuecomment-888154930",
+          "source": "2020 average by Tomorrow. See disclaimer",
+          "value": 342
         }
       },
       "NO-NO1": {
@@ -649,6 +668,13 @@
           "value": 674.7698898846445
         }
       },
+      "PR": {
+        "unknown": {
+          "_comment": "Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6",
+          "source": "Based on average renewable generation October 2019-September 2020 (12% hydro, 57% solar, 31% wind)",
+          "value": 31.94
+        }
+      },
       "PT": {
         "battery discharge": {
           "source": "2019 average by Tomorrow",
@@ -681,16 +707,23 @@
       },
       "RU-1": {
         "unknown": {
-          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 7.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 88.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 524 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
-          "source": "assumes 88% gas, 8% coal, <1% oil, 4% other",
-          "value": 524
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.7% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 89.0% * 490 g/kWh (gas) + 3.8% * 700 g/kWh (other)= 517 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Sum of zones Northwest, Central, Volga, South, Ural",
+          "source": "assumes 89% gas, 7% coal, <1% oil, 4% other",
+          "value": 517
         }
       },
       "RU-2": {
         "unknown": {
-          "_comment": "Assumes weighted average emission factor based on estimated 2018 fuel consumption: 86.7% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.3% * 490 g/kWh (gas) + 4.6% * 700 g/kWh (other)= 786 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
-          "source": "assumes 87% coal, 8% gas, <1% oil, 5% other",
-          "value": 786
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.0% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 9.1% * 490 g/kWh (gas) + 4.7% * 700 g/kWh (other)= 784 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Siberian zone",
+          "source": "assumes 86% coal, 9% gas, <1% oil, 5% other",
+          "value": 784
+        }
+      },
+      "RU-AS": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1% * 490 g/kWh (gas) = 687 g/kWh, Source: https://minenergo.gov.ru/node/11323 2018-06-26 Table 7.3., p.80, Extreme East zone",
+          "source": "assumes 60% coal, 40% gas, <1% oil",
+          "value": 687
         }
       },
       "SE": {
@@ -699,8 +732,10 @@
           "value": 46.02408724838775
         },
         "unknown": {
-          "source": "assumes 76% biomass, 12% oil based thermal, 7% gas, 3% solar, 2% peat",
-          "value": 306
+          "_comment": "Uses the 2019 (2021 edition) eurostat production values for the sources in unknown",
+          "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-balance-sheets-February-2021-edition.zip/4b1d6665-f303-be7d-a7e5-1e0da16ec0d9?t=1612709565471",
+          "source": "assumes 77.22% biomass, 11.2% oil based thermal, 6.33% gas, 4.03% solar, 1.21% peat",
+          "value": 292.9
         }
       },
       "SG": {
@@ -761,55 +796,6 @@
           "_url": "https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine",
           "source": "renewable mix; assumes 50% solar, 50% wind",
           "value": 28
-        }
-      },
-      "US-CA": {
-        "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 229.3461353882938
-        },
-        "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 229.3461353882938
-        }
-      },
-      "US-NEISO": {
-        "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 273.7550391054897
-        }
-      },
-      "US-NY": {
-        "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 200.76883108658194
-        }
-      },
-      "US-PJM": {
-        "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 399.77646355214347
-        }
-      },
-      "PR": {
-        "unknown": {
-          "_comment": "Source: https://indicadores.pr/dataset/generacion-consumo-costo-ingresos-y-clientes-del-sistema-electrico-de-puerto-rico/resource/fdad4f42-a4be-48bb-9478-a8fb75c000c6",
-          "source": "Based on average renewable generation October 2019-September 2020 (12% hydro, 57% solar, 31% wind)",
-          "value": 31.94
-        }
-      },
-      "US-SPP": {
-        "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 448.61411758480546
-        }
-      },
-      "US-TX": {
-        "unknown": {
-          "_comment": "52.4% gas, 23.4% wind, 15.9% coal, 5.4% nuclear, 2.1% solar, 0.9% other (hydro, storage, and biomass)",
-          "_url": "http://www.ercot.com/content/wcm/lists/172484/ERCOT_Quick_Facts_01.17.19.pdf",
-          "source": "assumes: 70.2% gas, 21.3% coal, 7.2% nuclear, 1.2% other",
-          "value": 521.724
         }
       },
       "UY": {
@@ -1201,13 +1187,22 @@
       },
       "CA-BC": {
         "_source": "List of Generating Stations in BC (Wikipedia)",
-        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia'",
+        "_url": "https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia",
         "powerOriginRatios": {
           "biomass": 0.09,
           "hydro": 0.88,
           "wind": 0.01,
           "gas": 0.01,
           "unknown": 0.01
+        }
+      },
+      "CA-MB": {
+        "_source": "Statistics Canada - average production in 2020",
+        "_url": "https://docs.google.com/spreadsheets/d/1gobOiDRBsxKEKQPG2x5o2Qx17bQLXTSJLtF1JeasKWI/edit?usp=sharing",
+        "powerOriginRatios": {
+          "hydro": 0.9715,
+          "wind": 0.0254,
+          "gas": 0.003
         }
       },
       "CA-NB": {
@@ -1220,14 +1215,6 @@
           "gas": 0.12,
           "wind": 0.07,
           "biomass": 0.03
-        }
-      },
-      "CA-QC": {
-        "_url": "https://www.cer-rec.gc.ca/en/data-analysis/energy-markets/provincial-territorial-energy-profiles/provincial-territorial-energy-profiles-quebec.html",
-        "powerOriginRatios": {
-          "hydro": 0.95,
-          "wind": 0.04,
-          "unknown": 0.01
         }
       },
       "CA-ON": {
@@ -1296,6 +1283,24 @@
           "solar": 0.0,
           "unknown": 0.15258490420002668,
           "wind": 0.0
+        }
+      },
+      "CH": {
+        "_source": "Bundesamt für Statistik, Gesamtenergiestatistik 2019",
+        "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",
+        "powerOriginRatios": {
+          "battery discharge": 0,
+          "biomass": 0.035171,
+          "coal": 0.0461,
+          "gas": 0.031005,
+          "geothermal": 0,
+          "hydro": 0.409632,
+          "hydro discharge": 0.035143,
+          "nuclear": 0.335663,
+          "oil": 0.001207,
+          "solar": 0.038008,
+          "unknown": 0.021428,
+          "wind": 0.046622
         }
       },
       "CR": {
@@ -2114,6 +2119,20 @@
           "wind": 0.0
         }
       },
+      "KZ": {
+        "_source": "Our world in data 2019",
+        "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ",
+        "powerOriginRatios": {
+          "coal": 0.706728113937001,
+          "gas": 0.188180756380889,
+          "hydro": 0.0904234610265557,
+          "nuclear": 0.0,
+          "oil": 0.00749680842394995,
+          "wind": 0.00449084176120673,
+          "unknown": 0.00452705822702292,
+          "solar": 0.00263474788812734
+        }
+      },
       "LT": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2675,6 +2694,20 @@
           "wind": 0.004612842360966347
         }
       },
+      "TH": {
+        "_source": "IEA 2019 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.",
+        "_url": "https://www.iea.org/data-and-statistics?country=THAILAND&fuel=Electricity%20and%20heat&indicator=ElecGenByFuel",
+        "powerOriginRatios": {
+          "coal": 0.180736632940652,
+          "oil": 0.00112025791277195,
+          "gas": 0.646008637644721,
+          "hydro": 0.0326142054786188,
+          "geothermal": 0.00000506904032928486,
+          "biomass": 0.094720087593017,
+          "solar": 0.0262677669863541,
+          "wind": 0.0185273424035362
+        }
+      },
       "TR": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2726,40 +2759,6 @@
           "wind": 0.014463236154672453
         }
       },
-      "US-BPA": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 3.064263500295041e-06,
-          "coal": 0.0004258504765287879,
-          "gas": 0.00019334815524038357,
-          "geothermal": 2.584460401783361e-05,
-          "hydro": 0.7347129651465208,
-          "hydro discharge": 0.0,
-          "nuclear": 0.09265971912565989,
-          "oil": 0.0,
-          "solar": 3.9423972905655316e-05,
-          "unknown": 0.09589506777598594,
-          "wind": 0.07604471647964044
-        }
-      },
-      "US-CA": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02941021808319713,
-          "coal": 0.0006556467640274957,
-          "gas": 0.38826051564725633,
-          "geothermal": 0.04647418641408467,
-          "hydro": 0.17894314112305199,
-          "hydro discharge": 0.0,
-          "nuclear": 0.09828228824076103,
-          "oil": 0.0,
-          "solar": 0.15926426180630407,
-          "unknown": 1.9234319763085327e-07,
-          "wind": 0.09870954957811963
-        }
-      },
       "US-HI-OA": {
         "_source": "Tomorrow",
         "powerOriginRatios": {
@@ -2775,125 +2774,6 @@
           "solar": 0.020618222439025388,
           "unknown": 0.0,
           "wind": 0.01825210015388137
-        }
-      },
-      "US-IPC": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0035393353362828898,
-          "coal": 0.2934014989094449,
-          "gas": 0.13560958245947718,
-          "geothermal": 0.018951534612374525,
-          "hydro": 0.3840074542841999,
-          "hydro discharge": 0.0,
-          "nuclear": 9.388550933243114e-05,
-          "oil": 0.0,
-          "solar": 0.021434945456262313,
-          "unknown": 0.00011618550971948805,
-          "wind": 0.1428455779229065
-        }
-      },
-      "US-MISO": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.764576695461162e-05,
-          "coal": 0.42336063918934574,
-          "gas": 0.2677820721233829,
-          "geothermal": 0.0,
-          "hydro": 0.004716519058014514,
-          "hydro discharge": 0.0,
-          "nuclear": 0.1851627975902798,
-          "oil": 8.807593295001982e-05,
-          "solar": 0.00021402635858385843,
-          "unknown": 0.01933513862718859,
-          "wind": 0.0993130853532999
-        }
-      },
-      "US-PJM": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.5194003584203697e-08,
-          "coal": 0.23703510024409885,
-          "gas": 0.3604294006100377,
-          "geothermal": 0.0,
-          "hydro": 0.02021120297817916,
-          "hydro discharge": 0.0,
-          "nuclear": 0.33628962166768595,
-          "oil": 0.0021662684369487136,
-          "solar": 0.0030036253045122585,
-          "unknown": 0.011571295053636075,
-          "wind": 0.029293470510897666
-        }
-      },
-      "US-SEC": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.00018543738980094144,
-          "unknown": 0.9998145626101991,
-          "wind": 0.0
-        }
-      },
-      "US-SPP": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0003416806680901817,
-          "coal": 0.35312547003110895,
-          "gas": 0.2581920094224532,
-          "geothermal": 0.0,
-          "hydro": 0.05393510240409148,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0610244913652716,
-          "oil": 0.00014392983370791683,
-          "solar": 0.0021086815976331524,
-          "unknown": 0.0009278127957284803,
-          "wind": 0.2702008218819151
-        }
-      },
-      "US-TN": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.14721736740425218,
-          "gas": 0.27907836040422657,
-          "geothermal": 0.0,
-          "hydro": 0.1433331618110095,
-          "hydro discharge": 0.0,
-          "nuclear": 0.4268026355433382,
-          "oil": 0.0,
-          "solar": 0.002514995463269994,
-          "unknown": 0.0010534793739036007,
-          "wind": 0.0
-        }
-      },
-      "US-TX": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.013266035792016895,
-          "unknown": 0.808225853071413,
-          "wind": 0.17850811113657017
         }
       },
       "UY": {

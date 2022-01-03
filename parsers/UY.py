@@ -22,11 +22,8 @@ INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 SALTO_GRANDE_URL = 'http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&'
 
 
-def get_salto_grande(session):
-    """
-    Finds the current generation from the Salto Grande Dam that is
-    allocated to Uruguay.
-    """
+def get_salto_grande(session) -> float:
+    """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     current_time = arrow.now('UTC-3')
     if current_time.minute < 30:
@@ -95,7 +92,7 @@ def parse_page(session):
     return obj
 
 
-def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None):
+def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=None) -> dict:
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
@@ -111,22 +108,8 @@ def fetch_production(zone_key='UY', session=None, target_datetime=None, logger=N
     return data
 
 
-def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two countries
-
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    """
+def fetch_exchange(zone_key1='UY', zone_key2='BR-S', session=None, target_datetime=None, logger=None) -> dict:
+    """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 

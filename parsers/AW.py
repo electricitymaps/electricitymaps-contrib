@@ -21,6 +21,9 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
     fossil = top_data['Fossil']
     wind = top_data['Wind']
     solar = top_data['TotalSolar']
+    # biogas live value is 0 MW all the time (2021)
+    biogas = top_data['total_bio_gas']
+    total = top_data['TotalPower']
 
     # We're using Fossil data to get timestamp in correct time zone
     local_date_time = datetime.datetime.strptime(fossil['timestamp'], "%Y-%m-%d %H:%M:%S.%f")
@@ -33,6 +36,8 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
             'oil': float(fossil['value']),
             'wind': float(wind['value']),
             'solar': float(solar['value']),
+            'biomass': float(biogas['value']),
+            'unknown': float(total['value']) - float(fossil['value']) - float(wind['value']) - float(solar['value']) - float(biogas['value'])
         },
         'storage': {},
         'source': 'webaruba.com',

@@ -6,12 +6,19 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { __ } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 
+const Container = styled.div`
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+`;
+
 export default () => (
-  <div className="info-text small-screen-hidden">
+  <Container className="info-text">
     <ColorBlindCheckbox />
     <p>
       {__('panel-initial-text.thisproject')}
@@ -30,7 +37,7 @@ export default () => (
         dangerouslySetInnerHTML={{
           __html: __(
             'panel-initial-text.contribute',
-            'https://github.com/tmrowco/electricitymap-contrib#add-a-new-region',
+            'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started',
           ),
         }}
       />
@@ -51,13 +58,13 @@ export default () => (
         { /* Facebook share */}
         <div
           className="fb-share-button"
-          data-href="https://www.electricitymap.org/"
+          data-href="https://app.electricitymap.org/"
           data-layout="button_count"
         />
         { /* Twitter share */}
         <a
           className="twitter-share-button"
-          data-url="https://www.electricitymap.org"
+          data-url="https://app.electricitymap.org"
           data-via="electricitymap"
           data-lang={locale}
         />
@@ -70,5 +77,5 @@ export default () => (
         </span>
       </div>
     </div>
-  </div>
+  </Container>
 );
