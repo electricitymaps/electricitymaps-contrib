@@ -244,8 +244,8 @@ def fetch_consumption(
     assert response.status_code == 200
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    consumption_div = soup.find_all('div', {'class': 'widget-small info coloured-icon'})[0]
-    consumption_val = consumption_div.find('h4').contents[0].split()[0]
+    consumption_title = soup.find("h5", string=re.compile(r"\s*Demanda Total\s*"))
+    consumption_val = consumption_title.find_next_sibling().text.split()[0]
 
     data = {
         'consumption': consumption_val,
