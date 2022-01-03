@@ -761,12 +761,12 @@
       ]
     ],
     "capacity": {
-      "biomass": 46.22,
+      "biomass": 61,
       "hydro": 734.84,
       "nuclear": 0,
-      "solar": 115.07,
-      "unknown": 2273.22,
-      "wind": 27
+      "solar": 165.08,
+      "unknown": 2501.03,
+      "wind": 102.6
     },
     "contributors": [
       "https://github.com/igorarduin",
@@ -791,10 +791,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 58142,
+      "hydro": 58171,
       "nuclear": 1990,
-      "solar": 923,
-      "unknown": 19446,
+      "solar": 1181,
+      "unknown": 21193,
       "wind": 28
     },
     "contributors": [
@@ -821,9 +821,9 @@
       ]
     ],
     "capacity": {
-      "hydro": 22261,
-      "solar": 3,
-      "unknown": 3641,
+      "hydro": 22251,
+      "solar": 5,
+      "unknown": 3645,
       "wind": 426
     },
     "contributors": [
@@ -850,10 +850,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 11021,
-      "solar": 2128,
-      "unknown": 8243,
-      "wind": 14278
+      "hydro": 11032,
+      "solar": 3215,
+      "unknown": 8290,
+      "wind": 16744
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -879,10 +879,10 @@
       ]
     ],
     "capacity": {
-      "hydro": 17166,
-      "solar": 8,
-      "unknown": 4227,
-      "wind": 2018
+      "hydro": 17252,
+      "solar": 9,
+      "unknown": 4252,
+      "wind": 2022
     },
     "contributors": [
       "https://github.com/alexanmtz",
@@ -1569,23 +1569,25 @@
     ],
     "capacity": {
       "battery storage": 280,
-      "biomass": 8560,
-      "coal": 43950,
+      "biomass": 8570,
+      "coal": 43960,
       "gas": 30500,
       "geothermal": 47,
-      "hydro": 4850,
+      "hydro": 4860,
       "hydro storage": 9810,
-      "nuclear": 8114,
+      "nuclear": 4055,
       "oil": 4380,
-      "solar": 56040,
+      "solar": 58410,
       "unknown": 3700,
-      "wind": 63170
+      "wind": 64040
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/bohne13",
       "https://github.com/chiefymuc",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/IV1T3",
+      "https://github.com/sin"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2583,6 +2585,16 @@
     "timezone": "America/Guyana"
   },
   "HK": {
+    "bounding_box": [
+      [
+        113.337331576,
+        21.677069403000075
+      ],
+      [
+        114.90129642000011,
+        23.06394603200009
+      ]
+    ],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
   },
@@ -2696,7 +2708,17 @@
   },
   "ID": {
     "flag_file_name": "id.png",
-    "timezone": "Asia/Jakarta"
+    "timezone": "Asia/Jakarta",
+    "bounding_box": [
+      [
+        94.51270592500003,
+        -11.422621351999908
+      ],
+      [
+        141.47762699400005,
+        6.410101630000042
+      ]
+    ]
   },
   "IE": {
     "_comment": "hydro incl. 292 MW pumped storage",
@@ -5550,11 +5572,12 @@
     "capacity": {
       "biomass": 257,
       "gas": 10344,
-      "solar": 231.26
+      "solar": 461.66
     },
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/jarek",
+      "https://github.com/r24mille",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
       "https://github.com/q--"
@@ -6991,7 +7014,8 @@
     "contributors": [
       "https://github.com/kepiej",
       "https://github.com/systemcatch",
-      "https://github.com/KabelWlan"
+      "https://github.com/KabelWlan",
+      "https://github.com/danielmatsuda"
     ],
     "flag_file_name": "us.png",
     "parsers": {

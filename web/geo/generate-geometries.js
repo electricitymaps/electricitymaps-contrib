@@ -60,7 +60,12 @@ const topo = topojson.topology(zones);
 const topoDetails = topojson.topology(zonesMoreDetails);
 const mergedTopo = shrinkAndMergeTopoJson(topo, topoDetails);
 
-fs.writeFileSync(`${SRC_FOLDER}/world.json`, JSON.stringify(mergedTopo));
+// If script was called with argument '--ignore-world', let's not write the file to disk
+if (process.argv[2] === '--ignore-world') {
+  console.log('Skipping creation of world.json due to flag');
+} else {
+  fs.writeFileSync(`${SRC_FOLDER}/world.json`, JSON.stringify(mergedTopo));
+}
 
 // The following data includes complex shapes and should only be used in the backend to query by lon/lat
 const backendGeos = countryGeos.concat(stateGeos, thirdpartyGeos, USOriginalGeos);
