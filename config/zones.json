@@ -5852,11 +5852,11 @@
     "capacity": {
       "biomass": 230,
       "coal": 17242,
-      "gas": 4600
+      "gas": 4600,
       "hydro": 4829,
       "hydro storage": 1488,
       "nuclear": 13835,
-      "oil": 756.6
+      "oil": 756.6,
       "solar": 6226,
       "wind": 1529
     },
