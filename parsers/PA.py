@@ -245,7 +245,7 @@ def fetch_consumption(
 
     soup = BeautifulSoup(response.text, 'html.parser')
     consumption_title = soup.find("h5", string=re.compile(r"\s*Demanda Total\s*"))
-    consumption_val = consumption_title.find_next_sibling().text.split()[0]
+    consumption_val = float(consumption_title.find_next_sibling().text.split()[0])
 
     data = {
         'consumption': consumption_val,
