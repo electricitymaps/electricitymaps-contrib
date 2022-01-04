@@ -36,16 +36,13 @@ REVERSE_EXCHANGES = [
     "US-SW-PNM->US-SW-SRP",  # For some reason EBA.SRP-PNM.ID.H exists in EIA, but PNM-SRP does not. Probably because it is unidirectional
 ]
 
-
-NEGATIVE_PRODUCTION_THRESHOLDS = {
+NEGATIVE_PRODUCTION_THRESHOLDS_TYPE = {
     "default": -10,
-    "zoneOverrides": {
-        "US-SW-SRP": {"coal": -50, "unknown": -50},
-        "US-CAL-CISO": {"unknown": -50, "solar": -100},
-        "US-SE-AEC": {"coal": -50, "gas": -20},
-        "US-CAR-CPLE": {"coal": -20},
-        "US-NW-AVRN": {"wind": -20},
-    },
+    "coal": -50,
+    "gas": -20,
+    "solar": -100,
+    "wind": -20,
+    "unknown": -50,
 }
 
 
@@ -387,10 +384,9 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            negative_threshold = (
-                NEGATIVE_PRODUCTION_THRESHOLDS["zoneOverrides"]
-                .get(zone_key, {})
-                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS["default"])
+            negative_threshold = ( 
+                NEGATIVE_PRODUCTION_THRESHOLDS_TYPE
+                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"])
             )
 
             if (
