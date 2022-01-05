@@ -1,11 +1,11 @@
-const fs = require('fs');
 const path = require('path');
 
 const args = process.argv.slice(2);
 
-const { getJSON } = require("./utilities")
+const { getJSON } = require('./utilities');
+const { getZonesJson, saveZonesJson } = require('./files');
 
-let zones = getJSON('./world.geojson');
+let zones = getJSON(path.resolve(__dirname, './world.geojson'));
 if (args.length > 0) {
   zones = zones.filter((d) => d.properties.zoneName === args[0]);
 }
@@ -40,7 +40,7 @@ zones.features.forEach((zone) => {
   ];
 });
 
-zones = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../config/zones.json'), 'utf8'));
+zones = getZonesJson();
 
 for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
@@ -50,7 +50,4 @@ for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   zones[zone].bounding_box = [bbox[0], bbox[1]];
 }
 
-fs.writeFileSync(
-  path.resolve(__dirname, '../../config/zones.json'),
-  JSON.stringify(zones, null, 2)
-);
+saveZonesJson(zones);
