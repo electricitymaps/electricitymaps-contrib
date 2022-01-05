@@ -4896,10 +4896,12 @@
       "https://github.com/7hibault",
       "https://github.com/nessie2013",
       "https://github.com/q--",
+      "https://github.com/IV1T3",
       "https://github.com/r24mille"
     ],
     "parsers": {
-      "production": "PA.fetch_production"
+      "production": "PA.fetch_production",
+      "consumption": "PA.fetch_consumption"
     },
     "timezone": "America/Panama"
   },
