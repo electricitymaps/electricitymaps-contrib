@@ -23,7 +23,7 @@ function getPolygons(input) {
   } else {
     fc = input;
   }
-  
+
   featureEach(fc, (feature) => {
     const type = getType(feature);
     switch (type) {
