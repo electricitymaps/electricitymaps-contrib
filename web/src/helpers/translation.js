@@ -39,4 +39,21 @@ export function getFullZoneName(zoneCode) {
   return `${zoneName} (${countryName})`;
 }
 
+export function getShortZoneName(zoneCode, limit = 40) {
+  const zoneName = translate(`zoneShortName.${zoneCode}.zoneName`);
+  if (!zoneName) {
+    return zoneCode;
+  }
+  const countryName = translate(`zoneShortName.${zoneCode}.countryName`);
+  if (!countryName) {
+    return zoneName;
+  }
+
+  if (zoneName.length > limit) {
+    return `${zoneName.substring(0, limit)}... (${countryName})`;
+  }
+
+  return `${zoneName} (${countryName})`;
+}
+
 export const __ = translate;

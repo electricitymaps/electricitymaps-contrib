@@ -6,8 +6,10 @@ import arrow
 import logging
 import requests
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from operator import itemgetter
+
+from parsers.lib.config import refetch_frequency
 from .lib.validation import validate
 
 # Historical API
@@ -131,7 +133,7 @@ def production_processor_historical(raw_data):
 
     return ordered_data
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
     session: requests.session = None,

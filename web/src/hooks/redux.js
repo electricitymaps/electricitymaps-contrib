@@ -13,13 +13,13 @@ export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
   const histories = useSelector((state) => state.data.histories);
 
-  return useMemo(() => histories[zoneId] || [], [histories, zoneId]);
+  return useMemo(() => histories[zoneId] || null, [histories, zoneId]);
 }
 
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(() => zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
+  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -51,7 +51,7 @@ export function useCurrentZoneData() {
   const grid = useSelector((state) => state.data.grid);
 
   return useMemo(() => {
-    if (!zoneId || !grid) {
+    if (!zoneId || !grid || !zoneHistory) {
       return null;
     }
     if (zoneTimeIndex === null) {
@@ -71,7 +71,7 @@ export function useCurrentZoneExchangeKeys() {
   );
 
   return useMemo(() => {
-    if (!isConsumption) {
+    if (!isConsumption || !zoneHistory) {
       return [];
     }
     const exchangeKeys = new Set();

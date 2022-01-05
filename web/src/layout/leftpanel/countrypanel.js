@@ -42,37 +42,37 @@ import { getFullZoneName, __ } from '../../helpers/translation';
 
 const CountryLowCarbonGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-  
+
   const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge {...props} />;
   }
-  
+
   const fossilFuelRatio = electricityMixMode === 'consumption'
   ? d.fossilFuelRatio
   : d.fossilFuelRatioProduction;
   const countryLowCarbonPercentage = fossilFuelRatio !== null
   ? 100 - (fossilFuelRatio * 100)
   : null;
-  
+
   return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
 const CountryRenewableGauge = (props) => {
   const electricityMixMode = useSelector(state => state.application.electricityMixMode);
-  
+
   const d = useCurrentZoneData();
   if (!d) {
     return <CircularGauge {...props} />;
   }
-  
+
   const renewableRatio = electricityMixMode === 'consumption'
   ? d.renewableRatio
   : d.renewableRatioProduction;
   const countryRenewablePercentage = renewableRatio !== null
   ? renewableRatio * 100
   : null;
-  
+
   return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
@@ -112,7 +112,7 @@ const CountryNameTime = styled.div`
 const CountryNameTimeTable = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left: 1.2rem
+  margin-left: 1.2rem;
 `;
 const CountryPanelWrap = styled.div`
   overflow-y: scroll;
@@ -165,21 +165,21 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  
+
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
-  
+
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  
+
   const data = useCurrentZoneData() || {};
-  
+
   const parentPage = {
     pathname: isMobile ? '/ranking' : '/map',
     search: location.search,
   };
-  
+
   // Back button keyboard navigation
   useEffect(
     () => {
@@ -201,11 +201,17 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser, disclaimer } = data;
+  const { hasParser, estimationMethod } = data;
+  let { disclaimer } = data;
   const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
+
+
+  if (estimationMethod !== null) {
+    disclaimer = __('country-panel.estimatedDisclaimer');
+  }
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
@@ -216,7 +222,7 @@ const CountryPanel = ({
     dispatchApplication('tableDisplayEmissions', false);
     trackEvent('switchToCountryProduction');
   };
-  
+
 
   return (
     <CountryPanelStyled>
@@ -302,7 +308,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
@@ -318,7 +324,7 @@ const CountryPanel = ({
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://api.electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
               {/* TODO: Make the loader part of AreaGraph component with inferred height */}
