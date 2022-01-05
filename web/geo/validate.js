@@ -5,10 +5,13 @@ const {
   convex,
   dissolve,
   featureCollection,
-  intersect,
+  featureEach,
   getGeom,
+  intersect,
 } = require('@turf/turf');
 const { getPolygons, getHoles, writeJSON, log } = require('./utilities');
+
+const { getZonesJson } = require('./files')
 
 function validateGeometry(fc, config) {
   console.log('Validating geometries...');
@@ -18,6 +21,7 @@ function validateGeometry(fc, config) {
   zeroNeighboringIds(fc);
   zeroGaps(fc, config);
   zeroOverlaps(fc, config);
+  matchesZonesConfig(fc, config);
 }
 
 function zeroNullGeometries(fc) {
@@ -68,24 +72,20 @@ function zeroComplexPolygons(fc, { MAX_CONVEX_DEVIATION }) {
   }
 }
 
-/* 
-
-TODO: sync between zones.json and world.geojson to enable this check
-
 function matchesZonesConfig(fc) {
-  const features = [];
+  const zonesJson = getZonesJson();
+
+  const missingZones = [];
   featureEach(fc, (ft) => {
-    if (!(ft.properties.zoneName in zones)) {
-      features.push(ft.properties.zoneName);
+    if (!(ft.properties.zoneName in zonesJson)) {
+      missingZones.push(ft.properties.zoneName);
     }
   });
-  if (features.length) {
-    features.forEach((x) => log(`${x} not in zones.json`));
+  if (missingZones.length) {
+    missingZones.forEach((x) => log(`${x} not in zones.json`));
     throw Error('Zonename not in zones.json');
   }
 }
-
-*/
 
 function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES }) {
   const dissolved = getPolygons(dissolve(getPolygons(fc)));
