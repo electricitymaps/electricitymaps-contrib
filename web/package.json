@@ -98,7 +98,8 @@
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development",
-    "update-world": "node ./geo/update-world.js"
+    "update-world": "node ./geo/update-world.js",
+    "verify": "yarn lint && VERIFY_NO_UPDATES=1 yarn update-world"
   },
   "browserslist": [
     "defaults",
