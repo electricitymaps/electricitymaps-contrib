@@ -490,7 +490,7 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
 
     eia_error_message = raw_data.get("data", {}).get("error")
     if eia_error_message:
-        logger.error(f"EIA error: {eia_error_message}")
+        logger.error(f"EIA error, for series_id [{series_id}]: {eia_error_message}")
         return []
 
     # UTC timestamp with no offset returned.
