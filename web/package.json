@@ -80,7 +80,6 @@
     "readline-sync": "^1.4.9",
     "sass-loader": "^8.0.0",
     "shapefile": "^0.6.2",
-    "topojson-client": "^3.1.0",
     "topojson-server": "^3.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"

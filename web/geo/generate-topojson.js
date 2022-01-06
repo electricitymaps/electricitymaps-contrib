@@ -1,8 +1,8 @@
 const { topology } = require("topojson-server");
-const { writeJSON } = require("./utilities")
+const { getJSON, writeJSON } = require("./utilities")
 
 
-function generateTopojson(fc, {OUT_PATH}) {
+function generateTopojson(fc, {OUT_PATH, verifyNoUpdates}) {
   console.log("Generating new world.json");
   const topo = topology({
     objects: fc,
@@ -16,6 +16,16 @@ function generateTopojson(fc, {OUT_PATH}) {
   });
   topo.objects = newObjects
 
+  const currentTopo = getJSON(OUT_PATH);
+  if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
+    console.log("No changes to world.json");
+    return;
+  }
+
+  if (verifyNoUpdates) {
+    console.error('Did not expect any updates to world.json. Please run "yarn update-world"');
+    process.exit(1);
+  }
 
   writeJSON(OUT_PATH, topo)
 }
