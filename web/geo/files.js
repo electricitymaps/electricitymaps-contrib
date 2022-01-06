@@ -9,7 +9,7 @@ const getZonesJson = () => getJSON(PATH_ZONES_JSON, 'utf8');
 
 const saveZonesJson = (zones) => {
   fs.writeFileSync(
-    path.resolve(__dirname, '../../config/zones.json'),
+    PATH_ZONES_JSON,
     JSON.stringify(zones, null, 2)
   );
 }
