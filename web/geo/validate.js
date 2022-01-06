@@ -13,6 +13,8 @@ const { getPolygons, getHoles, writeJSON, log } = require('./utilities');
 
 const { getZonesJson } = require('./files')
 
+// TODO: Improve this function so each check returns error messages,
+// so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
   console.log('Validating geometries...');
   zeroNullGeometries(fc);
