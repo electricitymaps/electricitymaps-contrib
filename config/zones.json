@@ -2371,9 +2371,15 @@
         61.34788646000004
       ]
     ],
+    "capacity": {
+      "gas": 15,
+      "oil": 67,
+      "wind": 3.68
+    },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
+      "https://github.com/maxbellec",
+      "https://github.com/fastaxx"
     ],
     "flag_file_name": "gb.png",
     "timezone": null
