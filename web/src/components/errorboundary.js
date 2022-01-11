@@ -57,7 +57,7 @@ class ErrorBoundary extends React.Component {
           <h1>Oh no, something went terribly wrong...</h1>
           <p>
             Please let us know{' '}
-            <a href="https://github.com/tmrowco/electricitymap-contrib/">on Github</a> so we can fix
+            <a href="https://github.com/electricitymap/electricitymap-contrib">on Github</a> so we can fix
             this!
           </p>
           <ErrorMessage>
