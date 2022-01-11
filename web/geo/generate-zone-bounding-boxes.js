@@ -1,17 +1,11 @@
-const fs = require('fs');
 const path = require('path');
 
 const args = process.argv.slice(2);
 
-function readNDJSON(filePath) {
-  return fs
-    .readFileSync(path.resolve(__dirname, filePath), 'utf8')
-    .split('\n')
-    .filter((d) => d !== '')
-    .map(JSON.parse);
-}
+const { getJSON } = require('./utilities');
+const { getZonesJson, saveZonesJson } = require('./files');
 
-let zones = readNDJSON('../public/dist/zonegeometries.json');
+let zones = getJSON(path.resolve(__dirname, './world.geojson'));
 if (args.length > 0) {
   zones = zones.filter((d) => d.properties.zoneName === args[0]);
 }
@@ -19,7 +13,7 @@ if (args.length > 0) {
 let allCoords = [];
 const boundingBoxes = {};
 
-zones.forEach((zone) => {
+zones.features.forEach((zone) => {
   allCoords = [];
   zone.geometry.coordinates.forEach((coords1) => {
     coords1[0].forEach((coord) => allCoords.push(coord));
@@ -46,7 +40,7 @@ zones.forEach((zone) => {
   ];
 });
 
-zones = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../config/zones.json'), 'utf8'));
+zones = getZonesJson();
 
 for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
@@ -56,7 +50,4 @@ for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   zones[zone].bounding_box = [bbox[0], bbox[1]];
 }
 
-fs.writeFileSync(
-  path.resolve(__dirname, '../../config/zones.json'),
-  JSON.stringify(zones, null, 2)
-);
+saveZonesJson(zones);
