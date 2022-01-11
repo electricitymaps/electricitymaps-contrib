@@ -1,6 +1,6 @@
 import { max, min, mean, isArray } from 'lodash';
 
-export function getCenteredLocationViewport([longitude, latitude]) {''
+export function getCenteredLocationViewport([longitude, latitude]) {
   return {
     width: window.innerWidth,
     height: window.innerHeight,
