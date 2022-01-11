@@ -1,6 +1,6 @@
-import { max, min, mean } from 'lodash';
+import { max, min, mean, isArray } from 'lodash';
 
-export function getCenteredLocationViewport([longitude, latitude]) {
+export function getCenteredLocationViewport([longitude, latitude]) {''
   return {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -18,7 +18,8 @@ export function getCenteredZoneViewport(zone) {
   const latitudes = [];
 
   zone.geometry.coordinates.forEach((geojson) => {
-    geojson[0].forEach(([longitude, latitude]) => {
+    const data = isArray(geojson[0][0]) ? geojson[0] : geojson;
+    data.forEach(([longitude, latitude]) => {
       longitudes.push(longitude);
       latitudes.push(latitude);
     });
