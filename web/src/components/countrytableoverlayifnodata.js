@@ -1,3 +1,4 @@
+import { isNil } from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -32,11 +33,12 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasProductionData = (zoneData.production && Object.values(zoneData.production).every(v => v !== null)) || zonesThatCanHaveZeroProduction.includes(zoneId);
-  const isEstimated = zoneData.estimationMethod !== null;
+  const zoneHasProductionValues = zoneData.production && !Object.values(zoneData.production).every(v => v === null);
+  const zoneHasProductionData = zoneHasProductionValues || zonesThatCanHaveZeroProduction.includes(zoneId);
+  const isEstimated = !isNil(zoneData.estimationMethod);
 
-  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || !isEstimated;
 
+  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || isEstimated;
   if (shouldHideOverlay) {
     return null;
   }
