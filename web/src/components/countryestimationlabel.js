@@ -11,10 +11,13 @@ const EstimationLabel = styled.div`
   padding: 0 4px;
   margin-left: 4px;
   border-radius: 4px;
+  &:hover {
+    cursor: help;
+  }
 `;
 
 const TooltipInner = styled.div`
-  max-width: 200px;
+  max-width: 180px;
   font-size: smaller;
 `;
 
