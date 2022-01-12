@@ -8,7 +8,6 @@ import { useCurrentZoneData } from '../hooks/redux';
 const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
   const isRealtimeData = zoneTimeIndex === null;
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
-  const isEstimatedData = zoneData.estimationMethod !== null;
 
   let message = __('country-panel.noDataAtTimestamp');
   if (isRealtimeData) {
@@ -18,10 +17,6 @@ const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
 
   if (isDataDelayed) {
     message = __('country-panel.dataIsDelayed', zoneData.delays.production);
-  }
-
-  if (isEstimatedData) {
-    message = __('country-panel.dataIsEstimated');
   }
 
   return message;
