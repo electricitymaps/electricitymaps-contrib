@@ -1,8 +1,8 @@
 import json
-from os import listdir, PathLike, path
 import pathlib
+import subprocess
+from os import PathLike, listdir, path
 from typing import Dict, Union
-
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/locales/"
@@ -11,6 +11,12 @@ LOCALE_FILE_PATHS = [
     for f in listdir(LOCALES_FOLDER_PATH)
     if path.isfile(LOCALES_FOLDER_PATH / f) and f.endswith(".json")
 ]
+
+
+def run_shell_command(cmd: str, cwd: Union[PathLike, str] = None) -> str:
+    return subprocess.check_output(cmd, shell=True, encoding="utf8", cwd=cwd).rstrip(
+        "\n"
+    )
 
 
 class JsonFilePatcher(object):
