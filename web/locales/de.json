@@ -1575,10 +1575,6 @@
             "countryName": "Vereinigte Staaten",
             "zoneName": "Tampa Electric Company"
         },
-        "US-MIDA-OVEC": {
-            "countryName": "Vereinigte Staaten",
-            "zoneName": "Ohio Valley Electric Coporation"
-        },
         "US-MIDA-PJM": {
             "countryName": "Vereinigte Staaten",
             "zoneName": "PJM Interconnection, Llc"

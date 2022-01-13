@@ -34,6 +34,16 @@ def remove_zone(zone: str):
             if zone in zone_short_name:
                 del zone_short_name[zone]
 
+    for api_version in ["v3", "v4"]:
+        with JsonFilePatcher(ROOT_PATH / f"mockserver/public/{api_version}/state") as f:
+            data = f.content["data"]
+            if zone in data["countries"]:
+                del data["countries"][zone]
+
+            for k in list(data["exchanges"].keys()):
+                if k.startswith(f"{zone}->") or k.endswith(f"->{zone}"):
+                    del data["exchanges"][k]
+
     geo_json_path = ROOT_PATH / "web/geo/world.geojson"
     with JsonFilePatcher(geo_json_path) as f:
         new_features = [
