@@ -16,14 +16,14 @@ import {
 
 function* fetchZoneHistory(action) {
   const { zoneId, features } = action.payload;
-  let queryParamString = `?countryCode=${zoneId}&preview=1`;
+  let endpoint = `/v3/history?countryCode=${zoneId}`;
 
   if (features.length > 0) {
-    queryParamString += features.map(f => `&${f}=true`);
+    endpoint += features.map(f => `&${f}=true`);
   }
 
   try {
-    const payload = yield call(protectedJsonRequest, `/v3/history${queryParamString}`);
+    const payload = yield call(protectedJsonRequest, endpoint);
     yield put({ type: 'ZONE_HISTORY_FETCH_SUCCEEDED', zoneId, payload });
   } catch (err) {
     yield put({ type: 'ZONE_HISTORY_FETCH_FAILED' });
@@ -33,11 +33,7 @@ function* fetchZoneHistory(action) {
 
 function* fetchGridData(action) {
   const { features } = action.payload || {};
-  let endpoint = '/v3/state?preview=1';
-
-  if (features.includes('estimations')) {
-    endpoint = `/v4/state?preview=1`;
-  }
+  let endpoint = '/v4/state';
 
   if (features.length > 0) {
     endpoint += features.map(f => `&${f}=true`);
