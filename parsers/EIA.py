@@ -135,8 +135,6 @@ EXCHANGES = {
     "US-FLA-JEA->US-FLA-SEC": "EBA.JEA-SEC.ID.H",
     "US-FLA-SEC->US-FLA-TEC": "EBA.SEC-TEC.ID.H",
     "US-FLA-TAL->US-SE-SOCO": "EBA.TAL-SOCO.ID.H",
-    "US-MIDA-OVEC->US-MIDW-LGEE": "EBA.OVEC-LGEE.ID.H",
-    "US-MIDA-OVEC->US-MIDA-PJM": "EBA.OVEC-PJM.ID.H",
     "US-MIDA-PJM->US-MIDW-LGEE": "EBA.PJM-LGEE.ID.H",
     "US-MIDA-PJM->US-MIDW-MISO": "EBA.PJM-MISO.ID.H",
     "US-MIDA-PJM->US-NY-NYIS": "EBA.PJM-NYIS.ID.H",
@@ -248,7 +246,6 @@ REGIONS = {
     "US-FLA-SEC": "SEC",  # Seminole Electric Cooperative
     "US-FLA-TAL": "TAL",  # City Of Tallahassee
     "US-FLA-TEC": "TEC",  # Tampa Electric Company
-    "US-MIDA-OVEC": "OVEC",  # Ohio Valley Electric Corporation
     "US-MIDA-PJM": "PJM",  # Pjm Interconnection, Llc
     "US-MIDW-AECI": "AECI",  # Associated Electric Cooperative, Inc.
     "US-MIDW-EEI": "EEI",  # Electric Energy, Inc.
@@ -333,6 +330,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
         logger=logger,
     )
 
+
 @refetch_frequency(datetime.timedelta(days=1))
 def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
     consumption = _fetch_series(
@@ -346,6 +344,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
         point["consumption"] = point.pop("value")
 
     return consumption
+
 
 @refetch_frequency(datetime.timedelta(days=1))
 def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=None):
@@ -439,6 +438,7 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
             correct_mixes.append(correct_mix)
 
     return merge_production_outputs(correct_mixes, zone_key, merge_source="eia.gov")
+
 
 @refetch_frequency(datetime.timedelta(days=1))
 def fetch_exchange(
