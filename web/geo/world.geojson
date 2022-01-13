@@ -48112,27 +48112,6 @@
     {
       "type": "Feature",
       "properties": {
-        "zoneName": "US-MIDA-OVEC",
-        "countryKey": "US",
-        "countryName": "United States"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [-83.24903249032485, 39.1932543583121],
-            [-83.31023310233097, 39.04155957801852],
-            [-83.12663126631261, 38.958556773706945],
-            [-82.80622806228057, 38.94853919387623],
-            [-82.78462784627841, 39.16892595015182],
-            [-83.24903249032485, 39.1932543583121]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "zoneName": "US-MIDA-PJM",
         "countryKey": "US",
         "countryName": "United States"
