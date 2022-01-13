@@ -8,7 +8,6 @@ import { useCurrentZoneData } from '../hooks/redux';
 const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
   const isRealtimeData = zoneTimeIndex === null;
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
-  const isEstimatedData = zoneData.estimationMethod !== null;
 
   let message = __('country-panel.noDataAtTimestamp');
   if (isRealtimeData) {
@@ -18,10 +17,6 @@ const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
 
   if (isDataDelayed) {
     message = __('country-panel.dataIsDelayed', zoneData.delays.production);
-  }
-
-  if (isEstimatedData) {
-    message = __('country-panel.dataIsEstimated');
   }
 
   return message;
@@ -37,11 +32,13 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasProductionData = (zoneData.production && Object.values(zoneData.production).every(v => v !== null)) || zonesThatCanHaveZeroProduction.includes(zoneId);
-  const isEstimated = zoneData.estimationMethod !== null;
+  const zoneHasProductionValues = zoneData.production && !Object.values(zoneData.production).every(v => v === null);
+  const zoneHasProductionData = zoneHasProductionValues || zonesThatCanHaveZeroProduction.includes(zoneId);
+  // note that the key can be both null and undefined, so we need to check for both (so != instead of !==)
+  const isEstimated = zoneData.estimationMethod != null; 
 
-  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || !isEstimated;
 
+  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || isEstimated;
   if (shouldHideOverlay) {
     return null;
   }
