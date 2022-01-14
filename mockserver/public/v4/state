@@ -1348,8 +1348,8 @@
         "source": "opennem.org.au",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -2172,7 +2172,7 @@
         "source": "https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
+          "battery": 0,
           "hydro": null
         },
         "totalCo2Discharge": 0,
@@ -4770,7 +4770,7 @@
         "source": "ets.aeso.ca",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
+          "battery": 0,
           "hydro": null
         },
         "totalCo2Discharge": 0,
@@ -9739,8 +9739,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -9842,8 +9842,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -9945,8 +9945,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -10048,8 +10048,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -10151,8 +10151,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -10254,8 +10254,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -10361,8 +10361,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -10470,8 +10470,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 1852981.2,
@@ -10586,8 +10586,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 47869215.6,
@@ -10693,8 +10693,8 @@
         "source": "demanda.ree.es",
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
-          "battery": -0,
-          "hydro": -0
+          "battery": 0,
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -11811,7 +11811,7 @@
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
           "battery": null,
-          "hydro": -0
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -16447,7 +16447,7 @@
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
           "battery": null,
-          "hydro": -0
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 0,
@@ -29685,7 +29685,7 @@
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
           "battery": null,
-          "hydro": -0
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 3870600.0000000005,
@@ -34314,7 +34314,7 @@
         "stateDatetime": "2022-01-04T08:00:00Z",
         "storage": {
           "battery": null,
-          "hydro": -0
+          "hydro": 0
         },
         "totalCo2Discharge": 0,
         "totalCo2Export": 160720732,
@@ -37837,109 +37837,6 @@
         "totalExport": 0,
         "totalImport": 0,
         "totalProduction": 781.85,
-        "totalStorage": null
-      },
-      "US-MIDA-OVEC": {
-        "_isFinestGranularity": true,
-        "capacity": {
-          "battery storage": 0,
-          "biomass": 0,
-          "coal": 2390.3,
-          "gas": 0,
-          "geothermal": 0,
-          "hydro": 0,
-          "hydro storage": 0,
-          "nuclear": 0,
-          "oil": 0,
-          "solar": 0,
-          "unknown": 0,
-          "wind": 0
-        },
-        "co2intensity": null,
-        "co2intensityProduction": null,
-        "countryCode": "US-MIDA-OVEC",
-        "dischargeCo2Intensities": {
-          "battery": 301.13684338512996,
-          "hydro": 301.13684338512996
-        },
-        "dischargeCo2IntensitySources": {
-          "battery": "World average intensity by Tomorrow",
-          "hydro": "World average intensity by Tomorrow"
-        },
-        "estimationMethod": null,
-        "exchange": {},
-        "exchangeCapacities": {},
-        "exchangeCo2Intensities": {},
-        "fossilFuelRatio": null,
-        "fossilFuelRatioProduction": null,
-        "maxCapacity": 2390.3,
-        "maxDischarge": 0,
-        "maxExport": 0,
-        "maxExportCapacity": null,
-        "maxImport": 0,
-        "maxImportCapacity": null,
-        "maxProduction": null,
-        "maxStorage": 0,
-        "maxStorageCapacity": 0,
-        "price": {
-          "currency": null,
-          "value": null
-        },
-        "production": {
-          "biomass": null,
-          "coal": null,
-          "gas": null,
-          "geothermal": null,
-          "hydro": null,
-          "nuclear": null,
-          "oil": null,
-          "solar": null,
-          "unknown": null,
-          "wind": null
-        },
-        "productionCo2Intensities": {
-          "biomass": 230,
-          "coal": 820,
-          "gas": 490,
-          "geothermal": 38,
-          "hydro": 24,
-          "nuclear": 12,
-          "oil": 650,
-          "solar": 45,
-          "unknown": 700,
-          "wind": 11
-        },
-        "productionCo2IntensitySources": {
-          "biomass": "IPCC 2014",
-          "coal": "IPCC 2014",
-          "gas": "IPCC 2014",
-          "geothermal": "IPCC 2014",
-          "hydro": "IPCC 2014",
-          "nuclear": "IPCC 2014",
-          "oil": "UK POST 2014",
-          "solar": "IPCC 2014",
-          "unknown": "assumes thermal (coal, gas, oil or biomass)",
-          "wind": "IPCC 2014"
-        },
-        "renewableRatio": null,
-        "renewableRatioProduction": null,
-        "source": null,
-        "stateDatetime": "2022-01-04T08:00:00Z",
-        "storage": {
-          "battery": null,
-          "hydro": null
-        },
-        "totalCo2Discharge": 0,
-        "totalCo2Export": 0,
-        "totalCo2Import": 0,
-        "totalCo2NetExchange": 0,
-        "totalCo2Production": null,
-        "totalCo2Storage": 0,
-        "totalConsumption": null,
-        "totalDischarge": null,
-        "totalExport": null,
-        "totalImport": null,
-        "totalProduction": null,
         "totalStorage": null
       },
       "US-MIDA-PJM": {
@@ -44096,7 +43993,7 @@
           "AM",
           "GE"
         ],
-        "netFlow": -0,
+        "netFlow": 0,
         "sortedCountryCodes": "AM->GE"
       },
       "AM->IR": {
@@ -44375,7 +44272,7 @@
           "BR-S",
           "PY"
         ],
-        "netFlow": -0,
+        "netFlow": 0,
         "sortedCountryCodes": "BR-S->PY"
       },
       "BR-S->UY": {
@@ -44447,7 +44344,7 @@
           "CA-MB",
           "CA-ON"
         ],
-        "netFlow": -0,
+        "netFlow": 0,
         "sortedCountryCodes": "CA-MB->CA-ON"
       },
       "CA-NB->CA-NS": {
@@ -45383,7 +45280,7 @@
           "MD",
           "RO"
         ],
-        "netFlow": -0,
+        "netFlow": 0,
         "sortedCountryCodes": "MD->RO"
       },
       "MD->UA": {
@@ -45446,7 +45343,7 @@
           "MX-NE",
           "MX-NO"
         ],
-        "netFlow": -0,
+        "netFlow": 0,
         "sortedCountryCodes": "MX-NE->MX-NO"
       },
       "MX-NE->MX-OC": {
@@ -45826,15 +45723,6 @@
         ],
         "netFlow": null,
         "sortedCountryCodes": "US-CAR-CPLE->US-MIDA-PJM"
-      },
-      "US-MIDA-OVEC->US-MIDA-PJM": {
-        "co2intensity": null,
-        "countryCodes": [
-          "US-MIDA-OVEC",
-          "US-MIDA-PJM"
-        ],
-        "netFlow": null,
-        "sortedCountryCodes": "US-MIDA-OVEC->US-MIDA-PJM"
       },
       "US-MIDA-PJM->US-NY-NYIS": {
         "co2intensity": 374.25,
