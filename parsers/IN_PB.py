@@ -18,7 +18,7 @@ GENERATION_MAPPING = {"totalHydro": "hydro",
 def calculate_average_timestamp(timestamps):
     """Takes a list of string timestamps and returns the average as an arrow object."""
     arrow_timestamps = [arrow.get(ts, tzinfo="Asia/Kolkata") for ts in timestamps if ts is not None]
-    unix_timestamps = [ts.timestamp for ts in arrow_timestamps]
+    unix_timestamps = [ts.timestamp() for ts in arrow_timestamps]
     average_timestamp = sum(unix_timestamps)/len(unix_timestamps)
     arr_average_timestamp = arrow.get(average_timestamp).to("Asia/Kolkata")
 

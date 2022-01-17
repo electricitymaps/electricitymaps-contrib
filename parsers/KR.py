@@ -42,7 +42,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     if timestamps.count(timestamps[0]) == len(timestamps):
         unified_timestamp = timestamps[0]
     else:
-        average_timestamp = sum([dt.timestamp for dt in timestamps])/len(timestamps)
+        average_timestamp = sum([dt.timestamp() for dt in timestamps])/len(timestamps)
         unified_timestamp = arrow.get(average_timestamp)
 
     if check_delta:

@@ -173,7 +173,7 @@ exchanges_mapping = {
 @refetch_frequency(timedelta(hours=1))
 def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     r = session or requests.session()
-    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp) * 1000
+    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp()) * 1000
     url = 'http://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview?timestamp=%d' % timestamp
     response = r.get(url)
     obj = response.json()
@@ -217,7 +217,7 @@ def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', ses
     bidding_zone_1_trimmed, bidding_zone_2_trimmed = [ x.split('-')[-1] for x in [bidding_zone1, bidding_zone2] ]
     bidding_zone_a, bidding_zone_b = sorted([bidding_zone_1_trimmed, bidding_zone_2_trimmed])
     r = session or requests.session()
-    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp) * 1000
+    timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp()) * 1000
     url = 'http://driftsdata.statnett.no/restapi/PhysicalFlowMap/GetFlow?Ticks=%d' % timestamp
     response = r.get(url)
     obj = response.json()
