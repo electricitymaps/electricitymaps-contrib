@@ -5266,13 +5266,15 @@
   "RU": {
     "capacity": {
       "biomass": 0,
-      "coal": 44868,
-      "gas": 115374,
-      "hydro": 48085,
-      "nuclear": 27929,
-      "oil": 1600,
-      "solar": 75,
-      "wind": 10
+      "coal": 35362,
+      "gas": 122102,
+      "hydro": 48785,
+      "hydro storage": 1340,
+      "nuclear": 29505,
+      "oil": 668,
+      "solar": 2984,
+      "wind": 1874,
+      "unknown": 7381
     },
     "contributors": [
       "https://github.com/denplis",
@@ -5303,14 +5305,21 @@
       ]
     ],
     "capacity": {
-      "hydro": 19500,
-      "nuclear": 27914,
-      "unknown": 125014
+      "hydro": 18821,
+      "hydro storage": 1340,
+      "nuclear": 29505,
+      "coal": 8038,
+      "gas": 117408,
+      "oil": 527,
+      "unknown": 5798,
+      "solar": 2584,
+      "wind": 1874
     },
     "contributors": [
       "https://github.com/denplis",
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -5330,8 +5339,15 @@
       ]
     ],
     "capacity": {
-      "hydro": 25286,
-      "unknown": 26570
+      "hydro": 25348,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "coal": 23210,
+      "gas": 2149,
+      "oil": 107,
+      "unknown": 134,
+      "solar": 400,
+      "wind": 0
     },
     "contributors": [
       "https://github.com/denplis",
@@ -5355,6 +5371,17 @@
         77.62579987200007
       ]
     ],
+    "capacity": {
+      "hydro": 4618,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "coal": 4114,
+      "gas": 2545,
+      "oil": 34,
+      "unknown": 0,
+      "solar": 0,
+      "wind": 0
+    },
     "contributors": [
       "https://github.com/JeanBaptisteScellier"
     ],

@@ -19,14 +19,23 @@ MAP_GENERATION_1 = {
     'P_AES': 'nuclear',
     'P_GES': 'hydro',
     'P_GRES': 'unknown',
-    'P_TES': 'unknown',
+    'P_TES': 'fossil fuel',
     'P_BS': 'unknown',
-    'P_REN': 'solar'
+    'P_REN': 'renewables'
 }
 MAP_GENERATION_2 = {
     'aes_gen': 'nuclear',
     'ges_gen': 'hydro',
-    'P_tes': 'unknown'
+    'P_tes': 'fossil fuel'
+}
+RENEWABLES_RATIO = {
+    'RU-1': {'solar': 0.58, 'wind': 0.42},
+    'RU-2': {'solar': 1.0, 'wind': 0.0}
+}
+FOSSIL_FUEL_RATIO = {
+    'RU-1': {'coal': 0.060, 'gas': 0.892, 'oil': 0.004, 'unknown': 0.044},
+    'RU-2': {'coal': 0.864, 'gas': 0.080, 'oil': 0.004, 'unknown': 0.052},
+    'RU-AS': {'coal': 0.611, 'gas': 0.384, 'oil': 0.005, 'unknown': 0.00}
 }
 
 exchange_ids = {'RU-AS->CN': 764,
@@ -63,11 +72,6 @@ def fetch_production(zone_key='RU', session=None, target_datetime=None, logger=N
             data = fetch_production(subzone_key, session, target_datetime, logger)
             df = pd.DataFrame(data).set_index('datetime')
             df_prod = df['production'].apply(pd.Series).fillna(0)
-
-            # Set a 30 minutes frequency
-            if subzone_key in ['RU-1', 'RU-2']:
-                df_30m_index = df_prod.index.union(df_prod.index + pd.Timedelta(minutes=30))
-                df_prod = df_prod.reindex(df_30m_index).ffill()
 
             dfs[subzone_key] = df_prod
 
@@ -136,6 +140,18 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
                                                                         0.0) + gen_value
             else:
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
+            
+        for production_type, ratio in RENEWABLES_RATIO[zone_key].items():
+            gen_value = row['production']['renewables'] * ratio if row['production']['renewables'] else 0.0
+            row['production'][production_type] = row['production'].get(production_type,
+                                                                    0.0) + gen_value
+        row['production'].pop('renewables', None)
+
+        for production_type, ratio in FOSSIL_FUEL_RATIO[zone_key].items():
+            gen_value = row['production']['fossil fuel'] * ratio if row['production']['fossil fuel'] else 0.0
+            row['production'][production_type] = row['production'].get(production_type,
+                                                                    0.0) + gen_value
+        row['production'].pop('fossil fuel', None)
 
         # Date
         hour = '%02d' % (int(datapoint['INTERVAL']))
@@ -148,8 +164,8 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
             continue
 
         # Default values
-        row['production']['biomass'] = None
-        row['production']['geothermal'] = None
+        row['production']['biomass'] = 0
+        row['production']['geothermal'] = 0
 
         data.append(row)
 
@@ -164,7 +180,8 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
         target_datetime_tz = arrow.get(target_datetime).to(tz)
     else:
         target_datetime_tz = arrow.now(tz)
-    # Here we should shift 30 minutes but it would be inconsistent with 1st zone
+    # Query at t gives production from t to t+1
+    # I need to shift 1 to get the last value at t
     datetime_to_fetch = target_datetime_tz.shift(hours=-1)
     date = datetime_to_fetch.format('YYYY.MM.DD')
 
@@ -193,24 +210,27 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
             else:
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
 
+        for production_type, ratio in FOSSIL_FUEL_RATIO[zone_key].items():
+            gen_value = row['production']['fossil fuel'] * ratio if row['production']['fossil fuel'] else 0.0
+            row['production'][production_type] = row['production'].get(production_type,
+                                                                    0.0) + gen_value
+        row['production'].pop('fossil fuel', None)
+
         # Date
-        hour = datapoint['fHour']
-
-        if len(hour) == 1:
-            hour = '0' + hour
-
+        hour = '%02d' % (int(datapoint['fHour']))
         datetime = arrow.get('%s %s' % (date, hour), 'YYYY.MM.DD HH', tzinfo=tz)
         row['datetime'] = datetime.datetime
-        last_dt = arrow.now(tz).shift(minutes=-30).datetime
+        last_dt = arrow.now(tz).shift(hours=-1).datetime
 
         # Drop datapoints in the future
         if row['datetime'] > last_dt:
             continue
 
         # Default values
-        row['production']['biomass'] = None
-        row['production']['geothermal'] = None
-        row['production']['solar'] = None
+        row['production']['biomass'] = 0
+        row['production']['geothermal'] = 0
+        row['production']['solar'] = 0
+        row['production']['wind'] = 0
 
         data.append(row)
 
