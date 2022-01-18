@@ -12,7 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { noop } from 'lodash';
+import { isNil, noop } from 'lodash';
 import moment from 'moment';
 import styled from 'styled-components';
 
@@ -36,6 +36,7 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { getFullZoneName, __ } from '../../helpers/translation';
+import EstimatedLabel from '../../components/countryestimationlabel';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -158,6 +159,25 @@ const CountryPanelStyled = styled.div`
   }
 `;
 
+const EstimatedDataInfoBox = styled.p`
+  background-color: #eee;
+  border-radius: 6px;
+  padding: 6px;
+  font-size: .75rem;
+  margin: 1rem 0;
+`;
+
+const EstimatedDataInfo = () => (
+  <React.Fragment>
+    <EstimatedDataInfoBox
+      dangerouslySetInnerHTML={{
+        __html: __('country-panel.dataIsEstimated'),
+      }}
+    />
+    <hr />
+  </React.Fragment>
+);
+
 const CountryPanel = ({
   electricityMixMode,
   isMobile,
@@ -201,17 +221,14 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser, estimationMethod } = data;
-  let { disclaimer } = data;
+  const { hasParser, disclaimer, estimationMethod } = data;
+  const isDataEstimated = !isNil(estimationMethod);
+
   const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
 
-
-  if (estimationMethod !== null) {
-    disclaimer = __('country-panel.estimatedDisclaimer');
-  }
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
@@ -242,6 +259,7 @@ const CountryPanel = ({
                 <div className="country-name">{getFullZoneName(zoneId)}</div>
                 <CountryTime>
                   {datetime ? moment(datetime).format('LL LT') : ''}
+                  {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
                 </CountryTime>
               </div>
               {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
@@ -302,6 +320,7 @@ const CountryPanel = ({
             <CountryTable />
 
             <hr />
+            {isDataEstimated && <EstimatedDataInfo />}
             <div className="country-history">
               <CountryHistoryTitle>
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
