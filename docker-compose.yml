@@ -2,7 +2,7 @@ version: '3.5'
 services:
   mockserver:
     build: mockserver
-    ports: ['9000:8000']
+    ports: ['8001:8000']
     volumes:
       - './mockserver/public:/home/public'
       - './mockserver/server.py:/home/server.py'
@@ -23,15 +23,13 @@ services:
     volumes:
       - './config:/home/config'
       - './web/.eslintrc:/home/src/electricitymap/contrib/web/.eslintrc'
-      - './web/generate-geometries.js:/home/src/electricitymap/contrib/web/generate-geometries.js'
+      - './web/geo:/home/src/electricitymap/contrib/web/geo'
       - './web/locales:/home/src/electricitymap/contrib/web/locales'
       - './web/locales-config.json:/home/src/electricitymap/contrib/web/locales-config.json'
       - './web/package.json:/home/src/electricitymap/contrib/web/package.json'
       - './web/public:/home/src/electricitymap/contrib/web/public'
       - './web/server.js:/home/src/electricitymap/contrib/web/server.js'
       - './web/src:/home/src/electricitymap/contrib/web/src'
-      - './web/third_party_maps:/home/src/electricitymap/contrib/web/third_party_maps'
-      - './web/topogen.sh:/home/src/electricitymap/contrib/web/topogen.sh'
       - './web/views:/home/src/electricitymap/contrib/web/views'
       - './web/webpack.config.js:/home/src/electricitymap/contrib/web/webpack.config.js'
   web-watch:
@@ -49,14 +47,12 @@ services:
     volumes:
       - './config:/home/config'
       - './web/.eslintrc:/home/src/electricitymap/contrib/web/.eslintrc'
-      - './web/generate-geometries.js:/home/src/electricitymap/contrib/web/generate-geometries.js'
+      - './web/geo:/home/src/electricitymap/contrib/web/geo'
       - './web/locales:/home/src/electricitymap/contrib/web/locales'
       - './web/locales-config.json:/home/src/electricitymap/contrib/web/locales-config.json'
       - './web/package.json:/home/src/electricitymap/contrib/web/package.json'
       - './web/public:/home/src/electricitymap/contrib/web/public'
       - './web/server.js:/home/src/electricitymap/contrib/web/server.js'
       - './web/src:/home/src/electricitymap/contrib/web/src'
-      - './web/third_party_maps:/home/src/electricitymap/contrib/web/third_party_maps'
-      - './web/topogen.sh:/home/src/electricitymap/contrib/web/topogen.sh'
       - './web/views:/home/src/electricitymap/contrib/web/views'
       - './web/webpack.config.js:/home/src/electricitymap/contrib/web/webpack.config.js'

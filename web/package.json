@@ -42,6 +42,7 @@
     "sprintf-js": "^1.1.2",
     "styled-components": "^5.0.1",
     "sunrise-sunset-js": "^2.2.1",
+    "swr": "^1.0.1",
     "topojson": "^3.0.2",
     "url-search-params-polyfill": "^8.1.0"
   },
@@ -52,6 +53,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "@babel/runtime": "^7.7.2",
+    "@turf/turf": "^6.5.0",
     "autoprefixer": "^9.6.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^10.1.0",
@@ -75,9 +77,11 @@
     "nodemon": "^1.17.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.5.1",
     "readline-sync": "^1.4.9",
     "sass-loader": "^8.0.0",
     "shapefile": "^0.6.2",
+    "topojson-server": "^3.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
@@ -90,10 +94,13 @@
     "build-release": "export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
-    "lint": "eslint src",
+    "lint": "eslint geo src *.js",
+    "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
     "server-dev": "nodemon server.js",
     "watch": "webpack --watch --progress --mode development",
-    "watch-poll": "webpack --watch --watch-poll --progress --mode development"
+    "watch-poll": "webpack --watch --watch-poll --progress --mode development",
+    "update-world": "node ./geo/update-world.js && yarn prettier --write 'geo/world.geojson'",
+    "verify": "yarn lint && VERIFY_NO_UPDATES=1 yarn update-world"
   },
   "browserslist": [
     "defaults",

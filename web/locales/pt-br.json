@@ -17,7 +17,7 @@
         },
         "view2": {
             "header": "Veja o quanto de CO₂ é emitido para produzir sua eletricidade em tempo real.",
-            "text": "As áreas através do mundo são coloridas pela sua Intencidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
+            "text": "As áreas através do mundo são coloridas pela sua Intensidade de Carbono (incluindo todos os gases de efeito estufa) da eletricidade consumida. Quanto mais verde a cor, mais ecológica é a eletricidade."
         },
         "view3": {
             "header": "Saiba de onde sua eletricidade vem",
@@ -42,7 +42,8 @@
         "noDataAtTimestamp": "Os dados estão temporariamente indisponíveis para a data selecionada",
         "noLiveData": "Os dados em tempo real estão temporariamente indisponíveis para esta área",
         "noParserInfo": "Nós não temos nenhuma informação sobre essa área.<br/> Gostaria de corrigir isso? Você pode contribuir <a href=\"%s\" target=\"_blank\">adicionando dados da área</a>.",
-        "now": "Agora"
+        "now": "Agora",
+        "dataIsDelayed": "Dados para essa região podem estar até %s horas atrasados. Dados em tempo real estão indisponíveis."
     },
     "left-panel": {
         "zone-list-header-title": "Impacto climático",
@@ -68,7 +69,7 @@
     "legends": {
         "windpotential": "Potencial da força do vento",
         "solarpotential": "Potencial solar",
-        "colorblindmode": "modo para daltônicos",
+        "colorblindmode": "Modo para daltônicos",
         "carbonintensity": "Intensidade de carbono"
     },
     "tooltips": {
@@ -91,7 +92,12 @@
         "consumption": "consumo",
         "cpinfo": "<b>consumo</b> leva em consideração importações e exportações, <b>produção</b> as ignora",
         "selectLanguage": "Selecione a linguagem",
-        "lowCarbDescription": "Inclui renováveis e nucleares"
+        "lowCarbDescription": "Inclui renováveis e nucleares",
+        "representing": "representando",
+        "ofemissions": "de emissões",
+        "zoomIn": "Aumentar zoom",
+        "zoomOut": "Diminuir zoom",
+        "dataIsDelayed": "Dados estão atrasados"
     },
     "misc": {
         "maintitle": "Emissões de CO₂ do consumo elétrico em tempo real",
@@ -99,8 +105,8 @@
         "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
         "webgl-not-supported": "O mapa não pode ser renderizado porque este navegador não oferece suporte a WebGL.",
         "retrynow": "Tentar novamente",
-        "database-ad": "Procurando por dados históricos? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
-        "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
+        "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
+        "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
         "legend": "Legenda",
         "faq": "Questões frequentes"
     },
@@ -116,30 +122,27 @@
     "coal": "carvão",
     "oil": "petróleo",
     "unknown": "desconhecida",
-
     "electricityComesFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> provém de energia %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> provêm de energia %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é armazenada utilizando %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são armazenadas utilizando %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é exportada para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são exportadas para <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> da eletricidade em <img id=\"country-flag\"></img> <b>%2$s</b> é importada de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> das emissões em <img id=\"country-flag\"></img> <b>%2$s</b> são importadas de <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "de CO₂eq por minuto",
     "theMap": {
-      "groupName": "O mapa",
-      "mapColors-question": "O que significam as cores no mapa?",
-      "mapColors-answer": "Colorimos as áreas no mapa pelas quantidades de gases de efeito estufa emitidas para cada unidade de eletricidade consumida no local (sua <a href=\"#carbonIntensity\" class=\"entry-link\"> intensidade de carbono </a> ) Quanto mais verde a cor, mais favorável ao clima é o consumo de eletricidade.",
-      "mapArrows-question": "O que indicam as setas entre as áreas do mapa?",
-      "mapArrows-answer": "As setas entre as áreas indicam o fluxo físico (importações e exportações) de eletricidade entre as áreas: quanto mais rápido elas piscam, mais rápido o fluxo. O fluxo de eletricidade é importante, porque quando você importa parte de sua eletricidade de áreas vizinhas, também está importando as emissões de carbono associadas à sua produção.",
-      "mapSolarWindButtons-question": "O que os botões \"sol\" e \"vento\" fazem no mapa?",
-      "mapSolarWindButtons-answer": "Esses botões alternam a exibição das velocidades do vento em tempo real e da força do sol, fornecendo uma indicação do potencial de transição para alternativas de energia solar e eólica em diferentes áreas. Observe que isso é apenas uma indicação superficial, pois o potencial real na instalação de turbinas eólicas e células solares também depende de muitos outros fatores.",
-      "mapNuclearColors-question": "Por que os países movidos a energia nuclear são mostrados em verde no mapa?",
-      "mapNuclearColors-answer": "A produção de energia nuclear possui uma intensidade muito baixa de carbono (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), e os países movidos a energia nuclear são mostrados em verde no mapa. Isso não significa que não haja outros desafios ambientais associados à energia nuclear (como também ocorre com outras formas de produção de energia), mas esses desafios não estão relacionados às emissões de gases de efeito estufa e, portanto, estão fora do escopo deste mapa.",
-      "mapColorBlind-question": "Eu sou daltônico. Como posso ler seu mapa?",
-      "mapColorBlind-answer": "Você pode alterar as cores exibidas no mapa ativando a configuração \"modo daltônico\". Ele está localizado na parte inferior do painel esquerdo da área de trabalho e na guia informações no aplicativo móvel"
+        "groupName": "O mapa",
+        "mapColors-question": "O que significam as cores no mapa?",
+        "mapColors-answer": "Colorimos as áreas no mapa pelas quantidades de gases de efeito estufa emitidas para cada unidade de eletricidade consumida no local (sua <a href=\"#carbonIntensity\" class=\"entry-link\"> intensidade de carbono </a> ) Quanto mais verde a cor, mais favorável ao clima é o consumo de eletricidade.",
+        "mapArrows-question": "O que indicam as setas entre as áreas do mapa?",
+        "mapArrows-answer": "As setas entre as áreas indicam o fluxo físico (importações e exportações) de eletricidade entre as áreas: quanto mais rápido elas piscam, mais rápido o fluxo. O fluxo de eletricidade é importante, porque quando você importa parte de sua eletricidade de áreas vizinhas, também está importando as emissões de carbono associadas à sua produção.",
+        "mapSolarWindButtons-question": "O que os botões \"sol\" e \"vento\" fazem no mapa?",
+        "mapSolarWindButtons-answer": "Esses botões alternam a exibição das velocidades do vento em tempo real e da força do sol, fornecendo uma indicação do potencial de transição para alternativas de energia solar e eólica em diferentes áreas. Observe que isso é apenas uma indicação superficial, pois o potencial real na instalação de turbinas eólicas e células solares também depende de muitos outros fatores.",
+        "mapNuclearColors-question": "Por que os países movidos a energia nuclear são mostrados em verde no mapa?",
+        "mapNuclearColors-answer": "A produção de energia nuclear possui uma intensidade muito baixa de carbono (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), e os países movidos a energia nuclear são mostrados em verde no mapa. Isso não significa que não haja outros desafios ambientais associados à energia nuclear (como também ocorre com outras formas de produção de energia), mas esses desafios não estão relacionados às emissões de gases de efeito estufa e, portanto, estão fora do escopo deste mapa.",
+        "mapColorBlind-question": "Eu sou daltônico. Como posso ler seu mapa?",
+        "mapColorBlind-answer": "Você pode alterar as cores exibidas no mapa ativando a configuração \"modo daltônico\". Ele está localizado na parte inferior do painel esquerdo da área de trabalho e na guia informações no aplicativo móvel"
     },
     "mapAreas": {
         "groupName": "Áreas no mapa",
@@ -150,7 +153,7 @@
         "divideExistingArea-question": "Você pode dividir minha área em partes menores?",
         "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar a adicionar novas fontes de dados </a>",
         "seeHistoricalData-question": "Posso ver o histórico de uma área mais atrasada do que 24 horas?",
-        "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
+        "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
     },
     "methodology": {
         "groupName": "Nossos métodos",
@@ -171,16 +174,19 @@
         "homeSolarPanel-question": "E se eu tiver um painel solar instalado em minha casa?",
         "homeSolarPanel-answer": "Medimos a intensidade de carbono da rede elétrica local, portanto, qualquer eletricidade que você consome diretamente do seu painel solar (fora da rede) não faz parte de nossas medições. No entanto, se o seu painel solar estiver fornecendo energia na sua rede de energia local, sua produção está incluída em nossas estatísticas em áreas nas quais as estimativas da produção local de energia solar são disponibilizadas publicamente (como na França e no Reino Unido).",
         "emissionsPerCapita-question": "Por que você não mostra emissões per capita?",
-        "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso."
+        "emissionsPerCapita-answer": "Parte da eletricidade consumida em uma área é usada na fabricação de bens e produtos físicos que são posteriormente exportados e consumidos em outras áreas. Essa fabricação, e, portanto, também o consumo de eletricidade e as emissões associadas, são impulsionados pelo consumo de produtos nas <em> áreas de importação </em>, e não na área em que a produção está ocorrendo.Nós acreditamos que as pessoas devem ser responsáveis ​​apenas pelo que consomem, não pelos produtos fabricados na área em que vivem. não consumam eles mesmos. Nesse sentido, mostrar emissões per capita de consumo de eletricidade para áreas é enganoso.",
+        "consumptionFocus-question": "Porque você calcula a intencidade de carbono gerada pela eletricidade consumida ao invés da produzida?",
+        "consumptionFocus-answer": "Nós acreditamos que cidadãos devem ser responsáveis pela energia que eles consomem, e não pela energia que é produzida na area que eles vivem. Além disso, acreditamos que áreas não deveriam ser capazes de 'falsificar' um baixo impacto ambiental por simplesmente realocar produção de energia não limpa para outras áreas, e depois importar energia dessas mesmas áreas.",
+        "guaranteesOfOrigin-question": "O que são certificados verdes e como eles são levados em conta?"
     },
     "data": {
         "groupName": "Nossos dados",
         "dataOrigins-question": "Como você obtém seus dados?",
         "dataOrigins-answer": "Computamos todos os nossos dados a partir de dados publicamente disponíveis, publicados por operadores de rede elétrica, agências oficiais e outros. Você pode clicar em uma área para ver mais detalhes sobre a origem de seus dados.",
         "dataDownload-question": "Posso baixar seus dados?",
-        "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
+        "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
         "dataIntegration-question": "Posso integrar seus dados em tempo real ao meu aplicativo ou dispositivo?",
-        "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
+        "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
     },
     "aboutUs": {
         "groupName": "Sobre nós",
@@ -193,1596 +199,1566 @@
         "workTogether-question": "Podemos trabalhar juntos?",
         "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:hello@electricitymap.org\">Envie-nos um email!</a>",
         "disclaimer-question": "Aviso legal",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente."
+        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">electricityMap</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Tomorrow não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da electricityMap, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Tomorrow, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
+        "contribute-question": "Como posso contribuir com o projeto?",
+        "contribute-answer": "Sim! O ElectricityMap é um projeto de código aberto, possibilitado apenas por nossos colaboradores voluntários. Se você quer ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, criando novas funcionalidades ou corrigindo bugs, fique à vontade para se juntar a nós no <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>."
     },
     "zoneShortName": {
-         "AD": {
+        "AD": {
             "zoneName": "Andorra"
-          },
-          "AE": {
+        },
+        "AE": {
             "zoneName": "Emirados Árabes Unidos"
-          },
-          "AF": {
+        },
+        "AF": {
             "zoneName": "Afeganistão"
-          },
-          "AG": {
+        },
+        "AG": {
             "zoneName": "Antigua e Barbudas"
-          },
-          "AI": {
+        },
+        "AI": {
             "zoneName": "Anguilla"
-          },
-          "AL": {
+        },
+        "AL": {
             "zoneName": "Albânia"
-          },
-          "AM": {
+        },
+        "AM": {
             "zoneName": "Armênia"
-          },
-          "AO": {
+        },
+        "AO": {
             "zoneName": "Angola"
-          },
-          "AQ": {
+        },
+        "AQ": {
             "zoneName": "Antártica"
-          },
-          "AS": {
+        },
+        "AS": {
             "zoneName": "Samoa Americana"
-          },
-          "AT": {
+        },
+        "AT": {
             "zoneName": "Áustria"
-          },
-          "AR": {
+        },
+        "AR": {
             "zoneName": "Argentina"
-          },
-          "AUS-NSW": {
+        },
+        "AUS-NSW": {
             "countryName": "Austrália",
             "zoneName": "Nova Gales do Sul"
-          },
-          "AUS-NT": {
+        },
+        "AUS-NT": {
             "countryName": "Austrália",
             "zoneName": "Território do Norte"
-          },
-          "AUS-QLD": {
+        },
+        "AUS-QLD": {
             "countryName": "Austrália",
             "zoneName": "Queensland"
-          },
-          "AUS-SA": {
+        },
+        "AUS-SA": {
             "countryName": "Austrália",
             "zoneName": "Austrália do Sul"
-          },
-          "AUS-TAS": {
+        },
+        "AUS-TAS": {
             "countryName": "Austrália",
             "zoneName": "Tasmânia"
-          },
-          "AUS-TAS-KI": {
+        },
+        "AUS-TAS-KI": {
             "countryName": "Tasmânia",
             "zoneName": "King Island"
-          },
-          "AUS-VIC": {
+        },
+        "AUS-VIC": {
             "countryName": "Austrália",
             "zoneName": "Victoria"
-          },
-          "AUS-WA": {
+        },
+        "AUS-WA": {
             "countryName": "Austrália",
             "zoneName": "Austrália Ocidental"
-          },
-          "AW": {
+        },
+        "AW": {
             "zoneName": "Aruba"
-          },
-          "AX": {
+        },
+        "AX": {
             "zoneName": "Ilhas de Aland"
-          },
-          "AZ": {
+        },
+        "AZ": {
             "zoneName": "Azerbaijão"
-          },
-          "BA": {
+        },
+        "BA": {
             "zoneName": "Bósnia e Herzegovina"
-          },
-          "BB": {
+        },
+        "BB": {
             "zoneName": "Barbados"
-          },
-          "BD": {
+        },
+        "BD": {
             "zoneName": "Bangladesh"
-          },
-          "BE": {
+        },
+        "BE": {
             "zoneName": "Bélgica"
-          },
-          "BF": {
+        },
+        "BF": {
             "zoneName": "Burkina Faso"
-          },
-          "BG": {
+        },
+        "BG": {
             "zoneName": "Bulgária"
-          },
-          "BH": {
+        },
+        "BH": {
             "zoneName": "Bahrain"
-          },
-          "BI": {
+        },
+        "BI": {
             "zoneName": "Burundi"
-          },
-          "BJ": {
+        },
+        "BJ": {
             "zoneName": "Benin"
-          },
-          "BM": {
+        },
+        "BM": {
             "zoneName": "Bermudas"
-          },
-          "BN": {
+        },
+        "BN": {
             "zoneName": "Brunei"
-          },
-          "BO": {
+        },
+        "BO": {
             "zoneName": "Bolívia"
-          },
-          "BQ": {
+        },
+        "BQ": {
             "zoneName": "Bonaire, Santo Eustáquio e Saba"
-          },
-          "BR-CS": {
+        },
+        "BR-CS": {
             "countryName": "Brasil",
             "zoneName": "Central"
-          },
-          "BR-N": {
+        },
+        "BR-N": {
             "countryName": "Brasil",
             "zoneName": "Norte"
-          },
-          "BR-NE": {
+        },
+        "BR-NE": {
             "countryName": "Brasil",
             "zoneName": "Nordeste"
-          },
-          "BR-S": {
+        },
+        "BR-S": {
             "countryName": "Brasil",
             "zoneName": "Sul"
-          },
-          "BS": {
+        },
+        "BS": {
             "zoneName": "Bahamas"
-          },
-          "BT": {
+        },
+        "BT": {
             "zoneName": "Butão"
-          },
-          "BV": {
+        },
+        "BV": {
             "zoneName": "Ilha Bouvet"
-          },
-          "BW": {
+        },
+        "BW": {
             "zoneName": "Botswana"
-          },
-          "BY": {
+        },
+        "BY": {
             "zoneName": "Bielorrússia"
-          },
-          "BZ": {
+        },
+        "BZ": {
             "zoneName": "Belize"
-          },
-          "CA-AB": {
+        },
+        "CA-AB": {
             "countryName": "Canadá",
             "zoneName": "Alberta"
-          },
-          "CA-BC": {
+        },
+        "CA-BC": {
             "countryName": "Canadá",
             "zoneName": "Colúmbia Britânica"
-          },
-          "CA-MB": {
+        },
+        "CA-MB": {
             "countryName": "Canadá",
             "zoneName": "Manitoba"
-          },
-          "CA-NL": {
+        },
+        "CA-NL": {
             "countryName": "Canadá",
             "zoneName": "Terra Nova e Labrador"
-          },
-          "CA-NB": {
+        },
+        "CA-NB": {
             "countryName": "Canadá",
             "zoneName": "Nova Brunswick"
-          },
-          "CA-NT": {
+        },
+        "CA-NT": {
             "countryName": "Canadá",
             "zoneName": "Territórios do Noroeste"
-          },
-          "CA-NS": {
+        },
+        "CA-NS": {
             "countryName": "Canadá",
             "zoneName": "Nova Escócia"
-          },
-          "CA-NU": {
+        },
+        "CA-NU": {
             "countryName": "Canadá",
             "zoneName": "Nunavut"
-          },
-          "CA-ON": {
+        },
+        "CA-ON": {
             "countryName": "Canadá",
             "zoneName": "Ontário"
-          },
-          "CA-PE": {
+        },
+        "CA-PE": {
             "countryName": "Canadá",
             "zoneName": "Ilha do Príncipe Eduardo"
-          },
-          "CA-QC": {
+        },
+        "CA-QC": {
             "countryName": "Canadá",
             "zoneName": "Québec"
-          },
-          "CA-SK": {
+        },
+        "CA-SK": {
             "countryName": "Canadá",
             "zoneName": "Saskatchewan"
-          },
-          "CA-YT": {
+        },
+        "CA-YT": {
             "countryName": "Canadá",
             "zoneName": "Yukon"
-          },
-          "CC": {
+        },
+        "CC": {
             "zoneName": "Ilhas Cocos"
-          },
-          "CD": {
+        },
+        "CD": {
             "zoneName": "República Democrática do Congo"
-          },
-          "CF": {
+        },
+        "CF": {
             "zoneName": "República Centro-Africana"
-          },
-          "CG": {
+        },
+        "CG": {
             "zoneName": "Congo"
-          },
-          "CH": {
+        },
+        "CH": {
             "zoneName": "Suíça"
-          },
-          "CI": {
+        },
+        "CI": {
             "zoneName": "Ivory Coast"
-          },
-          "CK": {
+        },
+        "CK": {
             "zoneName": "Cook Islands"
-          },
-          "CL-SEA": {
+        },
+        "CL-SEA": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico de Aysén"
-          },
-          "CL-SEM": {
+        },
+        "CL-SEM": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico de Magallanes"
-          },
-          "CL-SEN": {
+        },
+        "CL-SEN": {
             "countryName": "Chile",
             "zoneName": "Sistema Eléctrico Nacional"
-          },
-          "CM": {
+        },
+        "CM": {
             "zoneName": "Camarões"
-          },
-          "CN": {
+        },
+        "CN": {
             "zoneName": "China"
-          },
-          "CO": {
+        },
+        "CO": {
             "zoneName": "Colômbia"
-          },
-          "CR": {
+        },
+        "CR": {
             "zoneName": "Costa Rica"
-          },
-          "CU": {
+        },
+        "CU": {
             "zoneName": "Cuba"
-          },
-          "CV": {
+        },
+        "CV": {
             "zoneName": "Cabo Verde"
-          },
-          "CW": {
+        },
+        "CW": {
             "zoneName": "Curaçao"
-          },
-          "CX": {
+        },
+        "CX": {
             "zoneName": "Ilha do Natal"
-          },
-          "CY": {
+        },
+        "CY": {
             "zoneName": "Chipre"
-          },
-          "CZ": {
+        },
+        "CZ": {
             "zoneName": "Chéquia"
-          },
-          "DE": {
+        },
+        "DE": {
             "zoneName": "Alemanha"
-          },
-          "DJ": {
+        },
+        "DJ": {
             "zoneName": "Djibouti"
-          },
-          "DK": {
+        },
+        "DK": {
             "zoneName": "Dinamarca"
-          },
-          "DK-DK1": {
+        },
+        "DK-DK1": {
             "countryName": "Dinamarca",
             "zoneName": "Dinamarca ocidental"
-          },
-          "DK-DK2": {
+        },
+        "DK-DK2": {
             "countryName": "Dinamarca",
             "zoneName": "Dinamarca oriental"
-          },
-          "DK-BHM": {
+        },
+        "DK-BHM": {
             "countryName": "Dinamarca",
             "zoneName": "Bornholm"
-          },
-          "DM": {
+        },
+        "DM": {
             "zoneName": "Dominica"
-          },
-          "DO": {
+        },
+        "DO": {
             "zoneName": "República Dominicana"
-          },
-          "DZ": {
+        },
+        "DZ": {
             "zoneName": "Argélia"
-          },
-          "EC": {
+        },
+        "EC": {
             "zoneName": "Ecuador"
-          },
-          "EE": {
+        },
+        "EE": {
             "zoneName": "Estônia"
-          },
-          "EG": {
+        },
+        "EG": {
             "zoneName": "Egito"
-          },
-          "EH": {
+        },
+        "EH": {
             "zoneName": "Saara Ocidental"
-          },
-          "ER": {
+        },
+        "ER": {
             "zoneName": "Eritreia"
-          },
-          "ES": {
+        },
+        "ES": {
             "zoneName": "Espanha"
-          },
-          "ES-IB-FO": {
+        },
+        "ES-IB-FO": {
             "countryName": "Espanha",
             "zoneName": "Formentera"
-          },
-          "ES-IB-IZ": {
+        },
+        "ES-IB-IZ": {
             "countryName": "Espanha",
             "zoneName": "Ibiza"
-          },
-          "ES-IB-MA": {
+        },
+        "ES-IB-MA": {
             "countryName": "Espanha",
             "zoneName": "Maiorca"
-          },
-          "ES-IB-ME": {
+        },
+        "ES-IB-ME": {
             "countryName": "Espanha",
             "zoneName": "Menorca"
-          },
-          "ES-CN-FVLZ": {
+        },
+        "ES-CN-FVLZ": {
             "countryName": "Espanha",
             "zoneName": "Fuerteventura/Lanzarote"
-          },
-          "ES-CN-GC": {
+        },
+        "ES-CN-GC": {
             "countryName": "Espanha",
             "zoneName": "Grã-Canária"
-          },
-          "ES-CN-HI": {
+        },
+        "ES-CN-HI": {
             "countryName": "Espanha",
             "zoneName": "El Hierro"
-          },
-          "ES-CN-IG": {
+        },
+        "ES-CN-IG": {
             "countryName": "Espanha",
             "zoneName": "Ilha de La Gomera"
-          },
-          "ES-CN-LP": {
+        },
+        "ES-CN-LP": {
             "countryName": "Espanha",
             "zoneName": "La Palma"
-          },
-          "ES-CN-TE": {
+        },
+        "ES-CN-TE": {
             "countryName": "Espanha",
             "zoneName": "Tenerife"
-          },
-          "ET": {
+        },
+        "ET": {
             "zoneName": "Etiópia"
-          },
-          "FI": {
+        },
+        "FI": {
             "zoneName": "Finlândia"
-          },
-          "FJ": {
+        },
+        "FJ": {
             "zoneName": "Fiji"
-          },
-          "FK": {
+        },
+        "FK": {
             "zoneName": "Ilhas Falkland"
-          },
-          "FM": {
+        },
+        "FM": {
             "zoneName": "Micronésia"
-          },
-          "FO": {
+        },
+        "FO": {
             "zoneName": "Ilhas Faroé"
-          },
-          "FR": {
+        },
+        "FR": {
             "zoneName": "França"
-          },
-          "FR-COR": {
+        },
+        "FR-COR": {
             "countryName": "França",
             "zoneName": "Corsica"
-          },
-          "GA": {
+        },
+        "GA": {
             "zoneName": "Gabão"
-          },
-          "GB": {
+        },
+        "GB": {
             "zoneName": "Grã-Bretanha"
-          },
-          "GB-NIR": {
+        },
+        "GB-NIR": {
             "zoneName": "Irlanda do Norte"
-          },
-          "GB-ORK": {
+        },
+        "GB-ORK": {
             "countryName": "Grã-Bretanha",
             "zoneName": "Ilhas Orkney"
-          },
-          "GB-SHI": {
+        },
+        "GB-SHI": {
             "countryName": "Grã-Bretanha",
             "zoneName": "Ilhas Shetland"
-          },
-          "GB-ZET": {
+        },
+        "GB-ZET": {
             "countryName": "Grã-Bretanha",
             "zoneName": "Ilhas Shetland"
-          },
-          "GD": {
+        },
+        "GD": {
             "zoneName": "Grenada"
-          },
-          "GE": {
+        },
+        "GE": {
             "zoneName": "Geórgia"
-          },
-          "GF": {
+        },
+        "GF": {
             "zoneName": "Guiana Francesa"
-          },
-          "GG": {
+        },
+        "GG": {
             "zoneName": "Guernsey"
-          },
-          "GH": {
+        },
+        "GH": {
             "zoneName": "Gana"
-          },
-          "GI": {
+        },
+        "GI": {
             "zoneName": "Gibraltar"
-          },
-          "GL": {
+        },
+        "GL": {
             "zoneName": "Groenlândia"
-          },
-          "GM": {
+        },
+        "GM": {
             "zoneName": "Gâmbia"
-          },
-          "GN": {
+        },
+        "GN": {
             "zoneName": "Guiné"
-          },
-          "GP": {
+        },
+        "GP": {
             "zoneName": "Guadalupe"
-          },
-          "GQ": {
+        },
+        "GQ": {
             "zoneName": "Guiné Equatorial"
-          },
-          "GR": {
+        },
+        "GR": {
             "zoneName": "Grécia"
-          },
-          "GR-IS": {
+        },
+        "GR-IS": {
             "countryName": "Grécia",
             "zoneName": "Ilhas do mar Egeu"
-          },
-          "GS": {
+        },
+        "GS": {
             "zoneName": "Geórgia do Sul e Ilhas Sandwich do Sul"
-          },
-          "GT": {
+        },
+        "GT": {
             "zoneName": "Guatemala"
-          },
-          "GU": {
+        },
+        "GU": {
             "zoneName": "Guam"
-          },
-          "GW": {
+        },
+        "GW": {
             "zoneName": "Guiné-bissau"
-          },
-          "GY": {
+        },
+        "GY": {
             "zoneName": "Guiana"
-          },
-          "HK": {
+        },
+        "HK": {
             "zoneName": "Hong Kong"
-          },
-          "HM": {
+        },
+        "HM": {
             "zoneName": "Ilha Heard e Ilhas McDonald"
-          },
-          "HN": {
+        },
+        "HN": {
             "zoneName": "Honduras"
-          },
-          "HR": {
+        },
+        "HR": {
             "zoneName": "Croácia"
-          },
-          "HT": {
+        },
+        "HT": {
             "zoneName": "Haiti"
-          },
-          "HU": {
+        },
+        "HU": {
             "zoneName": "Hungria"
-          },
-          "ID": {
+        },
+        "ID": {
             "zoneName": "Indonésia"
-          },
-          "IE": {
+        },
+        "IE": {
             "zoneName": "Irlanda"
-          },
-          "IL": {
+        },
+        "IL": {
             "zoneName": "Israel"
-          },
-          "IM": {
+        },
+        "IM": {
             "zoneName": "Ilha de Man"
-          },
-          "IN-AN": {
+        },
+        "IN-AN": {
             "countryName": "Índia",
             "zoneName": "Ilhas Andaman e Nicobar"
-          },
-          "IN-AP": {
+        },
+        "IN-AP": {
             "countryName": "Índia",
             "zoneName": "Andhra Pradesh"
-          },
-          "IN-AR": {
+        },
+        "IN-AR": {
             "countryName": "Índia",
             "zoneName": "Arunachal Pradesh"
-          },
-          "IN-AS": {
+        },
+        "IN-AS": {
             "countryName": "Índia",
             "zoneName": "Assam"
-          },
-          "IN-BR": {
+        },
+        "IN-BR": {
             "countryName": "Índia",
             "zoneName": "Bihar"
-          },
-          "IN-CT": {
+        },
+        "IN-CT": {
             "countryName": "Índia",
             "zoneName": "Chhattisgarh"
-          },
-          "IN-DL": {
+        },
+        "IN-DL": {
             "countryName": "Índia",
             "zoneName": "Delhi"
-          },
-          "IN-DN": {
+        },
+        "IN-DN": {
             "countryName": "Índia",
             "zoneName": "Dadra e Nagar Haveli"
-          },
-          "IN-GA": {
+        },
+        "IN-GA": {
             "countryName": "Índia",
             "zoneName": "Goa"
-          },
-          "IN-GJ": {
+        },
+        "IN-GJ": {
             "countryName": "Índia",
             "zoneName": "Gujarat"
-          },
-          "IN-HP": {
+        },
+        "IN-HP": {
             "countryName": "Índia",
             "zoneName": "Himachal Pradesh"
-          },
-          "IN-HR": {
+        },
+        "IN-HR": {
             "countryName": "Índia",
             "zoneName": "Haryana"
-          },
-          "IN-JH": {
+        },
+        "IN-JH": {
             "countryName": "Índia",
             "zoneName": "Jharkhand"
-          },
-          "IN-JK": {
+        },
+        "IN-JK": {
             "countryName": "Índia",
             "zoneName": "Jammu e Caxemira"
-          },
-          "IN-KA": {
+        },
+        "IN-KA": {
             "countryName": "Índia",
             "zoneName": "Karnataka"
-          },
-          "IN-KL": {
+        },
+        "IN-KL": {
             "countryName": "Índia",
             "zoneName": "Kerala"
-          },
-          "IN-MH": {
+        },
+        "IN-MH": {
             "countryName": "Índia",
             "zoneName": "Maharashtra"
-          },
-          "IN-ML": {
+        },
+        "IN-ML": {
             "countryName": "Índia",
             "zoneName": "Meghalaya"
-          },
-          "IN-MN": {
+        },
+        "IN-MN": {
             "countryName": "Índia",
             "zoneName": "Manipur"
-          },
-          "IN-MP": {
+        },
+        "IN-MP": {
             "countryName": "Índia",
             "zoneName": "Madhya Pradesh"
-          },
-          "IN-MZ": {
+        },
+        "IN-MZ": {
             "countryName": "Índia",
             "zoneName": "Mizoram"
-          },
-          "IN-NL": {
+        },
+        "IN-NL": {
             "countryName": "Índia",
             "zoneName": "Nagaland"
-          },
-          "IN-OR": {
+        },
+        "IN-OR": {
             "countryName": "Índia",
             "zoneName": "Orissa"
-          },
-          "IN-PB": {
+        },
+        "IN-PB": {
             "countryName": "Índia",
             "zoneName": "Punjab"
-          },
-          "IN-PY": {
+        },
+        "IN-PY": {
             "countryName": "Índia",
             "zoneName": "Pondicherry"
-          },
-          "IN-RJ": {
+        },
+        "IN-RJ": {
             "countryName": "Índia",
             "zoneName": "Rajasthan"
-          },
-          "IN-SK": {
+        },
+        "IN-SK": {
             "countryName": "Índia",
             "zoneName": "Sikkim"
-          },
-          "IN-TL": {
+        },
+        "IN-TL": {
             "countryName": "Índia",
             "zoneName": "Tamil Nadu"
-          },
-          "IN-TR": {
+        },
+        "IN-TR": {
             "countryName": "Índia",
             "zoneName": "Tripura"
-          },
-          "IN-UP": {
+        },
+        "IN-UP": {
             "countryName": "Índia",
             "zoneName": "Uttar Pradesh"
-          },
-          "IN-UT": {
+        },
+        "IN-UT": {
             "countryName": "Índia",
             "zoneName": "Uttarakhand"
-          },
-          "IN-WB": {
+        },
+        "IN-WB": {
             "countryName": "Índia",
             "zoneName": "Bengala Ocidental"
-          },
-          "IO": {
+        },
+        "IO": {
             "zoneName": "Território Britânico do Oceano Índico"
-          },
-          "IQ": {
+        },
+        "IQ": {
             "zoneName": "Iraque"
-          },
-          "IQ-KUR": {
+        },
+        "IQ-KUR": {
             "countryName": "Iraque",
             "zoneName": "Curdistão"
-          },
-          "IR": {
+        },
+        "IR": {
             "zoneName": "Irã"
-          },
-          "IS": {
+        },
+        "IS": {
             "zoneName": "Islândia"
-          },
-          "IT": {
+        },
+        "IT": {
             "zoneName": "Itália"
-          },
-          "IT-CNO": {
+        },
+        "IT-CNO": {
             "countryName": "Itália",
             "zoneName": "Norte Central"
-          },
-          "IT-CSO": {
+        },
+        "IT-CSO": {
             "countryName": "Itália",
             "zoneName": "Centro sul"
-          },
-          "IT-NO": {
+        },
+        "IT-NO": {
             "countryName": "Itália",
             "zoneName": "Norte"
-          },
-          "IT-SAR": {
+        },
+        "IT-SAR": {
             "countryName": "Itália",
             "zoneName": "Sardenha"
-          },
-          "IT-SIC": {
+        },
+        "IT-SIC": {
             "countryName": "Itália",
             "zoneName": "Sicilia"
-          },
-          "IT-SO": {
+        },
+        "IT-SO": {
             "countryName": "Itália",
             "zoneName": "Sul"
-          },
-          "JE": {
+        },
+        "JE": {
             "zoneName": "Jersey"
-          },
-          "JM": {
+        },
+        "JM": {
             "zoneName": "Jamaica"
-          },
-          "JO": {
+        },
+        "JO": {
             "zoneName": "Jordânia"
-          },
-          "JP-CB": {
+        },
+        "JP-CB": {
             "countryName": "Japão",
             "zoneName": "Chūbu"
-          },
-          "JP-CG": {
+        },
+        "JP-CG": {
             "countryName": "Japão",
             "zoneName": "Chūgoku"
-          },
-          "JP-HKD": {
+        },
+        "JP-HKD": {
             "countryName": "Japão",
             "zoneName": "Hokkaidō"
-          },
-          "JP-HR": {
+        },
+        "JP-HR": {
             "countryName": "Japão",
             "zoneName": "Hokuriku"
-          },
-          "JP-KN": {
+        },
+        "JP-KN": {
             "countryName": "Japão",
             "zoneName": "Kansai"
-          },
-          "JP-KY": {
+        },
+        "JP-KY": {
             "countryName": "Japão",
             "zoneName": "Kyūshū"
-          },
-          "JP-ON": {
+        },
+        "JP-ON": {
             "countryName": "Japão",
             "zoneName": "Okinawa"
-          },
-          "JP-SK": {
+        },
+        "JP-SK": {
             "countryName": "Japão",
             "zoneName": "Shikoku"
-          },
-          "JP-TH": {
+        },
+        "JP-TH": {
             "countryName": "Japão",
             "zoneName": "Tōhoku"
-          },
-          "JP-TK": {
+        },
+        "JP-TK": {
             "countryName": "Japão",
             "zoneName": "Tóquio"
-          },
-          "KE": {
+        },
+        "KE": {
             "zoneName": "Quênia"
-          },
-          "KG": {
+        },
+        "KG": {
             "zoneName": "Quirguistão"
-          },
-          "KH": {
+        },
+        "KH": {
             "zoneName": "Camboja"
-          },
-          "KI": {
+        },
+        "KI": {
             "zoneName": "Kiribati"
-          },
-          "KM": {
+        },
+        "KM": {
             "zoneName": "Comoros"
-          },
-          "KN": {
+        },
+        "KN": {
             "zoneName": "São Cristóvão e Neves"
-          },
-          "KP": {
+        },
+        "KP": {
             "zoneName": "Coreia do Norte"
-          },
-          "KR": {
+        },
+        "KR": {
             "zoneName": "Coreia do Sul"
-          },
-          "KW": {
+        },
+        "KW": {
             "zoneName": "Kuwait"
-          },
-          "KY": {
+        },
+        "KY": {
             "zoneName": "Ilhas Cayman"
-          },
-          "KZ": {
+        },
+        "KZ": {
             "zoneName": "Cazaquistão"
-          },
-          "LA": {
+        },
+        "LA": {
             "zoneName": "Laos"
-          },
-          "LB": {
+        },
+        "LB": {
             "zoneName": "Líbano"
-          },
-          "LC": {
+        },
+        "LC": {
             "zoneName": "Santa Lúcia"
-          },
-          "LI": {
+        },
+        "LI": {
             "zoneName": "Liechtenstein"
-          },
-          "LK": {
+        },
+        "LK": {
             "zoneName": "Sri Lanka"
-          },
-          "LR": {
+        },
+        "LR": {
             "zoneName": "Libéria"
-          },
-          "LS": {
+        },
+        "LS": {
             "zoneName": "Lesoto"
-          },
-          "LT": {
+        },
+        "LT": {
             "zoneName": "Lituânia"
-          },
-          "LU": {
+        },
+        "LU": {
             "zoneName": "Luxemburgo"
-          },
-          "LV": {
+        },
+        "LV": {
             "zoneName": "Letônia"
-          },
-          "LY": {
+        },
+        "LY": {
             "zoneName": "Líbia"
-          },
-          "MA": {
+        },
+        "MA": {
             "zoneName": "Marrocos"
-          },
-          "MC": {
+        },
+        "MC": {
             "zoneName": "Mônaco"
-          },
-          "MD": {
+        },
+        "MD": {
             "zoneName": "Moldávia"
-          },
-          "ME": {
+        },
+        "ME": {
             "zoneName": "Montenegro"
-          },
-          "MF": {
+        },
+        "MF": {
             "countryName": "são Martinho",
             "zoneName": "Francesa"
-          },
-          "MG": {
+        },
+        "MG": {
             "zoneName": "Madagáscar"
-          },
-          "MH": {
+        },
+        "MH": {
             "zoneName": "Ilhas Marshall"
-          },
-          "MK": {
+        },
+        "MK": {
             "zoneName": "Macedônia do Norte"
-          },
-          "ML": {
+        },
+        "ML": {
             "zoneName": "Mali"
-          },
-          "MM": {
+        },
+        "MM": {
             "zoneName": "Birmânia"
-          },
-          "MN": {
+        },
+        "MN": {
             "zoneName": "Mongólia"
-          },
-          "MO": {
+        },
+        "MO": {
             "zoneName": "Macau"
-          },
-          "MP": {
+        },
+        "MP": {
             "zoneName": "Ilhas Marianas do Norte"
-          },
-          "MQ": {
+        },
+        "MQ": {
             "zoneName": "Martinica"
-          },
-          "MR": {
+        },
+        "MR": {
             "zoneName": "Mauritânia"
-          },
-          "MS": {
+        },
+        "MS": {
             "zoneName": "Montserrat"
-          },
-          "MT": {
+        },
+        "MT": {
             "zoneName": "Malta"
-          },
-          "MU": {
+        },
+        "MU": {
             "zoneName": "Maurícia"
-          },
-          "MV": {
+        },
+        "MV": {
             "zoneName": "Maldivas"
-          },
-          "MW": {
+        },
+        "MW": {
             "zoneName": "Malawi"
-          },
-          "MX": {
+        },
+        "MX": {
             "zoneName": "México"
-          },
-          "MX-BC": {
+        },
+        "MX-BC": {
             "countryName": "México",
             "zoneName": "Baja California"
-          },
-          "MX-CE": {
+        },
+        "MX-CE": {
             "countryName": "México",
             "zoneName": "Central"
-          },
-          "MX-NE": {
+        },
+        "MX-NE": {
             "countryName": "México",
             "zoneName": "Nordeste"
-          },
-          "MX-NO": {
+        },
+        "MX-NO": {
             "countryName": "México",
             "zoneName": "Norte"
-          },
-          "MX-NW": {
+        },
+        "MX-NW": {
             "countryName": "México",
             "zoneName": "Noroeste"
-          },
-          "MX-OC": {
+        },
+        "MX-OC": {
             "countryName": "México",
             "zoneName": "Ocidental"
-          },
-          "MX-OR": {
+        },
+        "MX-OR": {
             "countryName": "México",
             "zoneName": "Oriental"
-          },
-          "MX-PN": {
+        },
+        "MX-PN": {
             "countryName": "México",
             "zoneName": "Península"
-          },
-          "MY-EM": {
+        },
+        "MY-EM": {
             "countryName": "Malaysia",
             "zoneName": "Borneo"
-          },
-          "MY-WM": {
+        },
+        "MY-WM": {
             "countryName": "Malaysia",
             "zoneName": "Península"
-          },
-          "MZ": {
+        },
+        "MZ": {
             "zoneName": "Moçambique"
-          },
-          "NA": {
+        },
+        "NA": {
             "zoneName": "Namibia"
-          },
-          "NC": {
+        },
+        "NC": {
             "zoneName": "Nova Caledônia"
-          },
-          "NE": {
+        },
+        "NE": {
             "zoneName": "Niger"
-          },
-          "NF": {
+        },
+        "NF": {
             "zoneName": "Ilha Norfolk"
-          },
-          "NG": {
+        },
+        "NG": {
             "zoneName": "Nigéria"
-          },
-          "NI": {
+        },
+        "NI": {
             "zoneName": "Nicarágua"
-          },
-          "NKR": {
+        },
+        "NKR": {
             "zoneName": "Nagorno-Karabakh"
-          },
-          "NL": {
+        },
+        "NL": {
             "zoneName": "Países Baixos"
-          },
-          "NO-NO1": {
+        },
+        "NO-NO1": {
             "countryName": "Noruega",
             "zoneName": "Sudeste da Noruega"
-          },
-          "NO-NO2": {
+        },
+        "NO-NO2": {
             "countryName": "Noruega",
             "zoneName": "Sudeste da Noruega"
-          },
-          "NO-NO3": {
+        },
+        "NO-NO3": {
             "countryName": "Noruega",
             "zoneName": "Noruega média"
-          },
-          "NO-NO4": {
+        },
+        "NO-NO4": {
             "countryName": "Noruega",
             "zoneName": "Noruega do Norte"
-          },
-          "NO-NO5": {
+        },
+        "NO-NO5": {
             "countryName": "Noruega",
             "zoneName": "Noruega Ocidental"
-          },
-          "NP": {
+        },
+        "NP": {
             "zoneName": "Nepal"
-          },
-          "NR": {
+        },
+        "NR": {
             "zoneName": "Nauru"
-          },
-          "NU": {
+        },
+        "NU": {
             "zoneName": "Niue"
-          },
-          "NZ-NZA": {
+        },
+        "NZ-NZA": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilhas de Auckland"
-          },
-          "NZ-NZC": {
+        },
+        "NZ-NZC": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilhas Chatham"
-          },
-          "NZ-NZN": {
+        },
+        "NZ-NZN": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilha do Norte"
-          },
-          "NZ-NZS": {
+        },
+        "NZ-NZS": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilha do Sul"
-          },
-          "OM": {
+        },
+        "OM": {
             "zoneName": "Omã"
-          },
-          "PA": {
+        },
+        "PA": {
             "zoneName": "Panamá"
-          },
-          "PE": {
+        },
+        "PE": {
             "zoneName": "Peru"
-          },
-          "PF": {
+        },
+        "PF": {
             "zoneName": "Polinésia Francesa"
-          },
-          "PG": {
+        },
+        "PG": {
             "zoneName": "Papua Nova Guiné"
-          },
-          "PH": {
+        },
+        "PH": {
             "zoneName": "Filipinas"
-          },
-          "PK": {
+        },
+        "PK": {
             "zoneName": "Paquistão"
-          },
-          "PL": {
+        },
+        "PL": {
             "zoneName": "Polônia"
-          },
-          "PM": {
+        },
+        "PM": {
             "zoneName": "São Pedro e Miquelão"
-          },
-          "PN": {
+        },
+        "PN": {
             "zoneName": "Pitcairn"
-          },
-          "PR": {
+        },
+        "PR": {
             "zoneName": "Puerto Rico"
-          },
-          "PS": {
+        },
+        "PS": {
             "zoneName": "Estado da Palestina"
-          },
-          "PT": {
+        },
+        "PT": {
             "zoneName": "Portugal"
-          },
-          "PT-AC": {
+        },
+        "PT-AC": {
             "countryName": "Portugal",
             "zoneName": "Açores"
-          },
-          "PT-MA": {
+        },
+        "PT-MA": {
             "countryName": "Portugal",
             "zoneName": "Madeira"
-          },
-          "PW": {
+        },
+        "PW": {
             "zoneName": "Palau"
-          },
-          "PY": {
+        },
+        "PY": {
             "zoneName": "Paraguai"
-          },
-          "QA": {
+        },
+        "QA": {
             "zoneName": "Catar"
-          },
-          "RE": {
+        },
+        "RE": {
             "zoneName": "Reunião"
-          },
-          "RO": {
+        },
+        "RO": {
             "zoneName": "Romênia"
-          },
-          "RS": {
+        },
+        "RS": {
             "zoneName": "Sérvia"
-          },
-          "RU": {
+        },
+        "RU": {
             "zoneName": "Rússia"
-          },
-          "RU-1": {
+        },
+        "RU-1": {
             "countryName": "Rússia",
             "zoneName": "Rússia e Ural europeus"
-          },
-          "RU-2": {
+        },
+        "RU-2": {
             "countryName": "Rússia",
             "zoneName": "Sibéria"
-          },
-          "RU-EU": {
-            "zoneName": "Rússia"
-          },
-          "RU-AS": {
-            "zoneName": "Rússia"
-          },
-          "RU-KGD": {
+        },
+        "RU-EU": {
+            "zoneName": "Rússia",
+            "countryName": "Rússia"
+        },
+        "RU-AS": {
+            "zoneName": "Rússia",
+            "countryName": "Rússia"
+        },
+        "RU-KGD": {
             "countryName": "Rússia",
             "zoneName": "Kaliningrado"
-          },
-          "RW": {
+        },
+        "RW": {
             "zoneName": "Ruanda"
-          },
-          "SA": {
+        },
+        "SA": {
             "zoneName": "Arábia Saudita"
-          },
-          "SB": {
+        },
+        "SB": {
             "zoneName": "Ilhas Salomão"
-          },
-          "SC": {
+        },
+        "SC": {
             "zoneName": "Seychelles"
-          },
-          "SD": {
+        },
+        "SD": {
             "zoneName": "Sudão"
-          },
-          "SE": {
+        },
+        "SE": {
             "zoneName": "Suécia"
-          },
-          "SG": {
+        },
+        "SG": {
             "zoneName": "Singapura"
-          },
-          "SH": {
+        },
+        "SH": {
             "zoneName": "Santa Helena, Ascensão e Tristão da Cunha"
-          },
-          "SI": {
+        },
+        "SI": {
             "zoneName": "Eslovênia"
-          },
-          "SJ": {
+        },
+        "SJ": {
             "zoneName": "Svalbard and Jan Mayen"
-          },
-          "SK": {
+        },
+        "SK": {
             "zoneName": "Eslováquia"
-          },
-          "SL": {
+        },
+        "SL": {
             "zoneName": "Serra Leoa"
-          },
-          "SM": {
+        },
+        "SM": {
             "zoneName": "San Marino"
-          },
-          "SN": {
+        },
+        "SN": {
             "zoneName": "Senegal"
-          },
-          "SO": {
+        },
+        "SO": {
             "zoneName": "Somália"
-          },
-          "SR": {
+        },
+        "SR": {
             "zoneName": "Suriname"
-          },
-          "SS": {
+        },
+        "SS": {
             "zoneName": "Sudão do Sul"
-          },
-          "ST": {
+        },
+        "ST": {
             "zoneName": "São Tomé e Príncipe"
-          },
-          "SV": {
+        },
+        "SV": {
             "zoneName": "El Salvador"
-          },
-          "SX": {
+        },
+        "SX": {
             "countryName": "Sint Maarten",
             "zoneName": "Holandês"
-          },
-          "SY": {
+        },
+        "SY": {
             "zoneName": "Síria"
-          },
-          "SZ": {
+        },
+        "SZ": {
             "zoneName": "Suazilândia"
-          },
-          "TC": {
+        },
+        "TC": {
             "zoneName": "Ilhas Turcas e Caicos"
-          },
-          "TD": {
+        },
+        "TD": {
             "zoneName": "Chade"
-          },
-          "TF": {
+        },
+        "TF": {
             "zoneName": "Territórios Franceses do Sul"
-          },
-          "TG": {
+        },
+        "TG": {
             "zoneName": "Togo"
-          },
-          "TH": {
+        },
+        "TH": {
             "zoneName": "Tailândia"
-          },
-          "TJ": {
+        },
+        "TJ": {
             "zoneName": "Tajiquistão"
-          },
-          "TK": {
+        },
+        "TK": {
             "zoneName": "Tokelau"
-          },
-          "TL": {
+        },
+        "TL": {
             "zoneName": "Timor-Leste"
-          },
-          "TM": {
+        },
+        "TM": {
             "zoneName": "Turcomenistão"
-          },
-          "TN": {
+        },
+        "TN": {
             "zoneName": "Tunísia"
-          },
-          "TO": {
+        },
+        "TO": {
             "zoneName": "Tonga"
-          },
-          "TR": {
+        },
+        "TR": {
             "zoneName": "Turquia"
-          },
-          "TT": {
+        },
+        "TT": {
             "zoneName": "Trinidad e Tobago"
-          },
-          "TV": {
+        },
+        "TV": {
             "zoneName": "Tuvalu"
-          },
-          "TW": {
+        },
+        "TW": {
             "zoneName": "Taiwan"
-          },
-          "TZ": {
+        },
+        "TZ": {
             "zoneName": "Tanzânia"
-          },
-          "UA": {
+        },
+        "UA": {
             "zoneName": "Ucrânia"
-          },
-          "UA-CR": {
+        },
+        "UA-CR": {
             "countryName": "Crimea",
             "zoneName": "Ucrânia"
-          },
-          "UG": {
+        },
+        "UG": {
             "zoneName": "Uganda"
-          },
-          "UM": {
+        },
+        "UM": {
             "zoneName": "Ilhas Menores Distantes dos Estados Unidos"
-          },
-          "US": {
-            "zoneName": "Estados Unidos da América"
-          },
-          "US-AK": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Alasca"
-          },
-          "US-AL": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Alabama"
-          },
-          "US-BPA": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "BPA"
-          },
-          "US-CA": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Califórnia"
-          },
-          "US-HI-HA": {
+        },
+        "US-HI-HA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Havaí"
-          },
-          "US-HI-KA": {
+        },
+        "US-HI-KA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Kauai"
-          },
-          "US-HI-KH": {
+        },
+        "US-HI-KH": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Kahoolawe"
-          },
-          "US-HI-LA": {
+        },
+        "US-HI-LA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Lanai"
-          },
-          "US-HI-MA": {
+        },
+        "US-HI-MA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Maui"
-          },
-          "US-HI-MO": {
+        },
+        "US-HI-MO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Molokai"
-          },
-          "US-HI-NI": {
+        },
+        "US-HI-NI": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Niihau"
-          },
-          "US-HI-OA": {
+        },
+        "US-HI-OA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Oahu"
-          },
-          "US-IPC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "IPC"
-          },
-          "US-MISO": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "MISO"
-          },
-          "US-NC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Carolina do Norte"
-          },
-          "US-NEISO": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nova Inglaterra"
-          },
-          "US-NV": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nevada"
-          },
-          "US-NY": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Nova york"
-          },
-          "US-OR": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Oregon"
-          },
-          "US-PJM": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "PJM"
-          },
-          "US-SC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Carolina do Sul"
-          },
-          "US-SPP": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "SPP"
-          },
-          "US-SVERI":{
-            "countryName": "Estados Unidos da América",
-            "zoneName": "SVERI"
-          },
-          "US-TN": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Tennessee"
-          },
-          "US-TX": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "ERCOT"
-          },
-          "US-CAL-BANC": {
+        },
+        "US-CAL-BANC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Autoridade de equilíbrio do norte da Califórnia"
-          },
-          "US-CAL-CISO": {
+        },
+        "US-CAL-CISO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Operador de sistema independente da Califórnia"
-          },
-          "US-CAL-IID": {
+        },
+        "US-CAL-IID": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Distrito Imperial de Irrigação"
-          },
-          "US-CAL-LDWP": {
+        },
+        "US-CAL-LDWP": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Departamento de Água e Energia de Los Angeles"
-          },
-          "US-CAL-TIDC": {
+        },
+        "US-CAL-TIDC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Distrito de Irrigação de Turlock"
-          },
-          "US-CAR-CPLE": {
+        },
+        "US-CAR-CPLE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Duke Energy Progresso Leste"
-          },
-          "US-CAR-CPLW": {
+        },
+        "US-CAR-CPLW": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Duke Energy Progress Oeste"
-          },
-          "US-CAR-DUK": {
+        },
+        "US-CAR-DUK": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Duke Energy Carolinas"
-          },
-          "US-CAR-SC": {
+        },
+        "US-CAR-SC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Autoridade de serviço público da Carolina do Sul"
-          },
-          "US-CAR-SCEG": {
+        },
+        "US-CAR-SCEG": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Companhia Elétrica e Gás da Carolina do Sul"
-          },
-          "US-CAR-YAD": {
+        },
+        "US-CAR-YAD": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Alcoa Power Generating, Inc. Divisão Yadkin"
-          },
-          "US-CENT-SPA": {
+        },
+        "US-CENT-SPA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Administração de energia do sudoeste"
-          },
-          "US-CENT-SWPP": {
+        },
+        "US-CENT-SWPP": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Power Pool do sudoeste"
-          },
-          "US-FLA-FMPP": {
+        },
+        "US-FLA-FMPP": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Power Pool do Florida Municipal"
-          },
-          "US-FLA-FPC": {
+        },
+        "US-FLA-FPC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Duke Energy Florida Inc"
-          },
-          "US-FLA-FPL": {
+        },
+        "US-FLA-FPL": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Florida Power & Light Company"
-          },
-          "US-FLA-GVL": {
+        },
+        "US-FLA-GVL": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Gainesville Regional Utilities"
-          },
-          "US-FLA-HST": {
+        },
+        "US-FLA-HST": {
             "countryName": "Estados Unidos da América",
             "zoneName": "City Of Homestead"
-          },
-          "US-FLA-JEA": {
+        },
+        "US-FLA-JEA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "JEA"
-          },
-          "US-FLA-NSB": {
+        },
+        "US-FLA-NSB": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Comissão de serviços públicos de New Smyrna Beach"
-          },
-          "US-FLA-SEC": {
+        },
+        "US-FLA-SEC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Seminole Electric Cooperative"
-          },
-          "US-FLA-TAL": {
+        },
+        "US-FLA-TAL": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Cidade de Tallahassee"
-          },
-          "US-FLA-TEC": {
+        },
+        "US-FLA-TEC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Companhia elétrica de Tampa"
-          },
-          "US-MIDA-OVEC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Ohio Valley Electric Corporation"
-          },
-          "US-MIDA-PJM": {
+        },
+        "US-MIDA-PJM": {
             "countryName": "Estados Unidos da América",
             "zoneName": "PJM Interconnection, Llc"
-          },
-          "US-MIDW-AECI": {
+        },
+        "US-MIDW-AECI": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Associated Electric Cooperative, Inc."
-          },
-          "US-MIDW-EEI": {
+        },
+        "US-MIDW-EEI": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Electric Energy, Inc."
-          },
-          "US-MIDW-GLHB": {
+        },
+        "US-MIDW-GLHB": {
             "countryName": "Estados Unidos da América",
             "zoneName": "GridLiance"
-          },
-          "US-MIDW-LGEE": {
+        },
+        "US-MIDW-LGEE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
-          },
-          "US-MIDW-MISO": {
+        },
+        "US-MIDW-MISO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Operador Independente do Sistema de Transmissão Midcontinent, Inc."
-          },
-          "US-NE-ISNE": {
+        },
+        "US-NE-ISNE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Iso New England Inc."
-          },
-          "US-NW-AVA": {
+        },
+        "US-NW-AVA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Avista Corporation"
-          },
-          "US-NW-AVRN": {
+        },
+        "US-NW-AVRN": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Cooperativa Avangrid Renewables"
-          },
-          "US-NW-BPAT": {
+        },
+        "US-NW-BPAT": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Administração de energia de Bonneville"
-          },
-          "US-NW-CHPD": {
+        },
+        "US-NW-CHPD": {
             "countryName": "Estados Unidos da América",
             "zoneName": "PUD No. 1 do Condado de Chelan"
-          },
-          "US-NW-DOPD": {
+        },
+        "US-NW-DOPD": {
             "countryName": "Estados Unidos da América",
             "zoneName": "PUD No. 1 do Condado de Chelan"
-          },
-          "US-NW-GCPD": {
+        },
+        "US-NW-GCPD": {
             "countryName": "Estados Unidos da América",
             "zoneName": "PUD No. 2 de Grant County, Washington"
-          },
-          "US-NW-GRID": {
+        },
+        "US-NW-GRID": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Gridforce Energy Management, Llc"
-          },
-          "US-NW-GWA": {
+        },
+        "US-NW-GWA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Naturener Power Watch, Llc (Gwa)"
-          },
-          "US-NW-IPCO": {
+        },
+        "US-NW-IPCO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Idaho Power Company"
-          },
-          "US-NW-NEVP": {
+        },
+        "US-NW-NEVP": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Nevada Power Company"
-          },
-          "US-NW-NWMT": {
+        },
+        "US-NW-NWMT": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Energia do Noroeste"
-          },
-          "US-NW-PACE": {
+        },
+        "US-NW-PACE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Pacificorp East"
-          },
-          "US-NW-PACW": {
+        },
+        "US-NW-PACW": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Pacificorp West"
-          },
-          "US-NW-PGE": {
+        },
+        "US-NW-PGE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Portland General Electric Company"
-          },
-          "US-NW-PSCO": {
+        },
+        "US-NW-PSCO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Empresa de serviço público do Colorado"
-          },
-          "US-NW-PSEI": {
+        },
+        "US-NW-PSEI": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Puget Sound Energy"
-          },
-          "US-NW-SCL": {
+        },
+        "US-NW-SCL": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Seattle City Light"
-          },
-          "US-NW-TPWR": {
+        },
+        "US-NW-TPWR": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Cidade de Tacoma, Departamento de Serviços Públicos, Divisão de Iluminação"
-          },
-          "US-NW-WACM": {
+        },
+        "US-NW-WACM": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Western Area Power Administration - Região das Montanhas Rochosas"
-          },
-          "US-NW-WAUW": {
+        },
+        "US-NW-WAUW": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Western Area Power Administration UGP West"
-          },
-          "US-NW-WWA": {
+        },
+        "US-NW-WWA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Naturener Wind Watch, Llc"
-          },
-          "US-NY-NYIS": {
+        },
+        "US-NY-NYIS": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Operador de sistema independente de Nova York"
-          },
-          "US-SE-AEC": {
+        },
+        "US-SE-AEC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Powersouth Energy Cooperative"
-          },
-          "US-SE-SEPA": {
+        },
+        "US-SE-SEPA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Southeastern Power Administration"
-          },
-          "US-SE-SOCO": {
+        },
+        "US-SE-SOCO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Southern Company Services, Inc. - Trans"
-          },
-          "US-SW-AZPS": {
+        },
+        "US-SW-AZPS": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Arizona Public Service Company"
-          },
-          "US-SW-DEAA": {
+        },
+        "US-SW-DEAA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Arlington Valley, LLC"
-          },
-          "US-SW-EPE": {
+        },
+        "US-SW-EPE": {
             "countryName": "Estados Unidos da América",
             "zoneName": "El Paso Electric Company"
-          },
-          "US-SW-GRIF": {
+        },
+        "US-SW-GRIF": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Griffith Energy, LLC"
-          },
-          "US-SW-GRMA": {
+        },
+        "US-SW-GRMA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Gila River Power, LLC"
-          },
-          "US-SW-HGMA": {
+        },
+        "US-SW-HGMA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "New Harquahala Generating Company, LLC"
-          },
-          "US-SW-PNM": {
+        },
+        "US-SW-PNM": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Empresa de serviço público do Novo México"
-          },
-          "US-SW-SRP": {
+        },
+        "US-SW-SRP": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Projeto Salt River"
-          },
-          "US-SW-TEPC": {
+        },
+        "US-SW-TEPC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Tucson Electric Power Company"
-          },
-          "US-SW-WALC": {
+        },
+        "US-SW-WALC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Administração de energia da área oeste - Região do deserto do sudoeste"
-          },
-          "US-TEN-TVA": {
+        },
+        "US-TEN-TVA": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Autoridade do Vale do Tennessee"
-          },
-          "US-TEX-ERCO": {
+        },
+        "US-TEX-ERCO": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Electric Reliability Council Of Texas, Inc."
-          },
-          "UY": {
+        },
+        "UY": {
             "zoneName": "Uruguai"
-          },
-          "UZ": {
+        },
+        "UZ": {
             "zoneName": "Uzbequistão"
-          },
-          "VA": {
+        },
+        "VA": {
             "zoneName": "Cidade do Vaticano"
-          },
-          "VC": {
+        },
+        "VC": {
             "zoneName": "São Vicente e Granadinas"
-          },
-          "VE": {
+        },
+        "VE": {
             "zoneName": "Venezuela"
-          },
-          "VG": {
+        },
+        "VG": {
             "countryName": "Ilhas virgens",
             "zoneName": "Ilhas virgens"
-          },
-          "VI": {
+        },
+        "VI": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Ilhas virgens"
-          },
-          "VN": {
+        },
+        "VN": {
             "zoneName": "Vietnã"
-          },
-          "VU": {
+        },
+        "VU": {
             "zoneName": "Vanuatu"
-          },
-          "WF": {
+        },
+        "WF": {
             "zoneName": "Wallis e Futuna"
-          },
-          "WS": {
+        },
+        "WS": {
             "zoneName": "Samoa"
-          },
-          "XX": {
+        },
+        "XX": {
             "zoneName": "Norte do Chipre"
-          },
-          "YE": {
+        },
+        "YE": {
             "zoneName": "Iémen"
-          },
-          "YT": {
+        },
+        "YT": {
             "zoneName": "Mayotte"
-          },
-          "ZA": {
+        },
+        "ZA": {
             "zoneName": "África do Sul"
-          },
-          "ZM": {
+        },
+        "ZM": {
             "zoneName": "Zâmbia"
-          },
-          "ZW": {
+        },
+        "ZW": {
             "zoneName": "Zimbábue"
-          }
-    }
+        },
+        "AUS-TAS-CBI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Cape Barren"
+        },
+        "AUS-TAS-FI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Flinders"
+        },
+        "AUS-WA-RI": {
+            "countryName": "Austrália",
+            "zoneName": "Ilha Rottnest"
+        },
+        "CA-NL-LB": {
+            "countryName": "Canadá",
+            "zoneName": "Labrador"
+        },
+        "CA-NL-NF": {
+            "countryName": "Canadá",
+            "zoneName": "Newfoundland"
+        },
+        "CL-CHP": {
+            "countryName": "Chile",
+            "zoneName": "Ilha de Páscoa"
+        },
+        "IN-TN": {
+            "countryName": "Índia",
+            "zoneName": "Tamil Nadu"
+        },
+        "NZ-NZST": {
+            "countryName": "Nova Zelândia",
+            "zoneName": "Ilha Stewart"
+        },
+        "RU-FE": {
+            "countryName": "Rússia",
+            "zoneName": "Extremo Oriente"
+        },
+        "XK": {
+            "zoneName": "Kosovo"
+        }
+    },
+    "windDataError": "Dados eólicos estão indisponíveis",
+    "solarDataError": "Dados solares estão indisponíveis"
 }

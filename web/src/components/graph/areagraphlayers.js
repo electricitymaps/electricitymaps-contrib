@@ -1,6 +1,6 @@
 import React from 'react';
 import { noop, isFunction } from 'lodash';
-import { area } from 'd3-shape';
+import { area, curveStepAfter } from 'd3-shape';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
@@ -20,6 +20,7 @@ const AreaGraphLayers = React.memo(({
 
   // Generate layer paths
   const layerArea = area()
+    .curve(curveStepAfter)
     .x(d => timeScale(d.data.datetime))
     .y0(d => valueScale(d[0]))
     .y1(d => valueScale(d[1]))

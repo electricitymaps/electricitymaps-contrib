@@ -103,8 +103,8 @@
         "newversion": "Saadaval on uus versioon! Vajutage ümberlaadimiseks <a onClick=\"location.reload(true);\">siia</a>.",
         "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
         "retrynow": "Proovi kohe uuesti",
-        "database-ad": "Otsite ajaloo andmeid? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
-        "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
+        "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
+        "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
         "legend": "Legend",
         "faq": "Korduma kippuvad küsimused"
     },
@@ -151,7 +151,7 @@
         "divideExistingArea-question": "Kas saate jaotada minu piirkonda väiksemateks osadeks?",
         "divideExistingArea-answer": "Muidugi, kui iga piirkonna osa kohta on olemas eraldi andmeallikad. Teil on võimalik <a href=\"#contribute\" class=\"entry-link\">meid aidata, lisades uued andmeallikaid</a>",
         "seeHistoricalData-question": "Kas ma saan vaadata piirkonna ajalugu kaugemale kui 24 tundi tagasi?",
-        "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
+        "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
     },
     "methodology": {
         "groupName": "Meie meetodid",
@@ -179,9 +179,9 @@
         "dataOrigins-question": "Kuidas te oma andmed saate?",
         "dataOrigins-answer": "Me arvutame kõik oma andmed avalikult kättesaadavate andmete põhjal, mille on avaldanud elektrivõrguettevõtted, ametlikud asutused ja teised. Võite klõpsata piirkonnal, et näha andmete päritolu kohta täpsemat teavet.",
         "dataDownload-question": "Kas ma saan teie andmeid alla laadida?",
-        "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
+        "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
         "dataIntegration-question": "Kas ma saan teie andmeid reaalajas enda rakendusse või seadmesse integreerida?",
-        "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
+        "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
     },
     "aboutUs": {
         "groupName": "Meist",
@@ -1385,25 +1385,6 @@
         "UM": {
             "zoneName": "Ühendriikide hajasaared"
         },
-        "US": {
-            "zoneName": "Ameerika Ühendriigid"
-        },
-        "US-AK": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Alaska"
-        },
-        "US-AL": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Hawaii"
@@ -1435,58 +1416,6 @@
         "US-HI-OA": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Põhja-Carolina"
-        },
-        "US-NEISO": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Uus-Inglismaa"
-        },
-        "US-NV": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Lõuna-Carolina"
-        },
-        "US-SPP": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "Ameerika Ühendriigid",
@@ -1579,10 +1508,6 @@
         "US-FLA-TEC": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Tampa Electric Company"
-        },
-        "US-MIDA-OVEC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Ohio Valley Electric Corporation"
         },
         "US-MIDA-PJM": {
             "countryName": "Ameerika Ühendriigid",

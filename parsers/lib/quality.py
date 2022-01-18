@@ -112,7 +112,6 @@ def validate_production(obj, zone_key):
             "NO",
             "AUS-TAS",
             "DK-BHM",
-            "US-NEISO",
             "US-CAR-YAD",
             "US-NW-SCL",
             "US-NW-CHPD",

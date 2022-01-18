@@ -1,7 +1,7 @@
 .zone-time-slider {
     bottom: 0;
     height: 65px;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 1.5rem;
     background: transparent;
     width: 100%;
     box-sizing: border-box;
@@ -27,7 +27,8 @@
 }
 
 .time-slider-axis .tick {
-    font-size: 12px;
+    font-size: .85em;
+    font-family: "Open Sans", sans-serif;
     line { opacity: 0.5; }
 }
 
@@ -40,6 +41,7 @@
     padding: 0;
     overflow: visible;
     border: none;
+    margin: 5px 0;
 
     &:focus {
     	outline: none;

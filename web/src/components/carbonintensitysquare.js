@@ -5,8 +5,12 @@ import { useCo2ColorScale } from '../hooks/theme';
 import { __ } from '../helpers/translation';
 
 /**
- * This function finds the optimal text color based on YIQ contrast.
- * Based on https://medium.com/@druchtie/contrast-calculator-with-yiq-5be69e55535c
+ * This function finds the optimal text color based on a custom formula
+ * derived from the W3CAG standard (see https://www.w3.org/TR/WCAG20-TECHS/G17.html).
+ * I changed the original formula from Math.sqrt(1.05 * 0.05) - 0.05 to 
+ * Math.sqrt(1.05 * 0.18) - 0.05. Because this expression is a constant
+ * I replaced it with it's approached value (0.3847...) to avoid useless computations.
+ * See https://github.com/tmrowco/electricitymap-contrib/issues/3365 for more informations.
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
 const getTextColor = (rgbColor) => {
@@ -14,9 +18,13 @@ const getTextColor = (rgbColor) => {
   const r = parseInt(colors[0], 10);
   const g = parseInt(colors[1], 10);
   const b = parseInt(colors[2], 10);
-  const contrastRatio = (r * 299 + g * 587 + b * 114) / 1000;
-  return contrastRatio > 128 ? 'black' : 'white';
-};
+  const rgb = [r, g, b].map (c => { 
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  })
+  const luminosity = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  return luminosity >= 0.38474130238568316 ? "black" : "white";
+}; 
 
 const Value = styled.span`
   font-weight: bold;

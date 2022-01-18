@@ -101,8 +101,8 @@
         "newversion": "新しいバージョンが使える、リロードするには<a onClick=\"location.reload(true);\">こちら</a>にタップしてください",
         "webgl-not-supported": "ブラウザがWebGLをサポートしていないため、マップを表示できません。",
         "retrynow": "今すぐリトライ",
-        "database-ad": "過去のデータをお探しですか? <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
-        "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
+        "database-ad": "過去のデータをお探しですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">データベースをチェックしてください!</a>",
+        "api-ad": "あなたのアプリやデバイスにデータを取り込みたいですか? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">私たちのAPIをお試しください!</a>",
         "legend": "Legend",
         "faq": "よくある質問"
     },
@@ -118,17 +118,14 @@
     "coal": "石炭",
     "oil": "石油",
     "unknown": "不明",
-
     "electricityComesFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> comes from %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> come from %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> of electricity in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> of emissions in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "of CO₂eq per minute",
     "theMap": {
         "groupName": "地図",
@@ -152,7 +149,7 @@
         "divideExistingArea-question": "私が住む地域をより小さい単位に分割できますか?",
         "divideExistingArea-answer": "それぞれの地域を分割できるような情報源がある場合はもちろんできます。<a href=\"#contribute\" class=\"entry-link\">新しい情報源を追加</a>することができます。",
         "seeHistoricalData-question": "24時間を超える過去のデータ履歴を見ることができますか?",
-        "seeHistoricalData-answer": "<a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>を通して全ての過去データへのアクセス権を購入できます。"
+        "seeHistoricalData-answer": "<a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>を通して全ての過去データへのアクセス権を購入できます。"
     },
     "methodology": {
         "groupName": "手法",
@@ -180,9 +177,9 @@
         "dataOrigins-question": "データはどのように取得しているのですか?",
         "dataOrigins-answer": "私たちは全てのデータを送電事業者、官公庁、その他の機関から公開されているデータを処理して利用しています。地域をクリックすることで情報源についてより詳細な情報が得られます。",
         "dataDownload-question": "データをダウンロードできますか?",
-        "dataDownload-answer": "<a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>から全てのデータのアクセス権を購入できます。",
+        "dataDownload-answer": "<a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">データベース</a>から全てのデータのアクセス権を購入できます。",
         "dataIntegration-question": "データをリアルタイムに私のアプリケーションやデバイスに統合できますか?",
-        "dataIntegration-answer": "できます! <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">リアルタイムAPI</a>へのアクセス権を販売しており、これには未来予測も含まれています。"
+        "dataIntegration-answer": "できます! <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">リアルタイムAPI</a>へのアクセス権を販売しており、これには未来予測も含まれています。"
     },
     "aboutUs": {
         "groupName": "私たちについて",
@@ -1358,25 +1355,6 @@
         "UM": {
             "zoneName": "アメリカ合衆国領有小離島"
         },
-        "US": {
-            "zoneName": "アメリカ合衆国"
-        },
-        "US-AK": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "アラスカ"
-        },
-        "US-AL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "アラバマ"
-        },
-        "US-BPA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "カリフォルニア"
-        },
         "US-HI-HA": {
             "countryName": "アメリカ合衆国",
             "zoneName": "ハワイ"
@@ -1408,58 +1386,6 @@
         "US-HI-OA": {
             "countryName": "アメリカ合衆国",
             "zoneName": "オアフ"
-        },
-        "US-IPC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ノースカロライナ"
-        },
-        "US-NEISO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ニューイングランド"
-        },
-        "US-NV": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ネバダ"
-        },
-        "US-NY": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ニューヨーク"
-        },
-        "US-OR": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "オレゴン"
-        },
-        "US-PJM": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "サウスカロライナ"
-        },
-        "US-SPP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "テネシー"
-        },
-        "US-TX": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "アメリカ合衆国",
@@ -1552,10 +1478,6 @@
         "US-FLA-TEC": {
             "countryName": "アメリカ合衆国",
             "zoneName": "Tampa Electric Company"
-        },
-        "US-MIDA-OVEC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Ohio Valley Electric Corporation"
         },
         "US-MIDA-PJM": {
             "countryName": "アメリカ合衆国",

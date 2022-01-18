@@ -1,9 +1,10 @@
 import React from 'react';
 import { isFinite } from 'lodash';
 
-import { getFullZoneName } from '../../helpers/translation';
+import { getFullZoneName, getShortZoneName } from '../../helpers/translation';
 import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
+import styled from 'styled-components';
 
 export const CarbonIntensity = ({ intensity }) => {
   const co2ColorScale = useCo2ColorScale();
@@ -21,8 +22,11 @@ export const MetricRatio = ({ value, total, format }) => (
   <small>{`(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`}</small>
 );
 
-export const ZoneName = ({ zone }) => (
+const Flag = styled.img``;
+
+export const ZoneName = ({ zone, ellipsify }) => (
   <React.Fragment>
-    <img className="flag" alt="" src={flagUri(zone)} /> {getFullZoneName(zone)}
+    <Flag className="flag" alt="" src={flagUri(zone)} />
+    {ellipsify ? getShortZoneName(zone) : getFullZoneName(zone)}
   </React.Fragment>
 );
