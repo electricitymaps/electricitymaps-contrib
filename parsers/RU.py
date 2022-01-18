@@ -29,7 +29,7 @@ MAP_GENERATION_2 = {
     'P_tes': 'fossil fuel'
 }
 RENEWABLES_RATIO = {
-    'RU-1': {'solar': 0.58, 'wind': 0.42},
+    'RU-1': {'solar': 0.5, 'wind': 0.5},
     'RU-2': {'solar': 1.0, 'wind': 0.0}
 }
 FOSSIL_FUEL_RATIO = {
