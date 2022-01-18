@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from datetime import timedelta
 import arrow
 import pandas
 import requests
@@ -7,11 +8,14 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 import logging
 
+from parsers.lib.config import refetch_frequency
+
 CAISO_PROXY = 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app'
 FUEL_SOURCE_CSV = f'{CAISO_PROXY}/outlook/SP/fuelsource.csv'
 
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
                      logger: logging.Logger = logging.getLogger(__name__)) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -32,8 +36,8 @@ def fetch_production(zone_key='US-CA', session=None, target_datetime=None,
         'Small hydro': 'hydro',
         'Coal': 'coal',
         'Nuclear': 'nuclear',
-        'Natural gas': 'gas',
-        'Large hydro': 'hydro',
+        'Natural Gas': 'gas',
+        'Large Hydro': 'hydro',
         'Other': 'unknown'
     }
     storage_map = {
@@ -150,7 +154,7 @@ def fetch_MX_exchange(s) -> float:
 
     return float(val)
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=None) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""

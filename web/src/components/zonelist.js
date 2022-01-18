@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
@@ -68,6 +69,12 @@ const mapStateToProps = state => ({
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
 });
+
+const Flag = styled.img`
+  margin-right: 10px;
+  margin-left: 10px;
+  vertical-align: middle;
+`;
 
 const ZoneList = ({
   electricityMixMode,
@@ -146,11 +153,11 @@ const ZoneList = ({
           key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
-          <img className="flag" src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
-          <div className="name">
-            <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
-            <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
-          </div>
+            <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
+            <div className="name">
+              <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
+              <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
+            </div>
           <div
             className="co2-intensity-tag"
             style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}

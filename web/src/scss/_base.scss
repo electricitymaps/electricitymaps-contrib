@@ -28,22 +28,6 @@ body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
 
-.all-screens-hidden {
-    display: none !important;
-}
-
-.large-screen-hidden {
-    @include respond-to('medium-up') {
-        display: none !important;
-    }
-}
-
-.small-screen-hidden {
-    @include respond-to('small') {
-        display: none !important;
-    }
-}
-
 hr {
     background-color: $light-gray;
     color: $light-gray;

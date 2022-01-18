@@ -13,9 +13,6 @@
 	    text-decoration: none;
 	}
 
-	&.brightmode #built-by-tomorrow{
-	    background-image: url(../images/built-by-tomorrow.svg)
-	}
 }
 
 .mobile-watermark {
@@ -31,19 +28,12 @@
     }
 }
 
-#built-by-tomorrow{
-    background-image: url(../images/built-by-tomorrow-white.svg);
-    background-size: cover;
-    width: 154px;
-    height: 24px;
-}
-
 .social-buttons {
     margin-top: 12px;
 }
 
 .detail-bottom-section .social-buttons {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     margin-bottom: 12px;
     margin-top: 0px;
 }

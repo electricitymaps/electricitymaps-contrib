@@ -101,8 +101,8 @@
         "newversion": "Μια νέα έκδοση είναι διαθέσιμη! Πατήστε <a onClick=\"location.reload(true);\">εδώ</a> για επαναφόρτωση.",
         "webgl-not-supported": "Ο χάρτης δεν μπορεί να παρουσιαστεί καθώς αυτό το πρόγραμμα περιήγησης δεν υποστηρίζει WebGL.",
         "retrynow": "Επαναδοκιμή τώρα",
-        "database-ad": "Ψάχνετε για ιστορικά δεδομένα; <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Δείτε τη βάση δεδομένων μας!</a>",
-        "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
+        "database-ad": "Ψάχνετε για ιστορικά δεδομένα; <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Δείτε τη βάση δεδομένων μας!</a>",
+        "api-ad": "Θέλετε ζωντανά δεδομένα στην εφαρμογή ή στη συσκευή σας; <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Δοκιμάστε το API μας!</a>",
         "legend": "Yπόμνημα",
         "faq": "Συχνές Ερωτήσεις"
     },
@@ -118,17 +118,14 @@
     "coal": "άνθρακας",
     "oil": "πετρέλαιο",
     "unknown": "άγνωστη",
-
     "electricityComesFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
     "emissionsComeFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθενται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> προέρχεται από %3$s",
     "electricityStoredUsing": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
     "emissionsStoredUsing": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> αποθηκεύεται σε %3$s",
-
     "electricityExportedTo": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsExportedTo": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εξάγεται στο/στη(ν) <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "electricityImportedFrom": "<b>%1$s %%</b> της ηλεκτρικής ενέργειας που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
     "emissionsImportedFrom": "<b>%1$s %%</b> των εκπομπών από την ηλεκτρική ενέργεια που διατίθεται στο/στη(ν) <img id=\"country-flag\"></img> <b>%2$s</b> εισάγεται από <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-
     "ofCO2eqPerMinute": "CO₂eq ανά λεπτό",
     "theMap": {
         "groupName": "Ο χάρτης",
@@ -152,7 +149,7 @@
         "divideExistingArea-question": "Can you divide my area into smaller parts?",
         "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
         "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "Our methods",
@@ -180,9 +177,9 @@
         "dataOrigins-question": "How do you get your data?",
         "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
         "dataDownload-question": "Can I download your data?",
-        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://data.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://api.electricitymap.org?utm_source=electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
     },
     "aboutUs": {
         "groupName": "Σχετικά με εμάς",
@@ -1358,25 +1355,6 @@
         "UM": {
             "zoneName": "United States Minor Outlying Islands"
         },
-        "US": {
-            "zoneName": "Ηνωμένες Πολιτείες Αμερικής"
-        },
-        "US-AK": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Alaska"
-        },
-        "US-AL": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Alabama"
-        },
-        "US-BPA": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "BPA"
-        },
-        "US-CA": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "California"
-        },
         "US-HI-HA": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
             "zoneName": "Hawaii"
@@ -1408,58 +1386,6 @@
         "US-HI-OA": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
             "zoneName": "Oahu"
-        },
-        "US-IPC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "IPC"
-        },
-        "US-MISO": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "MISO"
-        },
-        "US-NC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "North Carolina"
-        },
-        "US-NEISO": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "New England"
-        },
-        "US-NV": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Nevada"
-        },
-        "US-NY": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "New York"
-        },
-        "US-OR": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Oregon"
-        },
-        "US-PJM": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "PJM"
-        },
-        "US-SC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "South Carolina"
-        },
-        "US-SPP": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "SPP"
-        },
-        "US-SVERI": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "SVERI"
-        },
-        "US-TN": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Tennessee"
-        },
-        "US-TX": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "ERCOT"
         },
         "US-CAL-BANC": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
@@ -1552,10 +1478,6 @@
         "US-FLA-TEC": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",
             "zoneName": "Tampa Electric Company"
-        },
-        "US-MIDA-OVEC": {
-            "countryName": "Ηνωμένες Πολιτείες Αμερικής",
-            "zoneName": "Ohio Valley Electric Corporation"
         },
         "US-MIDA-PJM": {
             "countryName": "Ηνωμένες Πολιτείες Αμερικής",

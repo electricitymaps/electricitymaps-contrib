@@ -5,11 +5,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { __ } from '../../helpers/translation';
 import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
+
+const SocialButtons = styled.div`
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+`;
 
 const MobileInfoTab = () => {
   const isMediumUpScreen = useIsMediumUpScreen();
@@ -45,10 +52,6 @@ const MobileInfoTab = () => {
 
   return (
     <div className="mobile-info-tab">
-      <div className="mobile-watermark brightmode">
-        <a href="http://www.tmrow.com/?utm_source=electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-          <img src={resolvePath('images/built-by-tomorrow.svg')} alt="" />
-        </a>
         <div className="socialicons">
           <div
             className="fb-like"
@@ -65,7 +68,6 @@ const MobileInfoTab = () => {
             data-show-count="false"
             data-lang={locale}
           />
-        </div>
       </div>
 
       <div className="info-text">
@@ -95,18 +97,18 @@ const MobileInfoTab = () => {
           <br />
         </p>
       </div>
-      <div className="social-buttons large-screen-hidden">
+      <SocialButtons className="social-buttons">
         <div>
           { /* Facebook share */}
           <div
             className="fb-share-button"
-            data-href="https://www.electricitymap.org/"
+            data-href="https://app.electricitymap.org/"
             data-layout="button_count"
           />
           { /* Twitter share */}
           <a
             className="twitter-share-button"
-            data-url="https://www.electricitymap.org"
+            data-url="https://app.electricitymap.org"
             data-via="electricitymap"
             data-lang={locale}
           />
@@ -118,7 +120,7 @@ const MobileInfoTab = () => {
             </a>
           </span>
         </div>
-      </div>
+      </SocialButtons>
 
       <div className="mobile-faq-header">
         {__('misc.faq')}

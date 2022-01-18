@@ -2,9 +2,9 @@
 
 [![Slack Status](https://slack.tmrow.com/badge.svg)](https://slack.tmrow.com) [![CircleCI](https://circleci.com/gh/tmrowco/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/tmrowco/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 
-A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/), maintained by [Tomorrow](https://www.tmrow.com). Try it out at [http://www.electricitymap.org](http://www.electricitymap.org), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
+A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/), maintained by [Tomorrow](https://www.tmrow.com). Try it out at [http://app.electricitymap.org](http://app.electricitymap.org), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
 
-![image](https://www.electricitymap.org/images/electricitymap_social_image.png)
+![image](https://app.electricitymap.org/images/electricitymap_social_image.png)
 
 ## Contribute
 
@@ -17,7 +17,7 @@ Here are some of the ways you can contribute:
 - [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
 - [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
 - [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
-- [Translating electricitymap.org](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
+- [Translating the app](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
 - [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
 
 Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
@@ -58,4 +58,4 @@ The electricityMap doesn't use scheduled generation data or make assumptions abo
 Yes, providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example, we already split several countries into states and grid regions.
 
 **How can I get access to historical data or the live API?**
-All this and more can be found **[here](https://api.electricitymap.org/)**.
+All this and more can be found **[here](https://electricitymap.org/)**.
