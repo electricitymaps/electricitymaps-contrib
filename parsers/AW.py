@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from distutils.errors import UnknownFileError
 import arrow
 import requests
 import datetime
@@ -25,8 +24,12 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
     # biogas live value is 0 MW all the time (2021)
     biogas = top_data['total_bio_gas']
     total = top_data['TotalPower']
-    unknwon = float(total['value']) - float(fossil['value']) - float(wind['value']) - float(solar['value']) - float(biogas['value'])
-
+    # if "unknown" exceeds total power, it becomes 0
+    unknwon_check = float(total['value']) - float(fossil['value']) - float(wind['value']) - float(solar['value']) - float(biogas['value'])
+    if unknwon_check > 0:
+        unknown = unknwon_check
+    else:
+        unknown = float(0)
     # We're using Fossil data to get timestamp in correct time zone
     local_date_time = datetime.datetime.strptime(fossil['timestamp'], "%Y-%m-%d %H:%M:%S.%f")
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, 'America/Aruba')
@@ -39,7 +42,7 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
             'wind': float(wind['value']),
             'solar': float(solar['value']),
             'biomass': float(biogas['value']),
-            'unknown': abs(float(unknwon))
+            'unknown': unknown
         },
         'storage': {},
         'source': 'webaruba.com',
