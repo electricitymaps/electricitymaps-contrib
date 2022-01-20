@@ -5,32 +5,36 @@ import arrow
 import re
 import requests
 from bs4 import BeautifulSoup
-from logging import getLogger
+import logging
 
-LOAD_URL = 'http://kpx.or.kr/eng/index.do'
+TIMEZONE = 'Asia/Seoul'
+
+CONSUMPTION_URL = 'https://new.kpx.or.kr'
 
 HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
-NUCLEAR_URLS = ['http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
-                'http://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
-                'http://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
-                'http://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
-                'http://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312']
-
-HYDRO_CAPACITIES = {'Hwacheon': 108,
-                    'Chuncheon': 62.28,
-                    'Anheung': 0.6,
-                    'Uiam': 46.5,
-                    'Cheongpyeong': 139.6,
-                    'Paldang': 120,
-                    'Goesan': 2.8,
-                    'Chilbo': 34.8,
-                    'Boseonggang': 4.5,
-                    'Euiam': 14.8,
-                    'Seomjingang': 8
-                    }
+NUCLEAR_URLS = [
+    'https://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
+    'https://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
+    'https://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
+    'https://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
+    'https://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312'
+]
 
 # Gangneung hydro plant used only for peak load and backup, capacity info not available.
+HYDRO_CAPACITIES = {
+    'Hwacheon': 108,
+    'Chuncheon': 62.28,
+    'Anheung': 0.6,
+    'Uiam': 46.5,
+    'Cheongpyeong': 139.6,
+    'Paldang': 120,
+    'Goesan': 2.8,
+    'Chilbo': 34.8,
+    'Boseonggang': 4.5,
+    'Euiam': 14.8,
+    'Seomjingang': 8
+    }
 
 
 def timestamp_processor(timestamps, with_tz=False, check_delta=False):
@@ -42,7 +46,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
     if timestamps.count(timestamps[0]) == len(timestamps):
         unified_timestamp = timestamps[0]
     else:
-        average_timestamp = sum([dt.timestamp for dt in timestamps])/len(timestamps)
+        average_timestamp = sum([arrow.get(ts).timestamp for ts in timestamps])/len(timestamps)
         unified_timestamp = arrow.get(average_timestamp)
 
     if check_delta:
@@ -56,7 +60,7 @@ def timestamp_processor(timestamps, with_tz=False, check_delta=False):
                                  saw {} hours difference""".format(second_difference/3600))
 
     if with_tz:
-        unified_timestamp = unified_timestamp.replace(tzinfo='Asia/Seoul')
+        unified_timestamp = unified_timestamp.replace(tzinfo=TIMEZONE)
 
     return unified_timestamp
 
@@ -106,7 +110,7 @@ def fetch_hydro(session, logger):
         except ValueError:
             continue
 
-        plant_dts.append(dt_naive)
+        plant_dts.append(dt_naive.datetime)
         total += value
 
     dt = timestamp_processor(plant_dts)
@@ -121,10 +125,12 @@ def fetch_nuclear(session):
     for url in NUCLEAR_URLS:
         req = session.get(url)
         soup = BeautifulSoup(req.content, 'html.parser')
+
         table = soup.find("tbody")
         rows = table.find_all("tr")
 
         for row in rows:
+
             sub_row = row.find("td")
             generation = sub_row.find("div", {"class": "tdCont alC"})
 
@@ -141,38 +147,66 @@ def fetch_nuclear(session):
             text_dt = tag_dt.find("div", {"class": "tdCont alC"})
             dt = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm")
 
-            plant_dts.append(dt)
+            plant_dts.append(dt.datetime)
 
     dt = timestamp_processor(plant_dts)
 
     return total, dt
 
 
-def fetch_load(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
-    req = session.get(LOAD_URL)
-    soup = BeautifulSoup(req.content, 'html.parser')
+# def fetch_load(session):
+#     """Returns 2 element tuple in form (float, arrow object)."""
+#     req = session.get(LOAD_URL)
+#     soup = BeautifulSoup(req.content, 'html.parser')
 
-    load_tag = soup.find("div", {"class": "actual"})
-    present_load = load_tag.find("dt", text=re.compile(r'Present Load'))
-    value = present_load.find_next("dd").text.strip()
+#     load_tag = soup.find("div", {"class": "graph"})
+#     present_load = load_tag.find("h4", text=re.compile(r'현재부하'))
+#     value = present_load.find_next("dd").text.strip()
 
-    # remove MW units
-    num = value.split(" ")[0]
+#     # remove MW units
+#     num = value.split(" ")[0]
 
-    load = float(num.replace(",", ""))
+#     load = float(num.replace(",", ""))
 
-    date_tag = load_tag.find("p", {"class": "date"})
-    despaced = re.sub(r'\s+', '', date_tag.text)
+#     date_tag = load_tag.find("p", {"class": "date"})
+#     despaced = re.sub(r'\s+', '', date_tag.text)
 
-    # remove (day_of_week) part
-    dejunked = re.sub(r'\(.*?\)', ' ', despaced)
-    dt = arrow.get(dejunked, "YYYY.MM.DD HH:mm")
+#     # remove (day_of_week) part
+#     dejunked = re.sub(r'\(.*?\)', ' ', despaced)
+#     dt = arrow.get(dejunked, "YYYY.MM.DD HH:mm")
 
-    return load, dt
+#     return load, dt
+
+def fetch_consumption(
+    zone_key="KR", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
+    """
+      Fetches consumption.
+    """
+
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    r = session or requests.session()
+    url = CONSUMPTION_URL
+
+    response = r.get(url)
+    assert response.status_code == 200
+
+    soup = BeautifulSoup(response.text, 'html.parser')
+    consumption_title = soup.find("h4", string=re.compile(r"\s*현재부하\s*"))
+    consumption_val = float(consumption_title.find_next_sibling().text.split()[0].replace(",", ""))
+
+    data = {
+        'consumption': consumption_val,
+        'datetime': arrow.now(TIMEZONE).datetime,
+        'source': url,
+        "zoneKey": zone_key,
+    }
+
+    return data
 
 
-def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger=getLogger(__name__)) -> dict:
+def fetch_production(zone_key='KR', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
@@ -181,13 +215,13 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
 
     hydro, hydro_dt = fetch_hydro(s, logger)
     nuclear, nuclear_dt = fetch_nuclear(s)
-    load, load_dt = fetch_load(s)
+    consumption = fetch_consumption(s)
 
-    generation_dts = [hydro_dt, nuclear_dt, load_dt]
+    generation_dts = [hydro_dt, nuclear_dt, consumption["datetime"]]
 
     dt_aware = timestamp_processor(generation_dts, with_tz=True, check_delta=True)
 
-    unknown = load - nuclear - hydro
+    unknown = consumption["consumption"] - nuclear - hydro
 
     production = {
                   'production': {
@@ -208,5 +242,8 @@ def fetch_production(zone_key = 'KR', session=None, target_datetime=None, logger
 
 
 if __name__ == '__main__':
+    print('fetch_consumption() -> ')
+    print(fetch_consumption())
+
     print('fetch_production() -> ')
     print(fetch_production())
