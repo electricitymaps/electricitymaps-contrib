@@ -2374,7 +2374,7 @@
     "capacity": {
       "gas": 15,
       "oil": 67,
-      "wind": 3.68,
+      "wind": 3.68
     },
     "contributors": [
       "https://github.com/systemcatch",
