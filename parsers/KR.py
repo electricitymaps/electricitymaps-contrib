@@ -153,30 +153,6 @@ def fetch_nuclear(session):
 
     return total, dt
 
-
-# def fetch_load(session):
-#     """Returns 2 element tuple in form (float, arrow object)."""
-#     req = session.get(LOAD_URL)
-#     soup = BeautifulSoup(req.content, 'html.parser')
-
-#     load_tag = soup.find("div", {"class": "graph"})
-#     present_load = load_tag.find("h4", text=re.compile(r'현재부하'))
-#     value = present_load.find_next("dd").text.strip()
-
-#     # remove MW units
-#     num = value.split(" ")[0]
-
-#     load = float(num.replace(",", ""))
-
-#     date_tag = load_tag.find("p", {"class": "date"})
-#     despaced = re.sub(r'\s+', '', date_tag.text)
-
-#     # remove (day_of_week) part
-#     dejunked = re.sub(r'\(.*?\)', ' ', despaced)
-#     dt = arrow.get(dejunked, "YYYY.MM.DD HH:mm")
-
-#     return load, dt
-
 def fetch_consumption(
     zone_key="KR", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
     """
