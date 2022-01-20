@@ -12042,15 +12042,15 @@
           "battery storage": null,
           "biomass": null,
           "coal": null,
-          "gas": 15,
+          "gas": null,
           "geothermal": null,
           "hydro": null,
           "hydro storage": null,
           "nuclear": null,
-          "oil": 67,
+          "oil": null,
           "solar": null,
           "unknown": null,
-          "wind": 3.68
+          "wind": null
         },
         "co2intensity": null,
         "co2intensityProduction": null,
