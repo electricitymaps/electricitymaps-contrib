@@ -2374,7 +2374,7 @@
     "capacity": {
       "gas": 15,
       "oil": 67,
-      "wind": 3.68
+      "wind": 3.68,
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -2382,6 +2382,9 @@
       "https://github.com/fastaxx"
     ],
     "flag_file_name": "gb.png",
+    "parsers": {
+      "production": "GB_SHI.fetch_production"
+    },
     "timezone": null
   },
   "GE": {

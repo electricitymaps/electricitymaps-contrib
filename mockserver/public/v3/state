@@ -12042,15 +12042,15 @@
                     "battery storage": null,
                     "biomass": null,
                     "coal": null,
-                    "gas": null,
+                    "gas": 15,
                     "geothermal": null,
                     "hydro": null,
                     "hydro storage": null,
                     "nuclear": null,
-                    "oil": null,
+                    "oil": 67,
                     "solar": null,
                     "unknown": null,
-                    "wind": null
+                    "wind": 3.68
                 },
                 "co2intensity": null,
                 "co2intensityProduction": null,
@@ -12120,7 +12120,7 @@
                 },
                 "renewableRatio": null,
                 "renewableRatioProduction": null,
-                "source": null,
+                "source": "ssen.co.uk",
                 "stateDatetime": "2022-01-04T08:00:00Z",
                 "storage": {
                     "battery": null,
