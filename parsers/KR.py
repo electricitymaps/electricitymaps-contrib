@@ -6,20 +6,22 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import logging
+import datetime
 
 TIMEZONE = 'Asia/Seoul'
 
 CONSUMPTION_URL = 'https://new.kpx.or.kr'
+PRODUCTION_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
 
 HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
-NUCLEAR_URLS = [
-    'https://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
-    'https://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
-    'https://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
-    'https://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
-    'https://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312'
-]
+# NUCLEAR_URLS = [
+#     'https://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
+#     'https://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
+#     'https://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
+#     'https://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
+#     'https://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312'
+# ]
 
 # Gangneung hydro plant used only for peak load and backup, capacity info not available.
 HYDRO_CAPACITIES = {
@@ -118,40 +120,40 @@ def fetch_hydro(session, logger):
     return total, dt
 
 
-def fetch_nuclear(session):
-    """Returns 2 element tuple in form (float, arrow object)."""
-    plant_dts = []
-    total = 0.0
-    for url in NUCLEAR_URLS:
-        req = session.get(url)
-        soup = BeautifulSoup(req.content, 'html.parser')
+# def fetch_nuclear(session):
+#     """Returns 2 element tuple in form (float, arrow object)."""
+#     plant_dts = []
+#     total = 0.0
+#     for url in NUCLEAR_URLS:
+#         req = session.get(url)
+#         soup = BeautifulSoup(req.content, 'html.parser')
 
-        table = soup.find("tbody")
-        rows = table.find_all("tr")
+#         table = soup.find("tbody")
+#         rows = table.find_all("tr")
 
-        for row in rows:
+#         for row in rows:
 
-            sub_row = row.find("td")
-            generation = sub_row.find("div", {"class": "tdCont alC"})
+#             sub_row = row.find("td")
+#             generation = sub_row.find("div", {"class": "tdCont alC"})
 
-            # 1,059 style used
-            deformatted_generation = generation.text.replace(",", "")
+#             # 1,059 style used
+#             deformatted_generation = generation.text.replace(",", "")
 
-            try:
-                total += float(deformatted_generation)
-            except ValueError:
-                # NOTE '0 ○' returned when plant shutdown
-                continue
+#             try:
+#                 total += float(deformatted_generation)
+#             except ValueError:
+#                 # NOTE '0 ○' returned when plant shutdown
+#                 continue
 
-            tag_dt = sub_row.findNext("td")
-            text_dt = tag_dt.find("div", {"class": "tdCont alC"})
-            dt = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm")
+#             tag_dt = sub_row.findNext("td")
+#             text_dt = tag_dt.find("div", {"class": "tdCont alC"})
+#             dt = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm")
 
-            plant_dts.append(dt.datetime)
+#             plant_dts.append(dt.datetime)
 
-    dt = timestamp_processor(plant_dts)
+#     dt = timestamp_processor(plant_dts)
 
-    return total, dt
+#     return total, dt
 
 def fetch_consumption(
     zone_key="KR", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
@@ -181,40 +183,104 @@ def fetch_consumption(
 
     return data
 
+def fetch_production(zone_key='KR', session=None,
+                     target_datetime: datetime.datetime = None,
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+    """
+    Requests the last known production mix (in MW) of a given country.
+    """
+    r = session or requests.session()
+    if target_datetime is None:
+        url = PRODUCTION_URL
+    else:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
-def fetch_production(zone_key='KR', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-    """Requests the last known production mix (in MW) of a given zone."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+    res = r.get(url)
+    assert res.status_code == 200, 'Exception when fetching production for ' \
+                                   '{}: error when calling url={}'.format(
+                                       zone_key, url)
 
-    s = session or requests.Session()
+    soup = BeautifulSoup(res.text, 'html.parser')
+    production_table = soup.find_all("table", {"class": "conTable tdCenter"})[3]
 
-    hydro, hydro_dt = fetch_hydro(s, logger)
-    nuclear, nuclear_dt = fetch_nuclear(s)
-    consumption = fetch_consumption(s)
+    rows = production_table.find_all("tr")[1:]
 
-    generation_dts = [hydro_dt, nuclear_dt, consumption["datetime"]]
+    data = {
+      'zoneKey': 'KR',
+      'datetime': arrow.now(TIMEZONE).datetime,
+      'production': {
+          'biomass': 0.0,
+          'coal':0.0,
+          'gas': 0.0,
+          'hydro': 0.0,
+          'nuclear': 0.0,
+          'oil': 0.0,
+          'solar': 0.0,
+          'wind': 0.0,
+          'geothermal': 0.0,
+          'unknown': 0.0,
+      },
+      'storage': {},
+      'source': 'https://new.kpx.or.kr'
+    }
 
-    dt_aware = timestamp_processor(generation_dts, with_tz=True, check_delta=True)
+    for i, row in enumerate(rows):
+        row_values = row.find_all("td")
+        row_datetime_values = [value[:-1] for value in row_values[0].text.split(" ")]
+        production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
 
-    unknown = consumption["consumption"] - nuclear - hydro
+        if i+1 <= len(rows) - 1:
+            next_row = rows[i+1]
+            next_row_values = next_row.find_all("td")
+            next_row_values = [int("".join(value.text.split(","))) for value in next_row_values[1:]]
 
-    production = {
-                  'production': {
-                    'nuclear': nuclear,
-                    'hydro': hydro,
-                    'unknown': unknown
-                  },
-                   'source': 'khnp.co.kr, kpx.or.kr',
-                   'zoneKey': zone_key,
-                   'datetime': dt_aware.datetime,
-                   'storage': {
-                     'hydro': None,
-                     'battery': None
-                  }
-                  }
+            if not all(next_row_values):
+                curr_prod_datetime_string = "-".join(row_datetime_values[:3]) + "T" + ":".join(row_datetime_values[3:]) + ":00"
+                arw = arrow.get(curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE)
+                data["datetime"] = arw.datetime
+                data["production"]["coal"] = production_values[3]
+                data["production"]["gas"] = production_values[1]
+                data["production"]["nuclear"] = production_values[4]
+                data["production"]["unknown"] = production_values[2] + production_values[0]
+                break
 
-    return production
+    return data
+
+
+# def fetch_production(zone_key='KR', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+#     """Requests the last known production mix (in MW) of a given zone."""
+#     if target_datetime:
+#         raise NotImplementedError('This parser is not yet able to parse past dates')
+
+#     s = session or requests.Session()
+
+#     # hydro, hydro_dt = fetch_hydro(s, logger)
+#     # nuclear, nuclear_dt = fetch_nuclear(s)
+#     # consumption = fetch_consumption(s)
+
+#     generation_dts = [hydro_dt, nuclear_dt, consumption["datetime"]]
+
+#     dt_aware = timestamp_processor(generation_dts, with_tz=True, check_delta=True)
+
+#     unknown = consumption["consumption"] - nuclear - hydro
+
+#     production = {
+#                   'production': {
+#                     'nuclear': nuclear,
+#                     'hydro': hydro,
+#                     'unknown': unknown
+#                   },
+#                    'source': 'khnp.co.kr, kpx.or.kr',
+#                    'zoneKey': zone_key,
+#                    'datetime': dt_aware.datetime,
+#                    'storage': {
+#                      'hydro': None,
+#                      'battery': None
+#                   }
+#                   }
+
+#     return production
 
 
 if __name__ == '__main__':
