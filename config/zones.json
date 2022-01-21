@@ -3855,9 +3855,11 @@
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/IV1T3"
     ],
     "parsers": {
+      "consumption": "KR.fetch_consumption",
       "production": "KR.fetch_production"
     },
     "timezone": "Asia/Seoul"
