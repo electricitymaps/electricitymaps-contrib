@@ -10,8 +10,7 @@ import datetime
 
 TIMEZONE = 'Asia/Seoul'
 
-CONSUMPTION_URL = 'https://new.kpx.or.kr'
-PRODUCTION_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
+REAL_TIME_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
 
 HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
@@ -165,13 +164,13 @@ def fetch_consumption(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     r = session or requests.session()
-    url = CONSUMPTION_URL
+    url = REAL_TIME_URL
 
     response = r.get(url)
     assert response.status_code == 200
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    consumption_title = soup.find("h4", string=re.compile(r"\s*현재부하\s*"))
+    consumption_title = soup.find("th", string=re.compile(r"\s*현재부하\s*"))
     consumption_val = float(consumption_title.find_next_sibling().text.split()[0].replace(",", ""))
 
     data = {
@@ -191,7 +190,7 @@ def fetch_production(zone_key='KR', session=None,
     """
     r = session or requests.session()
     if target_datetime is None:
-        url = PRODUCTION_URL
+        url = REAL_TIME_URL
     else:
         raise NotImplementedError(
             'This parser is not yet able to parse past dates')
