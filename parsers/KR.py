@@ -9,146 +9,113 @@ import logging
 import datetime
 
 TIMEZONE = 'Asia/Seoul'
-
 REAL_TIME_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
-
+PRICE_URL = 'https://new.kpx.or.kr/smpInland.es?mid=a10606080100&device=pc'
 HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
 
-# NUCLEAR_URLS = [
-#     'https://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302',
-#     'https://cms.khnp.co.kr/eng/hanbit/realTimeMgr/list.do?mnCd=EN03020202&brnchCd=BR0303',
-#     'https://cms.khnp.co.kr/eng/wolsong/realTimeMgr/list.do?mnCd=EN03020203&brnchCd=BR0305',
-#     'https://cms.khnp.co.kr/eng/hanul/realTimeMgr/list.do?mnCd=EN03020204&brnchCd=BR0304',
-#     'https://cms.khnp.co.kr/eng/saeul/realTimeMgr/list.do?mnCd=EN03020205&brnchCd=BR0312'
-# ]
+#### Classification of New & Renewable Energy Sources ####
+# Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
+# New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
+# Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
 
-# Gangneung hydro plant used only for peak load and backup, capacity info not available.
+# Gangneung hydro plant used only for peak load and backup
+# sources for capacities: 
+# 1) https://cms.khnp.co.kr/eng/content/566/main.do?mnCd=EN040201
+# 2) https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203
 HYDRO_CAPACITIES = {
+    # below is listed in 1)
     'Hwacheon': 108,
     'Chuncheon': 62.28,
-    'Anheung': 0.6,
-    'Uiam': 46.5,
-    'Cheongpyeong': 139.6,
+    'Uiam': 48,
+    'Cheongpyeong': 140.1,
     'Paldang': 120,
-    'Goesan': 2.8,
-    'Chilbo': 34.8,
+    'Chilbo': 35.4,
     'Boseonggang': 4.5,
+    'Goesan': 2.8,
+    'Gangrim': 0.48,
+    'Gangneung': 82,
+    # below is inferred from output in 2)
+    'Anheung': 0.6,
     'Euiam': 14.8,
     'Seomjingang': 8
     }
 
+######################################################
+## Currently not used: Might be useful in the future # 
+######################################################
+# def timestamp_processor(timestamps, with_tz=False, check_delta=False):
+#     """
+#     Compares naive arrow objects, returning the average.
+#     Optionally can determine if timestamps are too disparate to be used.
+#     Returns an arrow object, with optional timezone.
+#     """
+#     if timestamps.count(timestamps[0]) == len(timestamps):
+#         unified_timestamp = timestamps[0]
+#     else:
+#         average_timestamp = sum([arrow.get(ts).timestamp for ts in timestamps])/len(timestamps)
+#         unified_timestamp = arrow.get(average_timestamp)
 
-def timestamp_processor(timestamps, with_tz=False, check_delta=False):
-    """
-    Compares naive arrow objects, returning the average.
-    Optionally can determine if timestamps are too disparate to be used.
-    Returns an arrow object, with optional timezone.
-    """
-    if timestamps.count(timestamps[0]) == len(timestamps):
-        unified_timestamp = timestamps[0]
-    else:
-        average_timestamp = sum([arrow.get(ts).timestamp for ts in timestamps])/len(timestamps)
-        unified_timestamp = arrow.get(average_timestamp)
+#     if check_delta:
+#         for ts in timestamps:
+#             delta = unified_timestamp - arrow.get(ts)
+#             second_difference = abs(delta.total_seconds())
 
-    if check_delta:
-        for ts in timestamps:
-            delta = unified_timestamp - arrow.get(ts)
-            second_difference = abs(delta.total_seconds())
+#             if second_difference > 3600:
+#                 # more than 1 hour difference
+#                 raise ValueError("""South Korea generation data is more than 1 hour apart,
+#                                  saw {} hours difference""".format(second_difference/3600))
 
-            if second_difference > 3600:
-                # more than 1 hour difference
-                raise ValueError("""South Korea generation data is more than 1 hour apart,
-                                 saw {} hours difference""".format(second_difference/3600))
+#     if with_tz:
+#         unified_timestamp = unified_timestamp.replace(tzinfo=TIMEZONE)
 
-    if with_tz:
-        unified_timestamp = unified_timestamp.replace(tzinfo=TIMEZONE)
+#     return unified_timestamp
+#
+# def check_hydro_capacity(plant_name, value, logger) -> Union[bool, ValueError]:
+#     """Makes sure that generation for each hydro plant isn't above listed capacity."""
+#     try:
+#         max_value = HYDRO_CAPACITIES[plant_name]
+#     except KeyError:
+#         if value != 0.0:
+#             logger.warning('New hydro plant seen - {} - {}MW'.format(plant_name, value), extra={'key': 'KR'})
+#         return True
 
-    return unified_timestamp
-
-
-def check_hydro_capacity(plant_name, value, logger) -> Union[bool, ValueError]:
-    """Makes sure that generation for each hydro plant isn't above listed capacity."""
-    try:
-        max_value = HYDRO_CAPACITIES[plant_name]
-    except KeyError:
-        if value != 0.0:
-            logger.warning('New hydro plant seen - {} - {}MW'.format(plant_name, value), extra={'key': 'KR'})
-        return True
-
-    if value > max_value:
-        logger.warning('{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value), extra={'key': 'KR'})
-        raise ValueError
-    else:
-        return True
-
-
-def fetch_hydro(session, logger):
-    """Returns 2 element tuple in form (float, arrow object)."""
-    req = session.get(HYDRO_URL, verify=False)
-    soup = BeautifulSoup(req.content, 'html.parser')
-    table = soup.find("div", {"class": "dep02Sec"})
-
-    rows = table.find_all("tr")
-
-    plant_dts = []
-    total = 0.0
-    for row in rows:
-        sub_row = row.find("td")
-        if not sub_row:
-            # column headers
-            continue
-
-        plant_name = row.find("th").text
-
-        generation = sub_row.find("div", {"class": "tdCont alC"})
-        value = float(generation.text)
-
-        tag_dt = generation.findNext("td")
-        dt_naive = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm:ss")
-
-        try:
-            check_hydro_capacity(plant_name, value, logger)
-        except ValueError:
-            continue
-
-        plant_dts.append(dt_naive.datetime)
-        total += value
-
-    dt = timestamp_processor(plant_dts)
-
-    return total, dt
-
-
-# def fetch_nuclear(session):
+#     if value > max_value:
+#         logger.warning('{} reports {}MW generation with capacity of {}MW - discarding'.format(plant_name, value, max_value), extra={'key': 'KR'})
+#         raise ValueError
+#     else:
+#         return True
+# 
+# def fetch_hydro(session, logger):
 #     """Returns 2 element tuple in form (float, arrow object)."""
+#     req = session.get(HYDRO_URL, verify=False)
+#     soup = BeautifulSoup(req.content, 'html.parser')
+#     table = soup.find("div", {"class": "dep02Sec"})
+
+#     rows = table.find_all("tr")
+
 #     plant_dts = []
 #     total = 0.0
-#     for url in NUCLEAR_URLS:
-#         req = session.get(url)
-#         soup = BeautifulSoup(req.content, 'html.parser')
+#     for row in rows:
+#         sub_row = row.find("td")
+#         if not sub_row:
+#             # column headers
+#             continue
 
-#         table = soup.find("tbody")
-#         rows = table.find_all("tr")
+#         plant_name = row.find("th").text
 
-#         for row in rows:
+#         generation = sub_row.find("div", {"class": "tdCont alC"})
+#         value = float(generation.text)
 
-#             sub_row = row.find("td")
-#             generation = sub_row.find("div", {"class": "tdCont alC"})
+#         tag_dt = generation.findNext("td")
+#         dt_naive = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm:ss")
 
-#             # 1,059 style used
-#             deformatted_generation = generation.text.replace(",", "")
+#         try:
+#             check_hydro_capacity(plant_name, value, logger)
+#         except ValueError:
+#             continue
 
-#             try:
-#                 total += float(deformatted_generation)
-#             except ValueError:
-#                 # NOTE '0 ○' returned when plant shutdown
-#                 continue
-
-#             tag_dt = sub_row.findNext("td")
-#             text_dt = tag_dt.find("div", {"class": "tdCont alC"})
-#             dt = arrow.get(tag_dt.text, "YYYY-MM-DD HH:mm")
-
-#             plant_dts.append(dt.datetime)
+#         plant_dts.append(dt_naive.datetime)
+#         total += value
 
 #     dt = timestamp_processor(plant_dts)
 
@@ -246,43 +213,62 @@ def fetch_production(zone_key='KR', session=None,
 
     return data
 
+def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime = None, logger=logging.getLogger(__name__)):
+    
+    # TODO: targeted datetime for last week should be possible
+    if target_datetime:
+        raise NotImplementedError(
+            'This parser is not yet able to parse past dates')
 
-# def fetch_production(zone_key='KR', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-#     """Requests the last known production mix (in MW) of a given zone."""
-#     if target_datetime:
-#         raise NotImplementedError('This parser is not yet able to parse past dates')
+    r = session or requests.session()
+    url = PRICE_URL
 
-#     s = session or requests.Session()
+    response = r.get(url)
+    assert response.status_code == 200
 
-#     # hydro, hydro_dt = fetch_hydro(s, logger)
-#     # nuclear, nuclear_dt = fetch_nuclear(s)
-#     # consumption = fetch_consumption(s)
+    data = {
+        'zoneKey': zone_key,
+        'datetime': arrow.now(TIMEZONE).datetime,
+        'currency': 'KRW',
+        'price': 0.0,
+        'source': 'new.kpx.or.kr',
+    }
 
-#     generation_dts = [hydro_dt, nuclear_dt, consumption["datetime"]]
+    soup = BeautifulSoup(response.text, 'html.parser')
+    price_table = soup.find("table", {"class": "conTable tdCenter"})
+    price_rows = price_table.find_all("tr")[1:]
 
-#     dt_aware = timestamp_processor(generation_dts, with_tz=True, check_delta=True)
+    use_yesterday = False
 
-#     unknown = consumption["consumption"] - nuclear - hydro
+    for i, row in enumerate(price_rows):
+        today_price_value = float(row.find_all("td")[-1].text.replace(",", ""))
+        if i == 0 and today_price_value == 0.0:
+            # todays 1am price not published yet, use 12am price from second last column - aka yesterday
+            use_yesterday = True
+        elif not use_yesterday and today_price_value != 0.0:
+            # todays price published
+            data['price'] = today_price_value * 1000
+            
+            today_full_hour = datetime.datetime.now() - datetime.timedelta(hours= i + 1).replace(minute=0, second=0, microsecond=0)
+            data['datetime'] = arrow.get(today_full_hour, TIMEZONE).datetime
+            break
+        elif use_yesterday and i == 23:
+            # extracting 12am price from yesterday's column
+            yesterday_price_value = float(row.find_all("td")[-2].text.replace(",", ""))
+            data['price'] = yesterday_price_value * 1000
 
-#     production = {
-#                   'production': {
-#                     'nuclear': nuclear,
-#                     'hydro': hydro,
-#                     'unknown': unknown
-#                   },
-#                    'source': 'khnp.co.kr, kpx.or.kr',
-#                    'zoneKey': zone_key,
-#                    'datetime': dt_aware.datetime,
-#                    'storage': {
-#                      'hydro': None,
-#                      'battery': None
-#                   }
-#                   }
+            today = datetime.datetime.now()
+            yesterday = today - datetime.timedelta(days=0, hours=today.hour, minutes=today.minute, seconds=today.second, microseconds=today.microsecond + 1)
+            data['datetime'] = arrow.get(yesterday, TIMEZONE).datetime
+            break
 
-#     return production
+    return data
 
 
 if __name__ == '__main__':
+    print('fetch_price() -> ')
+    print(fetch_price())
+
     print('fetch_consumption() -> ')
     print(fetch_consumption())
 

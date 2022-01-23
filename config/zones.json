@@ -3860,7 +3860,8 @@
     ],
     "parsers": {
       "consumption": "KR.fetch_consumption",
-      "production": "KR.fetch_production"
+      "production": "KR.fetch_production",
+      "price": "KR.fetch_price"
     },
     "timezone": "Asia/Seoul"
   },
