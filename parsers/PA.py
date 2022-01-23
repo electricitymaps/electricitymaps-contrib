@@ -202,11 +202,6 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         else:
             logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
-    # # Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
-    # if 0 > data['production']['unknown'] > -10:
-    #     logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
-    #     data['production']['unknown'] = 0
-
     # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
     data['production']['unknown'] = round(data['production']['unknown'], 13)
 
