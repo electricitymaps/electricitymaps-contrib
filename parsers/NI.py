@@ -206,7 +206,7 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=g
     production, data_datetime = get_production_from_summary(requests_obj)
 
     # Explicitly report types that are not used in Nicaragua as zero.
-    # Sources for installed capacity for Nicaragua is INE (Nicaraguan Institute of Energy -- see link in the DATA_SOURCES.md).
+    # Source for installed capacity for Nicaragua is INE (Nicaraguan Institute of Energy -- see link in the DATA_SOURCES.md).
     production.update({
         'nuclear': 0,
         'coal': 0,
