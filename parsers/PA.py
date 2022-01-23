@@ -29,6 +29,12 @@ def extract_pie_chart_data(html):
     data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     return json.loads(data_source)
 
+def extract_thermal_production_tables(soup):
+    thermal_h3 = soup.find("h3", string=re.compile(r"\s*Térmicas\s*"))
+    thermal_tables = thermal_h3.find_next_sibling().find_all("table", {"class": "table table-hover table-striped table-sm sitr-gen-group"})
+
+    return thermal_tables
+
 def sum_thermal_units(soup) -> float:
     """
         Sums thermal units of the generation mix to prevent using slightly outdated chart data.
@@ -37,8 +43,7 @@ def sum_thermal_units(soup) -> float:
         presumably because they aren't updated at the exact same moment.
     """
 
-    thermal_h3 = soup.find("h3", string=re.compile(r"\s*Térmicas\s*"))
-    thermal_tables = thermal_h3.find_next_sibling().find_all("table", {"class": "table table-hover table-striped table-sm sitr-gen-group"})
+    thermal_tables = extract_thermal_production_tables(soup)
 
     thermal_units = 0
 
@@ -202,8 +207,15 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         else:
             logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
-    if data['production']['unknown'] > 0 and data["production"]["unknown"] < 1e-12:
-        data['production']['unknown'] = 0
+    if 0 > data['production']['unknown'] > -10:
+        logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
+        data['production']['unknown'] = 0.0
+    
+    # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
+    data['production']['unknown'] = round(data['production']['unknown'], 13)
+    
+    if 0 < data['production']['unknown'] < 1e-3:
+        data['production']['unknown'] = 0.0
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find('h3', {'class': 'sitr-update'}).string
