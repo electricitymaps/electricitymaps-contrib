@@ -1,19 +1,14 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
-import requests
-# The BeautifulSoup library is used to parse HTML
-from bs4 import BeautifulSoup
-
-import pandas as pd
-
-# Extracting some data using regex
-import re
 import json
 import logging
+import re
+import requests
+
+from bs4 import BeautifulSoup
+import pandas as pd
 
 TIMEZONE = 'America/Panama'
 
