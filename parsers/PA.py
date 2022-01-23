@@ -202,8 +202,8 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         else:
             logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
-    # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
-    data['production']['unknown'] = round(data['production']['unknown'], 13)
+    if data['production']['unknown'] > 0 and data["production"]["unknown"] < 1e-12:
+        data['production']['unknown'] = 0
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find('h3', {'class': 'sitr-update'}).string
