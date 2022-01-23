@@ -29,6 +29,25 @@ def extract_pie_chart_data(html):
     data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     return json.loads(data_source)
 
+def sum_thermal_units(soup) -> float:
+    """
+        Sums thermal units of the generation mix to prevent using slightly outdated chart data.
+
+        Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
+        presumably because they aren't updated at the exact same moment.
+    """
+
+    thermal_h3 = soup.find("h3", string=re.compile(r"\s*Térmicas\s*"))
+    thermal_tables = thermal_h3.find_next_sibling().find_all("table", {"class": "table table-hover table-striped table-sm sitr-gen-group"})
+
+    thermal_units = 0
+
+    for thermal_table in thermal_tables:
+        thermal_units += sum([float(span.text) for span in thermal_table.find_all("span", {"style": "color:#222"})])
+        thermal_units += sum([float(span.text) for span in thermal_table.find_all("span", {"style": "color:ROYALBLUE"})])
+
+    return thermal_units
+
 
 def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -45,6 +64,10 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
 
     # Parse production from pie chart
     productions = extract_pie_chart_data(html_doc)  # [{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
+
+    # Sum thermal units from table Térmicas (MW) 
+    thermal_sum = sum_thermal_units(soup)
+
     map_generation = {
         'Hídrica': 'hydro',
         'Eólica': 'wind',
@@ -75,6 +98,9 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         production_type = map_generation[prod_data[0]]  # Hídrica
         production_value = float(prod_data[1])  # 1342.54
         data['production'][production_type] = production_value
+    
+    # Replacing chart termica data with manually calculated thermal generation
+    data['production']['unknown'] = thermal_sum
 
     # Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
     thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
@@ -176,14 +202,10 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         else:
             logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
-    # Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
-    # presumably because they aren't updated at the exact same moment.
-    # Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
-    # TODO we might want to use the sum of the production of all thermal units instead of this workaround,
-    # because now we're still reporting small *postive* amounts of "ghost" thermal production
-    if 0 > data['production']['unknown'] > -10:
-        logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
-        data['production']['unknown'] = 0
+    # # Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
+    # if 0 > data['production']['unknown'] > -10:
+    #     logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
+    #     data['production']['unknown'] = 0
 
     # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
     data['production']['unknown'] = round(data['production']['unknown'], 13)
