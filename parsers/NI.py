@@ -17,9 +17,11 @@ PRICE_URL = 'http://www.cndc.org.ni/consultas/infoRelevanteSIN/consultaCostoMarg
 # as of 2017-07-08.
 # It was obtained by matching each generation value to the graphic and name on the map,
 # by changing the formatter function in JS source to print the index along with the value.
-# Per http://global-climatescope.org/en/country/nicaragua/ "Installed capacity" section
-# and Wikipedia https://en.wikipedia.org/wiki/Electricity_sector_in_Nicaragua#Installed_capacity
-# (the latter quoting a 2006 report), all of "thermal" / fossil fuel generation is using oil/diesel.
+# Per the following sources:
+# - https://global-climatescope.org/markets/ni, "Installed capacity" section,
+# - https://www.cndc.org.ni/Publicaciones/InformeDiarioSIN/Informe_Ejecutivo.pdf,
+# - Wikipedia: https://en.wikipedia.org/wiki/Electricity_sector_in_Nicaragua#Installed_capacity (quoting a 2006 report),
+# all of "thermal" / fossil fuel generation is using oil/diesel.
 # Geothermal and biomass classification of Momotombo, San Jacinto, and Monte Rosa
 # is also per https://en.wikipedia.org/wiki/Electricity_sector_in_Nicaragua
 PLANT_CLASSIFICATIONS = [
@@ -204,7 +206,7 @@ def fetch_production(zone_key='NI', session=None, target_datetime=None, logger=g
     production, data_datetime = get_production_from_summary(requests_obj)
 
     # Explicitly report types that are not used in Nicaragua as zero.
-    # Source is Climatescope installed capacity for Nicaragua, see link above.
+    # Sources for installed capacity for Nicaragua is INE (Nicaraguan Institute of Energy -- see link in the DATA_SOURCES.md).
     production.update({
         'nuclear': 0,
         'coal': 0,
