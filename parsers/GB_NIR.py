@@ -27,7 +27,7 @@ exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
 ## "Total_Moyle_Load_MW" was showing "0" when exporting to GB. Tie-line data was missing for the two 110kV Lines "Enniskillen(NIR)-Corraclassy(IR)" and "Strabane(NIR)-Letterkenny(IR)"
 ## Exchanges are now based on data with better quality provided in "SystemOutput.csv" under the new exchange_url = 'http://ws.soni.ltd.uk/DownloadCentre/aspx/SystemOutput.aspx'
 
-
+TZ = 'Europe/London'
 
 def get_data(url, target_datetime, session=None):
     """
