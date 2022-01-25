@@ -79,7 +79,7 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
 
     obj = fetch(session)
 
-    datetime = arrow.get(obj['soPgenGraph']['timestamp'],"X").datetime
+    datetime = arrow.get(str(obj['soPgenGraph']['timestamp']),"X").datetime
 
     if zone_key == 'NZ-NZN':
         region_key = 'North Island'
