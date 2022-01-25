@@ -7,13 +7,8 @@ ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
 
-# Generate map
-RUN mkdir -p public/dist/
-ADD web/geo/third_party_maps ./geo/third_party_maps
-ADD web/geo/ ./geo/
-ADD web/src/world.json ./src/world.json
-RUN bash geo/topogen.sh
 
+ADD web/src/world.json ./src/world.json 
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build

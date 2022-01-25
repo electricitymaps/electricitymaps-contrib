@@ -6,12 +6,12 @@
         "datasources": "surse de date",
         "contribute": "Contribuie prin <a href=\"%s\" target=\"_blank\">adăugarea teritoriului tău</a>"
     },
-        "mobile-main-menu": {
+    "mobile-main-menu": {
         "map": "electricityMap",
         "areas": "Zone",
         "about": "Despre"
     },
-        "onboarding-modal": {
+    "onboarding-modal": {
         "view1": {
             "subtitle": "Cartografierea impactului electricității asupra climei"
         },
@@ -45,12 +45,12 @@
         "noParserInfo": "Încă nu avem informații despre această zonă.<br/> Ai vrea să ajuți? Poți contribui prin <a href=\"%s\" target=\"_blank\">date pentru zonă</a>.",
         "now": "Acum"
     },
-        "left-panel": {
+    "left-panel": {
         "zone-list-header-title": "Impact asupra climei în funcție de zonă",
         "zone-list-header-subtitle": "În ordinea concentrației de dioxid de carbon a electricității consumate (gCO₂eq/kWh)",
         "search": "Căutați zone"
     },
-        "country-history": {
+    "country-history": {
         "carbonintensity24h": "Concentrația de dioxid de carbon din ultimele 24 de ore",
         "emissions24h": "Emisii din ultimele 24 de ore",
         "emissionsorigin24h": "Originea emisiilor din ultimele 24 de ore",
@@ -1519,10 +1519,6 @@
             "countryName": "United States of America",
             "zoneName": "Tampa Electric Company"
         },
-        "US-MIDA-OVEC": {
-            "countryName": "United States of America",
-            "zoneName": "Ohio Valley Electric Corporation"
-        },
         "US-MIDA-PJM": {
             "countryName": "United States of America",
             "zoneName": "PJM Interconnection, Llc"
@@ -1757,5 +1753,3 @@
         }
     }
 }
-
-

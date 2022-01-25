@@ -8,7 +8,7 @@ executors:
 jobs:
   verify_python:
     docker:
-      - image: circleci/python:3.7.9
+      - image: circleci/python:3.8.12
     steps:
       - checkout
       - restore_cache:
@@ -51,7 +51,7 @@ jobs:
             sudo npm install -g jest
             jest
 
-  lint_js:
+  verify_web_js:
     executor: js-exec
     steps:
       - checkout
@@ -62,7 +62,7 @@ jobs:
             set -eux -o pipefail
             cd web
             yarn install --frozen-lockfile
-            yarn lint --quiet
+            yarn verify
       - save_cache:
           key: node_modules-{{ .Branch }}-{{ checksum "web/yarn.lock" }}
           paths:
@@ -109,12 +109,12 @@ workflows:
   all:
     jobs:
       - verify_python
-      - lint_js
+      - verify_web_js
       - lint_json
       - test_js
       - build_test:
           requires:
-            - lint_js
             - verify_python
+            - verify_web_js
             - lint_json
             - test_js

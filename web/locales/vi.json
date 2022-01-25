@@ -67,7 +67,7 @@
     "legends": {
         "windpotential": "Wind power potential",
         "solarpotential": "Solar power potential",
-        "colorblindmode": "color blind mode",
+        "colorblindmode": "chế độ mù màu",
         "carbonintensity": "Carbon intensity"
     },
     "tooltips": {
@@ -99,7 +99,7 @@
         "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
         "legend": "Legend",
-        "faq": "Frequently Asked Questions"
+        "faq": "Các câu hỏi thường gặp"
     },
     "wind": "wind",
     "solar": "solar",
@@ -128,11 +128,11 @@
         "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Greener colours means more climate friendly electricity consumption.",
         "mapArrows-question": "What do the arrows between areas on the map indicate?",
         "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
-        "mapSolarWindButtons-question": "What do “sun” and “wind” buttons on the map do?",
+        "mapSolarWindButtons-question": "Biểu tượng nút 'mặt trời' và 'gió' trên bản đồ làm gì?",
         "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunsine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells also is dependent on many other factors.",
         "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
         "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
-        "mapColorBlind-question": "I am color blind. How can I read your map?",
+        "mapColorBlind-question": "Tôi bị mù màu. Làm thế nào tôi có thể đọc bản đồ?",
         "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
     },
     "mapAreas": {
@@ -168,7 +168,7 @@
         "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used in for manufacturing of physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, is driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
     },
     "data": {
-        "groupName": "Our data",
+        "groupName": "Dữ liệu của chúng tôi",
         "dataOrigins-question": "How do you get your data?",
         "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
         "dataDownload-question": "Can I download your data?",
@@ -177,7 +177,7 @@
         "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
     },
     "aboutUs": {
-        "groupName": "About us",
+        "groupName": "Về chúng tôi",
         "whoAreYou-question": "Who are you?",
         "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
         "feedback-question": "Can I give you some feedback?",
