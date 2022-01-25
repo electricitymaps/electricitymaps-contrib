@@ -221,7 +221,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
 def fetch_price(zone_key='GB', session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
-        now = arrow.get(target_datetime, tz='Europe/Paris')
+        now = arrow.get(target_datetime, tz=TZ)
     else:
         now = arrow.now(tz='Europe/Paris')
 
@@ -239,7 +239,7 @@ def fetch_price(zone_key='GB', session=None, target_datetime=None,
         if donnesMarche.tag != 'donneesMarche':
             continue
 
-        start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/Paris')
+        start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, TZ)
 
         for item in donnesMarche:
             if item.get('granularite') != 'Global':
