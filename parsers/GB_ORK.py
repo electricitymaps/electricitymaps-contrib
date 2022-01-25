@@ -6,7 +6,10 @@ import arrow
 import dateutil
 import logging
 import requests
+import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
+
+from parsers.lib.config import refetch_frequency
 
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
