@@ -37,7 +37,9 @@ class TestOPENNEM(unittest.TestCase):
         )
         assert processed_df.loc[:, "SOLAR_ROOFTOP"].iloc[0] == 84.0
         assert np.isnan(processed_df.loc[:, "SOLAR_ROOFTOP"].iloc[1])
-        assert processed_df.loc[:, "any_column"].iloc[0] == rdn_any_column[:6].mean()
+        assert round(processed_df.loc[:, "any_column"].iloc[0], 6) == round(
+            rdn_any_column[:6].mean(), 6
+        )
 
     def test_sum_vector(self):
         emap_to_parser = {
