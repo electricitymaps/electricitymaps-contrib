@@ -33,7 +33,7 @@ class TestFetchProduction(unittest.TestCase):
                                'nuclear': 0.0,
                                'oil': 238.19999999999996,
                                'solar': 262.76,
-                               'unknown': 0,
+                               'unknown': 0.0,
                                'wind': 115.4}
         nominal_response = resource_string('parsers.test.mocks', 'PA_nominal_generation.html')
         self.adapter.register_uri('GET', PA.PRODUCTION_URL, content=nominal_response, status_code=200)
