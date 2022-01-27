@@ -3976,8 +3976,17 @@
         50.1280516628
       ]
     ],
+    "capacity": {
+      "biomass": 56.473,
+      "gas": 11.603,
+      "hydro": 22.977,
+      "solar": 268.281942,
+      "unknown": 82.3648,
+      "wind": 138.535
+    },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/clawfire/"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
