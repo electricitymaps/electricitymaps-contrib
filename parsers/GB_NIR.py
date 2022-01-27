@@ -5,11 +5,9 @@ from datetime import datetime, timedelta
 from io import StringIO
 from operator import itemgetter
 
-import arrow
 import logging
 import pandas as pd
 import requests
-import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
 
