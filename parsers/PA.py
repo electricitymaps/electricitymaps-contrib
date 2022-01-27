@@ -1,91 +1,33 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-# The arrow library is used to handle datetimes
 import arrow
-# The request library is used to fetch content through HTTP
-import requests
-# The BeautifulSoup library is used to parse HTML
-from bs4 import BeautifulSoup
-
-import pandas as pd
-
-# Extracting some data using regex
-import re
 import json
 import logging
+import re
+import requests
+
+from bs4 import BeautifulSoup
+import pandas as pd
 
 TIMEZONE = 'America/Panama'
+
 EXCHANGE_URL = 'https://sitr.cnd.com.pa/m/pub/int.html'
 CONSUMPTION_URL = 'https://sitr.cnd.com.pa/m/pub/sin.html'
-
-
 PRODUCTION_URL = 'https://sitr.cnd.com.pa/m/pub/gen.html'
 
-
-def extract_pie_chart_data(html):
-    """Extracts generation breakdown pie chart data from the source code of the page"""
-    data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)  # Extract object with data
-    data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
-    return json.loads(data_source)
-
-
-def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    # Fetch page and load into BeautifulSoup
-    r = session or requests.session()
-    url = PRODUCTION_URL
-    response = r.get(url)
-    response.encoding = 'utf-8'
-    html_doc = response.text
-    soup = BeautifulSoup(html_doc, 'html.parser')
-
-    # Parse production from pie chart
-    productions = extract_pie_chart_data(html_doc)  # [{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
-    map_generation = {
-        'Hídrica': 'hydro',
-        'Eólica': 'wind',
-        'Solar': 'solar',
-        'Biogás': 'biomass',
-        'Térmica': 'unknown'
-    }
-    data = {
-        'zoneKey': 'PA',
-        'production': {
-            # Setting default values here so we can do += when parsing the thermal generation breakdown
-            'biomass': 0.0,
-            'coal': 0.0,
-            'gas': 0.0,
-            'hydro': 0.0,
-            'nuclear': 0.0,
-            'oil': 0.0,
-            'solar': 0.0,
-            'wind': 0.0,
-            'geothermal': 0.0,
-            'unknown': 0.0,
-        },
-        'storage': {},
-        'source': 'https://www.cnd.com.pa/',
-    }
-    for prod in productions:  # {name:"Hídrica 1342.54 (80.14%)", ...}
-        prod_data = prod['name'].split(' ')  # "Hídrica 1342.54 (80.14%)"
-        production_type = map_generation[prod_data[0]]  # Hídrica
-        production_value = float(prod_data[1])  # 1342.54
-        data['production'][production_type] = production_value
-
-    # Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
-    thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
-    # Make sure the table header is indeed "Térmicas (MW)" (in case the tables are re-arranged)
-    thermal_production_breakdown_table_header = thermal_production_breakdown.parent.parent.parent.select('> .tile-title')[0].string
-    assert ('Térmicas' in thermal_production_breakdown_table_header), (
-        "Exception when extracting thermal generation breakdown for {}: table header does not contain "
-        "'Térmicas' but is instead named {}".format(zone_key, thermal_production_breakdown_table_header)
-    )
-    thermal_production_units = thermal_production_breakdown.select('tbody tr td table.sitr-gen-group tr')
-    map_thermal_generation_unit_name_to_fuel_type = {
+# Sources:
+# 1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
+# 2. https://www.celsia.com/en/about-celsia/business-model/power-generation/thermoelectric-power-plants
+# 3. https://endcoal.org/tracker/
+# 4. http://aesmcac.com/aespanamades/en/colon/ "It reuses the heat from the exhaust gas from the gas turbines in order to obtain steam, to be later used by a steam turbine and to save fuel consumption in the production of electricity."
+# 5. https://panamcham.com/sites/default/files/el_inicio_del_futuro_del_gas_natural_en_panama.pdf "3 gas turbines and 1 steam (3X1 configuration)" "Technology: Combined Cycle" | This and the previous source taken together seems to imply that the steam turbine is responsible for the second cycle of the CCGT plant, giving confidence that output from all four units should indeed be tallied under "gas". Furthermore, as the plant also has a LNG import facility it is most unlikely the steam turbine would be burning a different fuel such as coal or oil.
+# 6. https://www.etesa.com.pa/documentos/Tomo_II__Plan_Indicativo_de_Generacin_2019__2033.pdf page 142
+# 7. http://168.77.210.79/energia/wp-content/uploads/sites/2/2020/08/2-CEE-1970-2019-GE-Generaci%C3%B3n-El%C3%A9ctrica.xls (via http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
+# 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
+# 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
+# 10. https://www.asep.gob.pa/wp-content/uploads/electricidad/concesiones_licencias/concesiones_licencias/2021/listado_licencias_abr27.pdf
+MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE = {
         'ACP Miraflores 2': 'oil',  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
         'ACP Miraflores 5': 'oil',  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
         'ACP Miraflores 6': 'oil',  # [7] Sheet "C-GE-1A-1 CapInstXEmp"
@@ -152,41 +94,119 @@ def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: 
         'Tropitérmica 1': 'oil',  # [6]:162[7] spelled "Tropitermica" in both
         'Tropitérmica 2': 'oil',  # [6]:162[7] spelled "Tropitermica" in both
         'Tropitérmica 3': 'oil',  # [6]:162[7] spelled "Tropitermica" in both
+}
+
+
+def extract_pie_chart_data(html):
+    """Extracts generation breakdown pie chart data from the source code of the page"""
+    data_source = re.search(r"var localPie = (\[\{.+\}\]);", html).group(1)  # Extract object with data
+    data_source = re.sub(r"(name|value|color)", r'"\1"', data_source)  # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+    return json.loads(data_source)
+
+def sum_thermal_units(soup) -> float:
+    """
+        Sums thermal units of the generation mix to prevent using slightly outdated chart data.
+
+        Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
+        presumably because they aren't updated at the exact same moment.
+    """
+
+    thermal_h3 = soup.find("h3", string=re.compile(r"\s*Térmicas\s*"))
+    thermal_tables = thermal_h3.find_next_sibling().find_all("table", {"class": "table table-hover table-striped table-sm sitr-gen-group"})
+
+    thermal_units = 0
+
+    for thermal_table in thermal_tables:
+        thermal_units += sum([float(span.text) for span in thermal_table.find_all("span", {"style": "color:#222"})])
+        thermal_units += sum([float(span.text) for span in thermal_table.find_all("span", {"style": "color:ROYALBLUE"})])
+
+    return thermal_units
+
+
+def fetch_production(zone_key='PA', session=None, target_datetime=None, logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+    """Requests the last known production mix (in MW) of a given country."""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+
+    # Fetch page and load into BeautifulSoup
+    r = session or requests.session()
+    url = PRODUCTION_URL
+    response = r.get(url)
+    response.encoding = 'utf-8'
+    html_doc = response.text
+    soup = BeautifulSoup(html_doc, 'html.parser')
+
+    # Parse production from pie chart
+    productions = extract_pie_chart_data(html_doc)  # [{name:"Hídrica 1342.54 (80.14%)",value:1342.54,color:"#99ccee"}, ...]
+
+    # Sum thermal units from table Térmicas (MW) 
+    thermal_sum = sum_thermal_units(soup)
+
+    map_generation = {
+        'Hídrica': 'hydro',
+        'Eólica': 'wind',
+        'Solar': 'solar',
+        'Biogás': 'biomass',
+        'Térmica': 'unknown'
     }
-    # Sources:
-    # 1. https://www.celsia.com/Portals/0/contenidos-celsia/accionistas-e-inversionistas/perfil-corporativo-US/presentaciones-US/2014/presentacion-morgan-ingles-v2.pdf
-    # 2. https://www.celsia.com/en/about-celsia/business-model/power-generation/thermoelectric-power-plants
-    # 3. https://endcoal.org/tracker/
-    # 4. http://aesmcac.com/aespanamades/en/colon/ "It reuses the heat from the exhaust gas from the gas turbines in order to obtain steam, to be later used by a steam turbine and to save fuel consumption in the production of electricity."
-    # 5. https://panamcham.com/sites/default/files/el_inicio_del_futuro_del_gas_natural_en_panama.pdf "3 gas turbines and 1 steam (3X1 configuration)" "Technology: Combined Cycle" | This and the previous source taken together seems to imply that the steam turbine is responsible for the second cycle of the CCGT plant, giving confidence that output from all four units should indeed be tallied under "gas". Furthermore, as the plant also has a LNG import facility it is most unlikely the steam turbine would be burning a different fuel such as coal or oil.
-    # 6. https://www.etesa.com.pa/documentos/Tomo_II__Plan_Indicativo_de_Generacin_2019__2033.pdf page 142
-    # 7. http://168.77.210.79/energia/wp-content/uploads/sites/2/2020/08/2-CEE-1970-2019-GE-Generaci%C3%B3n-El%C3%A9ctrica.xls (via http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
-    # 8. https://www.asep.gob.pa/wp-content/uploads/electricidad/resoluciones/anno_12528_elec.pdf
-    # 9. https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/May/IRENA_RRA_Panama_2018_En.pdf
-    # 10. https://www.asep.gob.pa/wp-content/uploads/electricidad/concesiones_licencias/concesiones_licencias/2021/listado_licencias_abr27.pdf
+    data = {
+        'zoneKey': 'PA',
+        'production': {
+            # Setting default values here so we can do += when parsing the thermal generation breakdown
+            'biomass': 0.0,
+            'coal': 0.0,
+            'gas': 0.0,
+            'hydro': 0.0,
+            'nuclear': 0.0,
+            'oil': 0.0,
+            'solar': 0.0,
+            'wind': 0.0,
+            'geothermal': 0.0,
+            'unknown': 0.0,
+        },
+        'storage': {},
+        'source': 'https://www.cnd.com.pa/',
+    }
+    for prod in productions:  # {name:"Hídrica 1342.54 (80.14%)", ...}
+        prod_data = prod['name'].split(' ')  # "Hídrica 1342.54 (80.14%)"
+        production_type = map_generation[prod_data[0]]  # Hídrica
+        production_value = float(prod_data[1])  # 1342.54
+        data['production'][production_type] = production_value
+    
+    # Replacing chart termica data with manually calculated thermal generation to avoid using outdated chart data
+    data['production']['unknown'] = thermal_sum
+
+    # Known fossil plants: parse, subtract from "unknown", add to "coal"/"oil"/"gas"
+    thermal_production_breakdown = soup.find_all('table', {'class': 'sitr-table-gen'})[1]
+    # Make sure the table header is indeed "Térmicas (MW)" (in case the tables are re-arranged)
+    thermal_production_breakdown_table_header = thermal_production_breakdown.parent.parent.parent.select('> .tile-title')[0].string
+    assert ('Térmicas' in thermal_production_breakdown_table_header), (
+        "Exception when extracting thermal generation breakdown for {}: table header does not contain "
+        "'Térmicas' but is instead named {}".format(zone_key, thermal_production_breakdown_table_header)
+    )
+    thermal_production_units = thermal_production_breakdown.select('tbody tr td table.sitr-gen-group tr')
+    
     for thermal_production_unit in thermal_production_units:
         unit_name_and_generation = thermal_production_unit.find_all('td')
         unit_name = unit_name_and_generation[0].string
         unit_generation = float(unit_name_and_generation[1].string)
-        if unit_name in map_thermal_generation_unit_name_to_fuel_type:
+        if unit_name in MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE:
             if unit_generation > 0:  # Ignore self-consumption
-                unit_fuel_type = map_thermal_generation_unit_name_to_fuel_type[unit_name]
+                unit_fuel_type = MAP_THERMAL_GENERATION_UNIT_NAME_TO_FUEL_TYPE[unit_name]
                 data['production'][unit_fuel_type] += unit_generation
                 data['production']['unknown'] -= unit_generation
         else:
             logger.warning(u'{} is not mapped to generation type'.format(unit_name), extra={'key': zone_key})
 
-    # Thermal total from the graph and the total one would get from summing output of all generators deviates a bit,
-    # presumably because they aren't updated at the exact same moment.
-    # Because negative production causes an error with ElectricityMap, we'll ignore small amounts of negative production
-    # TODO we might want to use the sum of the production of all thermal units instead of this workaround,
-    # because now we're still reporting small *postive* amounts of "ghost" thermal production
     if 0 > data['production']['unknown'] > -10:
         logger.info(f"Ignoring small amount of negative thermal generation ({data['production']['unknown']}MW)", extra={"key": zone_key})
-        data['production']['unknown'] = 0
-
+        data['production']['unknown'] = 0.0
+    
     # Round remaining "unknown" output to 13 decimal places to get rid of floating point errors
     data['production']['unknown'] = round(data['production']['unknown'], 13)
+    
+    if 0 < data['production']['unknown'] < 1e-3:
+        data['production']['unknown'] = 0.0
 
     # Parse the datetime and return a python datetime object
     spanish_date = soup.find('h3', {'class': 'sitr-update'}).string
