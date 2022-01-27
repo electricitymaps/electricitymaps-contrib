@@ -23,7 +23,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
     if target_datetime:
         now = arrow.get(target_datetime, tz='Europe/London')
     else:
-        now = arrow.now(tz='Europe/Paris')
+        now = arrow.now(tz='Europe/London')
 
     r = session or requests.session()
     formatted_from = now.shift(days=-1).format('DD/MM/YYYY')
