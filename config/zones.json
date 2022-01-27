@@ -2286,13 +2286,14 @@
     "contributors": [
       "https://github.com/corradio",
       "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/AlexandreCouderc"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "ENTSOE.fetch_price",
+      "price": "GB.fetch_price",
       "production": "ELEXON.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
@@ -3979,8 +3980,17 @@
         50.1280516628
       ]
     ],
+    "capacity": {
+      "biomass": 56.473,
+      "gas": 11.603,
+      "hydro": 22.977,
+      "solar": 268.281942,
+      "unknown": 82.3648,
+      "wind": 138.535
+    },
     "contributors": [
-      "https://github.com/corradio"
+      "https://github.com/corradio",
+      "https://github.com/clawfire/"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4466,11 +4476,12 @@
       ]
     ],
     "capacity": {
-      "biomass": 133,
-      "geothermal": 154,
-      "hydro": 138,
-      "oil": 732,
-      "wind": 186
+      "biomass": 218.20,
+      "geothermal": 153.24,
+      "hydro": 157.42,
+      "solar": 16.36,
+      "oil": 888.31,
+      "wind": 186.20
     },
     "contributors": [
       "https://github.com/corradio",
@@ -4773,6 +4784,30 @@
   },
   "NZ-NZC": {
     "flag_file_name": "nz.png",
+    "timezone": "Pacific/Auckland"
+  },
+  "NZ": {
+    "bounding_box": [
+      [
+        166.054687,
+        -47.638394
+      ],
+      [
+        178.798828,
+        -34.168835
+      ]
+    ],
+    "contributors": [
+      "https://github.com/BobGrun",
+      "https://github.com/corradio",
+      "https://github.com/davidcole1340",
+      "https://github.com/drc38"
+    ],
+    "flag_file_name": "nz.png",
+    "parsers": {
+      "price": "NZ.fetch_price",
+      "production": "NZ.fetch_production"
+    },
     "timezone": "Pacific/Auckland"
   },
   "NZ-NZN": {
