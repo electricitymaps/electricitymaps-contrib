@@ -146,18 +146,20 @@ def fetch_production(zone_key='KR', session=None,
         3. Add hydro production (fetched in 1.) to data and subtract from unknown production
     """
 
-    if target_datetime is not None and target_datetime < arrow.now().shift(months=-1):
-            raise NotImplementedError(
-                'This parser is not able to parse dates past the last month')
-    else:
-        print('Specified datetime is in the last month')
+    if target_datetime is not None:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
+    # if target_datetime is not None and target_datetime < arrow.now().shift(months=-1):
+    #         raise NotImplementedError(
+    #             'This parser is not able to parse dates past the last month')
+    # else:
+    #     print('Specified datetime is in the last month')
 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
     
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
     target_datetime_formatted_hourly = target_datetime.strftime("%Y-%m-%d %H:00:00")
-
 
     r0 = session or requests.session()
 
@@ -202,7 +204,9 @@ def fetch_production(zone_key='KR', session=None,
           'geothermal': 0.0,
           'unknown': 0.0,
       },
-      'storage': {},
+      'storage': {
+          'hydro': 0.0,
+      },
       'source': 'https://new.kpx.or.kr'
     }
 
@@ -254,9 +258,16 @@ def fetch_production(zone_key='KR', session=None,
     # TODO: granular data only applicable if fetching current day
     granular_data = chart_data[data["datetime"]]
     #print(granular_data)
-    data["production"]["hydro"] = granular_data["hydro"]
+
+    if granular_data["hydro"] > 0:
+        # TODO: check when hydro has to be subtracted from unknown
+        data["production"]["hydro"] = granular_data["hydro"]
+        data["production"]["unknown"] -= granular_data["hydro"]
+    else:
+        data["storage"]["hydro"] = granular_data["hydro"]
+
     data["production"]["oil"] = granular_data["oil"]
-    data["production"]["unknown"] -= granular_data["hydro"] + granular_data["oil"]
+    data["production"]["unknown"] -= granular_data["oil"]
 
     return data
 
