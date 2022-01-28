@@ -27,6 +27,17 @@ def fetch_production(
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     res = r.get(url)
+    
+    retry_count = 0
+    while res.status_code in [522]:
+        retry_count += 1
+        if retry_count > 5:
+            raise Exception('Retried too many times..')
+        # Wait and retry
+        logger.warn('Retrying..')
+        time.sleep(5 ** retry_count)
+        res = r.get(url)
+    
     assert res.status_code == 200, (
         "Exception when fetching production for "
         "{}: error when calling url={}".format(zone_key, url)
