@@ -3354,16 +3354,16 @@
       ]
     ],
     "capacity": {
-      "biomass": None,
-      "coal": None,
-      "gas": None,
-      "geothermal": None,
-      "hydro": None,
-      "hydro storage": None,
-      "nuclear": None,
-      "oil": None,
-      "solar": None,
-      "wind": None
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
     },
     "contributors": [
       "https://github.com/corradio",
