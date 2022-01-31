@@ -3332,6 +3332,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast"
     },
     "subZoneNames": [
+      "IT-CA"
       "IT-CNO",
       "IT-CSO",
       "IT-NO",
@@ -3339,6 +3340,45 @@
       "IT-SIC",
       "IT-SO"
     ],
+    "timezone": "Europe/Rome"
+  },
+  "IT-CA": {
+    "bounding_box": [
+      [
+        15.3,
+        37.7
+      ],
+      [
+        17.3,
+        40.25
+      ]
+    ],
+    "capacity": {
+      "biomass": None,
+      "coal": None,
+      "gas": None,
+      "geothermal": None,
+      "hydro": None,
+      "hydro storage": None,
+      "nuclear": None,
+      "oil": None,
+      "solar": None,
+      "wind": None
+    },
+    "contributors": [
+      "https://github.com/corradio",
+      "https://github.com/nessie2013",
+      "https://github.com/KabelWlan",
+      "https://github.com/alixunderplatz"
+    ],
+    "parsers": {
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "price": "ENTSOE.fetch_price",
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
+    },
     "timezone": "Europe/Rome"
   },
   "IT-CNO": {
@@ -3366,7 +3406,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/KabelWlan",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3403,7 +3445,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/KabelWlan",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3514,7 +3558,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/KabelWlan",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3550,7 +3596,9 @@
     },
     "contributors": [
       "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "https://github.com/nessie2013",
+      "https://github.com/KabelWlan",
+      "https://github.com/alixunderplatz"
     ],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
