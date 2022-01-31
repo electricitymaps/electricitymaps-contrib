@@ -908,7 +908,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
 
 ZONE_KEY_AGGREGATES = {
-    'IT-SO': ['IT-CA', 'IT-SO'],
+    'IT-SO': ['IT-SO'],
 }
 
 
