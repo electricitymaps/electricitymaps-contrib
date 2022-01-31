@@ -54,7 +54,6 @@ def full_production_mix(non_renewables_mix: dict, renewables_mix: dict):
     different sources so they are added up."""
 
     production_mix = {'biomass': renewables_mix['biomass'],
-                      'hydro': renewables_mix['hydro'],
                       'solar': renewables_mix['solar'],
                       'wind': renewables_mix['wind'],
                       'hydro': non_renewables_mix['hydro'] + renewables_mix['hydro'], 
