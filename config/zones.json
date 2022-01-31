@@ -3332,7 +3332,7 @@
       "generationForecast": "ENTSOE.fetch_generation_forecast"
     },
     "subZoneNames": [
-      "IT-CA"
+      "IT-CA",
       "IT-CNO",
       "IT-CSO",
       "IT-NO",
