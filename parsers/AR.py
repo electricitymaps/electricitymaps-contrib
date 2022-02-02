@@ -4,6 +4,7 @@ import datetime
 import logging
 import arrow
 import requests
+from typing import List, Dict
 from bs4 import BeautifulSoup
 
 try:
@@ -27,31 +28,33 @@ CAMMESA_RENEWABLES_ENDPOINT = 'https://cdsrenovables.cammesa.com/exhisto/Renovab
 
 def fetch_production(zone_key='AR', session=None,
                      target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
+                     logger: logging.Logger = logging.getLogger(__name__)) -> List[dict]:
+    """Requests up to date list of production mixes (in MW) of a given country."""
 
-    if target_datetime is not None:
+    if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
 
     current_session = session or requests.session()
-    country_details = {
+
+    non_renewables_production: Dict[str, dict] = non_renewables_production_mix(zone_key, current_session)
+    renewables_production: Dict[str, dict] = renewables_production_mix(zone_key, current_session)
+    
+    full_production_list = [
+        {
+            'datetime': arrow.get(datetime_tz_ar).to('UTC').datetime,
             'zoneKey': zone_key,
-            'production': {},
+            'production': merged_production_mix(non_renewables_production[datetime_tz_ar], renewables_production[datetime_tz_ar]),
             'capacity': {},
             'storage': {},
-            'source': 'api.cammesa.com',
-        }
+            'source': 'cammesaweb.cammesa.com'
+        } for datetime_tz_ar in non_renewables_production if datetime_tz_ar in renewables_production
+    ]
 
-    non_renewables_mix, date = non_renewable_production_mix(zone_key, current_session)
-    renewables_mix = renewables_production_mix(zone_key, current_session)
-    country_details['production'] = full_production_mix(non_renewables_mix, renewables_mix)
-    country_details['datetime'] = date
+    return full_production_list
 
-    return country_details
-
-def full_production_mix(non_renewables_mix: dict, renewables_mix: dict):
-    """Merges production mix data from different sources. Hydro comes from 
-    different sources so they are added up."""
+def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dict:
+    """Merges production mix data from different sources. Hydro comes from two
+    different sources that are added up."""
 
     production_mix = {'biomass': renewables_mix['biomass'],
                       'solar': renewables_mix['solar'],
@@ -62,28 +65,32 @@ def full_production_mix(non_renewables_mix: dict, renewables_mix: dict):
 
     return production_mix
 
-def renewables_production_mix(zone_key: str, session):
+def renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
-    today = datetime.datetime.strftime(datetime.date.today(),"%d-%m-%Y")
+    today = arrow.now(tz='America/Argentina/Buenos Aires').format("DD-MM-YYYY")
     params = {'desde': today, 'hasta': today}
     renewables_response = session.get(CAMMESA_RENEWABLES_ENDPOINT, params=params)
     assert renewables_response.status_code == 200, 'Exception when fetching production for ' \
                                    '{}: error when calling url={} with payload={}'.format(
                                        zone_key, CAMMESA_RENEWABLES_ENDPOINT, params)
 
-    production_info = renewables_response.json()
-    sorted_production_info = sorted(production_info, key=lambda d: d['momento'])
-    last_production_info = sorted_production_info[-1]
+    production_list = renewables_response.json()
+    sorted_production_list = sorted(production_list, key=lambda d: d['momento'])
 
-    production_mix = {'biomass': last_production_info['biocombustible'],
-                        'hydro': last_production_info['hidraulica'],
-                        'solar': last_production_info['fotovoltaica'],
-                        'wind': last_production_info['eolica']}
+    renewables_production: Dict[str, dict] = {
+        production_info['momento']:
+        {
+            'biomass': production_info['biocombustible'],
+            'hydro': production_info['hidraulica'],
+            'solar': production_info['fotovoltaica'],
+            'wind': production_info['eolica']
+        } for production_info in sorted_production_list
+    }
     
-    return production_mix
+    return renewables_production
 
-def non_renewable_production_mix(zone_key: str, session):
+def non_renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
     """Retrieves production mix for non renewables using CAMMESA's API"""
 
     params = {'id_region': 1002}
@@ -92,21 +99,23 @@ def non_renewable_production_mix(zone_key: str, session):
                                    '{}: error when calling url={} with payload={}'.format(
                                        zone_key, CAMMESA_DEMANDA_ENDPOINT, params)
 
-    production_info = api_cammesa_response.json()
-    sorted_production_info = sorted(production_info, key=lambda d: d['fecha'])
-    last_production_info = sorted_production_info[-1]
-
-    production_mix = {'hydro': last_production_info['hidraulico'], 
-                    'nuclear': last_production_info['nuclear'],
-                    # As of 2022 thermal energy is mostly natural gas but 
-                    # the data is not split. We put it into unknown for now.
-                    # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
-                    'unknown': last_production_info['termico']}
-
-    # Parse the datetime and return a python datetime object in UTC
-    date = arrow.get(last_production_info['fecha']).to('UTC').datetime
+    production_list = api_cammesa_response.json()
+    sorted_production_list = sorted(production_list, key=lambda d: d['fecha'])
     
-    return production_mix, date
+
+    non_renewables_production: Dict[str, dict] = {
+        production_info['fecha']:
+        {
+            'hydro': production_info['hidraulico'],
+            'nuclear': production_info['nuclear'],
+            # As of 2022 thermal energy is mostly natural gas but 
+            # the data is not split. We put it into unknown for now.
+            # More info: see page 21 in https://microfe.cammesa.com/static-content/CammesaWeb/download-manager-files/Sintesis%20Mensual/Informe%20Mensual_2021-12.pdf
+            'unknown': production_info['termico']
+        } for production_info in sorted_production_list
+    }
+    
+    return non_renewables_production
 
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
