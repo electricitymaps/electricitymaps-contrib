@@ -12,10 +12,6 @@ try:
 except NameError:
     unicode = str  # Python 3
 
-# This parser gets hourly electricity generation data from portalweb.cammesa.com/Memnet1/default.aspx
-# for Argentina.  Currently wind and solar power are small contributors and not monitored but this is
-# likely to change in the future.
-
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
 # https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
