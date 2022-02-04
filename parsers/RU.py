@@ -20,8 +20,8 @@ MAP_GENERATION_1 = {
     'P_GES': 'hydro',
     'P_GRES': 'unknown', # Does not exist any more
     'P_TES': 'fossil fuel', # Fossil fuels
-    'P_BS': 'unknown', # Base station
-    'P_REN': 'renewables' # Renewables (solar and wind)
+    'P_BS': 'unknown', # Block station. Unkwnon source (presumed fossil fuel and may contain insignificant wind)
+    'P_REN': 'renewables' # Theoritically renewable but mostly solar
 }
 MAP_GENERATION_2 = {
     'aes_gen': 'nuclear',
@@ -142,10 +142,7 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
 
         gen_value = row['production']['renewables'] if row['production']['renewables'] else 0.0
-        if zone_key == 'RU-2':
-            row['production']['solar'] = row['production'].get('solar', 0.0) + gen_value
-        else:
-            row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
+        row['production']['solar'] = row['production'].get('solar', 0.0) + gen_value
         row['production'].pop('renewables', None)
 
         gen_value = row['production']['fossil fuel'] if row['production']['fossil fuel'] else 0.0
