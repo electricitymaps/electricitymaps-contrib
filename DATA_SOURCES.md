@@ -306,7 +306,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Romania:
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Russia: [Minenergo](https://minenergo.gov.ru/node/532)
+- Russia: [Minenergo](https://minenergo.gov.ru/node/20706)
 - Serbia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - Singapore
   - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
