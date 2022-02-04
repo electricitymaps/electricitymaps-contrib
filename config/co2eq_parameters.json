@@ -697,6 +697,27 @@
           "value": 565.0389007015892
         }
       },
+      "RU-1": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 6.0% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 89.2% * 490 g/kWh (gas) + 4.4% * 700 g/kWh (other)= 520 g/kWh, Source: https://minenergo.gov.ru/node/20706 2021-02-26 Table 6.4., p.76, Sum of zones Northwest, Central, Volga, South, Ural",
+          "source": "assumes 89% gas, 6% coal, <1% oil, 4% other",
+          "value": 520
+        }
+      },
+      "RU-2": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 86.4% * 820 g/kWh (coal) + 0.4% * 650 g/kWh (oil) + 8.0% * 490 g/kWh (gas) + 5.2% * 700 g/kWh (other)= 787 g/kWh, Source: https://minenergo.gov.ru/node/20706 2021-02-26 Table 6.4., p.77, Siberian zone",
+          "source": "assumes 86% coal, 8% gas, <1% oil, 5% other",
+          "value": 787
+        }
+      },
+      "RU-AS": {
+        "unknown": {
+          "_comment": "Assumes weighted average emission factor based on estimated 2021 fuel consumption: 61.1% * 820 g/kWh (coal) + 0.5% * 650 g/kWh (oil) + 38.4% * 490 g/kWh (gas) = 692 g/kWh, Source: https://minenergo.gov.ru/node/20706 2021-02-26 Table 6.4., p.77, East zone",
+          "source": "assumes 61% coal, 38% gas, 1% oil",
+          "value": 692
+        }
+      },
       "SE": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
