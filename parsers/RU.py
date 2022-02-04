@@ -18,15 +18,15 @@ BASE_EXCHANGE_URL = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?'
 MAP_GENERATION_1 = {
     'P_AES': 'nuclear',
     'P_GES': 'hydro',
-    'P_GRES': 'unknown',
-    'P_TES': 'fossil fuel',
-    'P_BS': 'unknown',
-    'P_REN': 'renewables'
+    'P_GRES': 'unknown', # Does not exist any more
+    'P_TES': 'fossil fuel', # Fossil fuels
+    'P_BS': 'unknown', # Base station
+    'P_REN': 'renewables' # Renewables (solar and wind)
 }
 MAP_GENERATION_2 = {
     'aes_gen': 'nuclear',
     'ges_gen': 'hydro',
-    'P_tes': 'fossil fuel'
+    'P_tes': 'fossil fuel' # Fossil fuels
 }
 RENEWABLES_RATIO = {
     'RU-1': {'solar': 0.5, 'wind': 0.5},
@@ -140,17 +140,16 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
                                                                         0.0) + gen_value
             else:
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
-            
-        for production_type, ratio in RENEWABLES_RATIO[zone_key].items():
-            gen_value = row['production']['renewables'] * ratio if row['production']['renewables'] else 0.0
-            row['production'][production_type] = row['production'].get(production_type,
-                                                                    0.0) + gen_value
+
+        gen_value = row['production']['renewables'] if row['production']['renewables'] else 0.0
+        if zone_key == 'RU-2':
+            row['production']['solar'] = row['production'].get('solar', 0.0) + gen_value
+        else:
+            row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
         row['production'].pop('renewables', None)
 
-        for production_type, ratio in FOSSIL_FUEL_RATIO[zone_key].items():
-            gen_value = row['production']['fossil fuel'] * ratio if row['production']['fossil fuel'] else 0.0
-            row['production'][production_type] = row['production'].get(production_type,
-                                                                    0.0) + gen_value
+        gen_value = row['production']['fossil fuel'] if row['production']['fossil fuel'] else 0.0
+        row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
         row['production'].pop('fossil fuel', None)
 
         # Date
@@ -210,10 +209,8 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
             else:
                 row['production'][production_type] = row['production'].get(production_type, 0.0)
 
-        for production_type, ratio in FOSSIL_FUEL_RATIO[zone_key].items():
-            gen_value = row['production']['fossil fuel'] * ratio if row['production']['fossil fuel'] else 0.0
-            row['production'][production_type] = row['production'].get(production_type,
-                                                                    0.0) + gen_value
+        gen_value = row['production']['fossil fuel'] if row['production']['fossil fuel'] else 0.0
+        row['production']['unknown'] = row['production'].get('unknown', 0.0) + gen_value
         row['production'].pop('fossil fuel', None)
 
         # Date
