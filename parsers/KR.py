@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import pandas as pd
+
 import arrow
 import datetime
 import json
@@ -54,10 +56,10 @@ def extract_chart_data(html):
         timed_data[date] = {
             'coal': round(float(item['coal']) + float(item['localCoal']), 5),
             'gas': round(float(item['gas']), 5),
-            'hydro': round(float(item['raisingWater']) + float(item['waterPower']), 5),
+            'hydro': round(float(item['raisingWater']), 5),
             'nuclear': round(float(item['nuclearPower']), 5),
             'oil': round(float(item['oil']), 5),
-            'renewable': round(float(item['newRenewable']), 5),
+            'renewable': round(float(item['newRenewable']) + float(item['waterPower']), 5),
         }
 
     return timed_data
@@ -99,11 +101,31 @@ def fetch_consumption(
 
 @refetch_frequency(datetime.timedelta(hours=1))
 def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime = None, logger=logging.getLogger(__name__)):
+
+    first_available_date = time_floor(arrow.now(TIMEZONE).shift(days=-6), datetime.timedelta(days=1)).shift(hours=1)
+    # print("first_available_date", first_available_date)
+
+    if target_datetime is not None and target_datetime < first_available_date:
+        raise NotImplementedError("This parser is not able to parse dates more than one week in the past.")
+
+    if target_datetime is None:
+        target_datetime = arrow.now(TIMEZONE).datetime
     
-    # TODO: targeted datetime for last week should be possible
-    if target_datetime:
-        raise NotImplementedError(
-            'This parser is not yet able to parse past dates')
+    target_datetime = time_floor(target_datetime, datetime.timedelta(hours=1))
+
+    # Getting correct row idx
+    target_hour_row_idx = (target_datetime.hour + 23) % 24
+
+    # Getting correct column idx
+    today = arrow.now(TIMEZONE).floor('hour').datetime
+    days_diff = (target_datetime - today).days
+    target_day_col_idx = (7 + days_diff) % 7 if days_diff != 0 else 7
+
+    # print("target_datetime:", target_datetime)
+    # print("target_hour_row_idx:", target_hour_row_idx)
+    # print("days_diff:", days_diff)
+    # print("target_day_col_idx:", target_day_col_idx)
+    # print("today:", today, "target_datetime:", target_datetime, "diff:", target_datetime - today)
 
     r = session or requests.session()
     url = PRICE_URL
@@ -113,40 +135,23 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
 
     data = {
         'zoneKey': zone_key,
-        'datetime': arrow.now(TIMEZONE).datetime,
+        'datetime': arrow.get(target_datetime, TIMEZONE).datetime,
         'currency': 'KRW',
         'price': 0.0,
         'source': 'new.kpx.or.kr',
     }
 
-    soup = BeautifulSoup(response.text, 'html.parser')
-    price_table = soup.find("table", {"class": "conTable tdCenter"})
-    price_rows = price_table.find_all("tr")[1:]
+    table_prices = pd.read_html(response.text, header=0)[0]
+    price_cell = table_prices.iloc[target_hour_row_idx, target_day_col_idx]
 
-    use_yesterday = False
+    if price_cell == 0.0:
+        target_hour_row_idx = 23
+        target_day_col_idx -= 1
+        price_cell = table_prices.iloc[target_hour_row_idx, target_day_col_idx]
+        target_datetime = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    for i, row in enumerate(price_rows):
-        today_price_value = float(row.find_all("td")[-1].text.replace(",", ""))
-        if i == 0 and today_price_value == 0.0:
-            # todays 1am price not published yet, use 12am price from second last column - aka yesterday
-            use_yesterday = True
-        elif not use_yesterday and today_price_value != 0.0:
-            # todays price published
-            data['price'] = today_price_value * 1000
-            
-            # TODO: AttributeError: 'datetime.timedelta' object has no attribute 'replace'
-            today_full_hour = datetime.datetime.now() - datetime.timedelta(hours= i + 1).replace(minute=0, second=0, microsecond=0)
-            data['datetime'] = arrow.get(today_full_hour, TIMEZONE).datetime
-            break
-        elif use_yesterday and i == 23:
-            # extracting 12am price from yesterday's column
-            yesterday_price_value = float(row.find_all("td")[-2].text.replace(",", ""))
-            data['price'] = yesterday_price_value * 1000
-
-            today = datetime.datetime.now()
-            yesterday = today - datetime.timedelta(days=0, hours=today.hour, minutes=today.minute, seconds=today.second, microseconds=today.microsecond + 1)
-            data['datetime'] = arrow.get(yesterday, TIMEZONE).datetime
-            break
+    data['price'] = float(price_cell)
+    data['datetime'] = target_datetime
 
     return data
 
@@ -247,7 +252,7 @@ def fetch_production(zone_key='KR', session=None,
     data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
 
     # Only fetch real time data if target_datetime is today
-    if target_datetime.date() == datetime.datetime.now().date():
+    if target_datetime.date() == arrow.now(TIMEZONE).date():
         chart_data = get_granular_real_time_prod_date(session=session)
         
         granular_data = chart_data[data["datetime"]]
@@ -267,19 +272,23 @@ def fetch_production(zone_key='KR', session=None,
             data["production"]["unknown"] -= granular_data["hydro"]
         
         # NOTE: The resulting unknown production is 100% classified as 
-        # renewable if granular data has been merged
+        # renewable if granular data has been merged. Unknown is usually
+        # about 5 - 10% of the total production.
+        # As of February 2022, 74.52 % of the installed renewable capacity
+        # is solar and 6.87% wind.
 
     return data
 
 if __name__ == '__main__':
     # Testing datetime on specific date
-    # target_datetime = arrow.get(2021, 12, 22, 1, 32, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = arrow.get(2022, 2, 7, 2, 0, 0, tzinfo=TIMEZONE).datetime
 
-    print('fetch_production() ->')
+    # print('fetch_production() ->')
     # print(fetch_production(target_datetime=target_datetime))
-    print(fetch_production())
+    # print(fetch_production())
 
-    # print('fetch_price() -> ')
+    print('fetch_price() -> ')
+    print(fetch_price(target_datetime=target_datetime))
     # print(fetch_price())
 
     # print('fetch_consumption() -> ')
