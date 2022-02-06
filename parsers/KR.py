@@ -246,7 +246,7 @@ def fetch_production(zone_key='KR', session=None,
 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
-    
+
     target_datetime = time_floor(target_datetime, datetime.timedelta(minutes=30))
 
     data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
@@ -283,13 +283,13 @@ if __name__ == '__main__':
     # Testing datetime on specific date
     target_datetime = arrow.get(2022, 2, 7, 2, 0, 0, tzinfo=TIMEZONE).datetime
 
-    # print('fetch_production() ->')
+    print('fetch_production() ->')
     # print(fetch_production(target_datetime=target_datetime))
-    # print(fetch_production())
+    print(fetch_production())
 
     print('fetch_price() -> ')
-    print(fetch_price(target_datetime=target_datetime))
-    # print(fetch_price())
+    # print(fetch_price(target_datetime=target_datetime))
+    print(fetch_price())
 
-    # print('fetch_consumption() -> ')
-    # print(fetch_consumption())
+    print('fetch_consumption() -> ')
+    print(fetch_consumption())
