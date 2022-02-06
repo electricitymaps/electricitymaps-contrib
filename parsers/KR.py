@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
-from typing import Union
 import arrow
-import re
-import requests
-from bs4 import BeautifulSoup
-import logging
 import datetime
 import json
-
+import logging
 import pprint
+import re
+import requests
+
+from bs4 import BeautifulSoup
+
+from parsers.lib.config import refetch_frequency
 
 TIMEZONE = 'Asia/Seoul'
 REAL_TIME_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
@@ -22,6 +23,13 @@ pp = pprint.PrettyPrinter(indent=4)
 # Source: https://cms.khnp.co.kr/eng/content/563/main.do?mnCd=EN040101
 # New energy: Hydrogen, Fuel Cell, Coal liquefied or gasified energy, and vacuum residue gasified energy, etc.
 # Renewable: Solar, Wind power, Water power, ocean energy, Geothermal, Bio energy, etc.
+
+# src: https://stackoverflow.com/questions/3463930/how-to-round-the-minute-of-a-datetime-object
+def time_floor(time, delta, epoch=None):
+    if epoch is None:
+        epoch = datetime.datetime(1970, 1, 1, tzinfo=time.tzinfo)
+    mod = (time - epoch) % delta
+    return time - mod
 
 def extract_chart_data(html):
     """Extracts generation breakdown chart data from the source code of the page"""
@@ -55,6 +63,7 @@ def extract_chart_data(html):
     return timed_data
 
 
+@refetch_frequency(datetime.timedelta(minutes=5))
 def fetch_consumption(
     zone_key="KR", session=None, target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
     """
@@ -88,6 +97,7 @@ def fetch_consumption(
 
     return data
 
+@refetch_frequency(datetime.timedelta(hours=1))
 def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime = None, logger=logging.getLogger(__name__)):
     
     # TODO: targeted datetime for last week should be possible
@@ -140,39 +150,8 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
 
     return data
 
-def fetch_production(zone_key='KR', session=None,
-                     target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-
-    """
-        Steps to parse the data:
-        1. Get the 15min granular data from REAL_TIME_URL and extract data from chart
-        2. Get the 30min granular data from LONG_TERM_PRODUCTION_URL and parse table
-        3. Add hydro production (fetched in 1.) to data and subtract from unknown production
-    """
-
-    if target_datetime is not None:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
-
-    # if target_datetime is not None and target_datetime < arrow.now().shift(months=-1):
-    #         raise NotImplementedError(
-    #             'This parser is not able to parse dates past the last month')
-    # else:
-    #     print('Specified datetime is in the last month')
-
-    if target_datetime is None:
-        target_datetime = arrow.now(TIMEZONE).datetime
-    
+def get_long_term_production_data(session=None, target_datetime: datetime.datetime = None) -> dict:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
-    target_datetime_formatted_hourly = target_datetime.strftime("%Y-%m-%d %H:00:00")
-
-    r0 = session or requests.session()
-
-    res_0 = r0.get(REAL_TIME_URL)
-
-    soup = BeautifulSoup(res_0.text, 'html.parser')
-    
-    chart_data = extract_chart_data(res_0.text)
 
     r = session or requests.session()
 
@@ -187,8 +166,6 @@ def fetch_production(zone_key='KR', session=None,
         'view_edate': target_datetime_formatted_daily,
         '_csrf': cookies_dict['XSRF-TOKEN'],
     }
-
-    #print(payload)
 
     res = r.post(LONG_TERM_PRODUCTION_URL, payload)
 
@@ -218,69 +195,94 @@ def fetch_production(zone_key='KR', session=None,
     soup = BeautifulSoup(res.text, 'html.parser')
     table_rows = soup.find_all("tr")[1:]
 
-    # order of generation types in the table
-    # 1. date and time
-    # 2. other
-    # 3. gas
-    # 4. renewable
-    # 5. coal
-    # 6. nuclear
-
-    for i, row in enumerate(table_rows):
+    for row in table_rows:
 
         sanitized_date = [value[:-1] for value in row.find_all("td")[0].text.split(" ")]
         curr_prod_datetime_string = "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
         arw_datetime = arrow.get(curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE).datetime
 
-        #print(arw_datetime)
+        if arw_datetime == target_datetime:
 
-        row_values = row.find_all("td")
-        production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
+            row_values = row.find_all("td")
+            production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
 
-        #print(production_values)
+            # order of production_values
+            # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
+            # other can be negative as well as positive due to pumped hydro
 
-        if i+1 < len(table_rows):
-            next_row_values = table_rows[i+1].find_all("td")
-            next_production_values = [int("".join(value.text.split(","))) for value in next_row_values[1:]]
-
-            #print(next_production_values)
-
-            if next_production_values[0] == 0:
-                data["datetime"] = arw_datetime
-                data["production"]["unknown"] = production_values[0] + production_values[2]
-                data["production"]["gas"] = production_values[1]
-                data["production"]["coal"] = production_values[3]
-                data["production"]["nuclear"] = production_values[4]
-
-                break
-        else:
             data["datetime"] = arw_datetime
             data["production"]["unknown"] = production_values[0] + production_values[2]
             data["production"]["gas"] = production_values[1]
             data["production"]["coal"] = production_values[3]
             data["production"]["nuclear"] = production_values[4]
     
-    # TODO: granular data only applicable if fetching current day
-    granular_data = chart_data[data["datetime"]]
-    #print(granular_data)
+    return data
 
-    if granular_data["hydro"] > 0:
-        # TODO: check when hydro has to be subtracted from unknown
-        data["production"]["hydro"] = granular_data["hydro"]
-        data["production"]["unknown"] -= granular_data["hydro"]
-    else:
-        data["storage"]["hydro"] = granular_data["hydro"]
+def get_granular_real_time_prod_date(session=None) -> dict:
+    r0 = session or requests.session()
+    res_0 = r0.get(REAL_TIME_URL)
+    chart_data = extract_chart_data(res_0.text)
 
-    data["production"]["oil"] = granular_data["oil"]
-    data["production"]["unknown"] -= granular_data["oil"]
+    return chart_data
 
+@refetch_frequency(datetime.timedelta(minutes=30))
+def fetch_production(zone_key='KR', session=None,
+                     target_datetime: datetime.datetime = None,
+                     logger: logging.Logger = logging.getLogger(__name__)) -> dict:
+    """
+        Steps to parse the data:
+        1. Get the 30min granular data using get_long_term_production_data()
+        2. If parsing today, get the granular data from REAL_TIME_URL and extract data from chart using the time of 1.
+        3. Merge the two data sets
+    """
+
+    if target_datetime is not None and target_datetime < arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE):
+        raise NotImplementedError("This parser is not able to parse dates before 2021-12-22.")
+
+    if target_datetime is None:
+        target_datetime = arrow.now(TIMEZONE).datetime
+    
+    target_datetime = time_floor(target_datetime, datetime.timedelta(minutes=30))
+
+    #print(target_datetime)
+    
+    data = get_long_term_production_data(session=session, target_datetime=target_datetime)
+    #print("DATA FROM LONG TERM")
+    #pp.pprint(data)
+
+    # Only fetch real time data if target_datetime is today
+    if target_datetime.date() == datetime.datetime.now().date():
+        chart_data = get_granular_real_time_prod_date(session=session)
+        
+        granular_data = chart_data[data["datetime"]]
+        #print("DATA FROM REAL TIME")
+        #pp.pprint(granular_data)
+
+        data["production"]["coal"] = granular_data["coal"]
+        data["production"]["gas"] = granular_data["gas"]
+        data["production"]["nuclear"] = granular_data["nuclear"]
+
+        data["production"]["oil"] = granular_data["oil"]
+        data["production"]["unknown"] -= granular_data["oil"]
+
+        if granular_data["hydro"] < 0:
+            data["production"]["hydro"] = granular_data["hydro"] * -1
+            data["production"]["unknown"] += abs(granular_data["hydro"])
+        else:
+            data["storage"]["hydro"] = granular_data["hydro"]
+            data["production"]["unknown"] -= granular_data["hydro"]
+        
+        # NOTE: The resulting unknown production is 100% classified as renewable
+
+    #print("AFTER CONVERSION")
     return data
 
 if __name__ == '__main__':
-    # Testing datetime a month ago
-    #target_datetime = arrow.now().shift(days=-30).datetime
+    # Testing datetime on specific date
+    # target_datetime = arrow.get(2021, 12, 22, 1, 32, 0, tzinfo=TIMEZONE).datetime
 
     print('fetch_production() ->')
+    # print(fetch_production(target_datetime=target_datetime))
     print(fetch_production())
 
     # print('fetch_price() -> ')
