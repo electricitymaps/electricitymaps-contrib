@@ -50,7 +50,7 @@ def extract_chart_data(html):
             'renewable': round(float(item['newRenewable']), 5),
         }
             
-    #pp.pprint(timed_data)
+    # pp.pprint(timed_data)
 
     return timed_data
 
@@ -74,9 +74,14 @@ def fetch_consumption(
     consumption_title = soup.find("th", string=re.compile(r"\s*현재부하\s*"))
     consumption_val = float(consumption_title.find_next_sibling().text.split()[0].replace(",", ""))
 
+    consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
+    consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
+    consumption_date = datetime.datetime.strptime(" ".join(consumption_date_list), "%Y-%m-%d %H:%M")
+    consumption_date = arrow.get(consumption_date, TIMEZONE).datetime
+
     data = {
         'consumption': consumption_val,
-        'datetime': arrow.now(TIMEZONE).datetime,
+        'datetime': consumption_date,
         'source': url,
         "zoneKey": zone_key,
     }
