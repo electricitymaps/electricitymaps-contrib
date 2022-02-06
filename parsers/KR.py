@@ -17,13 +17,6 @@ REAL_TIME_URL = 'https://new.kpx.or.kr/powerinfoSubmain.es?mid=a10606030000'
 PRICE_URL = 'https://new.kpx.or.kr/smpInland.es?mid=a10606080100&device=pc'
 LONG_TERM_PRODUCTION_URL = 'https://new.kpx.or.kr/powerSource.es?mid=a10606030000&device=chart'
 
-# HYDRO_URL = 'https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203'
-
-# Gangneung hydro plant used only for peak load and backup
-# sources for capacities: 
-# 1) https://cms.khnp.co.kr/eng/content/566/main.do?mnCd=EN040201
-# 2) https://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203
-
 pp = pprint.PrettyPrinter(indent=4)
 
 #### Classification of New & Renewable Energy Sources ####
@@ -39,11 +32,13 @@ def time_floor(time, delta, epoch=None):
     return time - mod
 
 def extract_chart_data(html):
-    """Extracts generation breakdown chart data from the source code of the page"""
+    """
+        Extracts generation breakdown chart data from the source code of the page.
+    """
     # Extract object with data
     data_source = re.search(r"var ictArr = (\[\{.+\}\]);", html).group(1)  
     # Un-quoted keys ({key:"value"}) are valid JavaScript but not valid JSON (which requires {"key":"value"}). 
-    # Will break if other keys than these three are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
+    # Will break if other keys than these are introduced. Alternatively, use a JSON5 library (JSON5 allows un-quoted keys)
     data_source = re.sub(r'"(localCoal|newRenewable|oil|once|gas|nuclearPower|coal|regDate|raisingWater|waterPower|seq)"', r'"\1"', data_source)  
     json_obj = json.loads(data_source)
 
@@ -64,8 +59,6 @@ def extract_chart_data(html):
             'oil': round(float(item['oil']), 5),
             'renewable': round(float(item['newRenewable']), 5),
         }
-            
-    # pp.pprint(timed_data)
 
     return timed_data
 
@@ -157,7 +150,7 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
 
     return data
 
-def get_long_term_production_data(session=None, target_datetime: datetime.datetime = None) -> dict:
+def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = None) -> dict:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     r = session or requests.session()
@@ -238,7 +231,7 @@ def fetch_production(zone_key='KR', session=None,
                      logger: logging.Logger = logging.getLogger(__name__)) -> dict:
     """
         Steps to parse the data:
-        1. Get the 30min granular data using get_long_term_production_data()
+        1. Get the 30min granular data using get_long_term_prod_data()
         2. If parsing today, get the granular data from REAL_TIME_URL and extract data from chart using the time of 1.
         3. Merge the two data sets
     """
@@ -251,19 +244,13 @@ def fetch_production(zone_key='KR', session=None,
     
     target_datetime = time_floor(target_datetime, datetime.timedelta(minutes=30))
 
-    #print(target_datetime)
-    
-    data = get_long_term_production_data(session=session, target_datetime=target_datetime)
-    #print("DATA FROM LONG TERM")
-    #pp.pprint(data)
+    data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
 
     # Only fetch real time data if target_datetime is today
     if target_datetime.date() == datetime.datetime.now().date():
         chart_data = get_granular_real_time_prod_date(session=session)
         
         granular_data = chart_data[data["datetime"]]
-        #print("DATA FROM REAL TIME")
-        #pp.pprint(granular_data)
 
         data["production"]["coal"] = granular_data["coal"]
         data["production"]["gas"] = granular_data["gas"]
@@ -279,9 +266,9 @@ def fetch_production(zone_key='KR', session=None,
             data["storage"]["hydro"] = granular_data["hydro"]
             data["production"]["unknown"] -= granular_data["hydro"]
         
-        # NOTE: The resulting unknown production is 100% classified as renewable
+        # NOTE: The resulting unknown production is 100% classified as 
+        # renewable if granular data has been merged
 
-    #print("AFTER CONVERSION")
     return data
 
 if __name__ == '__main__':
