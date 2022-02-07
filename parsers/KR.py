@@ -171,13 +171,7 @@ def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = N
 
     assert res.status_code == 200
 
-    data = {
-      'zoneKey': 'KR',
-      'datetime': arrow.now(TIMEZONE).datetime,
-      'production': {},
-      'storage': {},
-      'source': 'https://new.kpx.or.kr'
-    }
+    all_data = []
 
     soup = BeautifulSoup(res.text, 'html.parser')
     table_rows = soup.find_all("tr")[1:]
@@ -188,22 +182,31 @@ def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = N
         curr_prod_datetime_string = "-".join(sanitized_date[:3]) + "T" + ":".join(sanitized_date[3:]) + ":00"
         arw_datetime = arrow.get(curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE).datetime
 
-        if arw_datetime == target_datetime:
+        data = {
+              'zoneKey': 'KR',
+              'datetime': arw_datetime,
+              'capacity': {},
+              'production': {},
+              'storage': {},
+              'source': 'https://new.kpx.or.kr'
+            }
 
-            row_values = row.find_all("td")
-            production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
+        row_values = row.find_all("td")
+        production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
 
-            # order of production_values
-            # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
-            # other can be negative as well as positive due to pumped hydro
+        # order of production_values
+        # 0. other, 1. gas, 2. renewable, 3. coal, 4. nuclear
+        # other can be negative as well as positive due to pumped hydro
 
-            data["datetime"] = arw_datetime
-            data["production"]["unknown"] = production_values[0] + production_values[2]
-            data["production"]["gas"] = production_values[1]
-            data["production"]["coal"] = production_values[3]
-            data["production"]["nuclear"] = production_values[4]
+        data["datetime"] = arw_datetime
+        data["production"]["unknown"] = production_values[0] + production_values[2]
+        data["production"]["gas"] = production_values[1]
+        data["production"]["coal"] = production_values[3]
+        data["production"]["nuclear"] = production_values[4]
+
+        all_data.append(data)
     
-    return data
+    return all_data
 
 def get_granular_real_time_prod_date(session=None) -> dict:
     r0 = session or requests.session()
@@ -212,7 +215,7 @@ def get_granular_real_time_prod_date(session=None) -> dict:
 
     return chart_data
 
-@refetch_frequency(datetime.timedelta(minutes=30))
+@refetch_frequency(datetime.timedelta(minutes=5))
 def fetch_production(zone_key='KR', session=None,
                      target_datetime: datetime.datetime = None,
                      logger: logging.Logger = logging.getLogger(__name__)) -> dict:
@@ -228,44 +231,44 @@ def fetch_production(zone_key='KR', session=None,
 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
+    
+    #target_datetime_5 = time_floor(target_datetime, datetime.timedelta(minutes=5))
 
-    target_datetime = time_floor(target_datetime, datetime.timedelta(minutes=30))
-
-    # TODO: If long term data not yet available revert to 30min prior (also for granular data)
-    data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
+    all_data = []
 
     # Only fetch real time data if target_datetime is today
     if target_datetime.date() == arrow.now(TIMEZONE).date():
         chart_data = get_granular_real_time_prod_date(session=session)
-        
-        granular_data = chart_data[data["datetime"]]
 
-        data["production"]["coal"] = granular_data["coal"]
-        data["production"]["gas"] = granular_data["gas"]
-        data["production"]["nuclear"] = granular_data["nuclear"]
+        for chart_data_dt, chart_data_5min in chart_data.items():
+            data = {
+              'zoneKey': 'KR',
+              'datetime': arrow.get(chart_data_dt, TIMEZONE).datetime,
+              'capacity': {},
+              'production': {},
+              'storage': {},
+              'source': 'https://new.kpx.or.kr'
+            }
 
-        data["production"]["oil"] = granular_data["oil"]
-        data["production"]["unknown"] -= granular_data["oil"]
+            data["storage"]["hydro"] = chart_data_5min["pumpedHydro"]
 
-        data["production"]["hydro"] = granular_data["hydro"]
-        data["production"]["unknown"] -= granular_data["hydro"]
-        
-        data["storage"]["hydro"] = granular_data["pumpedHydro"] * - 1
-        data["production"]["unknown"] -= granular_data["pumpedHydro"]
+            data["production"]["coal"] = chart_data_5min["coal"]
+            data["production"]["gas"] = chart_data_5min["gas"]
+            data["production"]["nuclear"] = chart_data_5min["nuclear"]
+            data["production"]["oil"] = chart_data_5min["oil"]
+            data["production"]["hydro"] = chart_data_5min["hydro"]
+            data["production"]["unknown"] = chart_data_5min["renewable"]
 
-        data["production"]["unknown"] = round(data["production"]["unknown"], 5)
-        
-        # NOTE: The resulting unknown production is 100% renewable 
-        # if granular data has been merged. Unknown is usually
-        # about 5 - 10% of the total production.
-        # As of February 2022, 74.52 % of the installed renewable 
-        # capacity is solar and 6.87% wind.
+            all_data.append(data)
+    else:
+        data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
+        all_data.append(data)
 
-    return data
+    return all_data
 
 if __name__ == '__main__':
     # Testing datetime on specific date
-    target_datetime = arrow.get(2022, 2, 7, 16, 35, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = arrow.get(2022, 2, 5, 16, 35, 0, tzinfo=TIMEZONE).datetime
 
     print('fetch_production() ->')
     # print(fetch_production(target_datetime=target_datetime))
