@@ -208,7 +208,7 @@ def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = N
     
     return all_data
 
-def get_granular_real_time_prod_date(session=None) -> dict:
+def get_granular_real_time_prod_data(session=None) -> dict:
     r0 = session or requests.session()
     res_0 = r0.get(REAL_TIME_URL)
     chart_data = extract_chart_data(res_0.text)
@@ -227,33 +227,40 @@ def fetch_production(zone_key='KR', session=None,
         target_datetime = arrow.now(TIMEZONE).datetime
 
     all_data = []
+    fetching_today = target_datetime.date() == arrow.now(TIMEZONE).date()
+    refetch_yesterday = False
 
-    # Only fetch real time data if target_datetime is today
-    if target_datetime.date() == arrow.now(TIMEZONE).date():
-        chart_data = get_granular_real_time_prod_date(session=session)
+    if fetching_today:
+        chart_data = get_granular_real_time_prod_data(session=session)
 
-        for chart_data_dt, chart_data_5min in chart_data.items():
-            data = {
-              'zoneKey': 'KR',
-              'datetime': arrow.get(chart_data_dt, TIMEZONE).datetime,
-              'capacity': {},
-              'production': {},
-              'storage': {},
-              'source': 'https://new.kpx.or.kr'
-            }
+        if len(chart_data) > 0:
+            for datetime_key, chart_data_values in chart_data.items():
+                data = {
+                'zoneKey': 'KR',
+                'datetime': arrow.get(datetime_key, TIMEZONE).datetime,
+                'capacity': {},
+                'production': {},
+                'storage': {},
+                'source': 'https://new.kpx.or.kr'
+                }
 
-            data["storage"]["hydro"] = chart_data_5min["pumpedHydro"]
+                data["storage"]["hydro"] = chart_data_values["pumpedHydro"]
 
-            data["production"]["coal"] = chart_data_5min["coal"]
-            data["production"]["gas"] = chart_data_5min["gas"]
-            data["production"]["nuclear"] = chart_data_5min["nuclear"]
-            data["production"]["oil"] = chart_data_5min["oil"]
-            data["production"]["hydro"] = chart_data_5min["hydro"]
-            data["production"]["unknown"] = chart_data_5min["renewable"]
+                data["production"]["coal"] = chart_data_values["coal"]
+                data["production"]["gas"] = chart_data_values["gas"]
+                data["production"]["nuclear"] = chart_data_values["nuclear"]
+                data["production"]["oil"] = chart_data_values["oil"]
+                data["production"]["hydro"] = chart_data_values["hydro"]
+                data["production"]["unknown"] = chart_data_values["renewable"]
 
-            all_data.append(data)
-    # Otherwise, fetch long term production data
-    else:
+                all_data.append(data)
+        else:
+            refetch_yesterday = True
+
+    elif not fetching_today or refetch_yesterday:
+        if refetch_yesterday:
+            target_datetime = arrow.get(target_datetime, TIMEZONE).shift(days=-1).datetime
+
         data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
         all_data.append(data)
 
@@ -261,15 +268,15 @@ def fetch_production(zone_key='KR', session=None,
 
 if __name__ == '__main__':
     # Testing datetime on specific date
-    target_datetime = arrow.get(2022, 2, 5, 16, 35, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = arrow.get(2022, 2, 8, 16, 35, 0, tzinfo=TIMEZONE).datetime
 
     print('fetch_production() ->')
-    # print(fetch_production(target_datetime=target_datetime))
-    print(fetch_production())
+    # pp.pprint(fetch_production(target_datetime=target_datetime))
+    pp.pprint(fetch_production())
 
     print('fetch_price() -> ')
-    # print(fetch_price(target_datetime=target_datetime))
-    print(fetch_price())
+    # pp.pprint(fetch_price(target_datetime=target_datetime))
+    pp.pprint(fetch_price())
 
     print('fetch_consumption() -> ')
-    print(fetch_consumption())
+    pp.pprint(fetch_consumption())
