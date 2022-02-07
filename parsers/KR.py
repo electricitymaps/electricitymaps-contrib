@@ -104,7 +104,6 @@ def fetch_consumption(
 def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime = None, logger=logging.getLogger(__name__)):
 
     first_available_date = time_floor(arrow.now(TIMEZONE).shift(days=-6), datetime.timedelta(days=1)).shift(hours=1)
-    # print("first_available_date", first_available_date)
 
     if target_datetime is not None and target_datetime < first_available_date:
         raise NotImplementedError("This parser is not able to parse dates more than one week in the past.")
@@ -112,15 +111,7 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
     
-    target_datetime = time_floor(target_datetime, datetime.timedelta(hours=1))
-
-    # Getting correct row idx
-    target_hour_row_idx = (target_datetime.hour + 23) % 24
-
-    # Getting correct column idx
-    today = arrow.now(TIMEZONE).floor('hour').datetime
-    days_diff = (target_datetime - today).days
-    target_day_col_idx = (7 + days_diff) % 7 if days_diff != 0 else 7
+    # target_datetime = time_floor(target_datetime, datetime.timedelta(hours=1))
 
     r = session or requests.session()
     url = PRICE_URL
@@ -128,27 +119,34 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
     response = r.get(url)
     assert response.status_code == 200
 
-    data = {
-        'zoneKey': zone_key,
-        'datetime': arrow.get(target_datetime, TIMEZONE).datetime,
-        'currency': 'KRW',
-        'price': 0.0,
-        'source': 'new.kpx.or.kr',
-    }
-
+    all_data = []
     table_prices = pd.read_html(response.text, header=0)[0]
-    price_cell = table_prices.iloc[target_hour_row_idx, target_day_col_idx]
 
-    if price_cell == 0.0:
-        target_hour_row_idx = 23
-        target_day_col_idx -= 1
-        price_cell = table_prices.iloc[target_hour_row_idx, target_day_col_idx]
-        target_datetime = target_datetime.replace(hour=0, minute=0, second=0, microsecond=0)
+    for col_idx in range(1, table_prices.shape[1]):
+        for row_idx in range(24):
 
-    data['price'] = float(price_cell)
-    data['datetime'] = target_datetime
+            day = col_idx
+            hour = row_idx + 1
 
-    return data
+            if hour == 24:
+                hour = 0
+                day += 1
+
+            arw_day = arrow.now(TIMEZONE).shift(days=-1 * (7 - day))
+            arw_day = arw_day.replace(hour=hour, minute=0, second=0, microsecond=0)
+            price_value = table_prices.iloc[row_idx, col_idx]
+            
+            data = {
+                'zoneKey': zone_key,
+                'datetime': arw_day.datetime,
+                'currency': 'KRW',
+                'price': price_value,
+                'source': 'new.kpx.or.kr',
+            }
+
+            all_data.append(data)
+
+    return all_data
 
 def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = None) -> dict:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
