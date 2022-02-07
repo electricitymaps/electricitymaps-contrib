@@ -219,20 +219,12 @@ def get_granular_real_time_prod_date(session=None) -> dict:
 def fetch_production(zone_key='KR', session=None,
                      target_datetime: datetime.datetime = None,
                      logger: logging.Logger = logging.getLogger(__name__)) -> dict:
-    """
-        Steps to parse the data:
-        1. Get the 30min granular data using get_long_term_prod_data()
-        2. If parsing today, get the granular data from REAL_TIME_URL and extract data from chart using the time of 1.
-        3. Merge the two data sets
-    """
 
     if target_datetime is not None and target_datetime < arrow.get(2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE):
         raise NotImplementedError("This parser is not able to parse dates before 2021-12-22.")
 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
-    
-    #target_datetime_5 = time_floor(target_datetime, datetime.timedelta(minutes=5))
 
     all_data = []
 
@@ -260,6 +252,7 @@ def fetch_production(zone_key='KR', session=None,
             data["production"]["unknown"] = chart_data_5min["renewable"]
 
             all_data.append(data)
+    # Otherwise, fetch long term production data
     else:
         data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
         all_data.append(data)
