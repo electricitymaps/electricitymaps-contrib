@@ -110,8 +110,6 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
 
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
-    
-    # target_datetime = time_floor(target_datetime, datetime.timedelta(hours=1))
 
     r = session or requests.session()
     url = PRICE_URL
@@ -132,8 +130,7 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
                 hour = 0
                 day += 1
 
-            arw_day = arrow.now(TIMEZONE).shift(days=-1 * (7 - day))
-            arw_day = arw_day.replace(hour=hour, minute=0, second=0, microsecond=0)
+            arw_day = arrow.now(TIMEZONE).shift(days=-1 * (7 - day)).replace(hour=hour, minute=0, second=0, microsecond=0)
             price_value = table_prices.iloc[row_idx, col_idx]
             
             data = {
@@ -181,13 +178,13 @@ def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = N
         arw_datetime = arrow.get(curr_prod_datetime_string, "YYYY-MM-DDTHH:mm:ss", tzinfo=TIMEZONE).datetime
 
         data = {
-              'zoneKey': 'KR',
-              'datetime': arw_datetime,
-              'capacity': {},
-              'production': {},
-              'storage': {},
-              'source': 'https://new.kpx.or.kr'
-            }
+            'zoneKey': 'KR',
+            'datetime': arw_datetime,
+            'capacity': {},
+            'production': {},
+            'storage': {},
+            'source': 'https://new.kpx.or.kr'
+        }
 
         row_values = row.find_all("td")
         production_values = [int("".join(value.text.split(","))) for value in row_values[1:]]
@@ -234,12 +231,12 @@ def fetch_production(zone_key='KR', session=None,
         if len(chart_data) > 0:
             for datetime_key, chart_data_values in chart_data.items():
                 data = {
-                'zoneKey': 'KR',
-                'datetime': arrow.get(datetime_key, TIMEZONE).datetime,
-                'capacity': {},
-                'production': {},
-                'storage': {},
-                'source': 'https://new.kpx.or.kr'
+                    'zoneKey': 'KR',
+                    'datetime': datetime_key,
+                    'capacity': {},
+                    'production': {},
+                    'storage': {},
+                    'source': 'https://new.kpx.or.kr'
                 }
 
                 data["storage"]["hydro"] = chart_data_values["pumpedHydro"]
