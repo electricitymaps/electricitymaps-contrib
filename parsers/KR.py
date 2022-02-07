@@ -121,12 +121,6 @@ def fetch_price(zone_key='KR', session=None, target_datetime: datetime.datetime 
     days_diff = (target_datetime - today).days
     target_day_col_idx = (7 + days_diff) % 7 if days_diff != 0 else 7
 
-    # print("target_datetime:", target_datetime)
-    # print("target_hour_row_idx:", target_hour_row_idx)
-    # print("days_diff:", days_diff)
-    # print("target_day_col_idx:", target_day_col_idx)
-    # print("today:", today, "target_datetime:", target_datetime, "diff:", target_datetime - today)
-
     r = session or requests.session()
     url = PRICE_URL
 
@@ -179,21 +173,8 @@ def get_long_term_prod_data(session=None, target_datetime: datetime.datetime = N
     data = {
       'zoneKey': 'KR',
       'datetime': arrow.now(TIMEZONE).datetime,
-      'production': {
-          'biomass': 0.0,
-          'coal':0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': 0.0,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0,
-      },
-      'storage': {
-          'hydro': 0.0,
-      },
+      'production': {},
+      'storage': {},
       'source': 'https://new.kpx.or.kr'
     }
 
@@ -271,17 +252,17 @@ def fetch_production(zone_key='KR', session=None,
             data["storage"]["hydro"] = granular_data["hydro"]
             data["production"]["unknown"] -= granular_data["hydro"]
         
-        # NOTE: The resulting unknown production is 100% classified as 
-        # renewable if granular data has been merged. Unknown is usually
+        # NOTE: The resulting unknown production is 100% renewable 
+        # if granular data has been merged. Unknown is usually
         # about 5 - 10% of the total production.
-        # As of February 2022, 74.52 % of the installed renewable capacity
-        # is solar and 6.87% wind.
+        # As of February 2022, 74.52 % of the installed renewable 
+        # capacity is solar and 6.87% wind.
 
     return data
 
 if __name__ == '__main__':
     # Testing datetime on specific date
-    target_datetime = arrow.get(2022, 2, 7, 2, 0, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = arrow.get(2022, 1, 3, 12, 4, 0, tzinfo=TIMEZONE).datetime
 
     print('fetch_production() ->')
     # print(fetch_production(target_datetime=target_datetime))
