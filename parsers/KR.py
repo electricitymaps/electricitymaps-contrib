@@ -56,10 +56,11 @@ def extract_chart_data(html):
         timed_data[date] = {
             'coal': round(float(item['coal']) + float(item['localCoal']), 5),
             'gas': round(float(item['gas']), 5),
-            'hydro': round(float(item['raisingWater']), 5),
+            'hydro': round(float(item['waterPower']), 5),
             'nuclear': round(float(item['nuclearPower']), 5),
             'oil': round(float(item['oil']), 5),
-            'renewable': round(float(item['newRenewable']) + float(item['waterPower']), 5),
+            'renewable': round(float(item['newRenewable']), 5),
+            'pumpedHydro': round(float(item['raisingWater']), 5),
         }
 
     return timed_data
@@ -230,6 +231,7 @@ def fetch_production(zone_key='KR', session=None,
 
     target_datetime = time_floor(target_datetime, datetime.timedelta(minutes=30))
 
+    # TODO: If long term data not yet available revert to 30min prior (also for granular data)
     data = get_long_term_prod_data(session=session, target_datetime=target_datetime)
 
     # Only fetch real time data if target_datetime is today
@@ -245,12 +247,13 @@ def fetch_production(zone_key='KR', session=None,
         data["production"]["oil"] = granular_data["oil"]
         data["production"]["unknown"] -= granular_data["oil"]
 
-        if granular_data["hydro"] < 0:
-            data["production"]["hydro"] = granular_data["hydro"] * -1
-            data["production"]["unknown"] += abs(granular_data["hydro"])
-        else:
-            data["storage"]["hydro"] = granular_data["hydro"]
-            data["production"]["unknown"] -= granular_data["hydro"]
+        data["production"]["hydro"] = granular_data["hydro"]
+        data["production"]["unknown"] -= granular_data["hydro"]
+        
+        data["storage"]["hydro"] = granular_data["pumpedHydro"] * - 1
+        data["production"]["unknown"] -= granular_data["pumpedHydro"]
+
+        data["production"]["unknown"] = round(data["production"]["unknown"], 5)
         
         # NOTE: The resulting unknown production is 100% renewable 
         # if granular data has been merged. Unknown is usually
@@ -262,7 +265,7 @@ def fetch_production(zone_key='KR', session=None,
 
 if __name__ == '__main__':
     # Testing datetime on specific date
-    target_datetime = arrow.get(2022, 1, 3, 12, 4, 0, tzinfo=TIMEZONE).datetime
+    target_datetime = arrow.get(2022, 2, 7, 16, 35, 0, tzinfo=TIMEZONE).datetime
 
     print('fetch_production() ->')
     # print(fetch_production(target_datetime=target_datetime))
