@@ -1402,12 +1402,12 @@
       "coal": 4796,
       "gas": 4411,
       "geothermal": 79,
-      "hydro": 5105,
+      "hydro": 6782,
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 2920,
-      "solar": 2793,
-      "wind": 1622
+      "solar": 4476,
+      "wind": 3131
     },
     "contributors": [
       "https://github.com/systemcatch",
