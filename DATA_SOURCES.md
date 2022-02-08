@@ -197,7 +197,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Canada (Yukon)
   - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)
 - Chile (SIC)
-  - Geothermal, Hydro, Solar, Wind: [SIC](https://sic.coordinador.cl/capacidad-instalada/)
+  - Hydro, Solar, Wind: [CNE](https://www.cne.cl/normativas/electrica/consulta-publica/electricidad/)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
