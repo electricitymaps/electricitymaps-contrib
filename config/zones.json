@@ -2199,16 +2199,16 @@
     "capacity": {
       "battery storage": 7,
       "biomass": 1579,
-      "coal": 2977,
+      "coal": 1818,
       "gas": 12218,
       "geothermal": 16,
       "hydro": 18743.6955,
       "hydro storage": 5029.87,
       "nuclear": 61370,
       "oil": 2746,
-      "solar": 10213,
+      "solar": 12447,
       "unknown": 1366,
-      "wind": 17227
+      "wind": 18549
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3844,22 +3844,25 @@
       ]
     ],
     "capacity": {
-      "biomass": 1320,
-      "coal": 36721,
+      "biomass": 1446,
+      "coal": 37338,
       "gas": 41828,
       "hydro": 1806,
       "hydro storage": 4700,
       "nuclear": 23250,
-      "oil": 2159,
-      "solar": 15697,
-      "wind": 1692
+      "oil": 960,
+      "solar": 18709,
+      "wind": 1727
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/IV1T3"
     ],
     "parsers": {
-      "production": "KR.fetch_production"
+      "consumption": "KR.fetch_consumption",
+      "production": "KR.fetch_production",
+      "price": "KR.fetch_price"
     },
     "timezone": "Asia/Seoul"
   },

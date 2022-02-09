@@ -1128,6 +1128,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Nueva Zelanda"
+        },
         "NZ-NZA": {
             "countryName": "Nueva Zelanda",
             "zoneName": "Islas Auckland"
