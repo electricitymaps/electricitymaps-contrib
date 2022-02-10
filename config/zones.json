@@ -1402,12 +1402,12 @@
       "coal": 4796,
       "gas": 4411,
       "geothermal": 79,
-      "hydro": 5105,
+      "hydro": 6782,
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 2920,
-      "solar": 2793,
-      "wind": 1622
+      "solar": 4476,
+      "wind": 3131
     },
     "contributors": [
       "https://github.com/systemcatch",
@@ -2199,16 +2199,16 @@
     "capacity": {
       "battery storage": 7,
       "biomass": 1579,
-      "coal": 2977,
+      "coal": 1818,
       "gas": 12218,
       "geothermal": 16,
       "hydro": 18743.6955,
       "hydro storage": 5029.87,
       "nuclear": 61370,
       "oil": 2746,
-      "solar": 10213,
+      "solar": 12447,
       "unknown": 1366,
-      "wind": 17227
+      "wind": 18549
     },
     "contributors": [
       "https://github.com/corradio",
@@ -3844,22 +3844,25 @@
       ]
     ],
     "capacity": {
-      "biomass": 1320,
-      "coal": 36721,
+      "biomass": 1446,
+      "coal": 37338,
       "gas": 41828,
       "hydro": 1806,
       "hydro storage": 4700,
       "nuclear": 23250,
-      "oil": 2159,
-      "solar": 15697,
-      "wind": 1692
+      "oil": 960,
+      "solar": 18709,
+      "wind": 1727
     },
     "contributors": [
       "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/IV1T3"
     ],
     "parsers": {
-      "production": "KR.fetch_production"
+      "consumption": "KR.fetch_consumption",
+      "production": "KR.fetch_production",
+      "price": "KR.fetch_price"
     },
     "timezone": "Asia/Seoul"
   },
@@ -5103,16 +5106,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 684,
+      "biomass": 876,
       "coal": 0,
       "gas": 4580,
-      "geothermal": 29,
+      "geothermal": 0,
       "hydro": 4372,
       "hydro storage": 2827,
       "nuclear": 0,
       "oil": 0,
-      "solar": 861,
-      "wind": 5259
+      "solar": 1364,
+      "wind": 5528
     },
     "contributors": [
       "https://github.com/corradio",
