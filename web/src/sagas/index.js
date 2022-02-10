@@ -16,7 +16,7 @@ import {
 
 function* fetchZoneHistory(action) {
   const { zoneId, features } = action.payload;
-  let endpoint = `/v3/history?countryCode=${zoneId}`;
+  let endpoint = `/v4/history?countryCode=${zoneId}`;
 
   if (features.length > 0) {
     endpoint += features.map(f => `&${f}=true`);

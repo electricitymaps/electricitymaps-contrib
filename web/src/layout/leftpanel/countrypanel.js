@@ -221,7 +221,7 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser, disclaimer, estimationMethod } = data;
+  const { hasData, disclaimer, estimationMethod } = data;
   const isDataEstimated = !isNil(estimationMethod);
 
   const datetime = data.stateDatetime || data.datetime;
@@ -267,7 +267,7 @@ const CountryPanel = ({
           </CountryNameTime>
         </div>
 
-        {hasParser && (
+        {hasData && (
           <React.Fragment>
             <CountryTableHeaderInner>
               <CarbonIntensitySquare value={co2Intensity} withSubtext />
@@ -311,7 +311,7 @@ const CountryPanel = ({
       </div>
 
       <CountryPanelWrap>
-        {hasParser ? (
+        {hasData ? (
           <React.Fragment>
             <BySource>
               {__('country-panel.bysource')}
