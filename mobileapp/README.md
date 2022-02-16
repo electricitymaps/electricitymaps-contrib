@@ -7,7 +7,7 @@ A few prerequisites:
 - iOS: install cocoapods
 - Run `npm install -g cordova@10.0.0 code-push-cli@2.1.9`
 - Run `npm install`
-- Optional (required for some internal builds): download `GoogleService-Info.plist` from Firebase
+- Optional (required for some internal builds): download `GoogleService-Info.plist` and `google-services.json` from Firebase
 
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
