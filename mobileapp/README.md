@@ -1,13 +1,39 @@
 # Mobileapp
 
-##
+## Prerequisites
 
-A few prerequisites:
+A lot of things here, so keep your tongue in your mouth and frequently use `cordova requirements` to verify changes. You might also have to restart your terminal in between steps.
 
-- iOS: install cocoapods
+### iOS
+
+- `brew install cocoapods`
+
+
+### Android
+
+- install JDK v8 <-- to avoid having to create an Oracle account(!), you can find a `jdk-8u321-macosx-x64.dmg` in our internal Google Drive.
+- `brew install gradle`
+- install Android Studio - make sure you open it and go through the install wizard in the start
+  - Also go to Tools > SDK Manager and install SDK v29
+- Follow the steps here: https://www.brainfever.co.uk/2022/02/04/build-tool-32-1-0-rc1-is-missing-dx-at/
+  - instead of last step, add the following to your `.zshrc` file:
+  ```bash
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
+    export PATH=$JAVA_HOME/bin:$PATH
+    export PATH=$PATH:/Library/Android/sdk/platform-tools
+    export PATH=$PATH:/Library/Android/sdk/tools
+    export ANDROID_SDK_ROOT=~/Library/Android/sdk
+    export ANDROID_HOME=~/Library/Android/sdk
+  ```
+
+See also the [guide in documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html#setting-environment-variables) for details and links.
+
+### General
+
 - Run `npm install -g cordova@10.0.0 code-push-cli@2.1.9`
 - Run `npm install`
-- Optional (required for some internal builds): download `GoogleService-Info.plist` and `google-services.json` from Firebase
+- Download `GoogleService-Info.plist` and `google-services.json` from Firebase and add them to this folder
+
 
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
@@ -22,10 +48,13 @@ If you want to access the public API you will need a token:
 docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.sh
 ```
 
+## Building & running apps
+
 To build the cordova app:
 
 ```bash
 export SENTRY_SKIP_AUTO_RELEASE=true
+# you might also need to enable this: export SENTRY_SKIP_DSYM_UPLOAD=true
 cordova build {ios,android}
 ```
 
@@ -45,6 +74,9 @@ Note when building from XCode, one has to remember to run `cordova prepare ios` 
 This is not required when using `cordova build` (it automatically runs `cordova prepare`).
 
 
+## Releasing a new build
+
+
 To do a release build (android):
 
 ```bash
@@ -60,6 +92,9 @@ cordova build ios --release
 To push a new cordova release:
 
 ```bash
+# You need to first login and create an account at appcenter.ms - and perhaps also get invited to the organization
+code-push login
+
 code-push release-cordova electricitymap-{ios,android} {ios,android}
 code-push promote electricitymap-{ios,android} Staging Production
 ```
