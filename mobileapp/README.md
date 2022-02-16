@@ -53,8 +53,6 @@ docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.
 To build the cordova app:
 
 ```bash
-export SENTRY_SKIP_AUTO_RELEASE=true
-# you might also need to enable this: export SENTRY_SKIP_DSYM_UPLOAD=true
 cordova build {ios,android}
 ```
 
