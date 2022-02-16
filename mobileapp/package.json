@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^9.1.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-firebase-analytics": "^6.1.0",
     "cordova-plugin-globalization": "^1.11.0",
