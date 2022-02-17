@@ -6,8 +6,8 @@ A lot of things here, so keep your tongue in your mouth and frequently use `cord
 
 ### iOS
 
+- install Xcode
 - `brew install cocoapods`
-
 
 ### Android
 
@@ -72,7 +72,7 @@ Note when building from XCode, one has to remember to run `cordova prepare ios` 
 This is not required when using `cordova build` (it automatically runs `cordova prepare`).
 
 
-## Releasing a new build
+## Releasing a new (code-push) build
 
 
 To do a release build (android):
@@ -97,17 +97,22 @@ code-push release-cordova electricitymap-{ios,android} {ios,android}
 code-push promote electricitymap-{ios,android} Staging Production
 ```
 
+## Release a new app-store build
+
 Note about releases: bumping the release number will cause a new binary to be created. All code-push updates are tied to a binary version, meaning that apps will only update to code-push updates that are compatible with their binary version.
 
 To push a new store release:
 * Update the version in config.xml
 * Run `cordova prepare` if you're planning to build directly from XCode
 * Make release builds (previously explained)
+* Make sure you have XCode installed and are signed in - and remember to change Signing to the correct team
+* Follow [this guide](https://jackmckew.dev/releasing-cordova-apps-on-google-play-app-store.html)
+* Go into TestFlight and test on your own device
 
 ## App/Play Store Release Checklist
 
 - Run a debug build on iOS/Android and check that code-push properly installs an update.
-- Check app icons
+- Check app icons - if it's a robot (Cordova logo), look into `platforms/ios/electricityMap/Images.xcassets/AppIcon.appiconset` and ensure that there's only emap icons. Otherwise delete them and rerun build.sh
 
 ## Troubleshooting
 
