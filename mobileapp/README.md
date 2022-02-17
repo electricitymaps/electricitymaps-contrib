@@ -102,12 +102,18 @@ code-push promote electricitymap-{ios,android} Staging Production
 Note about releases: bumping the release number will cause a new binary to be created. All code-push updates are tied to a binary version, meaning that apps will only update to code-push updates that are compatible with their binary version.
 
 To push a new store release:
-* Update the version in config.xml
-* Run `cordova prepare` if you're planning to build directly from XCode
-* Make release builds (previously explained)
-* Make sure you have XCode installed and are signed in - and remember to change Signing to the correct team
-* Follow [this guide](https://jackmckew.dev/releasing-cordova-apps-on-google-play-app-store.html)
-* Go into TestFlight and test on your own device
+- Update the version in config.xml
+- Run `cordova prepare` if you're planning to build directly from XCode
+- Make release builds (previously explained)
+- iOS
+  - Make sure you have XCode installed and are signed in under preferences > accounts
+  - Go to [appstoreconnect.apple.com](https://appstoreconnect.apple.com) and create a new version (blue + icon in the left panel)
+  - Follow [this guide](https://jackmckew.dev/releasing-cordova-apps-on-google-play-app-store.html)
+  - Go into TestFlight and test on your own device
+  - Submit the new build for review when everything is looking good
+- Android
+  - TBD
+- Celebrate!
 
 ## App/Play Store Release Checklist
 
