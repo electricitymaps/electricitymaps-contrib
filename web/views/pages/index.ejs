@@ -68,6 +68,7 @@
         </script>
 
         <!-- Add crash reporting early on so we catch all errors -->
+        <% if (typeof isCordova === 'undefined' || !isCordova) { %>
         <script
           src="https://browser.sentry-cdn.com/5.9.1/bundle.min.js"
           integrity="sha384-/x1aHz0nKRd6zVUazsV6CbQvjJvr6zQL2CHbQZf3yoLkezyEtZUpqUNnOLW9Nt3v"
@@ -84,6 +85,7 @@
                 });
             }
         </script>
+        <% } %>
 
         <!-- Google App Indexing (Android) -->
         <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymap.org" />
