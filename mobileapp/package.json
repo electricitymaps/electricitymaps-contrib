@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "dependencies": {
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^9.1.0",
     "cordova-ios": "^6.2.0",
-    "cordova-plugin-firebase-analytics": "^4.1.2",
+    "cordova-plugin-firebase-analytics": "^6.1.0",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -29,12 +29,13 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-support-google-services": {},
-      "cordova-plugin-firebase-analytics": {},
+      "cordova-plugin-firebase-analytics": {
+        "ANALYTICS_COLLECTION_ENABLED": "true",
+        "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
+        "IOS_FIREBASE_POD_VERSION": "~> 8.8.0"
+      },
       "cordova-universal-links-plugin": {},
       "cordova-plugin-whitelist": {},
-      "sentry-cordova": {
-        "SENTRY_ANDROID_SDK_VERSION": "4.1.0"
-      },
       "cordova-plugin-code-push": {}
     },
     "platforms": [
@@ -51,7 +52,6 @@
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-zip": "^3.1.0",
-    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git",
-    "sentry-cordova": "^1.0.0"
+    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git"
   }
 }
