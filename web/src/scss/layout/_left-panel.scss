@@ -197,6 +197,10 @@
     @include respond-to('small') {
         position: fixed;
         bottom: 54px;
+        // Fixes issue where tab-bar is positioned behind tab-bar in the iOS app
+        @supports(padding-bottom: env(safe-area-inset-bottom)) {
+            bottom: 90px;
+        }
         width: 100%;
         z-index: 999;
     }
