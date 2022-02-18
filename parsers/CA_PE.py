@@ -24,7 +24,7 @@ def _find_pei_key(pei_list, sought_key):
 
 
 def _get_pei_info(requests_obj):
-    url = 'https://wdf.princeedwardisland.ca/workflow'
+    url = 'https://wdf.princeedwardisland.ca/api/workflow'
     request = {'featureName': 'WindEnergy', 'queryName': 'WindEnergy'}
     headers = {'Content-Type': 'application/json'}
     response = requests_obj.post(url, data=json.dumps(request), headers=headers)
