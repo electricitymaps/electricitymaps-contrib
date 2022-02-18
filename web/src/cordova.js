@@ -65,6 +65,10 @@ export const cordovaApp = {
       select("head")
         .append("style")
         .text(`
+            /* Fixes current issue on iOS where there's a gap at bottom.
+            See https://github.com/apache/cordova-plugin-wkwebview-engine/issues/172
+            */
+            html {height: 100vh;}
             /* iOS 10 */
             ${styles('20px', '0px')}
             /* iOS 11.0 */

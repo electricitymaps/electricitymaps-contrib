@@ -196,7 +196,7 @@ const CountryPanel = ({
   const data = useCurrentZoneData() || {};
 
   const parentPage = {
-    pathname: isMobile ? '/ranking' : '/map',
+    pathname: '/map',
     search: location.search,
   };
 
