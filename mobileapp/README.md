@@ -112,7 +112,11 @@ To push a new store release:
   - Go into TestFlight and test on your own device
   - Submit the new build for review when everything is looking good
 - Android
-  - TBD
+  - ensure you have the `electricitymap.keystore` file in root (ask team members to get it)
+  - `cordova build android --release -- --keystore=electricitymap.keystore --storePassword=XXX --alias=electricitymapkey --password=XXX --packageType=bundle`
+  - Go to [play.google.com](https://play.google.com/console) and create a new release under Internal Testing
+  - Upload the .aab file (from the path returned by the `build` command above) and assign "testers"
+  - When tested thoroughly, select "Promote release > Production"
 - Celebrate!
 
 ## App/Play Store Release Checklist

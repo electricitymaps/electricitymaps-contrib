@@ -12,3 +12,4 @@ ul_web_hooks/
 GoogleService-Info.plist
 google-services.json
 locales-config.json
+*.keystore
