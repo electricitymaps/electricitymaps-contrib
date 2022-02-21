@@ -27,7 +27,7 @@
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
         <preference name="android-minSdkVersion" value="19" />
-        <preference name="android-targetSdkVersion" value="29" />
+        <preference name="android-targetSdkVersion" value="30" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
     </platform>
