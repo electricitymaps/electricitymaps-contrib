@@ -12,16 +12,18 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
-import os
-import arrow
-import logging
-import requests
 import datetime as dt
-import pandas as pd
+import logging
 from io import StringIO
 
-from .lib.validation import validate
+import arrow
+import pandas as pd
+import requests
+
+from parsers.lib.config import refetch_frequency
+
 from .lib.utils import get_token
+from .lib.validation import validate
 
 ELEXON_ENDPOINT = 'https://api.bmreports.com/BMRS/{}/v1'
 
@@ -236,7 +238,7 @@ def _fetch_wind(target_datetime=None):
 
     # line up with B1620 (main production report) search range
     d = target_datetime.date()
-    start = d - dt.timedelta(hours=24)
+    start = d - dt.timedelta(hours=48)
     end = dt.datetime.combine(d + dt.timedelta(days=1), dt.time(0))
 
     session = requests.session()
@@ -274,7 +276,7 @@ def _fetch_wind(target_datetime=None):
 
     return df[['datetime', 'Wind']]
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)):
     session = session or requests.session()
@@ -283,7 +285,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                           logger)
     return data
 
-
+@refetch_frequency(dt.timedelta(days=1))
 def fetch_production(zone_key='GB', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)) -> dict:
     session = session or requests.session()
@@ -301,11 +303,12 @@ def fetch_production(zone_key='GB', session=None, target_datetime=None,
             else:
                 entry['production']['wind'] = None
 
-    required = ['coal', 'gas', 'nuclear']
+    required = ['coal', 'gas', 'nuclear', 'wind']
     expected_range = {
         'coal': (0, 10000),
         'gas': (100, 30000),
-        'nuclear': (100, 20000)
+        'nuclear': (100, 20000),
+        'wind': (0, 30000),
     }
     data = [x for x in data
             if validate(

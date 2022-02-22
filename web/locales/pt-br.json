@@ -105,8 +105,8 @@
         "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
         "webgl-not-supported": "O mapa não pode ser renderizado porque este navegador não oferece suporte a WebGL.",
         "retrynow": "Tentar novamente",
-        "database-ad": "Procurando por dados históricos? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
-        "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
+        "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
+        "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
         "legend": "Legenda",
         "faq": "Questões frequentes"
     },
@@ -153,7 +153,7 @@
         "divideExistingArea-question": "Você pode dividir minha área em partes menores?",
         "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar a adicionar novas fontes de dados </a>",
         "seeHistoricalData-question": "Posso ver o histórico de uma área mais atrasada do que 24 horas?",
-        "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
+        "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
     },
     "methodology": {
         "groupName": "Nossos métodos",
@@ -184,9 +184,9 @@
         "dataOrigins-question": "Como você obtém seus dados?",
         "dataOrigins-answer": "Computamos todos os nossos dados a partir de dados publicamente disponíveis, publicados por operadores de rede elétrica, agências oficiais e outros. Você pode clicar em uma área para ver mais detalhes sobre a origem de seus dados.",
         "dataDownload-question": "Posso baixar seus dados?",
-        "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
+        "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
         "dataIntegration-question": "Posso integrar seus dados em tempo real ao meu aplicativo ou dispositivo?",
-        "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
+        "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
     },
     "aboutUs": {
         "groupName": "Sobre nós",
@@ -1489,10 +1489,6 @@
         "US-FLA-TEC": {
             "countryName": "Estados Unidos da América",
             "zoneName": "Companhia elétrica de Tampa"
-        },
-        "US-MIDA-OVEC": {
-            "countryName": "Estados Unidos da América",
-            "zoneName": "Ohio Valley Electric Corporation"
         },
         "US-MIDA-PJM": {
             "countryName": "Estados Unidos da América",

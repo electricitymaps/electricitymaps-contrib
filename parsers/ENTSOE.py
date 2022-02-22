@@ -13,18 +13,22 @@ Generation Forecast
 Consumption Forecast
 """
 import itertools
-import numpy as np
-from bs4 import BeautifulSoup
+import logging
+import os
+import re
 from collections import defaultdict
+from datetime import timedelta
 
 import arrow
-import logging, os, re
-import requests
-
+import numpy as np
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
+from parsers.lib.config import refetch_frequency
+
+from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
-from .lib.utils import sum_production_dicts, get_token
 
 ENTSOE_ENDPOINT = 'https://transparency.entsoe.eu/api'
 ENTSOE_PARAMETER_DESC = {
@@ -137,7 +141,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
-    'UA': '10YUA-WEPS-----0'
+    'UA': '10YUA-WEPS-----0',
+    'XK': '10Y1001C--00100H'
 }
 # Generation per unit can only be obtained at EIC (Control Area) level
 ENTSOE_EIC_MAPPING = {
@@ -786,7 +791,7 @@ def get_wind(values):
     if 'Wind Onshore' in values or 'Wind Offshore' in values:
         return values.get('Wind Onshore', 0) + values.get('Wind Offshore', 0)
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_consumption(zone_key, session=None, target_datetime=None,
                       logger=logging.getLogger(__name__)) -> dict:
     """Gets consumption for a specified zone."""
@@ -840,7 +845,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None,
 
         return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_production(zone_key, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)) -> list:
     """
@@ -944,7 +949,7 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
         'zoneKey': merge_zone_key,
     } for dt, row in to_return.iterrows()]
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)):
     if zone_key not in ZONE_KEY_AGGREGATES:
@@ -955,7 +960,7 @@ def fetch_production_aggregate(zone_key, session=None, target_datetime=None,
          for k in ZONE_KEY_AGGREGATES[zone_key]],
         zone_key)
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)) -> list:
     """Returns all production units and production values."""
@@ -984,7 +989,7 @@ def fetch_production_per_units(zone_key, session=None, target_datetime=None,
 
     return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
                    logger=logging.getLogger(__name__)) -> list:
     """
@@ -1034,7 +1039,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
 
     return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=None,
                             logger=logging.getLogger(__name__)) -> list:
     """Gets exchange forecast between two specified zones."""
@@ -1081,7 +1086,7 @@ def fetch_exchange_forecast(zone_key1, zone_key2, session=None, target_datetime=
         })
     return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_price(zone_key, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)) -> list:
     """Gets day-ahead price for specified zone."""
@@ -1108,7 +1113,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
 
         return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
                               logger=logging.getLogger(__name__)) -> list:
     """Gets generation forecast for specified zone."""
@@ -1131,7 +1136,7 @@ def fetch_generation_forecast(zone_key, session=None, target_datetime=None,
 
         return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)) -> list:
     """Gets consumption forecast for specified zone."""
@@ -1154,7 +1159,7 @@ def fetch_consumption_forecast(zone_key, session=None, target_datetime=None,
 
         return data
 
-
+@refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(zone_key, session=None, target_datetime=None,
                                logger=logging.getLogger(__name__)) -> list:
     """

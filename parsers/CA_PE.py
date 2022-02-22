@@ -24,8 +24,8 @@ def _find_pei_key(pei_list, sought_key):
 
 
 def _get_pei_info(requests_obj):
-    url = 'https://wdf.princeedwardisland.ca/workflow'
-    request = {'featureName': 'WindEnergy'}
+    url = 'https://wdf.princeedwardisland.ca/api/workflow'
+    request = {'featureName': 'WindEnergy', 'queryName': 'WindEnergy'}
     headers = {'Content-Type': 'application/json'}
     response = requests_obj.post(url, data=json.dumps(request), headers=headers)
 
@@ -112,7 +112,7 @@ def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, log
     # In case of wind, some is paper-"exported" even if there is a net import,
     # and 'pei_wind_used'/'data5' indicates their accounting of part of the load
     # served by non-exported wind.
-    # # http://www.gov.pe.ca/windenergy/chart.php says:
+    # https://www.princeedwardisland.ca/en/feature/pei-wind-energy says:
     # "Wind Power Exported Off-Island is that portion of wind generation that is supplying
     # contracts elsewhere. The actual electricity from this portion of wind generation
     # may stay within PEI but is satisfying a contractual arrangement in another jurisdiction."

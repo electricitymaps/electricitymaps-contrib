@@ -10,7 +10,7 @@ steps:
       - apk add --no-cache curl bash python3
       - curl https://sdk.cloud.google.com | bash > /dev/null
       - npm ci
-      - npm install -g cordova@9.0.0 code-push-cli@2.1.9
+      - npm install -g cordova@10.0.0 code-push-cli@3.0.0
 
   build:
     inputs:
@@ -22,7 +22,6 @@ steps:
       - generate-index.js
       - config.xml
       - res/screen/ios
-      - sentry.properties
     commands:
       - cp -r ../web/public/ www/electricitymap
       - cp -r ../web/locales/ .
@@ -33,8 +32,6 @@ steps:
       # Generate icons
       - node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
       - node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
-      # Set Sentry auth-token
-      - echo "auth-token=${BRICK_SENTRY_AUTH_TOKEN:-unknown}" >> sentry.properties
 
   deploy:
     commands:

@@ -96,8 +96,8 @@
         "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
         "newversion": "Versi baru tersedia! Klik <a onClick=\"location.reload(true);\">di sini</a> untuk memuat ulang.",
         "retrynow": "Ulangi sekarang",
-        "database-ad": "Mencari data historikal? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
-        "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
+        "database-ad": "Mencari data historikal? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
+        "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
         "legend": "Legenda",
         "faq": "Pertanyaan yang Sering Diajukan"
     },
@@ -144,7 +144,7 @@
         "divideExistingArea-question": "Bisakah Anda membagi area di wilayah Saya menjadi bagian lebih kecil lagi?",
         "divideExistingArea-answer": "Tentu, jika ada data terpisah yang lebih lengkap di setiap wilayah tersebut. Kamu bisa <a href=\"#contribute\" class=\"entry-link\">membantu Kami dengan menambahkan data di wilayah tersebut</a>",
         "seeHistoricalData-question": "Dapatkah saya melihat sejarah untuk suatu daerah lebih jauh ke belakang dalam waktu 24 jam?",
-        "seeHistoricalData-answer": "Anda bisa membeli untuk mengakses seluruh data historikal kami melalui <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+        "seeHistoricalData-answer": "Anda bisa membeli untuk mengakses seluruh data historikal kami melalui <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
     },
     "methodology": {
         "groupName": "Metode Kami",
@@ -172,9 +172,9 @@
         "dataOrigins-question": "Bagaimana Anda mendapatkan data Anda?",
         "dataOrigins-answer": "Kami menghitung semua data kami dari data yang tersedia untuk umum, diterbitkan oleh operator jaringan listrik, agen resmi, dan lainnya. Anda dapat mengklik area untuk melihat lebih spesifik tentang asal-usul datanya.",
         "dataDownload-question": "Bisakah Saya mengunduh data Anda?",
-        "dataDownload-answer": "Anda dapat membeli akses ke semua data di <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+        "dataDownload-answer": "Anda dapat membeli akses ke semua data di <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
         "dataIntegration-question": "Dapatkah saya mengintegrasikan data Anda secara langsung ke aplikasi atau perangkat saya?",
-        "dataIntegration-answer": "Ya! Kami menjual akses ke dalam <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, yang mencakup prakiraan cuaca."
+        "dataIntegration-answer": "Ya! Kami menjual akses ke dalam <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, yang mencakup prakiraan cuaca."
     },
     "aboutUs": {
         "groupName": "Tentang Kami",

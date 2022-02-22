@@ -29,22 +29,11 @@
 
         <title>electricityMap | <%= __('misc.maintitle') %></title>
 
-        <link rel="apple-touch-icon" sizes="57x57" href="<%= resolvePath('images/apple-icon-57x57.png') %>">
-        <link rel="apple-touch-icon" sizes="60x60" href="<%= resolvePath('images/apple-icon-60x60.png') %>">
-        <link rel="apple-touch-icon" sizes="72x72" href="<%= resolvePath('images/apple-icon-72x72.png') %>">
-        <link rel="apple-touch-icon" sizes="76x76" href="<%= resolvePath('images/apple-icon-76x76.png') %>">
-        <link rel="apple-touch-icon" sizes="114x114" href="<%= resolvePath('images/apple-icon-114x114.png') %>">
-        <link rel="apple-touch-icon" sizes="120x120" href="<%= resolvePath('images/apple-icon-120x120.png') %>">
-        <link rel="apple-touch-icon" sizes="144x144" href="<%= resolvePath('images/apple-icon-144x144.png') %>">
-        <link rel="apple-touch-icon" sizes="152x152" href="<%= resolvePath('images/apple-icon-152x152.png') %>">
+        <link rel="icon" type="image/svg+xml" href="<%= resolvePath('images/electricitymap-favicon-dark-light.svg') %>">
         <link rel="apple-touch-icon" sizes="180x180" href="<%= resolvePath('images/apple-icon-180x180.png') %>">
-        <link rel="icon" type="image/png" sizes="192x192"  href="<%= resolvePath('images/android-icon-192x192.pn') %>g">
         <link rel="icon" type="image/png" sizes="32x32" href="<%= resolvePath('images/favicon-32x32.png') %>">
-        <link rel="icon" type="image/png" sizes="96x96" href="<%= resolvePath('images/favicon-96x96.png') %>">
         <link rel="icon" type="image/png" sizes="16x16" href="<%= resolvePath('images/favicon-16x16.png') %>">
         <link rel="manifest" href="/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="<%= resolvePath('images/ms-icon-144x144.png') %>">
         <meta name="theme-color" content="#ffffff">
 
         <!-- Pre-connect to improve performances -->
@@ -97,16 +86,12 @@
         </script>
 
         <!-- Google App Indexing (Android) -->
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/www.electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/www.electricitymap.org" />
+        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymap.org" />
+        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/app.electricitymap.org" />
 
         <!-- Google App Indexing (iOS) -->
-        <link rel="alternate" href="ios-app://1224594248/https/electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/http/electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/https/www.electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/http/www.electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/https/app.electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/http/app.electricitymap.org" />
 
         <% if (typeof isCordova != 'undefined' && isCordova) { %>
         <script src="../cordova.js"></script>

@@ -1,26 +1,31 @@
+<!DOCTYPE html>
 <html>
-  <script>
-      document.addEventListener('deviceready', onDeviceReady, false);
-      // Warning: those locales are duplicated from locales-config.json
-      var locales = ['ar', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fi', 'fr', 'hr', 'id', 'it', 'ja', 'ko', 'nl', 'pl', 'pt-br', 'ro', 'ru', 'sk', 'sv', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
-      function onDeviceReady() {
-        var Sentry = cordova.require("sentry-cordova.Sentry");
-        Sentry.init({ dsn: 'https://c6e9e4041eb74d22803b3f2bfb0c794d@sentry.io/1829181' });
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap://ready https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            document.addEventListener('deviceready', onDeviceReady, false);
+            // Warning: those locales are duplicated from locales-config.json
+            var locales = ['ar', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fi', 'fr', 'hr', 'id', 'it', 'ja', 'ko', 'no-nb', 'nl', 'pl', 'pt-br', 'ro', 'ru', 'sk', 'sv', 'vi', 'zh-cn', 'zh-hk', 'zh-tw'];
+            function onDeviceReady() {
+                console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
 
-        navigator.globalization.getLocaleName(
-          function(obj) {
-            var locale = obj.value.substr(0, 2);
-            if (locales.indexOf(locale) != -1)
-              window.location.href = 'electricitymap/index_' + locale + '.html';
-            else
-              window.location.href = 'electricitymap/index_en.html';
-          },
-          function(err) {
-            console.error(err);
-            window.location.href = 'electricitymap/index_en.html';
-          }
-        );
-      }
-  </script>
-  <script type="text/javascript" src="cordova.js"></script>
+                navigator.globalization.getLocaleName(
+                    function(obj) {
+                        var locale = obj.value.substr(0, 2);
+                        if (locales.indexOf(locale) != -1)
+                            window.location.href = 'electricitymap/index_' + locale + '.html';
+                        else
+                            window.location.href = 'electricitymap/index_en.html';
+                    },
+                    function(err) {
+                        console.error(err);
+                        window.location.href = 'electricitymap/index_en.html';
+                    }
+                );
+            }
+        </script>
+    </body>
 </html>

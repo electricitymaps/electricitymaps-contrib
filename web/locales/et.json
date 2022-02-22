@@ -103,8 +103,8 @@
         "newversion": "Saadaval on uus versioon! Vajutage ümberlaadimiseks <a onClick=\"location.reload(true);\">siia</a>.",
         "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
         "retrynow": "Proovi kohe uuesti",
-        "database-ad": "Otsite ajaloo andmeid? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
-        "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
+        "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
+        "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
         "legend": "Legend",
         "faq": "Korduma kippuvad küsimused"
     },
@@ -151,7 +151,7 @@
         "divideExistingArea-question": "Kas saate jaotada minu piirkonda väiksemateks osadeks?",
         "divideExistingArea-answer": "Muidugi, kui iga piirkonna osa kohta on olemas eraldi andmeallikad. Teil on võimalik <a href=\"#contribute\" class=\"entry-link\">meid aidata, lisades uued andmeallikaid</a>",
         "seeHistoricalData-question": "Kas ma saan vaadata piirkonna ajalugu kaugemale kui 24 tundi tagasi?",
-        "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
+        "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
     },
     "methodology": {
         "groupName": "Meie meetodid",
@@ -179,9 +179,9 @@
         "dataOrigins-question": "Kuidas te oma andmed saate?",
         "dataOrigins-answer": "Me arvutame kõik oma andmed avalikult kättesaadavate andmete põhjal, mille on avaldanud elektrivõrguettevõtted, ametlikud asutused ja teised. Võite klõpsata piirkonnal, et näha andmete päritolu kohta täpsemat teavet.",
         "dataDownload-question": "Kas ma saan teie andmeid alla laadida?",
-        "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
+        "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
         "dataIntegration-question": "Kas ma saan teie andmeid reaalajas enda rakendusse või seadmesse integreerida?",
-        "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://api.electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
+        "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
     },
     "aboutUs": {
         "groupName": "Meist",
@@ -1508,10 +1508,6 @@
         "US-FLA-TEC": {
             "countryName": "Ameerika Ühendriigid",
             "zoneName": "Tampa Electric Company"
-        },
-        "US-MIDA-OVEC": {
-            "countryName": "Ameerika Ühendriigid",
-            "zoneName": "Ohio Valley Electric Corporation"
         },
         "US-MIDA-PJM": {
             "countryName": "Ameerika Ühendriigid",

@@ -5,7 +5,7 @@ poetry run python scripts/remove_zone.py DK-DK1
 
 import argparse
 
-from utils import JsonFilePatcher, ROOT_PATH, LOCALE_FILE_PATHS
+from utils import LOCALE_FILE_PATHS, ROOT_PATH, JsonFilePatcher, run_shell_command
 
 
 def remove_zone(zone: str):
@@ -34,6 +34,25 @@ def remove_zone(zone: str):
             if zone in zone_short_name:
                 del zone_short_name[zone]
 
+    for api_version in ["v3", "v4"]:
+        with JsonFilePatcher(ROOT_PATH / f"mockserver/public/{api_version}/state") as f:
+            data = f.content["data"]
+            if zone in data["countries"]:
+                del data["countries"][zone]
+
+            for k in list(data["exchanges"].keys()):
+                if k.startswith(f"{zone}->") or k.endswith(f"->{zone}"):
+                    del data["exchanges"][k]
+
+    geo_json_path = ROOT_PATH / "web/geo/world.geojson"
+    with JsonFilePatcher(geo_json_path) as f:
+        new_features = [
+            f for f in f.content["features"] if f["properties"]["zoneName"] != zone
+        ]
+        f.content["features"] = new_features
+
+    run_shell_command(f"npx prettier --write {geo_json_path}")
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -46,6 +65,7 @@ def main():
     print(
         f"NOTE: There is still a bit of cleaning up to do. Try searching for files and references."
     )
+    print('Please rerun "yarn update-world" inside the web folder.')
 
 
 if __name__ == "__main__":

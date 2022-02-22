@@ -30,6 +30,7 @@ import OnboardingModal from '../components/onboardingmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
+import ErrorBoundary from '../components/errorboundary';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
 
@@ -42,12 +43,6 @@ const mapStateToProps = state => ({
   hasConnectionWarning: state.data.hasConnectionWarning,
 });
 
-const Watermark = styled.div`
-@media (max-width: 767px) {
-  display: none !important;
-}
-`;
-
 const MapContainer = styled.div`
   @media (max-width: 767px) {
     display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
@@ -57,7 +52,6 @@ const MapContainer = styled.div`
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Main = ({
-  brightModeEnabled,
   electricityMixMode,
   hasConnectionWarning,
 }) => {
@@ -102,29 +96,26 @@ const Main = ({
       >
         {headerVisible && <Header />}
         <div id="inner">
+          <ErrorBoundary>
           <LoadingOverlay visible={showLoadingOverlay} />
           <LeftPanel />
-          <MapContainer pathname={location.pathname} id="map-container">
-            <Map />
-            <Watermark id="watermark" className={`watermark ${brightModeEnabled ? 'brightmode' : ''}`}>
-              <a href="http://www.tmrow.com/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=watermark" target="_blank">
-                <div id="built-by-tomorrow" />
-              </a>
-            </Watermark>
-            <Legend />
-            <div className="controls-container">
-              <Toggle
-                infoHTML={__('tooltips.cpinfo')}
-                onChange={value => dispatchApplication('electricityMixMode', value)}
-                options={[
-                  { value: 'production', label: __('tooltips.production') },
-                  { value: 'consumption', label: __('tooltips.consumption') },
-                ]}
-                value={electricityMixMode}
-              />
-            </div>
-            <LayerButtons />
-          </MapContainer>
+            <MapContainer pathname={location.pathname} id="map-container">
+              <Map />
+              <Legend />
+              <div className="controls-container">
+                <Toggle
+                  infoHTML={__('tooltips.cpinfo')}
+                  onChange={value => dispatchApplication('electricityMixMode', value)}
+                  options={[
+                    { value: 'production', label: __('tooltips.production') },
+                    { value: 'consumption', label: __('tooltips.consumption') },
+                  ]}
+                  value={electricityMixMode}
+                />
+              </div>
+              <LayerButtons />
+            </MapContainer>
+          </ErrorBoundary>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">

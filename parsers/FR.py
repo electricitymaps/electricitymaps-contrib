@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from datetime import timedelta
 import arrow
 import json
 import logging
@@ -9,6 +10,8 @@ import math
 import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
+
+from parsers.lib.config import refetch_frequency
 
 from .lib.validation import validate, validate_production_diffs
 from .lib.utils import get_token
@@ -37,7 +40,7 @@ def is_not_nan_and_truthy(v) -> bool:
         return False
     return bool(v)
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key='FR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
@@ -134,7 +137,7 @@ def fetch_production(zone_key='FR', session=None, target_datetime=None,
 
     return datapoints
 
-
+@refetch_frequency(timedelta(days=1))
 def fetch_price(zone_key, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)) -> list:
     if target_datetime:

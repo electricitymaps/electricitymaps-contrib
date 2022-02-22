@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 # The arrow library is used to handle datetimes
+from datetime import timedelta
 import arrow
 import logging
 # The request library is used to fetch content through HTTP
 import requests
+
+from parsers.lib.config import refetch_frequency
 exchanges_mapping = {
     'BY->LT': [
         'BY->LT'
@@ -167,7 +170,7 @@ exchanges_mapping = {
 
 # Mappings used to go from country to bidding zone level
 
-
+@refetch_frequency(timedelta(hours=1))
 def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     r = session or requests.session()
     timestamp = (target_datetime.timestamp() if target_datetime else arrow.now().timestamp) * 1000
@@ -207,7 +210,7 @@ def fetch_production(zone_key='SE', session=None, target_datetime=None, logger=l
 
     return data
 
-
+@refetch_frequency(timedelta(hours=1))
 def fetch_exchange_by_bidding_zone(bidding_zone1='DK1', bidding_zone2='NO2', session=None,
                                    target_datetime=None, logger=logging.getLogger(__name__)) -> dict:
     # Convert bidding zone names into statnett zones
@@ -245,7 +248,7 @@ def _sum_of_exchanges(exchanges):
         'source': exchange_list[0]['source']
     }
 
-
+@refetch_frequency(timedelta(hours=1))
 def fetch_exchange(zone_key1='DK', zone_key2='NO', session=None, target_datetime=None, logger=logging.getLogger(__name__)):
     r = session or requests.session()
 

@@ -10,10 +10,10 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Armenia: [Armenian Energy Power System Operator](http://epso.am/poweren.htm)
 - Aruba: [WEB Aruba](https://www.webaruba.com/renewable-energy-dashboard/aruba) ([JSON](https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json))
 - Australia: [OpenNEM](https://opennem.org.au/energy/nem/)
-- Australia (King Island) : [King Island Renewable Energy Integration Project (KIREIP)](https://data.ajenti.com.au/KIREIP/index.html)
+- Australia (King Island): [King Island Renewable Energy Integration Project (KIREIP)](https://data.ajenti.com.au/KIREIP/index.html)
   ([CSV](http://wa.aemo.com.au/aemo/data/wa/infographic/facility-intervals-last96.csv))
-- Australia (Flinders Island) : [Flinders Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island)
-- Australia (Rottnest Island) : [Rottnest Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island)  
+- Australia (Flinders Island): [Flinders Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/flinders-island)
+- Australia (Rottnest Island): [Rottnest Island Hybrid Energy Solution](https://www.hydro.com.au/clean-energy/hybrid-energy-solutions/success-stories/rottnest-island)  
 - Austria: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Bahrain: [GCCIA](https://www.gccia.com.sa/)
 - Bangladesh: [PGCB](https://pgcb.org.bd/PGCB/?a=pages/operational_daily.php)
@@ -197,13 +197,13 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Canada (Yukon)
   - Hydro: [YukonEnergy](https://yukonenergy.ca/energy-in-yukon/projects-facilities)
 - Chile (SIC)
-  - Geothermal, Hydro, Solar, Wind: [SIC](https://sic.coordinador.cl/capacidad-instalada/)
+  - Hydro, Solar, Wind: [CNE](https://www.cne.cl/normativas/electrica/consulta-publica/electricidad/)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
 - Chile (SING)
   - Solar/Wind: [SGER](https://sger.coordinadorelectrico.cl/Plants/InstalledCapacity)
   - Other: [energiaabierta.cl](http://energiaabierta.cl/visualizaciones/capacidad-instalada/)
-- Chile (Easter Island) : [SASIPA](https://www.sasipa.cl/estado-del-suministro)
-- Croatia: [HOPS](https://www.hrote.hr/planning-electricity-production-for-the-eco-balance-group)
+- Chile (Easter Island): [SASIPA](https://www.sasipa.cl/estado-del-suministro)
+- Croatia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
 - Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -218,18 +218,14 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - El Salvador:
   - Thermal: [CNE](http://estadisticas.cne.gob.sv/wp-content/uploads/2016/09/Plan_indicativo_2016_2026-1.pdf)
   - Biomass, Geothermal, Hydro & Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-- Estonia:
-  - Biomass & Solar: [IRENA](http://resourceirena.irena.org/gatewable:ay/countrySearch/?countryCode=EST)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
-- Finland
-  - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Nuclear: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Finland: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
-  - Geothermal, Solar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
+  - Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Hydro storage [RTE](https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege/analyze/?disjunctive.epci&disjunctive.departement&disjunctive.region&disjunctive.filiere&disjunctive.combustible&disjunctive.combustiblessecondaires&disjunctive.technologie&disjunctive.regime&disjunctive.gestionnaire&sort=-puismaxcharge&refine.filiere=Hydraulique&refine.regime=En+service&refine.technologie=Pompage+turbinage&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4aW5zdGFsbGVlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiIzY2YzJhNSJ9LHsiYWxpZ25Nb250aCI6dHJ1ZSwidHlwZSI6ImNvbHVtbiIsImZ1bmMiOiJTVU0iLCJ5QXhpcyI6InB1aXNtYXhyYWMiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiIjZmM4ZDYyIn0seyJhbGlnbk1vbnRoIjp0cnVlLCJ0eXBlIjoiY29sdW1uIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoicHVpc21heGNoYXJnZSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiM4ZGEwY2IifSx7ImFsaWduTW9udGgiOnRydWUsInR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4cmFjY2hhcmdlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2U3OGFjMyJ9XSwieEF4aXMiOiJmaWxpZXJlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoiIiwic29ydCI6InNlcmllMS0xIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJyZWdpc3RyZS1uYXRpb25hbC1pbnN0YWxsYXRpb24tcHJvZHVjdGlvbi1zdG9ja2FnZS1lbGVjdHJpY2l0ZS1hZ3JlZ2UiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLmVwY2kiOnRydWUsImRpc2p1bmN0aXZlLmRlcGFydGVtZW50Ijp0cnVlLCJkaXNqdW5jdGl2ZS5yZWdpb24iOnRydWUsImRpc2p1bmN0aXZlLmZpbGllcmUiOnRydWUsImRpc2p1bmN0aXZlLmNvbWJ1c3RpYmxlIjp0cnVlLCJkaXNqdW5jdGl2ZS5jb21idXN0aWJsZXNzZWNvbmRhaXJlcyI6dHJ1ZSwiZGlzanVuY3RpdmUudGVjaG5vbG9naWUiOnRydWUsImRpc2p1bmN0aXZlLnJlZ2ltZSI6dHJ1ZSwiZGlzanVuY3RpdmUuZ2VzdGlvbm5haXJlIjp0cnVlLCJzb3J0IjoiLXB1aXNtYXhjaGFyZ2UiLCJyZWZpbmUuZmlsaWVyZSI6Ikh5ZHJhdWxpcXVlIiwicmVmaW5lLnJlZ2ltZSI6IkVuIHNlcnZpY2UiLCJyZWZpbmUudGVjaG5vbG9naWUiOiJQb21wYWdlIHR1cmJpbmFnZSJ9fX1dLCJ0aW1lc2NhbGUiOiIiLCJkaXNwbGF5TGVnZW5kIjp0cnVlLCJhbGlnbk1vbnRoIjp0cnVlfQ%3D%3D)
   - Hydro [RTE](https://opendata.reseaux-energies.fr/explore/dataset/registre-national-installation-production-stockage-electricite-agrege/analyze/?disjunctive.epci&disjunctive.departement&disjunctive.region&disjunctive.filiere&disjunctive.combustible&disjunctive.combustiblessecondaires&disjunctive.technologie&disjunctive.regime&disjunctive.gestionnaire&sort=-puismaxcharge&refine.filiere=Hydraulique&refine.regime=En+service&refine.technologie=Lac&refine.technologie=Fil+de+l%27eau&refine.technologie=Autre&refine.technologie=Eclus%C3%A9e&refine.technologie=Hydrolien+fluvial&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4aW5zdGFsbGVlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiIzY2YzJhNSJ9LHsiYWxpZ25Nb250aCI6dHJ1ZSwidHlwZSI6ImNvbHVtbiIsImZ1bmMiOiJTVU0iLCJ5QXhpcyI6InB1aXNtYXhyYWMiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiIjZmM4ZDYyIn0seyJhbGlnbk1vbnRoIjp0cnVlLCJ0eXBlIjoiY29sdW1uIiwiZnVuYyI6IlNVTSIsInlBeGlzIjoicHVpc21heGNoYXJnZSIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiM4ZGEwY2IifSx7ImFsaWduTW9udGgiOnRydWUsInR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiU1VNIiwieUF4aXMiOiJwdWlzbWF4cmFjY2hhcmdlIiwic2NpZW50aWZpY0Rpc3BsYXkiOnRydWUsImNvbG9yIjoiI2U3OGFjMyJ9XSwieEF4aXMiOiJmaWxpZXJlIiwibWF4cG9pbnRzIjoiIiwidGltZXNjYWxlIjoiIiwic29ydCI6InNlcmllMS0xIiwiY29uZmlnIjp7ImRhdGFzZXQiOiJyZWdpc3RyZS1uYXRpb25hbC1pbnN0YWxsYXRpb24tcHJvZHVjdGlvbi1zdG9ja2FnZS1lbGVjdHJpY2l0ZS1hZ3JlZ2UiLCJvcHRpb25zIjp7ImRpc2p1bmN0aXZlLmVwY2kiOnRydWUsImRpc2p1bmN0aXZlLmRlcGFydGVtZW50Ijp0cnVlLCJkaXNqdW5jdGl2ZS5yZWdpb24iOnRydWUsImRpc2p1bmN0aXZlLmZpbGllcmUiOnRydWUsImRpc2p1bmN0aXZlLmNvbWJ1c3RpYmxlIjp0cnVlLCJkaXNqdW5jdGl2ZS5jb21idXN0aWJsZXNzZWNvbmRhaXJlcyI6dHJ1ZSwiZGlzanVuY3RpdmUudGVjaG5vbG9naWUiOnRydWUsImRpc2p1bmN0aXZlLnJlZ2ltZSI6dHJ1ZSwiZGlzanVuY3RpdmUuZ2VzdGlvbm5haXJlIjp0cnVlLCJzb3J0IjoiLXB1aXNtYXhjaGFyZ2UiLCJyZWZpbmUuZmlsaWVyZSI6Ikh5ZHJhdWxpcXVlIiwicmVmaW5lLnJlZ2ltZSI6IkVuIHNlcnZpY2UiLCJyZWZpbmUudGVjaG5vbG9naWUiOlsiTGFjIiwiRmlsIGRlIGwnZWF1IiwiQXV0cmUiLCJFY2x1c1x1MDBFOWUiLCJIeWRyb2xpZW4gZmx1dmlhbCJdfX19XSwidGltZXNjYWxlIjoiIiwiZGlzcGxheUxlZ2VuZCI6dHJ1ZSwiYWxpZ25Nb250aCI6dHJ1ZX0%3D)
+  - Coal, nuclear, solar, wind: [RTE](https://www.rte-france.com/eco2mix/les-chiffres-cles-de-lelectricite)
   - Battery [CRE.FR](https://www.cre.fr/content/download/21318/271898)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
 - French Polynesia:
@@ -238,16 +234,14 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Germany:
   - Geothermal and Unknown: [Bundesnetzagentur](https://www.bundesnetzagentur.de/DE/Sachgebiete/ElektrizitaetundGas/Unternehmen_Institutionen/Versorgungssicherheit/Erzeugungskapazitaeten/Kraftwerksliste/kraftwerksliste-node.html)
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
-- Georgia: [GSE](http://www.gse.com.ge/for-customers/data-from-the-power-system)
+- Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Great Britain:
   - Nuclear: [EDF](https://www.edfenergy.com/energy/power-station/daily-statuses)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
 - Honduras: [ENEE](http://www.enee.hn/planificacion/2018/boletines/Boletin%20Estadistico%20Mes%20de%20Septiembre%202018%20PDF.pdf)
-- Hungary
-  - Solar: [IRENA](http://resourceirena.irena.org/gateway/countrySearch/?countryCode=HUN)
-  - Other[ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Hungary: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Iceland
   - Oil: [Statistics Iceland](http://px.hagstofa.is/pxen/pxweb/en/Atvinnuvegir/Atvinnuvegir__orkumal/IDN02101.px)
   - Geothermal, Wind and Hydro: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -272,6 +266,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Solar & wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Luxembourg: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova
   - Renewable: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
@@ -279,23 +274,17 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Gas (CET-Nord): [CET-Nord](https://www.cet-nord.md/en/transparent/tep)
   - Gas and coal (CERS Moldovenească): [MOLDGRES](http://moldgres.com/o-predpriyatii/equipment)
   - Summary as permanent document (slightly outdated): [FAS](<http://en.fas.gov.ru/upload/other/National%20Agency%20for%20Energy%20Regulation%20(G.%20Pyrzy).pdf>)
-- Montenegro
-  - Solar, Hydro & Wind: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [EPCG](http://www.epcg.com/en/about-us/production-facilities)
+- Montenegro: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Morocco: [ONEE](http://www.one.org.ma/FR/pdf/Depliant%20Statistiques%20FR%202019.pdf)
 - Nagorno-Karabakh: [Artsakh HEK](http://artsakhhek.am/?lang=en)
 - Namibia
   - Coal & Oil: [NamPower](http://www.nampower.com.na/Page.aspx?p=182)
   - Hydro, solar & wind: [African Energy](https://www.africa-energy.com/database)
 - Nepal
-  -List of PowerStations:[PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
+  - List of PowerStations: [PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
-- Netherlands
-  - Solar: [PolderPV](http://www.polderpv.nl/nieuws_PV168.htm#19jan2021_december_2020_rapport_CertiQ_records_incl_certified_PV_jaargroei_1897MWp) see paragraph titled: '9. Totaal CertiQ volume - extrapolatie tm. medio 2021, inclusief versie "revisie jaar cijfers"'
-  - Wind: [NWEA](https://www.nwea.nl/windenergie-maakt-forse-inhaalslag-in-2020/)
-  - Other renewables: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Nicaragua: [Climatescope](http://global-climatescope.org/en/country/nicaragua/)
+- Netherlands: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Nicaragua: [INE](https://www.ine.gob.ni/index.php/electricidad/estadisticas-anuales)
 - Nigeria
   - [USAID](https://www.usaid.gov/powerafrica/nigeria)
   - [SO Grid](https://www.niggrid.org)
@@ -306,15 +295,14 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Panama: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Poland
-  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1425053401969270826)
+  - Solar: [PSE Twitter](https://twitter.com/pse_pl/status/1460182952566996995)
   - Biomass: [URE](https://www.ure.gov.pl/download/9/11276/mocIIkw2020.pdf)
   - Wind: [PSE Twitter](https://twitter.com/pse_pl/status/1425053684673691648)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Portugal
-  - Biomass, Solar, Wind and Geothermal: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Puerto Rico:[EIA](https://www.eia.gov/electricity/data/eia860M/)
+- Puerto Rico: [EIA](https://www.eia.gov/electricity/data/eia860M/)
 - Qatar: [IRENA](https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2020/Mar/IRENA_RE_Capacity_Statistics_2020.pdf)
 - Romania:
   - Nuclear: [Nuclearelectrica](http://www.nuclearelectrica.ro/cne/)
@@ -340,7 +328,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sweden
   - Biomass, Geothermal: [IRENA](https://www.irena.org/IRENADocuments/Statistical_Profiles/Europe/Sweden_Europe_RE_SP.pdf)
-  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/statistik/2017-3)
+  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/vindkraft/statistik)
   - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/00626276-14d1-417a-89ac-f850e48e7f74)
   - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)

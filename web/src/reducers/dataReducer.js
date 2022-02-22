@@ -22,6 +22,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.timezone = zoneConfig.timezone;
   zone.shortname = translation.getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+  zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
   zone.disclaimer = zoneConfig.disclaimer;
 });
@@ -123,9 +124,14 @@ module.exports = (state = initialDataState, action) => {
         // Set date
         zone.datetime = action.payload.datetime;
 
-        if (!zone.production || Object.values(zone.production).every(v => v === null)) {
+        const hasNoData = !zone.production || Object.values(zone.production).every(v => v === null);
+        if (hasNoData) {
           return;
         }
+
+        // By default hasData is only true if there is a parser - here we overwrite that value
+        // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
+        zone.hasData = zone.hasParser || !hasNoData;
 
         // Validate data
         modeOrder.forEach((mode) => {
@@ -183,6 +189,7 @@ module.exports = (state = initialDataState, action) => {
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
             hasParser: true,
+            hasData: true
           })),
         },
       };
