@@ -26,8 +26,8 @@ class ZonesJsonTestcase(unittest.TestCase):
         for ft in world_geometries["features"]:
             world_geometries_zone_keys.add(ft["properties"]["zoneName"])
         expected_keys = set(ZONES_CONFIG.keys())
-        extra_keys = world_geometries_zone_keys - expected_keys
-        missing_keys = expected_keys - world_geometries_zone_keys
+        extra_keys = sorted(world_geometries_zone_keys - expected_keys)
+        missing_keys = sorted(expected_keys - world_geometries_zone_keys)
         assert (
             world_geometries_zone_keys == expected_keys
         ), f"Missing keys: {missing_keys}, extra_keys: {extra_keys}"
