@@ -21,7 +21,7 @@ from parsers.lib.config import refetch_frequency
 def fetch_price(zone_key, session=None, target_datetime=None,
                 logger=logging.getLogger(__name__)) -> list:
     if target_datetime:
-        now = arrow.get(target_datetime, tz='Europe/London')
+        now = arrow.get(target_datetime, tz='Europe/Paris')
     else:
         now = arrow.now(tz='Europe/London')
 
@@ -39,7 +39,7 @@ def fetch_price(zone_key, session=None, target_datetime=None,
         if donnesMarche.tag != 'donneesMarche':
             continue
 
-        start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/London')
+        start_date = arrow.get(arrow.get(donnesMarche.attrib['date']).datetime, 'Europe/Paris')
 
         for item in donnesMarche:
             if item.get('granularite') != 'Global':
