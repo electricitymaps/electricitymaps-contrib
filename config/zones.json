@@ -3759,40 +3759,6 @@
     },
     "timezone": "Pacific/Auckland"
   },
-  "NZ-NZN": {
-    "bounding_box": [
-      [172.17408287900022, -42.12029387799984],
-      [179.06617272200023, -33.89763762799993]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "price": "NZ.fetch_price",
-      "production": "NZ.fetch_production"
-    },
-    "timezone": "Pacific/Auckland"
-  },
-  "NZ-NZS": {
-    "bounding_box": [
-      [165.96648196700016, -47.30120208099993],
-      [174.82642662900014, -40.002129815999865]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "price": "NZ.fetch_price",
-      "production": "NZ.fetch_production"
-    },
-    "timezone": "Pacific/Auckland"
-  },
   "NZ-NZST": {
     "bounding_box": [
       [166.91871178500003, -47.777601820999905],
