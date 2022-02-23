@@ -153,8 +153,6 @@ EXCHANGES = {
     "US-NW-AVA->US-NW-PACW": "EBA.AVA-PACW.ID.H",
     "US-NW-AVA->US-NW-CHPD": "EBA.AVA-CHPD.ID.H",
     "US-NW-AVA->US-NW-GCPD": "EBA.AVA-GCPD.ID.H",
-    "US-NW-AVRN->US-NW-BPAT": "EBA.AVRN-BPAT.ID.H",
-    "US-NW-AVRN->US-NW-PACW": "EBA.AVRN-PACW.ID.H",
     "US-NW-BPAT->US-NW-TPWR": "EBA.BPAT-TPWR.ID.H",
     "US-NW-BPAT->US-NW-GRID": "EBA.BPAT-GRID.ID.H",
     "US-NW-BPAT->US-NW-IPCO": "EBA.BPAT-IPCO.ID.H",
@@ -248,7 +246,6 @@ REGIONS = {
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
     "US-NW-AVA": "AVA",  # Avista Corporation
-    "US-NW-AVRN": "AVRN",  # Avangrid Renewables Cooperative
     "US-NW-BPAT": "BPAT",  # Bonneville Power Administration
     "US-NW-CHPD": "CHPD",  # Public Utility District No. 1 Of Chelan County
     "US-NW-DOPD": "DOPD",  # Pud No. 1 Of Douglas County

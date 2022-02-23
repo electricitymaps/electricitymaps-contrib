@@ -5790,36 +5790,6 @@
     },
     "timezone": "US/Pacific"
   },
-  "US-NW-AVRN": {
-    "capacity": {
-      "battery storage": 0,
-      "biomass": 0,
-      "coal": 0,
-      "gas": 619.1,
-      "geothermal": 0,
-      "hydro": 0,
-      "hydro storage": 0,
-      "nuclear": 0,
-      "oil": 0,
-      "solar": 10,
-      "unknown": 0,
-      "wind": 1496.4
-    },
-    "comment": "Avangrid Renewables Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
-    "delays": {
-      "production": 30
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Pacific"
-  },
   "US-NW-BPAT": {
     "bounding_box": [
       [-125.23688, 39.61659],
