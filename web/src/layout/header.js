@@ -13,7 +13,7 @@ const headerLinks = [
   },
   {
     label: <React.Fragment>We&apos;re hiring!<OpenPositionsBadge /></React.Fragment>,
-    href: 'https://electricitymap.org/jobs?utm_source=app.electricitymap.org&utm_medium=referral',
+    href: 'https://electricitymap.org/jobs#joboffers?utm_source=app.electricitymap.org&utm_medium=referral',
   },
 
   {
