@@ -8961,10 +8961,10 @@
       ]
     ],
     "capacity": {
-      "coal": 1024,
-      "hydro": 135.277,
+      "coal": 1288,
+      "hydro": 68,
       "solar": 10.002,
-      "wind": 33.75
+      "wind": 136
     },
     "contributors": [
       "https://github.com/veqtrus"
