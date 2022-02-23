@@ -20,17 +20,16 @@ class ZonesJsonTestcase(unittest.TestCase):
             for sub_zone in sub_zones:
                 self.assertIn(sub_zone, ZONE_KEYS)
 
-    def test_zones_match_geometries(self):
+    def test_zones_from_geometries_exist(self):
         world_geometries = json.load(open("web/geo/world.geojson"))
         world_geometries_zone_keys = set()
         for ft in world_geometries["features"]:
             world_geometries_zone_keys.add(ft["properties"]["zoneName"])
-        expected_keys = set(ZONES_CONFIG.keys())
-        extra_keys = sorted(world_geometries_zone_keys - expected_keys)
-        missing_keys = sorted(expected_keys - world_geometries_zone_keys)
+        all_zone_keys = set(ZONES_CONFIG.keys())
+        non_existing_zone_keys = sorted(world_geometries_zone_keys - all_zone_keys)
         assert (
-            world_geometries_zone_keys == expected_keys
-        ), f"Missing keys: {missing_keys}, extra_keys: {extra_keys}"
+            len(non_existing_zone_keys) == 0
+        ), f"{non_existing_zone_keys} are defined in world.geojson but not in zones.json"
 
 
 if __name__ == "__main__":
