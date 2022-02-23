@@ -11,6 +11,11 @@ const headerLinks = [
     active: true,
   },
   {
+    label: <React.Fragment>We&apos;re hiring!</React.Fragment>,
+    href: 'https://electricitymap.org/jobs?utm_source=app.electricitymap.org&utm_medium=referral',
+  },
+
+  {
     label: 'Open Source',
     href: 'https://electricitymap.org/open-source?utm_source=app.electricitymap.org&utm_medium=referral',
   },
