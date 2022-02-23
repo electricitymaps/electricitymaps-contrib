@@ -144,13 +144,6 @@
     },
     "timezone": "Europe/Vienna"
   },
-  "AUS-ACT": {
-    "capacity": {
-      "solar": 217
-    },
-    "flag_file_name": "au.png",
-    "timezone": null
-  },
   "AUS-NSW": {
     "bounding_box": [
       [148.26945193885587, -36.41961598109262],
