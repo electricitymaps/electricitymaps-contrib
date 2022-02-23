@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 from __future__ import annotations
-
 import arrow
 import requests
+
 
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
@@ -13,7 +13,7 @@ import requests
 
 DATA_URL = 'https://mapa.enteoperador.org/WebServiceScadaEORRest/webresources/generic'
 
-JSON_MAPPING = {"GT->MX-OR": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
+JSON_MAPPING = {"GT->MX": "2LBR.LT400.1FR2-2LBR-01A.-.MW",
                 "GT->SV": "3SISTEMA.LT230.INTER_NET_GT.CMW.MW",
                 "GT->HN": "4LEC.LT230.2FR4-4LEC-01B.-.MW",
                 "HN->SV": "3SISTEMA.LT230.INTER_NET_HO.CMW.MW",
@@ -97,8 +97,8 @@ if __name__ == '__main__':
     print(fetch_exchange('CR', 'NI'))
     print('fetch_exchange(HN, NI) ->')
     print(fetch_exchange('HN', 'NI'))
-    print('fetch_exchange(GT, MX-OR) ->')
-    print(fetch_exchange('GT', 'MX-OR'))
+    print('fetch_exchange(GT, MX) ->')
+    print(fetch_exchange('GT', 'MX'))
     print('fetch_exchange(GT, SV) ->')
     print(fetch_exchange('GT', 'SV'))
     print('fetch_exchange(GT, HN) ->')
