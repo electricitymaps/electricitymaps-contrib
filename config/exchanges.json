@@ -2372,13 +2372,6 @@
     },
     "rotation": -64
   },
-  "US-NW-BPAT->US-NW-SCL": {
-    "lonlat": [-122.40633139284765, 47.57899706053294],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -66
-  },
   "US-NW-CHPD->US-NW-DOPD": {
     "lonlat": [-120.31333531414889, 48.13102610638369],
     "parsers": {
@@ -2526,13 +2519,6 @@
     },
     "rotation": -138
   },
-  "US-NW-PSEI->US-NW-SCL": {
-    "lonlat": [-122.337684813, 47.77777834],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -89
-  },
   "US-NW-WACM->US-SW-AZPS": {
     "lonlat": [-111.41321, 37.00125],
     "parsers": {
@@ -2616,13 +2602,6 @@
       "exchange": "EIA.fetch_exchange"
     },
     "rotation": -47
-  },
-  "US-SW-DEAA->US-SW-SRP": {
-    "lonlat": [-112.875976563, 33.3358631130001],
-    "parsers": {
-      "exchange": "EIA.fetch_exchange"
-    },
-    "rotation": -92
   },
   "US-SW-EPE->US-SW-PNM": {
     "lonlat": [-106.37266, 33.4798],
