@@ -1,36 +1,19 @@
-import json
 import unittest
 
-from electricitymap.contrib.config import ZONES_CONFIG
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZONES_CONFIG
 
 ZONE_KEYS = ZONES_CONFIG.keys()
 
 
-class ZonesJsonTestcase(unittest.TestCase):
-    def test_bounding_boxes(self):
-        for zone, values in ZONES_CONFIG.items():
-            bbox = values.get("bounding_box")
-            if bbox:
-                self.assertLess(bbox[0][0], bbox[1][0])
-                self.assertLess(bbox[0][1], bbox[1][1])
-
-    def test_sub_zones(self):
-        for zone, values in ZONES_CONFIG.items():
-            sub_zones = values.get("subZoneNames", [])
-            for sub_zone in sub_zones:
-                self.assertIn(sub_zone, ZONE_KEYS)
-
-    def test_zones_match_geometries(self):
-        world_geometries = json.load(open("web/geo/world.geojson"))
-        world_geometries_zone_keys = set()
-        for ft in world_geometries["features"]:
-            world_geometries_zone_keys.add(ft["properties"]["zoneName"])
-        expected_keys = set(ZONES_CONFIG.keys())
-        extra_keys = sorted(world_geometries_zone_keys - expected_keys)
-        missing_keys = sorted(expected_keys - world_geometries_zone_keys)
-        assert (
-            world_geometries_zone_keys == expected_keys
-        ), f"Missing keys: {missing_keys}, extra_keys: {extra_keys}"
+class ExchangeJsonTestcase(unittest.TestCase):
+    def test_all_zones_in_zones_json(self):
+        for zone_key, values in EXCHANGES_CONFIG.items():
+            self.assertIn("->", zone_key)
+            for zone in zone_key.split("->"):
+                if zone == "US":
+                    # Old US zone that we ignore
+                    continue
+                self.assertIn(zone, ZONE_KEYS)
 
 
 if __name__ == "__main__":
