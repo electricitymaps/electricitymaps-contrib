@@ -138,11 +138,9 @@ EXCHANGES = {
     "US-MIDA-PJM->US-TEN-TVA": "EBA.PJM-TVA.ID.H",
     "US-MIDW-AECI->US-MIDW-MISO": "EBA.AECI-MISO.ID.H",
     "US-MIDW-AECI->US-TEN-TVA": "EBA.AECI-TVA.ID.H",
-    "US-MIDW-EEI->US-MIDW-LGEE": "EBA.EEI-LGEE.ID.H",
-    "US-MIDW-EEI->US-MIDW-MISO": "EBA.EEI-MISO.ID.H",
-    "US-MIDW-EEI->US-TEN-TVA": "EBA.EEI-TVA.ID.H",
     "US-MIDW-GLHB->US-MIDW-LGEE": "EBA.GLHB-LGEE.ID.H",
     "US-MIDW-GLHB->US-MIDW-MISO": "EBA.GLHB-MISO.ID.H",
+    "US-MIDW-GLHB->US-TEN-TVA": "EBA.EEI-TVA.ID.H",
     "US-MIDW-LGEE->US-MIDW-MISO": "EBA.LGEE-MISO.ID.H",
     "US-MIDW-LGEE->US-TEN-TVA": "EBA.LGEE-TVA.ID.H",
     "US-MIDW-MISO->US-SE-AEC": "EBA.MISO-AEC.ID.H",
@@ -245,7 +243,6 @@ REGIONS = {
     "US-FLA-TEC": "TEC",  # Tampa Electric Company
     "US-MIDA-PJM": "PJM",  # Pjm Interconnection, Llc
     "US-MIDW-AECI": "AECI",  # Associated Electric Cooperative, Inc.
-    "US-MIDW-EEI": "EEI",  # Electric Energy, Inc.
     "US-MIDW-GLHB": "GLHB",  # GridLiance
     "US-MIDW-LGEE": "LGEE",  # Louisville Gas And Electric Company And Kentucky Utilities
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
@@ -383,9 +380,8 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            negative_threshold = ( 
-                NEGATIVE_PRODUCTION_THRESHOLDS_TYPE
-                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"])
+            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
+                type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
             )
 
             if (

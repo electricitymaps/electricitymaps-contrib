@@ -5608,7 +5608,7 @@
     },
     "timezone": "US/Central"
   },
-  "US-MIDW-EEI": {
+  "US-MIDW-GLHB": {
     "bounding_box": [
       [-89.44135, 36.44203],
       [-87.9829, 37.83698]
@@ -5627,26 +5627,11 @@
       "unknown": 0,
       "wind": 0
     },
-    "comment": "Electric Energy, Inc.",
+    "comment": "GridLiance",
     "contributors": [
       "https://github.com/systemcatch",
       "https://github.com/robertahunt",
       "https://github.com/KabelWlan"
-    ],
-    "delays": {
-      "production": 30
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Central"
-  },
-  "US-MIDW-GLHB": {
-    "comment": "GridLiance",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
     ],
     "delays": {
       "production": 30
