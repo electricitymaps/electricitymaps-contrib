@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import SharedHeader from '../components/sharedheader';
+import OpenPositionsBadge from '../components/openpositionsbadge';
 
 const logo = resolvePath('images/electricitymap-logo.svg');
 
@@ -11,7 +12,7 @@ const headerLinks = [
     active: true,
   },
   {
-    label: <React.Fragment>We&apos;re hiring!</React.Fragment>,
+    label: <React.Fragment>We&apos;re hiring!<OpenPositionsBadge /></React.Fragment>,
     href: 'https://electricitymap.org/jobs?utm_source=app.electricitymap.org&utm_medium=referral',
   },
 
