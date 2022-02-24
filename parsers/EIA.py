@@ -199,7 +199,6 @@ EXCHANGES = {
     "US-SW-AZPS->US-SW-SRP": "EBA.AZPS-SRP.ID.H",
     "US-SW-AZPS->US-SW-TEPC": "EBA.AZPS-TEPC.ID.H",
     "US-SW-AZPS->US-SW-WALC": "EBA.AZPS-WALC.ID.H",
-    "US-SW-DEAA->US-SW-SRP": "EBA.DEAA-SRP.ID.H",
     "US-SW-EPE->US-SW-PNM": "EBA.EPE-PNM.ID.H",
     "US-SW-EPE->US-SW-TEPC": "EBA.EPE-TEPC.ID.H",
     "US-SW-GRIF->US-SW-WALC": "EBA.GRIF-WALC.ID.H",
@@ -270,7 +269,6 @@ REGIONS = {
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
     "US-SW-AZPS": "AZPS",  # Arizona Public Service Company
-    "US-SW-DEAA": "DEAA",  # Arlington Valley, Llc - Avba
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc
     "US-SW-GRMA": "GRMA",  # Gila River Power, Llc
