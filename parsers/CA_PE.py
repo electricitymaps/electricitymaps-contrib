@@ -29,7 +29,7 @@ def _get_pei_info(requests_obj):
     headers = {'Content-Type': 'application/json'}
     response = requests_obj.post(url, data=json.dumps(request), headers=headers)
 
-    raw_data = response.json().get('data', [])
+    raw_data = response.json().get('data') or []
 
     datetime_item = [item['data']['text'] for item in raw_data
                      if 'text' in item['data']]
