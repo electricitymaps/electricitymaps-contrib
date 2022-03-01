@@ -1,5 +1,5 @@
-const topojson = require('topojson');
-const topo = require('../world.json');
+import * as topojson from 'topojson';
+import topo from '../world.json';
 
 const constructTopos = () => {
   const zones = {};
@@ -18,4 +18,4 @@ const constructTopos = () => {
   return zones;
 };
 
-module.exports = constructTopos;
+export default constructTopos;

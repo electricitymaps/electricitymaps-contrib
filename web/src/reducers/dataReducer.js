@@ -1,11 +1,11 @@
-const moment = require('moment');
+import moment from 'moment';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+import { modeOrder } from '../helpers/constants';
+import constructTopos from '../helpers/topos';
+import {__, getFullZoneName}  from '../helpers/translation';
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+import exchangesConfig from '../../public/exchanges.json';
+import zonesConfig from '../../public/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -20,7 +20,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
@@ -55,7 +55,7 @@ const initialDataState = {
   windDataError: null,
 };
 
-module.exports = (state = initialDataState, action) => {
+const reducer = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -210,7 +210,7 @@ module.exports = (state = initialDataState, action) => {
 
     case 'SOLAR_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingSolar: false, solar: null, solarDataError: translation.translate('solarDataError') };
+      return { ...state, isLoadingSolar: false, solar: null, solarDataError: __('solarDataError') };
     }
 
     case 'WIND_DATA_FETCH_REQUESTED': {
@@ -223,10 +223,12 @@ module.exports = (state = initialDataState, action) => {
 
     case 'WIND_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingWind: false, wind: null, windDataError: translation.translate('windDataError') };
+      return { ...state, isLoadingWind: false, wind: null, windDataError: __('windDataError') };
     }
 
     default:
       return state;
   }
 };
+
+export default reducer;
