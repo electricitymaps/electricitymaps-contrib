@@ -1,4 +1,4 @@
-import zones from '../../public/zones.json';
+import zones from '../../../config/zones.json';
 
 import { DEFAULT_FLAG_SIZE } from '../helpers/constants';
 

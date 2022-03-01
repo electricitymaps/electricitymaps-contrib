@@ -4,8 +4,8 @@ import { modeOrder } from '../helpers/constants';
 import constructTopos from '../helpers/topos';
 import {__, getFullZoneName}  from '../helpers/translation';
 
-import exchangesConfig from '../../public/exchanges.json';
-import zonesConfig from '../../public/zones.json';
+import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
