@@ -53,6 +53,9 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "@babel/runtime": "^7.7.2",
+    "@snowpack/plugin-babel": "^2.1.7",
+    "@snowpack/plugin-react-refresh": "^2.5.0",
+    "@snowpack/plugin-sass": "^1.4.0",
     "@turf/turf": "^6.5.0",
     "autoprefixer": "^9.6.2",
     "babel-core": "^6.26.0",
@@ -81,15 +84,17 @@
     "readline-sync": "^1.4.9",
     "sass-loader": "^8.0.0",
     "shapefile": "^0.6.2",
+    "snowpack": "^3.8.8",
     "topojson-server": "^3.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tmrowco/electricitymap.git"
+    "url": "https://github.com/electricitymap/electricitymap-contrib.git"
   },
   "scripts": {
+    "develop": "snowpack dev",
     "build-debug": "webpack --bail --progress --mode development",
     "build-release": "export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
