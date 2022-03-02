@@ -1,4 +1,4 @@
-import * as topojson from 'topojson';
+import { merge } from 'topojson';
 import topo from '../world.json';
 
 const constructTopos = () => {
@@ -6,7 +6,7 @@ const constructTopos = () => {
   Object.keys(topo.objects).forEach((k) => {
     if (!topo.objects[k].arcs) { return; }
     const geo = {
-      geometry: topojson.merge(topo, [topo.objects[k]]),
+      geometry: merge(topo, [topo.objects[k]]),
       properties: topo.objects[k].properties
     };
     // Exclude zones with null geometries.
