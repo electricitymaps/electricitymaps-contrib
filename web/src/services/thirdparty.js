@@ -19,11 +19,12 @@ class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(require('./thirdparty/twitter'));
-      this._ga = this.addConnection(require('./thirdparty/ga'));
-      this.addConnection(require('./thirdparty/mixpanel'));
+      // TODO: This might require fixing
+      // this.addConnection(require('./thirdparty/twitter'));
+      // this._ga = this.addConnection(require('./thirdparty/ga'));
+      // this.addConnection(require('./thirdparty/mixpanel'));
     } else {
-      this.addConnection(require('./thirdparty/debugconsole'));
+      // this.addConnection(require('./thirdparty/debugconsole'));
     }
   }
 

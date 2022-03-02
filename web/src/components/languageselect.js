@@ -3,10 +3,41 @@ import { map } from 'lodash';
 
 import { __ } from '../helpers/translation';
 import { useSearchParams } from '../hooks/router';
-import { languageNames } from '../../locales-config.json';
+
 import styled from 'styled-components';
 
 import ButtonToggle from './buttontoggle';
+
+// TODO: Temporarily hardcoded until we improve localization setup
+const languageNames = {
+  "ar": "اللغة العربية الفصحى",
+  "cs": "Čeština",
+  "da": "Dansk",
+  "de": "Deutsch",
+  "el": "Ελληνικά",
+  "en": "English",
+  "es": "Español",
+  "et": "Eesti",
+  "fi": "Suomi",
+  "fr": "Français",
+  "hr": "Hrvatski",
+  "id": "Bahasa Indonesia",
+  "it": "Italiano",
+  "ja": "日本語",
+  "ko": "한국어",
+  "nl": "Nederlands",
+  "no-nb": "Norsk (bokmål)",
+  "pl": "Polski",
+  "pt-br": "Português (Brasileiro)",
+  "ro": "Română",
+  "ru": "Русский язык",
+  "sk": "Slovenčina",
+  "sv": "Svenska",
+  "vi": "Tiếng Việt",
+  "zh-cn": "中文 (Mainland China)",
+  "zh-hk": "中文 (Hong Kong)",
+  "zh-tw": "中文 (Taiwan)"
+}
 
 const LanguageSelectContainer = styled.div`
   background-color: #fafafa;
