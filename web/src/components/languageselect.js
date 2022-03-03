@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import { __ } from '../helpers/translation';
-import { useSearchParams } from '../hooks/router';
 import { languageNames } from '../../locales-config.json';
 import styled from 'styled-components';
 
@@ -62,19 +62,20 @@ const LanguageSelectContainer = styled.div`
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
+  const { i18n } = useTranslation();
+
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
   };
 
-  const searchParams = useSearchParams();
   const handleLanguageSelect = (languageKey) => {
     // TODO: Figure a better way to switch between languages that doesn't require a page refresh.
     // See https://github.com/tmrowco/electricitymap-contrib/issues/2382.
     if (window.isCordova) {
       window.location.href = `index_${languageKey}.html`;
     } else {
-      searchParams.set('lang', languageKey);
-      window.location.search = `?${searchParams.toString()}`;
+      i18n.changeLanguage(languageKey);
+      setLanguagesVisible(false);
     }
   };
 
