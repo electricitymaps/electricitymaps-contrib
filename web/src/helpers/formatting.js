@@ -2,7 +2,7 @@
 // TODO: remove once refactored
 
 var d3 = require('d3-format');
-var translation = require('./translation');
+var { translate } = require('./translation');
 
 module.exports.formatPower = function (d, numDigits) {
   // Assume MW input
@@ -17,9 +17,9 @@ module.exports.formatCo2 = function (d, numDigits) {
   if (d == null || d === NaN) return d;
   if (numDigits == null) numDigits = 3;
   if (d >= 1) // a ton or more
-    return d3.format('.' + numDigits + 's')(d) + 't ' + translation.translate('ofCO2eqPerMinute');
+    return d3.format('.' + numDigits + 's')(d) + 't ' + translate('ofCO2eqPerMinute');
   else
-    return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + translation.translate('ofCO2eqPerMinute');
+    return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + translate('ofCO2eqPerMinute');
 };
 module.exports.scalePower = function (maxPower) {
   // Assume MW input

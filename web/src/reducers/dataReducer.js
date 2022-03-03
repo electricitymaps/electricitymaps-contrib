@@ -2,7 +2,8 @@ const moment = require('moment');
 
 const { modeOrder } = require('../helpers/constants');
 const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+const { translate, getFullZoneName } = require('../helpers/translation');
+const { isProduction } = require('../helpers/environment');
 
 const exchangesConfig = require('../../../config/exchanges.json');
 const zonesConfig = require('../../../config/zones.json');
@@ -20,7 +21,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = getFullZoneName(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
@@ -144,9 +145,12 @@ module.exports = (state = initialDataState, action) => {
             console.warn(`${key} has negative production of ${mode}`);
           }
           // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
+          if (
+            isProduction() &&
+            zone.production[mode] !== undefined &&
+            (zone.capacity || {})[mode] !== undefined &&
+            zone.production[mode] > zone.capacity[mode]
+          ) {
             console.warn(`${key} produces more than its capacity of ${mode}`);
           }
         });
@@ -156,7 +160,7 @@ module.exports = (state = initialDataState, action) => {
       Object.entries(action.payload.exchanges).forEach((entry) => {
         const [key, value] = entry;
         const exchange = newGrid.exchanges[key];
-        if (!exchange || !exchange.lonlat) {
+        if (isProduction() && (!exchange || !exchange.lonlat)) {
           console.warn(`Missing exchange configuration for ${key}`);
           return;
         }
@@ -210,7 +214,12 @@ module.exports = (state = initialDataState, action) => {
 
     case 'SOLAR_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingSolar: false, solar: null, solarDataError: translation.translate('solarDataError') };
+      return {
+        ...state,
+        isLoadingSolar: false,
+        solar: null,
+        solarDataError: translate('solarDataError'),
+      };
     }
 
     case 'WIND_DATA_FETCH_REQUESTED': {
@@ -223,7 +232,12 @@ module.exports = (state = initialDataState, action) => {
 
     case 'WIND_DATA_FETCH_FAILED': {
       // TODO: create specialized messages based on http error response
-      return { ...state, isLoadingWind: false, wind: null, windDataError: translation.translate('windDataError') };
+      return {
+        ...state,
+        isLoadingWind: false,
+        wind: null,
+        windDataError: translate('windDataError'),
+      };
     }
 
     default:
