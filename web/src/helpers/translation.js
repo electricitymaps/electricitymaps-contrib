@@ -16,9 +16,9 @@ export const translate = (key, ...args) => translateWithTranslator(i18next.t, ke
 
 // Hook for translations inside React components
 export const useTranslation = () => {
-  const { t } = useTranslationHook();
+  const { t, i18n } = useTranslationHook();
   const __ = (key, ...args) => translateWithTranslator(t, key, ...args);
-  return { __ };
+  return { __, i18n };
 };
 
 export const translateIfExists = (key) => {

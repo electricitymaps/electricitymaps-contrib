@@ -6,7 +6,7 @@ import { isProduction } from './environment';
 //import LanguageDetector from 'i18next-browser-languagedetector';
 
 // Init localisation package
-await i18n
+i18n
   .use(HttpApi)
   // detect user language
   // .use(LanguageDetector)

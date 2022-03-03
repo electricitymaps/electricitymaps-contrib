@@ -151,7 +151,7 @@ const ZoneList = ({
           to={zonePage(zone)}
           onClick={() => enterZone(zone)}
           className={selectedItemIndex === ind ? 'selected' : ''}
-          key={zone.shortname}
+          key={zone.countryCode}
         >
           <div className="ranking">{zone.ranking}</div>
             <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
