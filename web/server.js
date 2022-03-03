@@ -46,7 +46,7 @@ i18n.configure({
   // where to store json files - defaults to './locales' relative to modules directory
   // note: detected locales are always lowercase
   locales,
-  directory: `${__dirname}/locales`,
+  directory: `${__dirname}/public/locales`,
   defaultLocale: 'en',
   queryParameter: 'lang',
   objectNotation: true,
@@ -66,7 +66,7 @@ let the client deal with all translations / formatting of ejs
 */
 const localeConfigs = {};
 locales.forEach((d) => {
-  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+  localeConfigs[d] = require(`${__dirname}/public/locales/${d}.json`);
 });
 function translateWithLocale(locale, keyStr) {
   const keys = keyStr.split('.');
