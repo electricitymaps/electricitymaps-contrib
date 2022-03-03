@@ -13,7 +13,7 @@ import {
   noop,
   size,
 } from 'lodash';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -53,6 +53,7 @@ const ZoneMap = ({
     }, 200),
     [],
   );
+  const { __ } = useTranslation();
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
   const handleDragStart = useMemo(() => () => setIsDragging(true), []);

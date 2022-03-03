@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { formatPower } from '../../helpers/formatting';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, ZoneName } from './common';
 
 const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
+  const { __ } = useTranslation();
   if (!exchangeData) return null;
 
   const isExporting = exchangeData.netFlow > 0;

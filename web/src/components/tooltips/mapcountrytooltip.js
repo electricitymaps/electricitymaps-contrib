@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import styled from 'styled-components';
 
 import CircularGauge from '../circulargauge';
@@ -21,6 +21,7 @@ const CountryTableHeaderInner = styled.div`
 
 const TooltipContent = React.memo(
   ({ isDataDelayed, hasData, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+    const { __ } = useTranslation();
     if (!hasData) {
       return (
         <div className="no-parser-text">

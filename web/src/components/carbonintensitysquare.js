@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useCo2ColorScale } from '../hooks/theme';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 /**
  * This function finds the optimal text color based on a custom formula
@@ -45,6 +45,7 @@ const Box = styled.div`
 `;
 
 const CarbonIntensitySquare = ({ value, withSubtext }) => {
+  const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 
   return (

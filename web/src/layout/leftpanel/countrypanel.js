@@ -35,7 +35,7 @@ import { dispatchApplication } from '../../store';
 import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
-import { getFullZoneName, __ } from '../../helpers/translation';
+import { useTranslation, getFullZoneName } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 
 // TODO: Move all styles from styles.css to here
@@ -167,11 +167,11 @@ const EstimatedDataInfoBox = styled.p`
   margin: 1rem 0;
 `;
 
-const EstimatedDataInfo = () => (
+const EstimatedDataInfo = (text) => (
   <React.Fragment>
     <EstimatedDataInfoBox
       dangerouslySetInnerHTML={{
-        __html: __('country-panel.dataIsEstimated'),
+        __html: text,
       }}
     />
     <hr />
@@ -185,6 +185,7 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
+  const {__} = useTranslation();
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
 
@@ -320,7 +321,7 @@ const CountryPanel = ({
             <CountryTable />
 
             <hr />
-            {isDataEstimated && <EstimatedDataInfo />}
+            {isDataEstimated && <EstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
             <div className="country-history">
               <CountryHistoryTitle>
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}

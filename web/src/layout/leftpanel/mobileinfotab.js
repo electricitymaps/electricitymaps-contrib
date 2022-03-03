@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
@@ -19,6 +19,7 @@ const SocialButtons = styled.div`
 `;
 
 const MobileInfoTab = () => {
+  const { __ } = useTranslation();
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
   const [mobileAppVersion, setMobileAppVersion] = useState(null);

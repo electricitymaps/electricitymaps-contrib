@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { isFinite } from 'lodash';
 
-import { __, getFullZoneName } from '../../helpers/translation';
+import { useTranslation, getFullZoneName } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
@@ -26,6 +26,7 @@ const CountryPanelProductionTooltip = ({
   zoneData,
   onClose,
 }) => {
+  const { __ } = useTranslation();
   if (!zoneData) return null;
 
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);

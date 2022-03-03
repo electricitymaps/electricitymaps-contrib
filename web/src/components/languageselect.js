@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
-import { useTranslation } from 'react-i18next';
-
-import { __ } from '../helpers/translation';
 import { languageNames } from '../../locales-config.json';
+import { useTranslation } from '../helpers/translation';
+
 import styled from 'styled-components';
 
 import ButtonToggle from './buttontoggle';
@@ -62,7 +61,7 @@ const LanguageSelectContainer = styled.div`
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
-  const { i18n } = useTranslation();
+  const { __, i18n } = useTranslation();
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);

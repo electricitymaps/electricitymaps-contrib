@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
-import { __, getFullZoneName } from '../helpers/translation';
+import { useTranslation, getFullZoneName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -81,6 +81,7 @@ const ZoneList = ({
   gridZones,
   searchQuery,
 }) => {
+  const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(gridZones, co2IntensityAccessor)
