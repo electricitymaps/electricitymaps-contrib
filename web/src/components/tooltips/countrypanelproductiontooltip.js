@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { isFinite } from 'lodash';
 
-import { useTranslation, getFullZoneName } from '../../helpers/translation';
+import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
@@ -63,7 +63,7 @@ const CountryPanelProductionTooltip = ({
       ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
       : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
     getRatioPercent(usage, totalElectricity),
-    getFullZoneName(zoneData.countryCode),
+    getZoneNameWithCountry(zoneData.countryCode),
     __(mode),
   );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);

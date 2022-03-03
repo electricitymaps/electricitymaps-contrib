@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
-import { useTranslation, getFullZoneName } from '../helpers/translation';
+import { useTranslation, getZoneNameWithCountry, getZoneName, getCountryName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -37,8 +37,8 @@ function sortAndValidateZones(zones, accessor) {
     .sort((x, y) => {
       if (!x.co2intensity && !x.countryCode) {
         return d3.ascending(
-          x.shortname || x.countryCode,
-          y.shortname || y.countryCode,
+          x.countryCode,
+          y.countryCode,
         );
       }
       return d3.ascending(
@@ -58,7 +58,7 @@ function zoneMatchesQuery(zone, queryString) {
   if (!queryString) return true;
   const queries = queryString.split(' ');
   return queries.every(
-    query => getFullZoneName(zone.countryCode)
+    query => getZoneNameWithCountry(zone.countryCode)
       .toLowerCase()
       .indexOf(query.toLowerCase()) !== -1,
   );
@@ -156,8 +156,8 @@ const ZoneList = ({
           <div className="ranking">{zone.ranking}</div>
             <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
             <div className="name">
-              <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
-              <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
+              <div className="zone-name">{getZoneName(zone.countryCode)}</div>
+              <div className="country-name">{getCountryName(zone.countryCode)}</div>
             </div>
           <div
             className="co2-intensity-tag"

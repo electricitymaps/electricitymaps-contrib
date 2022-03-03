@@ -89,7 +89,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
-        <ZoneName zone={zoneData.countryCode} ellipsify />
+        <ZoneName countryCode={zoneData.countryCode} ellipsify />
       </div>
       <TooltipContent
         hasData={zoneData.hasData}
