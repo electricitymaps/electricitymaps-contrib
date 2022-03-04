@@ -5,7 +5,6 @@ const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const http = require('http');
-const i18n = require('i18n');
 const auth = require('basic-auth');
 const version = require('./version.js');
 
@@ -41,18 +40,6 @@ app.set('view engine', 'ejs');
 
 // * i18n
 const locales = Object.keys(languageNames);
-i18n.configure({
-  // where to store json files - defaults to './locales' relative to modules directory
-  // note: detected locales are always lowercase
-  locales,
-  directory: `${__dirname}/public/locales`,
-  defaultLocale: 'en',
-  queryParameter: 'lang',
-  objectNotation: true,
-  updateFiles: false, // whether to write new locale information to disk
-});
-
-app.use(i18n.init);
 // For supportedFacebookLocales:
 // Populate using
 // https://developers.facebook.com/docs/messenger-platform/messenger-profile/supported-locales/
@@ -60,8 +47,7 @@ app.use(i18n.init);
 // http POST https://graph.facebook.com\?id\=https://www.electricitymap.org\&amp\;scrape\=true\&amp\;locale\=\en_US,fr_FR,it_IT.......
 
 /*
-Note: Translation function should be removed and
-let the client deal with all translations / formatting of ejs
+Note: the client should deal with all translations / formatting of ejs
 */
 const localeConfigs = {};
 locales.forEach((d) => {
@@ -161,7 +147,7 @@ app.use('/', (req, res) => {
       res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
     res.render('pages/index', {
-      maintitle: localeConfigs[locale].misc.maintitle,
+      maintitle: localeConfigs[locale || 'en'].misc.maintitle,
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
           return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
