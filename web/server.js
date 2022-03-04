@@ -7,7 +7,6 @@ const fs = require('fs');
 const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
-const { vsprintf } = require('sprintf-js');
 const version = require('./version.js');
 
 // Custom module
@@ -68,19 +67,6 @@ const localeConfigs = {};
 locales.forEach((d) => {
   localeConfigs[d] = require(`${__dirname}/public/locales/${d}.json`);
 });
-function translateWithLocale(locale, keyStr) {
-  const keys = keyStr.split('.');
-  let result = localeConfigs[locale];
-  for (let i = 0; i < keys.length; i += 1) {
-    if (result == null) { break; }
-    result = result[keys[i]];
-  }
-  if (locale !== 'en' && !result) {
-    return translateWithLocale('en', keyStr);
-  }
-  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
-  return result && vsprintf(result, formatArgs);
-}
 
 // * Long-term caching
 function getHash(key, ext, obj) {
@@ -175,6 +161,7 @@ app.use('/', (req, res) => {
       res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
     res.render('pages/index', {
+      maintitle: localeConfigs[locale].misc.maintitle,
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
           return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
@@ -199,16 +186,9 @@ app.use('/', (req, res) => {
           `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
       locale,
-      locales: { en: localeConfigs.en, [locale]: localeConfigs[locale] },
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale],
       supportedFBLocales: supportedFacebookLocales,
-      __() {
-        const argsArray = Array.prototype.slice.call(arguments);
-        // Prepend the first argument which is the locale
-        argsArray.unshift(locale);
-        return translateWithLocale.apply(null, argsArray);
-      },
     });
   }
 });
