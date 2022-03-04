@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
     return (
         <Container className="info-text">
           <ColorBlindCheckbox />
@@ -68,7 +68,7 @@ export default () => {
                 className="twitter-share-button"
                 data-url="https://app.electricitymap.org"
                 data-via="electricitymap"
-                data-lang={locale}
+                data-lang={i18n.language}
               />
               { /* Slack */}
               <span className="slack-button">
