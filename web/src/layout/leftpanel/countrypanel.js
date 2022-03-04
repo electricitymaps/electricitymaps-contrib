@@ -185,7 +185,7 @@ const CountryPanel = ({
   zones,
 }) => {
   const [tooltip, setTooltip] = useState(null);
-  const {__} = useTranslation();
+  const {__, i18n } = useTranslation();
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
 
@@ -400,7 +400,7 @@ const CountryPanel = ({
               className="twitter-share-button"
               data-url="https://app.electricitymap.org"
               data-via="electricitymap"
-              data-lang={locale}
+              data-lang={i18n.language}
             />
             { /* Slack */}
             <span className="slack-button">

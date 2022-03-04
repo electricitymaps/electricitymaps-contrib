@@ -19,7 +19,7 @@ const SocialButtons = styled.div`
 `;
 
 const MobileInfoTab = () => {
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
   const [mobileAppVersion, setMobileAppVersion] = useState(null);
@@ -67,7 +67,7 @@ const MobileInfoTab = () => {
             href="https://twitter.com/electricitymap"
             data-show-screen-name="false"
             data-show-count="false"
-            data-lang={locale}
+            data-lang={i18n.language}
           />
       </div>
 
@@ -111,7 +111,7 @@ const MobileInfoTab = () => {
             className="twitter-share-button"
             data-url="https://app.electricitymap.org"
             data-via="electricitymap"
-            data-lang={locale}
+            data-lang={i18n.language}
           />
           { /* Slack */}
           <span className="slack-button">

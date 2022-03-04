@@ -16,6 +16,7 @@ import TimeSlider from '../../components/timeslider';
 
 import CountryPanel from './countrypanel';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from '../../helpers/translation';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
@@ -32,6 +33,7 @@ const SocialButtons = styled.div`
 `;
 
 const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
+  const { i18n } = useTranslation();
   const datetimes = useCurrentZoneHistoryDatetimes();
   const startTime = useCurrentZoneHistoryStartTime();
   const endTime = useCurrentZoneHistoryEndTime();
@@ -65,7 +67,7 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
               className="twitter-share-button"
               data-url="https://app.electricitymap.org"
               data-via="electricitymap"
-              data-lang={locale}
+              data-lang={i18n.language}
             />
             {/* Slack */}
             <span className="slack-button">
