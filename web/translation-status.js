@@ -7,7 +7,7 @@ function getDeepKeysFromJSON(data, prefix = '') {
 }
 
 function getTermsForLanguage(language) {
-  return getDeepKeysFromJSON(require(`${__dirname}/locales/${language}.json`));
+  return getDeepKeysFromJSON(require(`${__dirname}/public/locales/${language}.json`));
 }
 
 function getTranslationProgressColor(translated) {
