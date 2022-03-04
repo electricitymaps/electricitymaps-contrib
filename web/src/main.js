@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import moment from 'moment';
 
 import 'mapbox-gl/dist/mapbox-gl.css'; // Required for map zooming buttons
 import 'url-search-params-polyfill'; // For IE 11 support
@@ -23,9 +22,6 @@ import './helpers/i18n';
 if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
-
-// Set proper locale
-moment.locale(window.locale.toLowerCase());
 
 // Plug in the sagas
 sagaMiddleware.run(sagas);
