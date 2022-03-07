@@ -1,0 +1,63 @@
+{
+  "emissionFactors": {
+    "defaults": {
+      "battery charge": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "battery discharge": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "biomass": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "coal": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "gas": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "geothermal": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "hydro": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "hydro charge": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "hydro discharge": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "nuclear": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "oil": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "solar": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "unknown": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      },
+      "wind": {
+        "source": "PLACEHOLDER",
+        "value": -1
+      }
+    },
+    "zoneOverrides": {}
+  }
+}
