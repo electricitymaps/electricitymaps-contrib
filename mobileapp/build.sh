@@ -8,7 +8,7 @@ rm -rf www/electricitymap locales src || true
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/ www/electricitymap
 
 rm -rf locales || true
-docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/locales/ .
+docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/locales/ .
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/locales-config.json ./locales-config.json
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/src .
 

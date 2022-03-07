@@ -11,7 +11,11 @@ const {
 
 const locales = Object.keys(languageNames);
 const localeConfigs = {};
-localeConfigs['en'] = require(`${__dirname}/locales/en.json`);
+
+locales.forEach((d) => {
+  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+});
+
 // duplicated from server.js
 // * Long-term caching
 function getHash(key, ext, obj) {
@@ -34,23 +38,25 @@ const manifest = JSON.parse(
   fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`)
 );
 
-const html = template({
-  maintitle: localeConfigs["en"].misc.maintitle,
-  alternateUrls: [],
-  bundleHash: getHash("bundle", "js", manifest),
-  vendorHash: getHash("vendor", "js", manifest),
-  stylesHash: getHash("styles", "css", manifest),
-  vendorStylesHash: getHash("vendor", "css", manifest),
-  // Keep using relative resource paths on mobile platforms as that's
-  // the way to keep them working with file:// protocol and HashHistory
-  // doesn't require paths to be absolute.
-  resolvePath: (relativePath) => relativePath,
-  isCordova: true,
-  FBLocale: localeToFacebookLocale["en"],
-  supportedLocales: locales,
-  supportedFBLocales: supportedFacebookLocales,
+locales.forEach(function (locale) {
+  const html = template({
+    maintitle: localeConfigs[locale || 'en'].misc.maintitle,
+    alternateUrls: [],
+    bundleHash: getHash("bundle", "js", manifest),
+    vendorHash: getHash("vendor", "js", manifest),
+    stylesHash: getHash("styles", "css", manifest),
+    vendorStylesHash: getHash("vendor", "css", manifest),
+    // Keep using relative resource paths on mobile platforms as that's
+    // the way to keep them working with file:// protocol and HashHistory
+    // doesn't require paths to be absolute.
+    resolvePath: (relativePath) => relativePath,
+    isCordova: true,
+    FBLocale: localeToFacebookLocale[locale],
+    supportedLocales: locales,
+    supportedFBLocales: supportedFacebookLocales,
+  });
 
-  //<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap://ready https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
+  fs.writeFileSync("www/electricitymap/index_" + locale + ".html", html);
 });
 
-fs.writeFileSync("www/electricitymap/index.html", html);
+console.log('Done!')
