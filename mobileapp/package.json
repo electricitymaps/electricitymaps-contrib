@@ -36,7 +36,8 @@
       },
       "cordova-universal-links-plugin": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-code-push": {}
+      "cordova-plugin-code-push": {},
+      "@globules-io/cordova-plugin-ios-xhr": {}
     },
     "platforms": [
       "android",
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@globules-io/cordova-plugin-ios-xhr": "git+https://github.com/globules-io/cordova-plugin-ios-xhr.git",
     "app-icon": "^0.13.2",
     "code-push": "^3.0.1",
     "cordova-plugin-advanced-http": "^3.2.2",

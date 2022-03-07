@@ -25,7 +25,8 @@ i18n
     fallbackLng: 'en',
     debug: isProduction() ? false : true,
     backend: {
-      loadPath: '/locales/{{lng}}.json',
+      loadPath: 'locales/{{lng}}.json',
+      crossDomain: true
     },
     detection: {
       order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
