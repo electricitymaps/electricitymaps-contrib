@@ -60,7 +60,6 @@
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
             var FBLocale = '<%= FBLocale %>';
             var resolvePath = <%- resolvePath %>;
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
@@ -101,6 +100,5 @@
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
     </head>
-    <body lang="<%= locale %>" id="app"></body>
-
+    <body id="app"></body>
 </html>

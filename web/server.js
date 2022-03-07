@@ -171,7 +171,6 @@ app.use('/', (req, res) => {
           // sure we can serve older bundle versions
           `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
-      locale,
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale],
       supportedFBLocales: supportedFacebookLocales,
