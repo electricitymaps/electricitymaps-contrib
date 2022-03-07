@@ -1562,18 +1562,18 @@
       ]
     ],
     "capacity": {
-      "battery storage": 280,
-      "biomass": 8570,
-      "coal": 43960,
-      "gas": 30500,
+      "battery storage": 580,
+      "biomass": 9420,
+      "coal": 39870,
+      "gas": 31680,
       "geothermal": 47,
-      "hydro": 4860,
-      "hydro storage": 9810,
+      "hydro": 4940,
+      "hydro storage": 9800,
       "nuclear": 4055,
-      "oil": 4380,
-      "solar": 58410,
+      "oil": 4680,
+      "solar": 59400,
       "unknown": 3700,
-      "wind": 64040
+      "wind": 64280
     },
     "contributors": [
       "https://github.com/corradio",
