@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
-import { __, getFullZoneName } from '../helpers/translation';
+import { __, getZoneNameWithCountry } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 
 const d3 = Object.assign(
@@ -58,7 +58,7 @@ function zoneMatchesQuery(zone, queryString) {
   if (!queryString) return true;
   const queries = queryString.split(' ');
   return queries.every(
-    query => getFullZoneName(zone.countryCode)
+    query => getZoneNameWithCountry(zone.countryCode)
       .toLowerCase()
       .indexOf(query.toLowerCase()) !== -1,
   );
