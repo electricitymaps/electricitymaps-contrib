@@ -56,7 +56,7 @@
       },
       "unknown": {
         "_comment": "assume conventional",
-        "source": "assumes thermal (coal, gas, oil or biomass)",
+        "source": "assumes thermal (coal, gas, or oil)",
         "value": 575
       },
       "wind": {
