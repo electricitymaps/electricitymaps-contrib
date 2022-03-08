@@ -8,7 +8,7 @@ const http = require('http');
 const i18n = require('i18n');
 const auth = require('basic-auth');
 const { vsprintf } = require('sprintf-js');
-const version = require('./version.js');
+
 
 // Custom module
 const {
@@ -98,7 +98,6 @@ function getHash(key, ext, obj) {
 const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-app.get('/clientVersion', (req, res) => res.json({version}));
 
 // Translation status
 app.get('/translationstatus/badges.svg', (req, res) => {

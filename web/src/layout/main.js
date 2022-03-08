@@ -73,7 +73,7 @@ const Main = ({
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
-  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
   const clientVersion = clientVersionData && clientVersionData.version;
 
   let isClientVersionOutdated = false;
