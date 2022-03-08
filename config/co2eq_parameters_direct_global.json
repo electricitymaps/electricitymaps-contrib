@@ -2,60 +2,66 @@
   "emissionFactors": {
     "defaults": {
       "battery charge": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
       },
       "battery discharge": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "Default direct emissions TBD",
+        "source": "n/a",
+        "value": 0
       },
       "biomass": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "BEIS 2021",
+        "value": 0
       },
       "coal": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 760
       },
       "gas": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 370
       },
       "geothermal": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 0
       },
       "hydro": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 0
       },
       "hydro charge": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
       },
       "hydro discharge": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "Default direct emissions TBD",
+        "source": "n/a",
+        "value": 0
       },
       "nuclear": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 0
       },
       "oil": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "A blended average of US and UK direct emission factor figures",
+        "source": "EIA 2020/BEIS 2021",
+        "value": 406
       },
       "solar": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 0
       },
       "unknown": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "_comment": "Default direct emissions TBD",
+        "source": "n/a",
+        "value": 0
       },
       "wind": {
-        "source": "PLACEHOLDER",
-        "value": -1
+        "source": "IPCC 2014",
+        "value": 0
       }
     },
     "zoneOverrides": {}
