@@ -1,0 +1,69 @@
+{
+  "emissionFactors": {
+    "defaults": {
+      "battery charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
+      },
+      "battery discharge": {
+        "_comment": "Default direct emissions TBD",
+        "source": "n/a",
+        "value": 0
+      },
+      "biomass": {
+        "source": "BEIS 2021",
+        "value": 0
+      },
+      "coal": {
+        "source": "IPCC 2014",
+        "value": 760
+      },
+      "gas": {
+        "source": "IPCC 2014",
+        "value": 370
+      },
+      "geothermal": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "hydro": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "hydro charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
+      },
+      "hydro discharge": {
+        "_comment": "Default direct emissions TBD",
+        "source": "n/a",
+        "value": 0
+      },
+      "nuclear": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "oil": {
+        "_comment": "A blended average of US and UK direct emission factor figures",
+        "source": "EIA 2020/BEIS 2021",
+        "value": 406
+      },
+      "solar": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "unknown": {
+        "_comment": "assume conventional",
+        "source": "assumes thermal (coal, gas, or oil)",
+        "value": 575
+      },
+      "wind": {
+        "source": "IPCC 2014",
+        "value": 0
+      }
+    },
+    "zoneOverrides": {}
+  }
+}
