@@ -20,7 +20,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = translation.getZoneNameWithCountry(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;

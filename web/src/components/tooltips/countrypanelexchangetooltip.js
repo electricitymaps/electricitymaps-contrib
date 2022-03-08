@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { __, getFullZoneName } from '../../helpers/translation';
+import { __, getZoneNameWithCountry } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
 import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
@@ -46,8 +46,8 @@ const CountryPanelExchangeTooltip = ({
       ? (displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo')
       : (displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'),
     getRatioPercent(usage, totalElectricity),
-    getFullZoneName(zoneData.countryCode),
-    getFullZoneName(exchangeKey),
+    getZoneNameWithCountry(zoneData.countryCode),
+    getZoneNameWithCountry(exchangeKey),
   );
   headline = headline.replace('id="country-flag"', `class="flag" src="${flagUri(zoneData.countryCode)}"`);
   headline = headline.replace('id="country-exchange-flag"', `class="flag" src="${flagUri(exchangeKey)}"`);
