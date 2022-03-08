@@ -55,9 +55,9 @@
         "value": 0
       },
       "unknown": {
-        "_comment": "Default direct emissions TBD",
-        "source": "n/a",
-        "value": 0
+        "_comment": "assume conventional",
+        "source": "assumes thermal (coal, gas, oil or biomass)",
+        "value": 575
       },
       "wind": {
         "source": "IPCC 2014",
