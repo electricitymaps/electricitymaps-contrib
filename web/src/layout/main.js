@@ -32,7 +32,7 @@ import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
 
-const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
+const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
