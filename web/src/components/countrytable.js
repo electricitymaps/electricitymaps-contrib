@@ -25,7 +25,7 @@ import {
   getExchangeCo2Intensity,
 } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
@@ -233,6 +233,7 @@ const CountryCarbonEmissionsTable = React.memo(({
   onExchangeRowMouseOut,
   width,
 }) => {
+  const { __ } = useTranslation();
   const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
   const maxCO2eqExport = d3Max(exchangeData, d => Math.max(0, -d.tCo2eqPerMin));
@@ -333,6 +334,7 @@ const CountryElectricityProductionTable = React.memo(({
   onExchangeRowMouseOut,
   width,
 }) => {
+  const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 
   const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);

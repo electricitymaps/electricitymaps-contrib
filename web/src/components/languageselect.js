@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { map } from 'lodash';
 
-import { useTranslation, __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { languageNames } from '../../locales-config.json';
 import styled from 'styled-components';
 
@@ -61,7 +61,7 @@ const LanguageSelectContainer = styled.div`
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
-  const { i18n } = useTranslation();
+  const { __, i18n } = useTranslation();
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
