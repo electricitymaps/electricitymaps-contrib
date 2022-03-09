@@ -1,7 +1,6 @@
 var ejs = require('ejs');
 var fs = require('fs');
 var i18n = require('i18n');
-const { vsprintf } = require('sprintf-js');
 
 const STATIC_PATH = 'www/electricitymap';
 
@@ -21,19 +20,6 @@ const localeConfigs = {};
 locales.forEach((d) => {
   localeConfigs[d] = require(`${__dirname}/www/electricitymap/locales/${d}.json`);
 });
-function translateWithLocale(locale, keyStr) {
-  const keys = keyStr.split('.');
-  let result = localeConfigs[locale];
-  for (let i = 0; i < keys.length; i += 1) {
-    if (result == null) { break; }
-    result = result[keys[i]];
-  }
-  if (locale !== 'en' && !result) {
-    return translateWithLocale('en', keyStr);
-  }
-  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
-  return result && vsprintf(result, formatArgs);
-}
 
 // duplicated from server.js
 // * Long-term caching
@@ -82,12 +68,6 @@ locales.forEach(function(locale) {
         locales: { en: localeConfigs['en'], [locale]: localeConfigs[locale] },
         supportedLocales: locales,
         supportedFBLocales: supportedFacebookLocales,
-        '__': function() {
-            var argsArray = Array.prototype.slice.call(arguments);
-            // Prepend the first argument which is the locale
-            argsArray.unshift(locale);
-            return translateWithLocale.apply(null, argsArray);
-        }
     });
 
     fs.writeFileSync('www/electricitymap/index_' + locale + '.html', html);
