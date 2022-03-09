@@ -66,6 +66,7 @@ const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`)
 locales.forEach(function(locale) {
     i18n.setLocale(locale);
     const html = template({
+        maintitle: localeConfigs[locale || 'en'].misc.maintitle,
         alternateUrls: [],
         bundleHash: getHash('bundle', 'js', manifest),
         vendorHash: getHash('vendor', 'js', manifest),

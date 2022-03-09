@@ -174,6 +174,7 @@ app.use('/', (req, res) => {
       res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
     res.render('pages/index', {
+      maintitle: localeConfigs[locale || 'en'].misc.maintitle,
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
           return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
