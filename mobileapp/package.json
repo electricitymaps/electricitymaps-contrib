@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "bash build.sh",
-    "clean": "rm -rf platforms plugins src ui_web_hooks www/electricitymap locales"
+    "clean": "rm -rf platforms plugins src ui_web_hooks www/electricitymap"
   },
   "cordova": {
     "plugins": {
