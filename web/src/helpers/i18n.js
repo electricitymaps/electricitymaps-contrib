@@ -76,7 +76,7 @@ i18n
   });
 
 i18n.on('languageChanged', function (lng) {
-  moment.locale(window.locale.toLowerCase());
+  moment.locale(lng);
   document.documentElement.setAttribute('lang', lng);
 });
 
