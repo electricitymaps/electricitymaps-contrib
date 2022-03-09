@@ -1,8 +1,8 @@
-const co2eq_parameters_lifecycle_global = require("./co2eq_parameters_lifecycle_global.json");
+const co2eq_parameters_lifecycle = require("./co2eq_parameters_lifecycle.json");
 const co2eq_parameters_all = require("./co2eq_parameters_all.json");
 const co2eq_parameters = {
   ...co2eq_parameters_all,
-  ...co2eq_parameters_lifecycle_global,
+  ...co2eq_parameters_lifecycle,
 };
 const {
   STORAGE_MODES,
