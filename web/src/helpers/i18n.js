@@ -1,8 +1,16 @@
+import moment from 'moment';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { isProduction } from './environment';
+import { history } from './router';
+
+function hideLanguageSearchParam() {
+  const searchParams = new URLSearchParams(history.location.search);
+  searchParams.delete('lang');
+  history.replace(`?${searchParams.toString()}`);
+}
 
 // This function is copied and slightly adjusted from https://github.com/i18next/i18next-http-backend/blob/master/lib/request.js
 // The changes are done in order to make it work cross-platform
@@ -62,9 +70,13 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
+  })
+  .then(() => {
+    hideLanguageSearchParam();
   });
 
 i18n.on('languageChanged', function (lng) {
+  moment.locale(window.locale.toLowerCase());
   document.documentElement.setAttribute('lang', lng);
 });
 
