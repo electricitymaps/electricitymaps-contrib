@@ -21,6 +21,9 @@ if (thirdPartyServices._ga) {
   thirdPartyServices._ga.timingMark('start_executing_js');
 }
 
+// init localisation
+import './helpers/i18n';
+
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
 
@@ -29,14 +32,16 @@ sagaMiddleware.run(sagas);
 
 // Render DOM
 ReactDOM.render(
-  <Provider store={store}>
-    {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
-    {/* the route history outside of React components anymore */}
-    <Router history={history}>
-      <GlobalStyle />
-      <Main />
-    </Router>
-  </Provider>,
+  <React.Suspense fallback={<div />}>
+    <Provider store={store}>
+      {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
+      {/* the route history outside of React components anymore */}
+      <Router history={history}>
+        <GlobalStyle />
+        <Main />
+      </Router>
+    </Provider>
+  </React.Suspense>,
   document.querySelector('#app'),
 );
 
