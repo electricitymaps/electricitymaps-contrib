@@ -5,7 +5,6 @@ const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const http = require('http');
-const i18n = require('i18n');
 const auth = require('basic-auth');
 
 // Custom module
@@ -38,20 +37,7 @@ app.use((req, res, next) => {
 // * Templating
 app.set('view engine', 'ejs');
 
-// * i18n
 const locales = Object.keys(languageNames);
-i18n.configure({
-  // where to store json files - defaults to './locales' relative to modules directory
-  // note: detected locales are always lowercase
-  locales,
-  directory: `${__dirname}/locales`,
-  defaultLocale: 'en',
-  queryParameter: 'lang',
-  objectNotation: true,
-  updateFiles: false, // whether to write new locale information to disk
-});
-
-app.use(i18n.init);
 // For supportedFacebookLocales:
 // Populate using
 // https://developers.facebook.com/docs/messenger-platform/messenger-profile/supported-locales/
