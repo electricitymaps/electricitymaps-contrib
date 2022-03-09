@@ -50,9 +50,7 @@ locales.forEach(function(locale) {
         // doesn't require paths to be absolute.
         resolvePath: function(relativePath) { return relativePath; },
         isCordova: true,
-        locale: locale,
         FBLocale: localeToFacebookLocale[locale],
-        locales: { en: localeConfigs['en'], [locale]: localeConfigs[locale] },
         supportedLocales: locales,
         supportedFBLocales: supportedFacebookLocales,
     });

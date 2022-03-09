@@ -60,10 +60,7 @@
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
-            var FBLocale = '<%= FBLocale %>';
             var resolvePath = <%- resolvePath %>;
-            var locales = <%- JSON.stringify(locales) %>;
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
         </script>
 
@@ -102,6 +99,6 @@
         <!-- Plausible -->
         <script defer data-domain="app.electricitymap.org" src="https://plausible.io/js/plausible.local.js"></script>
     </head>
-    <body lang="<%= locale %>" id="app"></body>
+    <body id="app"></body>
 
 </html>
