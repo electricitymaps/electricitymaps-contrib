@@ -65,42 +65,64 @@
       }
     },
     "zoneOverrides": {
-      "AR": {
+      "AM": {
+        "battery discharge": {
+          "source": "electricityMap, 2020 average",
+          "value": 232.63488227492812
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 297.18891097799343
+          "source": "electricityMap, 2020 average",
+          "value": 232.63488227492812
+        }
+      },
+      "AR": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 351.4812654989271
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 351.4812654989271
         }
       },
       "AT": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 173.4729702559071
+          "source": "electricityMap, 2021 average",
+          "value": 189.15057551476448
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 173.4729702559071
+          "source": "electricityMap, 2021 average",
+          "value": 189.15057551476448
         }
       },
       "AUS-NSW": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 609.3962228587467
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 726.0064734066499
+          "source": "electricityMap, 2021 average",
+          "value": 609.3962228587467
         }
       },
       "AUS-QLD": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 594.351048277953
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 766.6875812088138
+          "source": "electricityMap, 2021 average",
+          "value": 594.351048277953
         }
       },
       "AUS-SA": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 264.9516942784522
+          "source": "electricityMap, 2021 average",
+          "value": 207.9024295488294
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 264.9516942784522
+          "source": "electricityMap, 2021 average",
+          "value": 207.9024295488294
         }
       },
       "AUS-TAS": {
@@ -109,10 +131,34 @@
           "value": 128.59069995581274
         }
       },
-      "AUS-VIC": {
+      "AUS-TAS-FI": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 222.50079898541537
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 682.6761763130781
+          "source": "electricityMap, 2021 average",
+          "value": 222.50079898541537
+        }
+      },
+      "AUS-TAS-KI": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 235.12523241167625
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 235.12523241167625
+        }
+      },
+      "AUS-VIC": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 548.2613585411572
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 548.2613585411572
         }
       },
       "AUS-WA": {
@@ -121,26 +167,44 @@
           "value": 611.2821372774696
         }
       },
-      "BA": {
+      "AUS-WA-RI": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 475.1604205448953
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 717.9419102176483
+          "source": "electricityMap, 2021 average",
+          "value": 475.1604205448953
+        }
+      },
+      "BA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 526.7426856183114
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 526.7426856183114
         }
       },
       "BE": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.438056497875
+          "source": "electricityMap, 2021 average",
+          "value": 144.37175543929882
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.438056497875
+          "source": "electricityMap, 2021 average",
+          "value": 144.37175543929882
         }
       },
       "BG": {
+        "battery discharge": {
+          "source": "electricityMap, 2017 average",
+          "value": 424.6174205840783
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 418.2092755632947
+          "source": "electricityMap, 2017 average",
+          "value": 424.6174205840783
         }
       },
       "BO": {
@@ -179,13 +243,17 @@
         }
       },
       "CA-AB": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 480.9062885348112
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 480.9062885348112
+        },
         "unknown": {
           "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
           "value": 655
-        },
-        "battery discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 597
         }
       },
       "CA-NS": {
@@ -213,18 +281,18 @@
         }
       },
       "CH": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 112.7541265105423
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 112.7541265105423
+        },
         "unknown": {
           "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
           "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
           "value": 131
-        },
-        "hydro discharge": {
-          "source": "2020 average by Tomorrow",
-          "value": 87.03
-        },
-        "battery discharge": {
-          "source": "2020 average by Tomorrow",
-          "value": 87.03
         }
       },
       "CL-SEN": {
@@ -258,22 +326,22 @@
       },
       "CZ": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 425.78928599410017
+          "source": "electricityMap, 2021 average",
+          "value": 416.6741135542998
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 425.78928599410017
+          "source": "electricityMap, 2021 average",
+          "value": 416.6741135542998
         }
       },
       "DE": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 280.80354301505963
+          "source": "electricityMap, 2021 average",
+          "value": 297.2371107822577
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 280.80354301505963
+          "source": "electricityMap, 2021 average",
+          "value": 297.2371107822577
         }
       },
       "DK-DK1": {
@@ -306,28 +374,118 @@
       },
       "ES": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 157.04376876992868
+          "source": "electricityMap, 2021 average",
+          "value": 123.87938167462976
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 157.04376876992868
+          "source": "electricityMap, 2021 average",
+          "value": 123.87938167462976
+        }
+      },
+      "ES-CN-FVLZ": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 555.4412558744081
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 555.4412558744081
+        }
+      },
+      "ES-CN-GC": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 513.1239313949274
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 513.1239313949274
         }
       },
       "ES-CN-HI": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 82.05248776720254
+          "source": "electricityMap, 2021 average",
+          "value": 117.77909263404483
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 82.05248776720254
+          "source": "electricityMap, 2021 average",
+          "value": 117.77909263404483
+        }
+      },
+      "ES-CN-IG": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 650.0
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 650.0
+        }
+      },
+      "ES-CN-LP": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 586.7197693422255
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 586.7197693422255
+        }
+      },
+      "ES-CN-TE": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 514.9603560421623
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 514.9603560421623
         }
       },
       "ES-IB": {
         "hydro discharge": {
           "source": "2017 average by Tomorrow",
           "value": 610.5081243078652
+        }
+      },
+      "ES-IB-FO": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 431.08176558662245
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 431.08176558662245
+        }
+      },
+      "ES-IB-IZ": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 453.23005489674046
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 453.23005489674046
+        }
+      },
+      "ES-IB-MA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 403.8061373548075
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 403.8061373548075
+        }
+      },
+      "ES-IB-ME": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 547.8984196172062
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 547.8984196172062
         }
       },
       "FI": {
@@ -348,18 +506,22 @@
       },
       "FR": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 48.14997796838915
+          "source": "electricityMap, 2021 average",
+          "value": 54.19412225271004
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 48.14997796838915
+          "source": "electricityMap, 2021 average",
+          "value": 54.19412225271004
         }
       },
       "GB": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 252.90045815249468
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 297.6489439788152
+          "source": "electricityMap, 2021 average",
+          "value": 252.90045815249468
         }
       },
       "GB-NIR": {
@@ -376,9 +538,13 @@
         }
       },
       "GR": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 360.6515863942569
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 501.15075317431626
+          "source": "electricityMap, 2021 average",
+          "value": 360.6515863942569
         }
       },
       "GT": {
@@ -408,12 +574,12 @@
       },
       "IE": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 327.25293751297517
+          "source": "electricityMap, 2021 average",
+          "value": 364.0792333518909
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 327.25293751297517
+          "source": "electricityMap, 2021 average",
+          "value": 364.0792333518909
         }
       },
       "IL": {
@@ -430,9 +596,13 @@
         }
       },
       "IN-AP": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 524.161418185502
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 615.9045832043543
+          "source": "electricityMap, 2021 average",
+          "value": 524.161418185502
         }
       },
       "IN-CT": {
@@ -448,21 +618,31 @@
         }
       },
       "IN-KA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 459.2042079468457
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 589.9391089569107
+          "source": "electricityMap, 2021 average",
+          "value": 459.2042079468457
         },
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
       },
       "IN-PB": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 651.7744449793106
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 683.2474466710828
+          "source": "electricityMap, 2019 average",
+          "value": 651.7744449793106
         }
       },
       "IT": {
@@ -472,49 +652,53 @@
         }
       },
       "IT-CNO": {
+        "battery discharge": {
+          "source": "electricityMap, 2018 average",
+          "value": 286.91931414971873
+        },
         "hydro discharge": {
-          "source": "2018 average by Tomorrow",
-          "value": 291.51281006259126
+          "source": "electricityMap, 2018 average",
+          "value": 286.91931414971873
         }
       },
       "IT-CSO": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 377.4140994578113
+          "source": "electricityMap, 2021 average",
+          "value": 353.3892487083926
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 377.4140994578113
+          "source": "electricityMap, 2021 average",
+          "value": 353.3892487083926
         }
       },
       "IT-NO": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 328.40962022742235
+          "source": "electricityMap, 2021 average",
+          "value": 316.47096783873104
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 328.40962022742235
+          "source": "electricityMap, 2021 average",
+          "value": 316.47096783873104
         }
       },
       "IT-SAR": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 470.46613342903015
+          "source": "electricityMap, 2021 average",
+          "value": 473.81254362190396
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 470.46613342903015
+          "source": "electricityMap, 2021 average",
+          "value": 473.81254362190396
         }
       },
       "IT-SIC": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 329.3209055463916
+          "source": "electricityMap, 2021 average",
+          "value": 316.2318920942228
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 329.3209055463916
+          "source": "electricityMap, 2021 average",
+          "value": 316.2318920942228
         }
       },
       "IT-SO": {
@@ -534,6 +718,16 @@
           "value": 538
         }
       },
+      "JP-KY": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 384.406186940274
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 384.406186940274
+        }
+      },
       "KR": {
         "unknown": {
           "_comment": "Source: 2020 annual electricity production by IEA",
@@ -551,12 +745,12 @@
       },
       "LT": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 446.070472425505
+          "source": "electricityMap, 2021 average",
+          "value": 313.32733782849806
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 446.070472425505
+          "source": "electricityMap, 2021 average",
+          "value": 313.32733782849806
         }
       },
       "LV": {
@@ -613,15 +807,23 @@
         }
       },
       "NO-NO2": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 34.433148207717785
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 38.029382343634545
+          "source": "electricityMap, 2021 average",
+          "value": 34.433148207717785
         }
       },
       "NO-NO3": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 26.936964260485205
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 34.770101548310805
+          "source": "electricityMap, 2021 average",
+          "value": 26.936964260485205
         }
       },
       "NO-NO4": {
@@ -631,9 +833,13 @@
         }
       },
       "NO-NO5": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 37.46015113978314
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 39.54793629854753
+          "source": "electricityMap, 2021 average",
+          "value": 37.46015113978314
         }
       },
       "NZ-NZN": {
@@ -661,9 +867,13 @@
         }
       },
       "PL": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 640.1604417064499
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 674.7698898846445
+          "source": "electricityMap, 2021 average",
+          "value": 640.1604417064499
         }
       },
       "PR": {
@@ -675,12 +885,22 @@
       },
       "PT": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.54253349502017
+          "source": "electricityMap, 2021 average",
+          "value": 136.44261559360874
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 191.54253349502017
+          "source": "electricityMap, 2021 average",
+          "value": 136.44261559360874
+        }
+      },
+      "RE": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 498.71220611544584
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 498.71220611544584
         }
       },
       "RO": {
@@ -690,9 +910,13 @@
         }
       },
       "RS": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 521.3088686600662
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 565.0389007015892
+          "source": "electricityMap, 2021 average",
+          "value": 521.3088686600662
         }
       },
       "RU": {
@@ -743,19 +967,23 @@
         }
       },
       "SI": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 227.96142239338118
+        },
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
-          "value": 246.34741810042195
+          "source": "electricityMap, 2021 average",
+          "value": 227.96142239338118
         }
       },
       "SK": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 270.00397843369217
+          "source": "electricityMap, 2021 average",
+          "value": 283.5001283604337
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 270.00397843369217
+          "source": "electricityMap, 2021 average",
+          "value": 283.5001283604337
         }
       },
       "SV": {
@@ -772,28 +1000,238 @@
       },
       "TW": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 549.8577612938966
+          "source": "electricityMap, 2021 average",
+          "value": 548.4429116255218
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 549.8577612938966
+          "source": "electricityMap, 2021 average",
+          "value": 548.4429116255218
         }
       },
       "UA": {
         "battery discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 284.9927461471096
+          "source": "electricityMap, 2021 average",
+          "value": 238.37865447348247
         },
         "hydro discharge": {
-          "source": "2019 average by Tomorrow",
-          "value": 284.9927461471096
+          "source": "electricityMap, 2021 average",
+          "value": 238.37865447348247
         },
         "unknown": {
           "_comment": "estimated yearly share of solar & wind in this mixed renewable category based on installed capacity in 2018",
           "_url": "https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine",
           "source": "renewable mix; assumes 50% solar, 50% wind",
           "value": 28
+        }
+      },
+      "US-CA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 253.70305696847464
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 253.70305696847464
+        }
+      },
+      "US-CAL-CISO": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 235.0498219157684
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 235.0498219157684
+        }
+      },
+      "US-CAL-LDWP": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 376.1574291520889
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 376.1574291520889
+        }
+      },
+      "US-CAR-CPLE": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 292.6562732574436
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 292.6562732574436
+        }
+      },
+      "US-CAR-CPLW": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 458.4814973193476
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 458.4814973193476
+        }
+      },
+      "US-CAR-DUK": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 279.51775687053265
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 279.51775687053265
+        }
+      },
+      "US-CAR-SC": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 517.595656181456
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 517.595656181456
+        }
+      },
+      "US-DUK": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 269.39391139953443
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 269.39391139953443
+        }
+      },
+      "US-NE-ISNE": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 260.73535335177905
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 260.73535335177905
+        }
+      },
+      "US-NEISO": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 288.6663366866611
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 288.6663366866611
+        }
+      },
+      "US-NW-AVA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 184.07788353062563
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 184.07788353062563
+        }
+      },
+      "US-NW-PACE": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 507.04134596472585
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 507.04134596472585
+        }
+      },
+      "US-NW-PACW": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 315.2425927215471
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 315.2425927215471
+        }
+      },
+      "US-NW-PSCO": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 534.1154958891757
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 534.1154958891757
+        }
+      },
+      "US-NW-WACM": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 563.3972632416495
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 563.3972632416495
+        }
+      },
+      "US-SC": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 693.670349591438
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 693.670349591438
+        }
+      },
+      "US-SE-AEC": {
+        "battery discharge": {
+          "source": "electricityMap, 2018 average",
+          "value": 584.1690089495078
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2018 average",
+          "value": 584.1690089495078
+        }
+      },
+      "US-SW-SRP": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 271.22232595101633
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 271.22232595101633
+        }
+      },
+      "US-SW-WALC": {
+        "battery discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 322.32596166890283
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2019 average",
+          "value": 322.32596166890283
+        }
+      },
+      "US-TEN-TVA": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 298.80459498566256
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 298.80459498566256
+        }
+      },
+      "US-TN": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 290.3944759637386
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 290.3944759637386
         }
       },
       "UY": {
