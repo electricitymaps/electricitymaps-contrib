@@ -104,6 +104,7 @@
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "lint": "eslint geo src *.js",
     "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
+    "server-dev": "nodemon server.js",
     "update-world": "node ./geo/update-world.js && yarn prettier --write 'geo/world.geojson'",
     "verify": "yarn lint && VERIFY_NO_UPDATES=1 yarn update-world"
   },
