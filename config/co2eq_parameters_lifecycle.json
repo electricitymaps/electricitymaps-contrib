@@ -454,9 +454,7 @@
         },
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": [
-            "http://srldc.org/2018-19srallocation.aspx"
-          ],
+          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
@@ -732,10 +730,10 @@
           "value": 46.02408724838775
         },
         "unknown": {
-          "_comment": "Uses the 2019 (2021 edition) eurostat production values for the sources in unknown",
-          "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-balance-sheets-February-2021-edition.zip/4b1d6665-f303-be7d-a7e5-1e0da16ec0d9?t=1612709565471",
-          "source": "assumes 77.22% biomass, 11.2% oil based thermal, 6.33% gas, 4.03% solar, 1.21% peat",
-          "value": 292.9
+          "_comment": "Uses the 2020 (2022 edition) eurostat production values for the sources in unknown",
+          "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+          "source": "assumes 76.2% biomass, 11.49% oil based thermal, 4.58% gas, 7.17% solar, 0.53% peat",
+          "value": 280.2
         }
       },
       "SG": {
