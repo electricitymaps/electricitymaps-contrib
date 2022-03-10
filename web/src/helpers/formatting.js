@@ -1,16 +1,16 @@
 /* eslint-disable */
 // TODO: remove once refactored
 
-var d3 = require('d3-format');
-var translation = require('./translation');
+import * as d3 from 'd3-format';
+import * as translation from './translation';
 
-module.exports.formatPower = function (d, numDigits) {
+const formatPower = function (d, numDigits) {
   // Assume MW input
   if (d == null || d === NaN) return d;
   if (numDigits == null) numDigits = 3;
   return d3.format('.' + numDigits + 's')(d * 1e6) + 'W';
 };
-module.exports.formatCo2 = function (d, numDigits) {
+const formatCo2 = function (d, numDigits) {
   // Assume gCO₂ / h input
   d /= 60; // Convert to gCO₂ / min
   d /= 1e6; // Convert to tCO₂ / min
@@ -21,7 +21,7 @@ module.exports.formatCo2 = function (d, numDigits) {
   else
     return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + translation.translate('ofCO2eqPerMinute');
 };
-module.exports.scalePower = function (maxPower) {
+const scalePower = function (maxPower) {
   // Assume MW input
   if (maxPower < 1) 
     return {
@@ -39,3 +39,8 @@ module.exports.scalePower = function (maxPower) {
     }
 };
 
+export {
+  formatPower,
+  formatCo2,
+  scalePower,
+};
