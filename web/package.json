@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "GPL-3.0-or-later",
+  "engines": {
+    "node": ">=12.x"
+  },
   "dependencies": {
     "basic-auth": "^2.0.0",
     "color-parse": "^1.3.8",
@@ -101,9 +104,6 @@
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "lint": "eslint geo src *.js",
     "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
-    "server-dev": "nodemon server.js",
-    "watch": "webpack --watch --progress --mode development",
-    "watch-poll": "webpack --watch --watch-poll --progress --mode development",
     "update-world": "node ./geo/update-world.js && yarn prettier --write 'geo/world.geojson'",
     "verify": "yarn lint && VERIFY_NO_UPDATES=1 yarn update-world"
   },
