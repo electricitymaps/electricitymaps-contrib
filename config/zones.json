@@ -1020,12 +1020,15 @@
       ]
     ],
     "capacity": {
-      "coal": 110,
-      "gas": 342,
-      "hydro": 5249,
-      "oil": 10,
-      "wind": 237
+      "coal": 0,
+      "gas": 237,
+      "hydro": 5234,
+      "oil": 13,
+      "wind": 258
     },
+    "contributors": [
+      "https://github.com/felixvanoost"
+    ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
