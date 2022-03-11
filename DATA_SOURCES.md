@@ -191,6 +191,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet),
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Alberta)
+- Canada (Manitoba)
+  - Hydro & Gas: [Manitoba Hydro-Electric Board](https://www.hydro.mb.ca/corporate/ar/pdf/annual_report_2020_21.pdf), [Manitoba Hydro](https://www.hydro.mb.ca/corporate/facilities/generating_stations/#selkirk)
+  - Wind: [Province of Manitoba](https://gov.mb.ca/sd/environment_and_biodiversity/energy/wind/windfarms.html)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
 - Canada (Québec): [Hydro-Québec](https://www.hydroquebec.com/generation/generating-stations.html)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
