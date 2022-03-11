@@ -22,21 +22,7 @@
     },
     "zoneOverrides": {
       "AM": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 5.320678216618582e-09,
-          "coal": 1.0584976199430881e-07,
-          "gas": 0.4447811083006733,
-          "geothermal": 1.3736955714133292e-10,
-          "hydro": 0.3355866239192643,
-          "hydro discharge": 3.2083507714465876e-11,
-          "nuclear": 0.21949955330631998,
-          "oil": 6.448963095335706e-11,
-          "solar": 2.5299236580704446e-07,
-          "unknown": 7.704350785565688e-05,
-          "wind": 5.5306569138090404e-05
-        }
+        "_source": "electricityMap, 2020 average"
       },
       "AR": {
         "_source": "electricityMap, 2021 average",
@@ -56,88 +42,66 @@
         }
       },
       "AT": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.053628260232650805,
-          "coal": 0.09689308623516149,
-          "gas": 0.13650458243817892,
-          "geothermal": 7.864478455695942e-06,
-          "hydro": 0.4149082347427941,
-          "hydro discharge": 0.059002330004048885,
-          "nuclear": 0.05884672934236063,
-          "oil": 0.0008304319779668264,
-          "solar": 0.035804080073763914,
-          "unknown": 0.008146144727791443,
-          "wind": 0.13542825574682724
+          "battery discharge": 0.0,
+          "biomass": 0.04425819078025896,
+          "coal": 0.08832456712849493,
+          "gas": 0.14965243524885571,
+          "geothermal": 4.247911583982369e-5,
+          "hydro": 0.4163352424189127,
+          "hydro discharge": 0.07472888570709779,
+          "nuclear": 0.06563850290427566,
+          "oil": 0.0008984964072578539,
+          "solar": 0.027865997632733445,
+          "unknown": 0.010821811036182013,
+          "wind": 0.12145791095405584
         }
       },
       "AUS-NSW": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 7.488517990411672e-05,
-          "coal": 0.8535821983928868,
-          "gas": 0.035559875431599414,
-          "geothermal": 0.0,
-          "hydro": 0.04927408690620556,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 7.266068801532127e-05,
-          "solar": 0.031536346066666096,
-          "unknown": 0.0,
-          "wind": 0.029899947334722628
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "AUS-QLD": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0010392971133297985,
-          "coal": 0.8508607605568256,
-          "gas": 0.09966940317760901,
-          "geothermal": 0.0,
-          "hydro": 0.01504579491309293,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0002335193388070832,
-          "solar": 0.032987824150061656,
-          "unknown": 0.0,
-          "wind": 0.00016340075027390576
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "AUS-SA": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.5283043387177214e-07,
-          "coal": 0.04786285091712733,
-          "gas": 0.5444326303687775,
-          "geothermal": 0.0,
-          "hydro": 0.0022950233867802335,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.000608872332330115,
-          "solar": 0.06143943737205983,
-          "unknown": 0.0,
-          "wind": 0.34336103279249097
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "AUS-TAS": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average"
+      },
+      "AUS-TAS-FI": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.0741456236391117e-07,
-          "coal": 0.07319500232649218,
-          "gas": 0.04316174858872642,
+          "battery discharge": 0.008755639165674524,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
           "geothermal": 0.0,
-          "hydro": 0.7565621564595786,
+          "hydro": 0.0,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 5.696826937924544e-07,
-          "solar": 0.01242741717225548,
+          "oil": 0.3132555277375678,
+          "solar": 0.02173952324832005,
           "unknown": 0.0,
-          "wind": 0.11465289835569116
+          "wind": 0.6558537902621875
+        }
+      },
+      "AUS-TAS-KI": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.013766739653774968,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.43961368102156606,
+          "solar": 0.006841029239200127,
+          "unknown": 0.0,
+          "wind": 0.5403600850959404
         }
       },
       "AUS-TAS-KI": {
@@ -158,37 +122,40 @@
         }
       },
       "AUS-VIC": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.858478761501497e-06,
-          "coal": 0.752601944114975,
-          "gas": 0.08768671422177814,
-          "geothermal": 0.0,
-          "hydro": 0.03847632594969567,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 1.1075365505096629e-05,
-          "solar": 0.026058918063377765,
-          "unknown": 0.0,
-          "wind": 0.0951621638059067
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "AUS-WA": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.455486895604748,
-          "gas": 0.4068239689520351,
+          "battery discharge": 0.0,
+          "biomass": 0.004631684306078874,
+          "coal": 0.3776521646138522,
+          "gas": 0.29601376606596835,
           "geothermal": 0.0,
           "hydro": 0.0,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 4.385172050551367e-05,
-          "solar": 0.00400469394843494,
-          "unknown": 0.006564469074320909,
-          "wind": 0.12707612069995539
+          "oil": 0.00022630743972375724,
+          "solar": 0.15486339189818477,
+          "unknown": 0.0,
+          "wind": 0.16637387140862134
+        }
+      },
+      "AUS-WA-RI": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.7214348874672578,
+          "solar": 0.09655515040514011,
+          "unknown": 0.0,
+          "wind": 0.18206372128287884
         }
       },
       "AW": {
@@ -209,20 +176,20 @@
         }
       },
       "AX": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.007009741303381698,
-          "coal": 0.012042811565423,
-          "gas": 0.005418054879999589,
-          "geothermal": 3.5939617228237425e-07,
-          "hydro": 0.30556464906156244,
-          "hydro discharge": 7.187304737271648e-05,
-          "nuclear": 0.28339088962385095,
-          "oil": 0.00031508791173883333,
-          "solar": 0.0007678008595544288,
-          "unknown": 0.05947175909062207,
-          "wind": 0.32594697326032185
+          "battery discharge": 0.0,
+          "biomass": 0.005384705048009922,
+          "coal": 0.0079405969113943,
+          "gas": 0.004747308719278566,
+          "geothermal": 0.0,
+          "hydro": 0.3706291114501943,
+          "hydro discharge": 0.0011345263210479288,
+          "nuclear": 0.2425062360269565,
+          "oil": 0.00205121265296176,
+          "solar": 0.0006957707354031987,
+          "unknown": 0.06317763552524105,
+          "wind": 0.30186399825728016
         }
       },
       "AZ": {
@@ -235,54 +202,54 @@
         }
       },
       "BA": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.000998440999299659,
-          "coal": 0.638000451868327,
-          "gas": 0.004816079695939892,
-          "geothermal": 1.0816254506314613e-05,
-          "hydro": 0.26922837051443727,
-          "hydro discharge": 0.0005789972481108935,
-          "nuclear": 0.011341222155400926,
-          "oil": 5.455403014874274e-05,
-          "solar": 0.001052269401477862,
-          "unknown": 0.05521245177597446,
-          "wind": 0.01870633945975898
+          "biomass": 0.0008054711188588376,
+          "coal": 0.6127321609010782,
+          "gas": 0.0030722610903760232,
+          "geothermal": 7.804484351511322e-6,
+          "hydro": 0.3226895466158486,
+          "hydro discharge": 0.014639617628600561,
+          "nuclear": 0.00837515090091328,
+          "oil": 9.403669159615779e-5,
+          "solar": 0.0015841245699951838,
+          "unknown": 0.014994879462179575,
+          "wind": 0.021005463044273934
         }
       },
       "BE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03937654448039148,
-          "coal": 0.011444366746055376,
-          "gas": 0.2516242258475321,
-          "geothermal": 4.0955053235580226e-07,
-          "hydro": 0.007954651616170878,
-          "hydro discharge": 0.00995479508517582,
-          "nuclear": 0.480517058638453,
-          "oil": 0.00019735272926423491,
-          "solar": 0.03844689583305411,
-          "unknown": 0.06654974182330546,
-          "wind": 0.09393395765006517
+          "battery discharge": 0.0,
+          "biomass": 0.04042209412505686,
+          "coal": 0.013537019345019814,
+          "gas": 0.21526247587201333,
+          "geothermal": 1.2094524049642515e-5,
+          "hydro": 0.00959937392763802,
+          "hydro discharge": 0.00925873458676833,
+          "nuclear": 0.503652395067663,
+          "oil": 0.0009223810364118922,
+          "solar": 0.05073921303921255,
+          "unknown": 0.03733858608809279,
+          "wind": 0.11925605958070863
         }
       },
       "BG": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0050484318159014835,
-          "coal": 0.39259146860909483,
-          "gas": 0.0852703607617151,
-          "geothermal": 5.105436826554627e-05,
-          "hydro": 0.09540387997036069,
-          "hydro discharge": 5.652344095868946e-05,
-          "nuclear": 0.3626441506955629,
-          "oil": 8.348664971863332e-06,
-          "solar": 0.025884283508157357,
-          "unknown": 7.656148410570733e-05,
-          "wind": 0.03296493668090581
+          "battery discharge": 0.0,
+          "biomass": 0.005436933983477743,
+          "coal": 0.38183264795160465,
+          "gas": 0.09028913903962134,
+          "geothermal": 0.0001229453944999596,
+          "hydro": 0.1231866866337897,
+          "hydro discharge": 3.6738180250612064e-5,
+          "nuclear": 0.3417097593898389,
+          "oil": 6.1511423371115365e-6,
+          "solar": 0.025253475421739884,
+          "unknown": 5.164544200655457e-5,
+          "wind": 0.03207380541893425
         }
       },
       "BO": {
@@ -303,71 +270,71 @@
         }
       },
       "BR-CS": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 8.218464096071776e-07,
-          "coal": 7.668088159023776e-12,
-          "gas": 1.9276108625916413e-06,
+          "battery discharge": 0.0,
+          "biomass": 1.3632012442739018e-5,
+          "coal": 1.9003488658905367e-6,
+          "gas": 0.00029723543182633437,
           "geothermal": 0.0,
-          "hydro": 0.8160137700879239,
-          "hydro discharge": 1.0106981815275344e-08,
-          "nuclear": 0.04676092738012148,
-          "oil": 3.049475766569618e-07,
-          "solar": 0.0045079813807120716,
-          "unknown": 0.1237787914928793,
-          "wind": 0.008935465138864309
+          "hydro": 0.7049902283576696,
+          "hydro discharge": 2.7548509642948006e-6,
+          "nuclear": 0.03949685627154283,
+          "oil": 5.0319776833644826e-5,
+          "solar": 0.007734395638645226,
+          "unknown": 0.21699292500748832,
+          "wind": 0.030409492806559996
         }
       },
       "BR-N": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 4.911205568244826e-09,
-          "coal": 4.313986116465133e-16,
-          "gas": 1.0853475945439887e-09,
+          "battery discharge": 0.0,
+          "biomass": 1.1296520117163924e-8,
+          "coal": 1.148798655982772e-9,
+          "gas": 3.8561341552488374e-7,
           "geothermal": 0.0,
-          "hydro": 0.7172439274130927,
-          "hydro discharge": 2.7606478579492795e-12,
-          "nuclear": 8.105030892725133e-05,
-          "oil": 7.447776735800374e-12,
-          "solar": 0.0019175324759946643,
-          "unknown": 0.21556019595945308,
-          "wind": 0.06519728783577029
+          "hydro": 0.6295185829647616,
+          "hydro discharge": 6.126926165241449e-9,
+          "nuclear": 1.2129782075636762e-5,
+          "oil": 2.4699171103629594e-8,
+          "solar": 0.008011736569739936,
+          "unknown": 0.2388881241846813,
+          "wind": 0.12414539642596208
         }
       },
       "BR-NE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 1.8640824047005516e-08,
-          "coal": 1.0552760051336436e-14,
-          "gas": 1.9402344371350723e-08,
+          "battery discharge": 0.0,
+          "biomass": 3.3969561966917505e-8,
+          "coal": 3.931195598545349e-9,
+          "gas": 1.4594815659317463e-6,
           "geothermal": 0.0,
-          "hydro": 0.3359035561233888,
-          "hydro discharge": 2.5637046246516593e-10,
-          "nuclear": 0.0007973205901109388,
-          "oil": 6.239039846068196e-09,
-          "solar": 0.028126433861871164,
-          "unknown": 0.18937143663903125,
-          "wind": 0.44580120824700853
+          "hydro": 0.27237331594873426,
+          "hydro discharge": 1.7337580588456415e-8,
+          "nuclear": 0.00034529243260285786,
+          "oil": 4.7879946392539505e-8,
+          "solar": 0.040555463209194946,
+          "unknown": 0.20306199861523774,
+          "wind": 0.4831478258040717
         }
       },
       "BR-S": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00022553024893881037,
-          "coal": 2.0689979392130977e-06,
-          "gas": 0.001279500270204503,
+          "battery discharge": 0.0,
+          "biomass": 0.0010573299148806357,
+          "coal": 0.00018700365100441686,
+          "gas": 0.02018680309237905,
           "geothermal": 0.0,
-          "hydro": 0.8070708339657243,
-          "hydro discharge": 7.0765840952525265e-06,
-          "nuclear": 0.008743386546970933,
-          "oil": 0.00012327132139450955,
-          "solar": 0.0009475119457176142,
-          "unknown": 0.12408773405776864,
-          "wind": 0.05751308606124606
+          "hydro": 0.6908141207627143,
+          "hydro discharge": 0.00017530247239040217,
+          "nuclear": 0.012488659895512396,
+          "oil": 0.003467211204794746,
+          "solar": 0.0023903809168530406,
+          "unknown": 0.19833394892588527,
+          "wind": 0.07090499351133345
         }
       },
       "BY": {
@@ -379,21 +346,7 @@
         }
       },
       "CA-AB": {
-        "_source": "electricityMap, 2019 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 0.00015202596716481923,
-          "coal": 0.34266596733397453,
-          "gas": 0.5542275904610959,
-          "geothermal": 5.057212327873932e-06,
-          "hydro": 0.02532779739588966,
-          "hydro discharge": 2.9211883435035454e-07,
-          "nuclear": 0.00017241607458414309,
-          "oil": 0.00017183472466666649,
-          "solar": 4.587162422049092e-05,
-          "unknown": 0.026950957826774098,
-          "wind": 0.05077435948835843
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "CA-BC": {
         "_source": "List of Generating Stations in BC (Wikipedia)",
@@ -427,55 +380,44 @@
           "wind": 0.07
         }
       },
+      "CA-NS": {
+        "_source": "electricityMap, 2018 average"
+      },
       "CA-ON": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0013511697764909713,
-          "coal": 4.698834038411424e-06,
-          "gas": 0.02576138874326961,
+          "battery discharge": 5.455664708392035e-10,
+          "biomass": 0.002995765425751791,
+          "coal": 3.66481938644217e-5,
+          "gas": 0.08784564392402257,
           "geothermal": 0.0,
-          "hydro": 0.23801296887842974,
-          "hydro discharge": 0.0,
-          "nuclear": 0.6461797210759463,
-          "oil": 1.5347728624839063e-09,
-          "solar": 0.0033665186298571076,
-          "unknown": 1.6146812459456887e-07,
-          "wind": 0.08532337105907035
+          "hydro": 0.26942789796631117,
+          "hydro discharge": 8.573187398901767e-10,
+          "nuclear": 0.5532359834166304,
+          "oil": 5.050075006356718e-5,
+          "solar": 0.004921162793209854,
+          "unknown": 1.1238903113489379e-5,
+          "wind": 0.08227677191272745
         }
       },
       "CA-PE": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0017525174779592335,
-          "solar": 0.0,
-          "unknown": 0.0,
-          "wind": 0.9982474825220405
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "CA-QC": {
-        "_source": "https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=2510001501#timeframe, for data between Jan 2017 and March 2020",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.009328769,
-          "coal": 0.0,
-          "gas": 0.00103653,
+          "battery discharge": 0.0,
+          "biomass": 0.021978738337054254,
+          "coal": 5.629747542273749e-7,
+          "gas": 0.00020968694448799533,
           "geothermal": 0.0,
-          "hydro": 0.94066,
+          "hydro": 0.9254093918590359,
           "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0017525174779592335,
-          "solar": 1e-05,
-          "unknown": 0.0,
-          "wind": 0.04897
+          "nuclear": 0.002598703038954871,
+          "oil": 2.5275331593384034e-9,
+          "solar": 2.7587891406117657e-5,
+          "unknown": 0.0007353539790029252,
+          "wind": 0.04908312222781087
         }
       },
       "CA-YT": {
@@ -496,140 +438,148 @@
         }
       },
       "CH": {
-        "_source": "Bundesamt f\u00fcr Statistik, Gesamtenergiestatistik 2019",
-        "_url": "https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/energiestatistiken/gesamtenergiestatistik.exturl.html/aHR0cHM6Ly9wdWJkYi5iZmUuYWRtaW4uY2gvZGUvcHVibGljYX/Rpb24vZG93bmxvYWQvNzUxOQ==.html",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.035171,
-          "coal": 0.0461,
-          "gas": 0.031005,
-          "geothermal": 0,
-          "hydro": 0.409632,
-          "hydro discharge": 0.035143,
-          "nuclear": 0.335663,
-          "oil": 0.001207,
-          "solar": 0.038008,
-          "unknown": 0.021428,
-          "wind": 0.046622
-        }
-      },
-      "CR": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00989886255506458,
-          "coal": 0.0,
-          "gas": 3.279618648594993e-05,
-          "geothermal": 0.11319921415055932,
-          "hydro": 0.669617032807585,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.014889881684856743,
-          "solar": 0.0014830827985128077,
-          "unknown": 0.037070700315803,
-          "wind": 0.15380842950113288
-        }
-      },
-      "CY": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.007041324403536301,
+          "biomass": 0.017868391136214606,
+          "coal": 0.05360355831276312,
+          "gas": 0.03177206682914095,
+          "geothermal": 0.0001436916149941737,
+          "hydro": 0.17774159871562908,
+          "hydro discharge": 0.07772269503742463,
+          "nuclear": 0.3173173488884255,
+          "oil": 0.0013330928745752715,
+          "solar": 0.04348986471679308,
+          "unknown": 0.221832442249161,
+          "wind": 0.05717748066894947
+        }
+      },
+      "CL-SEN": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "CL-SIC": {
+        "_source": "electricityMap, 2018 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.038296450602361365,
+          "coal": 0.29041355882246583,
+          "gas": 0.1458418707905471,
+          "geothermal": 0.0,
+          "hydro": 0.40729367867367355,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.007298772537128574,
+          "solar": 0.05838873124551669,
+          "unknown": 3.3763607938229124e-5,
+          "wind": 0.05243317372036873
+        }
+      },
+      "CL-SING": {
+        "_source": "electricityMap, 2018 average"
+      },
+      "CR": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "CY": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.010409589068004797,
           "coal": 0.0,
           "gas": 0.0,
           "geothermal": 0.0,
           "hydro": 0.0,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.8869694825241733,
-          "solar": 0.05589490652071752,
+          "oil": 0.8541594386389846,
+          "solar": 0.08727592777145292,
           "unknown": 0.0,
-          "wind": 0.05009428655157289
+          "wind": 0.04815504650414774
         }
       },
       "CZ": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.029581134586084818,
-          "coal": 0.4163035754964945,
-          "gas": 0.08369130733404609,
-          "geothermal": 3.5262660684559796e-06,
-          "hydro": 0.024624291833804123,
-          "hydro discharge": 0.013987175673542612,
-          "nuclear": 0.3314623139798094,
-          "oil": 0.0013046551449315577,
-          "solar": 0.031781684540290164,
-          "unknown": 0.03812510370063918,
-          "wind": 0.029135231444289224
+          "battery discharge": 0.0,
+          "biomass": 0.03446090291821729,
+          "coal": 0.4002987959324891,
+          "gas": 0.10248292955124527,
+          "geothermal": 1.550247805092058e-5,
+          "hydro": 0.031585735567966296,
+          "hydro discharge": 0.014177719473146255,
+          "nuclear": 0.3260800419162666,
+          "oil": 0.0015704253814930761,
+          "solar": 0.03342253544283739,
+          "unknown": 0.0280657154893084,
+          "wind": 0.027977090504331652
         }
       },
       "DE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.08885879872839676,
-          "coal": 0.282044638646337,
-          "gas": 0.09194290040537627,
-          "geothermal": 5.8962438029233296e-05,
-          "hydro": 0.03600645376796171,
-          "hydro discharge": 0.016784506297133843,
-          "nuclear": 0.15586057932366368,
-          "oil": 0.006191975310423186,
-          "solar": 0.08553310156847795,
-          "unknown": 0.008642827776235696,
-          "wind": 0.22807525573796472
+          "battery discharge": 0.0,
+          "biomass": 0.08695797586103204,
+          "coal": 0.2857351923423222,
+          "gas": 0.10660569370088492,
+          "geothermal": 0.0003626672343842708,
+          "hydro": 0.044354415667369806,
+          "hydro discharge": 0.016368370455167553,
+          "nuclear": 0.14085578623518058,
+          "oil": 0.006215931960606773,
+          "solar": 0.08806585550368344,
+          "unknown": 0.01015622640936904,
+          "wind": 0.2143262067236383
         }
       },
       "DK-BHM": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.16585768238003806,
-          "coal": 0.0028345344552472484,
-          "gas": 0.0011103148395809968,
-          "geothermal": 1.6192497421565575e-07,
-          "hydro": 0.15747123037921354,
-          "hydro discharge": 3.846070098146171e-05,
-          "nuclear": 0.13853724463336006,
-          "oil": 6.737175025148515e-05,
-          "solar": 0.09242450108148831,
-          "unknown": 0.027498378240386142,
-          "wind": 0.4141601196144785
+          "battery discharge": 0.0,
+          "biomass": 0.15095918069869516,
+          "coal": 0.0014260248014641183,
+          "gas": 0.001066171429188419,
+          "geothermal": 0.0,
+          "hydro": 0.2039542409207962,
+          "hydro discharge": 0.0006877466514784244,
+          "nuclear": 0.126819808779308,
+          "oil": 4.1159417160194575e-5,
+          "solar": 0.0854226344402395,
+          "unknown": 0.03237237827361511,
+          "wind": 0.39762139166770144
         }
       },
       "DK-DK1": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09323282472754776,
-          "coal": 0.13752156236381624,
-          "gas": 0.09614518949046115,
-          "geothermal": 7.735128221878566e-06,
-          "hydro": 0.14377283097778448,
-          "hydro discharge": 0.0010393946419450985,
-          "nuclear": 0.04854694721440869,
-          "oil": 0.00670307890149188,
-          "solar": 0.03405075543210714,
-          "unknown": 0.010333536663963883,
-          "wind": 0.42864614445825183
+          "battery discharge": 0.0,
+          "biomass": 0.08400812769781074,
+          "coal": 0.14821689542515792,
+          "gas": 0.07152787548009977,
+          "geothermal": 2.720922160122602e-5,
+          "hydro": 0.22421316595667967,
+          "hydro discharge": 0.01882718864668599,
+          "nuclear": 0.031373665679442796,
+          "oil": 0.003936165339504898,
+          "solar": 0.03887381636365451,
+          "unknown": 0.0060825755224919705,
+          "wind": 0.3729323152845277
         }
       },
       "DK-DK2": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.20053377914995704,
-          "coal": 0.11256148139595973,
-          "gas": 0.05985725113623406,
-          "geothermal": 9.834707335655713e-06,
-          "hydro": 0.11769668516074741,
-          "hydro discharge": 0.0015735477547811092,
-          "nuclear": 0.10816320933497438,
-          "oil": 0.009239206044563804,
-          "solar": 0.04264270013230295,
-          "unknown": 0.01664694995525625,
-          "wind": 0.33107535522788756
+          "battery discharge": 0.0,
+          "biomass": 0.20812647497492479,
+          "coal": 0.1025714765338211,
+          "gas": 0.06151065320132731,
+          "geothermal": 2.788150299214756e-5,
+          "hydro": 0.14056151739735406,
+          "hydro discharge": 0.0038693570880617054,
+          "nuclear": 0.08646049226462345,
+          "oil": 0.014126565137890847,
+          "solar": 0.04316885057758275,
+          "unknown": 0.018860291707920637,
+          "wind": 0.32081285245167535
         }
       },
       "DO": {
@@ -650,94 +600,94 @@
         }
       },
       "EE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09178488905293418,
-          "coal": 0.3975588631617279,
-          "gas": 0.06793629895192849,
-          "geothermal": 3.0440356309053584e-08,
-          "hydro": 0.09943512351443862,
-          "hydro discharge": 0.00010585907203411011,
-          "nuclear": 0.15409683341248365,
-          "oil": 8.171584079210552e-05,
-          "solar": 0.0013191565553633431,
-          "unknown": 0.08628939603835886,
-          "wind": 0.10139183395958243
+          "battery discharge": 0.0,
+          "biomass": 0.08780117830402454,
+          "coal": 0.33219023692229,
+          "gas": 0.060596227837664086,
+          "geothermal": 0.0,
+          "hydro": 0.13585984454093838,
+          "hydro discharge": 0.00025040172228707344,
+          "nuclear": 0.17710022695013405,
+          "oil": 0.00017893491345372163,
+          "solar": 0.00898554507613425,
+          "unknown": 0.07486012863442602,
+          "wind": 0.12249700285908187
         }
       },
       "ES": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.021923133419098153,
-          "coal": 0.043644770252814234,
-          "gas": 0.3030542460864191,
-          "geothermal": 1.1419653122598375e-07,
-          "hydro": 0.10903475573657948,
-          "hydro discharge": 0.0018423837546881793,
-          "nuclear": 0.2471606695251788,
-          "oil": 0.008443851916835748,
-          "solar": 0.0565405218747583,
-          "unknown": 0.004819184901393892,
-          "wind": 0.20353636833570274
+          "battery discharge": 0.0,
+          "biomass": 0.026634623994749185,
+          "coal": 0.021208469045876623,
+          "gas": 0.24320280424448476,
+          "geothermal": 3.655194703248409e-7,
+          "hydro": 0.13427141779442436,
+          "hydro discharge": 0.001835769228490905,
+          "nuclear": 0.23857966447351606,
+          "oil": 0.005424980459107308,
+          "solar": 0.0974162456290389,
+          "unknown": 0.0052993834134970426,
+          "wind": 0.22676251741210685
         }
       },
       "ES-CN-FVLZ": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.06271446860095414,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.8353481706646269,
-          "solar": 0.02000737541896436,
-          "unknown": 0.0,
-          "wind": 0.08192998531545453
-        }
-      },
-      "ES-CN-GC": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.4626773149683862,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.3822859421821512,
-          "solar": 0.01811324518439235,
-          "unknown": 0.0,
-          "wind": 0.13692349766507012
-        }
-      },
-      "ES-CN-HI": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
           "coal": 0.0,
           "gas": 0.0,
           "geothermal": 0.0,
           "hydro": 0.0,
-          "hydro discharge": 0.05124219287056189,
+          "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.4016968220411003,
+          "oil": 0.8508737999322145,
+          "solar": 0.02155466334462865,
+          "unknown": 0.0,
+          "wind": 0.12757184991542395
+        }
+      },
+      "ES-CN-GC": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.7849006222609012,
+          "solar": 0.01683891380855342,
+          "unknown": 0.0,
+          "wind": 0.1982605810389791
+        }
+      },
+      "ES-CN-HI": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.035028722497975284,
+          "nuclear": 0.0,
+          "oil": 0.47667870325185996,
           "solar": 0.0,
           "unknown": 0.0,
-          "wind": 0.5470609850883378
+          "wind": 0.48828702439202293
         }
       },
       "ES-CN-IG": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
           "coal": 0.0,
           "gas": 0.0,
@@ -752,241 +702,227 @@
         }
       },
       "ES-CN-LP": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0022084053400486517,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.8881506955858323,
-          "solar": 0.029106778032731692,
-          "unknown": 0.0,
-          "wind": 0.08053412104138738
-        }
-      },
-      "ES-CN-TE": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.4542534358762791,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.35613750022835705,
-          "solar": 0.06142455197407586,
-          "unknown": 0.0,
-          "wind": 0.12818451192128813
-        }
-      },
-      "ES-IB-FO": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.046192038618202,
-          "coal": 0.07828355285170524,
-          "gas": 0.5466867771360264,
-          "geothermal": 0.0,
-          "hydro": 0.026406787545553603,
-          "hydro discharge": 0.0003517505068924988,
-          "nuclear": 0.05370296051910368,
-          "oil": 0.09271318797489893,
-          "solar": 0.10987365579354058,
-          "unknown": 0.0011729783163447688,
-          "wind": 0.045082213340018815
-        }
-      },
-      "ES-IB-IZ": {
-        "_source": "electricityMap, 2020 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 0.05095971226495889,
-          "coal": 0.0649189903620607,
-          "gas": 0.614505542136485,
-          "geothermal": 0.0,
-          "hydro": 0.033736328055471415,
-          "hydro discharge": 0.0005881113882098257,
-          "nuclear": 0.061753260359948825,
-          "oil": 0.0849953462889891,
-          "solar": 0.03481944919088431,
-          "unknown": 0.0013049069226344558,
-          "wind": 0.052279071555982465
-        }
-      },
-      "ES-IB-MA": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.06292695619354034,
-          "coal": 0.4055774249232914,
-          "gas": 0.31004886923805935,
-          "geothermal": 2.458331305201969e-08,
-          "hydro": 0.03343002986155294,
-          "hydro discharge": 0.000587638554260916,
-          "nuclear": 0.07900390549691749,
-          "oil": 0.0027329682755307372,
-          "solar": 0.044141749705863646,
-          "unknown": 0.0015154752311720941,
-          "wind": 0.060034957936498004
-        }
-      },
-      "ES-IB-ME": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.48916144244119314,
-          "geothermal": 0.0,
-          "hydro": 0.0,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.48359139629427733,
-          "solar": 0.016006608880846294,
-          "unknown": 0.0,
-          "wind": 0.011240552383683194
-        }
-      },
-      "FI": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.07736572382100938,
-          "coal": 0.10709028291331703,
-          "gas": 0.05643469240651852,
-          "geothermal": 8.935189216363906e-08,
-          "hydro": 0.22543877937806872,
-          "hydro discharge": 1.8152006790247836e-05,
-          "nuclear": 0.3696672397513408,
-          "oil": 0.00021969209263031912,
-          "solar": 0.0002892983304103557,
-          "unknown": 0.07146469138719014,
-          "wind": 0.0920113585608323
-        }
-      },
-      "FO": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
           "biomass": 0.0,
           "coal": 0.0,
           "gas": 0.0,
           "geothermal": 0.0,
-          "hydro": 0.2693856053993839,
+          "hydro": 0.0,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.6021188908034802,
-          "solar": 0.0,
+          "oil": 0.8998535523993212,
+          "solar": 0.020949744378889603,
           "unknown": 0.0,
-          "wind": 0.12849550379713598
+          "wind": 0.07919480848611123
+        }
+      },
+      "ES-CN-TE": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.7857956118860822,
+          "solar": 0.054029956428362155,
+          "unknown": 0.0,
+          "wind": 0.1601746792817262
+        }
+      },
+      "ES-IB-FO": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.04167384931908455,
+          "coal": 0.012312232800330529,
+          "gas": 0.606175334578282,
+          "geothermal": 0.0,
+          "hydro": 0.022040510559598953,
+          "hydro discharge": 0.0002613752216289896,
+          "nuclear": 0.03329044406590256,
+          "oil": 0.1675977117369273,
+          "solar": 0.08217940939198963,
+          "unknown": 0.0006651369450176123,
+          "wind": 0.03415216237500685
+        }
+      },
+      "ES-IB-IZ": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.04171811180927473,
+          "coal": 0.010880917713597752,
+          "gas": 0.6330949956376745,
+          "geothermal": 0.0,
+          "hydro": 0.02245013937197554,
+          "hydro discharge": 0.0003161751575623348,
+          "nuclear": 0.033687720038077275,
+          "oil": 0.18608310578285736,
+          "solar": 0.03688515848434088,
+          "unknown": 0.0007363131877938466,
+          "wind": 0.03424058076369765
+        }
+      },
+      "ES-IB-MA": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.05550957931144226,
+          "coal": 0.014689744221931686,
+          "gas": 0.7619392959084769,
+          "geothermal": 1.4718285430428863e-8,
+          "hydro": 0.028428130363258888,
+          "hydro discharge": 0.00042688179148144353,
+          "nuclear": 0.04246525109091993,
+          "oil": 0.001439904581944286,
+          "solar": 0.051862260623308246,
+          "unknown": 0.0009315717988908492,
+          "wind": 0.04241750497298361
+        }
+      },
+      "ES-IB-ME": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.009087812591814829,
+          "coal": 0.002667449563312586,
+          "gas": 0.4237573207981387,
+          "geothermal": 0.0,
+          "hydro": 0.0052521897414790865,
+          "hydro discharge": 8.169183186533579e-5,
+          "nuclear": 0.007417653726530078,
+          "oil": 0.5144680592016038,
+          "solar": 0.024228386029099633,
+          "unknown": 0.00015511051314371366,
+          "wind": 0.012883352691178464
+        }
+      },
+      "FI": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.07638674244621738,
+          "coal": 0.08213747570307448,
+          "gas": 0.048181497460147195,
+          "geothermal": 2.920239896754572e-7,
+          "hydro": 0.25294209064090295,
+          "hydro discharge": 0.00023218277264565014,
+          "nuclear": 0.3324302166435732,
+          "oil": 0.00036853095930696145,
+          "solar": 0.0003562148659627516,
+          "unknown": 0.09138830313576478,
+          "wind": 0.11561639849701107
+        }
+      },
+      "FO": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.01733172985203319,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.237708660836947,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.6117476901021067,
+          "solar": 0.0004114547212078257,
+          "unknown": 1.4446059177202655e-5,
+          "wind": 0.13272450542005115
         }
       },
       "FR": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.01356996296197773,
-          "coal": 0.004802760457283329,
-          "gas": 0.07595712257073689,
-          "geothermal": 2.374273858459212e-06,
-          "hydro": 0.10223018646861476,
-          "hydro discharge": 0.010100295042488805,
-          "nuclear": 0.703886628751109,
-          "oil": 0.0031151288317415237,
-          "solar": 0.022445977790699744,
-          "unknown": 0.0004988084370462809,
-          "wind": 0.0633907544144435
+          "battery discharge": 0.0,
+          "biomass": 0.015209929016133859,
+          "coal": 0.010887052173734837,
+          "gas": 0.0712984855328487,
+          "geothermal": 1.2223624161909492e-5,
+          "hydro": 0.10778393219597329,
+          "hydro discharge": 0.009734017020543516,
+          "nuclear": 0.6792331495471442,
+          "oil": 0.00332158869605381,
+          "solar": 0.027378674868129716,
+          "unknown": 0.0017309794893392019,
+          "wind": 0.07341712749291088
         }
       },
       "GB": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0648466794883742,
-          "coal": 0.029153707993039436,
-          "gas": 0.4554578154358571,
-          "geothermal": 2.1630943841475366e-07,
-          "hydro": 0.01804768561342051,
-          "hydro discharge": 0.007888610021101266,
-          "nuclear": 0.22877691321818902,
-          "oil": 0.0003536886345706338,
-          "solar": 0.04748456414867289,
-          "unknown": 0.007403682251385126,
-          "wind": 0.1405864368859514
+          "battery discharge": 0.0,
+          "biomass": 0.0724986920904723,
+          "coal": 0.021152988990996692,
+          "gas": 0.41542332924659137,
+          "geothermal": 1.079851681822603e-6,
+          "hydro": 0.023699093299381628,
+          "hydro discharge": 0.008060948371545874,
+          "nuclear": 0.21403997281864565,
+          "oil": 0.0005531425166587685,
+          "solar": 0.043542302432684234,
+          "unknown": 0.008192391873934021,
+          "wind": 0.1928360296357735
         }
       },
       "GB-NIR": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.008958539569725019,
-          "coal": 0.11593325293035403,
-          "gas": 0.5280023449962602,
-          "geothermal": 3.432472746504255e-08,
-          "hydro": 0.003421857292785178,
-          "hydro discharge": 0.0015215635876424916,
-          "nuclear": 0.031115790511719005,
-          "oil": 0.0037049427933796004,
-          "solar": 0.007233707799135829,
-          "unknown": 0.0010529022891172482,
-          "wind": 0.2990550639051538
+          "battery discharge": 0.0,
+          "biomass": 0.005728095332677423,
+          "coal": 0.13224761012452896,
+          "gas": 0.5072271977417733,
+          "geothermal": 3.2112297732765e-8,
+          "hydro": 0.0033614029336237754,
+          "hydro discharge": 0.0010649401297116857,
+          "nuclear": 0.01631543158635128,
+          "oil": 0.00504722631192404,
+          "solar": 0.0011623287006607287,
+          "unknown": 0.000749284271073039,
+          "wind": 0.3270869776275468
         }
       },
       "GB-ORK": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.01836359145944627,
-          "coal": 0.004406709467289116,
-          "gas": 0.11027812365818711,
+          "biomass": 0.022211081859299826,
+          "coal": 0.007064994488830365,
+          "gas": 0.13999431580702146,
           "geothermal": 0.0,
-          "hydro": 0.005165277365638387,
-          "hydro discharge": 0.0016606279034816621,
-          "nuclear": 0.053147218187915034,
-          "oil": 0.00013570911245034642,
-          "solar": 0.009983060477264175,
-          "unknown": 0.7570955969847145,
-          "wind": 0.03986285267789267
+          "hydro": 0.0072490762810272225,
+          "hydro discharge": 0.002650341487898446,
+          "nuclear": 0.06619888175765236,
+          "oil": 0.00013917095037359502,
+          "solar": 0.012661923520071158,
+          "unknown": 0.7000303317444273,
+          "wind": 0.04240553903391588
         }
       },
       "GE": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 3.51956222551958e-07,
-          "coal": 7.188210052963989e-06,
-          "gas": 0.2495025079556199,
-          "geothermal": 2.385411616799037e-07,
-          "hydro": 0.7383734991242824,
-          "hydro discharge": 1.2339136245107426e-09,
-          "nuclear": 0.001474409739565938,
-          "oil": 2.1460778489787228e-08,
-          "solar": 1.0281594268418385e-05,
-          "unknown": 0.003492209644613175,
-          "wind": 0.0071392905395208745
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "GR": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0008438046534683386,
-          "coal": 0.27638088700645147,
-          "gas": 0.36259133908067287,
-          "geothermal": 0.0014874493343108046,
-          "hydro": 0.0899973140082045,
-          "hydro discharge": 0.009752092002701163,
-          "nuclear": 0.019722259734835178,
-          "oil": 0.000178789789858407,
-          "solar": 0.09332002031795346,
-          "unknown": 0.00024618229103503587,
-          "wind": 0.14547986178050878
+          "battery discharge": 0.0,
+          "biomass": 0.0019703127556881584,
+          "coal": 0.15666972361386944,
+          "gas": 0.43957622071942654,
+          "geothermal": 0.0017223380227049975,
+          "hydro": 0.10577442920167958,
+          "hydro discharge": 0.013722991616342634,
+          "nuclear": 0.017695590739702702,
+          "oil": 0.00047128038001363577,
+          "solar": 0.09059384632958409,
+          "unknown": 0.0005373921993010452,
+          "wind": 0.17126642419219335
         }
       },
       "GT": {
@@ -1006,38 +942,55 @@
           "wind": 0.027476640634886654
         }
       },
-      "HR": {
-        "_source": "electricityMap, 2020 average",
+      "HN": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.008018995768938634,
-          "coal": 0.10098541858096638,
-          "gas": 0.03723760964419173,
-          "geothermal": 1.5394661042887992e-05,
-          "hydro": 0.09544761458476773,
-          "hydro discharge": 0.006896828986651608,
-          "nuclear": 0.11331490333871173,
-          "oil": 0.0004208988612562027,
-          "solar": 0.014828094511488095,
-          "unknown": 0.5369244497290565,
-          "wind": 0.08673032619816622
+          "biomass": 0.007045486645694452,
+          "coal": 0.006597569865664853,
+          "gas": 4.8181750818788224e-5,
+          "geothermal": 0.007824937104184155,
+          "hydro": 0.01898847029066722,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.010000665050243608,
+          "solar": 0.0007907202944894852,
+          "unknown": 0.9430337312899381,
+          "wind": 0.0060594077845567956
+        }
+      },
+      "HR": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.006705650088083894,
+          "coal": 0.13451795589227356,
+          "gas": 0.030341623596136135,
+          "geothermal": 9.817350236782052e-6,
+          "hydro": 0.1015019498252304,
+          "hydro discharge": 0.005946488670851081,
+          "nuclear": 0.08645035130520873,
+          "oil": 0.0005023757993080952,
+          "solar": 0.016516318093432337,
+          "unknown": 0.5231392697841895,
+          "wind": 0.0943810931291436
         }
       },
       "HU": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.03372525954413635,
-          "coal": 0.16992174262600995,
-          "gas": 0.20087000030655353,
-          "geothermal": 1.309028108841377e-06,
-          "hydro": 0.07827024925703643,
-          "hydro discharge": 0.00950969146796223,
-          "nuclear": 0.42594837235653804,
-          "oil": 0.0031232918736974,
-          "solar": 0.005986368807583321,
-          "unknown": 0.029802398770109286,
-          "wind": 0.042841315962264634
+          "battery discharge": 0.0,
+          "biomass": 0.03354830062418535,
+          "coal": 0.13794683125213117,
+          "gas": 0.2101728156484551,
+          "geothermal": 4.6258713894786964e-5,
+          "hydro": 0.06776241472117468,
+          "hydro discharge": 0.007522226703109011,
+          "nuclear": 0.4237198287807463,
+          "oil": 0.0027503258413930317,
+          "solar": 0.05148664079610546,
+          "unknown": 0.035921137690967386,
+          "wind": 0.029130591322452434
         }
       },
       "IE": {
@@ -1047,7 +1000,7 @@
           "biomass": 0.003728643578859784,
           "coal": 0.1577744146696373,
           "gas": 0.2583017595945274,
-          "geothermal": 3.816624962732839e-09,
+          "geothermal": 3.816624962732839e-9,
           "hydro": 0.027937712174632777,
           "hydro discharge": 0.01274596692115006,
           "nuclear": 0.010596388128460896,
@@ -1055,6 +1008,23 @@
           "solar": 0.0041355792204041475,
           "unknown": 0.003546456986263732,
           "wind": 0.379546536494195
+        }
+      },
+      "IL": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.0,
+          "solar": 0.0,
+          "unknown": 0.9999999999999999,
+          "wind": 0.0
         }
       },
       "IN": {
@@ -1075,31 +1045,31 @@
         }
       },
       "IN-AP": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.380030685578371,
-          "gas": 0.013073508437479205,
+          "coal": 0.20471870498563047,
+          "gas": 0.1395445056597702,
           "geothermal": 0.0,
-          "hydro": 0.043455484240912,
+          "hydro": 0.13919694080540992,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
           "oil": 0.0,
-          "solar": 0.0688062605154022,
-          "unknown": 0.35391185410744574,
-          "wind": 0.1407221734942265
+          "solar": 0.05521178149275248,
+          "unknown": 0.40278846845675453,
+          "wind": 0.05952510785419443
         }
       },
       "IN-CT": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.9904352631631581,
+          "coal": 0.9845941382531963,
           "gas": 0.0,
           "geothermal": 0.0,
-          "hydro": 0.009564720011031123,
+          "hydro": 0.015405860608830542,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
           "oil": 0.0,
@@ -1109,12 +1079,12 @@
         }
       },
       "IN-DL": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.37350221381321586,
-          "coal": 0.19613531079680585,
-          "gas": 0.4306390757349112,
+          "biomass": 0.055169811945132256,
+          "coal": 0.0,
+          "gas": 0.9450015074180002,
           "geothermal": 0.0,
           "hydro": 0.0,
           "hydro discharge": 0.0,
@@ -1211,139 +1181,97 @@
         }
       },
       "IS": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
           "coal": 0.0,
           "gas": 0.0,
-          "geothermal": 0.3006134269735258,
-          "hydro": 0.6991013815898574,
+          "geothermal": 0.27586046931378067,
+          "hydro": 0.7250081357344135,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.0002851914366168894,
+          "oil": 4.5972720703420004e-5,
           "solar": 0.0,
           "unknown": 0.0,
           "wind": 0.0
         }
       },
       "IT-CNO": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014467484670360476,
-          "coal": 0.03460059993774982,
-          "gas": 0.3906799908672765,
-          "geothermal": 0.16300819441212425,
-          "hydro": 0.1428729614852005,
-          "hydro discharge": 0.005781575893093146,
-          "nuclear": 0.017434647976856954,
-          "oil": 0.0006245662277984689,
-          "solar": 0.10081730252561812,
-          "unknown": 0.07672730985874271,
-          "wind": 0.052985366145179076
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "IT-CSO": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02676665571075216,
-          "coal": 0.1316313414426873,
-          "gas": 0.43353374464116995,
-          "geothermal": 0.0047549648729465245,
-          "hydro": 0.07033811056152171,
-          "hydro discharge": 0.009292508422918235,
-          "nuclear": 0.0014003370430367946,
-          "oil": 0.0007718684875432453,
-          "solar": 0.10027084979815665,
-          "unknown": 0.07017595023130688,
-          "wind": 0.15106366878796051
+          "battery discharge": 0.0,
+          "biomass": 0.03096508602037795,
+          "coal": 0.1381680918691007,
+          "gas": 0.38055559230848346,
+          "geothermal": 0.008110321674243076,
+          "hydro": 0.12122828845820864,
+          "hydro discharge": 0.013378518003777238,
+          "nuclear": 0.004493288584891102,
+          "oil": 0.0009768774011453894,
+          "solar": 0.09889650405549033,
+          "unknown": 0.05222802618050254,
+          "wind": 0.15099947694675103
         }
       },
       "IT-NO": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014657506053244932,
-          "coal": 0.034475601834363274,
-          "gas": 0.4148673069923476,
-          "geothermal": 0.0014276159695631107,
-          "hydro": 0.25005679001846715,
-          "hydro discharge": 0.017840162520520685,
-          "nuclear": 0.08031913387765628,
-          "oil": 0.0013065610996046996,
-          "solar": 0.050931139810305476,
-          "unknown": 0.12322461620601888,
-          "wind": 0.010893565617907969
+          "battery discharge": 0.0,
+          "biomass": 0.017878760576538685,
+          "coal": 0.02324738847533095,
+          "gas": 0.4207690537710687,
+          "geothermal": 0.0030981197850808184,
+          "hydro": 0.23313360486782747,
+          "hydro discharge": 0.02802360329332614,
+          "nuclear": 0.1025745813357639,
+          "oil": 0.001075415394914563,
+          "solar": 0.052690642250078246,
+          "unknown": 0.09908112143349937,
+          "wind": 0.01842868036721138
         }
       },
       "IT-SAR": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.033278637310826725,
-          "coal": 0.35377575055880073,
-          "gas": 0.33397726139705264,
-          "geothermal": 0.0001499290667426892,
-          "hydro": 0.02146841893655527,
-          "hydro discharge": 0.011971280780925903,
-          "nuclear": 4.4983199932822223e-05,
-          "oil": 0.013254181044558186,
-          "solar": 0.04947029552674505,
-          "unknown": 0.031421044916921784,
-          "wind": 0.15118821726093823
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "IT-SIC": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.014475784006798479,
-          "coal": 0.01663269395392683,
-          "gas": 0.5427806553380855,
-          "geothermal": 4.481847899998074e-06,
-          "hydro": 0.015482646829812803,
-          "hydro discharge": 0.013897670213323008,
-          "nuclear": 1.5303604048791515e-06,
-          "oil": 0.039717596798132526,
-          "solar": 0.09124423970753721,
-          "unknown": 0.050259627923187666,
-          "wind": 0.215503073020891
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "IT-SO": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.04350419315716201,
-          "coal": 0.07959708108449992,
-          "gas": 0.5205969915718773,
-          "geothermal": 1.5401173776696558e-05,
-          "hydro": 0.034862241681936815,
-          "hydro discharge": 4.6749351792825274e-05,
-          "nuclear": 3.858333500090049e-05,
-          "oil": 0.00015163947460199937,
-          "solar": 0.07725403771608097,
-          "unknown": 0.04394100537504538,
-          "wind": 0.19999204704468984
+          "biomass": 0.052376758010031235,
+          "coal": 0.0793555969297442,
+          "gas": 0.47612404313752965,
+          "geothermal": 9.657176100026117e-5,
+          "hydro": 0.03731396503304956,
+          "hydro discharge": 0.0005506711758869991,
+          "nuclear": 0.0005623472942085535,
+          "oil": 0.0006190927774206753,
+          "solar": 0.10283960034765774,
+          "unknown": 0.03301793752797091,
+          "wind": 0.21714341304267637
         }
       },
       "JP-KY": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.0,
+          "battery discharge": 0.0,
+          "biomass": 3.535409141699427e-7,
+          "coal": 7.676470442569983e-6,
+          "gas": 4.6864895939727375e-6,
+          "geothermal": 6.217443662988649e-8,
+          "hydro": 3.191742990994231e-6,
           "hydro discharge": 0.0,
-          "nuclear": 0.29081097411504575,
-          "oil": 0.0,
-          "solar": 0.10022635902649252,
-          "unknown": 0.6089626668584617,
-          "wind": 0.0
+          "nuclear": 0.3363740816412832,
+          "oil": 6.060178911513053e-7,
+          "solar": 0.12186437326301121,
+          "unknown": 0.5417491644586233,
+          "wind": 9.639475890833575e-7
         }
       },
       "KR": {
@@ -1380,6 +1308,23 @@
           "wind": 0.0
         }
       },
+      "KW": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.0,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.0,
+          "solar": 0.0,
+          "unknown": 1.0000000000000002,
+          "wind": 0.0
+        }
+      },
       "KZ": {
         "_source": "Our world in data 2019",
         "_url": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?stackMode=relative&time=earliest..latest&country=~KAZ",
@@ -1395,38 +1340,27 @@
         }
       },
       "LT": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average"
+      },
+      "LU": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.08788771357137579,
-          "coal": 0.05748610520532465,
-          "gas": 0.12250755977480975,
-          "geothermal": 2.92640617186076e-07,
-          "hydro": 0.23687770238450007,
-          "hydro discharge": 0.05207662597158187,
-          "nuclear": 0.14305681553131105,
-          "oil": 0.0005258336450968388,
-          "solar": 0.007754670356232445,
-          "unknown": 0.07761372905265006,
-          "wind": 0.21421295186650033
+          "battery discharge": 0.0,
+          "biomass": 0.13683200860841085,
+          "coal": 0.1534670232126012,
+          "gas": 0.12646323832666886,
+          "geothermal": 0.00021169172553920593,
+          "hydro": 0.04680182037959315,
+          "hydro discharge": 0.011667416398915754,
+          "nuclear": 0.22906012971407144,
+          "oil": 0.0038101838284090024,
+          "solar": 0.13108017562440819,
+          "unknown": 0.01679300174680191,
+          "wind": 0.14381576005480023
         }
       },
       "LV": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.09135809548126898,
-          "coal": 0.09828201832539846,
-          "gas": 0.2897939309211801,
-          "geothermal": 2.5791952033909265e-08,
-          "hydro": 0.25015600270782556,
-          "hydro discharge": 0.000851706173283393,
-          "nuclear": 0.07349316308869615,
-          "oil": 5.7567149933068564e-05,
-          "solar": 0.0005069799778596761,
-          "unknown": 0.14424498317343304,
-          "wind": 0.051255527209169635
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "MA": {
         "_source": "https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~MAR",
@@ -1440,20 +1374,20 @@
         }
       },
       "MD": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 3.214666715797671e-05,
-          "coal": 0.010219546105074568,
-          "gas": 0.14391748035657206,
+          "biomass": 0.0020286056993495958,
+          "coal": 0.01716394009196885,
+          "gas": 0.4749209708354371,
           "geothermal": 0.0,
-          "hydro": 0.048107104175236275,
-          "hydro discharge": 9.600836721795028e-06,
-          "nuclear": 0.022097465310326338,
-          "oil": 1.1650090946447075e-05,
-          "solar": 1.4651360913260308e-05,
-          "unknown": 0.7763134755966626,
-          "wind": 4.2957693382519006e-05
+          "hydro": 0.051391589157327194,
+          "hydro discharge": 5.952658646938796e-6,
+          "nuclear": 0.04418585081481439,
+          "oil": 7.66157023629711e-6,
+          "solar": 2.1580640114822764e-5,
+          "unknown": 0.4101506597330527,
+          "wind": 5.4416370178890296e-5
         }
       },
       "ME": {
@@ -1484,7 +1418,7 @@
           "hydro": 0.2986331760503868,
           "hydro discharge": 0.002401968496912464,
           "nuclear": 0.08548675368322706,
-          "oil": 2.6085503746080766e-05,
+          "oil": 2.6085503746080766e-5,
           "solar": 0.014681580701723084,
           "unknown": 0.000786020038571899,
           "wind": 0.03897586579963699
@@ -1499,37 +1433,26 @@
         "source": "Tomorrow & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
       },
       "MY-WM": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average"
+      },
+      "NA": {
+        "_source": "electricityMap, 2019 average"
+      },
+      "NG": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.5497922835036958,
-          "gas": 0.41152406479872466,
+          "coal": 0.0,
+          "gas": 0.7589794653377566,
           "geothermal": 0.0,
-          "hydro": 0.029552844653127977,
+          "hydro": 0.24102053466224352,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
           "oil": 0.0,
-          "solar": 3.0670152909220193e-06,
-          "unknown": 0.009127740029160792,
-          "wind": 0.0
-        }
-      },
-      "NA": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.018109771958883827,
-          "gas": 0.0,
-          "geothermal": 0.0,
-          "hydro": 0.6859801523524309,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0021103033497520663,
-          "solar": 0.18441683446500204,
+          "solar": 0.0,
           "unknown": 0.0,
-          "wind": 0.10938293787393111
+          "wind": 0.0
         }
       },
       "NG": {
@@ -1550,20 +1473,20 @@
         }
       },
       "NI": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.15803094260698802,
-          "coal": 0.0,
-          "gas": 2.8595921000895583e-06,
-          "geothermal": 0.17810943803989465,
-          "hydro": 0.08323109561401554,
+          "battery discharge": 0.0,
+          "biomass": 0.1279204534168906,
+          "coal": 0.001936235502816036,
+          "gas": 0.0009879540514918237,
+          "geothermal": 0.1709259937690316,
+          "hydro": 0.2906357984318759,
           "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.40055872852355645,
-          "solar": 0.005024668424594931,
-          "unknown": 0.002350834502174446,
-          "wind": 0.17269143269667578
+          "nuclear": 5.151971364625026e-6,
+          "oil": 0.2264392315930326,
+          "solar": 0.004552934669095748,
+          "unknown": 0.023008068691165624,
+          "wind": 0.1537045511326895
         }
       },
       "NKR": {
@@ -1573,190 +1496,210 @@
         }
       },
       "NL": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.010474282746588268,
-          "coal": 0.18294900807757467,
-          "gas": 0.42695341468772197,
-          "geothermal": 5.137205139088104e-06,
-          "hydro": 0.027600969991131184,
-          "hydro discharge": 0.0016993368226252202,
-          "nuclear": 0.07663133858252628,
-          "oil": 0.0005234100995840475,
-          "solar": 0.010178773218125992,
-          "unknown": 0.17221838893694466,
-          "wind": 0.0907659396320387
+          "battery discharge": 0.0,
+          "biomass": 0.007433071185784265,
+          "coal": 0.0989022186848022,
+          "gas": 0.5483262753315832,
+          "geothermal": 1.869241501794369e-5,
+          "hydro": 0.03127040434842982,
+          "hydro discharge": 0.0031974059999317654,
+          "nuclear": 0.052794871685374334,
+          "oil": 0.010797920942670533,
+          "solar": 0.0730593912344467,
+          "unknown": 0.0052478192280072285,
+          "wind": 0.16895285215849398
         }
       },
       "NO-NO1": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0022459477041282708,
-          "coal": 0.00486653532201876,
-          "gas": 0.014891107538121008,
-          "geothermal": 3.278597968376623e-07,
-          "hydro": 0.8721349100803618,
-          "hydro discharge": 3.117039250743086e-05,
-          "nuclear": 0.044994881365175314,
-          "oil": 0.00012202984109237993,
-          "solar": 0.0005212659445992144,
-          "unknown": 0.0114184411021005,
-          "wind": 0.04877338285009839
+          "battery discharge": 0.0,
+          "biomass": 0.003327382723164497,
+          "coal": 0.0024655202938470818,
+          "gas": 0.0077355538729549835,
+          "geothermal": 3.1026196692345975e-6,
+          "hydro": 0.875198317483395,
+          "hydro discharge": 0.03261251026319042,
+          "nuclear": 0.0200835214552653,
+          "oil": 9.255991336841701e-5,
+          "solar": 0.0013549679319406237,
+          "unknown": 0.004643535700193543,
+          "wind": 0.05247778044513106
         }
       },
       "NO-NO2": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.006805515704165435,
-          "coal": 0.015186892466091166,
-          "gas": 0.018765283259809622,
-          "geothermal": 1.1341432685352868e-06,
-          "hydro": 0.8527214209463434,
-          "hydro discharge": 9.104478832219862e-05,
-          "nuclear": 0.009498322670392375,
-          "oil": 0.00048212460080191186,
-          "solar": 0.0024391895673803645,
-          "unknown": 0.006183875767307299,
-          "wind": 0.08782519608611773
+          "battery discharge": 0.0,
+          "biomass": 0.005428089561735694,
+          "coal": 0.007589067165509379,
+          "gas": 0.00649585881248256,
+          "geothermal": 1.0194094545190603e-5,
+          "hydro": 0.8070337055866863,
+          "hydro discharge": 0.06771277135202619,
+          "nuclear": 0.005515176613956682,
+          "oil": 0.00029393792766775525,
+          "solar": 0.004643898061412512,
+          "unknown": 0.0005945119868778265,
+          "wind": 0.09470554780545679
         }
       },
       "NO-NO3": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0003949848835797223,
-          "coal": 0.0006112317492900574,
-          "gas": 0.02304655113300138,
-          "geothermal": 4.98696726878545e-08,
-          "hydro": 0.8637707058613433,
-          "hydro discharge": 3.51936160032456e-06,
-          "nuclear": 0.02377406077308191,
-          "oil": 1.9396780787808857e-05,
-          "solar": 7.603878316034909e-05,
-          "unknown": 0.009355778937187028,
-          "wind": 0.07894768186729546
+          "battery discharge": 0.0,
+          "biomass": 0.001004110157654516,
+          "coal": 0.00018878721983019609,
+          "gas": 0.0005044786903412457,
+          "geothermal": 1.4601211687430288e-7,
+          "hydro": 0.7881340947368408,
+          "hydro discharge": 0.02524604264781831,
+          "nuclear": 0.015302039887499065,
+          "oil": 1.0919430828688126e-5,
+          "solar": 0.00011983688497188565,
+          "unknown": 0.008532963659476577,
+          "wind": 0.16096861396731352
         }
       },
       "NO-NO4": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00022100361723151828,
-          "coal": 0.000351123850794099,
-          "gas": 0.06738020790610326,
-          "geothermal": 6.23606217658176e-09,
-          "hydro": 0.8862827022917135,
-          "hydro discharge": 4.500974318020495e-07,
-          "nuclear": 0.00424845339436572,
-          "oil": 2.6783937629127806e-06,
-          "solar": 1.2003086846209916e-05,
-          "unknown": 0.003118916191582483,
-          "wind": 0.03838245493410654
+          "battery discharge": 0.0,
+          "biomass": 8.616326867531956e-5,
+          "coal": 0.00010666797822751901,
+          "gas": 0.0008736233784356524,
+          "geothermal": 3.3749433766464316e-9,
+          "hydro": 0.9012881267883609,
+          "hydro discharge": 1.4380633727890444e-5,
+          "nuclear": 0.005358223548450256,
+          "oil": 2.352335533522563e-6,
+          "solar": 3.142988339717203e-5,
+          "unknown": 0.01081568537835173,
+          "wind": 0.08142765998447549
         }
       },
       "NO-NO5": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00040433666641565046,
-          "coal": 0.0009434132725478374,
-          "gas": 0.03016505895337649,
-          "geothermal": 7.020493423867024e-08,
-          "hydro": 0.960018122715742,
-          "hydro discharge": 4.284765346447582e-06,
-          "nuclear": 0.0013525064467719988,
-          "oil": 2.3160398318838374e-05,
-          "solar": 8.064721822649731e-05,
-          "unknown": 0.0007376716957748906,
-          "wind": 0.0062707276625451865
+          "battery discharge": 0.0,
+          "biomass": 0.005095892267561793,
+          "coal": 0.0003511880674961801,
+          "gas": 0.023657217353494627,
+          "geothermal": 6.022481163967234e-7,
+          "hydro": 0.8901778245831707,
+          "hydro discharge": 0.0656951918045038,
+          "nuclear": 0.0011415914739590716,
+          "oil": 1.656751552715183e-5,
+          "solar": 0.0003114875073544286,
+          "unknown": 0.0004978884224728323,
+          "wind": 0.013070146299478594
         }
       },
       "NZ-NZN": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.04547821535426373,
-          "gas": 0.1737881212921269,
-          "geothermal": 0.305791367228876,
-          "hydro": 0.3726072534919048,
+          "coal": 0.10300324286854977,
+          "gas": 0.15085195353697833,
+          "geothermal": 0.30942699443458854,
+          "hydro": 0.31789333594944125,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.00011299266377406926,
+          "oil": 0.0007836425136503577,
           "solar": 0.0,
-          "unknown": 0.04789397087744419,
-          "wind": 0.05432807909161043
+          "unknown": 0.04927664985922736,
+          "wind": 0.06878744399718065
         }
       },
       "NZ-NZS": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.00022657481503481162,
-          "gas": 0.000923780778894452,
-          "geothermal": 0.001739206000548788,
-          "hydro": 0.9870377559030186,
+          "coal": 0.0026034002989687626,
+          "gas": 0.0017710291581868563,
+          "geothermal": 0.005945336306355176,
+          "hydro": 0.9796303163452214,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.0,
+          "oil": 1.5882664004743069e-6,
           "solar": 0.0,
-          "unknown": 0.0002736491536676093,
-          "wind": 0.009799033348835768
+          "unknown": 0.0009632178582006909,
+          "wind": 0.009107976417096743
         }
       },
       "PA": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 4.860595252351037e-05,
-          "coal": 0.0,
-          "gas": 0.0012644674487080848,
-          "geothermal": 0.00025954373565018404,
-          "hydro": 0.39635202243639794,
+          "battery discharge": 0.0,
+          "biomass": 0.0016815764273725442,
+          "coal": 0.16944492033336206,
+          "gas": 0.11125361115985423,
+          "geothermal": 0.0003704504787044817,
+          "hydro": 0.6049839680936658,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 5.405194653901123e-06,
-          "solar": 0.02156551394369219,
-          "unknown": 0.5264878530607128,
-          "wind": 0.054016588227661436
+          "oil": 0.0312981870497017,
+          "solar": 0.04303617500201357,
+          "unknown": 0.0009356634959015261,
+          "wind": 0.03699654206885253
         }
       },
       "PE": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.004250749863884663,
-          "coal": 0.0,
-          "gas": 0.16815035351290378,
+          "biomass": 0.005702479081502678,
+          "coal": 0.0006123750588854402,
+          "gas": 0.3540826065344018,
           "geothermal": 0.0,
-          "hydro": 0.7738442468175045,
+          "hydro": 0.5889220009964422,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.00041796941495376706,
-          "solar": 0.01597748578985302,
-          "unknown": 0.0009620209176694048,
-          "wind": 0.03639713784238194
+          "oil": 0.0005831213660074787,
+          "solar": 0.015520858175944298,
+          "unknown": 0.001660302869653975,
+          "wind": 0.03291623389536334
+        }
+      },
+      "PF": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.2686986555465958,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.6614068571719289,
+          "solar": 0.06989146565888447,
+          "unknown": 0.0,
+          "wind": 0.0
         }
       },
       "PL": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average"
+      },
+      "PR": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.019553838173107397,
-          "coal": 0.7240538964670056,
-          "gas": 0.07714322600589038,
-          "geothermal": 3.6969006121861937e-06,
-          "hydro": 0.02266807496033773,
-          "hydro discharge": 0.007878479746687093,
-          "nuclear": 0.02245736712160887,
-          "oil": 0.010425240763994122,
-          "solar": 0.005102773624200512,
-          "unknown": 0.003249339847992352,
-          "wind": 0.10746406638856373
+          "battery discharge": 0.0,
+          "biomass": 0.0005887965173641044,
+          "coal": 0.1762410530532704,
+          "gas": 0.3587641861060882,
+          "geothermal": 0.0,
+          "hydro": 0.0030941777375071418,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.4389452569645856,
+          "solar": 0.012792129619702322,
+          "unknown": 0.0008999312021037569,
+          "wind": 0.008674363770315597
         }
       },
       "PR": {
@@ -1777,122 +1720,139 @@
         }
       },
       "PT": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.05452851639082636,
-          "coal": 0.09927705494720786,
-          "gas": 0.3279645620551449,
-          "geothermal": 2.5843804137568795e-08,
-          "hydro": 0.1340660355516998,
-          "hydro discharge": 0.04871089972165981,
-          "nuclear": 0.03523298226329534,
-          "oil": 0.0010755600295932369,
-          "solar": 0.027640311927038183,
-          "unknown": 0.006093515393511715,
-          "wind": 0.26541053587621866
+          "battery discharge": 0.0,
+          "biomass": 0.06488447779229968,
+          "coal": 0.016587007615473517,
+          "gas": 0.30736174887000084,
+          "geothermal": 6.627949786897139e-8,
+          "hydro": 0.18964818128751942,
+          "hydro discharge": 0.05743437692408108,
+          "nuclear": 0.03778843710721112,
+          "oil": 0.0007742312082991066,
+          "solar": 0.054566781804691204,
+          "unknown": 0.005709098141806352,
+          "wind": 0.2653557994591226
         }
       },
       "RE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.16382667476718826,
-          "coal": 0.29508780785135996,
-          "gas": 0.0115630485271109,
+          "battery discharge": 0.0,
+          "biomass": 0.07791974245755622,
+          "coal": 0.32002581076229125,
+          "gas": 0.04648911719199977,
           "geothermal": 0.0,
-          "hydro": 0.12553628312487924,
+          "hydro": 0.1338704394783061,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.3171646247821611,
-          "solar": 0.08315593223784189,
+          "oil": 0.3429924553156378,
+          "solar": 0.07709504273870084,
           "unknown": 0.0,
-          "wind": 0.003665628709458577
+          "wind": 0.00160462179363718
         }
       },
       "RO": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.007752656530856456,
-          "coal": 0.2386223481247558,
-          "gas": 0.1746291341827769,
-          "geothermal": 2.362905026231066e-06,
-          "hydro": 0.23450378749439396,
-          "hydro discharge": 0.0005516463929507139,
-          "nuclear": 0.20675637210539363,
-          "oil": 0.00010430147497459869,
-          "solar": 0.014117992684397786,
-          "unknown": 0.0011336996179512145,
-          "wind": 0.12182569848652265
+          "battery discharge": 0.0,
+          "biomass": 0.010230834742836795,
+          "coal": 0.19700123296082409,
+          "gas": 0.17562017024094656,
+          "geothermal": 6.3334080873376184e-6,
+          "hydro": 0.2802987263821424,
+          "hydro discharge": 0.0004533213325416804,
+          "nuclear": 0.20928855198329893,
+          "oil": 8.178122613332866e-5,
+          "solar": 0.02298414518159669,
+          "unknown": 0.0028255557660055177,
+          "wind": 0.10121142443336774
         }
       },
       "RS": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.00391451664630297,
-          "coal": 0.6403607433638264,
-          "gas": 0.01080418884562055,
-          "geothermal": 1.4237320709163115e-06,
-          "hydro": 0.27440528394167246,
-          "hydro discharge": 0.020154574006056088,
-          "nuclear": 0.02575677510437971,
-          "oil": 5.193029361794011e-05,
-          "solar": 0.0011168465369118862,
-          "unknown": 0.016118278996429557,
-          "wind": 0.007315438533111531
+          "battery discharge": 0.0,
+          "biomass": 0.006790472047378449,
+          "coal": 0.5844581201301501,
+          "gas": 0.015607381816887781,
+          "geothermal": 1.2179430488864358e-5,
+          "hydro": 0.3009656519907819,
+          "hydro discharge": 0.01772620550324723,
+          "nuclear": 0.03833282286149914,
+          "oil": 8.986497173362842e-5,
+          "solar": 0.0039048608188412353,
+          "unknown": 0.023109282276601122,
+          "wind": 0.009004755632219783
         }
       },
       "RU": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
           "coal": 0.0,
           "gas": 0.0,
           "geothermal": 0.0,
-          "hydro": 0.15611752403367898,
+          "hydro": 0.16503887378333804,
           "hydro discharge": 0.0,
-          "nuclear": 0.1886921739325508,
+          "nuclear": 0.1839291557936424,
           "oil": 0.0,
-          "solar": 0.0013765122817441249,
-          "unknown": 0.6538137874174231,
+          "solar": 0.0018155651566337712,
+          "unknown": 0.6492164047964696,
           "wind": 0.0
         }
       },
       "RU-1": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.0002156511979222626,
-          "coal": 0.0035334589684315417,
-          "gas": 0.001712109329776795,
-          "geothermal": 0.0,
-          "hydro": 0.06945851917680923,
-          "hydro discharge": 1.702694123568038e-06,
-          "nuclear": 0.2616848831116528,
-          "oil": 9.10455446658511e-05,
-          "solar": 0.0015734147067278164,
-          "unknown": 0.6616278538170353,
-          "wind": 0.00032027216507484764
+          "biomass": 0.00016241127205021656,
+          "coal": 0.002590078569062149,
+          "gas": 0.0011744242380117497,
+          "geothermal": 2.797146740496121e-7,
+          "hydro": 0.06783762948175028,
+          "hydro discharge": 1.3563828628753873e-6,
+          "nuclear": 0.2505243279205531,
+          "oil": 6.882903747047712e-5,
+          "solar": 0.0018235605231747797,
+          "unknown": 0.6756932320938971,
+          "wind": 0.0002606851806945691
         }
       },
       "RU-2": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 2.443719380487408e-07,
-          "coal": 6.766070793710594e-06,
-          "gas": 3.1767722345182695e-06,
-          "geothermal": 3.3707909896735885e-12,
-          "hydro": 0.48494206764053943,
-          "hydro discharge": 6.031501766114671e-09,
-          "nuclear": 0.001252841994495255,
-          "oil": 6.445130216768894e-09,
-          "solar": 0.000467848996279447,
-          "unknown": 0.5133267466768396,
-          "wind": 2.949968773471882e-07
+          "battery discharge": 0.0,
+          "biomass": 1.294049358262306e-5,
+          "coal": 0.004143078830260234,
+          "gas": 0.0011987749505010228,
+          "geothermal": 2.2198579466046784e-6,
+          "hydro": 0.431923888954592,
+          "hydro discharge": 9.164270902774583e-10,
+          "nuclear": 0.0006696672505515672,
+          "oil": 6.270024442957947e-5,
+          "solar": 0.0014655093029700896,
+          "unknown": 0.5604868170009547,
+          "wind": 5.931866240819974e-5
+        }
+      },
+      "RU-AS": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 0.0,
+          "coal": 0.0,
+          "gas": 0.0,
+          "geothermal": 0.0,
+          "hydro": 0.46115693042028794,
+          "hydro discharge": 0.0,
+          "nuclear": 0.0,
+          "oil": 0.0,
+          "solar": 0.0,
+          "unknown": 0.53884309309525,
+          "wind": 0.0
         }
       },
       "RU-KGD": {
@@ -1905,88 +1865,74 @@
         }
       },
       "SE": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.003558719717891228,
-          "coal": 0.008134359526822368,
-          "gas": 0.0029624829396442016,
-          "geothermal": 4.769692793066628e-07,
-          "hydro": 0.4070345757261483,
-          "hydro discharge": 9.521052283294326e-05,
-          "nuclear": 0.37363288039228315,
-          "oil": 0.00022123598178178577,
-          "solar": 0.001036070371518233,
-          "unknown": 0.07865800037274105,
-          "wind": 0.1246659874790573
+          "battery discharge": 0.0,
+          "biomass": 0.0020795937186445295,
+          "coal": 0.003273526701973433,
+          "gas": 0.002279631688197175,
+          "geothermal": 1.5693485819169116e-6,
+          "hydro": 0.45871046710322183,
+          "hydro discharge": 0.0013483288625985488,
+          "nuclear": 0.2973899250396371,
+          "oil": 0.00013676644409793524,
+          "solar": 0.0009309736060386555,
+          "unknown": 0.07572153288412632,
+          "wind": 0.1583610017839003
         }
       },
       "SG": {
-        "_source": "Tomorrow",
-        "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0,
-          "coal": 0.0009304891510995508,
-          "gas": 0.9753306438654484,
-          "geothermal": 0.0,
-          "hydro": 4.701846055284745e-05,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.0,
-          "solar": 0.002974613461176593,
-          "unknown": 0.020717235061722582,
-          "wind": 0.0
-        }
+        "_source": "electricityMap, 2021 average"
       },
       "SI": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.022354292820091624,
-          "coal": 0.21508525259471467,
-          "gas": 0.056238568280299814,
-          "geothermal": 2.4019949261349276e-05,
-          "hydro": 0.3202907677762352,
-          "hydro discharge": 0.02584928667883397,
-          "nuclear": 0.28470817057139497,
-          "oil": 0.00027315607658308654,
-          "solar": 0.023726841712435186,
-          "unknown": 0.014519880939503448,
-          "wind": 0.03692976260064657
+          "battery discharge": 0.0,
+          "biomass": 0.015668891784060113,
+          "coal": 0.20117895871382263,
+          "gas": 0.04551320061985452,
+          "geothermal": 1.4670595703218636e-5,
+          "hydro": 0.304309616959746,
+          "hydro discharge": 0.026472625869960603,
+          "nuclear": 0.27482495188005246,
+          "oil": 0.00020095704130539048,
+          "solar": 0.020038977008548814,
+          "unknown": 0.07620753508188088,
+          "wind": 0.03557615629850852
         }
       },
       "SK": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.02893180921402305,
-          "coal": 0.19420811816956016,
-          "gas": 0.09246249791355454,
-          "geothermal": 1.2485535294494618e-06,
-          "hydro": 0.11310368525768802,
-          "hydro discharge": 0.008632941598266258,
-          "nuclear": 0.45561024977669007,
-          "oil": 0.014325633854563626,
-          "solar": 0.02130054672446255,
-          "unknown": 0.0541684963778522,
-          "wind": 0.01725477255981011
+          "battery discharge": 0.0,
+          "biomass": 0.029524942351491102,
+          "coal": 0.18316423362674905,
+          "gas": 0.1232941349222201,
+          "geothermal": 5.277833614929111e-6,
+          "hydro": 0.1104919786947694,
+          "hydro discharge": 0.009908009309847527,
+          "nuclear": 0.4385639451910844,
+          "oil": 0.011370193544291281,
+          "solar": 0.02542820296039712,
+          "unknown": 0.050394988803915595,
+          "wind": 0.018062133048295684
         }
       },
       "SV": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.11611228867016232,
-          "coal": 0.052910610573417886,
-          "gas": 1.8943232258167646e-05,
-          "geothermal": 0.23837452557231184,
-          "hydro": 0.30019818454542,
+          "battery discharge": 0.0,
+          "biomass": 0.10475846189562409,
+          "coal": 0.05688523373635343,
+          "gas": 3.464056497790045e-5,
+          "geothermal": 0.222392277945834,
+          "hydro": 0.3030705299186706,
           "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 0.24772272547355265,
-          "solar": 0.04004987957191074,
-          "unknown": 0.0,
-          "wind": 0.004612842360966347
+          "nuclear": 4.532323214230614e-6,
+          "oil": 0.13735112864764434,
+          "solar": 0.08127054859134492,
+          "unknown": 0.05725999438352518,
+          "wind": 0.03796819015375101
         }
       },
       "TH": {
@@ -1996,7 +1942,7 @@
           "biomass": 0.094720087593017,
           "coal": 0.180736632940652,
           "gas": 0.646008637644721,
-          "geothermal": 5.06904032928486e-06,
+          "geothermal": 5.06904032928486e-6,
           "hydro": 0.0326142054786188,
           "oil": 0.00112025791277195,
           "solar": 0.0262677669863541,
@@ -2004,55 +1950,64 @@
         }
       },
       "TR": {
-        "_source": "electricityMap, 2017 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.006913928659373061,
-          "coal": 0.32854655019375645,
-          "gas": 0.37957312307941593,
-          "geothermal": 0.018781445885893016,
-          "hydro": 0.19711316187868239,
-          "hydro discharge": 3.916679530182362e-05,
-          "nuclear": 0.0020564657110315834,
-          "oil": 0.004336427479523383,
-          "solar": 0.00018623333959162503,
-          "unknown": 2.940599221396546e-05,
-          "wind": 0.06242410598517025
+          "biomass": 0.016570655972953863,
+          "coal": 0.31727505571260983,
+          "gas": 0.3258760757262788,
+          "geothermal": 0.03055214412209417,
+          "hydro": 0.1723874042495797,
+          "hydro discharge": 6.201561013349073e-7,
+          "nuclear": 0.0010950429029903763,
+          "oil": 0.0011844496354183986,
+          "solar": 0.041019392217440984,
+          "unknown": 0.00019830532336325113,
+          "wind": 0.0938482510684179
         }
       },
       "TW": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
+          "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.3781266753736337,
-          "gas": 0.38407817021912977,
+          "coal": 0.35640246012045845,
+          "gas": 0.4263121664715076,
           "geothermal": 0.0,
-          "hydro": 0.022908479013755898,
-          "hydro discharge": 0.013380456533667637,
-          "nuclear": 0.13125798226310553,
-          "oil": 0.018565970726784228,
-          "solar": 0.014772782652029526,
-          "unknown": 0.029605678300276776,
-          "wind": 0.0073038049176170515
+          "hydro": 0.012845165524284115,
+          "hydro discharge": 0.012474169289275193,
+          "nuclear": 0.10791600554021842,
+          "oil": 0.013623044904009781,
+          "solar": 0.030365214582784354,
+          "unknown": 0.03228766325863016,
+          "wind": 0.007774112025714793
         }
       },
       "UA": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.0004859391212440437,
-          "coal": 0.2829821842392201,
-          "gas": 0.10050420744914156,
-          "geothermal": 2.4661786696291136e-08,
-          "hydro": 0.054346288385956745,
-          "hydro discharge": 0.00016389961008179445,
-          "nuclear": 0.5347001489021846,
-          "oil": 0.00034169554509441924,
-          "solar": 0.0001843546951249272,
-          "unknown": 0.011828021235492594,
-          "wind": 0.014463236154672453
+          "battery discharge": 0.0,
+          "biomass": 0.000401146938961145,
+          "coal": 0.23793000052969476,
+          "gas": 0.06649615690683719,
+          "geothermal": 5.735893105663392e-8,
+          "hydro": 0.06826117264343586,
+          "hydro discharge": 0.00014781111772643927,
+          "nuclear": 0.5554887887729366,
+          "oil": 0.00013827550053897096,
+          "solar": 0.0002832207735173808,
+          "unknown": 0.07014678614278251,
+          "wind": 0.0007122080154894811
         }
+      },
+      "US-BPA": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CA": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAL-BANC": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-CAL-CISO": {
         "_source": "electricityMap, 2021 average",
@@ -2071,73 +2026,93 @@
           "wind": 0.09672916422887358
         }
       },
+      "US-CAL-IID": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAL-LDWP": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAL-TIDC": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAR-CPLE": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAR-CPLW": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAR-DUK": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAR-SC": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CAR-SCEG": {
+        "_source": "electricityMap, 2021 average"
+      },
       "US-CAR-YAD": {
-        "_source": "electricityMap, 2019 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 1.6685627607129312e-05,
-          "coal": 0.00839097459233978,
-          "gas": 0.011061054228289723,
-          "geothermal": 1.1376564277588167e-06,
-          "hydro": 0.9476257110352674,
-          "hydro discharge": 0.0006109215017064846,
-          "nuclear": 0.024315510049298446,
-          "oil": 3.868031854379977e-05,
-          "solar": 0.0021911262798634816,
-          "unknown": 0.0056230565036025785,
-          "wind": 6.33295411452408e-05
-        }
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CENT-SPA": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-CENT-SWPP": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-DUK": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.16138192847774865,
-          "gas": 0.21665259628026973,
+          "coal": 0.18580109742802228,
+          "gas": 0.20685055666351185,
           "geothermal": 0.0,
-          "hydro": 0.043912084249506766,
-          "hydro discharge": 0.021669311443976675,
-          "nuclear": 0.5462992352957178,
+          "hydro": 0.03862008850958659,
+          "hydro discharge": 0.024219584504625927,
+          "nuclear": 0.5334833989948127,
           "oil": 0.0,
-          "solar": 0.009221537907175958,
-          "unknown": 0.0008633063456044794,
+          "solar": 0.010167353528519853,
+          "unknown": 0.0008579203709208367,
           "wind": 0.0
         }
       },
-      "US-FLA-JEA": {
-        "_source": "electricityMap, 2020 average",
+      "US-FLA-FMPP": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-FLA-FPC": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 2.8444386218556076e-05,
-          "coal": 0.3790270807567078,
-          "gas": 0.5549913622934346,
-          "geothermal": 4.939842779703911e-06,
-          "hydro": 0.00045689854606837483,
-          "hydro discharge": 1.0574237227865456e-06,
-          "nuclear": 0.037814336357440415,
-          "oil": 0.00021567908801622835,
-          "solar": 0.009900520029965538,
-          "unknown": 0.017480083366995178,
-          "wind": 7.841259592325205e-05
+          "biomass": 0.00018010266216540486,
+          "coal": 0.153150875292236,
+          "gas": 0.760850530373947,
+          "geothermal": 3.1595423398249456e-5,
+          "hydro": 0.007389988500084548,
+          "hydro discharge": 8.347578001894292e-6,
+          "nuclear": 0.028213372272466543,
+          "oil": 0.0010699054284909588,
+          "solar": 0.025368203049485658,
+          "unknown": 0.0232361881213488,
+          "wind": 0.0005010387611024835
         }
       },
+      "US-FLA-FPL": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-FLA-GVL": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-FLA-JEA": {
+        "_source": "electricityMap, 2021 average"
+      },
       "US-FLA-SEC": {
-        "_source": "electricityMap, 2020 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 1.3039102663085774e-05,
-          "coal": 0.14497425708588516,
-          "gas": 0.8537192402429615,
-          "geothermal": 2.314922462943898e-06,
-          "hydro": 0.00012147562047501386,
-          "hydro discharge": 0.0,
-          "nuclear": 0.00027929115584001497,
-          "oil": 2.3758144300601804e-05,
-          "solar": 0.0002901052608861092,
-          "unknown": 0.0005401040404774855,
-          "wind": 3.552288343247761e-05
-        }
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-FLA-TAL": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-FLA-TEC": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-HI-OA": {
         "_source": "electricityMap, 2021 average",
@@ -2169,20 +2144,23 @@
           "nuclear": 0.0001440672714173942,
           "oil": 0.0,
           "solar": 0.021055056976194718,
-          "unknown": 2.3859507781453105e-05,
+          "unknown": 2.3859507781453105e-5,
           "wind": 0.14216764531963735
         }
+      },
+      "US-MIDA-OVEC": {
+        "_source": "electricityMap, 2018 average"
       },
       "US-MIDA-PJM": {
         "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 1.4300614307001254e-11,
-          "biomass": 6.8371237001772985e-06,
+          "biomass": 6.8371237001772985e-6,
           "coal": 0.21967367025621962,
           "gas": 0.3750335909381804,
-          "geothermal": 1.1930287485615796e-06,
+          "geothermal": 1.1930287485615796e-6,
           "hydro": 0.021006881122600424,
-          "hydro discharge": 9.572566655741961e-05,
+          "hydro discharge": 9.572566655741961e-5,
           "nuclear": 0.32719117929421637,
           "oil": 0.0027946895140004793,
           "solar": 0.00759518287608744,
@@ -2190,141 +2168,250 @@
           "wind": 0.03356021694290802
         }
       },
+      "US-MIDW-AECI": {
+        "_source": "electricityMap, 2021 average"
+      },
       "US-MIDW-EEI": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2020 average"
+      },
+      "US-MIDW-GLHB": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-MIDW-LGEE": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-MIDW-MISO": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-MISO": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 0.0,
-          "coal": 0.9779701077511296,
-          "gas": 0.009565954118873827,
+          "biomass": 8.374525859867634e-7,
+          "coal": 0.43218885552477515,
+          "gas": 0.26629586562017005,
           "geothermal": 0.0,
-          "hydro": 0.0018886861313868613,
-          "hydro discharge": 3.9537712895377135e-05,
-          "nuclear": 0.00859966979492527,
-          "oil": 0.0003002259297879736,
-          "solar": 2.8241223496697945e-05,
-          "unknown": 0.00011470281543274245,
-          "wind": 0.0014263990267639904
+          "hydro": 0.0010858432087222972,
+          "hydro discharge": 0.0,
+          "nuclear": 0.16049331103051187,
+          "oil": 0.00014008856596626297,
+          "solar": 0.0032543342020214796,
+          "unknown": 0.019982966703924385,
+          "wind": 0.11653658443865204
+        }
+      },
+      "US-NE-ISNE": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0005778999856298593,
+          "biomass": 0.05002695112840327,
+          "coal": 0.010482806095183856,
+          "gas": 0.4711884455041978,
+          "geothermal": 9.759701885966524e-10,
+          "hydro": 0.1755846613851002,
+          "hydro discharge": 3.9065424912646004e-7,
+          "nuclear": 0.2457981218982445,
+          "oil": 0.0021688686499407445,
+          "solar": 0.004547292738926019,
+          "unknown": 0.000524116664099488,
+          "wind": 0.03924540419619705
         }
       },
       "US-NEISO": {
-        "_source": "electricityMap, 2018 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0.00010117131206417608,
-          "biomass": 0.06389415829766634,
-          "coal": 0.019483736100634124,
-          "gas": 0.45350668281901324,
-          "geothermal": 4.561689532062589e-05,
-          "hydro": 0.08855716156868189,
+          "battery discharge": 0.0006352251162231525,
+          "biomass": 0.0548879133621371,
+          "coal": 0.009702925411766431,
+          "gas": 0.5307843910235389,
+          "geothermal": 1.2676471071509025e-8,
+          "hydro": 0.07310669896733775,
           "hydro discharge": 0.0,
-          "nuclear": 0.3193505942963635,
-          "oil": 0.014185127550704155,
-          "solar": 0.0015773087125920085,
-          "unknown": 0.0007291041575221058,
-          "wind": 0.038413658991413004
+          "nuclear": 0.2862455761423728,
+          "oil": 0.0024032729935823957,
+          "solar": 0.005180098186926338,
+          "unknown": 0.0006071902878542108,
+          "wind": 0.036325363964042075
         }
       },
       "US-NEVP": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.06346936529820148,
-          "gas": 0.7318053488933842,
+          "coal": 0.06919987777643695,
+          "gas": 0.7029972319323469,
           "geothermal": 0.0,
-          "hydro": 0.0042597831243114245,
+          "hydro": 0.001156898764324483,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 8.886041406287141e-07,
-          "solar": 0.08015735105920874,
-          "unknown": 0.10992284990750371,
-          "wind": 0.010384413113249783
+          "oil": 1.0293129708432887e-6,
+          "solar": 0.10577053437714165,
+          "unknown": 0.11056938750682654,
+          "wind": 0.010305040329952645
         }
+      },
+      "US-NW-AVA": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-NW-AVRN": {
-        "_source": "electricityMap, 2019 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 0.0008936789959421657,
-          "coal": 0.01951609940976504,
-          "gas": 0.014483132289758185,
-          "geothermal": 0.00015725407825476983,
-          "hydro": 0.012263818146445398,
-          "hydro discharge": 0.0,
-          "nuclear": 0.005357895846771578,
-          "oil": 0.0015344524844273116,
-          "solar": 0.0011211395004957815,
-          "unknown": 0.00042127816091043605,
-          "wind": 0.9442503303147507
-        }
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-BPAT": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-CHPD": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-DOPD": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-GCPD": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-NW-GRID": {
-        "_source": "electricityMap, 2019 average",
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-IPCO": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-NEVP": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-NWMT": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 1.4560423255866681e-05,
-          "coal": 0.00020752687526715225,
-          "gas": 0.9967327803906741,
-          "geothermal": 2.7340387153218864e-07,
-          "hydro": 0.002432394224376556,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0003316822406847633,
-          "oil": 6.268283883908715e-06,
-          "solar": 3.7376309754583353e-06,
-          "unknown": 6.024887754373962e-05,
-          "wind": 0.0002458600985720983
+          "battery discharge": 1.8395067243238384e-8,
+          "biomass": 0.00019714431542370078,
+          "coal": 0.577315370733537,
+          "gas": 0.029678912454472774,
+          "geothermal": 1.803680140978674e-5,
+          "hydro": 0.21275991516110895,
+          "hydro discharge": 7.068961554901607e-6,
+          "nuclear": 0.0023668652716088263,
+          "oil": 0.0259161585280448,
+          "solar": 0.0034625464290183286,
+          "unknown": 0.0008650061382237095,
+          "wind": 0.14746624994820035
         }
       },
+      "US-NW-PACE": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-PACW": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-PGE": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-PSCO": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-PSEI": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-SCL": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-TPWR": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-WACM": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-NW-WAUW": {
+        "_source": "electricityMap, 2021 average"
+      },
       "US-NY": {
-        "_source": "electricityMap, 2018 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 1.9374903326899603e-08,
-          "biomass": 0.0003263369489690721,
-          "coal": 0.023010607538561267,
-          "gas": 0.42456568323412275,
-          "geothermal": 7.76923887276349e-06,
-          "hydro": 0.1907816459017179,
+          "battery discharge": 6.506138302516886e-6,
+          "biomass": 0.0006347052501697652,
+          "coal": 0.023279570255895585,
+          "gas": 0.46538161686435264,
+          "geothermal": 1.5839335851146564e-6,
+          "hydro": 0.1955997880218469,
           "hydro discharge": 0.0,
-          "nuclear": 0.31476931998156105,
-          "oil": 0.00028457741172962234,
-          "solar": 0.00023648383888344852,
-          "unknown": 0.021278743444324993,
-          "wind": 0.024735515263612607
+          "nuclear": 0.2659200762876727,
+          "oil": 0.00026347587696447206,
+          "solar": 0.0006895871673926411,
+          "unknown": 0.018275744183404233,
+          "wind": 0.02994734015608114
+        }
+      },
+      "US-NY-NYIS": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 4.293795223601117e-6,
+          "biomass": 0.0014915857817236395,
+          "coal": 0.019460138843746155,
+          "gas": 0.42209309457282645,
+          "geothermal": 1.0072714700057983e-6,
+          "hydro": 0.253847282978677,
+          "hydro discharge": 8.55456730136974e-6,
+          "nuclear": 0.24998865078346047,
+          "oil": 0.00032605029561658377,
+          "solar": 0.0007873430191853746,
+          "unknown": 0.016077701263221687,
+          "wind": 0.03602687738376088
+        }
+      },
+      "US-PJM": {
+        "_source": "electricityMap, 2021 average",
+        "powerOriginRatios": {
+          "battery discharge": 0.0,
+          "biomass": 4.250466663251079e-9,
+          "coal": 0.2418348559307822,
+          "gas": 0.36544686217428546,
+          "geothermal": 0.0,
+          "hydro": 0.020191218252805145,
+          "hydro discharge": 0.0,
+          "nuclear": 0.318255041163282,
+          "oil": 0.002782038088751013,
+          "solar": 0.0074599729550236206,
+          "unknown": 0.012707404742801662,
+          "wind": 0.03132260415032327
         }
       },
       "US-SC": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.470997269908149,
-          "gas": 0.29354425669451545,
+          "coal": 0.6586320689267976,
+          "gas": 0.2625371028983266,
           "geothermal": 0.0,
-          "hydro": 0.041966419849601845,
-          "hydro discharge": 0.11336857876709384,
-          "nuclear": 0.046208484280154644,
-          "oil": 3.307826847849386e-05,
-          "solar": 0.0007138304091616764,
-          "unknown": 0.03316808182284504,
+          "hydro": 0.033473043002878254,
+          "hydro discharge": 0.0031261708372258847,
+          "nuclear": 0.0,
+          "oil": 3.780705472079679e-5,
+          "solar": 0.009704031252823715,
+          "unknown": 0.03248977602722713,
           "wind": 0.0
         }
       },
-      "US-SE-SEPA": {
-        "_source": "electricityMap, 2020 average",
+      "US-SE-AEC": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
-          "biomass": 1.824636840690816e-05,
-          "coal": 0.03168239060429898,
-          "gas": 0.042765715686690534,
-          "geothermal": 2.8288943266524276e-06,
-          "hydro": 0.8698572822812204,
-          "hydro discharge": 0.0006517301046219417,
-          "nuclear": 0.04908688005959538,
-          "oil": 3.597410618726337e-05,
-          "solar": 0.0033658184698510583,
-          "unknown": 0.00245505594138531,
-          "wind": 6.624327548244435e-05
+          "biomass": 9.203626431648814e-6,
+          "coal": 0.024983199578610824,
+          "gas": 0.9263237755912473,
+          "geothermal": 7.733074550007956e-7,
+          "hydro": 0.012960395248849706,
+          "hydro discharge": 3.0301608923207406e-5,
+          "nuclear": 0.02271854017300536,
+          "oil": 0.0004498399190182291,
+          "solar": 0.002567675494837539,
+          "unknown": 0.00816684298499213,
+          "wind": 0.00187364156185287
         }
+      },
+      "US-SE-SEPA": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SE-SOCO": {
+        "_source": "electricityMap, 2021 average"
       },
       "US-SEC": {
         "_source": "electricityMap, 2021 average",
@@ -2344,71 +2431,98 @@
         }
       },
       "US-SOCO": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.1776721905007874,
-          "gas": 0.540109924668325,
+          "coal": 0.233621146589376,
+          "gas": 0.49161784927600727,
           "geothermal": 0.0,
-          "hydro": 0.06220002109582009,
+          "hydro": 0.05226050514818724,
           "hydro discharge": 0.0,
-          "nuclear": 0.2093390995799309,
-          "oil": 3.285208883729786e-05,
-          "solar": 0.008153869626001791,
-          "unknown": 0.0024920424402974984,
+          "nuclear": 0.20942715115603355,
+          "oil": 0.0005877549420361352,
+          "solar": 0.010153324795581203,
+          "unknown": 0.0023322680927786244,
           "wind": 0.0
         }
       },
+      "US-SPP": {
+        "_source": "electricityMap, 2021 average"
+      },
       "US-SW-AZPS": {
-        "_source": "electricityMap, 2020 average",
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SW-EPE": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SW-PNM": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SW-SRP": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SW-TEPC": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-SW-WALC": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-TEN-TVA": {
+        "_source": "electricityMap, 2021 average"
+      },
+      "US-TEX-ERCO": {
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 4.126620485721663e-07,
-          "biomass": 8.539288473350607e-05,
-          "coal": 0.23622126590892836,
-          "gas": 0.4701614245872139,
-          "geothermal": 3.0285605656562475e-05,
-          "hydro": 0.01865298915543592,
-          "hydro discharge": 0.0023757461004076394,
-          "nuclear": 0.20263070878393152,
-          "oil": 0.00011782730257103306,
-          "solar": 0.0482111248670816,
-          "unknown": 0.010255190006041966,
-          "wind": 0.011285975772437052
+          "battery discharge": 0.0,
+          "biomass": 2.9115555028928425e-6,
+          "coal": 0.19241185137472458,
+          "gas": 0.4184117205182391,
+          "geothermal": 3.3128153191570337e-7,
+          "hydro": 0.001375343666203278,
+          "hydro discharge": 6.0163479439866095e-9,
+          "nuclear": 0.10327502705580606,
+          "oil": 8.559019740313832e-6,
+          "solar": 0.038823946140193376,
+          "unknown": 0.0015170316174721353,
+          "wind": 0.24417340768291326
         }
       },
       "US-TN": {
-        "_source": "electricityMap, 2018 average",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.20122327812123902,
-          "gas": 0.3029523233404026,
+          "coal": 0.183271181994047,
+          "gas": 0.2668217000525432,
           "geothermal": 0.0,
-          "hydro": 0.13088807047256532,
-          "hydro discharge": 0.0008879083132852533,
-          "nuclear": 0.36172583972033445,
-          "oil": 2.3885982333449744e-07,
-          "solar": 0.0012844686999812602,
-          "unknown": 0.001037872472368762,
+          "hydro": 0.12121729810728132,
+          "hydro discharge": 0.0018087616917128976,
+          "nuclear": 0.42165531584866695,
+          "oil": 0.0,
+          "solar": 0.004278372308115985,
+          "unknown": 0.000947369997632674,
           "wind": 0.0
         }
       },
+      "US-TX": {
+        "_source": "electricityMap, 2021 average"
+      },
       "UY": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
-          "battery discharge": 0,
-          "biomass": 0.04648165868261993,
-          "coal": 2.514956006179645e-05,
-          "gas": 0.00448481803984947,
+          "battery discharge": 0.0,
+          "biomass": 0.060179992375173345,
+          "coal": 0.00019510515313960437,
+          "gas": 0.015472144936424534,
           "geothermal": 0.0,
-          "hydro": 0.6660397974458279,
-          "hydro discharge": 3.942493607784242e-05,
-          "nuclear": 0.00048174522735202295,
-          "oil": 0.012489666483424474,
-          "solar": 0.019420053345432786,
-          "unknown": 0.00010785392438724089,
-          "wind": 0.2504298323549667
+          "hydro": 0.4702264923367626,
+          "hydro discharge": 0.00013817272213413482,
+          "nuclear": 0.0017577176221301339,
+          "oil": 0.13955525861839024,
+          "solar": 0.025699125799660227,
+          "unknown": 0.0009344767250619367,
+          "wind": 0.28595344247940757
         }
       },
       "ZA": {
