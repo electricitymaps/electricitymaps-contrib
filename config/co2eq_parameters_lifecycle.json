@@ -155,26 +155,6 @@
           "value": 235.12523241167625
         }
       },
-      "AUS-TAS-FI": {
-        "battery discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 222.50079898541537
-        },
-        "hydro discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 222.50079898541537
-        }
-      },
-      "AUS-TAS-KI": {
-        "battery discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 235.12523241167625
-        },
-        "hydro discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 235.12523241167625
-        }
-      },
       "AUS-VIC": {
         "battery discharge": {
           "source": "electricityMap, 2021 average",
@@ -223,16 +203,6 @@
         "hydro discharge": {
           "source": "electricityMap, 2021 average",
           "value": 46.21198045970327
-        }
-      },
-      "AUS-WA-RI": {
-        "battery discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 475.1604205448953
-        },
-        "hydro discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 475.1604205448953
         }
       },
       "BA": {
@@ -864,7 +834,9 @@
         },
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
