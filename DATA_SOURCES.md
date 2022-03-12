@@ -187,7 +187,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bulgaria:
   - Hydro: [NEK](https://nek.bg/index.php/en/our-business/electricity-generation)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
+- Canada (British Columbia, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet),
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Alberta)
