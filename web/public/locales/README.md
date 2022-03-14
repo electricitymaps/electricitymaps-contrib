@@ -6,25 +6,4 @@ We use a combination of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_63
 
 Create a file named YOUR_LOCALE.json in this directory with this content: "{}" (without the Double Quotation Marks). You will also need to update the files [web/locales-config.json](../../locales-config.json) and [mobileapp/www/index.html](../../../mobileapp/www/index.html).
 
-Then start using the tool as described below.
-
-## Translating strings missing in your locale
-
-We wrote a little tool for this task:
-
-```bash
-node translation-helper.js
-```
-
-You will be asked to select a language to translate.
-
-Running the tool looks like this:
-
-```
-Languages you can translate: ar, da, de, es, fr, hr, it, ja, nl, pl, pt-br, ru, sv, zh-cn, zh-hk, zh-tw
-Which language do you want to translate: de
-
-country-panel.electricity [Electricity]: Elektrizität
-zoneShortName.IQ-KUR.countryName [Iraq]: Irak
-...
-```
+Then start using the `translation-helper.js` tool in `web` folder.
