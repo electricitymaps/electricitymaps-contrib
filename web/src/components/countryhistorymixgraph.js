@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { max as d3Max } from 'd3-array';
 import { forEach } from 'lodash';
 
-import formatting from '../helpers/formatting';
+import { scalePower } from '../helpers/formatting';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
@@ -26,7 +26,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
       ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
       : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
   ));
-  const format = formatting.scalePower(maxTotalValue);
+  const format = scalePower(maxTotalValue);
 
   const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
   const valueFactor = format.formattingFactor;
