@@ -1009,6 +1009,7 @@
     "timezone": null
   },
   "CA-MB": {
+    "_comment": "Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)",
     "bounding_box": [
       [
         -102.50159786704786,
@@ -1020,14 +1021,17 @@
       ]
     ],
     "capacity": {
-      "coal": 110,
-      "gas": 342,
-      "hydro": 5249,
-      "oil": 10,
-      "wind": 237
+      "coal": 0,
+      "gas": 237,
+      "hydro": 5234,
+      "oil": 13,
+      "wind": 258
     },
+    "contributors": [
+      "https://github.com/felixvanoost"
+    ],
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": "America/Winnipeg"
   },
   "CA-NB": {
     "_comment": "gas includes an 88 MW cogeneration plant",
@@ -1157,13 +1161,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 295,
+      "biomass": 296,
       "coal": 0,
-      "gas": 11317,
+      "gas": 10515,
       "hydro": 8918,
-      "nuclear": 13009,
+      "nuclear": 13089,
       "solar": 478,
-      "wind": 4786
+      "wind": 4783
     },
     "contributors": [
       "https://github.com/corradio",
