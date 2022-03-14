@@ -1,18 +1,18 @@
-@import "variables";
-@import "mixins";
-@import "base";
+@import "./variables";
+@import "./mixins";
+@import "./base";
 
-@import "layout/header";
-@import "layout/footer";
-@import "layout/left-panel";
+@import "./layout/header";
+@import "./layout/footer";
+@import "./layout/left-panel";
 
-@import "content/map/map";
-@import "content/map/controls";
-@import "content/panel/country-panel";
-@import "content/panel/time-slider";
-@import "content/panel/zone-list";
+@import "./content/map/map";
+@import "./content/map/controls";
+@import "./content/panel/country-panel";
+@import "./content/panel/time-slider";
+@import "./content/panel/zone-list";
 
-@import "components/faqs";
-@import "components/messaging";
-@import "components/modal";
-@import "components/meta";
+
+@import "./components/messaging";
+@import "./components/modal";
+@import "./components/meta";
