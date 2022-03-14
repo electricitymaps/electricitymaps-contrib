@@ -15,7 +15,7 @@
     interpolation and animation process.
 */
 
-const { windColor } = require('./scales');
+import { windColor } from './scales';
 
 var Windy = function( params ){
   var VELOCITY_SCALE = 1/100000;//1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
@@ -511,4 +511,4 @@ window.cancelAnimationFrame = (function(){
           };
 })();
 
-module.exports = Windy;
+export default Windy;
