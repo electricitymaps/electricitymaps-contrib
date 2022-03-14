@@ -18,7 +18,7 @@ const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
     <Tooltip id="exchange-tooltip" position={position} onClose={onClose}>
       {__('tooltips.crossborderexport')}:
       <br />
-      <ZoneName ellipsify zone={zoneFrom} /> → <ZoneName ellipsify zone={zoneTo} />: <b>{formatPower(netFlow)}</b>
+      <ZoneName zone={zoneFrom} /> → <ZoneName zone={zoneTo} />: <b>{formatPower(netFlow)}</b>
       <br />
       <br />
       {__('tooltips.carbonintensityexport')}:

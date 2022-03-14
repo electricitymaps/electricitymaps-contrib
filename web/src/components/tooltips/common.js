@@ -1,7 +1,7 @@
 import React from 'react';
 import { isFinite } from 'lodash';
 
-import { getZoneNameWithCountry } from '../../helpers/translation';
+import { getShortenedZoneNameWithCountry } from '../../helpers/translation';
 import { useCo2ColorScale } from '../../hooks/theme';
 import { flagUri } from '../../helpers/flags';
 import styled from 'styled-components';
@@ -24,9 +24,9 @@ export const MetricRatio = ({ value, total, format }) => (
 
 const Flag = styled.img``;
 
-export const ZoneName = ({ zone, ellipsify }) => (
+export const ZoneName = ({ zone }) => (
   <React.Fragment>
     <Flag className="flag" alt="" src={flagUri(zone)} />
-    {getZoneNameWithCountry(zone, ellipsify ? 40 : 0)}
+    {getShortenedZoneNameWithCountry(zone)}
   </React.Fragment>
 );
