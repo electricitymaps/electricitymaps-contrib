@@ -30,7 +30,7 @@ def fetch_production(zone_key='AW', session=None, target_datetime=None, logger=N
     reported_total = float(total['value'])
     sources_total = float(fossil['value']) + float(wind['value']) + float(solar['value']) + float(biogas['value'])
 
-    if (sources_total / reported_total) > 1.02:
+    if (sources_total / reported_total) > 1.1:
         raise RuntimeError(f'AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower')
 
     missing_from_total = reported_total - sources_total
