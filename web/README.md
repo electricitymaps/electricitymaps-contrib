@@ -1,22 +1,28 @@
-*This file should host other explanations. Yours are welcome.*
+# electricityMap app
+
+**This documentation is specifically for the frontend web/mobile app.**
+
+_If you're looking for more info on the parsers, check out [how to setup Python development environment](https://github.com/electricitymap/electricitymap-contrib/wiki/Set-up-local-environment#setup-python-development-environment) and [how to fix a broken parser (and test it locally)](https://github.com/electricityMap/electricitymap-contrib/wiki/Fixing-a-broken-parser)._
 
 ## Local development
 
-See [local development setup](https://github.com/tmrowco/electricitymap-contrib/wiki/Set-up-local-environment#running-the-frontend-map) in the wiki.
+Prerequisites:
 
+- Ensure you have `NodeJS` and `yarn` installed locally
+- Run `yarn install`
 
-### `geometries-config.js`
+After the above steps, simply run the following steps:
 
-The variables `zoneDefinitions` should be updated manually to reflect intended changes in mapping between electricityMap zones and NACIS geometries. It relates each zone from the electricityMap to how it is described by data from NACIS (or third party). A zone can correspond to a country, a group of countries, a state, a group of states...
+1. Start the mockserver: `docker-compose up -d mockserver`
+2. Run `yarn develop`
 
+### Using production API (internal eMap team only)
 
-## `generate-zone-bounding-boxes.js`
+As an eMap internal team member, you can also run the app connected to production API instead of the mockserver:
 
-You can create bounding boxes for new or existing zones in `config/zones.json`:
-1) Update the zone you want to update in `config/zones.json` with `"bounding_box": null`
-2) Run: `node geo/generate-zone-bounding-boxes.js`
+- Run `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR_TOKEN' yarn develop`
+- Add a `?remote=true` query parameter
 
-## Useful tips
+## Geometries development
 
-- [geojson.io](https://geojson.io) is a great tool for visualizing and editing coordinates
-- We currently can't generate coordinates for small islands --> any PRs for fixing this without compromising too much on bundle size is very welcome!
+See [how to edit world geometries](https://github.com/electricitymap/electricitymap-contrib/wiki/Edit-world-geometries).
