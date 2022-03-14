@@ -36,7 +36,8 @@
       },
       "cordova-universal-links-plugin": {},
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-code-push": {}
+      "cordova-plugin-code-push": {},
+      "@globules-io/cordova-plugin-ios-xhr": {}
     },
     "platforms": [
       "android",
