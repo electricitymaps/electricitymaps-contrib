@@ -2,7 +2,9 @@ const fs = require('fs');
 const readline = require('readline-sync');
 require('colors');
 
-const languages = fs.readdirSync('.')
+const LOCALES_PATH = './public/locales/';
+
+const languages = fs.readdirSync(LOCALES_PATH)
   .filter(f => f !== 'en.json' && f.endsWith('.json'))
   .map(f => f.replace('.json', ''));
 
@@ -15,8 +17,8 @@ if (!languages.includes(language)) {
 
 console.log();
 
-const en = JSON.parse(fs.readFileSync('en.json'));
-const other = JSON.parse(fs.readFileSync(language + '.json'));
+const en = JSON.parse(fs.readFileSync(`${LOCALES_PATH}/en.json`));
+const other = JSON.parse(fs.readFileSync(`${LOCALES_PATH}/${language}.json`));
 
 function checkUntranslated(e, o, p) {
   if (typeof e === 'string') {
@@ -37,5 +39,5 @@ function checkUntranslated(e, o, p) {
   return o;
 }
 
-fs.writeFileSync(language + '.json', JSON.stringify(checkUntranslated(en, other, ''), null, 4));
+fs.writeFileSync(`${LOCALES_PATH}/${language}.json`, JSON.stringify(checkUntranslated(en, other, ''), null, 4));
 console.log('Finished!');
