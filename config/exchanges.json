@@ -21,7 +21,7 @@
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
     },
-    "rotation": -55
+    "rotation": -45
   },
   "AL->RS": {
     "lonlat": [
@@ -31,7 +31,17 @@
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
     },
-    "rotation": 40
+    "rotation": 45
+  },
+  "AL->XK": {
+    "lonlat": [
+      20.212,
+      42.408
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 45
   },
   "AM->GE": {
     "lonlat": [
@@ -1903,12 +1913,32 @@
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
     },
-    "rotation": 40
+    "rotation": 45
+  },
+  "ME->XK": {
+    "lonlat": [
+      20.265,
+      42.784
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 135
   },
   "MK->RS": {
     "lonlat": [
       22.03925,
       42.31702
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": 0
+  },
+  "MK->XK": {
+    "lonlat": [
+      21.315,
+      42.153
     ],
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
@@ -2367,6 +2397,16 @@
       "exchange": "ENTSOE.fetch_exchange"
     },
     "rotation": 0
+  },
+  "RS->XK": {
+    "lonlat": [
+      21.231,
+      43.011
+    ],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange"
+    },
+    "rotation": -135
   },
   "RU-1->RU-2": {
     "lonlat": [

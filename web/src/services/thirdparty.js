@@ -1,9 +1,9 @@
-/* eslint-disable global-require */
-/* eslint-disable prefer-rest-params */
-// TODO: remove once refactored
-
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
+import twitterConnection from './thirdparty/twitter';
+import mixpanelConnection from './thirdparty/mixpanel';
+import plausibleConnection from './thirdparty/plausible'
+import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
   if (window.Sentry !== undefined) {
@@ -15,15 +15,16 @@ function reportToSentry(e) {
   }
 }
 
-class ConnectionsService {
+
+class ConnectionsService {  
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(require('./thirdparty/twitter'));
-      this.addConnection(require('./thirdparty/mixpanel'));
-      this.addConnection(require('./thirdparty/plausible'))
+      this.addConnection(require(new twitterConnection()));
+      this.addConnection(require(new mixpanelConnection()));
+      this.addConnection(require(new plausibleConnection()));
     } else {
-      this.addConnection(require('./thirdparty/debugconsole'));
+      this.addConnection(new debugConsoleConnection());
     }
   }
 

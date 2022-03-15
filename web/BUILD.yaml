@@ -18,8 +18,8 @@ steps:
       # source code
       - ../config/{exchanges,zones}.json
       - locales
-      - ./{locales-config.json,version.js,translation-status.js}
-      - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json}
+      - ./{locales-config.json,translation-status.js}
+      - public/{css,fonts,images,apple-app-site-association,browserconfig.xml,manifest.json,client-version.json}
       - src
       - views
       - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}

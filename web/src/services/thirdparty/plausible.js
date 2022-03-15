@@ -9,4 +9,4 @@ class PlausibleThirdParty {
     }
 }
 
-module.exports = new PlausibleThirdParty();
+export default PlausibleThirdParty;

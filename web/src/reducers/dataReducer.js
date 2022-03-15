@@ -1,11 +1,11 @@
-const moment = require('moment');
+import moment from 'moment';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+import { modeOrder } from '../helpers/constants';
+import constructTopos from '../helpers/topos';
+import * as translation  from '../helpers/translation';
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -20,8 +20,9 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = translation.getZoneNameWithCountry(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+  zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
   zone.disclaimer = zoneConfig.disclaimer;
 });
@@ -54,7 +55,7 @@ const initialDataState = {
   windDataError: null,
 };
 
-module.exports = (state = initialDataState, action) => {
+const reducer = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -123,9 +124,14 @@ module.exports = (state = initialDataState, action) => {
         // Set date
         zone.datetime = action.payload.datetime;
 
-        if (!zone.production || Object.values(zone.production).every(v => v === null)) {
+        const hasNoData = !zone.production || Object.values(zone.production).every(v => v === null);
+        if (hasNoData) {
           return;
         }
+
+        // By default hasData is only true if there is a parser - here we overwrite that value
+        // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
+        zone.hasData = zone.hasParser || !hasNoData;
 
         // Validate data
         modeOrder.forEach((mode) => {
@@ -183,6 +189,7 @@ module.exports = (state = initialDataState, action) => {
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
             hasParser: true,
+            hasData: true
           })),
         },
       };
@@ -223,3 +230,5 @@ module.exports = (state = initialDataState, action) => {
       return state;
   }
 };
+
+export default reducer;
