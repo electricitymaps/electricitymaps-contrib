@@ -20,3 +20,25 @@ You can create bounding boxes for new or existing zones in `config/zones.json`:
 
 - [geojson.io](https://geojson.io) is a great tool for visualizing and editing coordinates
 - We currently can't generate coordinates for small islands --> any PRs for fixing this without compromising too much on bundle size is very welcome!
+
+
+## Translating strings missing in your locale
+
+We wrote a little tool for this task:
+
+```bash
+node translation-helper.js
+```
+
+You will be asked to select a language to translate.
+
+Running the tool looks like this:
+
+```
+Languages you can translate: ar, da, de, es, fr, hr, it, ja, nl, pl, pt-br, ru, sv, zh-cn, zh-hk, zh-tw
+Which language do you want to translate: de
+
+country-panel.electricity [Electricity]: Elektrizität
+zoneShortName.IQ-KUR.countryName [Iraq]: Irak
+...
+```
