@@ -1,11 +1,11 @@
-const moment = require('moment');
+import moment from 'moment';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+import { modeOrder } from '../helpers/constants';
+import constructTopos from '../helpers/topos';
+import * as translation  from '../helpers/translation';
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -55,7 +55,7 @@ const initialDataState = {
   windDataError: null,
 };
 
-module.exports = (state = initialDataState, action) => {
+const reducer = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -230,3 +230,5 @@ module.exports = (state = initialDataState, action) => {
       return state;
   }
 };
+
+export default reducer;

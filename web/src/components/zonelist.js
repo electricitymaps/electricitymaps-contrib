@@ -8,14 +8,9 @@ import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
 import { __, getZoneNameWithCountry } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
+import { ascending } from 'd3-array';
+import { values } from 'd3-collection';
 
-const d3 = Object.assign(
-  {},
-  require('d3-array'),
-  require('d3-collection'),
-  require('d3-scale'),
-  require('d3-selection'),
-);
 
 function withZoneRankings(zones) {
   return zones.map((zone) => {
@@ -36,12 +31,12 @@ function sortAndValidateZones(zones, accessor) {
     .filter(accessor)
     .sort((x, y) => {
       if (!x.co2intensity && !x.countryCode) {
-        return d3.ascending(
+        return ascending(
           x.shortname || x.countryCode,
           y.shortname || y.countryCode,
         );
       }
-      return d3.ascending(
+      return ascending(
         accessor(x) || Infinity,
         accessor(y) || Infinity,
       );
@@ -49,7 +44,7 @@ function sortAndValidateZones(zones, accessor) {
 }
 
 function processZones(zonesData, accessor) {
-  const zones = d3.values(zonesData);
+  const zones = values(zonesData);
   const validatedAndSortedZones = sortAndValidateZones(zones, accessor);
   return withZoneRankings(validatedAndSortedZones);
 }

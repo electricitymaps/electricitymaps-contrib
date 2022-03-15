@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const version = require('./version.js');
+const { version } = require('./public/client-version.json');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -48,9 +48,11 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     function () {
       this.plugin('done', (stats) => {
+        // Avoid dumping everything (~30mb)
+        const output = {...stats.toJson({all: false, assets: true, groupAssetsByChunk: true})};
         fs.writeFileSync(
           `${__dirname}/public/dist/manifest.json`,
-          JSON.stringify(stats.toJson())
+          JSON.stringify(output)
         );
       });
     },
