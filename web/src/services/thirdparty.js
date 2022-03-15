@@ -20,9 +20,9 @@ class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(require(new twitterConnection()));
-      this.addConnection(require(new mixpanelConnection()));
-      this.addConnection(require(new plausibleConnection()));
+      this.addConnection(new twitterConnection());
+      this.addConnection(new mixpanelConnection());
+      this.addConnection(new plausibleConnection());
     } else {
       this.addConnection(new debugConsoleConnection());
     }
