@@ -35,7 +35,7 @@ import { dispatchApplication } from '../../store';
 import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
-import { getFullZoneName, __ } from '../../helpers/translation';
+import { getZoneNameWithCountry, __ } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 
 // TODO: Move all styles from styles.css to here
@@ -256,7 +256,7 @@ const CountryPanel = ({
                 <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
               <div style={{ flexGrow: 1 }}>
-                <div className="country-name">{getFullZoneName(zoneId)}</div>
+                <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
                 <CountryTime>
                   {datetime ? moment(datetime).format('LL LT') : ''}
                   {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
