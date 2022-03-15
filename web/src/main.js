@@ -7,7 +7,6 @@ import moment from 'moment';
 import 'mapbox-gl/dist/mapbox-gl.css'; // Required for map zooming buttons
 import 'url-search-params-polyfill'; // For IE 11 support
 
-import thirdPartyServices from './services/thirdparty';
 import { history } from './helpers/router';
 import { store, sagaMiddleware } from './store';
 import { cordovaApp } from './cordova';
@@ -16,10 +15,6 @@ import sagas from './sagas';
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
 
-// Track how long it took to start executing the JS code
-if (thirdPartyServices._ga) {
-  thirdPartyServices._ga.timingMark('start_executing_js');
-}
 
 // Set proper locale
 moment.locale(window.locale.toLowerCase());
