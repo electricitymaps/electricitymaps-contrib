@@ -22,6 +22,7 @@ class ConnectionsService {
       this.addConnection(require('./thirdparty/twitter'));
       this._ga = this.addConnection(require('./thirdparty/ga'));
       this.addConnection(require('./thirdparty/mixpanel'));
+      this.addConnection(require('./thirdparty/plausible'))
     } else {
       this.addConnection(require('./thirdparty/debugconsole'));
     }
