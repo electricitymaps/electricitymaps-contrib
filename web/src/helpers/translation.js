@@ -26,8 +26,8 @@ export const translateIfExists = (key) => {
 };
 
 
-export const getZoneName = (zoneCode) => translate(`zoneShortName.${zoneCode}.zoneName`);
-export const getCountryName = (zoneCode) => translate(`zoneShortName.${zoneCode}.countryName`);
+export const getZoneName = (zoneCode) => translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+export const getCountryName = (zoneCode) => translateIfExists(`zoneShortName.${zoneCode}.countryName`);
 
 /**
  * Gets the full name of a zone with the country name in parentheses.
