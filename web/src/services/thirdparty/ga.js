@@ -90,4 +90,4 @@ class GoogleAnalyticsThirdParty {
   }
 }
 
-module.exports = new GoogleAnalyticsThirdParty();
+export default GoogleAnalyticsThirdParty;

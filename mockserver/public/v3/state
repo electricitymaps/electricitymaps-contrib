@@ -43236,16 +43236,16 @@
         "capacity": {
           "battery storage": null,
           "biomass": null,
-          "coal": 1024,
+          "coal": 1288,
           "gas": null,
           "geothermal": null,
-          "hydro": 135.28,
+          "hydro": 68,
           "hydro storage": null,
           "nuclear": null,
           "oil": null,
           "solar": 10,
           "unknown": null,
-          "wind": 33.75
+          "wind": 136
         },
         "co2intensity": null,
         "co2intensityProduction": null,

@@ -1009,6 +1009,7 @@
     "timezone": null
   },
   "CA-MB": {
+    "_comment": "Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)",
     "bounding_box": [
       [
         -102.50159786704786,
@@ -1020,14 +1021,17 @@
       ]
     ],
     "capacity": {
-      "coal": 110,
-      "gas": 342,
-      "hydro": 5249,
-      "oil": 10,
-      "wind": 237
+      "coal": 0,
+      "gas": 237,
+      "hydro": 5234,
+      "oil": 13,
+      "wind": 258
     },
+    "contributors": [
+      "https://github.com/felixvanoost"
+    ],
     "flag_file_name": "ca.png",
-    "timezone": null
+    "timezone": "America/Winnipeg"
   },
   "CA-NB": {
     "_comment": "gas includes an 88 MW cogeneration plant",
@@ -1157,13 +1161,13 @@
       ]
     ],
     "capacity": {
-      "biomass": 295,
+      "biomass": 296,
       "coal": 0,
-      "gas": 11317,
+      "gas": 10515,
       "hydro": 8918,
-      "nuclear": 13009,
+      "nuclear": 13089,
       "solar": 478,
-      "wind": 4786
+      "wind": 4783
     },
     "contributors": [
       "https://github.com/corradio",
@@ -1562,18 +1566,18 @@
       ]
     ],
     "capacity": {
-      "battery storage": 280,
-      "biomass": 8570,
-      "coal": 43960,
-      "gas": 30500,
+      "battery storage": 580,
+      "biomass": 9420,
+      "coal": 39870,
+      "gas": 31680,
       "geothermal": 47,
-      "hydro": 4860,
-      "hydro storage": 9810,
+      "hydro": 4940,
+      "hydro storage": 9800,
       "nuclear": 4055,
-      "oil": 4380,
-      "solar": 58410,
+      "oil": 4680,
+      "solar": 59400,
       "unknown": 3700,
-      "wind": 64040
+      "wind": 64280
     },
     "contributors": [
       "https://github.com/corradio",
@@ -8961,10 +8965,10 @@
       ]
     ],
     "capacity": {
-      "coal": 1024,
-      "hydro": 135.277,
+      "coal": 1288,
+      "hydro": 68,
       "solar": 10.002,
-      "wind": 33.75
+      "wind": 136
     },
     "contributors": [
       "https://github.com/veqtrus"
