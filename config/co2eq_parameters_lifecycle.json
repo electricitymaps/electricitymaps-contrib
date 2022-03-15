@@ -6,11 +6,50 @@
         "source": "Tomorrow",
         "value": 0
       },
-      "battery discharge": {
-        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
-        "source": "World average intensity by Tomorrow",
-        "value": 301.13684338512996
-      },
+      "battery discharge": [
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2015-01-01",
+          "source": "2015 annual mean carbon intensity by electricityMap",
+          "value": 363.85
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2016-01-01",
+          "source": "2016 annual mean carbon intensity by electricityMap",
+          "value": 354.12
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2017-01-01",
+          "source": "2017 annual mean carbon intensity by electricityMap",
+          "value": 370.7
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2018-01-01",
+          "source": "2018 annual mean carbon intensity by electricityMap",
+          "value": 407.34
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2019-01-01",
+          "source": "2019 annual mean carbon intensity by electricityMap",
+          "value": 391.46
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2020-01-01",
+          "source": "2020 annual mean carbon intensity by electricityMap",
+          "value": 375.63
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2021-01-01",
+          "source": "2021 annual mean carbon intensity by electricityMap",
+          "value": 391.33
+        }
+      ],
       "biomass": {
         "source": "IPCC 2014",
         "value": 230
@@ -36,11 +75,50 @@
         "source": "Tomorrow",
         "value": 0
       },
-      "hydro discharge": {
-        "_comment": "As a default fallback, we use here the annual mean carbon intensity of all electricityMap zones",
-        "source": "World average intensity by Tomorrow",
-        "value": 301.13684338512996
-      },
+      "hydro discharge": [
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2015-01-01",
+          "source": "2015 annual mean carbon intensity by electricityMap",
+          "value": 363.85
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2016-01-01",
+          "source": "2016 annual mean carbon intensity by electricityMap",
+          "value": 354.12
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2017-01-01",
+          "source": "2017 annual mean carbon intensity by electricityMap",
+          "value": 370.7
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2018-01-01",
+          "source": "2018 annual mean carbon intensity by electricityMap",
+          "value": 407.34
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2019-01-01",
+          "source": "2019 annual mean carbon intensity by electricityMap",
+          "value": 391.46
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2020-01-01",
+          "source": "2020 annual mean carbon intensity by electricityMap",
+          "value": 375.63
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2021-01-01",
+          "source": "2021 annual mean carbon intensity by electricityMap",
+          "value": 391.33
+        }
+      ],
       "nuclear": {
         "source": "IPCC 2014",
         "value": 12
@@ -179,13 +257,13 @@
         }
       },
       "CA-AB": {
-        "unknown": {
-          "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
-          "value": 655
-        },
         "battery discharge": {
           "source": "2017 average by Tomorrow",
           "value": 597
+        },
+        "unknown": {
+          "source": "Battle River dual fuel power plant: 50% coal and 50% natural gas",
+          "value": 655
         }
       },
       "CA-NS": {
@@ -213,18 +291,18 @@
         }
       },
       "CH": {
-        "unknown": {
-          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
-          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
-          "value": 131
+        "battery discharge": {
+          "source": "2020 average by Tomorrow",
+          "value": 87.03
         },
         "hydro discharge": {
           "source": "2020 average by Tomorrow",
           "value": 87.03
         },
-        "battery discharge": {
-          "source": "2020 average by Tomorrow",
-          "value": 87.03
+        "unknown": {
+          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
+          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
+          "value": 131
         }
       },
       "CL-SEN": {
