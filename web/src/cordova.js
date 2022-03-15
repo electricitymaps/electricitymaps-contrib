@@ -50,7 +50,11 @@ export const cordovaApp = {
           transform: translate(0, ${top});
         }
         .layer-buttons-container {
-          transform: translate(0, ${top});
+          /* Note: Don't use transform here, as it breaks child position fixed elements (lang. selector) */
+          margin-top: ${top};
+        }
+        .language-select-container {
+          padding-top: ${top};
         }
 
         #tab {

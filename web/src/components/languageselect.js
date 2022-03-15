@@ -36,7 +36,7 @@ const LanguageSelectContainer = styled.div`
     top: 0;
     z-index: 100;
     text-align: center;
-
+    overflow-y: scroll;
     #close-language-select-container {
       display: block;
       position: fixed;
@@ -87,7 +87,7 @@ const LanguageSelect = () => {
         icon="language_select"
       />
       {languagesVisible && (
-        <LanguageSelectContainer>
+        <LanguageSelectContainer className="language-select-container">
           <div id="close-language-select-container">
             <ButtonToggle
               onChange={toggleLanguagesVisible}

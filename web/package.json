@@ -95,7 +95,7 @@
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "lint": "eslint geo src *.js",
-    "update-version": "echo \"module.exports = '$COMMIT_SHA';\" > version.js",
+    "update-version": "echo '{\"version\": \"'$COMMIT_SHA'\"}' > public/client-version.json",
     "server-dev": "nodemon --delay 1 server.js",
     "watch": "webpack --watch --progress --mode development",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development",

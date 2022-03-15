@@ -78,7 +78,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
 - Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
-- Kosovo: [TSO](https://www.kostt.com/Content/ViewFiles/Transparency/BasicMarketDataOnGeneration/Prodhimi%20aktual%20gjenerimi%20faktik%20i%20energjise%20elektrike.xlsx)
+- Kosovo: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Kuwait (TSO): [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)
 - Kuwait (Power Market): [GCCIA](https://www.gccia.com.sa/)
 - Latvia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -187,10 +187,13 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bulgaria:
   - Hydro: [NEK](https://nek.bg/index.php/en/our-business/electricity-generation)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Canada (British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
+- Canada (British Columbia, New Brunswick, Newfoundland and Labrador, Nova Scotia, Prince Edward Island):
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Canada)
 - Canada (Alberta): [AESO](http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet),
   [wikipedia.org](https://en.wikipedia.org/wiki/List_of_generating_stations_in_Alberta)
+- Canada (Manitoba)
+  - Hydro & Gas: [Manitoba Hydro-Electric Board](https://www.hydro.mb.ca/corporate/ar/pdf/annual_report_2020_21.pdf), [Manitoba Hydro](https://www.hydro.mb.ca/corporate/facilities/generating_stations/#selkirk)
+  - Wind: [Province of Manitoba](https://gov.mb.ca/sd/environment_and_biodiversity/energy/wind/windfarms.html)
 - Canada (Ontario): [IESO](http://www.ieso.ca/en/Power-Data/Supply-Overview/Transmission-Connected-Generation)
 - Canada (Québec): [Hydro-Québec](https://www.hydroquebec.com/generation/generating-stations.html)
 - Canada (Saskatchewan): [SaskPower](http://www.saskpower.com/our-power-future/our-electricity/)
