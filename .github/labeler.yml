@@ -6,7 +6,7 @@ frontend 🎨:
   - web/src/**/*
 
 translations 🗣:
-  - web/locales/**/*
+  - web/public/locales/**/*
 
 javascript:
   - .**/*.js

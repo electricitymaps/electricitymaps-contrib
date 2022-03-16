@@ -5,7 +5,7 @@ from os import PathLike, listdir, path
 from typing import Dict, Union
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
-LOCALES_FOLDER_PATH = ROOT_PATH / "web/locales/"
+LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
 LOCALE_FILE_PATHS = [
     LOCALES_FOLDER_PATH / f
     for f in listdir(LOCALES_FOLDER_PATH)
