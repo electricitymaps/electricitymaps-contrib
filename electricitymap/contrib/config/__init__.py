@@ -11,7 +11,16 @@ CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resol
 # Read JOSN files
 ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json")))
 EXCHANGES_CONFIG = json.load(open(CONFIG_DIR.joinpath("exchanges.json")))
-CO2EQ_PARAMETERS = json.load(open(CONFIG_DIR.joinpath("co2eq_parameters.json")))
+CO2EQ_PARAMETERS_ALL = json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_all.json")))
+CO2EQ_PARAMETERS_LIFECYCLE = {
+    **CO2EQ_PARAMETERS_ALL,
+    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json")))
+    }
+CO2EQ_PARAMETERS_DIRECT = {
+    **CO2EQ_PARAMETERS_ALL,
+    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json")))
+    }
+CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE # Global LCA is the default
 
 # Prepare zone bounding boxes
 ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = {}

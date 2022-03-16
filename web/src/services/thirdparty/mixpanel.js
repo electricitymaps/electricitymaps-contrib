@@ -14,4 +14,4 @@ class MixpanelThirdParty{
     }
 }
 
-module.exports = new MixpanelThirdParty();
+export default MixpanelThirdParty;

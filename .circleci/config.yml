@@ -49,6 +49,7 @@ jobs:
       - run:
           command: |
             sudo npm install -g jest
+            sed -i -e 's/export {/module.exports = {/' web/src/helpers/constants.js
             jest
 
   verify_web_js:

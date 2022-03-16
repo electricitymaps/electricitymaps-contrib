@@ -14,18 +14,15 @@ steps:
 
   build:
     inputs:
-      - ../web/public
-      - ../web/{locales,src,views/pages/index.ejs}
+      - ../web/{public,src,views/pages/index.ejs}
       - ../web/locales-config.json
       - www/index.html
       - ./icon*.png
       - generate-index.js
       - config.xml
       - res/screen/ios
-      - sentry.properties
     commands:
       - cp -r ../web/public/ www/electricitymap
-      - cp -r ../web/locales/ .
       - cp ../web/locales-config.json ./locales-config.json
       - cp -r ../web/src .
       # Generate bundle
@@ -33,8 +30,6 @@ steps:
       # Generate icons
       - node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
       - node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
-      # Set Sentry auth-token
-      - echo "auth-token=${BRICK_SENTRY_AUTH_TOKEN:-unknown}" >> sentry.properties
 
   deploy:
     commands:

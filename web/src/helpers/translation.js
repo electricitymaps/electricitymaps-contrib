@@ -27,29 +27,44 @@ export function translate() {
   return translateWithLocale.apply(null, args);
 }
 
-export function getFullZoneName(zoneCode) {
-  const zoneName = translate(`zoneShortName.${zoneCode}.zoneName`);
+
+export const getZoneName = (zoneCode) => translate(`zoneShortName.${zoneCode}.zoneName`);
+export const getCountryName = (zoneCode) => translate(`zoneShortName.${zoneCode}.countryName`);
+
+/**
+ * Gets the full name of a zone with the country name in parentheses.
+ * @param {string} zoneCode 
+ * @returns string
+ */
+ export function getZoneNameWithCountry(zoneCode) {
+  const zoneName = getZoneName(zoneCode);
   if (!zoneName) {
     return zoneCode;
   }
-  const countryName = translate(`zoneShortName.${zoneCode}.countryName`);
+  const countryName = getCountryName(zoneCode);
   if (!countryName) {
     return zoneName;
   }
+
   return `${zoneName} (${countryName})`;
 }
 
-export function getShortZoneName(zoneCode, limit = 40) {
-  const zoneName = translate(`zoneShortName.${zoneCode}.zoneName`);
+/**
+ * Gets the name of a zone with the country name in parentheses and zone-name ellipsified if too long.
+ * @param {string} zoneCode 
+ * @returns string
+ */
+export function getShortenedZoneNameWithCountry(zoneCode, limit = 40) {
+  const zoneName = getZoneName(zoneCode);
   if (!zoneName) {
     return zoneCode;
   }
-  const countryName = translate(`zoneShortName.${zoneCode}.countryName`);
+  const countryName = getCountryName(zoneCode);
   if (!countryName) {
     return zoneName;
   }
 
-  if (zoneName.length > limit) {
+  if (limit && zoneName.length > limit) {
     return `${zoneName.substring(0, limit)}... (${countryName})`;
   }
 

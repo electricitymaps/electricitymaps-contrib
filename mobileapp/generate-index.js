@@ -19,7 +19,7 @@ let the client deal with all translations / formatting of ejs
 */
 const localeConfigs = {};
 locales.forEach((d) => {
-  localeConfigs[d] = require(`${__dirname}/locales/${d}.json`);
+  localeConfigs[d] = require(`${__dirname}/www/electricitymap/locales/${d}.json`);
 });
 function translateWithLocale(locale, keyStr) {
   const keys = keyStr.split('.');
