@@ -9,7 +9,7 @@ charset = utf-8
 [*.{js,json}]
 indent_size = 2
 
-[web/locales/**.json]
+[web/public/locales/**.json]
 indent_size = 4
 
 [*.py]
