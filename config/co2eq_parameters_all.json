@@ -1486,7 +1486,7 @@
           "wind": 0.013070146299478594
         }
       },
-      "NZ-NZN": {
+      "NZ": {
         "_source": "electricityMap, 2021 average",
         "powerOriginRatios": {
           "battery discharge": 0.0,
@@ -1494,30 +1494,13 @@
           "coal": 0.10300324286854977,
           "gas": 0.15085195353697833,
           "geothermal": 0.30942699443458854,
-          "hydro": 0.31789333594944125,
+          "hydro": 0.9796303163452214,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
           "oil": 0.0007836425136503577,
           "solar": 0.0,
           "unknown": 0.04927664985922736,
           "wind": 0.06878744399718065
-        }
-      },
-      "NZ-NZS": {
-        "_source": "electricityMap, 2021 average",
-        "powerOriginRatios": {
-          "battery discharge": 0.0,
-          "biomass": 0.0,
-          "coal": 0.0026034002989687626,
-          "gas": 0.0017710291581868563,
-          "geothermal": 0.005945336306355176,
-          "hydro": 0.9796303163452214,
-          "hydro discharge": 0.0,
-          "nuclear": 0.0,
-          "oil": 1.5882664004743069e-06,
-          "solar": 0.0,
-          "unknown": 0.0009632178582006909,
-          "wind": 0.009107976417096743
         }
       },
       "PA": {
