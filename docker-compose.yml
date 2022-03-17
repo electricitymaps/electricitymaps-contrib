@@ -1,11 +1,5 @@
 version: '3.5'
 services:
-  mockserver:
-    build: mockserver
-    ports: ['8001:8000']
-    volumes:
-      - './mockserver/public:/home/public'
-      - './mockserver/server.py:/home/server.py'
   web:
     build:
       context: .
@@ -16,7 +10,6 @@ services:
         - eu.gcr.io/tmrow-152415/electricitymap_web:latest
     image: eu.gcr.io/tmrow-152415/electricitymap_web:latest
     command: npm run server-dev
-    depends_on: ['mockserver']
     environment:
       - NODE_ENV=development
     ports: ['8000:8000']
@@ -24,7 +17,7 @@ services:
       - './config:/home/config'
       - './web/.eslintrc:/home/src/electricitymap/contrib/web/.eslintrc'
       - './web/geo:/home/src/electricitymap/contrib/web/geo'
-      - './web/locales:/home/src/electricitymap/contrib/web/locales'
+      - './web/public/locales:/home/src/electricitymap/contrib/web/public/locales'
       - './web/locales-config.json:/home/src/electricitymap/contrib/web/locales-config.json'
       - './web/package.json:/home/src/electricitymap/contrib/web/package.json'
       - './web/public:/home/src/electricitymap/contrib/web/public'
@@ -48,7 +41,7 @@ services:
       - './config:/home/config'
       - './web/.eslintrc:/home/src/electricitymap/contrib/web/.eslintrc'
       - './web/geo:/home/src/electricitymap/contrib/web/geo'
-      - './web/locales:/home/src/electricitymap/contrib/web/locales'
+      - './web/public/locales:/home/src/electricitymap/contrib/web/public/locales'
       - './web/locales-config.json:/home/src/electricitymap/contrib/web/locales-config.json'
       - './web/package.json:/home/src/electricitymap/contrib/web/package.json'
       - './web/public:/home/src/electricitymap/contrib/web/public'
