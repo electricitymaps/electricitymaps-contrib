@@ -2,6 +2,7 @@
 *.env
 web/public/dist
 web/node_modules
+mockserver/node_modules
 .ipynb_checkpoints/
 *.pyproj
 *.sln

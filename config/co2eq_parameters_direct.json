@@ -1,0 +1,147 @@
+{
+  "emissionFactors": {
+    "defaults": {
+      "battery charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
+      },
+      "battery discharge": [
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2015-01-01",
+          "source": "2015 annual mean carbon intensity by electricityMap",
+          "value": 307.04
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2016-01-01",
+          "source": "2016 annual mean carbon intensity by electricityMap",
+          "value": 295.25
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2017-01-01",
+          "source": "2017 annual mean carbon intensity by electricityMap",
+          "value": 311.04
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2018-01-01",
+          "source": "2018 annual mean carbon intensity by electricityMap",
+          "value": 331.14
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2019-01-01",
+          "source": "2019 annual mean carbon intensity by electricityMap",
+          "value": 326.32
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2020-01-01",
+          "source": "2020 annual mean carbon intensity by electricityMap",
+          "value": 310.58
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2021-01-01",
+          "source": "2021 annual mean carbon intensity by electricityMap",
+          "value": 324.69
+        }
+      ],
+      "biomass": {
+        "source": "BEIS 2021",
+        "value": 0
+      },
+      "coal": {
+        "source": "IPCC 2014",
+        "value": 760
+      },
+      "gas": {
+        "source": "IPCC 2014",
+        "value": 370
+      },
+      "geothermal": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "hydro": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "hydro charge": {
+        "_comment": "Emissions are counted at discharge",
+        "source": "electricityMap",
+        "value": 0
+      },
+      "hydro discharge": [
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2015-01-01",
+          "source": "2015 annual mean carbon intensity by electricityMap",
+          "value": 307.04
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2016-01-01",
+          "source": "2016 annual mean carbon intensity by electricityMap",
+          "value": 295.25
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2017-01-01",
+          "source": "2017 annual mean carbon intensity by electricityMap",
+          "value": 311.04
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2018-01-01",
+          "source": "2018 annual mean carbon intensity by electricityMap",
+          "value": 331.14
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2019-01-01",
+          "source": "2019 annual mean carbon intensity by electricityMap",
+          "value": 326.32
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2020-01-01",
+          "source": "2020 annual mean carbon intensity by electricityMap",
+          "value": 310.58
+        },
+        {
+          "_comment": "As a default fallback, we use the annual mean carbon intensity of all electricityMap zones",
+          "datetime": "2021-01-01",
+          "source": "2021 annual mean carbon intensity by electricityMap",
+          "value": 324.69
+        }
+      ],
+      "nuclear": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "oil": {
+        "_comment": "A blended average of US and UK direct emission factor figures",
+        "source": "EIA 2020/BEIS 2021",
+        "value": 406
+      },
+      "solar": {
+        "source": "IPCC 2014",
+        "value": 0
+      },
+      "unknown": {
+        "_comment": "assume conventional",
+        "source": "assumes thermal (coal, gas, or oil)",
+        "value": 575
+      },
+      "wind": {
+        "source": "IPCC 2014",
+        "value": 0
+      }
+    },
+    "zoneOverrides": {}
+  }
+}

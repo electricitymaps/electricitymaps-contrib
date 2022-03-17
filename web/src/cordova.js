@@ -50,7 +50,11 @@ export const cordovaApp = {
           transform: translate(0, ${top});
         }
         .layer-buttons-container {
-          transform: translate(0, ${top});
+          /* Note: Don't use transform here, as it breaks child position fixed elements (lang. selector) */
+          margin-top: ${top};
+        }
+        .language-select-container {
+          padding-top: ${top};
         }
 
         #tab {
@@ -65,6 +69,10 @@ export const cordovaApp = {
       select("head")
         .append("style")
         .text(`
+            /* Fixes current issue on iOS where there's a gap at bottom.
+            See https://github.com/apache/cordova-plugin-wkwebview-engine/issues/172
+            */
+            html {height: 100vh;}
             /* iOS 10 */
             ${styles('20px', '0px')}
             /* iOS 11.0 */

@@ -35,7 +35,7 @@ const DEFAULT_FLAG_SIZE = 16;
 
 const DATA_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
-module.exports = {
+export {
   modeColor,
   modeOrder,
   PRODUCTION_MODES,

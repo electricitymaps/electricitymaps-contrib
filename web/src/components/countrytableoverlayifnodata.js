@@ -34,12 +34,8 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
   const zoneHasProductionValues = zoneData.production && !Object.values(zoneData.production).every(v => v === null);
   const zoneHasProductionData = zoneHasProductionValues || zonesThatCanHaveZeroProduction.includes(zoneId);
-  // note that the key can be both null and undefined, so we need to check for both (so != instead of !==)
-  const isEstimated = zoneData.estimationMethod != null; 
 
-
-  const shouldHideOverlay = (zoneHasProductionData && zoneData.hasParser) || isEstimated;
-  if (shouldHideOverlay) {
+  if (zoneHasProductionData) {
     return null;
   }
 

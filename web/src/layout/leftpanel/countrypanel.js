@@ -35,7 +35,7 @@ import { dispatchApplication } from '../../store';
 import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
-import { getFullZoneName, __ } from '../../helpers/translation';
+import { getZoneNameWithCountry, __ } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 
 // TODO: Move all styles from styles.css to here
@@ -196,7 +196,7 @@ const CountryPanel = ({
   const data = useCurrentZoneData() || {};
 
   const parentPage = {
-    pathname: isMobile ? '/ranking' : '/map',
+    pathname: '/map',
     search: location.search,
   };
 
@@ -221,7 +221,7 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser, disclaimer, estimationMethod } = data;
+  const { hasData, disclaimer, estimationMethod } = data;
   const isDataEstimated = !isNil(estimationMethod);
 
   const datetime = data.stateDatetime || data.datetime;
@@ -256,7 +256,7 @@ const CountryPanel = ({
                 <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
               </div>
               <div style={{ flexGrow: 1 }}>
-                <div className="country-name">{getFullZoneName(zoneId)}</div>
+                <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
                 <CountryTime>
                   {datetime ? moment(datetime).format('LL LT') : ''}
                   {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
@@ -267,7 +267,7 @@ const CountryPanel = ({
           </CountryNameTime>
         </div>
 
-        {hasParser && (
+        {hasData && (
           <React.Fragment>
             <CountryTableHeaderInner>
               <CarbonIntensitySquare value={co2Intensity} withSubtext />
@@ -311,7 +311,7 @@ const CountryPanel = ({
       </div>
 
       <CountryPanelWrap>
-        {hasParser ? (
+        {hasData ? (
           <React.Fragment>
             <BySource>
               {__('country-panel.bysource')}

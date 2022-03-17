@@ -27,7 +27,7 @@
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
         <preference name="android-minSdkVersion" value="19" />
-        <preference name="android-targetSdkVersion" value="28" />
+        <preference name="android-targetSdkVersion" value="29" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
     </platform>
@@ -38,6 +38,10 @@
         <!-- <preference name="CodePushDeploymentKey" value="EgyH71oYOglC8w-se8f-EDACw0KtEJ-bjzkpG" /> -->
         <preference name="StatusBarStyle" value="default" />
         <preference name="DisallowOverscroll" value="true" />
+        <preference name="AllowUntrustedCerts"  value="true" />
+        <preference name="InterceptRemoteRequests" value="all" />
+        <preference name="allowUniversalAccessFromFileURLs" value="true" />
+        <preference name="allowFileAccessFromFileURLs" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
@@ -49,7 +53,6 @@
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
-    <engine name="android" spec="^8.1.0" />
     <plugin name="cordova-plugin-firebase-analytics" spec="^4.1.2">
         <variable name="FIREBASE_VERSION" value="11.6.+" />
     </plugin>
