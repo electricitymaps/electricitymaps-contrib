@@ -1491,16 +1491,16 @@
         "powerOriginRatios": {
           "battery discharge": 0.0,
           "biomass": 0.0,
-          "coal": 0.10300324286854977,
-          "gas": 0.15085195353697833,
-          "geothermal": 0.30942699443458854,
-          "hydro": 0.9796303163452214,
+          "coal": 0.062843,
+          "gas": 0.09122,
+          "geothermal": 0.188034,
+          "hydro": 0.582588,
           "hydro discharge": 0.0,
           "nuclear": 0.0,
-          "oil": 0.0007836425136503577,
+          "oil": 0.000471,
           "solar": 0.0,
-          "unknown": 0.04927664985922736,
-          "wind": 0.06878744399718065
+          "unknown": 0.029951,
+          "wind": 0.044916
         }
       },
       "PA": {
