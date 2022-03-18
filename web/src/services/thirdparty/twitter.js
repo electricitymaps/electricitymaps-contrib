@@ -25,11 +25,7 @@ class TwitterThirdParty {
         this.inst.ready(e => {
             this.inst.events.bind('click', function (event) {
                 // event.region is {tweet,follow}
-                thirdPartyService.trackEvent(event.region);
-                thirdPartyService.ga('event', event.region, {
-                  event_category: 'social',
-                  event_label: 'twitter',
-                });
+                thirdPartyService.trackEvent(event.region, {event_category: "social", event_label: "twitter"});
             });
         });
     }

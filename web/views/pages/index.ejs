@@ -99,8 +99,8 @@
         <script defer src="<%= resolvePath('dist/vendor.' + vendorHash + '.js') %>"></script>
         <script defer src="<%= resolvePath('dist/bundle.' + bundleHash + '.js') %>"></script>
 
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
+        <!-- Plausible -->
+        <script defer data-domain="app.electricitymap.org" src="https://plausible.io/js/plausible.local.js"></script>
     </head>
     <body lang="<%= locale %>" id="app"></body>
 

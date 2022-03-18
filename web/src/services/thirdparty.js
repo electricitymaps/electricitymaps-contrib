@@ -2,7 +2,7 @@ import { store } from '../store';
 import { isProduction } from '../helpers/environment';
 import twitterConnection from './thirdparty/twitter';
 import mixpanelConnection from './thirdparty/mixpanel';
-import GoogleAnalyticsConnection from './thirdparty/ga';
+import plausibleConnection from './thirdparty/plausible'
 import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
@@ -20,9 +20,9 @@ class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(new mixpanelConnection());
-      this._ga = this.addConnection(new GoogleAnalyticsConnection());
       this.addConnection(new twitterConnection());
+      this.addConnection(new mixpanelConnection());
+      this.addConnection(new plausibleConnection());
     } else {
       this.addConnection(new debugConsoleConnection());
     }
@@ -34,6 +34,7 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
+    console.log("tracking totally");
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
@@ -41,19 +42,11 @@ class ConnectionsService {
     });
   }
 
-  // track google analytics if is available
-  ga() {
-    if (this._ga) {
-      try {
-        this._ga.ga(...arguments);
-      } catch (err) { console.error(`Google analytics track error: ${err}`); }
-    }
-  }
+ 
 
   // track errors
   trackError(e) {
     console.error(`Error Caught! ${e}`);
-    this.ga('event', 'exception', { description: e, fatal: false });
     store.dispatch({
       type: 'TRACK_EVENT',
       payload: {
