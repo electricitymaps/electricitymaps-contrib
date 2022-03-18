@@ -3,7 +3,6 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 
-import thirdPartyServices from '../services/thirdparty';
 import { useTranslation } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
@@ -67,9 +66,6 @@ export default () => {
 
       // Track and notify that WebGL is supported.
       dispatchApplication('webGLSupported', true);
-      if (thirdPartyServices._ga) {
-        thirdPartyServices._ga.timingMark('map_loaded');
-      }
     },
     [zones, zoneId, callerLocation],
   );
