@@ -84,6 +84,15 @@ const mapStateToProps = state => ({
   zones: state.data.grid.zones,
 });
 
+const LoadingWrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100%;
+`;
+
+
 const SocialButtons = styled.div`
   @media (min-width: 768px) {
     display: none !important;
@@ -240,6 +249,15 @@ const CountryPanel = ({
     trackEvent('switchToCountryProduction');
   };
 
+
+  if (isLoadingHistories) {
+    return (
+      <LoadingWrapper>
+        <LoadingPlaceholder height="2rem" />
+        <p>Loading...</p>
+        </LoadingWrapper>
+    );
+  }
 
   return (
     <CountryPanelStyled>
