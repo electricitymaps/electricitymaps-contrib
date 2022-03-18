@@ -1222,20 +1222,10 @@
           "value": 37.46015113978314
         }
       },
-      "NZ-NZN": {
+      "NZ": {
         "battery discharge": {
           "source": "electricityMap, 2021 average",
           "value": 213.52156469368532
-        },
-        "hydro discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 213.52156469368532
-        }
-      },
-      "NZ-NZS": {
-        "battery discharge": {
-          "source": "electricityMap, 2021 average",
-          "value": 27.514624060792045
         },
         "hydro discharge": {
           "source": "electricityMap, 2021 average",
