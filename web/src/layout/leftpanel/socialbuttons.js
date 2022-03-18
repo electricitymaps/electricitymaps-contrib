@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
+  margin-top: 12px;
+  .detail-bottom-section & {
+    padding: 0 1.5rem;
+    margin-bottom: 12px;
+    margin-top: 0px;
+  }
   @media (min-width: 768px) {
     display: ${({ hideOnDesktop }) => (hideOnDesktop ? 'none !important' : 'block')};
   }
@@ -16,11 +22,7 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
   }
 
   return (
-    <StyledWrapper
-      className="social-buttons"
-      hideOnDesktop={hideOnDesktop}
-      hideOnMobile={hideOnMobile}
-    >
+    <StyledWrapper hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile}>
       <div>
         {/* Facebook share */}
         <div
