@@ -17,6 +17,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="https://www.facebook.com/v*/plugins/*" />
     <allow-navigation href="https://platform.twitter.com/*" />
+    <allow-navigation href="about:*" />
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
@@ -38,7 +39,7 @@
         <!-- <preference name="CodePushDeploymentKey" value="EgyH71oYOglC8w-se8f-EDACw0KtEJ-bjzkpG" /> -->
         <preference name="StatusBarStyle" value="default" />
         <preference name="DisallowOverscroll" value="true" />
-        <preference name="AllowUntrustedCerts"  value="true" />
+        <preference name="AllowUntrustedCerts" value="true" />
         <preference name="InterceptRemoteRequests" value="all" />
         <preference name="allowUniversalAccessFromFileURLs" value="true" />
         <preference name="allowFileAccessFromFileURLs" value="true" />
