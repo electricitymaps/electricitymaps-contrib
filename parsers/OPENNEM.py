@@ -1,6 +1,6 @@
 import datetime
 import logging
-from typing import Dict, List, Mapping, Tuple
+from typing import Dict, List, Mapping, Tuple, Union
 
 import arrow
 import pandas as pd
@@ -191,7 +191,7 @@ def fetch_main_power_df(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> Tuple[pd.DataFrame, pd.Series]:
+) -> Union[Tuple[pd.DataFrame, pd.Series], pd.DataFrame]:
     df, region, filtered_datasets = _fetch_main_df(
         "power",
         zone_key=zone_key,
@@ -203,8 +203,11 @@ def fetch_main_power_df(
     # Solar rooftop is a special case
     df = process_solar_rooftop(df)
     logger.debug("Preparing capacities..")
-    capacities = get_capacities(filtered_datasets, region)
-    return df, capacities
+    if region:
+        capacities = get_capacities(filtered_datasets, region)
+        return df, capacities
+    else:
+        return df
 
 
 def _fetch_main_df(
