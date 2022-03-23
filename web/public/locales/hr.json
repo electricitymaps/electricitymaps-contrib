@@ -1111,6 +1111,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Novi Zeland"
+        },
         "NZ-NZA": {
             "countryName": "Novi Zeland",
             "zoneName": "Aucklandsko Otočje"
@@ -1118,14 +1121,6 @@
         "NZ-NZC": {
             "countryName": "Novi Zeland",
             "zoneName": "Otočje Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "Novi Zeland",
-            "zoneName": "Sjeverni Otok"
-        },
-        "NZ-NZS": {
-            "countryName": "Novi Zeland",
-            "zoneName": "Južni Otok"
         },
         "OM": {
             "zoneName": "Oman"

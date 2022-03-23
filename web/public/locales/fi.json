@@ -1122,6 +1122,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Uusi-Seelanti"
+        },
         "NZ-NZA": {
             "countryName": "Uusi-Seelanti",
             "zoneName": "Aucklandsaaret"
@@ -1129,14 +1132,6 @@
         "NZ-NZC": {
             "countryName": "Uusi-Seelanti",
             "zoneName": "Chathamsaaret"
-        },
-        "NZ-NZN": {
-            "countryName": "Uusi-Seelanti",
-            "zoneName": "Pohjoissaari"
-        },
-        "NZ-NZS": {
-            "countryName": "Uusi-Seelanti",
-            "zoneName": "Eteläsaari"
         },
         "OM": {
             "zoneName": "Oman"

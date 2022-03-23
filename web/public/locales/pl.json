@@ -905,6 +905,9 @@
             "countryName": "Norwegia",
             "zoneName": "Norwegia zachodnia"
         },
+        "NZ": {
+            "zoneName": "Nowa Zelandia"
+        },
         "NZ-NZA": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspy Auckland"
@@ -912,14 +915,6 @@
         "NZ-NZC": {
             "countryName": "Nowa Zelandia",
             "zoneName": "Wyspy Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "Nowa Zelandia",
-            "zoneName": "Wyspa Północna"
-        },
-        "NZ-NZS": {
-            "countryName": "Nowa Zelandia",
-            "zoneName": "Wyspa Południowa"
         },
         "NZ-NZST": {
             "countryName": "Nowa Zelandia",

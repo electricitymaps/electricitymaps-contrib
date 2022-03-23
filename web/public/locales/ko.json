@@ -1120,6 +1120,9 @@
         "NU": {
             "zoneName": "니우에"
         },
+        "NZ": {
+            "zoneName": "뉴질랜드"
+        },
         "NZ-NZA": {
             "countryName": "뉴질랜드",
             "zoneName": "오클랜드 제도"
@@ -1127,14 +1130,6 @@
         "NZ-NZC": {
             "countryName": "뉴질랜드",
             "zoneName": "채텀 제도"
-        },
-        "NZ-NZN": {
-            "countryName": "뉴질랜드",
-            "zoneName": "북섬"
-        },
-        "NZ-NZS": {
-            "countryName": "뉴질랜드",
-            "zoneName": "남섬"
         },
         "OM": {
             "zoneName": "오만"

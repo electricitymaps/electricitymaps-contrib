@@ -1109,6 +1109,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Novy Zéland"
+        },
         "NZ-NZA": {
             "countryName": "Novy Zéland",
             "zoneName": "Aucklandove ostrovy"
@@ -1116,14 +1119,6 @@
         "NZ-NZC": {
             "countryName": "Novy Zéland",
             "zoneName": "Chathamské ostrovy"
-        },
-        "NZ-NZN": {
-            "countryName": "Novy Zéland",
-            "zoneName": "Severný Ostrov"
-        },
-        "NZ-NZS": {
-            "countryName": "Novy Zéland",
-            "zoneName": "Južný Ostrov"
         },
         "OM": {
             "zoneName": "Omán"

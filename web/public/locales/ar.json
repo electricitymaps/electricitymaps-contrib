@@ -313,13 +313,8 @@
         "NO": {
             "zoneName": "نورواي"
         },
-        "NZ-NZN": {
-            "countryName": "نيوزلندا",
-            "zoneName": "الجزيرة الشمالية"
-        },
-        "NZ-NZS": {
-            "countryName": "نيوزلندا",
-            "zoneName": "الجزيرة الجنوبية"
+        "NZ": {
+            "zoneName": "نيوزلندا",
         },
         "PA": {
             "zoneName": "بنما"

@@ -1134,6 +1134,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Nova Zelândia"
+        },
         "NZ-NZA": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilhas de Auckland"
@@ -1141,14 +1144,6 @@
         "NZ-NZC": {
             "countryName": "Nova Zelândia",
             "zoneName": "Ilhas Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "Nova Zelândia",
-            "zoneName": "Ilha do Norte"
-        },
-        "NZ-NZS": {
-            "countryName": "Nova Zelândia",
-            "zoneName": "Ilha do Sul"
         },
         "OM": {
             "zoneName": "Omã"

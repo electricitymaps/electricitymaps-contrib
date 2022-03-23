@@ -1133,13 +1133,8 @@
             "countryName": "Νέα Ζηλανδία",
             "zoneName": "Chatham Islands"
         },
-        "NZ-NZN": {
-            "countryName": "Νέα Ζηλανδία",
-            "zoneName": "North Island"
-        },
-        "NZ-NZS": {
-            "countryName": "Νέα Ζηλανδία",
-            "zoneName": "South Island"
+        "NZ": {
+            "zoneName": "Νέα Ζηλανδία",
         },
         "OM": {
             "zoneName": "Ομάν"

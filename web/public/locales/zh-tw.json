@@ -262,11 +262,8 @@
         "NO": {
             "zoneName": "挪威"
         },
-        "NZ-NZN": {
-            "zoneName": "紐西蘭（北島）"
-        },
-        "NZ-NZS": {
-            "zoneName": "紐西蘭（南島）"
+        "NZ": {
+            "zoneName": "紐西蘭"
         },
         "PL": {
             "zoneName": "波蘭"
