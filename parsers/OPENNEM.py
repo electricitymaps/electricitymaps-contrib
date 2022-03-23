@@ -212,7 +212,7 @@ def _fetch_main_df(
     session,
     target_datetime,
     logger,
-):
+) -> Tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
         zone_key=zone_key or sorted_zone_keys[0],
