@@ -125,29 +125,6 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
     return data
 
 
-def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_datetime=None,
-                   logger=None) -> list:
-    """Requests the last known power exchange (in MW) between New Zealand's two islands."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not able to retrieve data for past dates')
-
-    obj = fetch(session)['soHVDCDailyGraph']
-    datetime_start = arrow.now().to(timezone).floor('day')
-    data = []
-    for item in obj['data']['mw_north']:
-        datetime = datetime_start.shift(minutes=+item[0])
-        if datetime > arrow.get() or item[1] is None:
-            continue
-        netFlow = item[1]
-        data.append({
-            'sortedZoneKeys': 'NZ-NZN->NZ-NZS',
-            'datetime': datetime.datetime,
-            'netFlow': -1 * netFlow,
-            'source': 'transpower.co.nz'
-        })
-
-    return data
-
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
@@ -163,5 +140,3 @@ if __name__ == '__main__':
     print(fetch_production('NZ-NZS'))
     print('fetch_production(NZ) ->')
     print(fetch_production('NZ'))
-    print('fetch_exchange() ->')
-    print(fetch_exchange())
