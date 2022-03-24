@@ -14,13 +14,13 @@ EXCHANGES_CONFIG = json.load(open(CONFIG_DIR.joinpath("exchanges.json")))
 CO2EQ_PARAMETERS_ALL = json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_all.json")))
 CO2EQ_PARAMETERS_LIFECYCLE = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json")))
-    }
+    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"))),
+}
 CO2EQ_PARAMETERS_DIRECT = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json")))
-    }
-CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE # Global LCA is the default
+    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"))),
+}
+CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 
 # Prepare zone bounding boxes
 ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = {}
@@ -45,5 +45,11 @@ for zone, neighbors in ZONE_NEIGHBOURS.items():
 def emission_factors(zone_key: ZoneKey):
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]
+
+    # Only use most recent yearly numbers from defaults
+    defaults_with_yearly = [k for (k, v) in defaults.items() if isinstance(v, list)]
+    for k in defaults_with_yearly:
+        defaults[k] = max(defaults[k], key=lambda x: x["datetime"])
+
     merged = {**defaults, **override}
     return dict([(k, (v or {}).get("value")) for (k, v) in merged.items()])
