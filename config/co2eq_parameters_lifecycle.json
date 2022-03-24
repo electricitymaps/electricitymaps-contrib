@@ -3796,9 +3796,7 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": [
-            "http://srldc.org/2018-19srallocation.aspx"
-          ],
+          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
@@ -5380,117 +5378,15 @@
           }
         ]
       },
-      "NZ-NZN": {
-        "battery discharge": [
-          {
-            "datetime": "2017-01-01",
-            "source": "electricityMap, 2017 average",
-            "value": 187.9304919787723
-          },
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 166.57776342962083
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 176.88429500066727
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 199.37786413651114
-          },
-          {
-            "datetime": "2021-01-01",
-            "source": "electricityMap, 2021 average",
-            "value": 213.52156469368532
-          }
-        ],
-        "hydro discharge": [
-          {
-            "datetime": "2017-01-01",
-            "source": "electricityMap, 2017 average",
-            "value": 187.9304919787723
-          },
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 166.57776342962083
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 176.88429500066727
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 199.37786413651114
-          },
-          {
-            "datetime": "2021-01-01",
-            "source": "electricityMap, 2021 average",
-            "value": 213.52156469368532
-          }
-        ]
-      },
-      "NZ-NZS": {
-        "battery discharge": [
-          {
-            "datetime": "2017-01-01",
-            "source": "electricityMap, 2017 average",
-            "value": 37.44339370274432
-          },
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 26.407301013315323
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 24.7171872799846
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 24.87925728614657
-          },
-          {
-            "datetime": "2021-01-01",
-            "source": "electricityMap, 2021 average",
-            "value": 27.514624060792045
-          }
-        ],
-        "hydro discharge": [
-          {
-            "datetime": "2017-01-01",
-            "source": "electricityMap, 2017 average",
-            "value": 37.44339370274432
-          },
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 26.407301013315323
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 24.7171872799846
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 24.87925728614657
-          },
-          {
-            "datetime": "2021-01-01",
-            "source": "electricityMap, 2021 average",
-            "value": 27.514624060792045
-          }
-        ]
+      "NZ": {
+        "battery discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 213.52156469368532
+        },
+        "hydro discharge": {
+          "source": "electricityMap, 2021 average",
+          "value": 27.514624060792045
+        }
       },
       "PA": {
         "battery discharge": [

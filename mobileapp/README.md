@@ -50,6 +50,12 @@ docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.
 
 ## Building & running apps
 
+To add the app to cordova
+
+```bash
+cordova platform add {ios,android}
+```
+
 To build the cordova app:
 
 ```bash
