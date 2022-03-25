@@ -187,12 +187,40 @@ const EstimatedDataInfo = () => (
   </React.Fragment>
 );
 
-const CountryPanel = ({
-  electricityMixMode,
-  isMobile,
-  tableDisplayEmissions,
-  zones,
-}) => {
+const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
+  const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
+  const shownDatetime = stateDatetime || datetime;
+  const isDataEstimated = !isNil(estimationMethod);
+
+  return (
+    <div className="left-panel-zone-details-toolbar">
+      <Link to={parentPage}>
+        <span className="left-panel-back-button">
+          <i className="material-icons" aria-hidden="true">
+            arrow_back
+          </i>
+        </span>
+      </Link>
+      <CountryNameTime>
+        <CountryNameTimeTable>
+          <div>
+            <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
+            <CountryTime>
+              {shownDatetime ? moment(shownDatetime).format('LL LT') : ''}
+              {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
+            </CountryTime>
+          </div>
+          {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
+        </CountryNameTimeTable>
+      </CountryNameTime>
+    </div>
+  );
+};
+
+const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
 
   const isLoadingHistories = useSelector(state => state.data.isLoadingHistories);
@@ -230,10 +258,9 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasData, disclaimer, estimationMethod } = data;
+  const { hasData, estimationMethod } = data;
   const isDataEstimated = !isNil(estimationMethod);
 
-  const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
@@ -252,39 +279,22 @@ const CountryPanel = ({
 
   if (isLoadingHistories) {
     return (
-      <LoadingWrapper>
-        <LoadingPlaceholder height="2rem" />
-        <p>Loading...</p>
+      <CountryPanelStyled>
+        <div id="country-table-header">
+          <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
+        </div>
+        <LoadingWrapper>
+          <LoadingPlaceholder height="2rem" />
+          <p>Loading...</p>
         </LoadingWrapper>
+      </CountryPanelStyled>
     );
   }
 
   return (
     <CountryPanelStyled>
       <div id="country-table-header">
-        <div className="left-panel-zone-details-toolbar">
-          <Link to={parentPage}>
-            <span className="left-panel-back-button">
-              <i className="material-icons" aria-hidden="true">arrow_back</i>
-            </span>
-          </Link>
-          <CountryNameTime>
-            <CountryNameTimeTable>
-              <div>
-                <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
-              </div>
-              <div style={{ flexGrow: 1 }}>
-                <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
-                <CountryTime>
-                  {datetime ? moment(datetime).format('LL LT') : ''}
-                  {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
-                </CountryTime>
-              </div>
-              {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
-            </CountryNameTimeTable>
-          </CountryNameTime>
-        </div>
-
+        <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
         {hasData && (
           <React.Fragment>
             <CountryTableHeaderInner>
