@@ -124,7 +124,7 @@
     "biomass": "biomass",
     "nuclear": "nuclear",
     "geothermal": "geothermal",
-    "gas": "natural gas",
+    "gas": "gas",
     "coal": "coal",
     "oil": "oil",
     "unknown": "unknown",
