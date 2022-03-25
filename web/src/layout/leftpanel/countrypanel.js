@@ -358,9 +358,10 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
-                tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
+              {tableDisplayEmissions ? (
+                <CountryHistoryEmissionsGraph />
+              ) : (
+                <CountryHistoryCarbonGraph />
               )}
 
               <CountryHistoryTitle>
@@ -374,14 +375,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
+              <CountryHistoryMixGraph />
 
               <CountryHistoryTitle>
                 {__('country-history.electricityprices24h')}
               </CountryHistoryTitle>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="7.2em" /> : <CountryHistoryPricesGraph />}
+              <CountryHistoryPricesGraph />
             </div>
             <hr />
             <div>
