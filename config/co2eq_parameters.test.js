@@ -47,7 +47,6 @@ describe("verify keys in emission factors are valid", () => {
     ["defaults", co2eq_parameters.emissionFactors.defaults],
     ...Object.entries(co2eq_parameters.emissionFactors.zoneOverrides),
   ])("for zone %s", (zone, value) => {
-    console.log(value)
     Object.keys(value).forEach((key) => expect(ALL_MODES).toContain(key));
   });
 });
