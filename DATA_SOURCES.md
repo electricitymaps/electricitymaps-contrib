@@ -95,6 +95,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
   - [Siesa](https://www.southlanddc.govt.nz/my-southland/siesa-2/what-sieasa-does/)
   - [Energy Market Services](https://em6live.co.nz)
 - Nicaragua: [CNDC](http://www.cndc.org.ni/)
+- Nigeria: [TCN ISO grid data portal](https://www.niggrid.com/GenerationProfile)
 - Northern Ireland: [SONI](http://www.soni.ltd.uk/InformationCentre/)
 - Norway: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Oman: [GCCIA](https://www.gccia.com.sa/)
@@ -290,7 +291,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Nicaragua: [INE](https://www.ine.gob.ni/index.php/electricidad/estadisticas-anuales)
 - Nigeria
   - [USAID](https://www.usaid.gov/powerafrica/nigeria)
-  - [SO Grid](https://www.niggrid.org)
+  - [TCN ISO grid data portal](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
