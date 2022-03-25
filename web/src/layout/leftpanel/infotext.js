@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 import { useTranslation } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
+import SocialButtons from './socialbuttons';
 
 const Container = styled.div`
   @media (max-width: 767px) {
@@ -18,67 +19,46 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const { __, i18n } = useTranslation();
-    return (
-        <Container className="info-text">
-          <ColorBlindCheckbox />
-          <p>
-            {__('panel-initial-text.thisproject')}
-            {' '}
-            <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
-              {__('panel-initial-text.opensource')}
-            </a>
-            {' '}(
-            {__('panel-initial-text.see')}
-            {' '}
-            <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md" target="_blank">
-              {__('panel-initial-text.datasources')}
-            </a>
-            ).{' '}
-            <span
-              dangerouslySetInnerHTML={{
-                __html: __(
-                  'panel-initial-text.contribute',
-                  'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started',
-                ),
-              }}
-            />
-            .
-          </p>
-          <p>
-            {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
-          </p>
-          <p>
-            {__('footer.faq-text')}
-            {' '}
-            <Link to={{ pathname: '/faq', search: useLocation().search }}>
-              <span className="faq-link">{__('footer.faq')}</span>
-            </Link>
-          </p>
-          <div className="social-buttons">
-            <div>
-              { /* Facebook share */}
-              <div
-                className="fb-share-button"
-                data-href="https://app.electricitymap.org/"
-                data-layout="button_count"
-              />
-              { /* Twitter share */}
-              <a
-                className="twitter-share-button"
-                data-url="https://app.electricitymap.org"
-                data-via="electricitymap"
-                data-lang={i18n.language}
-              />
-              { /* Slack */}
-              <span className="slack-button">
-                <a href="https://slack.tmrow.com" target="_blank" className="slack-btn">
-                  <span className="slack-ico" />
-                  <span className="slack-text">Slack</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </Container>
-    );
-};
+  const { __ } = useTranslation();
+  const { search } = useLocation();
+
+  return (
+  <Container className="info-text">
+    <ColorBlindCheckbox />
+    <p>
+      {__('panel-initial-text.thisproject')}
+      {' '}
+      <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
+        {__('panel-initial-text.opensource')}
+      </a>
+      {' '}(
+      {__('panel-initial-text.see')}
+      {' '}
+      <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md" target="_blank">
+        {__('panel-initial-text.datasources')}
+      </a>
+      ).{' '}
+      <span
+        dangerouslySetInnerHTML={{
+          __html: __(
+            'panel-initial-text.contribute',
+            'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started',
+          ),
+        }}
+      />
+      .
+    </p>
+    <p>
+      {__('footer.foundbugs')} <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">{__('footer.here')}</a>.<br />
+    </p>
+    <p>
+      {__('footer.faq-text')}
+      {' '}
+      <Link to={{ pathname: '/faq', search }}>
+        <span className="faq-link">{__('footer.faq')}</span>
+      </Link>
+    </p>
+    <SocialButtons />
+
+  </Container>
+)};
