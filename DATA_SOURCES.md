@@ -43,7 +43,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - France: [RTE](https://opendata.reseaux-energies.fr)
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
 - Germany: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Georgia: [GSE](http://www.gse.com.ge/home)
+- Georgia: [Georgian State Electrosystem (GSE)](http://www.gse.com.ge/home)
 - Great Britain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Great Britain (Orkney Islands): [SSEN](https://www.ssen.co.uk/ANM/)
 - Greece: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
