@@ -13,7 +13,9 @@ from functools import reduce
 # Handling of hours: data at t on API side corresponds to
 # production / consumption from t to t+1
 
-BASE_EXCHANGE_URL = 'http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?'
+# http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
+HOST = "http://858127-cc16935.tmweb.ru/"
+BASE_EXCHANGE_URL = f'${HOST}/webapi/api/flowDiagramm/GetData?'
 
 MAP_GENERATION_1 = {
     'P_AES': 'nuclear',
@@ -113,7 +115,7 @@ def fetch_production_1st_synchronous_zone(zone_key='RU-1', session=None, target_
     r = session or requests.session()
 
     price_zone = zone_key_price_zone_mapper[zone_key]
-    base_url = 'http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}'.format(price_zone)
+    base_url = '{}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}'.format(HOST, price_zone)
     url = base_url + '&startDate={date}&endDate={date}'.format(date=date)
 
     response = r.get(url)
@@ -170,7 +172,7 @@ def fetch_production_2nd_synchronous_zone(zone_key='RU-AS', session=None, target
 
     r = session or requests.session()
 
-    url = 'https://br.so-ups.ru/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}'.format(date)
+    url = '{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}'.format(HOST, date)
 
     response = r.get(url)
     json_content = json.loads(response.text)
