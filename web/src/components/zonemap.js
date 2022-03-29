@@ -1,18 +1,7 @@
-import React, {
-  useState,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import {
-  debounce,
-  isEmpty,
-  map,
-  noop,
-  size,
-} from 'lodash';
+import { debounce, isEmpty, map, noop, size } from 'lodash';
 import { __ } from '../helpers/translation';
 
 const interactiveLayerIds = ['zones-clickable'];
@@ -45,13 +34,53 @@ const ZoneMap = ({
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
+  const [colorId, setColorId] = useState('color');
+  const [remove, setRemove] = useState(false);
+
+  const initialClickableStyle = () => ({
+    // 'fill-color': ['case', ['has', 'color'], ['get', colorId], theme.clickableFill],
+    'fill-color': [
+      'case',
+      ['boolean', ['feature-state', 'color'], false],
+      [
+        'interpolate',
+        ['linear'],
+        ['get', 'mag'],
+        1,
+        '#CE9443',
+        1.5,
+        '#D4661D',
+        2,
+        '#930000',
+        2.5,
+        '#FF7300',
+        3,
+        '#fc8d59',
+        3.5,
+        '#ef6548',
+        4.5,
+        '#d7301f',
+        6.5,
+        '#b30000',
+        8.5,
+        '#7f0000',
+      ],
+      'black',
+    ],
+  });
+  // const initialClickableStyle = () => ({
+  //   'fill-color':
+  //   ['case', ['has', 'color'], `#${Math.floor(Math.random() * 16777215).toString(16)}`, theme.clickableFill]
+  // })
+  const [clickableStyle, setClickableStyle] = useState(initialClickableStyle());
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
-    () => debounce((value) => {
-      setIsDragging(value);
-    }, 200),
-    [],
+    () =>
+      debounce((value) => {
+        setIsDragging(value);
+      }, 200),
+    []
   );
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
@@ -62,42 +91,50 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    [],
+    []
   );
+
+  function randomRGB() {
+    var o = Math.round,
+      r = Math.random,
+      s = 255;
+    return `rgb(${o(r() * s)},${o(r() * s)},${o(r() * s)})`;
+  }
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
-  const sources = useMemo(
-    () => {
-      const features = map(zones, (zone, zoneId) => ({
-        type: 'Feature',
-        geometry: {
-          ...zone.geometry,
-          coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
-        },
-        properties: {
-          color: zone.color,
-          isClickable: zone.isClickable,
-          zoneData: zone,
-          zoneId,
-        },
-      }));
+  const sources = useMemo(() => {
+    console.log('Generate features');
+    const features = map(zones, (zone, zoneId) => ({
+      type: 'Feature',
+      id: zoneId,
+      geometry: {
+        ...zone.geometry,
+        coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
+      },
+      properties: {
+        color: randomRGB(),
+        color2: randomRGB(),
+        mag: Math.floor(Math.random() * 8),
+        isClickable: zone.isClickable,
+        zoneData: zone,
+        zoneId,
+      },
+    }));
 
-      return {
-        zonesClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => f.properties.isClickable),
-        },
-        zonesNonClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => !f.properties.isClickable),
-        },
-      };
-    },
-    [zones],
-  );
+    return {
+      zonesClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => f.properties.isClickable),
+      },
+      zonesNonClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => !f.properties.isClickable),
+      },
+    };
+  }, [zones]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
-  const hoverFilter = useMemo(() => (['==', 'zoneId', hoveredZoneId || '']), [hoveredZoneId]);
+  const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
 
   // Calculate layer styles only when the theme changes
   // to keep the stable and prevent excessive rerendering.
@@ -106,22 +143,45 @@ const ZoneMap = ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
-      zonesClickable: { 'fill-color': ['case', ['has', 'color'], ['get', 'color'], theme.clickableFill] },
       zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
-    [theme],
+    [theme]
   );
 
   // If WebGL is not supported trigger an error callback.
-  useEffect(
-    () => {
-      if (!ReactMapGL.supported()) {
-        setIsSupported(false);
-        onMapError('WebGL not supported');
+  useEffect(() => {
+    if (!ReactMapGL.supported()) {
+      setIsSupported(false);
+      onMapError('WebGL not supported');
+    }
+  }, []);
+
+  
+  const coloring = (e) => {
+    setRemove(!remove);
+    const features = ref.current.queryRenderedFeatures();
+    const map = ref.current.getMap();
+    console.log(remove);
+    features.forEach((ft) => {
+      const ftId = ft.id;
+      if (remove) {
+        map.removeFeatureState({
+          source: 'zones-clickable',
+          id: ftId,
+        });
+      } else {
+        map.setFeatureState(
+          {
+            source: 'zones-clickable',
+            id: ftId,
+          },
+          {
+            color: true,
+          }
+        );
       }
-    },
-    [],
-  );
+    });
+  };
 
   const handleClick = useMemo(
     () => (e) => {
@@ -134,7 +194,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick],
+    [ref.current, onSeaClick, onZoneClick]
   );
 
   const handleMouseMove = useMemo(
@@ -166,7 +226,16 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [
+      ref.current,
+      hoveringEnabled,
+      isDragging,
+      zones,
+      hoveredZoneId,
+      onMouseMove,
+      onZoneMouseEnter,
+      onZoneMouseLeave,
+    ]
   );
 
   const handleMouseOut = useMemo(
@@ -176,7 +245,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId],
+    [hoveredZoneId]
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.
@@ -219,6 +288,22 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
+          <input
+            type="range"
+            min={0}
+            max={24}
+            className="color-button"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              left: '500px',
+              zIndex: '100',
+              width: 300,
+            }}
+            onChange={() => {
+              coloring();
+            }}
+          />
           <div
             className="mapboxgl-zoom-controls"
             style={{
@@ -240,8 +325,8 @@ const ZoneMap = ({
         <Source type="geojson" data={sources.zonesNonClickable}>
           <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
         </Source>
-        <Source type="geojson" data={sources.zonesClickable}>
-          <Layer id="zones-clickable" type="fill" paint={styles.zonesClickable} />
+        <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
+          <Layer id="zones-clickable" type="fill" paint={clickableStyle} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>

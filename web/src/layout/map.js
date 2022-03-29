@@ -42,10 +42,15 @@ export default () => {
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
   const theme = useTheme();
-
+  
   const [tooltipPosition, setTooltipPosition] = useState(null);
   const [tooltipZoneData, setTooltipZoneData] = useState(null);
 
+ 
+  
+
+  
+  
   const handleMapLoaded = useMemo(
     () => () => {
       // Center the map initially based on the focused zone and the user geolocation.
