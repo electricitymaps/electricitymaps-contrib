@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "Detta app har",
+        "thisproject": "Denna app har",
         "opensource": "öppen källkod",
         "see": "se",
         "datasources": "datakällor",
@@ -20,7 +20,7 @@
             "text": "Vi färglägger regioner runt om i världen baserat på dess kolintensitet (inklusive alla växthusgaser) från el konsumerad där. Ju grönare färg, desto mer klimatvänlig el."
         },
         "view3": {
-            "header": "Vet var din el kommer från",
+            "header": "Kolla var din el kommer från",
             "text": "Pilar på kartan visar flöden av el mellan olika regioner. Tryck på en region för att se mer information om var elen kommer från."
         },
         "view4": {
@@ -29,7 +29,7 @@
         }
     },
     "country-panel": {
-        "source": "källa",
+        "source": "Källa",
         "carbonintensity": "Kolintensitet",
         "lowcarbon": "Fossilfritt",
         "renewable": "Förnybart",
@@ -42,6 +42,10 @@
         "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
         "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
         "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
+        "estimated": "Uppskattad",
+        "dataIsEstimated": "Delar av datan för denna region är uppskattad. Läs mer om vår uppskattings metodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
+        "estimatedTooltip":"Realtids datan för denna region är uppskattad baserat på källdata och anntaganden av modelen.",
+        "helpUs":"Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
         "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
         "now": "Nu"
     },
@@ -83,6 +87,8 @@
         "representing": "representerar",
         "ofemissions": "av utsläppen",
         "withcarbonintensity": "med en kolintensitet på",
+        "zoomIn": "Zooma in",
+        "zoomOut": "Zooma ut",
         "showWindLayer": "Visa vind-lager",
         "hideWindLayer": "Dölj vind-lager",
         "showSolarLayer": "Visa sol-lager",
@@ -109,7 +115,9 @@
         "faq": "Vanliga frågor"
     },
     "wind": "vind",
+    "windDataError": "Vind data är för nuvarande otillgängligt",
     "solar": "sol",
+    "solarDataError": "Sol data är för nuvarande otillgängligt",
     "hydro": "vatten",
     "hydro storage": "pumpkraft",
     "battery storage": "batterilager",
