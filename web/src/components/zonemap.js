@@ -38,35 +38,8 @@ const ZoneMap = ({
   const [remove, setRemove] = useState(false);
 
   const initialClickableStyle = () => ({
-    // 'fill-color': ['case', ['has', 'color'], ['get', colorId], theme.clickableFill],
-    'fill-color': [
-      'case',
-      ['boolean', ['feature-state', 'color'], false],
-      [
-        'interpolate',
-        ['linear'],
-        ['get', 'mag'],
-        1,
-        '#CE9443',
-        1.5,
-        '#D4661D',
-        2,
-        '#930000',
-        2.5,
-        '#FF7300',
-        3,
-        '#fc8d59',
-        3.5,
-        '#ef6548',
-        4.5,
-        '#d7301f',
-        6.5,
-        '#b30000',
-        8.5,
-        '#7f0000',
-      ],
-      'black',
-    ],
+    'fill-color': ['feature-state', 'color']
+  
   });
   // const initialClickableStyle = () => ({
   //   'fill-color':
@@ -164,23 +137,16 @@ const ZoneMap = ({
     console.log(remove);
     features.forEach((ft) => {
       const ftId = ft.id;
-      if (remove) {
-        map.removeFeatureState({
-          source: 'zones-clickable',
-          id: ftId,
-        });
-      } else {
         map.setFeatureState(
           {
             source: 'zones-clickable',
             id: ftId,
           },
           {
-            color: true,
+            color: randomRGB(),
           }
         );
-      }
-    });
+      });
   };
 
   const handleClick = useMemo(
