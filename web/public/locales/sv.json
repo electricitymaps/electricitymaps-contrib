@@ -20,7 +20,7 @@
             "text": "Vi färglägger regioner runt om i världen baserat på dess kolintensitet (inklusive alla växthusgaser) från el konsumerad där. Ju grönare färg, desto mer klimatvänlig el."
         },
         "view3": {
-            "header": "Kolla var din el kommer från",
+            "header": "Kolla var din el kommer ifrån",
             "text": "Pilar på kartan visar flöden av el mellan olika regioner. Tryck på en region för att se mer information om var elen kommer från."
         },
         "view4": {
