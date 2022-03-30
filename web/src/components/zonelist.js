@@ -95,7 +95,7 @@ const ZoneList = ({
 
   const enterZone = (zone) => {
     dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
-    trackEvent('zoneEnteredTest', {zoneEntered: zone.countryCode});
+    trackEvent('zoneEntered', {zoneEntered: zone.countryCode});
     history.push(zonePage(zone));
   };
 
