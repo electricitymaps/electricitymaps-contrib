@@ -10,6 +10,7 @@ import { __, getZoneNameWithCountry } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 import { ascending } from 'd3-array';
 import { values } from 'd3-collection';
+import { useTrackEvent } from '../hooks/tracking';
 
 
 function withZoneRankings(zones) {
@@ -84,6 +85,7 @@ const ZoneList = ({
   const ref = React.createRef();
   const history = useHistory();
   const location = useLocation();
+  const trackEvent = useTrackEvent();
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
   const zonePage = zone => ({
@@ -93,6 +95,7 @@ const ZoneList = ({
 
   const enterZone = (zone) => {
     dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
+    trackEvent('zoneEnteredTest', {zoneEntered: zone.countryCode});
     history.push(zonePage(zone));
   };
 
