@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useTrackEvent } from '../hooks/tracking';
 
 const Wrapper = styled.header`
   align-items: center;
@@ -19,11 +20,15 @@ const Wrapper = styled.header`
   width: 100vw;
   z-index: 3;
 
-  ${props => props.collapsed && `
+  ${(props) =>
+    props.collapsed &&
+    `
     padding: 0 24px;
   `};
 
-  ${props => props.inverted && `
+  ${(props) =>
+    props.inverted &&
+    `
     background: transparent;
     color: white;
     box-shadow: none;
@@ -44,7 +49,7 @@ const Logo = styled.img`
 
 const linkUnderline = css`
   &:after {
-    background: #62B252;
+    background: #62b252;
     bottom: 0;
     content: '';
     display: block;
@@ -70,7 +75,9 @@ const Link = styled.a`
     text-shadow: 0.5px 0 0 currentColor;
   }
 
-  ${props => props.active && `
+  ${(props) =>
+    props.active &&
+    `
     text-shadow: 0.5px 0 0 currentColor;
     ${linkUnderline}
   `}
@@ -86,7 +93,9 @@ const MenuDrawerBackground = styled.div`
   width: 100vw;
   height: 100vh;
 
-  ${props => props.visible && `
+  ${(props) =>
+    props.visible &&
+    `
     display: block;
   `};
 `;
@@ -108,7 +117,9 @@ const MenuDrawerContent = styled.div`
   width: 100vw;
   z-index: 1;
 
-  ${props => props.visible && `
+  ${(props) =>
+    props.visible &&
+    `
     transform: translateY(0);
   `};
 `;
@@ -146,24 +157,28 @@ const ResponsiveMenu = ({ children, collapsed }) => {
   );
 };
 
-const SharedHeader = ({
-  collapsed = false,
-  inverted = false,
-  links = [],
-  logo,
-}) => (
-  <Wrapper inverted={inverted} collapsed={collapsed}>
-    <a href="https://app.electricitymap.org/map">
-      <Logo src={logo} alt="logo" />
-    </a>
-    <ResponsiveMenu collapsed={collapsed}>
-      {links.map(({ label, href, active }) => (
-        <Link key={label} href={href} active={active}>
-          {label}
-        </Link>
-      ))}
-    </ResponsiveMenu>
-  </Wrapper>
-);
+const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo }) => {
+  const trackEvent = useTrackEvent();
+
+  return (
+    <Wrapper inverted={inverted} collapsed={collapsed}>
+      <a href="https://app.electricitymap.org/map">
+        <Logo src={logo} alt="logo" />
+      </a>
+      <ResponsiveMenu collapsed={collapsed}>
+        {links.map(({ label, href, active, id }) => (
+          <Link
+            key={id}
+            href={href}
+            active={active}
+            onClick={() => trackEvent('linkClicked', { linkId: id })}
+          >
+            {label}
+          </Link>
+        ))}
+      </ResponsiveMenu>
+    </Wrapper>
+  );
+};
 
 export default SharedHeader;
