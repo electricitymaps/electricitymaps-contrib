@@ -33,7 +33,7 @@ function* fetchZoneHistory(action) {
 
 function* fetchGridData(action) {
   const { features } = action.payload || {};
-  let endpoint = '/v4/state';
+  let endpoint = '/v4/state_min';
 
   if (features.length > 0) {
     endpoint += features.map(f => `&${f}=true`);

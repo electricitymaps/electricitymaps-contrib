@@ -55,7 +55,7 @@ export function useCurrentZoneData() {
       return null;
     }
     if (zoneTimeIndex === null) {
-      return grid.zones[zoneId];
+      return zoneHistory[zoneHistory.length - 1]; // latest history data. This may result in the wrong history file.
     }
     return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
