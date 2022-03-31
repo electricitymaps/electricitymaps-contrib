@@ -11,5 +11,5 @@ workflows:
           name: check-if-app-should-build
           mapping: |
              (web|mobileapp)/.* build-app true
-          #base-revision: main
+          base-revision: master
           config-path: .circleci/continue_config.yml
