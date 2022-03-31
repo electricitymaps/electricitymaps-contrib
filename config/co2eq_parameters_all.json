@@ -2,7 +2,7 @@
   "fallbackZoneMixes": {
     "defaults": {
       "_comment": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf",
-      "_source": "BP Statistical Review of World Energy 2019, values from 2018, and Tomorrow Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
+      "_source": "BP Statistical Review of World Energy 2019, values from 2018, and electricityMap Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
       "powerOriginRatios": {
         "battery charge": 0,
         "battery discharge": 0,
@@ -1091,7 +1091,7 @@
         ]
       },
       "GT": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "battery discharge": 0,
           "biomass": 0.11217009024437291,
@@ -1208,7 +1208,7 @@
         ]
       },
       "IN": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "battery discharge": 0,
           "biomass": 0.0,
@@ -1345,7 +1345,7 @@
         ]
       },
       "IN-UP": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "battery discharge": 0,
           "biomass": 0.0,
@@ -1542,7 +1542,7 @@
         ]
       },
       "KR": {
-        "_source": "Tomorrow",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "battery discharge": 0,
           "biomass": 0.0,
@@ -1709,7 +1709,7 @@
           "gas": 0.923,
           "wind": 0.077
         },
-        "source": "Tomorrow & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
+        "source": "electricityMap & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
       },
       "MY-WM": {
         "powerOriginRatios": [
