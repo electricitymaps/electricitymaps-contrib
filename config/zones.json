@@ -5526,8 +5526,8 @@
       "hydro": 16334,
       "nuclear": 6871,
       "oil": 2251,
-      "solar": 1089,
-      "wind": 11073
+      "solar": 1593.11,
+      "wind": 12200
     },
     "contributors": [
       "https://github.com/augustekman",
