@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import { dispatchApplication } from '../store';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
 import { solarColor, windColor } from '../helpers/scales';
@@ -68,9 +68,9 @@ const StyledMobileHeader = styled.div`
   }
 }`;
 
-const MobileHeader = ({ onToggle, isOpen }) => (
+const MobileHeader = ({ onToggle, isOpen, label }) => (
   <StyledMobileHeader isCollapsed={!isOpen}>
-    <span>{__('misc.legend')}</span>
+    <span>{label}</span>
     <ToggleLegendButton className="material-icons" onClick={onToggle}>
       {isOpen ? 'call_received' : 'call_made'}
     </ToggleLegendButton>
@@ -102,6 +102,7 @@ const Legend = ({
   solarColorbarValue,
   windColorbarValue,
 }) => {
+  const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const solarEnabled = useSolarEnabled();
   const windEnabled = useWindEnabled();
@@ -112,7 +113,7 @@ const Legend = ({
 
   return (
     <LegendsContainer isCollapsed={!legendVisible}>
-      <MobileHeader onToggle={toggleLegend} isOpen={legendVisible} />
+      <MobileHeader label={__('misc.legend')} onToggle={toggleLegend} isOpen={legendVisible} />
       {legendVisible && (
         <React.Fragment>
           <LegendItem label={__('legends.windpotential')} unit="m/s" isEnabled={windEnabled}>

@@ -37,7 +37,6 @@ const initialApplicationState = {
   isProduction: isProduction(),
   isLocalhost: isLocalhost(),
   legendVisible: true,
-  locale: window.locale,
   mapViewport: {
     width: window.innerWidth,
     height: window.innerHeight,

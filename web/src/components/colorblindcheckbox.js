@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux';
 
 import { dispatchApplication } from '../store';
 import { saveKey } from '../helpers/storage';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 const ColorBlindCheckbox = () => {
+  const { __ } = useTranslation();
   const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
   const toggleColorBlindMode = () => {
     dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled);

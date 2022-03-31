@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from '../../helpers/translation';
 
 const StyledWrapper = styled.div`
   margin-top: 12px;
@@ -17,6 +18,7 @@ const StyledWrapper = styled.div`
 `;
 
 const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
+  const { i18n } = useTranslation();
   if (hideOnMobile && hideOnDesktop) {
     return null;
   }
@@ -35,8 +37,8 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
           className="twitter-share-button"
           data-url="https://app.electricitymap.org"
           data-via="electricitymap"
-          data-lang={locale}
-        >
+          data-lang={i18n.language}
+          >
           &nbsp;
         </a>
         {/* Slack */}
