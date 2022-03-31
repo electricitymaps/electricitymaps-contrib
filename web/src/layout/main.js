@@ -82,6 +82,15 @@ const Main = ({
     isClientVersionOutdated = isNewClientVersion(clientVersion);
   }
 
+  // Initial greeting message for curious people
+  console.log('%cWelcome to electricityMap!', 'color: green; font-weight: bold');
+  console.log('Ready to work on fixing the climate full-time? \nhttps://electricitymap.org/jobs');
+  console.log('Come talk at Github: \nhttps://github.com/tmrowco/electricitymap-contrib');
+  console.groupCollapsed('%cEnvironment details', 'color: grey;');
+  console.log(`%cClient version: ${clientVersion} (is outdated: ${isClientVersionOutdated})`, 'color: grey');
+  console.log(`%cClient type: ${clientType}`, 'color: grey');
+  console.groupEnd();
+
   return (
     <React.Fragment>
       <div
