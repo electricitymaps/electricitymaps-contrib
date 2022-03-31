@@ -1,4 +1,13 @@
 version: 2.1
+setup: true
+
+orbs:
+  path-filtering: circleci/path-filtering@0.0.1
+
+parameters:
+  build-app:
+    type: boolean
+    default: false
 
 executors:
   js-exec:
@@ -106,16 +115,18 @@ jobs:
             curl --fail -i http://localhost:8000/v2/history?countryCode=FR
 
 workflows:
-  version: 2
+  setup-workflow:
+    jobs:
+      - path-filtering/filter:
+          mapping: |
+            (web|mobileapp)/.* build-app true
   all:
     jobs:
       - verify_python
       - verify_web_js
       - lint_json
       - test_js
-      - build_test:
-          requires:
-            - verify_python
-            - verify_web_js
-            - lint_json
-            - test_js
+  build-app:
+    when: << pipeline.parameters.build-app >>
+    jobs:
+      - build_test
