@@ -2,7 +2,7 @@ version: 2.1
 setup: true
 
 orbs:
-  path-filtering: circleci/path-filtering@0.1.1
+  path-filtering: circleci/path-filtering@0.0.1
 
 workflows:
   always-run:
@@ -12,4 +12,4 @@ workflows:
           mapping: |
              (web|mobileapp)/.* build-app true
           base-revision: master
-          config-path: .circleci/continue_config.yml
+          config-path: .circleci/continue_conf.yml

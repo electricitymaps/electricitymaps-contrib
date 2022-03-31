@@ -1,0 +1,33 @@
+version: 2.1
+
+parameters:
+  build-app:
+    type: boolean
+    default: false
+
+jobs:
+  lint_json_always:
+    docker:
+      - image: circleci/node:12.13
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "should always run"
+  lint_json_sometimes:
+    docker:
+      - image: circleci/node:12.13
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "should only run sometimes"
+
+workflows:
+  all:
+    jobs:
+      - lint_json_always
+  build-app:
+    when: << pipeline.parameters.build-app >>
+    jobs:
+      - lint_json_sometimes
