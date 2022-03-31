@@ -909,14 +909,8 @@
     "rotation": 90
   },
   "DE->SE": {
-    "capacity": [
-      -600,
-      600
-    ],
-    "lonlat": [
-      13.552264,
-      54.925814
-    ],
+    "capacity": [-615, 615],
+    "lonlat": [13.552264, 54.925814],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -1003,14 +997,8 @@
     "rotation": 70
   },
   "DK-DK1->SE": {
-    "capacity": [
-      -680,
-      740
-    ],
-    "lonlat": [
-      11.556268,
-      56.857802
-    ],
+    "capacity": [-715, 715],
+    "lonlat": [11.556268, 56.857802],
     "parsers": {
       "exchange": "DK.fetch_exchange"
     },
@@ -1192,10 +1180,8 @@
     "rotation": 135
   },
   "FI->SE": {
-    "lonlat": [
-      20.979206,
-      63.441789
-    ],
+    "capacity": [-2700, 2300],
+    "lonlat": [20.979206, 63.441789],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -2180,14 +2166,8 @@
     "rotation": -90
   },
   "NO-NO1->SE": {
-    "capacity": [
-      -2100,
-      2150
-    ],
-    "lonlat": [
-      12.254138,
-      61.008235
-    ],
+    "capacity": [-2095, 2145],
+    "lonlat": [12.254138, 61.008235],
     "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
@@ -2274,10 +2254,8 @@
     }
   },
   "NO-NO4->SE": {
-    "lonlat": [
-      15.462856,
-      66.273628
-    ],
+    "capacity": [-900, 950],
+    "lonlat": [15.462856, 66.273628],
     "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange"
