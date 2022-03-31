@@ -1374,6 +1374,19 @@
         -43.0301774319999
       ]
     ],
+    "capacity": {
+      "battery storage": 0,
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 22.64,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 40.27,
+      "solar": 0,
+      "wind": 3.12
+    },
     "timezone": "America/Santiago"
   },
   "CL-SEM": {
@@ -1387,6 +1400,19 @@
         -48.13730234199994
       ]
     ],
+    "capacity": {
+      "battery storage": 0,
+      "biomass": 0,
+      "coal": 0,
+      "gas": 97.3,
+      "geothermal": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 16.09,
+      "solar": 0,
+      "wind": 2.55
+    },
     "timezone": "America/Punta_Arenas"
   },
   "CL-SEN": {
@@ -1402,16 +1428,16 @@
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 466,
-      "coal": 4796,
-      "gas": 4411,
-      "geothermal": 79,
-      "hydro": 6782,
+      "biomass": 439.05,
+      "coal": 4641.27,
+      "gas": 3805.02,
+      "geothermal": 39.7,
+      "hydro": 6788.59,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 2920,
-      "solar": 4476,
-      "wind": 3131
+      "oil": 4172.1,
+      "solar": 5112.58,
+      "wind": 3535.2
     },
     "contributors": [
       "https://github.com/systemcatch",
