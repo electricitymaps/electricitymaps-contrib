@@ -85,6 +85,14 @@ const mapStateToProps = state => ({
   zones: state.data.grid.zones,
 });
 
+const LoadingWrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100%;
+`;
+
 const Flag = styled.img`
   vertical-align: bottom;
   padding-right: .8rem;
@@ -173,12 +181,40 @@ const EstimatedDataInfo = (text) => (
   </React.Fragment>
 );
 
-const CountryPanel = ({
-  electricityMixMode,
-  isMobile,
-  tableDisplayEmissions,
-  zones,
-}) => {
+const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
+  const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
+  const shownDatetime = stateDatetime || datetime;
+  const isDataEstimated = !isNil(estimationMethod);
+
+  return (
+    <div className="left-panel-zone-details-toolbar">
+      <Link to={parentPage}>
+        <span className="left-panel-back-button">
+          <i className="material-icons" aria-hidden="true">
+            arrow_back
+          </i>
+        </span>
+      </Link>
+      <CountryNameTime>
+        <CountryNameTimeTable>
+          <div>
+            <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
+            <CountryTime>
+              {shownDatetime ? moment(shownDatetime).format('LL LT') : ''}
+              {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
+            </CountryTime>
+          </div>
+          {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
+        </CountryNameTimeTable>
+      </CountryNameTime>
+    </div>
+  );
+};
+
+const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
   const { __ } = useTranslation();
 
@@ -217,10 +253,9 @@ const CountryPanel = ({
     return <Redirect to={parentPage} />;
   }
 
-  const { hasData, disclaimer, estimationMethod } = data;
+  const { hasData, estimationMethod } = data;
   const isDataEstimated = !isNil(estimationMethod);
 
-  const datetime = data.stateDatetime || data.datetime;
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
     : data.co2intensityProduction;
@@ -237,32 +272,24 @@ const CountryPanel = ({
   };
 
 
+  if (isLoadingHistories) {
+    return (
+      <CountryPanelStyled>
+        <div id="country-table-header">
+          <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
+        </div>
+        <LoadingWrapper>
+          <LoadingPlaceholder height="2rem" />
+          <p>Loading...</p>
+        </LoadingWrapper>
+      </CountryPanelStyled>
+    );
+  }
+
   return (
     <CountryPanelStyled>
       <div id="country-table-header">
-        <div className="left-panel-zone-details-toolbar">
-          <Link to={parentPage}>
-            <span className="left-panel-back-button">
-              <i className="material-icons" aria-hidden="true">arrow_back</i>
-            </span>
-          </Link>
-          <CountryNameTime>
-            <CountryNameTimeTable>
-              <div>
-                <Flag id="country-flag" alt="" src={flagUri(zoneId, 24)} />
-              </div>
-              <div style={{ flexGrow: 1 }}>
-                <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
-                <CountryTime>
-                  {datetime ? moment(datetime).format('LL LT') : ''}
-                  {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
-                </CountryTime>
-              </div>
-              {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
-            </CountryNameTimeTable>
-          </CountryNameTime>
-        </div>
-
+        <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
         {hasData && (
           <React.Fragment>
             <CountryTableHeaderInner>
@@ -326,9 +353,10 @@ const CountryPanel = ({
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="9.2em" /> : (
-                tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />
+              {tableDisplayEmissions ? (
+                <CountryHistoryEmissionsGraph />
+              ) : (
+                <CountryHistoryCarbonGraph />
               )}
 
               <CountryHistoryTitle>
@@ -342,14 +370,12 @@ const CountryPanel = ({
                 <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
                 <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
               </IconContainer>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="11.2em" /> : <CountryHistoryMixGraph />}
+              <CountryHistoryMixGraph />
 
               <CountryHistoryTitle>
                 {__('country-history.electricityprices24h')}
               </CountryHistoryTitle>
-              {/* TODO: Make the loader part of AreaGraph component with inferred height */}
-              {isLoadingHistories ? <LoadingPlaceholder height="7.2em" /> : <CountryHistoryPricesGraph />}
+              <CountryHistoryPricesGraph />
             </div>
             <hr />
             <div>
