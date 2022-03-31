@@ -206,6 +206,8 @@ export default () => {
         transitionDuration={transitionDuration}
         viewport={viewport}
         zones={zones}
+        zoomInLabel={__('tooltips.zoomIn')}
+        zoomOutLabel={__('tooltips.zoomOut')}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />

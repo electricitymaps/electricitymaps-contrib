@@ -13,7 +13,6 @@ import {
   noop,
   size,
 } from 'lodash';
-import { useTranslation } from '../helpers/translation';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -40,6 +39,8 @@ const ZoneMap = ({
     zoom: 2,
   },
   zones = {},
+  zoomInLabel = '',
+  zoomOutLabel = '',
 }) => {
   const ref = useRef(null);
   const wrapperRef = useRef(null);
@@ -53,7 +54,6 @@ const ZoneMap = ({
     }, 200),
     [],
   );
-  const { __ } = useTranslation();
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
   const handleDragStart = useMemo(() => () => setIsDragging(true), []);
@@ -231,8 +231,8 @@ const ZoneMap = ({
           >
             <NavigationControl
               showCompass={false}
-              zoomInLabel={__('tooltips.zoomIn')}
-              zoomOutLabel={__('tooltips.zoomOut')}
+              zoomInLabel={zoomInLabel}
+              zoomOutLabel={zoomOutLabel}
             />
           </div>
         </Portal>
