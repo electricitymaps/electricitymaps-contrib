@@ -2428,8 +2428,9 @@
       "wind": 21
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/alixunderplatz"
+      "https://github.com/alixunderplatz",
+      "https://github.com/kruschk",
+      "https://github.com/tmslaine"
     ],
     "parsers": {
       "production": "GE.fetch_production"
