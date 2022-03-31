@@ -1281,14 +1281,30 @@
         }
       },
       "CA-NS": {
-        "battery discharge": {
-          "source": "electricityMap, 2018 average",
-          "value": 528.612157269158
-        },
-        "hydro discharge": {
-          "source": "electricityMap, 2018 average",
-          "value": 528.612157269158
-        }
+        "battery discharge": [
+          {
+            "datetime": "2017-01-01",
+            "source": "electricityMap, 2017 average",
+            "value": 553.6582881625282
+          },
+          {
+            "datetime": "2018-01-01",
+            "source": "electricityMap, 2018 average",
+            "value": 528.612157269158
+          }
+        ],
+        "hydro discharge": [
+          {
+            "datetime": "2017-01-01",
+            "source": "electricityMap, 2017 average",
+            "value": 553.6582881625282
+          },
+          {
+            "datetime": "2018-01-01",
+            "source": "electricityMap, 2018 average",
+            "value": 528.612157269158
+          }
+        ]
       },
       "CA-ON": {
         "battery discharge": [
@@ -3796,7 +3812,9 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
