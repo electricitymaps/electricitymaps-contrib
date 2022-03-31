@@ -2,9 +2,10 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 export default () => {
+  const { __ } = useTranslation();
   const location = useLocation();
 
   const canRenderMap = useSelector(state => state.application.webGLSupported);

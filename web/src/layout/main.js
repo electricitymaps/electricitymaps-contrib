@@ -16,7 +16,7 @@ import Tabs from './tabs';
 import Map from './map';
 
 // Modules
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
@@ -55,6 +55,7 @@ const Main = ({
   electricityMixMode,
   hasConnectionWarning,
 }) => {
+  const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
@@ -81,6 +82,15 @@ const Main = ({
   if (clientVersion && clientType === 'web' && !isLocalhost) {
     isClientVersionOutdated = isNewClientVersion(clientVersion);
   }
+
+  // Initial greeting message for curious people
+  console.log('%cWelcome to electricityMap!', 'color: green; font-weight: bold');
+  console.log('Ready to work on fixing the climate full-time? \nhttps://electricitymap.org/jobs');
+  console.log('Come talk at Github: \nhttps://github.com/tmrowco/electricitymap-contrib');
+  console.groupCollapsed('%cEnvironment details', 'color: grey;');
+  console.log(`%cClient version: ${clientVersion} (is outdated: ${isClientVersionOutdated})`, 'color: grey');
+  console.log(`%cClient type: ${clientType}`, 'color: grey');
+  console.groupEnd();
 
   return (
     <React.Fragment>

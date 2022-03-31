@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { useCurrentZoneData } from '../hooks/redux';
 
-const getMessage = (zoneId, zoneData, zoneTimeIndex) => {
+const getMessage = (__, zoneId, zoneData, zoneTimeIndex) => {
   const isRealtimeData = zoneTimeIndex === null;
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
@@ -29,6 +29,7 @@ const mapStateToProps = (state) => ({
 const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const { zoneId } = useParams();
   const zoneData = useCurrentZoneData();
+  const { __ } = useTranslation();
 
   // TODO: Shouldn't be hardcoded
   const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
@@ -39,7 +40,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
     return null;
   }
 
-  const message = getMessage(zoneId, zoneData, zoneTimeIndex);
+  const message = getMessage(__, zoneId, zoneData, zoneTimeIndex);
 
   return (
     <div className="no-data-overlay visible">

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import {
   useWindEnabled,
@@ -16,6 +16,7 @@ import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
 
 export default () => {
+  const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
   const windDataError = useSelector(state => state.data.windDataError);

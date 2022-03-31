@@ -191,8 +191,8 @@ def fetch_main_power_df(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> Tuple[pd.DataFrame, pd.Series]:
-    df, region, filtered_datasets = _fetch_main_df(
+) -> Tuple[pd.DataFrame, list]:
+    df, filtered_datasets = _fetch_main_df(
         "power",
         zone_key=zone_key,
         sorted_zone_keys=sorted_zone_keys,
@@ -202,9 +202,7 @@ def fetch_main_power_df(
     )
     # Solar rooftop is a special case
     df = process_solar_rooftop(df)
-    logger.debug("Preparing capacities..")
-    capacities = get_capacities(filtered_datasets, region)
-    return df, capacities
+    return df, filtered_datasets
 
 
 def _fetch_main_df(
@@ -214,7 +212,7 @@ def _fetch_main_df(
     session,
     target_datetime,
     logger,
-):
+) -> Tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
         zone_key=zone_key or sorted_zone_keys[0],
@@ -255,7 +253,7 @@ def _fetch_main_df(
         )
         df = df.loc[:, is_duplicated_column]
 
-    return df, region, filtered_datasets
+    return df, filtered_datasets
 
 
 @refetch_frequency(REFETCH_FREQUENCY)
@@ -265,12 +263,18 @@ def fetch_production(
     target_datetime=None,
     logger=logging.getLogger(__name__),
 ):
-    df, capacities = fetch_main_power_df(
+    df, filtered_datasets = fetch_main_power_df(
         zone_key=zone_key,
         session=session,
         target_datetime=target_datetime,
         logger=logger,
     )
+    region = ZONE_KEY_TO_REGION.get(zone_key)
+    if region:
+        capacities = get_capacities(filtered_datasets, region)
+    else:
+        capacities = pd.Series()
+
     # Drop interconnectors
     df = df.drop([x for x in df.columns if "->" in x], axis=1)
 
@@ -377,7 +381,7 @@ def fetch_exchange(
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
-    df = fetch_main_power_df(
+    df, _ = fetch_main_power_df(
         sorted_zone_keys=sorted_zone_keys,
         session=session,
         target_datetime=target_datetime,
