@@ -3,7 +3,7 @@
     "defaults": {
       "battery charge": {
         "_comment": "Emissions are counted at discharge",
-        "source": "Tomorrow",
+        "source": "electricityMap",
         "value": 0
       },
       "battery discharge": [
@@ -72,7 +72,7 @@
       },
       "hydro charge": {
         "_comment": "Emissions are counted at discharge",
-        "source": "Tomorrow",
+        "source": "electricityMap",
         "value": 0
       },
       "hydro discharge": [
@@ -2594,7 +2594,7 @@
       },
       "ES-IB": {
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
+          "source": "2017 average by electricityMap",
           "value": 610.5081243078652
         }
       },
@@ -3301,7 +3301,7 @@
       },
       "GT": {
         "hydro discharge": {
-          "source": "2017 average by Tomorrow",
+          "source": "2017 average by electricityMap",
           "value": 178.67099686684926
         }
       },
@@ -3921,7 +3921,7 @@
       },
       "IT": {
         "hydro discharge": {
-          "source": "2018 average by Tomorrow",
+          "source": "2018 average by electricityMap",
           "value": 0.0
         }
       },
@@ -4994,7 +4994,7 @@
         ],
         "unknown": {
           "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/3015#issuecomment-888154930",
-          "source": "2020 average by Tomorrow. See disclaimer",
+          "source": "2020 average by electricityMap. See disclaimer",
           "value": 342
         }
       },

@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "This project is",
+        "thisproject": "This app is",
         "opensource": "Open Source",
         "see": "see",
         "datasources": "data sources",
@@ -176,7 +176,7 @@
         "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
         "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
         "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-        "otherSources-answer": "This would be outside of the scope of this project. However, at Tomorrow we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
+        "otherSources-answer": "This would be outside of the scope of this project. However, at electricityMap we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
         "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
         "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
         "emissionsPerCapita-question": "Why don't you show emissions per capita?",
@@ -194,7 +194,7 @@
     "aboutUs": {
         "groupName": "About us",
         "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
         "feedback-question": "Can I give you some feedback?",
         "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
         "contribute-question": "Can I contribute to your project?",
@@ -202,7 +202,7 @@
         "workTogether-question": "Can we work together?",
         "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
         "disclaimer-question": "Disclaimer",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
     "zoneShortName": {
         "AD": {
