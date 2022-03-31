@@ -5,7 +5,6 @@
   "dependencies": {
     "cordova-android": "^9.1.0",
     "cordova-ios": "^6.2.0",
-    "cordova-plugin-firebase-analytics": "^6.1.0",
     "cordova-plugin-globalization": "^1.11.0",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.3",
@@ -29,11 +28,6 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-statusbar": {},
       "cordova-support-google-services": {},
-      "cordova-plugin-firebase-analytics": {
-        "ANALYTICS_COLLECTION_ENABLED": "true",
-        "AUTOMATIC_SCREEN_REPORTING_ENABLED": "true",
-        "IOS_FIREBASE_POD_VERSION": "~> 8.8.0"
-      },
       "cordova-universal-links-plugin": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-code-push": {},
