@@ -8,6 +8,7 @@ workflows:
   always-run:
     jobs:
       - path-filtering/filter:
+          tag: '3.8.12'
           name: check-if-app-should-build
           mapping: |
              (web|mobileapp)/.* build-app true
