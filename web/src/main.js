@@ -24,7 +24,7 @@ console.log(
 🌍 %cReady to work on fixing the climate full-time?
   https://electricitymap.org/jobs
 🐙 Got comments or want to contribute?
-  https://github.com/tmrowco/electricitymap-contrib`,
+  https://github.com/electricitymap/electricitymap-contrib`,
   'color: green; font-weight: bold',
   'color: #666; font-style: italic'
 );
