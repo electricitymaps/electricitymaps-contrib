@@ -156,7 +156,7 @@ app.use('/', (req, res) => {
           `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
       supportedLocales: locales,
-      FBLocale: localeToFacebookLocale[locale],
+      FBLocale: localeToFacebookLocale[locale || 'en'],
       supportedFBLocales: supportedFacebookLocales
     });
   }
