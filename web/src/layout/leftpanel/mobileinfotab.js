@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
@@ -14,6 +14,7 @@ import SocialButtons from './socialbuttons';
 
 
 const MobileInfoTab = () => {
+  const { __, i18n } = useTranslation();
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
   const [mobileAppVersion, setMobileAppVersion] = useState(null);
@@ -61,7 +62,7 @@ const MobileInfoTab = () => {
             href="https://twitter.com/electricitymap"
             data-show-screen-name="false"
             data-show-count="false"
-            data-lang={locale}
+            data-lang={i18n.language}
           />
       </div>
 

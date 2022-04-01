@@ -1,4 +1,5 @@
 import json
+from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List, NewType, Tuple
 
@@ -42,14 +43,24 @@ for zone, neighbors in ZONE_NEIGHBOURS.items():
     ZONE_NEIGHBOURS[zone] = sorted(neighbors)
 
 
-def emission_factors(zone_key: ZoneKey):
+def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]
 
-    # Only use most recent yearly numbers from defaults
-    defaults_with_yearly = [k for (k, v) in defaults.items() if isinstance(v, list)]
-    for k in defaults_with_yearly:
-        defaults[k] = max(defaults[k], key=lambda x: x["datetime"])
+    def get_most_recent_value(emission_factors: Dict) -> Dict:
+        _emission_factors = deepcopy(emission_factors)
+        keys_with_yearly = [
+            k for (k, v) in _emission_factors.items() if isinstance(v, list)
+        ]
+        for k in keys_with_yearly:
+            _emission_factors[k] = max(
+                _emission_factors[k], key=lambda x: x["datetime"]
+            )
+        return _emission_factors
+
+    # Only use most recent yearly numbers from defaults & overrides
+    defaults = get_most_recent_value(defaults)
+    override = get_most_recent_value(override)
 
     merged = {**defaults, **override}
     return dict([(k, (v or {}).get("value")) for (k, v) in merged.items()])
