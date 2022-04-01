@@ -5,7 +5,7 @@
         <meta name="description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:image" content="https://app.electricitymap.org/images/electricitymap_social_image.png" />
-        <meta property="og:title" content="<% maintitle %>" />
+        <meta property="og:title" content="<%= maintitle %>" />
         <meta property="og:type" content="website" />
         <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
@@ -27,7 +27,7 @@
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
 
-        <title>electricityMap | <% maintitle %></title>
+        <title>electricityMap | <%= maintitle %></title>
 
         <link rel="icon" type="image/svg+xml" href="<%= resolvePath('images/electricitymap-favicon-dark-light.svg') %>">
         <link rel="apple-touch-icon" sizes="180x180" href="<%= resolvePath('images/apple-icon-180x180.png') %>">
