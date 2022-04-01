@@ -6,6 +6,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { isProduction } from './environment';
 import { history } from './router';
 
+import localesConfig from '../../locales-config.json';
+
 function hideLanguageSearchParam() {
   const searchParams = new URLSearchParams(history.location.search);
   searchParams.delete('lang');
@@ -78,6 +80,9 @@ i18n
 i18n.on('languageChanged', function (lng) {
   moment.locale(lng);
   document.documentElement.setAttribute('lang', lng);
+  // TODO: Use react-helmet to manage meta tags
+  document.title = `electricityMap | ${i18n.t('misc.maintitle')}`;
+  document.querySelector('meta[property="og:locale"]').setAttribute('content', localesConfig.localeToFacebookLocale[lng]);
 });
 
 export default i18n;
