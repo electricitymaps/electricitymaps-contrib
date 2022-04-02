@@ -3955,6 +3955,14 @@
   },
   "LK": {
     "flag_file_name": "lk.png",
+    "timezone": "Asia/Colombo",
+    "bounding_box": null,
+    "contributors": [
+      "https://github.com/q--"
+    ],
+    "parsers": {
+      "production": "LK.fetch_production"
+    },
     "timezone": "Asia/Colombo"
   },
   "LR": {
