@@ -39,7 +39,7 @@ def fetch_production(zone_key='DK-BHM', session=None, target_datetime=None, logg
     return data
 
 
-def fetch_exchange(zone_key1='DK-BHM', zone_key2='SE', session=None, target_datetime=None,
+def fetch_exchange(zone_key1='DK-BHM', zone_key2='SE-SE4', session=None, target_datetime=None,
                    logger=None) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 
@@ -70,5 +70,5 @@ if __name__ == '__main__':
 
     print('fetch_production() ->')
     print(fetch_production())
-    print('fetch_exchange(DK-BHM, SE) ->')
-    print(fetch_exchange('DK-BHM', 'SE'))
+    print('fetch_exchange(DK-BHM, SE-SE4) ->')
+    print(fetch_exchange('DK-BHM', 'SE-SE4'))
