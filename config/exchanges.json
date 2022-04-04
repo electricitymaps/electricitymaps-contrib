@@ -507,13 +507,13 @@
   },
   "BR-N->BR-NE": {
     "lonlat": [
-      -47.810678,
-      -6.387852
+      -45.610678,
+      -8.187852
     ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
     },
-    "rotation": 100
+    "rotation": 110
   },
   "BR-S->UY": {
     "lonlat": [
