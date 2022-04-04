@@ -1125,6 +1125,9 @@
         "NU": {
             "zoneName": "ニウエ"
         },
+        "NZ": {
+            "zoneName": "ニュージーランド"
+        },
         "NZ-NZA": {
             "countryName": "ニュージーランド",
             "zoneName": "オークランド諸島"
@@ -1132,14 +1135,6 @@
         "NZ-NZC": {
             "countryName": "ニュージーランド",
             "zoneName": "チャタム諸島"
-        },
-        "NZ-NZN": {
-            "countryName": "ニュージーランド",
-            "zoneName": "北島"
-        },
-        "NZ-NZS": {
-            "countryName": "ニュージーランド",
-            "zoneName": "南島"
         },
         "OM": {
             "zoneName": "オマーン"
