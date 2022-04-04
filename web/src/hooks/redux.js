@@ -19,7 +19,10 @@ export function useCurrentZoneHistory() {
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
+  return useMemo(
+    () => (!zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate())),
+    [zoneHistory]
+  );
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -55,7 +58,10 @@ export function useCurrentZoneData() {
       return null;
     }
     if (zoneTimeIndex === null) {
-      return zoneHistory[zoneHistory.length - 1]; // latest history data. This may result in the wrong history file.
+      // Return latest history data unless latest history does not correspond to the current grid datetime
+      return (zoneHistory[zoneHistory.length - 1].stateDatetime === grid.datetime
+        ? zoneHistory[zoneHistory.length - 1]
+        : null);
     }
     return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
