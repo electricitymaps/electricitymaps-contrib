@@ -19,10 +19,7 @@ export function useCurrentZoneHistory() {
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(
-    () => (!zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate())),
-    [zoneHistory]
-  );
+  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
