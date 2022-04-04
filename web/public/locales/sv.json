@@ -1161,6 +1161,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Nya Zeeland"
+        },
         "NZ-NZA": {
             "countryName": "Nya Zeeland",
             "zoneName": "Aucklandöarna"
@@ -1168,14 +1171,6 @@
         "NZ-NZC": {
             "countryName": "Nya Zeeland",
             "zoneName": "Chathamöarna"
-        },
-        "NZ-NZN": {
-            "countryName": "Nya Zeeland",
-            "zoneName": "Nordön"
-        },
-        "NZ-NZS": {
-            "countryName": "Nya Zeeland",
-            "zoneName": "Sydön"
         },
         "NZ-NZST": {
             "countryName": "Nya Zeeland",

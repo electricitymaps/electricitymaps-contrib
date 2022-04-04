@@ -2285,20 +2285,6 @@
     },
     "rotation": 120
   },
-  "NZ-NZN->NZ-NZS": {
-    "capacity": [
-      -1200,
-      1200
-    ],
-    "lonlat": [
-      174.424066,
-      -41.140732
-    ],
-    "parsers": {
-      "exchange": "NZ.fetch_exchange"
-    },
-    "rotation": -90
-  },
   "PL->SE": {
     "capacity": [
       -600,
