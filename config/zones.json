@@ -5541,10 +5541,15 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "SE.fetch_production",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
-      "productionPerUnit": "ENTSOE.fetch_production_per_units"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
+    "subZoneNames": [
+      "SE-SE1",
+      "SE-SE2",
+      "SE-SE3",
+      "SE-SE4"
+    ],
     "timezone": "Europe/Stockholm"
   },
   "SE-SE1": {
@@ -5573,7 +5578,9 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": null
   },
@@ -5603,7 +5610,9 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": null
   },
@@ -5633,7 +5642,9 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": null
   },
@@ -5663,7 +5674,9 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
+      "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
     "timezone": null
   },
