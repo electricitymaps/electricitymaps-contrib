@@ -2,11 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import { range } from 'lodash';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 
 // If the tick represents a timestamp not more than 15 minutes in the past,
 // render it as "Now", otherwise render as localized time, i.e. "8:30 PM".
-const renderTickValue = v => (
+const renderTickValue = (v, __) => (
   moment().diff(moment(v), 'minutes') <= 15
     ? __('country-panel.now')
     : moment(v).format('LT')
@@ -29,6 +29,7 @@ const getTicksValuesFromTimeScale = (scale, count) => {
 };
 
 const TimeAxis = React.memo(({ className, scale, transform }) => {
+  const { __ } = useTranslation();
   const [x1, x2] = scale.range();
   return (
     <g
@@ -42,7 +43,7 @@ const TimeAxis = React.memo(({ className, scale, transform }) => {
       {getTicksValuesFromTimeScale(scale, 5).map(v => (
         <g key={`tick-${v}`} className="tick" opacity={1} transform={`translate(${scale(v)},0)`}>
           <line stroke="currentColor" y2="6" />
-          <text fill="currentColor" y="9" x="5" dy="0.71em">{renderTickValue(v)}</text>
+          <text fill="currentColor" y="9" x="5" dy="0.71em">{renderTickValue(v, __)}</text>
         </g>
       ))}
     </g>

@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "Dieses Projekt ist",
+        "thisproject": "Dieses App ist",
         "opensource": "Open Source",
         "see": "siehe",
         "datasources": "Datenquellen",
@@ -171,7 +171,7 @@
         "guaranteesOfOrigin-question": "Was sind Grünstrom-Zertifikate und wie werden sie berücksichtigt?",
         "guaranteesOfOrigin-answer": "Wenn Produzenten erneuerbarer Energie Strom produzieren, können sie Herkunftsnachweise (oder Renewable Energy Certificates) erstellen - ein Beweis dafür, dass erneuerbarer Strom produziert und in das Stromnetz eingespeist worden ist. Diese Garantien können dann verkauft werden, was anderen nicht erneuerbaren Stromerzeugern einen Weg öffnet, ihre Emissionen zu \"kompensieren\" sowie das Recht gibt zu behaupten, dass der von ihnen erzeugte Strom aus erneuerbaren Quellen stammt, unabhängig von seiner tatsächlichen, physischen Quelle. Dies ist problematisch, da es die Anreize der Verbraucher, Strom zum besten Zeitpunkt zu verbrauchen (z.B. wenn die Menge an erneuerbarem Strom im Netz am höchsten ist), zunichte macht. Diese Karte schließt daher Herkunftsnachweise aus und bietet stattdessen ein ortsbezogenes, physisches Bild des Stromnetzes, um die Verbraucher zu mehr Verantwortung zu bewegen.",
         "otherSources-question": "Warum zeigen Sie nicht andere Emissionsquellen als die Stromerzeugung?",
-        "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei Tomorrow aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
+        "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei electricityMap aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
         "homeSolarPanel-question": "Was ist, wenn ich eine Photovoltaikanlage in meinem Haus installiert habe?",
         "homeSolarPanel-answer": "Wir bewerten die Kohlenstoffintensität des regionalen Stromnetzes, sodass Strom, den Sie direkt von Ihrer PV-Anlage (netzunabhängig) beziehen, nicht Teil unserer Bewertung ist. Wenn Ihre PV-Anlage jedoch Strom in Ihr lokales Stromnetz liefert, wird diese Produktion in unseren Statistiken in Regionen erfasst, in denen Schätzungen der lokalen Solarenergieproduktion öffentlich zugänglich gemacht werden (z.B. in Frankreich und Großbritannien).",
         "emissionsPerCapita-question": "Warum zeigen Sie nicht die Emissionen pro Kopf an?",
@@ -189,7 +189,7 @@
     "aboutUs": {
         "groupName": "Über uns",
         "whoAreYou-question": "Wer sind Sie?",
-        "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
+        "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
         "feedback-question": "Kann ich Ihnen Feedback geben?",
         "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:hello@electricitymap.org\">senden Sie uns eine E-Mail!</a>",
         "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
@@ -197,7 +197,7 @@
         "workTogether-question": "Können wir zusammenarbeiten?",
         "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:hello@electricitymap.org\">Schicken Sie uns eine E-Mail!</a>",
         "disclaimer-question": "Haftungsausschluss",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Tomorrow übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Tomorrow nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. electricityMap übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von electricityMap nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
     },
     "zoneShortName": {
         "AD": {

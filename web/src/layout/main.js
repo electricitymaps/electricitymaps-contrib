@@ -16,7 +16,7 @@ import Tabs from './tabs';
 import Map from './map';
 
 // Modules
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
@@ -55,6 +55,7 @@ const Main = ({
   electricityMixMode,
   hasConnectionWarning,
 }) => {
+  const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();

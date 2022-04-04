@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "Projek ini",
+        "thisproject": "App ini",
         "opensource": "terbuka",
         "see": "lihat",
         "datasources": "sumber data",
@@ -161,7 +161,7 @@
         "guaranteesOfOrigin-question": "Apa itu sertifikat hijau, dan bagaimana mereka diperhitungkan?",
         "guaranteesOfOrigin-answer": "Ketika produsen energi terbarukan menghasilkan listrik, mereka dapat membuat Jaminan Asal (atau Sertifikat Energi Terbarukan) - bukti bahwa energi terbarukan telah diproduksi dan didistribusikan ke jaringan listrik. Jaminan ini kemudian dapat dijual, memberi pengecer listrik cara untuk mengklaim bahwa listrik yang mereka jual berasal dari sumber yang terbarukan, terlepas dari sumber fisiknya yang sebenarnya. <br> <br> Ini berarti bahwa konsumen listrik dapat diberi tahu bahwa listrik mereka datang dari matahari dan angin, bahkan di malam yang tidak berangin. Ini bermasalah, karena menghilangkan insentif konsumen untuk mengkonsumsi listrik pada waktu terbaik (misalnya ketika jumlah listrik terbarukan di grid sebenarnya berada pada titik tertinggi). Oleh karena itu peta ini mengecualikan Jaminan Asal, alih-alih menawarkan gambar fisik berbasis lokasi dari jaringan listrik, untuk memberdayakan konsumen.",
         "otherSources-question": "Mengapa Anda tidak menunjukkan sumber emisi lain selain produksi listrik?",
-        "otherSources-answer": "Hal tersebut berada di luar ruang lingkup proyek ini. Namun, Tomorrow secara aktif bekerja untuk mengembangkan <a href=\"#whoAreYou\" class=\"entry-link\">solusi baru untuk mengukur dampak iklim dari keputusan sehari-hari Anda</a>.",
+        "otherSources-answer": "Hal tersebut berada di luar ruang lingkup proyek ini. Namun, electricityMap secara aktif bekerja untuk mengembangkan <a href=\"#whoAreYou\" class=\"entry-link\">solusi baru untuk mengukur dampak iklim dari keputusan sehari-hari Anda</a>.",
         "homeSolarPanel-question": "Bagaimana jika saya memiliki panel surya yang terpasang di rumah saya?",
         "homeSolarPanel-answer": "Kami mengukur intensitas karbon dari jaringan listrik lokal, sehingga setiap listrik yang Anda konsumsi langsung dari panel surya Anda (off-grid) bukan bagian dari pengukuran kami. Namun, jika panel surya Anda menyediakan daya untuk jaringan listrik lokal Anda, produksinya dimasukkan dalam statistik kami di area di mana estimasi produksi energi surya lokal tersedia untuk umum (seperti di Prancis dan di Inggris).",
         "emissionsPerCapita-question": "Mengapa Anda tidak menunjukkan emisi per kapita?",
@@ -179,7 +179,7 @@
     "aboutUs": {
         "groupName": "Tentang Kami",
         "whoAreYou-question": "Siapa Anda?",
-        "whoAreYou-answer": "Pemetaan Listrik dikembangkan dan dikelola oleh <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, sebuah perusahaan kecil Denmark / Perancis. Tujuan kami adalah untuk membantu umat manusia mencapai keadaan keberadaan yang berkelanjutan dengan mengkuantifikasi, dan membuat aksesibilitas luas, dampak iklim dari pilihan sehari-hari yang kami buat.",
+        "whoAreYou-answer": "Pemetaan Listrik dikembangkan dan dikelola oleh <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, sebuah perusahaan kecil Denmark / Perancis. Tujuan kami adalah untuk membantu umat manusia mencapai keadaan keberadaan yang berkelanjutan dengan mengkuantifikasi, dan membuat aksesibilitas luas, dampak iklim dari pilihan sehari-hari yang kami buat.",
         "feedback-question": "Bisakah saya memberi Anda umpan balik?",
         "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:hello@electricitymap.org\">kirim via Email!</a>",
         "contribute-question": "Dapatkah saya berkontribusi pada proyek Anda?",
@@ -187,7 +187,7 @@
         "workTogether-question": "Bisakah kita bekerja bersama?",
         "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:hello@electricitymap.org\">Kirimkan pada kami via email!</a>",
         "disclaimer-question": "Disclaimer",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
     "zoneShortName": {
         "AD": {

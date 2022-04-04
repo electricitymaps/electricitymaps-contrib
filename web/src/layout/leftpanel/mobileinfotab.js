@@ -5,20 +5,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
+import SocialButtons from './socialbuttons';
 
-const SocialButtons = styled.div`
-  @media (min-width: 768px) {
-    display: none !important;
-  }
-`;
 
 const MobileInfoTab = () => {
+  const { __, i18n } = useTranslation();
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
   const [mobileAppVersion, setMobileAppVersion] = useState(null);
@@ -66,7 +62,7 @@ const MobileInfoTab = () => {
             href="https://twitter.com/electricitymap"
             data-show-screen-name="false"
             data-show-count="false"
-            data-lang={locale}
+            data-lang={i18n.language}
           />
       </div>
 
@@ -97,30 +93,7 @@ const MobileInfoTab = () => {
           <br />
         </p>
       </div>
-      <SocialButtons className="social-buttons">
-        <div>
-          { /* Facebook share */}
-          <div
-            className="fb-share-button"
-            data-href="https://app.electricitymap.org/"
-            data-layout="button_count"
-          />
-          { /* Twitter share */}
-          <a
-            className="twitter-share-button"
-            data-url="https://app.electricitymap.org"
-            data-via="electricitymap"
-            data-lang={locale}
-          />
-          { /* Slack */}
-          <span className="slack-button">
-            <a href="https://slack.tmrow.com" target="_blank" className="slack-btn">
-              <span className="slack-ico" />
-              <span className="slack-text">Slack</span>
-            </a>
-          </span>
-        </div>
-      </SocialButtons>
+      <SocialButtons hideOnDesktop />
 
       <div className="mobile-faq-header">
         {__('misc.faq')}
