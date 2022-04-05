@@ -3985,8 +3985,7 @@
     ],
     "parsers": {
       "production": "LK.fetch_production"
-    },
-    "timezone": "Asia/Colombo"
+    }
   },
   "LR": {
     "flag_file_name": "lr.png",
