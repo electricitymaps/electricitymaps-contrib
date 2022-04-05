@@ -9,7 +9,7 @@ let zones = getJSON(path.resolve(__dirname, './world.geojson'));
 
 
 if (args.length <= 0) {
-  console.log('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE"')
+  console.log('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")')
   process.exit(1)
 }
 zones.features = zones.features.filter((d) => d.properties.zoneName === args[0]);
