@@ -58,7 +58,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    debug: isProduction() ? true : true,
+    debug: isProduction() ? false : true,
     backend: {
       loadPath: `${LOCALES_PATH}/{{lng}}.json`,
       crossDomain: true,
