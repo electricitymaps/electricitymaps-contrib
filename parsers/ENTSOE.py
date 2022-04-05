@@ -364,7 +364,7 @@ VALIDATIONS = {
         'required': ['coal'],
     },
     'SE-SE1': {
-        'required': ['gas', 'hydro', 'solar', 'wind', 'unknown'],
+        'required': ['hydro', 'solar', 'wind', 'unknown'],
     },
     'SE-SE2': {
         'required': ['gas', 'hydro', 'solar', 'wind', 'unknown'],
