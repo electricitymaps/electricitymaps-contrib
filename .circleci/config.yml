@@ -42,16 +42,6 @@ jobs:
             sudo npm install -g jsonlint-mod
             jsonlint -q config/*.json web/public/locales/*.json
 
-  test_js:
-    executor: js-exec
-    steps:
-      - checkout
-      - run:
-          command: |
-            sudo npm install -g jest
-            sed -i -e 's/export {/module.exports = {/' web/src/helpers/constants.js
-            jest
-
   verify_web_js:
     executor: js-exec
     steps:
@@ -112,10 +102,8 @@ workflows:
       - verify_python
       - verify_web_js
       - lint_json
-      - test_js
       - build_test:
           requires:
             - verify_python
             - verify_web_js
             - lint_json
-            - test_js

@@ -26,11 +26,12 @@ def get_possible_modes():
 
 class CO2eqParametersAll(unittest.TestCase):
     """A test case for the CO2eq parameters."""
+    modes = get_possible_modes()
+
     @classmethod
     def setUpClass(cls):
-        cls.modes = get_possible_modes()
         with open("config/co2eq_parameters_all.json",
-                  encoding="utf_8") as file_:
+                  encoding="utf-8") as file_:
             cls.parameters = json.load(file_)
 
     @classmethod
@@ -54,9 +55,7 @@ class CO2eqParametersAll(unittest.TestCase):
                 callback(power_origin_ratios, zone)
 
     def test_power_origin_modes_are_valid(self):
-        """All modes in the 'powerOriginRatios' objects must be members of
-        `self.modes`.
-        """
+        """All modes in the 'powerOriginRatios' objects must be valid."""
         def assert_modes_are_valid(modes_to_ratios, zone):
             for mode, ratio in modes_to_ratios.items():
                 if isinstance(ratio, numbers.Number):
@@ -94,20 +93,13 @@ class CO2eqParametersAll(unittest.TestCase):
                           msg=f"key missing from zone '{zone}'")
 
 
-class CO2eqParametersDirectAndLifecycle:
-    """A base class for the direct and lifecycle CO2eq parameters."""
-    @classmethod
-    def set_up_class(cls, filepath):
-        """Initialise the class with the possible modes and parse the specified
-        JSON file.
-        """
-        cls.modes = get_possible_modes()
-        with open(filepath, encoding="utf_8") as file_:
-            cls.parameters = json.load(file_)
+class CO2eqParametersDirectAndLifecycleMixin:
+    """A mixin for the direct and lifecycle CO2eq parameters."""
+    modes = get_possible_modes()
 
     def test_emission_factor_modes_are_valid(self):
         """All modes in the 'emissionFactors' object's 'defaults' and
-        'zoneOverrides' objects must be members of `self.modes`.
+        'zoneOverrides' objects must be valid.
         """
         emission_factors = self.parameters["emissionFactors"]
         for zone, modes in (("defaults", emission_factors["defaults"]),
@@ -125,20 +117,24 @@ class CO2eqParametersDirectAndLifecycle:
         self.assertIn("zoneOverrides", emission_factors)
 
 
-class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycle,
+class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin,
                             unittest.TestCase):
     """A test case for the direct CO2eq parameters."""
     @classmethod
     def setUpClass(cls):
-        cls.set_up_class("config/co2eq_parameters_direct.json")
+        with open("config/co2eq_parameters_direct.json",
+                  encoding="utf-8") as file_:
+            cls.parameters = json.load(file_)
 
 
-class CO2eqParametersLifecycle(CO2eqParametersDirectAndLifecycle,
+class CO2eqParametersLifecycle(CO2eqParametersDirectAndLifecycleMixin,
                                unittest.TestCase):
     """A test case for the lifecycle CO2eq parameters."""
     @classmethod
     def setUpClass(cls):
-        cls.set_up_class("config/co2eq_parameters_lifecycle.json")
+        with open("config/co2eq_parameters_lifecycle.json",
+                  encoding="utf-8") as file_:
+            cls.parameters = json.load(file_)
 
 
 if __name__ == "__main__":
