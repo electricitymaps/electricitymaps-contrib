@@ -10,8 +10,6 @@ from bs4 import BeautifulSoup
 
 timezone = 'Pacific/Auckland'
 
-NZ_NZN_PRICE_REGIONS = set([i for i in range(1, 9)])
-NZ_NZS_PRICE_REGIONS = set([i for i in range(9, 14)])
 NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
 
 def fetch(session=None):
@@ -45,15 +43,7 @@ def fetch_price(zone_key='NZ', session=None, target_datetime=None, logger=None) 
     obj = response.json()
     region_prices = []
 
-    if zone_key == 'NZ-NZN':
-        regions = NZ_NZN_PRICE_REGIONS
-    elif zone_key == 'NZ-NZS':
-        regions = NZ_NZS_PRICE_REGIONS
-    elif zone_key == 'NZ':
-        regions = NZ_PRICE_REGIONS
-    else:
-        raise NotImplementedError('Unsupported zone_key %s' % zone_key)
-    
+    regions = NZ_PRICE_REGIONS
     for item in obj.get("items"):
         region = item.get("grid_zone_id")
         if region in regions:
@@ -81,16 +71,8 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
 
     datetime = arrow.get(str(obj['soPgenGraph']['timestamp']),"X").datetime
 
-    if zone_key == 'NZ-NZN':
-        region_key = 'North Island'
-    elif zone_key == 'NZ-NZS':
-        region_key = 'South Island'
-    elif zone_key == 'NZ':
-        region_key = 'New Zealand'
-    else:
-        raise NotImplementedError('Unsupported zone_key %s' % zone_key)
-
-    productions = obj['soPgenGraph']['data'][region_key]
+    region_key = "New Zealand"
+    productions = obj["soPgenGraph"]["data"][region_key]
 
     data = {
         'zoneKey': zone_key,
@@ -125,43 +107,9 @@ def fetch_production(zone_key='NZ', session=None, target_datetime=None, logger=N
     return data
 
 
-def fetch_exchange(zone_key1='NZ-NZN', zone_key2='NZ-NZS', session=None, target_datetime=None,
-                   logger=None) -> list:
-    """Requests the last known power exchange (in MW) between New Zealand's two islands."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not able to retrieve data for past dates')
-
-    obj = fetch(session)['soHVDCDailyGraph']
-    datetime_start = arrow.now().to(timezone).floor('day')
-    data = []
-    for item in obj['data']['mw_north']:
-        datetime = datetime_start.shift(minutes=+item[0])
-        if datetime > arrow.get() or item[1] is None:
-            continue
-        netFlow = item[1]
-        data.append({
-            'sortedZoneKeys': 'NZ-NZN->NZ-NZS',
-            'datetime': datetime.datetime,
-            'netFlow': -1 * netFlow,
-            'source': 'transpower.co.nz'
-        })
-
-    return data
-
 if __name__ == '__main__':
     """Main method, never used by the Electricity Map backend, but handy for testing."""
-
-    print('fetch_price(NZ-NZN) ->')
-    print(fetch_price('NZ-NZN'))
-    print('fetch_price(NZ-NZS) ->')
-    print(fetch_price('NZ-NZS'))
-    print('fetch_price(NZ) ->')
-    print(fetch_price('NZ'))
-    print('fetch_production(NZ-NZN) ->')
-    print(fetch_production('NZ-NZN'))
-    print('fetch_production(NZ-NZS) ->')
-    print(fetch_production('NZ-NZS'))
-    print('fetch_production(NZ) ->')
+    print("fetch_price(NZ) ->")
+    print(fetch_price("NZ"))
+    print("fetch_production(NZ) ->")
     print(fetch_production('NZ'))
-    print('fetch_exchange() ->')
-    print(fetch_exchange())
