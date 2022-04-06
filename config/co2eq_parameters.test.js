@@ -30,12 +30,12 @@ describe("Each fallbackZoneMixes sums to one", () => {
         Object.values(
           fallbackZoneMix.powerOriginRatios
         ).forEach((yearlyRatios) => {
-          const total = Object.values(yearlyRatios).filter(Number).reduce((acc, cur) => acc + cur, 0);
+          const total = Object.values(yearlyRatios.value).filter(Number).reduce((acc, cur) => acc + cur, 0);
           expect(total).toBeCloseTo(1);
         });
       } else if (fallbackZoneMix.powerOriginRatios) {
         // Default case where powerOriginRatios is an object of the ratios
-        const total = Object.values(fallbackZoneMix.powerOriginRatios).filter(Number).reduce((acc, cur) => acc + cur, 0);
+        const total = Object.values(fallbackZoneMix.powerOriginRatios.value).filter(Number).reduce((acc, cur) => acc + cur, 0);
         expect(total).toBeCloseTo(1);
       };
     };
@@ -60,11 +60,11 @@ describe("verify keys in fallbackZoneMixes factors are valid", () => {
       // Case where powerOriginRatios is an array of yearly objects for the ratios
       const NON_RATIO_KEYS = ["_source", "_comment", "datetime"];
       Object.values(value.powerOriginRatios).forEach((yearlyRatios) => {
-        Object.keys(yearlyRatios).filter(key => !NON_RATIO_KEYS.includes(key)).forEach((key) => expect(ALL_MODES).toContain(key));
+        Object.keys(yearlyRatios.value).filter(key => !NON_RATIO_KEYS.includes(key)).forEach((key) => expect(ALL_MODES).toContain(key));
       });
     } else if (value.powerOriginRatios) {
       // Default case where powerOriginRatios is an object of the ratios
-      Object.keys(value.powerOriginRatios).forEach((key) =>
+      Object.keys(value.powerOriginRatios.value).forEach((key) =>
         expect(ALL_MODES).toContain(key)
       );
     };
