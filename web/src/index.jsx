@@ -14,6 +14,8 @@ import sagas from './sagas';
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
 
+// init styling
+import './scss/styles.scss';
 
 // init localisation
 import './helpers/i18n';
