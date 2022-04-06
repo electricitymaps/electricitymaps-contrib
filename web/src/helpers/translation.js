@@ -31,7 +31,7 @@ export const getCountryName = (zoneCode) => translateIfExists(`zoneShortName.${z
 
 /**
  * Gets the full name of a zone with the country name in parentheses.
- * @param {string} zoneCode
+ * @param {string} zoneCode 
  * @returns string
  */
  export function getZoneNameWithCountry(zoneCode) {
@@ -49,7 +49,7 @@ export const getCountryName = (zoneCode) => translateIfExists(`zoneShortName.${z
 
 /**
  * Gets the name of a zone with the country name in parentheses and zone-name ellipsified if too long.
- * @param {string} zoneCode
+ * @param {string} zoneCode 
  * @returns string
  */
 export function getShortenedZoneNameWithCountry(zoneCode, limit = 40) {
