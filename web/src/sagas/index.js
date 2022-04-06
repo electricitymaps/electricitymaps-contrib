@@ -77,24 +77,12 @@ function* fetchWindData(action) {
 }
 
 function* trackEvent(action) {
-  const appState = yield select(state => state.application);
-  const searchParams = new URLSearchParams(history.location.search);
   const { eventName, context = {} } = action.payload;
 
   yield call(
     [thirdPartyServices, thirdPartyServices.trackEvent],
     eventName,
     {
-      // Pass whole of the application state ...
-      ...appState,
-      bundleVersion: appState.bundleHash,
-      embeddedUri: appState.isEmbedded ? document.referrer : null,
-      // ... together with the URL context ...
-      currentPage: history.location.pathname.split('/')[1],
-      selectedZoneName: history.location.pathname.split('/')[2],
-      solarEnabled: searchParams.get('solar') === 'true',
-      windEnabled: searchParams.get('wind') === 'true',
-      // ... and whatever context is explicitly provided.
       ...context,
     },
   );
