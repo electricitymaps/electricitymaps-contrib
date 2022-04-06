@@ -507,13 +507,13 @@
   },
   "BR-N->BR-NE": {
     "lonlat": [
-      -47.810678,
-      -6.387852
+      -45.610678,
+      -8.187852
     ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
     },
-    "rotation": 100
+    "rotation": 110
   },
   "BR-S->UY": {
     "lonlat": [
@@ -2284,20 +2284,6 @@
       "exchange": "statnett.fetch_exchange"
     },
     "rotation": 120
-  },
-  "NZ-NZN->NZ-NZS": {
-    "capacity": [
-      -1200,
-      1200
-    ],
-    "lonlat": [
-      174.424066,
-      -41.140732
-    ],
-    "parsers": {
-      "exchange": "NZ.fetch_exchange"
-    },
-    "rotation": -90
   },
   "PL->SE": {
     "capacity": [

@@ -1120,6 +1120,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Selandia Baru"
+        },
         "NZ-NZA": {
             "countryName": "Selandia Baru",
             "zoneName": "Pulau Auckland"
@@ -1127,14 +1130,6 @@
         "NZ-NZC": {
             "countryName": "Selandia Baru",
             "zoneName": "Pulau Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "Selandia Baru",
-            "zoneName": "Pulau Utara"
-        },
-        "NZ-NZS": {
-            "countryName": "Selandia Baru",
-            "zoneName": "Pulau Utara"
         },
         "OM": {
             "zoneName": "Oman"
