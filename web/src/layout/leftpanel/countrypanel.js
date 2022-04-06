@@ -170,7 +170,7 @@ const EstimatedDataInfoBox = styled.p`
   margin: 1rem 0;
 `;
 
-const EstimatedDataInfo = (text) => (
+const EstimatedDataInfo = ({ text }) => (
   <React.Fragment>
     <EstimatedDataInfoBox
       dangerouslySetInnerHTML={{

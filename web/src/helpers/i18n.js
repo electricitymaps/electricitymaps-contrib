@@ -5,8 +5,9 @@ import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { isProduction } from './environment';
 import { history } from './router';
-
 import localesConfig from '../../locales-config.json';
+
+const LOCALES_PATH = window.isCordova ? 'locales' : '/locales';
 
 function hideLanguageSearchParam() {
   const searchParams = new URLSearchParams(history.location.search);
@@ -60,7 +61,7 @@ i18n
     fallbackLng: 'en',
     debug: isProduction() ? false : true,
     backend: {
-      loadPath: 'locales/{{lng}}.json',
+      loadPath: `${LOCALES_PATH}/{{lng}}.json`,
       crossDomain: true,
       request: requestWithXmlHttpRequest,
     },
