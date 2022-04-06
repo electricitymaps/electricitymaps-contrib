@@ -8,7 +8,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 import SocialButtons from './socialbuttons';
 
@@ -18,7 +18,11 @@ const Container = styled.div`
   }
 `;
 
-export default () => (
+export default () => {
+  const { __ } = useTranslation();
+  const { search } = useLocation();
+
+  return (
   <Container className="info-text">
     <ColorBlindCheckbox />
     <p>
@@ -50,11 +54,11 @@ export default () => (
     <p>
       {__('footer.faq-text')}
       {' '}
-      <Link to={{ pathname: '/faq', search: useLocation().search }}>
+      <Link to={{ pathname: '/faq', search }}>
         <span className="faq-link">{__('footer.faq')}</span>
       </Link>
     </p>
     <SocialButtons />
 
   </Container>
-);
+)};

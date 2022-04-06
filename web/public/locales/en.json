@@ -1170,14 +1170,6 @@
             "countryName": "New Zealand",
             "zoneName": "Chatham Islands"
         },
-        "NZ-NZN": {
-            "countryName": "New Zealand",
-            "zoneName": "North Island"
-        },
-        "NZ-NZS": {
-            "countryName": "New Zealand",
-            "zoneName": "South Island"
-        },
         "NZ-NZST": {
             "countryName": "New Zealand",
             "zoneName": "Stewart Island"
