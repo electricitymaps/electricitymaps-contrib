@@ -12,18 +12,3 @@ export const useTrackEvent = () => {
     [dispatch],
   );
 };
-
-export const usePageViewsTracker = () => {
-  const { pathname } = useLocation();
-  const trackEvent = useTrackEvent();
-
-  // Track app visit once initially.
-  useEffect(() => {
-    trackEvent('Visit');
-  }, []);
-
-  // Track page view whenever the pathname changes (ignore search params changes).
-  useEffect(() => {
-    trackEvent('pageview');
-  }, [pathname]);
-};
