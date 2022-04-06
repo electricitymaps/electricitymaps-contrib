@@ -1,5 +1,4 @@
-import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 export const useTrackEvent = () => {

@@ -1,13 +1,11 @@
 import {
   call,
   put,
-  select,
   takeLatest,
 } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleRequestError, protectedJsonRequest } from '../helpers/api';
-import { history } from '../helpers/router';
 import {
   getGfsTargetTimeBefore,
   getGfsTargetTimeAfter,
@@ -42,7 +40,6 @@ function* fetchGridData(action) {
 
   try {
     const payload = yield call(protectedJsonRequest, endpoint);
-    yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });

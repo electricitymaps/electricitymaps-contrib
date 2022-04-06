@@ -1,7 +1,6 @@
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
 import twitterConnection from './thirdparty/twitter';
-import mixpanelConnection from './thirdparty/mixpanel';
 import plausibleConnection from './thirdparty/plausible'
 import debugConsoleConnection from './thirdparty/debugconsole';
 
@@ -21,7 +20,6 @@ class ConnectionsService {
     this.connections = [];
     if (isProduction()) {
       this.addConnection(new twitterConnection());
-      this.addConnection(new mixpanelConnection());
       this.addConnection(new plausibleConnection());
     } else {
       this.addConnection(new debugConsoleConnection());
@@ -34,6 +32,7 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
+    console.log(`Tracking event ${eventName}`);
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);

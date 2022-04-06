@@ -95,7 +95,7 @@ const OnboardingModal = ({ visible }) => {
   // Track event when the onboarding modal opens up
   useEffect(() => {
     if (visible) {
-      trackEvent('onboardingModalShown');
+      trackEvent('Onboarding Shown');
     }
   }, [visible]);
 
