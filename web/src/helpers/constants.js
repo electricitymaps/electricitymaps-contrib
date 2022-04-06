@@ -35,6 +35,36 @@ const DEFAULT_FLAG_SIZE = 16;
 
 const DATA_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
 
+const LANGUAGE_NAMES = {
+  "ar": "اللغة العربية الفصحى",
+  "cs": "Čeština",
+  "da": "Dansk",
+  "de": "Deutsch",
+  "el": "Ελληνικά",
+  "en": "English",
+  "es": "Español",
+  "et": "Eesti",
+  "fi": "Suomi",
+  "fr": "Français",
+  "hr": "Hrvatski",
+  "id": "Bahasa Indonesia",
+  "it": "Italiano",
+  "ja": "日本語",
+  "ko": "한국어",
+  "nl": "Nederlands",
+  "no-nb": "Norsk (bokmål)",
+  "pl": "Polski",
+  "pt-br": "Português (Brasileiro)",
+  "ro": "Română",
+  "ru": "Русский язык",
+  "sk": "Slovenčina",
+  "sv": "Svenska",
+  "vi": "Tiếng Việt",
+  "zh-cn": "中文 (Mainland China)",
+  "zh-hk": "中文 (Hong Kong)",
+  "zh-tw": "中文 (Taiwan)"
+}
+
 export {
   modeColor,
   modeOrder,
@@ -42,4 +72,5 @@ export {
   STORAGE_MODES,
   DEFAULT_FLAG_SIZE,
   DATA_FETCH_INTERVAL,
+  LANGUAGE_NAMES,
 };
