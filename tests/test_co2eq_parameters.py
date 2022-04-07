@@ -1,5 +1,6 @@
 """Validate the CO2eq parameters."""
 
+import datetime
 import json
 import numbers
 import re
@@ -24,117 +25,163 @@ def get_possible_modes():
     return modes
 
 
+def parse_json_file(path):
+    """Parse a JSON file."""
+    with open(path, encoding="utf-8") as file_:
+        return json.load(file_)
+
+
 class CO2eqParametersAll(unittest.TestCase):
     """A test case for the CO2eq parameters."""
     modes = get_possible_modes()
+    parameters = parse_json_file("config/co2eq_parameters_all.json")
 
     @classmethod
-    def setUpClass(cls):
-        with open("config/co2eq_parameters_all.json",
-                  encoding="utf-8") as file_:
-            cls.parameters = json.load(file_)
-
-    @classmethod
-    def check_power_origin_ratios(cls, callback):
-        """Apply the callback to each 'powerOriginRatios' object in the CO2eq
-        parameters.
+    def check_power_origin_ratios(cls, callback1, callback2):
+        """Apply the callback to each ratio in the 'powerOriginRatios' objects.
         """
         # It is useful to keep `test_power_origin_modes_are_valid` and
         # `test_power_origin_ratios_sum_to_1` as separate tests, but they share
         # a lot of identical code. This helper function helps avoid code
-        # duplication by factoring out the common logic and using a callback
-        # function to handle the differences.
+        # duplication by factoring out the common logic and using callback
+        # functions to handle the differences.
         fallback_zone_mixes = cls.parameters["fallbackZoneMixes"]
         for zone, mixes in (("defaults", fallback_zone_mixes["defaults"]),
                             *fallback_zone_mixes["zoneOverrides"].items()):
-            power_origin_ratios = mixes["powerOriginRatios"]
-            if isinstance(power_origin_ratios, list):
-                for dictionary in power_origin_ratios:
-                    callback(dictionary, zone)
+            ratios = mixes["powerOriginRatios"]
+            if isinstance(ratios, list):
+                for ratio in ratios:
+                    callback1(ratio, zone)
             else:
-                callback(power_origin_ratios, zone)
+                callback2(ratios, zone)
 
     def test_power_origin_modes_are_valid(self):
         """All modes in the 'powerOriginRatios' objects must be valid."""
-        def assert_modes_are_valid(modes_to_ratios, zone):
-            for mode, ratio in modes_to_ratios.items():
+        def callback(ratio_, zone):
+            for mode, ratio in ratio_["value"].items():
                 if isinstance(ratio, numbers.Number):
                     self.assertIn(
                         mode,
                         self.modes,
                         msg=f"zone '{zone}' contains an invalid mode")
 
-        self.check_power_origin_ratios(assert_modes_are_valid)
+        self.check_power_origin_ratios(callback, callback)
+
+    def test_power_origin_ratio_annual_lists_have_valid_dates(self):
+        """Lists of emission factors must include valid date strings."""
+        def callback(ratio, _zone):
+            # An exception will be raised if the string is not a valid
+            # datetime, thus failing the test.
+            datetime.datetime.fromisoformat(ratio["datetime"])
+
+        self.check_power_origin_ratios(callback, lambda ratio, zone: None)
 
     def test_power_origin_ratios_sum_to_1(self):
         """All ratios in the 'powerOriginRatios' objects must sum to
         (approximately) 1.0.
         """
-        def assert_ratios_sum_to_1(modes_to_ratios, zone):
+        def callback(ratio, zone):
             self.assertAlmostEqual(
                 1.0,
-                sum(ratio for ratio in modes_to_ratios.values()
+                sum(ratio for ratio in ratio["value"].values()
                     if isinstance(ratio, numbers.Number)),
                 msg=f"zone '{zone}' ratios do not sum to (approximately) 1.0",
                 places=2)
 
-        self.check_power_origin_ratios(assert_ratios_sum_to_1)
+        self.check_power_origin_ratios(callback, callback)
 
     def test_required_keys_are_present(self):
         """All objects must contain the required keys."""
+        def callback1(ratio, _zone):
+            self.assertIn(
+                "datetime",
+                ratio,
+                msg="lists of power origin ratios must include datetimes")
+            self.assertIn("value", ratio)
+
+        def callback2(ratio, _zone):
+            self.assertIn("value", ratio)
+
         self.assertIn("fallbackZoneMixes", self.parameters)
         fallback_zone_mixes = self.parameters["fallbackZoneMixes"]
         self.assertIn("defaults", fallback_zone_mixes)
         self.assertIn("powerOriginRatios", fallback_zone_mixes["defaults"])
         self.assertIn("zoneOverrides", fallback_zone_mixes)
-        for zone, mixes in fallback_zone_mixes["zoneOverrides"].items():
+        for zone, mixes in (("defaults", fallback_zone_mixes["defaults"]),
+                            *fallback_zone_mixes["zoneOverrides"].items()):
             self.assertIn("powerOriginRatios",
                           mixes,
                           msg=f"key missing from zone '{zone}'")
+        self.check_power_origin_ratios(callback1, callback2)
 
 
 class CO2eqParametersDirectAndLifecycleMixin:
     """A mixin for the direct and lifecycle CO2eq parameters."""
     modes = get_possible_modes()
 
-    def test_emission_factor_modes_are_valid(self):
-        """All modes in the 'emissionFactors' object's 'defaults' and
-        'zoneOverrides' objects must be valid.
+    @classmethod
+    def check_emission_factors(cls, callback):
+        """Apply the callback to each emission factor in the 'emissionFactors'
+        object.
         """
-        emission_factors = self.parameters["emissionFactors"]
-        for zone, modes in (("defaults", emission_factors["defaults"]),
-                            *emission_factors["zoneOverrides"].items()):
-            for mode in modes:
-                self.assertIn(mode,
-                              self.modes,
-                              msg=f"zone '{zone}' contains an invalid mode")
+        emission_factors = cls.parameters["emissionFactors"]
+        for zone, modes_to_factors in (
+                ("defaults", emission_factors["defaults"]),
+                *emission_factors["zoneOverrides"].items()
+            ):
+            for mode, factors in modes_to_factors.items():
+                callback(mode, factors, zone)
+
+    def test_emission_factor_modes_are_valid(self):
+        """All specified modes must be in the allowed set of modes."""
+        def callback(mode, _factors, zone):
+            self.assertIn(mode,
+                          self.modes,
+                          msg=f"zone '{zone}' contains an invalid mode")
+
+        self.check_emission_factors(callback)
+
+    def test_emission_factor_annual_lists_have_valid_dates(self):
+        """Lists of emission factors must include valid date strings."""
+        def callback(_mode, factors, _zone):
+            if isinstance(factors, list):
+                for factor in factors:
+                    # An exception will be raised if the string is not a valid
+                    # datetime, thus failing the test.
+                    datetime.datetime.fromisoformat(factor["datetime"])
+
+        self.check_emission_factors(callback)
 
     def test_required_keys_are_present(self):
         """All objects must contain the required keys."""
+        def callback(_mode, factors, _zone):
+            if isinstance(factors, list):
+                for factor in factors:
+                    self.assertIn(
+                        "datetime",
+                        factor,
+                        msg="lists of emission factors must include datetimes")
+                    self.assertIn("value", factor)
+            else:
+                self.assertIn("value", factors)
+
         self.assertIn("emissionFactors", self.parameters)
         emission_factors = self.parameters["emissionFactors"]
         self.assertIn("defaults", emission_factors)
         self.assertIn("zoneOverrides", emission_factors)
+        self.check_emission_factors(callback)
 
 
 class CO2eqParametersDirect(CO2eqParametersDirectAndLifecycleMixin,
                             unittest.TestCase):
     """A test case for the direct CO2eq parameters."""
-    @classmethod
-    def setUpClass(cls):
-        with open("config/co2eq_parameters_direct.json",
-                  encoding="utf-8") as file_:
-            cls.parameters = json.load(file_)
+    parameters = parse_json_file("config/co2eq_parameters_direct.json")
 
 
 class CO2eqParametersLifecycle(CO2eqParametersDirectAndLifecycleMixin,
                                unittest.TestCase):
     """A test case for the lifecycle CO2eq parameters."""
-    @classmethod
-    def setUpClass(cls):
-        with open("config/co2eq_parameters_lifecycle.json",
-                  encoding="utf-8") as file_:
-            cls.parameters = json.load(file_)
+    parameters = parse_json_file("config/co2eq_parameters_lifecycle.json")
 
 
 if __name__ == "__main__":
