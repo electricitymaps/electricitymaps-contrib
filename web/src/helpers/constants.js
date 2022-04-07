@@ -64,6 +64,35 @@ const LANGUAGE_NAMES = {
   "zh-hk": "中文 (Hong Kong)",
   "zh-tw": "中文 (Taiwan)"
 }
+const LOCALE_TO_FACEBOOK_LOCALE = {
+  "ar": "ar_AR",
+  "cs": "cs_CZ",
+  "da": "da_DK",
+  "de": "de_DE",
+  "el": "el_GR",
+  "en": "en_US",
+  "es": "es_ES",
+  "et": "et_EE",
+  "fi": "fi_FI",
+  "fr": "fr_FR",
+  "hr": "hr_HR",
+  "id": "id_ID",
+  "it": "it_IT",
+  "ja": "ja_JP",
+  "ko": "ko_KR",
+  "nl": "nl_NL",
+  "no": "no_NB",
+  "pt-br": "pt_BR",
+  "pl": "pl_PL",
+  "ro": "ro_RO",
+  "ru": "ru_RU",
+  "sk": "sk_SK",
+  "sv": "sv_SE",
+  "vn": "vi_VN",
+  "zh-cn": "zh_CN",
+  "zh-hk": "zh_HK",
+  "zh-tw": "zh_TW"
+};
 
 export {
   modeColor,
@@ -73,4 +102,5 @@ export {
   DEFAULT_FLAG_SIZE,
   DATA_FETCH_INTERVAL,
   LANGUAGE_NAMES,
+  LOCALE_TO_FACEBOOK_LOCALE
 };

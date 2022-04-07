@@ -6,6 +6,8 @@
         <meta name="description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
+        <meta property="og:locale" content="en" />
+
         <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
@@ -34,8 +36,6 @@
         <script>
             var ELECTRICITYMAP_PUBLIC_TOKEN = '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%';
             var bundleHash = 'dev';
-            var locale = 'en';
-            var FBLocale = 'en';
             var resolvePath = relativePath => `/${relativePath}`;
             var isCordova = false;
         </script>
