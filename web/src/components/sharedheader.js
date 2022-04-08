@@ -171,7 +171,7 @@ const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo })
             key={id}
             href={href}
             active={active}
-            onClick={() => trackEvent('Link Clicked', { linkId: id })}
+            onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}
           >
             {label}
           </Link>
