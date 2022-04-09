@@ -2687,7 +2687,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "HOPS.fetch_production"
+      "production": "ENTSOE.fetch_production"
     },
     "timezone": "Europe/Belgrade"
   },
@@ -3980,7 +3980,7 @@
       "biomass": 165,
       "coal": 0,
       "gas": 1527,
-      "geothermal": 0,  
+      "geothermal": 0,
       "hydro": 128,
       "hydro storage": 900,
       "nuclear": 0,

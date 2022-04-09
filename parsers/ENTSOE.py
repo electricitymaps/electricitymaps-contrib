@@ -341,6 +341,9 @@ VALIDATIONS = {
         'required': ['coal', 'gas'],
         'expected_range': (2000, 20000),
     },
+    'HR': {
+        'required': ['coal', 'gas', 'wind', 'biomass', 'oil', 'solar', ],
+    },
     'HU': {
         'required': ['coal', 'nuclear'],
     },
