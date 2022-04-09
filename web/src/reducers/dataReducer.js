@@ -112,7 +112,7 @@ const reducer = (state = initialDataState, action) => {
         const [key, value] = entry;
         const zone = newGrid.zones[key];
         if (!zone) {
-          console.warn(`${key} has no zone configuration.`);
+          console.warn(`${key} has no zone configuration. Ignoring..`);
           return;
         }
         // Assign data from payload
@@ -132,24 +132,6 @@ const reducer = (state = initialDataState, action) => {
         // By default hasData is only true if there is a parser - here we overwrite that value
         // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
         zone.hasData = zone.hasParser || !hasNoData;
-
-        // Validate data
-        modeOrder.forEach((mode) => {
-          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-          // Check missing values
-          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-          //    console.warn(`${key} is missing production or storage of ' + mode`);
-          // Check validity of production
-          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.warn(`${key} has negative production of ${mode}`);
-          }
-          // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
-            console.warn(`${key} produces more than its capacity of ${mode}`);
-          }
-        });
       });
 
       // Populate exchange pairs for exchange layer
@@ -157,7 +139,7 @@ const reducer = (state = initialDataState, action) => {
         const [key, value] = entry;
         const exchange = newGrid.exchanges[key];
         if (!exchange || !exchange.lonlat) {
-          console.warn(`Missing exchange configuration for ${key}`);
+          console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
           return;
         }
         // Assign all data

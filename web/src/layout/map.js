@@ -46,18 +46,23 @@ export default () => {
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
   const [tooltipZoneData, setTooltipZoneData] = useState(null);
+  const [hasCentered, setHasCentered] = useState(false);
+
+  // Center the map initially based on the focused zone and the user geolocation.
+  if (!hasCentered) {
+    if (zoneId) {
+      console.log(`Centering on zone ${zoneId}`);
+      dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
+      setHasCentered(true);
+    } else if (callerLocation) {
+      console.log(`Centering on browser location (${callerLocation})`);
+      dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
+      setHasCentered(true);
+    }
+  }
 
   const handleMapLoaded = useMemo(
     () => () => {
-      // Center the map initially based on the focused zone and the user geolocation.
-      if (zoneId) {
-        console.log(`Centering on zone ${zoneId}`);
-        dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
-      } else if (callerLocation) {
-        console.log(`Centering on browser location (${callerLocation})`);
-        dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
-      }
-
       // Map loading is finished, lower the overlay shield with
       // a bit of delay to allow the background to render first.
       setTimeout(() => {
