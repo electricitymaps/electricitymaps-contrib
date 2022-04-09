@@ -81,6 +81,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
     'AX': '10Y1001A1001A46L',  # for price only; Åland has SE-SE3 area price
+    'AZ': '10Y1001A1001B05V',
     'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
@@ -98,6 +99,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'FR': '10YFR-RTE------C',
     'GB': '10YGB----------A',
     'GB-NIR': '10Y1001A1001A016',
+    'GE': '10Y1001A1001B012',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
