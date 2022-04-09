@@ -2433,7 +2433,11 @@
       "https://github.com/tmslaine"
     ],
     "parsers": {
-      "production": "GE.fetch_production"
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "production": "GE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": "Asia/Tbilisi"
   },
@@ -3980,7 +3984,7 @@
       "biomass": 165,
       "coal": 0,
       "gas": 1527,
-      "geothermal": 0,  
+      "geothermal": 0,
       "hydro": 128,
       "hydro storage": 900,
       "nuclear": 0,
