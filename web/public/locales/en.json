@@ -337,6 +337,10 @@
             "countryName": "Brazil",
             "zoneName": "Central Brazil"
         },
+        "BR-I": {
+            "countryName": "Brazil",
+            "zoneName": "Isolated Systems"
+        },
         "BR-N": {
             "countryName": "Brazil",
             "zoneName": "North Brazil"
