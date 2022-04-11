@@ -44,7 +44,6 @@ function* fetchGridData(action) {
     const payload = yield call(protectedJsonRequest, endpoint);
     yield put({ type: 'TRACK_EVENT', payload: { eventName: 'pageview' } });
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
-    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerZone', value: payload.callerZone });
     yield put({ type: 'GRID_DATA_FETCH_SUCCEEDED', payload });
   } catch (err) {
     yield put({ type: 'GRID_DATA_FETCH_FAILED' });

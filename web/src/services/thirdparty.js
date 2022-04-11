@@ -34,7 +34,6 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log("tracking totally");
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
