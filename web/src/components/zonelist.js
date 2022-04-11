@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredZoneViewport } from '../helpers/map';
-import { __, getZoneNameWithCountry } from '../helpers/translation';
+import { getZoneNameWithCountry, getZoneName, getCountryName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 import { ascending } from 'd3-array';
 import { values } from 'd3-collection';
@@ -153,8 +153,8 @@ const ZoneList = ({
           <div className="ranking">{zone.ranking}</div>
             <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
             <div className="name">
-              <div className="zone-name">{__(`zoneShortName.${zone.countryCode}.zoneName`)}</div>
-              <div className="country-name">{__(`zoneShortName.${zone.countryCode}.countryName`)}</div>
+              <div className="zone-name">{getZoneName(zone.countryCode)}</div>
+              <div className="country-name">{getCountryName(zone.countryCode)}</div>
             </div>
           <div
             className="co2-intensity-tag"

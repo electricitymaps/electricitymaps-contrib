@@ -161,7 +161,7 @@
         "guaranteesOfOrigin-question": "환경 인증이란 무엇이며 어떻게 간주됩니까?",
         "guaranteesOfOrigin-answer": "재생에너지 생산업체는 원산지 보증서(또는 재생에너지 공급인증서)를 발급해 재생에너지가 생산되어 전력망에 분배되었다는 것을 증명할 수 있습니다. 이 보증서는 판매 가능하기 때문에 전기를 유통하는 판매사업체에서는 이 보증서를 활용해 자신들이 유통하는 전기가 실제 물리적인 원산지와 관계 없이 재생 가능한 자원을 활용했다는 것을 인증할 수 있습니다.<br><br> 이에 따라 전력 소비자는 자신이 소비하는 전력이 태양열, 풍력 등 재생에너지에서 생산되었다는 것을 인지할 수 있게 되는 것입니다. 그러나 원산지 보증서만으로는 부족한 부분이 있습니다. 재생에너지로 생산된 전력량이 그리드상에 가장 많이 축적되어있는 경우와 같이 최적의 시점에 전기를 소비할 수 있는 소비자 인센티브를 없애기 때문입니다. 따라서 이 지도에서는 소비자가 전력 소비와 관련해 더욱 적합한 결정을 내릴 수 있도록 돕기 위해 원산지 보증서 대신 전력망의 위치를 그림으로 표시하고 있습니다.",
         "otherSources-question": "전력 생산 외에 다른 배출원을 측정하지 않는 이유는 무엇입니까?",
-        "otherSources-answer": "다른 배출원의 측정은 저희 프로젝트의 범위를 벗어납니다. 그러나 Tomorrow에서는 <a href=\"#whoAreYou\" class=\"entry-link\">매일의 결정과 선택이 기후에 어떤 영향을 미치는지 수량화할 수 있는 솔루션</a> 개발에 힘을 쏟고 있습니다.",
+        "otherSources-answer": "다른 배출원의 측정은 저희 프로젝트의 범위를 벗어납니다. 그러나 electricityMap에서는 <a href=\"#whoAreYou\" class=\"entry-link\">매일의 결정과 선택이 기후에 어떤 영향을 미치는지 수량화할 수 있는 솔루션</a> 개발에 힘을 쏟고 있습니다.",
         "homeSolarPanel-question": "개인 가정에 태양 전지판이 설치되어있는 경우에는 어떻게 됩니까?",
         "homeSolarPanel-answer": "우리는 지역 전력망의 탄소집약도를 측정하므로 자택에 설치된 태양 전지판을 통해 독립적으로 발전된 전기를 소비하는 경우는 측정 대상에 포함되지 않습니다. 그러나 태양 전지판을 통해 생산된 전력이 해당 지역의 전력망에 공급되는 경우에는 프랑스나 영국 같이 태양에너지 생산량을 공개적으로 추정할 수 있는 지역에 한해 해당 생산량을 통계치에 포함합니다.",
         "emissionsPerCapita-question": "1인당 배출량을 표시하지 않는 이유는 무엇인가요?",
@@ -179,7 +179,7 @@
     "aboutUs": {
         "groupName": "About us",
         "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
+        "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
         "feedback-question": "어떻게 피드백을 줄 수 있나요?",
         "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:hello@electricitymap.org\">에서 작성하신 후 이메일을 보내주세요!</a>",
         "contribute-question": "저도 프로젝트에 기여할 수 있을까요?",
@@ -187,7 +187,7 @@
         "workTogether-question": "함께 일할 수 있나요?",
         "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:hello@electricitymap.org\">이메일을 보내주세요!</a>",
         "disclaimer-question": "고지 사항",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>는 <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. Tomorrow는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 Tomorrow의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>는 <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. electricityMap는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 electricityMap의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
     },
     "zoneShortName": {
         "AD": {
@@ -1120,6 +1120,9 @@
         "NU": {
             "zoneName": "니우에"
         },
+        "NZ": {
+            "zoneName": "뉴질랜드"
+        },
         "NZ-NZA": {
             "countryName": "뉴질랜드",
             "zoneName": "오클랜드 제도"
@@ -1127,14 +1130,6 @@
         "NZ-NZC": {
             "countryName": "뉴질랜드",
             "zoneName": "채텀 제도"
-        },
-        "NZ-NZN": {
-            "countryName": "뉴질랜드",
-            "zoneName": "북섬"
-        },
-        "NZ-NZS": {
-            "countryName": "뉴질랜드",
-            "zoneName": "남섬"
         },
         "OM": {
             "zoneName": "오만"

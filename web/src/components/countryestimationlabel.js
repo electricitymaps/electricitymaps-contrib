@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Tooltip from './tooltip';
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { noop } from 'lodash';
 
 const EstimationLabel = styled.div`
@@ -23,6 +23,7 @@ const TooltipInner = styled.div`
 
 const EstimatedLabel = ({ isMobile }) => {
   const [tooltip, setTooltip] = React.useState(null);
+  const { __ } = useTranslation();
 
   const TooltipComponent = tooltip && (
     <Tooltip

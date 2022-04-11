@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 
 const orderings = [
   {
@@ -56,34 +56,37 @@ const orderings = [
 ];
 
 const QuestionAnswer = ({
-  answerVisible,
-  setAnswerVisible,
-  groupKey,
+  answerVisible, 
+  setAnswerVisible, 
+  groupKey, 
   entryKey,
-}) => (
-  <div className="question-answer-container" id={entryKey}>
-    <div
-      className="question"
-      onClick={() => setAnswerVisible(entryKey, !answerVisible)}
-    >
-      <i className="material-icons">
-        {answerVisible ? 'expand_less' : 'expand_more'}
-      </i>
-      <span>{__(`${groupKey}.${entryKey}-question`)}</span>
-    </div>
-    {answerVisible && (
+}) => {
+  const { __ } = useTranslation();
+  return (
+    <div className="question-answer-container" id={entryKey}>
       <div
-        className="answer"
-        dangerouslySetInnerHTML={{
-          __html: __(`${groupKey}.${entryKey}-answer`),
-        }}
-      />
-    )}
-  </div>
-);
+        className="question"
+        onClick={() => setAnswerVisible(entryKey, !answerVisible)}
+      >
+        <i className="material-icons">
+          {answerVisible ? 'expand_less' : 'expand_more'}
+        </i>
+        <span>{__(`${groupKey}.${entryKey}-question`)}</span>
+      </div>
+      {answerVisible && (
+        <div
+          className="answer"
+          dangerouslySetInnerHTML={{
+            __html: __(`${groupKey}.${entryKey}-answer`),
+          }} />
+      )}
+    </div>
+  );
+};
 
 const FAQ = ({ className }) => {
   const [answersVisible, setAnswersVisible] = useState({});
+  const { __ } = useTranslation();
   const setAnswerVisible = (entryKey, value) => {
     setAnswersVisible(Object.assign({}, answersVisible, { [entryKey]: value }));
   };

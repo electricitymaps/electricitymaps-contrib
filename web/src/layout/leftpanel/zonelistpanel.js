@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { dispatchApplication } from '../../store';
 
 import SearchBar from '../../components/searchbar';
@@ -24,27 +24,30 @@ const documentSearchKeyUpHandler = (key, searchRef) => {
   }
 };
 
-const ZoneListPanel = () => (
-  <div className="left-panel-zone-list">
-    <div className="zone-list-header">
-      <div className="title">
-        {' '}
-        {__('left-panel.zone-list-header-title')}
+const ZoneListPanel = () => {
+  const { __ } = useTranslation();
+  return (
+      <div className="left-panel-zone-list">
+        <div className="zone-list-header">
+          <div className="title">
+            {' '}
+            {__('left-panel.zone-list-header-title')}
+          </div>
+          <div className="subtitle">{__('left-panel.zone-list-header-subtitle')}</div>
+        </div>
+
+        <SearchBar
+          className="zone-search-bar"
+          placeholder={__('left-panel.search')}
+          documentKeyUpHandler={documentSearchKeyUpHandler}
+          searchHandler={query => dispatchApplication('searchQuery', query)}
+        />
+
+        <ZoneList />
+
+        <InfoText />
       </div>
-      <div className="subtitle">{__('left-panel.zone-list-header-subtitle')}</div>
-    </div>
-
-    <SearchBar
-      className="zone-search-bar"
-      placeholder={__('left-panel.search')}
-      documentKeyUpHandler={documentSearchKeyUpHandler}
-      searchHandler={query => dispatchApplication('searchQuery', query)}
-    />
-
-    <ZoneList />
-
-    <InfoText />
-  </div>
-);
+  );
+};
 
 export default ZoneListPanel;

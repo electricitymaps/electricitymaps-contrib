@@ -166,7 +166,7 @@
         "guaranteesOfOrigin-question": "グリーン証書とは何ですか、そしてどのように考慮していますか?",
         "guaranteesOfOrigin-answer": "再生可能エネルギーの発電所が発電した際に、その発電源について証明書を発行することができます(再生可能エネルギー証書とも呼ばれます) - それは再生可能エネルギーとして発電され送電網に送り込まれたことを証明するものです。これらの保証書は電力と切り離して販売することができます。これによって電力小売業者は証書を組み合わせることで販売する電力の由来がどのようなものでも再生可能エネルギー由来の電力と主張することができ、電力消費者に対して太陽光でも風力でも、風が無い夜でも再生可能エネルギーを利用できると言うことができます。これは消費者から最適な時間帯(例えば再生可能エネルギーが最も多く送電されている際など)に電力を消費してもらう動機を奪うものという点で問題があります。そのためこの地図では電力源の証明に関する情報を除外し、代わりに消費者に判断できるようにすることを目的に位置情報に基づく実際の送電状況を描いています。",
         "otherSources-question": "なぜ発電以外の排出源について表示しないのですか?",
-        "otherSources-answer": "それはこのプロジェクトの対象外となっています。しかしTomorrowで私たちは<a href=\"#whoAreYou\" class=\"entry-link\">人々の日々の行動がもたらす環境負荷を定量化する手法</a>を開発するために活発に働いています。",
+        "otherSources-answer": "それはこのプロジェクトの対象外となっています。しかしelectricityMapで私たちは<a href=\"#whoAreYou\" class=\"entry-link\">人々の日々の行動がもたらす環境負荷を定量化する手法</a>を開発するために活発に働いています。",
         "homeSolarPanel-question": "仮に私が家にソーラーパネルを設置したら?",
         "homeSolarPanel-answer": "私たちは地域の電力網の炭素強度を測定しており、あなたがソーラーパネルで発電した電気を家で直接消費(オフグリッド)しても私たちの測定対象にはなりません。しかしながらあなたの家のソーラーパネルが電力網に電気を提供している場合は、その発電量は地域太陽光発電が利用可能になっている地域(フランスやイギリスなど)で私たちの集計値に含まれています。",
         "emissionsPerCapita-question": "なぜ1人当たりの排出量を示さないのですか?",
@@ -184,7 +184,7 @@
     "aboutUs": {
         "groupName": "私たちについて",
         "whoAreYou-question": "あなたたちは誰ですか?",
-        "whoAreYou-answer": "Electricity Map はデンマークのスタートアップ企業<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>によって開発、維持されています。私たちのゴールは、私たちが日々行う選択の環境負荷を定量化し広くアクセス可能とすることで人類が持続可能な状態へ至ることの助けとなることです。",
+        "whoAreYou-answer": "Electricity Map はデンマークのスタートアップ企業<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>によって開発、維持されています。私たちのゴールは、私たちが日々行う選択の環境負荷を定量化し広くアクセス可能とすることで人類が持続可能な状態へ至ることの助けとなることです。",
         "feedback-question": "フィードバックしてもいいですか?",
         "feedback-answer": "ぜひどうぞ! <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">フィードバックフォーム</a>もしくは<a href=\"mailto:hello@electricitymap.org\">メール</a>でお願いします!",
         "contribute-question": "プロジェクトに貢献できますか?",
@@ -192,7 +192,7 @@
         "workTogether-question": "私たちと一緒に仕事できますか?",
         "workTogether-answer": "私たちはコラボレーションできる機会を積極的に探しています。<a href=\"mailto:hello@electricitymap.org\">email</a>を送ってください!",
         "disclaimer-question": "免責事項",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
     "zoneShortName": {
         "AD": {
@@ -1125,6 +1125,9 @@
         "NU": {
             "zoneName": "ニウエ"
         },
+        "NZ": {
+            "zoneName": "ニュージーランド"
+        },
         "NZ-NZA": {
             "countryName": "ニュージーランド",
             "zoneName": "オークランド諸島"
@@ -1132,14 +1135,6 @@
         "NZ-NZC": {
             "countryName": "ニュージーランド",
             "zoneName": "チャタム諸島"
-        },
-        "NZ-NZN": {
-            "countryName": "ニュージーランド",
-            "zoneName": "北島"
-        },
-        "NZ-NZS": {
-            "countryName": "ニュージーランド",
-            "zoneName": "南島"
         },
         "OM": {
             "zoneName": "オマーン"

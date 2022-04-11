@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "Este proyecto es de",
+        "thisproject": "Este app es de",
         "opensource": "código abierto",
         "see": "ver",
         "datasources": "las fuentes de los datos",
@@ -164,7 +164,7 @@
         "guaranteesOfOrigin-question": "¿Qué son los certificados verdes, y cómo se tienen en cuenta?",
         "guaranteesOfOrigin-answer": "Cuando los productores de energía renovable producen electricidad, pueden crear Garantías de Origen (GdO) o certificados de energía renovable, que demuestran que la electricidad producida y distribuida a la red proviene de energías renovables. Estos certificados se pueden vender, con lo que las compañías eléctricas que los compran pueden decirles a sus clientes que la electricidad que revenden proviene de fuentes renovables, independientemente de su origen real.<br><br> Esto implica que los consumidores pueden pensar que su electricidad proviene de placas solares y aerogeneradores incluso en una noche sin viento. Esto es problemático porque elimina los incentivos de los consumidores para consumir electricidad en el momento idóneo (por ejemplo, cuando hay más cantidad de energía renovable circulando por la red). Por ello este mapa excluye las Garantías de Origen y se centra en la situación real de la red eléctrica en una zona determinada, dando así información veraz a los consumidores.",
         "otherSources-question": "¿Por qué no mostráis otras fuentes de emisiones aparte de la producción de electricidad?",
-        "otherSources-answer": "Aunque este proyecto se centra solo en las emisiones de la producción de electricidad, en Tomorrow estamos trabajando para crear <a href=\"#whoAreYou\" class=\"entry-link\">nuevas herramientas que midan el impacto climático de nuestras acciones diarias</a>.",
+        "otherSources-answer": "Aunque este proyecto se centra solo en las emisiones de la producción de electricidad, en electricityMap estamos trabajando para crear <a href=\"#whoAreYou\" class=\"entry-link\">nuevas herramientas que midan el impacto climático de nuestras acciones diarias</a>.",
         "homeSolarPanel-question": "¿Y si tengo un panel solar instalado en casa?",
         "homeSolarPanel-answer": "Nosotros medimos la intensidad de carbono de la red eléctrica en tu región, así que toda la electricidad proveniente de tus paneles solares (sin estar conectado a la red) no entra en nuestros cálculos. Sin embargo, si tus paneles están conectados a la red, su producción de electricidad está incluida en nuestras estadísticas siempre que los datos de producción de energía fotovoltaica en esa zona sean públicos (como en Francia o en el Reino Unido).",
         "emissionsPerCapita-question": "¿Por qué no mostráis emisiones per cápita?",
@@ -182,7 +182,7 @@
     "aboutUs": {
         "groupName": "Sobre nosotros",
         "whoAreYou-question": "¿Quiénes sois?",
-        "whoAreYou-answer": "ElectricityMap ha sido creado y desarrollado por <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, una pequeña <i>start-up</i> de Dinamarca y Francia. Nuestro objetivo es ayudar a la humanidad a alcanzar una existencia sostenible cuantificando y dando a conocer el impacto climático de nuestras decisiones diarias.",
+        "whoAreYou-answer": "ElectricityMap ha sido creado y desarrollado por <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, una pequeña <i>start-up</i> de Dinamarca y Francia. Nuestro objetivo es ayudar a la humanidad a alcanzar una existencia sostenible cuantificando y dando a conocer el impacto climático de nuestras decisiones diarias.",
         "feedback-question": "¿Os puedo dejar algún comentario o crítica?",
         "feedback-answer": "¡Faltaría más! Solo tienes que rellenar <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">este formulario</a> o <a href=\"mailto:hello@electricity.com\">escribirnos un correo!</a>",
         "contribute-question": "¿Puedo contribuir a este proyecto?",
@@ -190,7 +190,7 @@
         "workTogether-question": "¿Podemos trabajar juntos?",
         "workTogether-answer": "Siempre estamos abiertos a nuevas oportunidades de colaborar. <a href=\"mailto:hello@electricitymap.org\">¡Mándanos un correo!</a>",
         "disclaimer-question": "Aviso legal",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publica datos e imágenes en el <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> solo con fines informativos. Tomorrow no se hace responsable de la exactitud de estos datos ni ofrece ningún tipo de garantía, y se reserva el derecho a modificar el contenido del sitio o eliminar parte de él en cualquier momento. Tomorrow declina toda responsabilidad y no se hace responsable de daños o gastos que resulten de la inexactitud de electricityMap, ya sea por un error, falta de datos o presencia de información obsoleta o adelantada.  Esto se aplica a electricityMap y a todo producto derivado. Queda prohibido incluir esta página web o cualquiera de sus elementos en otra página sin previo consentimiento escrito de Tomorrow.<br><br> Todos los derechos de propiedad intelectual pertenecen a los propietarios legales y legítimos de este sitio y a sus licenciatarios. La copia, distribución u otro uso de estos materiales, en particular de los datos sobre energía, están prohibidas sin el consentimiento escrito de Tomorrow, salvo contraindicación legal (como el derecho de cita), a menos que esto no se especifique en los documentos. <br><br>Esta nota legal puede ser actualizada de vez en cuando."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publica datos e imágenes en el <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> solo con fines informativos. electricityMap no se hace responsable de la exactitud de estos datos ni ofrece ningún tipo de garantía, y se reserva el derecho a modificar el contenido del sitio o eliminar parte de él en cualquier momento. electricityMap declina toda responsabilidad y no se hace responsable de daños o gastos que resulten de la inexactitud de electricityMap, ya sea por un error, falta de datos o presencia de información obsoleta o adelantada.  Esto se aplica a electricityMap y a todo producto derivado. Queda prohibido incluir esta página web o cualquiera de sus elementos en otra página sin previo consentimiento escrito de electricityMap.<br><br> Todos los derechos de propiedad intelectual pertenecen a los propietarios legales y legítimos de este sitio y a sus licenciatarios. La copia, distribución u otro uso de estos materiales, en particular de los datos sobre energía, están prohibidas sin el consentimiento escrito de electricityMap, salvo contraindicación legal (como el derecho de cita), a menos que esto no se especifique en los documentos. <br><br>Esta nota legal puede ser actualizada de vez en cuando."
     },
     "zoneShortName": {
         "AD": {
@@ -1138,14 +1138,6 @@
         "NZ-NZC": {
             "countryName": "Nueva Zelanda",
             "zoneName": "Islas Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "Nueva Zelanda",
-            "zoneName": "Isla Norte"
-        },
-        "NZ-NZS": {
-            "countryName": "Nueva Zelanda",
-            "zoneName": "Isla Sur"
         },
         "OM": {
             "zoneName": "Omán"

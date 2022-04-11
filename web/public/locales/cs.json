@@ -1,6 +1,6 @@
 {
     "panel-initial-text": {
-        "thisproject": "Tento projekt je",
+        "thisproject": "Tento app je",
         "opensource": "Open Source",
         "see": "viz",
         "datasources": "zdroje dat",
@@ -161,7 +161,7 @@
         "guaranteesOfOrigin-question": "Co jsou zelené certifikáty a kolik jich berete v úvahu?",
         "guaranteesOfOrigin-answer": "Když výrobci obnovitelné energie produkují elektřinu, mohou vytvořit Záruku původu (Guarantee of Origin nebo Renewable Energy Cerificates) - důkaz toho, že obnovitelná elektřina byla vyprodukována a distribuována do rozvodné sítě. Tyto záruky mohou být prodány nebo dány výrobci s neobnovitelnou energií jako způsob \"kompenzace\" za jeho emise a právo tvrdit, že elektřina kterou produkuje je z obnovitelných zdrojů. <br><br> Toto znamená, že spotřebitelům elektrické energie může být řečeno, že jejich elektrická energie je zelená, i když to není pravda ve fyzickém smyslu. To může představovat problém, protože certifikace odstraňuje stimuly spotřebitelů spotřebovávat elektřinu v nejlepším čase (například když množství obnovitelné elektřiny v síti je nejvyšší). Tato mapa tedy vylučuje Záruky původu, místo toho nabízí fyzický obraz rozvodní sítě na základe lokace, aby si mohli spotřebitelé plně uvědomit svou zodpovědnost.",
         "otherSources-question": "Proč nezobrazujete jiné zdroje emisí kromě produkce elektřiny?",
-        "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v Tomorrow aktivně pracujeme na vývoji <a href=\"#whoAreYou\" class=\"entry-link\">nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
+        "otherSources-answer": "Bylo by to mimo záměr tohoto projektu. Každopádně v electricityMap aktivně pracujeme na vývoji <a href=\"#whoAreYou\" class=\"entry-link\">nového řešení pro kvantifikaci dopadu na klima našich každodenních rozhodnutí</a>",
         "homeSolarPanel-question": "Co když mám doma nainstalovaný solární panel?",
         "homeSolarPanel-answer": "Měříme uhlíkovou intenzitu lokální rozvodní sítě, takže jakákoliv elektřina, kterou spotřebováváte z vašeho solárního panelu (mimo sítě) není součástí našich měření. Ale když váš solární panel dodává energii do vaší lokální rozvodné sítě, jeho produkce je zahrnuta v našich statistikách v oblastech, kde jsou odhady produkce lokální solární energie veřejně dostupné (jako například ve Francii nebo Velké Británii).",
         "emissionsPerCapita-question": "Proč nezobrazujete emise přepočtené na jednoho obyvatele?",
@@ -179,7 +179,7 @@
     "aboutUs": {
         "groupName": "O nás",
         "whoAreYou-question": "Kdo jste?",
-        "whoAreYou-answer": "ElectricityMap je vyvíjená a udržována společností <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
+        "whoAreYou-answer": "ElectricityMap je vyvíjená a udržována společností <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
         "feedback-question": "Můžu vám nechat zpětnou vazbu?",
         "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:electricitymap@tmrow.com\">nám poslat email!</a>",
         "contribute-question": "Můžu se zapojit do vašeho projektu?",
@@ -187,7 +187,7 @@
         "workTogether-question": "Můžeme pracovat společně?",
         "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:hello@electricitymap.org\">Pošlete nám email!</a>",
         "disclaimer-question": "Oznámení",
-        "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. Tomorrow nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti electricityMap nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu Tomorrow, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
+        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. electricityMap nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti electricityMap nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu electricityMap, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
     },
     "zoneShortName": {
         "AD": {
@@ -1116,6 +1116,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Novy Zéland"
+        },
         "NZ-NZA": {
             "countryName": "Novy Zéland",
             "zoneName": "Aucklandské ostrovy"
@@ -1123,14 +1126,6 @@
         "NZ-NZC": {
             "countryName": "Novy Zéland",
             "zoneName": "Chathamské ostrovy"
-        },
-        "NZ-NZN": {
-            "countryName": "Novy Zéland",
-            "zoneName": "Severní Ostrov"
-        },
-        "NZ-NZS": {
-            "countryName": "Novy Zéland",
-            "zoneName": "Jižní Ostrov"
         },
         "OM": {
             "zoneName": "Omán"

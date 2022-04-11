@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
@@ -31,6 +31,7 @@ export default () => {
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
+  const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
@@ -43,29 +44,33 @@ export default () => {
 
   const [tooltipPosition, setTooltipPosition] = useState(null);
   const [tooltipZoneData, setTooltipZoneData] = useState(null);
+  const [hasCentered, setHasCentered] = useState(false);
 
-  const handleMapLoaded = useMemo(
-    () => () => {
-      // Center the map initially based on the focused zone and the user geolocation.
+  // Center the map initially based on the focused zone and the user geolocation.
+  useEffect(() => {
+    if (!hasCentered) {
       if (zoneId) {
         console.log(`Centering on zone ${zoneId}`);
         dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
+        setHasCentered(true);
       } else if (callerLocation) {
         console.log(`Centering on browser location (${callerLocation})`);
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
+        setHasCentered(true);
       }
+    }
+  }, [zones, zoneId, callerLocation, hasCentered]);
 
-      // Map loading is finished, lower the overlay shield with
-      // a bit of delay to allow the background to render first.
-      setTimeout(() => {
-        dispatchApplication('isLoadingMap', false);
-      }, 100);
+  const handleMapLoaded = () => {
+    // Map loading is finished, lower the overlay shield with
+    // a bit of delay to allow the background to render first.
+    setTimeout(() => {
+      dispatchApplication('isLoadingMap', false);
+    }, 100);
 
-      // Track and notify that WebGL is supported.
-      dispatchApplication('webGLSupported', true);
-    },
-    [zones, zoneId, callerLocation],
-  );
+    // Track and notify that WebGL is supported.
+    dispatchApplication('webGLSupported', true);
+  };
 
   const handleMapError = useMemo(
     () => () => {
@@ -202,6 +207,8 @@ export default () => {
         transitionDuration={transitionDuration}
         viewport={viewport}
         zones={zones}
+        zoomInLabel={__('tooltips.zoomIn')}
+        zoomOutLabel={__('tooltips.zoomOut')}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />
