@@ -1,6 +1,5 @@
 import moment from 'moment';
 
-import { modeOrder } from '../helpers/constants';
 import constructTopos from '../helpers/topos';
 import * as translation  from '../helpers/translation';
 
