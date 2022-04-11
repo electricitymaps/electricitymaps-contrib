@@ -80,7 +80,6 @@ ENTSOE_STORAGE_PARAMETERS = list(itertools.chain.from_iterable(
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
-    'AX': '10Y1001A1001A46L',  # for price only; Åland has SE-SE3 area price
     'AZ': '10Y1001A1001B05V',
     'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
@@ -104,6 +103,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
     'IE': '10YIE-1001A00010',
+    'IE(SEM)': '10Y1001A1001A59C',
     'IT': '10YIT-GRTN-----B',
     'IT-BR': '10Y1001A1001A699',
     'IT-CA': '10Y1001C--00096J',
@@ -187,9 +187,10 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
+    'AX': ENTSOE_DOMAIN_MAPPINGS['SE-SE3'],
     'DK-BHM': ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
     'DE': ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-    'IE': '10Y1001A1001A59C',
+    'IE': ENTSOE_DOMAIN_MAPPINGS['IE(SEM)'],
     'LU': ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
 }
 
