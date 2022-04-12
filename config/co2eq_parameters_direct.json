@@ -1591,6 +1591,33 @@
             "source": "electricityMap, 2021 average",
             "value": 339.7443549658533
           }
+        ],
+        "unknown": [
+          {
+            "datetime": "2017-01-01",
+            "source": "electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 298.9863864
+          },
+          {
+            "datetime": "2018-01-01",
+            "source": "electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 367.2459401
+          },
+          {
+            "datetime": "2019-01-01",
+            "source": "electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 364.8016099
+          },
+          {
+            "datetime": "2020-01-01",
+            "source": "electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 349.6068089
+          },
+          {
+            "datetime": "2021-01-01",
+            "source": "electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 351.9679562
+          }
         ]
       },
       "CR": {

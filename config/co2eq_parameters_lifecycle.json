@@ -1606,10 +1606,33 @@
             "value": 302.9702386365516
           }
         ],
-        "unknown": {
-          "source": "2020 average based on breakdown from https://www.coordinador.cl/reportes-y-estadisticas/",
-          "value": 491.8
-        }
+        "unknown": [
+          {
+            "datetime": "2017-01-01",
+            "source": "electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 345.5180312
+          },
+          {
+            "datetime": "2018-01-01",
+            "source": "electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 424.6700811
+          },
+          {
+            "datetime": "2019-01-01",
+            "source": "electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 424.370115
+          },
+          {
+            "datetime": "2020-01-01",
+            "source": "electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 408.9363915
+          },
+          {
+            "datetime": "2021-01-01",
+            "source": "electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0",
+            "value": 415.2803301
+          }
+        ]
       },
       "CL-SIC": {
         "battery discharge": [
