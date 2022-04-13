@@ -49,7 +49,8 @@
       41.205
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -268,7 +269,8 @@
       41.398
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -35
   },
@@ -1324,7 +1326,8 @@
       43.158267
     ],
     "parsers": {
-      "exchange": "RU.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -1338,7 +1341,8 @@
       700
     ],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -135
   },
