@@ -42,7 +42,7 @@ export default React.memo(({
       const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
       const intensity = quantizedCo2IntensityScale(co2intensity);
       const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
-      return resolvePath(`images/${prefix}arrow-${intensity}-animated-${speed}.gif`);
+      return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}.gif`);
     },
     [colorBlindModeEnabled, co2intensity, netFlow],
   );
