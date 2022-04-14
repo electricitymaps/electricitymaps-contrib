@@ -8,7 +8,7 @@ import {
   quantizedExchangeSpeedScale,
 } from '../helpers/scales';
 
-const ArrowImage = styled.img`
+const ArrowPicture = styled.picture`
   cursor: pointer;
   overflow: hidden;
   position: absolute;
@@ -42,7 +42,7 @@ export default React.memo(({
       const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
       const intensity = quantizedCo2IntensityScale(co2intensity);
       const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
-      return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}.gif`);
+      return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}`);
     },
     [colorBlindModeEnabled, co2intensity, netFlow],
   );
@@ -70,11 +70,10 @@ export default React.memo(({
   if (transform.y - 100 * transform.k > viewportHeight) return null;
 
   return (
-    <ArrowImage
+    <ArrowPicture
       style={{
         transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
       }}
-      src={imageSource}
       width="49"
       height="81"
       /* Support only click events in mobile mode, otherwise react to mouse hovers */
@@ -82,6 +81,9 @@ export default React.memo(({
       onMouseMove={!isMobile ? (e => mouseMoveHandler(data, e.clientX, e.clientY)) : noop}
       onMouseOut={mouseOutHandler}
       onBlur={mouseOutHandler}
-    />
+    >
+      <source srcSet={`${imageSource}.webp`} type="image/webp" />
+      <img src={`${imageSource}.gif`} alt="" />
+    </ArrowPicture>
   );
 });
