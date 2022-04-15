@@ -6,6 +6,7 @@
   url(../fonts/OpenSans-Regular.woff2) format('woff2'),
   url(../fonts/OpenSans-Regular.ttf) format('truetype');
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -16,4 +17,5 @@
   url(../fonts/OpenSans-Bold.woff2) format('woff2'),
   url(../fonts/OpenSans-Bold.ttf) format('truetype');
   font-weight: bold;
+  font-display: swap;
 }
