@@ -2749,7 +2749,18 @@
         141.47762699400005,
         6.410101630000042
       ]
-    ]
+    ],
+    "capacity": {
+      "biomass": 1912,
+      "geothermal": 2277,
+      "hydro": 6602,
+      "hydro storage": 0,
+      "solar": 211,
+      "wind": 154
+    },
+    "contributors": [
+      "https://github.com/nessie2013"
+    ],
   },
   "IE": {
     "_comment": "hydro incl. 292 MW pumped storage",
