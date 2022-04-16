@@ -12,16 +12,19 @@ const LanguageSelectContainer = styled.div`
   color: black;
   border-radius: 4px;
   font-size: 0.9rem;
-  padding: 5px 10px;
+  padding: 5px 0px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   position: absolute;
-  left: -184px;
-  width: 150px;
-  top: 4px;
+  left: -190px;
+  width: 175px;
   visibility: visible;
   opacity: 1;
   transform: translateX(0px);
   transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+  z-index: 99;
+  min-height: 20.5rem;
+  height: 100%;
+  overflow-x: auto;
 
   #close-language-select-container {
     display: none;
@@ -50,11 +53,12 @@ const LanguageSelectContainer = styled.div`
 
   li {
     margin: 0;
-    padding: 0;
+    padding: 5px 10px;
     list-style: none;
 
     &:hover {
       cursor: pointer;
+      background-color: rgba(0,0,0,.05);
     }
   }
 `;
@@ -73,7 +77,7 @@ const LanguageSelect = () => {
   };
 
   return (
-    <div>
+    <>
       <ButtonToggle
         onChange={toggleLanguagesVisible}
         tooltip={__('tooltips.selectLanguage')}
@@ -97,7 +101,7 @@ const LanguageSelect = () => {
           ))}
         </LanguageSelectContainer>
       )}
-    </div>
+    </>
   );
 };
 
