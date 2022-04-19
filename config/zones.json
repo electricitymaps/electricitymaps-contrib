@@ -4985,10 +4985,10 @@
       ]
     ],
     "capacity": {
-      "biomass": 186,
-      "hydro": 5741,
-      "solar": 341,
-      "wind": 372
+      "biomass": 195,
+      "hydro": 6431,
+      "solar": 336,
+      "wind": 409
     },
     "contributors": [
       "https://github.com/corradio",
