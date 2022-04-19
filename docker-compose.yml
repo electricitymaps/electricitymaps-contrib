@@ -20,7 +20,6 @@ services:
       - './web/public/locales:/home/src/electricitymap/contrib/web/public/locales'
       - './web/locales-config.json:/home/src/electricitymap/contrib/web/locales-config.json'
       - './web/package.json:/home/src/electricitymap/contrib/web/package.json'
-      - './web/public:/home/src/electricitymap/contrib/web/public'
       - './web/server.js:/home/src/electricitymap/contrib/web/server.js'
       - './web/src:/home/src/electricitymap/contrib/web/src'
       - './web/views:/home/src/electricitymap/contrib/web/views'
