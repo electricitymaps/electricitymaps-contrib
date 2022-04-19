@@ -13,8 +13,8 @@ Prerequisites:
 
 After the above steps, simply run the following steps:
 
-1. Start the mockserver: `docker-compose up -d mockserver`
-2. Run `yarn develop`
+1. Start the mockserver: `yarn run mockserver`
+2. Run app in another tab: `yarn develop`
 
 ### Using production API (internal eMap team only)
 
