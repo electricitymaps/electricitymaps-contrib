@@ -1120,6 +1120,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "New Zealand"
+        },
         "NZ-NZA": {
             "countryName": "New Zealand",
             "zoneName": "Quần đảo Auckland"
@@ -1127,14 +1130,6 @@
         "NZ-NZC": {
             "countryName": "New Zealand",
             "zoneName": "Quần đảo Chatham"
-        },
-        "NZ-NZN": {
-            "countryName": "New Zealand",
-            "zoneName": "Đảo Bắc"
-        },
-        "NZ-NZS": {
-            "countryName": "New Zealand",
-            "zoneName": "Đảo Nam"
         },
         "OM": {
             "zoneName": "Oman"

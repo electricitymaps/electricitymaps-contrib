@@ -1151,6 +1151,9 @@
         "NU": {
             "zoneName": "Niue"
         },
+        "NZ": {
+            "zoneName": "Uus-Meremaa"
+        },
         "NZ-NZA": {
             "countryName": "Uus-Meremaa",
             "zoneName": "Aucklandi saared"
@@ -1158,14 +1161,6 @@
         "NZ-NZC": {
             "countryName": "Uus-Meremaa",
             "zoneName": "Chathami saared"
-        },
-        "NZ-NZN": {
-            "countryName": "Uus-Meremaa",
-            "zoneName": "Põhjasaar"
-        },
-        "NZ-NZS": {
-            "countryName": "Uus-Meremaa",
-            "zoneName": "Lõunasaar"
         },
         "NZ-NZST": {
             "countryName": "Uus-Meremaa",

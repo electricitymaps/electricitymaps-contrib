@@ -104,7 +104,7 @@
         "dataIsDelayed": "Data is delayed"
     },
     "misc": {
-        "maintitle": "Live CO₂ emissions of electricity consumption",
+        "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
         "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
         "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
         "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
@@ -336,6 +336,10 @@
         "BR-CS": {
             "countryName": "Brazil",
             "zoneName": "Central Brazil"
+        },
+        "BR-I": {
+            "countryName": "Brazil",
+            "zoneName": "Isolated Systems"
         },
         "BR-N": {
             "countryName": "Brazil",
@@ -1169,14 +1173,6 @@
         "NZ-NZC": {
             "countryName": "New Zealand",
             "zoneName": "Chatham Islands"
-        },
-        "NZ-NZN": {
-            "countryName": "New Zealand",
-            "zoneName": "North Island"
-        },
-        "NZ-NZS": {
-            "countryName": "New Zealand",
-            "zoneName": "South Island"
         },
         "NZ-NZST": {
             "countryName": "New Zealand",

@@ -809,6 +809,9 @@
     },
     "timezone": null
   },
+  "BR-I": {
+    "flag_file_name": "br.png"
+  },
   "BR-N": {
     "bounding_box": [
       [
@@ -1521,7 +1524,7 @@
       ]
     ],
     "capacity": {
-      "biomass": 12.4,
+      "biomass": 13,
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
@@ -1529,13 +1532,14 @@
       "hydro storage": 0,
       "nuclear": 0,
       "oil": 1478,
-      "solar": 262.7,
-      "wind": 157.5
+      "solar": 316,
+      "wind": 158
     },
     "contributors": [
       "https://github.com/ultibo",
       "https://github.com/veqtrus",
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "production": "CY.fetch_production"
@@ -2433,7 +2437,11 @@
       "https://github.com/tmslaine"
     ],
     "parsers": {
-      "production": "GE.fetch_production"
+      "consumption": "ENTSOE.fetch_consumption",
+      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
+      "production": "GE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": "Asia/Tbilisi"
   },
@@ -4007,14 +4015,17 @@
       ]
     ],
     "capacity": {
-      "biomass": 147,
-      "gas": 1887,
+      "biomass": 165,
+      "coal": 0,
+      "gas": 1527,
+      "geothermal": 0,
       "hydro": 128,
       "hydro storage": 900,
+      "nuclear": 0,
       "oil": 0,
-      "solar": 169,
+      "solar": 259,
       "unknown": 37,
-      "wind": 540
+      "wind": 671
     },
     "contributors": [
       "https://github.com/corradio",
@@ -4582,16 +4593,16 @@
       ]
     ],
     "capacity": {
-      "biomass": 1335,
+      "biomass": 1515,
       "coal": 4006,
       "gas": 18530,
       "geothermal": 0,
-      "hydro": 38,
+      "hydro": 37,
       "hydro storage": 0,
       "nuclear": 485,
       "oil": 0,
-      "solar": 16074,
-      "wind": 7303
+      "solar": 14300,
+      "wind": 7801
     },
     "contributors": [
       "https://github.com/corradio",
@@ -4864,52 +4875,6 @@
       "https://github.com/corradio",
       "https://github.com/davidcole1340",
       "https://github.com/drc38"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "price": "NZ.fetch_price",
-      "production": "NZ.fetch_production"
-    },
-    "timezone": "Pacific/Auckland"
-  },
-  "NZ-NZN": {
-    "bounding_box": [
-      [
-        172.17408287900022,
-        -42.12029387799984
-      ],
-      [
-        179.06617272200023,
-        -33.89763762799993
-      ]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340"
-    ],
-    "flag_file_name": "nz.png",
-    "parsers": {
-      "price": "NZ.fetch_price",
-      "production": "NZ.fetch_production"
-    },
-    "timezone": "Pacific/Auckland"
-  },
-  "NZ-NZS": {
-    "bounding_box": [
-      [
-        165.96648196700016,
-        -47.30120208099993
-      ],
-      [
-        174.82642662900014,
-        -40.002129815999865
-      ]
-    ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340"
     ],
     "flag_file_name": "nz.png",
     "parsers": {
