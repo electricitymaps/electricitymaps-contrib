@@ -263,12 +263,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
-    trackEvent('switchToCountryEmissions');
+    trackEvent('PanelEmissionButton Clicked');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
-    trackEvent('switchToCountryProduction');
+    trackEvent('PanelProductionButton Clicked');
   };
 
 
