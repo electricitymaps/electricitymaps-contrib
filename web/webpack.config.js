@@ -12,7 +12,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
   entry: {
-    bundle: ['@babel/polyfill', './src/main.js'],
+    bundle: ['@babel/polyfill', './src/index.jsx'],
     styles: './src/scss/styles.scss',
   },
   module: {
@@ -29,7 +29,7 @@ module.exports = {
         ],
       },
       {
-        test: [/\.js$/],
+        test: [/\.(js|jsx)$/],
         exclude: [/node_modules/],
         loader: 'babel-loader',
         query: {

@@ -14,6 +14,8 @@ import sagas from './sagas';
 import Main from './layout/main';
 import GlobalStyle from './globalstyle';
 
+// init styling
+import './scss/styles.scss';
 
 // init localisation
 import './helpers/i18n';
@@ -50,4 +52,10 @@ ReactDOM.render(
 // Initialise mobile app (cordova)
 if (window.isCordova) {
   cordovaApp.initialize();
+}
+
+// Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
+// Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
+if (undefined /* [snowpack] import.meta.hot */ ) {
+  undefined /* [snowpack] import.meta.hot */ .accept();
 }
