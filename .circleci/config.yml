@@ -20,6 +20,7 @@ jobs:
           name: Install dependencies
           command: |
             set -eux -o pipefail
+            sudo apt-get update
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
             poetry install -E parsers
       - run:
