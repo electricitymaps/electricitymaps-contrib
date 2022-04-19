@@ -237,12 +237,11 @@ thermal_mapping = {
 
 # Non-thermal sources names in api
 sources_mapping = {
-    'biomass': ['bioenergies_mwh', 'bioenergies'],
+    'biomass': ['bioenergies_mwh', 'bioenergies', 'biogaz'],
     'hydro': ['hydraulique_mwh', 'hydraulique', 'micro_hydro'],
     'solar': ['photovoltaique_mwh', 'photovoltaique', 'photovoltaique_avec_stockage', 'photovoltaique0'],
     'wind': ['eolien_mwh', 'eolien'],
     'geothermal': ['geothermie_mwh'],
-    'gas': ['biogaz'],
     'oil': ['moteur_diesel']
 }
 
