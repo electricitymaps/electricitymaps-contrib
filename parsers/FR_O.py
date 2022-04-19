@@ -249,7 +249,7 @@ sources_mapping = {
 
 def fetch_production(zone_key=None, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
-    if (target_datetime is None) and (zone_key != 'RE' or 'FR-COR'):
+    if (target_datetime is None) and zone_key not in REAL_TIME_SOURCES.keys():
         raise NotImplementedError('There is no real time data')
 
     # Request build
