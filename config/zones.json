@@ -2598,8 +2598,9 @@
       "wind": 75.9
     },
     "contributors": [
+      "https://github.com/corradio",
       "https://github.com/igorarduin",
-      "https://github.com/corradio"
+      "https://github.com/kruschk"
     ],
     "parsers": {
       "consumption": "GT.fetch_consumption",
