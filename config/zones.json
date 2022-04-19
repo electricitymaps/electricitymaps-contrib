@@ -809,6 +809,9 @@
     },
     "timezone": null
   },
+  "BR-I": {
+    "flag_file_name": "br.png"
+  },
   "BR-N": {
     "bounding_box": [
       [
