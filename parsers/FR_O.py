@@ -9,11 +9,13 @@ import requests
 # APIs
 HISTORICAL_API_ENDPOINT = 'https://opendata-corse-outremer.edf.fr/api/records/1.0/search/'
 REAL_TIME_APIS = {
+    'FR-COR': 'https://opendata-corse.edf.fr/api/records/1.0/search',
     'RE': 'https://opendata-reunion.edf.fr/api/records/1.0/search/'
 }
 # Sources
 HISTORICAL_SOURCE = 'https://opendata-corse-outremer.edf.fr'
 REAL_TIME_SOURCES = {
+    'FR-COR': 'opendata-corse.edf.fr',
     'RE': 'opendata-reunion.edf.fr'
 }
 # Managed zones
@@ -31,6 +33,12 @@ zone_key_mapping = {
 def get_param(zone_key: None, target_datetime: None):
     if(target_datetime is None):
         params = {
+            'FR-COR': {
+                'dataset': 'production-delectricite-par-filiere-en-temps-reel',
+                'timezone': 'Europe/Paris',
+                'sort': 'date',
+                'rows': '288',
+            },
             'RE': {
                 'dataset': 'prod-electricite-temps-reel',
                 'timezone': 'Indian/Reunion',
@@ -229,18 +237,18 @@ thermal_mapping = {
 
 # Non-thermal sources names in api
 sources_mapping = {
-    'biomass': ['bioenergies_mwh', 'bioenergies'],
-    'hydro': ['hydraulique_mwh', 'hydraulique'],
-    'solar': ['photovoltaique_mwh', 'photovoltaique', 'photovoltaique_avec_stockage'],
+    'biomass': ['bioenergies_mwh', 'bioenergies', 'biogaz'],
+    'hydro': ['hydraulique_mwh', 'hydraulique', 'micro_hydro'],
+    'solar': ['photovoltaique_mwh', 'photovoltaique', 'photovoltaique_avec_stockage', 'photovoltaique0'],
     'wind': ['eolien_mwh', 'eolien'],
     'geothermal': ['geothermie_mwh'],
-    'gas': ['biogaz']
+    'oil': ['moteur_diesel']
 }
 
 
 def fetch_production(zone_key=None, session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
-    if (target_datetime is None) and (zone_key != 'RE'):
+    if (target_datetime is None) and zone_key not in REAL_TIME_SOURCES.keys():
         raise NotImplementedError('There is no real time data')
 
     # Request build

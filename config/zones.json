@@ -2280,7 +2280,8 @@
       "wind": 18
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "https://github.com/PETILLON-Sebastien",
+      "https://github.com/VIKTORVAV99"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
