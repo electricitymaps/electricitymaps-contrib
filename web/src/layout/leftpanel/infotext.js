@@ -8,8 +8,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
+import SocialButtons from './socialbuttons';
 
 const Container = styled.div`
   @media (max-width: 767px) {
@@ -17,7 +18,11 @@ const Container = styled.div`
   }
 `;
 
-export default () => (
+export default () => {
+  const { __ } = useTranslation();
+  const { search } = useLocation();
+
+  return (
   <Container className="info-text">
     <ColorBlindCheckbox />
     <p>
@@ -49,33 +54,11 @@ export default () => (
     <p>
       {__('footer.faq-text')}
       {' '}
-      <Link to={{ pathname: '/faq', search: useLocation().search }}>
+      <Link to={{ pathname: '/faq', search }}>
         <span className="faq-link">{__('footer.faq')}</span>
       </Link>
     </p>
-    <div className="social-buttons">
-      <div>
-        { /* Facebook share */}
-        <div
-          className="fb-share-button"
-          data-href="https://app.electricitymap.org/"
-          data-layout="button_count"
-        />
-        { /* Twitter share */}
-        <a
-          className="twitter-share-button"
-          data-url="https://app.electricitymap.org"
-          data-via="electricitymap"
-          data-lang={locale}
-        />
-        { /* Slack */}
-        <span className="slack-button">
-          <a href="https://slack.tmrow.com" target="_blank" className="slack-btn">
-            <span className="slack-ico" />
-            <span className="slack-text">Slack</span>
-          </a>
-        </span>
-      </div>
-    </div>
+    <SocialButtons />
+
   </Container>
-);
+)};

@@ -16,7 +16,7 @@ import Tabs from './tabs';
 import Map from './map';
 
 // Modules
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
@@ -32,7 +32,7 @@ import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
 
-const CLIENT_VERSION_CHECK_INTERVAL = 60 * 60 * 1000; // 1 hour
+const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -55,6 +55,7 @@ const Main = ({
   electricityMixMode,
   hasConnectionWarning,
 }) => {
+  const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
@@ -73,7 +74,7 @@ const Main = ({
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
-  const { data: clientVersionData } = useSWR('/clientVersion', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
   const clientVersion = clientVersionData && clientVersionData.version;
 
   let isClientVersionOutdated = false;

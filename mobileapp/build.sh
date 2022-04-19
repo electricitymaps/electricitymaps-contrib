@@ -4,11 +4,9 @@ set -eu -o pipefail
 # Extract
 CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
 
-rm -rf www/electricitymap locales src || true
+rm -rf www/electricitymap src || true
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/ www/electricitymap
 
-rm -rf locales || true
-docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/locales/ .
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/locales-config.json ./locales-config.json
 docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/src .
 

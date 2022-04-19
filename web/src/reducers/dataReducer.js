@@ -1,11 +1,10 @@
-const moment = require('moment');
+import moment from 'moment';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+import constructTopos from '../helpers/topos';
+import * as translation  from '../helpers/translation';
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -20,7 +19,7 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = translation.getZoneNameWithCountry(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
@@ -55,7 +54,7 @@ const initialDataState = {
   windDataError: null,
 };
 
-module.exports = (state = initialDataState, action) => {
+const reducer = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -112,7 +111,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const zone = newGrid.zones[key];
         if (!zone) {
-          console.warn(`${key} has no zone configuration.`);
+          console.warn(`${key} has no zone configuration. Ignoring..`);
           return;
         }
         // Assign data from payload
@@ -132,24 +131,6 @@ module.exports = (state = initialDataState, action) => {
         // By default hasData is only true if there is a parser - here we overwrite that value
         // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
         zone.hasData = zone.hasParser || !hasNoData;
-
-        // Validate data
-        modeOrder.forEach((mode) => {
-          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-          // Check missing values
-          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-          //    console.warn(`${key} is missing production or storage of ' + mode`);
-          // Check validity of production
-          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.warn(`${key} has negative production of ${mode}`);
-          }
-          // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
-            console.warn(`${key} produces more than its capacity of ${mode}`);
-          }
-        });
       });
 
       // Populate exchange pairs for exchange layer
@@ -157,7 +138,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const exchange = newGrid.exchanges[key];
         if (!exchange || !exchange.lonlat) {
-          console.warn(`Missing exchange configuration for ${key}`);
+          console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
           return;
         }
         // Assign all data
@@ -230,3 +211,5 @@ module.exports = (state = initialDataState, action) => {
       return state;
   }
 };
+
+export default reducer;

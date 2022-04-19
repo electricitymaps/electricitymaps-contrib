@@ -13,4 +13,7 @@ datascience
 web/node_modules
 web/public/dist
 
+# ignores index file used for local development
+web/public/index.html 
+
 screenshots*

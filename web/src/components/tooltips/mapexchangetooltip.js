@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import { formatPower } from '../../helpers/formatting';
 import Tooltip from '../tooltip';
 
 import { CarbonIntensity, ZoneName } from './common';
 
 const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
+  const { __ } = useTranslation();
   if (!exchangeData) return null;
 
   const isExporting = exchangeData.netFlow > 0;
@@ -18,7 +19,7 @@ const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
     <Tooltip id="exchange-tooltip" position={position} onClose={onClose}>
       {__('tooltips.crossborderexport')}:
       <br />
-      <ZoneName ellipsify zone={zoneFrom} /> → <ZoneName ellipsify zone={zoneTo} />: <b>{formatPower(netFlow)}</b>
+      <ZoneName zone={zoneFrom} /> → <ZoneName zone={zoneTo} />: <b>{formatPower(netFlow)}</b>
       <br />
       <br />
       {__('tooltips.carbonintensityexport')}:

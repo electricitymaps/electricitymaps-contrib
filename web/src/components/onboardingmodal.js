@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { __ } from '../helpers/translation';
+import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
@@ -10,7 +10,7 @@ const views = [{
   headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
   headerCssClass: 'logo-header',
   textCssClass: 'brand-text',
-  renderContent: () => (
+  renderContent: (__) => (
     <React.Fragment>
       <div>
         <h1>electricityMap</h1>
@@ -22,7 +22,7 @@ const views = [{
   ),
 }, {
   headerImage: resolvePath('images/onboarding/mapExtract.png'),
-  renderContent: () => (
+  renderContent: (__) => (
     <React.Fragment>
       <div>
         <h2>{__('onboarding-modal.view2.header')}</h2>
@@ -32,7 +32,7 @@ const views = [{
   ),
 }, {
   headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
-  renderContent: () => (
+  renderContent: (__) => (
     <React.Fragment>
       <div>
         <h2>{__('onboarding-modal.view3.header')}</h2>
@@ -42,7 +42,7 @@ const views = [{
   ),
 }, {
   headerImage: resolvePath('images/onboarding/splitLayers.png'),
-  renderContent: () => (
+  renderContent: (__) => (
     <React.Fragment>
       <div>
         <h2>{__('onboarding-modal.view4.header')}</h2>
@@ -59,6 +59,7 @@ const mapStateToProps = state => ({
 
 const OnboardingModal = ({ visible }) => {
   const trackEvent = useTrackEvent();
+  const { __ } = useTranslation();
 
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
@@ -95,7 +96,7 @@ const OnboardingModal = ({ visible }) => {
   // Track event when the onboarding modal opens up
   useEffect(() => {
     if (visible) {
-      trackEvent('onboardingModalShown');
+      trackEvent('Onboarding Shown');
     }
   }, [visible]);
 
@@ -123,7 +124,7 @@ const OnboardingModal = ({ visible }) => {
             style={{ backgroundImage: `url("${views[currentViewIndex].headerImage}")` }}
           />
           <div className={`modal-text ${views[currentViewIndex].textCssClass || ''}`}>
-            {views[currentViewIndex].renderContent()}
+            {views[currentViewIndex].renderContent(__)}
           </div>
         </div>
         <div className="modal-footer">

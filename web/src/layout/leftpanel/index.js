@@ -15,7 +15,6 @@ import {
 
 import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
-import { usePageViewsTracker } from '../../hooks/tracking';
 import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
 
@@ -89,8 +88,6 @@ const Container = styled.div`
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
-  
-  usePageViewsTracker();
   
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';

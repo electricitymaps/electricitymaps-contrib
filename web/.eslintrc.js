@@ -12,7 +12,6 @@ module.exports = {
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
-    "locale": "readonly",
     "codePush": "readonly",
     "device": "readonly",
     "cordova": "readonly",

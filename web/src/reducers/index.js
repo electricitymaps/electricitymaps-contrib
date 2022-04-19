@@ -17,7 +17,6 @@ const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
   bundleHash: window.bundleHash,
   callerLocation: null,
-  callerZone: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   co2ColorbarValue: null,
   colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
@@ -37,7 +36,6 @@ const initialApplicationState = {
   isProduction: isProduction(),
   isLocalhost: isLocalhost(),
   legendVisible: true,
-  locale: window.locale,
   mapViewport: {
     width: window.innerWidth,
     height: window.innerHeight,

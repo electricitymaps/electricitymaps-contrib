@@ -23,12 +23,22 @@ describe("Each fallbackZoneMixes sums to one", () => {
   ])("for zone %s", (zone, fallbackZoneMix) => {
     // Verify the key exists
     expect(fallbackZoneMix.powerOriginRatios).toBeTruthy();
+
     if (fallbackZoneMix.powerOriginRatios) {
-      const totalRatio = Object.values(
-        fallbackZoneMix.powerOriginRatios
-      ).reduce((a, b) => a + b, 0);
-      expect(totalRatio).toBeCloseTo(1);
-    }
+      if (Array.isArray(fallbackZoneMix.powerOriginRatios)) {
+        // Case where powerOriginRatios is an array of yearly objects for the ratios
+        Object.values(
+          fallbackZoneMix.powerOriginRatios
+        ).forEach((yearlyRatios) => {
+          const total = Object.values(yearlyRatios.value).filter(Number).reduce((acc, cur) => acc + cur, 0);
+          expect(total).toBeCloseTo(1);
+        });
+      } else if (fallbackZoneMix.powerOriginRatios) {
+        // Default case where powerOriginRatios is an object of the ratios
+        const total = Object.values(fallbackZoneMix.powerOriginRatios.value).filter(Number).reduce((acc, cur) => acc + cur, 0);
+        expect(total).toBeCloseTo(1);
+      };
+    };
   });
 });
 
@@ -46,8 +56,17 @@ describe("verify keys in fallbackZoneMixes factors are valid", () => {
     ["defaults", co2eq_parameters.fallbackZoneMixes.defaults],
     ...Object.entries(co2eq_parameters.fallbackZoneMixes.zoneOverrides),
   ])("for zone %s", (zone, value) => {
-    Object.keys(value.powerOriginRatios).forEach((key) =>
-      expect(ALL_MODES).toContain(key)
-    );
+    if (Array.isArray(value.powerOriginRatios)) {
+      // Case where powerOriginRatios is an array of yearly objects for the ratios
+      const NON_RATIO_KEYS = ["_source", "_comment", "datetime"];
+      Object.values(value.powerOriginRatios).forEach((yearlyRatios) => {
+        Object.keys(yearlyRatios.value).filter(key => !NON_RATIO_KEYS.includes(key)).forEach((key) => expect(ALL_MODES).toContain(key));
+      });
+    } else if (value.powerOriginRatios) {
+      // Default case where powerOriginRatios is an object of the ratios
+      Object.keys(value.powerOriginRatios.value).forEach((key) =>
+        expect(ALL_MODES).toContain(key)
+      );
+    };
   });
 });

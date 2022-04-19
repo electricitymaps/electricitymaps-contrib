@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 
-import { __ } from '../../helpers/translation';
+import { useTranslation } from '../../helpers/translation';
 import FAQ from '../../components/faq';
 
 const mapStateToProps = state => ({
@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const FAQPanel = ({ isMobile }) => {
+  const { __ } = useTranslation();
   const location = useLocation();
   const parentPage = {
     pathname: isMobile ? '/info' : '/map',

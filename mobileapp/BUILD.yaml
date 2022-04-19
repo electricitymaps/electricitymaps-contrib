@@ -14,8 +14,7 @@ steps:
 
   build:
     inputs:
-      - ../web/public
-      - ../web/{locales,src,views/pages/index.ejs}
+      - ../web/{public,src,views/pages/index.ejs}
       - ../web/locales-config.json
       - www/index.html
       - ./icon*.png
@@ -24,7 +23,6 @@ steps:
       - res/screen/ios
     commands:
       - cp -r ../web/public/ www/electricitymap
-      - cp -r ../web/locales/ .
       - cp ../web/locales-config.json ./locales-config.json
       - cp -r ../web/src .
       # Generate bundle

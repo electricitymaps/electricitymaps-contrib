@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF8" />
-        <meta name="description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta property="og:description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta name="description" content="electricityMap is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta property="og:description" content="electricityMap is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:image" content="https://app.electricitymap.org/images/electricitymap_social_image.png" />
-        <meta property="og:title" content="<%= __('misc.maintitle') %>" />
+        <meta property="og:title" content="<%= maintitle %>" />
         <meta property="og:type" content="website" />
         <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
@@ -17,17 +17,17 @@
         <meta property="fb:app_id" content="1267173759989113" />
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@corradio">
-        <meta name="twitter:description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta name="twitter:description" content="electricityMap is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta name="twitter:image" content="https://app.electricitymap.org/images/electricitymap_social_image.png">
         <meta name="twitter:site" content="@tmrowco">
-        <meta name="twitter:title" content="@electricityMap | Live CO2 emissions of electricity consumption" />
+        <meta name="twitter:title" content="@electricityMap | Live 24/7 CO2 emissions of electricity consumption" />
         <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
         <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
 
-        <title>electricityMap | <%= __('misc.maintitle') %></title>
+        <title>electricityMap | <%= maintitle %></title>
 
         <link rel="icon" type="image/svg+xml" href="<%= resolvePath('images/electricitymap-favicon-dark-light.svg') %>">
         <link rel="apple-touch-icon" sizes="180x180" href="<%= resolvePath('images/apple-icon-180x180.png') %>">
@@ -37,16 +37,19 @@
         <meta name="theme-color" content="#ffffff">
 
         <!-- Pre-connect to improve performances -->
-        <link rel="preconnect" href="https://api.electricitymap.org/">
+        <link rel="preconnect" href="https://app-backend.electricitymap.org/">
+
+
+        <!-- Preload font files to improve performance-->
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Bold.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/MaterialIcons-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/EuclidTriangle-Regular.woff') %>" as="font" type="font/woff" crossorigin>
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/styles.' + stylesHash + '.css') %>">
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/vendor.' + vendorStylesHash + '.css') %>">
 
-        <!-- Fonts -->
-        <link href="<%= resolvePath('css/EuclidTriangleFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/OpenSansFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/MaterialIcons.css') %>" rel="stylesheet">
 
         <!-- Language -->
 <% for(var i=0; i<alternateUrls.length; i++) { -%>
@@ -60,10 +63,7 @@
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
-            var FBLocale = '<%= FBLocale %>';
             var resolvePath = <%- resolvePath %>;
-            var locales = <%- JSON.stringify(locales) %>;
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
         </script>
 
@@ -99,9 +99,9 @@
         <script defer src="<%= resolvePath('dist/vendor.' + vendorHash + '.js') %>"></script>
         <script defer src="<%= resolvePath('dist/bundle.' + bundleHash + '.js') %>"></script>
 
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
+        <!-- Plausible -->
+        <script defer data-domain="app.electricitymap.org" src="https://plausible.io/js/plausible.local.js"></script>
     </head>
-    <body lang="<%= locale %>" id="app"></body>
+    <body id="app"></body>
 
 </html>
