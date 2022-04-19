@@ -22,15 +22,17 @@
         <meta name="theme-color" content="#ffffff">
 
         <!-- Pre-connect to improve performances -->
-        <link rel="preconnect" href="https://api.electricitymap.org/">
+        <link rel="preconnect" href="https://app-backend.electricitymap.org/">
 
         <!-- Bundle -->
         <script  type="module" src="/dist/index.js"></script>
 
         <!-- Fonts -->
-        <link href="/css/EuclidTriangleFont.css" rel="stylesheet">
-        <link href="/css/OpenSansFont.css" rel="stylesheet">
-        <link href="/css/MaterialIcons.css" rel="stylesheet">
+        <!-- Preload font files to improve performance-->
+        <link rel="preload" href="/fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/MaterialIcons-Regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/EuclidTriangle-Regular.woff" as="font" type="font/woff" crossorigin>
 
         <!-- Set Global Variables -->
         <script>

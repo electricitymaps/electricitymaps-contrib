@@ -37,16 +37,19 @@
         <meta name="theme-color" content="#ffffff">
 
         <!-- Pre-connect to improve performances -->
-        <link rel="preconnect" href="https://api.electricitymap.org/">
+        <link rel="preconnect" href="https://app-backend.electricitymap.org/">
+
+
+        <!-- Preload font files to improve performance-->
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Bold.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/MaterialIcons-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/EuclidTriangle-Regular.woff') %>" as="font" type="font/woff" crossorigin>
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/styles.' + stylesHash + '.css') %>">
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/vendor.' + vendorStylesHash + '.css') %>">
 
-        <!-- Fonts -->
-        <link href="<%= resolvePath('css/EuclidTriangleFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/OpenSansFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/MaterialIcons.css') %>" rel="stylesheet">
 
         <!-- Language -->
 <% for(var i=0; i<alternateUrls.length; i++) { -%>
