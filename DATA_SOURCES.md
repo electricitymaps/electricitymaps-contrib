@@ -204,7 +204,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Chile (Easter Island): [SASIPA](https://www.sasipa.cl/estado-del-suministro)
 - Croatia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
-- Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
+- Cyprus: 
+   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+   - Other: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Denmark (DK1 and DK2):
   - [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
