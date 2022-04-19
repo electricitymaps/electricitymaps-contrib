@@ -1,18 +1,22 @@
-@import "variables";
-@import "mixins";
-@import "base";
+@import "./EuclidTriangleFont";
+@import "./MaterialIcons";
+@import "./OpenSansFont";
 
-@import "layout/header";
-@import "layout/footer";
-@import "layout/left-panel";
+@import "./variables";
+@import "./mixins";
+@import "./base";
 
-@import "content/map/map";
-@import "content/map/controls";
-@import "content/panel/country-panel";
-@import "content/panel/time-slider";
-@import "content/panel/zone-list";
+@import "./layout/header";
+@import "./layout/footer";
+@import "./layout/left-panel";
 
-@import "components/faqs";
-@import "components/messaging";
-@import "components/modal";
-@import "components/meta";
+@import "./content/map/map";
+@import "./content/map/controls";
+@import "./content/panel/country-panel";
+@import "./content/panel/time-slider";
+@import "./content/panel/zone-list";
+
+
+@import "./components/messaging";
+@import "./components/modal";
+@import "./components/meta";
