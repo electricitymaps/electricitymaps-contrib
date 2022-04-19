@@ -284,6 +284,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
 - Netherlands: 
    - Solar and wind : [CBS](https://www.cbs.nl/en-gb/news/2022/10/more-electricity-from-renewable-sources-less-from-fossil-sources)
+   - Biomass, Hydro, Wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
    - Other : [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Nicaragua: [INE](https://www.ine.gob.ni/index.php/electricidad/estadisticas-anuales)
 - Nigeria

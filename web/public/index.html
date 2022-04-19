@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- This index file is currently only used for development - see webpack.config.js and server.js for how it's done in production -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+        <meta name="description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta name="viewport" content="width=device-width, viewport-fit=cover" />
+
+        <meta property="og:locale" content="en" />
+
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
+
+        <meta name="apple-itunes-app" content="app-id=1224594248" />
+
+        <title>electricityMap | dev</title>
+
+        <link rel="icon" type="image/svg+xml" href="/images/electricitymap-favicon-dark-light.svg">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Pre-connect to improve performances -->
+        <link rel="preconnect" href="https://api.electricitymap.org/">
+
+        <!-- Bundle -->
+        <script  type="module" src="/dist/index.js"></script>
+
+        <!-- Fonts -->
+        <link href="/css/EuclidTriangleFont.css" rel="stylesheet">
+        <link href="/css/OpenSansFont.css" rel="stylesheet">
+        <link href="/css/MaterialIcons.css" rel="stylesheet">
+
+        <!-- Set Global Variables -->
+        <script>
+            var ELECTRICITYMAP_PUBLIC_TOKEN = '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%';
+            var bundleHash = 'dev';
+            var resolvePath = relativePath => `/${relativePath}`;
+            var isCordova = false;
+        </script>
+    </head>
+    <body id="app"></body>
+</html>
