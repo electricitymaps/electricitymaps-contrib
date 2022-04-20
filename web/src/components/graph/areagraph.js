@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import {
-  filter,
   isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
@@ -30,14 +29,12 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .range([0, width]);
 
 const getTotalValues = (layers) => {
-  const values = filter(
-    flatDeep(
+  const values = flatDeep(
       layers.map(
         layer => layer.datapoints.map(d => d[1]),
       ), Infinity
-    ),
-    Number.isFinite,
-  );
+    ).filter(Number.isFinite)
+
   return {
     min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
     max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
