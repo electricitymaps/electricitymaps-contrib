@@ -183,7 +183,7 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
   if raw_timestamp_match is None:
     raise Exception(f"Could not find timestamp in {res.text}")
 
-  raw_timestamp = raw_timestamp_match.group()
+  raw_timestamp = raw_timestamp_match.group(1)
 
   logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
 
