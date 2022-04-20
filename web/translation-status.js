@@ -1,10 +1,10 @@
 require('colors');
-const { reverse, flatMap, difference, size, sortBy } = require('lodash');
+const { flatMap, difference, size, sortBy } = require('lodash');
 const { languageNames } = require('../locales-config.json');
 
 function getAndPrintOutput() {
   const locales = Object.keys(languageNames);
-  const result = reverse(sortBy(locales.map(translationStatusFor), 'translated')).map(toText);
+  const result = sortBy(locales.map(translationStatusFor), 'translated').reverse().map(toText);
 
   console.log('\nTranslation status for all languages\n'.underline.bold);
   result.forEach((res) => console.log(res));
