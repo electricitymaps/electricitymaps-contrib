@@ -1,5 +1,5 @@
 require('colors');
-const { flatMap, difference, size, sortBy } = require('lodash');
+const { flatMap, difference, sortBy } = require('lodash');
 const { languageNames } = require('../locales-config.json');
 
 function getAndPrintOutput() {
@@ -32,7 +32,7 @@ function translationStatusFor(language) {
   const translatedWords = getTermsForLanguage(language);
   const untranslatedWords = difference(totalWords, translatedWords);
   const legacyTerms = difference(translatedWords, totalWords);
-  const translated = 1 - size(untranslatedWords) / size(totalWords);
+  const translated = 1 - [...untranslatedWords].length / [...totalWords].length;
   const percentageString = `${(translated * 100).toFixed(2)}%`;
   const color = getTranslationProgressColor(translated);
   return { language, translated, percentageString, legacyTerms, color };

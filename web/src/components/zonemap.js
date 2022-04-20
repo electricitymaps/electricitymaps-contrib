@@ -9,7 +9,6 @@ import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import {
   debounce,
   isEmpty,
-  size,
 } from 'lodash';
 import { noop } from '../helpers/noop';
 
@@ -71,11 +70,12 @@ const ZoneMap = ({
       const features = Object.entries(zones).map(current => {
         const zoneId = current[0];
         const zone = current[1];
+        const length = (coordinate) => coordinate ? coordinate.length : 0
         return {
           type: 'Feature',
             geometry: {
               ...zone.geometry,
-            coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
+            coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
           },
           properties: {
             color: zone.color,
