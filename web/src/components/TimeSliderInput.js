@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { sortBy } from 'lodash';
 
 const COLORS = {
   DAY: '#EFEFEF',
   NIGHT: 'rgba(0, 0, 0, 0.15)',
 };
 
-const createGradient = sets => sortBy(sets, 'end')
+const createGradient = sets => sets.sort((a, b) => a.end - b.end)
   .map(
     ({ start, end }) => `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`,
   )

@@ -2,7 +2,6 @@ import moment from 'moment';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { sortBy } from 'lodash';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
 import { useCustomDatetime } from './router';
@@ -82,7 +81,7 @@ export function useCurrentZoneExchangeKeys() {
     zoneHistoryOrCurrent.forEach((zoneData) => {
     Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
     });
-    return sortBy(Array.from(exchangeKeys));
+    return Array.from(exchangeKeys).sort();
   }, [isConsumption, zoneHistory, currentZoneData]);
 }
 
