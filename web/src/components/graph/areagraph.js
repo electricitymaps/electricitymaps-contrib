@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import {
   filter,
-  flattenDeep,
   isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import moment from 'moment';
+
+import { flatDeep } from '../../helpers/flatDeep';
 
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
@@ -30,10 +31,10 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
 
 const getTotalValues = (layers) => {
   const values = filter(
-    flattenDeep(
+    flatDeep(
       layers.map(
         layer => layer.datapoints.map(d => d[1]),
-      ),
+      ), Infinity
     ),
     Number.isFinite,
   );
