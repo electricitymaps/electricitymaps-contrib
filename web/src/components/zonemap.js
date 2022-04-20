@@ -9,7 +9,6 @@ import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import {
   debounce,
   isEmpty,
-  map,
   size,
 } from 'lodash';
 import { noop } from '../helpers/noop';
@@ -69,19 +68,23 @@ const ZoneMap = ({
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(
     () => {
-      const features = map(zones, (zone, zoneId) => ({
-        type: 'Feature',
-        geometry: {
-          ...zone.geometry,
-          coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
-        },
-        properties: {
-          color: zone.color,
-          isClickable: zone.isClickable,
-          zoneData: zone,
-          zoneId,
-        },
-      }));
+      const features = Object.entries(zones).map(current => {
+        const zoneId = current[0];
+        const zone = current[1];
+        return {
+          type: 'Feature',
+            geometry: {
+              ...zone.geometry,
+            coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
+          },
+          properties: {
+            color: zone.color,
+            isClickable: zone.isClickable,
+            zoneData: zone,
+            zoneId,
+          },
+        }
+      })
 
       return {
         zonesClickable: {

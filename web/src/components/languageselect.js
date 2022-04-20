@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { map } from 'lodash';
 
 import { useTranslation } from '../helpers/translation';
 import { LANGUAGE_NAMES } from '../helpers/constants';
@@ -90,9 +89,9 @@ const LanguageSelect = () => {
               icon="language_select"
             />
           </div>
-          {map(LANGUAGE_NAMES, (language, key) => (
-            <li key={key} onClick={() => handleLanguageSelect(key)}>
-              {language}
+          {Object.entries(LANGUAGE_NAMES).map(current => (
+            <li key={current[0]} onClick={() => handleLanguageSelect(current[0])}>
+              {current[1]}
             </li>
           ))}
         </LanguageSelectContainer>
