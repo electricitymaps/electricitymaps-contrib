@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { interpolate } from 'd3-interpolate';
-import { values } from 'lodash';
 import moment from 'moment';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
@@ -13,7 +12,7 @@ export function useExchangeArrowsData() {
   const exchanges = useSelector(state => state.data.grid.exchanges);
 
   return useMemo(
-    () => (isConsumption ? values(exchanges).filter(d => d.lonlat && d.sortedCountryCodes) : []),
+    () => (isConsumption ? exchanges.values().filter(d => d.lonlat && d.sortedCountryCodes) : []),
     [isConsumption, exchanges],
   );
 }
