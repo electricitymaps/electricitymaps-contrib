@@ -337,6 +337,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Sweden
   - Biomass, Solar, Geothermal: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/vindkraft/statistik)
+  - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/6aa0da99-4f46-46ef-ac30-a3355016f061)
   - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
   - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
