@@ -6,6 +6,7 @@
 
 # Standard library imports
 import csv
+import logging
 import re
 import urllib.parse
 
@@ -57,7 +58,7 @@ def fetch_exchange(zone_key1=DEFAULT_ZONE_KEY,
 def fetch_price(zone_key=DEFAULT_ZONE_KEY,
                 session=None,
                 target_datetime=None,
-                logger=None) -> dict:
+                logger=None) -> list:
     """Request the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError('Currently unable to scrape historical data')
@@ -80,7 +81,7 @@ def fetch_price(zone_key=DEFAULT_ZONE_KEY,
 def fetch_production(zone_key=DEFAULT_ZONE_KEY,
                      session=None,
                      target_datetime=None,
-                     logger=None) -> dict:
+                     logger=logging.getLogger(__name__)) -> dict:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError('This parser is not yet able to parse past dates')
