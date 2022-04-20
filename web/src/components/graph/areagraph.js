@@ -1,7 +1,5 @@
 import React, { useMemo } from 'react';
 import {
-  max,
-  min,
   filter,
   flattenDeep,
   isEmpty,
@@ -40,8 +38,8 @@ const getTotalValues = (layers) => {
     Number.isFinite,
   );
   return {
-    min: min(values) || 0,
-    max: max(values) || 0,
+    min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
+    max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
   };
 };
 
