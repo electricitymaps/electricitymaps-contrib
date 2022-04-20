@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import {
-  sortedIndex, isNumber,
-} from 'lodash';
+import { sortedIndex } from 'lodash';
 import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
@@ -82,10 +80,10 @@ const TimeSlider = ({
 
   if (!datetimes || datetimes.length === 0) return null;
 
-  const selectedTimeValue = isNumber(selectedTimeIndex)
+  const selectedTimeValue = typeof selectedTimeIndex === 'number'
     ? datetimes[selectedTimeIndex].valueOf()
     : null;
-  const anchoredTimeValue = isNumber(anchoredTimeIndex)
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number'
     ? datetimes[anchoredTimeIndex].valueOf()
     : null;
 
