@@ -1,6 +1,5 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
-import { isFinite } from 'lodash';
 import { arc } from 'd3-shape';
 
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
@@ -41,14 +40,14 @@ const CircularGauge = React.memo(({
             <path className="background" d={percentageFill(100)} />
             <Motion
               defaultStyle={{ percentage: 0 }}
-              style={{ percentage: spring(isFinite(percentage) ? percentage : 0) }}
+              style={{ percentage: spring(Number.isFinite(percentage) ? percentage : 0) }}
             >
               {interpolated => (
                 <path className="foreground" d={percentageFill(interpolated.percentage)} />
               )}
             </Motion>
             <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
-              {isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
+              {Number.isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
             </text>
           </g>
         </g>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { range, isFinite } from 'lodash';
+import { range } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
@@ -66,7 +66,7 @@ const HorizontalColorbar = ({
           width={width}
           height={height}
         />
-        {isFinite(currentValue) && (
+        {Number.isFinite(currentValue) && (
           <line
             stroke={markerColor}
             strokeWidth="2"

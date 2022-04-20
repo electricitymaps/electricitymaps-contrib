@@ -4,7 +4,6 @@ import {
   min,
   filter,
   flattenDeep,
-  isFinite,
   isEmpty,
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
@@ -38,7 +37,7 @@ const getTotalValues = (layers) => {
         layer => layer.datapoints.map(d => d[1]),
       ),
     ),
-    isFinite,
+    Number.isFinite,
   );
   return {
     min: min(values) || 0,

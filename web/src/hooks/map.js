@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { mapValues, isFinite } from 'lodash';
+import { mapValues } from 'lodash';
 
 import { useCo2ColorScale } from './theme';
 
@@ -17,7 +17,7 @@ export function useZonesWithColors() {
           : zone.co2intensityProduction;
         return {
           ...zone,
-          color: isFinite(co2intensity) ? co2ColorScale(co2intensity) : undefined,
+          color: Number.isFinite(co2intensity) ? co2ColorScale(co2intensity) : undefined,
           isClickable: true,
         };
       })

@@ -6,7 +6,6 @@ import React, {
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
-import { isFinite } from 'lodash';
 import { noop } from '../helpers/noop'
 import styled from 'styled-components';
 
@@ -178,7 +177,7 @@ const Row = ({
       {children}
 
       {/* Question mark if the value is not defined */}
-      {!isFinite(value) && (
+      {!Number.isFinite(value) && (
         <text
           className="unknown"
           transform={`translate(3, ${TEXT_ADJUST_Y})`}
@@ -199,7 +198,7 @@ const HorizontalBar = ({
   scale,
 }) => {
   // Don't render if the range is not valid
-  if (!Array.isArray(range) || !isFinite(range[0]) || !isFinite(range[1])) return null;
+  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) return null;
 
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
