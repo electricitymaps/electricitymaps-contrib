@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { sortedIndex } from 'lodash';
+import { sortedIndex } from 'lodash.sortedindex';
 import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
