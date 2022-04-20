@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import {
-  last, sortedIndex, isNumber,
+  sortedIndex, isNumber,
 } from 'lodash';
 import { scaleTime } from 'd3-scale';
 import moment from 'moment';
@@ -15,7 +15,7 @@ const AXIS_HORIZONTAL_MARGINS = 12;
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) => scaleTime()
   .domain([
     startTime ? moment(startTime).toDate() : datetimes.at(0),
-    endTime ? moment(endTime).toDate() : last(datetimes),
+    endTime ? moment(endTime).toDate() : datetimes.at(-1),
   ])
   .range([0, rangeEnd])
   .nice(25);

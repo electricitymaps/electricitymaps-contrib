@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import {
-  last,
   max,
   min,
   filter,
@@ -28,7 +27,7 @@ const getDatetimes = data => (data || []).map(d => d.datetime);
 const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
     startTime ? moment(startTime).toDate() : datetimes.at(0),
-    endTime ? moment(endTime).toDate() : last(datetimes),
+    endTime ? moment(endTime).toDate() : datetimes.at(-1),
   ])
   .range([0, width]);
 
