@@ -184,7 +184,7 @@ const EstimatedDataInfo = ({ text }) => (
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
-  const isDataEstimated = !(estimationMethod === null || estimationMethod === undefined);
+  const isDataEstimated = !(estimationMethod == null);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -254,7 +254,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   }
 
   const { hasData, estimationMethod } = data;
-  const isDataEstimated = !(estimationMethod === null || estimationMethod === undefined);
+  const isDataEstimated = !(estimationMethod == null);
 
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
