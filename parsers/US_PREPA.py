@@ -17,9 +17,11 @@ import requests
 import json
 
 timezone_name = 'America/Puerto_Rico'
-GENERATION_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/combustibles.aspx"
-RENEWABLES_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/Unidades_renovables.aspx"
-TIMESTAMP_URL = "https://aeepr.com/es-pr/generacion/Documents/CostosCombustible.aspx"
+US_PROXY = 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app'
+HOST_PARAMETER = '?host=https://aeepr.com'
+GENERATION_BREAKDOWN_URL = f"{US_PROXY}/es-pr/generacion/Documents/combustibles.aspx{HOST_PARAMETER}"
+RENEWABLES_BREAKDOWN_URL = f"{US_PROXY}/es-pr/generacion/Documents/Unidades_renovables.aspx{HOST_PARAMETER}"
+TIMESTAMP_URL = f"{US_PROXY}/es-pr/generacion/Documents/CostosCombustible.aspx{HOST_PARAMETER}"
 
 
 
@@ -80,7 +82,8 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
   #Note: seems to be rounded down (to an integer)
   #Total at the top of the page fetched in step 3 isn't rounded down, but seems to be lagging behind sometimes.
   #Difference is only minor, so for now we will IGNORE that total (instead of trying to parse the total and addding the difference to "unknown")
-  res = r.get(GENERATION_BREAKDOWN_URL)
+# TODO: remove `verify=False` when certificate is fixed (https://github.com/electricitymap/electricitymap-contrib/issues/3613#issuecomment-1103562255)
+  res = r.get(GENERATION_BREAKDOWN_URL, verify=False)
 
   assert res.status_code == 200, 'Exception when fetching production for ' \
                                '{}: error when calling url={}'.format(
@@ -117,7 +120,8 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
 
   #Step 2: fetch renewable production breakdown
   #Data from this source isn't rounded. Assume renewable production not accounted for is hydro
-  res = r.get(RENEWABLES_BREAKDOWN_URL)
+  # TODO: remove `verify=False` when certificate is fixed (https://github.com/electricitymap/electricitymap-contrib/issues/3613#issuecomment-1103562255)
+  res = r.get(RENEWABLES_BREAKDOWN_URL, verify=False)
 
   assert res.status_code == 200, 'Exception when fetching renewable production for ' \
                                '{}: error when calling url={}'.format(
@@ -169,7 +173,8 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
   #Step 3: fetch the timestamp, which is at the bottom of a different iframe
   #Note: there's a race condition here when requesting data very close to <hour>:10 and <hour>:40, which is when the data gets updated
   #Sometimes it's some seconds later, so we grab the timestamp from here to know the exact moment
-  res = r.get(TIMESTAMP_URL)#TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
+  # TODO: remove `verify=False` when certificate is fixed (https://github.com/electricitymap/electricitymap-contrib/issues/3613#issuecomment-1103562255)
+  res = r.get(TIMESTAMP_URL, verify=False)#TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
 
   assert res.status_code == 200, 'Exception when fetching timestamp for ' \
                                '{}: error when calling url={}'.format(
