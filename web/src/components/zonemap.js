@@ -10,9 +10,9 @@ import {
   debounce,
   isEmpty,
   map,
-  noop,
   size,
 } from 'lodash';
+import { noop } from '../helpers/noop';
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };

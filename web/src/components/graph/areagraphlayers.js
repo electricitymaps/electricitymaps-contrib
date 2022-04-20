@@ -1,5 +1,6 @@
 import React from 'react';
-import { noop, isFunction } from 'lodash';
+import { isFunction } from 'lodash';
+import { noop } from '../../helpers/noop';
 import { area, curveStepAfter } from 'd3-shape';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';

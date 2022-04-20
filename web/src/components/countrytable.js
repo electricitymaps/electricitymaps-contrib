@@ -6,7 +6,8 @@ import React, {
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
-import { isArray, isFinite, noop } from 'lodash';
+import { isArray, isFinite } from 'lodash';
+import { noop } from '../helpers/noop'
 import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';

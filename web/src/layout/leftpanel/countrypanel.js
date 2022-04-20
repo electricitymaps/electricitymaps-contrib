@@ -12,7 +12,8 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { isNil, noop } from 'lodash';
+import { isNil } from 'lodash';
+import { noop } from '../../helpers/noop';
 import moment from 'moment';
 import styled from 'styled-components';
 
