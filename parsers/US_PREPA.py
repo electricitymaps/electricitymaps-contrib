@@ -180,8 +180,12 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
                                '{}: error when calling url={}'.format(
                                    zone_key, TIMESTAMP_URL)
 
+  raw_timestamp_match = re.search(r"Ultima Actualizaci�n:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)", res.text)
 
-  raw_timestamp = re.search(r"Ultima Actualización:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)", res.text).group(1)#Extract timestamp
+  if raw_timestamp_match is None:
+    raise Exception(f"Could not find timestamp in {res.text}")
+
+  raw_timestamp = raw_timestamp_match.group()
 
   logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
 
