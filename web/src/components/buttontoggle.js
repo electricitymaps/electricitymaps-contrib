@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { isEmpty } from 'lodash';
+import { isEmpty } from '../helpers/isEmpty';
 import { noop } from '../helpers/noop';
 
 const Wrapper = styled.div`

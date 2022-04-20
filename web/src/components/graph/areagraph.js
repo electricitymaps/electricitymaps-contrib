@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react';
-import {
-  isEmpty,
-} from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import moment from 'moment';
 
 import { flatDeep } from '../../helpers/flatDeep';
+import { isEmpty } from '../../helpers/isEmpty';
 
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
