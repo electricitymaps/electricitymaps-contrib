@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { isFinite, isFunction } from 'lodash';
+import { isFinite } from 'lodash';
 
 const GraphHoverLine = React.memo(({
   layers,
@@ -65,7 +65,7 @@ const GraphHoverLine = React.memo(({
             shapeRendering: 'crispEdges',
             stroke: 'black',
             strokeWidth: 1.5,
-            fill: isFunction(fill) ? fill(datapoint) : fill,
+            fill: typeof fill === 'function' ? fill(datapoint) : fill,
           }}
           cx={x}
           cy={y}

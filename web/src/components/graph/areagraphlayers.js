@@ -1,5 +1,4 @@
 import React from 'react';
-import { isFunction } from 'lodash';
 import { noop } from '../../helpers/noop';
 import { area, curveStepAfter } from 'd3-shape';
 
@@ -47,7 +46,7 @@ const AreaGraphLayers = React.memo(({
   return (
     <g>
       {layers.map((layer, ind) => {
-        const isGradient = isFunction(layer.fill);
+        const isGradient = typeof layer.fill === 'function'
         const gradientId = `areagraph-gradient-${layer.key}`;
         return (
           <React.Fragment key={layer.key}>
