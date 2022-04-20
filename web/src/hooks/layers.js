@@ -12,7 +12,7 @@ export function useExchangeArrowsData() {
   const exchanges = useSelector(state => state.data.grid.exchanges);
 
   return useMemo(
-    () => (isConsumption ? exchanges.values().filter(d => d.lonlat && d.sortedCountryCodes) : []),
+    () => (isConsumption ? Object.values(exchanges).filter(d => d.lonlat && d.sortedCountryCodes) : []),
     [isConsumption, exchanges],
   );
 }
