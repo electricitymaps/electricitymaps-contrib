@@ -1,5 +1,4 @@
 import React from 'react';
-import { range } from 'lodash';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 
@@ -32,7 +31,7 @@ const Wrapper = styled.svg`
 
 const spreadOverDomain = (scale, count) => {
   const [x1, x2] = extent(scale.domain());
-  return range(count).map(v => x1 + (x2 - x1) * v / (count - 1));
+  return [...Array(count).keys()].map(v => x1 + (x2 - x1) * v / (count - 1));
 };
 
 const HorizontalColorbar = ({

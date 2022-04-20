@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import { range } from 'lodash';
 
 import { useTranslation } from '../../helpers/translation';
 
@@ -23,7 +22,7 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   const precision = moment.duration(15, 'minutes').valueOf();
   const step = (endTime - startTime) / (count - 1);
 
-  return range(count).map(ind => (
+  return [...Array(count).keys()].map(ind => (
     moment(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision)).toDate()
   ));
 };
