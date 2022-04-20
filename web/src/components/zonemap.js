@@ -6,9 +6,9 @@ import React, {
 } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import { debounce } from 'lodash';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
+import { debounce } from '../helpers/debounce'
 
 const interactiveLayerIds = ['zones-clickable'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
