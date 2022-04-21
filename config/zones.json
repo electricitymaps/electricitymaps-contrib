@@ -2752,9 +2752,12 @@
     ],
     "capacity": {
       "biomass": 1912,
+      "coal": 36668,
+      "gas": 20762,
       "geothermal": 2277,
       "hydro": 6602,
-      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 4864,
       "solar": 211,
       "wind": 154
     },
