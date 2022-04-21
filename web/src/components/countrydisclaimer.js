@@ -4,8 +4,6 @@ import { noop } from 'lodash';
 
 import Tooltip from './tooltip';
 
-const MATERIAL_ICON_NAME = 'error';
-
 const DisclaimerIcon = styled.span`
   font-size: 20px;
   cursor: help;
@@ -40,9 +38,10 @@ const CountryDisclaimer = ({ text, isMobile }) => {
         onMouseMove={!isMobile ? ({ clientX, clientY }) => setTooltip({ clientX, clientY }) : noop}
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}
-        className="material-icons"
       >
-        {MATERIAL_ICON_NAME}
+        <svg>
+          <use href="/images/material-icon-sprite.svg#error" />
+        </svg>
       </DisclaimerIcon>
       {tooltip && <DisclaimerTooltip text={text} position={tooltip} />}
     </React.Fragment>

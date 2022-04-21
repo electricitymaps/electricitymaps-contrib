@@ -189,11 +189,9 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   return (
     <div className="left-panel-zone-details-toolbar">
       <Link to={parentPage}>
-        <span className="left-panel-back-button">
-          <i className="material-icons" aria-hidden="true">
-            arrow_back
-          </i>
-        </span>
+        <svg width="24px" height="24px" className="left-panel-back-button">
+          <use href="/images/material-icon-sprite.svg#arrow_back" />
+        </svg>
       </Link>
       <CountryNameTime>
         <CountryNameTimeTable>
@@ -350,8 +348,16 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
+                <svg>
+                  <use href="/images/material-icon-sprite.svg#file_download" />
+                </svg>
+                <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro">
+                  <svg height="16px" width="16px">
+                    <use href="/images/material-icon-sprite.svg#lock" />
+                  </svg>
+                   pro
+                </span>
               </IconContainer>
               {tableDisplayEmissions ? (
                 <CountryHistoryEmissionsGraph />
@@ -367,8 +373,15 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </CountryHistoryTitle>
               <br />
               <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
+                <svg height="16px" width="16px">
+                  <use href="/images/material-icon-sprite.svg#file_download" />
+                </svg>
+                <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro">
+                  <svg height="16px" width="16px">
+                    <use href="/images/material-icon-sprite.svg#lock" />
+                  </svg>
+                   pro</span>
               </IconContainer>
               <CountryHistoryMixGraph />
 

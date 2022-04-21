@@ -26,9 +26,9 @@ const FAQPanel = ({ isMobile }) => {
     <div className="faq-panel">
       <div className="faq-header">
         <Link to={parentPage}>
-          <span className="left-panel-back-button">
-            <i className="material-icons" aria-hidden="true">arrow_back</i>
-          </span>
+          <svg className="left-panel-back-button">
+            <use href="/images/material-icon-sprite.svg#arrow_back" />
+          </svg>
         </Link>
         <span className="title">{__('misc.faq')}</span>
       </div>

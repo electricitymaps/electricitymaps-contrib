@@ -56,9 +56,9 @@ const orderings = [
 ];
 
 const QuestionAnswer = ({
-  answerVisible, 
-  setAnswerVisible, 
-  groupKey, 
+  answerVisible,
+  setAnswerVisible,
+  groupKey,
   entryKey,
 }) => {
   const { __ } = useTranslation();
@@ -68,9 +68,9 @@ const QuestionAnswer = ({
         className="question"
         onClick={() => setAnswerVisible(entryKey, !answerVisible)}
       >
-        <i className="material-icons">
-          {answerVisible ? 'expand_less' : 'expand_more'}
-        </i>
+        <svg height="24px" width="24px">
+          <use href={`/images/material-icon-sprite.svg#${answerVisible ? 'expand_less' : 'expand_more'}`} />
+        </svg>
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
       </div>
       {answerVisible && (

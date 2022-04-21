@@ -28,7 +28,7 @@ const LegendsContainer = styled.div`
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 0.8rem;
   user-select: none;
-  
+
   // Apply specific styles if the legend is collapsed
   ${props => props.isCollapsed
     && css`
@@ -71,8 +71,10 @@ const StyledMobileHeader = styled.div`
 const MobileHeader = ({ onToggle, isOpen, label }) => (
   <StyledMobileHeader isCollapsed={!isOpen}>
     <span>{label}</span>
-    <ToggleLegendButton className="material-icons" onClick={onToggle}>
-      {isOpen ? 'call_received' : 'call_made'}
+    <ToggleLegendButton onClick={onToggle}>
+      <svg width="24px" height="24px">
+        <use href={`/images/material-icon-sprite.svg#${isOpen ? 'call_received' : 'call_made'}`}/>
+      </svg>
     </ToggleLegendButton>
   </StyledMobileHeader>
 );

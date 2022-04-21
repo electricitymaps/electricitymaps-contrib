@@ -109,14 +109,18 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
-              <i className="material-icons">arrow_back</i>
+              <svg>
+                <use height="24px" width="24px" href="/images/material-icon-sprite.svg#arrow_back" />
+              </svg>
             </div>
           )}
         </div>
         <div className="modal-body">
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={handleDismiss}>
-              <i className="material-icons">close</i>
+              <svg>
+                <use height="24px" width="24px" href="/images/material-icon-sprite.svg#close" />
+              </svg>
             </div>
           </div>
           <div
@@ -138,11 +142,15 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-right-button-container">
           {isOnLastView() ? (
             <div className="modal-right-button green" onClick={handleDismiss}>
-              <i className="material-icons">check</i>
+              <svg>
+                <use href="/images/material-icon-sprite.svg#check" />
+              </svg>
             </div>
           ) : (
-            <div className="modal-right-button" onClick={handleForward}>
-              <i className="material-icons">arrow_forward</i>
+            <div  className="modal-right-button" onClick={handleForward}>
+              <svg>
+                <use href="/images/material-icon-sprite.svg#arrow_forward" />
+              </svg>
             </div>
           )}
         </div>

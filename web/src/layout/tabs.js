@@ -26,14 +26,18 @@ export default () => {
           className="list-item"
           to={{ pathname: '/ranking', search: location.search }}
         >
-          <i className="material-icons" aria-hidden="true">view_list</i>
+          <svg>
+            <use href="/images/material-icon-sprite.svg#view_list" />
+          </svg>
           <span className="tab-label">{__('mobile-main-menu.areas')}</span>
         </NavLink>
         <NavLink
           className="list-item"
           to={{ pathname: '/info', search: location.search }}
         >
-          <i className="material-icons" aria-hidden="true">info</i>
+          <svg>
+            <use href="/images/material-icon-sprite.svg#info" />
+          </svg>
           <span className="tab-label">{__('mobile-main-menu.about')}</span>
         </NavLink>
       </div>

@@ -60,7 +60,7 @@ const mapStateToProps = state => ({
 });
 
 
-const LeftPanelCollapseButton = styled.div`
+const LeftPanelCollapseButton = styled.svg`
 @media (max-width: 767px) {
   display: none !important;
 }
@@ -88,10 +88,10 @@ const Container = styled.div`
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
-  
+
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
-  
+
 
   return (
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
@@ -115,7 +115,8 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         role="button"
         tabIndex="0"
       >
-        <i className="material-icons">arrow_drop_down</i>
+        {console.log(isLeftPanelCollapsed)}
+        <use href={`/images/material-icon-sprite.svg#${!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'}`}/>
       </LeftPanelCollapseButton>
 
       {/* Render different content based on the current route */}
