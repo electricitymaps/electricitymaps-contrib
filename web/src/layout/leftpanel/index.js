@@ -115,7 +115,6 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         role="button"
         tabIndex="0"
       >
-        {console.log(isLeftPanelCollapsed)}
         <use href={`/images/material-icon-sprite.svg#${!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'}`}/>
       </LeftPanelCollapseButton>
 
