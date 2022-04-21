@@ -4466,9 +4466,11 @@
       "hydro": 2502
     },
     "contributors": [
+      "https://github.com/kruschk",
       "https://github.com/systemcatch"
     ],
     "parsers": {
+      "consumption": "MY_WM.fetch_consumption",
       "production": "MY_WM.fetch_production"
     },
     "timezone": null
