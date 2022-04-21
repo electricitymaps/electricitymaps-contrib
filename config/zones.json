@@ -4471,6 +4471,7 @@
       "https://github.com/systemcatch"
     ],
     "parsers": {
+      "consumption": "MY_WM.fetch_consumption",
       "production": "MY_WM.fetch_production"
     },
     "timezone": null

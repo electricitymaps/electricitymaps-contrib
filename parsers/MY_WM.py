@@ -24,8 +24,33 @@ DOMAIN = 'www.gso.org.my'
 PRODUCTION_THRESHOLD = 10 # MW
 TIMEZONE = 'Asia/Kuala_Lumpur'
 URL_FORMAT_STRING = 'https://{}/SystemData/{}/GetChartDataSource'
+CONSUMPTION_URL = URL_FORMAT_STRING.format(DOMAIN, 'SystemDemand.aspx')
 EXCHANGE_URL = URL_FORMAT_STRING.format(DOMAIN, 'TieLine.aspx')
 PRODUCTION_URL = URL_FORMAT_STRING.format(DOMAIN, 'CurrentGen.aspx')
+
+
+@config.refetch_frequency(datetime.timedelta(minutes=10))
+def fetch_consumption(zone_key=DEFAULT_ZONE_KEY,
+                      session=None,
+                      target_datetime=None,
+                      logger=None) -> list:
+    """Requests the last known consumption (in MW) of a given zone."""
+    date_string = arrow.get(target_datetime).to(TIMEZONE).format('DD/MM/YYYY')
+    return [
+        {
+            'datetime': arrow.get(breakdown['DT'], tzinfo=TIMEZONE)
+                             .datetime,
+            'consumption': breakdown['MW'],
+            'source': DOMAIN,
+            'zoneKey': zone_key,
+        }
+        for breakdown in get_api_data(session or requests.Session(),
+                                      CONSUMPTION_URL,
+                                      {
+                                          'Fromdate': date_string,
+                                          'Todate': date_string,
+                                      })
+    ]
 
 
 @config.refetch_frequency(datetime.timedelta(minutes=10))
@@ -133,9 +158,20 @@ def get_api_data(session, url, data):
 
 if __name__ == '__main__':
     # Never used by the electricityMap back-end, but handy for testing.
-    print('fetch_production():')
+    DATE = '2020-01-01'
+    print("fetch_consumption():")
+    print(fetch_consumption())
+    print(f"fetch_consumption(target_datetime='{DATE}')")
+    print(fetch_consumption(target_datetime=DATE))
+    print("fetch_production():")
     print(fetch_production())
-    print('fetch_exchange(MY-WM, SG):')
+    print(f"fetch_production(target_datetime='{DATE}')")
+    print(fetch_production(target_datetime=DATE))
+    print("fetch_exchange('MY-WM', 'SG'):")
     print(fetch_exchange('MY-WM', 'SG'))
-    print('fetch_exchange(MY-WM, TH):')
+    print(f"fetch_exchange(MY-WM, SG, target_datetime='{DATE}'):")
+    print(fetch_exchange('MY-WM', 'SG', target_datetime=DATE))
+    print("fetch_exchange('MY-WM', 'TH'):")
     print(fetch_exchange('MY-WM', 'TH'))
+    print(f"fetch_exchange('MY-WM', 'TH', target_datetime='{DATE}'):")
+    print(fetch_exchange('MY-WM', 'TH', target_datetime=DATE))
