@@ -44,7 +44,11 @@
         "noParserInfo": "Wir haben noch keine Daten für diese Zone.<br/> Willst du uns helfen, das zu ändern? Wirke mit, indem du <a href=\"%s\" target=\"_blank\">Datenquellen hinzufügst</a>.",
         "now": "Jetzt",
         "electricity": "Elektrizität",
-        "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung."
+        "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
+        "estimated": "Geschätzt",
+        "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
+        "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
+        "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"%s\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
     },
     "left-panel": {
         "zone-list-header-title": "Klimaeinfluss der Regionen",
@@ -1778,5 +1782,7 @@
         "map-info-text": "Diese Karte veranschaulicht in Echtzeit, wie viel CO₂-Äquivalente bei der Stromerzeugung freigesetzt werden. Die Färbung der Zonen erfolgt anhand des spezifischen Ausstoßes von Treibhausgasen (CO₂-Intensität), die durch die Deckung des Strombedarfs einer Region emittiert werden. Eine grüne Färbung steht dabei für eine klimafreundlichere Erzeugung.",
         "electricity-origins-text": "Die Pfeile auf der Karte stellen den physischen Stromaustausch zwischen Regionen dar. Tippe auf eine Region, um mehr Details zur Herkunft des verfügbaren Stromes zu erhalten.",
         "wind-solar-text": "Die Verfügbarkeit von Wind- und Solarstrom ist wetterabhängig. Tippe auf den Wind- und Sonnenbutton, um das globale Echtzeit-Potenzial dieser Ressourcen anzuzeigen."
-    }
+    },
+    "windDataError": "Winddaten aktuell nicht verfügbar",
+    "solarDataError": "Solardaten aktuell nicht verfügbar"
 }

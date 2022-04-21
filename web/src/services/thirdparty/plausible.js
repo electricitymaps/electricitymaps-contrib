@@ -5,8 +5,7 @@ class PlausibleThirdParty {
     }
 
     track(event, data) {
-        console.log(event, data);
-        // window.plausible(event, {props})
+        window.plausible(event, {props: data})
     }
 }
 
