@@ -13,10 +13,7 @@ dependencies:
   - web/yarn.lock
 
 frontend 🎨:
-  - web/src/**/*
-  - web/public/**/*
-  - web/views/**/*
-  - web/*
+  - any: ['web/**/*', '!web/public/locales/**/*']
 
 translations 🗣:
   - web/public/locales/**/*
