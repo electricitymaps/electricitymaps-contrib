@@ -1,12 +1,33 @@
+infrastructure:
+  - .circleci/*
+  - .github/**/*
+
 dependencies:
   - poetry.lock
   - pyproject.toml
+  - mobileapp/package.json
+  - mobileapp/package-lock.json
+  - mockserver/package.json
+  - mockserver/yarn.lock
+  - web/package.json
+  - web/yarn.lock
 
 frontend 🎨:
   - web/src/**/*
+  - web/public/**/*
+  - web/views/**/*
+  - web/*
 
 translations 🗣:
   - web/public/locales/**/*
+
+tests:
+  - tests/**/*
+  - parsers/test/**/*
+
+docker:
+  - docker-compose.yml
+  - web/Dockerfile
 
 javascript:
   - .**/*.js
