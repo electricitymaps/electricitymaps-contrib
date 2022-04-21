@@ -1572,24 +1572,24 @@
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 320.1796538166648
+            "value": 195.02493762305187
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 339.7443549658533
+            "value": 208.9030408694993
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 320.1796538166648
+            "value": 195.02493762305187
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 339.7443549658533
+            "value": 208.9030408694993
           }
         ],
         "unknown": [
