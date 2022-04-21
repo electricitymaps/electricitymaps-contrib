@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { map } from 'lodash';
 
 import { useTranslation } from '../helpers/translation';
-import { languageNames } from '../../locales-config.json';
+import { LANGUAGE_NAMES } from '../helpers/constants';
 import styled from 'styled-components';
 
 import ButtonToggle from './buttontoggle';
@@ -90,7 +90,7 @@ const LanguageSelect = () => {
               icon="language_select"
             />
           </div>
-          {map(languageNames, (language, key) => (
+          {map(LANGUAGE_NAMES, (language, key) => (
             <li key={key} onClick={() => handleLanguageSelect(key)}>
               {language}
             </li>
