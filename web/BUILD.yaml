@@ -18,7 +18,7 @@ steps:
       # source code
       - ../config/{exchanges,zones}.json
       - ./{locales-config.json,translation-status.js}
-      - public/{css,fonts,images,locales,apple-app-site-association,browserconfig.xml,manifest.json,client-version.json}
+      - public/{fonts,images,locales,apple-app-site-association,browserconfig.xml,manifest.json,client-version.json}
       - src
       - views
       - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
