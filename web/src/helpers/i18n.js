@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { isProduction } from './environment';
+import { LOCALE_TO_FACEBOOK_LOCALE } from './constants';
 import { history } from './router';
-import localesConfig from '../../locales-config.json';
 
 const LOCALES_PATH = window.isCordova ? 'locales' : '/locales';
 
@@ -83,7 +83,7 @@ i18n.on('languageChanged', function (lng) {
   document.documentElement.setAttribute('lang', lng);
   // TODO: Use react-helmet to manage meta tags
   document.title = `electricityMap | ${i18n.t('misc.maintitle')}`;
-  document.querySelector('meta[property="og:locale"]').setAttribute('content', localesConfig.localeToFacebookLocale[lng]);
+  document.querySelector('meta[property="og:locale"]').setAttribute('content', LOCALE_TO_FACEBOOK_LOCALE[lng]);
 });
 
 export default i18n;

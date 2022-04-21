@@ -1586,24 +1586,24 @@
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 286.014588304432
+            "value": 239.9847501944717
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 302.9702386365516
+            "value": 258.08616563398533
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 286.014588304432
+            "value": 239.9847501944717
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 302.9702386365516
+            "value": 258.08616563398533
           }
         ],
         "unknown": [
@@ -3865,7 +3865,9 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }

@@ -1,161 +1,154 @@
 #!/usr/bin/env python3
 
-import arrow
-from bs4 import BeautifulSoup
-import datetime
+"""Parse the Alberta Electric System Operator's (AESO's) Energy Trading System
+(ETS) website.
+"""
+
+# Standard library imports
+import csv
+import logging
 import re
+import urllib.parse
+
+# Third-party library imports
+import arrow
 import requests
-import pandas as pd
-from pytz import timezone
 
-ab_timezone = 'Canada/Mountain'
+# Local library imports
+from parsers.lib import validation
 
-
-def convert_time_str(ts):
-    """Takes a time string and converts into an aware datetime object."""
-
-    dt_naive = datetime.datetime.strptime(ts, ' %b %d, %Y %H:%M')
-    localtz = timezone('Canada/Mountain')
-    dt_aware = localtz.localize(dt_naive)
-
-    return dt_aware
+DEFAULT_ZONE_KEY = 'CA-AB'
+MINIMUM_PRODUCTION_THRESHOLD = 10 # MW
+TIMEZONE = 'Canada/Mountain'
+URL = urllib.parse.urlsplit('http://ets.aeso.ca/ets_web/ip/Market/Reports')
+URL_STRING = urllib.parse.urlunsplit(URL)
 
 
-def fetch_production(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
-    """Requests the last known production mix (in MW) of a given country."""
+def fetch_exchange(zone_key1=DEFAULT_ZONE_KEY,
+                   zone_key2='CA-BC',
+                   session=None,
+                   target_datetime=None,
+                   logger=None) -> dict:
+    """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    r = session or requests.session()
-    url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
-    response = r.get(url)
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-    findtime = soup.find('td', text=re.compile('Last Update')).get_text()
-    time_string = findtime.split(':', 1)[1]
-    dt = convert_time_str(time_string)
-
-    df_generations = pd.read_html(response.text, match='GENERATION', skiprows=1, index_col=0, header=0)
-
-    for idx, df in enumerate(df_generations):
-        try:
-            total_net_generation = df_generations[idx]['TNG']
-            maximum_capability = df_generations[idx]['MC']
-        except KeyError:
-            continue
-
-    return {
-        'datetime': dt,
-        'zoneKey': zone_key,
-        'production': {
-            'gas': float(total_net_generation['GAS']),
-            'hydro': float(total_net_generation['HYDRO']),
-            'solar': float(total_net_generation['SOLAR']),
-            'wind': float(total_net_generation['WIND']),
-            'biomass': float(total_net_generation['OTHER']),
-            'unknown': float(total_net_generation['DUAL FUEL']),
-            'coal': float(total_net_generation['COAL'])
-        },
-        'storage': {
-            'battery': float(total_net_generation['ENERGY STORAGE'])
-        },
-        'capacity': {
-            'gas': float(maximum_capability['GAS']),
-            'hydro': float(maximum_capability['HYDRO']),
-            'battery storage': float(maximum_capability['ENERGY STORAGE']),
-            'solar': float(maximum_capability['SOLAR']),
-            'wind': float(maximum_capability['WIND']),
-            'biomass': float(maximum_capability['OTHER']),
-            'unknown': float(maximum_capability['DUAL FUEL']),
-            'coal': float(maximum_capability['COAL'])
-        },
-        'source': 'ets.aeso.ca',
-    }
-
-
-def fetch_price(zone_key='CA-AB', session=None, target_datetime=None, logger=None) -> dict:
-    """Requests the last known power price of a given country."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    r = session or requests.session()
-    url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/SMPriceReportServlet?contentType=html/'
-    response = r.get(url)
-
-    df_prices = pd.read_html(response.text, match='Price', index_col=0, header=0)
-    prices = df_prices[1]
-
-    data = {}
-
-    for rowIndex, row in prices.iterrows():
-        price = row['Price ($)']
-        if (isfloat(price)):
-            hour = int(rowIndex.split(' ')[1]) - 1
-            data[rowIndex] = {
-                'datetime': arrow.get(rowIndex, 'MM/DD/YYYY').replace(hour=hour, tzinfo=ab_timezone).datetime,
-                'zoneKey': zone_key,
-                'currency': 'CAD',
-                'source': 'ets.aeso.ca',
-                'price': float(price),
-            }
-
-    return [data[k] for k in sorted(data.keys())]
-
-
-def fetch_exchange(zone_key1='CA-AB', zone_key2='CA-BC', session=None, target_datetime=None, logger=None) -> dict:
-    """Requests the last known power exchange (in MW) between two countries."""
-    if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
-
-    r = session or requests.session()
-    url = 'http://ets.aeso.ca/ets_web/ip/Market/Reports/CSDReportServlet'
-    response = r.get(url)
-    df_exchanges = pd.read_html(
-        response.text,
-        match="INTERCHANGE",
-        skiprows=0,
-        index_col=0,
-        header=[0, 1],
-    )
-
-    exchange_data = df_exchanges[0]["INTERCHANGE"]["ACTUAL FLOW"]
-
+        raise NotImplementedError('Currently unable to scrape historical data')
+    session = session or requests.Session()
+    response = session.get(f'{URL_STRING}/CSDReportServlet',
+                           params={'contentType': 'csv'})
+    interchange = dict(csv.reader(response.text
+                                          .split('\r\n\r\n')[4]
+                                          .splitlines()))
     flows = {
-        "CA-AB->CA-BC": exchange_data["British Columbia"],
-        "CA-AB->CA-SK": exchange_data["Saskatchewan"],
-        "CA-AB->US-MT": exchange_data["Montana"],
-        "CA-AB->US-NW-NWMT": exchange_data["Montana"],
+        f'{DEFAULT_ZONE_KEY}->CA-BC': interchange['British Columbia'],
+        f'{DEFAULT_ZONE_KEY}->CA-SK': interchange['Saskatchewan'],
+        f'{DEFAULT_ZONE_KEY}->US-MT': interchange['Montana'],
+        f'{DEFAULT_ZONE_KEY}->US-NW-NWMT': interchange['Montana'],
     }
-    sortedZoneKeys = '->'.join(sorted([zone_key1, zone_key2]))
-    if sortedZoneKeys not in flows:
-        raise NotImplementedError('This exchange pair is not implemented')
-
+    sorted_zone_keys = '->'.join(sorted((zone_key1, zone_key2)))
+    if sorted_zone_keys not in flows:
+        raise NotImplementedError(f"Pair '{sorted_zone_keys}' not implemented")
     return {
-        'datetime': arrow.now(tz=ab_timezone).datetime,
-        'sortedZoneKeys': sortedZoneKeys,
-        'netFlow': float(flows[sortedZoneKeys]),
-        'source': 'ets.aeso.ca'
+        'datetime': get_csd_report_timestamp(response.text),
+        'sortedZoneKeys': sorted_zone_keys,
+        'netFlow': float(flows[sorted_zone_keys]),
+        'source': URL.netloc,
     }
 
 
-def isfloat(value) -> bool:
-    try:
-      float(value)
-      return True
-    except ValueError:
-      return False
+def fetch_price(zone_key=DEFAULT_ZONE_KEY,
+                session=None,
+                target_datetime=None,
+                logger=None) -> list:
+    """Request the last known power price of a given country."""
+    if target_datetime:
+        raise NotImplementedError('Currently unable to scrape historical data')
+    session = session or requests.Session()
+    response = session.get(f'{URL_STRING}/SMPriceReportServlet',
+                           params={'contentType': 'csv'})
+    return [
+        {
+            'currency': 'CAD',
+            'datetime': arrow.get(row[0], 'MM/DD/YYYY HH', tzinfo=TIMEZONE)
+                             .datetime,
+            'price': float(row[1]),
+            'source': URL.netloc,
+            'zoneKey': zone_key,
+        } for row in csv.reader(response.text
+                                        .split('\r\n\r\n')[2]
+                                        .splitlines()[1:]) if row[1] != '-']
+
+
+def fetch_production(zone_key=DEFAULT_ZONE_KEY,
+                     session=None,
+                     target_datetime=None,
+                     logger=logging.getLogger(__name__)) -> dict:
+    """Request the last known production mix (in MW) of a given country."""
+    if target_datetime:
+        raise NotImplementedError('This parser is not yet able to parse past dates')
+    session = session or requests.Session()
+    response = session.get(f'{URL_STRING}/CSDReportServlet',
+                           params={'contentType': 'csv'})
+    generation = {
+        row[0]: {
+            'MC': float(row[1]), # maximum capability
+            'TNG': float(row[2]), # total net generation
+        } for row in csv.reader(response.text
+                                        .split('\r\n\r\n')[3]
+                                        .splitlines())
+    }
+    return validation.validate(
+        {
+            'capacity': {
+                'gas': generation['GAS']['MC'],
+                'hydro': generation['HYDRO']['MC'],
+                'battery storage': generation['ENERGY STORAGE']['MC'],
+                'solar': generation['SOLAR']['MC'],
+                'wind': generation['WIND']['MC'],
+                'biomass': generation['OTHER']['MC'],
+                'unknown': generation['DUAL FUEL']['MC'],
+                'coal': generation['COAL']['MC'],
+            },
+            'datetime': get_csd_report_timestamp(response.text),
+            'production': {
+                'gas': generation['GAS']['TNG'],
+                'hydro': generation['HYDRO']['TNG'],
+                'solar': generation['SOLAR']['TNG'],
+                'wind': generation['WIND']['TNG'],
+                'biomass': generation['OTHER']['TNG'],
+                'unknown': generation['DUAL FUEL']['TNG'],
+                'coal': generation['COAL']['TNG'],
+            },
+            'source': URL.netloc,
+            'storage': {
+                'battery': generation['ENERGY STORAGE']['TNG'],
+            },
+            'zoneKey': zone_key,
+        },
+        logger,
+        floor=MINIMUM_PRODUCTION_THRESHOLD,
+        remove_negative=True)
+
+
+def get_csd_report_timestamp(report):
+    """Get the timestamp from a current supply/demand (CSD) report."""
+    return (arrow.get(re.search(r'"Last Update : (.*)"', report)
+                        .group(1),
+                      'MMM DD, YYYY HH:mm',
+                      tzinfo=TIMEZONE)
+                 .datetime)
 
 
 if __name__ == '__main__':
-    """Main method, never used by the Electricity Map backend, but handy for testing."""
-
+    # Never used by the electricityMap backend, but handy for testing.
     print('fetch_production() ->')
     print(fetch_production())
     print('fetch_price() ->')
     print(fetch_price())
-    print('fetch_exchange(CA-AB, CA-BC) ->')
-    print(fetch_exchange('CA-AB', 'CA-BC'))
-    print('fetch_exchange(CA-AB, CA-SK) ->')
-    print(fetch_exchange('CA-AB', 'CA-SK'))
-    print('fetch_exchange(CA-AB, US-MT) ->')
-    print(fetch_exchange('CA-AB', 'US-MT'))
+    print(f'fetch_exchange({DEFAULT_ZONE_KEY}, CA-BC) ->')
+    print(fetch_exchange(DEFAULT_ZONE_KEY, 'CA-BC'))
+    print(f'fetch_exchange({DEFAULT_ZONE_KEY}, CA-SK) ->')
+    print(fetch_exchange(DEFAULT_ZONE_KEY, 'CA-SK'))
+    print(f'fetch_exchange({DEFAULT_ZONE_KEY}, US-MT) ->')
+    print(fetch_exchange(DEFAULT_ZONE_KEY, 'US-MT'))
+    print(f'fetch_exchange({DEFAULT_ZONE_KEY}, US-NW-NWMT) ->')
+    print(fetch_exchange(DEFAULT_ZONE_KEY, 'US-NW-NWMT'))
