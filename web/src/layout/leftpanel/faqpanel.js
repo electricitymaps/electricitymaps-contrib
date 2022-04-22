@@ -26,7 +26,7 @@ const FAQPanel = ({ isMobile }) => {
     <div className="faq-panel">
       <div className="faq-header">
         <Link to={parentPage}>
-          <svg className="left-panel-back-button">
+          <svg width="24px" height="24px" className="left-panel-back-button">
             <use href="/images/material-icon-sprite.svg#arrow_back" />
           </svg>
         </Link>
