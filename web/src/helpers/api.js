@@ -5,6 +5,13 @@ import Cookies from 'js-cookie';
 import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
+function getToken() {
+  if (ELECTRICITYMAP_PUBLIC_TOKEN === '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%') {
+    throw new Error('It seems like you are trying to run the app locally with remote API, but have not set the SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN environment variable.\n Try running `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=<your-token> yarn develop`');
+  }
+  return ELECTRICITYMAP_PUBLIC_TOKEN;
+}
+
 function isRemoteParam() {
   return (new URLSearchParams(window.location.search)).get('remote') === 'true';
 }
@@ -23,7 +30,7 @@ export function getEndpoint() {
 
 export function protectedJsonRequest(path) {
   const url = getEndpoint() + path;
-  const token = isUsingLocalEndpoint() ? 'development' : ELECTRICITYMAP_PUBLIC_TOKEN;
+  const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = new Date().getTime();
 
   return new Promise((resolve, reject) => {
