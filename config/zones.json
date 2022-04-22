@@ -4912,12 +4912,12 @@
     ],
     "capacity": {
       "biomass": 33,
-      "coal": 420,
-      "gas": 381,
+      "coal": 307.86,
+      "gas": 449.5,
       "hydro": 1786,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 1018.393,
+      "oil": 243,
       "solar": 465,
       "unknown": 0,
       "wind": 270
