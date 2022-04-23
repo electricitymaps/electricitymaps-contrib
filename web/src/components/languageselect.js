@@ -22,29 +22,9 @@ const LanguageSelectContainer = styled.div`
   transform: translateX(0px);
   transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
   z-index: 99;
-  min-height: 20.5rem;
+  min-height: 19.5rem;
   height: 100%;
   overflow-x: auto;
-
-  #close-language-select-container {
-    display: none;
-  }
-
-  @media (max-width: 700px) {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 100;
-    text-align: center;
-    overflow-y: scroll;
-    #close-language-select-container {
-      display: block;
-      position: fixed;
-    }
-  }
-
   &.hidden {
     visibility: hidden;
     opacity: 0;
@@ -86,14 +66,6 @@ const LanguageSelect = () => {
       />
       {languagesVisible && (
         <LanguageSelectContainer className="language-select-container">
-          <div id="close-language-select-container">
-            <ButtonToggle
-              onChange={toggleLanguagesVisible}
-              tooltip={__('tooltips.selectLanguage')}
-              ariaLabel={__('tooltips.selectLanguage')}
-              icon="language_select"
-            />
-          </div>
           {map(LANGUAGE_NAMES, (language, key) => (
             <li key={key} onClick={() => handleLanguageSelect(key)}>
               {language}
