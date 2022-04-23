@@ -4461,13 +4461,15 @@
       ]
     ],
     "capacity": {
-      "coal": 9271,
-      "gas": 11085,
-      "hydro": 2502
+      "coal": 12054,
+      "solar": 729,
+      "gas": 10114,
+      "hydro": 2160
     },
     "contributors": [
       "https://github.com/kruschk",
-      "https://github.com/systemcatch"
+      "https://github.com/systemcatch",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumption": "MY_WM.fetch_consumption",
