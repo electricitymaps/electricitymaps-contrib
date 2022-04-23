@@ -17,9 +17,11 @@ import requests
 import json
 
 timezone_name = 'America/Puerto_Rico'
-GENERATION_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/combustibles.aspx"
-RENEWABLES_BREAKDOWN_URL = "https://aeepr.com/es-pr/generacion/Documents/Unidades_renovables.aspx"
-TIMESTAMP_URL = "https://aeepr.com/es-pr/generacion/Documents/CostosCombustible.aspx"
+US_PROXY = 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app'
+HOST_PARAMETER = '?host=https://aeepr.com'
+GENERATION_BREAKDOWN_URL = f"{US_PROXY}/es-pr/generacion/Documents/combustibles.aspx{HOST_PARAMETER}"
+RENEWABLES_BREAKDOWN_URL = f"{US_PROXY}/es-pr/generacion/Documents/Unidades_renovables.aspx{HOST_PARAMETER}"
+TIMESTAMP_URL = f"{US_PROXY}/es-pr/generacion/Documents/CostosCombustible.aspx{HOST_PARAMETER}"
 
 
 
@@ -169,14 +171,19 @@ def fetch_production(zone_key='US-PR', session=None, target_datetime=None, logge
   #Step 3: fetch the timestamp, which is at the bottom of a different iframe
   #Note: there's a race condition here when requesting data very close to <hour>:10 and <hour>:40, which is when the data gets updated
   #Sometimes it's some seconds later, so we grab the timestamp from here to know the exact moment
+
   res = r.get(TIMESTAMP_URL)#TODO do we know for sure the timestamp on this page gets updated *every time* the generation breakdown gets updated?
 
   assert res.status_code == 200, 'Exception when fetching timestamp for ' \
                                '{}: error when calling url={}'.format(
                                    zone_key, TIMESTAMP_URL)
 
+  raw_timestamp_match = re.search(r"Ultima Actualizaci�n:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)", res.text)
 
-  raw_timestamp = re.search(r"Ultima Actualización:  ((?:0[1-9]|1[0-2])/(?:[0-2][0-9]|3[0-2])/2[01][0-9]{2}  [0-2][0-9]:[0-5][0-9]:[0-5][0-9] [AP]M)", res.text).group(1)#Extract timestamp
+  if raw_timestamp_match is None:
+    raise Exception(f"Could not find timestamp in {res.text}")
+
+  raw_timestamp = raw_timestamp_match.group(1)
 
   logger.debug(f"RAW TIMESTAMP: {raw_timestamp}", extra={"key": zone_key})
 
