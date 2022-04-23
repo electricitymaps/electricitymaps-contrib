@@ -4504,7 +4504,8 @@
     ],
     "parsers": {
       "consumption": "MY_WM.fetch_consumption",
-      "production": "MY_WM.fetch_production"
+      "production": "MY_WM.fetch_production",
+      "productionPerModeForecast": "MY_WM.fetch_wind_solar_forecasts"
     },
     "timezone": null
   },
