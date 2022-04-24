@@ -1944,7 +1944,7 @@
     "rotation": 0
   },
   "MY-WM->SG": {
-	"capacity": [
+    "capacity": [
       -450,
       450
     ],
@@ -1958,7 +1958,7 @@
     "rotation": 155
   },
   "MY-WM->TH": {
-	"capacity": [
+    "capacity": [
       -330,
       330
     ],
