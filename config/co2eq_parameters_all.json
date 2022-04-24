@@ -5703,6 +5703,18 @@
           }
         }
       },
+	  "LA": {
+        "_source": "IEA 2020 (used because Our World in Data has a lot of 'other renewables' generation not broken down by type). Biomass includes waste.",
+        "_url": "https://www.iea.org/data-and-statistics/data-browser?country=LAO&fuel=Energy%20supply&indicator=ElecGenByFuel",
+        "powerOriginRatios": {
+          "value": {
+            "biomass": 0.0014261409127302,
+            "coal": 0.2841022818254600,
+            "hydro": 0.7133957165732590,
+            "solar": 0.0010758606885508
+          }
+        }
+      },
       "LU": {
         "powerOriginRatios": [
           {
