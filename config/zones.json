@@ -5861,10 +5861,10 @@
       "geothermal": 0.30,
       "hydro": 6993.73,
       "hydro storage": 1000.00,
-	  "nuclear": 0,
+      "nuclear": 0,
       "oil": 1497.40,
       "solar": 442.80,
-	  "unknown": 0,
+      "unknown": 0,
       "wind": 1447.69
     },
 	"contributors": [
