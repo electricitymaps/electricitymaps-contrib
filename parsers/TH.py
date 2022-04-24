@@ -37,7 +37,7 @@ def fetch_price(zone_key="TH", session=None, target_datetime=None, logger=None) 
         "zoneKey": zone_key,
         "currency": "THB",
         "datetime": arrow.now(TZ).datetime,
-        "price": float(price.text),
+        "price": float(price.text)*1000,
         "source": MEA_URL,
     }
 
