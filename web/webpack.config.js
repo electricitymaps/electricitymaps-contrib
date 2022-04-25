@@ -12,7 +12,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
   entry: {
-    bundle: ['@babel/polyfill', './src/index.jsx'],
+    bundle: ['./src/index.jsx'],
     styles: './src/scss/styles.scss',
   },
   module: {
@@ -32,8 +32,9 @@ module.exports = {
         test: [/\.(js|jsx)$/],
         exclude: [/node_modules/],
         loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+        options: {
+          presets: [['@babel/preset-env', {useBuiltIns: 'usage', corejs: 3}], '@babel/preset-react'],
+          plugins: ['@babel/plugin-proposal-class-properties', ['@babel/plugin-transform-runtime', { corejs: { version: 3, proposals: true }}]],
           cacheDirectory: true, // cache results for subsequent builds
         },
       },

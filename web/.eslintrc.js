@@ -1,6 +1,6 @@
 /* eslint-env node */
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -8,7 +8,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['jest', 'react-hooks'],
+  plugins: ['@babel', 'jest', 'react-hooks'],
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
@@ -37,6 +37,10 @@ module.exports = {
     },
   },
   parserOptions: {
+    requireConfigFile: false,
+    babelOptions: {
+     presets: ['@babel/preset-env', '@babel/preset-react']
+    },
     ecmaFeatures: {
       jsx: true,
     },
