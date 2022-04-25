@@ -5657,9 +5657,12 @@
       ]
     ],
     "capacity": {
-      "biomass": 257,
-      "gas": 10344,
-      "solar": 461.66
+      "geothermal": 0,
+      "biomass": 256.8,
+      "coal": 763.6,
+      "gas": 10671,
+      "oil": 0,
+      "solar": 486.9
     },
     "contributors": [
       "https://github.com/corradio",
@@ -5667,7 +5670,8 @@
       "https://github.com/r24mille",
       "https://github.com/systemcatch",
       "https://github.com/alixunderplatz",
-      "https://github.com/q--"
+      "https://github.com/q--",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "price": "SG.fetch_price",
