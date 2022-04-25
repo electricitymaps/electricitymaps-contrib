@@ -89,7 +89,7 @@
     "prettier": "^2.5.1",
     "readline-sync": "^1.4.9",
     "sass": "^1.50.1",
-    "sass-loader": "^8.0.0",
+    "sass-loader": "^8.0.2",
     "shapefile": "^0.6.2",
     "snowpack": "^3.8.8",
     "topojson-server": "^3.0.1",
