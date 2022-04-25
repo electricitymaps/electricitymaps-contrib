@@ -28,6 +28,72 @@
         "renewableRatioProduction": 0.7767000000000001,
         "stateDatetime": "2022-01-04T08:00:00Z"
       },
+      "US": {
+        "co2intensity": 235.51,
+        "co2intensityProduction": 163.19,
+        "countryCode": "US",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.5081,
+        "fossilFuelRatioProduction": 0.22329999999999997,
+        "renewableRatio": 0.4418,
+        "renewableRatioProduction": 0.7767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
+      "CA": {
+        "co2intensity": 57.51,
+        "co2intensityProduction": 50.19,
+        "countryCode": "CA",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.1081,
+        "fossilFuelRatioProduction": 0.12329999999999997,
+        "renewableRatio": 0.8418,
+        "renewableRatioProduction": 0.7767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
+      "IT": {
+        "co2intensity": 150.51,
+        "co2intensityProduction": 143.19,
+        "countryCode": "IT",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.3081,
+        "fossilFuelRatioProduction": 0.22329999999999997,
+        "renewableRatio": 0.6418,
+        "renewableRatioProduction": 0.7767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
+      "AU": {
+        "co2intensity": 560.51,
+        "co2intensityProduction": 550.19,
+        "countryCode": "AU",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.3081,
+        "fossilFuelRatioProduction": 0.22329999999999997,
+        "renewableRatio": 0.6418,
+        "renewableRatioProduction": 0.7767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
+      "BR": {
+        "co2intensity": 350.51,
+        "co2intensityProduction": 343.19,
+        "countryCode": "BR",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.3081,
+        "fossilFuelRatioProduction": 0.22329999999999997,
+        "renewableRatio": 0.8418,
+        "renewableRatioProduction": 0.7767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
+      "MX": {
+        "co2intensity": 500.51,
+        "co2intensityProduction": 183.19,
+        "countryCode": "MX",
+        "exchangeCapacities": {},
+        "fossilFuelRatio": 0.2081,
+        "fossilFuelRatioProduction": 0.22329999999999997,
+        "renewableRatio": 0.1418,
+        "renewableRatioProduction": 0.1767000000000001,
+        "stateDatetime": "2022-01-04T08:00:00Z"
+      },
       "AUS-NSW": {
         "co2intensity": 562.94,
         "co2intensityProduction": 562.94,

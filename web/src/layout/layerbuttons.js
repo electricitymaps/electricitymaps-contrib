@@ -9,6 +9,9 @@ import {
   useSolarEnabled,
   useSolarToggledLocation,
   useWindToggledLocation,
+  useAggregateToggledLocation,
+  useAggregateEnabled,
+  useSearchParams
 } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
@@ -25,11 +28,24 @@ export default () => {
   const solarDataError = useSelector(state => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
 
+  const aggregateEnabled = useAggregateEnabled();
+  const aggregateToggledLocation = useAggregateToggledLocation();
+  const searchParams = useSearchParams();
+
   const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
+
+  const toggleAggregate = () => {
+    if (aggregateEnabled) {
+      window.location.href = "http://localhost:8000/map?aggregate=false"
+    } else {
+      window.location.href = "http://localhost:8000/map?aggregate=true"
+    }
+    
+  }
 
   const Link = ({ to, hasError, children }) =>
   !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
@@ -61,7 +77,14 @@ export default () => {
         tooltip={__('tooltips.toggleDarkMode')}
         ariaLabel={__('tooltips.toggleDarkMode')}
         icon="brightmode"
-      />
+        />
+        <ButtonToggle
+          active={aggregateEnabled}
+          onChange={toggleAggregate}
+          tooltip={__('tooltips.toggleAggregate')}
+          ariaLabel={__('tooltips.toggleAggregate')}
+          icon="agg"
+        />
     </div>
   );
 };

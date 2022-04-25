@@ -7,7 +7,11 @@ import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
-const zones = constructTopos();
+const queryString = window.location.search;
+const shouldAggregateZones = new URLSearchParams(queryString).get("aggregate")
+
+
+const zones = constructTopos(shouldAggregateZones);
 Object.entries(zonesConfig).forEach((d) => {
   const [key, zoneConfig] = d;
   const zone = zones[key];

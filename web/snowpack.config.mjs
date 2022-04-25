@@ -30,6 +30,7 @@ export default {
   },
   devOptions: {
     hmr: true,
+    port: 8000
   },
   buildOptions: {
     /* ... */

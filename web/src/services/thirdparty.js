@@ -20,8 +20,8 @@ class ConnectionsService {
     this.connections = [];
     if (isProduction()) {
       this.addConnection(new twitterConnection());
-      this.addConnection(new plausibleConnection());
     } else {
+      this.addConnection(new plausibleConnection());
       this.addConnection(new debugConsoleConnection());
     }
   }
@@ -32,9 +32,10 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log(`Tracking event ${eventName}`);
+    console.log(`Tracking s ${eventName}`);
     this.connections.forEach((conn) => {
       try {
+        console.log(conn);
         conn.track(eventName, context);
       } catch (err) { console.error(`External connection error: ${err}`); }
     });

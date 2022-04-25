@@ -22,7 +22,7 @@ const CountryTableHeaderInner = styled.div`
 const TooltipContent = React.memo(
   ({ isDataDelayed, hasData, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
     const { __ } = useTranslation();
-    if (!hasData) {
+    if (!hasData && !co2intensity) {
       return (
         <div className="no-parser-text">
           <span

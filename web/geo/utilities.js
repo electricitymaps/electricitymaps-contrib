@@ -66,4 +66,11 @@ function log(message) {
   console.error('\x1b[31m%s\x1b[0m', `ERROR: ${message}`);
 }
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON, log };
+function combineFeatureCollections(featureCollections) {
+  const features = featureCollections.reduce((acc, cur) => {
+    return acc.concat(cur.features)
+  }, [])
+  return featureCollection(features)
+}
+
+module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, combineFeatureCollections };

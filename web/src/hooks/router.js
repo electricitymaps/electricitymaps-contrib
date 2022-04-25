@@ -30,6 +30,10 @@ export function useWindEnabled() {
   return useSearchParams().get('wind') === 'true';
 }
 
+export function useAggregateEnabled() {
+  return useSearchParams().get('aggregate') === 'true';
+}
+
 export function useSolarToggledLocation() {
   const location = useLocation();
   const searchParams = useSearchParams();
@@ -61,5 +65,22 @@ export function useWindToggledLocation() {
       };
     },
     [location, searchParams, windEnabled],
+  );
+}
+
+export function useAggregateToggledLocation() {
+  const location = useLocation();
+  const searchParams = useSearchParams();
+  const aggregateEnabled = useAggregateEnabled();
+
+  return useMemo(
+    () => {
+      searchParams.set('aggregate', !aggregateEnabled);
+      return {
+        pathname: location.pathname,
+        search: searchParams.toString(),
+      };
+    },
+    [location, searchParams, aggregateEnabled],
   );
 }
