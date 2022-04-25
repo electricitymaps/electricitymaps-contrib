@@ -3742,9 +3742,18 @@
         35.11
       ]
     ],
+    "capacity": {
+      "geothermal": 210.2,
+      "hydro": 1247,
+      "hydro storage": 2350,
+      "nuclear": 5258,
+      "wind": 3.25,
+      "unknown": 9976.94
+    },
     "contributors": [
       "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "https://github.com/lorrieq",
+      "https://github.com/nessie2013"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
