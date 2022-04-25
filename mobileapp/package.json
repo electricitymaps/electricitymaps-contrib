@@ -40,7 +40,7 @@
   "devDependencies": {
     "app-icon": "^0.13.2",
     "code-push": "^3.0.1",
-    "cordova-plugin-advanced-http": "^3.2.2",
+    "cordova-plugin-advanced-http": "^3.3.1",
     "cordova-plugin-code-push": "^2.0.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
