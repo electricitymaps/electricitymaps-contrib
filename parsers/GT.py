@@ -6,7 +6,6 @@ Mayorista (AMM) API.
 
 # Standard library imports
 import logging
-import urllib.parse
 
 # Third-party library imports
 import arrow
@@ -18,8 +17,8 @@ from parsers.lib import validation
 DEFAULT_ZONE_KEY = 'GT'
 PRODUCTION_THRESHOLD = 10 # MW
 TIMEZONE = 'America/Guatemala'
-URL = urllib.parse.urlsplit('https://wl12.amm.org.gt/GraficaPW/graficaAreaScada')
-URL_STRING = urllib.parse.urlunsplit(URL)
+DOMAIN = 'wl12.amm.org.gt'
+URL = f'https://{DOMAIN}/GraficaPW/graficaCombustible'
 
 
 def fetch_consumption(zone_key=DEFAULT_ZONE_KEY,
@@ -32,12 +31,13 @@ def fetch_consumption(zone_key=DEFAULT_ZONE_KEY,
     date_time = arrow.get(target_datetime).to(TIMEZONE).floor('hour')
     results = [
         {
-            'consumption': row.get('DEM SNI'),
+            'consumption': row['DEM SNI'],
             'datetime': date_time.replace(hour=hour).datetime,
-            'source': URL.netloc,
+            'source': DOMAIN,
             'zoneKey': zone_key,
-        } for hour, row in enumerate(index_api_data_by_hour(request_api_data(
+        } for hour, row in enumerate(index_api_data_by_hour(get_api_data(
                                                                 session,
+                                                                URL,
                                                                 date_time)))
     ]
     # An hour's data isn't updated until the hour has passed, so the current
@@ -57,19 +57,27 @@ def fetch_production(zone_key=DEFAULT_ZONE_KEY,
         {
             'datetime': date_time.replace(hour=hour).datetime,
             'production': {
-                'biomass':    row.get('BIOGAS'),
-                'coal':       row.get('TURBINA DE VAPOR'),
-                'gas':        row.get('TURBINA DE GAS'),
-                'hydro':      row.get('HIDROELÉCTRICA'),
-                'oil':        row.get('MOTOR RECIPROCANTE'),
-                'solar':      row.get('FOTOVOLTAICA'),
-                'wind':       row.get('EÓLICO'),
-                'geothermal': row.get('GEOTÉRMICA'),
+                'biomass': row['BIOGAS']
+                           + row['BIOMASA']
+                           + 0.5*row['BIOMASA/CARBÓN'],
+                'coal': 0.5*row['BIOMASA/CARBÓN']
+                        + row['CARBÓN']
+                        + 0.5*row['CARBÓN/PETCOKE'],
+                'gas': row['GAS NATURAL'],
+                'geothermal': row['VAPOR'],
+                'hydro': row['AGUA'],
+                'oil': row['BUNKER']
+                       + 0.5*row['CARBÓN/PETCOKE']
+                       + row['DIESEL'],
+                'solar': row['IRRADIACIÓN'],
+                'unknown': row['SYNGAN'],
+                'wind': row['VIENTO'],
             },
-            'source': URL.netloc,
+            'source': DOMAIN,
             'zoneKey': zone_key,
-        } for hour, row in enumerate(index_api_data_by_hour(request_api_data(
+        } for hour, row in enumerate(index_api_data_by_hour(get_api_data(
                                                                 session,
+                                                                URL,
                                                                 date_time)))
     ]
     # If the current day is selected, the API will return zero-filled future
@@ -98,12 +106,12 @@ def index_api_data_by_hour(json):
     return results
 
 
-def request_api_data(session, date_time):
+def get_api_data(session, url, date_time):
     """Get the JSON-formatted response from the AMM API for the desired
     date-time.
     """
     session = session or requests.Session()
-    return (session.get(URL_STRING,
+    return (session.get(url,
                         params={'dt': date_time.format('DD/MM/YYYY')})
                    .json())
 
