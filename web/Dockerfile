@@ -1,4 +1,4 @@
-FROM node:12.22
+FROM node:18.0.0
 WORKDIR /home/src/electricitymap/contrib/web
 
 # Install dependencies
