@@ -83,7 +83,7 @@
     "esm": "^3.2.25",
     "mini-css-extract-plugin": "^0.8.0",
     "ndjson-cli": "^0.3.1",
-    "nodemon": "^1.17.1",
+    "nodemon": "^1.19.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.5.1",
