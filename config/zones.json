@@ -4949,14 +4949,14 @@
       ]
     ],
     "capacity": {
-      "biomass": 8.1,
-      "coal": 420,
-      "gas": 381,
-      "hydro": 1795.523,
+      "biomass": 33,
+      "coal": 307.86,
+      "gas": 449.5,
+      "hydro": 1786,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 1018.393,
-      "solar": 197.872,
+      "oil": 243,
+      "solar": 465,
       "unknown": 0,
       "wind": 270
     },
