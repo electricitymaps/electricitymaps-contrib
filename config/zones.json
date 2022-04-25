@@ -2631,6 +2631,14 @@
         23.06394603200009
       ]
     ],
+    "capacity": {
+      "coal": 2875,
+      "gas": 3225,
+      "oil": 210
+    },
+    "contributors": [
+      "https://github.com/nessie2013"
+    ],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
   },
