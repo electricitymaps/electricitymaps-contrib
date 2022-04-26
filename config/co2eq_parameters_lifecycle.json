@@ -1576,9 +1576,9 @@
           }
         ],
         "unknown": {
-          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
-          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
-          "value": 131
+          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
+          "source": "52% hydro storage, 48% unknown thermal",
+          "value": 383
         }
       },
       "CL-SEN": {
@@ -3865,9 +3865,7 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": [
-            "http://srldc.org/2018-19srallocation.aspx"
-          ],
+          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
