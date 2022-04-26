@@ -9,7 +9,7 @@ import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
-import { useTheme } from '../hooks/theme';
+import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
 import { dispatchApplication } from '../store';
 
@@ -31,12 +31,15 @@ export default () => {
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
+  const selectedZoneTimeIndex = useSelector(state => state.application.selectedZoneTimeIndex);
+  const zoneHistories = useSelector(state => state.data.histories);
   const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
   const location = useLocation();
   const history = useHistory();
+  const co2ColorScale = useCo2ColorScale();
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
@@ -91,17 +94,21 @@ export default () => {
       x,
       y,
     }) => {
-      dispatchApplication(
-        'solarColorbarValue',
-        getValueAtPosition(longitude, latitude, solarData),
-      );
-      dispatchApplication(
-        'windColorbarValue',
-        calculateLengthFromDimensions(
-          getValueAtPosition(longitude, latitude, windData && windData[0]),
-          getValueAtPosition(longitude, latitude, windData && windData[1]),
-        ),
-      );
+      if (solarData) {
+        dispatchApplication(
+          'solarColorbarValue',
+          getValueAtPosition(longitude, latitude, solarData),
+        );
+      }
+      if (windData) {
+        dispatchApplication(
+          'windColorbarValue',
+          calculateLengthFromDimensions(
+            getValueAtPosition(longitude, latitude, windData && windData[0]),
+            getValueAtPosition(longitude, latitude, windData && windData[1]),
+          ),
+        );
+      }
       setTooltipPosition({ x, y });
     },
     [solarData, windData],
@@ -192,6 +199,7 @@ export default () => {
         />
       )}
       <ZoneMap
+        co2ColorScale={co2ColorScale}
         hoveringEnabled={hoveringEnabled}
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
@@ -202,6 +210,7 @@ export default () => {
         onZoneClick={handleZoneClick}
         onZoneMouseEnter={handleZoneMouseEnter}
         onZoneMouseLeave={handleZoneMouseLeave}
+        selectedZoneTimeIndex={selectedZoneTimeIndex}
         scrollZoom={!isEmbedded}
         theme={theme}
         transitionDuration={transitionDuration}
@@ -209,6 +218,7 @@ export default () => {
         zones={zones}
         zoomInLabel={__('tooltips.zoomIn')}
         zoomOutLabel={__('tooltips.zoomOut')}
+        zoneHistories={zoneHistories}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />
