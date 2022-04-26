@@ -567,16 +567,15 @@ pandas = ["pandas"]
 
 [[package]]
 name = "testfixtures"
-version = "6.18.5"
+version = "6.0.2"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.extras]
-build = ["setuptools-git", "wheel", "twine"]
-docs = ["sphinx", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
-test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
+build = ["sphinx", "pkginfo", "setuptools-git", "wheel", "twine"]
+test = ["pytest", "mock", "sybil", "coverage", "coveralls", "zope.component", "pytest-django", "django (<2)", "django"]
 
 [[package]]
 name = "tomli"
@@ -703,7 +702,7 @@ parsers = ["arrow", "beautifulsoup4", "demjson3", "eiapy", "html5lib", "imageio"
 [metadata]
 lock-version = "1.1"
 python-versions = '>= 3.7.1, < 4.0'
-content-hash = "1c8303c1190a7765730cf6324015e84145a4d7fd23b83643a41c169f67e60b83"
+content-hash = "194fe20f3b2d910d4fa1342aa562294c42dfbf86e22b24ebe072201e2a7ffad6"
 
 [metadata.files]
 arrow = [
@@ -1173,8 +1172,8 @@ tablib = [
     {file = "tablib-0.12.1.tar.gz", hash = "sha256:b8cf50a61d66655229993f2ee29220553fb2c80403479f8e6de77c0c24649d87"},
 ]
 testfixtures = [
-    {file = "testfixtures-6.18.5-py2.py3-none-any.whl", hash = "sha256:7de200e24f50a4a5d6da7019fb1197aaf5abd475efb2ec2422fdcf2f2eb98c1d"},
-    {file = "testfixtures-6.18.5.tar.gz", hash = "sha256:02dae883f567f5b70fd3ad3c9eefb95912e78ac90be6c7444b5e2f46bf572c84"},
+    {file = "testfixtures-6.0.2-py2.py3-none-any.whl", hash = "sha256:04f31490bbebd7b87eae3bc63d1f1056cdcab62c76301b92bf34fc1267ffc367"},
+    {file = "testfixtures-6.0.2.tar.gz", hash = "sha256:f8827cfc91e5cc9ac669727fdd48a85880f391b935a0a212b5cedb807879feec"},
 ]
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},

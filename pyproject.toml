@@ -38,7 +38,7 @@ flake8 = "^3.9.2"
 mock = "^2.0.0"
 pylint = "^2.13.7"
 requests-mock = "^1.9.3"
-testfixtures = "^6.18.5"
+testfixtures = "~6.0.0"
 
 [tool.poetry.scripts]
 lint = 'scripts:lint'
