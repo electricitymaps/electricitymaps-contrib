@@ -3,7 +3,6 @@ import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 import moment from 'moment';
 
-import { flatDeep } from '../../helpers/flatDeep';
 import { isEmpty } from '../../helpers/isEmpty';
 
 import AreaGraphLayers from './areagraphlayers';
@@ -27,11 +26,11 @@ const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .range([0, width]);
 
 const getTotalValues = (layers) => {
-  const values = flatDeep(
-      layers.map(
+  const values =
+      layers.flatMap(
         layer => layer.datapoints.map(d => d[1]),
-      ), Infinity
-    ).filter(Number.isFinite)
+      )
+      .filter(Number.isFinite)
 
   return {
     min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
