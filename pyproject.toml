@@ -33,7 +33,7 @@ tqdm = {version="^4.60.0", optional=true}
 xlrd = {version="1.2.0", optional=true}
 
 [tool.poetry.dev-dependencies]
-click = "8.0.1"
+click = "8.1.2"
 flake8 = "^3.8.4"
 mock = "2.0.0"
 pylint = "^2.6.0"
