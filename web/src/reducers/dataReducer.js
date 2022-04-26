@@ -169,8 +169,8 @@ const reducer = (state = initialDataState, action) => {
           ...state.histories,
           [action.zoneId]: action.payload.map(datapoint => ({
             ...datapoint,
-            hasParser: true,
-            hasData: true
+            hasParser: zones[action.zoneId].hasParser,
+            hasData: !Object.values(datapoint.production).every(v => v === null)
           })),
         },
       };
