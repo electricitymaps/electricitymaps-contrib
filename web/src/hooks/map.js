@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { mapValues } from 'lodash.mapvalues';
+import mapValues from 'lodash.mapvalues';
 
 import { useCo2ColorScale } from './theme';
 
