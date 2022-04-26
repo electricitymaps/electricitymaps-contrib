@@ -65,9 +65,9 @@ const LanguageSelect = () => {
       />
       {languagesVisible && (
         <LanguageSelectContainer className="language-select-container">
-          {Object.entries(LANGUAGE_NAMES).map(current => (
-            <li key={current[0]} onClick={() => handleLanguageSelect(current[0])}>
-              {current[1]}
+          {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
+            <li key={key} onClick={() => handleLanguageSelect(key)}>
+              {language}
             </li>
           ))}
         </LanguageSelectContainer>

@@ -65,9 +65,7 @@ const ZoneMap = ({
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(
     () => {
-      const features = Object.entries(zones).map(current => {
-        const zoneId = current[0];
-        const zone = current[1];
+      const features = Object.entries(zones).map(([zoneId, zone]) => {
         const length = (coordinate) => coordinate ? coordinate.length : 0
         return {
           type: 'Feature',

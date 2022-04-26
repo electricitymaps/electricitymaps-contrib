@@ -72,9 +72,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
 
       if (electricityMixMode === 'consumption') {
         // Add exchange
-        Object.entries(d.exchange).forEach((current) => {
-          const key = current[0];
-          const value = current[1];
+        Object.entries(d.exchange).forEach(([key, value]) => {
           // in GW or MW
           obj[key] = Math.max(0, value / valueFactor);
           if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
