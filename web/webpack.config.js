@@ -33,7 +33,7 @@ module.exports = {
         exclude: [/node_modules/],
         loader: 'babel-loader',
         options: {
-          presets: [['@babel/preset-env', {useBuiltIns: 'usage', corejs: 3}], '@babel/preset-react'],
+          presets: ['@babel/preset-react'],
           plugins: ['@babel/plugin-proposal-class-properties', ['@babel/plugin-transform-runtime', { corejs: { version: 3, proposals: true }}]],
           cacheDirectory: true, // cache results for subsequent builds
         },
