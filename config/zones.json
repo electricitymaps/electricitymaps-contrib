@@ -1340,7 +1340,7 @@
       "production": "CH.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "timezone": null
+    "timezone": "Europe/Zurich"
   },
   "CI": {
     "flag_file_name": "ci.png",
