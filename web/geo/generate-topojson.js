@@ -30,8 +30,8 @@ function getCenter(geojson, zoneName) {
   }
 
   return [
-    (Math.min(longitudes) + Math.max(longitudes)) / 2,
-    (Math.min(latitudes) + Math.max(latitudes)) / 2,
+    (Math.min(...longitudes) + Math.max(...longitudes)) / 2,
+    (Math.min(...latitudes) + Math.max(...latitudes)) / 2,
   ];
 }
 
