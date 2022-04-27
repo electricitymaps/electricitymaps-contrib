@@ -1,6 +1,8 @@
 infrastructure:
   - .circleci/*
   - .github/**/*
+  - docker-compose.yml
+  - web/Dockerfile
 
 dependencies:
   - poetry.lock
@@ -21,10 +23,6 @@ translations 🗣:
 tests:
   - tests/**/*
   - parsers/test/**/*
-
-docker:
-  - docker-compose.yml
-  - web/Dockerfile
 
 javascript:
   - .**/*.js
