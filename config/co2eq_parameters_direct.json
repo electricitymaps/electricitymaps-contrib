@@ -1565,7 +1565,12 @@
             "source": "electricityMap, 2021 average",
             "value": 205.82553856340994
           }
-        ]
+        ],
+        "unknown": {
+          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
+          "source": "52% hydro storage, 48% unknown thermal",
+          "value": 288
+        }
       },
       "CL-SEN": {
         "battery discharge": [
