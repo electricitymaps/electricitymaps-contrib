@@ -2699,7 +2699,8 @@
       "wind": 925
     },
     "contributors": [
-      "https://github.com/PaulCornelissen"
+      "https://github.com/PaulCornelissen",
+      "https://github.com/VIKTORVAV99"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
