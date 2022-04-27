@@ -3185,7 +3185,12 @@
             "source": "electricityMap, 2020 average",
             "value": 269.6187929820843
           }
-        ]
+        ],
+        "unknown": {
+            "_url": "https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352",
+            "source": "Guatemala AMM 2021-2022 and IEA 2020",
+            "value": 383.240577
+        }
       },
       "HN": {
         "battery discharge": [

@@ -5,6 +5,7 @@ Mayorista (AMM) API.
 """
 
 # Standard library imports
+import collections
 import logging
 
 # Third-party library imports
@@ -57,20 +58,16 @@ def fetch_production(zone_key=DEFAULT_ZONE_KEY,
         {
             'datetime': date_time.replace(hour=hour).datetime,
             'production': {
-                'biomass': row['BIOGAS']
-                           + row['BIOMASA']
-                           + 0.5*row['BIOMASA/CARBÓN'],
-                'coal': 0.5*row['BIOMASA/CARBÓN']
-                        + row['CARBÓN']
-                        + 0.5*row['CARBÓN/PETCOKE'],
+                'biomass': row['BIOGAS'] + row['BIOMASA'],
+                'coal': row['CARBÓN'],
                 'gas': row['GAS NATURAL'],
                 'geothermal': row['VAPOR'],
                 'hydro': row['AGUA'],
-                'oil': row['BUNKER']
-                       + 0.5*row['CARBÓN/PETCOKE']
-                       + row['DIESEL'],
+                'oil': row['BUNKER'] + row['DIESEL'],
                 'solar': row['IRRADIACIÓN'],
-                'unknown': row['SYNGAN'],
+                'unknown': row['BIOMASA/CARBÓN']
+                           + row['CARBÓN/PETCOKE']
+                           + row['SYNGAN'],
                 'wind': row['VIENTO'],
             },
             'source': DOMAIN,
@@ -96,7 +93,7 @@ def index_api_data_by_hour(json):
     representing one technology type. Collect this information into a list,
     with the list index representing the hour of day.
     """
-    results = [{} for _ in range(24)]
+    results = [collections.defaultdict(float) for _ in range(24)]
     for row in json:
         # The API returns hours in the range [1, 24], so each one refers to the
         # past hour (e.g., 1 is the time period [00:00, 01:00)). Shift the hour
