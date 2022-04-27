@@ -1,4 +1,3 @@
-const { max, min, mean } = require("lodash");
 const { topology } = require("topojson-server");
 const { getJSON, writeJSON } = require("./utilities");
 const turf = require("@turf/turf");
@@ -31,8 +30,8 @@ function getCenter(geojson, zoneName) {
   }
 
   return [
-    mean([min(longitudes), max(longitudes)]),
-    mean([min(latitudes), max(latitudes)]),
+    (Math.min(longitudes) + Math.max(longitudes)) / 2,
+    (Math.min(latitudes) + Math.max(latitudes)) / 2,
   ];
 }
 
