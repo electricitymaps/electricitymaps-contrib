@@ -6577,6 +6577,13 @@
           }
         ]
       },
+	  "TH": {
+        "unknown": {
+          "_url": "https://www.iea.org/fuels-and-technologies/electricity",
+          "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",
+          "value": 498.9322479978950
+        }
+      },
       "TR": {
         "battery discharge": [
           {
