@@ -5,6 +5,7 @@ import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
+import Icon from './icon';
 
 const views = [{
   headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
@@ -109,18 +110,14 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
-              <svg>
-                <use height="24px" width="24px" href="/images/material-icon-sprite.svg#arrow_back" />
-              </svg>
+              <Icon iconName="arrow_back"/>
             </div>
           )}
         </div>
         <div className="modal-body">
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={handleDismiss}>
-              <svg>
-                <use height="24px" width="24px" href="/images/material-icon-sprite.svg#close" />
-              </svg>
+              <Icon iconName="close"/>
             </div>
           </div>
           <div
@@ -142,15 +139,11 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-right-button-container">
           {isOnLastView() ? (
             <div className="modal-right-button green" onClick={handleDismiss}>
-              <svg>
-                <use href="/images/material-icon-sprite.svg#check" />
-              </svg>
+              <Icon iconName="check"/>
             </div>
           ) : (
             <div  className="modal-right-button" onClick={handleForward}>
-              <svg>
-                <use href="/images/material-icon-sprite.svg#arrow_forward" />
-              </svg>
+              <Icon iconName="arrow_forward"/>
             </div>
           )}
         </div>

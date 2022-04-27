@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useTranslation } from '../helpers/translation';
+import Icon from '../components/icon';
 
 export default () => {
   const { __ } = useTranslation();
@@ -26,18 +27,14 @@ export default () => {
           className="list-item"
           to={{ pathname: '/ranking', search: location.search }}
         >
-          <svg>
-            <use href="/images/material-icon-sprite.svg#view_list" />
-          </svg>
+          <Icon iconName="view_list" />
           <span className="tab-label">{__('mobile-main-menu.areas')}</span>
         </NavLink>
         <NavLink
           className="list-item"
           to={{ pathname: '/info', search: location.search }}
         >
-          <svg>
-            <use href="/images/material-icon-sprite.svg#info" />
-          </svg>
+          <Icon iconName="info"/>
           <span className="tab-label">{__('mobile-main-menu.about')}</span>
         </NavLink>
       </div>

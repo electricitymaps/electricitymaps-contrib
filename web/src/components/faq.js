@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import { useTranslation } from '../helpers/translation';
+import Icon from './icon';
 
 const orderings = [
   {
@@ -68,9 +69,7 @@ const QuestionAnswer = ({
         className="question"
         onClick={() => setAnswerVisible(entryKey, !answerVisible)}
       >
-        <svg height="24px" width="24px">
-          <use href={`/images/material-icon-sprite.svg#${answerVisible ? 'expand_less' : 'expand_more'}`} />
-        </svg>
+        <Icon iconName={answerVisible ? 'expand_less' : 'expand_more'} />
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
       </div>
       {answerVisible && (

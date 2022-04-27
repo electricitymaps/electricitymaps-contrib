@@ -9,6 +9,7 @@ import { dispatchApplication } from '../store';
 import { useTranslation } from '../helpers/translation';
 
 import HorizontalColorbar from '../components/horizontalcolorbar';
+import Icon from '../components/icon';
 import { solarColor, windColor } from '../helpers/scales';
 import { useSolarEnabled, useWindEnabled } from '../hooks/router';
 import { useCo2ColorScale } from '../hooks/theme';
@@ -72,9 +73,7 @@ const MobileHeader = ({ onToggle, isOpen, label }) => (
   <StyledMobileHeader isCollapsed={!isOpen}>
     <span>{label}</span>
     <ToggleLegendButton onClick={onToggle}>
-      <svg width="24px" height="24px">
-        <use href={`/images/material-icon-sprite.svg#${isOpen ? 'call_received' : 'call_made'}`}/>
-      </svg>
+      <Icon iconName={isOpen ? 'call_received' : 'call_made'} />
     </ToggleLegendButton>
   </StyledMobileHeader>
 );

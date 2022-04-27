@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { noop } from 'lodash';
 
 import Tooltip from './tooltip';
+import Icon from './icon';
 
 const DisclaimerIcon = styled.span`
   font-size: 20px;
@@ -39,9 +40,7 @@ const CountryDisclaimer = ({ text, isMobile }) => {
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}
       >
-        <svg>
-          <use href="/images/material-icon-sprite.svg#error" />
-        </svg>
+        <Icon iconName="error"/>
       </DisclaimerIcon>
       {tooltip && <DisclaimerTooltip text={text} position={tooltip} />}
     </React.Fragment>

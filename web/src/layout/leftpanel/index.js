@@ -17,6 +17,7 @@ import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
 import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
+import Icon from '../../components/icon';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
@@ -60,7 +61,7 @@ const mapStateToProps = state => ({
 });
 
 
-const LeftPanelCollapseButton = styled.svg`
+const LeftPanelCollapseButton = styled.div`
 @media (max-width: 767px) {
   display: none !important;
 }
@@ -115,7 +116,8 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         role="button"
         tabIndex="0"
       >
-        <use href={`/images/material-icon-sprite.svg#${!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'}`}/>
+        <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
+       
       </LeftPanelCollapseButton>
 
       {/* Render different content based on the current route */}

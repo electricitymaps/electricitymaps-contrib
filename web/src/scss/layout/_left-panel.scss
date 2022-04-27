@@ -23,12 +23,15 @@
     box-shadow: 6px 2px 10px -3px rgba(0,0,0,0.10);
     outline: 0;
 
-    &.collapsed svg {
-        transform: rotate(180deg);
-    }
-
     @include respond-to('small') {
         display: none;
+    }
+
+    >svg {
+        fill-opacity: 0.5;
+        &:hover {
+            fill-opacity: 1;
+        }
     }
 }
 
@@ -142,12 +145,12 @@
 }
 
 .left-panel-back-button {
-    fill:#4178ac;
+    fill-opacity: 0.5;
     position: absolute;
     left: 1.25rem;
 
     &:hover {
-        fill: $black;
+        fill-opacity: 1;
     }
 }
 
