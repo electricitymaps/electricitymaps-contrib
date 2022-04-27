@@ -2,12 +2,17 @@
 
 """Parser for power production in Croatia"""
 
+# Standard library imports
+from datetime import datetime, timedelta
+import logging
+
+# Third-party library imports
 import arrow
 import requests
-import logging
 import pandas as pd
 
-from datetime import datetime
+# Local library imports
+from .ENTSOE import fetch_production as ENTSOE_fetch_production
 
 URL = "https://www.hops.hr/Home/PowerExchange"
 
@@ -47,7 +52,10 @@ def fetch_solar_production(feed_date, session=None, logger=logging.getLogger(__n
 def fetch_production(zone_key='HR', session=None, target_datetime=None,
                      logger=logging.getLogger(__name__)):
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        if target_datetime < (datetime.now() - timedelta(hours=12)):
+            return ENTSOE_fetch_production(zone_key=zone_key, session=session, target_datetime=target_datetime)
+        else:
+            raise ValueError("ENTSOE might not have data for the last 12 hours")
 
     r = session or requests.session()
     response = r.get(URL)
