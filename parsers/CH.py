@@ -85,7 +85,7 @@ def fetch_production(
     The total production is calculated as sum of the consumption, storage and net imports.
     """
     now = (
-        arrow.get(target_datetime, "Europe/Zurich")
+        arrow.get(target_datetime).to("Europe/Zurich")
         if target_datetime
         else arrow.now(tz="Europe/Zurich")
     )
