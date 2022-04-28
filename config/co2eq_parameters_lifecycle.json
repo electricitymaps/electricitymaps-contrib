@@ -1576,9 +1576,9 @@
           }
         ],
         "unknown": {
-          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
-          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
-          "value": 131
+          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
+          "source": "52% hydro storage, 48% unknown thermal",
+          "value": 383
         }
       },
       "CL-SEN": {
@@ -1586,24 +1586,24 @@
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 286.014588304432
+            "value": 239.9847501944717
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 302.9702386365516
+            "value": 258.08616563398533
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 286.014588304432
+            "value": 239.9847501944717
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 302.9702386365516
+            "value": 258.08616563398533
           }
         ],
         "unknown": [
