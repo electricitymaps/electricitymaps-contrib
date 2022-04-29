@@ -5867,6 +5867,11 @@
       "unknown": 0,
       "wind": 1447.69
     },
+	"parsers": {
+      "consumption": "TH.fetch_consumption",
+      "price": "TH.fetch_price",
+      "production": "TH.fetch_production"
+    },
 	"contributors": [
       "https://github.com/PPsyrius"
     ],
