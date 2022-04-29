@@ -5853,7 +5853,29 @@
         20.94500640900013
       ]
     ],
-    "timezone": null
+	"capacity": {
+      "battery storage": 0,
+      "biomass": 996.94,
+      "coal": 6067.50,
+      "gas": 27356.00,
+      "geothermal": 0.30,
+      "hydro": 6993.73,
+      "hydro storage": 1000.00,
+      "nuclear": 0,
+      "oil": 1497.40,
+      "solar": 442.80,
+      "unknown": 0,
+      "wind": 1447.69
+    },
+	"parsers": {
+      "consumption": "TH.fetch_consumption",
+      "price": "TH.fetch_price",
+      "production": "TH.fetch_production"
+    },
+	"contributors": [
+      "https://github.com/PPsyrius"
+    ],
+    "timezone": "Asia/Bangkok"
   },
   "TJ": {
     "flag_file_name": "tj.png",
