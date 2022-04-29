@@ -1322,7 +1322,7 @@
       "hydro storage": 4485,
       "nuclear": 3014.6,
       "oil": 0.4,
-      "solar": 2972.8,
+      "solar": 3135.8,
       "wind": 88.6
     },
     "contributors": [
@@ -1340,7 +1340,7 @@
       "production": "CH.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "timezone": null
+    "timezone": "Europe/Zurich"
   },
   "CI": {
     "flag_file_name": "ci.png",
