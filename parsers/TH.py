@@ -5,7 +5,6 @@ from requests import get
 from bs4 import BeautifulSoup
 
 EGAT_GENERATION = "https://energy.go.th/index.html"
-#EGAT_GENERATION2 = "https://www.sothailand.com/sysgen/egat/"
 EGAT_URL = "www.egat.co.th"
 MEA_PRICE = "https://www.mea.or.th/en/profile/109/111"
 MEA_URL = "www.mea.or.th"
