@@ -1576,9 +1576,9 @@
           }
         ],
         "unknown": {
-          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
-          "source": "52% hydro storage, 48% unknown thermal",
-          "value": 383
+          "_comment": "Source ENTSOE and Swiss government: https://github.com/tmrowco/electricitymap-contrib/pull/2898",
+          "source": "assumes 64% hydro, 13% hydro storage, 12% unknown thermal, 7% solar, 3% unknown renewable",
+          "value": 131
         }
       },
       "CL-SEN": {
@@ -3865,7 +3865,9 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
@@ -6576,13 +6578,6 @@
             "value": 199.07165644246462
           }
         ]
-      },
-	  "TH": {
-        "unknown": {
-          "_url": "https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing",
-          "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",
-          "value": 509.277
-        }
       },
       "TR": {
         "battery discharge": [

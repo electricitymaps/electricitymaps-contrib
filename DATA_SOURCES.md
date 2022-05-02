@@ -122,7 +122,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Sri Lanka: [Ceylon Electricity Board](https://cebcare.ceb.lk/gensum/details)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Thailand: [EGAT](https://www.sothailand.com/sysgen/egat/)
 - Turkey: [ytbs](https://ytbsbilgi.teias.gov.tr/ytbsbilgi/frm_istatistikler.jsf)
 - Ukraine: [UKRENERGO](https://ua.energy/activity/dispatch-information/ues-operation/)
 - United Arab Emirates: [GCCIA](https://www.gccia.com.sa/)
@@ -254,9 +253,6 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Ireland
   - Non-Renewable: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Indonesia
-   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-   - Non-Renewable [ESDM](https://www.esdm.go.id/assets/media/content/content-laporan-kinerja-ditjen-ketenagalistrikan-2020.pdf)
 - Israel
   - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
   - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
@@ -354,9 +350,6 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
-- Thailand:
-  - EGAT's production capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=452&Itemid=116)
-  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=355&Itemid=116)
 - Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
