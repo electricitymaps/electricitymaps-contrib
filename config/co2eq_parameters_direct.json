@@ -1565,7 +1565,12 @@
             "source": "electricityMap, 2021 average",
             "value": 205.82553856340994
           }
-        ]
+        ],
+        "unknown": {
+          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
+          "source": "52% hydro storage, 48% unknown thermal",
+          "value": 288
+        }
       },
       "CL-SEN": {
         "battery discharge": [
@@ -6167,6 +6172,13 @@
             "value": 131.82330997925308
           }
         ]
+      },
+	  "TH": {
+        "unknown": {
+          "_url": "https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing",
+          "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",
+          "value": 386.645
+        }
       },
       "TR": {
         "battery discharge": [
