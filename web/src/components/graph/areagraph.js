@@ -11,7 +11,6 @@ import {
 } from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
-import moment from 'moment';
 
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
@@ -28,8 +27,8 @@ const getDatetimes = data => (data || []).map(d => d.datetime);
 
 const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
-    startTime ? moment(startTime).toDate() : first(datetimes),
-    endTime ? moment(endTime).toDate() : last(datetimes),
+    startTime ? new Date(startTime) : first(datetimes),
+    endTime ? new Date(endTime) : last(datetimes),
   ])
   .range([0, width]);
 
