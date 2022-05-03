@@ -12,6 +12,7 @@ import pandas
 
 # Local library imports
 from parsers.lib import config, validation
+from .ENTSOE import fetch_exchange as ENTSOE_fetch_exchange
 
 MINIMUM_PRODUCTION_THRESHOLD = 10 # MW
 TIMEZONE = 'Asia/Tbilisi'
@@ -98,7 +99,7 @@ def fetch_exchange(zone_key1='GE',
                    logger=logging.getLogger(__name__)) -> dict:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
-        raise NotImplementedError('Past exchange data is not yet supported')
+        return ENTSOE_fetch_exchange(zone_key1, zone_key2, session, target_datetime, logger)
 
     session = session or requests.session()
     # The API uses the convention of positive net flow into GE.
