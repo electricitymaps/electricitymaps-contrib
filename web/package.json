@@ -51,8 +51,7 @@
     "styled-components": "^5.0.1",
     "sunrise-sunset-js": "^2.2.1",
     "swr": "^1.0.1",
-    "topojson": "^3.0.2",
-    "url-search-params-polyfill": "^8.1.0"
+    "topojson": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
