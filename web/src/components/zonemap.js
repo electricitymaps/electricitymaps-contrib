@@ -146,7 +146,7 @@ const ZoneMap = ({
           ? map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
           : color;
 
-        if (color !== existingColor) {
+        if (feature.id && fillColor !== existingColor) {
           map.setFeatureState(
             {
               source: 'zones-clickable',
