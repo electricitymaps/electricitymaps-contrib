@@ -12,7 +12,7 @@ console.log(`Languages you can translate: ${languages.join(', ').green}`);
 const language = readline.question('Which language do you want to translate: ');
 if (!languages.includes(language)) {
   console.error((`${language} is not a translatable language!`).red);
-  return;
+  process.exit(1);
 }
 
 console.log();

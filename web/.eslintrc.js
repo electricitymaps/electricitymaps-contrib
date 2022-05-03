@@ -1,6 +1,6 @@
 /* eslint-env node */
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -8,11 +8,10 @@ module.exports = {
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['jest', 'react-hooks'],
+  plugins: ['@babel', 'jest', 'react-hooks'],
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
-    "locale": "readonly",
     "codePush": "readonly",
     "device": "readonly",
     "cordova": "readonly",
@@ -38,6 +37,7 @@ module.exports = {
     },
   },
   parserOptions: {
+    requireConfigFile: false,
     ecmaFeatures: {
       jsx: true,
     },
@@ -76,7 +76,7 @@ module.exports = {
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
-    'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error'],
 
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',

@@ -20,6 +20,7 @@ jobs:
           name: Install dependencies
           command: |
             set -eux -o pipefail
+            sudo apt-get update
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
             poetry install -E parsers
       - run:
@@ -42,16 +43,6 @@ jobs:
             sudo npm install -g jsonlint-mod
             jsonlint -q config/*.json web/public/locales/*.json
 
-  test_js:
-    executor: js-exec
-    steps:
-      - checkout
-      - run:
-          command: |
-            sudo npm install -g jest
-            sed -i -e 's/export {/module.exports = {/' web/src/helpers/constants.js
-            jest
-
   verify_web_js:
     executor: js-exec
     steps:
@@ -71,7 +62,7 @@ jobs:
 
   build_test:
     machine:
-      image: circleci/classic:201808-01
+      image: ubuntu-2004:202201-02
       docker_layer_caching: true
     steps:
       - checkout
@@ -112,10 +103,8 @@ workflows:
       - verify_python
       - verify_web_js
       - lint_json
-      - test_js
       - build_test:
           requires:
             - verify_python
             - verify_web_js
             - lint_json
-            - test_js
