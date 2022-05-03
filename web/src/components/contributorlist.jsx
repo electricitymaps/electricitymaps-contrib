@@ -5,11 +5,10 @@ import zonesConfig from '../../../config/zones.json';
 
 const ContributorList = () => {
   const { zoneId } = useParams();
-  const contributors = zonesConfig[zoneId]?.contributors;
 
   return (
     <div className="contributors">
-      {contributors?.map((contributor) => {
+      {zonesConfig[zoneId]?.contributors?.map((contributor) => {
         return (
           <a
             key={contributor}
