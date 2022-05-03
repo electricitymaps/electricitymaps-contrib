@@ -3,17 +3,18 @@
     position: relative;
     margin-top: 1em;
 
-    .material-icons {
-        font-size: 1rem;
-    }
-
     small{
         display: inline-flex;
         vertical-align: middle;
         align-items: center;
+        >svg{
+            min-width: 16px;
+            width: 16px;
+            height: 16px;
+        }
     }
 
-    svg {
+    >svg {
         width: 100%;
 
         &:not(:last-child) {
