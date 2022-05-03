@@ -186,7 +186,6 @@ export default () => {
     <React.Fragment>
       <div id="webgl-error" className={`flash-message ${!webGLSupported ? 'active' : ''}`}>
         <div className="inner">
-
           {__('misc.webgl-not-supported')}
         </div>
       </div>
