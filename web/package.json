@@ -63,7 +63,7 @@
     "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-sass": "^1.4.0",
     "@turf/turf": "^6.5.0",
-    "autoprefixer": "^9.6.2",
+    "autoprefixer": "^9.8.8",
     "babel-core": "^6.26.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
