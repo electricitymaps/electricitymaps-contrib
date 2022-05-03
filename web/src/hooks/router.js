@@ -11,7 +11,7 @@ export function useFeatureToggle(selectedFeature = null) {
   return useMemo(() => {
     const featureToggles = searchParams.get('feature');
     if (selectedFeature) {
-      return featureToggles && featureToggles.split(',').includes(singleFeature);      
+      return featureToggles && featureToggles.split(',').includes(selectedFeature);
     } else {
       return featureToggles ? featureToggles.split(',') : [];
     }
