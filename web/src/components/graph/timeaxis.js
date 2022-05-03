@@ -46,7 +46,6 @@ const getTicksValuesFromTimeScale = (scale, count) => {
 };
 
 const renderTick = (scale, val, idx, __, displayLive) => {
-  console.log(idx);
   return (
     <g key={`tick-${val}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" />

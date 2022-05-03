@@ -11,11 +11,17 @@ const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
+const handleTimeAggregationChange = (aggregate) => {
+  console.log(aggregate);
+  dispatchApplication('selectedTimeAggregate', aggregate);
+};
+
 const mapStateToProps = (state) => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
+  selectedTimeAggregate: state.application.selectedTimeAggregate
 });
 
-const TimeController = ({ selectedZoneTimeIndex }) => {
+const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const datetimes = useCurrentDatetimes();
   const startTime = datetimes[0];
   const endTime = datetimes[datetimes.length - 1];
@@ -25,11 +31,12 @@ const TimeController = ({ selectedZoneTimeIndex }) => {
       className="zone-time-slider"
       onChange={handleZoneTimeIndexChange}
       selectedTimeIndex={selectedZoneTimeIndex}
+      handleTimeAggregationChange={handleTimeAggregationChange}
+      selectedTimeAggregate={selectedTimeAggregate}
       datetimes={datetimes}
       startTime={startTime}
       endTime={endTime}
     />
-    // <div className="i want connect">I want connect</div>
   );
 };
 

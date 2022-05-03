@@ -50,7 +50,7 @@ const createChangeAndInputHandler =
     }
   };
 
-const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTime, endTime }) => {
+const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTime, endTime, handleTimeAggregationChange, selectedTimeAggregate }) => {
   const { __ } = useTranslation();
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
@@ -106,7 +106,7 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
         position={tooltipPos}
         date={new Date(timeValue)}
       />
-      <TimeControls date={new Date(timeValue)} />
+      <TimeControls date={new Date(timeValue)} selectedTimeAggregate={selectedTimeAggregate} handleTimeAggregationChange={handleTimeAggregationChange}/>
       <TimeSliderInput
         onChange={handleChangeAndInput}
         value={timeValue}

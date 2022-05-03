@@ -25,7 +25,10 @@
     @include respond-to('small') {
         padding-top: 4px;
         background-color: $lighter-gray;
-        padding-bottom: 0;
+        padding-bottom: 10px;
+        padding-top: 20px;
+        padding-left: 12px;
+        padding-right: 12px;
         box-sizing: border-box;
         bottom: 0px;
         left: 0px;
@@ -39,10 +42,9 @@
     font-size: .7em;
     font-family: "Open Sans", sans-serif;
     line { opacity: 0.5; }
-}
-
-.tick-live {
-  fill: red;
+    @include respond-to('small') {
+      font-size: .6em;
+  }
 }
 
 .time-slider-input {

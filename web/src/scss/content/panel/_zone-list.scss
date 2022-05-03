@@ -4,11 +4,14 @@
     flex-direction: column;
     flex: 1 1 0px;
     overflow-y: hidden;
-
+    
     .info-text {
         flex-direction: column;
         padding: 1rem 1rem 0 1rem;
     }
+
+    // provide extra space for time component
+    margin-bottom: 170px;
 }
 
 

@@ -12,6 +12,9 @@ const Title = styled.span`
   height: 100%;
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
 `;
 const DateRangeOption = styled.span`
   font-size: 0.8rem;
@@ -20,15 +23,16 @@ const DateRangeOption = styled.span`
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 16px;
-  font-weight: ${(props) => (props.selected ? 700 : 500)};
-  opacity: ${(props) => (props.selected ? 1 : 0.5)};
-  cursor: not-allowed;
+  white-space: nowrap;
+  cursor: default;
+  font-weight: ${(props) => (props.active ? 700 : 500)};
+  opacity: ${(props) => (props.active ? 1 : 0.5)};
   ${(props) =>
-    props.selected &&
+    props.active &&
     css`
+      cursor: pointer;
       background-color: white;
       box-shadow: 0.1px 0.1px 5px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
     `}
 `;
 
@@ -49,6 +53,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 30px;
+  @media (max-width: 315px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 `;
 
 const DateOptionWrapper = styled.div`
@@ -57,7 +65,14 @@ const DateOptionWrapper = styled.div`
   padding-top: 8px;
 `;
 
-const TimeControls = ({ date }) => {
+const options = [
+  { key: 'day', label: 'Day' },
+  // { key: 'month', label: 'Month' },
+  // { key: 'year', label: 'Year' },
+  // { key: '5year', label: '5 Years' },
+];
+
+const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   return (
     <div>
       <Wrapper>
@@ -65,10 +80,20 @@ const TimeControls = ({ date }) => {
         <DateDisplay>{formatHourlyDate(date)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
-        <DateRangeOption selected>Day</DateRangeOption>
-        <DateRangeOption>Month</DateRangeOption>
-        <DateRangeOption>Year</DateRangeOption>
-        <DateRangeOption>5 years</DateRangeOption>
+        {options.map((o) => (
+          <DateRangeOption
+            key={o.key}
+            active={o.key === selectedTimeAggregate}
+            onClick={() => {
+              handleTimeAggregationChange(o.key);
+            }}
+          >
+            {o.label}
+          </DateRangeOption>
+        ))}
+        <DateRangeOption>
+          More options soon!
+        </DateRangeOption>
       </DateOptionWrapper>
     </div>
   );

@@ -209,3 +209,11 @@
 label[for="checkbox-colorblind"] {
     font-size: smaller;
 }
+
+.contributors {
+    // Provides extra space to scroll
+    margin-bottom: 170px;
+    @include respond-to('small') {
+        margin-bottom: 30px;
+    }
+}
