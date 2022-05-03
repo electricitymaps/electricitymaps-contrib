@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TimeSlider from '../components/timeslider';
+import { BottomSheet } from 'react-spring-bottom-sheet'
+import 'react-spring-bottom-sheet/dist/style.css'
 
 import {
   useCurrentDatetimes,
@@ -27,6 +29,7 @@ const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const endTime = datetimes[datetimes.length - 1];
 
   return (
+    <BottomSheet open={true} blocking={false}>
     <TimeSlider
       className="zone-time-slider"
       onChange={handleZoneTimeIndexChange}
@@ -36,7 +39,8 @@ const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
       datetimes={datetimes}
       startTime={startTime}
       endTime={endTime}
-    />
+      />
+      </BottomSheet>
   );
 };
 
