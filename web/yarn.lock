@@ -6821,10 +6821,10 @@ i18next-browser-languagedetector@^6.1.3:
   dependencies:
     "@babel/runtime" "^7.14.6"
 
-i18next-http-backend@^1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-1.3.2.tgz#ce6aff7aa60b6170e006d62b8f9cc1b3de55413e"
-  integrity sha512-SfcoUmsSWnc2LYsDsCq5TCg18cxJXvXymX9N37V+qqMKQY8Gf0rWkjOnRd20sMK633Dq4NF9tvqPbOiFJ49Kbw==
+i18next-http-backend@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-1.4.0.tgz#e6abef0615316e00837798d2385c13395096f963"
+  integrity sha512-wsvx7E/CT1pHmBM99Vu57YLJpsrHbVjxGxf25EIJ/6oTjsvCkZZ6c3SA4TejcK5jIHfv9oLxQX8l+DFKZHZ0Gg==
   dependencies:
     cross-fetch "3.1.5"
 
