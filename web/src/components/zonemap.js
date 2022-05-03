@@ -1,13 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import {
-  debounce,
-  isEmpty,
-  map,
-  noop,
-  size,
-} from 'lodash';
+import { debounce, isEmpty, map, noop, size } from 'lodash';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -44,19 +38,15 @@ const ZoneMap = ({
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
-
-  // TODO: Figure if we we can combine using feature-state and "case, has, color" usage together.
-  const clickableStyle = {
-    'fill-color': ['feature-state', 'color']
-  }
-  // zonesClickable: { 'fill-color': ['case', ['has', 'color'], ['get', 'color'], theme.clickableFill] },
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
-    () => debounce((value) => {
-      setIsDragging(value);
-    }, 200),
-    [],
+    () =>
+      debounce((value) => {
+        setIsDragging(value);
+      }, 200),
+    []
   );
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
@@ -70,37 +60,39 @@ const ZoneMap = ({
     []
   );
 
-  // Generate two sources (clickable and non-clickable zones), based on the zones data.
-  const sources = useMemo(
-    () => {
-      const features = map(zones, (zone, zoneId) => ({
-        type: 'Feature',
-        id: zoneId,
-        geometry: {
-          ...zone.geometry,
-          coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
-        },
-        properties: {
-          color: zone.color,
-          isClickable: zone.isClickable,
-          zoneData: zone,
-          zoneId,
-        },
-      }));
+  const handleLoad = () => {
+    setIsLoaded(true);
+    onMapLoaded();
+  };
 
-      return {
-        zonesClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => f.properties.isClickable),
-        },
-        zonesNonClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => !f.properties.isClickable),
-        },
-      };
-    },
-    [zones],
-  );
+  // Generate two sources (clickable and non-clickable zones), based on the zones data.
+  const sources = useMemo(() => {
+    const features = map(zones, (zone, zoneId) => ({
+      type: 'Feature',
+      id: zoneId,
+      geometry: {
+        ...zone.geometry,
+        coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
+      },
+      properties: {
+        color: zone.color,
+        isClickable: zone.isClickable,
+        zoneData: zone,
+        zoneId,
+      },
+    }));
+
+    return {
+      zonesClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => f.properties.isClickable),
+      },
+      zonesNonClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => !f.properties.isClickable),
+      },
+    };
+  }, [zones]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
@@ -112,8 +104,14 @@ const ZoneMap = ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
-      // not use
-      zonesClickable: { 'fill-color': ['case', ['has', 'color'], ['get', 'color'], theme.clickableFill] },
+      zonesClickable: {
+        'fill-color': [
+          'coalesce', // // https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#coalesce
+          ['feature-state', 'color'],
+          ['get', 'color'],
+          theme.clickableFill,
+        ],
+      },
       zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
     [theme]
@@ -127,34 +125,41 @@ const ZoneMap = ({
     }
   }, []);
 
+  // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
   useEffect(() => {
-    // TODO: This is not triggered first time because ref is not yet defined. We should either fill
-    // colours in a different way initially or somehow make sure this runs later on. Maybe the
-    // initialClickableStyle solution that Markus had started is the best solution?
-    const features = ref.current.queryRenderedFeatures();
-    const map = ref.current.getMap();
-
-    if (co2ColorScale) {
+    if (isLoaded && co2ColorScale) {
+      // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
+      // TODO: Consider using isdragging or similar to update this when new zones are rendered
+      const features = ref.current.queryRenderedFeatures();
+      const map = ref.current.getMap();
       features.forEach((feature) => {
-        const {zoneId} = feature.properties;
-        const newIntensity = (zoneHistories[zoneId] || {})[selectedZoneTimeIndex]?.co2intensity;
-        if (newIntensity) {
-          const newColor = co2ColorScale(newIntensity);
+        const { color, zoneId } = feature.properties;
+        let fillColor = color;
+        const co2intensity = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex]?.co2intensity;
+
+        // Calculate new color if zonetime is selected and we have a co2intensity
+        if (selectedZoneTimeIndex !== null && co2intensity) {
+          fillColor = co2ColorScale(co2intensity);
+        }
+        const existingColor = feature.id
+          ? map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
+          : color;
+
+        if (color !== existingColor) {
           map.setFeatureState(
             {
               source: 'zones-clickable',
               id: feature.id,
             },
             {
-              color: newColor,
+              color: fillColor,
             }
-            );
-          }
-      })
-
+          );
+        }
+      });
     }
-  }, [selectedZoneTimeIndex]);
+  }, [isLoaded, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
 
   const handleClick = useMemo(
     () => (e) => {
@@ -167,7 +172,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick],
+    [ref.current, onSeaClick, onZoneClick]
   );
 
   const handleMouseMove = useMemo(
@@ -199,7 +204,16 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [
+      ref.current,
+      hoveringEnabled,
+      isDragging,
+      zones,
+      hoveredZoneId,
+      onMouseMove,
+      onZoneMouseEnter,
+      onZoneMouseLeave,
+    ]
   );
 
   const handleMouseOut = useMemo(
@@ -235,7 +249,7 @@ const ZoneMap = ({
         onBlur={handleMouseOut}
         onClick={handleClick}
         onError={onMapError}
-        onLoad={onMapLoaded}
+        onLoad={handleLoad}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onMouseDown={handleDragStart}
@@ -274,7 +288,7 @@ const ZoneMap = ({
           <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
         </Source>
         <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
-          <Layer id="zones-clickable-layer" type="fill" paint={clickableStyle} />
+          <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>
