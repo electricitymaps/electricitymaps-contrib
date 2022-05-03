@@ -13,15 +13,6 @@ export default {
     { match: 'routes', src: '.*', dest: '/index.html' },
   ],
   plugins: [
-    [
-      '@snowpack/plugin-babel',
-      {
-        input: ['.js', '.mjs', '.ts', '.tsx'],
-        transformOptions: {
-          presets: ['@babel/preset-react'],
-        },
-      },
-    ],
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-sass',
   ],
