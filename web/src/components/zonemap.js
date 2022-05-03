@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { debounce, isEmpty, map, noop, size } from 'lodash';
+import { useFeatureToggle } from '../hooks/router';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -39,6 +40,7 @@ const ZoneMap = ({
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -128,7 +130,7 @@ const ZoneMap = ({
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
   useEffect(() => {
-    if (isLoaded && co2ColorScale) {
+    if (isHistoryFeatureEnabled && isLoaded && co2ColorScale) {
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
       const features = ref.current.queryRenderedFeatures();
@@ -159,7 +161,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isLoaded, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
+  }, [isHistoryFeatureEnabled, isLoaded, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
 
   const handleClick = useMemo(
     () => (e) => {
