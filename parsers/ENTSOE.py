@@ -146,6 +146,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'UA': '10YUA-WEPS-----0',
     'XK': '10Y1001C--00100H'
 }
+
 # Generation per unit can only be obtained at EIC (Control Area) level
 ENTSOE_EIC_MAPPING = {
     'DK-DK1': '10Y1001A1001A796',
@@ -154,6 +155,12 @@ ENTSOE_EIC_MAPPING = {
     'PL': '10YPL-AREA-----S',
     'SE': '10YSE-1--------K',
     # TODO: ADD DE
+}
+
+# Define zone_keys to an array of zone_keys for aggregated production data
+ZONE_KEY_AGGREGATES = {
+    'IT-SO': ['IT-CA', 'IT-SO'],
+    'SE': ['SE-SE1', 'SE-SE2', 'SE-SE3', 'SE-SE4'],
 }
 
 # Some exchanges require specific domains
@@ -909,12 +916,6 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                     d['production'][k] = 0
 
     return list(filter(lambda x: validate_production(x, logger), data))
-
-
-ZONE_KEY_AGGREGATES = {
-    'IT-SO': ['IT-CA', 'IT-SO'],
-}
-
 
 # TODO: generalize and move to lib.utils so other parsers can reuse it. (it's
 # currently used by US_SEC.)
