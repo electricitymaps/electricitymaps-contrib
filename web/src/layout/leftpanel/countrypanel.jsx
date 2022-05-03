@@ -28,6 +28,7 @@ import CountryHistoryPricesGraph from '../../components/countryhistorypricesgrap
 import CountryTable from '../../components/countrytable';
 import CountryDisclaimer from '../../components/countrydisclaimer';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
+import Icon from '../../components/icon';
 
 import { dispatchApplication } from '../../store';
 
@@ -102,7 +103,7 @@ const CountryTime = styled.div`
   white-space: nowrap;
 `;
 
-const IconContainer = styled.small`
+const ProContainer = styled.small`
   @media (max-width: 767px) {
     display: none !important;
   }
@@ -188,12 +189,8 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
 
   return (
     <div className="left-panel-zone-details-toolbar">
-      <Link to={parentPage}>
-        <span className="left-panel-back-button">
-          <i className="material-icons" aria-hidden="true">
-            arrow_back
-          </i>
-        </span>
+      <Link to={parentPage} className="left-panel-back-button">
+        <Icon iconName="arrow_back"/>
       </Link>
       <CountryNameTime>
         <CountryNameTimeTable>
@@ -349,10 +346,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
               </CountryHistoryTitle>
               <br />
-              <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-              </IconContainer>
+              <ProContainer>
+                <Icon iconName="file_download"/>
+                <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro">
+                  <Icon iconName="lock"/>
+                  pro
+                </span>
+              </ProContainer>
               {tableDisplayEmissions ? (
                 <CountryHistoryEmissionsGraph />
               ) : (
@@ -366,10 +367,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 }
               </CountryHistoryTitle>
               <br />
-              <IconContainer>
-                <i className="material-icons" aria-hidden="true">file_download</i> <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
-                <span className="pro"><i className="material-icons" aria-hidden="true">lock</i> pro</span>
-              </IconContainer>
+              <ProContainer>
+                <Icon iconName="file_download"/>
+                <a href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel" target="_blank">{__('country-history.Getdata')}</a>
+                <span className="pro">
+                  <Icon iconName="lock"/>
+                  pro
+                </span>
+              </ProContainer>
               <CountryHistoryMixGraph />
 
               <CountryHistoryTitle>
