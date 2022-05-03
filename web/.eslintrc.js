@@ -75,7 +75,7 @@ module.exports = {
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
-    'react/jsx-filename-extension': ['error', { 'extensions': ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error'],
 
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
