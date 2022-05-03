@@ -3,10 +3,11 @@ import { createStore, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 
 import reducer from './reducers';
+import { isProduction } from './helpers/environment';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-export const store = process.env.NODE_ENV === 'production'
+export const store = isProduction()
   ? createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
