@@ -90,19 +90,19 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
         style={{
           position:
             'fixed' /* This is done in order to ensure that dragging will not affect the body */,
-          width: '100vw',
-          height: 'inherit',
-          display: 'flex',
-          flexDirection: 'column' /* children will be stacked vertically */,
-          alignItems: 'stretch' /* force children to take 100% width */,
-        }}
+            width: '100vw',
+            height: 'inherit',
+            display: 'flex',
+            flexDirection: 'column' /* children will be stacked vertically */,
+            alignItems: 'stretch' /* force children to take 100% width */,
+          }}
       >
+          <TimeController />
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
             <LoadingOverlay visible={showLoadingOverlay} />
             <LeftPanel />
-            <TimeController />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
               <Legend />

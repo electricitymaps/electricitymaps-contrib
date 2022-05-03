@@ -26,8 +26,9 @@ const updateTooltipPosition = (ev, setTooltipPos) => {
   const thumbSize = 25;
   const range = ev.target;
   const ratio = (range.value - range.min) / (range.max - range.min);
+  const posY = range.getBoundingClientRect().y
   const posX = thumbSize / 2 + ratio * range.offsetWidth - ratio * thumbSize;
-  setTooltipPos({ x: posX, y: 770 + 60 });
+  setTooltipPos({ x: posX, y: posY });
 };
 
 const createChangeAndInputHandler =
@@ -120,6 +121,7 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
+          displayLive
         />
       </svg>
     </div>

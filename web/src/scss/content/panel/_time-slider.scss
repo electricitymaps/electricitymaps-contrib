@@ -7,9 +7,8 @@
     border-radius: 15px;
     text-align: center;
     overflow-y: visible;
-    max-width: calc((14vw + 16rem) - 70px); // ensure it is smaller than countrypanel
-    width: 100%;
-    z-index: 3;
+    width: calc((14vw + 16rem) - 70px); // ensure it is smaller than countrypanel
+    z-index: 999; // TODO: find the needed one
     position: fixed;
     box-shadow: rgba(0, 0, 0, 0.66) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
@@ -26,13 +25,24 @@
     @include respond-to('small') {
         padding-top: 4px;
         background-color: $lighter-gray;
+        padding-bottom: 0;
+        box-sizing: border-box;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
     }
 }
 
 .time-slider-axis .tick {
-    font-size: .8em;
+    font-size: .7em;
     font-family: "Open Sans", sans-serif;
     line { opacity: 0.5; }
+}
+
+.tick-live {
+  fill: red;
 }
 
 .time-slider-input {

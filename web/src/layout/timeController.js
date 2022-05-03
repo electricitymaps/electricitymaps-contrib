@@ -1,14 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import TimeSlider from '../components/timeslider';
-import { useTranslation } from '../helpers/translation';
 
 import {
   useCurrentDatetimes,
-  useCurrentZoneHistoryDatetimes,
-  useCurrentZoneHistoryEndTime,
-  useCurrentZoneHistoryStartTime,
 } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
