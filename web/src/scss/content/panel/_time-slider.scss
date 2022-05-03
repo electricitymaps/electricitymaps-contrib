@@ -1,18 +1,21 @@
 .zone-time-slider {
     bottom: 0;
-    height: 65px;
-    padding: 0.25rem 1.5rem;
-    background: transparent;
-    width: 100%;
-    box-sizing: border-box;
-    border-top: 1px solid lightgray;
+    padding: 12px 24px;
+    background: white;
+    left: 10px;
+    bottom: 10px;
+    border-radius: 15px;
     text-align: center;
     overflow-y: visible;
+    max-width: calc((14vw + 16rem) - 70px); // ensure it is smaller than countrypanel
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.66) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
     .time-slider-axis-container {
         width: 100%;
         height: 20px;
-        margin: -6px 2px 0;
         overflow: visible;
     }
 
@@ -27,7 +30,7 @@
 }
 
 .time-slider-axis .tick {
-    font-size: .85em;
+    font-size: .8em;
     font-family: "Open Sans", sans-serif;
     line { opacity: 0.5; }
 }
@@ -77,9 +80,8 @@
     height: 12px;
     border-radius: 4px;
     cursor: pointer;
-    background: $light-gray;
-    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
-    background: var(--time-gradient);
+    background: #f0f0f0;
+    // background: var(--time-gradient);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -87,10 +89,14 @@
 .time-slider-input {
   // Webkit
     &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
-      background-image: url("../images/timeslider-night.svg");
+      background-image: url("../images/slider-thumb.svg");
+      border: none;
+      box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
     }
     &.day::-webkit-slider-thumb {
-      background-image: url("../images/timeslider-sun.svg");
+      border: none;
+      box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
+      background-image: url("../images/slider-thumb.svg")
     }
     &::-webkit-slider-thumb {
       @include thumb;

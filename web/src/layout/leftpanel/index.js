@@ -6,12 +6,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {
-  Switch,
-  Route,
-  Redirect,
-  useLocation,
-} from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
@@ -47,7 +42,8 @@ const HandleLegacyRoutes = () => {
 // TODO: Move all styles from styles.css to here
 
 const SmallLoader = styled.span`
-  background: transparent url(${resolvePath('images/loading/loading64_FA.gif')}) no-repeat center center;
+  background: transparent url(${resolvePath('images/loading/loading64_FA.gif')}) no-repeat center
+    center;
   background-size: 1.5em;
   display: inline-block;
   margin-right: 1em;
@@ -55,47 +51,44 @@ const SmallLoader = styled.span`
   height: 1em;
 `;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
 
-
 const LeftPanelCollapseButton = styled.div`
-@media (max-width: 767px) {
-  display: none !important;
-}
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
 const MobileHeader = styled.div`
-@media (min-width: 768px) {
-  display: none !important;
-}
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 `;
 
 const RightHeader = styled.div`
-@media (min-width: 768px) {
-  display: none !important;
-}
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 `;
 
 // Hide the panel completely if looking at the map on small screens.
 const Container = styled.div`
   @media (max-width: 767px) {
-    display: ${props => props.pathname === '/map' ?  'none !important': 'flex'};
+    display: ${(props) => (props.pathname === '/map' ? 'none !important' : 'flex')};
   }
 `;
 
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
-  
+
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
-  
 
   return (
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
-
       <MobileHeader id="mobile-header" className="brightmode">
         <div className="header-content">
           <div className="logo">
