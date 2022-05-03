@@ -4,7 +4,6 @@ import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import 'mapbox-gl/dist/mapbox-gl.css'; // Required for map zooming buttons
-import 'url-search-params-polyfill'; // For IE 11 support
 
 import { history } from './helpers/router';
 import { store, sagaMiddleware } from './store';
