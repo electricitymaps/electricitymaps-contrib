@@ -60,7 +60,6 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "@babel/runtime": "^7.7.2",
-    "@snowpack/plugin-babel": "^2.1.7",
     "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-sass": "^1.4.0",
     "@turf/turf": "^6.5.0",

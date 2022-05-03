@@ -15,6 +15,9 @@ module.exports = {
     bundle: ['@babel/polyfill', './src/index.jsx'],
     styles: './src/scss/styles.scss',
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.mjs', '.cjs'],
+  },
   module: {
     rules: [
       // Extract css files
