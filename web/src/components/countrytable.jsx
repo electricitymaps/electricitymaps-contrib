@@ -94,8 +94,7 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
 
 const getDataBlockPositions = (productionData, exchangeData) => {
   const productionHeight = productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
-    if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
-    return true;
+    return !(d.capacity === 0 && getElectricityProductionValue(d) === 0)
   }).length * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
@@ -274,8 +273,7 @@ const CountryCarbonEmissionsTable = React.memo(({
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
-          if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
-          return true;
+          return !(d.capacity === 0 && getElectricityProductionValue(d) === 0)
         }).map((d, index) => (
           <Row
             key={d.mode}
@@ -394,8 +392,7 @@ const CountryElectricityProductionTable = React.memo(({
       />
       <g transform={`translate(0, ${productionY})`}>
         {productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
-          if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
-          return true;
+          return !(d.capacity === 0 && getElectricityProductionValue(d) === 0)
         }).map((d, index) => (
           <Row
             key={d.mode}
