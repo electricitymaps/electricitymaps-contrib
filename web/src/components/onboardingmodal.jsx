@@ -5,6 +5,7 @@ import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
+import Icon from './icon';
 
 const views = [{
   headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
@@ -109,14 +110,14 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
-              <i className="material-icons">arrow_back</i>
+              <Icon iconName="arrow_back"/>
             </div>
           )}
         </div>
         <div className="modal-body">
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={handleDismiss}>
-              <i className="material-icons">close</i>
+              <Icon iconName="close"/>
             </div>
           </div>
           <div
@@ -138,11 +139,11 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-right-button-container">
           {isOnLastView() ? (
             <div className="modal-right-button green" onClick={handleDismiss}>
-              <i className="material-icons">check</i>
+              <Icon iconName="check"/>
             </div>
           ) : (
-            <div className="modal-right-button" onClick={handleForward}>
-              <i className="material-icons">arrow_forward</i>
+            <div  className="modal-right-button" onClick={handleForward}>
+              <Icon iconName="arrow_forward"/>
             </div>
           )}
         </div>

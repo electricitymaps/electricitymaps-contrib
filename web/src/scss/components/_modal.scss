@@ -39,7 +39,7 @@
         }
     }
 
-    .modal-left-button-container, 
+    .modal-left-button-container,
     .modal-right-button-container {
         display: flex;
         flex-direction: column;
@@ -54,7 +54,7 @@
         }
     }
 
-    .modal-left-button-container { 
+    .modal-left-button-container {
         align-items: flex-start;
         margin-left: 10px;
 
@@ -79,21 +79,30 @@
         right:0;
     }
 
-    .modal-left-button, 
-    .modal-right-button, 
+    .modal-left-button,
+    .modal-right-button,
     .modal-close-button {
         background-color: white;
         height: 48px;
         width: 48px;
         border: none;
         border-radius: 25px;
-        font-size: 32px;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
-        color: #333333;
         display: flex;
         justify-content: center;
         align-items: center;
+
+        >svg {
+            fill: #333;
+            width: 24px;
+            height: 24px;
+            fill: $black;
+        }
+    }
+
+    .modal-close-button>svg{
+        fill: #FFF
     }
 
     .modal-left-button,
@@ -107,11 +116,16 @@
         }
 
         &.green {
-            color: $green;
+            >svg {
+              fill: $green;
+            }
 
             &:hover {
                 background-color: $light-green;
-                color: inherit;
+                >svg {
+                    fill: inherit;
+                }
+
             }
         }
 
@@ -126,10 +140,6 @@
             color: $white;
             height: 32px;
             width: 32px;
-
-            .material-icons {
-                font-size: 18px;
-            }
 
             &.green {
                 background-color: $green;
@@ -204,7 +214,7 @@
         }
     }
 
-    .modal-body { 
+    .modal-body {
         flex: 1;
         position: relative;
         border-radius: 15px;
