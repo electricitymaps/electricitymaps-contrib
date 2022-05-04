@@ -15,7 +15,7 @@ a {
 	}
 }
 
-html, 
+html,
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -74,10 +74,19 @@ line, path {
     margin-bottom: 0.2em;
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    .material-icons {
+    >svg {
+        fill: rgb(76,76,76);
+        height: 16px;
+        width: 16px;
         font-size: inherit;
         margin-right: 0.1em;
+
+        >use {
+        height: 16px;
+        width: 16px;
+        }
     }
 }
 
@@ -88,7 +97,7 @@ div::-webkit-scrollbar {
 }
 div::-webkit-scrollbar-track-piece {
     background: $light-gray;
-    border-radius: 3px; 
+    border-radius: 3px;
 }
 
 div::-webkit-scrollbar-thumb {
