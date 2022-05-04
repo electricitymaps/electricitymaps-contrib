@@ -93,7 +93,10 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys
 });
 
 const getDataBlockPositions = (productionData, exchangeData) => {
-  const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
+  const productionHeight = productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
+    if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
+    return true;
+  }).length * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
   const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, d => d.mode.length) * 8;
@@ -270,7 +273,10 @@ const CountryCarbonEmissionsTable = React.memo(({
         scale={co2Scale}
       />
       <g transform={`translate(0, ${productionY})`}>
-        {productionData.map((d, index) => (
+        {productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
+          if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
+          return true;
+        }).map((d, index) => (
           <Row
             key={d.mode}
             index={index}
@@ -387,7 +393,10 @@ const CountryElectricityProductionTable = React.memo(({
         scale={powerScale}
       />
       <g transform={`translate(0, ${productionY})`}>
-        {productionData.map((d, index) => (
+        {productionData.filter(d => { // Filter out modes with 0 capacity and 0 production.
+          if (d.capacity === 0 && getElectricityProductionValue(d) === 0) return false;
+          return true;
+        }).map((d, index) => (
           <Row
             key={d.mode}
             index={index}
