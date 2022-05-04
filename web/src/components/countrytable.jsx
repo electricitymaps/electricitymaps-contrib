@@ -468,9 +468,8 @@ const CountryTable = ({
   const data = useCurrentZoneData();
 
   const productionData = useMemo(
-    () => getProductionData(data).filter(d => { // Filter out modes with 0 capacity and 0 production.
-      return !(d.capacity === 0 && getElectricityProductionValue(d) === 0)
-    }),
+    // Get production data and filter out modes with 0 capacity and 0 production.
+    () => getProductionData(data).filter(d => !(d.capacity === 0 && getElectricityProductionValue(d) === 0)),
     [data],
   );
   const exchangeData = useMemo(
