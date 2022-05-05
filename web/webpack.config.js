@@ -10,7 +10,7 @@ const { version } = require('./public/client-version.json');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  devtool: isProduction ? 'sourcemap' : 'eval',
+  devtool: isProduction ? 'source-map' : 'eval',
   entry: {
     bundle: './src/index.jsx',
     styles: './src/scss/styles.scss',
@@ -57,7 +57,6 @@ module.exports = {
       filename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
       chunkFilename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       ELECTRICITYMAP_PUBLIC_TOKEN: `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`,
       VERSION: JSON.stringify(version),
@@ -84,9 +83,5 @@ module.exports = {
     chunkFilename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.js`,
     path: `${__dirname}/public/dist`,
     pathinfo: false,
-  },
-  // The following is required because of https://github.com/webpack-contrib/css-loader/issues/447
-  node: {
-    fs: 'empty',
   },
 };
