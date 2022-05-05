@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { first, last, sortedIndex, isNumber } from 'lodash';
+import {
+  first, last, sortedIndex, isNumber,
+} from 'lodash';
 import { scaleTime } from 'd3-scale';
 import moment from 'moment';
 
@@ -10,20 +12,23 @@ import { TimeSliderInput } from './TimeSliderInput';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
-const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
-  scaleTime()
-    .domain([
-      startTime ? moment(startTime).toDate() : first(datetimes),
-      endTime ? moment(endTime).toDate() : last(datetimes),
-    ])
-    .range([0, rangeEnd])
-    .nice(25);
+const getTimeScale = (rangeEnd, datetimes, startTime, endTime) => scaleTime()
+  .domain([
+    startTime ? moment(startTime).toDate() : first(datetimes),
+    endTime ? moment(endTime).toDate() : last(datetimes),
+  ])
+  .range([0, rangeEnd])
+  .nice(25);
 
-const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) => (ev) => {
+const createChangeAndInputHandler = (
+  datetimes,
+  onChange,
+  setAnchoredTimeIndex,
+) => (ev) => {
   const value = parseInt(ev.target.value, 10);
   let index = sortedIndex(
-    datetimes.map((t) => t.valueOf()),
-    value
+    datetimes.map(t => t.valueOf()),
+    value,
   );
   // If the slider is past the last datetime, we set index to null in order to use the scale end time.
   if (index >= datetimes.length) {
@@ -35,7 +40,14 @@ const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex) 
   }
 };
 
-const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTime, endTime }) => {
+const TimeSlider = ({
+  className,
+  onChange,
+  selectedTimeIndex,
+  datetimes,
+  startTime,
+  endTime,
+}) => {
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
 
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
@@ -43,7 +55,7 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
 
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
-    [width, datetimes, startTime, endTime]
+    [width, datetimes, startTime, endTime],
   );
 
   const startTimeValue = timeScale.domain()[0].valueOf();
@@ -52,7 +64,7 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
   // Creating a scale for the night-time background gradients
   const gradientScale = useMemo(
     () => getTimeScale(100, nightTimes, startTimeValue, endTimeValue),
-    [nightTimes, timeScale]
+    [nightTimes, timeScale],
   );
 
   const nightTimeSets = nightTimes.flatMap(([start, end]) => [
@@ -62,9 +74,10 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
     },
   ]);
 
+
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
-    [datetimes, onChange, setAnchoredTimeIndex]
+    [datetimes, onChange, setAnchoredTimeIndex],
   );
 
   if (!datetimes || datetimes.length === 0) return null;
@@ -76,10 +89,10 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
     ? datetimes[anchoredTimeIndex].valueOf()
     : null;
 
+
+
   const timeOnGradient = gradientScale(selectedTimeValue || anchoredTimeValue || endTimeValue);
-  const isSelectedTimeDuringNight = nightTimeSets.some(
-    ({ start, end }) => timeOnGradient >= start && timeOnGradient <= end
-  );
+  const isSelectedTimeDuringNight =  nightTimeSets.some(({start, end}) => timeOnGradient >= start && timeOnGradient <= end)
 
   return (
     <div className={className}>
