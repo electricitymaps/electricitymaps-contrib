@@ -1,7 +1,5 @@
 import React from 'react';
-
-// import { useTranslation } from '../../helpers/translation';
-// import Tooltip from '../tooltip';
+import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
 import { formatHourlyDate } from '../helpers/formatting';
 
@@ -66,17 +64,19 @@ const DateOptionWrapper = styled.div`
 `;
 
 const options = [
-  { key: 'day', label: 'Day' },
-  { key: 'month', label: 'Month' },
-  { key: 'year', label: 'Year' },
-  { key: '5year', label: '5 Years' },
+  { key: 'day', label: 'time-controller.day' },
+  { key: 'month', label: 'time-controller.month' },
+  { key: 'year', label: 'time-controller.year' },
+  { key: '5year', label: 'time-controller.5year' },
 ];
 
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
+  const { __ } = useTranslation();
+
   return (
     <div>
       <Wrapper>
-        <Title>Display data from the last</Title>
+        <Title>{__('time-controller.title')}</Title>
         <DateDisplay>{formatHourlyDate(date)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
@@ -88,7 +88,7 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
               handleTimeAggregationChange(o.key);
             }}
           >
-            {o.label}
+            {__(o.label)}
           </DateRangeOption>
         ))}
       </DateOptionWrapper>
