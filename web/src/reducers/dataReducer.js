@@ -1,3 +1,5 @@
+import { addMinutes } from 'date-fns';
+
 import constructTopos from '../helpers/topos';
 import * as translation  from '../helpers/translation';
 
@@ -74,7 +76,7 @@ const reducer = (state = initialDataState, action) => {
         const history = state.histories[k];
         const lastHistoryMoment = new Date(history.at(-1).stateDatetime);
         const stateMoment = new Date(action.payload.datetime);
-        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
+        if (addMinutes(lastHistoryMoment, 15) < stateMoment) {
           delete newState.histories[k];
         }
       });
