@@ -19,8 +19,8 @@ export function useCurrentZoneHistory() {
 export function useCurrentDatetimes() {
   // TODO: should use V5 state here and v5 should tell the state datetimes
   const histories = useSelector((state) => state.data.histories);
-  if (histories['DK-DK2']) {
-    return histories['DK-DK2'].map((h) => moment(h.stateDatetime).toDate());
+  if (histories && Object.keys(histories).length) {
+    return histories[Object.keys(histories)[0]].map((h) => moment(h.stateDatetime).toDate());
   } else {
     return [];
   }
