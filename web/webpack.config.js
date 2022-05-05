@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const fs = require('fs');
-const autoprefixer = require('autoprefixer');
+const postcssPresetEnv = require('postcss-preset-env');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -27,7 +27,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { url: false } },
-          { loader: 'postcss-loader', options: { plugins: [autoprefixer()] } },
+          { loader: 'postcss-loader', options: { postcssOptions: { plugins: [postcssPresetEnv] } } },
           { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
