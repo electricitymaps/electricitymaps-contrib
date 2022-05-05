@@ -7,26 +7,22 @@ const COLORS = {
   NIGHT: 'rgba(0, 0, 0, 0.15)',
 };
 
-const createGradient = (sets) =>
-  sortBy(sets, 'end')
-    .map(
-      ({ start, end }) =>
-        `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`
-    )
-    .join(',\n');
+const createGradient = sets => sortBy(sets, 'end')
+  .map(
+    ({ start, end }) => `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`,
+  )
+  .join(',\n');
 
 export const StyledInput = styled.input`
-  --time-gradient: linear-gradient(90deg, ${(props) => createGradient(props.nightTimeSets)});
+  --time-gradient: linear-gradient(
+    90deg,
+    ${props => createGradient(props.nightTimeSets)}
+  );
 `;
 
+
 export const TimeSliderInput = ({
-  onChange,
-  value,
-  nightTimeSets,
-  isValueAtNight,
-  min,
-  max,
-  onTooltipClose,
+  onChange, value, nightTimeSets, isValueAtNight, min, max,
 }) => {
   const timeClass = isValueAtNight ? 'night' : 'day';
   return (
@@ -39,8 +35,6 @@ export const TimeSliderInput = ({
       value={value}
       min={min}
       max={max}
-      onMouseLeave={onTooltipClose}
-      onMouseOut={onTooltipClose}
     />
   );
 };
