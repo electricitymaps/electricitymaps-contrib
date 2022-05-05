@@ -2,8 +2,8 @@
 // TODO: remove once refactored
 
 import * as d3 from 'd3-format';
-import moment from 'moment';
 import * as translation from './translation';
+import moment from 'moment';
 
 const formatPower = function (d, numDigits) {
   // Assume MW input
@@ -17,31 +17,27 @@ const formatCo2 = function (d, numDigits) {
   d /= 1e6; // Convert to tCO₂ / min
   if (d == null || d === NaN) return d;
   if (numDigits == null) numDigits = 3;
-  if (d >= 1)
-    // a ton or more
+  if (d >= 1) // a ton or more
     return d3.format('.' + numDigits + 's')(d) + 't ' + translation.translate('ofCO2eqPerMinute');
   else
-    return (
-      d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + translation.translate('ofCO2eqPerMinute')
-    );
+    return d3.format('.' + numDigits + 's')(d * 1e6) + 'g ' + translation.translate('ofCO2eqPerMinute');
 };
 const scalePower = function (maxPower) {
   // Assume MW input
-  if (maxPower < 1)
+  if (maxPower < 1) 
     return {
-      unit: 'kW',
-      formattingFactor: 1e-3,
-    };
-  if (maxPower < 1e3)
+      unit: "kW",
+      formattingFactor: 1e-3
+    }
+  if (maxPower < 1e3) 
     return {
-      unit: 'MW',
-      formattingFactor: 1,
-    };
-  else
-    return {
-      unit: 'GW',
-      formattingFactor: 1e3,
-    };
+      unit: "MW",
+      formattingFactor: 1
+    }
+  else return {
+      unit: "GW",
+      formattingFactor: 1e3
+    }
 };
 
 const formatHourlyDate = function (date) {
@@ -51,4 +47,9 @@ const formatHourlyDate = function (date) {
   return moment(date).format('LL LT');
 };
 
-export { formatPower, formatCo2, scalePower, formatHourlyDate };
+export {
+  formatPower,
+  formatCo2,
+  scalePower,
+  formatHourlyDate
+};
