@@ -1,5 +1,6 @@
 """Validate the CO2eq parameters."""
 
+from calendar import c
 import datetime
 import json
 import numbers
@@ -69,6 +70,27 @@ class CO2eqParametersAll(unittest.TestCase):
             else:
                 callback2(ratios, zone)
 
+    @classmethod
+    def check_contributions(cls, contribution_name, callback):
+        """Apply the callback to each renewable/lowCarbon contribution."""
+        contributions = cls.parameters[contribution_name]
+        for zone, modes_to_contributions in (
+            ("defaults", contributions["defaults"]),
+            *contributions["zoneOverrides"].items(),
+        ):
+            for mode, c in modes_to_contributions.items():
+                callback(mode, c, zone)
+
+    @classmethod
+    def check_is_renewable(cls, callback):
+        """Apply the callback to each renewable contribution."""
+        cls.check_contributions("isRenewable", callback)
+
+    @classmethod
+    def check_is_low_carbon(cls, callback):
+        """Apply the callback to each lowCarbon contribution."""
+        cls.check_contributions("isLowCarbon", callback)
+
     def test_power_origin_modes_are_valid(self):
         """All modes in the 'powerOriginRatios' objects must be valid."""
 
@@ -137,6 +159,39 @@ class CO2eqParametersAll(unittest.TestCase):
                 "powerOriginRatios", mixes, msg=f"key missing from zone '{zone}'"
             )
         self.check_power_origin_ratios(callback1, callback2)
+
+    def test_is_renewable_contributions_valid(self):
+        def callback(mode, contribution, zone):
+            if isinstance(contribution, list):
+                assert (
+                    False
+                ), f"zone '{zone}' contains an invalid isRenewable contribution for mode {mode}, Lists not supported yet."
+            else:
+                is_correct = isinstance(contribution, bool) or (0 <= contribution <= 1)
+                self.assertTrue(
+                    is_correct,
+                    msg=f"zone '{zone}' contains an invalid isRenewable contribution for mode {mode}",
+                )
+
+        self.check_is_renewable(callback)
+
+    def test_is_low_carbon_contributions_valid(self):
+        def callback(mode, contribution, zone):
+            if isinstance(contribution, list):
+                assert (
+                    False
+                ), f"zone '{zone}' contains an invalid isLowCarbon contribution for mode {mode}, Lists not supported yet."
+            else:
+                print(contribution, type(contribution))
+                is_correct = (
+                    True if isinstance(contribution, bool) else (0 <= contribution <= 1)
+                )
+                self.assertTrue(
+                    is_correct,
+                    msg=f"zone '{zone}' contains an invalid isLowCarbon contribution for mode {mode}",
+                )
+
+        self.check_is_low_carbon(callback)
 
 
 class CO2eqParametersDirectAndLifecycleMixin:
