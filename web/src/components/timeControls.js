@@ -67,9 +67,9 @@ const DateOptionWrapper = styled.div`
 
 const options = [
   { key: 'day', label: 'Day' },
-  // { key: 'month', label: 'Month' },
-  // { key: 'year', label: 'Year' },
-  // { key: '5year', label: '5 Years' },
+  { key: 'month', label: 'Month' },
+  { key: 'year', label: 'Year' },
+  { key: '5year', label: '5 Years' },
 ];
 
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
@@ -91,9 +91,6 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
             {o.label}
           </DateRangeOption>
         ))}
-        <DateRangeOption>
-          More options soon!
-        </DateRangeOption>
       </DateOptionWrapper>
     </div>
   );
