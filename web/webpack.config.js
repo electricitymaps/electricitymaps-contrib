@@ -1,9 +1,9 @@
 const webpack = require('webpack');
-const fs = require('fs');
 const postcssPresetEnv = require('postcss-preset-env');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { version } = require('./public/client-version.json');
 
@@ -42,22 +42,22 @@ module.exports = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+      statsOptions: {
+        all: false,
+        assets: true,
+        groupAssetsByChunk: true,
+      },
+      statsFilename: 'manifest.json',
+    }),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
       chunkFilename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    function () {
-      this.plugin('done', (stats) => {
-        // Avoid dumping everything (~30mb)
-        const output = {...stats.toJson({all: false, assets: true, groupAssetsByChunk: true})};
-        fs.writeFileSync(
-          `${__dirname}/public/dist/manifest.json`,
-          JSON.stringify(output)
-        );
-      });
-    },
     new webpack.DefinePlugin({
       ELECTRICITYMAP_PUBLIC_TOKEN: `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`,
       VERSION: JSON.stringify(version),

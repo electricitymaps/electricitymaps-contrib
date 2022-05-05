@@ -88,6 +88,7 @@
     "snowpack": "^3.8.8",
     "topojson-server": "^3.0.1",
     "webpack": "^4.41.2",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^3.3.10"
   },
   "repository": {
