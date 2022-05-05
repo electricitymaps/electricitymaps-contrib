@@ -96,7 +96,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           alignItems: 'stretch' /* force children to take 100% width */,
         }}
       >
-        <TimeController enabled={true} />
+        <TimeController />
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>

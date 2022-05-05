@@ -5,7 +5,7 @@ import { range } from 'lodash';
 import { useTranslation } from '../../helpers/translation';
 
 const TOTAL_TICK_COUNT = 25; // total number of ticks to be displayed
-const TICK_VALUE_FREQUENCY = 6 // Frequency at which values are displayed for a tick
+const TICK_VALUE_FREQUENCY = 6; // Frequency at which values are displayed for a tick
 
 const renderTickValue = (v, __, idx, displayLive) => {
   const shouldDisplayLive = idx === 24 && displayLive; // TODO: change this for other aggregations
@@ -16,7 +16,7 @@ const renderTickValue = (v, __, idx, displayLive) => {
         <circle cx="-1em" cy="1.15em" r="2" fill="red" />
         <text fill="#DE3054" y="9" x="5" dy="0.71em" fontWeight="bold">
           LIVE
-       </text>
+        </text>
       </g>
     );
   } else {
@@ -39,10 +39,9 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   const precision = moment.duration(60, 'minutes').valueOf();
   const step = (endTime - startTime) / (count - 1);
 
-  const r = range(count).map((ind) =>
+  return range(count).map((ind) =>
     moment(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision)).toDate()
   );
-  return r;
 };
 
 const renderTick = (scale, val, idx, __, displayLive) => {
