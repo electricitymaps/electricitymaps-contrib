@@ -90,8 +90,8 @@
     height: 12px;
     border-radius: 4px;
     cursor: pointer;
-    background: #f0f0f0;
-    // background: var(--time-gradient);
+    background: $light-gray;
+    background: var(--time-gradient);
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -99,14 +99,11 @@
 .time-slider-input {
   // Webkit
     &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
-      background-image: url("../images/slider-thumb.svg");
-      border: none;
-      box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
+      background-image: url("../images/timeslider-night.svg");
+
     }
     &.day::-webkit-slider-thumb {
-      border: none;
-      box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
-      background-image: url("../images/slider-thumb.svg")
+      background-image: url("../images/timeslider-sun.svg");
     }
     &::-webkit-slider-thumb {
       @include thumb;

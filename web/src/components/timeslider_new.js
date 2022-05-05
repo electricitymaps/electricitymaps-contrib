@@ -6,10 +6,11 @@ import moment from 'moment';
 import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
 import { useCurrentNightTimes } from '../hooks/redux';
-import { TimeSliderInput } from './TimeSliderInput';
 import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import thumbImg from '../../public/images/slider-thumb.svg';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -49,6 +50,55 @@ const createChangeAndInputHandler =
       onChange(index);
     }
   };
+
+const StyledInput = styled.input`
+  -webkit-appearance: none;
+  width: 100%;
+  margin-top: 5px;
+  height: 26px;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+  border: none;
+  margin: 5px 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 26px;
+    width: 26px;
+    border-radius: 17px;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: -8px;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid lightgray;
+    background-position: center center;
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-image: url(${thumbImg});
+    border: none;
+    box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
+
+    &:hover {
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #f0f0f0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+`;
 
 const TimeSlider = ({
   className,
@@ -120,15 +170,7 @@ const TimeSlider = ({
         selectedTimeAggregate={selectedTimeAggregate}
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
-      <TimeSliderInput
-        onChange={handleChangeAndInput}
-        value={timeValue}
-        nightTimeSets={nightTimeSets}
-        isValueAtNight={isSelectedTimeDuringNight}
-        min={startTimeValue}
-        max={endTimeValue}
-        onTooltipClose={() => setTooltipPos(null)}
-      />
+      <StyledInput type="range" />
       <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis
           scale={timeScale}

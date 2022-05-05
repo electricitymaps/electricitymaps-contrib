@@ -44,6 +44,20 @@ const StyledTimeSlider = styled(TimeSlider)`
   .domain {
     display: none;
   }
+
+  @media (max-width: 767px) {
+    padding-top: 4px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 `;
 
 const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {

@@ -38,6 +38,7 @@ import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
+import { useFeatureToggle } from '../../hooks/router';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -162,6 +163,14 @@ const CountryPanelStyled = styled.div`
   }
 `;
 
+const StyledSources = styled.div`
+  margin-bottom: ${props => props.historyFeatureEnabled ? "170px" : 0};
+  
+  @media (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+`; 
+
 const EstimatedDataInfoBox = styled.p`
   background-color: #eee;
   border-radius: 6px;
@@ -224,6 +233,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
+  const features = useFeatureToggle();
 
   const data = useCurrentZoneData() || {};
 
@@ -378,7 +388,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <CountryHistoryPricesGraph />
             </div>
             <hr />
-            <div>
+            <StyledSources historyFeatureEnabled={features.includes('history')}>
               {__('country-panel.source')}
               {': '}
               <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
@@ -400,7 +410,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               {' '}
               {__('country-panel.helpfrom')}
               <ContributorList />
-            </div>
+            </StyledSources>
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">
