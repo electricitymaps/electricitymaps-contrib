@@ -17,6 +17,7 @@ import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
 import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
+import Icon from '../../components/icon';
 
 import FAQPanel from './faqpanel';
 import MobileInfoTab from './mobileinfotab';
@@ -88,10 +89,10 @@ const Container = styled.div`
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
   const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
-  
+
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
-  
+
 
   return (
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
@@ -115,7 +116,8 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         role="button"
         tabIndex="0"
       >
-        <i className="material-icons">arrow_drop_down</i>
+        <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
+       
       </LeftPanelCollapseButton>
 
       {/* Render different content based on the current route */}
