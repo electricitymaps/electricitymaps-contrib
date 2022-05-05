@@ -31,7 +31,6 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
-import TimeSlider from '../components/timeslider';
 import TimeController from './timeController';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
@@ -90,14 +89,14 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
         style={{
           position:
             'fixed' /* This is done in order to ensure that dragging will not affect the body */,
-            width: '100vw',
-            height: 'inherit',
-            display: 'flex',
-            flexDirection: 'column' /* children will be stacked vertically */,
-            alignItems: 'stretch' /* force children to take 100% width */,
-          }}
+          width: '100vw',
+          height: 'inherit',
+          display: 'flex',
+          flexDirection: 'column' /* children will be stacked vertically */,
+          alignItems: 'stretch' /* force children to take 100% width */,
+        }}
       >
-          <TimeController />
+        <TimeController enabled={true} />
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>

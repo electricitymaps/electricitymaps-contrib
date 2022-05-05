@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TimeSlider from '../components/timeslider';
-import 'react-spring-bottom-sheet/dist/style.css'
+import TimeSlider from '../components/timeslider_new';
 
-import {
-  useCurrentDatetimes,
-} from '../hooks/redux';
+import { useCurrentDatetimes } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
@@ -13,19 +10,22 @@ const handleZoneTimeIndexChange = (timeIndex) => {
 };
 
 const handleTimeAggregationChange = (aggregate) => {
-  console.log(aggregate);
   dispatchApplication('selectedTimeAggregate', aggregate);
 };
 
 const mapStateToProps = (state) => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
-  selectedTimeAggregate: state.application.selectedTimeAggregate
+  selectedTimeAggregate: state.application.selectedTimeAggregate,
 });
 
-const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
+const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate, enabled }) => {
   const datetimes = useCurrentDatetimes();
   const startTime = datetimes[0];
   const endTime = datetimes[datetimes.length - 1];
+
+  if (!enabled) {
+    return null;
+  }
 
   return (
     <TimeSlider
@@ -37,7 +37,7 @@ const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
       datetimes={datetimes}
       startTime={startTime}
       endTime={endTime}
-      />
+    />
   );
 };
 
