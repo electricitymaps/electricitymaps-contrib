@@ -1,6 +1,5 @@
 """Validate the CO2eq parameters."""
 
-from calendar import c
 import datetime
 import json
 import numbers
@@ -176,11 +175,17 @@ class CO2eqParametersAll(unittest.TestCase):
         try:
             dts = [c["datetime"] for c in contribution]
         except KeyError:
-            self.assertTrue(False, msg=f"zone '{zone}' is missing datetimes for the {contribution_name} contributions for mode {mode}")
+            self.assertTrue(
+                False,
+                msg=f"zone '{zone}' is missing datetimes for the {contribution_name} contributions for mode {mode}",
+            )
         try:
             dts = [datetime.datetime.fromisoformat(dt) for dt in dts]
         except ValueError:
-            self.assertTrue(False, msg=f"zone '{zone}' contains invalid datetimes for the {contribution_name} contributions for mode {mode}")
+            self.assertTrue(
+                False,
+                msg=f"zone '{zone}' contains invalid datetimes for the {contribution_name} contributions for mode {mode}",
+            )
         self.assertEqual(
             dts,
             sorted(dts),
