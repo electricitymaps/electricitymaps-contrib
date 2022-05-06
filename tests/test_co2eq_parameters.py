@@ -160,35 +160,76 @@ class CO2eqParametersAll(unittest.TestCase):
             )
         self.check_power_origin_ratios(callback1, callback2)
 
-    def test_is_renewable_contributions_valid(self):
+    def check_contribution_object(self, contribution, zone, mode, contribution_name):
+        self.assertIn(
+            "value",
+            contribution.keys(),
+            msg=f"zone '{zone}' does not contain a value for {contribution_name} contribution for mode {mode}",
+        )
+        self.assertTrue(
+            0 <= contribution["value"] <= 1,
+            msg=f"zone '{zone}' contains an invalid {contribution_name} contribution for mode {mode}",
+        )
+
+    def check_contribution_datetimes(self, contribution, zone, mode, contribution_name):
+        # Would throw a KeyError if a member misses a datetime
+        try:
+            dts = [c["datetime"] for c in contribution]
+        except KeyError:
+            self.assertTrue(False, msg=f"zone '{zone}' is missing datetimes for the {contribution_name} contributions for mode {mode}")
+        try:
+            dts = [datetime.datetime.fromisoformat(dt) for dt in dts]
+        except ValueError:
+            self.assertTrue(False, msg=f"zone '{zone}' contains invalid datetimes for the {contribution_name} contributions for mode {mode}")
+        self.assertEqual(
+            dts,
+            sorted(dts),
+            msg=f"zone '{zone}' datetimes for the {contribution_name} contributions for mode {mode} are not ordered",
+        )
+
+    def test_is_renewable_valid_datetimes(self):
         def callback(mode, contribution, zone):
             if isinstance(contribution, list):
-                assert (
-                    False
-                ), f"zone '{zone}' contains an invalid isRenewable contribution for mode {mode}, Lists not supported yet."
-            else:
-                is_correct = isinstance(contribution, bool) or (0 <= contribution <= 1)
-                self.assertTrue(
-                    is_correct,
-                    msg=f"zone '{zone}' contains an invalid isRenewable contribution for mode {mode}",
+                self.check_contribution_datetimes(
+                    contribution, zone, mode, "isRenewable"
                 )
 
         self.check_is_renewable(callback)
 
-    def test_is_low_carbon_contributions_valid(self):
+    def test_is_renewable_valid_contributions(self):
+        contribution_name = "isRenewable"
+
         def callback(mode, contribution, zone):
             if isinstance(contribution, list):
-                assert (
-                    False
-                ), f"zone '{zone}' contains an invalid isLowCarbon contribution for mode {mode}, Lists not supported yet."
+                for c in contribution:
+                    self.check_contribution_object(c, zone, mode, contribution_name)
             else:
-                print(contribution, type(contribution))
-                is_correct = (
-                    True if isinstance(contribution, bool) else (0 <= contribution <= 1)
+                self.check_contribution_object(
+                    contribution, zone, mode, contribution_name
                 )
-                self.assertTrue(
-                    is_correct,
-                    msg=f"zone '{zone}' contains an invalid isLowCarbon contribution for mode {mode}",
+
+        self.check_is_renewable(callback)
+
+    def test_is_low_carbon_valid_datetimes(self):
+        def callback(mode, contribution, zone):
+            if isinstance(contribution, list):
+                self.check_contribution_datetimes(
+                    contribution, zone, mode, "isLowCarbon"
+                )
+
+        self.check_is_low_carbon(callback)
+
+    def test_is_low_carbon_valid_contributions(self):
+        contribution_name = "isLowCarbon"
+
+        def callback(mode, contribution, zone):
+
+            if isinstance(contribution, list):
+                for c in contribution:
+                    self.check_contribution_object(c, zone, mode, contribution_name)
+            else:
+                self.check_contribution_object(
+                    contribution, zone, mode, contribution_name
                 )
 
         self.check_is_low_carbon(callback)

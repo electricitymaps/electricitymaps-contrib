@@ -11278,6 +11278,7 @@
       },
       "unknown": {
         "_comment": "By default unknown is assumed to be made up of fossil fuel based modes.",
+        "datetime": "2020-01-01",
         "source": "electricityMap",
         "value": 0
       },
