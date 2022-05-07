@@ -13,7 +13,6 @@ module.exports = {
   devtool: isProduction ? 'sourcemap' : 'eval',
   entry: {
     bundle: './src/index.jsx',
-    styles: './src/scss/styles.scss',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.mjs', '.cjs'],
