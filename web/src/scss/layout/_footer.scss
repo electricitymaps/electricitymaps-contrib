@@ -7,6 +7,7 @@
 #tab {
     position: relative;
     background-color:$lighter-gray;
+		fill-opacity: 0.5;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
     flex: 0 0 auto;
@@ -35,8 +36,9 @@
 		    }
 
 		    &.active {
-		    	color: black;
+					color: black;
 			    font-size: 14px;
+					fill-opacity: 1;
 			    padding-top: 6px;
 
 			    img {
