@@ -161,7 +161,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isHistoryFeatureEnabled, isLoaded, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
+  }, [isHistoryFeatureEnabled, isLoaded, isDragging, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
 
   const handleClick = useMemo(
     () => (e) => {
