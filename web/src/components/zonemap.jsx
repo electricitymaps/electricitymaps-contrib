@@ -196,7 +196,7 @@ const ZoneMap = ({
           if (!isEmpty(features) && hoveringEnabled) {
             const { zoneId } = features[0].properties;
             if (hoveredZoneId !== zoneId) {
-              onZoneMouseEnter(zones[zoneId], zoneId);
+              onZoneMouseEnter(zoneId);
               setHoveredZoneId(zoneId);
             }
           } else if (hoveredZoneId !== null) {

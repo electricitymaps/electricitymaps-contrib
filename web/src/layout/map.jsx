@@ -128,7 +128,9 @@ export default () => {
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (data) => {
+    () => (zoneId) => {
+      const zoneHistoryDetails = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex];
+      const data = zoneHistoryDetails || zones[zoneId];
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
@@ -137,7 +139,7 @@ export default () => {
       );
       setTooltipZoneData(data);
     },
-    [electricityMixMode],
+    [electricityMixMode, zoneHistories, selectedZoneTimeIndex],
   );
 
   const handleZoneMouseLeave = useMemo(
