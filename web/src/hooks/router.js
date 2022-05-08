@@ -5,13 +5,17 @@ export function useSearchParams() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function useFeatureToggle() {
+export function useFeatureToggle(selectedFeature = null) {
   const searchParams = useSearchParams();
 
   return useMemo(() => {
     const featureToggles = searchParams.get('feature');
-    return featureToggles ? featureToggles.split(',') : [];
-  }, [searchParams]);
+    if (selectedFeature) {
+      return featureToggles && featureToggles.split(',').includes(selectedFeature);
+    } else {
+      return featureToggles ? featureToggles.split(',') : [];
+    }
+  }, [selectedFeature, searchParams]);
 }
 
 export function useCustomDatetime() {

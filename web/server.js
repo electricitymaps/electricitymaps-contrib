@@ -140,7 +140,7 @@ app.use('/', (req, res) => {
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
-      stylesHash: getHash('styles', 'css', manifest),
+      bundleStylesHash: getHash('bundle', 'css', manifest),
       vendorStylesHash: getHash('vendor', 'css', manifest),
       // Make the paths absolute as that's required for BrowserHistory routing
       // to work normally and it's also ok when used with the https:// protocol
