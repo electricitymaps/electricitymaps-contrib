@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -21,7 +20,7 @@ const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
     carbonIntensity: electricityMixMode === 'consumption'
       ? d.co2intensity
       : d.co2intensityProduction,
-    datetime: moment(d.stateDatetime).toDate(),
+    datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));
