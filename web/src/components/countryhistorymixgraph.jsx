@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { max as d3Max } from 'd3-array';
@@ -42,7 +41,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
   // TODO: Simplify this function and make it more readable
   const data = historyData.map((d) => {
     const obj = {
-      datetime: moment(d.stateDatetime).toDate(),
+      datetime: new Date(d.stateDatetime),
     };
 
     const hasProductionData = d.production && Object.values(d.production).some(v => v !== null);

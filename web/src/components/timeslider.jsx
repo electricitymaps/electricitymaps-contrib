@@ -3,7 +3,6 @@ import {
   first, last, sortedIndex, isNumber,
 } from 'lodash';
 import { scaleTime } from 'd3-scale';
-import moment from 'moment';
 
 import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
@@ -14,8 +13,8 @@ const AXIS_HORIZONTAL_MARGINS = 12;
 
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) => scaleTime()
   .domain([
-    startTime ? moment(startTime).toDate() : first(datetimes),
-    endTime ? moment(endTime).toDate() : last(datetimes),
+    startTime ? new Date(startTime) : first(datetimes),
+    endTime ? new Date(endTime) : last(datetimes),
   ])
   .range([0, rangeEnd])
   .nice(25);

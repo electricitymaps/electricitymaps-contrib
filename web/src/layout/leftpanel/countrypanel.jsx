@@ -13,7 +13,6 @@ import {
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { isNil, noop } from 'lodash';
-import moment from 'moment';
 import styled from 'styled-components';
 
 // Components
@@ -200,7 +199,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime ? moment(shownDatetime).format('LL LT') : ''}
+              {shownDatetime ?  new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(new Date(shownDatetime)) : ''}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
