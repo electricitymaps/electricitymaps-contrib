@@ -64,7 +64,6 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimize: true,
     minimizer: [
       '...', // Includes the default minimizers.
       new CssMinimizerPlugin(),
