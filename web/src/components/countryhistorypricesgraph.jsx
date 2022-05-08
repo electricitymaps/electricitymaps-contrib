@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
@@ -29,7 +28,7 @@ const prepareGraphData = (historyData) => {
 
   const data = historyData.map(d => ({
     price: d.price && d.price.value,
-    datetime: moment(d.stateDatetime).toDate(),
+    datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));

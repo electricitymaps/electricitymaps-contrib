@@ -1,20 +1,18 @@
-import React, {
-  useState,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce'
+import { useFeatureToggle } from '../hooks/router';
 
-const interactiveLayerIds = ['zones-clickable'];
+
+const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
 
 const ZoneMap = ({
   children = null,
+  co2ColorScale = null,
   hoveringEnabled = true,
   onMapLoaded = noop,
   onMapError = noop,
@@ -26,6 +24,7 @@ const ZoneMap = ({
   onZoneMouseEnter = noop,
   onZoneMouseLeave = noop,
   scrollZoom = true,
+  selectedZoneTimeIndex = null,
   style = {},
   theme = {},
   transitionDuration = 300,
@@ -35,6 +34,7 @@ const ZoneMap = ({
     zoom: 2,
   },
   zones = {},
+  zoneHistories = {},
   zoomInLabel = '',
   zoomOutLabel = '',
 }) => {
@@ -42,13 +42,16 @@ const ZoneMap = ({
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
-    () => debounce((value) => {
-      setIsDragging(value);
-    }, 200),
-    [],
+    () =>
+      debounce((value) => {
+        setIsDragging(value);
+      }, 200),
+    []
   );
 
   // TODO: Try tying this to internal map state somehow to remove the need for these handlers.
@@ -59,8 +62,13 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    [],
+    []
   );
+
+  const handleLoad = () => {
+    setIsLoaded(true);
+    onMapLoaded();
+  };
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(
@@ -82,22 +90,20 @@ const ZoneMap = ({
         }
       })
 
-      return {
-        zonesClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => f.properties.isClickable),
-        },
-        zonesNonClickable: {
-          type: 'FeatureCollection',
-          features: features.filter(f => !f.properties.isClickable),
-        },
-      };
-    },
-    [zones],
-  );
+    return {
+      zonesClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => f.properties.isClickable),
+      },
+      zonesNonClickable: {
+        type: 'FeatureCollection',
+        features: features.filter((f) => !f.properties.isClickable),
+      },
+    };
+  }, [zones]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
-  const hoverFilter = useMemo(() => (['==', 'zoneId', hoveredZoneId || '']), [hoveredZoneId]);
+  const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
 
   // Calculate layer styles only when the theme changes
   // to keep the stable and prevent excessive rerendering.
@@ -106,22 +112,62 @@ const ZoneMap = ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
-      zonesClickable: { 'fill-color': ['case', ['has', 'color'], ['get', 'color'], theme.clickableFill] },
+      zonesClickable: {
+        'fill-color': [
+          'coalesce', // // https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#coalesce
+          ['feature-state', 'color'],
+          ['get', 'color'],
+          theme.clickableFill,
+        ],
+      },
       zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
-    [theme],
+    [theme]
   );
 
   // If WebGL is not supported trigger an error callback.
-  useEffect(
-    () => {
-      if (!ReactMapGL.supported()) {
-        setIsSupported(false);
-        onMapError('WebGL not supported');
-      }
-    },
-    [],
-  );
+  useEffect(() => {
+    if (!ReactMapGL.supported()) {
+      setIsSupported(false);
+      onMapError('WebGL not supported');
+    }
+  }, []);
+
+  // TODO: Consider moving the calculation to a useMemo function
+  // change color of zones if timeslider is changed
+  useEffect(() => {
+    if (isHistoryFeatureEnabled && isLoaded && co2ColorScale) {
+      // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
+      // TODO: Consider using isdragging or similar to update this when new zones are rendered
+      const features = ref.current.queryRenderedFeatures();
+      const map = ref.current.getMap();
+      features.forEach((feature) => {
+        const { color, zoneId } = feature.properties;
+        let fillColor = color;
+        const co2intensity = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex]?.co2intensity;
+
+        // Calculate new color if zonetime is selected and we have a co2intensity
+        if (selectedZoneTimeIndex !== null && co2intensity) {
+          fillColor = co2ColorScale(co2intensity);
+        }
+        const existingColor = feature.id
+          ? map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
+          : color;
+
+        if (feature.id && fillColor !== existingColor) {
+          map.setFeatureState(
+            {
+              source: 'zones-clickable',
+              id: feature.id,
+            },
+            {
+              color: fillColor,
+            }
+          );
+        }
+      });
+    }
+  }, [isHistoryFeatureEnabled, isLoaded, isDragging, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
 
   const handleClick = useMemo(
     () => (e) => {
@@ -134,7 +180,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick],
+    [ref.current, onSeaClick, onZoneClick]
   );
 
   const handleMouseMove = useMemo(
@@ -156,7 +202,7 @@ const ZoneMap = ({
           if (!isEmpty(features) && hoveringEnabled) {
             const { zoneId } = features[0].properties;
             if (hoveredZoneId !== zoneId) {
-              onZoneMouseEnter(zones[zoneId], zoneId);
+              onZoneMouseEnter(zoneId);
               setHoveredZoneId(zoneId);
             }
           } else if (hoveredZoneId !== null) {
@@ -166,7 +212,16 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, hoveringEnabled, isDragging, zones, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave],
+    [
+      ref.current,
+      hoveringEnabled,
+      isDragging,
+      zones,
+      hoveredZoneId,
+      onMouseMove,
+      onZoneMouseEnter,
+      onZoneMouseLeave,
+    ]
   );
 
   const handleMouseOut = useMemo(
@@ -176,7 +231,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId],
+    [hoveredZoneId]
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.
@@ -202,7 +257,7 @@ const ZoneMap = ({
         onBlur={handleMouseOut}
         onClick={handleClick}
         onError={onMapError}
-        onLoad={onMapLoaded}
+        onLoad={handleLoad}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onMouseDown={handleDragStart}
@@ -240,8 +295,8 @@ const ZoneMap = ({
         <Source type="geojson" data={sources.zonesNonClickable}>
           <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
         </Source>
-        <Source type="geojson" data={sources.zonesClickable}>
-          <Layer id="zones-clickable" type="fill" paint={styles.zonesClickable} />
+        <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
+          <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>

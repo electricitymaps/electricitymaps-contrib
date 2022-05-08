@@ -1,14 +1,13 @@
 import React from 'react';
-import moment from 'moment';
+
 
 import { useTranslation } from '../../helpers/translation';
+import { differenceInMinutes } from 'date-fns';
 
 // If the tick represents a timestamp not more than 15 minutes in the past,
 // render it as "Now", otherwise render as localized time, i.e. "8:30 PM".
 const renderTickValue = (v, __) => (
-  moment().diff(moment(v), 'minutes') <= 15
-    ? __('country-panel.now')
-    : moment(v).format('LT')
+  differenceInMinutes(Date.now(), v) <= 15 ? __('countrypanel.now') : new Intl.DateTimeFormat(document.documentElement.lang, {timeStyle: 'short'}).format(v)
 );
 
 const roundUp = (number, base) => Math.ceil(number / base) * base;
@@ -19,11 +18,12 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   const startTime = scale.domain()[0].valueOf();
   const endTime = scale.domain()[1].valueOf();
 
-  const precision = moment.duration(15, 'minutes').valueOf();
+  const precision = 15 * 60 * 1000; // 15 minutes
   const step = (endTime - startTime) / (count - 1);
 
+
   return [...Array(count).keys()].map(ind => (
-    moment(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision)).toDate()
+    new Date(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision))
   ));
 };
 

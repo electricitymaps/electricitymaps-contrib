@@ -15,7 +15,7 @@
       "nuclear": 0
     },
     "contributors": [
-      "https://github.com/Manu1400"
+      "Manu1400"
     ],
     "timezone": null
   },
@@ -37,7 +37,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/q--"
+      "q--"
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
@@ -69,8 +69,8 @@
       "solar": 22
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -102,10 +102,10 @@
       "wind": 3
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
+      "tmslaine",
+      "systemcatch",
+      "alixunderplatz",
+      "nessie2013"
     ],
     "parsers": {
       "production": "AM.fetch_production"
@@ -137,9 +137,9 @@
       "wind": 2990
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "systemcatch",
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "production": "AR.fetch_production"
@@ -171,8 +171,8 @@
       "wind": 3500
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/brandongalbraith"
+      "corradio",
+      "brandongalbraith"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -215,9 +215,9 @@
       "wind": 1802
     },
     "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "brandongalbraith",
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -267,9 +267,9 @@
       "wind": 644
     },
     "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "brandongalbraith",
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -302,9 +302,9 @@
       "wind": 2141
     },
     "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "brandongalbraith",
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -337,9 +337,9 @@
       "wind": 567
     },
     "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "brandongalbraith",
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -378,8 +378,8 @@
       "wind": 1.5
     },
     "contributors": [
-      "https://github.com/chuqtas",
-      "https://github.com/ajoga"
+      "chuqtas",
+      "ajoga"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -413,7 +413,7 @@
       "wind": 5.65
     },
     "contributors": [
-      "https://github.com/ajoga"
+      "ajoga"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -437,8 +437,8 @@
       "wind": 1521
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -463,9 +463,9 @@
       "wind": 491
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon"
+      "jarek",
+      "corradio",
+      "MariusKroon"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -500,7 +500,7 @@
       "wind": 0.6
     },
     "contributors": [
-      "https://github.com/ajoga"
+      "ajoga"
     ],
     "flag_file_name": "au.png",
     "parsers": {
@@ -524,7 +524,7 @@
       "wind": 30
     },
     "contributors": [
-      "https://github.com/pascalheraud"
+      "pascalheraud"
     ],
     "flag_file_name": "aw.png",
     "parsers": {
@@ -551,8 +551,8 @@
       "wind": 16.56
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/systemcatch"
+      "tmslaine",
+      "systemcatch"
     ],
     "parsers": {
       "consumption": "AX.fetch_consumption",
@@ -592,8 +592,8 @@
       "wind": 135
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -621,8 +621,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "systemcatch",
+      "alixunderplatz"
     ],
     "parsers": {
       "production": "BD.fetch_production"
@@ -654,9 +654,9 @@
       "wind": 4883
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Fred-3000"
+      "corradio",
+      "nessie2013",
+      "Fred-3000"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -696,12 +696,12 @@
       "wind": 701
     },
     "contributors": [
-      "https://github.com/yurukov",
-      "https://github.com/ultibo",
-      "https://github.com/systemcatch",
-      "https://github.com/bogomil",
-      "https://github.com/Pantkowsky",
-      "https://github.com/MindFreeze"
+      "yurukov",
+      "ultibo",
+      "systemcatch",
+      "bogomil",
+      "Pantkowsky",
+      "MindFreeze"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -729,8 +729,8 @@
       "wind": 1
     },
     "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
+      "q--",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
@@ -769,9 +769,9 @@
       "wind": 102.6
     },
     "contributors": [
-      "https://github.com/igorarduin",
-      "https://github.com/corradio",
-      "https://github.com/skovhus"
+      "igorarduin",
+      "corradio",
+      "skovhus"
     ],
     "parsers": {
       "generationForecast": "BO.fetch_generation_forecast",
@@ -798,10 +798,10 @@
       "wind": 28
     },
     "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "alexanmtz",
+      "corradio",
+      "systemcatch",
+      "nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -830,10 +830,10 @@
       "wind": 426
     },
     "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "alexanmtz",
+      "corradio",
+      "systemcatch",
+      "nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -859,10 +859,10 @@
       "wind": 16744
     },
     "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "alexanmtz",
+      "corradio",
+      "systemcatch",
+      "nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -888,10 +888,10 @@
       "wind": 2022
     },
     "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "alexanmtz",
+      "corradio",
+      "systemcatch",
+      "nessie2013"
     ],
     "flag_file_name": "br.png",
     "parsers": {
@@ -935,7 +935,7 @@
       "wind": 70.4
     },
     "contributors": [
-      "https://github.com/admetny"
+      "admetny"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -978,7 +978,7 @@
       "oil": 0
     },
     "contributors": [
-      "https://github.com/mlucchini"
+      "mlucchini"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1006,7 +1006,7 @@
       "wind": 704
     },
     "contributors": [
-      "https://github.com/daveachuk"
+      "daveachuk"
     ],
     "flag_file_name": "ca.png",
     "timezone": null
@@ -1031,7 +1031,7 @@
       "wind": 258
     },
     "contributors": [
-      "https://github.com/felixvanoost"
+      "felixvanoost"
     ],
     "flag_file_name": "ca.png",
     "timezone": "America/Winnipeg"
@@ -1058,7 +1058,7 @@
       "wind": 294
     },
     "contributors": [
-      "https://github.com/jarek"
+      "jarek"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1115,8 +1115,8 @@
       "wind": 567
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio"
+      "jarek",
+      "corradio"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1173,10 +1173,10 @@
       "wind": 4783
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/scriptator",
-      "https://github.com/felixvanoost"
+      "corradio",
+      "jarek",
+      "scriptator",
+      "felixvanoost"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1201,8 +1201,8 @@
       "wind": 203.6
     },
     "contributors": [
-      "https://github.com/reinvented",
-      "https://github.com/jarek"
+      "reinvented",
+      "jarek"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1234,10 +1234,10 @@
       "wind": 3772
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/pjakobsen",
-      "https://github.com/madsnedergaard",
-      "https://github.com/KabelWlan"
+      "jarek",
+      "pjakobsen",
+      "madsnedergaard",
+      "KabelWlan"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1281,8 +1281,8 @@
       "hydro": 92
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/nessie2013"
+      "jarek",
+      "nessie2013"
     ],
     "flag_file_name": "ca.png",
     "parsers": {
@@ -1326,10 +1326,10 @@
       "wind": 88.6
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/postronium",
-      "https://github.com/Kikof2",
-      "https://github.com/KabelWlan"
+      "corradio",
+      "postronium",
+      "Kikof2",
+      "KabelWlan"
     ],
     "disclaimer": "Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.",
     "parsers": {
@@ -1362,7 +1362,7 @@
       "solar": 0.128
     },
     "contributors": [
-      "https://github.com/autipial"
+      "autipial"
     ],
     "timezone": "Pacific/Easter"
   },
@@ -1443,8 +1443,8 @@
       "wind": 3535.2
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "systemcatch",
+      "alixunderplatz"
     ],
     "delays": {
       "production": 24
@@ -1494,10 +1494,10 @@
       "wind": 595
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/mlucchini",
-      "https://github.com/nessie2013"
+      "corradio",
+      "jarek",
+      "mlucchini",
+      "nessie2013"
     ],
     "parsers": {
       "production": "CR.fetch_production"
@@ -1536,10 +1536,10 @@
       "wind": 158
     },
     "contributors": [
-      "https://github.com/ultibo",
-      "https://github.com/veqtrus",
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
+      "ultibo",
+      "veqtrus",
+      "q--",
+      "nessie2013"
     ],
     "parsers": {
       "production": "CY.fetch_production"
@@ -1571,7 +1571,7 @@
       "wind": 338
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1610,12 +1610,12 @@
       "wind": 64280
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/bohne13",
-      "https://github.com/chiefymuc",
-      "https://github.com/nessie2013",
-      "https://github.com/IV1T3",
-      "https://github.com/sin"
+      "corradio",
+      "bohne13",
+      "chiefymuc",
+      "nessie2013",
+      "IV1T3",
+      "sin"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1655,8 +1655,8 @@
       "wind": 6949
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/Manu1400"
+      "corradio",
+      "Manu1400"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1687,7 +1687,7 @@
       "wind": 30
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "price": "ENTSOE.fetch_price",
@@ -1720,8 +1720,8 @@
       "wind": 5165
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/tmslaine"
+      "corradio",
+      "tmslaine"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1759,8 +1759,8 @@
       "wind": 1784
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/tmslaine"
+      "corradio",
+      "tmslaine"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1798,9 +1798,9 @@
       "wind": 370
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013",
-      "https://github.com/alixunderplatz"
+      "systemcatch",
+      "nessie2013",
+      "alixunderplatz"
     ],
     "parsers": {
       "production": "DO.fetch_production"
@@ -1840,8 +1840,8 @@
       "wind": 329
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1891,11 +1891,11 @@
       "wind": 27561
     },
     "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/corradio",
-      "https://github.com/JosepRey",
-      "https://github.com/nessie2013",
-      "https://github.com/KabelWlan"
+      "brandongalbraith",
+      "corradio",
+      "JosepRey",
+      "nessie2013",
+      "KabelWlan"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1920,8 +1920,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1942,8 +1942,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1969,8 +1969,8 @@
       "wind": 11.5
     },
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1994,8 +1994,8 @@
       "oil": 22.8
     },
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2016,8 +2016,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2038,8 +2038,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
+      "hectorespert",
+      "systemcatch"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2060,9 +2060,9 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "hectorespert",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2083,9 +2083,9 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "hectorespert",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2106,9 +2106,9 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "hectorespert",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2129,9 +2129,9 @@
       ]
     ],
     "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "hectorespert",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2168,8 +2168,8 @@
       "wind": 3257
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2211,8 +2211,8 @@
       "wind": 18.3
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/q--"
+      "corradio",
+      "q--"
     ],
     "parsers": {
       "production": "FO.fetch_production"
@@ -2245,9 +2245,9 @@
       "wind": 18549
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "corradio",
+      "lorrieq",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2280,8 +2280,8 @@
       "wind": 18
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien",
-      "https://github.com/VIKTORVAV99"
+      "PETILLON-Sebastien",
+      "VIKTORVAV99"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
@@ -2319,10 +2319,10 @@
       "wind": 25097
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013",
-      "https://github.com/AlexandreCouderc"
+      "corradio",
+      "lorrieq",
+      "nessie2013",
+      "AlexandreCouderc"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2354,11 +2354,11 @@
       "wind": 995
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/brunolajoie",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
+      "corradio",
+      "systemcatch",
+      "brunolajoie",
+      "alixunderplatz",
+      "nessie2013"
     ],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
@@ -2387,8 +2387,8 @@
       "wind": 48
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
+      "systemcatch",
+      "maxbellec"
     ],
     "flag_file_name": "gb.png",
     "parsers": {
@@ -2408,8 +2408,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
+      "systemcatch",
+      "maxbellec"
     ],
     "flag_file_name": "gb.png",
     "timezone": null
@@ -2433,9 +2433,9 @@
       "wind": 21
     },
     "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/kruschk",
-      "https://github.com/tmslaine"
+      "alixunderplatz",
+      "kruschk",
+      "tmslaine"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2465,7 +2465,7 @@
       "solar": 44.879
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "PETILLON-Sebastien"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
@@ -2510,7 +2510,7 @@
       "wind": 26.26
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "PETILLON-Sebastien"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
@@ -2547,7 +2547,7 @@
       "wind": 4150
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2598,9 +2598,9 @@
       "wind": 75.9
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/igorarduin",
-      "https://github.com/kruschk"
+      "corradio",
+      "igorarduin",
+      "kruschk"
     ],
     "parsers": {
       "consumption": "GT.fetch_consumption",
@@ -2637,7 +2637,7 @@
       "oil": 210
     },
     "contributors": [
-      "https://github.com/nessie2013"
+      "nessie2013"
     ],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
@@ -2668,7 +2668,7 @@
       "wind": 225
     },
     "contributors": [
-      "https://github.com/alixunderplatz"
+      "alixunderplatz"
     ],
     "parsers": {
       "production": "ENTE.fetch_production"
@@ -2699,7 +2699,7 @@
       "wind": 925
     },
     "contributors": [
-      "https://github.com/PaulCornelissen"
+      "PaulCornelissen"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2738,8 +2738,8 @@
       "wind": 323
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2776,7 +2776,7 @@
       "wind": 154
     },
     "contributors": [
-      "https://github.com/nessie2013"
+      "nessie2013"
     ]
   },
   "IE": {
@@ -2803,8 +2803,8 @@
       "wind": 4332
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -2841,9 +2841,9 @@
       "wind": 28
     },
     "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/jarek",
-      "https://github.com/yuvalabou"
+      "alixunderplatz",
+      "jarek",
+      "yuvalabou"
     ],
     "parsers": {
       "consumption": "IL.fetch_consumption",
@@ -2868,7 +2868,7 @@
       "wind": 39486.65
     },
     "contributors": [
-      "https://github.com/systemcatch"
+      "systemcatch"
     ],
     "parsers": {
       "production": "IN.fetch_production"
@@ -2901,7 +2901,7 @@
       "wind": 4096.7
     },
     "contributors": [
-      "https://github.com/hectorespert"
+      "hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2944,7 +2944,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/hectorespert"
+      "hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2976,7 +2976,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/hectorespert"
+      "hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3015,7 +3015,7 @@
       "wind": 8758.4
     },
     "contributors": [
-      "https://github.com/sahitya-pavurala"
+      "sahitya-pavurala"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3046,7 +3046,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/willbeaufoy"
+      "willbeaufoy"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3088,7 +3088,7 @@
       "wind": 4938.6
     },
     "contributors": [
-      "https://github.com/hectorespert"
+      "hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3125,10 +3125,10 @@
     },
     "comment": "partial source: installed capacity in Jun-2021 https://cea.nic.in/dashboard/?lang=en",
     "contributors": [
-      "https://github.com/GitMatze",
-      "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch",
-      "https://github.com/Manu1400"
+      "GitMatze",
+      "alixunderplatz",
+      "systemcatch",
+      "Manu1400"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3182,8 +3182,8 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/hectorespert"
+      "corradio",
+      "hectorespert"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3234,8 +3234,8 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/sahitya-pavurala",
-      "https://github.com/pierresegonne"
+      "sahitya-pavurala",
+      "pierresegonne"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3266,8 +3266,8 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/lorrieq"
+      "alixunderplatz",
+      "lorrieq"
     ],
     "flag_file_name": "in.png",
     "parsers": {
@@ -3292,9 +3292,9 @@
     ],
     "capacity": {},
     "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch",
-      "https://github.com/byronwilliams"
+      "alixunderplatz",
+      "systemcatch",
+      "byronwilliams"
     ],
     "flag_file_name": "iq.png",
     "parsers": {
@@ -3353,9 +3353,9 @@
       "wind": 2
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/SNPerkin",
-      "https://github.com/nessie2013"
+      "corradio",
+      "SNPerkin",
+      "nessie2013"
     ],
     "flag_file_name": "is.png",
     "parsers": {
@@ -3387,7 +3387,7 @@
       "wind": 10906.9
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3427,8 +3427,8 @@
       "wind": 162.7
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3464,8 +3464,8 @@
       "wind": 2085.7
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3501,8 +3501,8 @@
       "wind": 146.2
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3538,8 +3538,8 @@
       "wind": 1087.5
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3575,8 +3575,8 @@
       "wind": 1925.2
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3611,8 +3611,8 @@
       "wind": 5499.5
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3643,8 +3643,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3665,8 +3665,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3687,8 +3687,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3709,8 +3709,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3742,9 +3742,9 @@
       "wind": 146
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq",
-      "https://github.com/kongkille"
+      "tmslaine",
+      "lorrieq",
+      "kongkille"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3773,9 +3773,9 @@
       "unknown": 9976.94
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
+      "tmslaine",
+      "lorrieq",
+      "nessie2013"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3796,8 +3796,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3818,8 +3818,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3840,8 +3840,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3873,8 +3873,8 @@
       "wind": 440
     },
     "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
+      "tmslaine",
+      "lorrieq"
     ],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -3926,9 +3926,9 @@
       "wind": 1727
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/IV1T3"
+      "systemcatch",
+      "alixunderplatz",
+      "IV1T3"
     ],
     "parsers": {
       "consumption": "KR.fetch_consumption",
@@ -3955,8 +3955,8 @@
       "wind": 12
     },
     "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
+      "alixunderplatz",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "KW.fetch_consumption",
@@ -4021,7 +4021,7 @@
       "wind": 179
     },
     "contributors": [
-      "https://github.com/q--"
+      "q--"
     ],
     "parsers": {
       "production": "LK.fetch_production"
@@ -4060,8 +4060,8 @@
       "wind": 671
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4093,8 +4093,8 @@
       "wind": 138.535
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/clawfire/"
+      "corradio",
+      "clawfire/"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4125,7 +4125,7 @@
       "wind": 87
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4165,7 +4165,7 @@
       "wind": 1220
     },
     "contributors": [
-      "https://github.com/veqtrus"
+      "veqtrus"
     ],
     "parsers": {},
     "timezone": "Africa/Casablanca"
@@ -4190,11 +4190,11 @@
       "wind": 51
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013",
-      "https://github.com/lgrigoryeva1",
-      "https://github.com/Impelon"
+      "systemcatch",
+      "alixunderplatz",
+      "nessie2013",
+      "lgrigoryeva1",
+      "Impelon"
     ],
     "parsers": {
       "consumption": "MD.fetch_consumption",
@@ -4221,9 +4221,9 @@
       "wind": 118
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Pantkowsky"
+      "corradio",
+      "nessie2013",
+      "Pantkowsky"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4309,7 +4309,7 @@
       "wind": 1.1
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "PETILLON-Sebastien"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
@@ -4355,7 +4355,7 @@
     ],
     "capacity": {},
     "contributors": [
-      "https://github.com/scriptator"
+      "scriptator"
     ],
     "parsers": {
       "production": "MX.fetch_production"
@@ -4498,13 +4498,14 @@
       "hydro": 2160
     },
     "contributors": [
-      "https://github.com/kruschk",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "kruschk",
+      "systemcatch",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "MY_WM.fetch_consumption",
-      "production": "MY_WM.fetch_production"
+      "production": "MY_WM.fetch_production",
+      "productionPerModeForecast": "MY_WM.fetch_wind_solar_forecasts"
     },
     "timezone": null
   },
@@ -4531,9 +4532,9 @@
       "wind": 5
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/jarek",
-      "https://github.com/alixunderplatz"
+      "systemcatch",
+      "jarek",
+      "alixunderplatz"
     ],
     "timezone": null
   },
@@ -4564,9 +4565,9 @@
       "wind": 10
     },
     "contributors": [
-      "https://github.com/byronwilliams",
-      "https://github.com/kruschk",
-      "https://github.com/nessie2013"
+      "byronwilliams",
+      "kruschk",
+      "nessie2013"
     ],
     "parsers": {
       "production": "NG.fetch_production"
@@ -4593,9 +4594,9 @@
       "wind": 186.20
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/jarek"
+      "corradio",
+      "systemcatch",
+      "jarek"
     ],
     "parsers": {
       "price": "NI.fetch_price",
@@ -4641,9 +4642,9 @@
       "wind": 7801
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/PaulCornelissen",
-      "https://github.com/nessie2013"
+      "corradio",
+      "PaulCornelissen",
+      "nessie2013"
     ],
     "disclaimer": "The data provider (ENTSO-E) underreports production and consumption data.",
     "parsers": {
@@ -4671,7 +4672,7 @@
       "wind": 4619
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4882,7 +4883,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/Subarna578"
+      "Subarna578"
     ],
     "flag_file_name": "np.png",
     "timezone": null
@@ -4907,10 +4908,10 @@
       ]
     ],
     "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340",
-      "https://github.com/drc38"
+      "BobGrun",
+      "corradio",
+      "davidcole1340",
+      "drc38"
     ],
     "flag_file_name": "nz.png",
     "parsers": {
@@ -4941,7 +4942,7 @@
       "wind": 0
     },
     "contributors": [
-      "https://github.com/madsnedergaard"
+      "madsnedergaard"
     ],
     "flag_file_name": "nz.png",
     "timezone": "Pacific/Auckland"
@@ -4962,8 +4963,8 @@
       "wind": 50
     },
     "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
+      "q--",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
@@ -4994,14 +4995,14 @@
       "wind": 270
     },
     "contributors": [
-      "https://github.com/paulotaviodr",
-      "https://github.com/jarek",
-      "https://github.com/systemcatch",
-      "https://github.com/7hibault",
-      "https://github.com/nessie2013",
-      "https://github.com/q--",
-      "https://github.com/IV1T3",
-      "https://github.com/r24mille"
+      "paulotaviodr",
+      "jarek",
+      "systemcatch",
+      "7hibault",
+      "nessie2013",
+      "q--",
+      "IV1T3",
+      "r24mille"
     ],
     "parsers": {
       "production": "PA.fetch_production",
@@ -5027,8 +5028,8 @@
       "wind": 409
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "production": "PE.fetch_production"
@@ -5052,7 +5053,7 @@
       "solar": 41.077
     },
     "contributors": [
-      "https://github.com/autipial"
+      "autipial"
     ],
     "parsers": {
       "production": "PF.fetch_production"
@@ -5097,11 +5098,11 @@
       "wind": 7065
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/wojciej",
-      "https://github.com/nessie2013",
-      "https://github.com/filipc",
-      "https://github.com/Pantkowsky"
+      "corradio",
+      "wojciej",
+      "nessie2013",
+      "filipc",
+      "Pantkowsky"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5144,9 +5145,9 @@
       "wind": 125.1
     },
     "contributors": [
-      "https://github.com/q--",
-      "https://github.com/systemcatch",
-      "https://github.com/veqtrus"
+      "q--",
+      "systemcatch",
+      "veqtrus"
     ],
     "flag_file_name": "pr.png",
     "parsers": {
@@ -5182,9 +5183,9 @@
       "wind": 5528
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Falconet8"
+      "corradio",
+      "nessie2013",
+      "Falconet8"
     ],
     "flag_file_name": "pt.png",
     "parsers": {
@@ -5258,8 +5259,8 @@
       "solar": 5
     },
     "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
+      "q--",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
@@ -5287,7 +5288,7 @@
       "wind": 15
     },
     "contributors": [
-      "https://github.com/PETILLON-Sebastien"
+      "PETILLON-Sebastien"
     ],
     "parsers": {
       "price": "FR_O.fetch_price",
@@ -5318,7 +5319,7 @@
       "wind": 2957
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5352,8 +5353,8 @@
       "wind": 397
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5377,10 +5378,10 @@
       "wind": 10
     },
     "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/JeanBaptisteScellier"
+      "denplis",
+      "systemcatch",
+      "alixunderplatz",
+      "JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -5410,9 +5411,9 @@
       "unknown": 125014
     },
     "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "denplis",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -5436,9 +5437,9 @@
       "unknown": 26570
     },
     "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
+      "denplis",
+      "systemcatch",
+      "alixunderplatz"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -5458,7 +5459,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/JeanBaptisteScellier"
+      "JeanBaptisteScellier"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -5524,7 +5525,7 @@
       ]
     ],
     "contributors": [
-      "https://github.com/q--"
+      "q--"
     ],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
@@ -5562,11 +5563,11 @@
       "wind": 12200
     },
     "contributors": [
-      "https://github.com/augustekman",
-      "https://github.com/RRyyas",
-      "https://github.com/corradio",
-      "https://github.com/VIKTORVAV99",
-      "https://github.com/dpkruczek"
+      "augustekman",
+      "RRyyas",
+      "corradio",
+      "VIKTORVAV99",
+      "dpkruczek"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5679,13 +5680,13 @@
       "solar": 486.9
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/r24mille",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
+      "corradio",
+      "jarek",
+      "r24mille",
+      "systemcatch",
+      "alixunderplatz",
+      "q--",
+      "nessie2013"
     ],
     "parsers": {
       "price": "SG.fetch_price",
@@ -5719,7 +5720,7 @@
       "wind": 3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5758,7 +5759,7 @@
       "wind": 3
     },
     "contributors": [
-      "https://github.com/corradio"
+      "corradio"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5814,8 +5815,8 @@
       "wind": 54
     },
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
+      "systemcatch",
+      "nessie2013"
     ],
     "parsers": {
       "production": "SV.fetch_production"
@@ -5873,7 +5874,7 @@
       "production": "TH.fetch_production"
     },
 	"contributors": [
-      "https://github.com/PPsyrius"
+      "PPsyrius"
     ],
     "timezone": "Asia/Bangkok"
   },
@@ -5923,11 +5924,11 @@
       "wind": 10861.5
     },
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/olivierSemet",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013",
-      "https://github.com/lgrigoryeva1"
+      "corradio",
+      "olivierSemet",
+      "lorrieq",
+      "nessie2013",
+      "lgrigoryeva1"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5955,8 +5956,8 @@
       ]
     ],
     "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon"
+      "corradio",
+      "MariusKroon"
     ],
     "parsers": {
       "production": "TW.fetch_production"
@@ -5990,11 +5991,11 @@
       "wind": 1529
     },
     "contributors": [
-      "https://github.com/amkozlov",
-      "https://github.com/denplis",
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon",
-      "https://github.com/alixunderplatz"
+      "amkozlov",
+      "denplis",
+      "corradio",
+      "MariusKroon",
+      "alixunderplatz"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -6064,9 +6065,9 @@
     },
     "comment": "Balancing Authority Of Northern California",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6108,9 +6109,9 @@
     },
     "comment": "California Independent System Operator",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -6147,9 +6148,9 @@
     },
     "comment": "Imperial Irrigation District",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6191,9 +6192,9 @@
     },
     "comment": "Los Angeles Department Of Water And Power",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6235,9 +6236,9 @@
     },
     "comment": "Turlock Irrigation District",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6279,9 +6280,9 @@
     },
     "comment": "Duke Energy Progress East",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6323,9 +6324,9 @@
     },
     "comment": "Duke Energy Progress West",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6367,9 +6368,9 @@
     },
     "comment": "Duke Energy Carolinas",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6411,9 +6412,9 @@
     },
     "comment": "South Carolina Public Service Authority",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6455,9 +6456,9 @@
     },
     "comment": "South Carolina Electric & Gas Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6499,9 +6500,9 @@
     },
     "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -6539,9 +6540,9 @@
     },
     "comment": "Southwestern Power Administration",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6583,9 +6584,9 @@
     },
     "comment": "Southwest Power Pool",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -6623,9 +6624,9 @@
     },
     "comment": "Florida Municipal Power Pool",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6667,9 +6668,9 @@
     },
     "comment": "Duke Energy Florida Inc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6711,9 +6712,9 @@
     },
     "comment": "Florida Power & Light Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6755,9 +6756,9 @@
     },
     "comment": "Gainesville Regional Utilities",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6799,9 +6800,9 @@
     },
     "comment": "City Of Homestead",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6843,9 +6844,9 @@
     },
     "comment": "Jea",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6873,8 +6874,8 @@
     ],
     "comment": "New Smyrna Beach, Utilities Commission Of",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
+      "systemcatch",
+      "robertahunt"
     ],
     "delays": {
       "consumption": 30,
@@ -6916,9 +6917,9 @@
     },
     "comment": "Seminole Electric Cooperative",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -6960,9 +6961,9 @@
     },
     "comment": "City Of Tallahassee",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7004,9 +7005,9 @@
     },
     "comment": "Tampa Electric Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7143,10 +7144,10 @@
       "wind": 126.6
     },
     "contributors": [
-      "https://github.com/kepiej",
-      "https://github.com/systemcatch",
-      "https://github.com/KabelWlan",
-      "https://github.com/danielmatsuda"
+      "kepiej",
+      "systemcatch",
+      "KabelWlan",
+      "danielmatsuda"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -7181,9 +7182,9 @@
     },
     "comment": "Pjm Interconnection, Llc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -7221,9 +7222,9 @@
     },
     "comment": "Associated Electric Cooperative, Inc.",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7265,9 +7266,9 @@
     },
     "comment": "Electric Energy, Inc.",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -7281,8 +7282,8 @@
   "US-MIDW-GLHB": {
     "comment": "GridLiance",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
+      "systemcatch",
+      "robertahunt"
     ],
     "delays": {
       "production": 30
@@ -7320,9 +7321,9 @@
     },
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7364,9 +7365,9 @@
     },
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7409,9 +7410,9 @@
     },
     "comment": "Iso New England Inc.",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -7448,9 +7449,9 @@
     },
     "comment": "Avista Corporation",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7482,9 +7483,9 @@
     },
     "comment": "Avangrid Renewables Cooperative",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -7522,9 +7523,9 @@
     },
     "comment": "Bonneville Power Administration",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7566,9 +7567,9 @@
     },
     "comment": "Public Utility District No. 1 Of Chelan County",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7610,9 +7611,9 @@
     },
     "comment": "Pud No. 1 Of Douglas County",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7654,9 +7655,9 @@
     },
     "comment": "Public Utility District No. 2 Of Grant County, Washington",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7684,8 +7685,8 @@
     ],
     "comment": "Gridforce Energy Management, Llc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
+      "systemcatch",
+      "robertahunt"
     ],
     "delays": {
       "production": 30
@@ -7723,9 +7724,9 @@
     },
     "comment": "Naturener Power Watch, Llc (Gwa)",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -7763,9 +7764,9 @@
     },
     "comment": "Idaho Power Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7807,9 +7808,9 @@
     },
     "comment": "Nevada Power Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7851,9 +7852,9 @@
     },
     "comment": "Northwestern Energy (Nwmt)",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7895,9 +7896,9 @@
     },
     "comment": "Pacificorp - East",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7939,9 +7940,9 @@
     },
     "comment": "Pacificorp - West",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -7983,9 +7984,9 @@
     },
     "comment": "Portland General Electric Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8027,9 +8028,9 @@
     },
     "comment": "Public Service Company Of Colorado",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8071,9 +8072,9 @@
     },
     "comment": "Puget Sound Energy",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8115,9 +8116,9 @@
     },
     "comment": "Seattle City Light",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8159,9 +8160,9 @@
     },
     "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8203,9 +8204,9 @@
     },
     "comment": "Western Area Power Administration - Rocky Mountain Region",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8247,9 +8248,9 @@
     },
     "comment": "Western Area Power Administration Ugp West",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8291,9 +8292,9 @@
     },
     "comment": "Naturener Wind Watch, Llc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8331,10 +8332,10 @@
     },
     "comment": "New York Independent System Operator",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan",
-      "https://github.com/brandongalbraith"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan",
+      "brandongalbraith"
     ],
     "flag_file_name": "us.png",
     "parsers": {
@@ -8371,9 +8372,9 @@
     },
     "comment": "Powersouth Energy Cooperative",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8415,9 +8416,9 @@
     },
     "comment": "Southeastern Power Administration",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8455,9 +8456,9 @@
     },
     "comment": "Southern Company Services, Inc. - Trans",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8499,9 +8500,9 @@
     },
     "comment": "Arizona Public Service Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8543,9 +8544,9 @@
     },
     "comment": "Arlington Valley, Llc - Avba",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8583,9 +8584,9 @@
     },
     "comment": "El Paso Electric Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8627,9 +8628,9 @@
     },
     "comment": "Griffith Energy, Llc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8667,9 +8668,9 @@
     },
     "comment": "Gila River Power, Llc",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8707,9 +8708,9 @@
     },
     "comment": "New Harquahala Generating Company, Llc - Hgba",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "production": 30
@@ -8747,9 +8748,9 @@
     },
     "comment": "Public Service Company Of New Mexico",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8791,9 +8792,9 @@
     },
     "comment": "Salt River Project",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8835,9 +8836,9 @@
     },
     "comment": "Tucson Electric Power Company",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8879,9 +8880,9 @@
     },
     "comment": "Western Area Power Administration - Desert Southwest Region",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8923,9 +8924,9 @@
     },
     "comment": "Tennessee Valley Authority",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -8967,9 +8968,9 @@
     },
     "comment": "Electric Reliability Council Of Texas, Inc.",
     "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
+      "systemcatch",
+      "robertahunt",
+      "KabelWlan"
     ],
     "delays": {
       "consumption": 30,
@@ -9003,9 +9004,9 @@
       "wind": 1511
     },
     "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
+      "jarek",
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "production": "UY.fetch_production"
@@ -9058,7 +9059,7 @@
       "wind": 136
     },
     "contributors": [
-      "https://github.com/veqtrus"
+      "veqtrus"
     ],
     "delays": {
       "production": 48

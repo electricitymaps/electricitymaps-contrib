@@ -4,6 +4,7 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 
 import { useTranslation } from '../../helpers/translation';
 import FAQ from '../../components/faq';
+import Icon from '../../components/icon';
 
 const mapStateToProps = state => ({
   isMobile: state.application.isMobile,
@@ -25,10 +26,8 @@ const FAQPanel = ({ isMobile }) => {
   return (
     <div className="faq-panel">
       <div className="faq-header">
-        <Link to={parentPage}>
-          <span className="left-panel-back-button">
-            <i className="material-icons" aria-hidden="true">arrow_back</i>
-          </span>
+        <Link to={parentPage} className="left-panel-back-button">
+          <Icon iconName="arrow_back" />
         </Link>
         <span className="title">{__('misc.faq')}</span>
       </div>

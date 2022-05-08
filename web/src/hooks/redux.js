@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { addDays, startOfDay, subDays } from 'date-fns'
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -18,7 +18,7 @@ export function useCurrentZoneHistory() {
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
+  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => new Date(d.stateDatetime)), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -29,7 +29,7 @@ export function useCurrentZoneHistoryEndTime() {
   const gridDatetime = useSelector((state) => (state.data.grid || {}).datetime);
 
   return useMemo(
-    () => moment(customDatetime || gridDatetime).format(),
+    () => new Date(customDatetime || (gridDatetime ?? Date.now())), // Moment return a date when gridDatetime is undefined, this matches that behavior.
     [customDatetime, gridDatetime]
   );
 }
@@ -115,7 +115,7 @@ export function useCurrentNightTimes() {
     }
     const { latitude, longitude } = getCenteredZoneViewport(zone);
     const nightTimes = [];
-    let baseDatetime = moment(datetimeStr).startOf('day').toDate();
+    let baseDatetime = startOfDay(new Date(datetimeStr));
 
     const earliest = history && history[0] && new Date(history[0].stateDatetime);
     const latest = new Date(
@@ -129,7 +129,7 @@ export function useCurrentNightTimes() {
       let nightEnd = getSunrise(latitude, longitude, baseDatetime);
       // Due to some bug in the library, sometimes we get nightStart > nightEnd
       if (nightStart.getTime() > nightEnd.getTime()) {
-        nightEnd = moment(nightEnd).add(1, 'day').toDate();
+        nightEnd = addDays(nightEnd, 1);
       }
       // Only use nights that start before the latest time we have
       // and that finishes after the earliest time we have
@@ -143,7 +143,7 @@ export function useCurrentNightTimes() {
       }
 
       // Iterate to previous day
-      baseDatetime = moment(baseDatetime).subtract(1, 'day').toDate();
+      baseDatetime = subDays(baseDatetime, 1);
       // The looping logic is handled inside the "do" block
       // eslint-disable-next-line no-constant-condition
     } while (true);

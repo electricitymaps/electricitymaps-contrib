@@ -1,3 +1,9 @@
+# CURRENTLY DISABLED
+# We had so many PRs being opened and not enough time to test each individual update,
+# so for now we're disabling this and manually updating dependencies.
+# This can be enabled again when we have a tests and faster CI flow.
+
+
 # Dependabot config file
 
 version: 2

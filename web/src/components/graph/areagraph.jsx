@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
-import moment from 'moment';
 
 import { isEmpty } from '../../helpers/isEmpty';
 
@@ -20,8 +19,8 @@ const getDatetimes = data => (data || []).map(d => d.datetime);
 
 const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
-    startTime ? moment(startTime).toDate() : datetimes.at(0),
-    endTime ? moment(endTime).toDate() : datetimes.at(-1),
+    startTime ? new Date(startTime) : datetimes.at(0),
+    endTime ? new Date(endTime) : datetimes.at(-1),
   ])
   .range([0, width]);
 
