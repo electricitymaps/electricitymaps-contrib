@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const postcssPresetEnv = require('postcss-preset-env');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { version } = require('./public/client-version.json');
@@ -51,7 +51,6 @@ module.exports = {
       },
       statsFilename: 'manifest.json',
     }),
-    new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
       chunkFilename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
@@ -65,6 +64,11 @@ module.exports = {
     }),
   ],
   optimization: {
+    minimize: true,
+    minimizer: [
+      '...', // Includes the default minimizers.
+      new CssMinimizerPlugin(),
+    ],
     splitChunks: {
       cacheGroups: {
         commons: {
