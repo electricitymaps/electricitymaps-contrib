@@ -50,7 +50,7 @@
         "now": "Now"
     },
     "time-controller": {
-        "title": "Display data from the last",
+        "title": "Display data from the past",
         "day": "Day",
         "month": "Month",
         "year": "Year",
