@@ -30,7 +30,6 @@
   font-size: .85em;
   font-size: .7em;
   font-family: "Open Sans", sans-serif;
-  line { opacity: 0.5; }
   @include respond-to('small') {
     font-size: .6em;
   }

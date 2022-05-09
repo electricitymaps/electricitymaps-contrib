@@ -45,10 +45,11 @@ const getTicksValuesFromTimeScale = (scale, count) => {
 };
 
 const renderTick = (scale, val, idx, __, displayLive) => {
+  const shouldShowValue = idx % TICK_VALUE_FREQUENCY === 0;
   return (
     <g key={`tick-${val}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
-      <line stroke="currentColor" y2="6" />
-      {idx % TICK_VALUE_FREQUENCY === 0 && renderTickValue(val, __, idx, displayLive)}
+      <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
+      {shouldShowValue && renderTickValue(val, __, idx, displayLive)}
     </g>
   );
 };
