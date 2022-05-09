@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { isEmpty } from 'lodash';
 import styled, { css } from 'styled-components';
 
 import InfoTooltip from './infotooltip';
+import { isEmpty } from '../helpers/isEmpty'
 
 const Wrapper = styled.div`
   align-content: center;

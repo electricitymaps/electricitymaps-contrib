@@ -1,5 +1,5 @@
 import React from 'react';
-import { range } from 'lodash';
+
 
 import { useTranslation } from '../../helpers/translation';
 import { differenceInMinutes } from 'date-fns';
@@ -21,7 +21,8 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   const precision = 15 * 60 * 1000; // 15 minutes
   const step = (endTime - startTime) / (count - 1);
 
-  return range(count).map(ind => (
+
+  return [...Array(count).keys()].map(ind => (
     new Date(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision))
   ));
 };

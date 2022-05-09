@@ -1,5 +1,5 @@
 import React from 'react';
-import { noop } from 'lodash';
+import { noop } from '../../helpers/noop';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 

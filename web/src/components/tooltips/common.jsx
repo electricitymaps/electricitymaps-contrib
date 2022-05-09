@@ -1,5 +1,4 @@
 import React from 'react';
-import { isFinite } from 'lodash';
 
 import { getShortenedZoneNameWithCountry } from '../../helpers/translation';
 import { useCo2ColorScale } from '../../hooks/theme';
@@ -19,7 +18,7 @@ export const CarbonIntensity = ({ intensity }) => {
 };
 
 export const MetricRatio = ({ value, total, format }) => (
-  <small>{`(${isFinite(value) ? format(value) : '?'} / ${isFinite(total) ? format(total) : '?'})`}</small>
+  <small>{`(${Number.isFinite(value) ? format(value) : '?'} / ${Number.isFinite(total) ? format(total) : '?'})`}</small>
 );
 
 const Flag = styled.img`

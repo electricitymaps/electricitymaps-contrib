@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { noop } from 'lodash';
+import { noop } from '../helpers/noop';
 
 import {
   quantizedCo2IntensityScale,
