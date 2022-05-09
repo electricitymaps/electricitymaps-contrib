@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Tooltip from './tooltip';
 import { useTranslation } from '../helpers/translation';
-import { noop } from 'lodash';
+import { noop } from '../helpers/noop';
 
 const EstimationLabel = styled.div`
   background: #FFD700;

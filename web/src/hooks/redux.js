@@ -2,7 +2,6 @@ import { addDays, startOfDay, subDays } from 'date-fns'
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { keys, sortBy } from 'lodash';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
 import { useCustomDatetime } from './router';
@@ -80,9 +79,9 @@ export function useCurrentZoneExchangeKeys() {
     const exchangeKeys = new Set();
     const zoneHistoryOrCurrent = zoneHistory || [currentZoneData];
     zoneHistoryOrCurrent.forEach((zoneData) => {
-      keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
+    Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
     });
-    return sortBy(Array.from(exchangeKeys));
+    return Array.from(exchangeKeys).sort();
   }, [isConsumption, zoneHistory, currentZoneData]);
 }
 

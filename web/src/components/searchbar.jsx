@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { noop } from 'lodash';
+import { noop } from '../helpers/noop';
 
 const SearchBar = ({
   className,

@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import {
-  first, last, sortedIndex, isNumber,
-} from 'lodash';
+import sortedIndex from 'lodash.sortedindex';
 import { scaleTime } from 'd3-scale';
 
 import TimeAxis from './graph/timeaxis';
@@ -13,8 +11,8 @@ const AXIS_HORIZONTAL_MARGINS = 12;
 
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) => scaleTime()
   .domain([
-    startTime ? new Date(startTime) : first(datetimes),
-    endTime ? new Date(endTime) : last(datetimes),
+    startTime ? new Date(startTime) : datetimes.at(0),
+    endTime ? new Date(endTime) : datetimes.at(-1),
   ])
   .range([0, rangeEnd])
   .nice(25);
@@ -81,10 +79,10 @@ const TimeSlider = ({
 
   if (!datetimes || datetimes.length === 0) return null;
 
-  const selectedTimeValue = isNumber(selectedTimeIndex)
+  const selectedTimeValue = typeof selectedTimeIndex === 'number'
     ? datetimes[selectedTimeIndex].valueOf()
     : null;
-  const anchoredTimeValue = isNumber(anchoredTimeIndex)
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number'
     ? datetimes[anchoredTimeIndex].valueOf()
     : null;
 

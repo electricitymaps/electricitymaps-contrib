@@ -1,13 +1,14 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { debounce } from 'lodash';
 
 import { useTranslation } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
+import { debounce } from '../helpers/debounce';
+
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';

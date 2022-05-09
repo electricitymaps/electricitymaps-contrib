@@ -12,7 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { isNil, noop } from 'lodash';
+import { noop } from '../../helpers/noop';
 import styled from 'styled-components';
 
 // Components
@@ -184,7 +184,7 @@ const EstimatedDataInfo = ({ text }) => (
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -250,7 +250,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   }
 
   const { hasData, hasParser, estimationMethod } = data;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
 
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
