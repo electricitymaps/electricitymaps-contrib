@@ -42,10 +42,11 @@ const StyledWrapper = styled.div`
 
 const ZoneListPanel = () => {
   const { __ } = useTranslation();
-  const features = useFeatureToggle();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+  console.log(isHistoryFeatureEnabled);
 
   return (
-    <StyledWrapper historyFeatureEnabled={features.includes('history')}>
+    <StyledWrapper historyFeatureEnabled={isHistoryFeatureEnabled}>
       <div className="zone-list-header">
         <div className="title"> {__('left-panel.zone-list-header-title')}</div>
         <div className="subtitle">{__('left-panel.zone-list-header-subtitle')}</div>

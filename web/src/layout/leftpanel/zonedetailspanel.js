@@ -30,12 +30,12 @@ const ZoneDetailsPanel = ({ selectedZoneTimeIndex }) => {
   // Fetch history for the current zone if it hasn't been fetched yet.
   useConditionalZoneHistoryFetch();
 
-  const features = useFeatureToggle();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   return (
     <div className="left-panel-zone-details">
       <CountryPanel />
-      {!features.includes('history') && (
+      {!isHistoryFeatureEnabled && (
         <div className="detail-bottom-section">
           <TimeSlider
             className="zone-time-slider"

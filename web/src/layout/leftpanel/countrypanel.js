@@ -233,7 +233,8 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const features = useFeatureToggle();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+
 
   const data = useCurrentZoneData() || {};
 
@@ -388,7 +389,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <CountryHistoryPricesGraph />
             </div>
             <hr />
-            <StyledSources historyFeatureEnabled={features.includes('history')}>
+            <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
               {__('country-panel.source')}
               {': '}
               <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">

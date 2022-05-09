@@ -62,11 +62,12 @@ const StyledTimeSlider = styled(TimeSlider)`
 
 const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const datetimes = useCurrentDatetimes();
-  const features = useFeatureToggle();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
-  if (!features.includes('history')) {
+  if (!isHistoryFeatureEnabled) {
     return null;
   }
+
   const startTime = datetimes[0];
   const endTime = datetimes[datetimes.length - 1];
 
