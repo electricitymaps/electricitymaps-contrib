@@ -50,11 +50,7 @@
         "now": "Now"
     },
     "time-controller": {
-        "title": "Display data from the last",
-        "day": "Day",
-        "month": "Month",
-        "year": "Year",
-        "5year": "5 years"
+        "title": "Display data from the past"
     },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",
