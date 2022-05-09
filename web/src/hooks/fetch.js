@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { isArray, isNull } from 'lodash';
 
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
@@ -20,9 +19,9 @@ export function useConditionalZoneHistoryFetch() {
   useEffect(() => {
     if (customDatetime) {
       console.error('Can\'t fetch history when a custom date is provided!');
-    } else if (zoneId && isArray(historyData) && historyData.length === 0) {
+    } else if (zoneId && Array.isArray(historyData) && historyData.length === 0) {
       console.error('No history data available right now!');
-    } else if (zoneId && isNull(historyData)) {
+    } else if (zoneId && historyData === null) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features } });
     }
   }, [zoneId, historyData, customDatetime]);
