@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
 import { formatHourlyDate } from '../helpers/formatting';
@@ -22,6 +22,7 @@ const DateRangeOption = styled.span`
   padding-right: 12px;
   border-radius: 16px;
   white-space: nowrap;
+  text-transform: capitalize;
   cursor: default;
   font-weight: ${(props) => (props.active ? 700 : 500)};
   opacity: ${(props) => (props.active ? 1 : 0.5)};
@@ -63,15 +64,36 @@ const DateOptionWrapper = styled.div`
   padding-top: 8px;
 `;
 
-const options = [
-  { key: 'day', label: 'time-controller.day' },
-  { key: 'month', label: 'time-controller.month' },
-  { key: 'year', label: 'time-controller.year' },
-  { key: '5year', label: 'time-controller.5year' },
-];
+const getOptions = (language) =>
+  useMemo(
+    () => [
+      {
+        key: 'day',
+        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('day'),
+      },
+      {
+        key: 'month',
+        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('month'),
+      },
+      {
+        key: 'year',
+        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('year'),
+      },
+      {
+        key: '5year',
+        label: new Intl.NumberFormat(language, {
+          style: 'unit',
+          unit: 'year',
+          unitDisplay: 'long',
+        }).format(5),
+      },
+    ],
+    [language]
+  );
 
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
+  const options = getOptions(i18n.language);
 
   return (
     <div>
@@ -88,7 +110,7 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
               handleTimeAggregationChange(o.key);
             }}
           >
-            {__(o.label)}
+            {o.label}
           </DateRangeOption>
         ))}
       </DateOptionWrapper>
