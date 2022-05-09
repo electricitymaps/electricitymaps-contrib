@@ -2,12 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import { range } from 'lodash';
 
-import { useTranslation } from '../../helpers/translation';
-
 const TOTAL_TICK_COUNT = 25; // total number of ticks to be displayed
 const TICK_VALUE_FREQUENCY = 6; // Frequency at which values are displayed for a tick
 
-const renderTickValue = (v, __, idx, displayLive) => {
+const renderTickValue = (v, idx, displayLive) => {
   const shouldDisplayLive = idx === 24 && displayLive; // TODO: change this for other aggregations
 
   if (shouldDisplayLive) {
@@ -44,18 +42,17 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   );
 };
 
-const renderTick = (scale, val, idx, __, displayLive) => {
+const renderTick = (scale, val, idx, displayLive) => {
   const shouldShowValue = idx % TICK_VALUE_FREQUENCY === 0;
   return (
     <g key={`tick-${val}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
-      {shouldShowValue && renderTickValue(val, __, idx, displayLive)}
+      {shouldShowValue && renderTickValue(val, idx, displayLive)}
     </g>
   );
 };
 
 const TimeAxis = React.memo(({ className, scale, transform, displayLive }) => {
-  const { __ } = useTranslation();
   const [x1, x2] = scale.range();
   return (
     <g
@@ -67,7 +64,7 @@ const TimeAxis = React.memo(({ className, scale, transform, displayLive }) => {
     >
       <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
       {getTicksValuesFromTimeScale(scale, TOTAL_TICK_COUNT).map((v, idx) =>
-        renderTick(scale, v, idx, __, displayLive)
+        renderTick(scale, v, idx, displayLive)
       )}
     </g>
   );
