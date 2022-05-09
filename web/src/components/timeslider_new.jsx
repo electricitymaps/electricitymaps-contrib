@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { first, last, sortedIndex, isNumber } from 'lodash';
 import { scaleTime } from 'd3-scale';
-import moment from 'moment';
 
 import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
@@ -65,8 +64,8 @@ const StyledInput = styled.input`
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
   scaleTime()
     .domain([
-      startTime ? moment(startTime).toDate() : first(datetimes),
-      endTime ? moment(endTime).toDate() : last(datetimes),
+      startTime ? new Date(startTime) : datetimes.at(0),
+      endTime ? new Date(endTime) : datetimes.at(-1),
     ])
     .range([0, rangeEnd])
     .nice(25);

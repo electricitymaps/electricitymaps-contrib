@@ -39,6 +39,7 @@ import { useTranslation, getZoneNameWithCountry } from '../../helpers/translatio
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { useFeatureToggle } from '../../hooks/router';
+import { formatHourlyDate } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -165,11 +166,11 @@ const CountryPanelStyled = styled.div`
 
 const StyledSources = styled.div`
   margin-bottom: ${props => props.historyFeatureEnabled ? "170px" : 0};
-  
+
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
-`; 
+`;
 
 const EstimatedDataInfoBox = styled.p`
   background-color: #eee;
@@ -208,7 +209,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime ?  new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(new Date(shownDatetime)) : ''}
+              {shownDatetime && formatHourlyDate(new Date(shownDatetime))}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>

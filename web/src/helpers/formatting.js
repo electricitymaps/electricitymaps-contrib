@@ -3,7 +3,6 @@
 
 import * as d3 from 'd3-format';
 import * as translation from './translation';
-import moment from 'moment';
 
 const formatPower = function (d, numDigits) {
   // Assume MW input
@@ -24,12 +23,12 @@ const formatCo2 = function (d, numDigits) {
 };
 const scalePower = function (maxPower) {
   // Assume MW input
-  if (maxPower < 1) 
+  if (maxPower < 1)
     return {
       unit: "kW",
       formattingFactor: 1e-3
     }
-  if (maxPower < 1e3) 
+  if (maxPower < 1e3)
     return {
       unit: "MW",
       formattingFactor: 1
@@ -41,10 +40,9 @@ const scalePower = function (maxPower) {
 };
 
 const formatHourlyDate = function (date) {
-  // formats timestamp to readable date
+  // formats date object to readable date
   if (!date) return '';
-
-  return moment(date).format('LL LT');
+  return new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(date)
 };
 
 export {
