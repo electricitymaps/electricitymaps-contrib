@@ -145,3 +145,11 @@
   background: #ffffff;
   cursor: pointer;
 }
+
+// new timeslider
+
+.time-slider-input-new {
+  &::-webkit-slider-thumb {
+    background-image: url("../images/slider-thumb.svg");
+  }
+}

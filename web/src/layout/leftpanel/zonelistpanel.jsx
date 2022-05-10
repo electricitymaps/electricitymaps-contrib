@@ -43,7 +43,6 @@ const StyledWrapper = styled.div`
 const ZoneListPanel = () => {
   const { __ } = useTranslation();
   const isHistoryFeatureEnabled = useFeatureToggle('history');
-  console.log(isHistoryFeatureEnabled);
 
   return (
     <StyledWrapper historyFeatureEnabled={isHistoryFeatureEnabled}>

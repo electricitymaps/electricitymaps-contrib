@@ -8,7 +8,6 @@ import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import thumbImg from '../../public/images/slider-thumb.svg';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -41,9 +40,9 @@ const StyledInput = styled.input`
     background-position: center center;
     background-size: 12px;
     background-repeat: no-repeat;
-    background-image: url(${thumbImg});
     border: none;
     box-shadow: 0.1px 0.1px 6px rgba(0, 0, 0, 0.16);
+    // TODO: background-image is set in .scss file
 
     &:hover {
       box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
@@ -151,6 +150,7 @@ const TimeSlider = ({
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
       <StyledInput
+        className='time-slider-input-new'
         type="range"
         onChange={handleChangeAndInput}
         onInput={onChange}

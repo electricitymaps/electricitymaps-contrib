@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../helpers/translation';
 
 const TOTAL_TICK_COUNT = 25; // total number of ticks to be displayed
 const TICK_VALUE_FREQUENCY = 6; // Frequency at which values are displayed for a tick
