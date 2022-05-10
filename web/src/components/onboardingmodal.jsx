@@ -5,6 +5,8 @@ import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
 import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
+import { useSearchParams } from '../hooks/router';
+
 import Icon from './icon';
 
 const views = [{
@@ -61,6 +63,7 @@ const mapStateToProps = state => ({
 const OnboardingModal = ({ visible }) => {
   const trackEvent = useTrackEvent();
   const { __ } = useTranslation();
+  const shouldSkip = useSearchParams().get('skip-onboarding') === 'true';
 
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
@@ -96,12 +99,12 @@ const OnboardingModal = ({ visible }) => {
 
   // Track event when the onboarding modal opens up
   useEffect(() => {
-    if (visible) {
+    if (visible && !shouldSkip) {
       trackEvent('Onboarding Shown');
     }
-  }, [visible]);
+  }, [visible, shouldSkip]);
 
-  if (!visible) return null;
+  if (!visible || shouldSkip) return null;
 
   return (
     <React.Fragment>
