@@ -33,7 +33,7 @@ const StyledTimeSlider = styled(TimeSlider)`
   width: calc((14vw + 16rem) - 70px); // Ensures it is smaller than countrypanel
   z-index: 999; // TODO: find the needed one
   position: fixed;
-  box-shadow: rgba(0, 0, 0, 0.66) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
 
   .time-slider-axis-container {
     width: 100%;
