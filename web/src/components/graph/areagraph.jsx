@@ -1,17 +1,8 @@
 import React, { useMemo } from 'react';
-import {
-  first,
-  last,
-  max,
-  min,
-  filter,
-  flattenDeep,
-  isFinite,
-  isEmpty,
-} from 'lodash';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
-import moment from 'moment';
+
+import { isEmpty } from '../../helpers/isEmpty';
 
 import AreaGraphLayers from './areagraphlayers';
 import GraphBackground from './graphbackground';
@@ -28,23 +19,21 @@ const getDatetimes = data => (data || []).map(d => d.datetime);
 
 const getTimeScale = (width, datetimes, startTime, endTime) => scaleTime()
   .domain([
-    startTime ? moment(startTime).toDate() : first(datetimes),
-    endTime ? moment(endTime).toDate() : last(datetimes),
+    startTime ? new Date(startTime) : datetimes.at(0),
+    endTime ? new Date(endTime) : datetimes.at(-1),
   ])
   .range([0, width]);
 
 const getTotalValues = (layers) => {
-  const values = filter(
-    flattenDeep(
-      layers.map(
+  const values =
+      layers.flatMap(
         layer => layer.datapoints.map(d => d[1]),
-      ),
-    ),
-    isFinite,
-  );
+      )
+      .filter(Number.isFinite)
+
   return {
-    min: min(values) || 0,
-    max: max(values) || 0,
+    min: Number.isFinite(Math.min(...values)) ? Math.min(...values) : 0,
+    max: Number.isFinite(Math.max(...values)) ? Math.max(...values) : 0,
   };
 };
 

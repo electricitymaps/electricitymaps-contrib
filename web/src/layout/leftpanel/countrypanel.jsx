@@ -12,8 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { isNil, noop } from 'lodash';
-import moment from 'moment';
+import { noop } from '../../helpers/noop';
 import styled from 'styled-components';
 
 // Components
@@ -185,7 +184,7 @@ const EstimatedDataInfo = ({ text }) => (
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -200,7 +199,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime ? moment(shownDatetime).format('LL LT') : ''}
+              {shownDatetime ?  new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(new Date(shownDatetime)) : ''}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
@@ -251,7 +250,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   }
 
   const { hasData, hasParser, estimationMethod } = data;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
 
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity

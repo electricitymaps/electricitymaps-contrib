@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { isFinite } from 'lodash';
 
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
@@ -48,10 +47,10 @@ const CountryPanelProductionTooltip = ({
   });
   const isExport = electricity < 0;
 
-  const usage = isFinite(electricity) && Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
+  const usage = Number.isFinite(electricity) && Math.abs(displayByEmissions ? (electricity * co2Intensity * 1000) : electricity);
   const totalElectricity = getTotalElectricity(zoneData, displayByEmissions);
 
-  const emissions = isFinite(electricity) && Math.abs(electricity * co2Intensity * 1000);
+  const emissions = Number.isFinite(electricity) && Math.abs(electricity * co2Intensity * 1000);
   const totalEmissions = getTotalElectricity(zoneData, true);
 
   const co2IntensitySource = isStorage
@@ -100,7 +99,7 @@ const CountryPanelProductionTooltip = ({
         </React.Fragment>
       )}
       {/* Don't show carbon intensity if we know for sure the zone doesn't use this resource */}
-      {!displayByEmissions && (isFinite(co2Intensity) || usage !== 0) && (
+      {!displayByEmissions && (Number.isFinite(co2Intensity) || usage !== 0) && (
         <React.Fragment>
           <br />
           <br />

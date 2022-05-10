@@ -1,8 +1,11 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
-import { debounce, isEmpty, map, noop, size } from 'lodash';
+import { noop } from '../helpers/noop';
+import { isEmpty } from '../helpers/isEmpty';
+import { debounce } from '../helpers/debounce'
 import { useFeatureToggle } from '../hooks/router';
+
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -68,21 +71,24 @@ const ZoneMap = ({
   };
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
-  const sources = useMemo(() => {
-    const features = map(zones, (zone, zoneId) => ({
-      type: 'Feature',
-      id: zoneId,
-      geometry: {
-        ...zone.geometry,
-        coordinates: zone.geometry.coordinates.filter(size), // Remove empty geometries
-      },
-      properties: {
-        color: zone.color,
-        isClickable: zone.isClickable,
-        zoneData: zone,
-        zoneId,
-      },
-    }));
+  const sources = useMemo(
+    () => {
+      const features = Object.entries(zones).map(([zoneId, zone]) => {
+        const length = (coordinate) => coordinate ? coordinate.length : 0
+        return {
+          type: 'Feature',
+            geometry: {
+              ...zone.geometry,
+            coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
+          },
+          properties: {
+            color: zone.color,
+            isClickable: zone.isClickable,
+            zoneData: zone,
+            zoneId,
+          },
+        }
+      })
 
     return {
       zonesClickable: {

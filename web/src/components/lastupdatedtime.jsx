@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import { differenceInHours } from 'date-fns';
 
 import { useCurrentZoneHistoryEndTime } from '../hooks/redux';
 
@@ -18,7 +18,7 @@ const LastUpdatedTime = () => {
 
   return (
     <span style={style}>
-      {moment(timestamp).fromNow()}
+      {new Intl.RelativeTimeFormat(document.documentElement.lang).format(differenceInHours(timestamp, Date.now()), 'hour')}
     </span>
   );
 };

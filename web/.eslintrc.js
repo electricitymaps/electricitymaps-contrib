@@ -3,6 +3,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   extends: [
     'eslint:recommended',
+    'plugin:you-dont-need-lodash-underscore/all',
     'plugin:react/recommended',
     'plugin:jest/recommended',
     'plugin:import/errors',

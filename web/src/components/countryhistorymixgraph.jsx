@@ -1,8 +1,6 @@
-import moment from 'moment';
 import React, { useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { max as d3Max } from 'd3-array';
-import { forEach } from 'lodash';
 
 import { scalePower } from '../helpers/formatting';
 import { useCo2ColorScale } from '../hooks/theme';
@@ -42,7 +40,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
   // TODO: Simplify this function and make it more readable
   const data = historyData.map((d) => {
     const obj = {
-      datetime: moment(d.stateDatetime).toDate(),
+      datetime: new Date(d.stateDatetime),
     };
 
     const hasProductionData = d.production && Object.values(d.production).some(v => v !== null);
@@ -73,7 +71,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
 
       if (electricityMixMode === 'consumption') {
         // Add exchange
-        forEach(d.exchange, (value, key) => {
+        Object.entries(d.exchange).forEach(([key, value]) => {
           // in GW or MW
           obj[key] = Math.max(0, value / valueFactor);
           if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {

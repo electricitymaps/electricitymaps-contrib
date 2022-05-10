@@ -5297,6 +5297,7 @@
     "timezone": "Indian/Reunion"
   },
   "RO": {
+    "_comment": "Biomass includes 19.227 MW of biogas and 6.03 MW of waste incineration",
     "bounding_box": [
       [
         20.2201924985,
@@ -5308,18 +5309,20 @@
       ]
     ],
     "capacity": {
-      "biomass": 116,
-      "coal": 2643,
-      "gas": 2218,
+      "biomass": 132,
+      "coal": 3092,
+      "gas": 2853,
       "geothermal": 0,
-      "hydro": 6137,
+      "hydro": 6639,
       "hydro storage": 0,
-      "nuclear": 1400,
-      "solar": 1160,
-      "wind": 2957
+      "nuclear": 1413,
+      "solar": 1393,
+      "unknown": 4,
+      "wind": 3014
     },
     "contributors": [
-      "corradio"
+      "corradio",
+      "mzaharie"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
