@@ -5,7 +5,7 @@ import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
 
-const cookieGetBool = (key, defaultValue) => {
+const getStorageBool = (key, defaultValue) => {
   const val = getKey(key);
   if (val == null) {
     return defaultValue;
@@ -19,8 +19,8 @@ const initialApplicationState = {
   callerLocation: null,
   clientType: window.isCordova ? 'mobileapp' : 'web',
   co2ColorbarValue: null,
-  colorBlindModeEnabled: cookieGetBool('colorBlindModeEnabled', false),
-  brightModeEnabled: cookieGetBool('brightModeEnabled', true),
+  colorBlindModeEnabled: getStorageBool('colorBlindModeEnabled', false),
+  brightModeEnabled: getStorageBool('brightModeEnabled', true),
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
@@ -43,7 +43,7 @@ const initialApplicationState = {
     longitude: 0,
     zoom: 1.5,
   },
-  onboardingSeen: cookieGetBool('onboardingSeen', false),
+  onboardingSeen: getStorageBool('onboardingSeen', false),
   searchQuery: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
