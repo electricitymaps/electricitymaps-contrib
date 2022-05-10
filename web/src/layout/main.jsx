@@ -148,7 +148,7 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isClientVersionOutdated && (!isClientVersionForceHidden) ? 'active' : ''}`}>
+          <div id="new-version" className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}>
             <NewVersionInner className='inner'>
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
               <NewVersionButton onClick={() => setIsClientVersionForceHidden(true)}>&#x2715;</NewVersionButton>
