@@ -11312,7 +11312,7 @@
       },
       "SE": {
         "unknown": {
-          "_comment": "Sum of renewable sources in SE unknown production from co2eq_parameters_lifecycle.json",
+          "_comment": "Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json",
           "value": 0.8336
         }
       },
@@ -11421,7 +11421,7 @@
       },
       "SE": {
         "unknown": {
-          "_comment": "Sum of renewable sources in SE unknown production from co2eq_parameters_lifecycle.json",
+          "_comment": "Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json",
           "value": 0.8336
         }
       },
