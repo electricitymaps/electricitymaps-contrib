@@ -53,8 +53,11 @@ export function useCurrentZoneData() {
     if (!zoneId || !grid || !zoneHistory) {
       return null;
     }
-
-    return zoneHistory[zoneTimeIndex];
+    else if (zoneTimeIndex === null) {
+      // If null, return the latest history
+      return zoneHistory.at(-1);
+    }
+    else return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 

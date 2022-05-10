@@ -45,7 +45,7 @@ const initialApplicationState = {
   },
   onboardingSeen: cookieGetBool('onboardingSeen', false),
   searchQuery: null,
-  selectedZoneTimeIndex: 24,
+  selectedZoneTimeIndex: null,
   solarColorbarValue: null,
   webGLSupported: true,
   windColorbarValue: null,
