@@ -65,9 +65,9 @@ i18n
       request: requestWithXmlHttpRequest,
     },
     detection: {
-      order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
-      caches: ['localStorage', 'cookie'],
+      caches: ['localStorage',],
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
