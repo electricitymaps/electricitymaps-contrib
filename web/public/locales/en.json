@@ -49,6 +49,9 @@
         "noParserInfo": "We do not yet have any information about this area.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
         "now": "Now"
     },
+    "time-controller": {
+        "title": "Display data from the past"
+    },
     "left-panel": {
         "zone-list-header-title": "Climate Impact by Area",
         "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",

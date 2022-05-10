@@ -49,6 +49,7 @@ const initialApplicationState = {
   solarColorbarValue: null,
   webGLSupported: true,
   windColorbarValue: null,
+  selectedTimeAggregate: 'day',
 
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,

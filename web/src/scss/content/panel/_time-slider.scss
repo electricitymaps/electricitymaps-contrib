@@ -1,51 +1,54 @@
 .zone-time-slider {
-    bottom: 0;
-    height: 65px;
-    padding: 0.25rem 1.5rem;
-    background: transparent;
-    width: 100%;
-    box-sizing: border-box;
-    border-top: 1px solid lightgray;
-    text-align: center;
-    overflow-y: visible;
+  bottom: 0;
+  height: 65px;
+  padding: 0.25rem 1.5rem;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid lightgray;
+  text-align: center;
+  overflow-y: visible;
 
-    .time-slider-axis-container {
-        width: 100%;
-        height: 20px;
-        margin: -6px 2px 0;
-        overflow: visible;
-    }
+  .time-slider-axis-container {
+      width: 100%;
+      height: 20px;
+      margin: -6px 2px 0;
+      overflow: visible;
+  }
 
-	.domain {
-	    display: none;
-	}
+.domain {
+    display: none;
+}
 
-    @include respond-to('small') {
-        padding-top: 4px;
-        background-color: $lighter-gray;
-    }
+  @include respond-to('small') {
+      padding-top: 4px;
+      background-color: $lighter-gray;
+  }
 }
 
 .time-slider-axis .tick {
-    font-size: .85em;
-    font-family: "Open Sans", sans-serif;
-    line { opacity: 0.5; }
+  font-size: .85em;
+  font-size: .7em;
+  font-family: "Open Sans", sans-serif;
+  @include respond-to('small') {
+    font-size: .6em;
+  }
 }
 
 .time-slider-input {
-    -webkit-appearance: none;
-    width: 100%;
-    margin-top: 5px;
-    height: 26px;
-    background: transparent;
-    padding: 0;
-    overflow: visible;
-    border: none;
-    margin: 5px 0;
+  -webkit-appearance: none;
+  width: 100%;
+  margin-top: 5px;
+  height: 26px;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+  border: none;
+  margin: 5px 0;
 
-    &:focus {
-    	outline: none;
-  	}
+  &:focus {
+    outline: none;
+  }
 }
 
 // Sliders needs to be styled independently for different browsers:
@@ -53,92 +56,100 @@
 
 // Using mixins here as webkit doesn't show any styling if the two classes are grouped (like ".one, .two {}")
 @mixin thumb {
-    -webkit-appearance: none;
-    height: 26px;
-    width: 26px;
-    border-radius: 17px;
-    background: #ffffff;
-    cursor: pointer;
-    margin-top: -8px;
-    transition: box-shadow 0.4s;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
-    border: 1px solid lightgray;
-    background-position: center center;
-    background-size: 12px;
-    background-repeat: no-repeat;
+  -webkit-appearance: none;
+  height: 26px;
+  width: 26px;
+  border-radius: 17px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -8px;
+  transition: box-shadow 0.4s;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid lightgray;
+  background-position: center center;
+  background-size: 12px;
+  background-repeat: no-repeat;
 
-    &:hover {
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-    }
+  &:hover {
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+  }
 }
 
 @mixin track {
-    width: 100%;
-    height: 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    background: $light-gray;
-    box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
-    background: var(--time-gradient);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
+  width: 100%;
+  height: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: $light-gray;
+  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+  background: var(--time-gradient);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
 
 .time-slider-input {
-  // Webkit
-    &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
-      background-image: url("../images/timeslider-night.svg");
-    }
-    &.day::-webkit-slider-thumb {
-      background-image: url("../images/timeslider-sun.svg");
-    }
-    &::-webkit-slider-thumb {
-      @include thumb;
-    }
-    &::-webkit-slider-runnable-track {
-      @include track;
-    }
-    // Firefox
-    &.night::-moz-range-thumb {
-      background-image: url("../images/timeslider-night.svg");
-    }
-    &.day::-moz-range-thumb {
-      background-image: url("../images/timeslider-sun.svg");
-    }
-    &::-moz-range-thumb {
-      @include thumb;
-    }
-    &::-moz-range-track {
-      @include track;
-    }
+// Webkit
+  &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
+    background-image: url("../images/timeslider-night.svg");
   }
+  &.day::-webkit-slider-thumb {
+    background-image: url("../images/timeslider-sun.svg");
+  }
+  &::-webkit-slider-thumb {
+    @include thumb;
+  }
+  &::-webkit-slider-runnable-track {
+    @include track;
+  }
+  // Firefox
+  &.night::-moz-range-thumb {
+    background-image: url("../images/timeslider-night.svg");
+  }
+  &.day::-moz-range-thumb {
+    background-image: url("../images/timeslider-sun.svg");
+  }
+  &::-moz-range-thumb {
+    @include thumb;
+  }
+  &::-moz-range-track {
+    @include track;
+  }
+}
 
 
 // IE
 .time-slider-input::-ms-track {
-    width: 100%;
-    height: 0px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
+  width: 100%;
+  height: 0px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
 }
 
 .time-slider-input::-ms-fill-lower {
-    border: 2px solid lightgray;
-    border-radius: 2.6px;
+  border: 2px solid lightgray;
+  border-radius: 2.6px;
 }
 
 .time-slider-input::-ms-fill-upper {
-    border: 2px solid lightgray;
-    border-radius: 2.6px;
+  border: 2px solid lightgray;
+  border-radius: 2.6px;
 }
 
 .time-slider-input::-ms-thumb {
-    border: 1px solid gray;
-    height: 25px;
-    width: 25px;
-    border-radius: 17px;
-    background: #ffffff;
-    cursor: pointer;
+  border: 1px solid gray;
+  height: 25px;
+  width: 25px;
+  border-radius: 17px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+// new timeslider
+
+.time-slider-input-new {
+  &::-webkit-slider-thumb {
+    background-image: url("../images/slider-thumb.svg");
+  }
 }
