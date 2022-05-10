@@ -68,8 +68,8 @@ const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
     return null;
   }
 
-  const startTime = datetimes[0];
-  const endTime = datetimes[datetimes.length - 1];
+  const startTime = datetimes.at(0);
+  const endTime = datetimes.at(-1);
 
   return (
     <StyledTimeSlider
