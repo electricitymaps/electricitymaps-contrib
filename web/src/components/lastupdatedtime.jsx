@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { differenceInHours } from 'date-fns';
 
 import { useCurrentZoneHistoryEndTime } from '../hooks/redux';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../helpers/translation';
 
 const LastUpdatedTime = () => {
   const [style, setStyle] = useState({});

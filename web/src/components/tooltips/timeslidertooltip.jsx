@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { formatHourlyDate } from '../../helpers/formatting';
+import { useTranslation } from '../../helpers/translation';
 
 import Tooltip from '../tooltip';
 

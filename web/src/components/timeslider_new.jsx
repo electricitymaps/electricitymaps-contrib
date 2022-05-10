@@ -6,8 +6,8 @@ import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
 import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { useTranslation } from '../helpers/translation';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
