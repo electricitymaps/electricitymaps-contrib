@@ -65,8 +65,7 @@ const DateOptionWrapper = styled.div`
 `;
 
 const getOptions = (language) =>
-  useMemo(
-    () => [
+    [
       {
         key: 'day',
         label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('day'),
@@ -87,9 +86,7 @@ const getOptions = (language) =>
           unitDisplay: 'long',
         }).format(5),
       },
-    ],
-    [language]
-  );
+    ];
 
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   const { __, i18n } = useTranslation();
