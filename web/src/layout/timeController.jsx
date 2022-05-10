@@ -46,11 +46,7 @@ const StyledTimeSlider = styled(TimeSlider)`
   }
 
   @media (max-width: 767px) {
-    padding-top: 4px;
-    padding-bottom: 10px;
-    padding-top: 20px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 20px 12px 10px;
     box-sizing: border-box;
     bottom: 0px;
     left: 0px;
