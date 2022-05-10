@@ -1,9 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const TOTAL_TICK_COUNT = 25; // total number of ticks to be displayed
 const TICK_VALUE_FREQUENCY = 6; // Frequency at which values are displayed for a tick
 
-const renderTickValue = (v, idx, displayLive) => {
+const renderTickValue = (v, idx, displayLive, lang) => {
   const shouldDisplayLive = idx === 24 && displayLive; // TODO: change this for other aggregations
 
   if (shouldDisplayLive) {
@@ -18,7 +19,7 @@ const renderTickValue = (v, idx, displayLive) => {
   } else {
     return (
       <text fill="currentColor" y="9" x="5" dy="0.71em">
-        {new Intl.DateTimeFormat(document.documentElement.lang, { timeStyle: 'short' }).format(v)}
+        {new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(v)}
       </text>
     );
   }
@@ -40,18 +41,20 @@ const getTicksValuesFromTimeScale = (scale, count) => {
   );
 };
 
-const renderTick = (scale, val, idx, displayLive) => {
+const renderTick = (scale, val, idx, displayLive, lang) => {
   const shouldShowValue = idx % TICK_VALUE_FREQUENCY === 0;
   return (
     <g key={`tick-${val}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
-      {shouldShowValue && renderTickValue(val, idx, displayLive)}
+      {shouldShowValue && renderTickValue(val, idx, displayLive, lang)}
     </g>
   );
 };
 
 const TimeAxis = React.memo(({ className, scale, transform, displayLive }) => {
   const [x1, x2] = scale.range();
+  const { i18n } = useTranslation();
+
   return (
     <g
       className={className}
@@ -62,7 +65,7 @@ const TimeAxis = React.memo(({ className, scale, transform, displayLive }) => {
     >
       <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
       {getTicksValuesFromTimeScale(scale, TOTAL_TICK_COUNT).map((v, idx) =>
-        renderTick(scale, v, idx, displayLive)
+        renderTick(scale, v, idx, displayLive, i18n.language)
       )}
     </g>
   );

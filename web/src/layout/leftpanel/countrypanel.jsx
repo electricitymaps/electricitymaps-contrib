@@ -195,6 +195,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
+  const {i18n} = useTranslation();
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -209,7 +210,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatHourlyDate(new Date(shownDatetime))}
+              {shownDatetime && formatHourlyDate(new Date(shownDatetime), i18n.language)}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>

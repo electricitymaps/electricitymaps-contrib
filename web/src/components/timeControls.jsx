@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
 import { formatHourlyDate } from '../helpers/formatting';
@@ -96,7 +96,7 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
     <div>
       <Wrapper>
         <Title>{__('time-controller.title')}</Title>
-        <DateDisplay>{formatHourlyDate(date)}</DateDisplay>
+        <DateDisplay>{formatHourlyDate(date, i18n.language)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
         {options.map((o) => (

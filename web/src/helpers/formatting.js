@@ -39,10 +39,10 @@ const scalePower = function (maxPower) {
     }
 };
 
-const formatHourlyDate = function (date) {
+const formatHourlyDate = function (date, lang) {
   // formats date object to readable date
   if (!date) return '';
-  return new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(date)
+  return new Intl.DateTimeFormat(lang, {dateStyle: 'long', timeStyle: 'short' }).format(date);
 };
 
 export {
