@@ -43,11 +43,10 @@
         <!-- Preload font files to improve performance-->
         <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Bold.woff2') %>" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="<%= resolvePath('fonts/MaterialIcons-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="<%= resolvePath('fonts/EuclidTriangle-Regular.woff') %>" as="font" type="font/woff" crossorigin>
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/styles.' + stylesHash + '.css') %>">
+        <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/bundle.' + bundleStylesHash + '.css') %>">
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/vendor.' + vendorStylesHash + '.css') %>">
 
 

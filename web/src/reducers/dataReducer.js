@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { addMinutes } from 'date-fns';
 
 import constructTopos from '../helpers/topos';
 import * as translation  from '../helpers/translation';
@@ -74,9 +74,9 @@ const reducer = (state = initialDataState, action) => {
       newState.histories = Object.assign({}, state.histories);
       Object.keys(state.histories).forEach((k) => {
         const history = state.histories[k];
-        const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
-        const stateMoment = moment(action.payload.datetime).utc();
-        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
+        const lastHistoryMoment = new Date(history.at(-1).stateDatetime);
+        const stateMoment = new Date(action.payload.datetime);
+        if (addMinutes(lastHistoryMoment, 15) < stateMoment) {
           delete newState.histories[k];
         }
       });

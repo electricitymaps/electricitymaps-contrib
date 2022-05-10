@@ -1505,74 +1505,74 @@
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 181.58667665389504
+            "value": 185.00073494792235
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 170.4694304466714
+            "value": 175.40506481720325
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 165.9604062399396
+            "value": 171.27414369250297
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 129.63642187676547
+            "value": 126.54146947560211
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 99.46311498359738
+            "value": 101.3642103615701
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 90.2945329906531
+            "value": 92.56236908598086
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 114.7032764109014
+            "value": 92.45529931962075
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 181.58667665389504
+            "value": 185.00073494792235
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 170.4694304466714
+            "value": 175.40506481720325
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 165.9604062399396
+            "value": 171.27414369250297
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 129.63642187676547
+            "value": 126.54146947560211
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 99.46311498359738
+            "value": 101.3642103615701
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 90.2945329906531
+            "value": 92.56236908598086
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 114.7032764109014
+            "value": 92.45529931962075
           }
         ],
         "unknown": {
@@ -3870,7 +3870,9 @@
         ],
         "unknown": {
           "_comment": "Source: Souther Regional Load Dispatch Center Allocation Limits",
-          "_url": ["http://srldc.org/2018-19srallocation.aspx"],
+          "_url": [
+            "http://srldc.org/2018-19srallocation.aspx"
+          ],
           "source": "calculated 20% nuclear, 80% thermal (coal)",
           "value": 658.4
         }
@@ -6581,6 +6583,13 @@
             "value": 199.07165644246462
           }
         ]
+      },
+      "TH": {
+        "unknown": {
+          "_url": "https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing",
+          "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",
+          "value": 509.277
+        }
       },
       "TR": {
         "battery discharge": [
