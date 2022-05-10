@@ -14,6 +14,7 @@ import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Tabs from './tabs';
 import Map from './map';
+import TimeController from './timeController';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
@@ -109,6 +110,7 @@ const Main = ({
           alignItems: 'stretch', /* force children to take 100% width */
         }}
       >
+        <TimeController/>
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
