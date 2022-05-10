@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { first, last, sortedIndex, isNumber } from 'lodash';
 import { scaleTime } from 'd3-scale';
+import sortedIndex from 'lodash.sortedindex';
 
 import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
@@ -128,10 +128,10 @@ const TimeSlider = ({
 
   if (!datetimes || datetimes.length === 0) return null;
 
-  const selectedTimeValue = isNumber(selectedTimeIndex)
+  const selectedTimeValue = typeof selectedTimeIndex === 'number'
     ? datetimes[selectedTimeIndex].valueOf()
     : null;
-  const anchoredTimeValue = isNumber(anchoredTimeIndex)
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number'
     ? datetimes[anchoredTimeIndex].valueOf()
     : null;
 
