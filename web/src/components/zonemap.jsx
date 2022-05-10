@@ -4,7 +4,6 @@ import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce'
-import { useFeatureToggle } from '../hooks/router';
 
 
 const interactiveLayerIds = ['zones-clickable-layer'];
@@ -14,6 +13,7 @@ const ZoneMap = ({
   children = null,
   co2ColorScale = null,
   hoveringEnabled = true,
+  isHistoryFeatureEnabled = false,
   onMapLoaded = noop,
   onMapError = noop,
   onMouseMove = noop,
@@ -43,7 +43,6 @@ const ZoneMap = ({
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
