@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { isFinite, isFunction } from 'lodash';
 
 const GraphHoverLine = React.memo(({
   layers,
@@ -17,10 +16,10 @@ const GraphHoverLine = React.memo(({
   const datapoint = layer && layer.datapoints && layer.datapoints[selectedTimeIndex];
 
   const x = datetimes && datetimes[selectedTimeIndex] && timeScale(datetimes[selectedTimeIndex]);
-  const y = datapoint && isFinite(datapoint[1]) && valueScale(datapoint[1]);
+  const y = datapoint && Number.isFinite(datapoint[1]) && valueScale(datapoint[1]);
 
-  const showVerticalLine = isFinite(x);
-  const showMarker = isFinite(x) && isFinite(y);
+  const showVerticalLine = Number.isFinite(x);
+  const showMarker = Number.isFinite(x) && Number.isFinite(y);
 
   // Marker callbacks
   useEffect(() => {
@@ -65,7 +64,7 @@ const GraphHoverLine = React.memo(({
             shapeRendering: 'crispEdges',
             stroke: 'black',
             strokeWidth: 1.5,
-            fill: isFunction(fill) ? fill(datapoint) : fill,
+            fill: typeof fill === 'function' ? fill(datapoint) : fill,
           }}
           cx={x}
           cy={y}

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // TODO(olc): re-enable this rule
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -14,6 +14,7 @@ import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Tabs from './tabs';
 import Map from './map';
+import TimeController from './timeController';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
@@ -49,6 +50,19 @@ const MapContainer = styled.div`
   }
 `;
 
+const NewVersionInner = styled.div`
+    background-color: #3F51B5;
+`;
+
+const NewVersionButton = styled.button`
+    background: transparent;
+    color: white;
+    margin-left: 12px;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+`;
+
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Main = ({
@@ -62,6 +76,7 @@ const Main = ({
   const headerVisible = useHeaderVisible();
   const clientType = useSelector(state => state.application.clientType);
   const isLocalhost = useSelector(state => state.application.isLocalhost);
+  const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -95,6 +110,7 @@ const Main = ({
           alignItems: 'stretch', /* force children to take 100% width */
         }}
       >
+        <TimeController/>
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
@@ -134,10 +150,11 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}>
-            <div className="inner">
+          <div id="new-version" className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}>
+            <NewVersionInner className='inner'>
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
-            </div>
+              <NewVersionButton onClick={() => setIsClientVersionForceHidden(true)}>&#x2715;</NewVersionButton>
+            </NewVersionInner>
           </div>
 
           { /* end #inner */}

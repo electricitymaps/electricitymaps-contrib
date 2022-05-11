@@ -1,8 +1,7 @@
-import moment from 'moment';
+import { addDays, startOfDay, subDays } from 'date-fns'
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { keys, sortBy } from 'lodash';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
 import { useCustomDatetime } from './router';
@@ -16,10 +15,20 @@ export function useCurrentZoneHistory() {
   return useMemo(() => histories[zoneId] || null, [histories, zoneId]);
 }
 
+export function useCurrentDatetimes() {
+  // TODO: should use V5 state here and v5 should tell the state datetimes
+  const histories = useSelector((state) => state.data.histories);
+  if (histories && Object.keys(histories).length) {
+    return histories[Object.keys(histories)[0]].map((h) => new Date(h.stateDatetime));
+  } else {
+    return [];
+  }
+}
+
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => moment(d.stateDatetime).toDate()), [zoneHistory]);
+  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => new Date(d.stateDatetime)), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -30,7 +39,7 @@ export function useCurrentZoneHistoryEndTime() {
   const gridDatetime = useSelector((state) => (state.data.grid || {}).datetime);
 
   return useMemo(
-    () => moment(customDatetime || gridDatetime).format(),
+    () => new Date(customDatetime || (gridDatetime ?? Date.now())), // Moment return a date when gridDatetime is undefined, this matches that behavior.
     [customDatetime, gridDatetime]
   );
 }
@@ -54,13 +63,11 @@ export function useCurrentZoneData() {
     if (!zoneId || !grid || !zoneHistory) {
       return null;
     }
-    if (zoneTimeIndex === null) {
-      // Return latest history data unless latest history does not correspond to the current grid datetime
-      return (zoneHistory[zoneHistory.length - 1].stateDatetime === grid.datetime
-        ? zoneHistory[zoneHistory.length - 1]
-        : null);
+    else if (zoneTimeIndex === null) {
+      // If null, return the latest history
+      return zoneHistory.at(-1);
     }
-    return zoneHistory[zoneTimeIndex];
+    else return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 
@@ -80,9 +87,9 @@ export function useCurrentZoneExchangeKeys() {
     const exchangeKeys = new Set();
     const zoneHistoryOrCurrent = zoneHistory || [currentZoneData];
     zoneHistoryOrCurrent.forEach((zoneData) => {
-      keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
+    Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
     });
-    return sortBy(Array.from(exchangeKeys));
+    return Array.from(exchangeKeys).sort();
   }, [isConsumption, zoneHistory, currentZoneData]);
 }
 
@@ -116,7 +123,7 @@ export function useCurrentNightTimes() {
     }
     const { latitude, longitude } = getCenteredZoneViewport(zone);
     const nightTimes = [];
-    let baseDatetime = moment(datetimeStr).startOf('day').toDate();
+    let baseDatetime = startOfDay(new Date(datetimeStr));
 
     const earliest = history && history[0] && new Date(history[0].stateDatetime);
     const latest = new Date(
@@ -130,7 +137,7 @@ export function useCurrentNightTimes() {
       let nightEnd = getSunrise(latitude, longitude, baseDatetime);
       // Due to some bug in the library, sometimes we get nightStart > nightEnd
       if (nightStart.getTime() > nightEnd.getTime()) {
-        nightEnd = moment(nightEnd).add(1, 'day').toDate();
+        nightEnd = addDays(nightEnd, 1);
       }
       // Only use nights that start before the latest time we have
       // and that finishes after the earliest time we have
@@ -144,7 +151,7 @@ export function useCurrentNightTimes() {
       }
 
       // Iterate to previous day
-      baseDatetime = moment(baseDatetime).subtract(1, 'day').toDate();
+      baseDatetime = subDays(baseDatetime, 1);
       // The looping logic is handled inside the "do" block
       // eslint-disable-next-line no-constant-condition
     } while (true);

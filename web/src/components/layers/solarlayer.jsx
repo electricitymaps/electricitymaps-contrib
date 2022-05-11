@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { range, last } from 'lodash';
 import styled from 'styled-components';
 import parse from 'color-parse';
 
@@ -12,13 +11,13 @@ import { solarColor } from '../../helpers/scales';
 
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
-const maxSolar = last(solarColor.domain());
+const maxSolar = solarColor.domain().at(-1);
 const solarIntensityToOpacity = intensity => Math.floor(intensity / maxSolar * 255);
 const opacityToSolarIntensity = opacity => Math.floor(opacity * maxSolar / 255);
 
 // Pre-process solar color components across all integer values
 // for faster vertex shading when generating the canvas image.
-const solarColorComponents = range(maxSolar + 1).map((value) => {
+const solarColorComponents = [...Array(maxSolar + 1).keys()].map((value) => {
   const parsed = parse(solarColor(value));
   return {
     red: parsed.values[0],

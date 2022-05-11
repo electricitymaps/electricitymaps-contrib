@@ -12,8 +12,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
-import { isNil, noop } from 'lodash';
-import moment from 'moment';
+import { noop } from '../../helpers/noop';
 import styled from 'styled-components';
 
 // Components
@@ -39,6 +38,8 @@ import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
+import { useFeatureToggle } from '../../hooks/router';
+import { formatHourlyDate } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -163,6 +164,14 @@ const CountryPanelStyled = styled.div`
   }
 `;
 
+const StyledSources = styled.div`
+  margin-bottom: ${props => props.historyFeatureEnabled ? "170px" : 0};
+
+  @media (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+`;
+
 const EstimatedDataInfoBox = styled.p`
   background-color: #eee;
   border-radius: 6px;
@@ -185,7 +194,8 @@ const EstimatedDataInfo = ({ text }) => (
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
+  const {i18n} = useTranslation();
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -200,7 +210,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime ? moment(shownDatetime).format('LL LT') : ''}
+              {shownDatetime && formatHourlyDate(new Date(shownDatetime), i18n.language)}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
@@ -221,6 +231,8 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+
 
   const data = useCurrentZoneData() || {};
 
@@ -251,7 +263,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   }
 
   const { hasData, hasParser, estimationMethod } = data;
-  const isDataEstimated = !isNil(estimationMethod);
+  const isDataEstimated = !(estimationMethod == null);
 
   const co2Intensity = electricityMixMode === 'consumption'
     ? data.co2intensity
@@ -383,7 +395,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <CountryHistoryPricesGraph />
             </div>
             <hr />
-            <div>
+            <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
               {__('country-panel.source')}
               {': '}
               <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
@@ -405,7 +417,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               {' '}
               {__('country-panel.helpfrom')}
               <ContributorList />
-            </div>
+            </StyledSources>
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">

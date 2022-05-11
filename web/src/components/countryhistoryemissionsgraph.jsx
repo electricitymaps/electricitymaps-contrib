@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
@@ -22,7 +21,7 @@ const prepareGraphData = (historyData) => {
 
   const data = historyData.map(d => ({
     emissions: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),
-    datetime: moment(d.stateDatetime).toDate(),
+    datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));

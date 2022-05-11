@@ -1,10 +1,8 @@
-import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { first } from 'lodash';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { dispatchApplication } from '../store';
@@ -20,7 +18,7 @@ import PriceTooltip from './tooltips/pricetooltip';
 const prepareGraphData = (historyData) => {
   if (!historyData || !historyData[0]) return {};
 
-  const currencySymbol = getSymbolFromCurrency(((first(historyData) || {}).price || {}).currency);
+  const currencySymbol = getSymbolFromCurrency(((historyData.at(0) || {}).price || {}).currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
   const priceMaxValue = d3Max(historyData.map(d => (d.price || {}).value));
@@ -30,7 +28,7 @@ const prepareGraphData = (historyData) => {
 
   const data = historyData.map(d => ({
     price: d.price && d.price.value,
-    datetime: moment(d.stateDatetime).toDate(),
+    datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));

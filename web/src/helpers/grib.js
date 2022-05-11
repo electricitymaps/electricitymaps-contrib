@@ -1,11 +1,11 @@
-import moment from 'moment';
+import { addHours } from 'date-fns';
 
 export function getRefTime(grib) {
-  return moment(grib.header.refTime);
+  return new Date(grib.header.refTime);
 }
 
 export function getTargetTime(grib) {
-  return moment(getRefTime(grib)).add(grib.header.forecastTime, 'hour');
+  return addHours(getRefTime(grib), grib.header.forecastTime);
 }
 
 export function getValueAtPosition(longitude, latitude, grib) {

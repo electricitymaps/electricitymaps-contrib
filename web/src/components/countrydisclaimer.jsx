@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { noop } from 'lodash';
+import { noop } from '../helpers/noop';
 
 import Tooltip from './tooltip';
 import Icon from './icon';

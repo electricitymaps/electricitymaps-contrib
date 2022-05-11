@@ -1,16 +1,18 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { debounce } from 'lodash';
 
 import { useTranslation } from '../helpers/translation';
 import { getZoneId } from '../helpers/router';
 import { getValueAtPosition } from '../helpers/grib';
 import { calculateLengthFromDimensions } from '../helpers/math';
 import { getCenteredZoneViewport, getCenteredLocationViewport } from '../helpers/map';
+import { debounce } from '../helpers/debounce';
+
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
-import { useTheme } from '../hooks/theme';
+import { useCo2ColorScale, useTheme } from '../hooks/theme';
 import { useZonesWithColors } from '../hooks/map';
+import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -31,12 +33,17 @@ export default () => {
   const isEmbedded = useSelector(state => state.application.isEmbedded);
   const isMobile = useSelector(state => state.application.isMobile);
   const viewport = useSelector(state => state.application.mapViewport);
+  const selectedZoneTimeIndex = useSelector(state => state.application.selectedZoneTimeIndex);
+  const zoneHistories = useSelector(state => state.data.histories);
   const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
   const zones = useZonesWithColors();
   const location = useLocation();
   const history = useHistory();
+  const co2ColorScale = useCo2ColorScale();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
   const zoneId = getZoneId();
@@ -72,17 +79,15 @@ export default () => {
     dispatchApplication('webGLSupported', true);
   };
 
-  const handleMapError = useMemo(
-    () => () => {
-      // Map loading is finished, lower the overlay shield.
-      dispatchApplication('isLoadingMap', false);
+  const handleMapError = (e) => {
+    console.error(e.error);
+    // Map loading is finished, lower the overlay shield.
+    dispatchApplication('isLoadingMap', false);
 
-      // Disable the map and redirect to zones ranking.
-      dispatchApplication('webGLSupported', false);
-      history.push({ pathname: '/ranking', search: location.search });
-    },
-    [history],
-  );
+    // Disable the map and redirect to zones ranking.
+    dispatchApplication('webGLSupported', false);
+    history.push({ pathname: '/ranking', search: location.search });
+  };
 
   const handleMouseMove = useMemo(
     () => ({
@@ -91,17 +96,21 @@ export default () => {
       x,
       y,
     }) => {
-      dispatchApplication(
-        'solarColorbarValue',
-        getValueAtPosition(longitude, latitude, solarData),
-      );
-      dispatchApplication(
-        'windColorbarValue',
-        calculateLengthFromDimensions(
-          getValueAtPosition(longitude, latitude, windData && windData[0]),
-          getValueAtPosition(longitude, latitude, windData && windData[1]),
-        ),
-      );
+      if (solarData) {
+        dispatchApplication(
+          'solarColorbarValue',
+          getValueAtPosition(longitude, latitude, solarData),
+        );
+      }
+      if (windData) {
+        dispatchApplication(
+          'windColorbarValue',
+          calculateLengthFromDimensions(
+            getValueAtPosition(longitude, latitude, windData && windData[0]),
+            getValueAtPosition(longitude, latitude, windData && windData[1]),
+          ),
+        );
+      }
       setTooltipPosition({ x, y });
     },
     [solarData, windData],
@@ -123,7 +132,9 @@ export default () => {
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (data) => {
+    () => (zoneId) => {
+      const zoneHistoryDetails = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex];
+      const data = zoneHistoryDetails || zones[zoneId];
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption'
@@ -132,7 +143,7 @@ export default () => {
       );
       setTooltipZoneData(data);
     },
-    [electricityMixMode],
+    [electricityMixMode, zoneHistories, selectedZoneTimeIndex],
   );
 
   const handleZoneMouseLeave = useMemo(
@@ -192,7 +203,9 @@ export default () => {
         />
       )}
       <ZoneMap
+        co2ColorScale={co2ColorScale}
         hoveringEnabled={hoveringEnabled}
+        isHistoryFeatureEnabled={isHistoryFeatureEnabled}
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
         onMouseMove={handleMouseMove}
@@ -202,6 +215,7 @@ export default () => {
         onZoneClick={handleZoneClick}
         onZoneMouseEnter={handleZoneMouseEnter}
         onZoneMouseLeave={handleZoneMouseLeave}
+        selectedZoneTimeIndex={selectedZoneTimeIndex}
         scrollZoom={!isEmbedded}
         theme={theme}
         transitionDuration={transitionDuration}
@@ -209,6 +223,7 @@ export default () => {
         zones={zones}
         zoomInLabel={__('tooltips.zoomIn')}
         zoomOutLabel={__('tooltips.zoomOut')}
+        zoneHistories={zoneHistories}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />

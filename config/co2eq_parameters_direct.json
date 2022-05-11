@@ -1496,74 +1496,74 @@
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 160.1039401629827
+            "value": 149.25076294580958
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 151.25311660501873
+            "value": 140.2912162025784
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 151.2706838163833
+            "value": 136.54216320191617
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 121.29712974580256
+            "value": 93.56994370877608
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 185.72180055195324
+            "value": 77.04689455842045
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 181.94392200782744
+            "value": 67.79765744800171
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 205.82553856340994
+            "value": 92.45529931962075
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 160.1039401629827
+            "value": 149.25076294580958
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 151.25311660501873
+            "value": 140.2912162025784
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 151.2706838163833
+            "value": 136.54216320191617
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 121.29712974580256
+            "value": 93.56994370877608
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 185.72180055195324
+            "value": 77.04689455842045
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 181.94392200782744
+            "value": 67.79765744800171
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 205.82553856340994
+            "value": 92.45529931962075
           }
         ],
         "unknown": {
@@ -3185,7 +3185,12 @@
             "source": "electricityMap, 2020 average",
             "value": 269.6187929820843
           }
-        ]
+        ],
+        "unknown": {
+            "_url": "https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352",
+            "source": "Guatemala AMM 2021-2022 and IEA 2020",
+            "value": 383.240577
+        }
       },
       "HN": {
         "battery discharge": [
@@ -6173,7 +6178,7 @@
           }
         ]
       },
-	  "TH": {
+      "TH": {
         "unknown": {
           "_url": "https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing",
           "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",
