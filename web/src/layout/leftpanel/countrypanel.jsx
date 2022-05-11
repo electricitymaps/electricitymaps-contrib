@@ -19,7 +19,6 @@ import styled from 'styled-components';
 import LowCarbonInfoTooltip from '../../components/tooltips/lowcarboninfotooltip';
 import CarbonIntensitySquare from '../../components/carbonintensitysquare';
 import CircularGauge from '../../components/circulargauge';
-import ContributorList from '../../components/contributorlist';
 import CountryHistoryCarbonGraph from '../../components/countryhistorycarbongraph';
 import CountryHistoryEmissionsGraph from '../../components/countryhistoryemissionsgraph';
 import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
@@ -28,6 +27,7 @@ import CountryTable from '../../components/countrytable';
 import CountryDisclaimer from '../../components/countrydisclaimer';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import Icon from '../../components/icon';
+import InfoFooter from '../../components/CountryInfoFooter';
 
 import { dispatchApplication } from '../../store';
 
@@ -36,10 +36,10 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
-import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { useFeatureToggle } from '../../hooks/router';
 import { formatHourlyDate } from '../../helpers/formatting';
+
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -171,25 +171,6 @@ const StyledSources = styled.div`
     margin-bottom: 30px;
   }
 `;
-
-const EstimatedDataInfoBox = styled.p`
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 6px;
-  font-size: .75rem;
-  margin: 1rem 0;
-`;
-
-const EstimatedDataInfo = ({ text }) => (
-  <React.Fragment>
-    <EstimatedDataInfoBox
-      dangerouslySetInnerHTML={{
-        __html: text,
-      }}
-    />
-    <hr />
-  </React.Fragment>
-);
 
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
@@ -352,7 +333,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             <CountryTable />
 
             <hr />
-            {isDataEstimated && <EstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
+
             <div className="country-history">
               <CountryHistoryTitle>
                 {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
@@ -396,27 +377,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </div>
             <hr />
             <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
-              {__('country-panel.source')}
-              {': '}
-              <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
-                <span className="country-data-source">{data.source || '?'}</span>
-              </a>
-              <small>
-                {' '}
-                (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: __(
-                      'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers',
-                    ),
-                  }}
-                />
-                )
-              </small>
-              {' '}
-              {__('country-panel.helpfrom')}
-              <ContributorList />
+              <InfoFooter isMobile={isMobile} isDataEstimated={isDataEstimated} data={data}/>
             </StyledSources>
           </React.Fragment>
         ) : (
