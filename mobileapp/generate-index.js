@@ -43,7 +43,7 @@ locales.forEach(function(locale) {
         alternateUrls: [],
         bundleHash: getHash('bundle', 'js', manifest),
         vendorHash: getHash('vendor', 'js', manifest),
-        stylesHash: getHash('styles', 'css', manifest),
+        bundleStylesHash: getHash('bundle', 'css', manifest),
         vendorStylesHash: getHash('vendor', 'css', manifest),
         // Keep using relative resource paths on mobile platforms as that's
         // the way to keep them working with file:// protocol and HashHistory

@@ -38,6 +38,8 @@ import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
+import { useFeatureToggle } from '../../hooks/router';
+import { formatHourlyDate } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -162,6 +164,14 @@ const CountryPanelStyled = styled.div`
   }
 `;
 
+const StyledSources = styled.div`
+  margin-bottom: ${props => props.historyFeatureEnabled ? "170px" : 0};
+
+  @media (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+`;
+
 const EstimatedDataInfoBox = styled.p`
   background-color: #eee;
   border-radius: 6px;
@@ -185,6 +195,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
+  const {i18n} = useTranslation();
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -199,7 +210,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime ?  new Intl.DateTimeFormat(document.documentElement.lang, {dateStyle: 'long', timeStyle: 'short' }).format(new Date(shownDatetime)) : ''}
+              {shownDatetime && formatHourlyDate(new Date(shownDatetime), i18n.language)}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
@@ -220,6 +231,8 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+
 
   const data = useCurrentZoneData() || {};
 
@@ -382,7 +395,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <CountryHistoryPricesGraph />
             </div>
             <hr />
-            <div>
+            <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
               {__('country-panel.source')}
               {': '}
               <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources" target="_blank">
@@ -404,7 +417,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               {' '}
               {__('country-panel.helpfrom')}
               <ContributorList />
-            </div>
+            </StyledSources>
           </React.Fragment>
         ) : (
           <div className="zone-details-no-parser-message">

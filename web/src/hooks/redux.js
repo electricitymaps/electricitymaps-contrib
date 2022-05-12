@@ -15,6 +15,16 @@ export function useCurrentZoneHistory() {
   return useMemo(() => histories[zoneId] || null, [histories, zoneId]);
 }
 
+export function useCurrentDatetimes() {
+  // TODO: should use V5 state here and v5 should tell the state datetimes
+  const histories = useSelector((state) => state.data.histories);
+  if (histories && Object.keys(histories).length) {
+    return histories[Object.keys(histories)[0]].map((h) => new Date(h.stateDatetime));
+  } else {
+    return [];
+  }
+}
+
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
@@ -53,13 +63,11 @@ export function useCurrentZoneData() {
     if (!zoneId || !grid || !zoneHistory) {
       return null;
     }
-    if (zoneTimeIndex === null) {
-      // Return latest history data unless latest history does not correspond to the current grid datetime
-      return (zoneHistory[zoneHistory.length - 1].stateDatetime === grid.datetime
-        ? zoneHistory[zoneHistory.length - 1]
-        : null);
+    else if (zoneTimeIndex === null) {
+      // If null, return the latest history
+      return zoneHistory.at(-1);
     }
-    return zoneHistory[zoneTimeIndex];
+    else return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 
