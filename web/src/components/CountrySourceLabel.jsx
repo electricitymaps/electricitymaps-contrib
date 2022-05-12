@@ -54,7 +54,7 @@ const SourceLabel = ({ isMobile, isDataEstimated }) => {
         onBlur={() => setTooltip(null)}
         style={{ background: isDataEstimated ? '#FFD700' : '#78cde8' }}
       >
-        <Icon iconName={isDataEstimated ? 'error' : 'info'} />{' '}
+        <Icon iconName={isDataEstimated ? 'insights' : 'api'} />{' '}
         {isDataEstimated ? __('country-panel.estimated') : 'API'}
       </SourceLabelContainer>
       {TooltipComponent}
