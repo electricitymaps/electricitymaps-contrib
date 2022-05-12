@@ -6339,7 +6339,7 @@
             "value": 236
           },
           {
-            "_comment": "Uses the 2020 values minus the solar and gas",
+            "_comment": "Uses the 2020 values minus solar and gas",
             "datetime": "2022-01-01",
             "source": "assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal",
             "value": 238.4

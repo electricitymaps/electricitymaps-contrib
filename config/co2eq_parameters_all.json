@@ -11361,7 +11361,7 @@
             "value": 0.9332
           },
           {
-            "_comment": "Sum of renewable sources in SE unknown production for 2021 from co2eq_parameters_lifecycle.json",
+            "_comment": "Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json",
             "datetime": "2022-01-01",
             "value": 0.9826
           }
@@ -11503,7 +11503,7 @@
             "value": 0.9332
           },
           {
-            "_comment": "Sum of renewable sources in SE unknown production for 2021 from co2eq_parameters_lifecycle.json",
+            "_comment": "Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json",
             "datetime": "2022-01-01",
             "value": 0.9826
           }
