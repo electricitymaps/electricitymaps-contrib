@@ -67,7 +67,11 @@ const DateOptionWrapper = styled.div`
 const getOptions = (language) => [
   {
     key: 'day',
-    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('day'),
+    label: new Intl.NumberFormat(language, {
+      style: 'unit',
+      unit: 'hour',
+      unitDisplay: 'long',
+    }).format(24),
   },
   {
     key: 'month',
