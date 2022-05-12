@@ -23,7 +23,7 @@ const DateRangeOption = styled.span`
   border-radius: 16px;
   white-space: nowrap;
   text-transform: capitalize;
-  cursor: default;
+  cursor: not-allowed;
   font-weight: ${(props) => (props.active ? 700 : 500)};
   opacity: ${(props) => (props.active ? 1 : 0.5)};
   ${(props) =>
@@ -64,29 +64,32 @@ const DateOptionWrapper = styled.div`
   padding-top: 8px;
 `;
 
-const getOptions = (language) =>
-    [
-      {
-        key: 'day',
-        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('day'),
-      },
-      {
-        key: 'month',
-        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('month'),
-      },
-      {
-        key: 'year',
-        label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('year'),
-      },
-      {
-        key: '5year',
-        label: new Intl.NumberFormat(language, {
-          style: 'unit',
-          unit: 'year',
-          unitDisplay: 'long',
-        }).format(5),
-      },
-    ];
+const getOptions = (language) => [
+  {
+    key: 'day',
+    label: new Intl.NumberFormat(language, {
+      style: 'unit',
+      unit: 'hour',
+      unitDisplay: 'long',
+    }).format(24),
+  },
+  {
+    key: 'month',
+    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('month'),
+  },
+  {
+    key: 'year',
+    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('year'),
+  },
+  {
+    key: '5year',
+    label: new Intl.NumberFormat(language, {
+      style: 'unit',
+      unit: 'year',
+      unitDisplay: 'long',
+    }).format(5),
+  },
+];
 
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   const { __, i18n } = useTranslation();
@@ -104,7 +107,8 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
             key={o.key}
             active={o.key === selectedTimeAggregate}
             onClick={() => {
-              handleTimeAggregationChange(o.key);
+              // TODO: not enabled yet
+              // handleTimeAggregationChange(o.key);
             }}
           >
             {o.label}
