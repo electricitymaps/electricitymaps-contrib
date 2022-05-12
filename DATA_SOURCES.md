@@ -206,7 +206,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Chile (Easter Island): [SASIPA](https://www.sasipa.cl/estado-del-suministro)
 - Croatia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Costa Rica: [ICE](https://www.grupoice.com/wps/wcm/connect/579dfc1f-5156-41e0-807d-d6808f65d718/Fasciculo_Electricidad_2020_ingl%C3%A9s_compressed.pdf?MOD=AJPERES&CVID=m.pGzcp)
-- Cyprus: 
+- Cyprus:
    - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
    - Other: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
 - Czech Republic: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -293,7 +293,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Nepal
   - List of PowerStations: [PowerStations](https://en.wikipedia.org/wiki/List_of_power_stations_in_Nepal)
   - GIS Map of Reservoir Projects: [GIS_Reservoir](https://www.doed.gov.np/download/GIS-map-of-reservoir-projects.pdf)
-- Netherlands: 
+- Netherlands:
    - Solar and wind : [CBS](https://www.cbs.nl/en-gb/news/2022/10/more-electricity-from-renewable-sources-less-from-fossil-sources)
    - Biomass, Hydro, Wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
    - Other : [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -305,7 +305,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Panama: 
+- Panama:
    - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
    - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
    - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
@@ -378,7 +378,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 ### Cross-border transmission capacity data sources
 
 Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.json) file. Values in the `capacity` maps are in MW.
-&nbsp;<details><summary>Click to see the full list of sources</summary>
+#### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/KEY/Norway/?view=table)
+<details><summary>Click to see the full list of sources</summary>
 
 - Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
 - Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
@@ -393,19 +394,19 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Canada (Alberta) ⇄ Canada (British Columbia): ["Path 1": 1000 MW (CA-AB -> CA-BC) 800 MW (CA-BC -> CA-AB)](https://www.aeso.ca/assets/Information-Documents/2011-001R-ATC-and-Transfer-Path-Management.pdf)
 - Canada (Alberta) ⇄ Canada (Saskatchewan): ["Path 2": 153 MW](https://www.aeso.ca/assets/Information-Documents/2011-001R-ATC-and-Transfer-Path-Management.pdf)
 - Canada (Alberta) ⇄ United States of America (NorthWestern Energy): ["Path 83": 315 MW (CA-AB -> US-NW-NWMT) 310 MW (US-NW-NWMT -> CA-AB)](https://www.aeso.ca/assets/Information-Documents/2011-001R-ATC-and-Transfer-Path-Management.pdf)
-- Denmark (West) ⇄ Norway: ["Skaggerak": 1700 MW](<https://en.wikipedia.org/wiki/Skagerrak_(power_transmission_system)>)
-- Denmark (East) ⇄ Denmark (West): ["Storebælt HVDC": 600 MW](https://en.wikipedia.org/wiki/Great_Belt_Power_Link)
-- Denmark (East) ⇄ Germany: ["Kontek": 600 MW](https://en.wikipedia.org/wiki/Kontek) and ["Kriegers Flak": 400MW](https://en.energinet.dk/Infrastructure-Projects/Projektliste/KriegersFlakCGS)
-- Denmark (West) ⇄ Sweden: ["Konti-Skan": 650 MW](https://en.wikipedia.org/wiki/Konti%E2%80%93Skan)
-- Denmark (West) ⇄ Netherlands: ["COBRAcable": 700 MW](https://en.wikipedia.org/wiki/COBRAcable)
+- [Denmark (West) ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Denmark (East) ⇄ Denmark (West)](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Denmark (East) ⇄ Germany](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Denmark (West) ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Denmark (West) ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Estonia ⇄ European Russia And Ural [2464 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
-- Estonia ⇄ Finnland: ["Estlink 1&2": 1000 MW](https://en.wikipedia.org/wiki/Estlink)
+- [Estonia ⇄ Finnland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Georgia ⇄ Turkey: ["Black Sea Transmission Network Project (BSTN)": 700 MW](http://www.gse.com.ge/M9Ltvi2EQCCNYg7LvHW0JQ.html "Two additional connections are planned/under construction, Batumi-Muratli and Akhalstikhe-Tortum, to double capacity to 1400MW; see http://www.gse.com.ge/sw/static/file/TYNDP_GE-2020-2030_ENG.pdf. Another interconnector (Batumi-Khopa) is only used in emergencies, according to http://www.gse.com.ge/about-us/international-affairs")
-- Germany ⇄ Sweden: ["Baltic Cable": 600 MW](https://en.wikipedia.org/wiki/Baltic_Cable)
-- Germany ⇄ Norway: ["NordLink": 1400MW](https://en.wikipedia.org/wiki/NORD.LINK)
+- [Germany ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Germany ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Great Britain ⇄ Belgium: ["Nemo Link": 1000 MW](https://en.wikipedia.org/wiki/Nemo_Link)
 - Great Britain ⇄ North Ireland: ["Moyle": 500 MW](http://www.wikiwand.com/en/HVDC_Moyle)
-- Great Britain ⇄ Norway: ["North Sea Link": 1400MW](https://en.wikipedia.org/wiki/North_Sea_Link)
+- [Great Britain ⇄ Norway](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Great Britain ⇄ Ireland: ["East-West Interconnector": 500 MW](https://en.wikipedia.org/wiki/East%E2%80%93West_Interconnector)
 - Great Britain ⇄ France: ["Cross-Channel": 2000 MW](https://en.wikipedia.org/wiki/HVDC_Cross-Channel) & ["IFA2": 1000 MW](https://en.wikipedia.org/wiki/IFA-2)
 - Great Britain ⇄ Netherlands: ["BritNed": 1000 MW](https://en.wikipedia.org/wiki/BritNed)
@@ -414,17 +415,20 @@ Cross-border transmission capacities between the zones are centralized in the [e
 - Italy Central South ⇄ Italy Sardinia: ["SAPEI": 1000 MW](https://en.wikipedia.org/wiki/SAPEI)
 - Japan-Chūbu ⇄ Japan-Tōkyō: [3x HVDC interconnectors between 60Hz/50Hz areas: 1200 MW](https://www.jepic.or.jp/pub/pdf/epijJepic2019.pdf)
 - Japan-Hokkaidō ⇄ Japan-Tōhoku: ["HVDC Hokkaidō–Honshū": 900 MW](https://ja.wikipedia.org/wiki/%E5%8C%97%E6%B5%B7%E9%81%93%E3%83%BB%E6%9C%AC%E5%B7%9E%E9%96%93%E9%80%A3%E7%B3%BB%E8%A8%AD%E5%82%99)
-- Latvia ⇄ European Russia And Ural [696 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
-- Lithuania ⇄ Sweden: ["NordBalt": 700 MW](https://en.wikipedia.org/wiki/NordBalt)
-- Lithuania ⇄ Poland: ["LitPol Link": 500 MW](https://en.wikipedia.org/wiki/LitPol_Link)
+- [Latvia ⇄ Estonia](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Latvia ⇄ European Russia And Ural](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Latvia ⇄ Lithuania](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Lithuania ⇄ Sweden](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Lithuania ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
+- [Lithuania ⇄ Russia Kaliningrad](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Malta ⇄ Italy Sicily: ["Malta–Sicily-Interconnector": 200 MW](https://en.wikipedia.org/wiki/Malta%E2%80%93Sicily_interconnector)
 - Montenegro ⇄ Italy Central South: ["MONITA": 600MW](https://tyndp.entsoe.eu/tyndp2018/projects/projects/28)
-- Norway ⇄ Netherlands: ["NorNed": 700 MW](https://en.wikipedia.org/wiki/NorNed)
+- [Norway ⇄ Netherlands](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - New Zealand (North Island) ⇄ New Zealand (South Island): ["HVDC Inter-Island": 1200 MW](https://en.wikipedia.org/wiki/HVDC_Inter-Island)
-- Russia ⇉ Finland: ["Vyborg HVDC scheme": 1400 MW + 2 AC-connections: 160 MW](<https://www.entsoe.eu/Documents/Publications/SOC/Nordic/System_Operation_Agreement_appendices(English_2016_update).pdf>)
+- [Russia ⇄ Finland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Spain ⇄ France: [According to "The Spanish electricity system 2019" page 65: 2800 MW](https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/InformesSistemaElectrico/2019/ISE_2019_eng.pdf)
 - Spain ⇄ Spain (Balearic Islands): ["Cometa": 400 MW](<https://en.wikipedia.org/wiki/Cometa_(HVDC)>)
-- Sweden ⇄ Poland: ["SwePol": 600 MW](https://en.wikipedia.org/wiki/SwePol)
+- [Sweden ⇄ Poland](#for-the-nordic-and-baltic-countries-capacities-are-availible-from-nord-pool)
 - Ukraine ⇄ Belarus, ⇄ Hungary, ⇉ Poland, ⇄ Moldova, ⇄ Slovakia, ⇄ Romania, ⇄ Russia: [Ukrenergo](https://ua.energy/activity/dispatch-information/transborder-flows/)
 
 A ⇄ B: bidirectional operation, with power flow either "from A to B" or "from B to A"
