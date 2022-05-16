@@ -86,7 +86,5 @@ module.exports = {
     path: `${__dirname}/public/dist`,
     pathinfo: false,
   },
-  cache: {
-    type: 'filesystem',
-  }
+  cache: false
 };
