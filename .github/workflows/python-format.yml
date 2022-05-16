@@ -12,20 +12,17 @@ jobs:
           python-version: 3.8
       - name: Install Black
         run: pip install black
-      - name: Run black --check .
-        run: black --check .
-      - name: If needed, commit black changes to the pull request
-        if: failure()
-        run: |
-          black .
-          git config --global user.name 'autoblack'
-          git config --global user.email 'eng@electricitymap.org'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git fetch --all
-          git branch -l
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "fixup: Format Python code with Black"
-          git push
+      - name: Run black
+        run: black .
+      - name: Commit black changes to the pull request
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          author_name: electricitymap
+          author_email: eng@electricitymap.org
+          message: 'Automatic black formatting'
+          add: '*.py'
+
+
 
   autoisort:
       runs-on: ubuntu-latest
@@ -40,13 +37,10 @@ jobs:
           run: pip install isort
         - name: Run isort
           run: isort --profile=black --known-local-folder=electricitymap --known-local-folder=parsers --known-local-folder=scripts --known-local-folder=tests
-        - name: If needed, commit isort changes to the pull request
-          if: failure()
-          run: |
-            black .
-            git config --global user.name 'autoblack'
-            git config --global user.email 'eng@electricitymap.org'
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-            git checkout $GITHUB_HEAD_REF
-            git commit -am "fixup: Format Python code with isort"
-            git push
+        - name: Commit isort changes to the pull request
+          uses: EndBug/add-and-commit@v9.0.0
+          with:
+            author_name: electricitymap
+            author_email: eng@electricitymap.org
+            message: 'Automatic black formatting'
+            add: '*.py'
