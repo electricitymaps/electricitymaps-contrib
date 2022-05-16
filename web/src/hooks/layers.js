@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { interpolate } from 'd3-interpolate';
+import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
 
@@ -39,8 +40,8 @@ export function useInterpolatedWindData() {
         return null;
       }
 
-      console.log(`#1 wind forecast target ${tBefore.fromNow()} made ${getRefTime(gribs1[0]).fromNow()}`);
-      console.log(`#2 wind forecast target ${tAfter.fromNow()} made ${getRefTime(gribs2[0]).fromNow()}`);
+      console.log(`#1 wind forecast target ${formatDistance(tBefore, new Date(), {addSuffix: true})} made ${formatDistance(getRefTime(gribs1[0]), new Date(), {addSuffix: true})}`);
+      console.log(`#2 wind forecast target ${formatDistance(tAfter, new Date(), {addSuffix: true})} made ${formatDistance(getRefTime(gribs2[0]), new Date(), {addSuffix: true})}`);
 
       return [
         { ...gribs1[0], data: gribs1[0].data.map((d, i) => interpolate(d, gribs2[0].data[i])(k)) },
@@ -74,8 +75,8 @@ export function useInterpolatedSolarData() {
         return null;
       }
 
-      console.log(`#1 solar forecast target ${tBefore.fromNow()} made ${getRefTime(grib1).fromNow()}`);
-      console.log(`#2 solar forecast target ${tAfter.fromNow()} made ${getRefTime(grib2).fromNow()}`);
+      console.log(`#1 solar forecast target ${formatDistance(tBefore, new Date(), {addSuffix: true})} made ${formatDistance(getRefTime(grib1), new Date(), {addSuffix: true})}`);
+      console.log(`#2 solar forecast target ${formatDistance(tAfter, new Date(), {addSuffix: true})} made ${formatDistance(getRefTime(grib2), new Date(), {addSuffix: true})}`);
 
       return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
     },

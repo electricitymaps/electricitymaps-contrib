@@ -91,7 +91,7 @@ const HorizontalColorbar = ({
           textAnchor="middle"
         >
           {spreadOverDomain(linearScale, ticksCount).map(t => (
-            <g key={`tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
+            <g key={`colorbar-tick-${t}`} className="tick" transform={`translate(${linearScale(t)},0)`}>
               <text fill="currentColor" y="8" dy="0.81em">{Math.round(t)}</text>
             </g>
           ))}
