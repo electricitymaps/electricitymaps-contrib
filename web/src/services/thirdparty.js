@@ -15,7 +15,7 @@ function reportToSentry(e) {
 }
 
 
-class ConnectionsService {  
+class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
@@ -32,7 +32,7 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log(`Tracking event ${eventName}`);
+    console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
@@ -40,7 +40,7 @@ class ConnectionsService {
     });
   }
 
- 
+
 
   // track errors
   trackError(e) {

@@ -82,22 +82,22 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
     'object-shorthand': 'error',
-
-    // Rules we want to enable soon!
-    'no-console': 'off',
     'react-hooks/exhaustive-deps': 'error',
     'react-hooks/rules-of-hooks': 'error',
+    'curly': 'error',
+    'no-nested-ternary': 'error',
+    'no-underscore-dangle': ['error',
+        {
+        "allowAfterThis": true,
+        "allow": ["__", "__REDUX_DEVTOOLS_EXTENSION__"]
+        }
+    ],
+    'no-console': ['error', {'allow': ['error', 'warn']}], // if .log is intended, use disable line.
+    // Rules we want to enable soon!
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
-
-    // Rules we want to enable one day
-    'curly': 'error',
-    'no-nested-ternary': 'error',
-    'max-len': ['off', {'code': 120}],
-    'no-underscore-dangle': 'off',
-    'react/jsx-one-expression-per-line': 'off',
 
     // Rules that doesn't make sense for us:
     'jest/no-standalone-expect': 'off', // afterEach not covered

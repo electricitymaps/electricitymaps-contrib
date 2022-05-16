@@ -36,7 +36,7 @@ function getCenter(geojson, zoneName) {
 }
 
 function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
-  console.log("Generating new world.json");
+  console.log("Generating new world.json"); // eslint-disable-line no-console
   const topo = topology({
     objects: fc,
   });
@@ -53,7 +53,7 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
 
   const currentTopo = getJSON(OUT_PATH);
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.log("No changes to world.json");
+    console.log("No changes to world.json"); // eslint-disable-line no-console
     return;
   }
 

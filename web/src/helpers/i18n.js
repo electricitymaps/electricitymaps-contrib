@@ -47,7 +47,7 @@ function requestWithXmlHttpRequest(options, url, payload, callback) {
     };
     x.send(payload);
   } catch (e) {
-    console && console.log(e);
+    console && console.error(e);
   }
 }
 

@@ -16,7 +16,7 @@ const { getZonesJson } = require('./files')
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  console.log('Validating geometries...');
+  console.log('Validating geometries...'); // eslint-disable-line no-console
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
   zeroComplexPolygons(fc, config);
@@ -147,7 +147,7 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
     .map(({ ft, _ }) => ft.properties.zoneName);
 
   if (overlaps.length) {
-    overlaps.forEach((x) => console.log(`${x} overlaps with another feature`));
+    overlaps.forEach((x) => console.error(`${x} overlaps with another feature`));
     throw Error('Feature(s) overlap');
   }
 }

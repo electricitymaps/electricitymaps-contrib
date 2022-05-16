@@ -9,7 +9,7 @@ let zones = getJSON(path.resolve(__dirname, './world.geojson'));
 
 
 if (args.length <= 0) {
-  console.log('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")')
+  console.error('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")')
   process.exit(1)
 }
 zones.features = zones.features.filter((d) => d.properties.zoneName === args[0]);
@@ -67,4 +67,4 @@ for (const [zone, bbox] of Object.entries(boundingBoxes)) {
 
 saveZonesJson(zones);
 
-console.log('Done, check /config/zones.json to verify that the result looks good!')
+console.error('Done, check /config/zones.json to verify that the result looks good!')

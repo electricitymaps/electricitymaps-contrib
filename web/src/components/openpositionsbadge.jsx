@@ -32,7 +32,7 @@ const OpenPositionsBadge = () => {
         const openPositions = items ? items.length : null;
         setPositions(openPositions);
       })
-      .catch(() => console.log('Failed fetching open positions count'));
+      .catch(() => console.error('Failed fetching open positions count'));
   }, []);
 
   return (
