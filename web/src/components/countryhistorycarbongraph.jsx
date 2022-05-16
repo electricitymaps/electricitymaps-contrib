@@ -14,7 +14,7 @@ import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
 
 const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {return {};}
 
   const data = historyData.map(d => ({
     carbonIntensity: electricityMixMode === 'consumption'

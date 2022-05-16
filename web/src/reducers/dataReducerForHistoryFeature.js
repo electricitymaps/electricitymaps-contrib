@@ -6,7 +6,7 @@ import * as translation  from '../helpers/translation';
 import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
 
-console.log('Using History Feature reducer!');
+console.log('Using History Feature reducer!'); // eslint-disable-line no-console
 
 // ** Prepare initial zone data
 const zones = constructTopos();
