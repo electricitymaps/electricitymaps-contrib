@@ -1,11 +1,6 @@
 import React from 'react';
 
-const ValueAxis = React.memo(({
-  scale,
-  label,
-  width,
-  height,
-}) => {
+const ValueAxis = React.memo(({ scale, label, width, height }) => {
   const [y1, y2] = scale.range();
   return (
     <g
@@ -23,10 +18,12 @@ const ValueAxis = React.memo(({
         </text>
       )}
       <path className="domain" stroke="currentColor" d={`M6,${y1 + 0.5}H0.5V${y2 + 0.5}H6`} />
-      {scale.ticks(5).map(v => (
+      {scale.ticks(5).map((v) => (
         <g key={`valueaxis-tick-${v}`} className="tick" opacity={1} transform={`translate(0,${scale(v)})`}>
           <line stroke="currentColor" x2="6" />
-          <text fill="currentColor" x="6" y="3" dx="0.32em">{v}</text>
+          <text fill="currentColor" x="6" y="3" dx="0.32em">
+            {v}
+          </text>
         </g>
       ))}
     </g>

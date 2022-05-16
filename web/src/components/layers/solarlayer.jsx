@@ -12,8 +12,8 @@ import { solarColor } from '../../helpers/scales';
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
 const maxSolar = solarColor.domain().at(-1);
-const solarIntensityToOpacity = intensity => Math.floor(intensity / maxSolar * 255);
-const opacityToSolarIntensity = opacity => Math.floor(opacity * maxSolar / 255);
+const solarIntensityToOpacity = (intensity) => Math.floor((intensity / maxSolar) * 255);
+const opacityToSolarIntensity = (opacity) => Math.floor((opacity * maxSolar) / 255);
 
 // Pre-process solar color components across all integer values
 // for faster vertex shading when generating the canvas image.
@@ -38,15 +38,13 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ unproject }) => {
-  const {
-    ref, width, height, node,
-  } = useRefWidthHeightObserver();
+  const { ref, width, height, node } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 
-  const mapZoom = useSelector(state => state.application.mapViewport.zoom);
-  const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
-  const isMoving = useSelector(state => state.application.isMovingMap);
+  const mapZoom = useSelector((state) => state.application.mapViewport.zoom);
+  const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
+  const isMoving = useSelector((state) => state.application.isMovingMap);
   const isVisible = enabled && isMapLoaded && !isMoving;
 
   // Render the processed solar forecast image into the canvas.
@@ -96,17 +94,8 @@ export default ({ unproject }) => {
   }, [node, isVisible, solar, width, height, mapZoom, unproject]);
 
   return (
-    <CSSTransition
-      classNames="fade"
-      in={isVisible}
-      timeout={300}
-    >
-      <Canvas
-        id="solar"
-        width={width}
-        height={height}
-        ref={ref}
-      />
+    <CSSTransition classNames="fade" in={isVisible} timeout={300}>
+      <Canvas id="solar" width={width} height={height} ref={ref} />
     </CSSTransition>
   );
 };

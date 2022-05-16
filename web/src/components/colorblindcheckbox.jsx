@@ -9,7 +9,7 @@ import { useTranslation } from '../helpers/translation';
 
 const ColorBlindCheckbox = () => {
   const { __ } = useTranslation();
-  const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
+  const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
   const toggleColorBlindMode = () => {
     dispatchApplication('colorBlindModeEnabled', !colorBlindModeEnabled);
     saveKey('colorBlindModeEnabled', !colorBlindModeEnabled);

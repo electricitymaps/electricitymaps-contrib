@@ -1,7 +1,7 @@
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
 import twitterConnection from './thirdparty/twitter';
-import plausibleConnection from './thirdparty/plausible'
+import plausibleConnection from './thirdparty/plausible';
 import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
@@ -13,7 +13,6 @@ function reportToSentry(e) {
     }
   }
 }
-
 
 class ConnectionsService {
   constructor() {
@@ -36,11 +35,11 @@ class ConnectionsService {
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
-      } catch (err) { console.error(`External connection error: ${err}`); }
+      } catch (err) {
+        console.error(`External connection error: ${err}`);
+      }
     });
   }
-
-
 
   // track errors
   trackError(e) {

@@ -24,7 +24,7 @@ const OpenPositionsBadge = () => {
 
   // Fetch the RSS feed to get the number of open positions
   React.useEffect(() => {
-      fetch('https://electricitymap.org/jobs/rss.xml')
+    fetch('https://electricitymap.org/jobs/rss.xml')
       .then((res) => res.text())
       .then((str) => new window.DOMParser().parseFromString(str, 'text/xml'))
       .then((data) => {
@@ -35,11 +35,7 @@ const OpenPositionsBadge = () => {
       .catch(() => console.error('Failed fetching open positions count'));
   }, []);
 
-  return (
-    <OpenPositionsBadgeWrapper shouldShow={positions > 0}>{positions}</OpenPositionsBadgeWrapper>
-  );
+  return <OpenPositionsBadgeWrapper shouldShow={positions > 0}>{positions}</OpenPositionsBadgeWrapper>;
 };
 
-
-
-  export default OpenPositionsBadge;
+export default OpenPositionsBadge;

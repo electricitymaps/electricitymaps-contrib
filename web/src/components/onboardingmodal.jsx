@@ -9,53 +9,58 @@ import { useSearchParams } from '../hooks/router';
 
 import Icon from './icon';
 
-const views = [{
-  headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
-  headerCssClass: 'logo-header',
-  textCssClass: 'brand-text',
-  renderContent: (__) => (
-    <React.Fragment>
-      <div>
-        <h1>electricityMap</h1>
-      </div>
-      <div>
-        <h2>{__('onboarding-modal.view1.subtitle')}</h2>
-      </div>
-    </React.Fragment>
-  ),
-}, {
-  headerImage: resolvePath('images/onboarding/mapExtract.png'),
-  renderContent: (__) => (
-    <React.Fragment>
-      <div>
-        <h2>{__('onboarding-modal.view2.header')}</h2>
-      </div>
-      <div>{__('onboarding-modal.view2.text')}</div>
-    </React.Fragment>
-  ),
-}, {
-  headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
-  renderContent: (__) => (
-    <React.Fragment>
-      <div>
-        <h2>{__('onboarding-modal.view3.header')}</h2>
-      </div>
-      <div>{__('onboarding-modal.view3.text')}</div>
-    </React.Fragment>
-  ),
-}, {
-  headerImage: resolvePath('images/onboarding/splitLayers.png'),
-  renderContent: (__) => (
-    <React.Fragment>
-      <div>
-        <h2>{__('onboarding-modal.view4.header')}</h2>
-      </div>
-      <div>{__('onboarding-modal.view4.text')}</div>
-    </React.Fragment>
-  ),
-}];
+const views = [
+  {
+    headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
+    headerCssClass: 'logo-header',
+    textCssClass: 'brand-text',
+    renderContent: (__) => (
+      <React.Fragment>
+        <div>
+          <h1>electricityMap</h1>
+        </div>
+        <div>
+          <h2>{__('onboarding-modal.view1.subtitle')}</h2>
+        </div>
+      </React.Fragment>
+    ),
+  },
+  {
+    headerImage: resolvePath('images/onboarding/mapExtract.png'),
+    renderContent: (__) => (
+      <React.Fragment>
+        <div>
+          <h2>{__('onboarding-modal.view2.header')}</h2>
+        </div>
+        <div>{__('onboarding-modal.view2.text')}</div>
+      </React.Fragment>
+    ),
+  },
+  {
+    headerImage: resolvePath('images/onboarding/exchangeArrows.png'),
+    renderContent: (__) => (
+      <React.Fragment>
+        <div>
+          <h2>{__('onboarding-modal.view3.header')}</h2>
+        </div>
+        <div>{__('onboarding-modal.view3.text')}</div>
+      </React.Fragment>
+    ),
+  },
+  {
+    headerImage: resolvePath('images/onboarding/splitLayers.png'),
+    renderContent: (__) => (
+      <React.Fragment>
+        <div>
+          <h2>{__('onboarding-modal.view4.header')}</h2>
+        </div>
+        <div>{__('onboarding-modal.view4.text')}</div>
+      </React.Fragment>
+    ),
+  },
+];
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   // Show onboarding modal only if it's not been seen yet and if the app is not embedded
   visible: !state.application.onboardingSeen && !state.application.isEmbedded,
 });
@@ -104,7 +109,9 @@ const OnboardingModal = ({ visible }) => {
     }
   }, [visible, shouldSkip, trackEvent]);
 
-  if (!visible || shouldSkip) {return null;}
+  if (!visible || shouldSkip) {
+    return null;
+  }
 
   return (
     <React.Fragment>
@@ -113,14 +120,14 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
-              <Icon iconName="arrow_back"/>
+              <Icon iconName="arrow_back" />
             </div>
           )}
         </div>
         <div className="modal-body">
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={handleDismiss}>
-              <Icon iconName="close"/>
+              <Icon iconName="close" />
             </div>
           </div>
           <div
@@ -142,11 +149,11 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-right-button-container">
           {isOnLastView() ? (
             <div className="modal-right-button green" onClick={handleDismiss}>
-              <Icon iconName="check"/>
+              <Icon iconName="check" />
             </div>
           ) : (
-            <div  className="modal-right-button" onClick={handleForward}>
-              <Icon iconName="arrow_forward"/>
+            <div className="modal-right-button" onClick={handleForward}>
+              <Icon iconName="arrow_forward" />
             </div>
           )}
         </div>
