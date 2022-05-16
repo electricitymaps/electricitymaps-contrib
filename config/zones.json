@@ -5085,17 +5085,17 @@
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 1508,
-      "coal": 26910,
-      "gas": 3705,
+      "biomass": 1178.5,
+      "coal": 33281.3,
+      "gas": 3773.8,
       "geothermal": 0,
-      "hydro": 791,
-      "hydro storage": 1591,
+      "hydro": 977.5,
+      "hydro storage": 1413,
       "nuclear": 0,
-      "oil": 393,
-      "solar": 6126,
+      "oil": 678.8,
+      "solar": 9401.1,
       "unknown": 0,
-      "wind": 7065
+      "wind": 7211.6
     },
     "contributors": [
       "corradio",

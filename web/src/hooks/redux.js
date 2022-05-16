@@ -87,7 +87,9 @@ export function useCurrentZoneExchangeKeys() {
     const exchangeKeys = new Set();
     const zoneHistoryOrCurrent = zoneHistory || [currentZoneData];
     zoneHistoryOrCurrent.forEach((zoneData) => {
-    Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
+      if (zoneData.exchange) {
+        Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
+      }
     });
     return Array.from(exchangeKeys).sort();
   }, [isConsumption, zoneHistory, currentZoneData]);

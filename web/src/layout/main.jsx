@@ -98,6 +98,10 @@ const Main = ({
     isClientVersionOutdated = isNewClientVersion(clientVersion);
   }
 
+  if (isClientVersionOutdated) {
+    console.warn(`Current client version: ${clientVersion} is outdated`)
+  }
+
   return (
     <React.Fragment>
       <div
