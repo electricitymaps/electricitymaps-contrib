@@ -48,7 +48,7 @@ export default React.memo(({ project }) => {
         handleArrowMouseOut();
       }
     },
-    [isMoving, tooltip, handleArrowMouseOut],
+    [isMoving, tooltip], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return (

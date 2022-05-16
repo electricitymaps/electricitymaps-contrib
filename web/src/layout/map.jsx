@@ -181,7 +181,7 @@ export default () => {
     () => ({ width, height }) => {
       handleViewportChange({ ...viewport, width, height });
     },
-    [viewport, handleViewportChange],
+    [viewport], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Animate map transitions only after the map has been loaded.

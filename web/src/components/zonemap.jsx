@@ -61,7 +61,7 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    [debouncedSetIsDragging]
+    [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   const handleLoad = () => {
@@ -130,7 +130,7 @@ const ZoneMap = ({
       setIsSupported(false);
       onMapError('WebGL not supported');
     }
-  }, [onMapError]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
@@ -228,7 +228,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId, onZoneMouseLeave]
+    [hoveredZoneId] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.
