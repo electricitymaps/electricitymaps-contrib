@@ -5,14 +5,10 @@ jobs:
   autoblack:
     runs-on: ubuntu-latest
     steps:
-      - name: See context
-        run: |
-          echo "${{ github.base_ref }}"
-          echo "${{ github.head_red }}"
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          repository: electricitymap/electricitymap-contrib
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -39,7 +35,7 @@ jobs:
         - name: Checkout repo
           uses: actions/checkout@v2
           with:
-            repository: electricitymap/electricitymap-contrib
+            repository: ${{ github.event.pull_request.head.repo.full_name }}
             ref: ${{ github.event.pull_request.head.ref }}
         - name: Set up Python 3.8
           uses: actions/setup-python@v1
