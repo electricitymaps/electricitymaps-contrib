@@ -5,11 +5,10 @@ module.exports = {
     'eslint:recommended',
     'plugin:you-dont-need-lodash-underscore/all',
     'plugin:react/recommended',
-    'plugin:jest/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['@babel', 'jest', 'react-hooks'],
+  plugins: ['@babel', 'react-hooks'],
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
@@ -46,17 +45,6 @@ module.exports = {
     sourceType: 'module',
     createDefaultProgram: true,
   },
-  overrides: [
-    {
-      files: ['*.spec.js', '*.spec.ts', '*.spec.tsx', '*.test.js', '*.test.ts', '*.test.tsx'],
-      env: {
-        'jest/globals': true,
-      },
-      rules: {
-        'no-console': 'off',
-      },
-    },
-  ],
   rules: {
     'prefer-destructuring': [
       'error',
@@ -100,7 +88,6 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
 
     // Rules that doesn't make sense for us:
-    'jest/no-standalone-expect': 'off', // afterEach not covered
     'import/prefer-default-export': 'off',
     'import/named': 'off',
     'react/prop-types': 'off',
