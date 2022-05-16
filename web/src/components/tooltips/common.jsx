@@ -10,8 +10,7 @@ export const CarbonIntensity = ({ intensity }) => {
 
   return (
     <>
-      <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />
-      {' '}
+      <div className="emission-rect" style={{ backgroundColor: co2ColorScale(intensity) }} />{' '}
       <b>{Math.round(intensity) || '?'}</b> gCO₂eq/kWh
     </>
   );

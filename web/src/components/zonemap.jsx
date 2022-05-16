@@ -3,8 +3,7 @@ import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
-import { debounce } from '../helpers/debounce'
-
+import { debounce } from '../helpers/debounce';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -70,24 +69,23 @@ const ZoneMap = ({
   };
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
-  const sources = useMemo(
-    () => {
-      const features = Object.entries(zones).map(([zoneId, zone]) => {
-        const length = (coordinate) => coordinate ? coordinate.length : 0
-        return {
-          type: 'Feature',
-            geometry: {
-              ...zone.geometry,
-            coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
-          },
-          properties: {
-            color: zone.color,
-            isClickable: zone.isClickable,
-            zoneData: zone,
-            zoneId,
-          },
-        }
-      })
+  const sources = useMemo(() => {
+    const features = Object.entries(zones).map(([zoneId, zone]) => {
+      const length = (coordinate) => (coordinate ? coordinate.length : 0);
+      return {
+        type: 'Feature',
+        geometry: {
+          ...zone.geometry,
+          coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
+        },
+        properties: {
+          color: zone.color,
+          isClickable: zone.isClickable,
+          zoneData: zone,
+          zoneId,
+        },
+      };
+    });
 
     return {
       zonesClickable: {
@@ -211,14 +209,7 @@ const ZoneMap = ({
         }
       }
     },
-    [
-      hoveringEnabled,
-      isDragging,
-      hoveredZoneId,
-      onMouseMove,
-      onZoneMouseEnter,
-      onZoneMouseLeave,
-    ]
+    [hoveringEnabled, isDragging, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave]
   );
 
   const handleMouseOut = useMemo(
@@ -280,11 +271,7 @@ const ZoneMap = ({
               top: '24px',
             }}
           >
-            <NavigationControl
-              showCompass={false}
-              zoomInLabel={zoomInLabel}
-              zoomOutLabel={zoomOutLabel}
-            />
+            <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
           </div>
         </Portal>
         {/* Layers */}

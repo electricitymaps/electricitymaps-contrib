@@ -5,7 +5,7 @@ import { useTranslation } from '../helpers/translation';
 import { noop } from '../helpers/noop';
 
 const EstimationLabel = styled.div`
-  background: #FFD700;
+  background: #ffd700;
   color: #000;
   display: inline-block;
   padding: 0 4px;
@@ -26,10 +26,7 @@ const EstimatedLabel = ({ isMobile }) => {
   const { __ } = useTranslation();
 
   const TooltipComponent = tooltip && (
-    <Tooltip
-      id="estimated-info-tooltip"
-      position={{ x: tooltip.clientX, y: tooltip.clientY }}
-    >
+    <Tooltip id="estimated-info-tooltip" position={{ x: tooltip.clientX, y: tooltip.clientY }}>
       <TooltipInner>{__('country-panel.estimatedTooltip')}</TooltipInner>
     </Tooltip>
   );
@@ -50,4 +47,3 @@ const EstimatedLabel = ({ isMobile }) => {
 };
 
 export default EstimatedLabel;
-

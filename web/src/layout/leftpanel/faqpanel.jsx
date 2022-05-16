@@ -6,7 +6,7 @@ import { useTranslation } from '../../helpers/translation';
 import FAQ from '../../components/faq';
 import Icon from '../../components/icon';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
 });
 
