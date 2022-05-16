@@ -341,10 +341,10 @@ const CountryElectricityProductionTable = React.memo(({
 
   // Use the whole history to determine the min/max,
   // fallback on current data
-  const history = useCurrentZoneHistory() || [];
+  const history = useCurrentZoneHistory();
   const [minPower, maxPower] = useMemo(
     () => {
-      const historyOrCurrent = history.length
+      const historyOrCurrent = (history && history.length)
         ? history
         : [data];
       return [

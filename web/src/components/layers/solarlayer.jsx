@@ -93,7 +93,7 @@ export default ({ unproject }) => {
       ctx.clearRect(0, 0, width, height);
       ctx.putImageData(image, 0, 0);
     }
-  }, [node, isVisible, solar, width, height]);
+  }, [node, isVisible, solar, width, height, mapZoom, unproject]);
 
   return (
     <CSSTransition

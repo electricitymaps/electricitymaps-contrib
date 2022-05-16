@@ -143,7 +143,7 @@ export default () => {
       );
       setTooltipZoneData(data);
     },
-    [electricityMixMode, zoneHistories, selectedZoneTimeIndex],
+    [electricityMixMode, zoneHistories, selectedZoneTimeIndex, zones],
   );
 
   const handleZoneMouseLeave = useMemo(
@@ -181,7 +181,7 @@ export default () => {
     () => ({ width, height }) => {
       handleViewportChange({ ...viewport, width, height });
     },
-    [viewport],
+    [viewport, handleViewportChange],
   );
 
   // Animate map transitions only after the map has been loaded.

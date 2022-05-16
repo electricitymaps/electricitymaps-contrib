@@ -48,7 +48,7 @@ export default React.memo(({ project }) => {
         handleArrowMouseOut();
       }
     },
-    [isMoving, tooltip],
+    [isMoving, tooltip, handleArrowMouseOut],
   );
 
   return (

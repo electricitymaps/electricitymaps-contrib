@@ -85,8 +85,8 @@ module.exports = {
 
     // Rules we want to enable soon!
     'no-console': 'off',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react-hooks/rules-of-hooks': 'warn',
+    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/rules-of-hooks': 'error',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',

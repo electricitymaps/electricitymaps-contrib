@@ -61,7 +61,7 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    []
+    [debouncedSetIsDragging]
   );
 
   const handleLoad = () => {
@@ -130,7 +130,7 @@ const ZoneMap = ({
       setIsSupported(false);
       onMapError('WebGL not supported');
     }
-  }, []);
+  }, [onMapError]);
 
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
@@ -179,7 +179,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick]
+    [onSeaClick, onZoneClick]
   );
 
   const handleMouseMove = useMemo(
@@ -212,10 +212,8 @@ const ZoneMap = ({
       }
     },
     [
-      ref.current,
       hoveringEnabled,
       isDragging,
-      zones,
       hoveredZoneId,
       onMouseMove,
       onZoneMouseEnter,
@@ -230,7 +228,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId]
+    [hoveredZoneId, onZoneMouseLeave]
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.

@@ -102,7 +102,7 @@ const OnboardingModal = ({ visible }) => {
     if (visible && !shouldSkip) {
       trackEvent('Onboarding Shown');
     }
-  }, [visible, shouldSkip]);
+  }, [visible, shouldSkip, trackEvent]);
 
   if (!visible || shouldSkip) {return null;}
 

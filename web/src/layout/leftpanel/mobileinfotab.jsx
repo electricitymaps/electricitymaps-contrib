@@ -39,7 +39,7 @@ const MobileInfoTab = () => {
         setMobileAppVersion(`${appVersion} ${label} (${description})`);
       }, err => console.error(err));
     }
-  }, []);
+  }, [mobileAppVersion]);
 
   // If not on small screen, redirect to the /map page
   if (isMediumUpScreen) {
