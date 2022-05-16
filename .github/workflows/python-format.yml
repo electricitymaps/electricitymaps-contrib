@@ -8,7 +8,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          repository: electricitymap/electricitymap-contrib
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -21,7 +21,7 @@ jobs:
       - name: Commit black changes to the pull request
         uses: EndBug/add-and-commit@v9.0.0
         with:
-          author_name: electricitymap
+          author_name: tmrow-bot
           author_email: eng@electricitymap.org
           message: 'Automatic black formatting'
           add: '*.py'
@@ -35,7 +35,7 @@ jobs:
         - name: Checkout repo
           uses: actions/checkout@v2
           with:
-            repository: ${{ github.event.pull_request.head.repo.full_name }}
+            repository: electricitymap/electricitymap-contrib
             ref: ${{ github.event.pull_request.head.ref }}
         - name: Set up Python 3.8
           uses: actions/setup-python@v1
@@ -48,7 +48,7 @@ jobs:
         - name: Commit isort changes to the pull request
           uses: EndBug/add-and-commit@v9.0.0
           with:
-            author_name: electricitymap
+            author_name: tmrow-bot
             author_email: eng@electricitymap.org
             message: 'Automatic black formatting'
             add: '*.py'
