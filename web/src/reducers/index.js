@@ -4,6 +4,8 @@ import { getKey } from '../helpers/storage';
 import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
+import dataReducerForHistoryFeature from './dataReducerForHistoryFeature';
+
 
 const getStorageBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -78,7 +80,11 @@ const applicationReducer = (state = initialApplicationState, action) => {
   }
 };
 
+const urlSearchParams = new URLSearchParams(window.location.search);
+const isHistoryFeatureEnabled = Object.fromEntries(urlSearchParams.entries())?.feature === 'history';
+const dataReducerInUse = isHistoryFeatureEnabled ? dataReducerForHistoryFeature : dataReducer;
+
 export default combineReducers({
   application: applicationReducer,
-  data: dataReducer,
+  data: dataReducerInUse,
 });
