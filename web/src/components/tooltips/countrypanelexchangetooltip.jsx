@@ -41,11 +41,16 @@ const CountryPanelExchangeTooltip = ({
 
   const emissions = Math.abs(exchange * 1000 * co2Intensity);
   const totalEmissions = getTotalElectricity(zoneData, true);
+  const getTranslatedText = () => {
+    if (isExport) {
+      return displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo';
+    } else {
+      return displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom';
+    }
+  };
 
   let headline = __(
-    isExport
-      ? (displayByEmissions ? 'emissionsExportedTo' : 'electricityExportedTo')
-      : (displayByEmissions ? 'emissionsImportedFrom' : 'electricityImportedFrom'),
+    getTranslatedText(),
     getRatioPercent(usage, totalElectricity),
     getZoneNameWithCountry(zoneData.countryCode),
     getZoneNameWithCountry(exchangeKey),

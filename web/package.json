@@ -104,7 +104,7 @@
     "build-release": "export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
-    "lint": "eslint geo src *.js",
+    "lint": "eslint geo src --ext .js,.jsx",
     "update-version": "echo '{\"version\": \"'$COMMIT_SHA'\"}' > public/client-version.json",
     "server-dev": "nodemon --delay 1 server.js",
     "watch": "webpack --watch --progress --mode development",

@@ -9,11 +9,13 @@ export function useTheme() {
   const colorBlindModeEnabled = useSelector(state => state.application.colorBlindModeEnabled);
 
   return useMemo(
-    () => (
-      brightModeEnabled
-        ? (colorBlindModeEnabled ? themes.colorblindBright : themes.bright)
-        : (colorBlindModeEnabled ? themes.colorblindDark : themes.dark)
-    ),
+    () => {
+      if (brightModeEnabled) {
+        return colorBlindModeEnabled ? themes.colorblindBright : themes.bright
+      } else {
+        return colorBlindModeEnabled ? themes.colorblindDark : themes.dark
+      }
+    },
     [brightModeEnabled, colorBlindModeEnabled],
   );
 }

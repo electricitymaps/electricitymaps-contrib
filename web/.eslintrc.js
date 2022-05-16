@@ -94,7 +94,7 @@ module.exports = {
 
     // Rules we want to enable one day
     'curly': 'off',
-    'no-nested-ternary': 'off',
+    'no-nested-ternary': 'error',
     'max-len': ['off', {'code': 120}],
     'no-underscore-dangle': 'off',
     'react/jsx-one-expression-per-line': 'off',
