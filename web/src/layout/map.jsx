@@ -57,11 +57,11 @@ export default () => {
   useEffect(() => {
     if (!hasCentered) {
       if (zoneId) {
-        console.log(`Centering on zone ${zoneId}`);
+        console.log(`Centering on zone ${zoneId}`); // eslint-disable-line no-console
         dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
         setHasCentered(true);
       } else if (callerLocation) {
-        console.log(`Centering on browser location (${callerLocation})`);
+        console.log(`Centering on browser location (${callerLocation})`); // eslint-disable-line no-console
         dispatchApplication('mapViewport', getCenteredLocationViewport(callerLocation));
         setHasCentered(true);
       }
@@ -143,7 +143,7 @@ export default () => {
       );
       setTooltipZoneData(data);
     },
-    [electricityMixMode, zoneHistories, selectedZoneTimeIndex],
+    [electricityMixMode, zoneHistories, selectedZoneTimeIndex, zones],
   );
 
   const handleZoneMouseLeave = useMemo(
@@ -181,7 +181,7 @@ export default () => {
     () => ({ width, height }) => {
       handleViewportChange({ ...viewport, width, height });
     },
-    [viewport],
+    [viewport], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Animate map transitions only after the map has been loaded.

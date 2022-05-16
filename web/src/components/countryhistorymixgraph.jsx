@@ -32,7 +32,7 @@ const getValuesInfo = (historyData, displayByEmissions) => {
 };
 
 const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {return {};}
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
 

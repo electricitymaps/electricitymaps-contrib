@@ -69,10 +69,10 @@ export function handleRequestError(err) {
       // Avoid catching HTTPError 0
       // The error will be empty, and we can't catch any more info for security purposes.
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
-      if (!status) return;
+      if (!status) {return;}
 
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
-      if ((status >= 500 && status <= 599) || status === 404) return;
+      if ((status >= 500 && status <= 599) || status === 404) {return;}
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {

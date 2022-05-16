@@ -3,7 +3,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 // TODO: re-enable rules
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Redirect,
   Link,
@@ -236,10 +236,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   const data = useCurrentZoneData() || {};
 
-  const parentPage = {
-    pathname: '/map',
-    search: location.search,
-  };
+  const parentPage = useMemo(() => {
+    return {
+      pathname: '/map',
+      search: location.search
+    }
+  }, [location])
 
   // Back button keyboard navigation
   useEffect(
@@ -254,7 +256,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
         document.removeEventListener('keyup', keyHandler);
       };
     },
-    [history],
+    [history, parentPage],
   );
 
   // Redirect to the parent page if the zone is invalid.

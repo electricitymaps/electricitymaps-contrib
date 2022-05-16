@@ -51,7 +51,7 @@ function processZones(zonesData, accessor) {
 }
 
 function zoneMatchesQuery(zone, queryString) {
-  if (!queryString) return true;
+  if (!queryString) {return true;}
   const queries = queryString.split(' ');
   return queries.every(
     query => getZoneNameWithCountry(zone.countryCode)
@@ -103,7 +103,7 @@ const ZoneList = ({
   useEffect(() => {
     const scrollToItemIfNeeded = (index) => {
       const item = ref.current && ref.current.children[index];
-      if (!item) return;
+      if (!item) {return;}
 
       const parent = item.parentNode;
       const parentComputedStyle = window.getComputedStyle(parent, null);

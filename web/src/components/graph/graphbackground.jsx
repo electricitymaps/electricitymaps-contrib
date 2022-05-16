@@ -36,7 +36,7 @@ const GraphBackground = React.memo(({
   };
 
   // Don't render if the dimensions are not positive
-  if (width <= 0 || height <= 0) return null;
+  if (width <= 0 || height <= 0) {return null;}
 
   return (
     <rect

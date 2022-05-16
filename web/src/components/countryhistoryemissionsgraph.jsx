@@ -17,7 +17,7 @@ import CountryPanelEmissionsTooltip from './tooltips/countrypanelemissionstoolti
 import AreaGraph from './graph/areagraph';
 
 const prepareGraphData = (historyData) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {return {};}
 
   const data = historyData.map(d => ({
     emissions: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),

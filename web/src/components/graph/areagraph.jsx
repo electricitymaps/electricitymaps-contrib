@@ -45,7 +45,7 @@ const getValueScale = (height, totalValues) => scaleLinear()
   .range([height, Y_AXIS_PADDING]);
 
 const getLayers = (data, layerKeys, layerStroke, layerFill, markerFill) => {
-  if (!data || !data[0]) return [];
+  if (!data || !data[0]) {return [];}
 
   const stackedData = stack()
     .offset(stackOffsetDiverging)
@@ -150,7 +150,7 @@ const AreaGraph = React.memo(({
   );
 
   // Don't render the graph at all if no layers are present
-  if (isEmpty(layers)) return null;
+  if (isEmpty(layers)) {return null;}
 
   return (
     <svg height={height} ref={ref} style={{ overflow: 'visible' }}>

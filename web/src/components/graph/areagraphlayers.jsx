@@ -16,7 +16,7 @@ const AreaGraphLayers = React.memo(({
 }) => {
   const [x1, x2] = timeScale.range();
   const [y2, y1] = valueScale.range();
-  if (x1 >= x2 || y1 >= y2) return null;
+  if (x1 >= x2 || y1 >= y2) {return null;}
 
   // Generate layer paths
   const layerArea = area()

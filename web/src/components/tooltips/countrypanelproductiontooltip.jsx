@@ -26,7 +26,7 @@ const CountryPanelProductionTooltip = ({
   onClose,
 }) => {
   const { __ } = useTranslation();
-  if (!zoneData) return null;
+  if (!zoneData) {return null;}
 
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
 
@@ -57,10 +57,16 @@ const CountryPanelProductionTooltip = ({
     ? (zoneData.dischargeCo2IntensitySources || {})[resource]
     : (zoneData.productionCo2IntensitySources || {})[resource];
 
+  const getTranslatedText = () => {
+    if (isExport) {
+      return displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing'
+    } else {
+      return displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'
+    }
+  }
+
   let headline = __(
-    isExport
-      ? (displayByEmissions ? 'emissionsStoredUsing' : 'electricityStoredUsing')
-      : (displayByEmissions ? 'emissionsComeFrom' : 'electricityComesFrom'),
+    getTranslatedText(),
     getRatioPercent(usage, totalElectricity),
     getZoneNameWithCountry(zoneData.countryCode),
     __(mode),

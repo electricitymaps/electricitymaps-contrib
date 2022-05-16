@@ -16,7 +16,7 @@ import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
 
 const prepareGraphData = (historyData) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {return {};}
 
   const currencySymbol = getSymbolFromCurrency(((historyData.at(0) || {}).price || {}).currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;

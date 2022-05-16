@@ -61,7 +61,7 @@ const TimeSlider = ({
   // Creating a scale for the night-time background gradients
   const gradientScale = useMemo(
     () => getTimeScale(100, nightTimes, startTimeValue, endTimeValue),
-    [nightTimes, timeScale],
+    [nightTimes, startTimeValue, endTimeValue],
   );
 
   const nightTimeSets = nightTimes.flatMap(([start, end]) => [
@@ -77,7 +77,7 @@ const TimeSlider = ({
     [datetimes, onChange, setAnchoredTimeIndex],
   );
 
-  if (!datetimes || datetimes.length === 0) return null;
+  if (!datetimes || datetimes.length === 0) {return null;}
 
   const selectedTimeValue = typeof selectedTimeIndex === 'number'
     ? datetimes[selectedTimeIndex].valueOf()

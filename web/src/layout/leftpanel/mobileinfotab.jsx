@@ -24,7 +24,7 @@ const MobileInfoTab = () => {
     if (!mobileAppVersion && window.isCordova) {
       codePush.getCurrentPackage((localPackage) => {
         if (!localPackage) {
-          console.log('CodePush: No updates have been installed yet');
+          console.warn('CodePush: No updates have been installed yet');
           setMobileAppVersion(null);
           return;
         }
@@ -39,7 +39,7 @@ const MobileInfoTab = () => {
         setMobileAppVersion(`${appVersion} ${label} (${description})`);
       }, err => console.error(err));
     }
-  }, []);
+  }, [mobileAppVersion]);
 
   // If not on small screen, redirect to the /map page
   if (isMediumUpScreen) {

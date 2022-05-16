@@ -91,7 +91,7 @@ const getOptions = (language) => [
   },
 ];
 
-const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
+const TimeControls = ({ date, selectedTimeAggregate }) => {
   const { __, i18n } = useTranslation();
   const options = getOptions(i18n.language);
 

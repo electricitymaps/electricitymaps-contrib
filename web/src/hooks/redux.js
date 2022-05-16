@@ -67,7 +67,7 @@ export function useCurrentZoneData() {
       // If null, return the latest history
       return zoneHistory.at(-1);
     }
-    else return zoneHistory[zoneTimeIndex];
+    else {return zoneHistory[zoneTimeIndex];}
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 
