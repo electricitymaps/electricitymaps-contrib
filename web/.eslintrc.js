@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
   ],
   plugins: ['@babel', 'react-hooks'],
   "globals": {
@@ -81,11 +82,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
 
     // Rules we want to enable one day
-    'curly': 'off',
     'no-nested-ternary': 'off',
-    'max-len': ['off', {'code': 120}],
     'no-underscore-dangle': 'off',
-    'react/jsx-one-expression-per-line': 'off',
 
     // Rules that doesn't make sense for us:
     'import/prefer-default-export': 'off',
