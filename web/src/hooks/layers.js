@@ -39,20 +39,22 @@ export function useInterpolatedWindData() {
       return null;
     }
 
+    // eslint-disable-next-line no-console
     console.log(
       `#1 wind forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs1[0]),
         new Date(),
         { addSuffix: true }
       )}`
-    ); // eslint-disable-line no-console
+    );
+    // eslint-disable-next-line no-console
     console.log(
       `#2 wind forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs2[0]),
         new Date(),
         { addSuffix: true }
       )}`
-    ); // eslint-disable-line no-console
+    );
 
     return [
       { ...gribs1[0], data: gribs1[0].data.map((d, i) => interpolate(d, gribs2[0].data[i])(k)) },
