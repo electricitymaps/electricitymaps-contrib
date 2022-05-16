@@ -17,7 +17,7 @@ function* fetchZoneHistory(action) {
   let endpoint = `/v4/history?countryCode=${zoneId}`;
 
   if (features.length > 0) {
-    endpoint += features.map(f => `&${f}=true`);
+    endpoint += `${features.map(f => `&${f}=true`)}`;
   }
 
   try {
@@ -33,8 +33,12 @@ function* fetchGridData(action) {
   const { features } = action.payload || {};
   let endpoint = '/v4/state';
 
+  if (features.includes('history')) {
+    endpoint = '/v5/state/hourly';
+  }
+
   if (features.length > 0) {
-    endpoint += features.map(f => `&${f}=true`);
+    endpoint += `?featureflag=true${features.map(f => `&${f}=true`)}`;
   }
 
 

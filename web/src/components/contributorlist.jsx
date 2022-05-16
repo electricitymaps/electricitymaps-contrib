@@ -20,8 +20,8 @@ const ContributorList = () => {
               src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px
               srcSet={`https://avatars.githubusercontent.com/${contributor}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays
               alt={contributor}
-              height="20px"
-              width="20px"
+              height="20"
+              width="20"
               loading="lazy" // makes sure the image don't load until the user scrolls down
             />
           </a>
