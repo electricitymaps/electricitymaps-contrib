@@ -21,6 +21,8 @@ jobs:
           git config --global user.name 'autoblack'
           git config --global user.email 'eng@electricitymap.org'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git fetch --all
+          git branch -l
           git checkout $GITHUB_HEAD_REF
           git commit -am "fixup: Format Python code with Black"
           git push
