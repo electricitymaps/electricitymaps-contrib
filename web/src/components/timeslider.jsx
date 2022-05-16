@@ -77,7 +77,7 @@ const TimeSlider = ({
     [datetimes, onChange, setAnchoredTimeIndex],
   );
 
-  if (!datetimes || datetimes.length === 0) return null;
+  if (!datetimes || datetimes.length === 0) {return null;}
 
   const selectedTimeValue = typeof selectedTimeIndex === 'number'
     ? datetimes[selectedTimeIndex].valueOf()

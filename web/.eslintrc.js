@@ -93,7 +93,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
 
     // Rules we want to enable one day
-    'curly': 'off',
+    'curly': 'error',
     'no-nested-ternary': 'error',
     'max-len': ['off', {'code': 120}],
     'no-underscore-dangle': 'off',

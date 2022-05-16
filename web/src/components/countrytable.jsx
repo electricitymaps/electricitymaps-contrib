@@ -145,7 +145,7 @@ const Row = ({
   width,
 }) => {
   // Don't render if the width is not positive
-  if (width <= 0) return null;
+  if (width <= 0) {return null;}
 
   return (
     <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
@@ -198,14 +198,14 @@ const HorizontalBar = ({
   scale,
 }) => {
   // Don't render if the range is not valid
-  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) return null;
+  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) {return null;}
 
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
   const width = scale(x2) - scale(x1);
 
   // Don't render if the width is not positive
-  if (width <= 0) return null;
+  if (width <= 0) {return null;}
 
   return (
     <rect
@@ -258,7 +258,7 @@ const CountryCarbonEmissionsTable = React.memo(({
 
   const formatTick = (t) => {
     const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) return `${t * 1e3} kg/min`;
+    if (x2 - x1 <= 1) {return `${t * 1e3} kg/min`;}
     return `${t} t/min`;
   };
 
@@ -374,8 +374,8 @@ const CountryElectricityProductionTable = React.memo(({
 
   const formatTick = (t) => {
     const [x1, x2] = powerScale.domain();
-    if (x2 - x1 <= 1) return `${t * 1e3} kW`;
-    if (x2 - x1 <= 1e3) return `${t} MW`;
+    if (x2 - x1 <= 1) {return `${t * 1e3} kW`;}
+    if (x2 - x1 <= 1e3) {return `${t} MW`;}
     return `${t * 1e-3} GW`;
   };
 

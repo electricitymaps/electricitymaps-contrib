@@ -58,16 +58,16 @@ export default React.memo(({
   );
 
   // Don't render if the flow is very low ...
-  if (absFlow < 1) return null;
+  if (absFlow < 1) {return null;}
 
   // ... or if the arrow would be very tiny ...
-  if (transform.k < 0.1) return null;
+  if (transform.k < 0.1) {return null;}
 
   // ... or if it would be rendered outside of viewport.
-  if (transform.x + 100 * transform.k < 0) return null;
-  if (transform.y + 100 * transform.k < 0) return null;
-  if (transform.x - 100 * transform.k > viewportWidth) return null;
-  if (transform.y - 100 * transform.k > viewportHeight) return null;
+  if (transform.x + 100 * transform.k < 0) {return null;}
+  if (transform.y + 100 * transform.k < 0) {return null;}
+  if (transform.x - 100 * transform.k > viewportWidth) {return null;}
+  if (transform.y - 100 * transform.k > viewportHeight) {return null;}
 
   return (
     <ArrowPicture

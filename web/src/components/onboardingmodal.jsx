@@ -104,7 +104,7 @@ const OnboardingModal = ({ visible }) => {
     }
   }, [visible, shouldSkip]);
 
-  if (!visible || shouldSkip) return null;
+  if (!visible || shouldSkip) {return null;}
 
   return (
     <React.Fragment>

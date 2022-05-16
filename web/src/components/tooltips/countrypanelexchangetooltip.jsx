@@ -24,7 +24,7 @@ const CountryPanelExchangeTooltip = ({
   onClose,
 }) => {
   const { __ } = useTranslation();
-  if (!zoneData) return null;
+  if (!zoneData) {return null;}
 
   const co2Intensity = getExchangeCo2Intensity(exchangeKey, zoneData, electricityMixMode);
 

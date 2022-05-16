@@ -66,7 +66,7 @@ const TooltipContent = React.memo(
 );
 
 const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
-  if (!zoneData) return null;
+  if (!zoneData) {return null;}
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 

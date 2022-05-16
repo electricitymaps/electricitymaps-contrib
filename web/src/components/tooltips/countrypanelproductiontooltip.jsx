@@ -26,7 +26,7 @@ const CountryPanelProductionTooltip = ({
   onClose,
 }) => {
   const { __ } = useTranslation();
-  if (!zoneData) return null;
+  if (!zoneData) {return null;}
 
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
 

@@ -33,7 +33,7 @@ const Tooltip = ({
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
-  if (!position) return null;
+  if (!position) {return null;}
 
   // Note: at first render, width and height will be undefined
   // They will only be set once the DOM node has been created
@@ -59,8 +59,8 @@ const Tooltip = ({
       }
     }
     y = position.y - MARGIN - height;
-    if (y < 0) y = position.y + MARGIN;
-    if (y + height + MARGIN >= screenHeight) y = position.y - height - MARGIN;
+    if (y < 0) {y = position.y + MARGIN;}
+    if (y + height + MARGIN >= screenHeight) {y = position.y - height - MARGIN;}
 
     style.transform = `translate(${x}px,${y}px)`;
   }
