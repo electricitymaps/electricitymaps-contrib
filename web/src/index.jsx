@@ -56,6 +56,7 @@ if (window.isCordova) {
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
+// eslint-disable-next-line
 if (undefined /* [snowpack] import.meta.hot */) {
   undefined /* [snowpack] import.meta.hot */
     .accept();
