@@ -5,6 +5,10 @@ jobs:
   autoblack:
     runs-on: ubuntu-latest
     steps:
+      - name: See context
+        run: |
+          echo "${{ github.base_ref }}"
+          echo "${{ github.head_red }}"
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
