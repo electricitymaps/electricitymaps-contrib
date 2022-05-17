@@ -139,6 +139,7 @@ class PowerOriginRatiosValues(StrictBaseModelWithAlias):
     wind: Optional[confloat(ge=0, le=1)]
 
     @root_validator
+    @classmethod
     def check_sum(cls, values):
         """Check that the sum of all values is approximately 1."""
         _v = [0 if v is None else v for v in values.values()]
@@ -249,6 +250,7 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
     wind: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
 
     @root_validator
+    @classmethod
     def check_emission_factors(cls, values):
         """
         Check that all emission factors given as list are not empty.
