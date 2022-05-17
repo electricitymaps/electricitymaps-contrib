@@ -66,24 +66,20 @@ const TooltipContent = React.memo(
 );
 
 const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
-  if (!zoneData) {return null;}
+  if (!zoneData) {
+    return null;
+  }
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
-  const co2intensity =
-    electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
+  const co2intensity = electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
 
   const fossilFuelRatio =
-    electricityMixMode === 'consumption'
-      ? zoneData.fossilFuelRatio
-      : zoneData.fossilFuelRatioProduction;
-  const fossilFuelPercentage =
-    fossilFuelRatio !== null ? Math.round(100 * (1 - fossilFuelRatio)) : '?';
+    electricityMixMode === 'consumption' ? zoneData.fossilFuelRatio : zoneData.fossilFuelRatioProduction;
+  const fossilFuelPercentage = fossilFuelRatio !== null ? Math.round(100 * (1 - fossilFuelRatio)) : '?';
 
   const renewableRatio =
-    electricityMixMode === 'consumption'
-      ? zoneData.renewableRatio
-      : zoneData.renewableRatioProduction;
+    electricityMixMode === 'consumption' ? zoneData.renewableRatio : zoneData.renewableRatioProduction;
   const renewablePercentage = renewableRatio !== null ? Math.round(100 * renewableRatio) : '?';
 
   return (

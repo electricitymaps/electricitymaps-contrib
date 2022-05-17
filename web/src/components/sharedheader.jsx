@@ -125,13 +125,7 @@ const MenuDrawerContent = styled.div`
 `;
 
 const MenuButton = ({ onClick }) => (
-  <svg
-    viewBox="0 0 100 80"
-    width="48"
-    height="48"
-    onClick={onClick}
-    style={{ cursor: 'pointer', padding: '8px 12px' }}
-  >
+  <svg viewBox="0 0 100 80" width="48" height="48" onClick={onClick} style={{ cursor: 'pointer', padding: '8px 12px' }}>
     <rect width="100" height="10" fill="currentColor" />
     <rect y="30" width="100" height="10" fill="currentColor" />
     <rect y="60" width="100" height="10" fill="currentColor" />
@@ -167,12 +161,7 @@ const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo })
       </a>
       <ResponsiveMenu collapsed={collapsed}>
         {links.map(({ label, href, active, id }) => (
-          <Link
-            key={id}
-            href={href}
-            active={active}
-            onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}
-          >
+          <Link key={id} href={href} active={active} onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}>
             {label}
           </Link>
         ))}

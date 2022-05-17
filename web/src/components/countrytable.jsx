@@ -1,29 +1,18 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React, {
-  useMemo,
-  useState,
-} from 'react';
+import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max, min as d3Min } from 'd3-array';
-import { noop } from '../helpers/noop'
+import { noop } from '../helpers/noop';
 import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
-import {
-  useCurrentZoneData,
-  useCurrentZoneExchangeKeys,
-  useCurrentZoneHistory,
-} from '../hooks/redux';
+import { useCurrentZoneData, useCurrentZoneExchangeKeys, useCurrentZoneHistory } from '../hooks/redux';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
-import {
-  getElectricityProductionValue,
-  getProductionCo2Intensity,
-  getExchangeCo2Intensity,
-} from '../helpers/zonedata';
+import { getElectricityProductionValue, getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
 import { useTranslation } from '../helpers/translation';
 
@@ -41,62 +30,65 @@ const X_AXIS_HEIGHT = 15;
 const SCALE_TICKS = 4;
 
 const CountryTableSVG = styled.svg`
-    width: 100%;
-  `;
+  width: 100%;
+`;
 
 const CountryTableContainer = styled.div`
   width: 100%;
   position: relative;
 `;
 
-const getProductionData = data => modeOrder.map((mode) => {
-  const isStorage = mode.indexOf('storage') !== -1;
-  const resource = mode.replace(' storage', '');
+const getProductionData = (data) =>
+  modeOrder.map((mode) => {
+    const isStorage = mode.indexOf('storage') !== -1;
+    const resource = mode.replace(' storage', '');
 
-  // Power in MW
-  const capacity = (data.capacity || {})[mode];
-  const production = (data.production || {})[resource];
-  const storage = (data.storage || {})[resource];
+    // Power in MW
+    const capacity = (data.capacity || {})[mode];
+    const production = (data.production || {})[resource];
+    const storage = (data.storage || {})[resource];
 
-  // Production CO₂ intensity
-  const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
-  const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
-  const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
+    // Production CO₂ intensity
+    const gCo2eqPerkWh = getProductionCo2Intensity(mode, data);
+    const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * (isStorage ? storage : production);
+    const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
 
-  return {
-    isStorage,
-    storage,
-    production,
-    capacity,
-    mode,
-    tCo2eqPerMin,
-  };
-});
+    return {
+      isStorage,
+      storage,
+      production,
+      capacity,
+      mode,
+      tCo2eqPerMin,
+    };
+  });
 
-const getExchangeData = (data, exchangeKeys, electricityMixMode) => exchangeKeys.map((mode) => {
-  // Power in MW
-  const exchange = (data.exchange || {})[mode];
-  const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
+const getExchangeData = (data, exchangeKeys, electricityMixMode) =>
+  exchangeKeys.map((mode) => {
+    // Power in MW
+    const exchange = (data.exchange || {})[mode];
+    const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
 
-  // Exchange CO₂ intensity
-  const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
-  const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
-  const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
+    // Exchange CO₂ intensity
+    const gCo2eqPerkWh = getExchangeCo2Intensity(mode, data, electricityMixMode);
+    const gCo2eqPerHour = gCo2eqPerkWh * 1e3 * exchange;
+    const tCo2eqPerMin = gCo2eqPerHour / 1e6 / 60.0;
 
-  return {
-    exchange,
-    exchangeCapacityRange,
-    mode,
-    gCo2eqPerkWh,
-    tCo2eqPerMin,
-  };
-});
+    return {
+      exchange,
+      exchangeCapacityRange,
+      mode,
+      gCo2eqPerkWh,
+      tCo2eqPerMin,
+    };
+  });
 
 const getDataBlockPositions = (productionData, exchangeData) => {
   const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
-  const exchangeFlagX = LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, d => d.mode.length) * 8;
+  const exchangeFlagX =
+    LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, (d) => d.mode.length) * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
   const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
 
@@ -119,33 +111,22 @@ const Axis = ({ formatTick, height, scale }) => (
     transform={`translate(${scale.range()[0] + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
   >
     <path className="domain" stroke="currentColor" d={`M${scale.range()[0] + 0.5},0.5H${scale.range()[1] + 0.5}`} />
-    {scale.ticks(SCALE_TICKS).map(t => (
-      <g
-        key={t}
-        className="tick"
-        opacity="1"
-        transform={`translate(${scale(t)}, 0)`}
-      >
+    {scale.ticks(SCALE_TICKS).map((t) => (
+      <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
         <line stroke="currentColor" y2={height - X_AXIS_HEIGHT} />
-        <text fill="currentColor" y="-3" dy="0">{formatTick(t)}</text>
+        <text fill="currentColor" y="-3" dy="0">
+          {formatTick(t)}
+        </text>
       </g>
     ))}
   </g>
 );
 
-const Row = ({
-  children,
-  index,
-  isMobile,
-  label,
-  scale,
-  value,
-  onMouseOver,
-  onMouseOut,
-  width,
-}) => {
+const Row = ({ children, index, isMobile, label, scale, value, onMouseOver, onMouseOut, width }) => {
   // Don't render if the width is not positive
-  if (width <= 0) {return null;}
+  if (width <= 0) {
+    return null;
+  }
 
   return (
     <g className="row" transform={`translate(0, ${index * (ROW_HEIGHT + PADDING_Y)})`}>
@@ -191,21 +172,20 @@ const Row = ({
   );
 };
 
-const HorizontalBar = ({
-  className,
-  fill,
-  range,
-  scale,
-}) => {
+const HorizontalBar = ({ className, fill, range, scale }) => {
   // Don't render if the range is not valid
-  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) {return null;}
+  if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) {
+    return null;
+  }
 
   const x1 = Math.min(range[0], range[1]);
   const x2 = Math.max(range[0], range[1]);
   const width = scale(x2) - scale(x1);
 
   // Don't render if the width is not positive
-  if (width <= 0) {return null;}
+  if (width <= 0) {
+    return null;
+  }
 
   return (
     <rect
@@ -221,259 +201,237 @@ const HorizontalBar = ({
   );
 };
 
-const CountryCarbonEmissionsTable = React.memo(({
-  data,
-  exchangeData,
-  height,
-  isMobile,
-  productionData,
-  onProductionRowMouseOver,
-  onProductionRowMouseOut,
-  onExchangeRowMouseOver,
-  onExchangeRowMouseOut,
-  width,
-}) => {
-  const { __ } = useTranslation();
-  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+const CountryCarbonEmissionsTable = React.memo(
+  ({
+    data,
+    exchangeData,
+    height,
+    isMobile,
+    productionData,
+    onProductionRowMouseOver,
+    onProductionRowMouseOut,
+    onExchangeRowMouseOver,
+    onExchangeRowMouseOut,
+    width,
+  }) => {
+    const { __ } = useTranslation();
+    const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
-  const maxCO2eqExport = d3Max(exchangeData, d => Math.max(0, -d.tCo2eqPerMin));
-  const maxCO2eqImport = d3Max(exchangeData, d => Math.max(0, d.tCo2eqPerMin));
-  const maxCO2eqProduction = d3Max(productionData, d => d.tCo2eqPerMin);
+    const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerMin));
+    const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerMin));
+    const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerMin);
 
-  // in tCO₂eq/min
-  const co2Scale = useMemo(
-    () => (
-      scaleLinear()
-        .domain([
-          -maxCO2eqExport || 0,
-          Math.max(
-            maxCO2eqProduction || 0,
-            maxCO2eqImport || 0,
-          ),
-        ])
-        .range([0, width - LABEL_MAX_WIDTH - PADDING_X])
-    ),
-    [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width],
-  );
+    // in tCO₂eq/min
+    const co2Scale = useMemo(
+      () =>
+        scaleLinear()
+          .domain([-maxCO2eqExport || 0, Math.max(maxCO2eqProduction || 0, maxCO2eqImport || 0)])
+          .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
+      [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
+    );
 
-  const formatTick = (t) => {
-    const [x1, x2] = co2Scale.domain();
-    if (x2 - x1 <= 1) {return `${t * 1e3} kg/min`;}
-    return `${t} t/min`;
-  };
+    const formatTick = (t) => {
+      const [x1, x2] = co2Scale.domain();
+      if (x2 - x1 <= 1) {
+        return `${t * 1e3} kg/min`;
+      }
+      return `${t} t/min`;
+    };
 
     return (
-    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
-      <Axis
-        formatTick={formatTick}
-        height={height}
-        scale={co2Scale}
-      />
-      <g transform={`translate(0, ${productionY})`}>
-        {productionData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={__(d.mode)}
-            width={width}
-            scale={co2Scale}
-            value={Math.abs(d.tCo2eqPerMin)}
-            onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
-            onMouseOut={onProductionRowMouseOut}
-            isMobile={isMobile}
-          >
-            <HorizontalBar
-              className="production"
-              fill={modeColor[d.mode]}
-              range={[0, Math.abs(d.tCo2eqPerMin)]}
+      <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
+        <Axis formatTick={formatTick} height={height} scale={co2Scale} />
+        <g transform={`translate(0, ${productionY})`}>
+          {productionData.map((d, index) => (
+            <Row
+              key={d.mode}
+              index={index}
+              label={__(d.mode)}
+              width={width}
               scale={co2Scale}
-            />
-          </Row>
-        ))}
-      </g>
-      <g transform={`translate(0, ${exchangeY})`}>
-        {exchangeData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={d.mode}
-            width={width}
-            scale={co2Scale}
-            value={d.tCo2eqPerMin}
-            onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
-            onMouseOut={onExchangeRowMouseOut}
-            isMobile={isMobile}
-          >
-            <image
-              style={{ pointerEvents: 'none' }}
-              x={exchangeFlagX}
-              xlinkHref={flagUri(d.mode)}
-            />
-            <HorizontalBar
-              className="exchange"
-              fill="gray"
-              range={[0, d.tCo2eqPerMin]}
+              value={Math.abs(d.tCo2eqPerMin)}
+              onMouseOver={(ev) => onProductionRowMouseOver(d.mode, data, ev)}
+              onMouseOut={onProductionRowMouseOut}
+              isMobile={isMobile}
+            >
+              <HorizontalBar
+                className="production"
+                fill={modeColor[d.mode]}
+                range={[0, Math.abs(d.tCo2eqPerMin)]}
+                scale={co2Scale}
+              />
+            </Row>
+          ))}
+        </g>
+        <g transform={`translate(0, ${exchangeY})`}>
+          {exchangeData.map((d, index) => (
+            <Row
+              key={d.mode}
+              index={index}
+              label={d.mode}
+              width={width}
               scale={co2Scale}
-            />
-          </Row>
-        ))}
-      </g>
-    </CountryTableSVG>
-  );
-});
+              value={d.tCo2eqPerMin}
+              onMouseOver={(ev) => onExchangeRowMouseOver(d.mode, data, ev)}
+              onMouseOut={onExchangeRowMouseOut}
+              isMobile={isMobile}
+            >
+              <image style={{ pointerEvents: 'none' }} x={exchangeFlagX} xlinkHref={flagUri(d.mode)} />
+              <HorizontalBar className="exchange" fill="gray" range={[0, d.tCo2eqPerMin]} scale={co2Scale} />
+            </Row>
+          ))}
+        </g>
+      </CountryTableSVG>
+    );
+  }
+);
 
-const CountryElectricityProductionTable = React.memo(({
-  data,
-  exchangeData,
-  height,
-  isMobile,
-  productionData,
-  onProductionRowMouseOver,
-  onProductionRowMouseOut,
-  onExchangeRowMouseOver,
-  onExchangeRowMouseOut,
-  width,
-}) => {
-  const { __ } = useTranslation();
-  const co2ColorScale = useCo2ColorScale();
+const CountryElectricityProductionTable = React.memo(
+  ({
+    data,
+    exchangeData,
+    height,
+    isMobile,
+    productionData,
+    onProductionRowMouseOver,
+    onProductionRowMouseOut,
+    onExchangeRowMouseOver,
+    onExchangeRowMouseOut,
+    width,
+  }) => {
+    const { __ } = useTranslation();
+    const co2ColorScale = useCo2ColorScale();
 
-  const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
+    const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
-  // Use the whole history to determine the min/max,
-  // fallback on current data
-  const history = useCurrentZoneHistory();
-  const [minPower, maxPower] = useMemo(
-    () => {
-      const historyOrCurrent = (history && history.length)
-        ? history
-        : [data];
+    // Use the whole history to determine the min/max,
+    // fallback on current data
+    const history = useCurrentZoneHistory();
+    const [minPower, maxPower] = useMemo(() => {
+      const historyOrCurrent = history && history.length ? history : [data];
       return [
-        d3Min(historyOrCurrent.map(zoneData => Math.min(
-          -zoneData.maxStorageCapacity || 0,
-          -zoneData.maxStorage || 0,
-          -zoneData.maxExport || 0,
-          -zoneData.maxExportCapacity || 0,
-        ))) || 0,
-        d3Max(historyOrCurrent.map(zoneData => Math.max(
-          zoneData.maxCapacity || 0,
-          zoneData.maxProduction || 0,
-          zoneData.maxDischarge || 0,
-          zoneData.maxStorageCapacity || 0,
-          zoneData.maxImport || 0,
-          zoneData.maxImportCapacity || 0,
-        ))) || 0,
+        d3Min(
+          historyOrCurrent.map((zoneData) =>
+            Math.min(
+              -zoneData.maxStorageCapacity || 0,
+              -zoneData.maxStorage || 0,
+              -zoneData.maxExport || 0,
+              -zoneData.maxExportCapacity || 0
+            )
+          )
+        ) || 0,
+        d3Max(
+          historyOrCurrent.map((zoneData) =>
+            Math.max(
+              zoneData.maxCapacity || 0,
+              zoneData.maxProduction || 0,
+              zoneData.maxDischarge || 0,
+              zoneData.maxStorageCapacity || 0,
+              zoneData.maxImport || 0,
+              zoneData.maxImportCapacity || 0
+            )
+          )
+        ) || 0,
       ];
-    },
-    [history, data],
-  );
+    }, [history, data]);
 
-  // Power in MW
-  const powerScale = scaleLinear()
-    .domain([minPower, maxPower])
-    .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
+    // Power in MW
+    const powerScale = scaleLinear()
+      .domain([minPower, maxPower])
+      .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
-  const formatTick = (t) => {
-    const [x1, x2] = powerScale.domain();
-    if (x2 - x1 <= 1) {return `${t * 1e3} kW`;}
-    if (x2 - x1 <= 1e3) {return `${t} MW`;}
-    return `${t * 1e-3} GW`;
-  };
+    const formatTick = (t) => {
+      const [x1, x2] = powerScale.domain();
+      if (x2 - x1 <= 1) {
+        return `${t * 1e3} kW`;
+      }
+      if (x2 - x1 <= 1e3) {
+        return `${t} MW`;
+      }
+      return `${t * 1e-3} GW`;
+    };
 
-  return (
-    <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
-      <Axis
-        formatTick={formatTick}
-        height={height}
-        scale={powerScale}
-      />
-      <g transform={`translate(0, ${productionY})`}>
-        {productionData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={__(d.mode)}
-            width={width}
-            scale={powerScale}
-            value={getElectricityProductionValue(d)}
-            onMouseOver={ev => onProductionRowMouseOver(d.mode, data, ev)}
-            onMouseOut={onProductionRowMouseOut}
-            isMobile={isMobile}
-          >
-            <HorizontalBar
-              className="capacity"
-              fill="rgba(0, 0, 0, 0.15)"
-              range={d.isStorage ? [-d.capacity, d.capacity] : [0, d.capacity]}
+    return (
+      <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
+        <Axis formatTick={formatTick} height={height} scale={powerScale} />
+        <g transform={`translate(0, ${productionY})`}>
+          {productionData.map((d, index) => (
+            <Row
+              key={d.mode}
+              index={index}
+              label={__(d.mode)}
+              width={width}
               scale={powerScale}
-            />
-            <HorizontalBar
-              className="production"
-              fill={modeColor[d.mode]}
-              range={[0, getElectricityProductionValue(d)]}
+              value={getElectricityProductionValue(d)}
+              onMouseOver={(ev) => onProductionRowMouseOver(d.mode, data, ev)}
+              onMouseOut={onProductionRowMouseOut}
+              isMobile={isMobile}
+            >
+              <HorizontalBar
+                className="capacity"
+                fill="rgba(0, 0, 0, 0.15)"
+                range={d.isStorage ? [-d.capacity, d.capacity] : [0, d.capacity]}
+                scale={powerScale}
+              />
+              <HorizontalBar
+                className="production"
+                fill={modeColor[d.mode]}
+                range={[0, getElectricityProductionValue(d)]}
+                scale={powerScale}
+              />
+            </Row>
+          ))}
+        </g>
+        <g transform={`translate(0, ${exchangeY})`}>
+          {exchangeData.map((d, index) => (
+            <Row
+              key={d.mode}
+              index={index}
+              label={d.mode}
+              width={width}
               scale={powerScale}
-            />
-          </Row>
-        ))}
-      </g>
-      <g transform={`translate(0, ${exchangeY})`}>
-        {exchangeData.map((d, index) => (
-          <Row
-            key={d.mode}
-            index={index}
-            label={d.mode}
-            width={width}
-            scale={powerScale}
-            value={d.exchange}
-            onMouseOver={ev => onExchangeRowMouseOver(d.mode, data, ev)}
-            onMouseOut={onExchangeRowMouseOut}
-            isMobile={isMobile}
-          >
-            <image
-              style={{ pointerEvents: 'none' }}
-              x={exchangeFlagX}
-              xlinkHref={flagUri(d.mode)}
-            />
-            <HorizontalBar
-              className="capacity"
-              fill="rgba(0, 0, 0, 0.15)"
-              range={d.exchangeCapacityRange}
-              scale={powerScale}
-            />
-            <HorizontalBar
-              className="exchange"
-              fill={co2ColorScale(d.gCo2eqPerkWh)}
-              range={[0, d.exchange]}
-              scale={powerScale}
-            />
-          </Row>
-        ))}
-      </g>
-    </CountryTableSVG>
-  );
-});
+              value={d.exchange}
+              onMouseOver={(ev) => onExchangeRowMouseOver(d.mode, data, ev)}
+              onMouseOut={onExchangeRowMouseOut}
+              isMobile={isMobile}
+            >
+              <image style={{ pointerEvents: 'none' }} x={exchangeFlagX} xlinkHref={flagUri(d.mode)} />
+              <HorizontalBar
+                className="capacity"
+                fill="rgba(0, 0, 0, 0.15)"
+                range={d.exchangeCapacityRange}
+                scale={powerScale}
+              />
+              <HorizontalBar
+                className="exchange"
+                fill={co2ColorScale(d.gCo2eqPerkWh)}
+                range={[0, d.exchange]}
+                scale={powerScale}
+              />
+            </Row>
+          ))}
+        </g>
+      </CountryTableSVG>
+    );
+  }
+);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
-const CountryTable = ({
-  displayByEmissions,
-  electricityMixMode,
-  isMobile,
-}) => {
+const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
   const { ref, width } = useRefWidthHeightObserver();
 
   const exchangeKeys = useCurrentZoneExchangeKeys();
   const data = useCurrentZoneData();
 
-  const productionData = useMemo(
-    () => getProductionData(data),
-    [data],
-  );
+  const productionData = useMemo(() => getProductionData(data), [data]);
   const exchangeData = useMemo(
     () => getExchangeData(data, exchangeKeys, electricityMixMode),
-    [data, exchangeKeys, electricityMixMode],
+    [data, exchangeKeys, electricityMixMode]
   );
 
   const [productionTooltip, setProductionTooltip] = useState(null);

@@ -46,7 +46,7 @@ ReactDOM.render(
       </Router>
     </Provider>
   </React.Suspense>,
-  document.querySelector('#app'),
+  document.querySelector('#app')
 );
 
 // Initialise mobile app (cordova)
@@ -56,6 +56,8 @@ if (window.isCordova) {
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
-if (undefined /* [snowpack] import.meta.hot */ ) {
-  undefined /* [snowpack] import.meta.hot */ .accept();
+// eslint-disable-next-line
+if (undefined /* [snowpack] import.meta.hot */) {
+  undefined /* [snowpack] import.meta.hot */
+    .accept();
 }

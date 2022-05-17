@@ -62,10 +62,7 @@ const StyledInput = styled.input`
 
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
   scaleTime()
-    .domain([
-      startTime ? new Date(startTime) : datetimes.at(0),
-      endTime ? new Date(endTime) : datetimes.at(-1),
-    ])
+    .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
     .range([0, rangeEnd])
     .nice(25);
 
@@ -78,24 +75,23 @@ const updateTooltipPosition = (ev, setTooltipPos) => {
   setTooltipPos({ x: posX, y: posY });
 };
 
-const createChangeAndInputHandler =
-  (datetimes, onChange, setAnchoredTimeIndex, setTooltipPos) => (ev) => {
-    const value = parseInt(ev.target.value, 10);
-    updateTooltipPosition(ev, setTooltipPos);
+const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex, setTooltipPos) => (ev) => {
+  const value = parseInt(ev.target.value, 10);
+  updateTooltipPosition(ev, setTooltipPos);
 
-    let index = sortedIndex(
-      datetimes.map((t) => t.valueOf()),
-      value
-    );
-    // If the slider is past the last datetime, we set index to null in order to use the scale end time.
-    if (index >= datetimes.length) {
-      index = null;
-    }
-    setAnchoredTimeIndex(index);
-    if (onChange) {
-      onChange(index);
-    }
-  };
+  let index = sortedIndex(
+    datetimes.map((t) => t.valueOf()),
+    value
+  );
+  // If the slider is past the last datetime, we set index to null in order to use the scale end time.
+  if (index >= datetimes.length) {
+    index = null;
+  }
+  setAnchoredTimeIndex(index);
+  if (onChange) {
+    onChange(index);
+  }
+};
 
 const TimeSlider = ({
   className,
@@ -125,14 +121,12 @@ const TimeSlider = ({
     [datetimes, onChange, setAnchoredTimeIndex]
   );
 
-  if (!datetimes || datetimes.length === 0) {return null;}
+  if (!datetimes || datetimes.length === 0) {
+    return null;
+  }
 
-  const selectedTimeValue = typeof selectedTimeIndex === 'number'
-    ? datetimes[selectedTimeIndex].valueOf()
-    : null;
-  const anchoredTimeValue = typeof anchoredTimeIndex === 'number'
-    ? datetimes[anchoredTimeIndex].valueOf()
-    : null;
+  const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex].valueOf() : null;
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex].valueOf() : null;
 
   const timeValue = selectedTimeValue || anchoredTimeValue || endTimeValue;
 
@@ -150,7 +144,7 @@ const TimeSlider = ({
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
       <StyledInput
-        className='time-slider-input-new'
+        className="time-slider-input-new"
         type="range"
         onChange={handleChangeAndInput}
         onInput={onChange}

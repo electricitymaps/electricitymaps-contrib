@@ -1,23 +1,15 @@
-import {
-  call,
-  put,
-  takeLatest,
-} from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import thirdPartyServices from '../services/thirdparty';
 import { handleRequestError, protectedJsonRequest } from '../helpers/api';
-import {
-  getGfsTargetTimeBefore,
-  getGfsTargetTimeAfter,
-  fetchGfsForecast,
-} from '../helpers/gfs';
+import { getGfsTargetTimeBefore, getGfsTargetTimeAfter, fetchGfsForecast } from '../helpers/gfs';
 
 function* fetchZoneHistory(action) {
   const { zoneId, features } = action.payload;
   let endpoint = `/v4/history?countryCode=${zoneId}`;
 
   if (features.length > 0) {
-    endpoint += `${features.map(f => `&${f}=true`)}`;
+    endpoint += `${features.map((f) => `&${f}=true`)}`;
   }
 
   try {
@@ -38,9 +30,8 @@ function* fetchGridData(action) {
   }
 
   if (features.length > 0) {
-    endpoint += `?featureflag=true${features.map(f => `&${f}=true`)}`;
+    endpoint += `?featureflag=true${features.map((f) => `&${f}=true`)}`;
   }
-
 
   try {
     const payload = yield call(protectedJsonRequest, endpoint);
@@ -79,13 +70,9 @@ function* fetchWindData(action) {
 function* trackEvent(action) {
   const { eventName, context = {} } = action.payload;
 
-  yield call(
-    [thirdPartyServices, thirdPartyServices.trackEvent],
-    eventName,
-    {
-      ...context,
-    },
-  );
+  yield call([thirdPartyServices, thirdPartyServices.trackEvent], eventName, {
+    ...context,
+  });
 }
 
 export default function* () {

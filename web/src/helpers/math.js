@@ -7,7 +7,7 @@ export function getRatioPercent(value, total) {
   if (!Number.isFinite(value) || !Number.isFinite(total)) {
     return '?';
   }
-  return Math.round(value / total * 10000) / 100;
+  return Math.round((value / total) * 10000) / 100;
 }
 
 export function tonsPerHourToGramsPerMinute(value) {

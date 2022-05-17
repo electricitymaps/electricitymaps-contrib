@@ -12,7 +12,6 @@ import { ascending } from 'd3-array';
 import { values } from 'd3-collection';
 import { useTrackEvent } from '../hooks/tracking';
 
-
 function withZoneRankings(zones) {
   return zones.map((zone) => {
     const ret = Object.assign({}, zone);
@@ -22,26 +21,16 @@ function withZoneRankings(zones) {
 }
 
 function getCo2IntensityAccessor(electricityMixMode) {
-  return d => (electricityMixMode === 'consumption'
-    ? d.co2intensity
-    : d.co2intensityProduction);
+  return (d) => (electricityMixMode === 'consumption' ? d.co2intensity : d.co2intensityProduction);
 }
 
 function sortAndValidateZones(zones, accessor) {
-  return zones
-    .filter(accessor)
-    .sort((x, y) => {
-      if (!x.co2intensity && !x.countryCode) {
-        return ascending(
-          x.shortname || x.countryCode,
-          y.shortname || y.countryCode,
-        );
-      }
-      return ascending(
-        accessor(x) || Infinity,
-        accessor(y) || Infinity,
-      );
-    });
+  return zones.filter(accessor).sort((x, y) => {
+    if (!x.co2intensity && !x.countryCode) {
+      return ascending(x.shortname || x.countryCode, y.shortname || y.countryCode);
+    }
+    return ascending(accessor(x) || Infinity, accessor(y) || Infinity);
+  });
 }
 
 function processZones(zonesData, accessor) {
@@ -51,16 +40,16 @@ function processZones(zonesData, accessor) {
 }
 
 function zoneMatchesQuery(zone, queryString) {
-  if (!queryString) {return true;}
+  if (!queryString) {
+    return true;
+  }
   const queries = queryString.split(' ');
   return queries.every(
-    query => getZoneNameWithCountry(zone.countryCode)
-      .toLowerCase()
-      .indexOf(query.toLowerCase()) !== -1,
+    (query) => getZoneNameWithCountry(zone.countryCode).toLowerCase().indexOf(query.toLowerCase()) !== -1
   );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
   gridZones: state.data.grid.zones,
   searchQuery: state.application.searchQuery,
@@ -72,15 +61,10 @@ const Flag = styled.img`
   vertical-align: middle;
 `;
 
-const ZoneList = ({
-  electricityMixMode,
-  gridZones,
-  searchQuery,
-}) => {
+const ZoneList = ({ electricityMixMode, gridZones, searchQuery }) => {
   const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
-  const zones = processZones(gridZones, co2IntensityAccessor)
-    .filter(z => zoneMatchesQuery(z, searchQuery));
+  const zones = processZones(gridZones, co2IntensityAccessor).filter((z) => zoneMatchesQuery(z, searchQuery));
 
   const ref = React.createRef();
   const history = useHistory();
@@ -88,14 +72,14 @@ const ZoneList = ({
   const trackEvent = useTrackEvent();
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
 
-  const zonePage = zone => ({
+  const zonePage = (zone) => ({
     pathname: `/zone/${zone.countryCode}`,
     search: location.search,
   });
 
   const enterZone = (zone) => {
     dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
-    trackEvent('ZoneInRanking Clicked', {zone: zone.countryCode});
+    trackEvent('ZoneInRanking Clicked', { zone: zone.countryCode });
     history.push(zonePage(zone));
   };
 
@@ -103,13 +87,17 @@ const ZoneList = ({
   useEffect(() => {
     const scrollToItemIfNeeded = (index) => {
       const item = ref.current && ref.current.children[index];
-      if (!item) {return;}
+      if (!item) {
+        return;
+      }
 
       const parent = item.parentNode;
       const parentComputedStyle = window.getComputedStyle(parent, null);
       const parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width'), 10);
       const overTop = item.offsetTop - parent.offsetTop < parent.scrollTop;
-      const overBottom = (item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight);
+      const overBottom =
+        item.offsetTop - parent.offsetTop + item.clientHeight - parentBorderTopWidth >
+        parent.scrollTop + parent.clientHeight;
       const alignWithTop = overTop && !overBottom;
 
       if (overTop || overBottom) {
@@ -151,15 +139,12 @@ const ZoneList = ({
           key={zone.shortname}
         >
           <div className="ranking">{zone.ranking}</div>
-            <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
-            <div className="name">
-              <div className="zone-name">{getZoneName(zone.countryCode)}</div>
-              <div className="country-name">{getCountryName(zone.countryCode)}</div>
-            </div>
-          <div
-            className="co2-intensity-tag"
-            style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }}
-          />
+          <Flag src={flagUri(zone.countryCode, 32)} alt={zone.countryCode} />
+          <div className="name">
+            <div className="zone-name">{getZoneName(zone.countryCode)}</div>
+            <div className="country-name">{getCountryName(zone.countryCode)}</div>
+          </div>
+          <div className="co2-intensity-tag" style={{ backgroundColor: co2ColorScale(co2IntensityAccessor(zone)) }} />
         </Link>
       ))}
     </div>

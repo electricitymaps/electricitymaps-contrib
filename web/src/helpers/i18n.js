@@ -67,7 +67,7 @@ i18n
     detection: {
       order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
-      caches: ['localStorage',],
+      caches: ['localStorage'],
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

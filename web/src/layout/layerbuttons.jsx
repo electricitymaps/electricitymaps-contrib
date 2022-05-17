@@ -4,12 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
-import {
-  useWindEnabled,
-  useSolarEnabled,
-  useSolarToggledLocation,
-  useWindToggledLocation,
-} from '../hooks/router';
+import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
@@ -19,20 +14,20 @@ export default () => {
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const windDataError = useSelector(state => state.data.windDataError);
+  const windDataError = useSelector((state) => state.data.windDataError);
 
   const solarEnabled = useSolarEnabled();
-  const solarDataError = useSelector(state => state.data.solarDataError);
+  const solarDataError = useSelector((state) => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
 
-  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
+  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
   const Link = ({ to, hasError, children }) =>
-  !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
+    !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
 
   return (
     <div className="layer-buttons-container">

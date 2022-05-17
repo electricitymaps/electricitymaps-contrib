@@ -8,7 +8,9 @@ import { CarbonIntensity, ZoneName } from './common';
 
 const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
   const { __ } = useTranslation();
-  if (!exchangeData) {return null;}
+  if (!exchangeData) {
+    return null;
+  }
 
   const isExporting = exchangeData.netFlow > 0;
   const netFlow = Math.abs(Math.round(exchangeData.netFlow));

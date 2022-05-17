@@ -19,14 +19,8 @@ const TooltipInner = styled.div`
 `;
 
 const DisclaimerTooltip = ({ onClose, text, position }) => (
-  <Tooltip
-    id="disclaimer-info-tooltip"
-    position={{ x: position.clientX, y: position.clientY }}
-    onClose={onClose}
-  >
-    <TooltipInner>
-      {text}
-    </TooltipInner>
+  <Tooltip id="disclaimer-info-tooltip" position={{ x: position.clientX, y: position.clientY }} onClose={onClose}>
+    <TooltipInner>{text}</TooltipInner>
   </Tooltip>
 );
 
@@ -40,7 +34,7 @@ const CountryDisclaimer = ({ text, isMobile }) => {
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}
       >
-        <Icon iconName="error"/>
+        <Icon iconName="error" />
       </DisclaimerIcon>
       {tooltip && <DisclaimerTooltip text={text} position={tooltip} />}
     </React.Fragment>

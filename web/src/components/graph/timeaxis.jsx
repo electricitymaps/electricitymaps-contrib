@@ -56,13 +56,7 @@ const TimeAxis = React.memo(({ className, scale, transform, displayLive }) => {
   const { i18n } = useTranslation();
 
   return (
-    <g
-      className={className}
-      transform={transform}
-      fill="none"
-      textAnchor="middle"
-      style={{ pointerEvents: 'none' }}
-    >
+    <g className={className} transform={transform} fill="none" textAnchor="middle" style={{ pointerEvents: 'none' }}>
       <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
       {getTicksValuesFromTimeScale(scale, TOTAL_TICK_COUNT).map((v, idx) =>
         renderTick(scale, v, idx, displayLive, i18n.language)

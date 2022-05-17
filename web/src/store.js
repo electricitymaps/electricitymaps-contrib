@@ -9,16 +9,16 @@ export const sagaMiddleware = createSagaMiddleware();
 
 export const store = isProduction()
   ? createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(sagaMiddleware),
-  )
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      applyMiddleware(sagaMiddleware)
+    )
   : createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(sagaMiddleware),
-    applyMiddleware(logger),
-  );
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      applyMiddleware(sagaMiddleware),
+      applyMiddleware(logger)
+    );
 
 // TODO: Deprecate and use actioncreators instead
 export const dispatchApplication = (key, value) => {
