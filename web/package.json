@@ -4,7 +4,7 @@
   "description": "A real-time visualisation of the CO2 emissions of electricity consumption",
   "license": "GPL-3.0-or-later",
   "engines": {
-    "node": ">=12.x"
+    "node": ">=14.x"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.17.9",
