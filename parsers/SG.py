@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-
-from __future__ import annotations
-
 import logging
 import re
 from collections import defaultdict
+from typing import Optional
 
 import arrow
 import requests
@@ -58,7 +56,7 @@ TYPE_MAPPINGS = {
 }
 
 
-def get_solar(session, logger) -> float | None:
+def get_solar(session, logger) -> Optional[float]:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
