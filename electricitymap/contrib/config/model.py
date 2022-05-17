@@ -30,6 +30,16 @@ class StrictBaseModel(BaseModel):
         extra = "forbid"
 
 
+class StrictBaseModelWithAlias(BaseModel):
+    class Config:
+        extra = "forbid"
+        # To allow for both comment and _comment.
+        # _source and source
+        # _url and url
+        # TODO: stick to one of them
+        allow_population_by_field_name = True
+
+
 class Capacity(StrictBaseModel):
     # TODO: if zone.json used underscores for keys we didn't need the Field()
     battery_storage: Optional[NonNegativeInt] = Field(None, alias="battery storage")
@@ -78,7 +88,7 @@ class Delays(StrictBaseModel):
     productionPerUnit: Optional[PositiveInt]
 
 
-class Zone(StrictBaseModel):
+class Zone(StrictBaseModelWithAlias):
     bounding_box: Optional[List[Point]]
     capacity: Optional[Capacity]
     comment: Optional[str] = Field(None, alias="_comment")
@@ -94,34 +104,22 @@ class Zone(StrictBaseModel):
     def neighbors(self) -> List[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
 
-    class Config:
-        # To allow for both comment and _comment.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
-
 
 class ExchangeParsers(StrictBaseModel):
     exchange: Optional[str]
     exchangeForecast: Optional[str]
 
 
-class Exchange(StrictBaseModel):
+class Exchange(StrictBaseModelWithAlias):
     capacity: Optional[Tuple[int, int]]
     comment: Optional[str] = Field(None, alias="_comment")
     lonlat: Optional[Tuple[float, float]]
     parsers: Optional[ExchangeParsers]
     rotation: Optional[int]
 
-    class Config:
-        # To allow for both comment and _comment.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
 
-
-class PowerOriginRatiosValues(StrictBaseModel):
-    battery_charge: Optional[confloat(ge=0, le=1)] = Field(
-        None, alias="battery charge"
-    )
+class PowerOriginRatiosValues(StrictBaseModelWithAlias):
+    battery_charge: Optional[confloat(ge=0, le=1)] = Field(None, alias="battery charge")
     battery_discharge: Optional[confloat(ge=0, le=1)] = Field(
         None, alias="battery discharge"
     )
@@ -132,18 +130,13 @@ class PowerOriginRatiosValues(StrictBaseModel):
     hydro_discharge: Optional[confloat(ge=0, le=1)] = Field(
         None, alias="hydro discharge"
     )
-    hydro_charge: Optional[confloat(ge=0, le=1)] = Field(
-        None, alias="hydro charge"
-    )
+    hydro_charge: Optional[confloat(ge=0, le=1)] = Field(None, alias="hydro charge")
     hydro: Optional[confloat(ge=0, le=1)]
     nuclear: Optional[confloat(ge=0, le=1)]
     oil: Optional[confloat(ge=0, le=1)]
     solar: Optional[confloat(ge=0, le=1)]
     unknown: Optional[confloat(ge=0, le=1)]
     wind: Optional[confloat(ge=0, le=1)]
-
-    class Config:
-        allow_population_by_field_name = True
 
     @root_validator
     def check_sum(cls, values):
@@ -156,20 +149,15 @@ class PowerOriginRatiosValues(StrictBaseModel):
         return values
 
 
-class PowerOriginRatios(StrictBaseModel):
+class PowerOriginRatios(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
     url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[date, datetime]]
     value: PowerOriginRatiosValues
 
-    class Config:
-        # To allow for both comment and _comment + source and _source + url and _url.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
 
-
-class PowerOriginRatiosForZone(StrictBaseModel):
+class PowerOriginRatiosForZone(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
     url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
@@ -177,34 +165,21 @@ class PowerOriginRatiosForZone(StrictBaseModel):
         alias="powerOriginRatios"
     )
 
-    class Config:
-        # To allow for both comment and _comment + source and _source + url and _url.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
 
-
-class FallbackZoneMixes(StrictBaseModel):
+class FallbackZoneMixes(StrictBaseModelWithAlias):
     defaults: PowerOriginRatiosForZone
     zone_overrides: Dict[str, PowerOriginRatiosForZone] = Field(alias="zoneOverrides")
 
-    class Config:
-        allow_population_by_field_name = True
 
-
-class ModeCategoryContribution(StrictBaseModel):
+class ModeCategoryContribution(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
     url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[datetime, date]]
     value: Optional[confloat(ge=0, le=1)]
 
-    class Config:
-        # To allow for both comment and _comment + source and _source.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
 
-
-class CategoryContribution(StrictBaseModel):
+class CategoryContribution(StrictBaseModelWithAlias):
     battery_charge: Optional[
         Union[ModeCategoryContribution, List[ModeCategoryContribution]]
     ] = Field(None, alias="battery charge")
@@ -230,40 +205,26 @@ class CategoryContribution(StrictBaseModel):
     unknown: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
     wind: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
 
-    class Config:
-        allow_population_by_field_name = True
 
-
-class IsLowCarbon(StrictBaseModel):
+class IsLowCarbon(StrictBaseModelWithAlias):
     defaults: CategoryContribution = CategoryContribution()
     zone_overrides: Dict[str, CategoryContribution] = Field(alias="zoneOverrides")
 
-    class Config:
-        allow_population_by_field_name = True
 
-
-class IsRenewable(StrictBaseModel):
+class IsRenewable(StrictBaseModelWithAlias):
     defaults: CategoryContribution = CategoryContribution()
     zone_overrides: Dict[str, CategoryContribution] = Field(alias="zoneOverrides")
 
-    class Config:
-        allow_population_by_field_name = True
 
-
-class ModeEmissionFactor(StrictBaseModel):
+class ModeEmissionFactor(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
     url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[date, datetime]]
     value: NonNegativeFloat
 
-    class Config:
-        # To allow for both comment and _comment + source and _source + url and _url.
-        # TODO: stick to one of them
-        allow_population_by_field_name = True
 
-
-class AllModesEmissionFactors(StrictBaseModel):
+class AllModesEmissionFactors(StrictBaseModelWithAlias):
     battery_charge: Optional[
         Union[List[ModeEmissionFactor], ModeEmissionFactor]
     ] = Field(None, alias="battery charge")
@@ -287,26 +248,27 @@ class AllModesEmissionFactors(StrictBaseModel):
     unknown: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
     wind: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
 
-    class Config:
-        allow_population_by_field_name = True
+    @root_validator
+    def check_emission_factors(cls, values):
+        """
+        Check that all emission factors given as list are not empty.
+        """
+        for v in values.values():
+            if isinstance(v, list):
+                assert len(v) > 0, "Emission factors must not be an empty list"
+        return values
 
 
-class EmissionFactors(StrictBaseModel):
+class EmissionFactors(StrictBaseModelWithAlias):
     defaults: AllModesEmissionFactors
     zone_overrides: Dict[str, AllModesEmissionFactors] = Field(alias="zoneOverrides")
 
-    class Config:
-        allow_population_by_field_name = True
 
-
-class CO2eqParameters(StrictBaseModel):
+class CO2eqParameters(StrictBaseModelWithAlias):
     fallback_zone_mixes: FallbackZoneMixes = Field(alias="fallbackZoneMixes")
     is_low_carbon: IsLowCarbon = Field(alias="isLowCarbon")
     is_renewable: IsRenewable = Field(alias="isRenewable")
     emission_factors: EmissionFactors = Field(alias="emissionFactors")
-
-    class Config:
-        allow_population_by_field_name = True
 
 
 class ConfigModel(StrictBaseModel):
