@@ -40,7 +40,7 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo npm install -g jsonlint-mod
+            npm install -g jsonlint-mod
             jsonlint -q config/*.json web/public/locales/*.json
 
   verify_web_js:
