@@ -1,4 +1,4 @@
-import { addDays, startOfDay, subDays } from 'date-fns'
+import { addDays, startOfDay, subDays } from 'date-fns';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -28,7 +28,7 @@ export function useCurrentDatetimes() {
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
-  return useMemo(() => !zoneHistory ? [] : zoneHistory.map((d) => new Date(d.stateDatetime)), [zoneHistory]);
+  return useMemo(() => (!zoneHistory ? [] : zoneHistory.map((d) => new Date(d.stateDatetime))), [zoneHistory]);
 }
 
 // Use current time as the end time of the graph time scale explicitly
@@ -62,12 +62,12 @@ export function useCurrentZoneData() {
   return useMemo(() => {
     if (!zoneId || !grid || !zoneHistory) {
       return null;
-    }
-    else if (zoneTimeIndex === null) {
+    } else if (zoneTimeIndex === null) {
       // If null, return the latest history
       return zoneHistory.at(-1);
+    } else {
+      return zoneHistory[zoneTimeIndex];
     }
-    else return zoneHistory[zoneTimeIndex];
   }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
 }
 
@@ -76,9 +76,7 @@ export function useCurrentZoneExchangeKeys() {
   // and fallback on current zone data
   const zoneHistory = useCurrentZoneHistory();
   const currentZoneData = useCurrentZoneData();
-  const isConsumption = useSelector(
-    (state) => state.application.electricityMixMode === 'consumption'
-  );
+  const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
 
   return useMemo(() => {
     if (!isConsumption || !zoneHistory) {
@@ -97,9 +95,7 @@ export function useCurrentZoneExchangeKeys() {
 
 export function useLoadingOverlayVisible() {
   const mapInitializing = useSelector((state) => state.application.isLoadingMap);
-  const gridInitializing = useSelector(
-    (state) => state.data.isLoadingGrid && !state.data.hasInitializedGrid
-  );
+  const gridInitializing = useSelector((state) => state.data.isLoadingGrid && !state.data.hasInitializedGrid);
   const solarInitializing = useSelector((state) => state.data.isLoadingSolar && !state.data.solar);
   const windInitializing = useSelector((state) => state.data.isLoadingWind && !state.data.wind);
   return mapInitializing || gridInitializing || solarInitializing || windInitializing;
@@ -129,9 +125,7 @@ export function useCurrentNightTimes() {
 
     const earliest = history && history[0] && new Date(history[0].stateDatetime);
     const latest = new Date(
-      history && history[history.length - 1]
-        ? history[history.length - 1].stateDatetime
-        : datetimeStr
+      history && history[history.length - 1] ? history[history.length - 1].stateDatetime : datetimeStr
     );
     do {
       // Get last nightTime

@@ -1,15 +1,11 @@
-const { topology } = require("topojson-server");
-const { getJSON, writeJSON } = require("./utilities");
-const turf = require("@turf/turf");
+const { topology } = require('topojson-server');
+const { getJSON, writeJSON } = require('./utilities');
+const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
-  const geojsonFeatures = geojson.features.filter(
-    (f) => f.properties.zoneName === zoneName
-  );
+  const geojsonFeatures = geojson.features.filter((f) => f.properties.zoneName === zoneName);
   if (geojsonFeatures.length !== 1) {
-    console.error(
-      `ERROR: Found ${geojsonFeatures.length} features matching zoneName ${zoneName}`
-    );
+    console.error(`ERROR: Found ${geojsonFeatures.length} features matching zoneName ${zoneName}`);
     process.exit(1);
   }
 
@@ -23,9 +19,7 @@ function getCenter(geojson, zoneName) {
   });
 
   if (longitudes.length === 0 || latitudes.length === 0) {
-    console.error(
-      `ERROR: Found ${longitudes.length} longitudes and ${latitudes} latitudes for zoneName ${zoneName}`
-    );
+    console.error(`ERROR: Found ${longitudes.length} longitudes and ${latitudes} latitudes for zoneName ${zoneName}`);
     process.exit(1);
   }
 
@@ -36,7 +30,7 @@ function getCenter(geojson, zoneName) {
 }
 
 function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
-  console.log("Generating new world.json");
+  console.log('Generating new world.json'); // eslint-disable-line no-console
   const topo = topology({
     objects: fc,
   });
@@ -53,14 +47,12 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
 
   const currentTopo = getJSON(OUT_PATH);
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.log("No changes to world.json");
+    console.log('No changes to world.json'); // eslint-disable-line no-console
     return;
   }
 
   if (verifyNoUpdates) {
-    console.error(
-      'Did not expect any updates to world.json. Please run "yarn update-world"'
-    );
+    console.error('Did not expect any updates to world.json. Please run "yarn update-world"');
     process.exit(1);
   }
 

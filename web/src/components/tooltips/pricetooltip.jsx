@@ -4,7 +4,9 @@ import getSymbolFromCurrency from 'currency-symbol-map';
 import Tooltip from '../tooltip';
 
 const PriceTooltip = ({ position, zoneData, onClose }) => {
-  if (!zoneData) return null;
+  if (!zoneData) {
+    return null;
+  }
 
   const priceIsDefined = zoneData.price && typeof zoneData.price.value === 'number';
   const currency = priceIsDefined ? getSymbolFromCurrency(zoneData.price.currency) : '?';

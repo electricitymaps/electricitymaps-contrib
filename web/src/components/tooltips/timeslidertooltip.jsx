@@ -6,8 +6,9 @@ import Tooltip from '../tooltip';
 
 const TimeSliderTooltip = ({ position, onClose, date, disabled }) => {
   const { i18n } = useTranslation();
-  if (disabled) return null;
-
+  if (disabled) {
+    return null;
+  }
 
   return (
     <Tooltip id="timeslider-tooltip" position={position} onClose={onClose}>

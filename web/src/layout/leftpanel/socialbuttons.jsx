@@ -27,18 +27,14 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
     <StyledWrapper hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile}>
       <div>
         {/* Facebook share */}
-        <div
-          className="fb-share-button"
-          data-href="https://app.electricitymap.org/"
-          data-layout="button_count"
-        />
+        <div className="fb-share-button" data-href="https://app.electricitymap.org/" data-layout="button_count" />
         {/* Twitter share */}
         <a
           className="twitter-share-button"
           data-url="https://app.electricitymap.org"
           data-via="electricitymap"
           data-lang={i18n.language}
-          >
+        >
           &nbsp;
         </a>
         {/* Slack */}

@@ -18,19 +18,19 @@ const ErrorMessage = styled.pre`
 `;
 
 const BackToStartButton = styled.a`
-    background: #fafafa;
-    color: #000;
-    border: 1px solid #eee;
+  background: #fafafa;
+  color: #000;
+  border: 1px solid #eee;
 
-    font-size: 1rem;
-    border-radius: 8px;
-    padding: 8px;
-    margin-top: 16px;
-    cursor: pointer;
-    &:hover {
-        background: #eee;
-        text-decoration: none;
-    }
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 16px;
+  cursor: pointer;
+  &:hover {
+    background: #eee;
+    text-decoration: none;
+  }
 `;
 
 class ErrorBoundary extends React.Component {
@@ -56,9 +56,8 @@ class ErrorBoundary extends React.Component {
         <ErrorBox>
           <h1>Oh no, something went wrong...</h1>
           <p>
-            Please let us know{' '}
-            <a href="https://github.com/electricitymap/electricitymap-contrib">on Github</a> so we can fix
-            this!
+            Please let us know <a href="https://github.com/electricitymap/electricitymap-contrib">on Github</a> so we
+            can fix this!
           </p>
           <ErrorMessage>
             Error message: {this.state.error.message}

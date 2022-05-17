@@ -7,13 +7,15 @@ import thirdPartyServices from '../services/thirdparty';
 
 function getToken() {
   if (ELECTRICITYMAP_PUBLIC_TOKEN === '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%') {
-    throw new Error('It seems like you are trying to run the app locally with remote API, but have not set the SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN environment variable.\n Try running `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=<your-token> yarn develop`');
+    throw new Error(
+      'It seems like you are trying to run the app locally with remote API, but have not set the SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN environment variable.\n Try running `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=<your-token> yarn develop`'
+    );
   }
   return ELECTRICITYMAP_PUBLIC_TOKEN;
 }
 
 function isRemoteParam() {
-  return (new URLSearchParams(window.location.search)).get('remote') === 'true';
+  return new URLSearchParams(window.location.search).get('remote') === 'true';
 }
 
 // Use local endpoint only if ALL of the following conditions are true:
@@ -34,7 +36,8 @@ export function protectedJsonRequest(path) {
   const timestamp = new Date().getTime();
 
   return new Promise((resolve, reject) => {
-    request.json(url)
+    request
+      .json(url)
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
       .header('x-signature', sha256(token + path + timestamp))
@@ -59,20 +62,19 @@ export function protectedJsonRequest(path) {
 export function handleRequestError(err) {
   if (err) {
     if (err.target) {
-      const {
-        responseText,
-        responseURL,
-        status,
-        statusText,
-      } = err.target;
+      const { responseText, responseURL, status, statusText } = err.target;
 
       // Avoid catching HTTPError 0
       // The error will be empty, and we can't catch any more info for security purposes.
       // See http://stackoverflow.com/questions/4844643/is-it-possible-to-trap-cors-errors
-      if (!status) return;
+      if (!status) {
+        return;
+      }
 
       // Also ignore 5xx errors as they are usually caused by server downtime and are not useful to track.
-      if ((status >= 500 && status <= 599) || status === 404) return;
+      if ((status >= 500 && status <= 599) || status === 404) {
+        return;
+      }
 
       thirdPartyServices.trackError(new Error(`HTTPError ${status} ${statusText} at ${responseURL}: ${responseText}`));
     } else {

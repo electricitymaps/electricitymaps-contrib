@@ -13,7 +13,12 @@ const headerLinks = [
     id: 'live',
   },
   {
-    label: <React.Fragment>We&apos;re hiring!<OpenPositionsBadge /></React.Fragment>,
+    label: (
+      <React.Fragment>
+        We&apos;re hiring!
+        <OpenPositionsBadge />
+      </React.Fragment>
+    ),
     href: 'https://electricitymap.org/jobs#joboffers?utm_source=app.electricitymap.org&utm_medium=referral',
     id: 'jobs',
   },

@@ -2,7 +2,7 @@ import React from 'react';
 import { BaseControl } from 'react-map-gl';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   mapViewport: state.application.mapViewport,
 });
 
@@ -14,7 +14,7 @@ class MapLayer extends BaseControl {
   state = {
     project: null,
     unproject: null,
-  }
+  };
 
   // Keep project and unproject methods in the component state and update them
   // only when the map viewport changes as ReactMapGL calls the _render() method

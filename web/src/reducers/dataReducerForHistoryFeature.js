@@ -1,12 +1,12 @@
 import { addMinutes } from 'date-fns';
 
 import constructTopos from '../helpers/topos';
-import * as translation  from '../helpers/translation';
+import * as translation from '../helpers/translation';
 
 import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
 
-console.log('Using History Feature reducer!');
+console.log('Using History Feature reducer!'); // eslint-disable-line no-console
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -28,7 +28,9 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
-Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
+Object.keys(zones).forEach((k) => {
+  zones[k].countryCode = k;
+});
 
 // ** Prepare initial exchange data
 const exchanges = Object.assign({}, exchangesConfig);
@@ -64,10 +66,13 @@ const reducer = (state = initialDataState, action) => {
 
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
-      const newGrid = Object.assign({}, {
-        zones: Object.assign({}, state.grid.zones),
-        exchanges: Object.assign({}, state.grid.exchanges),
-      });
+      const newGrid = Object.assign(
+        {},
+        {
+          zones: Object.assign({}, state.grid.zones),
+          exchanges: Object.assign({}, state.grid.exchanges),
+        }
+      );
       // Create new state
       const newState = Object.assign({}, state);
       newState.grid = newGrid;
@@ -117,7 +122,6 @@ const reducer = (state = initialDataState, action) => {
           return;
         }
 
-
         const lastValue = zoneHistory.at(-1);
         // Assign data from payload
         Object.keys(lastValue).forEach((k) => {
@@ -126,14 +130,18 @@ const reducer = (state = initialDataState, action) => {
           zone[k] = lastValue[k];
         });
 
-        const zoneHistoryWithAdditionalFields = zoneHistory.map(z => ({...z, hasDetailedData: false, hasData: zones[zoneId].hasParser, hasParser: zones[zoneId].hasParser}))
+        const zoneHistoryWithAdditionalFields = zoneHistory.map((z) => ({
+          ...z,
+          hasDetailedData: false,
+          hasData: zones[zoneId].hasParser,
+          hasParser: zones[zoneId].hasParser,
+        }));
         newState.histories[zoneId] = zoneHistoryWithAdditionalFields;
-
 
         // Set date
         zone.datetime = action.payload.datetime;
 
-        const hasNoData = !zone.production || Object.values(zone.production).every(v => v === null);
+        const hasNoData = !zone.production || Object.values(zone.production).every((v) => v === null);
         if (hasNoData) {
           return;
         }
@@ -142,7 +150,6 @@ const reducer = (state = initialDataState, action) => {
         // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
         zone.hasData = zone.hasParser || !hasNoData;
       });
-
 
       // Populate exchange pairs for exchange layer
       Object.entries(action.payload.exchanges).forEach((entry) => {
@@ -178,10 +185,10 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map(datapoint => ({
+          [action.zoneId]: action.payload.map((datapoint) => ({
             ...datapoint,
             hasDetailedData: true,
-            hasData: !Object.values(datapoint.production).every(v => v === null)
+            hasData: !Object.values(datapoint.production).every((v) => v === null),
           })),
         },
       };

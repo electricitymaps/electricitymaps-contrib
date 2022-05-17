@@ -10,12 +10,7 @@ const ContributorList = () => {
     <div className="contributors">
       {zonesConfig[zoneId]?.contributors?.map((contributor) => {
         return (
-          <a
-            key={contributor}
-            href={`https://github.com/${contributor}`}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <a key={contributor} href={`https://github.com/${contributor}`} rel="noopener noreferrer" target="_blank">
             <img
               src={`https://avatars.githubusercontent.com/${contributor}?s=20`} // loads the avatar image at a default size of 20px
               srcSet={`https://avatars.githubusercontent.com/${contributor}?s=40 2x`} // loads the avatar image at a default size of 40px for high resolution displays

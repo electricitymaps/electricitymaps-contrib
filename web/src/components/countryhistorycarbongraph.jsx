@@ -3,43 +3,35 @@ import { connect } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { useCo2ColorScale } from '../hooks/theme';
-import {
-  useCurrentZoneHistory,
-  useCurrentZoneHistoryStartTime,
-  useCurrentZoneHistoryEndTime,
-} from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneHistoryStartTime, useCurrentZoneHistoryEndTime } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
 
 const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {
+    return {};
+  }
 
-  const data = historyData.map(d => ({
-    carbonIntensity: electricityMixMode === 'consumption'
-      ? d.co2intensity
-      : d.co2intensityProduction,
+  const data = historyData.map((d) => ({
+    carbonIntensity: electricityMixMode === 'consumption' ? d.co2intensity : d.co2intensityProduction,
     datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));
   const layerKeys = ['carbonIntensity'];
-  const layerFill = key => d => co2ColorScale(d.data[key]);
+  const layerFill = (key) => (d) => co2ColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryCarbonGraph = ({
-  electricityMixMode,
-  isMobile,
-  selectedTimeIndex,
-}) => {
+const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeIndex }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
@@ -51,7 +43,7 @@ const CountryHistoryCarbonGraph = ({
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
     () => prepareGraphData(historyData, co2ColorScale, electricityMixMode),
-    [historyData, co2ColorScale, electricityMixMode],
+    [historyData, co2ColorScale, electricityMixMode]
   );
 
   // Mouse action handlers
@@ -60,14 +52,14 @@ const CountryHistoryCarbonGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -77,13 +69,13 @@ const CountryHistoryCarbonGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile],
+    [setTooltip, isMobile]
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip],
+    [setTooltip]
   );
 
   return (

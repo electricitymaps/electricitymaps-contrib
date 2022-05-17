@@ -18,16 +18,15 @@ export function useConditionalZoneHistoryFetch() {
   // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
   useEffect(() => {
     if (customDatetime) {
-      console.error('Can\'t fetch history when a custom date is provided!');
+      console.error("Can't fetch history when a custom date is provided!");
     } else if (zoneId && Array.isArray(historyData) && historyData.length === 0) {
       console.error('No history data available right now!');
     }
-    const hasDetailedHistory =
-      historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
+    const hasDetailedHistory = historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
     if (zoneId && !hasDetailedHistory) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features } });
     }
-  }, [zoneId, historyData, customDatetime]);
+  }, [zoneId, historyData, customDatetime, dispatch, features]);
 }
 
 export function useGridDataPolling() {
@@ -45,7 +44,7 @@ export function useGridDataPolling() {
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
-  }, [datetime]);
+  }, [datetime, dispatch, features]);
 }
 
 export function useConditionalWindDataPolling() {
@@ -70,7 +69,7 @@ export function useConditionalWindDataPolling() {
       dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
     }
     return () => clearInterval(pollInterval);
-  }, [windEnabled, customDatetime]);
+  }, [windEnabled, customDatetime, dispatch]);
 }
 
 export function useConditionalSolarDataPolling() {
@@ -95,5 +94,5 @@ export function useConditionalSolarDataPolling() {
       dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
     }
     return () => clearInterval(pollInterval);
-  }, [solarEnabled, customDatetime]);
+  }, [solarEnabled, customDatetime, dispatch]);
 }

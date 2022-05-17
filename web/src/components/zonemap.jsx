@@ -3,8 +3,7 @@ import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
-import { debounce } from '../helpers/debounce'
-
+import { debounce } from '../helpers/debounce';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -61,7 +60,7 @@ const ZoneMap = ({
       setIsDragging(true);
       debouncedSetIsDragging(false);
     },
-    []
+    [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   const handleLoad = () => {
@@ -70,24 +69,23 @@ const ZoneMap = ({
   };
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
-  const sources = useMemo(
-    () => {
-      const features = Object.entries(zones).map(([zoneId, zone]) => {
-        const length = (coordinate) => coordinate ? coordinate.length : 0
-        return {
-          type: 'Feature',
-            geometry: {
-              ...zone.geometry,
-            coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
-          },
-          properties: {
-            color: zone.color,
-            isClickable: zone.isClickable,
-            zoneData: zone,
-            zoneId,
-          },
-        }
-      })
+  const sources = useMemo(() => {
+    const features = Object.entries(zones).map(([zoneId, zone]) => {
+      const length = (coordinate) => (coordinate ? coordinate.length : 0);
+      return {
+        type: 'Feature',
+        geometry: {
+          ...zone.geometry,
+          coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
+        },
+        properties: {
+          color: zone.color,
+          isClickable: zone.isClickable,
+          zoneData: zone,
+          zoneId,
+        },
+      };
+    });
 
     return {
       zonesClickable: {
@@ -130,7 +128,7 @@ const ZoneMap = ({
       setIsSupported(false);
       onMapError('WebGL not supported');
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
@@ -179,7 +177,7 @@ const ZoneMap = ({
         }
       }
     },
-    [ref.current, onSeaClick, onZoneClick]
+    [onSeaClick, onZoneClick]
   );
 
   const handleMouseMove = useMemo(
@@ -211,16 +209,7 @@ const ZoneMap = ({
         }
       }
     },
-    [
-      ref.current,
-      hoveringEnabled,
-      isDragging,
-      zones,
-      hoveredZoneId,
-      onMouseMove,
-      onZoneMouseEnter,
-      onZoneMouseLeave,
-    ]
+    [hoveringEnabled, isDragging, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave]
   );
 
   const handleMouseOut = useMemo(
@@ -230,7 +219,7 @@ const ZoneMap = ({
         setHoveredZoneId(null);
       }
     },
-    [hoveredZoneId]
+    [hoveredZoneId] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Don't render map nor any of the layers if WebGL is not supported.
@@ -282,11 +271,7 @@ const ZoneMap = ({
               top: '24px',
             }}
           >
-            <NavigationControl
-              showCompass={false}
-              zoomInLabel={zoomInLabel}
-              zoomOutLabel={zoomOutLabel}
-            />
+            <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
           </div>
         </Portal>
         {/* Layers */}

@@ -39,16 +39,13 @@ export function useSolarToggledLocation() {
   const searchParams = useSearchParams();
   const solarEnabled = useSolarEnabled();
 
-  return useMemo(
-    () => {
-      searchParams.set('solar', !solarEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, solarEnabled],
-  );
+  return useMemo(() => {
+    searchParams.set('solar', !solarEnabled);
+    return {
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    };
+  }, [location, searchParams, solarEnabled]);
 }
 
 export function useWindToggledLocation() {
@@ -56,14 +53,11 @@ export function useWindToggledLocation() {
   const searchParams = useSearchParams();
   const windEnabled = useWindEnabled();
 
-  return useMemo(
-    () => {
-      searchParams.set('wind', !windEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, windEnabled],
-  );
+  return useMemo(() => {
+    searchParams.set('wind', !windEnabled);
+    return {
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    };
+  }, [location, searchParams, windEnabled]);
 }

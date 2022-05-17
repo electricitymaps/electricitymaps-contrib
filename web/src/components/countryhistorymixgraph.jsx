@@ -19,11 +19,13 @@ import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip'
 import AreaGraph from './graph/areagraph';
 
 const getValuesInfo = (historyData, displayByEmissions) => {
-  const maxTotalValue = d3Max(historyData, d => (
-    displayByEmissions
-      ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
-      : (d.totalProduction + d.totalImport + d.totalDischarge) // in MW
-  ));
+  const maxTotalValue = d3Max(
+    historyData,
+    (d) =>
+      displayByEmissions
+        ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
+        : d.totalProduction + d.totalImport + d.totalDischarge // in MW
+  );
   const format = scalePower(maxTotalValue);
 
   const valueAxisLabel = displayByEmissions ? 'tCO₂eq / min' : format.unit;
@@ -32,7 +34,9 @@ const getValuesInfo = (historyData, displayByEmissions) => {
 };
 
 const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {
+    return {};
+  }
 
   const { valueAxisLabel, valueFactor } = getValuesInfo(historyData, displayByEmissions);
 
@@ -43,7 +47,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
       datetime: new Date(d.stateDatetime),
     };
 
-    const hasProductionData = d.production && Object.values(d.production).some(v => v !== null);
+    const hasProductionData = d.production && Object.values(d.production).some((v) => v !== null);
 
     if (hasProductionData) {
       // Add production
@@ -93,7 +97,7 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
   const layerFill = (key) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
-      return d => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
+      return (d) => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
     return modeColor[key];
@@ -107,19 +111,14 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
   };
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryMixGraph = ({
-  displayByEmissions,
-  electricityMixMode,
-  isMobile,
-  selectedTimeIndex,
-}) => {
+const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, selectedTimeIndex }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
@@ -130,14 +129,9 @@ const CountryHistoryMixGraph = ({
   const endTime = useCurrentZoneHistoryEndTime();
 
   // Recalculate graph data only when the history data is changed
-  const {
-    data,
-    layerKeys,
-    layerFill,
-    valueAxisLabel,
-  } = useMemo(
+  const { data, layerKeys, layerFill, valueAxisLabel } = useMemo(
     () => prepareGraphData(historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys),
-    [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys],
+    [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
   // Mouse action handlers
@@ -145,27 +139,27 @@ const CountryHistoryMixGraph = ({
     () => (timeIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
     },
-    [],
+    []
   );
   const backgroundMouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
     },
-    [],
+    []
   );
   const layerMouseMoveHandler = useMemo(
     () => (timeIndex, layerIndex) => {
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(layerIndex);
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -176,13 +170,13 @@ const CountryHistoryMixGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile],
+    [setTooltip, isMobile]
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip],
+    [setTooltip]
   );
 
   return (
@@ -205,8 +199,8 @@ const CountryHistoryMixGraph = ({
         isMobile={isMobile}
         height="10em"
       />
-      {tooltip && (
-        exchangeKeys.includes(tooltip.mode) ? (
+      {tooltip &&
+        (exchangeKeys.includes(tooltip.mode) ? (
           <CountryPanelExchangeTooltip
             exchangeKey={tooltip.mode}
             position={tooltip.position}
@@ -226,8 +220,7 @@ const CountryHistoryMixGraph = ({
               setTooltip(null);
             }}
           />
-        )
-      )}
+        ))}
     </React.Fragment>
   );
 };
