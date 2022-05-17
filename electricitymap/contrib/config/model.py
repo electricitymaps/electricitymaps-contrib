@@ -206,6 +206,17 @@ class CategoryContribution(StrictBaseModelWithAlias):
     unknown: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
     wind: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
 
+    @root_validator
+    @classmethod
+    def check_contributions(cls, values):
+        for v in values.values():
+            if isinstance(v, list):
+                # verify ordered by datetime
+                dts = [c.datetime for c in v]
+                if dts != sorted(dts):
+                    raise ValueError("Contributions must be ordered by datetime")
+        return values
+
 
 class IsLowCarbon(StrictBaseModelWithAlias):
     defaults: CategoryContribution = CategoryContribution()
