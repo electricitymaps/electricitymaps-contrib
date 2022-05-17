@@ -87,7 +87,7 @@
     "postcss-preset-env": "^7.5.0",
     "prettier": "^2.6.2",
     "readline-sync": "^1.4.9",
-    "sass": "^1.50.1",
+    "sass-embedded": "^1.51.0",
     "sass-loader": "^12.6.0",
     "shapefile": "^0.6.2",
     "snowpack": "^3.8.8",
