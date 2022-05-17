@@ -19,35 +19,13 @@ TIMEZONE = 'Asia/Tbilisi'
 URL = urllib.parse.urlsplit('https://gse.com.ge/apps/gsebackend/rest')
 URL_STRING = URL.geturl()
 
-
-@config.refetch_frequency(datetime.timedelta(hours=1))
-def fetch_production(zone_key='GE',
+# Get the (forecast) production mix for every hour on the day of interest.
+def fetch_production_or_production_forecast(zone_key='GE',
                      session=None,
                      target_datetime=None,
-                     logger=logging.getLogger(__name__)) -> dict:
-    """Request the last known production mix (in MW) of a given country."""
-    session = session or requests.session()
-    if target_datetime is None: # Get the current production mix.
-        # TODO: remove `verify=False` ASAP.
-        production_mix = session.get(f'{URL_STRING}/map', verify=False) \
-                                .json()['typeSum']
-        return validation.validate(
-            {
-                'datetime': arrow.now(TIMEZONE).floor('minute').datetime,
-                'production': {
-                    'gas': production_mix['thermalData'],
-                    'hydro': production_mix['hydroData'],
-                    'solar': production_mix['solarData'],
-                    'wind': production_mix['windPowerData'],
-                },
-                'source': URL.netloc,
-                'zoneKey': 'GE',
-            },
-            logger,
-            remove_negative=True,
-            floor=MINIMUM_PRODUCTION_THRESHOLD)
-    else:
-        # Get the production mix for every hour on the day of interest.
+                     logger=logging.getLogger(__name__),
+                     forecast=False) -> dict:
+
         timestamp_from, timestamp_to = arrow.get(target_datetime, TIMEZONE) \
                                             .replace(hour=0) \
                                             .floor('hour') \
@@ -58,7 +36,7 @@ def fetch_production(zone_key='GE',
                 'fromDate': timestamp_from.format('YYYY-MM-DDTHH:mm:ss'),
                 'lang': 'EN',
                 'toDate': timestamp_to.format('YYYY-MM-DDTHH:mm:ss'),
-                'type': 'FACT',
+                'type': 'PLAN' if forecast else 'FACT',
             },
             verify=False) # TODO: remove `verify=False` ASAP.
         table = pandas.read_excel(response.content, header=2, index_col=1) \
@@ -90,6 +68,41 @@ def fetch_production(zone_key='GE',
                                     remove_negative=True,
                                     floor=MINIMUM_PRODUCTION_THRESHOLD)
                 for production_mix in production_mixes]
+
+
+@config.refetch_frequency(datetime.timedelta(hours=1))
+def fetch_production(zone_key='GE',
+                     session=None,
+                     target_datetime=None,
+                     logger=logging.getLogger(__name__)) -> dict:
+    """Request the last known production mix (in MW) of a given country."""
+    session = session or requests.session()
+    if target_datetime is None: # Get the current production mix.
+        # TODO: remove `verify=False` ASAP.
+        production_mix = session.get(f'{URL_STRING}/map', verify=False) \
+                                .json()['typeSum']
+        return validation.validate(
+            {
+                'datetime': arrow.now(TIMEZONE).floor('minute').datetime,
+                'production': {
+                    'gas': production_mix['thermalData'],
+                    'hydro': production_mix['hydroData'],
+                    'solar': production_mix['solarData'],
+                    'wind': production_mix['windPowerData'],
+                },
+                'source': URL.netloc,
+                'zoneKey': 'GE',
+            },
+            logger,
+            remove_negative=True,
+            floor=MINIMUM_PRODUCTION_THRESHOLD)
+    else:
+        # Get the production mix for every hour on the day of interest.
+        return fetch_production_or_production_forecast(zone_key, session, target_datetime, logger, False)
+
+def fetch_generation_forecast(zone_key='GE', session=None, target_datetime=None,
+                              logger=logging.getLogger(__name__)) -> dict:
+            return fetch_production_or_production_forecast(zone_key, session, target_datetime, logger, True)
 
 
 def fetch_exchange(zone_key1='GE',
@@ -138,6 +151,8 @@ if __name__ == '__main__':
     print(fetch_production())
     print('fetch_production(target_datetime=datetime.datetime(2020, 1, 1)) ->')
     print(fetch_production(target_datetime=datetime.datetime(2020, 1, 1)))
+    print('fetch_generation_forecast(target_datetime=datetime.datetime(2021, 1, 1)) ->')
+    print(fetch_generation_forecast(target_datetime=datetime.datetime(2021, 1, 1)))
     print("fetch_exchange('GE', 'AM') ->")
     print(fetch_exchange('GE', 'AM'))
     print("fetch_exchange('GE', 'AZ') ->")
