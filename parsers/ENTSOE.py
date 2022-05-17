@@ -80,7 +80,7 @@ ENTSOE_STORAGE_PARAMETERS = list(itertools.chain.from_iterable(
 ENTSOE_DOMAIN_MAPPINGS = {
     'AL': '10YAL-KESH-----5',
     'AT': '10YAT-APG------L',
-    'AX': '10Y1001A1001A46L',  # for price only; Åland has SE-SE3 area price
+    'AZ': '10Y1001A1001B05V',
     'BA': '10YBA-JPCC-----D',
     'BE': '10YBE----------2',
     'BG': '10YCA-BULGARIA-R',
@@ -98,10 +98,12 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'FR': '10YFR-RTE------C',
     'GB': '10YGB----------A',
     'GB-NIR': '10Y1001A1001A016',
+    'GE': '10Y1001A1001B012',
     'GR': '10YGR-HTSO-----Y',
     'HR': '10YHR-HEP------M',
     'HU': '10YHU-MAVIR----U',
     'IE': '10YIE-1001A00010',
+    'IE(SEM)': '10Y1001A1001A59C',
     'IT': '10YIT-GRTN-----B',
     'IT-BR': '10Y1001A1001A699',
     'IT-CA': '10Y1001C--00096J',
@@ -141,7 +143,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
     'SI': '10YSI-ELES-----O',
     'SK': '10YSK-SEPS-----K',
     'TR': '10YTR-TEIAS----W',
-    'UA': '10YUA-WEPS-----0'
+    'UA': '10YUA-WEPS-----0',
+    'XK': '10Y1001C--00100H'
 }
 # Generation per unit can only be obtained at EIC (Control Area) level
 ENTSOE_EIC_MAPPING = {
@@ -168,6 +171,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
     'DE->NO-NO2': [ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
                    ENTSOE_DOMAIN_MAPPINGS['NO-NO2']],
     'FR-COR->IT-CNO': ['10Y1001A1001A893', ENTSOE_DOMAIN_MAPPINGS['IT-CNO']],
+    'GE->RU-1': [ENTSOE_DOMAIN_MAPPINGS['GE'], ENTSOE_DOMAIN_MAPPINGS['RU']],
     'GR->IT-SO': [ENTSOE_DOMAIN_MAPPINGS['GR'],
                   ENTSOE_DOMAIN_MAPPINGS['IT-SO']],
     'IT-CSO->ME': [ENTSOE_DOMAIN_MAPPINGS['IT'],
@@ -183,9 +187,10 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE = {
+    'AX': ENTSOE_DOMAIN_MAPPINGS['SE-SE3'],
     'DK-BHM': ENTSOE_DOMAIN_MAPPINGS['DK-DK2'],
     'DE': ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
-    'IE': '10Y1001A1001A59C',
+    'IE': ENTSOE_DOMAIN_MAPPINGS['IE(SEM)'],
     'LU': ENTSOE_DOMAIN_MAPPINGS['DE-LU'],
 }
 
@@ -370,7 +375,7 @@ VALIDATIONS = {
     'SI': {
         # own total generation capacity is around 4 GW
         'required': ['nuclear'],
-        'expected_range': (1000, 5000),
+        'expected_range': (800, 5000),
     },
     'SK': {
         'required': ['nuclear']

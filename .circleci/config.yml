@@ -3,12 +3,12 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: circleci/node:12.13
+      - image: circleci/node:12.22
 
 jobs:
   verify_python:
     docker:
-      - image: circleci/python:3.7.9
+      - image: circleci/python:3.8.12
     steps:
       - checkout
       - restore_cache:
@@ -20,6 +20,7 @@ jobs:
           name: Install dependencies
           command: |
             set -eux -o pipefail
+            sudo apt-get update
             sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
             poetry install -E parsers
       - run:
@@ -40,16 +41,7 @@ jobs:
       - run:
           command: |
             sudo npm install -g jsonlint-mod
-            jsonlint -q config/*.json web/locales/*.json
-
-  test_js:
-    executor: js-exec
-    steps:
-      - checkout
-      - run:
-          command: |
-            sudo npm install -g jest
-            jest
+            jsonlint -q config/*.json web/public/locales/*.json
 
   verify_web_js:
     executor: js-exec
@@ -70,7 +62,7 @@ jobs:
 
   build_test:
     machine:
-      image: circleci/classic:201808-01
+      image: ubuntu-2004:202201-02
       docker_layer_caching: true
     steps:
       - checkout
@@ -78,7 +70,7 @@ jobs:
           name: Build
           command: |
             set -euo pipefail
-            docker-compose build mockserver web
+            docker-compose build web
             # Make sure files are available outside of container
             CONTAINER_ID=$(docker create eu.gcr.io/tmrow-152415/electricitymap_web:latest)
             docker cp $CONTAINER_ID:/home/src/electricitymap/contrib/web/public/dist web/public/dist
@@ -87,10 +79,10 @@ jobs:
           name: Start environment
           command: |
             set -euo pipefail
-            # Only start the `web` and `mockserver` containers
+            # Only start the `web` container
             # and avoid the `watch` container from starting and compiling
             # the already built frontend
-            docker-compose up -d web mockserver
+            docker-compose up -d web
             sleep 20
             docker-compose logs web
       - run:
@@ -111,10 +103,8 @@ workflows:
       - verify_python
       - verify_web_js
       - lint_json
-      - test_js
       - build_test:
           requires:
             - verify_python
             - verify_web_js
             - lint_json
-            - test_js

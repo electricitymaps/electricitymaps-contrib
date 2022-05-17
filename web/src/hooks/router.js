@@ -5,13 +5,17 @@ export function useSearchParams() {
   return new URLSearchParams(useLocation().search);
 }
 
-export function useFeatureToggle() {
+export function useFeatureToggle(selectedFeature = null) {
   const searchParams = useSearchParams();
 
   return useMemo(() => {
     const featureToggles = searchParams.get('feature');
-    return featureToggles ? featureToggles.split(',') : [];
-  }, [searchParams]);
+    if (selectedFeature) {
+      return featureToggles && featureToggles.split(',').includes(selectedFeature);
+    } else {
+      return featureToggles ? featureToggles.split(',') : [];
+    }
+  }, [selectedFeature, searchParams]);
 }
 
 export function useCustomDatetime() {
@@ -35,16 +39,13 @@ export function useSolarToggledLocation() {
   const searchParams = useSearchParams();
   const solarEnabled = useSolarEnabled();
 
-  return useMemo(
-    () => {
-      searchParams.set('solar', !solarEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, solarEnabled],
-  );
+  return useMemo(() => {
+    searchParams.set('solar', !solarEnabled);
+    return {
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    };
+  }, [location, searchParams, solarEnabled]);
 }
 
 export function useWindToggledLocation() {
@@ -52,14 +53,11 @@ export function useWindToggledLocation() {
   const searchParams = useSearchParams();
   const windEnabled = useWindEnabled();
 
-  return useMemo(
-    () => {
-      searchParams.set('wind', !windEnabled);
-      return {
-        pathname: location.pathname,
-        search: searchParams.toString(),
-      };
-    },
-    [location, searchParams, windEnabled],
-  );
+  return useMemo(() => {
+    searchParams.set('wind', !windEnabled);
+    return {
+      pathname: location.pathname,
+      search: searchParams.toString(),
+    };
+  }, [location, searchParams, windEnabled]);
 }

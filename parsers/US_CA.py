@@ -11,7 +11,7 @@ import logging
 from parsers.lib.config import refetch_frequency
 
 CAISO_PROXY = 'https://us-ca-proxy-jfnx5klx2a-uw.a.run.app'
-FUEL_SOURCE_CSV = f'{CAISO_PROXY}/outlook/SP/fuelsource.csv'
+FUEL_SOURCE_CSV = f'{CAISO_PROXY}/outlook/SP/fuelsource.csv?host=https://www.caiso.com'
 
 MX_EXCHANGE_URL = 'http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegional.aspx'
 
