@@ -5092,10 +5092,9 @@
       "hydro": 977.5,
       "hydro storage": 1413,
       "nuclear": 0,
-      "oil": 678.8,
-      "solar": 9401.1,
-      "unknown": 0,
-      "wind": 7211.6
+      "oil": 678.8,"solar": 9401.1,
+            "unknown": 0,
+      "wind":      7211.6
     },
     "contributors": [
       "corradio",
