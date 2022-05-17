@@ -91,7 +91,6 @@ class Zone(StrictBaseModel):
         # TODO: stick to one of them
         allow_population_by_field_name = True
 
-
 class ExchangeParsers(ParsersBaseModel):
     exchange: Optional[str]
     exchangeForecast: Optional[str]

@@ -9,14 +9,36 @@ from electricitymap.contrib.config.model import CONFIG_MODEL
 
 PARSER_FOLDERS = Path(__file__).parent.resolve() / "../parsers"
 PARSER_FILES_GLOB = f"{PARSER_FOLDERS.resolve()}/*.py"
-EXPECTED_PARSER_FUNCTION_ARGS = ["zone_key", "session", "target_datetime", "logger"]
-EXPECTED_MODE_ANNOTATIONS = {
-    "consumption": {"return": dict},
-    "exchange": {"return": list},
-    "generationForecast": {"return": list},
-    "price": dict,
-    "production": {"return": list},
-    "productionPerModeForecast": {"return": list},
+_PARSER_FUNCTION_ARGS = ["zone_key", "session", "target_datetime", "logger"]
+_EXCHANGE_FUNCTION_ARGS = [
+    "zone_key1",
+    "zone_key2",
+    "session",
+    "target_datetime",
+    "logger",
+]
+EXPECTED_MODE_FUNCTION_ARGS = {
+    "consumption": _PARSER_FUNCTION_ARGS,
+    "consumptionForecast": _PARSER_FUNCTION_ARGS,
+    "exchange": _EXCHANGE_FUNCTION_ARGS,
+    "exchangeForecast": _EXCHANGE_FUNCTION_ARGS,
+    "generationForecast": _PARSER_FUNCTION_ARGS,
+    "price": _PARSER_FUNCTION_ARGS,
+    "production": _PARSER_FUNCTION_ARGS,
+    "productionPerModeForecast": _PARSER_FUNCTION_ARGS,
+    "productionPerUnit": _PARSER_FUNCTION_ARGS,
+}
+_RETURN_PARSER_TYPE = [dict, list, List[dict]]
+EXPECTED_MODE_RETURN_ANNOTATIONS = {
+    "consumption": _RETURN_PARSER_TYPE,
+    "consumptionForecast": _RETURN_PARSER_TYPE,
+    "exchange": _RETURN_PARSER_TYPE,
+    "exchangeForecast": _RETURN_PARSER_TYPE,
+    "generationForecast": _RETURN_PARSER_TYPE,
+    "price": _RETURN_PARSER_TYPE,
+    "production": _RETURN_PARSER_TYPE,
+    "productionPerModeForecast": _RETURN_PARSER_TYPE,
+    "productionPerUnit": _RETURN_PARSER_TYPE,
 }
 
 
@@ -29,7 +51,6 @@ class ZoneParserFunction(NamedTuple):
 
 def undecorated(o):
     """Remove all decorators from a function.
-
     Inspired by https://github.com/iartarisi/undecorated/blob/master/undecorated.py
     """
 
@@ -103,25 +124,21 @@ class ParserInterfaceTestcase(unittest.TestCase):
                 f"expected no varkw for {function_name}, arg_spec={arg_spec}",
             )
 
-            # if args != EXPECTED_PARSER_FUNCTION_ARGS:
-            #     print(
-            #         f"invalid args for {function_name}:\n{args}\n{EXPECTED_PARSER_FUNCTION_ARGS}\n"
-            #     )
-            #     # TODO: assert
-            # self.assertEqual(
-            #     args,
-            #     MODE_TO_ARGS[mode],
-            #     f"invalid args for {function_name}, arg_spec={arg_spec}",
-            # )
+            self.assertEqual(
+                [a for a in args],
+                EXPECTED_MODE_FUNCTION_ARGS[_mode],
+                f"invalid args for {function_name}, arg_spec={arg_spec}",
+            )
 
-            # if annotations:
-            #     print("annotations", _mode, annotations)
-            #     expected = EXPECTED_MODE_ANNOTATIONS[_mode]
-            #     self.assertEqual(
-            #         annotations,
-            #         EXPECTED_MODE_ANNOTATIONS[_mode],
-            #         f"expected annotation for {function_name} to be {expected} not {annotations}",
-            #     )
+            if annotations and "return" in annotations:
+                expected = EXPECTED_MODE_RETURN_ANNOTATIONS[_mode]
+                correct_annotations = any(
+                    [annotations["return"] == a for a in expected]
+                )
+                self.assertTrue(
+                    correct_annotations,
+                    f"expected annotation for {function_name} to be in {expected} not {annotations}",
+                )
 
     def test_unused_files(self):
         parser_files_used = {
@@ -136,7 +153,6 @@ class ParserInterfaceTestcase(unittest.TestCase):
         unused_parser_files = all_parser_files - parser_files_used
 
         print("> unused_parser_files", unused_parser_files)
-        # TODO: assert
 
 
 if __name__ == "__main__":
