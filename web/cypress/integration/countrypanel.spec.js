@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 describe('countryPanel displays data', () => {
   it('asserts countryPanel contains carbon intensity when available', () => {
     cy.visit('localhost:8080/zone/SE?remote=true');

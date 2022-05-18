@@ -9,7 +9,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['@babel', 'react-hooks'],
+  plugins: ['@babel', 'react-hooks', 'cypress'],
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
@@ -24,6 +24,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
+    'cypress/globals': true,
   },
   root: true,
   ignorePatterns: ['dist', 'build', '**/node_modules', '!.eslintrc.js', 'coverage'],
