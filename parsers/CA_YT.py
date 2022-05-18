@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
 import arrow
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
+
+timezone = "America/Whitehorse"
 
 
-timezone = 'America/Whitehorse'
-
-
-def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logger=None) -> dict:
+def fetch_production(
+    zone_key="CA-YT", session=None, target_datetime=None, logger=None
+) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
 
     """
@@ -44,39 +45,39 @@ def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logge
     There is also a small 0.81 MW wind farm, its current generation is not available.
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or requests.session()
 
-    url = 'http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420'
+    url = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
     response = requests_obj.get(url)
 
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, "html.parser")
 
     def find_div_by_class(soup_obj, cls):
-        return soup_obj.find('div', attrs={'class': cls})
+        return soup_obj.find("div", attrs={"class": cls})
 
     def parse_mw(text):
         try:
-            return float(text[:text.index('MW')])
+            return float(text[: text.index("MW")])
         except ValueError:
             return 0
 
     # date is specified like "Thursday, June 22, 2017"
-    source_date = find_div_by_class(soup, 'current_date').text
+    source_date = find_div_by_class(soup, "current_date").text
 
     # time is specified like "11:55 pm" or "2:25 am"
-    source_time = find_div_by_class(soup, 'current_time').text
-    datetime_text = '{} {}'.format(source_date, source_time)
-    datetime_arrow = arrow.get(datetime_text, 'dddd, MMMM D, YYYY h:mm A')
+    source_time = find_div_by_class(soup, "current_time").text
+    datetime_text = "{} {}".format(source_date, source_time)
+    datetime_arrow = arrow.get(datetime_text, "dddd, MMMM D, YYYY h:mm A")
     datetime_datetime = arrow.get(datetime_arrow.datetime, timezone).datetime
 
     # generation is specified like "37.69 MW - hydro"
-    hydro_div = find_div_by_class(soup, 'load_hydro')
+    hydro_div = find_div_by_class(soup, "load_hydro")
     hydro_text = hydro_div.div.text
     hydro_generation = parse_mw(hydro_text)
 
-    hydro_cap_div = find_div_by_class(soup, 'avail_hydro')
+    hydro_cap_div = find_div_by_class(soup, "avail_hydro")
     if hydro_cap_div:
         hydro_cap_text = hydro_cap_div.div.text
         hydro_capacity = parse_mw(hydro_cap_text)
@@ -84,7 +85,7 @@ def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logge
         # hydro capacity is not provided when thermal is used
         hydro_capacity = None
 
-    thermal_div = find_div_by_class(soup, 'load_thermal')
+    thermal_div = find_div_by_class(soup, "load_thermal")
     if thermal_div.div:
         thermal_text = thermal_div.div.text
         thermal_generation = parse_mw(thermal_text)
@@ -93,35 +94,29 @@ def fetch_production(zone_key='CA-YT', session=None, target_datetime=None, logge
         thermal_generation = 0
 
     data = {
-        'datetime': datetime_datetime,
-        'zoneKey': zone_key,
-        'production': {
-            'unknown': thermal_generation,
-
-            'hydro': hydro_generation,
-
+        "datetime": datetime_datetime,
+        "zoneKey": zone_key,
+        "production": {
+            "unknown": thermal_generation,
+            "hydro": hydro_generation,
             # specify some sources that aren't present in Yukon as zero,
             # this allows the analyzer to better estimate CO2eq
-            'coal': 0,
-            'nuclear': 0,
-            'geothermal': 0
+            "coal": 0,
+            "nuclear": 0,
+            "geothermal": 0,
         },
-        'storage': {},
-        'source': 'www.yukonenergy.ca'
+        "storage": {},
+        "source": "www.yukonenergy.ca",
     }
 
     if hydro_capacity:
-        data.update({
-            'capacity': {
-                'hydro': hydro_capacity
-            }
-        })
+        data.update({"capacity": {"hydro": hydro_capacity}})
 
     return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())

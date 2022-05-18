@@ -16,13 +16,13 @@ class UtilsTestCase(unittest.TestCase):
         self.assertEqual(requests.get(tested.TOKEN_WIKI_URL).status_code, 200)
 
     def test_get_token(self):
-        with mock.patch.dict('parsers.lib.utils.os.environ', {"token": "42"}):
-            self.assertEqual(tested.get_token('token'), "42")
+        with mock.patch.dict("parsers.lib.utils.os.environ", {"token": "42"}):
+            self.assertEqual(tested.get_token("token"), "42")
 
-        with mock.patch.dict('parsers.lib.utils.os.environ', {}):
+        with mock.patch.dict("parsers.lib.utils.os.environ", {}):
             with self.assertRaises(Exception):
-                tested.get_token('token')
+                tested.get_token("token")
 
-        with mock.patch.dict('parsers.lib.utils.os.environ', {"token": ""}):
+        with mock.patch.dict("parsers.lib.utils.os.environ", {"token": ""}):
             with self.assertRaises(Exception):
-                tested.get_token('token')
+                tested.get_token("token")

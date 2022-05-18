@@ -2,14 +2,16 @@
 
 """Parser for the electricity grid of Chile"""
 
-import arrow
 import logging
-import requests
 from collections import defaultdict
 from datetime import datetime, timedelta
 from operator import itemgetter
 
+import arrow
+import requests
+
 from parsers.lib.config import refetch_frequency
+
 from .lib.validation import validate
 
 # Historical API
@@ -122,16 +124,17 @@ def production_processor_historical(raw_data):
     if ENABLE_LIVE_PARSER:
         # For consistency with live API, hydro and geothermal must be squeezed into unknown
         for datapoint in ordered_data:
-            if 'unknown' not in datapoint:
-                datapoint['unknown'] = 0
-            if 'hydro' in datapoint:
-                datapoint['unknown'] += datapoint['hydro']
-                del datapoint['hydro']
-            if 'geothermal' in datapoint:
-                datapoint['unknown'] += datapoint['geothermal']
-                del datapoint['geothermal']
+            if "unknown" not in datapoint:
+                datapoint["unknown"] = 0
+            if "hydro" in datapoint:
+                datapoint["unknown"] += datapoint["hydro"]
+                del datapoint["hydro"]
+            if "geothermal" in datapoint:
+                datapoint["unknown"] += datapoint["geothermal"]
+                del datapoint["geothermal"]
 
     return ordered_data
+
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
