@@ -18,9 +18,11 @@ jobs:
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
-      - name: Upload screenshots
-        uses: actions/upload-artifact@latest
-        if: failure()
+      - name: Upload Cypress Screenshots and Videos
+        uses: actions/upload-artifact@v2
         with:
-          name: cypress-snapshots
-          path: cypress/snapshots
+          name: cypress-artifacts
+          path: |-
+            spec/cypress/screenshots
+            spec/cypress/videos
+        if: ${{ failure() }}
