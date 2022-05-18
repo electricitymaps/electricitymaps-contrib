@@ -3,12 +3,10 @@ on: push
 jobs:
   cypress-test:
     runs-on: ubuntu-20.04
-    env:
-      working-directory: ./web
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        working-directory: ${{env.working-directory}}
+        working-directory: ./web
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        working-directory: ${{env.working-directory}}
+        working-directory: ./web
