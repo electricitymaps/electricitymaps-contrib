@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
-import os
-import sys
 import argparse
-import pandas as pd
+import datetime
 import json
+import os
 import pathlib
+import sys
+
+import pandas as pd
 import requests
 import xmltodict
-import datetime
 
-from parsers.ENTSOE import ENTSOE_PARAMETER_DESC, ENTSOE_PARAMETER_GROUPS, ENTSOE_DOMAIN_MAPPINGS
+from parsers.ENTSOE import (
+    ENTSOE_DOMAIN_MAPPINGS,
+    ENTSOE_PARAMETER_DESC,
+    ENTSOE_PARAMETER_GROUPS,
+)
 
 ZONESFILE = pathlib.Path(__file__).parent.parent / "config" / "zones.json"
 
@@ -31,7 +36,7 @@ def update_zone(zone, data, zonesfile):
 
 def aggregate_data(data):
     """Aggregates data the way it is stated in
-     parsers.ENTSOE.ENTSOE_PARAMETER_GROUPS"""
+    parsers.ENTSOE.ENTSOE_PARAMETER_GROUPS"""
     categories = dict(ENTSOE_PARAMETER_GROUPS["production"])
     categories.update(ENTSOE_PARAMETER_GROUPS["storage"])
 
@@ -47,29 +52,44 @@ def parse_args():
     parser.add_argument("--zonesfile", default=ZONESFILE)
     parser.add_argument("--api-token", help="Security token of the ENTSOE API")
     parser.add_argument("zone", help="The zone abbreviation (e.g. AT)")
-    parser.add_argument("data_file", nargs="?", help="The csv file from ENTSOE containing the installed capacities")
+    parser.add_argument(
+        "data_file",
+        nargs="?",
+        help="The csv file from ENTSOE containing the installed capacities",
+    )
     return parser.parse_args()
 
 
 def parse_from_entsoe_api(zone, token):
     """Parses installed generation capacities from the ENTSOE API,
-       see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_reference_documentation"""
+    see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_reference_documentation"""
     if zone not in ENTSOE_DOMAIN_MAPPINGS:
-        print("Zone {} does not exist in the ENTSOE domain mapping".format(zone), file=sys.stderr)
+        print(
+            "Zone {} does not exist in the ENTSOE domain mapping".format(zone),
+            file=sys.stderr,
+        )
         exit(1)
 
     domain = ENTSOE_DOMAIN_MAPPINGS[zone]
 
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
-    url = ("https://transparency.entsoe.eu/api?securityToken={token}"
-         "&documentType=A68&processType=A33&in_Domain={domain}"
-         "&periodStart={date}0000&periodEnd={date}0000".format(
-         token=token, domain=domain, date=date))
+    url = (
+        "https://transparency.entsoe.eu/api?securityToken={token}"
+        "&documentType=A68&processType=A33&in_Domain={domain}"
+        "&periodStart={date}0000&periodEnd={date}0000".format(
+            token=token, domain=domain, date=date
+        )
+    )
     response = requests.get(url)
     if response.status_code != 200:
-      print("ERROR: Request to ENTSOE API failed with status {}".format(response.status_code), file=sys.stderr)
-      exit(1)
+        print(
+            "ERROR: Request to ENTSOE API failed with status {}".format(
+                response.status_code
+            ),
+            file=sys.stderr,
+        )
+        exit(1)
 
     data = xmltodict.parse(response.text)
 
@@ -81,7 +101,9 @@ def parse_from_entsoe_api(zone, token):
             value = time_series["Period"]["Point"]["quantity"]
             result[generation_type] = int(value)
     except Exception as e:
-        raise ValueError("Data for zone {} could not be retrieved from ENTSOE".format(zone), e)
+        raise ValueError(
+            "Data for zone {} could not be retrieved from ENTSOE".format(zone), e
+        )
 
     return result
 
@@ -100,30 +122,33 @@ def parse_from_csv(filepath):
 
 def main():
     args = parse_args()
-    
+
     zone = args.zone
     zonesfile = args.zonesfile
     data_file = args.data_file
 
     if not os.path.exists(zonesfile):
-        print("ERROR: Zonesfile {} does not exist.".format(zonesfile),
-              file=sys.stderr)
+        print("ERROR: Zonesfile {} does not exist.".format(zonesfile), file=sys.stderr)
         sys.exit(1)
 
     if data_file is not None:
         if not os.path.exists(data_file):
-            print("ERROR: Data file {} does not exist.".format(data_file),
-                  file=sys.stderr)
+            print(
+                "ERROR: Data file {} does not exist.".format(data_file), file=sys.stderr
+            )
             sys.exit(1)
         data = parse_from_csv(data_file)
     else:
         token = args.api_token
         if token is None:
-            print("ERROR: If no CSV file is given, the option --api-token must be provided", file=sys.stderr)
+            print(
+                "ERROR: If no CSV file is given, the option --api-token must be provided",
+                file=sys.stderr,
+            )
             exit(1)
 
         data = parse_from_entsoe_api(zone, token)
-    
+
     aggregated_data = aggregate_data(data)
 
     print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))

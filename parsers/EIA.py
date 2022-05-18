@@ -383,9 +383,8 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            negative_threshold = ( 
-                NEGATIVE_PRODUCTION_THRESHOLDS_TYPE
-                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"])
+            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
+                type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
             )
 
             if (

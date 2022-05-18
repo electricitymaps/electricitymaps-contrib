@@ -133,7 +133,7 @@ def fetch_exchange(
 
 
 def fetch_region_exchange(
-    region1, region2, session=None, target_datetime=None, logger=None
+    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
 ) -> dict:
     """Requests the last known power exchange (in MW) between two Brazilian regions."""
     if target_datetime:
@@ -141,7 +141,7 @@ def fetch_region_exchange(
 
     data = get_data(session)
     dt = arrow.get(data["Data"]).datetime
-    sorted_regions = "->".join(sorted([region1, region2]))
+    sorted_regions = "->".join(sorted([zone_key1, zone_key2]))
 
     exchange = REGION_EXCHANGES[sorted_regions]
     net_flow = (

@@ -36,6 +36,7 @@ sources = {
 }
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
+
 @refetch_frequency(dt.timedelta(days=1))
 def fetch_production(
     zone_key="JP-TK",
@@ -132,7 +133,7 @@ def fetch_consumption_df(
     For JP-CB the consumption file includes solar production.
     """
     if target_datetime is not None and zone_key in ZONES_ONLY_LIVE:
-         raise NotImplementedError('This parser can only fetch live data')
+        raise NotImplementedError("This parser can only fetch live data")
     datestamp = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y%m%d")
     consumption_url = {
         "JP-HKD": "http://denkiyoho.hepco.co.jp/area/data/juyo_01_{}.csv".format(
@@ -268,6 +269,7 @@ def fetch_consumption_forecast(
         )
 
     return data
+
 
 @refetch_frequency(dt.timedelta(days=1))
 def fetch_price(
