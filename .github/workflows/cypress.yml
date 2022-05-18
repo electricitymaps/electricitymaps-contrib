@@ -1,5 +1,9 @@
 name: End to end test
 on: push
+
+env:
+  SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN: ${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
+
 jobs:
   cypress-test:
     runs-on: ubuntu-20.04
@@ -14,5 +18,3 @@ jobs:
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
-          env:
-            SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN: ${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
