@@ -1,5 +1,7 @@
 name: End to end test
 on: push
+env:
+  SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}'
 
 jobs:
   cypress-test:
@@ -10,7 +12,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          env: SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}'
+          # env: SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}'
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
