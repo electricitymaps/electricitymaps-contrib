@@ -1,7 +1,6 @@
-name: Cypress tests
+name: Cypress
 on:
-  pull_request:
-    types: [ labeled ]
+  pull_request
 env:
   SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}' # token has to be escaped
 
