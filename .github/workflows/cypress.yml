@@ -17,10 +17,12 @@ jobs:
       - name: log2
         run: echo ${{ secrets.SNOWPACK_DUMMY_TOKEN }}
       - name: log3
-        run: echo hello world
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          working-directory: ./web
-          start: SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=${{ secrets.SNOWPACK_DUMMY_TOKEN }} yarn develop
-          wait-on: "http://localhost:8080"
+        run: echo hello $$ world
+      - name: log4
+        run: echo 'hello $$ world'
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     working-directory: ./web
+      #     start: yarn develop
+      #     wait-on: "http://localhost:8080"
