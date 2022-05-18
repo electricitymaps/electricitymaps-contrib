@@ -6,7 +6,8 @@ import i18next from './i18n';
 const translateWithTranslator = (translator, key, ...args) => {
   const translation = translator(key, '');
   if (args.length > 0) {
-    return vsprintf(translation, args);
+    const argsAsStrings = args.map(arg => String(arg));
+    return vsprintf(translation, argsAsStrings);
   }
   return translation;
 };
