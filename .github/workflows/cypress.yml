@@ -2,7 +2,7 @@ name: End to end test
 on: push
 
 env:
-  SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: ${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
+  SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: ${{ secrets.SNOWPACK_DUMMY_TOKEN }}
 
 jobs:
   cypress-test:
@@ -12,17 +12,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           working-directory: ./web
+      - name: log1
+        run: echo ${{ env.SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}
+      - name: log2
+        run: echo ${{ secrets.SNOWPACK_DUMMY_TOKEN }}
+      - name: log3
+        run: echo hello world
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
-      - name: Upload Cypress Screenshots and Videos
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-artifacts
-          path: |-
-            spec/cypress/screenshots
-            spec/cypress/videos
-        if: ${{ failure() }}
