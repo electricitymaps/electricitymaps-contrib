@@ -20,7 +20,6 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-    energieopwek_nl=False,
 ):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
@@ -128,34 +127,9 @@ def fetch_production(
     )
 
     # Fetch all production
-    # The energieopwek_nl parser is backwards compatible with ENTSOE parser.
-    # Because of data quality issues we switch to using energieopwek, but if
-    # data quality of ENTSOE improves we can switch back to using a single
-    # source.
-    productions_ENTSOE = ENTSOE.fetch_production(
+    productions = ENTSOE.fetch_production(
         zone_key=zone_key, session=r, target_datetime=target_datetime, logger=logger
     )
-    if energieopwek_nl:
-        productions_eopwek = fetch_production_energieopwek_nl(
-            session=r, target_datetime=target_datetime, logger=logger
-        )
-        # For every production value we look up the corresponding ENTSOE
-        # values and copy the nuclear, gas, coal, biomass and unknown production.
-        productions = []
-        for p in productions_eopwek:
-            entsoe_value = next(
-                (pe for pe in productions_ENTSOE if pe["datetime"] == p["datetime"]),
-                None,
-            )
-            if entsoe_value:
-                p["production"]["nuclear"] = entsoe_value["production"]["nuclear"]
-                p["production"]["gas"] = entsoe_value["production"]["gas"]
-                p["production"]["coal"] = entsoe_value["production"]["coal"]
-                p["production"]["biomass"] = entsoe_value["production"]["biomass"]
-                p["production"]["unknown"] = entsoe_value["production"]["unknown"]
-                productions.append(p)
-    else:
-        productions = productions_ENTSOE
     if not productions:
         return
 

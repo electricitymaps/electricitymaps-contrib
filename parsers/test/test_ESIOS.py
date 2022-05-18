@@ -1,3 +1,4 @@
+import os
 import unittest
 from json import loads
 
@@ -18,9 +19,8 @@ class TestESIOS(unittest.TestCase):
         json_data = resource_string("parsers.test.mocks", "ESIOS_ES_MA.json")
         self.adapter.register_uri(ANY, ANY, json=loads(json_data.decode("utf-8")))
         try:
-            data_list = ESIOS.fetch_exchange(
-                "ES", "MA", self.session, "ESIOS_MOCK_TOKEN"
-            )
+            os.environ["ESIOS_TOKEN"] = "token"
+            data_list = ESIOS.fetch_exchange("ES", "MA", self.session)
             self.assertIsNotNone(data_list)
             for data in data_list:
                 self.assertEqual(data["sortedZoneKeys"], "ES->MA")
