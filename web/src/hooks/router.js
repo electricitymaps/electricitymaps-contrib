@@ -2,20 +2,23 @@ import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export function useSearchParams() {
-  return new URLSearchParams(useLocation().search);
+  const { search } = useLocation();
+  return useMemo(() => {
+    return new URLSearchParams(search);
+  }, [search]);
 }
 
 export function useFeatureToggle(selectedFeature = null) {
   const searchParams = useSearchParams();
+  const featureToggles = searchParams.get('feature');
 
   return useMemo(() => {
-    const featureToggles = searchParams.get('feature');
     if (selectedFeature) {
       return featureToggles && featureToggles.split(',').includes(selectedFeature);
     } else {
       return featureToggles ? featureToggles.split(',') : [];
     }
-  }, [selectedFeature, searchParams]);
+  }, [selectedFeature, featureToggles]);
 }
 
 export function useCustomDatetime() {
