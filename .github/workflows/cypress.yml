@@ -6,7 +6,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        working-directory: ./web
+        with:
+          working-directory: ./web
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        working-directory: ./web
+        with:
+          working-directory: ./web
