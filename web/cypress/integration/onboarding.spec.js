@@ -1,6 +1,6 @@
 describe('Onboarding appears for the first time', () => {
   it('Asserts onboarding appears', () => {
-    cy.visit('localhost:8080/map');
+    cy.visit('/map');
     cy.get('[data-test-id=onboarding]').should('exist');
   });
 });
@@ -8,7 +8,7 @@ describe('Onboarding appears for the first time', () => {
 describe('Onboarding does not appear', () => {
   it('Asserts onboarding does not appear when already seen', () => {
     window.localStorage.setItem('onboardingSeen', true);
-    cy.visit('localhost:8080/map');
+    cy.visit('/map');
     cy.get('[data-test-id=onboarding]').should('not.exist');
   });
 });
