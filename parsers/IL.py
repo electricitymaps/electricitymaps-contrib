@@ -15,8 +15,8 @@ Shares of Electricity production in 2019:
 import re
 
 import arrow
-from requests import get
 from bs4 import BeautifulSoup
+from requests import get
 
 IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (

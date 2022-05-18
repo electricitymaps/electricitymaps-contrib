@@ -1,15 +1,15 @@
 import json
-from typing import Callable, Dict, List, NewType, Tuple, Optional
+from typing import Callable, Dict, List, NewType, Optional, Tuple
 
 from pydantic import BaseModel, Field, NonNegativeInt, PositiveInt
 from pydantic.utils import import_string
 
 from electricitymap.contrib.config import (
     EXCHANGES_CONFIG,
-    ZONES_CONFIG,
     ZONE_NEIGHBOURS,
-    ZoneKey,
+    ZONES_CONFIG,
     Point,
+    ZoneKey,
 )
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
