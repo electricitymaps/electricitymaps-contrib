@@ -1,4 +1,4 @@
-describe('Onboarding appears for the first time', () => {
+describe('Onboarding', () => {
   it('Asserts onboarding appears', () => {
     cy.visit('/map');
     cy.get('[data-test-id=onboarding]').should('exist');
