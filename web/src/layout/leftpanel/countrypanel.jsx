@@ -400,7 +400,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </StyledSources>
           </React.Fragment>
         ) : (
-          <div className="zone-details-no-parser-message">
+          <div className="zone-details-no-parser-message" data-test-id="no-parser-message">
             <span
               dangerouslySetInnerHTML={{
                 __html: __(
