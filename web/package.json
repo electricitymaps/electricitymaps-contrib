@@ -116,7 +116,7 @@
     "update-world": "node ./geo/update-world.js && yarn prettier --write 'geo/world.geojson'",
     "verify": "VERIFY_NO_UPDATES=1 yarn update-world",
     "mockserver": "cd ../mockserver && node server.js",
-    "cypress-test": "yarn cypress run"
+    "cypress-test": "cypress run"
   },
   "browserslist": [
     "defaults",
