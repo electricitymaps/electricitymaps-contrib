@@ -12,7 +12,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           working-directory: ./web
-          start: "yarn develop"
+          start: yarn develop
           wait-on: "http://localhost:8080"
           env:
             SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN: ${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
