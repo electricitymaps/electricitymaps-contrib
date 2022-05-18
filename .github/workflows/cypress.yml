@@ -3,8 +3,6 @@ on: push
 jobs:
   cypress-test:
     runs-on: ubuntu-20.04
-    env:
-      API-KEY: ${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -13,6 +11,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          env: SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN=${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}
           working-directory: ./web
-          start: "SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN=$API-KEY yarn develop"
+          start: yarn develop
           wait-on: "http://localhost:8080"
