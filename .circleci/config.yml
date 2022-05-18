@@ -3,7 +3,7 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: cimg/node:14.19
+      - image: cimg/node:16.15
 
 jobs:
   verify_python:

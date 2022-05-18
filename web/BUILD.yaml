@@ -1,7 +1,7 @@
 steps:
 
   prepare:
-    image: node:14.19
+    image: node:16.15
     inputs:
       - package.json
       - yarn.lock
