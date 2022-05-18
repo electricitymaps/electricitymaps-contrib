@@ -38,14 +38,18 @@ PATTERN = re.compile(r"\((.*)\)")
 # fetched, it will be fetched again during the same hour. (As far as I can
 # tell, the table is always populated within 15 min of the turn of the hour).
 @config.refetch_frequency(datetime.timedelta(minutes=45))
-def fetch_production(zone_key="NG",
-                     session=None,
-                     target_datetime=None,
-                     logger=logging.getLogger(__name__)) -> dict:
+def fetch_production(
+    zone_key="NG",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
-    timestamp = arrow.get(target_datetime) \
-                     .to("Africa/Lagos") \
-                     .replace(minute=0, second=0, microsecond=0)
+    timestamp = (
+        arrow.get(target_datetime)
+        .to("Africa/Lagos")
+        .replace(minute=0, second=0, microsecond=0)
+    )
 
     # GET the landing page (HTML) and scrape some form data from it.
     session = session or requests.Session()
@@ -71,15 +75,17 @@ def fetch_production(zone_key="NG",
         production_mix[technology] += float(power)
 
     # Return the production mix.
-    return validation.validate({
-                                   "zoneKey": zone_key,
-                                   "datetime": timestamp.datetime,
-                                   "production": production_mix,
-                                   "source": API_URL.netloc,
-                               },
-                               logger,
-                               floor=10.0,
-                               remove_negative=True)
+    return validation.validate(
+        {
+            "zoneKey": zone_key,
+            "datetime": timestamp.datetime,
+            "production": production_mix,
+            "source": API_URL.netloc,
+        },
+        logger,
+        floor=10.0,
+        remove_negative=True,
+    )
 
 
 if __name__ == "__main__":

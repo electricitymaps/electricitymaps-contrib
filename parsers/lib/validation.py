@@ -1,7 +1,8 @@
 """Centralised validation function for all parsers."""
 
+import logging
+import math
 from logging import getLogger
-import math, logging
 
 import numpy as np
 import pandas as pd
