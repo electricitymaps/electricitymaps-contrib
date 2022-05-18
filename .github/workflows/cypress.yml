@@ -12,9 +12,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           working-directory: ./web
+      - name: log
+        run: echo $SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           working-directory: ./web
           start: yarn develop
-          wait-on: "http://localhost:8080"
+          wait-on: "http://localhost:8080?remote=true"
