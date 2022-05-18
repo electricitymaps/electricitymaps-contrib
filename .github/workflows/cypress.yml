@@ -18,4 +18,9 @@ jobs:
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
-          wait-on-timeout: 120
+      - name: Upload screenshots
+        uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: cypress/snapshots
