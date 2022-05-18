@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
+    'plugin:cypress/recommended',
     'plugin:prettier/recommended',
   ],
   plugins: ['@babel', 'react-hooks'],
@@ -23,7 +24,7 @@ module.exports = {
   env: {
     es6: true,
     browser: true,
-    node: true,
+    node: true
   },
   root: true,
   ignorePatterns: ['dist', 'build', '**/node_modules', '!.eslintrc.js', 'coverage'],
