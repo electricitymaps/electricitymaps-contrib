@@ -24,6 +24,8 @@ from electricitymap.contrib.config import (
 
 # NOTE: we could cast Point to a NamedTuple with x/y accessors
 
+Percentage = confloat(ge=0, le=1)
+
 
 class StrictBaseModel(BaseModel):
     class Config:
@@ -121,24 +123,20 @@ class Exchange(StrictBaseModelWithAlias):
 
 
 class PowerOriginRatiosValues(StrictBaseModelWithAlias):
-    battery_charge: Optional[confloat(ge=0, le=1)] = Field(None, alias="battery charge")
-    battery_discharge: Optional[confloat(ge=0, le=1)] = Field(
-        None, alias="battery discharge"
-    )
-    biomass: Optional[confloat(ge=0, le=1)]
-    coal: Optional[confloat(ge=0, le=1)]
-    gas: Optional[confloat(ge=0, le=1)]
-    geothermal: Optional[confloat(ge=0, le=1)]
-    hydro_discharge: Optional[confloat(ge=0, le=1)] = Field(
-        None, alias="hydro discharge"
-    )
-    hydro_charge: Optional[confloat(ge=0, le=1)] = Field(None, alias="hydro charge")
-    hydro: Optional[confloat(ge=0, le=1)]
-    nuclear: Optional[confloat(ge=0, le=1)]
-    oil: Optional[confloat(ge=0, le=1)]
-    solar: Optional[confloat(ge=0, le=1)]
-    unknown: Optional[confloat(ge=0, le=1)]
-    wind: Optional[confloat(ge=0, le=1)]
+    battery_charge: Optional[Percentage] = Field(None, alias="battery charge")
+    battery_discharge: Optional[Percentage] = Field(None, alias="battery discharge")
+    biomass: Optional[Percentage]
+    coal: Optional[Percentage]
+    gas: Optional[Percentage]
+    geothermal: Optional[Percentage]
+    hydro_discharge: Optional[Percentage] = Field(None, alias="hydro discharge")
+    hydro_charge: Optional[Percentage] = Field(None, alias="hydro charge")
+    hydro: Optional[Percentage]
+    nuclear: Optional[Percentage]
+    oil: Optional[Percentage]
+    solar: Optional[Percentage]
+    unknown: Optional[Percentage]
+    wind: Optional[Percentage]
 
     @root_validator
     @classmethod
@@ -179,7 +177,7 @@ class ModeCategoryContribution(StrictBaseModelWithAlias):
     comment: Optional[str] = Field(None, alias="_comment")
     url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[datetime, date]]
-    value: Optional[confloat(ge=0, le=1)]
+    value: Optional[Percentage]
 
 
 class CategoryContribution(StrictBaseModelWithAlias):
