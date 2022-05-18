@@ -93,7 +93,6 @@
     "sass-loader": "10.1.1",
     "shapefile": "^0.6.2",
     "snowpack": "^3.8.8",
-    "topojson-client": "^3.1.0",
     "topojson-server": "^3.0.1",
     "webpack": "^5.72.1",
     "webpack-bundle-analyzer": "^4.5.0",
