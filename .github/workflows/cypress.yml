@@ -13,7 +13,7 @@ jobs:
         with:
           working-directory: ./web
       - name: log1
-        run: echo ${{ env.SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}
+        run: echo '${{ env.SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN }}'
       - name: log2
         run: echo '${{ secrets.SNOWPACK_DUMMY_TOKEN }}'
       - name: log3
