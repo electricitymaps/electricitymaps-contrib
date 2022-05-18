@@ -18,3 +18,4 @@ jobs:
           working-directory: ./web
           start: yarn develop
           wait-on: "http://localhost:8080"
+          wait-on-timeout: 120
