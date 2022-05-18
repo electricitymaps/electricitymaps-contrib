@@ -1,6 +1,6 @@
 {
   "projectId": "9z8tgk",
-  "video": true,
-  "screenshotOnRunFailure": true,
+  "video": false,
+  "screenshotOnRunFailure": false,
   "baseUrl": "http://localhost:8080"
 }
