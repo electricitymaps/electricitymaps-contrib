@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from __future__ import annotations
+from typing import Optional
 
 import arrow
 import requests
@@ -46,7 +46,7 @@ def fetch_production(
     return data
 
 
-def extract_exchange(raw_data, exchange) -> float | None:
+def extract_exchange(raw_data, exchange) -> Optional[float]:
     """Extracts flow value and direction for a given exchange."""
     search_value = JSON_MAPPING[exchange]
 

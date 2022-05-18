@@ -37,7 +37,11 @@ TIME_ZONE_MAPPING = {
 }
 
 
-def fetch_consumption(zone_key, session=None, logger=None):
+def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
     r = session or requests.session()
     url = "https://www.gccia.com.sa/"
     response = r.get(url)

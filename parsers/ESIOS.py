@@ -14,11 +14,14 @@ from .lib.utils import get_token
 
 
 def fetch_exchange(
-    zone_key1="ES", zone_key2="MA", session=None, token=None, logger=None
+    zone_key1="ES", zone_key2="MA", session=None, target_datetime=None, logger=None
 ) -> list:
 
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
     # Get ESIOS token
-    token = token or get_token("ESIOS_TOKEN")
+    token = get_token("ESIOS_TOKEN")
 
     ses = session or requests.Session()
 

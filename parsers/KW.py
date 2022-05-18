@@ -36,7 +36,10 @@ def fetch_production(zone_key="KW", session=None, target_datetime=None, logger=N
     return datapoint
 
 
-def fetch_consumption(zone_key="KW", session=None, logger=None):
+def fetch_consumption(zone_key="KW", session=None, target_datetime=None, logger=None):
+    if target_datetime:
+        raise NotImplementedError("This parser is not yet able to parse past dates")
+
     r = session or requests.session()
     url = "https://www.mew.gov.kw/en"
     response = r.get(url)

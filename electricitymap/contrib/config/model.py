@@ -36,15 +36,7 @@ class Capacity(StrictBaseModel):
     wind: Optional[NonNegativeInt]
 
 
-class Parsers(StrictBaseModel):
-    consumption: Optional[str]
-    consumptionForecast: Optional[str]
-    generationForecast: Optional[str]
-    productionPerModeForecast: Optional[str]
-    price: Optional[str]
-    production: Optional[str]
-    productionPerUnit: Optional[str]
-
+class ParsersBaseModel(StrictBaseModel):
     def get_function(self, type: str) -> Optional[Callable]:
         """Lazy load parser functions.
 
@@ -56,6 +48,16 @@ class Parsers(StrictBaseModel):
         function_str = getattr(self, type)
         if function_str:
             return import_string(f"electricitymap.contrib.parsers.{function_str}")
+
+
+class Parsers(ParsersBaseModel):
+    consumption: Optional[str]
+    consumptionForecast: Optional[str]
+    generationForecast: Optional[str]
+    productionPerModeForecast: Optional[str]
+    price: Optional[str]
+    production: Optional[str]
+    productionPerUnit: Optional[str]
 
 
 class Delays(StrictBaseModel):
@@ -90,7 +92,7 @@ class Zone(StrictBaseModel):
         allow_population_by_field_name = True
 
 
-class ExchangeParsers(StrictBaseModel):
+class ExchangeParsers(ParsersBaseModel):
     exchange: Optional[str]
     exchangeForecast: Optional[str]
 
