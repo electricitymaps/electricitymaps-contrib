@@ -92,7 +92,7 @@
     "sass": "^1.50.1",
     "sass-loader": "10.1.1",
     "shapefile": "^0.6.2",
-    "snowpack": "^3.8.8",
+    "snowpack": "3.8.6",
     "topojson-server": "^3.0.1",
     "webpack": "^5.72.1",
     "webpack-bundle-analyzer": "^4.5.0",
