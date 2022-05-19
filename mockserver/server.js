@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const fs = require("fs");
+const url = require("url");
+
 
 const PORT = process.argv[2] || 8001
 
@@ -13,6 +15,17 @@ app.get("/v4/history", (req, res, next) => {
     // we alter the URL to search for the specific history file if available
     res.redirect(`/v4/history_${countryCode}`);
   } else {
+    next();
+  }
+});
+
+app.use(function (req, res, next) {
+  // Get rid of query parameters so we can serve static files
+  if (Object.entries(req.query).length !== 0) {
+      res.redirect(url.parse(req.url).pathname);
+  } else {
+    // Log all requests to static files
+    console.log(req.method, req.path)
     next();
   }
 });

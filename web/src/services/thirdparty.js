@@ -1,8 +1,7 @@
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
 import twitterConnection from './thirdparty/twitter';
-import mixpanelConnection from './thirdparty/mixpanel';
-import plausibleConnection from './thirdparty/plausible'
+import plausibleConnection from './thirdparty/plausible';
 import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
@@ -15,13 +14,11 @@ function reportToSentry(e) {
   }
 }
 
-
-class ConnectionsService {  
+class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
       this.addConnection(new twitterConnection());
-      this.addConnection(new mixpanelConnection());
       this.addConnection(new plausibleConnection());
     } else {
       this.addConnection(new debugConsoleConnection());
@@ -34,15 +31,15 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log("tracking totally");
+    console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
-      } catch (err) { console.error(`External connection error: ${err}`); }
+      } catch (err) {
+        console.error(`External connection error: ${err}`);
+      }
     });
   }
-
- 
 
   // track errors
   trackError(e) {

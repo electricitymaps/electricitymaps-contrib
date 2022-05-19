@@ -2,15 +2,19 @@ import { bisectLeft } from 'd3-array';
 import { touches } from 'd3-selection';
 
 export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgNode) => {
-  if (!datetimes.length) return null;
-  const dx = ev.pageX
-    ? (ev.pageX - svgNode.getBoundingClientRect().left)
-    : (touches(this)[0][0]);
+  if (!datetimes.length) {
+    return null;
+  }
+  const dx = ev.pageX ? ev.pageX - svgNode.getBoundingClientRect().left : touches(this)[0][0];
   const datetime = timeScale.invert(dx);
   // Find data point closest to
   let i = bisectLeft(datetimes, datetime);
-  if (i > 0 && datetime - datetimes[i - 1] < datetimes[i] - datetime) i -= 1;
-  if (i > datetimes.length - 1) i = datetimes.length - 1;
+  if (i > 0 && datetime - datetimes[i - 1] < datetimes[i] - datetime) {
+    i -= 1;
+  }
+  if (i > datetimes.length - 1) {
+    i = datetimes.length - 1;
+  }
   return i;
 };
 

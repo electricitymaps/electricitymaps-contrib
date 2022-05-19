@@ -1,5 +1,4 @@
-import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 export const useTrackEvent = () => {
@@ -9,21 +8,6 @@ export const useTrackEvent = () => {
     () => (eventName, context) => {
       dispatch({ type: 'TRACK_EVENT', payload: { eventName, context } });
     },
-    [dispatch],
+    [dispatch]
   );
-};
-
-export const usePageViewsTracker = () => {
-  const { pathname } = useLocation();
-  const trackEvent = useTrackEvent();
-
-  // Track app visit once initially.
-  useEffect(() => {
-    trackEvent('Visit');
-  }, []);
-
-  // Track page view whenever the pathname changes (ignore search params changes).
-  useEffect(() => {
-    trackEvent('pageview');
-  }, [pathname]);
 };

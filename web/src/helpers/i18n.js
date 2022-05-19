@@ -1,10 +1,12 @@
-import moment from 'moment';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { isProduction } from './environment';
+import { LOCALE_TO_FACEBOOK_LOCALE } from './constants';
 import { history } from './router';
+
+const LOCALES_PATH = window.isCordova ? 'locales' : '/locales';
 
 function hideLanguageSearchParam() {
   const searchParams = new URLSearchParams(history.location.search);
@@ -45,7 +47,7 @@ function requestWithXmlHttpRequest(options, url, payload, callback) {
     };
     x.send(payload);
   } catch (e) {
-    console && console.log(e);
+    console && console.error(e);
   }
 }
 
@@ -58,14 +60,14 @@ i18n
     fallbackLng: 'en',
     debug: isProduction() ? false : true,
     backend: {
-      loadPath: 'locales/{{lng}}.json',
+      loadPath: `${LOCALES_PATH}/{{lng}}.json`,
       crossDomain: true,
       request: requestWithXmlHttpRequest,
     },
     detection: {
-      order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
-      caches: ['localStorage', 'cookie'],
+      caches: ['localStorage'],
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -76,8 +78,10 @@ i18n
   });
 
 i18n.on('languageChanged', function (lng) {
-  moment.locale(lng);
   document.documentElement.setAttribute('lang', lng);
+  // TODO: Use react-helmet to manage meta tags
+  document.title = `electricityMap | ${i18n.t('misc.maintitle')}`;
+  document.querySelector('meta[property="og:locale"]').setAttribute('content', LOCALE_TO_FACEBOOK_LOCALE[lng]);
 });
 
 export default i18n;

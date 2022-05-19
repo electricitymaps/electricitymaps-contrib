@@ -5,17 +5,8 @@ const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const http = require('http');
-const i18n = require('i18n');
 const auth = require('basic-auth');
-const { vsprintf } = require('sprintf-js');
 
-
-// Custom module
-const {
-  getSingleTranslationStatusJSON,
-  getTranslationStatusJSON,
-  getTranslationStatusSVG,
-} = require(`${__dirname}/translation-status`);
 const {
   localeToFacebookLocale,
   supportedFacebookLocales,
@@ -40,20 +31,7 @@ app.use((req, res, next) => {
 // * Templating
 app.set('view engine', 'ejs');
 
-// * i18n
 const locales = Object.keys(languageNames);
-i18n.configure({
-  // where to store json files - defaults to './locales' relative to modules directory
-  // note: detected locales are always lowercase
-  locales,
-  directory: `${__dirname}/locales`,
-  defaultLocale: 'en',
-  queryParameter: 'lang',
-  objectNotation: true,
-  updateFiles: false, // whether to write new locale information to disk
-});
-
-app.use(i18n.init);
 // For supportedFacebookLocales:
 // Populate using
 // https://developers.facebook.com/docs/messenger-platform/messenger-profile/supported-locales/
@@ -68,19 +46,6 @@ const localeConfigs = {};
 locales.forEach((d) => {
   localeConfigs[d] = require(`${__dirname}/public/locales/${d}.json`);
 });
-function translateWithLocale(locale, keyStr) {
-  const keys = keyStr.split('.');
-  let result = localeConfigs[locale];
-  for (let i = 0; i < keys.length; i += 1) {
-    if (result == null) { break; }
-    result = result[keys[i]];
-  }
-  if (locale !== 'en' && !result) {
-    return translateWithLocale('en', keyStr);
-  }
-  const formatArgs = Array.prototype.slice.call(arguments).slice(2); // remove 2 first
-  return result && vsprintf(result, formatArgs);
-}
 
 // * Long-term caching
 function getHash(key, ext, obj) {
@@ -98,14 +63,6 @@ function getHash(key, ext, obj) {
 const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
-
-// Translation status
-app.get('/translationstatus/badges.svg', (req, res) => {
-  res.set('Content-Type', 'image/svg+xml;charset=utf-8');
-  res.end(getTranslationStatusSVG(locales));
-});
-app.get('/translationstatus', (req, res) => res.json(getTranslationStatusJSON(locales)));
-app.get('/translationstatus/:language', (req, res) => res.json(getSingleTranslationStatusJSON(req.params.language)));
 
 // API
 app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
@@ -174,6 +131,7 @@ app.use('/', (req, res) => {
       res.cookie('electricitymap-token', process.env.ELECTRICITYMAP_TOKEN);
     }
     res.render('pages/index', {
+      maintitle: localeConfigs[locale || 'en'].misc.maintitle,
       alternateUrls: locales.map((l) => {
         if (canonicalUrl.indexOf('lang') !== -1) {
           return canonicalUrl.replace(`lang=${req.query.lang}`, `lang=${l}`);
@@ -182,7 +140,7 @@ app.use('/', (req, res) => {
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
-      stylesHash: getHash('styles', 'css', manifest),
+      bundleStylesHash: getHash('bundle', 'css', manifest),
       vendorStylesHash: getHash('vendor', 'css', manifest),
       // Make the paths absolute as that's required for BrowserHistory routing
       // to work normally and it's also ok when used with the https:// protocol
@@ -197,17 +155,9 @@ app.use('/', (req, res) => {
           // sure we can serve older bundle versions
           `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
-      locale,
-      locales: { en: localeConfigs.en, [locale]: localeConfigs[locale] },
       supportedLocales: locales,
-      FBLocale: localeToFacebookLocale[locale],
-      supportedFBLocales: supportedFacebookLocales,
-      __() {
-        const argsArray = Array.prototype.slice.call(arguments);
-        // Prepend the first argument which is the locale
-        argsArray.unshift(locale);
-        return translateWithLocale.apply(null, argsArray);
-      },
+      FBLocale: localeToFacebookLocale[locale || 'en'],
+      supportedFBLocales: supportedFacebookLocales
     });
   }
 });

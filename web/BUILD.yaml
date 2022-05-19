@@ -1,7 +1,7 @@
 steps:
 
   prepare:
-    image: node:12
+    image: node:16.15
     inputs:
       - package.json
       - yarn.lock
@@ -18,7 +18,7 @@ steps:
       # source code
       - ../config/{exchanges,zones}.json
       - ./{locales-config.json,translation-status.js}
-      - public/{css,fonts,images,locales,apple-app-site-association,browserconfig.xml,manifest.json,client-version.json}
+      - public/{fonts,images,locales,apple-app-site-association,browserconfig.xml,manifest.json,client-version.json}
       - src
       - views
       - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
@@ -35,6 +35,8 @@ steps:
     image: google/cloud-sdk:243.0.0
     commands:
       - gsutil -m cp -a public-read -r public/* gs://static.electricitymap.org/public_web
+      - gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/client-version.json
+      - gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/dist/manifest.json
     secrets:
       gcloud:
         src: ~/.config/gcloud
