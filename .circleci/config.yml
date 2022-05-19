@@ -3,7 +3,7 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: circleci/node:12.22
+      - image: cimg/node:16.15
 
 jobs:
   verify_python:
@@ -39,7 +39,7 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo npm install -g jsonlint-mod
+            npm install -g jsonlint-mod
             jsonlint -q config/*.json web/public/locales/*.json
 
   verify_web_js:
