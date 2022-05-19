@@ -10,8 +10,8 @@ import time
 
 import arrow
 import click
-
 from electricitymap.contrib.parsers.lib.parsers import PARSER_KEY_TO_DICT
+
 from parsers.lib.quality import (
     ValidationError,
     validate_consumption,

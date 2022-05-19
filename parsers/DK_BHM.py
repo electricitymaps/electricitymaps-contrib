@@ -43,7 +43,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="DK-BHM", zone_key2="SE-SE4", session=None, target_datetime=None, logger=None
+    zone_key1="DK-BHM",
+    zone_key2="SE-SE4",
+    session=None,
+    target_datetime=None,
+    logger=None,
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 
