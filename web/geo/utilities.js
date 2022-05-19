@@ -56,4 +56,14 @@ function log(message) {
   console.error('\x1b[31m%s\x1b[0m', `ERROR: ${message}`);
 }
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON, log };
+/**
+ * Function to round a number to a specific amount of decimals.
+ * @param {number} number - The number to round.
+ * @param {number} decimals - Defaults to 2 decimals.
+ * @returns {number} Rounded number.
+ */
+const round = (number, decimals = 2) => {
+  return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
+};
+
+module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, round };

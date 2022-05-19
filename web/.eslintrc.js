@@ -7,18 +7,19 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
+    'plugin:cypress/recommended',
     'plugin:prettier/recommended',
   ],
   plugins: ['@babel', 'react-hooks'],
-  "globals": {
-    "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
-    "VERSION": "readonly",
-    "codePush": "readonly",
-    "device": "readonly",
-    "cordova": "readonly",
-    "resolvePath": "readonly",
-    "universalLinks": "readonly",
-    "InstallMode": "readonly",
+  globals: {
+    ELECTRICITYMAP_PUBLIC_TOKEN: 'readonly',
+    VERSION: 'readonly',
+    codePush: 'readonly',
+    device: 'readonly',
+    cordova: 'readonly',
+    resolvePath: 'readonly',
+    universalLinks: 'readonly',
+    InstallMode: 'readonly',
   },
   env: {
     es6: true,
@@ -59,10 +60,7 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'no-implicit-coercion': 'error',
     'no-param-reassign': 'error',
-    'no-unused-vars': [
-      'error',
-      { args: 'after-used', argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-    ],
+    'no-unused-vars': ['error', { args: 'after-used', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
@@ -73,15 +71,16 @@ module.exports = {
     'object-shorthand': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    'curly': 'error',
+    curly: 'error',
     'no-nested-ternary': 'error',
-    'no-underscore-dangle': ['error',
-        {
-        "allowAfterThis": true,
-        "allow": ["__", "__REDUX_DEVTOOLS_EXTENSION__"]
-        }
+    'no-underscore-dangle': [
+      'error',
+      {
+        allowAfterThis: true,
+        allow: ['__', '__REDUX_DEVTOOLS_EXTENSION__'],
+      },
     ],
-    'no-console': ['error', {'allow': ['error', 'warn']}], // if .log is intended, use disable line.
+    'no-console': ['error', { allow: ['error', 'warn'] }], // if .log is intended, use disable line.
     // Rules we want to enable soon!
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',

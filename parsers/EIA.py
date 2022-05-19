@@ -138,11 +138,9 @@ EXCHANGES = {
     "US-MIDA-PJM->US-TEN-TVA": "EBA.PJM-TVA.ID.H",
     "US-MIDW-AECI->US-MIDW-MISO": "EBA.AECI-MISO.ID.H",
     "US-MIDW-AECI->US-TEN-TVA": "EBA.AECI-TVA.ID.H",
-    "US-MIDW-EEI->US-MIDW-LGEE": "EBA.EEI-LGEE.ID.H",
-    "US-MIDW-EEI->US-MIDW-MISO": "EBA.EEI-MISO.ID.H",
-    "US-MIDW-EEI->US-TEN-TVA": "EBA.EEI-TVA.ID.H",
     "US-MIDW-GLHB->US-MIDW-LGEE": "EBA.GLHB-LGEE.ID.H",
     "US-MIDW-GLHB->US-MIDW-MISO": "EBA.GLHB-MISO.ID.H",
+    "US-MIDW-GLHB->US-TEN-TVA": "EBA.EEI-TVA.ID.H",
     "US-MIDW-LGEE->US-MIDW-MISO": "EBA.LGEE-MISO.ID.H",
     "US-MIDW-LGEE->US-TEN-TVA": "EBA.LGEE-TVA.ID.H",
     "US-MIDW-MISO->US-SE-AEC": "EBA.MISO-AEC.ID.H",
@@ -155,8 +153,6 @@ EXCHANGES = {
     "US-NW-AVA->US-NW-PACW": "EBA.AVA-PACW.ID.H",
     "US-NW-AVA->US-NW-CHPD": "EBA.AVA-CHPD.ID.H",
     "US-NW-AVA->US-NW-GCPD": "EBA.AVA-GCPD.ID.H",
-    "US-NW-AVRN->US-NW-BPAT": "EBA.AVRN-BPAT.ID.H",
-    "US-NW-AVRN->US-NW-PACW": "EBA.AVRN-PACW.ID.H",
     "US-NW-BPAT->US-NW-TPWR": "EBA.BPAT-TPWR.ID.H",
     "US-NW-BPAT->US-NW-GRID": "EBA.BPAT-GRID.ID.H",
     "US-NW-BPAT->US-NW-IPCO": "EBA.BPAT-IPCO.ID.H",
@@ -203,7 +199,6 @@ EXCHANGES = {
     "US-SW-AZPS->US-SW-SRP": "EBA.AZPS-SRP.ID.H",
     "US-SW-AZPS->US-SW-TEPC": "EBA.AZPS-TEPC.ID.H",
     "US-SW-AZPS->US-SW-WALC": "EBA.AZPS-WALC.ID.H",
-    "US-SW-DEAA->US-SW-SRP": "EBA.DEAA-SRP.ID.H",
     "US-SW-EPE->US-SW-PNM": "EBA.EPE-PNM.ID.H",
     "US-SW-EPE->US-SW-TEPC": "EBA.EPE-TEPC.ID.H",
     "US-SW-GRIF->US-SW-WALC": "EBA.GRIF-WALC.ID.H",
@@ -245,13 +240,11 @@ REGIONS = {
     "US-FLA-TEC": "TEC",  # Tampa Electric Company
     "US-MIDA-PJM": "PJM",  # Pjm Interconnection, Llc
     "US-MIDW-AECI": "AECI",  # Associated Electric Cooperative, Inc.
-    "US-MIDW-EEI": "EEI",  # Electric Energy, Inc.
     "US-MIDW-GLHB": "GLHB",  # GridLiance
     "US-MIDW-LGEE": "LGEE",  # Louisville Gas And Electric Company And Kentucky Utilities
     "US-MIDW-MISO": "MISO",  # Midcontinent Independent Transmission System Operator, Inc..
     "US-NE-ISNE": "ISNE",  # Iso New England Inc.
     "US-NW-AVA": "AVA",  # Avista Corporation
-    "US-NW-AVRN": "AVRN",  # Avangrid Renewables Cooperative
     "US-NW-BPAT": "BPAT",  # Bonneville Power Administration
     "US-NW-CHPD": "CHPD",  # Public Utility District No. 1 Of Chelan County
     "US-NW-DOPD": "DOPD",  # Pud No. 1 Of Douglas County
@@ -276,7 +269,6 @@ REGIONS = {
     "US-SE-SEPA": "SEPA",  # Southeastern Power Administration
     "US-SE-SOCO": "SOCO",  # Southern Company Services, Inc. - Trans
     "US-SW-AZPS": "AZPS",  # Arizona Public Service Company
-    "US-SW-DEAA": "DEAA",  # Arlington Valley, Llc - Avba
     "US-SW-EPE": "EPE",  # El Paso Electric Company
     "US-SW-GRIF": "GRIF",  # Griffith Energy, Llc
     "US-SW-GRMA": "GRMA",  # Gila River Power, Llc
@@ -383,9 +375,8 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
         if not mix:
             continue
         for point in mix:
-            negative_threshold = ( 
-                NEGATIVE_PRODUCTION_THRESHOLDS_TYPE
-                .get(type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"])
+            negative_threshold = NEGATIVE_PRODUCTION_THRESHOLDS_TYPE.get(
+                type, NEGATIVE_PRODUCTION_THRESHOLDS_TYPE["default"]
             )
 
             if (

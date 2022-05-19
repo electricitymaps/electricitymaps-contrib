@@ -1,6 +1,7 @@
 import unittest
 
 import arrow
+
 from parsers.CH import get_solar_capacity_at
 
 
