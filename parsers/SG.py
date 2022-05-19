@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
-
-from __future__ import annotations
-
 import logging
 import re
 from collections import defaultdict
+from typing import Optional
 
 import arrow
 import requests
 from PIL import Image, ImageOps
 from pytesseract import image_to_string
 
-TIMEZONE = 'Asia/Singapore'
+TIMEZONE = "Asia/Singapore"
 
-TICKER_URL = 'https://www.emcsg.com/ChartServer/blue/ticker'
+TICKER_URL = "https://www.emcsg.com/ChartServer/blue/ticker"
 
-SOLAR_URL = 'https://www.ema.gov.sg/cmsmedia/irradiance/plot.png'
+SOLAR_URL = "https://www.ema.gov.sg/cmsmedia/irradiance/plot.png"
 
 """
 Around 95% of Singapore's generation is done with combined-cycle gas turbines.
@@ -51,14 +49,10 @@ https://www.ema.gov.sg/solarmap.aspx
 There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 """
 
-TYPE_MAPPINGS = {
-    'CCGT/COGEN/TRIGEN': 'gas',
-    'GT': 'gas',
-    'ST': 'unknown'
-}
+TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session, logger) -> float | None:
+def get_solar(session, logger) -> Optional[float]:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
@@ -70,14 +64,15 @@ def get_solar(session, logger) -> float | None:
     solar_mw = __detect_output_from_solar_image(solar_image, logger)
     solar_dt = __detect_datetime_from_solar_image(solar_image, logger)
 
-    singapore_dt = arrow.now('Asia/Singapore')
+    singapore_dt = arrow.now("Asia/Singapore")
     diff = singapore_dt - solar_dt
 
     # Need to be sure we don't get old data if image stops updating.
     if diff.total_seconds() > 3600:
-        msg = ('Singapore solar data is too old to use, '
-               'parsed data timestamp was {}.').format(solar_dt)
-        logger.warning(msg, extra={'key': 'SG'})
+        msg = (
+            "Singapore solar data is too old to use, " "parsed data timestamp was {}."
+        ).format(solar_dt)
+        logger.warning(msg, extra={"key": "SG"})
         return None
 
     return solar_mw
@@ -85,18 +80,18 @@ def get_solar(session, logger) -> float | None:
 
 def parse_megawatt_value(val) -> int:
     """Turns values like "5,156MW" and "26MW" into 5156 and 26 respectively."""
-    return int(val.replace(',', '').replace('MW', ''))
+    return int(val.replace(",", "").replace("MW", ""))
 
 
 def parse_percent(val) -> float:
     """Turns values like "97.92%" into 0.9792."""
-    return float(val.replace('%', '')) / 100
+    return float(val.replace("%", "")) / 100
 
 
 def parse_price(price_str) -> float:
     """Turns values like "$70.57/MWh" into 70.57"""
 
-    return float(price_str.replace('$', '').replace('/MWh', ''))
+    return float(price_str.replace("$", "").replace("/MWh", ""))
 
 
 def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
@@ -113,7 +108,11 @@ def find_first_list_item_by_key_value(l, filter_key, filter_value, sought_key):
         => find_first_list_item_by_key_value(energy_section, 'Label', 'USEP', 'Value')
     """
 
-    return [list_item[sought_key] for list_item in l if list_item[filter_key] == filter_value][0]
+    return [
+        list_item[sought_key]
+        for list_item in l
+        if list_item[filter_key] == filter_value
+    ][0]
 
 
 def sg_period_to_hour(period_str) -> float:
@@ -126,41 +125,53 @@ def sg_period_to_hour(period_str) -> float:
 
 
 def sg_data_to_datetime(data):
-    data_date = data['Date']
-    data_time = sg_period_to_hour(data['Period'])
-    date_arrow = arrow.get(data_date, 'DD MMM YYYY')
+    data_date = data["Date"]
+    data_time = sg_period_to_hour(data["Period"])
+    date_arrow = arrow.get(data_date, "DD MMM YYYY")
     datetime_arrow = date_arrow.shift(hours=data_time)
     data_datetime = arrow.get(datetime_arrow.datetime, TIMEZONE).datetime
     return data_datetime
 
 
-def fetch_production(zone_key='SG', session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)) -> dict:
+def fetch_production(
+    zone_key="SG",
+    session=None,
+    target_datetime=None,
+    logger=logging.getLogger(__name__),
+) -> dict:
     """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or requests.session()
 
     response = requests_obj.get(TICKER_URL)
     data = response.json()
 
-    sections = data['Sections']
+    sections = data["Sections"]
 
-    energy_section = find_first_list_item_by_key_value(sections, 'Name', 'Energy', 'SectionData')
+    energy_section = find_first_list_item_by_key_value(
+        sections, "Name", "Energy", "SectionData"
+    )
 
-    demand_str = find_first_list_item_by_key_value(energy_section, 'Label', 'Demand', 'Value')
+    demand_str = find_first_list_item_by_key_value(
+        energy_section, "Label", "Demand", "Value"
+    )
     demand = parse_megawatt_value(demand_str)
-    system_loss_str = find_first_list_item_by_key_value(energy_section, 'Label', 'System Loss',
-                                                        'Value')
+    system_loss_str = find_first_list_item_by_key_value(
+        energy_section, "Label", "System Loss", "Value"
+    )
     system_loss = parse_megawatt_value(system_loss_str)
 
     generation = demand + system_loss
 
-    mix_section = find_first_list_item_by_key_value(sections, 'Name', 'Generator Type Share',
-                                                    'SectionData')
+    mix_section = find_first_list_item_by_key_value(
+        sections, "Name", "Generator Type Share", "SectionData"
+    )
 
-    gen_types = {gen_type['Label']: parse_percent(gen_type['Value']) for gen_type in mix_section}
+    gen_types = {
+        gen_type["Label"]: parse_percent(gen_type["Value"]) for gen_type in mix_section
+    }
 
     generation_by_type = defaultdict(float)  # this dictionary will default keys to 0.0
 
@@ -173,30 +184,28 @@ def fetch_production(zone_key='SG', session=None, target_datetime=None,
 
         else:
             # unrecognized - log it, then add into unknown
-            msg = ('Singapore has unrecognized generation type "{}" '
-                   'with production share {}%').format(gen_type, gen_percent)
+            msg = (
+                'Singapore has unrecognized generation type "{}" '
+                "with production share {}%"
+            ).format(gen_type, gen_percent)
             logger.warning(msg)
-            generation_by_type['unknown'] += gen_mw
+            generation_by_type["unknown"] += gen_mw
 
-    generation_by_type['solar'] = get_solar(requests_obj, logger)
+    generation_by_type["solar"] = get_solar(requests_obj, logger)
 
     # some generation methods that are not used in Singapore
-    generation_by_type.update({
-        'nuclear': 0,
-        'wind': 0,
-        'hydro': 0
-    })
+    generation_by_type.update({"nuclear": 0, "wind": 0, "hydro": 0})
 
     return {
-        'datetime': sg_data_to_datetime(data),
-        'zoneKey': zone_key,
-        'production': generation_by_type,
-        'storage': {},  # there is no known electricity storage in Singapore
-        'source': 'emcsg.com, ema.gov.sg'
+        "datetime": sg_data_to_datetime(data),
+        "zoneKey": zone_key,
+        "production": generation_by_type,
+        "storage": {},  # there is no known electricity storage in Singapore
+        "source": "emcsg.com, ema.gov.sg",
     }
 
 
-def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(zone_key="SG", session=None, target_datetime=None, logger=None) -> dict:
     """
     Requests the most recent known power prices in Singapore (USEP).
 
@@ -210,25 +219,29 @@ def fetch_price(zone_key='SG', session=None, target_datetime=None, logger=None) 
     however we don't currently use this.
     """
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     requests_obj = session or requests.session()
     response = requests_obj.get(TICKER_URL)
     data = response.json()
 
-    sections = data['Sections']
+    sections = data["Sections"]
 
-    energy_section = find_first_list_item_by_key_value(sections, 'Name', 'Energy', 'SectionData')
+    energy_section = find_first_list_item_by_key_value(
+        sections, "Name", "Energy", "SectionData"
+    )
 
-    price_str = find_first_list_item_by_key_value(energy_section, 'Label', 'USEP', 'Value')
+    price_str = find_first_list_item_by_key_value(
+        energy_section, "Label", "USEP", "Value"
+    )
     price = parse_price(price_str)
 
     return {
-        'zoneKey': zone_key,
-        'datetime': sg_data_to_datetime(data),
-        'currency': 'SGD',
-        'price': price,
-        'source': 'emcsg.com'
+        "zoneKey": zone_key,
+        "datetime": sg_data_to_datetime(data),
+        "currency": "SGD",
+        "price": price,
+        "source": "emcsg.com",
     }
 
 
@@ -240,17 +253,21 @@ def __detect_datetime_from_solar_image(solar_image, logger):
     crop_bottom = int(h * 0.92)
     time_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
     processed_img = __preprocess_image_for_ocr(time_img)
-    text = image_to_string(processed_img, lang='eng', config='--psm 7 -c tessedit_char_whitelist="0123456789:- "')
+    text = image_to_string(
+        processed_img,
+        lang="eng",
+        config='--psm 7 -c tessedit_char_whitelist="0123456789:- "',
+    )
 
     try:
-        time_pattern = r'\d+-\d+-\d+\s+\d+:\d+'
+        time_pattern = r"\d+-\d+-\d+\s+\d+:\d+"
         time_string = re.search(time_pattern, text, re.MULTILINE).group(0)
     except AttributeError:
-        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
-        logger.warning(msg, extra={'key': 'SG'})
+        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        logger.warning(msg, extra={"key": "SG"})
         return None
 
-    solar_dt = arrow.get(time_string).replace(tzinfo='Asia/Singapore')
+    solar_dt = arrow.get(time_string).replace(tzinfo="Asia/Singapore")
     return solar_dt
 
 
@@ -262,14 +279,14 @@ def __detect_output_from_solar_image(solar_image, logger):
     crop_bottom = int(h * 0.80)
     output_img = solar_image.crop((crop_left, crop_top, crop_right, crop_bottom))
     processed_img = __preprocess_image_for_ocr(output_img)
-    text = image_to_string(processed_img, lang='eng', config='--psm 7')
+    text = image_to_string(processed_img, lang="eng", config="--psm 7")
 
     try:
-        pattern = r'Est. PV Output: (.*)MWac'
+        pattern = r"Est. PV Output: (.*)MWac"
         val = re.search(pattern, text, re.MULTILINE).group(1)
     except AttributeError:
-        msg = 'Unable to get values for SG solar from OCR text: {}'.format(text)
-        logger.warning(msg, extra={'key': 'SG'})
+        msg = "Unable to get values for SG solar from OCR text: {}".format(text)
+        logger.warning(msg, extra={"key": "SG"})
         return None
 
     # At night format changes from 0.00 to 0
@@ -278,11 +295,11 @@ def __detect_output_from_solar_image(solar_image, logger):
     try:
         solar_mw = float(val)
     except ValueError:
-        if val == 'O':
+        if val == "O":
             solar_mw = 0.0
         else:
             msg = "Singapore solar data is unreadable - got {}.".format(val)
-            logger.warning(msg, extra={'key': 'SG'})
+            logger.warning(msg, extra={"key": "SG"})
             return None
 
     return solar_mw
@@ -296,8 +313,10 @@ def __preprocess_image_for_ocr(img):
     :return: pre-processed image, optimized for optical character recognition (OCR)
     """
     # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#inverting-images
-    inverted_img = ImageOps.invert(img)  # assumes black background of Singapore solar output image
-    dark_text_on_light_bg = inverted_img.convert('L')
+    inverted_img = ImageOps.invert(
+        img
+    )  # assumes black background of Singapore solar output image
+    dark_text_on_light_bg = inverted_img.convert("L")
 
     # https://tesseract-ocr.github.io/tessdoc/ImproveQuality#missing-borders
     img_with_border = ImageOps.expand(dark_text_on_light_bg, border=2)
@@ -305,10 +324,10 @@ def __preprocess_image_for_ocr(img):
     return img_with_border
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())
     print('fetch_price("SG") ->')
     print(fetch_price("SG"))
