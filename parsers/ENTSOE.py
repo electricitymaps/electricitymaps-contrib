@@ -154,7 +154,10 @@ ENTSOE_EIC_MAPPING = {
     "DK-DK2": "10Y1001A1001A796",
     "FI": "10YFI-1--------U",
     "PL": "10YPL-AREA-----S",
-    "SE": "10YSE-1--------K",
+    "SE-SE1": "10YSE-1--------K",
+    "SE-SE2": "10YSE-1--------K",
+    "SE-SE3": "10YSE-1--------K",
+    "SE-SE4": "10YSE-1--------K",
     # TODO: ADD DE
 }
 
