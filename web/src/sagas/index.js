@@ -22,7 +22,7 @@ function* fetchZoneHistory(action) {
 }
 
 function* fetchGridData(action) {
-  const { features } = action.payload || {};
+  const features = action.payload.features || [];
   let endpoint = '/v4/state';
 
   if (features.includes('history')) {
