@@ -15,7 +15,7 @@ import requests
 # production / consumption from t to t+1
 
 # http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
-HOST = "http://858127-cc16935.tmweb.ru/electricitymap"
+HOST = "http://858127-cc16935.tmweb.ru"
 BASE_EXCHANGE_URL = f"${HOST}/webapi/api/flowDiagramm/GetData?"
 
 MAP_GENERATION_1 = {
