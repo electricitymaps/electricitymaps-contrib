@@ -16,7 +16,7 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> dict:
+) -> list:
     """Requests the last known production mix (in MW) of a given region.
     In this particular case, translated mapping of JSON keys are also required"""
 
@@ -38,13 +38,13 @@ def fetch_production(
             return 0.0
 
     data = _fetch_quebec_production()
+    list_res = []
     for elem in reversed(data["details"]):
         if elem["valeurs"]["total"] != 0:
-
-            return {
+            list_res.append(dict({
                 "zoneKey": zone_key,
                 "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
-                "production": {
+                "production": dict({
                     "biomass": if_exists(elem, "biomass"),
                     "coal": 0.0,
                     "hydro": if_exists(elem, "hydro"),
@@ -59,23 +59,26 @@ def fetch_production(
                     # There are no geothermal electricity generation stations in Québec (and all of Canada for that matter).
                     "geothermal": 0.0,
                     "unknown": if_exists(elem, "unknown"),
-                },
+                }),
                 "source": "hydroquebec.com",
-            }
+            }))
+    return list_res
 
 
 def fetch_consumption(
     zone_key="CA-QC", session=None, target_datetime=None, logger=None
 ):
     data = _fetch_quebec_consumption()
+    list_res = []
     for elem in reversed(data["details"]):
         if "demandeTotal" in elem["valeurs"]:
-            return {
+            list_res.append({
                 "zoneKey": zone_key,
                 "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
                 "consumption": elem["valeurs"]["demandeTotal"],
                 "source": "hydroquebec.com",
-            }
+            })
+    return list_res
 
 
 def _fetch_quebec_production(logger=logging.getLogger(__name__)) -> str:
