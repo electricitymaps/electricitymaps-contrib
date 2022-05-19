@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { map } from 'lodash';
 
 import { useTranslation } from '../helpers/translation';
 import { LANGUAGE_NAMES } from '../helpers/constants';
@@ -38,7 +37,7 @@ const LanguageSelectContainer = styled.div`
 
     &:hover {
       cursor: pointer;
-      background-color: rgba(0,0,0,.05);
+      background-color: rgba(0, 0, 0, 0.05);
     }
   }
 `;
@@ -66,7 +65,7 @@ const LanguageSelect = () => {
       />
       {languagesVisible && (
         <LanguageSelectContainer className="language-select-container">
-          {map(LANGUAGE_NAMES, (language, key) => (
+          {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
             <li key={key} onClick={() => handleLanguageSelect(key)}>
               {language}
             </li>

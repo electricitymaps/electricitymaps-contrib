@@ -8,14 +8,13 @@ ADD web/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
 
 
-ADD web/src/world.json ./src/world.json 
+ADD web/src/world.json ./src/world.json
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build
 # (note: this will override the world.json that was previously created)
 ADD config /home/src/electricitymap/contrib/config
 ADD web ./
-RUN yarn lint
 RUN yarn build-release
 
 EXPOSE 8000

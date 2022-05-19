@@ -1,7 +1,7 @@
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
 import twitterConnection from './thirdparty/twitter';
-import plausibleConnection from './thirdparty/plausible'
+import plausibleConnection from './thirdparty/plausible';
 import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
@@ -14,8 +14,7 @@ function reportToSentry(e) {
   }
 }
 
-
-class ConnectionsService {  
+class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
@@ -32,15 +31,15 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
-    console.log(`Tracking event ${eventName}`);
+    console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
-      } catch (err) { console.error(`External connection error: ${err}`); }
+      } catch (err) {
+        console.error(`External connection error: ${err}`);
+      }
     });
   }
-
- 
 
   // track errors
   trackError(e) {

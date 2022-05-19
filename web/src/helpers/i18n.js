@@ -1,4 +1,3 @@
-import moment from 'moment';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
@@ -48,7 +47,7 @@ function requestWithXmlHttpRequest(options, url, payload, callback) {
     };
     x.send(payload);
   } catch (e) {
-    console && console.log(e);
+    console && console.error(e);
   }
 }
 
@@ -66,9 +65,9 @@ i18n
       request: requestWithXmlHttpRequest,
     },
     detection: {
-      order: ['querystring', 'cookie', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
+      order: ['querystring', 'localStorage', 'sessionStorage', 'navigator', 'htmlTag'],
       lookupQuerystring: 'lang',
-      caches: ['localStorage', 'cookie'],
+      caches: ['localStorage'],
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -79,7 +78,6 @@ i18n
   });
 
 i18n.on('languageChanged', function (lng) {
-  moment.locale(lng);
   document.documentElement.setAttribute('lang', lng);
   // TODO: Use react-helmet to manage meta tags
   document.title = `electricityMap | ${i18n.t('misc.maintitle')}`;

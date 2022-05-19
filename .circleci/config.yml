@@ -3,7 +3,7 @@ version: 2.1
 executors:
   js-exec:
     docker:
-      - image: circleci/node:12.13
+      - image: circleci/node:12.22
 
 jobs:
   verify_python:
@@ -27,8 +27,7 @@ jobs:
           name: Verify changes
           command: |
             set -eux -o pipefail
-            poetry run lint
-            poetry run test
+            poetry run check
       - save_cache:
           key: venv-{{ checksum "poetry.lock" }}
           paths:

@@ -35,6 +35,8 @@ steps:
     image: google/cloud-sdk:243.0.0
     commands:
       - gsutil -m cp -a public-read -r public/* gs://static.electricitymap.org/public_web
+      - gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/client-version.json
+      - gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://static.electricitymap.org/public_web/dist/manifest.json
     secrets:
       gcloud:
         src: ~/.config/gcloud

@@ -1,7 +1,7 @@
-import moment from 'moment';
+import { addMinutes } from 'date-fns';
 
 import constructTopos from '../helpers/topos';
-import * as translation  from '../helpers/translation';
+import * as translation from '../helpers/translation';
 
 import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
@@ -26,7 +26,9 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
-Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
+Object.keys(zones).forEach((k) => {
+  zones[k].countryCode = k;
+});
 
 // ** Prepare initial exchange data
 const exchanges = Object.assign({}, exchangesConfig);
@@ -62,10 +64,13 @@ const reducer = (state = initialDataState, action) => {
 
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
-      const newGrid = Object.assign({}, {
-        zones: Object.assign({}, state.grid.zones),
-        exchanges: Object.assign({}, state.grid.exchanges),
-      });
+      const newGrid = Object.assign(
+        {},
+        {
+          zones: Object.assign({}, state.grid.zones),
+          exchanges: Object.assign({}, state.grid.exchanges),
+        }
+      );
       // Create new state
       const newState = Object.assign({}, state);
       newState.grid = newGrid;
@@ -74,9 +79,9 @@ const reducer = (state = initialDataState, action) => {
       newState.histories = Object.assign({}, state.histories);
       Object.keys(state.histories).forEach((k) => {
         const history = state.histories[k];
-        const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
-        const stateMoment = moment(action.payload.datetime).utc();
-        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
+        const lastHistoryMoment = new Date(history.at(-1).stateDatetime);
+        const stateMoment = new Date(action.payload.datetime);
+        if (addMinutes(lastHistoryMoment, 15) < stateMoment) {
           delete newState.histories[k];
         }
       });
@@ -123,7 +128,7 @@ const reducer = (state = initialDataState, action) => {
         // Set date
         zone.datetime = action.payload.datetime;
 
-        const hasNoData = !zone.production || Object.values(zone.production).every(v => v === null);
+        const hasNoData = !zone.production || Object.values(zone.production).every((v) => v === null);
         if (hasNoData) {
           return;
         }
@@ -167,10 +172,10 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map(datapoint => ({
+          [action.zoneId]: action.payload.map((datapoint) => ({
             ...datapoint,
             hasParser: zones[action.zoneId].hasParser,
-            hasData: !Object.values(datapoint.production).every(v => v === null)
+            hasData: !Object.values(datapoint.production).every((v) => v === null),
           })),
         },
       };

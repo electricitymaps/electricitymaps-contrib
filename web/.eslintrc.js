@@ -3,12 +3,14 @@ module.exports = {
   parser: '@babel/eslint-parser',
   extends: [
     'eslint:recommended',
+    'plugin:you-dont-need-lodash-underscore/all',
     'plugin:react/recommended',
-    'plugin:jest/recommended',
     'plugin:import/errors',
     'plugin:jsx-a11y/recommended',
+    'plugin:cypress/recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: ['@babel', 'jest', 'react-hooks'],
+  plugins: ['@babel', 'react-hooks'],
   "globals": {
     "ELECTRICITYMAP_PUBLIC_TOKEN": "readonly",
     "VERSION": "readonly",
@@ -22,7 +24,7 @@ module.exports = {
   env: {
     es6: true,
     browser: true,
-    node: true,
+    node: true
   },
   root: true,
   ignorePatterns: ['dist', 'build', '**/node_modules', '!.eslintrc.js', 'coverage'],
@@ -45,17 +47,6 @@ module.exports = {
     sourceType: 'module',
     createDefaultProgram: true,
   },
-  overrides: [
-    {
-      files: ['*.spec.js', '*.spec.ts', '*.spec.tsx', '*.test.js', '*.test.ts', '*.test.tsx'],
-      env: {
-        'jest/globals': true,
-      },
-      rules: {
-        'no-console': 'off',
-      },
-    },
-  ],
   rules: {
     'prefer-destructuring': [
       'error',
@@ -81,25 +72,24 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
     'object-shorthand': 'error',
-
+    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'curly': 'error',
+    'no-nested-ternary': 'error',
+    'no-underscore-dangle': ['error',
+        {
+        "allowAfterThis": true,
+        "allow": ["__", "__REDUX_DEVTOOLS_EXTENSION__"]
+        }
+    ],
+    'no-console': ['error', {'allow': ['error', 'warn']}], // if .log is intended, use disable line.
     // Rules we want to enable soon!
-    'no-console': 'off',
-    'react-hooks/exhaustive-deps': 'warn',
-    'react-hooks/rules-of-hooks': 'warn',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
 
-    // Rules we want to enable one day
-    'curly': 'off',
-    'no-nested-ternary': 'off',
-    'max-len': ['off', {'code': 120}],
-    'no-underscore-dangle': 'off',
-    'react/jsx-one-expression-per-line': 'off',
-
     // Rules that doesn't make sense for us:
-    'jest/no-standalone-expect': 'off', // afterEach not covered
     'import/prefer-default-export': 'off',
     'import/named': 'off',
     'react/prop-types': 'off',

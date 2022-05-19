@@ -1496,74 +1496,74 @@
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 160.1039401629827
+            "value": 149.25076294580958
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 151.25311660501873
+            "value": 140.2912162025784
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 151.2706838163833
+            "value": 136.54216320191617
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 121.29712974580256
+            "value": 93.56994370877608
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 185.72180055195324
+            "value": 77.04689455842045
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 181.94392200782744
+            "value": 67.79765744800171
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 205.82553856340994
+            "value": 92.45529931962075
           }
         ],
         "hydro discharge": [
           {
             "datetime": "2015-01-01",
             "source": "electricityMap, 2015 average",
-            "value": 160.1039401629827
+            "value": 149.25076294580958
           },
           {
             "datetime": "2016-01-01",
             "source": "electricityMap, 2016 average",
-            "value": 151.25311660501873
+            "value": 140.2912162025784
           },
           {
             "datetime": "2017-01-01",
             "source": "electricityMap, 2017 average",
-            "value": 151.2706838163833
+            "value": 136.54216320191617
           },
           {
             "datetime": "2018-01-01",
             "source": "electricityMap, 2018 average",
-            "value": 121.29712974580256
+            "value": 93.56994370877608
           },
           {
             "datetime": "2019-01-01",
             "source": "electricityMap, 2019 average",
-            "value": 185.72180055195324
+            "value": 77.04689455842045
           },
           {
             "datetime": "2020-01-01",
             "source": "electricityMap, 2020 average",
-            "value": 181.94392200782744
+            "value": 67.79765744800171
           },
           {
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
-            "value": 205.82553856340994
+            "value": 92.45529931962075
           }
         ],
         "unknown": {
@@ -3185,7 +3185,12 @@
             "source": "electricityMap, 2020 average",
             "value": 269.6187929820843
           }
-        ]
+        ],
+        "unknown": {
+            "_url": "https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352",
+            "source": "Guatemala AMM 2021-2022 and IEA 2020",
+            "value": 383.240577
+        }
       },
       "HN": {
         "battery discharge": [
@@ -5927,6 +5932,56 @@
             "source": "electricityMap, 2021 average",
             "value": 47.31267597911351
           }
+        ],
+        "unknown": [
+          {
+            "_comment": "Uses the 2015 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2015-01-01",
+            "source": "assumes 85.46% biomass, 7.98% gas, 2.77% coal, 1.8% oil, 1.3% peat, 0.69% solar",
+            "value": 67.7
+          },
+          {
+            "_comment": "Uses the 2016 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2016-01-01",
+            "source": "assumes 85.52% biomass, 7.84% gas, 2.6% oil, 1.74% coal, 1.38% peat, 0.94% solar",
+            "value": 63.1
+          },
+          {
+            "_comment": "Uses the 2016 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2017-01-01",
+            "source": "assumes 87.2% biomass, 6.21% gas, 2.04% coal, 1.84% oil, 1.46% solar, 1.26% peat",
+            "value": 55.5
+          },
+          {
+            "_comment": "Uses the 2018 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2018-01-01",
+            "source": "assumes 84.38% biomass, 7.15% gas, 2.55% solar, 2.10% coal, 1.92% oil, 1.90% peat",
+            "value": 64.6
+          },
+          {
+            "_comment": "Uses the 2019 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2019-01-01",
+            "source": "assumes 86.15% biomass, 6.15% gas, 3.98% solar, 1.27% oil, 1.24% coal, 1.20% peat",
+            "value": 46.5
+          },
+          {
+            "_comment": "Uses the 2020 (2022 edition) eurostat production values for the sources in unknown",
+            "_url": "https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829",
+            "datetime": "2020-01-01",
+            "source": "assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat, 0.01% coal",
+            "value": 25.2
+          },
+          {
+            "_comment": "Uses the 2020 values minus solar and gas",
+            "datetime": "2022-01-01",
+            "source": "assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal",
+            "value": 9.3
+          }
         ]
       },
       "SG": {
@@ -6173,7 +6228,7 @@
           }
         ]
       },
-	  "TH": {
+      "TH": {
         "unknown": {
           "_url": "https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing",
           "source": "IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6% solar, 1.7% wind, 0.1% other",

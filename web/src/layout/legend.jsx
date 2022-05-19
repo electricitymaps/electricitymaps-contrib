@@ -31,8 +31,9 @@ const LegendsContainer = styled.div`
   user-select: none;
 
   // Apply specific styles if the legend is collapsed
-  ${props => props.isCollapsed
-    && css`
+  ${(props) =>
+    props.isCollapsed &&
+    css`
       width: 90px;
       height: 18px;
       padding: 6px 10px 10px;
@@ -59,7 +60,7 @@ const ToggleLegendButton = styled.i`
 `;
 
 const StyledMobileHeader = styled.div`
-  text-align: ${props => (props.isCollapsed ? 'left' : 'center')};
+  text-align: ${(props) => (props.isCollapsed ? 'left' : 'center')};
   font-weight: bold;
   margin-bottom: 5px;
 
@@ -78,31 +79,24 @@ const MobileHeader = ({ onToggle, isOpen, label }) => (
   </StyledMobileHeader>
 );
 
-const LegendItem = ({
-  isEnabled, label, unit, children,
-}) => (!isEnabled ? null : (
-  <LegendItemWrapper>
-    <div>
-      {label} <small>({unit})</small>
-    </div>
-    {children}
-  </LegendItemWrapper>
-));
+const LegendItem = ({ isEnabled, label, unit, children }) =>
+  !isEnabled ? null : (
+    <LegendItemWrapper>
+      <div>
+        {label} <small>({unit})</small>
+      </div>
+      {children}
+    </LegendItemWrapper>
+  );
 
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
   windColorbarValue: state.application.windColorbarValue,
 });
 
-const Legend = ({
-  co2ColorbarValue,
-  legendVisible,
-  solarColorbarValue,
-  windColorbarValue,
-}) => {
+const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColorbarValue }) => {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const solarEnabled = useSolarEnabled();
@@ -128,11 +122,11 @@ const Legend = ({
           </LegendItem>
           <LegendItem
             label={__('legends.solarpotential')}
-            unit={(
+            unit={
               <span>
                 W/m<span className="sup">2</span>
               </span>
-            )}
+            }
             isEnabled={solarEnabled}
           >
             <HorizontalColorbar

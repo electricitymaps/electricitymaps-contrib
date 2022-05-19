@@ -6,12 +6,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {
-  Switch,
-  Route,
-  Redirect,
-  useLocation,
-} from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
@@ -27,9 +22,7 @@ import ZoneListPanel from './zonelistpanel';
 const HandleLegacyRoutes = () => {
   const searchParams = useSearchParams();
 
-  const page = (searchParams.get('page') || 'map')
-    .replace('country', 'zone')
-    .replace('highscore', 'ranking');
+  const page = (searchParams.get('page') || 'map').replace('country', 'zone').replace('highscore', 'ranking');
   searchParams.delete('page');
 
   const zoneId = searchParams.get('countryCode');
@@ -56,33 +49,32 @@ const SmallLoader = styled.span`
   height: 1em;
 `;
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
 
-
 const LeftPanelCollapseButton = styled.div`
-@media (max-width: 767px) {
-  display: none !important;
-}
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
 const MobileHeader = styled.div`
-@media (min-width: 768px) {
-  display: none !important;
-}
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 `;
 
 const RightHeader = styled.div`
-@media (min-width: 768px) {
-  display: none !important;
-}
+  @media (min-width: 768px) {
+    display: none !important;
+  }
 `;
 
 // Hide the panel completely if looking at the map on small screens.
 const Container = styled.div`
   @media (max-width: 767px) {
-    display: ${props => props.pathname === '/map' ?  'none !important': 'flex'};
+    display: ${(props) => (props.pathname === '/map' ? 'none !important' : 'flex')};
   }
 `;
 
@@ -93,10 +85,8 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
 
-
   return (
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
-
       <MobileHeader id="mobile-header" className="brightmode">
         <div className="header-content">
           <div className="logo">
@@ -117,7 +107,6 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         tabIndex="0"
       >
         <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
-       
       </LeftPanelCollapseButton>
 
       {/* Render different content based on the current route */}

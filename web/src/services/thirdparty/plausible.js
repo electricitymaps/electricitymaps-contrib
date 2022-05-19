@@ -1,12 +1,15 @@
 class PlausibleThirdParty {
-    constructor() {
-        window.plausible = window.plausible 
-        || function() { (window.plausible.q = window.plausible.q || []).push(arguments)}
-    }
+  constructor() {
+    window.plausible =
+      window.plausible ||
+      function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+  }
 
-    track(event, data) {
-        window.plausible(event, {props: data})
-    }
+  track(event, data) {
+    window.plausible(event, { props: data });
+  }
 }
 
 export default PlausibleThirdParty;
