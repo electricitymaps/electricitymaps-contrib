@@ -15,7 +15,7 @@ import requests
 # production / consumption from t to t+1
 
 # http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
-HOST = "http://858127-cc16935.tmweb.ru"
+HOST = "https://858127-cc16935.tmweb.ru"
 BASE_EXCHANGE_URL = f"${HOST}/webapi/api/flowDiagramm/GetData?"
 
 MAP_GENERATION_1 = {
@@ -121,8 +121,7 @@ def fetch_production_1st_synchronous_zone(
 
     price_zone = zone_key_price_zone_mapper[zone_key]
     base_url = "{}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}".format(
-        HOST,
-        price_zone
+        HOST, price_zone
     )
     url = base_url + "&startDate={date}&endDate={date}".format(date=date)
 
@@ -186,8 +185,7 @@ def fetch_production_2nd_synchronous_zone(
     r = session or requests.session()
 
     url = "{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
-        HOST,
-        date
+        HOST, date
     )
 
     response = r.get(url)
