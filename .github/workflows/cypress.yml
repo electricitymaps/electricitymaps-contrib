@@ -1,0 +1,19 @@
+name: Cypress
+on:
+  pull_request
+env:
+  SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}' # token has to be escaped
+
+jobs:
+  cypress-test:
+    if: contains(github.event.pull_request.labels.*.name, 'frontend 🎨')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./web
+          start: yarn develop
+          wait-on: "http://localhost:8080"

@@ -1,6 +1,6 @@
 #!python3
-import logging
 import datetime
+import logging
 
 # The arrow library is used to handle datetimes
 import arrow

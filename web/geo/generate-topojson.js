@@ -1,5 +1,5 @@
 const { topology } = require('topojson-server');
-const { getJSON, writeJSON } = require('./utilities');
+const { getJSON, writeJSON, round } = require('./utilities');
 const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
@@ -24,8 +24,8 @@ function getCenter(geojson, zoneName) {
   }
 
   return [
-    (Math.min(...longitudes) + Math.max(...longitudes)) / 2,
-    (Math.min(...latitudes) + Math.max(...latitudes)) / 2,
+    round((Math.min(...longitudes) + Math.max(...longitudes)) / 2, 1),
+    round((Math.min(...latitudes) + Math.max(...latitudes)) / 2, 1),
   ];
 }
 

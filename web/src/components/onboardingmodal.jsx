@@ -116,7 +116,7 @@ const OnboardingModal = ({ visible }) => {
   return (
     <React.Fragment>
       <div className="modal-background-overlay" onClick={handleDismiss} />
-      <div className="modal">
+      <div className="modal" data-test-id="onboarding">
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
