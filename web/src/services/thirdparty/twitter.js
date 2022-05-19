@@ -1,5 +1,6 @@
 /* eslint-disable */
 // TODO: remove once refactored
+import thirdPartyService from '../thirdparty';
 
 class TwitterThirdParty {
     constructor() {
@@ -24,12 +25,7 @@ class TwitterThirdParty {
         this.inst.ready(e => {
             this.inst.events.bind('click', function (event) {
                 // event.region is {tweet,follow}
-                const thirdPartyService = require('../thirdparty');
-                thirdPartyService.trackEvent(event.region);
-                thirdPartyService.ga('event', event.region, {
-                  event_category: 'social',
-                  event_label: 'twitter',
-                });
+                thirdPartyService.trackEvent(event.region, {event_category: "social", event_label: "twitter"});
             });
         });
     }
@@ -38,4 +34,4 @@ class TwitterThirdParty {
 }
 
 
-module.exports = new TwitterThirdParty();
+export default TwitterThirdParty;

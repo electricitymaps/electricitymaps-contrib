@@ -1,20 +1,11 @@
-const {
-  polygon,
-  getCoords,
-  getType,
-  featureEach,
-  featureCollection,
-  area,
-  truncate,
-} = require('@turf/turf');
+const { polygon, getCoords, getType, featureEach, featureCollection, area, truncate } = require('@turf/turf');
 const fs = require('fs');
 
 function getPolygons(input) {
   /* Transform the feature collection of polygons and multi-polygons into a feature collection of polygons only */
   /* all helper functions should rely on its output */
   const handlePolygon = (feature, props) => polygon(getCoords(feature), props);
-  const handleMultiPolygon = (feature, props) =>
-    getCoords(feature).map((coord) => polygon(coord, props));
+  const handleMultiPolygon = (feature, props) => getCoords(feature).map((coord) => polygon(coord, props));
 
   const polygons = [];
   let fc;
@@ -59,8 +50,7 @@ function getHoles(fc, minArea) {
 
 const getJSON = (fileName, encoding = 'utf8') => JSON.parse(fs.readFileSync(fileName, encoding));
 
-const writeJSON = (fileName, obj, encoding = 'utf8') =>
-  fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
+const writeJSON = (fileName, obj, encoding = 'utf8') => fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
 
 function log(message) {
   console.error('\x1b[31m%s\x1b[0m', `ERROR: ${message}`);

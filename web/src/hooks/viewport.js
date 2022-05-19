@@ -6,31 +6,37 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
   const [node, setNode] = useState(null); // The DOM node
 
   // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
-  const ref = useCallback((newNode) => {
-    // This callback will be called once the ref
-    // returned has been attached to `node`.
-    const update = () => {
-      if (newNode !== null) {
-        const newWidth = newNode.getBoundingClientRect().width - offsetX;
-        const newHeight = newNode.getBoundingClientRect().height - offsetY;
-        setWidth(newWidth);
-        setHeight(newHeight);
-        setNode(newNode);
-      }
-    };
-    // Set initial width (the usage of setTimeout solves race conditions on mobile)
-    setTimeout(() => {
-      update();
-    }, 0);
-    // Update container width on every resize
-    window.addEventListener('resize', update);
-    return () => {
-      window.removeEventListener('resize', update);
-    };
-  }, [offsetX, offsetY]);
+  const ref = useCallback(
+    (newNode) => {
+      // This callback will be called once the ref
+      // returned has been attached to `node`.
+      const update = () => {
+        if (newNode !== null) {
+          const newWidth = newNode.getBoundingClientRect().width - offsetX;
+          const newHeight = newNode.getBoundingClientRect().height - offsetY;
+          setWidth(newWidth);
+          setHeight(newHeight);
+          setNode(newNode);
+        }
+      };
+      // Set initial width (the usage of setTimeout solves race conditions on mobile)
+      setTimeout(() => {
+        update();
+      }, 0);
+      // Update container width on every resize
+      window.addEventListener('resize', update);
+      return () => {
+        window.removeEventListener('resize', update);
+      };
+    },
+    [offsetX, offsetY]
+  );
 
   return {
-    ref, width, height, node,
+    ref,
+    width,
+    height,
+    node,
   };
 }
 
@@ -40,10 +46,7 @@ export function useWindowSize() {
   // Resize hook
   useEffect(() => {
     const updateSize = () => {
-      if (
-        windowSize.width !== window.innerWidth
-        || windowSize.height !== window.innerHeight
-      ) {
+      if (windowSize.width !== window.innerWidth || windowSize.height !== window.innerHeight) {
         setWindowSize({
           width: window.innerWidth,
           height: window.innerHeight,

@@ -1,33 +1,33 @@
 # electricityMap
 
-[![Slack Status](https://slack.tmrow.com/badge.svg)](https://slack.tmrow.com) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
+[![Slack Status](https://slack.electricitymap.org/badge.svg)](https://slack.electricitymap.org) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 
-A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/). Try it out at [http://app.electricitymap.org](http://app.electricitymap.org), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
+A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/). Try it out at [app.electricitymap.org](https://app.electricitymap.org), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
 
 ![image](https://app.electricitymap.org/images/electricitymap_social_image.png)
 
 ## Contribute
 
-Thank you for your interest. Check out the [Wiki](https://github.com/tmrowco/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/tmrowco/electricitymap-contrib/issues) and [discussions](https://github.com/tmrowco/electricitymap-contrib/discussions)
+Thank you for your interest. Check out the [Wiki](https://github.com/electricitymap/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/electricitymap/electricitymap-contrib/issues) and [discussions](https://github.com/electricitymap/electricitymap-contrib/discussions)
 
 Here are some of the ways you can contribute:
 
-- [Building a new parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Building-a-new-parser)
-- [Fixing a broken parser](https://github.com/tmrowco/electricitymap-contrib/wiki/Fixing-a-broken-parser)
-- [Changes to the frontend](https://github.com/tmrowco/electricitymap-contrib/wiki/Changes-to-the-frontend)
-- [Find data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Find-data-sources)
-- [Verify data sources](https://github.com/tmrowco/electricitymap-contrib/wiki/Verify-data-sources)
-- [Translating the app](https://github.com/tmrowco/electricitymap-contrib/wiki/Translating-electricitymap.org)
-- [Updating region capacities](https://github.com/tmrowco/electricitymap-contrib/wiki/Update-region-capacities)
+- [Building a new parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Building-a-new-parser)
+- [Fixing a broken parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Fixing-a-broken-parser)
+- [Changes to the frontend](https://github.com/electricitymap/electricitymap-contrib/wiki/Changes-to-the-frontend)
+- [Find data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Find-data-sources)
+- [Verify data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Verify-data-sources)
+- [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymap.org)
+- [Updating region capacities](https://github.com/electricitymap/electricitymap-contrib/wiki/Update-region-capacities)
 
-Join us on [Slack](https://slack.tmrow.com) if you wish to discuss development or need help to get started.
+Join us on [Slack](https://slack.electricitymap.org) if you wish to discuss development or need help to get started.
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
 
 ## Frequently asked questions
 
 **Where does the data come from?**
-The data comes from many different sources. You can check them out [here](https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md)
+The data comes from many different sources. You can check them out [here](https://github.com/electricitymap/electricitymap-contrib/blob/master/DATA_SOURCES.md)
 
 **How do you define real-time data?**
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
@@ -36,7 +36,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighboring countries in order to green their image while still importing from it.
-You can read more in our blog post [here](https://tmrow.com/blog/flow-tracing).
+You can read more in our blog post [here](https://electricitymap.org/blog/flow-tracing).
 
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.

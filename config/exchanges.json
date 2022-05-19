@@ -31,7 +31,8 @@
   "AM->GE": {
     "lonlat": [44.313, 41.205],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -175,7 +176,8 @@
   "AZ->GE": {
     "lonlat": [45.153, 41.398],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -35
   },
@@ -332,11 +334,14 @@
     "rotation": 0
   },
   "BR-N->BR-NE": {
-    "lonlat": [-47.810678, -6.387852],
+    "lonlat": [
+      -45.610678,
+      -8.187852
+    ],
     "parsers": {
       "exchange": "BR.fetch_region_exchange"
     },
-    "rotation": 100
+    "rotation": 110
   },
   "BR-S->UY": {
     "lonlat": [-54.982242, -31.301863],
@@ -551,7 +556,14 @@
     "rotation": 135
   },
   "DE->DK-DK1": {
-    "lonlat": [9.3, 54.9],
+    "capacity": [
+      -2500,
+      2500
+    ],
+    "lonlat": [
+      9.3,
+      54.9
+    ],
     "parsers": {
       "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -559,8 +571,14 @@
     "rotation": 0
   },
   "DE->DK-DK2": {
-    "capacity": [-1000, 1000],
-    "lonlat": [12.135031, 54.486043],
+    "capacity": [
+      -985,
+      1000
+    ],
+    "lonlat": [
+      12.135031,
+      54.486043
+    ],
     "parsers": {
       "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -592,8 +610,14 @@
     "rotation": -90
   },
   "DE->NO-NO2": {
-    "capacity": [-1400, 1400],
-    "lonlat": [7.2, 55.9],
+    "capacity": [
+      -1444,
+      1444
+    ],
+    "lonlat": [
+      7.2,
+      55.9
+    ],
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -609,7 +633,7 @@
     "rotation": 90
   },
   "DE->SE": {
-    "capacity": [-600, 600],
+    "capacity": [-615, 615],
     "lonlat": [13.552264, 54.925814],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
@@ -618,6 +642,7 @@
     "rotation": 0
   },
   "DE->SE-SE4": {
+    "capacity": [-615, 615],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
@@ -631,8 +656,14 @@
     "rotation": -45
   },
   "DK-DK1->DK-DK2": {
-    "capacity": [-600, 600],
-    "lonlat": [10.948508, 55.407235],
+    "capacity": [
+      -600,
+      590
+    ],
+    "lonlat": [
+      10.948508,
+      55.407235
+    ],
     "parsers": {
       "exchange": "DK.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -650,8 +681,14 @@
     "rotation": -150
   },
   "DK-DK1->NO-NO2": {
-    "capacity": [-1700, 1700],
-    "lonlat": [8.8, 57.7],
+    "capacity": [
+      -1632,
+      1632
+    ],
+    "lonlat": [
+      8.8,
+      57.7
+    ],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast",
       "exchange": "DK.fetch_exchange"
@@ -659,7 +696,7 @@
     "rotation": -25
   },
   "DK-DK1->SE-SE3": {
-    "capacity": [-680, 740],
+    "capacity": [-715, 715],
     "lonlat": [11.556268, 56.857802],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -667,7 +704,7 @@
     "rotation": 70
   },
   "DK-DK1->SE": {
-    "capacity": [-680, 740],
+    "capacity": [-715, 715],
     "lonlat": [11.556268, 56.857802],
     "parsers": {
       "exchange": "DK.fetch_exchange"
@@ -691,15 +728,28 @@
     "rotation": 70
   },
   "EE->FI": {
-    "capacity": [-1000, 1000],
-    "lonlat": [25.690143, 59.923241],
+    "capacity": [
+      -1016,
+      1016
+    ],
+    "lonlat": [
+      25.690143,
+      59.923241
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
     "rotation": -35
   },
   "EE->LV": {
-    "lonlat": [26.041706, 57.810982],
+    "capacity": [
+      -1259,
+      1447
+    ],
+    "lonlat": [
+      26.041706,
+      57.810982
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
@@ -776,14 +826,21 @@
     "rotation": -30
   },
   "FI->RU-1": {
-    "capacity": [-1560, 0],
-    "lonlat": [28.378, 60.878],
+    "capacity": [
+      -1460,
+      320
+    ],
+    "lonlat": [
+      28.378,
+      60.878
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
     "rotation": 135
   },
   "FI->SE": {
+    "capacity": [-2700, 2300],
     "lonlat": [20.979206, 63.441789],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
@@ -792,11 +849,13 @@
     "rotation": -50
   },
   "FI->SE-SE1": {
+    "capacity": [-1500, 1100],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "FI->SE-SE3": {
+    "capacity": [-1200, 1200],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
@@ -872,8 +931,14 @@
     "rotation": 180
   },
   "GB->NO-NO2": {
-    "lonlat": [2.44819, 57.266334],
-    "capacity": [-1400, 1400],
+    "capacity": [
+      -1400,
+      1400
+    ],
+    "lonlat": [
+      2.44819,
+      57.266334
+    ],
     "parsers": {
       "exchange": "ELEXON.fetch_exchange"
     },
@@ -882,7 +947,8 @@
   "GE->RU-1": {
     "lonlat": [42.822242, 43.158267],
     "parsers": {
-      "exchange": "RU.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
   },
@@ -890,7 +956,8 @@
     "lonlat": [42.814, 41.562],
     "capacity": [-700, 700],
     "parsers": {
-      "exchange": "GE.fetch_exchange"
+      "exchange": "GE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -135
   },
@@ -1197,7 +1264,14 @@
     "rotation": -150
   },
   "LT->LV": {
-    "lonlat": [24.373981, 56.287428],
+    "capacity": [
+      -1201,
+      1334
+    ],
+    "lonlat": [
+      24.373981,
+      56.287428
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
@@ -1213,8 +1287,14 @@
     "rotation": 180
   },
   "LT->RU-KGD": {
-    "capacity": [-2490, 2490],
-    "lonlat": [21.963913, 55.080726],
+    "capacity": [
+      -680,
+      600
+    ],
+    "lonlat": [
+      21.963913,
+      55.080726
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
@@ -1230,13 +1310,20 @@
     "rotation": -90
   },
   "LT->SE-SE4": {
+    "capacity": [-700, 700],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "LV->RU-1": {
-    "capacity": [-696, 696],
-    "lonlat": [27.7336, 56.87436],
+    "capacity": [
+      -970,
+      970
+    ],
+    "lonlat": [
+      27.7336,
+      56.87436
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange"
     },
@@ -1293,21 +1380,42 @@
     "rotation": 0
   },
   "MY-WM->SG": {
-    "lonlat": [103.539048, 2.016154],
+    "capacity": [
+      -450,
+      450
+    ],
+    "lonlat": [
+      103.539048,
+      2.016154
+    ],
     "parsers": {
       "exchange": "MY_WM.fetch_exchange"
     },
     "rotation": 155
   },
   "MY-WM->TH": {
-    "lonlat": [101.454422, 5.867743],
+    "capacity": [
+      -330,
+      330
+    ],
+    "lonlat": [
+      101.454422,
+      5.867743
+    ],
     "parsers": {
       "exchange": "MY_WM.fetch_exchange"
     },
     "rotation": 0
   },
   "MX-BC->US-CAL-CISO": {
-    "lonlat": [-116.027, 32.607],
+    "capacity": [
+      -400,
+      800
+    ],
+    "lonlat": [
+      -116.027,
+      32.607
+    ],
     "parsers": {
       "exchange": "US_CA.fetch_exchange"
     },
@@ -1406,8 +1514,14 @@
     "rotation": 0
   },
   "NL->NO-NO2": {
-    "capacity": [-700, 700],
-    "lonlat": [5.795449, 55.859727],
+    "capacity": [
+      -723,
+      723
+    ],
+    "lonlat": [
+      5.795449,
+      55.859727
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -1433,8 +1547,14 @@
     "rotation": -45
   },
   "NO-NO1->NO-NO5": {
-    "capacity": [-3500, 600],
-    "lonlat": [8.3, 61.132896],
+    "capacity": [
+      -3900,
+      600
+    ],
+    "lonlat": [
+      8.3,
+      61.132896
+    ],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -1442,7 +1562,7 @@
     "rotation": -90
   },
   "NO-NO1->SE": {
-    "capacity": [-2100, 2150],
+    "capacity": [-2095, 2145],
     "lonlat": [12.254138, 61.008235],
     "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
@@ -1452,7 +1572,7 @@
     "rotation": 90
   },
   "NO-NO1->SE-SE3": {
-    "capacity": [-2100, 2150],
+    "capacity": [-2095, 2145],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
@@ -1500,6 +1620,7 @@
     }
   },
   "NO-NO4->SE": {
+    "capacity": [-900, 950],
     "lonlat": [15.462856, 66.273628],
     "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
@@ -1536,6 +1657,7 @@
     "rotation": -20
   },
   "PL->SE-SE4": {
+    "capacity": [-600, 600],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
@@ -1601,16 +1723,19 @@
     "rotation": -90
   },
   "SE-SE1->SE-SE2": {
+    "capacity": [-3300, 3300],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "SE-SE2->SE-SE3": {
+    "capacity": [-7300, 7300],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }
   },
   "SE-SE3->SE-SE4": {
+    "capacity": [-2000, 5400],
     "parsers": {
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     }

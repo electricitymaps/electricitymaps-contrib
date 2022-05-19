@@ -1,9 +1,8 @@
-/* eslint-disable global-require */
-/* eslint-disable prefer-rest-params */
-// TODO: remove once refactored
-
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
+import twitterConnection from './thirdparty/twitter';
+import plausibleConnection from './thirdparty/plausible';
+import debugConsoleConnection from './thirdparty/debugconsole';
 
 function reportToSentry(e) {
   if (window.Sentry !== undefined) {
@@ -19,11 +18,10 @@ class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(require('./thirdparty/twitter'));
-      this._ga = this.addConnection(require('./thirdparty/ga'));
-      this.addConnection(require('./thirdparty/mixpanel'));
+      this.addConnection(new twitterConnection());
+      this.addConnection(new plausibleConnection());
     } else {
-      this.addConnection(require('./thirdparty/debugconsole'));
+      this.addConnection(new debugConsoleConnection());
     }
   }
 
@@ -33,26 +31,19 @@ class ConnectionsService {
   }
 
   trackEvent(eventName, context) {
+    console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
     this.connections.forEach((conn) => {
       try {
         conn.track(eventName, context);
-      } catch (err) { console.error(`External connection error: ${err}`); }
+      } catch (err) {
+        console.error(`External connection error: ${err}`);
+      }
     });
-  }
-
-  // track google analytics if is available
-  ga() {
-    if (this._ga) {
-      try {
-        this._ga.ga(...arguments);
-      } catch (err) { console.error(`Google analytics track error: ${err}`); }
-    }
   }
 
   // track errors
   trackError(e) {
     console.error(`Error Caught! ${e}`);
-    this.ga('event', 'exception', { description: e, fatal: false });
     store.dispatch({
       type: 'TRACK_EVENT',
       payload: {

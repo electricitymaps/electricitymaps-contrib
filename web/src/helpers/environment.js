@@ -1,4 +1,3 @@
-
 export function isProduction() {
   return window.location.href.includes('electricitymap');
 }

@@ -1,11 +1,10 @@
-const moment = require('moment');
+import { addMinutes } from 'date-fns';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+import constructTopos from '../helpers/topos';
+import * as translation from '../helpers/translation';
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../../../config/zones.json';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -20,14 +19,16 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
+  zone.shortname = translation.getZoneNameWithCountry(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
   zone.disclaimer = zoneConfig.disclaimer;
 });
 // Add id to each zone
-Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
+Object.keys(zones).forEach((k) => {
+  zones[k].countryCode = k;
+});
 
 // ** Prepare initial exchange data
 const exchanges = Object.assign({}, exchangesConfig);
@@ -55,7 +56,7 @@ const initialDataState = {
   windDataError: null,
 };
 
-module.exports = (state = initialDataState, action) => {
+const reducer = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -63,10 +64,13 @@ module.exports = (state = initialDataState, action) => {
 
     case 'GRID_DATA_FETCH_SUCCEEDED': {
       // Create new grid object
-      const newGrid = Object.assign({}, {
-        zones: Object.assign({}, state.grid.zones),
-        exchanges: Object.assign({}, state.grid.exchanges),
-      });
+      const newGrid = Object.assign(
+        {},
+        {
+          zones: Object.assign({}, state.grid.zones),
+          exchanges: Object.assign({}, state.grid.exchanges),
+        }
+      );
       // Create new state
       const newState = Object.assign({}, state);
       newState.grid = newGrid;
@@ -75,9 +79,9 @@ module.exports = (state = initialDataState, action) => {
       newState.histories = Object.assign({}, state.histories);
       Object.keys(state.histories).forEach((k) => {
         const history = state.histories[k];
-        const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
-        const stateMoment = moment(action.payload.datetime).utc();
-        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
+        const lastHistoryMoment = new Date(history.at(-1).stateDatetime);
+        const stateMoment = new Date(action.payload.datetime);
+        if (addMinutes(lastHistoryMoment, 15) < stateMoment) {
           delete newState.histories[k];
         }
       });
@@ -112,7 +116,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const zone = newGrid.zones[key];
         if (!zone) {
-          console.warn(`${key} has no zone configuration.`);
+          console.warn(`${key} has no zone configuration. Ignoring..`);
           return;
         }
         // Assign data from payload
@@ -124,7 +128,7 @@ module.exports = (state = initialDataState, action) => {
         // Set date
         zone.datetime = action.payload.datetime;
 
-        const hasNoData = !zone.production || Object.values(zone.production).every(v => v === null);
+        const hasNoData = !zone.production || Object.values(zone.production).every((v) => v === null);
         if (hasNoData) {
           return;
         }
@@ -132,24 +136,6 @@ module.exports = (state = initialDataState, action) => {
         // By default hasData is only true if there is a parser - here we overwrite that value
         // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
         zone.hasData = zone.hasParser || !hasNoData;
-
-        // Validate data
-        modeOrder.forEach((mode) => {
-          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-          // Check missing values
-          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-          //    console.warn(`${key} is missing production or storage of ' + mode`);
-          // Check validity of production
-          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.warn(`${key} has negative production of ${mode}`);
-          }
-          // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
-            console.warn(`${key} produces more than its capacity of ${mode}`);
-          }
-        });
       });
 
       // Populate exchange pairs for exchange layer
@@ -157,7 +143,7 @@ module.exports = (state = initialDataState, action) => {
         const [key, value] = entry;
         const exchange = newGrid.exchanges[key];
         if (!exchange || !exchange.lonlat) {
-          console.warn(`Missing exchange configuration for ${key}`);
+          console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
           return;
         }
         // Assign all data
@@ -186,10 +172,10 @@ module.exports = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map(datapoint => ({
+          [action.zoneId]: action.payload.map((datapoint) => ({
             ...datapoint,
-            hasParser: true,
-            hasData: true
+            hasParser: zones[action.zoneId].hasParser,
+            hasData: !Object.values(datapoint.production).every((v) => v === null),
           })),
         },
       };
@@ -230,3 +216,5 @@ module.exports = (state = initialDataState, action) => {
       return state;
   }
 };
+
+export default reducer;

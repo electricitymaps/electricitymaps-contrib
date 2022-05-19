@@ -1,0 +1,61 @@
+# CURRENTLY DISABLED
+# We had so many PRs being opened and not enough time to test each individual update,
+# so for now we're disabling this and manually updating dependencies.
+# This can be enabled again when we have a tests and faster CI flow.
+
+
+# Dependabot config file
+
+version: 2
+updates:
+  # Maintain the workflow dependencies.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  # Maintain the poetry (parsers) dependencies.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Maintain the web npm dependencies.
+  - package-ecosystem: "npm"
+    directory: "/web/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "docker"
+    directory: "/web/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+
+  # Maintain the mockserver npm dependencies.
+  - package-ecosystem: "npm"
+    directory: "/mockserver/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+
+  # Maintain the mobile app npm dependencies.
+  - package-ecosystem: "npm"
+    directory: "/mobileapp/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
