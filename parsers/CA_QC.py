@@ -41,10 +41,10 @@ def fetch_production(
     list_res = []
     for elem in reversed(data["details"]):
         if elem["valeurs"]["total"] != 0:
-            list_res.append(dict({
+            list_res.append({
                 "zoneKey": zone_key,
                 "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
-                "production": dict({
+                "production": {
                     "biomass": if_exists(elem, "biomass"),
                     "coal": 0.0,
                     "hydro": if_exists(elem, "hydro"),
@@ -59,9 +59,9 @@ def fetch_production(
                     # There are no geothermal electricity generation stations in Québec (and all of Canada for that matter).
                     "geothermal": 0.0,
                     "unknown": if_exists(elem, "unknown"),
-                }),
+                },
                 "source": "hydroquebec.com",
-            }))
+            })
     return list_res
 
 
