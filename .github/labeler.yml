@@ -31,7 +31,10 @@ python:
   - .**/*.py
 
 parser:
-  - parsers/**/*
+  - any: ['parsers/**/*', '!parsers/archive/**/*']
+
+archived parser:
+  - parsers/archive/**/*
 
 science:
   - config/co2eq_parameters.json

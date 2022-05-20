@@ -38,16 +38,12 @@
   },
   "AM->NKR": {
     "lonlat": [46.0, 39.75],
-    "parsers": {
-      "exchange": "AM.fetch_exchange"
-    },
+    "parsers": {},
     "rotation": 90
   },
   "AM->IR": {
     "lonlat": [46.3, 38.9],
-    "parsers": {
-      "exchange": "AM.fetch_exchange"
-    },
+    "parsers": {},
     "rotation": 180
   },
   "AR->BR-S": {
@@ -893,9 +889,7 @@
   "GB->GB-NIR": {
     "capacity": [-500, 500],
     "lonlat": [-5.428149, 54.87826],
-    "parsers": {
-      "exchange": "GB_NIR.fetch_exchange"
-    },
+    "parsers": {},
     "rotation": -110
   },
   "GB->GB-ORK": {
@@ -925,9 +919,7 @@
   },
   "GB-NIR->IE": {
     "lonlat": [-7.4, 54.2],
-    "parsers": {
-      "exchange": "GB_NIR.fetch_exchange"
-    },
+    "parsers": {},
     "rotation": 180
   },
   "GB->NO-NO2": {

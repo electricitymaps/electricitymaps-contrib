@@ -83,9 +83,7 @@
       "alixunderplatz",
       "nessie2013"
     ],
-    "parsers": {
-      "production": "AM.fetch_production"
-    },
+    "parsers": {},
     "timezone": "Asia/Yerevan"
   },
   "AO": {
@@ -1888,7 +1886,6 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "GB_NIR.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": null
@@ -2622,10 +2619,7 @@
       "pierresegonne"
     ],
     "flag_file_name": "in.png",
-    "parsers": {
-      "consumption": "IN_UP.fetch_consumption",
-      "production": "IN_UP.fetch_production"
-    },
+    "parsers": {},
     "timezone": "Asia/Kolkata"
   },
   "IN-UT": {
