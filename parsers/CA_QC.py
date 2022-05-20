@@ -41,6 +41,7 @@ def fetch_production(
     list_res = []
     for elem in reversed(data["details"]):
         if elem["valeurs"]["total"] != 0:
+            
             list_res.append({
                 "zoneKey": zone_key,
                 "datetime": arrow.get(elem["date"], tzinfo=timezone_id).datetime,
