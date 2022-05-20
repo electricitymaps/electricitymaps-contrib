@@ -125,7 +125,7 @@ def fetch_production_1st_synchronous_zone(
     )
     url = base_url + "&startDate={date}&endDate={date}".format(date=date)
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
@@ -188,7 +188,7 @@ def fetch_production_2nd_synchronous_zone(
         HOST, date
     )
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
@@ -281,7 +281,7 @@ def fetch_exchange(
 
     datapoints = []
     for url, hour in exchange_urls:
-        response = r.get(url)
+        response = r.get(url, verify=False)
         json_content = json.loads(response.text)
 
         if response_checker(json_content):
