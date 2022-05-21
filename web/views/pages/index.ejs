@@ -62,8 +62,8 @@
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
-            var resolvePath = '<%- resolvePath %>';
-            var isCordova = '<%= typeof isCordova !== 'undefined' && isCordova %>';
+            var resolvePath = <%- resolvePath %>;
+            var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
         </script>
 
         <!-- Add crash reporting early on so we catch all errors -->
