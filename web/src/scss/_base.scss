@@ -15,15 +15,6 @@ a {
 	}
 }
 
-html,
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-family: $primary-font;
-    transition: background-color 800ms;
-    overflow: hidden; /* Disable dragging that can occur on mobile */
-}
-
 body {
     height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
