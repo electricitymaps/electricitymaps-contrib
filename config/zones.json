@@ -4323,7 +4323,8 @@
       "denplis",
       "systemcatch",
       "alixunderplatz",
-      "JeanBaptisteScellier"
+      "JeanBaptisteScellier",
+      "aekrylov"
     ],
     "flag_file_name": "ru.png",
     "parsers": {
@@ -4391,7 +4392,6 @@
     "contributors": [
       "JeanBaptisteScellier"
     ],
-    "contributors": ["https://github.com/JeanBaptisteScellier"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -4440,7 +4440,6 @@
     "contributors": [
       "q--"
     ],
-    "contributors": ["https://github.com/q--"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -5889,21 +5888,6 @@
       "systemcatch",
       "robertahunt",
       "KabelWlan"
-    ],
-    "delays": {
-      "production": 30
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Central"
-  },
-  "US-MIDW-GLHB": {
-    "comment": "GridLiance",
-    "contributors": [
-      "systemcatch",
-      "robertahunt"
     ],
     "delays": {
       "production": 30
