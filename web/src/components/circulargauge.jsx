@@ -1,6 +1,6 @@
 import React from 'react';
-import { Motion, spring } from 'react-motion';
 import { arc } from 'd3-shape';
+import { useSpring, animated } from '@react-spring/web';
 
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 // TODO: re-enable rule
@@ -29,6 +29,10 @@ const CircularGauge = React.memo(
         .innerRadius(radius - thickness)
         .endAngle((p / 100) * 2 * Math.PI)();
 
+    const spring = useSpring({
+      percentage: Number.isFinite(percentage) ? percentageFill(percentage) : 0,
+    });
+
     return (
       <div
         onClick={(e) => onClick && onClick(e.clientX, e.clientY)}
@@ -37,19 +41,12 @@ const CircularGauge = React.memo(
         onMouseMove={(e) => onMouseMove && onMouseMove(e.clientX, e.clientY)}
       >
         <svg style={{ pointerEvents: 'none' }} width={radius * 2} height={radius * 2}>
-          <g transform={`translate(${radius},${radius})`}>
-            <g className="circular-gauge">
-              <path className="background" d={percentageFill(100)} />
-              <Motion
-                defaultStyle={{ percentage: 0 }}
-                style={{ percentage: spring(Number.isFinite(percentage) ? percentage : 0) }}
-              >
-                {(interpolated) => <path className="foreground" d={percentageFill(interpolated.percentage)} />}
-              </Motion>
-              <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
-                {Number.isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
-              </text>
-            </g>
+          <g transform={`translate(${radius},${radius})`} className="circular-gauge">
+            <path className="background" d={percentageFill(100)} />
+            <animated.path className="foreground" d={spring.percentage} />
+            <text style={{ textAnchor: 'middle', fontWeight: 'bold', fontSize }} dy="0.4em">
+              {Number.isFinite(percentage) ? `${Math.round(percentage)}%` : '?'}
+            </text>
           </g>
         </svg>
       </div>
