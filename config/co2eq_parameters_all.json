@@ -11325,6 +11325,10 @@
       "GB-ORK": {
         "unknown": { "value": 1 }
       },
+      "IL": {
+        "_comment": "Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json",
+        "unknown": { "value": 0.056 }
+      },
       "PR": {
         "unknown": { "value": 1 }
       },
@@ -11369,6 +11373,10 @@
       },
       "SG": {
         "unknown": { "value": 1 }
+      },
+      "TH": {
+        "_comment": "Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json",
+        "unknown": { "value": 0.159 }
       },
       "UA": {
         "unknown": { "value": 1 }
@@ -11467,6 +11475,10 @@
       "GB-ORK": {
         "unknown": { "value": 1 }
       },
+      "IL": {
+        "_comment": "Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json",
+        "unknown": { "value": 0.056 }
+      },
       "PR": {
         "unknown": { "value": 1 }
       },
@@ -11511,6 +11523,10 @@
       },
       "SG": {
         "unknown": { "value": 1 }
+      },
+      "TH": {
+        "_comment": "Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json",
+        "unknown": { "value": 0.159 }
       },
       "UA": {
         "unknown": { "value": 1 }
