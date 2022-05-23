@@ -32,11 +32,17 @@ jobs:
             *.md
 
   validate_local_links:
-    name: Validate local links in markdown files.
+    name: Validate local links in markdown files
     needs: [setup]
     runs-on: ubuntu-latest
     if: needs.setup.outputs.markdown == 'true'
     steps:
-      - name: Validate local links in markdown files.
-        uses: ./.github/workflows/validate-local-links-in-md
+      - uses: ./.github/workflows/validate-local-links-in-md
 
+  cypress:
+    name: Cypress tests
+    needs: [setup]
+    runs-on: ubuntu-latest
+    if: needs.setup.outputs.frontend == 'true'
+    steps:
+      - uses: ./.github/workflows/cypress
