@@ -41,10 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.setup.outputs.markdown != 'false'
     steps:
-      - name: Log output
-        run: |
-          echo "markdown changed: ${{ needs.setup.outputs.markdown }}"
-     # - uses: ./.github/workflows/validate-local-links-in-md
+      - uses: ./.github/workflows/validate-local-links-in-md
 
   cypress:
     name: Cypress tests
