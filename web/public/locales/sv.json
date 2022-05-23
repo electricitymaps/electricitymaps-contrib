@@ -44,8 +44,8 @@
         "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
         "estimated": "Uppskattad",
         "dataIsEstimated": "Delar av datan för denna region är uppskattad. Läs mer om vår uppskattings metodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-        "estimatedTooltip":"Realtids datan för denna region är uppskattad baserat på källdata och anntaganden av modelen.",
-        "helpUs":"Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
+        "estimatedTooltip": "Realtids datan för denna region är uppskattad baserat på källdata och anntaganden av modelen.",
+        "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
         "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
         "now": "Nu"
     },
@@ -1521,10 +1521,6 @@
         "US-MIDW-AECI": {
             "countryName": "USA",
             "zoneName": "Associated Electric Cooperative, Inc."
-        },
-        "US-MIDW-EEI": {
-            "countryName": "USA",
-            "zoneName": "Electric Energy, Inc."
         },
         "US-MIDW-GLHB": {
             "countryName": "USA",
