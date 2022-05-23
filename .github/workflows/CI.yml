@@ -43,7 +43,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: .github/workflows/validate-local-links-in-md
+      - uses: electricitymap/electricitymap-contrib/.github/workflows/validate-local-links-in-md@${{github.sha}}
 
   cypress:
     name: Cypress tests
@@ -53,4 +53,4 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: .github/workflows/cypress
+      - uses: electricitymap/electricitymap-contrib/.github/workflows/cypress@${{github.sha}}
