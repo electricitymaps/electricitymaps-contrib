@@ -50,6 +50,6 @@ jobs:
     name: Cypress tests
     needs: [setup]
     runs-on: ubuntu-latest
-    if: (needs.setup.outputs.frontend == 'true') || needs.setup.outputs.workflows == 'true')
+    if: (needs.setup.outputs.frontend == 'true' || needs.setup.outputs.workflows == 'true')
     steps:
       - uses: ./.github/workflows/cypress
