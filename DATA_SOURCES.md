@@ -117,7 +117,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
-- Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
+- Sweden: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Sri Lanka: [Ceylon Electricity Board](https://cebcare.ceb.lk/gensum/details)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
