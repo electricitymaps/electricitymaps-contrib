@@ -15,6 +15,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           working-directory: ./web
-          start: yarn develop
+          start: yarn develop, yarn run mockserver
           record: true
           wait-on: "http://localhost:8080"
