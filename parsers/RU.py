@@ -14,7 +14,9 @@ import requests
 # Handling of hours: data at t on API side corresponds to
 # production / consumption from t to t+1
 
-BASE_EXCHANGE_URL = "http://br.so-ups.ru/webapi/api/flowDiagramm/GetData?"
+# http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
+HOST = "https://858127-cc16935.tmweb.ru"
+BASE_EXCHANGE_URL = f"${HOST}/webapi/api/flowDiagramm/GetData?"
 
 MAP_GENERATION_1 = {
     "P_AES": "nuclear",
@@ -118,12 +120,12 @@ def fetch_production_1st_synchronous_zone(
     r = session or requests.session()
 
     price_zone = zone_key_price_zone_mapper[zone_key]
-    base_url = "http://br.so-ups.ru/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}".format(
-        price_zone
+    base_url = "{}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}".format(
+        HOST, price_zone
     )
     url = base_url + "&startDate={date}&endDate={date}".format(date=date)
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
@@ -182,11 +184,11 @@ def fetch_production_2nd_synchronous_zone(
 
     r = session or requests.session()
 
-    url = "https://br.so-ups.ru/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
-        date
+    url = "{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
+        HOST, date
     )
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     json_content = json.loads(response.text)
     dataset = json_content[0]["m_Item2"]
 
@@ -279,7 +281,7 @@ def fetch_exchange(
 
     datapoints = []
     for url, hour in exchange_urls:
-        response = r.get(url)
+        response = r.get(url, verify=False)
         json_content = json.loads(response.text)
 
         if response_checker(json_content):
