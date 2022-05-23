@@ -38,19 +38,11 @@ jobs:
   validate_local_links:
     name: Validate local links in markdown files
     needs: [setup]
-    runs-on: ubuntu-latest
     if: needs.setup.outputs.markdown != 'false'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - uses: electricitymap/electricitymap-contrib/.github/workflows/validate-local-links-in-md@${{github.sha}}
+    uses: ./.github/workflows/validate-local-links-in-md.yml
 
   cypress:
     name: Cypress tests
     needs: [setup]
-    runs-on: ubuntu-latest
     if: needs.setup.outputs.frontend != 'false'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - uses: electricitymap/electricitymap-contrib/.github/workflows/cypress@${{github.sha}}
+    uses: ./.github/workflows/cypress.yml
