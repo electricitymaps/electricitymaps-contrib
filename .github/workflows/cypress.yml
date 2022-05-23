@@ -2,11 +2,9 @@ name: Cypress
 on:
   pull_request
 env:
-  SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN: '${{ secrets.SNOWPACK_PUBLIC_ELECTRICITYMAP_TOKEN }}' # token has to be escaped
   CYPRESS_RECORD_KEY: '${{ secrets.CYPRESS_RECORD_KEY }}'
 jobs:
   cypress-test:
-    if: contains(github.event.pull_request.labels.*.name, 'frontend 🎨')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
