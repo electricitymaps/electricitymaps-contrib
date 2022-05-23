@@ -30,6 +30,10 @@ jobs:
         with:
           files: |
             **/*.md
+      - name: Log outputs
+        run: |
+          echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
+          echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
 
   validate_local_links:
     name: Validate local links in markdown files
