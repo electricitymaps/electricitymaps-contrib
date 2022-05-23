@@ -10,8 +10,8 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     outputs:
-      frontend: steps.check-frontend.outputs.any_changed
-      markdown: steps.check-markdown.outputs.any_changed
+      frontend: ${{ steps.check-frontend.outputs.any_changed }}
+      markdown: ${{ steps.check-markdown.outputs.any_changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -39,7 +39,7 @@ jobs:
     name: Validate local links in markdown files
     needs: [setup]
     runs-on: ubuntu-latest
-   # if: needs.setup.outputs.markdown == true
+    if: needs.setup.outputs.markdown == true
     steps:
       - name: Log output
         run: |
