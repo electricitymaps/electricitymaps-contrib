@@ -41,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.setup.outputs.markdown != 'false'
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: ./.github/workflows/validate-local-links-in-md
 
   cypress:
@@ -49,4 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.setup.outputs.frontend != 'false'
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: ./.github/workflows/cypress
