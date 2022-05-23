@@ -32,7 +32,7 @@ jobs:
             *.md
 
   validate_local_links:
-    name: Validate local links
+    name: Validate local links in markdown files.
     needs: [setup]
     runs-on: ubuntu-latest
     if: needs.setup.outputs.markdown == 'true'
