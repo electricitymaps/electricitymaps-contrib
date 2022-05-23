@@ -39,7 +39,7 @@ jobs:
     name: Validate local links in markdown files
     needs: [setup]
     runs-on: ubuntu-latest
-    # if: needs.setup.outputs.markdown == 'true'
+    if: needs.setup.outputs.markdown != 'false'
     steps:
       - name: Log output
         run: |
@@ -50,6 +50,6 @@ jobs:
     name: Cypress tests
     needs: [setup]
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.frontend == 'true'
+    if: needs.setup.outputs.frontend != 'false'
     steps:
       - uses: ./.github/workflows/cypress
