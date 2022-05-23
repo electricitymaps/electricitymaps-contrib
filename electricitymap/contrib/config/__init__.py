@@ -38,6 +38,20 @@ for k, v in EXCHANGES_CONFIG.items():
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
         ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+# Manage subzones
+for zone in ZONES_CONFIG.keys():
+    # if a zone has subzones, then make sure the parent has as neighbors
+    # all the neighbors of the subzones
+    subzones = ZONES_CONFIG[zone].get('subZoneNames', [])
+    if subzones:
+        for subzone in subzones:
+            for subzone_neighbor in ZONE_NEIGHBOURS[subzone]:
+                if subzone_neighbor in subzones:
+                    # ignore the neighbours that are within the zone
+                    continue
+                if zone not in ZONE_NEIGHBOURS:
+                    ZONE_NEIGHBOURS[zone] = set()
+                ZONE_NEIGHBOURS[zone].add(subzone_neighbor.split('-')[0])
 # we want neighbors to always be in the same order
 for zone, neighbors in ZONE_NEIGHBOURS.items():
     ZONE_NEIGHBOURS[zone] = sorted(neighbors)
