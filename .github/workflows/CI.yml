@@ -20,16 +20,16 @@ jobs:
         uses: tj-actions/changed-files@v20
         with:
           files: |
-            web/**/*
-          files_ignore:
-            web/public/locales/*.json
-            web/**/*.md
+            **/web/**/*
+          files_ignore: |
+            **/web/public/locales/*.json
+            **/web/**/*.md
       - name: Check markdown files
         id: check-markdown
         uses: tj-actions/changed-files@v20
         with:
           files: |
-            *.md
+            **/*.md
 
   validate_local_links:
     name: Validate local links in markdown files
