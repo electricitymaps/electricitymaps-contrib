@@ -3187,9 +3187,9 @@
           }
         ],
         "unknown": {
-            "_url": "https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352",
-            "source": "Guatemala AMM 2021-2022 and IEA 2020",
-            "value": 383.240577
+          "_url": "https://docs.google.com/spreadsheets/d/1CegROfej9HqRZTfihpjPpgZTYPUHrTNgTdHWbbP3w74/edit#gid=291258352",
+          "source": "Guatemala AMM 2021-2022 and IEA 2020",
+          "value": 383.240577
         }
       },
       "HN": {
@@ -7504,42 +7504,6 @@
             "datetime": "2021-01-01",
             "source": "electricityMap, 2021 average",
             "value": 506.6284280818978
-          }
-        ]
-      },
-      "US-MIDW-EEI": {
-        "battery discharge": [
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 743.8238763689976
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 747.002564737574
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 721.2372690763053
-          }
-        ],
-        "hydro discharge": [
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 743.8238763689976
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 747.002564737574
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 721.2372690763053
           }
         ]
       },

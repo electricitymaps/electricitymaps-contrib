@@ -7889,42 +7889,6 @@
           }
         ]
       },
-      "US-MIDW-EEI": {
-        "battery discharge": [
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 803.7535920387531
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 807.0916792665971
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 781.6093949129852
-          }
-        ],
-        "hydro discharge": [
-          {
-            "datetime": "2018-01-01",
-            "source": "electricityMap, 2018 average",
-            "value": 803.7535920387531
-          },
-          {
-            "datetime": "2019-01-01",
-            "source": "electricityMap, 2019 average",
-            "value": 807.0916792665971
-          },
-          {
-            "datetime": "2020-01-01",
-            "source": "electricityMap, 2020 average",
-            "value": 781.6093949129852
-          }
-        ]
-      },
       "US-MIDW-GLHB": {
         "battery discharge": [
           {

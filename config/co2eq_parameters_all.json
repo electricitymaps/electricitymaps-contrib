@@ -9709,46 +9709,6 @@
           }
         ]
       },
-      "US-MIDW-EEI": {
-        "powerOriginRatios": [
-          {
-            "_source": "electricityMap, 2018 average",
-            "datetime": "2018-01-01",
-            "value": {
-              "battery discharge": 0.0,
-              "biomass": 0.0,
-              "coal": 0.9735657118786857,
-              "gas": 0.00976095197978096,
-              "geothermal": 0.0,
-              "hydro": 0.0031781802864363946,
-              "hydro discharge": 2.527379949452401e-5,
-              "nuclear": 0.010544439764111206,
-              "oil": 0.0002801179443976411,
-              "solar": 1.3689974726200506e-5,
-              "unknown": 0.00024747262005054763,
-              "wind": 0.0022441027801179446
-            }
-          },
-          {
-            "_source": "electricityMap, 2019 average",
-            "datetime": "2019-01-01",
-            "value": {
-              "battery discharge": 0.0,
-              "biomass": 0.0,
-              "coal": 0.9779675008689607,
-              "gas": 0.009566388599235314,
-              "geothermal": 0.0,
-              "hydro": 0.0018886861313868616,
-              "hydro discharge": 3.9537712895377135e-5,
-              "nuclear": 0.008600104275286758,
-              "oil": 0.0003002259297879736,
-              "solar": 2.8241223496697945e-5,
-              "unknown": 0.00011470281543274245,
-              "wind": 0.0014263990267639904
-            }
-          }
-        ]
-      },
       "US-MIDW-LGEE": {
         "powerOriginRatios": [
           {
