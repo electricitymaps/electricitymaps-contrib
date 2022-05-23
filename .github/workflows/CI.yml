@@ -39,14 +39,17 @@ jobs:
     name: Validate local links in markdown files
     needs: [setup]
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.markdown == 'true'
+   # if: needs.setup.outputs.markdown == true
     steps:
+      - name: Log output
+        run: |
+          echo "markdown changed: ${{ needs.setup.outputs.markdown }}"
       - uses: ./.github/workflows/validate-local-links-in-md
 
   cypress:
     name: Cypress tests
     needs: [setup]
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.frontend == 'true'
+    if: needs.setup.outputs.frontend == true
     steps:
       - uses: ./.github/workflows/cypress
