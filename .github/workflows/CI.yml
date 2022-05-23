@@ -1,0 +1,42 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: steps.check-frontend.outputs.any_changed
+      markdown: steps.check-markdown.outputs.any_changed
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Check frontend files
+        id: check-frontend
+        uses: tj-actions/changed-file@20
+        with:
+          files: |
+            web/**/*
+          files_ignore:
+            web/public/locales/*.json
+            web/**/*.md
+      - name: Check markdown files
+        id: check-markdown
+        uses: tj-actions/changed-file@20
+        with:
+          files: |
+            *.md
+
+  validate_local_links:
+    name: Validate local links
+    needs: [setup]
+    runs-on: ubuntu-latest
+    if: needs.setup.outputs.markdown == 'true'
+    steps:
+      - name: Validate local links in markdown files.
+        uses: ./.github/workflows/validate-local-links-in-md
+
