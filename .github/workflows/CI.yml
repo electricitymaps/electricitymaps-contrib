@@ -42,7 +42,7 @@ jobs:
     uses: ./.github/workflows/validate-local-links-in-md.yml
 
   cypress:
-    name: Cypress tests
+    name: Cypress
     needs: [setup]
     if: needs.setup.outputs.frontend != 'false'
     uses: ./.github/workflows/cypress.yml
