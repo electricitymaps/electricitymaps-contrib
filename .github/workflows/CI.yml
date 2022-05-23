@@ -10,11 +10,18 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     outputs:
+      workflows: steps.check-workflows.outputs.any_changed
       frontend: steps.check-frontend.outputs.any_changed
       markdown: steps.check-markdown.outputs.any_changed
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Check frontend files
+        id: check-workflows
+        uses: tj-actions/changed-files@v20
+        with:
+          files: |
+            .github/workflows/*.yml
       - name: Check frontend files
         id: check-frontend
         uses: tj-actions/changed-files@v20
@@ -35,7 +42,7 @@ jobs:
     name: Validate local links in markdown files
     needs: [setup]
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.markdown == 'true'
+    if: (needs.setup.outputs.markdown == 'true') || (needs.setup.outputs.workflows == 'true')
     steps:
       - uses: ./.github/workflows/validate-local-links-in-md
 
@@ -43,6 +50,6 @@ jobs:
     name: Cypress tests
     needs: [setup]
     runs-on: ubuntu-latest
-    if: needs.setup.outputs.frontend == 'true'
+    if: (needs.setup.outputs.frontend == 'true') || (needs.setup.outputs.workflows == 'true')
     steps:
       - uses: ./.github/workflows/cypress
