@@ -12,6 +12,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: lts/*
+    - name: Install dependencies
+      run: |
+        yarn install
     - name: Prettier Check
       run: |
-        npx prettier --check .
+        yarn run prettier:check
