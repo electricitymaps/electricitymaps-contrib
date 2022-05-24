@@ -17,4 +17,4 @@ jobs:
         yarn install
     - name: Prettier Check
       run: |
-        yarn run prettier:check
+        yarn run prettier-check

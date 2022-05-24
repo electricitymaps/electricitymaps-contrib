@@ -5,7 +5,7 @@
     "prettier": "^2.6.2"
   },
   "scripts": {
-    "prettier:fix": "prettier --write .",
-    "prettier:check": "prettier --check ."
+    "prettier-fix": "prettier --write .",
+    "prettier-check": "prettier --check ."
   }
 }
