@@ -14,4 +14,4 @@ jobs:
         node-version: lts/*
     - name: Prettier Check
       run: |
-        npx prettier --check . --ignore-unknown
+        npx prettier --check .
