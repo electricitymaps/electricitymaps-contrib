@@ -1,0 +1,11 @@
+{
+  "name": "electricitymap-contrib",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "scripts": {
+    "prettier:fix": "prettier --write .",
+    "prettier:check": "prettier --check ."
+  }
+}
