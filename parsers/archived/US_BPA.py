@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Archive reason: No longer in use.
 
 """Parser for the Bonneville Power Administration area of the USA."""
 

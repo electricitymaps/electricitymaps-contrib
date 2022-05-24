@@ -1,3 +1,5 @@
+# Archived reason: Data source is no longer available.
+
 import logging
 import re
 from datetime import datetime
