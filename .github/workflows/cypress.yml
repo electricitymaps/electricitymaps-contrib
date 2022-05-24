@@ -1,11 +1,12 @@
-name: Cypress
 on:
-  pull_request
+  workflow_call:
+
 env:
   CYPRESS_RECORD_KEY: '${{ secrets.CYPRESS_RECORD_KEY }}'
+
 jobs:
   cypress-test:
-    if: contains(github.event.pull_request.labels.*.name, 'frontend 🎨')
+    name: Cypress tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
