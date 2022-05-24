@@ -48,4 +48,5 @@ jobs:
     uses: ./.github/workflows/cypress.yml
 
   prettier:
+    name: Prettier
     uses: ./.github/workflows/prettier.yml
