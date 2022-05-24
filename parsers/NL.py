@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-from asyncio.log import logger
-
 import logging
 import math
+from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
 
@@ -11,8 +10,8 @@ import numpy as np
 import pandas as pd
 import requests
 
-from parsers.lib.config import refetch_frequency
 from electricitymap.contrib.config import ZONES_CONFIG
+from parsers.lib.config import refetch_frequency
 
 from . import DK, ENTSOE, statnett
 
