@@ -84,8 +84,9 @@ This is not required when using `cordova build` (it automatically runs `cordova 
 To do a release build (android):
 
 ```bash
-cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey
+cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey --storePassword XXX --password XXX
 ```
+(ask internally for the password)
 
 To do a release build (ios):
 
@@ -118,7 +119,7 @@ To push a new store release:
   - Go into TestFlight and test on your own device
   - Submit the new build for review when everything is looking good
 - Android
-  - TBD
+  -  Open folder `mobileapp/platforms/android/app/build/outputs/apk/release` and upload the `app-release.apk` file on [Play Store Console](https://play.google.com/console)
 - Celebrate!
 
 ## App/Play Store Release Checklist
