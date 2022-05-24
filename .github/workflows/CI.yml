@@ -46,3 +46,6 @@ jobs:
     needs: [setup]
     if: needs.setup.outputs.frontend != 'false'
     uses: ./.github/workflows/cypress.yml
+
+  prettier:
+    uses: ./.github/workflows/prettier.yml
