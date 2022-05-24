@@ -1,3 +1,5 @@
+# Archived reason: No longer in use and data url has changed.
+
 import datetime
 from collections import defaultdict
 
