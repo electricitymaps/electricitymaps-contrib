@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from asyncio.log import logger
-from email.policy import default
+
 import logging
 import math
 from copy import copy
@@ -296,10 +296,16 @@ def get_solar_capacities() -> pd.DataFrame:
         else:
             url_solar_capacity += f"(Periods+eq+%27{year}JJ00%27)+or+"
 
-    r = requests.get(url_solar_capacity)
-
     solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
-    for yearly_row in r.json()["value"]:
+
+    try:
+        r = requests.get(url_solar_capacity)
+        per_year_capacity = r.json()["value"]
+    except Exception as e:
+        logger.error(f"Error fetching solar capacities: {e}")
+        return solar_capacity_df
+
+    for yearly_row in per_year_capacity:
         capacity = float(yearly_row["ElectricalCapacityEndOfYear_8"])
         datetime = arrow.get(yearly_row["Periods"].split("JJ")[0]).format()
         solar_capacity_df = solar_capacity_df.append(
