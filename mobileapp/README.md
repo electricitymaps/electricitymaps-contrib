@@ -86,7 +86,7 @@ To do a release build (android):
 ```bash
 cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey --storePassword XXX --password XXX
 ```
-(ask Mads for the password)
+(ask internally for the password)
 
 To do a release build (ios):
 
