@@ -13,7 +13,7 @@ import React, { memo } from 'react';
 
 const Icon = memo(({ iconName, size = 24 }) => {
   if (window.isCordova) {
-    return <img src={`/images/icons/${iconName}.svg`} alt="" height={size} width={size} style={{ fill: 'blue' }} />;
+    return <img src={`/images/icons/${iconName}.svg`} alt="" height={size} width={size} />;
   } else {
     return (
       <svg height={size} width={size}>
