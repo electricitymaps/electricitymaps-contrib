@@ -16,7 +16,7 @@ export default () => {
       <div id="tab-content">
         {canRenderMap && (
           <NavLink className="list-item" to={{ pathname: '/map', search: location.search }}>
-            <img className="tab-icon-custom" src={resolvePath('images/electricitymap-icon.svg')} alt="" />
+            <Icon iconName="electricitymap-icon" />
             <span className="tab-label">{__('mobile-main-menu.map')}</span>
           </NavLink>
         )}

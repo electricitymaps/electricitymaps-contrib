@@ -92,18 +92,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-        >svg {
-            fill: #333;
+        fill-opacity: 0.5;
+        &:hover {
+            fill-opacity: 1;
+        }
+        > svg {
             width: 24px;
             height: 24px;
             fill: $black;
         }
     }
 
-    .modal-close-button>svg{
-        fill: #FFF
-    }
 
     .modal-left-button,
     .modal-right-button {
@@ -116,16 +115,12 @@
         }
 
         &.green {
-            >svg {
+            > svg {
               fill: $green;
             }
 
             &:hover {
                 background-color: $light-green;
-                >svg {
-                    fill: inherit;
-                }
-
             }
         }
 
@@ -156,14 +151,8 @@
     .modal-close-button {
         height: 36px;
         width: 36px;
-        background-color: #333333;
-        color: white;
-
-         @include respond-to('small') {
-            background-color: $white;
-            color:#333333 ;
          }
-    }
+
 
     .modal-header {
         height: 58%;

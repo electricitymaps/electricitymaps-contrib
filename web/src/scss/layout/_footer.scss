@@ -7,7 +7,6 @@
 #tab {
     position: relative;
     background-color:$lighter-gray;
-		fill-opacity: 0.5;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.10);
     z-index: 2;
     flex: 0 0 auto;
@@ -30,9 +29,10 @@
 		    font-family: $primary-font;
 		    transition: padding-top 0.4s;
 		    font-family: $headline-font;
+				fill-opacity: 0.5;
 
 		    img {
-		    	filter: brightness(0%) invert(0.5);
+					opacity: 0.5;
 		    }
 
 		    &.active {
@@ -42,7 +42,7 @@
 			    padding-top: 6px;
 
 			    img {
-			    	filter: brightness(0%) invert(0);
+						opacity: 1;
 			    }
 		    }
 		}

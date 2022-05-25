@@ -1,10 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
-
-const IconContainer = styled.svg`
-  height: 24px;
-  width: 24px;
-`;
+import React, { memo } from 'react';
 
 /**
  * To add a new icon to the SVG sprite, open the icons SVG file and copy the the <svg> element.
@@ -17,12 +11,16 @@ const IconContainer = styled.svg`
  *   </symbol>
  */
 
-const Icon = ({ iconName }) => {
-  return (
-    <IconContainer>
-      <use href={`/images/material-icon-sprite.svg#${iconName}`} />
-    </IconContainer>
-  );
-};
+const Icon = memo(({ iconName, size = 24 }) => {
+  if (window.isCordova) {
+    return <img src={`/images/icons/${iconName}.svg`} alt="" height={size} width={size} style={{ fill: 'blue' }} />;
+  } else {
+    return (
+      <svg height={size} width={size}>
+        <use href={`/images/material-icon-sprite.svg#${iconName}`} height={size} width={size} />
+      </svg>
+    );
+  }
+});
 
 export default Icon;
