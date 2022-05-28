@@ -4607,18 +4607,20 @@
       [22.5581376482, 49.5715740017]
     ],
     "capacity": {
-      "biomass": 363,
-      "coal": 1008,
-      "gas": 1093,
+      "biomass": 328,
+      "coal": 309,
+      "gas": 1152,
       "hydro": 1621,
       "hydro storage": 916,
       "nuclear": 1940,
-      "oil": 195,
+      "oil": 257,
       "solar": 532,
-      "wind": 3
+      "wind": 3,
+      "unknown": 652
     },
     "contributors": [
       "corradio"
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
