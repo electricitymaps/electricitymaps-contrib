@@ -4607,19 +4607,19 @@
       [22.5581376482, 49.5715740017]
     ],
     "capacity": {
-      "biomass": 328,
+      "biomass": 225,
       "coal": 309,
       "gas": 1152,
-      "hydro": 1621,
+      "hydro": 1613,
       "hydro storage": 916,
       "nuclear": 1940,
       "oil": 257,
-      "solar": 532,
+      "solar": 535,
       "wind": 3,
       "unknown": 652
     },
     "contributors": [
-      "corradio"
+      "corradio",
       "nessie2013"
     ],
     "parsers": {
