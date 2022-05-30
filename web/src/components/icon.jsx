@@ -20,7 +20,7 @@ const IconContainer = styled.svg`
 const Icon = ({ iconName }) => {
   return (
     <IconContainer>
-      <use href={`/images/material-icon-sprite.svg#${iconName}`} />
+      <use href={resolvePath(`images/material-icon-sprite.svg#${iconName}`)} />
     </IconContainer>
   );
 };
