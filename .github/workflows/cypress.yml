@@ -16,10 +16,10 @@ jobs:
         working-directory: ./mockserver
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
           working-directory: ./web
           start: yarn develop, yarn run mockserver
           record: true
           wait-on: "http://localhost:8080"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
