@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+        <meta charset="utf-8" />
         <meta name="description" content="electricityMap is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:description" content="electricityMap is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
         <meta property="og:image" content="https://app.electricitymap.org/images/electricitymap_social_image.png" />
@@ -70,7 +70,8 @@
         <script
           src="https://browser.sentry-cdn.com/5.9.1/bundle.min.js"
           integrity="sha384-/x1aHz0nKRd6zVUazsV6CbQvjJvr6zQL2CHbQZf3yoLkezyEtZUpqUNnOLW9Nt3v"
-          crossorigin="anonymous"></script>
+          crossorigin="anonymous">
+        </script>
         <script>
             if (bundleHash.indexOf('dev') === -1 && !isCordova) {
                 Sentry.init({
@@ -101,6 +102,16 @@
         <!-- Plausible -->
         <script defer data-domain="app.electricitymap.org" src="https://plausible.io/js/plausible.local.js"></script>
     </head>
-    <body id="app"></body>
-
+    <body id="app">
+        <noscript>
+            <img src="images/electricitymap-logo.svg" alt="electricityMap logo" />
+            <div>
+                <h1>JavaScript required!</h1>
+                <p>
+                For the electricityMap app to function properly JavaScript is required, please enable it to continue using
+                the app.
+                </p>
+            </div>
+        </noscript>
+    </body>
 </html>

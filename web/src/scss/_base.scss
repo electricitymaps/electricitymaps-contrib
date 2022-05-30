@@ -1,115 +1,133 @@
 * {
-    /* Remove tap feedback on mobile */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-font-smoothing: antialiased;
+  /* Remove tap feedback on mobile */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-    text-decoration: none;
-    color: #4178AC;
+  text-decoration: none;
+  color: #4178ac;
 
-    &:hover {
-	    cursor: pointer;
-	    text-decoration: underline;
-	}
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 html,
 body {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-family: $primary-font;
-    transition: background-color 800ms;
-    overflow: hidden; /* Disable dragging that can occur on mobile */
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: $primary-font;
+  transition: background-color 800ms;
+  overflow: hidden; /* Disable dragging that can occur on mobile */
+}
+
+noscript {
+  > img {
+    position: fixed;
+    margin: 15px 32px;
+    height: 24px;
+  }
+  > div {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 body {
-    height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
+  height: 99.9%; /* Due to a bug (box sizing?), we can't set 100% (the map gets undraggable on Safari iPhone 5S) */
 }
 
 hr {
-    background-color: $light-gray;
-    color: $light-gray;
-    border: none;
-    height: 1px;
+  background-color: $light-gray;
+  color: $light-gray;
+  border: none;
+  height: 1px;
 }
 
-line, path {
-    /*shape-rendering: crispEdges;*/
-    /* will keep strokes unchanged after css transform (i.e. scale) */
-    vector-effect: non-scaling-stroke;
+line,
+path {
+  /*shape-rendering: crispEdges;*/
+  /* will keep strokes unchanged after css transform (i.e. scale) */
+  vector-effect: non-scaling-stroke;
 }
 
 .axis path,
 .axis line {
-    shape-rendering: crispEdges;
+  shape-rendering: crispEdges;
 }
 
 .flag {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .sub {
-    position: relative;
-    top: 0.8ex;
-    font-size: 60%;
+  position: relative;
+  top: 0.8ex;
+  font-size: 60%;
 }
 
 .sup {
-    position: relative;
-    top: -0.8ex;
-    font-size: 60%;
+  position: relative;
+  top: -0.8ex;
+  font-size: 60%;
 }
 
 .pro {
-    border-radius: 0.25rem;
-    background-color: gold;
-    color: rgb(76,76,76);
-    font-weight: bold;
-    padding: 0.2rem;
-    font-size: 0.8em;
-    margin-left: 0.4em;
-    line-height: 0.8em;
-    margin-bottom: 0.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 0.25rem;
+  background-color: gold;
+  color: rgb(76, 76, 76);
+  font-weight: bold;
+  padding: 0.2rem;
+  font-size: 0.8em;
+  margin-left: 0.4em;
+  line-height: 0.8em;
+  margin-bottom: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    >svg {
-        fill: rgb(76,76,76);
-        height: 16px;
-        width: 16px;
-        font-size: inherit;
-        margin-right: 0.1em;
+  > svg {
+    fill: rgb(76, 76, 76);
+    height: 16px;
+    width: 16px;
+    font-size: inherit;
+    margin-right: 0.1em;
 
-        >use {
-        height: 16px;
-        width: 16px;
-        }
+    > use {
+      height: 16px;
+      width: 16px;
     }
+  }
 }
 
 /* custom scrollbars in chrome*/
 div::-webkit-scrollbar {
-    position: relative;
-    width: 6px;
+  position: relative;
+  width: 6px;
 }
 div::-webkit-scrollbar-track-piece {
-    background: $light-gray;
-    border-radius: 3px;
+  background: $light-gray;
+  border-radius: 3px;
 }
 
 div::-webkit-scrollbar-thumb {
-    background: lightgray;
-    border-radius: 3px;
+  background: lightgray;
+  border-radius: 3px;
 }
 
 @keyframes appear-from-top {
   0% {
     top: -40px;
   }
-  15%,85% {
+  15%,
+  85% {
     top: 0;
   }
   100% {
