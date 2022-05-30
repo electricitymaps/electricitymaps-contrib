@@ -1,8 +1,26 @@
+
+/* custom scrollbars in chrome*/
+.left-panel div::-webkit-scrollbar {
+    position: relative;
+    width: 6px;
+  }
+.left-panel div::-webkit-scrollbar-track-piece {
+    background: $light-gray;
+    border-radius: 3px;
+  }
+  
+.left-panel div::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 3px;
+  }
+
 .panel {
     background-color: $light-gray;
     color: black;
     font-size: 0.8rem;
 }
+
+
 
 /* Left-panel collapse button */
 #left-panel-collapse-button {
