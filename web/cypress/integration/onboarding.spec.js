@@ -1,7 +1,7 @@
 describe('Onboarding', () => {
   it('Asserts onboarding appears', () => {
     cy.visit('/map');
-    cy.get('[data-test-id=onboarding]').should('exist');
+    cy.get('[data-test-id=whatever]').should('exist');
   });
 
   it('Asserts onboarding does not appear when already seen', () => {
