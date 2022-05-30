@@ -1,8 +1,5 @@
 on:
   workflow_call:
-    secrets:
-      CYPRESS_RECORD_KEY:
-        required: true
 
 env:
   CYPRESS_RECORD_KEY: '${{ secrets.CYPRESS_RECORD_KEY }}'
