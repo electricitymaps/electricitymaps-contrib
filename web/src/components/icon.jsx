@@ -18,8 +18,6 @@ const IconContainer = styled.svg`
  */
 
 const Icon = ({ iconName }) => {
-  // eslint-disable-next-line
-  console.log('test2');
   return (
     <IconContainer>
       <use href={resolvePath(`images/material-icon-sprite.svg#${iconName}`)} />
