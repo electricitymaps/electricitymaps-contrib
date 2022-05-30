@@ -22,7 +22,7 @@ const path = window.isCordova ? resolvePath('images/material-icon-sprite.svg') :
 const Icon = ({ iconName }) => {
   return (
     <IconContainer>
-      <use href={resolvePath(`${path}#${iconName}`)} />
+      <use href={`${path}#${iconName}`} />
     </IconContainer>
   );
 };
