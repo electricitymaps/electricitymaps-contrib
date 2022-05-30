@@ -7,6 +7,7 @@
   "theme_color": "#fff",
   "display": "standalone",
   "prefer_related_applications": true,
+  "iarc_rating_id": "194a8347-3f9e-4525-9e04-9969d2db0f56",
   "related_applications": [
     {
       "platform": "play",
