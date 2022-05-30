@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
@@ -56,6 +57,16 @@ const NewVersionButton = styled.button`
   background-color: inherit;
   border: none;
   cursor: pointer;
+`;
+
+const StyledBottomSheet = styled(BottomSheet)`
+  [data-rsbs-overlay] {
+    z-index: ${(props) => (props.behind ? 0 : 5)};
+  }
+  [data-rsbs-scroll] {
+    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
+    overflow: hidden;
+  }
 `;
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -109,7 +120,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           alignItems: 'stretch' /* force children to take 100% width */,
         }}
       >
-        <TimeController />
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
@@ -131,6 +141,14 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               </div>
               <LayerButtons />
             </MapContainer>
+            {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
+            {isMobile ? (
+              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false}>
+                <TimeController />
+              </StyledBottomSheet>
+            ) : (
+              <TimeController />
+            )}
           </ErrorBoundary>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
