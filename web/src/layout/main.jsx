@@ -12,7 +12,6 @@ import Header from './header';
 import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
-import Tabs from './tabs';
 import Map from './map';
 import TimeController from './timeController';
 
@@ -70,6 +69,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
+  const isMobile = useSelector((state) => state.application.isMobile);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -117,7 +117,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              <Legend />
+              {!isMobile && <Legend />}
               <div className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
@@ -160,7 +160,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
 
           {/* end #inner */}
         </div>
-        <Tabs />
       </div>
       <OnboardingModal />
     </React.Fragment>
