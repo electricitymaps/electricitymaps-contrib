@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
-import { formatDate } from '../helpers/formatting';
+import { formatDate, formatTimeRange } from '../helpers/formatting';
+import { TIME } from '../helpers/constants';
 
 const Title = styled.span`
   font-size: calc(11px + 0.2vw);
@@ -66,28 +67,20 @@ const DateOptionWrapper = styled.div`
 
 const getOptions = (language) => [
   {
-    key: 'day',
-    label: new Intl.NumberFormat(language, {
-      style: 'unit',
-      unit: 'hour',
-      unitDisplay: 'long',
-    }).format(24),
+    key: TIME.HOURLY,
+    label: formatTimeRange(language, TIME.HOURLY),
   },
   {
-    key: 'month',
-    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('month'),
+    key: TIME.DAILY,
+    label: formatTimeRange(language, TIME.DAILY),
   },
   {
-    key: 'year',
-    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('year'),
+    key: TIME.MONTHLY,
+    label: formatTimeRange(language, TIME.MONTHLY),
   },
   {
-    key: '5year',
-    label: new Intl.NumberFormat(language, {
-      style: 'unit',
-      unit: 'year',
-      unitDisplay: 'long',
-    }).format(5),
+    key: TIME.YEARLY,
+    label: formatTimeRange(language, TIME.YEARLY),
   },
 ];
 
