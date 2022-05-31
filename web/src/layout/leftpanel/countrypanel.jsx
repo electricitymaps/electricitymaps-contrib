@@ -34,6 +34,8 @@ import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { useFeatureToggle } from '../../hooks/router';
 import { formatDate } from '../../helpers/formatting';
+import { TIME } from '../../helpers/constants';
+import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -109,7 +111,6 @@ const CountryNameTimeTable = styled.div`
 const CountryPanelWrap = styled.div`
   overflow-y: scroll;
   padding: 0 1.5rem;
-
   @media (max-width: 767px) {
     position: relative;
     padding-top: 0;
@@ -121,10 +122,6 @@ const BySource = styled.div`
   font-size: smaller;
   position: relative;
   top: 0.8rem;
-`;
-
-const CountryHistoryTitle = styled.span`
-  font-size: 1.1em;
 `;
 
 const CountryTableHeaderInner = styled.div`
@@ -139,7 +136,6 @@ const CountryPanelStyled = styled.div`
   overflow-y: hidden;
   margin: 0;
   flex: 1 1 0px;
-
   @media (max-width: 767px) {
     margin: 0;
     display: block;
@@ -152,7 +148,6 @@ const CountryPanelStyled = styled.div`
 
 const StyledSources = styled.div`
   margin-bottom: ${(props) => (props.historyFeatureEnabled ? '170px' : 0)};
-
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
@@ -219,6 +214,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const location = useLocation();
   const { zoneId } = useParams();
   const isHistoryFeatureEnabled = useFeatureToggle('history');
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
 
@@ -328,9 +324,9 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             <hr />
             {isDataEstimated && <EstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
             <div className="country-history">
-              <CountryHistoryTitle>
-                {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
-              </CountryHistoryTitle>
+              <CountryHistoryTitle
+                translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
+              />
               <br />
               <ProContainer>
                 <Icon iconName="file_download" />
@@ -346,14 +342,13 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 </span>
               </ProContainer>
               {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
-
-              <CountryHistoryTitle>
-                {tableDisplayEmissions
-                  ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
-                  : __(
-                      `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`
-                    )}
-              </CountryHistoryTitle>
+              <CountryHistoryTitle
+                translationKey={
+                  tableDisplayEmissions
+                    ? `country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+                    : `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+                }
+              />
               <br />
               <ProContainer>
                 <Icon iconName="file_download" />
@@ -370,8 +365,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </ProContainer>
               <CountryHistoryMixGraph />
 
-              <CountryHistoryTitle>{__('country-history.electricityprices24h')}</CountryHistoryTitle>
-              <CountryHistoryPricesGraph />
+              {timeAggregate === TIME.HOURLY && (
+                <>
+                  <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
+                  <CountryHistoryPricesGraph />
+                </>
+              )}
             </div>
             <hr />
             <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
