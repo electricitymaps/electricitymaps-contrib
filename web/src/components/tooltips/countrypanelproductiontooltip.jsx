@@ -7,6 +7,7 @@ import { flagUri } from '../../helpers/flags';
 import { getRatioPercent } from '../../helpers/math';
 
 import Tooltip from '../tooltip';
+import { TIME } from '../../helpers/constants';
 import { CarbonIntensity, MetricRatio } from './common';
 import { getElectricityProductionValue, getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
@@ -74,7 +75,7 @@ const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zon
       {!displayByEmissions && (
         <React.Fragment>
           <br />
-          {aggregation === 'hourly' && (
+          {aggregation === TIME.hourly && (
             <>
               <br />
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b> {__('tooltips.ofinstalled')}
