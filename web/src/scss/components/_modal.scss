@@ -111,7 +111,9 @@
 
             &:hover {
                 background-color: $light-green;
-
+                > svg {
+                    fill: $black;
+                }
             }
         }
 
