@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatHourlyDate } from '../../helpers/formatting';
+import { formatDate } from '../../helpers/formatting';
 import { useTranslation } from '../../helpers/translation';
 
 import Tooltip from '../tooltip';
@@ -12,7 +12,7 @@ const TimeSliderTooltip = ({ position, onClose, date, disabled }) => {
 
   return (
     <Tooltip id="timeslider-tooltip" position={position} onClose={onClose}>
-      {formatHourlyDate(date, i18n.language)}
+      {formatDate(date, i18n.language)}
     </Tooltip>
   );
 };

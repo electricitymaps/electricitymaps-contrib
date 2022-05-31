@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
-import { formatHourlyDate } from '../helpers/formatting';
+import { formatDate } from '../helpers/formatting';
 
 const Title = styled.span`
   font-size: calc(11px + 0.2vw);
@@ -99,7 +99,7 @@ const TimeControls = ({ date, selectedTimeAggregate }) => {
     <div>
       <Wrapper>
         <Title>{__('time-controller.title')}</Title>
-        <DateDisplay>{formatHourlyDate(date, i18n.language)}</DateDisplay>
+        <DateDisplay>{formatDate(date, i18n.language)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
         {options.map((o) => (
