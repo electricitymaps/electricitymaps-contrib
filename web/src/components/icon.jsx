@@ -1,16 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { memo } from 'react';
 
-const IconContainer = styled.svg`
-  height: 24px;
-  width: 24px;
-`;
-
-const path = window.isCordova ? resolvePath('images/material-icon-sprite.svg') : '/images/material-icon-sprite.svg';
+const path = window.isCordova ? resolvePath('images/icon-sprite.svg') : '/images/icon-sprite.svg';
 
 /**
  * To add a new icon to the SVG sprite, open the icons SVG file and copy the the <svg> element.
- * Then paste the the <svg> element and rename it to <symbol> in the file 'material-icon-sprite.svg' and give it a unique id.
+ * Then paste the the <svg> element and rename it to <symbol> in the file 'icon-sprite.svg' and give it a unique id.
  *
  * Example <symbol> element:
  *   <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="info">
@@ -19,12 +13,12 @@ const path = window.isCordova ? resolvePath('images/material-icon-sprite.svg') :
  *   </symbol>
  */
 
-const Icon = ({ iconName }) => {
+const Icon = memo(({ iconName, size = 24, color = '#000' }) => {
   return (
-    <IconContainer>
-      <use href={`${path}#${iconName}`} />
-    </IconContainer>
+    <svg height={size} width={size} fill={color}>
+      <use href={`${path}#${iconName}`} height={size} width={size} />
+    </svg>
   );
-};
+});
 
-export default React.memo(Icon);
+export default Icon;
