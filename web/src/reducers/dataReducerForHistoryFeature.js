@@ -183,10 +183,11 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map((datapoint) => ({
+          [action.zoneId]: action.payload.zoneStates.map((datapoint) => ({
             ...datapoint,
             hasDetailedData: true,
             hasData: !Object.values(datapoint.production).every((v) => v === null),
+            aggregation: action.payload.stateAggregation,
           })),
         },
       };

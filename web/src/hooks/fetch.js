@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
@@ -12,7 +12,7 @@ export function useConditionalZoneHistoryFetch() {
   const historyData = useCurrentZoneHistory();
   const customDatetime = useCustomDatetime();
   const features = useFeatureToggle();
-
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const dispatch = useDispatch();
 
   // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
@@ -22,11 +22,15 @@ export function useConditionalZoneHistoryFetch() {
     } else if (zoneId && Array.isArray(historyData) && historyData.length === 0) {
       console.error('No history data available right now!');
     }
-    const hasDetailedHistory = historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
-    if (zoneId && !hasDetailedHistory) {
-      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features } });
+    let hasCorrectTimeAggregate = true;
+    if (features.includes('history')) {
+      hasCorrectTimeAggregate = historyData && historyData[0]?.aggregation === selectedTimeAggregate;
     }
-  }, [zoneId, historyData, customDatetime, dispatch, features]);
+    const hasDetailedHistory = historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
+    if (zoneId && (!hasDetailedHistory || !hasCorrectTimeAggregate)) {
+      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features, selectedTimeAggregate } });
+    }
+  }, [zoneId, historyData, customDatetime, dispatch, features, selectedTimeAggregate]);
 }
 
 export function useGridDataPolling() {

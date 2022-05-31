@@ -5,8 +5,12 @@ import { handleRequestError, protectedJsonRequest } from '../helpers/api';
 import { getGfsTargetTimeBefore, getGfsTargetTimeAfter, fetchGfsForecast } from '../helpers/gfs';
 
 function* fetchZoneHistory(action) {
-  const { zoneId, features } = action.payload;
+  const { zoneId, features, selectedTimeAggregate } = action.payload;
   let endpoint = `/v4/history?countryCode=${zoneId}`;
+
+  if (features.includes('history')) {
+    endpoint = `/v5/history/${selectedTimeAggregate}?countryCode=${zoneId}`;
+  }
 
   if (features.length > 0) {
     endpoint += `${features.map((f) => `&${f}=true`)}`;
