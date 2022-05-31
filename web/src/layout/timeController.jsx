@@ -13,6 +13,7 @@ const handleZoneTimeIndexChange = (timeIndex) => {
 
 const handleTimeAggregationChange = (aggregate) => {
   dispatchApplication('selectedTimeAggregate', aggregate);
+  dispatchApplication('selectedZoneTimeIndex', 0); // TODO: this is a hack. Should be length - 1
 };
 
 const mapStateToProps = (state) => ({
