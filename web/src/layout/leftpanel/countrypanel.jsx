@@ -33,7 +33,7 @@ import { useTranslation, getZoneNameWithCountry } from '../../helpers/translatio
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { useFeatureToggle } from '../../hooks/router';
-import { formatHourlyDate } from '../../helpers/formatting';
+import { formatDate } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -182,6 +182,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
   const { i18n } = useTranslation();
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -196,7 +197,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatHourlyDate(new Date(shownDatetime), i18n.language)}
+              {shownDatetime && formatDate(new Date(shownDatetime), i18n.language, selectedTimeAggregate)}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
