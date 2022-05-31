@@ -8,6 +8,7 @@ import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import styled from 'styled-components';
 import { useTranslation } from '../helpers/translation';
+import { TIME } from '../helpers/constants';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -157,7 +158,9 @@ const TimeSlider = ({
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
-          displayLive
+          tickCount={datetimes.length + 1}
+          displayLive={selectedTimeAggregate === TIME.HOURLY}
+          selectedTimeAggregate={selectedTimeAggregate}
         />
       </svg>
     </div>
