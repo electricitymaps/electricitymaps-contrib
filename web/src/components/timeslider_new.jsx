@@ -64,8 +64,7 @@ const StyledInput = styled.input`
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
   scaleTime()
     .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
-    .range([0, rangeEnd])
-    .nice(25);
+    .range([0, rangeEnd]);
 
 const updateTooltipPosition = (ev, setTooltipPos) => {
   const thumbSize = 25;
@@ -121,13 +120,12 @@ const TimeSlider = ({
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex, setTooltipPos),
     [datetimes, onChange, setAnchoredTimeIndex]
   );
-
   if (!datetimes || datetimes.length === 0) {
     return null;
   }
 
-  const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex].valueOf() : null;
-  const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex].valueOf() : null;
+  const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex]?.valueOf() : null;
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex]?.valueOf() : null;
 
   const timeValue = selectedTimeValue || anchoredTimeValue || endTimeValue;
 
