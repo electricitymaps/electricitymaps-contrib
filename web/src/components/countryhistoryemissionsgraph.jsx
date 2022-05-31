@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { useCurrentZoneHistory, useCurrentZoneHistoryStartTime, useCurrentZoneHistoryEndTime } from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';
@@ -42,8 +42,9 @@ const CountryHistoryEmissionsGraph = ({ isMobile, selectedTimeIndex }) => {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const startTime = useCurrentZoneHistoryStartTime();
-  const endTime = useCurrentZoneHistoryEndTime();
+  const datetimes = useCurrentZoneHistoryDatetimes();
+  const startTime = datetimes.at(0);
+  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(() => prepareGraphData(historyData), [historyData]);
