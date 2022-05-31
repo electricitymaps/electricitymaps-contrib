@@ -84,4 +84,15 @@ const formatTimeRange = (lang, timeAggregate) => {
   }
 };
 
-export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange };
+const formatDateTick = function (date, lang, time) {
+  if (!date) return '';
+
+  switch (time) {
+    case TIME.DAILY:
+      return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
+    case TIME.HOURLY:
+      return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
+  }
+};
+
+export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
