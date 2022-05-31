@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import { formatCo2, formatPower } from '../../helpers/formatting';
@@ -16,10 +16,10 @@ const mapStateToProps = (state) => ({
 
 const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zoneData, onClose }) => {
   const { __ } = useTranslation();
+  const aggregation = useSelector((state) => state.application.selectedTimeAggregate);
   if (!zoneData) {
     return null;
   }
-
   const co2Intensity = getProductionCo2Intensity(mode, zoneData);
 
   const format = displayByEmissions ? formatCo2 : formatPower;
@@ -74,11 +74,15 @@ const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zon
       {!displayByEmissions && (
         <React.Fragment>
           <br />
-          <br />
-          {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b> {__('tooltips.ofinstalled')}
-          <br />
-          <MetricRatio value={usage} total={capacity} format={format} />
-          <br />
+          {aggregation === 'hourly' && (
+            <>
+              <br />
+              {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b> {__('tooltips.ofinstalled')}
+              <br />
+              <MetricRatio value={usage} total={capacity} format={format} />
+              <br />
+            </>
+          )}
           <br />
           {__('tooltips.representing')} <b>{getRatioPercent(emissions, totalEmissions)} %</b>{' '}
           {__('tooltips.ofemissions')}
