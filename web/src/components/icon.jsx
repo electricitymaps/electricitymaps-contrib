@@ -13,10 +13,10 @@ const path = window.isCordova ? resolvePath('images/icon-sprite.svg') : '/images
  *   </symbol>
  */
 
-const Icon = memo(({ iconName, size = 24, color = '#000' }) => {
+const Icon = memo(({ iconName, size = 24, color }) => {
   return (
     <svg height={size} width={size} fill={color}>
-      <use href={`${path}#${iconName}`} height={size} width={size} />
+      <use href={`${path}#${iconName}`} />
     </svg>
   );
 });
