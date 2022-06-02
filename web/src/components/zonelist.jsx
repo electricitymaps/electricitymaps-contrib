@@ -161,6 +161,7 @@ const ZoneList = ({ electricityMixMode, gridZones, searchQuery }) => {
       </Link>
     );
   }, areEqual);
+
   return (
     <List
       className="zone-list"
@@ -168,7 +169,6 @@ const ZoneList = ({ electricityMixMode, gridZones, searchQuery }) => {
       height={height}
       itemSize={35}
       itemCount={zones.length}
-      itemData={zones}
       itemKey={(index) => {
         return zones[index].countryCode;
       }}
