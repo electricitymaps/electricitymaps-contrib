@@ -99,20 +99,6 @@ path {
   }
 }
 
-/* custom scrollbars in chrome*/
-div::-webkit-scrollbar {
-  position: relative;
-  width: 6px;
-}
-div::-webkit-scrollbar-track-piece {
-  background: $light-gray;
-  border-radius: 3px;
-}
-
-div::-webkit-scrollbar-thumb {
-  background: lightgray;
-  border-radius: 3px;
-}
 
 @keyframes appear-from-top {
   0% {

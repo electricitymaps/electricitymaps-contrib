@@ -11,11 +11,13 @@ import { store, sagaMiddleware } from './store';
 import { cordovaApp } from './cordova';
 import sagas from './sagas';
 
-import Main from './layout/main';
+import Main from './layout/main_old';
+import MainForHistoricalView from './layout/main';
 import GlobalStyle from './globalstyle';
 
 // init styling
 import './scss/styles.scss';
+import 'react-spring-bottom-sheet/dist/style.css';
 
 // init localisation
 import './helpers/i18n';
@@ -34,6 +36,11 @@ console.log(
 // Plug in the sagas
 sagaMiddleware.run(sagas);
 
+// Switches Main component if historical view feature google is used
+const urlSearchParams = new URLSearchParams(window.location.search);
+const isHistoryFeatureEnabled = Object.fromEntries(urlSearchParams.entries())?.feature === 'history';
+const MainComponent = isHistoryFeatureEnabled ? MainForHistoricalView : Main;
+
 // Render DOM
 ReactDOM.render(
   <React.Suspense fallback={<div />}>
@@ -42,7 +49,7 @@ ReactDOM.render(
       {/* the route history outside of React components anymore */}
       <Router history={history}>
         <GlobalStyle />
-        <Main />
+        <MainComponent />
       </Router>
     </Provider>
   </React.Suspense>,
