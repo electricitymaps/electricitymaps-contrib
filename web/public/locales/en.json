@@ -58,7 +58,13 @@
         "search": "Search areas"
     },
     "country-history": {
-        "carbonintensity": { "default": "Carbon intensity in the last %1$s" },
+        "carbonintensity": {
+            "default": "Carbon intensity in the last %1$s",
+            "hourly": "Carbon intensity in the last 24 hours",
+            "daily": "Carbon intensity in the last month",
+            "monthly": "Carbon intensity in the last year",
+            "yearly": "Carbon intensity in the last 5 years"
+        },
         "emissions": { "default": "Emissions in the last %1$s" },
         "emissionsorigin": { "default": "Emissions in the last %1$s" },
         "emissionsproduction": { "default": "Origin of emissions in the last %1$s" },
