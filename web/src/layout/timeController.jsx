@@ -6,6 +6,7 @@ import { useCurrentDatetimes } from '../hooks/redux';
 import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
 import styled from 'styled-components';
+import { TIME_TO_RANGE } from '../helpers/constants';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
@@ -13,6 +14,8 @@ const handleZoneTimeIndexChange = (timeIndex) => {
 
 const handleTimeAggregationChange = (aggregate) => {
   dispatchApplication('selectedTimeAggregate', aggregate);
+  // set index to the max of the range of selected time aggregate
+  dispatchApplication('selectedZoneTimeIndex', TIME_TO_RANGE[aggregate.toUpperCase()] - 1);
 };
 
 const mapStateToProps = (state) => ({
