@@ -6,13 +6,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
 import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
+import Tabs from './tabs';
 import Map from './map';
 import TimeController from './timeController';
 
@@ -59,16 +59,6 @@ const NewVersionButton = styled.button`
   cursor: pointer;
 `;
 
-const StyledBottomSheet = styled(BottomSheet)`
-  [data-rsbs-overlay] {
-    z-index: ${(props) => (props.behind ? 0 : 5)};
-  }
-  [data-rsbs-scroll] {
-    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
-    overflow: hidden;
-  }
-`;
-
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Main = ({ electricityMixMode, hasConnectionWarning }) => {
@@ -80,7 +70,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
-  const isMobile = useSelector((state) => state.application.isMobile);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -120,6 +109,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           alignItems: 'stretch' /* force children to take 100% width */,
         }}
       >
+        <TimeController />
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
@@ -127,7 +117,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              {!isMobile && <Legend />}
+              <Legend />
               <div className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
@@ -141,14 +131,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               </div>
               <LayerButtons />
             </MapContainer>
-            {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
-            {isMobile ? (
-              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false}>
-                <TimeController />
-              </StyledBottomSheet>
-            ) : (
-              <TimeController />
-            )}
           </ErrorBoundary>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
@@ -178,6 +160,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
 
           {/* end #inner */}
         </div>
+        <Tabs />
       </div>
       <OnboardingModal />
     </React.Fragment>
