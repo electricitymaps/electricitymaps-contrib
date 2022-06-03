@@ -6,6 +6,8 @@ const IconContainer = styled.svg`
   width: 24px;
 `;
 
+const path = window.isCordova ? resolvePath('images/material-icon-sprite.svg') : '/images/material-icon-sprite.svg';
+
 /**
  * To add a new icon to the SVG sprite, open the icons SVG file and copy the the <svg> element.
  * Then paste the the <svg> element and rename it to <symbol> in the file 'material-icon-sprite.svg' and give it a unique id.
@@ -20,9 +22,9 @@ const IconContainer = styled.svg`
 const Icon = ({ iconName }) => {
   return (
     <IconContainer>
-      <use href={resolvePath(`images/material-icon-sprite.svg#${iconName}`)} />
+      <use href={`${path}#${iconName}`} />
     </IconContainer>
   );
 };
 
-export default Icon;
+export default React.memo(Icon);
