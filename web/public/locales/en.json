@@ -115,7 +115,10 @@
         "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
         "legend": "Legend",
-        "faq": "Frequently Asked Questions"
+        "faq": "Frequently Asked Questions",
+        "termsAndConditions": "Terms and Conditions",
+        "privacyPolicy": "Privacy Policy",
+        "legalNotice": "Legal Notice"
     },
     "wind": "wind",
     "windDataError": "Wind data is currently unavailable",
