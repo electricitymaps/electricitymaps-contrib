@@ -24,13 +24,12 @@ const DateRangeOption = styled.span`
   border-radius: 16px;
   white-space: nowrap;
   text-transform: capitalize;
-  cursor: not-allowed;
+  cursor: pointer;
   font-weight: ${(props) => (props.active ? 700 : 500)};
   opacity: ${(props) => (props.active ? 1 : 0.5)};
   ${(props) =>
     props.active &&
     css`
-      cursor: pointer;
       background-color: white;
       box-shadow: 0.1px 0.1px 5px rgba(0, 0, 0, 0.1);
     `}
@@ -84,7 +83,7 @@ const getOptions = (language) => [
   },
 ];
 
-const TimeControls = ({ date, selectedTimeAggregate }) => {
+const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   const { __, i18n } = useTranslation();
   const options = getOptions(i18n.language);
 
@@ -100,8 +99,7 @@ const TimeControls = ({ date, selectedTimeAggregate }) => {
             key={o.key}
             active={o.key === selectedTimeAggregate}
             onClick={() => {
-              // TODO: not enabled yet
-              // handleTimeAggregationChange(o.key);
+              handleTimeAggregationChange(o.key);
             }}
           >
             {o.label}
