@@ -10,7 +10,7 @@ const TermsAndPrivacyContainer = styled.div`
   text-align: center;
   @media (min-width: 768px) {
     text-align: left;
-    box-shadow: 0 -4px 8px rgba(150, 150, 150, 0.2);
+    box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
   }
 
   a {
