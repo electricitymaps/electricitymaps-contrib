@@ -95,6 +95,20 @@ const LOCALE_TO_FACEBOOK_LOCALE = {
   'zh-tw': 'zh_TW',
 };
 
+const TIME = {
+  HOURLY: 'hourly',
+  DAILY: 'daily',
+  MONTHLY: 'monthly',
+  YEARLY: 'yearly',
+};
+
+const TIME_TO_RANGE = {
+  HOURLY: 24,
+  DAILY: 30,
+  MONTHLY: 12,
+  YEARLY: 5,
+};
+
 export {
   modeColor,
   modeOrder,
@@ -104,4 +118,6 @@ export {
   DATA_FETCH_INTERVAL,
   LANGUAGE_NAMES,
   LOCALE_TO_FACEBOOK_LOCALE,
+  TIME,
+  TIME_TO_RANGE,
 };
