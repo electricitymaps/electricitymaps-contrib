@@ -36,19 +36,20 @@ export function useConditionalZoneHistoryFetch() {
 export function useGridDataPolling() {
   const datetime = useCustomDatetime();
   const features = useFeatureToggle();
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const dispatch = useDispatch();
 
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
     let pollInterval;
-    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features } });
+    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
     if (!datetime) {
       pollInterval = setInterval(() => {
-        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features } });
+        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
-  }, [datetime, dispatch, features]);
+  }, [datetime, dispatch, features, selectedTimeAggregate]);
 }
 
 export function useConditionalWindDataPolling() {
