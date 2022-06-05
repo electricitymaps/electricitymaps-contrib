@@ -1,4 +1,5 @@
 import React from 'react';
+import { TIME } from '../../helpers/constants';
 import { formatDateTick } from '../../helpers/formatting';
 import { useTranslation } from '../../helpers/translation';
 
@@ -12,7 +13,6 @@ const TIME_TO_TICK_FREQUENCY = {
 
 const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
   const shouldDisplayLive = idx === 24 && displayLive; // TODO: change this for other aggregations
-
   if (shouldDisplayLive) {
     return (
       <g>
@@ -57,18 +57,20 @@ const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate) =
   );
 };
 
-const TimeAxis = React.memo(({ className, scale, transform, displayLive, tickCount, selectedTimeAggregate }) => {
-  const [x1, x2] = scale.range();
-  const { i18n } = useTranslation();
+const TimeAxis = React.memo(
+  ({ className, scale, transform, displayLive, tickCount = 25, selectedTimeAggregate = TIME.HOURLY }) => {
+    const [x1, x2] = scale.range();
+    const { i18n } = useTranslation();
 
-  return (
-    <g className={className} transform={transform} fill="none" textAnchor="middle" style={{ pointerEvents: 'none' }}>
-      <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
-      {getTicksValuesFromTimeScale(scale, tickCount).map((v, idx) =>
-        renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate)
-      )}
-    </g>
-  );
-});
+    return (
+      <g className={className} transform={transform} fill="none" textAnchor="middle" style={{ pointerEvents: 'none' }}>
+        <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+        {getTicksValuesFromTimeScale(scale, tickCount).map((v, idx) =>
+          renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate)
+        )}
+      </g>
+    );
+  }
+);
 
 export default TimeAxis;
