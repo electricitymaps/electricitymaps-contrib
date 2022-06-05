@@ -88,6 +88,7 @@ const reducer = (state = initialDataState, action) => {
 
       // Set date
       newGrid.datetime = action.payload.datetime;
+      newGrid.datetimes = action.payload.datetimes.map((dt) => new Date(dt));
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {

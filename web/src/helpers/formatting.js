@@ -58,6 +58,10 @@ const formatDate = function (date, lang, time) {
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeStyle: 'short' }).format(date);
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+    case TIME.MONTHLY:
+      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+    case TIME.YEARLY:
+      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
     default:
       console.error(`${time} is not implemented`);
       return '';
@@ -107,6 +111,10 @@ const formatDateTick = function (date, lang, timeAggregate) {
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
+    case TIME.MONTHLY:
+      return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+    case TIME.YEARLY:
+      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:
       console.error(`${timeAggregate} is not implemented`);
       return '';

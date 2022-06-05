@@ -26,11 +26,11 @@ function* fetchZoneHistory(action) {
 }
 
 function* fetchGridData(action) {
-  const features = action.payload.features || [];
+  const { features, selectedTimeAggregate } = action.payload;
   let endpoint = '/v4/state';
 
   if (features.includes('history')) {
-    endpoint = '/v5/state/hourly';
+    endpoint = `/v5/state/${selectedTimeAggregate}`;
   }
 
   if (features.length > 0) {

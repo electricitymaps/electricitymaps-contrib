@@ -8,7 +8,7 @@ import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import styled from 'styled-components';
 import { useTranslation } from '../helpers/translation';
-import { TIME } from '../helpers/constants';
+import { TIME, TIME_TO_RANGE } from '../helpers/constants';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -158,6 +158,7 @@ const TimeSlider = ({
           className="time-slider-axis"
           displayLive={selectedTimeAggregate === TIME.HOURLY}
           selectedTimeAggregate={selectedTimeAggregate}
+          tickCount={TIME_TO_RANGE[selectedTimeAggregate.toUpperCase()] + 1}
         />
       </svg>
     </div>

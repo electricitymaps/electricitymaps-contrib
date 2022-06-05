@@ -14,8 +14,10 @@ const handleZoneTimeIndexChange = (timeIndex) => {
 
 const handleTimeAggregationChange = (aggregate) => {
   dispatchApplication('selectedTimeAggregate', aggregate);
-  // set index to the max of the range of selected time aggregate
-  dispatchApplication('selectedZoneTimeIndex', TIME_TO_RANGE[aggregate.toUpperCase()] - 1);
+  // TODO: set index to the max of the range of selected time aggregate
+  dispatchApplication('selectedZoneTimeIndex', 0);
+
+
 };
 
 const mapStateToProps = (state) => ({

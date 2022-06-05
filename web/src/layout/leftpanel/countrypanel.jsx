@@ -208,6 +208,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { __ } = useTranslation();
 
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+  const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
@@ -258,7 +259,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     trackEvent('PanelProductionButton Clicked');
   };
 
-  if (isLoadingHistories) {
+  if (isLoadingHistories || isLoadingGrid) {
     return (
       <CountryPanelStyled>
         <div id="country-table-header">

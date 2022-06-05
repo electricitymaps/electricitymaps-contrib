@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
-import { useCustomDatetime } from './router';
+import { useCustomDatetime, useFeatureToggle } from './router';
 
 import { getCenteredZoneViewport } from '../helpers/map';
 
@@ -16,8 +16,14 @@ export function useCurrentZoneHistory() {
 }
 
 export function useCurrentDatetimes() {
-  // TODO: should use V5 state here and v5 should tell the state datetimes
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
+  const datetimes = useSelector((state) => state.data.grid.datetimes);
   const histories = useSelector((state) => state.data.histories);
+
+  if (isHistoryFeatureEnabled) {
+    return datetimes || [];
+  }
+
   if (histories && Object.keys(histories).length) {
     return histories[Object.keys(histories)[0]].map((h) => new Date(h.stateDatetime));
   } else {

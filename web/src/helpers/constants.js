@@ -105,8 +105,8 @@ const TIME = {
 const TIME_TO_RANGE = {
   HOURLY: 24,
   DAILY: 30,
-  MONTHLY: 12,
-  YEARLY: 5,
+  MONTHLY: 10, // Should be 12 - inconsistency with app-backend
+  YEARLY: 3, // Should be 5 - inconsistency with app-backend
 };
 
 export {
