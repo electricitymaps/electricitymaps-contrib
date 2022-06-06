@@ -117,7 +117,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
-- Sweden: [SVK](https://www.svk.se/en/national-grid/the-control-room/)
+- Sweden: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Sri Lanka: [Ceylon Electricity Board](https://cebcare.ceb.lk/gensum/details)
 - Switzerland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
@@ -324,7 +324,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Singapore
   - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
   - Other: [Energy Market Authority](https://www.ema.gov.sg/statistic.aspx?sta_sid=20140730XofavKNX5Ti7)
-- Slovakia: [SEPS](https://www.sepsas.sk/Dokumenty/RocenkySed/ROCENKA_SED_2015.pdf)
+- Slovakia: 
+  - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - South Korea:
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)

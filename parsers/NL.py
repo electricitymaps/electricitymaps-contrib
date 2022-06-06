@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import logging
 import math
+from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
 
@@ -9,9 +10,12 @@ import numpy as np
 import pandas as pd
 import requests
 
+from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
 
 from . import DK, ENTSOE, statnett
+
+ZONE_CONFIG = ZONES_CONFIG["NL"]
 
 
 @refetch_frequency(timedelta(days=1))
@@ -161,8 +165,8 @@ def fetch_production(
     wind_capacity_df = get_wind_capacities()
     for p in productions:
         p["capacity"] = {
-            "solar": get_solar_capacity_at(p["datetime"], solar_capacity_df),
-            "wind": get_wind_capacity_at(p["datetime"], wind_capacity_df),
+            "solar": round(get_solar_capacity_at(p["datetime"], solar_capacity_df), 3),
+            "wind": round(get_wind_capacity_at(p["datetime"], wind_capacity_df), 3),
         }
 
     # Filter invalid
@@ -253,76 +257,27 @@ def get_production_data_energieopwek(date, session=None):
     return df
 
 
-def get_wind_capacity_at(date: datetime, wind_capacity_df: pd.DataFrame) -> float:
-    in_service_mask = (
-        (wind_capacity_df["Start date"] <= date)
-        & (date <= wind_capacity_df["End date"])
-    ) | (
-        (wind_capacity_df["Start date"] <= date)
-        & (wind_capacity_df["End date"].isnull())
-    )
-    return (
-        np.array(
-            wind_capacity_df[in_service_mask]["#"]
-            * wind_capacity_df[in_service_mask].kW
-        ).sum()
-        / 1000
-    )
-
-
 def get_wind_capacities() -> pd.DataFrame:
-    url_wind_capacities = "https://windstats.nl/windstats1/ajax/statsJSON.cfm?minKW=0&maxKW=999999&gemeente=&provincie="
-    r = requests.get(url_wind_capacities)
-    installations_df = pd.DataFrame(
-        columns=[
-            "Project",
-            "#",
-            "Brand",
-            "kW",
-            "Municipality",
-            "Province",
-            "Start date",
-            "End date",
-        ]
-    )
-    all_installations_data = r.json()["dataList"]
-    for row in all_installations_data:
-        entry = {
-            "Project": row[0].split(">")[1].split("</a")[0],
-            "#": row[1],
-            "Brand": row[2],
-            "kW": row[3],
-            "Municipality": row[4],
-            "Province": row[5],
-            "Start date": row[6],
-            "End date": row[8],
-        }
-        installations_df = installations_df.append(entry, ignore_index=True)
-    installations_df.kW = installations_df.kW.astype(float)
-    installations_df["#"] = installations_df["#"].astype(int)
-    installations_df["Start date"] = pd.to_datetime(
-        installations_df["Start date"]
-    ).dt.tz_localize("utc")
-    installations_df["End date"] = pd.to_datetime(
-        installations_df["End date"]
-    ).dt.tz_localize("utc")
-    return installations_df
+    url_wind_capacities = "https://api.windstats.nl/stats"
 
+    capacities_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
+    try:
+        r = requests.get(url_wind_capacities)
+        per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
+    except Exception as e:
+        logger.error(f"Error fetching wind capacities: {e}")
+        return capacities_df
 
-def get_solar_capacity_at(date: datetime, solar_capacity_df: pd.DataFrame) -> float:
-    latest_year = date.year
-    while True:
-        # Latest capacity for the year to date might not have been published yet, so revert back to latest known year
-        if solar_capacity_df[solar_capacity_df.index.year == latest_year][
-            "capacity (MW)"
-        ].empty:
-            latest_year -= 1
-        else:
-            return float(
-                solar_capacity_df[solar_capacity_df.index.year == latest_year][
-                    "capacity (MW)"
-                ][0]
-            )
+    per_year_capacity = {
+        f"{year}-01-01 00:00:00+00:00": sum(split.values())
+        for (year, split) in per_year_split_capacity.items()
+    }
+
+    capacities_df["datetime"] = pd.to_datetime(list(per_year_capacity.keys()))
+    capacities_df["capacity (MW)"] = list(per_year_capacity.values())
+    capacities_df = capacities_df.set_index("datetime")
+
+    return capacities_df
 
 
 def get_solar_capacities() -> pd.DataFrame:
@@ -340,10 +295,16 @@ def get_solar_capacities() -> pd.DataFrame:
         else:
             url_solar_capacity += f"(Periods+eq+%27{year}JJ00%27)+or+"
 
-    r = requests.get(url_solar_capacity)
-
     solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
-    for yearly_row in r.json()["value"]:
+
+    try:
+        r = requests.get(url_solar_capacity)
+        per_year_capacity = r.json()["value"]
+    except Exception as e:
+        logger.error(f"Error fetching solar capacities: {e}")
+        return solar_capacity_df
+
+    for yearly_row in per_year_capacity:
         capacity = float(yearly_row["ElectricalCapacityEndOfYear_8"])
         datetime = arrow.get(yearly_row["Periods"].split("JJ")[0]).format()
         solar_capacity_df = solar_capacity_df.append(
@@ -353,6 +314,31 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_df = solar_capacity_df.set_index("datetime")
 
     return solar_capacity_df
+
+
+def _get_capacity_at(date: datetime, mode: str, capacity_df: pd.DataFrame) -> float:
+    assert mode in ["solar", "wind"]
+    default_capacity = ZONE_CONFIG["capacity"][mode]
+    if capacity_df.empty:
+        return default_capacity
+    latest_year = date.year
+    while latest_year > 2015:
+        # Latest capacity for the year to date might not have been published yet, so revert back to latest known year
+        if capacity_df[capacity_df.index.year == latest_year]["capacity (MW)"].empty:
+            latest_year -= 1
+        else:
+            return float(
+                capacity_df[capacity_df.index.year == latest_year]["capacity (MW)"][0]
+            )
+    return default_capacity
+
+
+def get_solar_capacity_at(date: datetime, solar_capacity_df: pd.DataFrame) -> float:
+    return _get_capacity_at(date, "solar", solar_capacity_df)
+
+
+def get_wind_capacity_at(date: datetime, wind_capacity_df: pd.DataFrame) -> float:
+    return _get_capacity_at(date, "wind", wind_capacity_df)
 
 
 if __name__ == "__main__":
