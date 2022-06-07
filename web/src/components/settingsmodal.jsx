@@ -1,19 +1,22 @@
 /* eslint-disable */ // TODO: Remove this
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-
 import { useTranslation } from '../helpers/translation';
+import { saveKey } from '../helpers/storage';
+import { dispatchApplication } from '../store';
+import { useTrackEvent } from '../hooks/tracking';
+import { useSearchParams } from '../hooks/router';
+
+import { Link as RouterLink } from 'react-router-dom';
 
 import Icon from './icon';
 import { useToggle } from '../hooks/utils';
 import styled from 'styled-components';
 import Toggle from './toggle';
-import { dispatchApplication } from '../store';
 import { useSelector } from 'react-redux';
-import { saveKey } from '../helpers/storage';
 import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
 import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
+import Modal from './modal';
 
 const Link = ({ to, hasError, children }) =>
   !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
@@ -64,7 +67,7 @@ const StyledModal = styled.div`
   }
 `;
 
-const SettingsModal = () => {
+const SettingsView = ({ onDismiss }) => {
   // TODO: Check isMobile from state
   const [isVisible, setIsVisible] = useToggle(true);
   const [windEnabled, setWindEnabled] = useToggle(false);
@@ -73,7 +76,6 @@ const SettingsModal = () => {
   //const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
   const windDataError = useSelector((state) => state.data.windDataError);
-
   const { __ } = useTranslation();
 
   const toggleSetting = (name, setting) => {
@@ -81,53 +83,54 @@ const SettingsModal = () => {
     saveKey(name, !setting);
   };
 
-  if (!isVisible) {
-    return null;
-  }
-
+  //
   return (
-    <React.Fragment>
-      <div className="modal-background-overlay" onClick={setIsVisible} />
-      <StyledModal className="modal" data-test-id="settings-modal">
-        <div className="modal-left-button-container" />
-        <div className="modal-body">
-          <div className="modal-close-button-container">
-            <div className="modal-close-button" onClick={setIsVisible}>
-              <Icon iconName="close" />
-            </div>
-          </div>
-          <div className={`modal-text`}>
-            <h2>Settings</h2>
-            <p>Click to toggle a layer</p>
-            <SettingsContainer className="controls-container">
-              <Toggle
-                infoHTML={__('tooltips.cpinfo')}
-                onChange={(value) => dispatchApplication('electricityMixMode', value)}
-                options={[
-                  { value: 'production', label: __('tooltips.production') },
-                  { value: 'consumption', label: __('tooltips.consumption') },
-                ]}
-                value={electricityMixMode}
-              />
-              <SettingButton active={windEnabled} onClick={setWindEnabled} icon="wind">
-                {__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
-              </SettingButton>
-              <SettingButton textColor={brightModeEnabled ? 'rgba(0,0,0,.5)' : '#000'} icon="brightmode">
-                Show wind layer
-              </SettingButton>
-              <SettingButton bgColor="#44AB60" textColor="#fff" icon="brightmode">
-                {__('tooltips.toggleDarkMode')}
-              </SettingButton>
-              <SettingButton bgColor="#04275C" textColor="#fff">
-                Open Source
-              </SettingButton>
-            </SettingsContainer>
-          </div>
-        </div>
-        <div className="modal-footer">footer</div>
-      </StyledModal>
-    </React.Fragment>
+    <SettingsContainer className="controls-container">
+      <Toggle
+        infoHTML={__('tooltips.cpinfo')}
+        onChange={(value) => dispatchApplication('electricityMixMode', value)}
+        options={[
+          { value: 'production', label: __('tooltips.production') },
+          { value: 'consumption', label: __('tooltips.consumption') },
+        ]}
+        value={electricityMixMode}
+      />
+      <SettingButton active={windEnabled} onClick={setWindEnabled} icon="wind">
+        {__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+      </SettingButton>
+      <SettingButton textColor={brightModeEnabled ? 'rgba(0,0,0,.5)' : '#000'} icon="brightmode">
+        Show wind layer
+      </SettingButton>
+      <SettingButton bgColor="#44AB60" textColor="#fff" icon="brightmode">
+        {__('tooltips.toggleDarkMode')}
+      </SettingButton>
+      <SettingButton bgColor="#04275C" textColor="#fff">
+        Open Source
+      </SettingButton>
+    </SettingsContainer>
   );
+};
+
+const views = [
+  {
+    renderContent: (__) => <SettingsView />,
+  },
+];
+
+const SettingsModal = () => {
+  const modalOpen = useSelector((state) => state.application.settingsModalOpen);
+  const trackEvent = useTrackEvent();
+
+  const handleDismiss = () => { 
+    console.log('dismiss pls');
+    dispatchApplication('settingsModalOpen', false);
+  };
+
+  const handleShown = () => {
+    trackEvent('Onboarding Shown');
+  };
+
+  return <Modal visible={modalOpen} onModalShown={handleShown} onDismiss={handleDismiss} views={views} />;
 };
 
 export default SettingsModal;
