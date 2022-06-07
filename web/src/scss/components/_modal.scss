@@ -135,14 +135,15 @@
     }
 
     @include respond-to('small') {
-      background-color: #333333;
-      color: $white;
       height: 32px;
       width: 32px;
 
       &.green {
         background-color: $green;
         color: $white;
+        svg {
+        fill: white;
+        }
 
         &:hover {
           background-color: $light-green;
@@ -153,15 +154,9 @@
   }
 
   .modal-close-button {
+    background-color: #333333;
     height: 36px;
     width: 36px;
-    background-color: #333333;
-    color: white;
-
-    @include respond-to('small') {
-      background-color: $white;
-      color: #333333;
-    }
   }
 
   .modal-header {
