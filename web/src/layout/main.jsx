@@ -28,6 +28,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import InfoModal from '../components/infomodal';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -179,6 +180,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           {/* end #inner */}
         </div>
       </div>
+      <InfoModal />
       <OnboardingModal />
     </React.Fragment>
   );

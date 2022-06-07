@@ -28,6 +28,10 @@
             "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
         }
     },
+    "info-modal": {
+        "title":"Info",
+        "description": "The electricityMap app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges. The app is Open Source and powered by the community."
+    },
     "country-panel": {
         "source": "Source",
         "carbonintensity": "Carbon Intensity",
