@@ -7,6 +7,7 @@ import Icon from './icon';
 const Modal = ({ views, visible, onModalShown, onDismiss }) => {
   const { __ } = useTranslation();
 
+  const hasViews = views && views.length > 1;
   const [currentViewIndex, setCurrentViewIndex] = useState(0);
   const isOnLastView = () => currentViewIndex === views.length - 1;
   const isOnFirstView = () => currentViewIndex === 0;
@@ -48,6 +49,16 @@ const Modal = ({ views, visible, onModalShown, onDismiss }) => {
 
   const currentView = views[currentViewIndex];
 
+  const RightButton = isOnLastView() ? (
+    <div className="modal-right-button green" onClick={onDismiss}>
+      <Icon iconName="check" />
+    </div>
+  ) : (
+    <div className="modal-right-button" onClick={handleForward}>
+      <Icon iconName="arrow_forward" />
+    </div>
+  );
+
   return (
     <React.Fragment>
       <div className="modal-background-overlay" onClick={onDismiss} />
@@ -79,17 +90,7 @@ const Modal = ({ views, visible, onModalShown, onDismiss }) => {
             />
           ))}
         </div>
-        <div className="modal-right-button-container">
-          {isOnLastView() ? (
-            <div className="modal-right-button green" onClick={onDismiss}>
-              <Icon iconName="check" />
-            </div>
-          ) : (
-            <div className="modal-right-button" onClick={handleForward}>
-              <Icon iconName="arrow_forward" />
-            </div>
-          )}
-        </div>
+        <div className="modal-right-button-container">{hasViews ? RightButton : null}</div>
       </div>
     </React.Fragment>
   );
