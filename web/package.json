@@ -49,6 +49,7 @@
     "react-router-dom": "^5.1.2",
     "react-spring-bottom-sheet": "^3.4.0",
     "react-transition-group": "^4.3.0",
+    "react-window": "^1.8.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
