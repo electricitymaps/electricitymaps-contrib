@@ -30,7 +30,8 @@
     },
     "info-modal": {
         "title":"Info",
-        "description": "The electricityMap app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges. The app is Open Source and powered by the community."
+        "description": "The electricityMap app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
+        "description2": "The app is <a href=\"%s\" target=\"_blank\">Open Source</a> and powered by the community."
     },
     "country-panel": {
         "source": "Source",
