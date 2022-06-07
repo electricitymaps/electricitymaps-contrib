@@ -127,7 +127,7 @@ const OnboardingModal = ({ visible }) => {
         <div className="modal-body">
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={handleDismiss}>
-              <Icon iconName="close" />
+              <Icon iconName="close" color="#fff" />
             </div>
           </div>
           <div

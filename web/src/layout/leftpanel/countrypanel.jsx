@@ -313,7 +313,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </CountryHistoryTitle>
               <br />
               <ProContainer>
-                <Icon iconName="file_download" />
+                <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
@@ -321,7 +321,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  <Icon iconName="lock" />
+                  <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
               </ProContainer>
@@ -336,7 +336,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </CountryHistoryTitle>
               <br />
               <ProContainer>
-                <Icon iconName="file_download" />
+                <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
@@ -344,7 +344,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  <Icon iconName="lock" />
+                  <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
               </ProContainer>
