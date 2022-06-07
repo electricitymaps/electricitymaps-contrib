@@ -4493,14 +4493,14 @@
       [24.663413534000114, 69.53635569300009]
     ],
     "capacity": {
+      "biomass": 271,
       "coal": 0,
       "gas": 1,
       "geothermal": 0,
-      "hydro": 5320,
+      "hydro": 5271,
       "nuclear": 0,
-      "solar": 9,
-      "wind": 1652,
-      "unknown": 272
+      "solar": 19,
+      "wind": 1927
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4519,14 +4519,14 @@
       [21.486074487958014, 66.78799631800014]
     ],
     "capacity":{
+      "biomass": 680,
       "coal": 0,
       "gas": 2,
       "geothermal": 0,
-      "hydro": 8076,
+      "hydro": 8077,
       "nuclear": 0,
-      "solar": 67,
-      "wind": 3876,
-      "unknown": 680
+      "solar": 94,
+      "wind": 5342
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4545,14 +4545,15 @@
       [19.8385522800001, 62.67478628775066]
     ],
     "capacity":{
+      "biomass": 2561,
       "coal": 0,
-      "gas": 962,
+      "gas": 950,
       "geothermal": 0,
       "hydro": 2593,
-      "nuclear": 6871,
-      "solar": 774,
-      "wind": 2891,
-      "unknown": 2807
+      "nuclear": 6882,
+      "oil": 243,
+      "solar": 1109,
+      "wind": 3000
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4571,14 +4572,15 @@
       [17.624522332000083, 57.85822174700009]
     ],
     "capacity":{
+      "biomass": 883,
       "coal": 0,
-      "gas": 618,
+      "gas": 582,
       "geothermal": 0,
       "hydro": 345,
       "nuclear": 0,
-      "solar": 240,
-      "wind": 1598,
-      "unknown": 1545
+      "oil": 662,
+      "solar": 372,
+      "wind": 1805
     },
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",

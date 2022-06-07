@@ -324,7 +324,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Singapore
   - Solar: [Energy Market Authority Statistics](https://www.ema.gov.sg/statistic.aspx?sta_sid=20170711hc85chOLVvWp)
   - Other: [Energy Market Authority](https://www.ema.gov.sg/statistic.aspx?sta_sid=20140730XofavKNX5Ti7)
-- Slovakia: 
+- Slovakia:
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
@@ -341,7 +341,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal: [wikipedia.org](https://es.wikipedia.org/wiki/Central_t%C3%A9rmica_de_Es_Murterar)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sri Lanka: [Ceylon Electricity Board](https://ceb.lk/front_img/img_reports/1636539187LTGEP_2022-2041_Web_compressed.pdf "Renewable installed capacity taken from Figure 1.13 (private-owned) and Table 2.1 (government-owned hydro), except for biomass, where the higher figure mentioned in the section \"5.4 Other Renewable Energy Development\" was used. Together, these add up to within 1 MW of the stated total renewable capacity of 2,447 MW (which is mentioned in e.g. \"1.4.2.1 Overview\"\). Solar includes rooftop solar.&#32;&#32;Thermal capactity taken from \"2.2 Thermal Generation\". Thermal Electricity generation is only from coal and oil, see Figure 1.14. According to [\"CEB - ANNUAL REPORT 2020\" page 18 (20 in PDF)](https://ceb.lk/front_img/img_reports/164887150703-CEB-Annual_Report-2020-English.pdf), the 900MW Lakvijaya plant is the only coal plant in Sri Lanka, implying the others are oil-fired.&#32;Installed capacity figures do not add up exactly to the 2,168 MW mentioned in the opening paragraph; I went with the combined total nameplate capacity from Table 2.5 (government-owned) and Table 2.6 (private-owned), adding up to 2197.9 MW. Then I put 900MW under coal and categorized the remainder as oil.&#32;&#32;Pumped hydro is mentioned as being planned/investigated in several places, but currently isn't deployed. The same goes for battery storage.&#32;&#32;Sri Lanka has no nuclear power plants. A report has been commissioned to investigate the possibility, see 4.2 (v).")
-- Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf)
+- Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf)
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
