@@ -24,6 +24,7 @@ import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
+import SettingsModal from '../components/settingsmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
@@ -180,6 +181,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
         </div>
       </div>
       <OnboardingModal />
+      <SettingsModal />
     </React.Fragment>
   );
 };
