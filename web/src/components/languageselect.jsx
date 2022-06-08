@@ -40,6 +40,14 @@ const LanguageSelectContainer = styled.div`
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
+  @media (max-width: 768px) {
+    left: 0;
+    right: 0;
+    top: 170px;
+    height: auto;
+    min-height: auto;
+    width: auto;
+    bottom: 50px;
 `;
 
 const LanguageSelect = () => {
