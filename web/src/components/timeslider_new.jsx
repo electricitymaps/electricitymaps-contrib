@@ -8,6 +8,8 @@ import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import styled from 'styled-components';
 import { useTranslation } from '../helpers/translation';
+import { TIME } from '../helpers/constants';
+import { useSelector } from 'react-redux';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -63,8 +65,7 @@ const StyledInput = styled.input`
 const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
   scaleTime()
     .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
-    .range([0, rangeEnd])
-    .nice(25);
+    .range([0, rangeEnd]);
 
 const updateTooltipPosition = (ev, setTooltipPos) => {
   const thumbSize = 25;
@@ -107,6 +108,7 @@ const TimeSlider = ({
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
+  const isLoading = useSelector((state) => state.data.isLoadingGrid);
 
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
@@ -120,13 +122,12 @@ const TimeSlider = ({
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex, setTooltipPos),
     [datetimes, onChange, setAnchoredTimeIndex]
   );
-
   if (!datetimes || datetimes.length === 0) {
     return null;
   }
 
-  const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex].valueOf() : null;
-  const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex].valueOf() : null;
+  const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex]?.valueOf() : null;
+  const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex]?.valueOf() : null;
 
   const timeValue = selectedTimeValue || anchoredTimeValue || endTimeValue;
 
@@ -154,10 +155,13 @@ const TimeSlider = ({
       />
       <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis
+          datetimes={datetimes}
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
-          displayLive
+          displayLive={selectedTimeAggregate === TIME.HOURLY}
+          selectedTimeAggregate={selectedTimeAggregate}
+          isLoading={isLoading}
         />
       </svg>
     </div>

@@ -34,7 +34,9 @@ import { useTranslation, getZoneNameWithCountry } from '../../helpers/translatio
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { useFeatureToggle } from '../../hooks/router';
-import { formatHourlyDate } from '../../helpers/formatting';
+import { formatDate } from '../../helpers/formatting';
+import { TIME } from '../../helpers/constants';
+import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -110,7 +112,6 @@ const CountryNameTimeTable = styled.div`
 const CountryPanelWrap = styled.div`
   overflow-y: scroll;
   padding: 0 1.5rem;
-
   @media (max-width: 767px) {
     position: relative;
     padding-top: 0;
@@ -122,10 +123,6 @@ const BySource = styled.div`
   font-size: smaller;
   position: relative;
   top: 0.8rem;
-`;
-
-const CountryHistoryTitle = styled.span`
-  font-size: 1.1em;
 `;
 
 const CountryTableHeaderInner = styled.div`
@@ -140,7 +137,6 @@ const CountryPanelStyled = styled.div`
   overflow-y: hidden;
   margin: 0;
   flex: 1 1 0px;
-
   @media (max-width: 767px) {
     margin: 0;
     display: block;
@@ -153,7 +149,6 @@ const CountryPanelStyled = styled.div`
 
 const StyledSources = styled.div`
   margin-bottom: ${(props) => (props.historyFeatureEnabled ? '170px' : 0)};
-
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
@@ -164,6 +159,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
   const { i18n } = useTranslation();
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -178,7 +174,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatHourlyDate(new Date(shownDatetime), i18n.language)}
+              {shownDatetime && formatDate(new Date(shownDatetime), i18n.language, selectedTimeAggregate)}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
@@ -194,12 +190,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { __ } = useTranslation();
 
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+  const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
   const isHistoryFeatureEnabled = useFeatureToggle('history');
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
 
@@ -243,7 +241,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     trackEvent('PanelProductionButton Clicked');
   };
 
-  if (isLoadingHistories) {
+  if (isLoadingHistories || isLoadingGrid) {
     return (
       <CountryPanelStyled>
         <div id="country-table-header">
@@ -308,9 +306,9 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
             <hr />
             <div className="country-history">
-              <CountryHistoryTitle>
-                {__(tableDisplayEmissions ? 'country-history.emissions24h' : 'country-history.carbonintensity24h')}
-              </CountryHistoryTitle>
+              <CountryHistoryTitle
+                translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
+              />
               <br />
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
@@ -326,14 +324,13 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 </span>
               </ProContainer>
               {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
-
-              <CountryHistoryTitle>
-                {tableDisplayEmissions
-                  ? __(`country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`)
-                  : __(
-                      `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}24h`
-                    )}
-              </CountryHistoryTitle>
+              <CountryHistoryTitle
+                translationKey={
+                  tableDisplayEmissions
+                    ? `country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+                    : `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+                }
+              />
               <br />
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
@@ -350,8 +347,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </ProContainer>
               <CountryHistoryMixGraph />
 
-              <CountryHistoryTitle>{__('country-history.electricityprices24h')}</CountryHistoryTitle>
-              <CountryHistoryPricesGraph />
+              {timeAggregate === TIME.HOURLY && (
+                <>
+                  <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
+                  <CountryHistoryPricesGraph />
+                </>
+              )}
             </div>
             <hr />
             <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>

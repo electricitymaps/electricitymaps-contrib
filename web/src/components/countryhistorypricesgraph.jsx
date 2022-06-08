@@ -6,7 +6,7 @@ import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { dispatchApplication } from '../store';
-import { useCurrentZoneHistory, useCurrentZoneHistoryStartTime, useCurrentZoneHistoryEndTime } from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
@@ -54,8 +54,9 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const startTime = useCurrentZoneHistoryStartTime();
-  const endTime = useCurrentZoneHistoryEndTime();
+  const datetimes = useCurrentZoneHistoryDatetimes();
+  const startTime = datetimes.at(0);
+  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerStroke, layerFill, markerFill, valueAxisLabel } = useMemo(
