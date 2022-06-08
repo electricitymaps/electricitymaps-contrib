@@ -12,7 +12,7 @@ const TIME_TO_TICK_FREQUENCY = {
 };
 
 const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
-  const shouldDisplayLive = idx === 24 && displayLive; // TODO: change this for other aggregations
+  const shouldDisplayLive = idx === 24 && displayLive;
   if (shouldDisplayLive) {
     return (
       <g>
@@ -31,24 +31,8 @@ const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
   }
 };
 
-const roundUp = (number, base) => Math.ceil(number / base) * base;
-
-// Return `count` timestamp values uniformly distributed within the scale
-// domain, including both ends, rounded up to 15 minutes precision.
-const getTicksValuesFromTimeScale = (scale, count) => {
-  const startTime = scale.domain()[0].valueOf();
-  const endTime = scale.domain()[1].valueOf();
-
-  const precision = 60 * 60 * 1000; // 60 minutes
-  const step = (endTime - startTime) / (count - 1);
-
-  return [...Array(count).keys()].map(
-    (ind) => new Date(ind === count - 1 ? endTime : roundUp(startTime + ind * step, precision))
-  );
-};
-
-const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate) => {
-  const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate.toUpperCase()] === 0;
+const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, isLoading) => {
+  const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate.toUpperCase()] === 0 && !isLoading;
   return (
     <g key={`timeaxis-tick-${idx}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
@@ -58,15 +42,15 @@ const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate) =
 };
 
 const TimeAxis = React.memo(
-  ({ className, scale, transform, displayLive, tickCount = 25, selectedTimeAggregate = TIME.HOURLY }) => {
+  ({ className, scale, transform, displayLive, selectedTimeAggregate = TIME.HOURLY, datetimes = [], isLoading }) => {
     const [x1, x2] = scale.range();
     const { i18n } = useTranslation();
 
     return (
       <g className={className} transform={transform} fill="none" textAnchor="middle" style={{ pointerEvents: 'none' }}>
         <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
-        {getTicksValuesFromTimeScale(scale, tickCount).map((v, idx) =>
-          renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate)
+        {datetimes.map((v, idx) =>
+          renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate, isLoading)
         )}
       </g>
     );

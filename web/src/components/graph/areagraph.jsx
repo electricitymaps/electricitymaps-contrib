@@ -11,7 +11,6 @@ import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
 import { useSelector } from 'react-redux';
-import { TIME_TO_RANGE } from '../../helpers/constants';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
@@ -176,7 +175,7 @@ const AreaGraph = React.memo(
           transform={`translate(-1 ${containerHeight - 1})`}
           className="x axis"
           selectedTimeAggregate={selectedTimeAggregate}
-          tickCount={TIME_TO_RANGE[selectedTimeAggregate.toUpperCase()] + 1}
+          datetimes={datetimes}
         />
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine

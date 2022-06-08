@@ -102,13 +102,6 @@ const TIME = {
   YEARLY: 'yearly',
 };
 
-const TIME_TO_RANGE = {
-  HOURLY: 24,
-  DAILY: 30,
-  MONTHLY: 10, // Should be 12 - inconsistency with app-backend
-  YEARLY: 3, // Should be 5 - inconsistency with app-backend
-};
-
 export {
   modeColor,
   modeOrder,
@@ -119,5 +112,4 @@ export {
   LANGUAGE_NAMES,
   LOCALE_TO_FACEBOOK_LOCALE,
   TIME,
-  TIME_TO_RANGE,
 };

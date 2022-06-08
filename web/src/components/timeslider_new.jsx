@@ -8,7 +8,8 @@ import TimeSliderTooltip from './tooltips/timeslidertooltip';
 import TimeControls from './timeControls';
 import styled from 'styled-components';
 import { useTranslation } from '../helpers/translation';
-import { TIME, TIME_TO_RANGE } from '../helpers/constants';
+import { TIME } from '../helpers/constants';
+import { useSelector } from 'react-redux';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -107,6 +108,7 @@ const TimeSlider = ({
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
+  const isLoading = useSelector((state) => state.data.isLoadingGrid);
 
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
@@ -153,12 +155,13 @@ const TimeSlider = ({
       />
       <svg className="time-slider-axis-container" ref={ref}>
         <TimeAxis
+          datetimes={datetimes}
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
           displayLive={selectedTimeAggregate === TIME.HOURLY}
           selectedTimeAggregate={selectedTimeAggregate}
-          tickCount={TIME_TO_RANGE[selectedTimeAggregate.toUpperCase()] + 1}
+          isLoading={isLoading}
         />
       </svg>
     </div>
