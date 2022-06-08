@@ -31,19 +31,11 @@
 		    transition: padding-top 0.4s;
 		    font-family: $headline-font;
 
-		    img {
-		    	filter: brightness(0%) invert(0.5);
-		    }
-
 		    &.active {
 					color: black;
 			    font-size: 14px;
 					fill-opacity: 1;
 			    padding-top: 6px;
-
-			    img {
-			    	filter: brightness(0%) invert(0);
-			    }
 		    }
 		}
 
@@ -52,11 +44,6 @@
 
 			.tab-label {
 				font-size: 12px;
-			}
-
-			.tab-icon-custom {
-			    width: 24px;
-			    height: 24px;
 			}
 
 			&:hover {

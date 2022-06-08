@@ -20,6 +20,7 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import CountryDisclaimer from '../../components/countrydisclaimer';
+import CountryEstimatedDataInfo from '../../components/countryEstimatedDataInfo';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import Icon from '../../components/icon';
 
@@ -153,25 +154,6 @@ const StyledSources = styled.div`
   }
 `;
 
-const EstimatedDataInfoBox = styled.p`
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 6px;
-  font-size: 0.75rem;
-  margin: 1rem 0;
-`;
-
-const EstimatedDataInfo = ({ text }) => (
-  <React.Fragment>
-    <EstimatedDataInfoBox
-      dangerouslySetInnerHTML={{
-        __html: text,
-      }}
-    />
-    <hr />
-  </React.Fragment>
-);
-
 const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
@@ -245,7 +227,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   }
 
   const { hasData, hasParser, estimationMethod } = data;
-  const isDataEstimated = !(estimationMethod == null);
+  const isDataEstimated = estimationMethod ? true : false;
 
   const co2Intensity = electricityMixMode === 'consumption' ? data.co2intensity : data.co2intensityProduction;
 
@@ -323,14 +305,13 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             <CountryTable />
 
             <hr />
-            {isDataEstimated && <EstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
             <div className="country-history">
               <CountryHistoryTitle
                 translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
               />
               <br />
               <ProContainer>
-                <Icon iconName="file_download" />
+                <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
@@ -338,7 +319,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  <Icon iconName="lock" />
+                  <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
               </ProContainer>
@@ -352,7 +333,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               />
               <br />
               <ProContainer>
-                <Icon iconName="file_download" />
+                <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
@@ -360,7 +341,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  <Icon iconName="lock" />
+                  <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
               </ProContainer>
@@ -375,6 +356,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </div>
             <hr />
             <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
+              {isDataEstimated && <CountryEstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
               {__('country-panel.source')}
               {': '}
               <a
