@@ -76,10 +76,12 @@ const Modal = ({ views, visible, onModalShown, onDismiss }) => {
               <Icon iconName="close" />
             </div>
           </div>
-          <div
-            className={`modal-header ${currentView.headerCssClass || ''}`}
-            style={{ backgroundImage: `url("${currentView.headerImage}")` }}
-          />
+          {currentView.headerImage && (
+            <div
+              className={`modal-header ${currentView.headerCssClass || ''}`}
+              style={{ backgroundImage: `url("${currentView.headerImage}")` }}
+            />
+          )}
           <div className={`modal-text ${currentView.textCssClass || ''}`}>{currentView.renderContent(__)}</div>
         </div>
         <div className="modal-footer">
