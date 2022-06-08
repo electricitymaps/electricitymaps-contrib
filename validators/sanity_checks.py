@@ -1,6 +1,8 @@
 from typing import Dict
-from validators.lib.config import validator
+
 import pandas as pd
+
+from validators.lib.config import validator
 
 
 @validator(kind="production")
