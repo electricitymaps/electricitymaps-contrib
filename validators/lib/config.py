@@ -16,7 +16,7 @@ def validator(kind: str):
 
         wrapped_f.IS_VALIDATOR = True
         wrapped_f.VALIDATOR_KIND = kind
-        wrapped_f.args = f.__code__.co_varnames[:f.__code__.co_argcount]
+        wrapped_f.args = f.__code__.co_varnames[:f.__code__.co_argcount] # List of argument names
 
         return wrapped_f
 
