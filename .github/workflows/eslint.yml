@@ -7,6 +7,9 @@ jobs:
   eslint:
     name: Check
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -18,7 +21,6 @@ jobs:
           cache-dependency-path: web/yarn.lock
       - name: Install Dependencies
         run: |
-          cd web
           yarn install --frozen-lockfile
       - name: Restore ESLint cache
         uses: actions/cache@v3
