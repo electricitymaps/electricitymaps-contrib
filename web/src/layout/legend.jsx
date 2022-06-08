@@ -30,6 +30,10 @@ const LegendsContainer = styled.div`
   font-size: 0.8rem;
   user-select: none;
 
+  @media (max-width: 768px) {
+    display: none;
+  }
+
   // Apply specific styles if the legend is collapsed
   ${(props) =>
     props.isCollapsed &&

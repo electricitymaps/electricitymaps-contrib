@@ -5,9 +5,25 @@ import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
+
+const StyledZoomContainer = styled.div`
+  box-shadow 0px 0px 10px 0px rgba(0,0,0,0.15);
+  position absolute;
+  right 24px;
+  top 24px;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+const ZoomControls = ({ zoomInLabel, zoomOutLabel }) => (
+  <StyledZoomContainer className="mapboxgl-zoom-controls">
+    <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
+  </StyledZoomContainer>
+);
 
 const ZoneMap = ({
   children = null,
@@ -272,17 +288,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <div
-            className="mapboxgl-zoom-controls"
-            style={{
-              boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
-              position: 'absolute',
-              right: '24px',
-              top: '24px',
-            }}
-          >
-            <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
-          </div>
+          <ZoomControls zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
