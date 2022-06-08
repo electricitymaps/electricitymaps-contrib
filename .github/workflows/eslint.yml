@@ -26,9 +26,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./web/node_modules/.cache/eslint/.eslintcache
-          key: ${{ runner.os }}-eslint_cache-${{ github.ref_name }}-${{ github.job }}
+          key: ${{ runner.os }}-eslint_cache-${{ github.head_ref }}-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-eslint_cache-${{ github.ref_name }}
+            ${{ runner.os }}-eslint_cache-${{ github.head_ref }}
       - name: ESLint
         run: |
           yarn run lint
