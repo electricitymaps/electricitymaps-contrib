@@ -40,6 +40,7 @@
     }
 
     a {
+        color: $black;
         display: flex;
         font-size: 1rem;
         justify-content: end;
@@ -50,17 +51,15 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        height: 25px;
-        padding: 0.3rem 0 0.3rem 0.5rem;
         line-height: 1rem;
 
         &:hover {
             text-decoration: none;
-            background: rgba(255,255,255,1)
+            background: rgb(235, 235, 235)
         }
 
         &.selected {
-            background-color: rgba(255,255,255,1);
+            background-color: rgb(235, 235, 235);
         }
     }
 

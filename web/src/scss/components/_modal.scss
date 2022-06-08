@@ -92,17 +92,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-        >svg {
-            fill: #333;
-            width: 24px;
-            height: 24px;
-            fill: $black;
-        }
-    }
-
-    .modal-close-button>svg{
-        fill: #FFF
     }
 
     .modal-left-button,
@@ -116,16 +105,15 @@
         }
 
         &.green {
-            >svg {
+            > svg {
               fill: $green;
             }
 
             &:hover {
                 background-color: $light-green;
-                >svg {
-                    fill: inherit;
+                > svg {
+                    fill: $black;
                 }
-
             }
         }
 
@@ -143,11 +131,8 @@
 
             &.green {
                 background-color: $green;
-                color: $white;
-
                 &:hover {
                     background-color: $light-green;
-                    color: inherit;
                 }
             }
         }
@@ -157,7 +142,6 @@
         height: 36px;
         width: 36px;
         background-color: #333333;
-        color: white;
 
          @include respond-to('small') {
             background-color: $white;

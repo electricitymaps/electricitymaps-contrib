@@ -71,8 +71,21 @@ const RightHeader = styled.div`
   }
 `;
 
-// Hide the panel completely if looking at the map on small screens.
 const Container = styled.div`
+  // custom scrollbars in chrome
+  div::-webkit-scrollbar {
+    position: relative;
+    width: 6px;
+  }
+  div::-webkit-scrollbar-track-piece {
+    background: $light-gray;
+    border-radius: 3px;
+  }
+  div::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: 3px;
+  }
+  // Hide the panel completely if looking at the map on small screens.
   @media (max-width: 767px) {
     display: ${(props) => (props.pathname === '/map' ? 'none !important' : 'flex')};
   }
