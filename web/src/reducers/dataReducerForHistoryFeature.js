@@ -87,6 +87,7 @@ const reducer = (state = initialDataState, action) => {
 
       // Set date
       newGrid.datetime = action.payload.datetime;
+      newGrid.datetimes = action.payload.datetimes.map((dt) => new Date(dt));
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
@@ -182,10 +183,11 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map((datapoint) => ({
+          [action.zoneId]: action.payload.zoneStates.map((datapoint) => ({
             ...datapoint,
             hasDetailedData: true,
             hasData: !Object.values(datapoint.production).every((v) => v === null),
+            aggregation: action.payload.stateAggregation,
           })),
         },
       };

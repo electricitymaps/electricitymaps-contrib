@@ -6,15 +6,9 @@
         "datasources": "データソースを見る",
         "contribute": "貢献するには <a href=\"%s\" target=\"_blank\">自分の国のデータを追加してください</a>"
     },
-    "mobile-main-menu": {
-        "map": "電力マップ",
-        "areas": "エリア",
-        "about": "このサイトについて"
-    },
+    "mobile-main-menu": { "map": "電力マップ", "areas": "エリア", "about": "このサイトについて" },
     "onboarding-modal": {
-        "view1": {
-            "subtitle": "電力による環境負荷のマッピング"
-        },
+        "view1": { "subtitle": "電力による環境負荷のマッピング" },
         "view2": {
             "header": "あなたの電気を消費するのにどれほどのCO₂が生み出されるかをリアルタイムで見る",
             "text": "わたしたちは電力消費による炭素集約度(すべての温室効果ガスを含む)を世界中に色で表します。緑色に近づくほど、その電力が環境に優しくなります。"
@@ -51,14 +45,14 @@
         "search": "エリアを検索"
     },
     "country-history": {
-        "carbonintensity24h": "最近の24時間の炭素強度",
-        "emissions24h": "過去24時間の排出",
-        "emissionsorigin24h": "過去24時間の排出源",
-        "emissionsproduction24h": "過去24時間に生成された排出ガス",
-        "electricityorigin24h": "最近の24時間の電力源",
-        "electricityproduction24h": "最近の24時間の発電",
-        "electricityprices24h": "最近の24時間の電力価格",
-        "Getdata": "過去と予想のデータを取得する"
+        "Getdata": "過去と予想のデータを取得する",
+        "carbonintensity": { "hourly": "最近の24時間の炭素強度" },
+        "emissionsorigin": { "hourly": "過去24時間の排出源" },
+        "emissionsproduction": { "hourly": "過去24時間に生成された排出ガス" },
+        "electricityorigin": { "hourly": "最近の24時間の電力源" },
+        "electricityproduction": { "hourly": "最近の24時間の発電" },
+        "electricityprices": { "hourly": "最近の24時間の電力価格" },
+        "emissions": { "hourly": "過去24時間の排出" }
     },
     "footer": {
         "foundbugs": "バグの発見? ご報告ください",
@@ -195,1297 +189,385 @@
         "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
     },
     "zoneShortName": {
-        "AD": {
-            "zoneName": "アンドラ"
-        },
-        "AE": {
-            "zoneName": "アラブ首長国連邦"
-        },
-        "AF": {
-            "zoneName": "アフガニスタン"
-        },
-        "AG": {
-            "zoneName": "アンティグア・バーブーダ"
-        },
-        "AI": {
-            "zoneName": "アンギラ"
-        },
-        "AL": {
-            "zoneName": "アルバニア"
-        },
-        "AM": {
-            "zoneName": "アルメニア"
-        },
-        "AO": {
-            "zoneName": "アンゴラ"
-        },
-        "AQ": {
-            "zoneName": "南極大陸"
-        },
-        "AS": {
-            "zoneName": "アメリカ領サモア"
-        },
-        "AT": {
-            "zoneName": "オーストリア"
-        },
-        "AR": {
-            "zoneName": "アルゼンチン"
-        },
-        "AUS-NSW": {
-            "countryName": "オーストラリア",
-            "zoneName": "ニューサウスウェールズ州"
-        },
-        "AUS-NT": {
-            "countryName": "オーストラリア",
-            "zoneName": "ノーザンテリトリー"
-        },
-        "AUS-QLD": {
-            "countryName": "オーストラリア",
-            "zoneName": "クイーンズランド州"
-        },
-        "AUS-SA": {
-            "countryName": "オーストラリア",
-            "zoneName": "南 オーストラリア"
-        },
-        "AUS-TAS": {
-            "countryName": "オーストラリア",
-            "zoneName": "タスマニア"
-        },
-        "AUS-TAS-KI": {
-            "countryName": "オーストラリア",
-            "zoneName": "キング島"
-        },
-        "AUS-VIC": {
-            "countryName": "オーストラリア",
-            "zoneName": "ビクトリア州"
-        },
-        "AUS-WA": {
-            "countryName": "オーストラリア",
-            "zoneName": "西 オーストラリア"
-        },
-        "AW": {
-            "zoneName": "アルバ"
-        },
-        "AX": {
-            "zoneName": "オーランド諸島"
-        },
-        "AZ": {
-            "zoneName": "アゼルバイジャン"
-        },
-        "BA": {
-            "zoneName": "ボスニア・ヘルツェゴビナ"
-        },
-        "BB": {
-            "zoneName": "バルバドス"
-        },
-        "BD": {
-            "zoneName": "バングラデシュ"
-        },
-        "BE": {
-            "zoneName": "ベルギー"
-        },
-        "BF": {
-            "zoneName": "ブルキナファソ"
-        },
-        "BG": {
-            "zoneName": "ブルガリア"
-        },
-        "BH": {
-            "zoneName": "バーレーン"
-        },
-        "BI": {
-            "zoneName": "ブルンジ"
-        },
-        "BJ": {
-            "zoneName": "ベナン"
-        },
-        "BM": {
-            "zoneName": "バミューダ"
-        },
-        "BN": {
-            "zoneName": "ブルネイ"
-        },
-        "BO": {
-            "zoneName": "ボリビア"
-        },
-        "BQ": {
-            "zoneName": "ボネール、シント・ユースタティウスおよびサバ"
-        },
-        "BR-CS": {
-            "countryName": "ブラジル",
-            "zoneName": "中央ブラジル"
-        },
-        "BR-N": {
-            "countryName": "ブラジル",
-            "zoneName": "北ブラジル"
-        },
-        "BR-NE": {
-            "countryName": "ブラジル",
-            "zoneName": "東北ブラジル"
-        },
-        "BR-S": {
-            "countryName": "ブラジル",
-            "zoneName": "南ブラジル"
-        },
-        "BS": {
-            "zoneName": "バハマ"
-        },
-        "BT": {
-            "zoneName": "ブータン"
-        },
-        "BV": {
-            "zoneName": "ブーベ島"
-        },
-        "BW": {
-            "zoneName": "ボツワナ"
-        },
-        "BY": {
-            "zoneName": "ベラルーシ"
-        },
-        "BZ": {
-            "zoneName": "ベリーズ"
-        },
-        "CA-AB": {
-            "countryName": "カナダ",
-            "zoneName": "アルバータ州"
-        },
-        "CA-BC": {
-            "countryName": "カナダ",
-            "zoneName": "ブリティッシュコロンビア"
-        },
-        "CA-MB": {
-            "countryName": "カナダ",
-            "zoneName": "マニトバ州"
-        },
-        "CA-NL": {
-            "countryName": "カナダ",
-            "zoneName": "ニューファンドランドアンドラブラドール州"
-        },
-        "CA-NB": {
-            "countryName": "カナダ",
-            "zoneName": "ニューブランズウィック"
-        },
-        "CA-NT": {
-            "countryName": "カナダ",
-            "zoneName": "ノースウェスト準州"
-        },
-        "CA-NS": {
-            "countryName": "カナダ",
-            "zoneName": "ノバスコシア州"
-        },
-        "CA-NU": {
-            "countryName": "カナダ",
-            "zoneName": "ヌナブト"
-        },
-        "CA-ON": {
-            "countryName": "カナダ",
-            "zoneName": "オンタリオ"
-        },
-        "CA-PE": {
-            "countryName": "カナダ",
-            "zoneName": "プリンス・エドワード島"
-        },
-        "CA-QC": {
-            "countryName": "カナダ",
-            "zoneName": "ケベック州"
-        },
-        "CA-SK": {
-            "countryName": "カナダ",
-            "zoneName": "サスカチュワン州"
-        },
-        "CA-YT": {
-            "countryName": "カナダ",
-            "zoneName": "ユーコン"
-        },
-        "CC": {
-            "zoneName": "ココス諸島"
-        },
-        "CD": {
-            "zoneName": "コンゴ民主共和国"
-        },
-        "CF": {
-            "zoneName": "中央アフリカ共和国"
-        },
-        "CG": {
-            "zoneName": "コンゴ"
-        },
-        "CH": {
-            "zoneName": "スイス"
-        },
-        "CI": {
-            "zoneName": "コートジボワール"
-        },
-        "CK": {
-            "zoneName": "クック諸島"
-        },
-        "CL-SEA": {
-            "countryName": "チリ",
-            "zoneName": "Sistema Eléctrico de Aysén"
-        },
-        "CL-SEM": {
-            "countryName": "チリ",
-            "zoneName": "Sistema Eléctrico de Magallanes"
-        },
-        "CL-SEN": {
-            "countryName": "チリ",
-            "zoneName": "Sistema Eléctrico Nacional"
-        },
-        "CM": {
-            "zoneName": "カメルーン"
-        },
-        "CN": {
-            "zoneName": "中国"
-        },
-        "CO": {
-            "zoneName": "コロンビア"
-        },
-        "CR": {
-            "zoneName": "コスタリカ"
-        },
-        "CU": {
-            "zoneName": "キューバ"
-        },
-        "CV": {
-            "zoneName": "カーボベルデ"
-        },
-        "CW": {
-            "zoneName": "キュラソー"
-        },
-        "CX": {
-            "zoneName": "クリスマス島"
-        },
-        "CY": {
-            "zoneName": "キプロス"
-        },
-        "CZ": {
-            "zoneName": "チェコ"
-        },
-        "DE": {
-            "zoneName": "ドイツ"
-        },
-        "DJ": {
-            "zoneName": "ジブチ"
-        },
-        "DK": {
-            "zoneName": "デンマーク"
-        },
-        "DK-DK1": {
-            "countryName": "デンマーク",
-            "zoneName": "西デンマーク"
-        },
-        "DK-DK2": {
-            "countryName": "デンマーク",
-            "zoneName": "西デンマーク"
-        },
-        "DK-BHM": {
-            "countryName": "デンマーク",
-            "zoneName": "東デンマーク"
-        },
-        "DM": {
-            "zoneName": "ドミニカ"
-        },
-        "DO": {
-            "zoneName": "ドミニカ共和国"
-        },
-        "DZ": {
-            "zoneName": "アルジェリア"
-        },
-        "EC": {
-            "zoneName": "エクアドル"
-        },
-        "EE": {
-            "zoneName": "エストニア"
-        },
-        "EG": {
-            "zoneName": "エジプト"
-        },
-        "EH": {
-            "zoneName": "西サハラ"
-        },
-        "ER": {
-            "zoneName": "エリトリア"
-        },
-        "ES": {
-            "zoneName": "スペイン"
-        },
-        "ES-IB-FO": {
-            "countryName": "スペイン",
-            "zoneName": "フォルメンテラ島"
-        },
-        "ES-IB-IZ": {
-            "countryName": "スペイン",
-            "zoneName": "イビサ島"
-        },
-        "ES-IB-MA": {
-            "countryName": "スペイン",
-            "zoneName": "マヨルカ島"
-        },
-        "ES-IB-ME": {
-            "countryName": "スペイン",
-            "zoneName": "メノルカ島"
-        },
-        "ES-CN-FVLZ": {
-            "countryName": "スペイン",
-            "zoneName": "フエルテベントゥラ島/ランサローテ島"
-        },
-        "ES-CN-GC": {
-            "countryName": "スペイン",
-            "zoneName": "グラン・カナリア島"
-        },
-        "ES-CN-HI": {
-            "countryName": "スペイン",
-            "zoneName": "エル・イエロ島 "
-        },
-        "ES-CN-IG": {
-            "countryName": "スペイン",
-            "zoneName": "ラ・ゴメラ島"
-        },
-        "ES-CN-LP": {
-            "countryName": "スペイン",
-            "zoneName": "ラ・パルマ島"
-        },
-        "ES-CN-TE": {
-            "countryName": "スペイン",
-            "zoneName": "テネリフェ島"
-        },
-        "ET": {
-            "zoneName": "エチオピア"
-        },
-        "FI": {
-            "zoneName": "フィンランド"
-        },
-        "FJ": {
-            "zoneName": "フィジー"
-        },
-        "FK": {
-            "zoneName": "フォークランド諸島"
-        },
-        "FM": {
-            "zoneName": "ミクロネシア"
-        },
-        "FO": {
-            "zoneName": "フェロー諸島"
-        },
-        "FR": {
-            "zoneName": "フランス"
-        },
-        "FR-COR": {
-            "countryName": "フランス",
-            "zoneName": "コルシカ島"
-        },
-        "GA": {
-            "zoneName": "ガボン"
-        },
-        "GB": {
-            "zoneName": "イギリス"
-        },
-        "GB-NIR": {
-            "zoneName": "北アイルランド"
-        },
-        "GB-ORK": {
-            "countryName": "イギリス",
-            "zoneName": "オークニー諸島"
-        },
-        "GB-SHI": {
-            "countryName": "イギリス",
-            "zoneName": "シェットランド諸島"
-        },
-        "GB-ZET": {
-            "countryName": "イギリス",
-            "zoneName": "シェットランド諸島"
-        },
-        "GD": {
-            "zoneName": "グレナダ"
-        },
-        "GE": {
-            "zoneName": "ジョージア州"
-        },
-        "GF": {
-            "zoneName": "フランス領ギアナ"
-        },
-        "GG": {
-            "zoneName": "ガーンジー"
-        },
-        "GH": {
-            "zoneName": "ガーナ"
-        },
-        "GI": {
-            "zoneName": "ジブラルタル"
-        },
-        "GL": {
-            "zoneName": "グリーンランド"
-        },
-        "GM": {
-            "zoneName": "ガンビア"
-        },
-        "GN": {
-            "zoneName": "ギニア"
-        },
-        "GP": {
-            "zoneName": "グアドループ"
-        },
-        "GQ": {
-            "zoneName": "赤道ギニア"
-        },
-        "GR": {
-            "zoneName": "ギリシャ"
-        },
-        "GR-IS": {
-            "countryName": "ギリシャ",
-            "zoneName": "エーゲ海諸島"
-        },
-        "GS": {
-            "zoneName": "サウスジョージア・サウスサンドウィッチ諸島"
-        },
-        "GT": {
-            "zoneName": "グアテマラ"
-        },
-        "GU": {
-            "zoneName": "グアム"
-        },
-        "GW": {
-            "zoneName": "ギニアビサウ"
-        },
-        "GY": {
-            "zoneName": "ガイアナ"
-        },
-        "HK": {
-            "zoneName": "香港"
-        },
-        "HM": {
-            "zoneName": "ハード島とマクドナルド諸島"
-        },
-        "HN": {
-            "zoneName": "ホンジュラス"
-        },
-        "HR": {
-            "zoneName": "クロアチア"
-        },
-        "HT": {
-            "zoneName": "ハイチ"
-        },
-        "HU": {
-            "zoneName": "ハンガリー"
-        },
-        "ID": {
-            "zoneName": "インドネシア"
-        },
-        "IE": {
-            "zoneName": "アイルランド"
-        },
-        "IL": {
-            "zoneName": "イスラエル"
-        },
-        "IM": {
-            "zoneName": "マン島"
-        },
-        "IN-AN": {
-            "countryName": "インド",
-            "zoneName": "アンダマンとニコバル諸島"
-        },
-        "IN-AP": {
-            "countryName": "インド",
-            "zoneName": "アンドラ・プラデシュ"
-        },
-        "IN-AR": {
-            "countryName": "インド",
-            "zoneName": "アルナチャルプラデーシュ州"
-        },
-        "IN-AS": {
-            "countryName": "インド",
-            "zoneName": "アッサム"
-        },
-        "IN-BR": {
-            "countryName": "インド",
-            "zoneName": "ビハール"
-        },
-        "IN-CT": {
-            "countryName": "インド",
-            "zoneName": "チャッティースガル"
-        },
-        "IN-DL": {
-            "countryName": "インド",
-            "zoneName": "デリー"
-        },
-        "IN-DN": {
-            "countryName": "インド",
-            "zoneName": "ダードラーおよびナガル・ハヴェーリー"
-        },
-        "IN-GA": {
-            "countryName": "インド",
-            "zoneName": "ゴア"
-        },
-        "IN-GJ": {
-            "countryName": "インド",
-            "zoneName": "グジャラート州"
-        },
-        "IN-HP": {
-            "countryName": "インド",
-            "zoneName": "ヒマーチャルプラデーシュ州"
-        },
-        "IN-HR": {
-            "countryName": "インド",
-            "zoneName": "ハリヤーナ"
-        },
-        "IN-JH": {
-            "countryName": "インド",
-            "zoneName": "ジャールカンド州"
-        },
-        "IN-JK": {
-            "countryName": "インド",
-            "zoneName": "ジャムとカシミール"
-        },
-        "IN-KA": {
-            "countryName": "インド",
-            "zoneName": "カルナタカ"
-        },
-        "IN-KL": {
-            "countryName": "インド",
-            "zoneName": "ケララ州"
-        },
-        "IN-MH": {
-            "countryName": "インド",
-            "zoneName": "マハラシュトラ"
-        },
-        "IN-ML": {
-            "countryName": "インド",
-            "zoneName": "メガラヤ"
-        },
-        "IN-MN": {
-            "countryName": "インド",
-            "zoneName": "マニプール"
-        },
-        "IN-MP": {
-            "countryName": "インド",
-            "zoneName": "マディヤ・プラデシュ"
-        },
-        "IN-MZ": {
-            "countryName": "インド",
-            "zoneName": "ミゾラム"
-        },
-        "IN-NL": {
-            "countryName": "インド",
-            "zoneName": "ナガランド"
-        },
-        "IN-OR": {
-            "countryName": "インド",
-            "zoneName": "オリッサ州"
-        },
-        "IN-PB": {
-            "countryName": "インド",
-            "zoneName": "パンジャーブ"
-        },
-        "IN-PY": {
-            "countryName": "インド",
-            "zoneName": "ポンディシェリ"
-        },
-        "IN-RJ": {
-            "countryName": "インド",
-            "zoneName": "ラージャスターン"
-        },
-        "IN-SK": {
-            "countryName": "インド",
-            "zoneName": "シッキム"
-        },
-        "IN-TL": {
-            "countryName": "インド",
-            "zoneName": "タミルナードゥ州"
-        },
-        "IN-TR": {
-            "countryName": "インド",
-            "zoneName": "トリプラ"
-        },
-        "IN-UP": {
-            "countryName": "インド",
-            "zoneName": "ウッタル・プラデーシュ州"
-        },
-        "IN-UT": {
-            "countryName": "インド",
-            "zoneName": "ウッタラーカンド州"
-        },
-        "IN-WB": {
-            "countryName": "インド",
-            "zoneName": "西ベンガル州"
-        },
-        "IO": {
-            "zoneName": "イギリス領インド洋地域"
-        },
-        "IQ": {
-            "zoneName": "イラク"
-        },
-        "IQ-KUR": {
-            "countryName": "イラク",
-            "zoneName": "クルディスタン"
-        },
-        "IR": {
-            "zoneName": "イラン"
-        },
-        "IS": {
-            "zoneName": "アイスランド"
-        },
-        "IT": {
-            "zoneName": "イタリア"
-        },
-        "IT-CNO": {
-            "countryName": "イタリア",
-            "zoneName": "中央北部"
-        },
-        "IT-CSO": {
-            "countryName": "イタリア",
-            "zoneName": "中央南部"
-        },
-        "IT-NO": {
-            "countryName": "イタリア",
-            "zoneName": "北部"
-        },
-        "IT-SAR": {
-            "countryName": "イタリア",
-            "zoneName": "サルデーニャ"
-        },
-        "IT-SIC": {
-            "countryName": "イタリア",
-            "zoneName": "シチリア"
-        },
-        "IT-SO": {
-            "countryName": "イタリア",
-            "zoneName": "南部"
-        },
-        "JE": {
-            "zoneName": "ジャージー"
-        },
-        "JM": {
-            "zoneName": "ジャマイカ"
-        },
-        "JO": {
-            "zoneName": "ヨルダン"
-        },
-        "JP-CB": {
-            "countryName": "日本",
-            "zoneName": "中部"
-        },
-        "JP-CG": {
-            "countryName": "日本",
-            "zoneName": "中国"
-        },
-        "JP-HKD": {
-            "countryName": "日本",
-            "zoneName": "北海道"
-        },
-        "JP-HR": {
-            "countryName": "日本",
-            "zoneName": "北陸"
-        },
-        "JP-KN": {
-            "countryName": "日本",
-            "zoneName": "関西"
-        },
-        "JP-KY": {
-            "countryName": "日本",
-            "zoneName": "九州"
-        },
-        "JP-ON": {
-            "countryName": "日本",
-            "zoneName": "沖縄"
-        },
-        "JP-SK": {
-            "countryName": "日本",
-            "zoneName": "四国"
-        },
-        "JP-TH": {
-            "countryName": "日本",
-            "zoneName": "東北"
-        },
-        "JP-TK": {
-            "countryName": "日本",
-            "zoneName": "東京"
-        },
-        "KE": {
-            "zoneName": "ケニア"
-        },
-        "KG": {
-            "zoneName": "キルギス"
-        },
-        "KH": {
-            "zoneName": "カンボジア"
-        },
-        "KI": {
-            "zoneName": "キリバス"
-        },
-        "KM": {
-            "zoneName": "コモロ"
-        },
-        "KN": {
-            "zoneName": "セントクリストファー・ネービス"
-        },
-        "KP": {
-            "zoneName": "北朝鮮"
-        },
-        "KR": {
-            "zoneName": "韓国"
-        },
-        "KW": {
-            "zoneName": "クウェート"
-        },
-        "KY": {
-            "zoneName": "ケイマン諸島"
-        },
-        "KZ": {
-            "zoneName": "カザフスタン"
-        },
-        "LA": {
-            "zoneName": "ラオス"
-        },
-        "LB": {
-            "zoneName": "レバノン"
-        },
-        "LC": {
-            "zoneName": "セントルシア"
-        },
-        "LI": {
-            "zoneName": "リヒテンシュタイン"
-        },
-        "LK": {
-            "zoneName": "スリランカ"
-        },
-        "LR": {
-            "zoneName": "リベリア"
-        },
-        "LS": {
-            "zoneName": "レソト"
-        },
-        "LT": {
-            "zoneName": "リトアニア"
-        },
-        "LU": {
-            "zoneName": "ルクセンブルク"
-        },
-        "LV": {
-            "zoneName": "ラトビア"
-        },
-        "LY": {
-            "zoneName": "リビア"
-        },
-        "MA": {
-            "zoneName": "モロッコ"
-        },
-        "MC": {
-            "zoneName": "モナコ"
-        },
-        "MD": {
-            "zoneName": "モルドバ"
-        },
-        "ME": {
-            "zoneName": "モンテネグロ"
-        },
-        "MF": {
-            "countryName": "セント・マーチン",
-            "zoneName": "フランス"
-        },
-        "MG": {
-            "zoneName": "マダガスカル"
-        },
-        "MH": {
-            "zoneName": "マーシャル諸島"
-        },
-        "MK": {
-            "zoneName": "北マケドニア"
-        },
-        "ML": {
-            "zoneName": "マリ"
-        },
-        "MM": {
-            "zoneName": "ミャンマー"
-        },
-        "MN": {
-            "zoneName": "モンゴル"
-        },
-        "MO": {
-            "zoneName": "マカオ"
-        },
-        "MP": {
-            "zoneName": "北マリアナ諸島"
-        },
-        "MQ": {
-            "zoneName": "マルティニーク"
-        },
-        "MR": {
-            "zoneName": "モーリタニア"
-        },
-        "MS": {
-            "zoneName": "モントセラト"
-        },
-        "MT": {
-            "zoneName": "マルタ"
-        },
-        "MU": {
-            "zoneName": "モーリシャス"
-        },
-        "MV": {
-            "zoneName": "モルディブ"
-        },
-        "MW": {
-            "zoneName": "マラウイ"
-        },
-        "MX": {
-            "zoneName": "メキシコ"
-        },
-        "MX-BC": {
-            "countryName": "メキシコ",
-            "zoneName": "バハ・カリフォルニア"
-        },
-        "MX-CE": {
-            "countryName": "メキシコ",
-            "zoneName": "中央部"
-        },
-        "MX-NE": {
-            "countryName": "メキシコ",
-            "zoneName": "北東部"
-        },
-        "MX-NO": {
-            "countryName": "メキシコ",
-            "zoneName": "北部"
-        },
-        "MX-NW": {
-            "countryName": "メキシコ",
-            "zoneName": "北西部"
-        },
-        "MX-OC": {
-            "countryName": "メキシコ",
-            "zoneName": "西洋部"
-        },
-        "MX-OR": {
-            "countryName": "メキシコ",
-            "zoneName": "東洋部"
-        },
-        "MX-PN": {
-            "countryName": "メキシコ",
-            "zoneName": "半島部"
-        },
-        "MY-EM": {
-            "countryName": "マレーシア",
-            "zoneName": "ボルネオ"
-        },
-        "MY-WM": {
-            "countryName": "マレーシア",
-            "zoneName": "マレー半島"
-        },
-        "MZ": {
-            "zoneName": "モザンビーク"
-        },
-        "NA": {
-            "zoneName": "ナミビア"
-        },
-        "NC": {
-            "zoneName": "ニューカレドニア"
-        },
-        "NE": {
-            "zoneName": "ニジェール"
-        },
-        "NF": {
-            "zoneName": "ノーフォーク島"
-        },
-        "NG": {
-            "zoneName": "ナイジェリア"
-        },
-        "NI": {
-            "zoneName": "ニカラグア"
-        },
-        "NKR": {
-            "zoneName": "ナゴルノ・カラバフ"
-        },
-        "NL": {
-            "zoneName": "オランダ"
-        },
-        "NO-NO1": {
-            "countryName": "ノルウェー",
-            "zoneName": "ノルウェー南東部"
-        },
-        "NO-NO2": {
-            "countryName": "ノルウェー",
-            "zoneName": "ノルウェー南西部"
-        },
-        "NO-NO3": {
-            "countryName": "ノルウェー",
-            "zoneName": "ノルウェー中部"
-        },
-        "NO-NO4": {
-            "countryName": "ノルウェー",
-            "zoneName": "ノルウェー北部"
-        },
-        "NO-NO5": {
-            "countryName": "ノルウェー",
-            "zoneName": "ノルウェー西部"
-        },
-        "NP": {
-            "zoneName": "ネパール"
-        },
-        "NR": {
-            "zoneName": "ナウル"
-        },
-        "NU": {
-            "zoneName": "ニウエ"
-        },
-        "NZ": {
-            "zoneName": "ニュージーランド"
-        },
-        "NZ-NZA": {
-            "countryName": "ニュージーランド",
-            "zoneName": "オークランド諸島"
-        },
-        "NZ-NZC": {
-            "countryName": "ニュージーランド",
-            "zoneName": "チャタム諸島"
-        },
-        "OM": {
-            "zoneName": "オマーン"
-        },
-        "PA": {
-            "zoneName": "パナマ"
-        },
-        "PE": {
-            "zoneName": "ペルー"
-        },
-        "PF": {
-            "zoneName": "フランス領ポリネシア"
-        },
-        "PG": {
-            "zoneName": "パプアニューギニア"
-        },
-        "PH": {
-            "zoneName": "フィリピン"
-        },
-        "PK": {
-            "zoneName": "パキスタン"
-        },
-        "PL": {
-            "zoneName": "ポーランド"
-        },
-        "PM": {
-            "zoneName": "サン・ピエール及びミクロン"
-        },
-        "PN": {
-            "zoneName": "ピトケアン"
-        },
-        "PR": {
-            "zoneName": "プエルトリコ"
-        },
-        "PS": {
-            "zoneName": "パレスチナ"
-        },
-        "PT": {
-            "zoneName": "ポルトガル"
-        },
-        "PT-AC": {
-            "countryName": "ポルトガル",
-            "zoneName": "アゾレス諸島"
-        },
-        "PT-MA": {
-            "countryName": "ポルトガル",
-            "zoneName": "マデイラ"
-        },
-        "PW": {
-            "zoneName": "パラオ"
-        },
-        "PY": {
-            "zoneName": "パラグアイ"
-        },
-        "QA": {
-            "zoneName": "カタール"
-        },
-        "RE": {
-            "zoneName": "レユニオン"
-        },
-        "RO": {
-            "zoneName": "ルーマニア"
-        },
-        "RS": {
-            "zoneName": "セルビア"
-        },
-        "RU": {
-            "zoneName": "ロシア"
-        },
-        "RU-1": {
-            "countryName": "ロシア",
-            "zoneName": "ヨーロッパロシアとウラル"
-        },
-        "RU-2": {
-            "countryName": "ロシア",
-            "zoneName": "シベリア"
-        },
-        "RU-EU": {
-            "zoneName": "ロシア"
-        },
-        "RU-AS": {
-            "zoneName": "ロシア"
-        },
-        "RU-KGD": {
-            "countryName": "ロシア",
-            "zoneName": "カリーニングラード"
-        },
-        "RW": {
-            "zoneName": "ルワンダ"
-        },
-        "SA": {
-            "zoneName": "サウジアラビア"
-        },
-        "SB": {
-            "zoneName": "ソロモン諸島"
-        },
-        "SC": {
-            "zoneName": "セーシェル"
-        },
-        "SD": {
-            "zoneName": "スーダン"
-        },
-        "SE": {
-            "zoneName": "スウェーデン"
-        },
-        "SG": {
-            "zoneName": "シンガポール"
-        },
-        "SH": {
-            "zoneName": "セントヘレナ・アセンションおよびトリスタンダクーニャ"
-        },
-        "SI": {
-            "zoneName": "スロベニア"
-        },
-        "SJ": {
-            "zoneName": "スヴァールバル諸島およびヤンマイエン島"
-        },
-        "SK": {
-            "zoneName": "スロバキア"
-        },
-        "SL": {
-            "zoneName": "シエラレオネ"
-        },
-        "SM": {
-            "zoneName": "サンマリノ"
-        },
-        "SN": {
-            "zoneName": "セネガル"
-        },
-        "SO": {
-            "zoneName": "ソマリア"
-        },
-        "SR": {
-            "zoneName": "スリナム"
-        },
-        "SS": {
-            "zoneName": "南スーダン"
-        },
-        "ST": {
-            "zoneName": "サントメ・プリンシペ"
-        },
-        "SV": {
-            "zoneName": "エルサルバドル"
-        },
-        "SX": {
-            "countryName": "シント・マールテン",
-            "zoneName": "オランダ領"
-        },
-        "SY": {
-            "zoneName": "シリア"
-        },
-        "SZ": {
-            "zoneName": "エスワティニ"
-        },
-        "TC": {
-            "zoneName": "タークス・カイコス諸島"
-        },
-        "TD": {
-            "zoneName": "チャド"
-        },
-        "TF": {
-            "zoneName": "フランス領南方・南極地域"
-        },
-        "TG": {
-            "zoneName": "トーゴ"
-        },
-        "TH": {
-            "zoneName": "タイ"
-        },
-        "TJ": {
-            "zoneName": "タジキスタン"
-        },
-        "TK": {
-            "zoneName": "トケラウ"
-        },
-        "TL": {
-            "zoneName": "東ティモール"
-        },
-        "TM": {
-            "zoneName": "トルクメニスタン"
-        },
-        "TN": {
-            "zoneName": "チュニジア"
-        },
-        "TO": {
-            "zoneName": "トンガ"
-        },
-        "TR": {
-            "zoneName": "トルコ"
-        },
-        "TT": {
-            "zoneName": "トリニダード・ドバゴ"
-        },
-        "TV": {
-            "zoneName": "ツバル"
-        },
-        "TW": {
-            "zoneName": "台湾"
-        },
-        "TZ": {
-            "zoneName": "タンザニア"
-        },
-        "UA": {
-            "zoneName": "ウクライナ"
-        },
-        "UA-CR": {
-            "countryName": "クリミア",
-            "zoneName": "ウクライナ"
-        },
-        "UG": {
-            "zoneName": "ウガンダ"
-        },
-        "UM": {
-            "zoneName": "アメリカ合衆国領有小離島"
-        },
-        "US-HI-HA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ハワイ"
-        },
-        "US-HI-KA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "カウアイ"
-        },
-        "US-HI-KH": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "カホオラウェ"
-        },
-        "US-HI-LA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ラナイ"
-        },
-        "US-HI-MA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "マウイ"
-        },
-        "US-HI-MO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "モロカイ"
-        },
-        "US-HI-NI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ニイハウ"
-        },
-        "US-HI-OA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "オアフ"
-        },
-        "US-CAL-BANC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Balancing Authority Of Northern California"
-        },
-        "US-CAL-CISO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "California Independent System Operator"
-        },
-        "US-CAL-IID": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Imperial Irrigation District"
-        },
-        "US-CAL-LDWP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Los Angeles Department Of Water And Power"
-        },
-        "US-CAL-TIDC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Turlock Irrigation District"
-        },
-        "US-CAR-CPLE": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Duke Energy Progress East"
-        },
-        "US-CAR-CPLW": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Duke Energy Progress West"
-        },
-        "US-CAR-DUK": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Duke Energy Carolinas"
-        },
-        "US-CAR-SC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "South Carolina Public Service Authority"
-        },
-        "US-CAR-SCEG": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "South Carolina Electric & Gas Company"
-        },
-        "US-CAR-YAD": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Alcoa Power Generating, Inc. Yadkin Division"
-        },
-        "US-CENT-SPA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Southwestern Power Administration"
-        },
-        "US-CENT-SWPP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Southwest Power Pool"
-        },
-        "US-FLA-FMPP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Florida Municipal Power Pool"
-        },
-        "US-FLA-FPC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Duke Energy Florida Inc"
-        },
-        "US-FLA-FPL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Florida Power & Light Company"
-        },
-        "US-FLA-GVL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Gainesville Regional Utilities"
-        },
-        "US-FLA-HST": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "City Of Homestead"
-        },
-        "US-FLA-JEA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "JEA"
-        },
-        "US-FLA-NSB": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Utilities Commission Of New Smyrna Beach"
-        },
-        "US-FLA-SEC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Seminole Electric Cooperative"
-        },
-        "US-FLA-TAL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "City Of Tallahassee"
-        },
-        "US-FLA-TEC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Tampa Electric Company"
-        },
-        "US-MIDA-PJM": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PJM Interconnection, Llc"
-        },
-        "US-MIDW-AECI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Associated Electric Cooperative, Inc."
-        },
-        "US-MIDW-GLHB": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "GridLiance"
-        },
+        "AD": { "zoneName": "アンドラ" },
+        "AE": { "zoneName": "アラブ首長国連邦" },
+        "AF": { "zoneName": "アフガニスタン" },
+        "AG": { "zoneName": "アンティグア・バーブーダ" },
+        "AI": { "zoneName": "アンギラ" },
+        "AL": { "zoneName": "アルバニア" },
+        "AM": { "zoneName": "アルメニア" },
+        "AO": { "zoneName": "アンゴラ" },
+        "AQ": { "zoneName": "南極大陸" },
+        "AS": { "zoneName": "アメリカ領サモア" },
+        "AT": { "zoneName": "オーストリア" },
+        "AR": { "zoneName": "アルゼンチン" },
+        "AUS-NSW": { "countryName": "オーストラリア", "zoneName": "ニューサウスウェールズ州" },
+        "AUS-NT": { "countryName": "オーストラリア", "zoneName": "ノーザンテリトリー" },
+        "AUS-QLD": { "countryName": "オーストラリア", "zoneName": "クイーンズランド州" },
+        "AUS-SA": { "countryName": "オーストラリア", "zoneName": "南 オーストラリア" },
+        "AUS-TAS": { "countryName": "オーストラリア", "zoneName": "タスマニア" },
+        "AUS-TAS-KI": { "countryName": "オーストラリア", "zoneName": "キング島" },
+        "AUS-VIC": { "countryName": "オーストラリア", "zoneName": "ビクトリア州" },
+        "AUS-WA": { "countryName": "オーストラリア", "zoneName": "西 オーストラリア" },
+        "AW": { "zoneName": "アルバ" },
+        "AX": { "zoneName": "オーランド諸島" },
+        "AZ": { "zoneName": "アゼルバイジャン" },
+        "BA": { "zoneName": "ボスニア・ヘルツェゴビナ" },
+        "BB": { "zoneName": "バルバドス" },
+        "BD": { "zoneName": "バングラデシュ" },
+        "BE": { "zoneName": "ベルギー" },
+        "BF": { "zoneName": "ブルキナファソ" },
+        "BG": { "zoneName": "ブルガリア" },
+        "BH": { "zoneName": "バーレーン" },
+        "BI": { "zoneName": "ブルンジ" },
+        "BJ": { "zoneName": "ベナン" },
+        "BM": { "zoneName": "バミューダ" },
+        "BN": { "zoneName": "ブルネイ" },
+        "BO": { "zoneName": "ボリビア" },
+        "BQ": { "zoneName": "ボネール、シント・ユースタティウスおよびサバ" },
+        "BR-CS": { "countryName": "ブラジル", "zoneName": "中央ブラジル" },
+        "BR-N": { "countryName": "ブラジル", "zoneName": "北ブラジル" },
+        "BR-NE": { "countryName": "ブラジル", "zoneName": "東北ブラジル" },
+        "BR-S": { "countryName": "ブラジル", "zoneName": "南ブラジル" },
+        "BS": { "zoneName": "バハマ" },
+        "BT": { "zoneName": "ブータン" },
+        "BV": { "zoneName": "ブーベ島" },
+        "BW": { "zoneName": "ボツワナ" },
+        "BY": { "zoneName": "ベラルーシ" },
+        "BZ": { "zoneName": "ベリーズ" },
+        "CA-AB": { "countryName": "カナダ", "zoneName": "アルバータ州" },
+        "CA-BC": { "countryName": "カナダ", "zoneName": "ブリティッシュコロンビア" },
+        "CA-MB": { "countryName": "カナダ", "zoneName": "マニトバ州" },
+        "CA-NL": { "countryName": "カナダ", "zoneName": "ニューファンドランドアンドラブラドール州" },
+        "CA-NB": { "countryName": "カナダ", "zoneName": "ニューブランズウィック" },
+        "CA-NT": { "countryName": "カナダ", "zoneName": "ノースウェスト準州" },
+        "CA-NS": { "countryName": "カナダ", "zoneName": "ノバスコシア州" },
+        "CA-NU": { "countryName": "カナダ", "zoneName": "ヌナブト" },
+        "CA-ON": { "countryName": "カナダ", "zoneName": "オンタリオ" },
+        "CA-PE": { "countryName": "カナダ", "zoneName": "プリンス・エドワード島" },
+        "CA-QC": { "countryName": "カナダ", "zoneName": "ケベック州" },
+        "CA-SK": { "countryName": "カナダ", "zoneName": "サスカチュワン州" },
+        "CA-YT": { "countryName": "カナダ", "zoneName": "ユーコン" },
+        "CC": { "zoneName": "ココス諸島" },
+        "CD": { "zoneName": "コンゴ民主共和国" },
+        "CF": { "zoneName": "中央アフリカ共和国" },
+        "CG": { "zoneName": "コンゴ" },
+        "CH": { "zoneName": "スイス" },
+        "CI": { "zoneName": "コートジボワール" },
+        "CK": { "zoneName": "クック諸島" },
+        "CL-SEA": { "countryName": "チリ", "zoneName": "Sistema Eléctrico de Aysén" },
+        "CL-SEM": { "countryName": "チリ", "zoneName": "Sistema Eléctrico de Magallanes" },
+        "CL-SEN": { "countryName": "チリ", "zoneName": "Sistema Eléctrico Nacional" },
+        "CM": { "zoneName": "カメルーン" },
+        "CN": { "zoneName": "中国" },
+        "CO": { "zoneName": "コロンビア" },
+        "CR": { "zoneName": "コスタリカ" },
+        "CU": { "zoneName": "キューバ" },
+        "CV": { "zoneName": "カーボベルデ" },
+        "CW": { "zoneName": "キュラソー" },
+        "CX": { "zoneName": "クリスマス島" },
+        "CY": { "zoneName": "キプロス" },
+        "CZ": { "zoneName": "チェコ" },
+        "DE": { "zoneName": "ドイツ" },
+        "DJ": { "zoneName": "ジブチ" },
+        "DK": { "zoneName": "デンマーク" },
+        "DK-DK1": { "countryName": "デンマーク", "zoneName": "西デンマーク" },
+        "DK-DK2": { "countryName": "デンマーク", "zoneName": "西デンマーク" },
+        "DK-BHM": { "countryName": "デンマーク", "zoneName": "東デンマーク" },
+        "DM": { "zoneName": "ドミニカ" },
+        "DO": { "zoneName": "ドミニカ共和国" },
+        "DZ": { "zoneName": "アルジェリア" },
+        "EC": { "zoneName": "エクアドル" },
+        "EE": { "zoneName": "エストニア" },
+        "EG": { "zoneName": "エジプト" },
+        "EH": { "zoneName": "西サハラ" },
+        "ER": { "zoneName": "エリトリア" },
+        "ES": { "zoneName": "スペイン" },
+        "ES-IB-FO": { "countryName": "スペイン", "zoneName": "フォルメンテラ島" },
+        "ES-IB-IZ": { "countryName": "スペイン", "zoneName": "イビサ島" },
+        "ES-IB-MA": { "countryName": "スペイン", "zoneName": "マヨルカ島" },
+        "ES-IB-ME": { "countryName": "スペイン", "zoneName": "メノルカ島" },
+        "ES-CN-FVLZ": { "countryName": "スペイン", "zoneName": "フエルテベントゥラ島/ランサローテ島" },
+        "ES-CN-GC": { "countryName": "スペイン", "zoneName": "グラン・カナリア島" },
+        "ES-CN-HI": { "countryName": "スペイン", "zoneName": "エル・イエロ島 " },
+        "ES-CN-IG": { "countryName": "スペイン", "zoneName": "ラ・ゴメラ島" },
+        "ES-CN-LP": { "countryName": "スペイン", "zoneName": "ラ・パルマ島" },
+        "ES-CN-TE": { "countryName": "スペイン", "zoneName": "テネリフェ島" },
+        "ET": { "zoneName": "エチオピア" },
+        "FI": { "zoneName": "フィンランド" },
+        "FJ": { "zoneName": "フィジー" },
+        "FK": { "zoneName": "フォークランド諸島" },
+        "FM": { "zoneName": "ミクロネシア" },
+        "FO": { "zoneName": "フェロー諸島" },
+        "FR": { "zoneName": "フランス" },
+        "FR-COR": { "countryName": "フランス", "zoneName": "コルシカ島" },
+        "GA": { "zoneName": "ガボン" },
+        "GB": { "zoneName": "イギリス" },
+        "GB-NIR": { "zoneName": "北アイルランド" },
+        "GB-ORK": { "countryName": "イギリス", "zoneName": "オークニー諸島" },
+        "GB-SHI": { "countryName": "イギリス", "zoneName": "シェットランド諸島" },
+        "GB-ZET": { "countryName": "イギリス", "zoneName": "シェットランド諸島" },
+        "GD": { "zoneName": "グレナダ" },
+        "GE": { "zoneName": "ジョージア州" },
+        "GF": { "zoneName": "フランス領ギアナ" },
+        "GG": { "zoneName": "ガーンジー" },
+        "GH": { "zoneName": "ガーナ" },
+        "GI": { "zoneName": "ジブラルタル" },
+        "GL": { "zoneName": "グリーンランド" },
+        "GM": { "zoneName": "ガンビア" },
+        "GN": { "zoneName": "ギニア" },
+        "GP": { "zoneName": "グアドループ" },
+        "GQ": { "zoneName": "赤道ギニア" },
+        "GR": { "zoneName": "ギリシャ" },
+        "GR-IS": { "countryName": "ギリシャ", "zoneName": "エーゲ海諸島" },
+        "GS": { "zoneName": "サウスジョージア・サウスサンドウィッチ諸島" },
+        "GT": { "zoneName": "グアテマラ" },
+        "GU": { "zoneName": "グアム" },
+        "GW": { "zoneName": "ギニアビサウ" },
+        "GY": { "zoneName": "ガイアナ" },
+        "HK": { "zoneName": "香港" },
+        "HM": { "zoneName": "ハード島とマクドナルド諸島" },
+        "HN": { "zoneName": "ホンジュラス" },
+        "HR": { "zoneName": "クロアチア" },
+        "HT": { "zoneName": "ハイチ" },
+        "HU": { "zoneName": "ハンガリー" },
+        "ID": { "zoneName": "インドネシア" },
+        "IE": { "zoneName": "アイルランド" },
+        "IL": { "zoneName": "イスラエル" },
+        "IM": { "zoneName": "マン島" },
+        "IN-AN": { "countryName": "インド", "zoneName": "アンダマンとニコバル諸島" },
+        "IN-AP": { "countryName": "インド", "zoneName": "アンドラ・プラデシュ" },
+        "IN-AR": { "countryName": "インド", "zoneName": "アルナチャルプラデーシュ州" },
+        "IN-AS": { "countryName": "インド", "zoneName": "アッサム" },
+        "IN-BR": { "countryName": "インド", "zoneName": "ビハール" },
+        "IN-CT": { "countryName": "インド", "zoneName": "チャッティースガル" },
+        "IN-DL": { "countryName": "インド", "zoneName": "デリー" },
+        "IN-DN": { "countryName": "インド", "zoneName": "ダードラーおよびナガル・ハヴェーリー" },
+        "IN-GA": { "countryName": "インド", "zoneName": "ゴア" },
+        "IN-GJ": { "countryName": "インド", "zoneName": "グジャラート州" },
+        "IN-HP": { "countryName": "インド", "zoneName": "ヒマーチャルプラデーシュ州" },
+        "IN-HR": { "countryName": "インド", "zoneName": "ハリヤーナ" },
+        "IN-JH": { "countryName": "インド", "zoneName": "ジャールカンド州" },
+        "IN-JK": { "countryName": "インド", "zoneName": "ジャムとカシミール" },
+        "IN-KA": { "countryName": "インド", "zoneName": "カルナタカ" },
+        "IN-KL": { "countryName": "インド", "zoneName": "ケララ州" },
+        "IN-MH": { "countryName": "インド", "zoneName": "マハラシュトラ" },
+        "IN-ML": { "countryName": "インド", "zoneName": "メガラヤ" },
+        "IN-MN": { "countryName": "インド", "zoneName": "マニプール" },
+        "IN-MP": { "countryName": "インド", "zoneName": "マディヤ・プラデシュ" },
+        "IN-MZ": { "countryName": "インド", "zoneName": "ミゾラム" },
+        "IN-NL": { "countryName": "インド", "zoneName": "ナガランド" },
+        "IN-OR": { "countryName": "インド", "zoneName": "オリッサ州" },
+        "IN-PB": { "countryName": "インド", "zoneName": "パンジャーブ" },
+        "IN-PY": { "countryName": "インド", "zoneName": "ポンディシェリ" },
+        "IN-RJ": { "countryName": "インド", "zoneName": "ラージャスターン" },
+        "IN-SK": { "countryName": "インド", "zoneName": "シッキム" },
+        "IN-TL": { "countryName": "インド", "zoneName": "タミルナードゥ州" },
+        "IN-TR": { "countryName": "インド", "zoneName": "トリプラ" },
+        "IN-UP": { "countryName": "インド", "zoneName": "ウッタル・プラデーシュ州" },
+        "IN-UT": { "countryName": "インド", "zoneName": "ウッタラーカンド州" },
+        "IN-WB": { "countryName": "インド", "zoneName": "西ベンガル州" },
+        "IO": { "zoneName": "イギリス領インド洋地域" },
+        "IQ": { "zoneName": "イラク" },
+        "IQ-KUR": { "countryName": "イラク", "zoneName": "クルディスタン" },
+        "IR": { "zoneName": "イラン" },
+        "IS": { "zoneName": "アイスランド" },
+        "IT": { "zoneName": "イタリア" },
+        "IT-CNO": { "countryName": "イタリア", "zoneName": "中央北部" },
+        "IT-CSO": { "countryName": "イタリア", "zoneName": "中央南部" },
+        "IT-NO": { "countryName": "イタリア", "zoneName": "北部" },
+        "IT-SAR": { "countryName": "イタリア", "zoneName": "サルデーニャ" },
+        "IT-SIC": { "countryName": "イタリア", "zoneName": "シチリア" },
+        "IT-SO": { "countryName": "イタリア", "zoneName": "南部" },
+        "JE": { "zoneName": "ジャージー" },
+        "JM": { "zoneName": "ジャマイカ" },
+        "JO": { "zoneName": "ヨルダン" },
+        "JP-CB": { "countryName": "日本", "zoneName": "中部" },
+        "JP-CG": { "countryName": "日本", "zoneName": "中国" },
+        "JP-HKD": { "countryName": "日本", "zoneName": "北海道" },
+        "JP-HR": { "countryName": "日本", "zoneName": "北陸" },
+        "JP-KN": { "countryName": "日本", "zoneName": "関西" },
+        "JP-KY": { "countryName": "日本", "zoneName": "九州" },
+        "JP-ON": { "countryName": "日本", "zoneName": "沖縄" },
+        "JP-SK": { "countryName": "日本", "zoneName": "四国" },
+        "JP-TH": { "countryName": "日本", "zoneName": "東北" },
+        "JP-TK": { "countryName": "日本", "zoneName": "東京" },
+        "KE": { "zoneName": "ケニア" },
+        "KG": { "zoneName": "キルギス" },
+        "KH": { "zoneName": "カンボジア" },
+        "KI": { "zoneName": "キリバス" },
+        "KM": { "zoneName": "コモロ" },
+        "KN": { "zoneName": "セントクリストファー・ネービス" },
+        "KP": { "zoneName": "北朝鮮" },
+        "KR": { "zoneName": "韓国" },
+        "KW": { "zoneName": "クウェート" },
+        "KY": { "zoneName": "ケイマン諸島" },
+        "KZ": { "zoneName": "カザフスタン" },
+        "LA": { "zoneName": "ラオス" },
+        "LB": { "zoneName": "レバノン" },
+        "LC": { "zoneName": "セントルシア" },
+        "LI": { "zoneName": "リヒテンシュタイン" },
+        "LK": { "zoneName": "スリランカ" },
+        "LR": { "zoneName": "リベリア" },
+        "LS": { "zoneName": "レソト" },
+        "LT": { "zoneName": "リトアニア" },
+        "LU": { "zoneName": "ルクセンブルク" },
+        "LV": { "zoneName": "ラトビア" },
+        "LY": { "zoneName": "リビア" },
+        "MA": { "zoneName": "モロッコ" },
+        "MC": { "zoneName": "モナコ" },
+        "MD": { "zoneName": "モルドバ" },
+        "ME": { "zoneName": "モンテネグロ" },
+        "MF": { "countryName": "セント・マーチン", "zoneName": "フランス" },
+        "MG": { "zoneName": "マダガスカル" },
+        "MH": { "zoneName": "マーシャル諸島" },
+        "MK": { "zoneName": "北マケドニア" },
+        "ML": { "zoneName": "マリ" },
+        "MM": { "zoneName": "ミャンマー" },
+        "MN": { "zoneName": "モンゴル" },
+        "MO": { "zoneName": "マカオ" },
+        "MP": { "zoneName": "北マリアナ諸島" },
+        "MQ": { "zoneName": "マルティニーク" },
+        "MR": { "zoneName": "モーリタニア" },
+        "MS": { "zoneName": "モントセラト" },
+        "MT": { "zoneName": "マルタ" },
+        "MU": { "zoneName": "モーリシャス" },
+        "MV": { "zoneName": "モルディブ" },
+        "MW": { "zoneName": "マラウイ" },
+        "MX": { "zoneName": "メキシコ" },
+        "MX-BC": { "countryName": "メキシコ", "zoneName": "バハ・カリフォルニア" },
+        "MX-CE": { "countryName": "メキシコ", "zoneName": "中央部" },
+        "MX-NE": { "countryName": "メキシコ", "zoneName": "北東部" },
+        "MX-NO": { "countryName": "メキシコ", "zoneName": "北部" },
+        "MX-NW": { "countryName": "メキシコ", "zoneName": "北西部" },
+        "MX-OC": { "countryName": "メキシコ", "zoneName": "西洋部" },
+        "MX-OR": { "countryName": "メキシコ", "zoneName": "東洋部" },
+        "MX-PN": { "countryName": "メキシコ", "zoneName": "半島部" },
+        "MY-EM": { "countryName": "マレーシア", "zoneName": "ボルネオ" },
+        "MY-WM": { "countryName": "マレーシア", "zoneName": "マレー半島" },
+        "MZ": { "zoneName": "モザンビーク" },
+        "NA": { "zoneName": "ナミビア" },
+        "NC": { "zoneName": "ニューカレドニア" },
+        "NE": { "zoneName": "ニジェール" },
+        "NF": { "zoneName": "ノーフォーク島" },
+        "NG": { "zoneName": "ナイジェリア" },
+        "NI": { "zoneName": "ニカラグア" },
+        "NKR": { "zoneName": "ナゴルノ・カラバフ" },
+        "NL": { "zoneName": "オランダ" },
+        "NO-NO1": { "countryName": "ノルウェー", "zoneName": "ノルウェー南東部" },
+        "NO-NO2": { "countryName": "ノルウェー", "zoneName": "ノルウェー南西部" },
+        "NO-NO3": { "countryName": "ノルウェー", "zoneName": "ノルウェー中部" },
+        "NO-NO4": { "countryName": "ノルウェー", "zoneName": "ノルウェー北部" },
+        "NO-NO5": { "countryName": "ノルウェー", "zoneName": "ノルウェー西部" },
+        "NP": { "zoneName": "ネパール" },
+        "NR": { "zoneName": "ナウル" },
+        "NU": { "zoneName": "ニウエ" },
+        "NZ": { "zoneName": "ニュージーランド" },
+        "NZ-NZA": { "countryName": "ニュージーランド", "zoneName": "オークランド諸島" },
+        "NZ-NZC": { "countryName": "ニュージーランド", "zoneName": "チャタム諸島" },
+        "OM": { "zoneName": "オマーン" },
+        "PA": { "zoneName": "パナマ" },
+        "PE": { "zoneName": "ペルー" },
+        "PF": { "zoneName": "フランス領ポリネシア" },
+        "PG": { "zoneName": "パプアニューギニア" },
+        "PH": { "zoneName": "フィリピン" },
+        "PK": { "zoneName": "パキスタン" },
+        "PL": { "zoneName": "ポーランド" },
+        "PM": { "zoneName": "サン・ピエール及びミクロン" },
+        "PN": { "zoneName": "ピトケアン" },
+        "PR": { "zoneName": "プエルトリコ" },
+        "PS": { "zoneName": "パレスチナ" },
+        "PT": { "zoneName": "ポルトガル" },
+        "PT-AC": { "countryName": "ポルトガル", "zoneName": "アゾレス諸島" },
+        "PT-MA": { "countryName": "ポルトガル", "zoneName": "マデイラ" },
+        "PW": { "zoneName": "パラオ" },
+        "PY": { "zoneName": "パラグアイ" },
+        "QA": { "zoneName": "カタール" },
+        "RE": { "zoneName": "レユニオン" },
+        "RO": { "zoneName": "ルーマニア" },
+        "RS": { "zoneName": "セルビア" },
+        "RU": { "zoneName": "ロシア" },
+        "RU-1": { "countryName": "ロシア", "zoneName": "ヨーロッパロシアとウラル" },
+        "RU-2": { "countryName": "ロシア", "zoneName": "シベリア" },
+        "RU-EU": { "zoneName": "ロシア" },
+        "RU-AS": { "zoneName": "ロシア" },
+        "RU-KGD": { "countryName": "ロシア", "zoneName": "カリーニングラード" },
+        "RW": { "zoneName": "ルワンダ" },
+        "SA": { "zoneName": "サウジアラビア" },
+        "SB": { "zoneName": "ソロモン諸島" },
+        "SC": { "zoneName": "セーシェル" },
+        "SD": { "zoneName": "スーダン" },
+        "SE": { "zoneName": "スウェーデン" },
+        "SG": { "zoneName": "シンガポール" },
+        "SH": { "zoneName": "セントヘレナ・アセンションおよびトリスタンダクーニャ" },
+        "SI": { "zoneName": "スロベニア" },
+        "SJ": { "zoneName": "スヴァールバル諸島およびヤンマイエン島" },
+        "SK": { "zoneName": "スロバキア" },
+        "SL": { "zoneName": "シエラレオネ" },
+        "SM": { "zoneName": "サンマリノ" },
+        "SN": { "zoneName": "セネガル" },
+        "SO": { "zoneName": "ソマリア" },
+        "SR": { "zoneName": "スリナム" },
+        "SS": { "zoneName": "南スーダン" },
+        "ST": { "zoneName": "サントメ・プリンシペ" },
+        "SV": { "zoneName": "エルサルバドル" },
+        "SX": { "countryName": "シント・マールテン", "zoneName": "オランダ領" },
+        "SY": { "zoneName": "シリア" },
+        "SZ": { "zoneName": "エスワティニ" },
+        "TC": { "zoneName": "タークス・カイコス諸島" },
+        "TD": { "zoneName": "チャド" },
+        "TF": { "zoneName": "フランス領南方・南極地域" },
+        "TG": { "zoneName": "トーゴ" },
+        "TH": { "zoneName": "タイ" },
+        "TJ": { "zoneName": "タジキスタン" },
+        "TK": { "zoneName": "トケラウ" },
+        "TL": { "zoneName": "東ティモール" },
+        "TM": { "zoneName": "トルクメニスタン" },
+        "TN": { "zoneName": "チュニジア" },
+        "TO": { "zoneName": "トンガ" },
+        "TR": { "zoneName": "トルコ" },
+        "TT": { "zoneName": "トリニダード・ドバゴ" },
+        "TV": { "zoneName": "ツバル" },
+        "TW": { "zoneName": "台湾" },
+        "TZ": { "zoneName": "タンザニア" },
+        "UA": { "zoneName": "ウクライナ" },
+        "UA-CR": { "countryName": "クリミア", "zoneName": "ウクライナ" },
+        "UG": { "zoneName": "ウガンダ" },
+        "UM": { "zoneName": "アメリカ合衆国領有小離島" },
+        "US-HI-HA": { "countryName": "アメリカ合衆国", "zoneName": "ハワイ" },
+        "US-HI-KA": { "countryName": "アメリカ合衆国", "zoneName": "カウアイ" },
+        "US-HI-KH": { "countryName": "アメリカ合衆国", "zoneName": "カホオラウェ" },
+        "US-HI-LA": { "countryName": "アメリカ合衆国", "zoneName": "ラナイ" },
+        "US-HI-MA": { "countryName": "アメリカ合衆国", "zoneName": "マウイ" },
+        "US-HI-MO": { "countryName": "アメリカ合衆国", "zoneName": "モロカイ" },
+        "US-HI-NI": { "countryName": "アメリカ合衆国", "zoneName": "ニイハウ" },
+        "US-HI-OA": { "countryName": "アメリカ合衆国", "zoneName": "オアフ" },
+        "US-CAL-BANC": { "countryName": "アメリカ合衆国", "zoneName": "Balancing Authority Of Northern California" },
+        "US-CAL-CISO": { "countryName": "アメリカ合衆国", "zoneName": "California Independent System Operator" },
+        "US-CAL-IID": { "countryName": "アメリカ合衆国", "zoneName": "Imperial Irrigation District" },
+        "US-CAL-LDWP": { "countryName": "アメリカ合衆国", "zoneName": "Los Angeles Department Of Water And Power" },
+        "US-CAL-TIDC": { "countryName": "アメリカ合衆国", "zoneName": "Turlock Irrigation District" },
+        "US-CAR-CPLE": { "countryName": "アメリカ合衆国", "zoneName": "Duke Energy Progress East" },
+        "US-CAR-CPLW": { "countryName": "アメリカ合衆国", "zoneName": "Duke Energy Progress West" },
+        "US-CAR-DUK": { "countryName": "アメリカ合衆国", "zoneName": "Duke Energy Carolinas" },
+        "US-CAR-SC": { "countryName": "アメリカ合衆国", "zoneName": "South Carolina Public Service Authority" },
+        "US-CAR-SCEG": { "countryName": "アメリカ合衆国", "zoneName": "South Carolina Electric & Gas Company" },
+        "US-CAR-YAD": { "countryName": "アメリカ合衆国", "zoneName": "Alcoa Power Generating, Inc. Yadkin Division" },
+        "US-CENT-SPA": { "countryName": "アメリカ合衆国", "zoneName": "Southwestern Power Administration" },
+        "US-CENT-SWPP": { "countryName": "アメリカ合衆国", "zoneName": "Southwest Power Pool" },
+        "US-FLA-FMPP": { "countryName": "アメリカ合衆国", "zoneName": "Florida Municipal Power Pool" },
+        "US-FLA-FPC": { "countryName": "アメリカ合衆国", "zoneName": "Duke Energy Florida Inc" },
+        "US-FLA-FPL": { "countryName": "アメリカ合衆国", "zoneName": "Florida Power & Light Company" },
+        "US-FLA-GVL": { "countryName": "アメリカ合衆国", "zoneName": "Gainesville Regional Utilities" },
+        "US-FLA-HST": { "countryName": "アメリカ合衆国", "zoneName": "City Of Homestead" },
+        "US-FLA-JEA": { "countryName": "アメリカ合衆国", "zoneName": "JEA" },
+        "US-FLA-NSB": { "countryName": "アメリカ合衆国", "zoneName": "Utilities Commission Of New Smyrna Beach" },
+        "US-FLA-SEC": { "countryName": "アメリカ合衆国", "zoneName": "Seminole Electric Cooperative" },
+        "US-FLA-TAL": { "countryName": "アメリカ合衆国", "zoneName": "City Of Tallahassee" },
+        "US-FLA-TEC": { "countryName": "アメリカ合衆国", "zoneName": "Tampa Electric Company" },
+        "US-MIDA-PJM": { "countryName": "アメリカ合衆国", "zoneName": "PJM Interconnection, Llc" },
+        "US-MIDW-AECI": { "countryName": "アメリカ合衆国", "zoneName": "Associated Electric Cooperative, Inc." },
+        "US-MIDW-GLHB": { "countryName": "アメリカ合衆国", "zoneName": "GridLiance" },
         "US-MIDW-LGEE": {
             "countryName": "アメリカ合衆国",
             "zoneName": "Louisville Gas And Electric Company And Kentucky Utilities"
@@ -1494,78 +576,24 @@
             "countryName": "アメリカ合衆国",
             "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
         },
-        "US-NE-ISNE": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Iso New England Inc."
-        },
-        "US-NW-AVA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Avista Corporation"
-        },
-        "US-NW-AVRN": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Avangrid Renewables Cooperative"
-        },
-        "US-NW-BPAT": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Bonneville Power Administration"
-        },
-        "US-NW-CHPD": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PUD No. 1 Of Chelan County"
-        },
-        "US-NW-DOPD": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PUD No. 1 Of Douglas County"
-        },
-        "US-NW-GCPD": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "PUD No. 2 Of Grant County, Washington"
-        },
-        "US-NW-GRID": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Gridforce Energy Management, Llc"
-        },
-        "US-NW-GWA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Naturener Power Watch, Llc (Gwa)"
-        },
-        "US-NW-IPCO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Idaho Power Company"
-        },
-        "US-NW-NEVP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Nevada Power Company"
-        },
-        "US-NW-NWMT": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Northwestern Energy"
-        },
-        "US-NW-PACE": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Pacificorp East"
-        },
-        "US-NW-PACW": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Pacificorp West"
-        },
-        "US-NW-PGE": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Portland General Electric Company"
-        },
-        "US-NW-PSCO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Public Service Company Of Colorado"
-        },
-        "US-NW-PSEI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Puget Sound Energy"
-        },
-        "US-NW-SCL": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Seattle City Light"
-        },
+        "US-NE-ISNE": { "countryName": "アメリカ合衆国", "zoneName": "Iso New England Inc." },
+        "US-NW-AVA": { "countryName": "アメリカ合衆国", "zoneName": "Avista Corporation" },
+        "US-NW-AVRN": { "countryName": "アメリカ合衆国", "zoneName": "Avangrid Renewables Cooperative" },
+        "US-NW-BPAT": { "countryName": "アメリカ合衆国", "zoneName": "Bonneville Power Administration" },
+        "US-NW-CHPD": { "countryName": "アメリカ合衆国", "zoneName": "PUD No. 1 Of Chelan County" },
+        "US-NW-DOPD": { "countryName": "アメリカ合衆国", "zoneName": "PUD No. 1 Of Douglas County" },
+        "US-NW-GCPD": { "countryName": "アメリカ合衆国", "zoneName": "PUD No. 2 Of Grant County, Washington" },
+        "US-NW-GRID": { "countryName": "アメリカ合衆国", "zoneName": "Gridforce Energy Management, Llc" },
+        "US-NW-GWA": { "countryName": "アメリカ合衆国", "zoneName": "Naturener Power Watch, Llc (Gwa)" },
+        "US-NW-IPCO": { "countryName": "アメリカ合衆国", "zoneName": "Idaho Power Company" },
+        "US-NW-NEVP": { "countryName": "アメリカ合衆国", "zoneName": "Nevada Power Company" },
+        "US-NW-NWMT": { "countryName": "アメリカ合衆国", "zoneName": "Northwestern Energy" },
+        "US-NW-PACE": { "countryName": "アメリカ合衆国", "zoneName": "Pacificorp East" },
+        "US-NW-PACW": { "countryName": "アメリカ合衆国", "zoneName": "Pacificorp West" },
+        "US-NW-PGE": { "countryName": "アメリカ合衆国", "zoneName": "Portland General Electric Company" },
+        "US-NW-PSCO": { "countryName": "アメリカ合衆国", "zoneName": "Public Service Company Of Colorado" },
+        "US-NW-PSEI": { "countryName": "アメリカ合衆国", "zoneName": "Puget Sound Energy" },
+        "US-NW-SCL": { "countryName": "アメリカ合衆国", "zoneName": "Seattle City Light" },
         "US-NW-TPWR": {
             "countryName": "アメリカ合衆国",
             "zoneName": "City Of Tacoma, Department Of Public Utilities, Light Division"
@@ -1574,133 +602,44 @@
             "countryName": "アメリカ合衆国",
             "zoneName": "Western Area Power Administration - Rocky Mountain Region"
         },
-        "US-NW-WAUW": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Western Area Power Administration UGP West"
-        },
-        "US-NW-WWA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Naturener Wind Watch, Llc"
-        },
-        "US-NY-NYIS": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "New York Independent System Operator"
-        },
-        "US-SE-AEC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Powersouth Energy Cooperative"
-        },
-        "US-SE-SEPA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Southeastern Power Administration"
-        },
-        "US-SE-SOCO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Southern Company Services, Inc. - Trans"
-        },
-        "US-SW-AZPS": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Arizona Public Service Company"
-        },
-        "US-SW-DEAA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Arlington Valley, LLC"
-        },
-        "US-SW-EPE": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "El Paso Electric Company"
-        },
-        "US-SW-GRIF": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Griffith Energy, LLC"
-        },
-        "US-SW-GRMA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Gila River Power, LLC"
-        },
-        "US-SW-HGMA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "New Harquahala Generating Company, LLC"
-        },
-        "US-SW-PNM": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Public Service Company Of New Mexico"
-        },
-        "US-SW-SRP": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Salt River Project"
-        },
-        "US-SW-TEPC": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Tucson Electric Power Company"
-        },
+        "US-NW-WAUW": { "countryName": "アメリカ合衆国", "zoneName": "Western Area Power Administration UGP West" },
+        "US-NW-WWA": { "countryName": "アメリカ合衆国", "zoneName": "Naturener Wind Watch, Llc" },
+        "US-NY-NYIS": { "countryName": "アメリカ合衆国", "zoneName": "New York Independent System Operator" },
+        "US-SE-AEC": { "countryName": "アメリカ合衆国", "zoneName": "Powersouth Energy Cooperative" },
+        "US-SE-SEPA": { "countryName": "アメリカ合衆国", "zoneName": "Southeastern Power Administration" },
+        "US-SE-SOCO": { "countryName": "アメリカ合衆国", "zoneName": "Southern Company Services, Inc. - Trans" },
+        "US-SW-AZPS": { "countryName": "アメリカ合衆国", "zoneName": "Arizona Public Service Company" },
+        "US-SW-DEAA": { "countryName": "アメリカ合衆国", "zoneName": "Arlington Valley, LLC" },
+        "US-SW-EPE": { "countryName": "アメリカ合衆国", "zoneName": "El Paso Electric Company" },
+        "US-SW-GRIF": { "countryName": "アメリカ合衆国", "zoneName": "Griffith Energy, LLC" },
+        "US-SW-GRMA": { "countryName": "アメリカ合衆国", "zoneName": "Gila River Power, LLC" },
+        "US-SW-HGMA": { "countryName": "アメリカ合衆国", "zoneName": "New Harquahala Generating Company, LLC" },
+        "US-SW-PNM": { "countryName": "アメリカ合衆国", "zoneName": "Public Service Company Of New Mexico" },
+        "US-SW-SRP": { "countryName": "アメリカ合衆国", "zoneName": "Salt River Project" },
+        "US-SW-TEPC": { "countryName": "アメリカ合衆国", "zoneName": "Tucson Electric Power Company" },
         "US-SW-WALC": {
             "countryName": "アメリカ合衆国",
             "zoneName": "Western Area Power Administration - Desert Southwest Region"
         },
-        "US-TEN-TVA": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Tennessee Valley Authority"
-        },
-        "US-TEX-ERCO": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "Electric Reliability Council Of Texas, Inc."
-        },
-        "UY": {
-            "zoneName": "ウルグアイ"
-        },
-        "UZ": {
-            "zoneName": "ウズベキスタン"
-        },
-        "VA": {
-            "zoneName": "バチカン市国"
-        },
-        "VC": {
-            "zoneName": "セントビンセント及びグレナディーン諸島"
-        },
-        "VE": {
-            "zoneName": "ベネズエラ"
-        },
-        "VG": {
-            "countryName": "ヴァージン諸島",
-            "zoneName": "ヴァージン諸島"
-        },
-        "VI": {
-            "countryName": "アメリカ合衆国",
-            "zoneName": "ヴァージン諸島"
-        },
-        "VN": {
-            "zoneName": "ベトナム"
-        },
-        "VU": {
-            "zoneName": "バヌアツ"
-        },
-        "WF": {
-            "zoneName": "ウォリス・フツナ"
-        },
-        "WS": {
-            "zoneName": "サモア"
-        },
-        "XK": {
-            "zoneName": "コソボ"
-        },
-        "XX": {
-            "zoneName": "北キプロス"
-        },
-        "YE": {
-            "zoneName": "イエメン"
-        },
-        "YT": {
-            "zoneName": "マヨット"
-        },
-        "ZA": {
-            "zoneName": "南アフリカ"
-        },
-        "ZM": {
-            "zoneName": "ザンビア"
-        },
-        "ZW": {
-            "zoneName": "ジンバブエ"
-        }
+        "US-TEN-TVA": { "countryName": "アメリカ合衆国", "zoneName": "Tennessee Valley Authority" },
+        "US-TEX-ERCO": { "countryName": "アメリカ合衆国", "zoneName": "Electric Reliability Council Of Texas, Inc." },
+        "UY": { "zoneName": "ウルグアイ" },
+        "UZ": { "zoneName": "ウズベキスタン" },
+        "VA": { "zoneName": "バチカン市国" },
+        "VC": { "zoneName": "セントビンセント及びグレナディーン諸島" },
+        "VE": { "zoneName": "ベネズエラ" },
+        "VG": { "countryName": "ヴァージン諸島", "zoneName": "ヴァージン諸島" },
+        "VI": { "countryName": "アメリカ合衆国", "zoneName": "ヴァージン諸島" },
+        "VN": { "zoneName": "ベトナム" },
+        "VU": { "zoneName": "バヌアツ" },
+        "WF": { "zoneName": "ウォリス・フツナ" },
+        "WS": { "zoneName": "サモア" },
+        "XK": { "zoneName": "コソボ" },
+        "XX": { "zoneName": "北キプロス" },
+        "YE": { "zoneName": "イエメン" },
+        "YT": { "zoneName": "マヨット" },
+        "ZA": { "zoneName": "南アフリカ" },
+        "ZM": { "zoneName": "ザンビア" },
+        "ZW": { "zoneName": "ジンバブエ" }
     }
 }
