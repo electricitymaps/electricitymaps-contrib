@@ -75,6 +75,11 @@ parsers = [
     "tqdm"
 ]
 
+validators = [
+    "arrow",
+    "pandas"
+]
+
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
 
