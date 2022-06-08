@@ -29,6 +29,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import MobileLayerButtons from './mobilelayerbuttons';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -44,6 +45,10 @@ const mapStateToProps = (state) => ({
 const MapContainer = styled.div`
   @media (max-width: 767px) {
     display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
+    .controls-container,
+    .layer-buttons-container {
+      display: none;
+    }
   }
 `;
 
@@ -128,7 +133,8 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              {!isMobile && <Legend />}
+              <Legend />
+              <MobileLayerButtons />
               <div className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
