@@ -5,10 +5,10 @@ import { useTranslation } from '../../helpers/translation';
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
-  HOURLY: 6,
-  DAILY: 6,
-  MONTHLY: 1,
-  YEARLY: 1,
+  hourly: 6,
+  daily: 6,
+  monthly: 1,
+  yearly: 1,
 };
 
 const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
@@ -32,7 +32,7 @@ const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
 };
 
 const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, isLoading) => {
-  const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate.toUpperCase()] === 0 && !isLoading;
+  const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
   return (
     <g key={`timeaxis-tick-${idx}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
