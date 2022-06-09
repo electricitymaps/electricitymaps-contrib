@@ -82,7 +82,6 @@
   .modal-left-button,
   .modal-right-button,
   .modal-close-button {
-    background-color: white;
     height: 48px;
     width: 48px;
     border: none;
@@ -92,6 +91,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: $white;
+    > svg {
+    transition: all 0.3s ease-in-out;
+      fill: $black;
+    }
+    @include respond-to('small') {
+        height: 32px;
+        width: 32px;
+    }
+  
   }
 
   .modal-left-button,
@@ -100,54 +110,21 @@
       outline: 0;
     }
 
-    &.hidden {
-      display: none;
-    }
-
     &.green {
+      background-color: $green;
       > svg {
-        fill: $green;
+        fill: $white;
       }
-
       &:hover {
         background-color: $light-green;
         > svg {
-          fill: $black;
+          fill: $green;
         }
       }
     }
 
-    @include respond-to('medium-up') {
-      &:hover {
-        background-color: rgb(220, 220, 220);
-      }
-    }
-
-    @include respond-to('small') {
-      background-color: #333333;
-      color: $white;
-      height: 32px;
-      width: 32px;
-
-      &.green {
-        background-color: $green;
-        &:hover {
-          background-color: $light-green;
-        }
-      }
-    }
   }
 
-  .modal-close-button {
-    height: 36px;
-    width: 36px;
-    background-color: #333333;
-
-    @include respond-to('small') {
-      background-color: $white;
-      color: #333333;
-    }
-  }
 
   .modal-header {
     height: 58%;
