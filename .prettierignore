@@ -1,3 +1,12 @@
 .venv
 **/parsers/test/mocks
 world.json
+
+mobileapp/plugins
+mobileapp/platforms
+mobileapp/src
+mobileapp/www/electricitymap
+
+web/public/dist/
+
+mockserver/public
