@@ -105,8 +105,8 @@
     "url": "https://github.com/electricitymap/electricitymap-contrib.git"
   },
   "lint-staged": {
-    "*": [
-      "prettier --write ."
+    "!(*.{js,jsx,ts,tsx})": [
+      "prettier --write"
     ],
     "**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
