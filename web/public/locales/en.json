@@ -58,13 +58,19 @@
         "search": "Search areas"
     },
     "country-history": {
-        "carbonintensity24h": "Carbon intensity in the last 24 hours",
-        "emissions24h": "Emissions in the last 24 hours",
-        "emissionsorigin24h": "Origin of emissions in the last 24 hours",
-        "emissionsproduction24h": "Emissions produced in the last 24 hours",
-        "electricityorigin24h": "Origin of electricity in the last 24 hours",
-        "electricityproduction24h": "Electricity production in the last 24 hours",
-        "electricityprices24h": "Electricity prices in the last 24 hours",
+        "carbonintensity": {
+            "default": "Carbon intensity in the last %1$s",
+            "hourly": "Carbon intensity in the last 24 hours",
+            "daily": "Carbon intensity in the last month",
+            "monthly": "Carbon intensity in the last year",
+            "yearly": "Carbon intensity in the last 5 years"
+        },
+        "emissions": { "default": "Emissions in the last %1$s" },
+        "emissionsorigin": { "default": "Emissions in the last %1$s" },
+        "emissionsproduction": { "default": "Origin of emissions in the last %1$s" },
+        "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
+        "electricityproduction": { "default": "Electricity production in the last %1$s" },
+        "electricityprices": { "default": "Electricity prices in the last %1$s" },
         "Getdata": "Get hourly historical, live, and forecast data with electricityMap API"
     },
     "footer": {
@@ -115,7 +121,9 @@
         "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
         "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
         "legend": "Legend",
-        "faq": "Frequently Asked Questions"
+        "faq": "Frequently Asked Questions",
+        "privacyPolicy": "Privacy Policy",
+        "legalNotice": "Legal Notice"
     },
     "wind": "wind",
     "windDataError": "Wind data is currently unavailable",

@@ -90,6 +90,7 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
           scale={timeScale}
           transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
           className="time-slider-axis"
+          datetimes={datetimes}
         />
       </svg>
     </div>

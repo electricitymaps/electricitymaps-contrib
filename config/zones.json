@@ -83,9 +83,7 @@
       "alixunderplatz",
       "nessie2013"
     ],
-    "parsers": {
-      "production": "AM.fetch_production"
-    },
+    "parsers": {},
     "timezone": "Asia/Yerevan"
   },
   "AO": {
@@ -1888,7 +1886,6 @@
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "GB_NIR.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": null
@@ -2622,10 +2619,7 @@
       "pierresegonne"
     ],
     "flag_file_name": "in.png",
-    "parsers": {
-      "consumption": "IN_UP.fetch_consumption",
-      "production": "IN_UP.fetch_production"
-    },
+    "parsers": {},
     "timezone": "Asia/Kolkata"
   },
   "IN-UT": {
@@ -4613,18 +4607,20 @@
       [22.5581376482, 49.5715740017]
     ],
     "capacity": {
-      "biomass": 363,
-      "coal": 1008,
-      "gas": 1093,
-      "hydro": 1621,
+      "biomass": 225,
+      "coal": 309,
+      "gas": 1152,
+      "hydro": 1613,
       "hydro storage": 916,
       "nuclear": 1940,
-      "oil": 195,
-      "solar": 532,
-      "wind": 3
+      "oil": 257,
+      "solar": 535,
+      "wind": 3,
+      "unknown": 652
     },
     "contributors": [
-      "corradio"
+      "corradio",
+      "nessie2013"
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
