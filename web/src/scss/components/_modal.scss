@@ -94,14 +94,13 @@
 
     background-color: $white;
     > svg {
-    transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       fill: $black;
     }
     @include respond-to('small') {
-        height: 32px;
-        width: 32px;
+      height: 32px;
+      width: 32px;
     }
-  
   }
 
   .modal-left-button,
@@ -122,9 +121,7 @@
         }
       }
     }
-
   }
-
 
   .modal-header {
     height: 58%;
