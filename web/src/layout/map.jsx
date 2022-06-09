@@ -36,6 +36,7 @@ export default () => {
   const isMobile = useSelector((state) => state.application.isMobile);
   const viewport = useSelector((state) => state.application.mapViewport);
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const zoneHistories = useSelector((state) => state.data.histories);
   const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
@@ -203,6 +204,7 @@ export default () => {
         onZoneMouseEnter={handleZoneMouseEnter}
         onZoneMouseLeave={handleZoneMouseLeave}
         selectedZoneTimeIndex={selectedZoneTimeIndex}
+        selectedTimeAggregate={selectedTimeAggregate}
         scrollZoom={!isEmbedded}
         theme={theme}
         transitionDuration={transitionDuration}
