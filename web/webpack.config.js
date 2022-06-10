@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const postcssPresetEnv = require('postcss-preset-env');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { version } = require('./public/client-version.json');
@@ -15,7 +15,7 @@ module.exports = {
     bundle: './src/index.jsx',
   },
   resolve: {
-    extensions: ['.jsx', '.tsx', '...' ], // ... is for the defaults
+    extensions: ['.jsx', '.tsx', '...'], // ... is for the defaults
   },
   module: {
     rules: [
@@ -52,8 +52,8 @@ module.exports = {
       statsFilename: 'manifest.json',
     }),
     new MiniCssExtractPlugin({
-      filename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
-      chunkFilename: `[name].${  isProduction ? '[chunkhash]' : 'dev'  }.css`,
+      filename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.css`,
+      chunkFilename: `[name].${isProduction ? '[chunkhash]' : 'dev'}.css`,
     }),
     new webpack.DefinePlugin({
       ELECTRICITYMAP_PUBLIC_TOKEN: `"${process.env.ELECTRICITYMAP_PUBLIC_TOKEN || 'development'}"`,
@@ -86,5 +86,5 @@ module.exports = {
     path: `${__dirname}/public/dist`,
     pathinfo: false,
   },
-  cache: false
+  cache: false,
 };

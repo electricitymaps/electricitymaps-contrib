@@ -1,0 +1,3 @@
+# All files in here should also be included in .prettierignore at the top level.
+world.json
+public/dist/

@@ -10,28 +10,28 @@
   overflow-y: visible;
 
   .time-slider-axis-container {
-      width: 100%;
-      height: 20px;
-      margin: -6px 2px 0;
-      overflow: visible;
+    width: 100%;
+    height: 20px;
+    margin: -6px 2px 0;
+    overflow: visible;
   }
 
-.domain {
+  .domain {
     display: none;
-}
+  }
 
   @include respond-to('small') {
-      padding-top: 4px;
-      background-color: $lighter-gray;
+    padding-top: 4px;
+    background-color: $lighter-gray;
   }
 }
 
 .time-slider-axis .tick {
-  font-size: .85em;
-  font-size: .7em;
-  font-family: "Open Sans", sans-serif;
+  font-size: 0.85em;
+  font-size: 0.7em;
+  font-family: 'Open Sans', sans-serif;
   @include respond-to('small') {
-    font-size: .6em;
+    font-size: 0.6em;
   }
 }
 
@@ -81,19 +81,20 @@
   border-radius: 4px;
   cursor: pointer;
   background: $light-gray;
-  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.1);
   background: var(--time-gradient);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
 .time-slider-input {
-// Webkit
-  &.night::-webkit-slider-thumb, &.night::-webkit-slider-thumb:hover {
-    background-image: url("../images/timeslider-night.svg");
+  // Webkit
+  &.night::-webkit-slider-thumb,
+  &.night::-webkit-slider-thumb:hover {
+    background-image: url('../images/timeslider-night.svg');
   }
   &.day::-webkit-slider-thumb {
-    background-image: url("../images/timeslider-sun.svg");
+    background-image: url('../images/timeslider-sun.svg');
   }
   &::-webkit-slider-thumb {
     @include thumb;
@@ -103,10 +104,10 @@
   }
   // Firefox
   &.night::-moz-range-thumb {
-    background-image: url("../images/timeslider-night.svg");
+    background-image: url('../images/timeslider-night.svg');
   }
   &.day::-moz-range-thumb {
-    background-image: url("../images/timeslider-sun.svg");
+    background-image: url('../images/timeslider-sun.svg');
   }
   &::-moz-range-thumb {
     @include thumb;
@@ -115,7 +116,6 @@
     @include track;
   }
 }
-
 
 // IE
 .time-slider-input::-ms-track {
@@ -150,6 +150,6 @@
 
 .time-slider-input-new {
   &::-webkit-slider-thumb {
-    background-image: url("../images/slider-thumb.svg");
+    background-image: url('../images/slider-thumb.svg');
   }
 }
