@@ -8,7 +8,9 @@ const StyledButton = styled.button`
   font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   border-radius: 100px;
-  width: ${(props) => (props.hasChildren ? 232 : 45)}px;
+  min-width: ${(props) => (props.hasChildren ? 232 : 45)}px;
+  width: fit-content;
+  padding: 6px 0;
   height: 45px;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.12);
   border: 0;
@@ -18,10 +20,17 @@ const StyledButton = styled.button`
   font-weight: bold;
   margin: 12px 6px;
   transition: all 0.2s ease-in-out;
+  line-height: 1;
+  box-sizing: border-box;
   &:hover {
     text-decoration: none;
     cursor: pointer;
     box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.2);
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.12);
+    }
   }
   > svg {
     fill: currentColor;
