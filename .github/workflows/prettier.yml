@@ -1,3 +1,5 @@
+name: Prettier
+
 on:
   workflow_call:
 
@@ -12,9 +14,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: lts/*
-    - name: Install dependencies
-      run: |
-        yarn install
     - name: Prettier Check
       run: |
-        yarn run prettier-check
+        npx prettier@2.6.2 --check .
