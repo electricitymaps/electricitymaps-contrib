@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { useTranslation } from '../helpers/translation';
 
 import Icon from './icon';
+
+const ModalTitle = styled.h2`
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+`;
 
 const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
   const { __ } = useTranslation();
@@ -76,12 +86,14 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
               <Icon iconName="close" />
             </div>
           </div>
-          {currentView.headerImage && (
-            <div
-              className={`modal-header ${currentView.headerCssClass || ''}`}
-              style={{ backgroundImage: `url("${currentView.headerImage}")` }}
-            />
-          )}
+          <div
+            className={`modal-header ${currentView.headerImage ? 'header-image' : ''} ${
+              currentView.headerCssClass || ''
+            }`}
+            style={currentView.headerImage && { backgroundImage: `url("${currentView.headerImage}")` }}
+          >
+            {currentView.title && <ModalTitle>{currentView.title(__)}</ModalTitle>}
+          </div>
           <div className={`modal-text ${currentView.textCssClass || ''}`}>{currentView.renderContent(__)}</div>
         </div>
         <div className="modal-footer">
