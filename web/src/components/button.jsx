@@ -32,6 +32,14 @@ const StyledButton = styled.button`
   }
 `;
 
+/**
+ * Button component
+ * @example <caption>Different usage examples</caption>
+ * <Button icon="info" iconSize={24} />
+ * <Button icon="info">icon + text</Button>
+ * <Button onClick={doSomething}>text only with action</Button>
+ * <Button href="https://example.com">as link</Button>
+ */
 export const Button = ({ icon, children, iconSize = 16, ...rest }) => {
   const hasChildren = React.Children.count(children) > 0;
   return (
