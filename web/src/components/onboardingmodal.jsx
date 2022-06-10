@@ -79,7 +79,15 @@ const OnboardingModal = ({ visible }) => {
     trackEvent('Onboarding Shown');
   };
 
-  return <Modal visible={visible && !shouldSkip} onModalShown={handleShown} onDismiss={handleDismiss} views={views} />;
+  return (
+    <Modal
+      modalName="onboarding"
+      visible={visible && !shouldSkip}
+      onModalShown={handleShown}
+      onDismiss={handleDismiss}
+      views={views}
+    />
+  );
 };
 
 export default connect(mapStateToProps)(OnboardingModal);
