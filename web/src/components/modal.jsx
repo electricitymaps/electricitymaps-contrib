@@ -85,12 +85,13 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
           <div className={`modal-text ${currentView.textCssClass || ''}`}>{currentView.renderContent(__)}</div>
         </div>
         <div className="modal-footer">
-          {views.map((view, index) => (
-            <div
-              key={`modal-step-item-${index}`}
-              className={`modal-footer-circle ${index === currentViewIndex ? 'highlight' : ''}`}
-            />
-          ))}
+          {hasMultipleViews &&
+            views.map((view, index) => (
+              <div
+                key={`modal-step-item-${index}`}
+                className={`modal-footer-circle ${index === currentViewIndex ? 'highlight' : ''}`}
+              />
+            ))}
         </div>
         <div className="modal-right-button-container">{hasMultipleViews ? RightButton : null}</div>
       </div>
