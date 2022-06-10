@@ -24,9 +24,6 @@ const InfoContainer = styled.div`
     margin-top: 0;
   }
 `;
-const Spacer = styled.div`
-  height: 2rem;
-`;
 
 const InfoView = () => {
   const { __ } = useTranslation();
@@ -45,9 +42,10 @@ const InfoView = () => {
         }}
       />
       <div>
-        <Spacer />
-        <Button onClick={openFAQModal} icon="lock" iconSize={24} />
-        <Button href="https://forms.gle/VHaeHzXyGodFKZY18" bgColor="#44AB60" textColor="#fff">
+        <Button onClick={openFAQModal} icon="info">
+          FAQ
+        </Button>
+        <Button href="https://forms.gle/VHaeHzXyGodFKZY18" icon="comment" bgColor="#44AB60" textColor="#fff">
           {__('info-modal.feedback-button')}
         </Button>
         <Button
