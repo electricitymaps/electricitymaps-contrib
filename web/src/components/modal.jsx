@@ -4,7 +4,7 @@ import { useTranslation } from '../helpers/translation';
 
 import Icon from './icon';
 
-const Modal = ({ views, visible, onModalShown, onDismiss }) => {
+const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
   const { __ } = useTranslation();
 
   const hasMultipleViews = views && views.length > 1;
@@ -62,7 +62,7 @@ const Modal = ({ views, visible, onModalShown, onDismiss }) => {
   return (
     <React.Fragment>
       <div className="modal-background-overlay" onClick={onDismiss} />
-      <div className="modal" data-test-id="onboarding">
+      <div className="modal" data-test-id={modalName}>
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <div className="modal-left-button" onClick={handleBack}>
@@ -70,7 +70,7 @@ const Modal = ({ views, visible, onModalShown, onDismiss }) => {
             </div>
           )}
         </div>
-        <div className="modal-body">
+        <div className={`modal-body ${currentView.headerImage ? 'fixed-height' : ''}`}>
           <div className="modal-close-button-container">
             <div className="modal-close-button" onClick={onDismiss}>
               <Icon iconName="close" />
