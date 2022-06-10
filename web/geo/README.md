@@ -2,7 +2,7 @@
 
 The world.geojson file is a geojson file containing all geographies and metadata for all zones visible on the electricityMap app. The zones are also used in the backend of electricityMap.
 
-You can see tutorials and more information on our [wiki](https://github.com/electricitymap/electricitymap-contrib/wiki/Edit-world-geometries). 
+You can see tutorials and more information on our [wiki](https://github.com/electricitymap/electricitymap-contrib/wiki/Edit-world-geometries).
 
 # How to update world.geojson
 

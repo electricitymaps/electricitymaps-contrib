@@ -27,4 +27,3 @@ jobs:
       - name: Validate local links
         timeout-minutes: 1
         run: ./node_modules/.bin/remark --frail -u validate-links .
-
