@@ -25,6 +25,7 @@ const initialApplicationState = {
   brightModeEnabled: getStorageBool('brightModeEnabled', true),
   infoModalOpen: false,
   faqModalOpen: false,
+  settingsModalOpen: false,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
