@@ -13,6 +13,7 @@ const MobileFAQ = styled(FAQ)`
   .faq-container {
     max-height: 75vh;
     overflow-y: scroll;
+    padding-right: 1rem;
   }
   .title {
     font-weight: bold;
