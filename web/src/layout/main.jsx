@@ -26,6 +26,7 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
 import FAQModal from '../components/faqmodal';
+import SettingsModal from '../components/settingsmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
@@ -184,6 +185,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
       <OnboardingModal />
       <InfoModal />
       <FAQModal />
+      <SettingsModal />
     </React.Fragment>
   );
 };
