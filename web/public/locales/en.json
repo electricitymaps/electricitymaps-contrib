@@ -10,6 +10,9 @@
     "privacy-policy": "Privacy Policy",
     "legal-notice": "Legal Notice"
   },
+  "settings-modal": {
+    "title": "Settings"
+  },
   "panel-initial-text": {
     "thisproject": "This app is",
     "opensource": "Open Source",
