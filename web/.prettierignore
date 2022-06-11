@@ -1,0 +1,7 @@
+# All files in here should also be included in .prettierignore at the top level.
+
+# Needed for lint staged.
+.prettierignore
+
+world.json
+public/dist/
