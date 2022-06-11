@@ -154,7 +154,7 @@
     "rotation": 0
   },
   "AX->FI": {
-    "capacity": [-9, 9],
+    "capacity": [-110, 110],
     "lonlat": [21.193, 60.386],
     "parsers": {
       "exchange": "AX.fetch_exchange"

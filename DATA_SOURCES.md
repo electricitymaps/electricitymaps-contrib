@@ -164,6 +164,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 <details><summary>Click to see the full list of sources</summary>
 
+- Åland
+  - Wind: [Partial data from Kraftnät Åland](https://kraftnat.ax/projekt-langnabba/)
+  - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
 - Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
 - Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
@@ -381,8 +384,8 @@ Cross-border transmission capacities between the zones are centralized in the [e
 
 <details><summary>Click to see the full list of sources</summary>
 
-- Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
-- Åland ⇄ Finland: ["Brändö-Gustafs": 9 MW](http://www.kraftnat.ax/files/rapportdel_2.pdf)
+- Åland ⇄ Sweden: ["Sverigekabeln": 80 MW](https://kraftnat.ax/stamnatet/)
+- Åland ⇄ Finland: ["Gustavskablen": 10 MW + "ÅL-Link": 100 MW](https://kraftnat.ax/stamnatet/)
 - Albania ⇄ Greece: [533 MW](https://ec.europa.eu/energy/sites/ener/files/documents/2nd_report_ic_with_neighbouring_countries_b5.pdf)
 - Australia (New South Wales) ⇄ Australia (Queensland) ["QNI": 700MW (NSW -> QLD) 1200MW (QLD -> NSW)](https://en.wikipedia.org/wiki/Queensland_%E2%80%93_New_South_Wales_Interconnector) and ["N-Q-MNSP1": 180MW](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf)
 - Australia (Victoria) ⇄ Australia (New South Wales) ["VIC1-NSW1": 1600MW (VIC -> NSW) 1350MW (NSW -> VIC)](https://www.aemo.com.au/-/media/Files/Electricity/NEM/Security_and_Reliability/Congestion-Information/2017/Interconnector-Capabilities.pdf) and ["VNI": 170MW](https://www.transgrid.com.au/what-we-do/projects/current-projects/Victoria%20to%20NSW%20Interconnector)
