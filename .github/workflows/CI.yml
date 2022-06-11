@@ -62,6 +62,6 @@ jobs:
 
   eslint:
     name: ESLint
-    needs: [setup]
+    needs: [setup, prettier]
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/eslint.yml
