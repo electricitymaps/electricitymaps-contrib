@@ -9,6 +9,7 @@ jobs:
   setup:
     name: Setup
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     outputs:
       frontend: ${{ steps.check-frontend.outputs.any_changed }}
       markdown: ${{ steps.check-markdown.outputs.any_changed }}
