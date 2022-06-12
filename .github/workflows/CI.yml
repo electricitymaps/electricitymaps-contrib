@@ -70,7 +70,7 @@ jobs:
     uses: ./.github/workflows/prettier.yml
 
   validate_local_links:
-    name: Validate local links in markdown files
+    name: Validate Markdown
     needs: [setup, prettier]
     if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
