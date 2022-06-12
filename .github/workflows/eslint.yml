@@ -29,6 +29,8 @@ jobs:
           key: ${{ runner.os }}-eslint_cache-${{ github.head_ref }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-eslint_cache-${{ github.head_ref }}
+            ${{ runner.os }}-eslint_cache-master
+            ${{ runner.os }}-eslint_cache
       - name: ESLint
         run: |
           yarn run lint
