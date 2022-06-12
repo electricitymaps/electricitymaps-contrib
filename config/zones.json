@@ -379,8 +379,8 @@
       "coal": 0,
       "gas": 0,
       "nuclear": 0,
-      "oil": 65.3,
-      "wind": 16.56
+      "oil": 35,
+      "wind": 58.56
     },
     "contributors": ["tmslaine", "systemcatch"],
     "parsers": {
