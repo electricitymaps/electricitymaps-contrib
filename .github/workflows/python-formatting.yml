@@ -15,6 +15,9 @@ jobs:
         with:
           python-version-file: '.python-version'
           cache: 'poetry'
+      - name: Install poetry
+        run: |
+          pip install poetry
       - name: Install Dependencies
         run: |
           poetry install
