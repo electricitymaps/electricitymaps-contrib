@@ -63,7 +63,7 @@ jobs:
     name: Python Formatting
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/python-formatting.yml
+    uses: ./.github/workflows/python-formatting.yml
 
   prettier:
     name: Prettier
