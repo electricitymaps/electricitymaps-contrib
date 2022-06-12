@@ -5,7 +5,7 @@ on:
 
 jobs:
   lint_json:
-    name: Lint JSON
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
