@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install poetry
+        run: |
+          pipx install poetry
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version-file: '.python-version'
           cache: 'poetry'
-      - name: Install poetry
-        run: |
-          pip install poetry
       - name: Install Dependencies
         run: |
           poetry install
