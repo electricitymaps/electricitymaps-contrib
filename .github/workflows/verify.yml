@@ -25,6 +25,6 @@ jobs:
           yarn install --frozen-lockfile
       - name: Verify geometries
         run: |
-          yarn run verify
+          node geo/update-world.js
         env:
           VERIFY_NO_UPDATES: 1
