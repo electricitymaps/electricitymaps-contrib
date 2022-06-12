@@ -60,12 +60,6 @@ jobs:
           echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
           echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
 
-  python-formatting:
-    name: Python Formatting
-    needs: [setup]
-    if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python-formatting.yml
-
   prettier:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
@@ -89,8 +83,20 @@ jobs:
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
 
+  verify:
+    name: Verify
+    needs: [setup, prettier]
+    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/verify.yml
+
   jsonlint:
     name: JSONLint
     needs: [setup, prettier]
     if: needs.setup.outputs.json != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/jsonlint.yml
+
+  python-formatting:
+    name: Python Formatting
+    needs: [setup]
+    if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/python-formatting.yml
