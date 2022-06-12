@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node LTS
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: lts/*
           cache: 'yarn'
           cache-dependency-path: web/yarn.lock
       - name: Install Dependencies
