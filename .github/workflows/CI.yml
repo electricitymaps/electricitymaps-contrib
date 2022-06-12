@@ -43,25 +43,25 @@ jobs:
           echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
           echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
 
-  validate_local_links:
-    name: Validate local links in markdown files
-    needs: [setup]
-    if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate-local-links-in-md.yml
-
-  cypress:
-    name: Cypress
-    needs: [setup]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/cypress.yml
-    secrets: inherit
-
   prettier:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
+
+  validate_local_links:
+    name: Validate local links in markdown files
+    needs: [setup, prettier]
+    if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/validate-local-links-in-md.yml
 
   eslint:
     name: ESLint
     needs: [setup, prettier]
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/eslint.yml
+
+  cypress:
+    name: Cypress
+    needs: [setup, eslint]
+    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/cypress.yml
+    secrets: inherit
