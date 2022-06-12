@@ -47,6 +47,9 @@ jobs:
         with:
           files: |
             **/*.py
+            pyproject.toml
+            poetry.lock
+            .python-version
       - name: Check if workflows have changed
         id: check-workflows
         uses: tj-actions/changed-files@v20
