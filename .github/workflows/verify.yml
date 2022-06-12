@@ -8,6 +8,9 @@ jobs:
     name: Geometries
     runs-on: ubuntu-latest
     timeout-minutes: 2
+    defaults:
+      run:
+        working-directory: web
     steps:
       - name: Checkout
         uses: actions/checkout@v3
