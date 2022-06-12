@@ -96,7 +96,7 @@ jobs:
 
   cypress:
     name: Cypress
-    needs: [setup, eslint, verify]
+    needs: [eslint, verify]
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
