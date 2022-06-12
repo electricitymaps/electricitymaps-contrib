@@ -13,6 +13,7 @@ jobs:
       frontend: ${{ steps.check-frontend.outputs.any_changed }}
       markdown: ${{ steps.check-markdown.outputs.any_changed }}
       json: ${{ steps.check-json.outputs.any_changed }}
+      python: ${{ steps.check-python.outputs.any_changed }}
       workflows: ${{ steps.check-workflows.outputs.any_changed }}
     steps:
       - name: Checkout
@@ -38,6 +39,12 @@ jobs:
         with:
           files: |
             **/*.json
+      - name: Check python files
+        id: check-python
+        uses: tj-actions/changed-files@v20
+        with:
+          files: |
+            **/*.py
       - name: Check if workflows have changed
         id: check-workflows
         uses: tj-actions/changed-files@v20
@@ -49,7 +56,14 @@ jobs:
           echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
           echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
           echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
+          echo "python changed: ${{ steps.check-python.outputs.any_changed }}"
           echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
+
+  python-formatting:
+    name: Python Formatting
+    needs: [setup]
+    if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/python-formatting.yml
 
   prettier:
     name: Prettier
