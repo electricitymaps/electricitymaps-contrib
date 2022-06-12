@@ -12,6 +12,7 @@ jobs:
     outputs:
       frontend: ${{ steps.check-frontend.outputs.any_changed }}
       markdown: ${{ steps.check-markdown.outputs.any_changed }}
+      json: ${{ steps.check-json.outputs.any_changed }}
       workflows: ${{ steps.check-workflows.outputs.any_changed }}
     steps:
       - name: Checkout
@@ -31,6 +32,12 @@ jobs:
         with:
           files: |
             **/*.md
+      - name: Check json files
+        id: check-json
+        uses: tj-actions/changed-files@v20
+        with:
+          files: |
+            **/*.json
       - name: Check if workflows have changed
         id: check-workflows
         uses: tj-actions/changed-files@v20
@@ -41,6 +48,7 @@ jobs:
         run: |
           echo "frontend changed: ${{ steps.check-frontend.outputs.any_changed }}"
           echo "markdown changed: ${{ steps.check-markdown.outputs.any_changed }}"
+          echo "json changed: ${{ steps.check-json.outputs.any_changed }}"
           echo "workflows changed: ${{ steps.check-workflows.outputs.any_changed }}"
 
   prettier:
@@ -65,3 +73,9 @@ jobs:
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
+
+  jsonlint:
+    name: JSONLint
+    needs: [setup, prettier]
+    if: needs.setup.outputs.json != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/jsonlint.yml
