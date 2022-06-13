@@ -18,6 +18,10 @@ app.get("/v4/history", (req, res, next) => {
     next();
   }
 });
+app.get("/v5/history/daily", (req, res, next) => {
+  // temporary
+  res.redirect('/v5/history_DK-DK2_daily')
+});
 
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files

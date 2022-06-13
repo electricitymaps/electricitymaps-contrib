@@ -6,29 +6,62 @@ import * as translation from '../helpers/translation';
 import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
 
-// ** Prepare initial zone data
-const zones = constructTopos();
-Object.entries(zonesConfig).forEach((d) => {
-  const [key, zoneConfig] = d;
-  const zone = zones[key];
-  if (!zone) {
-    console.warn(`Zone ${key} from configuration is not found. Ignoring..`);
-    return;
-  }
-  // copy attributes ("capacity", "contributors"...)
-  zone.capacity = zoneConfig.capacity;
-  zone.contributors = zoneConfig.contributors;
-  zone.timezone = zoneConfig.timezone;
-  zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
-  zone.hasData = zone.hasParser;
-  zone.delays = zoneConfig.delays;
-  zone.disclaimer = zoneConfig.disclaimer;
-});
-// Add id to each zone
-Object.keys(zones).forEach((k) => {
-  zones[k].countryCode = k;
-});
+import { createAction, createReducer } from '@reduxjs/toolkit';
+import { TIME } from '../helpers/constants';
 
+// ** Prepare initial zone data
+
+function constructInitialState() {
+  const geographies = constructTopos();
+  const result = {};
+
+  Object.keys(zonesConfig).forEach((key) => {
+    const zone = {};
+    const zoneConfig = zonesConfig[key];
+    if (!geographies[key]) {
+      return;
+    }
+    zone.geography = geographies[key];
+    zone.config = {};
+    Object.keys(TIME).forEach((k) => {
+      zone[TIME[k]] = { details: [], overviews: [] };
+    });
+
+    zone.config.capacity = zoneConfig.capacity;
+    zone.config.contributors = zoneConfig.contributors;
+    zone.config.timezone = zoneConfig.timezone;
+    zone.config.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+    zone.config.hasData = zone.config.hasParser;
+    zone.config.delays = zoneConfig.delays;
+    zone.config.disclaimer = zoneConfig.disclaimer;
+
+    result[key] = zone;
+  });
+
+  // Object.entries(zonesConfig).forEach(d) => {
+  //   const [key, zoneConfig] = d;
+  //   const zone = zones[key];
+  //   if (!zone) {
+  //     console.warn(`Zone ${key} from configuration is not found. Ignoring..`);
+  //     return;
+  //   }
+  //   // copy attributes ("capacity", "contributors"...)
+  //   zone.capacity = zoneConfig.capacity;
+  //   zone.contributors = zoneConfig.contributors;
+  //   zone.timezone = zoneConfig.timezone;
+  //   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+  //   zone.hasData = zone.hasParser;
+  //   zone.delays = zoneConfig.delays;
+  //   zone.disclaimer = zoneConfig.disclaimer;
+  // });
+  // Object.keys(zones).forEach((k) => {
+  //   zones[k].countryCode = k;
+  // });
+
+  return result;
+}
+// Add id to each zone
+const zones = constructInitialState();
 // ** Prepare initial exchange data
 const exchanges = Object.assign({}, exchangesConfig);
 Object.entries(exchanges).forEach((entry) => {
@@ -55,7 +88,39 @@ const initialDataState = {
   windDataError: null,
 };
 
-const reducer = (state = initialDataState, action) => {
+const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
+const ZONE_DETAILS_FETCH_SUCCEDED = createAction('data/details-fetch-succeded');
+const reducer = createReducer(initialDataState, (builder) => {
+  builder.addCase(GRID_DATA_FETCH_SUCCEEDED, (state, action) => {
+    const zones = constructInitialState();
+    Object.entries(action.payload.payload.countries).map(([zoneId, zoneData]) => {
+      const { stateAggregation } = action.payload.payload;
+      if (!zones[zoneId]) {
+        return;
+      }
+      zones[zoneId][stateAggregation].overviews = zoneData;
+
+      // check if details is outdated
+    });
+
+    return { ...state, grid: { ...state.grid, zones } };
+  });
+
+  builder.addCase(ZONE_DETAILS_FETCH_SUCCEDED, (state, action) => {
+    const {
+      payload: { stateAggregation, zoneStates },
+      zoneId,
+    } = action.payload;
+
+    const newZone = {
+      ...state.grid.zones[zoneId],
+      [stateAggregation]: { ...state.grid.zones[zoneId][stateAggregation], details: zoneStates },
+    };
+    return { ...state, grid: { ...state.grid, zones: { ...state.grid.zones, [zoneId]: newZone } } };
+  });
+});
+
+const reducer2 = (state = initialDataState, action) => {
   switch (action.type) {
     case 'GRID_DATA_FETCH_REQUESTED': {
       return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
@@ -229,4 +294,4 @@ const reducer = (state = initialDataState, action) => {
   }
 };
 
-export default reducer;
+export { reducer, GRID_DATA_FETCH_SUCCEEDED, ZONE_DETAILS_FETCH_SUCCEDED, reducer2 };
