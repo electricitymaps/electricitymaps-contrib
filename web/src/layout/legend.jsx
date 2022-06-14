@@ -19,11 +19,12 @@ const LegendsContainer = styled.div`
   bottom: 0px;
   right: 0px;
   float: left;
-  background-color: #fafafa;
+  background: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
   border-radius: 6px;
   padding: 12px 10px 10px 10px;
   margin: 16px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
   z-index: 99;
   transition: width 0.4s, height 0.4s;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;

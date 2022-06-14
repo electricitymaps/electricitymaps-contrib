@@ -16,7 +16,7 @@ const Wrapper = styled.svg`
 
   .tick {
     text {
-      fill: #000000;
+      fill: ${({ theme }) => theme.text};
     }
     line {
       stroke: none;
