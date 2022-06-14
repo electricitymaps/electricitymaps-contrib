@@ -31,6 +31,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import MobileLayerButtons from '../components/mobilelayerbuttons';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -130,7 +131,8 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              {!isMobile && <Legend />}
+              <MobileLayerButtons />
+              <Legend />
               <div className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
