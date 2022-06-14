@@ -271,15 +271,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <div
-            className="mapboxgl-zoom-controls"
-            style={{
-              boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
-              position: 'absolute',
-              right: '24px',
-              top: '24px',
-            }}
-          >
+          <div className="mapboxgl-zoom-controls">
             <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
           </div>
         </Portal>
