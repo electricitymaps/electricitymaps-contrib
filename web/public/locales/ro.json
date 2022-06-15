@@ -186,7 +186,7 @@
     "whoAreYou-question": "Cine sunteți?",
     "whoAreYou-answer": "Electricity Map e dezvoltat și menținut de <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, o companie startup daneză. Scopul nostru este să ajutăm umanitatea să atingă o existență sustenabilă prin cuantificarea și accesibilitatea impactului asupra climei a alegerilor noastre de zi cu zi.",
     "feedback-question": "Pot oferi feedback?",
-    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:hello@electricitymap.org\">trimite-ne un email!</a>",
+    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:hello@electricitymap.org\">trimite-ne un email!</a>",
     "contribute-question": "Pot să contribui la proiect?",
     "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Putem lucra împreună?",

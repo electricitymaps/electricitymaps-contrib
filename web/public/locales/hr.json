@@ -169,7 +169,7 @@
     "whoAreYou-question": "Tko ste vi?",
     "whoAreYou-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, mali dansko-francuski start-up razvija i održava ovaj projekt. Naš cilj je pomoći čovječanstvu u dostizanju održivog postojanja kvantificirajući učinak naših dnevnih odluka na klimu i čineći podatke široko dostupnima.",
     "feedback-question": "Mogu li vam dati povratne informacije?",
-    "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:hello@electricitymap.org\">pošalji email!</a>",
+    "feedback-answer": "Naravno! Jednostavno ispuni <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">naš osvrtni obrazac</a> ili nam <a href=\"mailto:hello@electricitymap.org\">pošalji email!</a>",
     "contribute-question": "Mogu li doprinijeti projektu?",
     "contribute-answer": " Možeš! Electricity Map je open-source projekt baziran na dobrovoljnom doprinosu. Ako nam želiš pomoći razviti mapu, bilo dodavajući nove izvore podataka, nove mogućnosti ili ispravljajući greške, slobodno nam se pridruži na našem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Githubu</a>.",
     "workTogether-question": "Možemo li surađivati?",

@@ -178,7 +178,7 @@
     "whoAreYou-question": "¿Quiénes sois?",
     "whoAreYou-answer": "ElectricityMap ha sido creado y desarrollado por <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, una pequeña <i>start-up</i> de Dinamarca y Francia. Nuestro objetivo es ayudar a la humanidad a alcanzar una existencia sostenible cuantificando y dando a conocer el impacto climático de nuestras decisiones diarias.",
     "feedback-question": "¿Os puedo dejar algún comentario o crítica?",
-    "feedback-answer": "¡Faltaría más! Solo tienes que rellenar <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">este formulario</a> o <a href=\"mailto:hello@electricity.com\">escribirnos un correo!</a>",
+    "feedback-answer": "¡Faltaría más! Solo tienes que rellenar <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">este formulario</a> o <a href=\"mailto:hello@electricity.com\">escribirnos un correo!</a>",
     "contribute-question": "¿Puedo contribuir a este proyecto?",
     "contribute-answer": " ¡Claro! Electricity Map es un proyecto de código abierto que mantienen voluntarios. Si quieres ayudarnos a mejorarlo, ya sea añadiendo datos para una zona que no tenga, añadiendo nuevas opciones o arreglando bugs, echa un vistazo al <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "¿Podemos trabajar juntos?",
