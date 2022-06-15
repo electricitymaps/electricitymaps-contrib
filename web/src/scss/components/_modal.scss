@@ -9,35 +9,17 @@
   filter: alpha(opacity=10);
   opacity: 0.1;
   background-color: $black;
-
-  @include respond-to('small') {
-    opacity: 0;
-  }
 }
 
 .modal {
   display: flex;
   max-width: 880px;
   width: 100%;
-  height: 488px;
   z-index: 999;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  @include respond-to('small') {
-    width: 100%;
-    left: 0;
-    bottom: 56px;
-    top: auto;
-    transform: none;
-    height: 420px;
-
-    .brand-text {
-      height: 25%;
-    }
-  }
 
   .modal-left-button-container,
   .modal-right-button-container {
@@ -77,12 +59,16 @@
     position: absolute;
     padding: 10px;
     right: 0;
+
+    @include respond-to('small') {
+      padding: 14px;
+    }
   }
 
   .modal-left-button,
   .modal-right-button,
-  .modal-close-button {
-    background-color: white;
+  .modal-close-button,
+  .modal-back-button {
     height: 48px;
     width: 48px;
     border: none;
@@ -92,6 +78,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: $white;
+    > svg {
+      transition: all 0.3s ease-in-out;
+      fill: $black;
+    }
+    @include respond-to('small') {
+      height: 32px;
+      width: 32px;
+    }
   }
 
   .modal-left-button,
@@ -100,56 +96,21 @@
       outline: 0;
     }
 
-    &.hidden {
-      display: none;
-    }
-
     &.green {
+      background-color: $green;
       > svg {
-        fill: $green;
+        fill: $white;
       }
-
       &:hover {
         background-color: $light-green;
         > svg {
-          fill: $black;
-        }
-      }
-    }
-
-    @include respond-to('medium-up') {
-      &:hover {
-        background-color: rgb(220, 220, 220);
-      }
-    }
-
-    @include respond-to('small') {
-      background-color: #333333;
-      color: $white;
-      height: 32px;
-      width: 32px;
-
-      &.green {
-        background-color: $green;
-        &:hover {
-          background-color: $light-green;
+          fill: $green;
         }
       }
     }
   }
 
-  .modal-close-button {
-    height: 36px;
-    width: 36px;
-    background-color: #333333;
-
-    @include respond-to('small') {
-      background-color: $white;
-      color: #333333;
-    }
-  }
-
-  .modal-header {
+  .modal-header.header-image {
     height: 58%;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -206,11 +167,11 @@
     color: white;
     max-width: 700px;
     box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
-
-    @include respond-to('small') {
-      max-width: inherit;
-      border-radius: 8px 8px 0 0;
-      box-shadow: 0 -10px 30px 0 rgba(0, 0, 0, 0.15);
+    &.fixed-height {
+      height: 488px;
+      @include respond-to('small') {
+        height: 400px;
+      }
     }
   }
 
@@ -220,7 +181,6 @@
     line-height: 1.5rem;
     padding: 25px 55px;
     text-align: center;
-    height: 32%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -244,7 +204,6 @@
       flex-direction: column;
       justify-content: flex-start;
       padding: 16px 16px;
-      height: 40%;
       font-size: 0.75rem;
       line-height: 1.125rem;
 
