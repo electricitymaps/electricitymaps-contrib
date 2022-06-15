@@ -30,8 +30,8 @@ const DateRangeOption = styled.span`
   ${(props) =>
     props.active &&
     css`
-      background-color: white;
-      box-shadow: 0.1px 0.1px 5px rgba(0, 0, 0, 0.1);
+      background-color: ${({ theme }) => theme.lightBackground};
+      box-shadow: 0.1px 0.1px 5px ${({ theme }) => theme.shadowColor};
     `}
 `;
 
@@ -39,7 +39,7 @@ const DateDisplay = styled.div`
   display: flex;
   align-items: center;
   font-size: calc(9px + 0.2vw);
-  background-color: #f0f0f0;
+  background-color: ${({ theme }) => theme.shadowColor};
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 30px;

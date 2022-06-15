@@ -33,7 +33,7 @@ const StyledInput = styled.input`
     height: 26px;
     width: 26px;
     border-radius: 17px;
-    background: #ffffff;
+    background: ${({ theme }) => theme.clickableFill};
     cursor: pointer;
     margin-top: -8px;
     transition: box-shadow 0.4s;
@@ -56,7 +56,7 @@ const StyledInput = styled.input`
     height: 12px;
     border-radius: 4px;
     cursor: pointer;
-    background: #f0f0f0;
+    background: ${({ theme }) => theme.lightBackground};
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }

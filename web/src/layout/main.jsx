@@ -61,6 +61,8 @@ const NewVersionButton = styled.button`
 `;
 
 const StyledBottomSheet = styled(BottomSheet)`
+  --rsbs-bg: ${({ theme }) => theme.background};
+  --rsbs-handle-bg: ${({ theme }) => theme.strokeColor};
   [data-rsbs-overlay] {
     z-index: ${(props) => (props.behind ? 0 : 5)};
   }
