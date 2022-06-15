@@ -1,28 +1,22 @@
-export const themes = {
-  colorblindDark: {
-    name: 'colorblindDark',
-    co2Scale: {
-      steps: [0, 200, 400, 600, 800],
-      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
-    },
-    oceanColor: '#33414A',
-    background: '#33414A',
-    lightBackground: '#495d69',
-    shadowColor: 'rgba(0, 0, 0, 0.3)',
-    shadowColorHovered: 'rgba(0, 0, 0, 0.5)',
-    text: '#FAFAFA',
-    textFaded: '#FAFAFABB',
-    strokeWidth: 0.3,
-    strokeColor: '#6D6D6D',
-    clickableFill: '#7A878D',
-    nonClickableFill: '#7A878D',
+export const shared = {
+  fontFamily: "'Euclid Triangle', 'Open Sans', sans-serif",
+  strokeWidth: 0.3,
+};
+
+export const co2Scales = {
+  default: {
+    steps: [0, 150, 600, 750, 800],
+    colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
   },
+  colorblind: {
+    steps: [0, 200, 400, 600, 800],
+    colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
+  },
+};
+
+export const themes = {
   dark: {
     name: 'dark',
-    co2Scale: {
-      steps: [0, 150, 600, 750, 800],
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
-    },
     oceanColor: '#33414A',
     background: '#33414A',
     lightBackground: '#495d69',
@@ -30,35 +24,13 @@ export const themes = {
     shadowColorHovered: 'rgba(0, 0, 0, 0.5)',
     text: '#FAFAFA',
     textFaded: '#FAFAFABB',
-    strokeWidth: 0.3,
     strokeColor: '#6D6D6D',
     clickableFill: '#7A878D',
     nonClickableFill: '#7A878D',
   },
-  colorblindBright: {
-    name: 'colorblindBright',
-    co2Scale: {
-      steps: [0, 200, 400, 600, 800],
-      colors: ['#FFFFB0', '#E0B040', '#A06030', '#602020', '#000010'],
-    },
-    oceanColor: '#FAFAFA',
-    background: '#FAFAFA',
-    lightBackground: '#FFFFFF',
-    shadowColor: 'rgba(0, 0, 0, 0.1)',
-    shadowColorHovered: 'rgba(0, 0, 0, 0.2)',
-    text: '#000000',
-    textFaded: '#000000BB',
-    strokeWidth: 0.3,
-    strokeColor: '#FAFAFA',
-    clickableFill: '#D4D9DE',
-    nonClickableFill: '#D4D9DE',
-  },
+
   bright: {
     name: 'bright',
-    co2Scale: {
-      steps: [0, 150, 600, 750, 800],
-      colors: ['#2AA364', '#F5EB4D', '#9E4229', '#381D02', '#381D02'],
-    },
     oceanColor: '#FAFAFA',
     background: '#FAFAFA',
     lightBackground: '#FFFFFF',
@@ -66,7 +38,6 @@ export const themes = {
     shadowColorHovered: 'rgba(0, 0, 0, 0.2)',
     text: '#000000',
     textFaded: '#000000BB',
-    strokeWidth: 0.3,
     strokeColor: '#FAFAFA',
     clickableFill: '#D4D9DE',
     nonClickableFill: '#D4D9DE',
