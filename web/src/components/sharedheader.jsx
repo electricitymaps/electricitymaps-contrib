@@ -4,10 +4,10 @@ import { useTrackEvent } from '../hooks/tracking';
 
 const Wrapper = styled.header`
   align-items: center;
-  background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.background};
+  box-shadow: 0 0 6px 1px ${({ theme }) => theme.shadowColor};
   box-sizing: border-box;
-  color: black;
+  color: ${({ theme }) => theme.text};
   display: flex;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
   font-size: 15px;
@@ -45,6 +45,7 @@ const Wrapper = styled.header`
 
 const Logo = styled.img`
   height: 24px;
+  filter: invert(${({ theme }) => (theme.name.toLowerCase().includes('dark') ? 100 : 0)}%);
 `;
 
 const linkUnderline = css`
