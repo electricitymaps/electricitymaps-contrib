@@ -157,11 +157,11 @@
     "whoAreYou-question": "Kim jesteście?",
     "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
     "feedback-question": "Czy moge przekazać wam opinię?",
-    "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:hello@electricitymap.org\">wyślij do nas e-mail!</a>",
+    "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:app@electricitymap.org\">wyślij do nas e-mail!</a>",
     "contribute-question": "Czy mogę wspomóc wasz projekt?",
     "contribute-answer": " Tak! Electricity Map jest projektem open-source, możliwym dzięki naszym wolontariuszom. Jeżeli chesz pomóc w rozwijaniu mapy, dodając źródła dla nowych obszarów, dodając nowe funkcjionalności lub naprawiając błędy, możesz to zrobić poprzez <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Czy możemy współpracować?",
-    "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:hello@electricitymap.org\">Wyślij do nas e-mail!</a>",
+    "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:app@electricitymap.org\">Wyślij do nas e-mail!</a>",
     "disclaimer-question": "Zastrzeżenie"
   },
   "wind": "wiatrowa",
