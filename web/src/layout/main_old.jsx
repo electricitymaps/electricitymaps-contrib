@@ -3,7 +3,7 @@
 // TODO(olc): re-enable this rule
 
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ import Map from './map';
 import TimeController from './timeController';
 
 // Modules
+import { useTheme } from '../hooks/theme';
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
@@ -41,6 +42,7 @@ const mapStateToProps = (state) => ({
 });
 
 const MapContainer = styled.div`
+  background: red;
   @media (max-width: 767px) {
     display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
   }
@@ -67,6 +69,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
+  const theme = useTheme();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
@@ -98,7 +101,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   }
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <div
         style={{
           position: 'fixed' /* This is done in order to ensure that dragging will not affect the body */,
@@ -163,7 +166,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
         <Tabs />
       </div>
       <OnboardingModal />
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 
