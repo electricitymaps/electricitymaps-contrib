@@ -109,6 +109,9 @@
     "url": "https://github.com/electricitymap/electricitymap-contrib.git"
   },
   "lint-staged": {
+    "!(*.{js,jsx,ts,tsx})": [
+      "prettier --write"
+    ],
     "**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
@@ -128,7 +131,9 @@
     "verify": "VERIFY_NO_UPDATES=1 yarn update-world",
     "mockserver": "cd ../mockserver && node server.js",
     "prepare": "cd .. && husky install web/.husky",
-    "cypress-test": "cypress run"
+    "cypress-test": "cypress run",
+    "prettier-fix": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "browserslist": [
     "defaults",

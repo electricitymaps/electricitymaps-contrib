@@ -1,6 +1,6 @@
+const config = require('../.prettierrc.js');
+
 module.exports = {
-  semi: true,
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 120,
+  // Ensures the web config is the same as the global config.
+  ...config,
 };

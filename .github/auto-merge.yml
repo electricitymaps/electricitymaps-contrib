@@ -7,5 +7,4 @@ deleteBranchAfterMerge: true
 mergeMethod: squash
 reportStatus: true
 requiredLabels:
-- automerge
-
+  - automerge
