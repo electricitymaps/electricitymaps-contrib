@@ -43,7 +43,7 @@ const OptionItem = styled.div`
   padding: 0 12px;
   transition: all 0.4s;
   z-index: 9;
-  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  font-family: ${({ theme }) => theme.fontFamily};
 
   ${(props) =>
     props.active &&

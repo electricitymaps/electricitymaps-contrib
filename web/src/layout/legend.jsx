@@ -27,7 +27,7 @@ const LegendsContainer = styled.div`
   box-shadow: 0 0 5px ${({ theme }) => theme.shadowColor};
   z-index: 99;
   transition: width 0.4s, height 0.4s;
-  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  font-family: ${({ theme }) => theme.fontFamily};
   font-size: 0.8rem;
   user-select: none;
 

@@ -9,7 +9,7 @@ const Wrapper = styled.header`
   box-sizing: border-box;
   color: ${({ theme }) => theme.text};
   display: flex;
-  font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
+  font-family: ${({ theme }) => theme.fontFamily};
   font-size: 15px;
   height: 58px;
   justify-content: space-between;
