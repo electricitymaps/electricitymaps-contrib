@@ -25,6 +25,23 @@ const InfoContainer = styled.div`
   }
 `;
 
+const FeedbackButton = styled(Button)`
+  background-color: #44ab60;
+  color: #fff;
+`;
+const GitHubButton = styled(Button)`
+  background: linear-gradient(to right, #04275c 0%, #040e23 100%);
+  color: #fff;
+`;
+const TwitterButton = styled(Button)`
+  background-color: #1d9bf0;
+  color: #fff;
+`;
+const SlackButton = styled(Button)`
+  background-color: #4a154b;
+  color: #fff;
+`;
+
 const InfoView = () => {
   const { __ } = useTranslation();
   const openFAQModal = () => dispatchApplication('faqModalOpen', true);
@@ -45,28 +62,18 @@ const InfoView = () => {
         <Button onClick={openFAQModal} icon="info">
           FAQ
         </Button>
-        <Button href="https://forms.gle/VHaeHzXyGodFKZY18" icon="comment" bgColor="#44AB60" textColor="#fff">
+        <FeedbackButton href="https://forms.gle/VHaeHzXyGodFKZY18" icon="comment">
           {__('info-modal.feedback-button')}
-        </Button>
-        <Button
-          href="https://github.com/electricitymap/electricitymap-contrib"
-          icon="github"
-          bgColor="linear-gradient(to right, #04275c 0%, #040e23 100%);"
-          textColor="#fff"
-        >
+        </FeedbackButton>
+        <GitHubButton href="https://github.com/electricitymap/electricitymap-contrib" icon="github">
           {__('info-modal.github-button')}
-        </Button>
-        <Button
-          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org"
-          icon="twitter"
-          bgColor="#1D9BF0"
-          textColor="white"
-        >
+        </GitHubButton>
+        <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org" icon="twitter">
           {__('info-modal.twitter-button')}
-        </Button>
-        <Button href="https://slack.electricitymap.org/" icon="slack" bgColor="#4A154B" textColor="white">
+        </TwitterButton>
+        <SlackButton href="https://slack.electricitymap.org/" icon="slack">
           {__('info-modal.slack-button')}
-        </Button>
+        </SlackButton>
       </div>
       <TermsAndPrivacyContainer>
         <a href="https://www.electricitymap.org/privacy-policy/">{__('info-modal.privacy-policy')}</a>

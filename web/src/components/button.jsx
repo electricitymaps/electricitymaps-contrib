@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Icon from './icon';
 
 const StyledButton = styled.button`
-  background: ${(props) => props.bgColor || '#fff'};
-  color: ${(props) => props.textColor || '#000'};
+  background: #fff;
+  color: #000;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   border-radius: 100px;
@@ -24,7 +24,7 @@ const StyledButton = styled.button`
     box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.2);
   }
   > svg {
-    fill: ${(props) => props.textColor || '#000'};
+    fill: currentColor;
     // Add spacing if there is text
     & + span {
       margin-left: 6px;
