@@ -5,11 +5,10 @@ import { useParams } from 'react-router-dom';
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
 
 import { useCustomDatetime, useWindEnabled, useSolarEnabled, useFeatureToggle } from './router';
-import { useCurrentZoneHistory } from './redux';
 
 export function useConditionalZoneHistoryFetch() {
   const { zoneId } = useParams();
-  const historyData = useCurrentZoneHistory();
+  const zones = useSelector((state) => state.data.zones);
   const customDatetime = useCustomDatetime();
   const features = useFeatureToggle();
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
@@ -19,37 +18,36 @@ export function useConditionalZoneHistoryFetch() {
   useEffect(() => {
     if (customDatetime) {
       console.error("Can't fetch history when a custom date is provided!");
-    } else if (zoneId && Array.isArray(historyData) && historyData.length === 0) {
-      console.error('No history data available right now!');
     }
-    let hasCorrectTimeAggregate = true;
-    if (features.includes('history')) {
-      hasCorrectTimeAggregate = historyData && historyData[0]?.aggregation === selectedTimeAggregate;
-    }
-    const hasDetailedHistory = historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
-    if (zoneId && (!hasDetailedHistory || !hasCorrectTimeAggregate)) {
+
+    const hasDetailedHistory = zones[zoneId]?.[selectedTimeAggregate].details.length;
+    if (zoneId && !hasDetailedHistory) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features, selectedTimeAggregate } });
     }
-  }, [zoneId, historyData, customDatetime, dispatch, features, selectedTimeAggregate]);
+  }, [zoneId, customDatetime, dispatch, features, selectedTimeAggregate, zones]);
 }
 
 export function useGridDataPolling() {
   const datetime = useCustomDatetime();
   const features = useFeatureToggle();
+  const zones = useSelector((state) => state.data.zones);
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const dispatch = useDispatch();
 
+  const hasOverviewData = Object.keys(zones).some((zoneId) => zones[zoneId][selectedTimeAggregate].overviews.length);
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
     let pollInterval;
-    dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
+    if (!hasOverviewData) {
+      dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
+    }
     if (!datetime) {
       pollInterval = setInterval(() => {
         dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
-  }, [datetime, dispatch, features, selectedTimeAggregate]);
+  }, [datetime, dispatch, features, selectedTimeAggregate, hasOverviewData]);
 }
 
 export function useConditionalWindDataPolling() {
