@@ -4,6 +4,7 @@ import { logger } from 'redux-logger';
 
 import reducer from './reducers';
 import { isProduction } from './helpers/environment';
+import { updateSelectedZoneTimeIndex } from './helpers/middleware';
 
 export const sagaMiddleware = createSagaMiddleware();
 
@@ -11,12 +12,12 @@ export const store = isProduction()
   ? createStore(
       reducer,
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-      applyMiddleware(sagaMiddleware)
+      applyMiddleware(sagaMiddleware, updateSelectedZoneTimeIndex)
     )
   : createStore(
       reducer,
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-      applyMiddleware(sagaMiddleware),
+      applyMiddleware(sagaMiddleware, updateSelectedZoneTimeIndex),
       applyMiddleware(logger)
     );
 
