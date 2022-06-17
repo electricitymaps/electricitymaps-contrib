@@ -73,14 +73,13 @@ function initDataState() {
   };
 }
 
-function combineDetailsAndOverview(zoneData) {
+function combineZoneData(zoneData, aggregate) {
   // Combines details and overviews and other relevant keys
   // from zoneData for a specific aggregate into a single object
-  // TODO: ensure sync
-  const { overviews, details, hasParser, hasData } = zoneData;
+  const { overviews, details, hasParser, hasData } = zoneData[aggregate];
 
   const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData };
+    return { ...overview, ...details[idx], hasParser, hasData, center: zoneData.geography.properties.center };
   });
 
   return combined;
@@ -100,5 +99,5 @@ export {
   WIND_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_REQUESTED,
   initDataState,
-  combineDetailsAndOverview,
+  combineZoneData,
 };

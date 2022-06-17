@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { dispatchApplication } from '../store';
 import { useCo2ColorScale } from '../hooks/theme';
-import { getCenteredZoneViewport } from '../helpers/map';
+import { getCenteredLocationViewport } from '../helpers/map';
 import { getZoneNameWithCountry, getZoneName, getCountryName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
 import { ascending } from 'd3-array';
@@ -80,7 +80,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }) => {
   });
 
   const enterZone = (zone) => {
-    dispatchApplication('mapViewport', getCenteredZoneViewport(zone));
+    dispatchApplication('mapViewport', getCenteredLocationViewport(zone.center));
     trackEvent('ZoneInRanking Clicked', { zone: zone.countryCode });
     history.push(zonePage(zone));
   };

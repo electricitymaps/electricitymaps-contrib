@@ -7,7 +7,7 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import { useCustomDatetime } from './router';
 
 import { getCenteredZoneViewport } from '../helpers/map';
-import { combineDetailsAndOverview } from '../helpers/redux';
+import { combineZoneData } from '../helpers/redux';
 import { mapValues } from 'lodash';
 
 export function useCurrentZoneHistory() {
@@ -17,7 +17,7 @@ export function useCurrentZoneHistory() {
   const zones = useSelector((state) => state.data.zones);
   return useMemo(() => {
     if (zones[zoneId]) {
-      return combineDetailsAndOverview(zones[zoneId][selectedTimeAggregate]);
+      return combineZoneData(zones[zoneId], selectedTimeAggregate);
     }
     return [];
   }, [zoneId, zones, selectedTimeAggregate]);
@@ -34,7 +34,7 @@ export function useCurrentZoneList() {
   }
   const zoneList = mapValues(
     zones,
-    (zone) => combineDetailsAndOverview(zone[selectedTimeAggregate])[selectedZoneTimeIndex] || {}
+    (zone) => combineZoneData(zone, selectedTimeAggregate)[selectedZoneTimeIndex] || {}
   );
 
   return zoneList;
