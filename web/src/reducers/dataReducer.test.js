@@ -1,18 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-/*
 import { protectedJsonRequest } from '../helpers/api';
-import { reducer, GRID_DATA_FETCH_SUCCEEDED, ZONE_DETAILS_FETCH_SUCCEDED } from './dataReducerForHistoryFeature';
-*/
-/*
-NOTES:
-- We do not want to store config values in state, keep state minimal and only for dynamic values
-- We do not need to store geographies in state
+import { GRID_DATA_FETCH_SUCCEEDED, reducer, ZONE_HISTORY_FETCH_SUCCEEDED } from './dataReducer';
 
-*/
-
-/*
 test('zones should have initial state with correct structure', () => {
   const state = reducer.getInitialState();
 
@@ -35,12 +26,14 @@ test('zones should have initial state with correct structure', () => {
     },
   };
 
-  expect(state.grid.zones).toMatchObject(expectedZones);
+  expect(state.zones).toMatchObject(expectedZones);
 });
+
+/** The following tests assumes the mockserver is running */
 
 test('grid fetch updates correctly', async () => {
   const payload = await protectedJsonRequest('/v5/state/hourly');
-  const action = GRID_DATA_FETCH_SUCCEEDED({ payload });
+  const action = GRID_DATA_FETCH_SUCCEEDED(payload);
   const state = reducer(undefined, action);
 
   const expectedHourly = {
@@ -48,16 +41,15 @@ test('grid fetch updates correctly', async () => {
     countryCode: expect.stringContaining('DK-DK2'),
   };
 
-  expect(state.grid.zones['DK-DK2'].hourly.overviews[0]).toMatchObject(expectedHourly);
-  expect(state.grid.zones['DK-DK2'].hourly.overviews).toHaveLength(24);
-  expect(state.grid.zones['DK-DK2'].daily.overviews).toHaveLength(0);
+  expect(state.zones['DK-DK2'].hourly.overviews[0]).toMatchObject(expectedHourly);
+  expect(state.zones['DK-DK2'].hourly.overviews).toHaveLength(24);
+  expect(state.zones['DK-DK2'].daily.overviews).toHaveLength(0);
 });
 
 test('history contains required properties', async () => {
   const payload = await protectedJsonRequest('/v5/history_DK-DK2_daily');
-  const action = ZONE_DETAILS_FETCH_SUCCEDED({ payload, zoneId: 'DK-DK2' });
+  const action = ZONE_HISTORY_FETCH_SUCCEEDED({ ...payload, zoneId: 'DK-DK2' });
   const state = reducer(undefined, action);
 
-  expect(state.grid.zones['DK-DK2'].daily.details[0]).toHaveProperty('totalCo2Production');
+  expect(state.zones['DK-DK2'].daily.details[0]).toHaveProperty('totalCo2Production');
 });
-*/

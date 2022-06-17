@@ -89,6 +89,7 @@
     "esm": "^3.2.25",
     "husky": "^8.0.0",
     "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1",
     "lodash.flatmap": "^4.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "ndjson-cli": "^0.3.1",

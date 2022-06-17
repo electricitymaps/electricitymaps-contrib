@@ -4,10 +4,9 @@ const cors = require("cors");
 const fs = require("fs");
 const url = require("url");
 
+const PORT = process.argv[2] || 8001;
 
-const PORT = process.argv[2] || 8001
-
-app.use(cors())
+app.use(cors());
 
 app.get("/v4/history", (req, res, next) => {
   const { countryCode } = req.query;
@@ -18,22 +17,20 @@ app.get("/v4/history", (req, res, next) => {
     next();
   }
 });
-app.get("/v5/history/daily", (req, res, next) => {
-  // temporary
-  res.redirect('/v5/history_DK-DK2_daily')
-});
 
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files
   if (Object.entries(req.query).length !== 0) {
-      res.redirect(url.parse(req.url).pathname);
+    res.redirect(url.parse(req.url).pathname);
   } else {
     // Log all requests to static files
-    console.log(req.method, req.path)
+    console.log(req.method, req.path);
     next();
   }
 });
 
 app.use(express.static("public"));
 
-const server = app.listen(PORT, () => {console.log("Started mockserver on port: " + PORT);});
+const server = app.listen(PORT, () => {
+  console.log("Started mockserver on port: " + PORT);
+});
