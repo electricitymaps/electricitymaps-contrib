@@ -49,7 +49,7 @@ const scalePower = function (maxPower) {
 };
 
 const formatDate = function (date, lang, time) {
-  if (!date || !time) {
+  if (!date || !time || !date.getTime()) {
     return '';
   }
 
