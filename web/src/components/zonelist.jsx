@@ -52,7 +52,7 @@ function zoneMatchesQuery(zone, queryString) {
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
-  gridZones: state.data.grid.zones,
+  gridZones: state.data.zones,
   searchQuery: state.application.searchQuery,
 });
 

@@ -2,8 +2,7 @@ export const updateSelectedZoneTimeIndex = (store) => (next) => (action) => {
   // We want to update application state when data state is updated
   // Since those reducers are separated, this middleware is able to dispatch
   // an update to zoneTimeIndex when data is updated
-
-  if (action.type === 'GRID_DATA_FETCH_SUCCEEDED') {
+  if (action.type === 'data/grid-fetch-succeded') {
     store.dispatch({
       type: 'APPLICATION_STATE_UPDATE',
       key: 'selectedZoneTimeIndex',
