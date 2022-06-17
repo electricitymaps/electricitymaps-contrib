@@ -1,10 +1,9 @@
-import { addMinutes } from 'date-fns';
-
 import constructTopos from '../helpers/topos';
 import * as translation from '../helpers/translation';
 
 import exchangesConfig from '../../../config/exchanges.json';
 import zonesConfig from '../../../config/zones.json';
+import { TIME } from '../helpers/constants';
 
 // ** Prepare initial zone data
 const zones = constructTopos();
@@ -39,9 +38,37 @@ Object.entries(exchanges).forEach((entry) => {
   }
 });
 
+function constructInitialState() {
+  const geographies = constructTopos();
+  const result = {};
+
+  Object.keys(zonesConfig).forEach((key) => {
+    const zone = {};
+    const zoneConfig = zonesConfig[key];
+    if (!geographies[key]) {
+      return;
+    }
+    zone.geography = geographies[key];
+    zone.config = {};
+    Object.keys(TIME).forEach((k) => {
+      zone[TIME[k]] = { details: [], overviews: [] };
+    });
+
+    zone.config.capacity = zoneConfig.capacity;
+    zone.config.contributors = zoneConfig.contributors;
+    zone.config.timezone = zoneConfig.timezone;
+    zone.config.hasParser = (zoneConfig.parsers || {}).production !== undefined;
+    zone.config.hasData = zone.config.hasParser;
+    zone.config.delays = zoneConfig.delays;
+    zone.config.disclaimer = zoneConfig.disclaimer;
+
+    result[key] = zone;
+  });
+  return result;
+}
+
 const initialDataState = {
   // Here we will store data items
-  grid: { zones, exchanges },
   hasConnectionWarning: false,
   hasInitializedGrid: false,
   histories: {},
@@ -53,6 +80,9 @@ const initialDataState = {
   wind: null,
   solarDataError: null,
   windDataError: null,
+  zoneDatetimes: [],
+  zones: constructInitialState(),
+  exchanges,
 };
 
 const reducer = (state = initialDataState, action) => {
@@ -62,97 +92,43 @@ const reducer = (state = initialDataState, action) => {
     }
 
     case 'GRID_DATA_FETCH_SUCCEEDED': {
-      // Create new grid object
-      const newGrid = Object.assign(
-        {},
-        {
-          zones: Object.assign({}, state.grid.zones),
-          exchanges: Object.assign({}, state.grid.exchanges),
-        }
-      );
-      // Create new state
       const newState = Object.assign({}, state);
-      newState.grid = newGrid;
+      const newExchanges = { ...state.exchanges };
+      const newZones = { ...state.zones };
+      const { stateAggregation } = action.payload;
 
-      // Reset histories that expired
-      newState.histories = Object.assign({}, state.histories);
-      Object.keys(state.histories).forEach((k) => {
-        const history = state.histories[k];
-        const lastHistoryMoment = new Date(history.at(-1).stateDatetime);
-        const stateMoment = new Date(action.payload.datetime);
-        if (addMinutes(lastHistoryMoment, 15) < stateMoment) {
-          delete newState.histories[k];
-        }
+      Object.keys(newExchanges).forEach((key) => {
+        newExchanges[key].netFlow = undefined;
       });
 
-      // Set date
-      newGrid.datetime = action.payload.datetime;
-
-      // Reset all data we want to update (for instance, not maxCapacity)
-      Object.keys(newGrid.zones).forEach((key) => {
-        const zone = Object.assign({}, newGrid.zones[key]);
-        zone.co2intensity = undefined;
-        zone.fossilFuelRatio = undefined;
-        zone.fossilFuelRatioProduction = undefined;
-        zone.renewableRatio = undefined;
-        zone.renewableRatioProduction = undefined;
-        zone.exchange = {};
-        zone.production = {};
-        zone.productionCo2Intensities = {};
-        zone.productionCo2IntensitySources = {};
-        zone.dischargeCo2Intensities = {};
-        zone.dischargeCo2IntensitySources = {};
-        zone.storage = {};
-        zone.source = undefined;
-        newGrid.zones[key] = zone;
-      });
-      Object.keys(newGrid.exchanges).forEach((key) => {
-        newGrid.exchanges[key].netFlow = undefined;
-      });
-
-      // Populate with realtime country data
-      Object.entries(action.payload.countries).forEach((entry) => {
-        const [key, value] = entry;
-        const zone = newGrid.zones[key];
-        if (!zone) {
-          console.warn(`${key} has no zone configuration. Ignoring..`);
+      Object.entries(action.payload.countries).map(([zoneId, zoneData]) => {
+        if (!newZones[zoneId]) {
           return;
         }
-        // Assign data from payload
-        Object.keys(value).forEach((k) => {
-          // Warning: k takes all values, even those that are not meant
-          // to be updated (like maxCapacity)
-          zone[k] = value[k];
-        });
-        // Set date
-        zone.datetime = action.payload.datetime;
-
-        const hasNoData = !zone.production || Object.values(zone.production).every((v) => v === null);
-        if (hasNoData) {
-          return;
-        }
-
-        // By default hasData is only true if there is a parser - here we overwrite that value
-        // if there is data despite no parser (for CONSTRUCT_BREAKDOWN estimation models)
-        zone.hasData = zone.hasParser || !hasNoData;
+        newZones[zoneId][stateAggregation].overviews = zoneData;
       });
 
-      // Populate exchange pairs for exchange layer
+      newState.exchanges = newExchanges;
+      newState.zones = newZones;
+      newState.zoneDatetimes[stateAggregation] = action.payload.datetimes.map((dt) => new Date(dt));
+
       Object.entries(action.payload.exchanges).forEach((entry) => {
         const [key, value] = entry;
-        const exchange = newGrid.exchanges[key];
+        const exchange = newExchanges[key];
         if (!exchange || !exchange.lonlat) {
           console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
           return;
         }
         // Assign all data
         Object.keys(value).forEach((k) => {
-          exchange[k] = value[k];
+          newExchanges[k] = value[k];
         });
       });
 
       newState.hasInitializedGrid = true;
       newState.isLoadingGrid = false;
+      newState.zones = newZones;
+      newState.exchanges = newExchanges;
       return newState;
     }
 
@@ -169,13 +145,19 @@ const reducer = (state = initialDataState, action) => {
       return {
         ...state,
         isLoadingHistories: false,
-        histories: {
-          ...state.histories,
-          [action.zoneId]: action.payload.map((datapoint) => ({
-            ...datapoint,
-            hasParser: zones[action.zoneId].hasParser,
-            hasData: !Object.values(datapoint.production).every((v) => v === null),
-          })),
+        zones: {
+          ...state.zones,
+          [action.zoneId]: {
+            ...state.zones[action.zoneId],
+            [action.payload.stateAggregation]: {
+              ...state.zones[action.zoneId][action.payload.stateAggregation],
+              details: action.payload.zoneStates,
+              hasDetailedData: true,
+              hasData: true, // TODO: fix
+              hasParser: true,
+              aggregation: action.payload.stateAggregation,
+            },
+          },
         },
       };
     }
