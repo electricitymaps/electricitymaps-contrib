@@ -9,7 +9,7 @@ import { useCustomDatetime } from './router';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
-  const exchanges = useSelector((state) => state.data.grid.exchanges);
+  const exchanges = useSelector((state) => state.data.exchanges);
 
   return useMemo(
     () => (isConsumption ? Object.values(exchanges).filter((d) => d.lonlat && d.sortedCountryCodes) : []),

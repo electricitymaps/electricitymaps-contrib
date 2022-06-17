@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
-  zones: state.data.grid.zones,
+  zones: state.data.zones,
 });
 
 const LoadingWrapper = styled.div`
