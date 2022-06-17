@@ -22,10 +22,7 @@ export function useConditionalZoneHistoryFetch() {
     } else if (zoneId && Array.isArray(historyData) && historyData.length === 0) {
       console.error('No history data available right now!');
     }
-    let hasCorrectTimeAggregate = true;
-    if (features.includes('history')) {
-      hasCorrectTimeAggregate = historyData && historyData[0]?.aggregation === selectedTimeAggregate;
-    }
+    const hasCorrectTimeAggregate = historyData && historyData[0]?.aggregation === selectedTimeAggregate;
     const hasDetailedHistory = historyData !== null && historyData[0] && historyData[0]?.hasDetailedData !== false;
     if (zoneId && (!hasDetailedHistory || !hasCorrectTimeAggregate)) {
       dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features, selectedTimeAggregate } });

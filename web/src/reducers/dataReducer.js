@@ -87,6 +87,7 @@ const reducer = (state = initialDataState, action) => {
 
       // Set date
       newGrid.datetime = action.payload.datetime;
+      newGrid.datetimes = action.payload.datetimes.map((dt) => new Date(dt));
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
@@ -112,18 +113,29 @@ const reducer = (state = initialDataState, action) => {
 
       // Populate with realtime country data
       Object.entries(action.payload.countries).forEach((entry) => {
-        const [key, value] = entry;
-        const zone = newGrid.zones[key];
+        const [zoneId, zoneHistory] = entry;
+        const zone = newGrid.zones[zoneId];
         if (!zone) {
-          console.warn(`${key} has no zone configuration. Ignoring..`);
+          console.warn(`${zoneId} has no zone configuration. Ignoring..`);
           return;
         }
+
+        const lastValue = zoneHistory.at(-1);
         // Assign data from payload
-        Object.keys(value).forEach((k) => {
+        Object.keys(lastValue).forEach((k) => {
           // Warning: k takes all values, even those that are not meant
           // to be updated (like maxCapacity)
-          zone[k] = value[k];
+          zone[k] = lastValue[k];
         });
+
+        const zoneHistoryWithAdditionalFields = zoneHistory.map((z) => ({
+          ...z,
+          hasDetailedData: false,
+          hasData: zones[zoneId].hasParser,
+          hasParser: zones[zoneId].hasParser,
+        }));
+        newState.histories[zoneId] = zoneHistoryWithAdditionalFields;
+
         // Set date
         zone.datetime = action.payload.datetime;
 
@@ -171,10 +183,11 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map((datapoint) => ({
+          [action.zoneId]: action.payload.zoneStates.map((datapoint) => ({
             ...datapoint,
-            hasParser: zones[action.zoneId].hasParser,
+            hasDetailedData: true,
             hasData: !Object.values(datapoint.production).every((v) => v === null),
+            aggregation: action.payload.stateAggregation,
           })),
         },
       };

@@ -12,7 +12,6 @@ const ZoneMap = ({
   children = null,
   co2ColorScale = null,
   hoveringEnabled = true,
-  isHistoryFeatureEnabled = false,
   onMapLoaded = noop,
   onMapError = noop,
   onMouseMove = noop,
@@ -134,7 +133,7 @@ const ZoneMap = ({
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
   useEffect(() => {
-    if (isHistoryFeatureEnabled && isLoaded && co2ColorScale) {
+    if (isLoaded && co2ColorScale) {
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
       const features = ref.current.queryRenderedFeatures();
@@ -165,15 +164,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [
-    isHistoryFeatureEnabled,
-    isLoaded,
-    isDragging,
-    zoneHistories,
-    selectedZoneTimeIndex,
-    selectedTimeAggregate,
-    co2ColorScale,
-  ]);
+  }, [isLoaded, isDragging, zoneHistories, selectedZoneTimeIndex, selectedTimeAggregate, co2ColorScale]);
 
   const handleClick = useMemo(
     () => (e) => {
