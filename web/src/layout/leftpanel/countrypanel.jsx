@@ -190,6 +190,8 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { __ } = useTranslation();
 
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+
+  // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
   const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
 
   const trackEvent = useTrackEvent();

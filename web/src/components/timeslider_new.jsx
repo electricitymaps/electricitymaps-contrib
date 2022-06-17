@@ -116,15 +116,12 @@ const TimeSlider = ({
   );
 
   const startTimeValue = timeScale.domain()[0].valueOf();
-  const endTimeValue = timeScale.domain()[1].valueOf();
+  const endTimeValue = timeScale.domain()[1].valueOf() || 1; // Ensures timeslider thumb is at the end at all times
 
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex, setTooltipPos),
     [datetimes, onChange, setAnchoredTimeIndex]
   );
-  if (!datetimes || datetimes.length === 0) {
-    return null;
-  }
 
   const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex]?.valueOf() : null;
   const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex]?.valueOf() : null;

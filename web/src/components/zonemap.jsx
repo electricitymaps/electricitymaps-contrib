@@ -33,8 +33,6 @@ const ZoneMap = ({
     longitude: 0,
     zoom: 2,
   },
-  zones = {},
-  zoneHistories = {},
   zoomInLabel = '',
   zoomOutLabel = '',
 }) => {
@@ -44,6 +42,7 @@ const ZoneMap = ({
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const zones = useSelector((state) => state.data.zones);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -77,13 +76,13 @@ const ZoneMap = ({
       return {
         type: 'Feature',
         geometry: {
-          ...zone.geometry,
-          coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
+          ...zone.geography.geometry,
+          coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
         },
         properties: {
-          color: zone.color,
-          isClickable: zone.isClickable,
-          zoneData: zone,
+          color: undefined,
+          isClickable: true,
+          zoneData: zone.hourly.overviews,
           zoneId,
         },
       };
@@ -143,8 +142,7 @@ const ZoneMap = ({
       features.forEach((feature) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
-        const co2intensity = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex]?.co2intensity;
-
+        const co2intensity = zones?.[zoneId]?.[selectedTimeAggregate]?.overviews[selectedZoneTimeIndex]?.co2intensity;
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
           fillColor = co2ColorScale(co2intensity);
@@ -170,10 +168,10 @@ const ZoneMap = ({
     isHistoryFeatureEnabled,
     isLoaded,
     isDragging,
-    zoneHistories,
-    selectedZoneTimeIndex,
     selectedTimeAggregate,
     co2ColorScale,
+    zones,
+    selectedZoneTimeIndex,
   ]);
 
   const handleClick = useMemo(

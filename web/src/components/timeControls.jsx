@@ -3,6 +3,7 @@ import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
 import { formatDate, formatTimeRange } from '../helpers/formatting';
 import { TIME } from '../helpers/constants';
+import { useSelector } from 'react-redux';
 
 const Title = styled.span`
   font-size: calc(11px + 0.2vw);
@@ -86,6 +87,7 @@ const getOptions = (language) => [
 const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   const { __, i18n } = useTranslation();
   const options = getOptions(i18n.language);
+  const zoneDatetimes = useSelector((state) => state.data.zoneDatetimes);
 
   return (
     <div>
@@ -99,7 +101,7 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
             key={o.key}
             active={o.key === selectedTimeAggregate}
             onClick={() => {
-              handleTimeAggregationChange(o.key);
+              handleTimeAggregationChange(o.key, zoneDatetimes);
             }}
           >
             {o.label}

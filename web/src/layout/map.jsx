@@ -11,7 +11,6 @@ import { debounce } from '../helpers/debounce';
 
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
-import { useZonesWithColors } from '../hooks/map';
 import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
@@ -36,11 +35,11 @@ export default () => {
   const isMobile = useSelector((state) => state.application.isMobile);
   const viewport = useSelector((state) => state.application.mapViewport);
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const zoneHistories = useSelector((state) => state.data.histories);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const zones = useSelector((state) => state.data.zones);
   const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
-  const zones = useZonesWithColors();
   const location = useLocation();
   const history = useHistory();
   const co2ColorScale = useCo2ColorScale();
@@ -60,7 +59,7 @@ export default () => {
     if (!hasCentered) {
       if (zoneId) {
         console.log(`Centering on zone ${zoneId}`); // eslint-disable-line no-console
-        dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId]));
+        dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId].geography));
         setHasCentered(true);
       } else if (callerLocation) {
         console.log(`Centering on browser location (${callerLocation})`); // eslint-disable-line no-console
@@ -128,15 +127,15 @@ export default () => {
 
   const handleZoneMouseEnter = useMemo(
     () => (zoneId) => {
-      const zoneHistoryDetails = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex];
-      const data = zoneHistoryDetails || zones[zoneId];
+      const zoneOverview = zones[zoneId][selectedTimeAggregate].overviews[selectedZoneTimeIndex];
+      const zoneConfig = zones[zoneId].config;
       dispatchApplication(
         'co2ColorbarValue',
-        electricityMixMode === 'consumption' ? data.co2intensity : data.co2intensityProduction
+        electricityMixMode === 'consumption' ? zoneOverview.co2intensity : zoneOverview.co2intensityProduction
       );
-      setTooltipZoneData(data);
+      setTooltipZoneData({ ...zoneOverview, ...zoneConfig });
     },
-    [electricityMixMode, zoneHistories, selectedZoneTimeIndex, zones]
+    [electricityMixMode, selectedTimeAggregate, selectedZoneTimeIndex, zones]
   );
 
   const handleZoneMouseLeave = useMemo(
@@ -207,10 +206,8 @@ export default () => {
         theme={theme}
         transitionDuration={transitionDuration}
         viewport={viewport}
-        zones={zones}
         zoomInLabel={__('tooltips.zoomIn')}
         zoomOutLabel={__('tooltips.zoomOut')}
-        zoneHistories={zoneHistories}
       >
         <MapLayer component={ExchangeLayer} />
         <MapLayer component={WindLayer} />
