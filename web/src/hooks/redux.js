@@ -7,6 +7,8 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import { useCustomDatetime } from './router';
 
 import { getCenteredZoneViewport } from '../helpers/map';
+import { combineDetailsAndOverview } from '../helpers/redux';
+import { mapValues } from 'lodash';
 
 export function useCurrentZoneHistory() {
   // TODO: memo
@@ -19,6 +21,23 @@ export function useCurrentZoneHistory() {
     }
     return [];
   }, [zoneId, zones, selectedTimeAggregate]);
+}
+
+export function useCurrentZoneList() {
+  // returns dictionary of zones and combined data for the selected time aggregate
+  const zones = useSelector((state) => state.data.zones);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+
+  if (!selectedZoneTimeIndex) {
+    return {};
+  }
+  const zoneList = mapValues(
+    zones,
+    (zone) => combineDetailsAndOverview(zone[selectedTimeAggregate])[selectedZoneTimeIndex] || {}
+  );
+
+  return zoneList;
 }
 
 export function useCurrentDatetimes() {
@@ -163,17 +182,4 @@ export function useCurrentNightTimes() {
       // eslint-disable-next-line no-constant-condition
     } while (true);
   }, [zone, datetimeStr, history]);
-}
-
-function combineDetailsAndOverview(zoneData) {
-  // Combines details and overviews and other relevant keys
-  // from zoneData for a specific aggregate into a single object
-  // TODO: ensure sync
-  const { overviews, details, hasParser, hasData } = zoneData;
-
-  const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData };
-  });
-
-  return combined;
 }

@@ -73,6 +73,19 @@ function initDataState() {
   };
 }
 
+function combineDetailsAndOverview(zoneData) {
+  // Combines details and overviews and other relevant keys
+  // from zoneData for a specific aggregate into a single object
+  // TODO: ensure sync
+  const { overviews, details, hasParser, hasData } = zoneData;
+
+  const combined = overviews.map((overview, idx) => {
+    return { ...overview, ...details[idx], hasParser, hasData };
+  });
+
+  return combined;
+}
+
 export {
   GRID_DATA_FETCH_FAILED,
   GRID_DATA_FETCH_SUCCEEDED,
@@ -87,4 +100,5 @@ export {
   WIND_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_REQUESTED,
   initDataState,
+  combineDetailsAndOverview,
 };

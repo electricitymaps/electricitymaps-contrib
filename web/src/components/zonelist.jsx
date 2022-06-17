@@ -12,6 +12,7 @@ import { flagUri } from '../helpers/flags';
 import { ascending } from 'd3-array';
 import { values } from 'd3-collection';
 import { useTrackEvent } from '../hooks/tracking';
+import { useCurrentZoneList } from '../hooks/redux';
 
 function withZoneRankings(zones) {
   return zones.map((zone) => {
@@ -52,7 +53,6 @@ function zoneMatchesQuery(zone, queryString) {
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
-  gridZones: state.data.zones,
   searchQuery: state.application.searchQuery,
 });
 
@@ -62,10 +62,11 @@ const Flag = styled.img`
   vertical-align: middle;
 `;
 
-const ZoneList = ({ electricityMixMode, gridZones, searchQuery }) => {
+const ZoneList = ({ electricityMixMode, searchQuery }) => {
+  const zonesList = useCurrentZoneList();
   const co2ColorScale = useCo2ColorScale();
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
-  const zones = processZones(gridZones, co2IntensityAccessor).filter((z) => zoneMatchesQuery(z, searchQuery));
+  const zones = processZones(zonesList, co2IntensityAccessor).filter((z) => zoneMatchesQuery(z, searchQuery));
 
   const listRef = React.createRef();
   const history = useHistory();

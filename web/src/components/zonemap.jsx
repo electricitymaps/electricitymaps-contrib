@@ -82,7 +82,7 @@ const ZoneMap = ({
         properties: {
           color: undefined,
           isClickable: true,
-          zoneData: zone.hourly.overviews,
+          zoneData: zone[selectedTimeAggregate].overviews,
           zoneId,
         },
       };
@@ -98,7 +98,7 @@ const ZoneMap = ({
         features: features.filter((f) => !f.properties.isClickable),
       },
     };
-  }, [zones]);
+  }, [zones, selectedTimeAggregate]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
