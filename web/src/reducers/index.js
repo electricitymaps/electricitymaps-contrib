@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { getKey } from '../helpers/storage';
 import { isLocalhost, isProduction } from '../helpers/environment';
 
-import dataReducer from './dataReducer';
+import reducer from './dataReducer';
 import { TIME } from '../helpers/constants';
 
 const getStorageBool = (key, defaultValue) => {
@@ -85,5 +85,5 @@ const applicationReducer = (state = initialApplicationState, action) => {
 
 export default combineReducers({
   application: applicationReducer,
-  data: dataReducer,
+  data: reducer,
 });

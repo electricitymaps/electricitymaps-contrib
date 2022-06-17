@@ -28,6 +28,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -139,7 +140,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <a
                 href=""
                 onClick={(e) => {
-                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+                  dispatch(GRID_DATA_FETCH_REQUESTED({ datetime }));
                   e.preventDefault();
                 }}
               >

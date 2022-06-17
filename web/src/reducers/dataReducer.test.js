@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 import { protectedJsonRequest } from '../helpers/api';
-import { GRID_DATA_FETCH_SUCCEEDED, reducer, ZONE_HISTORY_FETCH_SUCCEEDED } from './dataReducer';
+import { GRID_DATA_FETCH_SUCCEEDED, ZONE_HISTORY_FETCH_SUCCEEDED } from '../helpers/redux';
+import reducer from './dataReducer';
 
 test('zones should have initial state with correct structure', () => {
   const state = reducer.getInitialState();

@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { DATA_FETCH_INTERVAL } from '../helpers/constants';
+import {
+  GRID_DATA_FETCH_REQUESTED,
+  SOLAR_DATA_FETCH_REQUESTED,
+  SOLAR_DATA_FETCH_SUCCEDED,
+  WIND_DATA_FETCH_REQUESTED,
+  WIND_DATA_FETCH_SUCCEDED,
+  ZONE_HISTORY_FETCH_REQUESTED,
+} from '../helpers/redux';
 
 import { useCustomDatetime, useWindEnabled, useSolarEnabled, useFeatureToggle } from './router';
 
@@ -22,7 +30,7 @@ export function useConditionalZoneHistoryFetch() {
 
     const hasDetailedHistory = zones[zoneId]?.[selectedTimeAggregate].details.length;
     if (zoneId && !hasDetailedHistory) {
-      dispatch({ type: 'ZONE_HISTORY_FETCH_REQUESTED', payload: { zoneId, features, selectedTimeAggregate } });
+      dispatch(ZONE_HISTORY_FETCH_REQUESTED({ zoneId, features, selectedTimeAggregate }));
     }
   }, [zoneId, customDatetime, dispatch, features, selectedTimeAggregate, zones]);
 }
@@ -39,11 +47,11 @@ export function useGridDataPolling() {
   useEffect(() => {
     let pollInterval;
     if (!hasOverviewData) {
-      dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
+      dispatch(GRID_DATA_FETCH_REQUESTED({ datetime, features, selectedTimeAggregate }));
     }
     if (!datetime) {
       pollInterval = setInterval(() => {
-        dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime, features, selectedTimeAggregate } });
+        dispatch({ type: GRID_DATA_FETCH_REQUESTED, payload: { datetime, features, selectedTimeAggregate } });
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
@@ -60,16 +68,16 @@ export function useConditionalWindDataPolling() {
     let pollInterval;
     if (windEnabled) {
       if (customDatetime) {
-        dispatch({ type: 'WIND_DATA_FETCH_REQUESTED', payload: { datetime: customDatetime } });
+        dispatch(WIND_DATA_FETCH_REQUESTED({ datetime: customDatetime }));
       } else {
-        dispatch({ type: 'WIND_DATA_FETCH_REQUESTED' });
+        dispatch(WIND_DATA_FETCH_REQUESTED());
         pollInterval = setInterval(() => {
-          dispatch({ type: 'WIND_DATA_FETCH_REQUESTED' });
+          dispatch(WIND_DATA_FETCH_SUCCEDED());
         }, DATA_FETCH_INTERVAL);
       }
     } else {
       // TODO: Find a nicer way to invalidate the wind data (or remove it altogether when wind layer is moved to React).
-      dispatch({ type: 'WIND_DATA_FETCH_SUCCEEDED', payload: null });
+      dispatch(WIND_DATA_FETCH_SUCCEDED(null));
     }
     return () => clearInterval(pollInterval);
   }, [windEnabled, customDatetime, dispatch]);
@@ -85,16 +93,16 @@ export function useConditionalSolarDataPolling() {
     let pollInterval;
     if (solarEnabled) {
       if (customDatetime) {
-        dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED', payload: { datetime: customDatetime } });
+        dispatch(SOLAR_DATA_FETCH_REQUESTED({ datetime: customDatetime }));
       } else {
-        dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED' });
+        dispatch(SOLAR_DATA_FETCH_REQUESTED());
         pollInterval = setInterval(() => {
-          dispatch({ type: 'SOLAR_DATA_FETCH_REQUESTED' });
+          dispatch(SOLAR_DATA_FETCH_REQUESTED());
         }, DATA_FETCH_INTERVAL);
       }
     } else {
       // TODO: Find a nicer way to invalidate the solar data (or remove it altogether when solar layer is moved to React).
-      dispatch({ type: 'SOLAR_DATA_FETCH_SUCCEEDED', payload: null });
+      dispatch(SOLAR_DATA_FETCH_SUCCEDED(null));
     }
     return () => clearInterval(pollInterval);
   }, [solarEnabled, customDatetime, dispatch]);
