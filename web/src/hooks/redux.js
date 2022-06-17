@@ -4,31 +4,27 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
-import { useCustomDatetime, useFeatureToggle } from './router';
+import { useCustomDatetime } from './router';
 
 import { getCenteredZoneViewport } from '../helpers/map';
 
 export function useCurrentZoneHistory() {
+  // TODO: memo
   const { zoneId } = useParams();
-  const histories = useSelector((state) => state.data.histories);
-
-  return useMemo(() => histories[zoneId] || null, [histories, zoneId]);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const zones = useSelector((state) => state.data.zones);
+  return useMemo(() => {
+    if (zones[zoneId]) {
+      return combineDetailsAndOverview(zones[zoneId][selectedTimeAggregate]);
+    }
+    return [];
+  }, [zoneId, zones, selectedTimeAggregate]);
 }
 
 export function useCurrentDatetimes() {
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
-  const datetimes = useSelector((state) => state.data.grid.datetimes);
-  const histories = useSelector((state) => state.data.histories);
-
-  if (isHistoryFeatureEnabled) {
-    return datetimes || [];
-  }
-
-  if (histories && Object.keys(histories).length) {
-    return histories[Object.keys(histories)[0]].map((h) => new Date(h.stateDatetime));
-  } else {
-    return [];
-  }
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const datetimes = useSelector((state) => state.data.zoneDatetimes[selectedTimeAggregate]);
+  return datetimes || [];
 }
 
 export function useCurrentZoneHistoryDatetimes() {
@@ -59,14 +55,23 @@ export function useCurrentZoneHistoryStartTime() {
   return null;
 }
 
+export function useZoneDataOverview(zoneId) {
+  // returns the overview for the current time aggregate and index
+  const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const zones = useSelector((state) => state.data.zones);
+
+  return zones[zoneId][timeAggregate][zoneTimeIndex];
+}
+
 export function useCurrentZoneData() {
   const { zoneId } = useParams();
   const zoneHistory = useCurrentZoneHistory();
   const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const grid = useSelector((state) => state.data.grid);
+  const zones = useSelector((state) => state.data.zones);
 
   return useMemo(() => {
-    if (!zoneId || !grid || !zoneHistory) {
+    if (!zoneId || !zones || !zoneHistory) {
       return null;
     } else if (zoneTimeIndex === null) {
       // If null, return the latest history
@@ -74,7 +79,7 @@ export function useCurrentZoneData() {
     } else {
       return zoneHistory[zoneTimeIndex];
     }
-  }, [zoneId, zoneHistory, zoneTimeIndex, grid]);
+  }, [zoneId, zoneHistory, zoneTimeIndex, zones]);
 }
 
 export function useCurrentZoneExchangeKeys() {
@@ -158,4 +163,17 @@ export function useCurrentNightTimes() {
       // eslint-disable-next-line no-constant-condition
     } while (true);
   }, [zone, datetimeStr, history]);
+}
+
+function combineDetailsAndOverview(zoneData) {
+  // Combines details and overviews and other relevant keys
+  // from zoneData for a specific aggregate into a single object
+  // TODO: ensure sync
+  const { overviews, details, hasParser, hasData } = zoneData;
+
+  const combined = overviews.map((overview, idx) => {
+    return { ...overview, ...details[idx], hasParser, hasData };
+  });
+
+  return combined;
 }
