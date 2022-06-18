@@ -31,7 +31,7 @@ jobs:
       - save_cache:
           key: venv-{{ checksum "poetry.lock" }}
           paths:
-            - ".venv"
+            - '.venv'
 
   lint_json:
     executor: js-exec

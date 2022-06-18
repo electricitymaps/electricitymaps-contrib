@@ -4,7 +4,6 @@ import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
-import { useSelector } from 'react-redux';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -25,6 +24,7 @@ const ZoneMap = ({
   onZoneMouseLeave = noop,
   scrollZoom = true,
   selectedZoneTimeIndex = null,
+  selectedTimeAggregate,
   style = {},
   theme = {},
   transitionDuration = 300,
@@ -43,7 +43,6 @@ const ZoneMap = ({
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(

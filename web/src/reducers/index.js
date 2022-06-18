@@ -23,6 +23,8 @@ const initialApplicationState = {
   co2ColorbarValue: null,
   colorBlindModeEnabled: getStorageBool('colorBlindModeEnabled', false),
   brightModeEnabled: getStorageBool('brightModeEnabled', true),
+  infoModalOpen: false,
+  faqModalOpen: false,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,

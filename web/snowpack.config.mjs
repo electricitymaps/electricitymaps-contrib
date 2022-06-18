@@ -9,13 +9,8 @@ export default {
     // Mounts parent config folder so we can import zones.json etc. in the src code
     '../config': '/config',
   },
-  routes: [
-    { match: 'routes', src: '.*', dest: '/index.html' },
-  ],
-  plugins: [
-    '@snowpack/plugin-react-refresh',
-    '@snowpack/plugin-sass',
-  ],
+  routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
+  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-sass'],
   packageOptions: {
     polyfillNode: true,
   },
