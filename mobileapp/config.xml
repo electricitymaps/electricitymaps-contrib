@@ -4,7 +4,7 @@
     <description>
         electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
-    <author email="hello@electricitymap.org" href="https://www.electricitymap.org">
+    <author email="app@electricitymap.org" href="https://www.electricitymap.org">
         electricityMap
     </author>
     <content src="index.html" />

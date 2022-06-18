@@ -75,7 +75,7 @@ const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zon
       {!displayByEmissions && (
         <React.Fragment>
           <br />
-          {aggregation === TIME.hourly && (
+          {aggregation === TIME.HOURLY && (
             <>
               <br />
               {__('tooltips.utilizing')} <b>{getRatioPercent(usage, capacity)} %</b> {__('tooltips.ofinstalled')}

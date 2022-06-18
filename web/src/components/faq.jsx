@@ -5,13 +5,11 @@ import { useTranslation } from '../helpers/translation';
 import Icon from './icon';
 
 const TermsAndPrivacyContainer = styled.div`
-  border-top: 1px solid #e0e0e0;
-  padding: 1rem;
-  text-align: center;
-  @media (min-width: 768px) {
-    text-align: left;
-    box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
+  @media (max-width: 767px) {
+    display: none;
   }
+  text-align: left;
+  box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
 
   a {
     margin-right: 1rem;
