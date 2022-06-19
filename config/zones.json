@@ -3952,12 +3952,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
-    "subZoneNames": [
-      "SE-SE1",
-      "SE-SE2",
-      "SE-SE3",
-      "SE-SE4"
-    ],
+    "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
     "timezone": "Europe/Stockholm"
   },
   "SE-SE1": {
@@ -3991,7 +3986,7 @@
       [11.492425171000093, 60.280991513822045],
       [21.486074487958014, 66.78799631800014]
     ],
-    "capacity":{
+    "capacity": {
       "biomass": 680,
       "coal": 0,
       "gas": 2,
@@ -4017,7 +4012,7 @@
       [10.608164910000113, 56.392035223000065],
       [19.8385522800001, 62.67478628775066]
     ],
-    "capacity":{
+    "capacity": {
       "biomass": 2561,
       "coal": 0,
       "gas": 950,
@@ -4044,7 +4039,7 @@
       [11.951426629000139, 54.84267812700013],
       [17.624522332000083, 57.85822174700009]
     ],
-    "capacity":{
+    "capacity": {
       "biomass": 883,
       "coal": 0,
       "gas": 582,
