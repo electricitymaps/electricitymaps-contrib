@@ -9,7 +9,6 @@ import Toggle from './toggle';
 
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Modal from './modal';
 import { Button } from './button';
@@ -59,6 +58,12 @@ const StyledLanguageSelectWrapper = styled.ul`
   }
 `;
 
+const SettingButton = styled(Button).attrs({
+  iconSize: 18,
+})`
+  color: ${(props) => (props.active ? '#000' : '#999')};
+`;
+
 const LanguageSelect = ({ isOpen, onSelect }) => {
   if (!isOpen) {
     return null;
@@ -75,41 +80,23 @@ const LanguageSelect = ({ isOpen, onSelect }) => {
   );
 };
 
-const SettingButton = ({ text, link, active, onToggle, ...rest }) => {
-  const bgColor = active ? '#fff' : '#fff';
-  const textColor = active ? '#000' : '#999';
-
-  const props = {
-    ...rest,
-    bgColor,
-    textColor,
-    onClick: onToggle,
-    iconSize: 18,
-  };
-
-  if (link && !rest.disabled) {
-    props.as = Link;
-    props.to = link;
-  }
-
-  return <Button {...props}>{text}</Button>;
-};
-
 const SettingsView = () => {
   const { __, i18n } = useTranslation();
   const [languageSelectOpen, setLanguageSelectOpen] = useState(false);
 
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
   const windDataError = useSelector((state) => state.data.windDataError);
-  const solarDataError = useSelector((state) => state.data.solarDataError);
+  const showWindErrorMessage = windEnabled && windDataError;
 
   const solarEnabled = useSolarEnabled();
   const solarToggledLocation = useSolarToggledLocation();
+  const solarDataError = useSelector((state) => state.data.solarDataError);
+  const showSolarErrorMessage = solarEnabled && solarDataError;
 
   const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
   const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
+  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
 
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
@@ -133,41 +120,37 @@ const SettingsView = () => {
         tooltipStyle={{ width: 250, top: 110, zIndex: 9 }}
       />
       <SettingsWrapper>
-        <SettingButton
-          active
-          icon="language"
-          text={__('tooltips.selectLanguage')}
-          onToggle={() => setLanguageSelectOpen(!languageSelectOpen)}
-        />
+        <SettingButton active icon="language" onClick={() => setLanguageSelectOpen(!languageSelectOpen)}>
+          {__('tooltips.selectLanguage')}
+        </SettingButton>
+
         <LanguageSelect isOpen={languageSelectOpen} onSelect={handleLanguageChange} />
-        <LayerErrorMessage>{windDataError}</LayerErrorMessage>
-        <SettingButton
-          link={windToggledLocation}
-          icon="wind"
-          text={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
-          active={windEnabled}
-          disabled={windDataError}
-        />
-        <LayerErrorMessage>{solarDataError}</LayerErrorMessage>
-        <SettingButton
-          link={solarToggledLocation}
-          icon="sun"
-          text={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
-          active={solarEnabled}
-          disabled={solarDataError}
-        />
+
+        <SettingButton to={windToggledLocation} icon="wind" active={windEnabled} disabled={windDataError}>
+          {__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+        </SettingButton>
+        {showWindErrorMessage && <LayerErrorMessage>{windDataError}</LayerErrorMessage>}
+
+        <SettingButton to={solarToggledLocation} icon="sun" active={solarEnabled} disabled={solarDataError}>
+          {__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+        </SettingButton>
+        {showSolarErrorMessage && <LayerErrorMessage>{solarDataError}</LayerErrorMessage>}
+
         <SettingButton
           icon="dark-mode"
-          text={__('tooltips.toggleDarkMode')}
           active={!brightModeEnabled}
-          onToggle={() => toggleSetting('brightModeEnabled', brightModeEnabled)}
-        />
+          onClick={() => toggleSetting('brightModeEnabled', brightModeEnabled)}
+        >
+          {__('tooltips.toggleDarkMode')}
+        </SettingButton>
+
         <SettingButton
           icon="low-vision"
-          text={__('legends.colorblindmode')}
           active={colorBlindModeEnabled}
-          onToggle={() => toggleSetting('colorBlindModeEnabled', colorBlindModeEnabled)}
-        />
+          onClick={() => toggleSetting('colorBlindModeEnabled', colorBlindModeEnabled)}
+        >
+          {__('legends.colorblindmode')}
+        </SettingButton>
       </SettingsWrapper>
     </InfoContainer>
   );

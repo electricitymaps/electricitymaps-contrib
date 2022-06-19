@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from './icon';
 
@@ -41,6 +42,18 @@ const StyledButton = styled.button`
   }
 `;
 
+const getAs = (passedProps) => {
+  if (passedProps.to) {
+    return Link;
+  }
+
+  if (passedProps.href) {
+    return 'a';
+  }
+
+  return 'button';
+};
+
 /**
  * Button component
  * @example <caption>Different usage examples</caption>
@@ -50,9 +63,11 @@ const StyledButton = styled.button`
  * <Button href="https://example.com">as link</Button>
  */
 export const Button = ({ icon, children, iconSize = 16, ...rest }) => {
+  const renderAs = getAs(rest);
+
   const hasChildren = React.Children.count(children) > 0;
   return (
-    <StyledButton hasChildren={hasChildren} as={rest.href ? 'a' : 'button'} {...rest}>
+    <StyledButton hasChildren={hasChildren} as={renderAs} {...rest}>
       {icon && <Icon iconName={icon} size={iconSize} />}
       {hasChildren && <span>{children}</span>}
     </StyledButton>
