@@ -24,6 +24,7 @@ const ZoneMap = ({
   onZoneMouseLeave = noop,
   scrollZoom = true,
   selectedZoneTimeIndex = null,
+  selectedTimeAggregate,
   style = {},
   theme = {},
   transitionDuration = 300,
@@ -164,7 +165,15 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isHistoryFeatureEnabled, isLoaded, isDragging, zoneHistories, selectedZoneTimeIndex, co2ColorScale]);
+  }, [
+    isHistoryFeatureEnabled,
+    isLoaded,
+    isDragging,
+    zoneHistories,
+    selectedZoneTimeIndex,
+    selectedTimeAggregate,
+    co2ColorScale,
+  ]);
 
   const handleClick = useMemo(
     () => (e) => {

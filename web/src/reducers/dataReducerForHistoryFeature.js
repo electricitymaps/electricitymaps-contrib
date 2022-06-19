@@ -19,7 +19,6 @@ Object.entries(zonesConfig).forEach((d) => {
   zone.capacity = zoneConfig.capacity;
   zone.contributors = zoneConfig.contributors;
   zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getZoneNameWithCountry(key);
   zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
   zone.hasData = zone.hasParser;
   zone.delays = zoneConfig.delays;
@@ -88,6 +87,7 @@ const reducer = (state = initialDataState, action) => {
 
       // Set date
       newGrid.datetime = action.payload.datetime;
+      newGrid.datetimes = action.payload.datetimes.map((dt) => new Date(dt));
 
       // Reset all data we want to update (for instance, not maxCapacity)
       Object.keys(newGrid.zones).forEach((key) => {
@@ -183,10 +183,11 @@ const reducer = (state = initialDataState, action) => {
         isLoadingHistories: false,
         histories: {
           ...state.histories,
-          [action.zoneId]: action.payload.map((datapoint) => ({
+          [action.zoneId]: action.payload.zoneStates.map((datapoint) => ({
             ...datapoint,
             hasDetailedData: true,
             hasData: !Object.values(datapoint.production).every((v) => v === null),
+            aggregation: action.payload.stateAggregation,
           })),
         },
       };

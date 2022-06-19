@@ -1,7 +1,20 @@
 import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 
 import { useTranslation } from '../helpers/translation';
 import Icon from './icon';
+
+const TermsAndPrivacyContainer = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
+  text-align: left;
+  box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
+
+  a {
+    margin-right: 1rem;
+  }
+`;
 
 const orderings = [
   {
@@ -86,24 +99,30 @@ const FAQ = ({ className }) => {
   }, 50);
 
   return (
-    <div className={className} ref={ref}>
-      <div className="faq-container">
-        {orderings.map(({ groupKey, entryOrder }) => (
-          <div className="question-group-container" key={groupKey}>
-            <div className="question-group-header title">{__(`${groupKey}.groupName`)}</div>
-            {entryOrder.map((entryKey) => (
-              <QuestionAnswer
-                key={entryKey}
-                groupKey={groupKey}
-                entryKey={entryKey}
-                setAnswerVisible={setAnswerVisible}
-                answerVisible={answersVisible[entryKey]}
-              />
-            ))}
-          </div>
-        ))}
+    <React.Fragment>
+      <div className={className} ref={ref}>
+        <div className="faq-container">
+          {orderings.map(({ groupKey, entryOrder }) => (
+            <div className="question-group-container" key={groupKey}>
+              <div className="question-group-header title">{__(`${groupKey}.groupName`)}</div>
+              {entryOrder.map((entryKey) => (
+                <QuestionAnswer
+                  key={entryKey}
+                  groupKey={groupKey}
+                  entryKey={entryKey}
+                  setAnswerVisible={setAnswerVisible}
+                  answerVisible={answersVisible[entryKey]}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <TermsAndPrivacyContainer>
+        <a href="https://www.electricitymap.org/privacy-policy/">{__('misc.privacyPolicy')}</a>
+        <a href="https://www.electricitymap.org/legal-notice/">{__('misc.legalNotice')}</a>
+      </TermsAndPrivacyContainer>
+    </React.Fragment>
   );
 };
 

@@ -1,105 +1,102 @@
 .zone-search-bar {
-    padding: 0.75rem 0.5rem 1rem 1rem;
+  padding: 0.75rem 0.5rem 1rem 1rem;
 
-    input {
-        height:32px;
-        background-color: $white;
-        color: inherit;
-        border: none;
-        border-bottom: 1px solid lightgray;
-        font-weight: 400;
-        font-size: 1rem;
-        width: 100%;
-        padding: 0.2rem;
-        font-family: inherit;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-    }
+  input {
+    height: 32px;
+    background-color: $white;
+    color: inherit;
+    border: none;
+    border-bottom: 1px solid lightgray;
+    font-weight: 400;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.2rem;
+    font-family: inherit;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
 }
-
 
 .zone-list-header {
-    padding: 0 1rem 0.5rem 1rem;
+  padding: 0 1rem 0.5rem 1rem;
 
-    .subtitle {
-        font-size: 0.8rem;
-    }
+  .subtitle {
+    font-size: 0.8rem;
+  }
 }
 
-
 .zone-list {
-    overflow-y: scroll;
+  overflow-y: scroll;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+
+  p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  a {
+    color: $black;
+    display: flex;
+    font-size: 1rem;
+    justify-content: end;
+    align-items: center;
+    box-sizing: content-box;
+
+    /* formatting */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1rem;
+
+    &:hover {
+      text-decoration: none;
+      background: rgb(235, 235, 235);
+    }
+
+    &.selected {
+      background-color: rgb(235, 235, 235);
+    }
+  }
+
+  .ranking {
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .flag {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     flex: 1;
-    -webkit-overflow-scrolling: touch;
+  }
 
-    p {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  .zone-name {
+    font-size: 0.9rem;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-    a {
-        display: flex;
-        font-size: 1rem;
-        justify-content: end;
-        align-items: center;
-        box-sizing: content-box;
+  .country-name {
+    font-size: 0.7rem;
+  }
 
-        /* formatting */
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        height: 25px;
-        padding: 0.3rem 0 0.3rem 0.5rem;
-        line-height: 1rem;
-
-        &:hover {
-            text-decoration: none;
-            background: rgba(255,255,255,1)
-        }
-
-        &.selected {
-            background-color: rgba(255,255,255,1);
-        }
-    }
-
-    .ranking {
-        width: 2rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .flag {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-
-    .name {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        flex: 1;
-    }
-
-    .zone-name {
-        font-size: 0.9rem;
-        margin-right: 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .country-name {
-        font-size: 0.7rem;
-    }
-
-    .co2-intensity-tag {
-        border-radius: 3px;
-        margin-right: 10px;
-        height: 17px;
-        width: 17px;
-    }
+  .co2-intensity-tag {
+    border-radius: 3px;
+    margin-right: 10px;
+    height: 17px;
+    width: 17px;
+  }
 }

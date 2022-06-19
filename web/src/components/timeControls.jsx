@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled, { css } from 'styled-components';
-import { formatHourlyDate } from '../helpers/formatting';
+import { formatDate, formatTimeRange } from '../helpers/formatting';
+import { TIME } from '../helpers/constants';
 
 const Title = styled.span`
   font-size: calc(11px + 0.2vw);
@@ -23,13 +24,12 @@ const DateRangeOption = styled.span`
   border-radius: 16px;
   white-space: nowrap;
   text-transform: capitalize;
-  cursor: not-allowed;
+  cursor: pointer;
   font-weight: ${(props) => (props.active ? 700 : 500)};
   opacity: ${(props) => (props.active ? 1 : 0.5)};
   ${(props) =>
     props.active &&
     css`
-      cursor: pointer;
       background-color: white;
       box-shadow: 0.1px 0.1px 5px rgba(0, 0, 0, 0.1);
     `}
@@ -66,32 +66,24 @@ const DateOptionWrapper = styled.div`
 
 const getOptions = (language) => [
   {
-    key: 'day',
-    label: new Intl.NumberFormat(language, {
-      style: 'unit',
-      unit: 'hour',
-      unitDisplay: 'long',
-    }).format(24),
+    key: TIME.HOURLY,
+    label: formatTimeRange(language, TIME.HOURLY),
   },
   {
-    key: 'month',
-    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('month'),
+    key: TIME.DAILY,
+    label: formatTimeRange(language, TIME.DAILY),
   },
   {
-    key: 'year',
-    label: new Intl.DisplayNames(language, { type: 'dateTimeField' }).of('year'),
+    key: TIME.MONTHLY,
+    label: formatTimeRange(language, TIME.MONTHLY),
   },
   {
-    key: '5year',
-    label: new Intl.NumberFormat(language, {
-      style: 'unit',
-      unit: 'year',
-      unitDisplay: 'long',
-    }).format(5),
+    key: TIME.YEARLY,
+    label: formatTimeRange(language, TIME.YEARLY),
   },
 ];
 
-const TimeControls = ({ date, selectedTimeAggregate }) => {
+const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
   const { __, i18n } = useTranslation();
   const options = getOptions(i18n.language);
 
@@ -99,7 +91,7 @@ const TimeControls = ({ date, selectedTimeAggregate }) => {
     <div>
       <Wrapper>
         <Title>{__('time-controller.title')}</Title>
-        <DateDisplay>{formatHourlyDate(date, i18n.language)}</DateDisplay>
+        <DateDisplay>{formatDate(date, i18n.language, selectedTimeAggregate)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
         {options.map((o) => (
@@ -107,8 +99,7 @@ const TimeControls = ({ date, selectedTimeAggregate }) => {
             key={o.key}
             active={o.key === selectedTimeAggregate}
             onClick={() => {
-              // TODO: not enabled yet
-              // handleTimeAggregationChange(o.key);
+              handleTimeAggregationChange(o.key);
             }}
           >
             {o.label}

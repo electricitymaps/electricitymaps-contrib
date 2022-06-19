@@ -47,3 +47,7 @@ jobs:
     if: needs.setup.outputs.frontend != 'false'
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
+
+  prettier:
+    name: Prettier
+    uses: ./.github/workflows/prettier.yml

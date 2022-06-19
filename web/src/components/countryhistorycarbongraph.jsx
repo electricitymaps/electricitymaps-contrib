@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { useCo2ColorScale } from '../hooks/theme';
-import { useCurrentZoneHistory, useCurrentZoneHistoryStartTime, useCurrentZoneHistoryEndTime } from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
@@ -37,8 +37,9 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeI
   const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
-  const startTime = useCurrentZoneHistoryStartTime();
-  const endTime = useCurrentZoneHistoryEndTime();
+  const datetimes = useCurrentZoneHistoryDatetimes();
+  const startTime = datetimes.at(0);
+  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(

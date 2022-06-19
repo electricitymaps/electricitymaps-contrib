@@ -2,7 +2,7 @@
 name = "electricitymap-contrib"
 version = "0.1.0"
 description = ""
-authors = ["electricityMap team <hello@electricityMap.org>"]
+authors = ["electricityMap team <app@electricityMap.org>"]
 packages = [
     { include = "electricitymap" }
 ]
@@ -73,6 +73,11 @@ parsers = [
     "freezegun",
     "signalr-client-threads",
     "tqdm"
+]
+
+validators = [
+    "arrow",
+    "pandas"
 ]
 
 [tool.pylint.'MESSAGES CONTROL']

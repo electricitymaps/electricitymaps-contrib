@@ -10,6 +10,7 @@ import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
+import { useSelector } from 'react-redux';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
@@ -141,6 +142,8 @@ const AreaGraph = React.memo(
       [containerWidth, datetimes, startTime, endTime]
     );
 
+    const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+
     // Don't render the graph at all if no layers are present
     if (isEmpty(layers)) {
       return null;
@@ -167,7 +170,13 @@ const AreaGraph = React.memo(
           isMobile={isMobile}
           svgNode={node}
         />
-        <TimeAxis scale={timeScale} transform={`translate(-1 ${containerHeight - 1})`} className="x axis" />
+        <TimeAxis
+          scale={timeScale}
+          transform={`translate(-1 ${containerHeight - 1})`}
+          className="x axis"
+          selectedTimeAggregate={selectedTimeAggregate}
+          datetimes={datetimes}
+        />
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
           layers={layers}

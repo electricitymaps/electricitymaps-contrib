@@ -5,6 +5,7 @@ import { isLocalhost, isProduction } from '../helpers/environment';
 
 import dataReducer from './dataReducer';
 import dataReducerForHistoryFeature from './dataReducerForHistoryFeature';
+import { TIME } from '../helpers/constants';
 
 const getStorageBool = (key, defaultValue) => {
   const val = getKey(key);
@@ -22,6 +23,8 @@ const initialApplicationState = {
   co2ColorbarValue: null,
   colorBlindModeEnabled: getStorageBool('colorBlindModeEnabled', false),
   brightModeEnabled: getStorageBool('brightModeEnabled', true),
+  infoModalOpen: false,
+  faqModalOpen: false,
   electricityMixMode: 'consumption',
   isCordova: window.isCordova,
   isEmbedded: window.top !== window.self,
@@ -49,7 +52,7 @@ const initialApplicationState = {
   solarColorbarValue: null,
   webGLSupported: true,
   windColorbarValue: null,
-  selectedTimeAggregate: 'day',
+  selectedTimeAggregate: TIME.HOURLY,
 
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
