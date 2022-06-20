@@ -1,6 +1,5 @@
 import * as translation from '../helpers/translation';
 import { createReducer } from '@reduxjs/toolkit';
-
 import {
   GRID_DATA_FETCH_FAILED,
   GRID_DATA_FETCH_REQUESTED,
@@ -73,7 +72,7 @@ const reducer = createReducer(initialState, (builder) => {
         ...state.zones[zoneId][stateAggregation],
         details: zoneStates,
         hasDetailedData: true,
-        hasData: true, // fix;
+        hasData: zoneStates.length,
         aggregation: stateAggregation,
         hasParser: true,
       };
