@@ -74,7 +74,6 @@ const reducer = createReducer(initialState, (builder) => {
         hasDetailedData: true,
         hasData: zoneStates.length,
         aggregation: stateAggregation,
-        hasParser: true,
       };
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
