@@ -1,14 +1,14 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const cors = require("cors");
-const fs = require("fs");
-const url = require("url");
+const cors = require('cors');
+const fs = require('fs');
+const url = require('url');
 
 const PORT = process.argv[2] || 8001;
 
 app.use(cors());
 
-app.get("/v4/history", (req, res, next) => {
+app.get('/v4/history', (req, res, next) => {
   const { countryCode } = req.query;
   if (countryCode && fs.existsSync(`./public/v4/history_${countryCode}`)) {
     // we alter the URL to search for the specific history file if available
@@ -29,8 +29,8 @@ app.use(function (req, res, next) {
   }
 });
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 const server = app.listen(PORT, () => {
-  console.log("Started mockserver on port: " + PORT);
+  console.log('Started mockserver on port: ' + PORT);
 });

@@ -32,8 +32,7 @@ def lint():
 
 
 def test():
-    _run("python -u -m unittest discover tests")
-    _run("python -u -m unittest discover parsers/test")
+    _run("pytest")
 
 
 def check():

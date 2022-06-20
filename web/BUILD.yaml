@@ -1,5 +1,4 @@
 steps:
-
   prepare:
     image: node:16.15
     inputs:

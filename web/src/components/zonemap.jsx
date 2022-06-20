@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
 import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
-import { useSelector } from 'react-redux';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };

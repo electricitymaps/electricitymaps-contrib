@@ -6,7 +6,7 @@ import requests
 from PIL import Image
 
 URL = "http://194.110.178.135/grafik/stamnat.php"
-SOURCE = "kraftnat.aland.fi"
+SOURCE = "kraftnat.ax"
 TZ = "Europe/Mariehamn"
 
 

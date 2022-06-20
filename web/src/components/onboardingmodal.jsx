@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { useTranslation } from '../helpers/translation';
@@ -7,7 +7,7 @@ import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
 import { useSearchParams } from '../hooks/router';
 
-import Icon from './icon';
+import Modal from './modal';
 
 const views = [
   {
@@ -70,95 +70,23 @@ const OnboardingModal = ({ visible }) => {
   const { __ } = useTranslation();
   const shouldSkip = useSearchParams().get('skip-onboarding') === 'true';
 
-  const [currentViewIndex, setCurrentViewIndex] = useState(0);
-  const isOnLastView = () => currentViewIndex === views.length - 1;
-  const isOnFirstView = () => currentViewIndex === 0;
-
   const handleDismiss = () => {
     saveKey('onboardingSeen', true);
     dispatchApplication('onboardingSeen', true);
   };
-  const handleBack = () => {
-    if (!isOnFirstView()) {
-      setCurrentViewIndex(currentViewIndex - 1);
-    }
+
+  const handleShown = () => {
+    trackEvent('Onboarding Shown');
   };
-  const handleForward = () => {
-    if (!isOnLastView()) {
-      setCurrentViewIndex(currentViewIndex + 1);
-    }
-  };
-
-  // Dismiss the modal if SPACE key is pressed
-  useEffect(() => {
-    const keyPressHandlers = (ev) => {
-      if (ev.keyCode === 32) {
-        handleDismiss();
-      }
-    };
-    document.addEventListener('keypress', keyPressHandlers);
-    return () => {
-      document.removeEventListener('keypress', keyPressHandlers);
-    };
-  });
-
-  // Track event when the onboarding modal opens up
-  useEffect(() => {
-    if (visible && !shouldSkip) {
-      trackEvent('Onboarding Shown');
-    }
-  }, [visible, shouldSkip, trackEvent]);
-
-  if (!visible || shouldSkip) {
-    return null;
-  }
 
   return (
-    <React.Fragment>
-      <div className="modal-background-overlay" onClick={handleDismiss} />
-      <div className="modal" data-test-id="onboarding">
-        <div className="modal-left-button-container">
-          {!isOnFirstView() && (
-            <div className="modal-left-button" onClick={handleBack}>
-              <Icon iconName="arrow_back" />
-            </div>
-          )}
-        </div>
-        <div className="modal-body">
-          <div className="modal-close-button-container">
-            <div className="modal-close-button" onClick={handleDismiss}>
-              <Icon iconName="close" color="#fff" />
-            </div>
-          </div>
-          <div
-            className={`modal-header ${views[currentViewIndex].headerCssClass || ''}`}
-            style={{ backgroundImage: `url("${views[currentViewIndex].headerImage}")` }}
-          />
-          <div className={`modal-text ${views[currentViewIndex].textCssClass || ''}`}>
-            {views[currentViewIndex].renderContent(__)}
-          </div>
-        </div>
-        <div className="modal-footer">
-          {views.map((view, index) => (
-            <div
-              key={view.headerImage}
-              className={`modal-footer-circle ${index === currentViewIndex ? 'highlight' : ''}`}
-            />
-          ))}
-        </div>
-        <div className="modal-right-button-container">
-          {isOnLastView() ? (
-            <div className="modal-right-button green" onClick={handleDismiss}>
-              <Icon iconName="check" />
-            </div>
-          ) : (
-            <div className="modal-right-button" onClick={handleForward}>
-              <Icon iconName="arrow_forward" />
-            </div>
-          )}
-        </div>
-      </div>
-    </React.Fragment>
+    <Modal
+      modalName="onboarding"
+      visible={visible && !shouldSkip}
+      onModalShown={handleShown}
+      onDismiss={handleDismiss}
+      views={views}
+    />
   );
 };
 

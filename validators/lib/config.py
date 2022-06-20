@@ -4,7 +4,7 @@ def validator(kind: str):
     The backend will run all functions marked as validators.
 
     A validator function is expected to return as a pandas Series of values between 0 and 1,
-    where 0 means that no problems was found and 1 means that the data point is invalid.
+    where 1 means that no problems was found and 0 means that the data point is invalid.
     Floating points between 0 and 1 can be used to indicate suspicious data points.
     """
     assert isinstance(kind, str)

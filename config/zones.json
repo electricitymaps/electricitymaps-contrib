@@ -8,9 +8,7 @@
       "hydro": 45,
       "nuclear": 0
     },
-    "contributors": [
-      "Manu1400"
-    ],
+    "contributors": ["Manu1400"],
     "timezone": null
   },
   "AE": {
@@ -24,9 +22,7 @@
       "solar": 2705,
       "wind": 0
     },
-    "contributors": [
-      "q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -50,10 +46,7 @@
       "hydro": 2289,
       "solar": 22
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -77,12 +70,7 @@
       "solar": 183,
       "wind": 3
     },
-    "contributors": [
-      "tmslaine",
-      "systemcatch",
-      "alixunderplatz",
-      "nessie2013"
-    ],
+    "contributors": ["tmslaine", "systemcatch", "alixunderplatz", "nessie2013"],
     "parsers": {},
     "timezone": "Asia/Yerevan"
   },
@@ -104,11 +92,7 @@
       "solar": 759,
       "wind": 2990
     },
-    "contributors": [
-      "systemcatch",
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["systemcatch", "corradio", "nessie2013"],
     "parsers": {
       "production": "AR.fetch_production"
     },
@@ -132,10 +116,7 @@
       "unknown": 954,
       "wind": 3500
     },
-    "contributors": [
-      "corradio",
-      "brandongalbraith"
-    ],
+    "contributors": ["corradio", "brandongalbraith"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -163,11 +144,7 @@
       "solar": 5892,
       "wind": 1802
     },
-    "contributors": [
-      "brandongalbraith",
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -203,11 +180,7 @@
       "solar": 6025,
       "wind": 644
     },
-    "contributors": [
-      "brandongalbraith",
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -232,11 +205,7 @@
       "solar": 2065,
       "wind": 2141
     },
-    "contributors": [
-      "brandongalbraith",
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -261,11 +230,7 @@
       "solar": 187,
       "wind": 567
     },
-    "contributors": [
-      "brandongalbraith",
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -296,10 +261,7 @@
       "solar": 4.1,
       "wind": 1.5
     },
-    "contributors": [
-      "chuqtas",
-      "ajoga"
-    ],
+    "contributors": ["chuqtas", "ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -325,9 +287,7 @@
       "solar": 0.47,
       "wind": 5.65
     },
-    "contributors": [
-      "ajoga"
-    ],
+    "contributors": ["ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -343,10 +303,7 @@
       "solar": 3772,
       "wind": 1521
     },
-    "contributors": [
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -363,11 +320,7 @@
       "solar": 1884,
       "wind": 491
     },
-    "contributors": [
-      "jarek",
-      "corradio",
-      "MariusKroon"
-    ],
+    "contributors": ["jarek", "corradio", "MariusKroon"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -394,9 +347,7 @@
       "solar": 0.6,
       "wind": 0.6
     },
-    "contributors": [
-      "ajoga"
-    ],
+    "contributors": ["ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -412,9 +363,7 @@
       "oil": 257.88,
       "wind": 30
     },
-    "contributors": [
-      "pascalheraud"
-    ],
+    "contributors": ["pascalheraud"],
     "flag_file_name": "aw.png",
     "parsers": {
       "production": "AW.fetch_production"
@@ -430,13 +379,10 @@
       "coal": 0,
       "gas": 0,
       "nuclear": 0,
-      "oil": 65.3,
-      "wind": 16.56
+      "oil": 35,
+      "wind": 63.8
     },
-    "contributors": [
-      "tmslaine",
-      "systemcatch"
-    ],
+    "contributors": ["tmslaine", "systemcatch"],
     "parsers": {
       "consumption": "AX.fetch_consumption",
       "price": "ENTSOE.fetch_price",
@@ -462,10 +408,7 @@
       "hydro storage": 440,
       "wind": 135
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -485,10 +428,7 @@
       [87.52178959200009, 20.23871491100003],
       [93.14285119700017, 27.123544007000064]
     ],
-    "contributors": [
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz"],
     "parsers": {
       "production": "BD.fetch_production"
     },
@@ -512,11 +452,7 @@
       "solar": 5898,
       "wind": 4883
     },
-    "contributors": [
-      "corradio",
-      "nessie2013",
-      "Fred-3000"
-    ],
+    "contributors": ["corradio", "nessie2013", "Fred-3000"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -548,14 +484,7 @@
       "solar": 1130,
       "wind": 701
     },
-    "contributors": [
-      "yurukov",
-      "ultibo",
-      "systemcatch",
-      "bogomil",
-      "Pantkowsky",
-      "MindFreeze"
-    ],
+    "contributors": ["yurukov", "ultibo", "systemcatch", "bogomil", "Pantkowsky", "MindFreeze"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -575,10 +504,7 @@
       "solar": 11,
       "wind": 1
     },
-    "contributors": [
-      "q--",
-      "nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -609,11 +535,7 @@
       "unknown": 2501.03,
       "wind": 102.6
     },
-    "contributors": [
-      "igorarduin",
-      "corradio",
-      "skovhus"
-    ],
+    "contributors": ["igorarduin", "corradio", "skovhus"],
     "parsers": {
       "generationForecast": "BO.fetch_generation_forecast",
       "production": "BO.fetch_production"
@@ -632,12 +554,7 @@
       "unknown": 21193,
       "wind": 28
     },
-    "contributors": [
-      "alexanmtz",
-      "corradio",
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -658,12 +575,7 @@
       "unknown": 3645,
       "wind": 426
     },
-    "contributors": [
-      "alexanmtz",
-      "corradio",
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -681,12 +593,7 @@
       "unknown": 8290,
       "wind": 16744
     },
-    "contributors": [
-      "alexanmtz",
-      "corradio",
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -704,12 +611,7 @@
       "unknown": 4252,
       "wind": 2022
     },
-    "contributors": [
-      "alexanmtz",
-      "corradio",
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -745,9 +647,7 @@
       "solar": 50.9,
       "wind": 70.4
     },
-    "contributors": [
-      "admetny"
-    ],
+    "contributors": ["admetny"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -776,9 +676,7 @@
       "nuclear": 0,
       "oil": 0
     },
-    "contributors": [
-      "mlucchini"
-    ],
+    "contributors": ["mlucchini"],
     "flag_file_name": "ca.png",
     "parsers": {
       "price": "CA_AB.fetch_price",
@@ -798,9 +696,7 @@
       "solar": 1,
       "wind": 704
     },
-    "contributors": [
-      "daveachuk"
-    ],
+    "contributors": ["daveachuk"],
     "flag_file_name": "ca.png",
     "timezone": null
   },
@@ -817,9 +713,7 @@
       "oil": 13,
       "wind": 258
     },
-    "contributors": [
-      "felixvanoost"
-    ],
+    "contributors": ["felixvanoost"],
     "flag_file_name": "ca.png",
     "timezone": "America/Winnipeg"
   },
@@ -838,9 +732,7 @@
       "oil": 1497,
       "wind": 294
     },
-    "contributors": [
-      "jarek"
-    ],
+    "contributors": ["jarek"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NB.fetch_production"
@@ -877,10 +769,7 @@
       "hydro": 418,
       "wind": 567
     },
-    "contributors": [
-      "jarek",
-      "corradio"
-    ],
+    "contributors": ["jarek", "corradio"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NS.fetch_production"
@@ -917,12 +806,7 @@
       "solar": 478,
       "wind": 4783
     },
-    "contributors": [
-      "corradio",
-      "jarek",
-      "scriptator",
-      "felixvanoost"
-    ],
+    "contributors": ["corradio", "jarek", "scriptator", "felixvanoost"],
     "flag_file_name": "ca.png",
     "parsers": {
       "price": "CA_ON.fetch_price",
@@ -939,10 +823,7 @@
       "oil": 179,
       "wind": 203.6
     },
-    "contributors": [
-      "reinvented",
-      "jarek"
-    ],
+    "contributors": ["reinvented", "jarek"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_PE.fetch_production"
@@ -966,12 +847,7 @@
       "unknown": 1056,
       "wind": 3772
     },
-    "contributors": [
-      "jarek",
-      "pjakobsen",
-      "madsnedergaard",
-      "KabelWlan"
-    ],
+    "contributors": ["jarek", "pjakobsen", "madsnedergaard", "KabelWlan"],
     "flag_file_name": "ca.png",
     "parsers": {
       "consumption": "CA_QC.fetch_consumption",
@@ -1001,10 +877,7 @@
     "capacity": {
       "hydro": 92
     },
-    "contributors": [
-      "jarek",
-      "nessie2013"
-    ],
+    "contributors": ["jarek", "nessie2013"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_YT.fetch_production"
@@ -1040,12 +913,7 @@
       "solar": 3135.8,
       "wind": 88.6
     },
-    "contributors": [
-      "corradio",
-      "postronium",
-      "Kikof2",
-      "KabelWlan"
-    ],
+    "contributors": ["corradio", "postronium", "Kikof2", "KabelWlan"],
     "disclaimer": "Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1070,9 +938,7 @@
       "oil": 8.05,
       "solar": 0.128
     },
-    "contributors": [
-      "autipial"
-    ],
+    "contributors": ["autipial"],
     "timezone": "Pacific/Easter"
   },
   "CL-SEA": {
@@ -1133,10 +999,7 @@
       "solar": 5112.58,
       "wind": 3535.2
     },
-    "contributors": [
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz"],
     "delays": {
       "production": 24
     },
@@ -1172,12 +1035,7 @@
       "unknown": 69,
       "wind": 595
     },
-    "contributors": [
-      "corradio",
-      "jarek",
-      "mlucchini",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "jarek", "mlucchini", "nessie2013"],
     "parsers": {
       "production": "CR.fetch_production"
     },
@@ -1208,12 +1066,7 @@
       "solar": 316,
       "wind": 158
     },
-    "contributors": [
-      "ultibo",
-      "veqtrus",
-      "q--",
-      "nessie2013"
-    ],
+    "contributors": ["ultibo", "veqtrus", "q--", "nessie2013"],
     "parsers": {
       "production": "CY.fetch_production"
     },
@@ -1237,9 +1090,7 @@
       "unknown": 410,
       "wind": 338
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1270,14 +1121,7 @@
       "unknown": 3700,
       "wind": 64280
     },
-    "contributors": [
-      "corradio",
-      "bohne13",
-      "chiefymuc",
-      "nessie2013",
-      "IV1T3",
-      "sin"
-    ],
+    "contributors": ["corradio", "bohne13", "chiefymuc", "nessie2013", "IV1T3", "sin"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1309,10 +1153,7 @@
       "solar": 1536,
       "wind": 6949
     },
-    "contributors": [
-      "corradio",
-      "Manu1400"
-    ],
+    "contributors": ["corradio", "Manu1400"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1332,9 +1173,7 @@
     "capacity": {
       "wind": 30
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "price": "ENTSOE.fetch_price",
       "production": "DK_BHM.fetch_production"
@@ -1359,10 +1198,7 @@
       "solar": 1086,
       "wind": 5165
     },
-    "contributors": [
-      "corradio",
-      "tmslaine"
-    ],
+    "contributors": ["corradio", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1392,10 +1228,7 @@
       "solar": 450,
       "wind": 1784
     },
-    "contributors": [
-      "corradio",
-      "tmslaine"
-    ],
+    "contributors": ["corradio", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1425,11 +1258,7 @@
       "solar": 188,
       "wind": 370
     },
-    "contributors": [
-      "systemcatch",
-      "nessie2013",
-      "alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "nessie2013", "alixunderplatz"],
     "parsers": {
       "production": "DO.fetch_production"
     },
@@ -1461,10 +1290,7 @@
       "unknown": 13,
       "wind": 329
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1506,13 +1332,7 @@
       "unknown": 402,
       "wind": 27561
     },
-    "contributors": [
-      "brandongalbraith",
-      "corradio",
-      "JosepRey",
-      "nessie2013",
-      "KabelWlan"
-    ],
+    "contributors": ["brandongalbraith", "corradio", "JosepRey", "nessie2013", "KabelWlan"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1529,10 +1349,7 @@
       [-15.007069464999915, 27.55068594000015],
       [-12.91779537699989, 29.74331289300015]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1545,10 +1362,7 @@
       [-16.321766730999855, 27.23436107000005],
       [-14.863636847999885, 28.679754950000174]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1566,10 +1380,7 @@
       "oil": 11.78,
       "wind": 11.5
     },
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1585,10 +1396,7 @@
     "capacity": {
       "oil": 22.8
     },
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1601,10 +1409,7 @@
       [-18.502186652999853, 27.955389716000084],
       [-17.22104415999985, 29.355619032000007]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1617,10 +1422,7 @@
       [-17.416058089999865, 27.497096487000093],
       [-15.617746548999946, 29.08344147300015]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_CN.fetch_consumption",
@@ -1633,11 +1435,7 @@
       [0.8828231130000861, 38.1386463070001],
       [2.082367384000122, 39.25535716400017]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_IB.fetch_consumption",
@@ -1650,11 +1448,7 @@
       [0.712168816000087, 38.33180940700015],
       [2.123057488000086, 39.618882554000066]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_IB.fetch_consumption",
@@ -1667,11 +1461,7 @@
       [1.850759311000076, 38.76906972900008],
       [3.974375847000147, 40.46877676000017]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_IB.fetch_consumption",
@@ -1684,11 +1474,7 @@
       [3.303151889000077, 39.31647370000019],
       [4.837087436000104, 40.57941315300016]
     ],
-    "contributors": [
-      "hectorespert",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES_IB.fetch_consumption",
@@ -1717,10 +1503,7 @@
       "unknown": 784,
       "wind": 3257
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1754,10 +1537,7 @@
       "oil": 66.7,
       "wind": 18.3
     },
-    "contributors": [
-      "corradio",
-      "q--"
-    ],
+    "contributors": ["corradio", "q--"],
     "parsers": {
       "production": "FO.fetch_production"
     },
@@ -1782,11 +1562,7 @@
       "unknown": 1366,
       "wind": 18549
     },
-    "contributors": [
-      "corradio",
-      "lorrieq",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "lorrieq", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1811,10 +1587,7 @@
       "solar": 145.123,
       "wind": 18
     },
-    "contributors": [
-      "PETILLON-Sebastien",
-      "VIKTORVAV99"
-    ],
+    "contributors": ["PETILLON-Sebastien", "VIKTORVAV99"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -1844,12 +1617,7 @@
       "unknown": 4708,
       "wind": 25097
     },
-    "contributors": [
-      "corradio",
-      "lorrieq",
-      "nessie2013",
-      "AlexandreCouderc"
-    ],
+    "contributors": ["corradio", "lorrieq", "nessie2013", "AlexandreCouderc"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1873,13 +1641,7 @@
       "solar": 92,
       "wind": 995
     },
-    "contributors": [
-      "corradio",
-      "systemcatch",
-      "brunolajoie",
-      "alixunderplatz",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "systemcatch", "brunolajoie", "alixunderplatz", "nessie2013"],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1899,10 +1661,7 @@
       "solar": 1.2,
       "wind": 48
     },
-    "contributors": [
-      "systemcatch",
-      "maxbellec"
-    ],
+    "contributors": ["systemcatch", "maxbellec"],
     "flag_file_name": "gb.png",
     "parsers": {
       "production": "GB_ORK.fetch_production"
@@ -1914,10 +1673,7 @@
       [-2.612294074999852, 59.0141055360001],
       [-0.25479081899990774, 61.34788646000004]
     ],
-    "contributors": [
-      "systemcatch",
-      "maxbellec"
-    ],
+    "contributors": ["systemcatch", "maxbellec"],
     "flag_file_name": "gb.png",
     "timezone": null
   },
@@ -1933,11 +1689,7 @@
       "nuclear": 0,
       "wind": 21
     },
-    "contributors": [
-      "alixunderplatz",
-      "kruschk",
-      "tmslaine"
-    ],
+    "contributors": ["alixunderplatz", "kruschk", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1959,9 +1711,7 @@
       "oil": 108,
       "solar": 44.879
     },
-    "contributors": [
-      "PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -1998,9 +1748,7 @@
       "solar": 60.447,
       "wind": 26.26
     },
-    "contributors": [
-      "PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -2029,9 +1777,7 @@
       "unknown": 109,
       "wind": 4150
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2068,11 +1814,7 @@
       "solar": 91,
       "wind": 75.9
     },
-    "contributors": [
-      "corradio",
-      "igorarduin",
-      "kruschk"
-    ],
+    "contributors": ["corradio", "igorarduin", "kruschk"],
     "parsers": {
       "consumption": "GT.fetch_consumption",
       "production": "GT.fetch_production"
@@ -2101,9 +1843,7 @@
       "gas": 3225,
       "oil": 210
     },
-    "contributors": [
-      "nessie2013"
-    ],
+    "contributors": ["nessie2013"],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
   },
@@ -2126,9 +1866,7 @@
       "solar": 451,
       "wind": 225
     },
-    "contributors": [
-      "alixunderplatz"
-    ],
+    "contributors": ["alixunderplatz"],
     "parsers": {
       "production": "ENTE.fetch_production"
     },
@@ -2151,9 +1889,7 @@
       "unknown": 57,
       "wind": 925
     },
-    "contributors": [
-      "PaulCornelissen"
-    ],
+    "contributors": ["PaulCornelissen"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2184,10 +1920,7 @@
       "unknown": 69,
       "wind": 323
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2202,14 +1935,8 @@
     "flag_file_name": "id.png",
     "timezone": "Asia/Jakarta",
     "bounding_box": [
-      [
-        94.51270592500003,
-        -11.422621351999908
-      ],
-      [
-        141.47762699400005,
-        6.410101630000042
-      ]
+      [94.51270592500003, -11.422621351999908],
+      [141.47762699400005, 6.410101630000042]
     ],
     "capacity": {
       "biomass": 1912,
@@ -2222,9 +1949,7 @@
       "solar": 211,
       "wind": 154
     },
-    "contributors": [
-      "nessie2013"
-    ]
+    "contributors": ["nessie2013"]
   },
   "IE": {
     "bounding_box": [
@@ -2243,10 +1968,7 @@
       "unknown": 647,
       "wind": 4332
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2275,11 +1997,7 @@
       "unknown": 175,
       "wind": 28
     },
-    "contributors": [
-      "alixunderplatz",
-      "jarek",
-      "yuvalabou"
-    ],
+    "contributors": ["alixunderplatz", "jarek", "yuvalabou"],
     "parsers": {
       "consumption": "IL.fetch_consumption",
       "price": "IL.fetch_price",
@@ -2302,9 +2020,7 @@
       "solar": 42335.49,
       "wind": 39486.65
     },
-    "contributors": [
-      "systemcatch"
-    ],
+    "contributors": ["systemcatch"],
     "parsers": {
       "production": "IN.fetch_production"
     },
@@ -2329,9 +2045,7 @@
       "solar": 4254.3,
       "wind": 4096.7
     },
-    "contributors": [
-      "hectorespert"
-    ],
+    "contributors": ["hectorespert"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
@@ -2366,9 +2080,7 @@
       "solar": 252.5,
       "wind": 0
     },
-    "contributors": [
-      "hectorespert"
-    ],
+    "contributors": ["hectorespert"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_CT.fetch_consumption",
@@ -2392,9 +2104,7 @@
       "solar": 193,
       "wind": 0
     },
-    "contributors": [
-      "hectorespert"
-    ],
+    "contributors": ["hectorespert"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_DL.fetch_consumption",
@@ -2425,9 +2135,7 @@
       "solar": 5131.6,
       "wind": 8758.4
     },
-    "contributors": [
-      "sahitya-pavurala"
-    ],
+    "contributors": ["sahitya-pavurala"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_GJ.fetch_consumption",
@@ -2450,9 +2158,7 @@
       "solar": 45,
       "wind": 0
     },
-    "contributors": [
-      "willbeaufoy"
-    ],
+    "contributors": ["willbeaufoy"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_HP.fetch_production"
@@ -2486,9 +2192,7 @@
       "solar": 7409.39,
       "wind": 4938.6
     },
-    "contributors": [
-      "hectorespert"
-    ],
+    "contributors": ["hectorespert"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_KA.fetch_consumption",
@@ -2517,12 +2221,7 @@
       "wind": 5010.8
     },
     "comment": "partial source: installed capacity in Jun-2021 https://cea.nic.in/dashboard/?lang=en",
-    "contributors": [
-      "GitMatze",
-      "alixunderplatz",
-      "systemcatch",
-      "Manu1400"
-    ],
+    "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_MH.fetch_production"
@@ -2568,10 +2267,7 @@
       "solar": 968.6,
       "wind": 0
     },
-    "contributors": [
-      "corradio",
-      "hectorespert"
-    ],
+    "contributors": ["corradio", "hectorespert"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_PB.fetch_consumption",
@@ -2614,10 +2310,7 @@
       "solar": 1840.3,
       "wind": 0
     },
-    "contributors": [
-      "sahitya-pavurala",
-      "pierresegonne"
-    ],
+    "contributors": ["sahitya-pavurala", "pierresegonne"],
     "flag_file_name": "in.png",
     "parsers": {},
     "timezone": "Asia/Kolkata"
@@ -2637,10 +2330,7 @@
       "solar": 398.3,
       "wind": 0
     },
-    "contributors": [
-      "alixunderplatz",
-      "lorrieq"
-    ],
+    "contributors": ["alixunderplatz", "lorrieq"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_UT.fetch_production"
@@ -2657,11 +2347,7 @@
       [49.059255405000044, 37.562000619000116]
     ],
     "capacity": {},
-    "contributors": [
-      "alixunderplatz",
-      "systemcatch",
-      "byronwilliams"
-    ],
+    "contributors": ["alixunderplatz", "systemcatch", "byronwilliams"],
     "flag_file_name": "iq.png",
     "parsers": {
       "consumption": "IQ.fetch_consumption",
@@ -2700,11 +2386,7 @@
       "unknown": 0,
       "wind": 2
     },
-    "contributors": [
-      "corradio",
-      "SNPerkin",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "SNPerkin", "nessie2013"],
     "flag_file_name": "is.png",
     "parsers": {
       "production": "IS.fetch_production"
@@ -2728,9 +2410,7 @@
       "solar": 21650.1,
       "wind": 10906.9
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast"
@@ -2755,10 +2435,7 @@
       "solar": 1984.2,
       "wind": 162.7
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2786,10 +2463,7 @@
       "solar": 3547.5,
       "wind": 2085.7
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2817,10 +2491,7 @@
       "solar": 9649.7,
       "wind": 146.2
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2848,10 +2519,7 @@
       "solar": 973.8,
       "wind": 1087.5
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2879,10 +2547,7 @@
       "solar": 1486.6,
       "wind": 1925.2
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
@@ -2909,10 +2574,7 @@
       "solar": 4008.3,
       "wind": 5499.5
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
@@ -2935,10 +2597,7 @@
       [135.84, 33.82],
       [138.72, 37.17]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -2951,10 +2610,7 @@
       [130.66, 33.585],
       [134.54, 35.74]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -2967,10 +2623,7 @@
       [139.35, 41.3],
       [146, 45.97]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -2983,10 +2636,7 @@
       [135.8, 35.39],
       [137.75, 37.9]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3010,11 +2660,7 @@
       "solar": 4962,
       "wind": 146
     },
-    "contributors": [
-      "tmslaine",
-      "lorrieq",
-      "kongkille"
-    ],
+    "contributors": ["tmslaine", "lorrieq", "kongkille"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3035,11 +2681,7 @@
       "wind": 3.25,
       "unknown": 9976.94
     },
-    "contributors": [
-      "tmslaine",
-      "lorrieq",
-      "nessie2013"
-    ],
+    "contributors": ["tmslaine", "lorrieq", "nessie2013"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3052,10 +2694,7 @@
       [122.43816165500004, 23.756984768000052],
       [131.82789147200003, 28.368963934000078]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3068,10 +2707,7 @@
       [132.15, 32.53],
       [134.69, 34.63]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3084,10 +2720,7 @@
       [137.65, 36.65],
       [142, 41.66]
     ],
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3111,10 +2744,7 @@
       "solar": 11900,
       "wind": 440
     },
-    "contributors": [
-      "tmslaine",
-      "lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3158,11 +2788,7 @@
       "solar": 18709,
       "wind": 1727
     },
-    "contributors": [
-      "systemcatch",
-      "alixunderplatz",
-      "IV1T3"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz", "IV1T3"],
     "parsers": {
       "consumption": "KR.fetch_consumption",
       "production": "KR.fetch_production",
@@ -3181,10 +2807,7 @@
       "solar": 93,
       "wind": 12
     },
-    "contributors": [
-      "alixunderplatz",
-      "nessie2013"
-    ],
+    "contributors": ["alixunderplatz", "nessie2013"],
     "parsers": {
       "consumption": "KW.fetch_consumption",
       "production": "KW.fetch_production"
@@ -3218,14 +2841,8 @@
     "flag_file_name": "lk.png",
     "timezone": "Asia/Colombo",
     "bounding_box": [
-      [
-        81.37741877418776,
-        6.592635332223807
-      ],
-      [
-        82.37741877418776,
-        7.592635332223807
-      ]
+      [81.37741877418776, 6.592635332223807],
+      [82.37741877418776, 7.592635332223807]
     ],
     "capacity": {
       "battery storage": 0,
@@ -3241,9 +2858,7 @@
       "unknown": 0,
       "wind": 179
     },
-    "contributors": [
-      "q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "production": "LK.fetch_production"
     }
@@ -3274,10 +2889,7 @@
       "unknown": 37,
       "wind": 671
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3301,10 +2913,7 @@
       "unknown": 82.3648,
       "wind": 138.535
     },
-    "contributors": [
-      "corradio",
-      "clawfire/"
-    ],
+    "contributors": ["corradio", "clawfire/"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3327,9 +2936,7 @@
       "solar": 14,
       "wind": 87
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3361,9 +2968,7 @@
       "solar": 711,
       "wind": 1220
     },
-    "contributors": [
-      "veqtrus"
-    ],
+    "contributors": ["veqtrus"],
     "parsers": {},
     "timezone": "Africa/Casablanca"
   },
@@ -3380,13 +2985,7 @@
       "solar": 8,
       "wind": 51
     },
-    "contributors": [
-      "systemcatch",
-      "alixunderplatz",
-      "nessie2013",
-      "lgrigoryeva1",
-      "Impelon"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz", "nessie2013", "lgrigoryeva1", "Impelon"],
     "parsers": {
       "consumption": "MD.fetch_consumption",
       "price": "MD.fetch_price",
@@ -3405,11 +3004,7 @@
       "solar": 3,
       "wind": 118
     },
-    "contributors": [
-      "corradio",
-      "nessie2013",
-      "Pantkowsky"
-    ],
+    "contributors": ["corradio", "nessie2013", "Pantkowsky"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3475,9 +3070,7 @@
       "solar": 53.97,
       "wind": 1.1
     },
-    "contributors": [
-      "PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -3509,22 +3102,11 @@
       [-86.811982388, 32.72083]
     ],
     "capacity": {},
-    "contributors": [
-      "scriptator"
-    ],
+    "contributors": ["scriptator"],
     "parsers": {
       "production": "MX.fetch_production"
     },
-    "subZoneNames": [
-      "MX-BC",
-      "MX-CE",
-      "MX-NE",
-      "MX-NO",
-      "MX-NW",
-      "MX-OC",
-      "MX-OR",
-      "MX-PN"
-    ],
+    "subZoneNames": ["MX-BC", "MX-CE", "MX-NE", "MX-NO", "MX-NW", "MX-OC", "MX-OR", "MX-PN"],
     "timezone": null
   },
   "MX-BC": {
@@ -3598,11 +3180,7 @@
       "gas": 10114,
       "hydro": 2160
     },
-    "contributors": [
-      "kruschk",
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["kruschk", "systemcatch", "nessie2013"],
     "parsers": {
       "consumption": "MY_WM.fetch_consumption",
       "production": "MY_WM.fetch_production",
@@ -3626,11 +3204,7 @@
       "solar": 116,
       "wind": 5
     },
-    "contributors": [
-      "systemcatch",
-      "jarek",
-      "alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "jarek", "alixunderplatz"],
     "timezone": null
   },
   "NC": {
@@ -3653,11 +3227,7 @@
       "unknown": 2333,
       "wind": 10
     },
-    "contributors": [
-      "byronwilliams",
-      "kruschk",
-      "nessie2013"
-    ],
+    "contributors": ["byronwilliams", "kruschk", "nessie2013"],
     "parsers": {
       "production": "NG.fetch_production"
     },
@@ -3676,11 +3246,7 @@
       "oil": 888.31,
       "wind": 186.2
     },
-    "contributors": [
-      "corradio",
-      "systemcatch",
-      "jarek"
-    ],
+    "contributors": ["corradio", "systemcatch", "jarek"],
     "parsers": {
       "price": "NI.fetch_price",
       "production": "NI.fetch_production"
@@ -3712,11 +3278,7 @@
       "solar": 14300,
       "wind": 7801
     },
-    "contributors": [
-      "corradio",
-      "PaulCornelissen",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "PaulCornelissen", "nessie2013"],
     "disclaimer": "The data provider (ENTSO-E) underreports production and consumption data.",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -3742,9 +3304,7 @@
       "unknown": 112.6,
       "wind": 4619
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3911,9 +3471,7 @@
       "solar": 0.7804,
       "wind": 0
     },
-    "contributors": [
-      "Subarna578"
-    ],
+    "contributors": ["Subarna578"],
     "flag_file_name": "np.png",
     "timezone": null
   },
@@ -3930,12 +3488,7 @@
       [166.054687, -47.638394],
       [178.798828, -34.168835]
     ],
-    "contributors": [
-      "BobGrun",
-      "corradio",
-      "davidcole1340",
-      "drc38"
-    ],
+    "contributors": ["BobGrun", "corradio", "davidcole1340", "drc38"],
     "flag_file_name": "nz.png",
     "parsers": {
       "price": "NZ.fetch_price",
@@ -3958,9 +3511,7 @@
       "solar": 0,
       "wind": 0
     },
-    "contributors": [
-      "madsnedergaard"
-    ],
+    "contributors": ["madsnedergaard"],
     "flag_file_name": "nz.png",
     "timezone": "Pacific/Auckland"
   },
@@ -3973,10 +3524,7 @@
       "solar": 138,
       "wind": 50
     },
-    "contributors": [
-      "q--",
-      "nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -3999,16 +3547,7 @@
       "unknown": 0,
       "wind": 270
     },
-    "contributors": [
-      "paulotaviodr",
-      "jarek",
-      "systemcatch",
-      "7hibault",
-      "nessie2013",
-      "q--",
-      "IV1T3",
-      "r24mille"
-    ],
+    "contributors": ["paulotaviodr", "jarek", "systemcatch", "7hibault", "nessie2013", "q--", "IV1T3", "r24mille"],
     "parsers": {
       "production": "PA.fetch_production",
       "consumption": "PA.fetch_consumption"
@@ -4026,10 +3565,7 @@
       "solar": 336,
       "wind": 409
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "production": "PE.fetch_production"
     },
@@ -4045,9 +3581,7 @@
       "oil": 201.86,
       "solar": 41.077
     },
-    "contributors": [
-      "autipial"
-    ],
+    "contributors": ["autipial"],
     "parsers": {
       "production": "PF.fetch_production"
     },
@@ -4084,13 +3618,7 @@
       "unknown": 0,
       "wind": 7211.6
     },
-    "contributors": [
-      "corradio",
-      "wojciej",
-      "nessie2013",
-      "filipc",
-      "Pantkowsky"
-    ],
+    "contributors": ["corradio", "wojciej", "nessie2013", "filipc", "Pantkowsky"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4125,11 +3653,7 @@
       "unknown": 0,
       "wind": 125.1
     },
-    "contributors": [
-      "q--",
-      "systemcatch",
-      "veqtrus"
-    ],
+    "contributors": ["q--", "systemcatch", "veqtrus"],
     "flag_file_name": "pr.png",
     "parsers": {
       "production": "US_PREPA.fetch_production"
@@ -4157,11 +3681,7 @@
       "solar": 1364,
       "wind": 5528
     },
-    "contributors": [
-      "corradio",
-      "nessie2013",
-      "Falconet8"
-    ],
+    "contributors": ["corradio", "nessie2013", "Falconet8"],
     "flag_file_name": "pt.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4209,10 +3729,7 @@
       "biomass": 38,
       "solar": 5
     },
-    "contributors": [
-      "q--",
-      "nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -4232,9 +3749,7 @@
       "solar": 189,
       "wind": 15
     },
-    "contributors": [
-      "PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -4259,10 +3774,7 @@
       "unknown": 4,
       "wind": 3014
     },
-    "contributors": [
-      "corradio",
-      "mzaharie"
-    ],
+    "contributors": ["corradio", "mzaharie"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4288,10 +3800,7 @@
       "unknown": 35,
       "wind": 397
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4313,13 +3822,7 @@
       "solar": 75,
       "wind": 10
     },
-    "contributors": [
-      "denplis",
-      "systemcatch",
-      "alixunderplatz",
-      "JeanBaptisteScellier",
-      "aekrylov"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz", "JeanBaptisteScellier", "aekrylov"],
     "flag_file_name": "ru.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4341,11 +3844,7 @@
       "nuclear": 27914,
       "unknown": 125014
     },
-    "contributors": [
-      "denplis",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -4361,11 +3860,7 @@
       "hydro": 25286,
       "unknown": 26570
     },
-    "contributors": [
-      "denplis",
-      "systemcatch",
-      "alixunderplatz"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -4374,18 +3869,10 @@
   },
   "RU-AS": {
     "bounding_box": [
-      [
-        105.0401526228452,
-        41.79511139500006
-      ],
-      [
-        163.3469389183963,
-        77.62579987200007
-      ]
+      [105.0401526228452, 41.79511139500006],
+      [163.3469389183963, 77.62579987200007]
     ],
-    "contributors": [
-      "JeanBaptisteScellier"
-    ],
+    "contributors": ["JeanBaptisteScellier"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -4422,18 +3909,10 @@
   },
   "SA": {
     "bounding_box": [
-      [
-        34.07276451900009,
-        15.87095774900007
-      ],
-      [
-        56.13756473800004,
-        32.62134796200006
-      ]
+      [34.07276451900009, 15.87095774900007],
+      [56.13756473800004, 32.62134796200006]
     ],
-    "contributors": [
-      "q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -4463,13 +3942,7 @@
       "solar": 1586.32,
       "wind": 12200
     },
-    "contributors": [
-      "augustekman",
-      "RRyyas",
-      "corradio",
-      "VIKTORVAV99",
-      "dpkruczek"
-    ],
+    "contributors": ["augustekman", "RRyyas", "corradio", "VIKTORVAV99", "dpkruczek"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4550,15 +4023,7 @@
       "oil": 0,
       "solar": 486.9
     },
-    "contributors": [
-      "corradio",
-      "jarek",
-      "r24mille",
-      "systemcatch",
-      "alixunderplatz",
-      "q--",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "jarek", "r24mille", "systemcatch", "alixunderplatz", "q--", "nessie2013"],
     "parsers": {
       "price": "SG.fetch_price",
       "production": "SG.fetch_production"
@@ -4584,9 +4049,7 @@
       "solar": 289,
       "wind": 3
     },
-    "contributors": [
-      "corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4618,10 +4081,7 @@
       "wind": 3,
       "unknown": 652
     },
-    "contributors": [
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4669,10 +4129,7 @@
       "solar": 478,
       "wind": 54
     },
-    "contributors": [
-      "systemcatch",
-      "nessie2013"
-    ],
+    "contributors": ["systemcatch", "nessie2013"],
     "parsers": {
       "production": "SV.fetch_production"
     },
@@ -4703,28 +4160,26 @@
       [96.85140100100011, 5.129890035000059],
       [106.15099776200003, 20.94500640900013]
     ],
-	"capacity": {
+    "capacity": {
       "battery storage": 0,
       "biomass": 996.94,
-      "coal": 6067.50,
-      "gas": 27356.00,
-      "geothermal": 0.30,
+      "coal": 6067.5,
+      "gas": 27356.0,
+      "geothermal": 0.3,
       "hydro": 6993.73,
-      "hydro storage": 1000.00,
+      "hydro storage": 1000.0,
       "nuclear": 0,
-      "oil": 1497.40,
-      "solar": 442.80,
+      "oil": 1497.4,
+      "solar": 442.8,
       "unknown": 0,
       "wind": 1447.69
     },
-	"parsers": {
+    "parsers": {
       "consumption": "TH.fetch_consumption",
       "price": "TH.fetch_price",
       "production": "TH.fetch_production"
     },
-	"contributors": [
-      "PPsyrius"
-    ],
+    "contributors": ["PPsyrius"],
     "timezone": "Asia/Bangkok"
   },
   "TJ": {
@@ -4766,13 +4221,7 @@
       "unknown": 801.6,
       "wind": 10861.5
     },
-    "contributors": [
-      "corradio",
-      "olivierSemet",
-      "lorrieq",
-      "nessie2013",
-      "lgrigoryeva1"
-    ],
+    "contributors": ["corradio", "olivierSemet", "lorrieq", "nessie2013", "lgrigoryeva1"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4792,10 +4241,7 @@
       [120.106188593, 21.9705713974],
       [121.951243931, 25.2954588893]
     ],
-    "contributors": [
-      "corradio",
-      "MariusKroon"
-    ],
+    "contributors": ["corradio", "MariusKroon"],
     "parsers": {
       "production": "TW.fetch_production"
     },
@@ -4821,13 +4267,7 @@
       "solar": 6226,
       "wind": 1529
     },
-    "contributors": [
-      "amkozlov",
-      "denplis",
-      "corradio",
-      "MariusKroon",
-      "alixunderplatz"
-    ],
+    "contributors": ["amkozlov", "denplis", "corradio", "MariusKroon", "alixunderplatz"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4877,11 +4317,7 @@
       "wind": 0
     },
     "comment": "Balancing Authority Of Northern California",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -4915,11 +4351,7 @@
       "wind": 6140.2
     },
     "comment": "California Independent System Operator",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -4948,11 +4380,7 @@
       "wind": 0
     },
     "comment": "Imperial Irrigation District",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -4986,11 +4414,7 @@
       "wind": 440.5
     },
     "comment": "Los Angeles Department Of Water And Power",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5024,11 +4448,7 @@
       "wind": 0
     },
     "comment": "Turlock Irrigation District",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5062,11 +4482,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Progress East",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5100,11 +4516,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Progress West",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5138,11 +4550,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Carolinas",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5176,11 +4584,7 @@
       "wind": 0
     },
     "comment": "South Carolina Public Service Authority",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5214,11 +4618,7 @@
       "wind": 0
     },
     "comment": "South Carolina Electric & Gas Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5252,11 +4652,7 @@
       "wind": 0
     },
     "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -5286,11 +4682,7 @@
       "wind": 499
     },
     "comment": "Southwestern Power Administration",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5324,11 +4716,7 @@
       "wind": 29163.9
     },
     "comment": "Southwest Power Pool",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -5358,11 +4746,7 @@
       "wind": 0
     },
     "comment": "Florida Municipal Power Pool",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5396,11 +4780,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Florida Inc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5434,11 +4814,7 @@
       "wind": 0
     },
     "comment": "Florida Power & Light Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5472,11 +4848,7 @@
       "wind": 0
     },
     "comment": "Gainesville Regional Utilities",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5510,11 +4882,7 @@
       "wind": 0
     },
     "comment": "City Of Homestead",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5548,11 +4916,7 @@
       "wind": 0
     },
     "comment": "Jea",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5572,10 +4936,7 @@
       [-80.23297, 29.92717]
     ],
     "comment": "New Smyrna Beach, Utilities Commission Of",
-    "contributors": [
-      "systemcatch",
-      "robertahunt"
-    ],
+    "contributors": ["systemcatch", "robertahunt"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5609,11 +4970,7 @@
       "wind": 0
     },
     "comment": "Seminole Electric Cooperative",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5647,11 +5004,7 @@
       "wind": 0
     },
     "comment": "City Of Tallahassee",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5685,11 +5038,7 @@
       "wind": 0
     },
     "comment": "Tampa Electric Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5776,12 +5125,7 @@
       "unknown": 0,
       "wind": 126.6
     },
-    "contributors": [
-      "kepiej",
-      "systemcatch",
-      "KabelWlan",
-      "danielmatsuda"
-    ],
+    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda"],
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_HI.fetch_production"
@@ -5808,11 +5152,7 @@
       "wind": 10662.2
     },
     "comment": "Pjm Interconnection, Llc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -5842,11 +5182,7 @@
       "wind": 941.4
     },
     "comment": "Associated Electric Cooperative, Inc.",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5880,11 +5216,7 @@
       "wind": 0
     },
     "comment": "GridLiance",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -5914,11 +5246,7 @@
       "wind": 0
     },
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5952,11 +5280,7 @@
       "wind": 29061
     },
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -5991,11 +5315,7 @@
       "wind": 1519.7
     },
     "comment": "Iso New England Inc.",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -6024,11 +5344,7 @@
       "wind": 249.3
     },
     "comment": "Avista Corporation",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6058,11 +5374,7 @@
       "wind": 1496.4
     },
     "comment": "Avangrid Renewables Cooperative",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -6092,11 +5404,7 @@
       "wind": 3397.5
     },
     "comment": "Bonneville Power Administration",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6130,11 +5438,7 @@
       "wind": 0
     },
     "comment": "Public Utility District No. 1 Of Chelan County",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6168,11 +5472,7 @@
       "wind": 0
     },
     "comment": "Pud No. 1 Of Douglas County",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6206,11 +5506,7 @@
       "wind": 0
     },
     "comment": "Public Utility District No. 2 Of Grant County, Washington",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6230,10 +5526,7 @@
       [-118.363136292, 46.366308212]
     ],
     "comment": "Gridforce Energy Management, Llc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt"
-    ],
+    "contributors": ["systemcatch", "robertahunt"],
     "delays": {
       "production": 30
     },
@@ -6263,11 +5556,7 @@
       "wind": 210
     },
     "comment": "Naturener Power Watch, Llc (Gwa)",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -6297,11 +5586,7 @@
       "wind": 716.8
     },
     "comment": "Idaho Power Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6335,11 +5620,7 @@
       "wind": 150
     },
     "comment": "Nevada Power Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6373,11 +5654,7 @@
       "wind": 452.9
     },
     "comment": "Northwestern Energy (Nwmt)",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6411,11 +5688,7 @@
       "wind": 3193.3
     },
     "comment": "Pacificorp - East",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6449,11 +5722,7 @@
       "wind": 694.3
     },
     "comment": "Pacificorp - West",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6487,11 +5756,7 @@
       "wind": 716.5
     },
     "comment": "Portland General Electric Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6525,11 +5790,7 @@
       "wind": 4490.8
     },
     "comment": "Public Service Company Of Colorado",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6563,11 +5824,7 @@
       "wind": 502.9
     },
     "comment": "Puget Sound Energy",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6583,14 +5840,8 @@
   },
   "US-NW-SCL": {
     "bounding_box": [
-      [
-        -122.936059783,
-        46.955507
-      ],
-      [
-        -121.725915999,
-        48.277929
-      ]
+      [-122.936059783, 46.955507],
+      [-121.725915999, 48.277929]
     ],
     "capacity": {
       "battery storage": 5,
@@ -6607,11 +5858,7 @@
       "wind": 0
     },
     "comment": "Seattle City Light",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6645,11 +5892,7 @@
       "wind": 0
     },
     "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6683,11 +5926,7 @@
       "wind": 1091.2
     },
     "comment": "Western Area Power Administration - Rocky Mountain Region",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6721,11 +5960,7 @@
       "wind": 77.6
     },
     "comment": "Western Area Power Administration Ugp West",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6759,11 +5994,7 @@
       "wind": 189
     },
     "comment": "Naturener Wind Watch, Llc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -6793,12 +6024,7 @@
       "wind": 2192.9
     },
     "comment": "New York Independent System Operator",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan",
-      "brandongalbraith"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan", "brandongalbraith"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -6827,11 +6053,7 @@
       "wind": 0
     },
     "comment": "Powersouth Energy Cooperative",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6865,11 +6087,7 @@
       "wind": 0
     },
     "comment": "Southeastern Power Administration",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -6899,11 +6117,7 @@
       "wind": 0
     },
     "comment": "Southern Company Services, Inc. - Trans",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6937,11 +6151,7 @@
       "wind": 374.3
     },
     "comment": "Arizona Public Service Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6957,14 +6167,8 @@
   },
   "US-SW-DEAA": {
     "bounding_box": [
-      [
-        -113.397006989,
-        32.8262615200001
-      ],
-      [
-        -112.375976563,
-        33.877473831
-      ]
+      [-113.397006989, 32.8262615200001],
+      [-112.375976563, 33.877473831]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6981,11 +6185,7 @@
       "wind": 0
     },
     "comment": "Arlington Valley, Llc - Avba",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7015,11 +6215,7 @@
       "wind": 0
     },
     "comment": "El Paso Electric Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7053,11 +6249,7 @@
       "wind": 0
     },
     "comment": "Griffith Energy, Llc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7087,11 +6279,7 @@
       "wind": 0
     },
     "comment": "Gila River Power, Llc",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7121,11 +6309,7 @@
       "wind": 0
     },
     "comment": "New Harquahala Generating Company, Llc - Hgba",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7155,11 +6339,7 @@
       "wind": 2424
     },
     "comment": "Public Service Company Of New Mexico",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7193,11 +6373,7 @@
       "wind": 63
     },
     "comment": "Salt River Project",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7231,11 +6407,7 @@
       "wind": 379.8
     },
     "comment": "Tucson Electric Power Company",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7269,11 +6441,7 @@
       "wind": 350
     },
     "comment": "Western Area Power Administration - Desert Southwest Region",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7307,11 +6475,7 @@
       "wind": 28.8
     },
     "comment": "Tennessee Valley Authority",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7345,11 +6509,7 @@
       "wind": 32699.2
     },
     "comment": "Electric Reliability Council Of Texas, Inc.",
-    "contributors": [
-      "systemcatch",
-      "robertahunt",
-      "KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7375,11 +6535,7 @@
       "unknown": 1170,
       "wind": 1511
     },
-    "contributors": [
-      "jarek",
-      "corradio",
-      "nessie2013"
-    ],
+    "contributors": ["jarek", "corradio", "nessie2013"],
     "parsers": {
       "production": "UY.fetch_production"
     },
@@ -7424,9 +6580,7 @@
       "solar": 10.002,
       "wind": 136
     },
-    "contributors": [
-      "veqtrus"
-    ],
+    "contributors": ["veqtrus"],
     "delays": {
       "production": 48
     },

@@ -205,6 +205,7 @@ export default () => {
         onZoneMouseEnter={handleZoneMouseEnter}
         onZoneMouseLeave={handleZoneMouseLeave}
         selectedZoneTimeIndex={selectedZoneTimeIndex}
+        selectedTimeAggregate={selectedTimeAggregate}
         scrollZoom={!isEmbedded}
         theme={theme}
         transitionDuration={transitionDuration}
