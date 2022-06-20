@@ -63,8 +63,7 @@ const reducer = createReducer(initialState, (builder) => {
         ...state.zones[zoneId][stateAggregation],
         details: zoneStates,
         hasDetailedData: true,
-        hasData: zoneStates.length,
-        aggregation: stateAggregation,
+        hasData: Object.values(zoneStates).some((v) => v.co2intensity !== null),
       };
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
