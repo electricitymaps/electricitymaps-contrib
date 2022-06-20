@@ -21,11 +21,9 @@ describe('Map', () => {
 
     // test language selector
     cy.get('[aria-label="Select language"]').click();
-
     cy.contains('Dansk').click();
     cy.contains('forbrug');
     cy.get('[aria-label="Skift sprog"]').click();
-
     cy.contains('English').click();
     cy.contains('consumption');
 
