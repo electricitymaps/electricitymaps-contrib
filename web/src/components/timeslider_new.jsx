@@ -27,7 +27,7 @@ const StyledInput = styled.input`
   &:focus {
     outline: none;
   }
-
+  &::-moz-range-thumb,
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 26px;
@@ -51,6 +51,7 @@ const StyledInput = styled.input`
     }
   }
 
+  &::-moz-range-track,
   &::-webkit-slider-runnable-track {
     width: 100%;
     height: 12px;
