@@ -129,6 +129,9 @@ export default () => {
     () => (zoneId) => {
       const zoneOverview = zones[zoneId][selectedTimeAggregate].overviews[selectedZoneTimeIndex];
       const zoneConfig = zones[zoneId].config;
+      if (!zoneOverview || !zoneConfig) {
+        return;
+      }
       dispatchApplication(
         'co2ColorbarValue',
         electricityMixMode === 'consumption' ? zoneOverview.co2intensity : zoneOverview.co2intensityProduction
