@@ -55,6 +55,7 @@ function* fetchGridData(action) {
     const payload = yield call(protectedJsonRequest, endpoint);
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'callerLocation', value: payload.callerLocation });
     yield put(GRID_DATA_FETCH_SUCCEEDED(payload));
+    yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'selectedZoneTimeIndex', value: payload.datetimes.length - 1 });
   } catch (err) {
     yield put(GRID_DATA_FETCH_FAILED());
     handleRequestError(err);
