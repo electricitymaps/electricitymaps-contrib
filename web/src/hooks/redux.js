@@ -39,6 +39,7 @@ export function useCurrentDatetimes() {
   return datetimes || [];
 }
 
+// TODO: Should be replaced with useCurrentDatetimes
 export function useCurrentZoneHistoryDatetimes() {
   const zoneHistory = useCurrentZoneHistory();
 
@@ -48,6 +49,7 @@ export function useCurrentZoneHistoryDatetimes() {
 // Use current time as the end time of the graph time scale explicitly
 // as we want to make sure we account for the missing data at the end of
 // the graph (when not inferable from historyData timestamps).
+// TODO: Can be deprecated when we switch to historical-view
 export function useCurrentZoneHistoryEndTime() {
   const gridDatetime = useSelector((state) => (state.data.grid || {}).datetime);
 
@@ -62,17 +64,9 @@ export function useCurrentZoneHistoryEndTime() {
 // the graph, but right now that would create UI inconsistency with the
 // other neighbouring graphs showing data over a bit longer time scale
 // (see https://github.com/tmrowco/electricitymap-contrib/issues/2250).
+// TODO: Can be deprecated when we switch to historical-view
 export function useCurrentZoneHistoryStartTime() {
   return null;
-}
-
-export function useZoneDataOverview(zoneId) {
-  // returns the overview for the current time aggregate and index
-  const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const zones = useSelector((state) => state.data.zones);
-
-  return zones[zoneId][timeAggregate][zoneTimeIndex];
 }
 
 export function useCurrentZoneData() {
