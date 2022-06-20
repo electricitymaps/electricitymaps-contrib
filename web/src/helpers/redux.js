@@ -40,7 +40,6 @@ function initDataState() {
     zone.config.contributors = zoneConfig.contributors;
     zone.config.timezone = zoneConfig.timezone;
     zone.config.hasParser = (zoneConfig.parsers || {}).production !== undefined;
-    zone.config.hasData = zone.config.hasParser;
     zone.config.delays = zoneConfig.delays;
     zone.config.disclaimer = zoneConfig.disclaimer;
 
@@ -76,7 +75,8 @@ function initDataState() {
 function combineZoneData(zoneData, aggregate) {
   // Combines details and overviews and other relevant keys
   // from zoneData for a specific aggregate into a single object
-  const { overviews, details, hasParser, hasData } = zoneData[aggregate];
+  const { overviews, details, hasData } = zoneData[aggregate];
+  const { hasParser } = zoneData.config;
 
   const combined = overviews.map((overview, idx) => {
     return { ...overview, ...details[idx], hasParser, hasData, center: zoneData.geography.properties.center };
