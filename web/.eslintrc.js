@@ -77,7 +77,7 @@ module.exports = {
       'error',
       {
         allowAfterThis: true,
-        allow: ['__', '__REDUX_DEVTOOLS_EXTENSION__'],
+        allow: ['__', '__REDUX_DEVTOOLS_EXTENSION__', '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'],
       },
     ],
     'no-console': ['error', { allow: ['error', 'warn'] }], // if .log is intended, use disable line.
