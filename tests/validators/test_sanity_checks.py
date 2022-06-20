@@ -5,7 +5,7 @@ from electricitymap.contrib.validators.sanity_checks import (
     validate_production_one_non_nan_value,
 )
 
-from .lib.load_fixture import load_fixture
+from .lib.fixtures import load_fixture
 
 
 def test_validate_positive_production():
