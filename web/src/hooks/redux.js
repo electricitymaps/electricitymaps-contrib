@@ -1,12 +1,9 @@
-import { addDays, startOfDay, subDays } from 'date-fns';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSunrise, getSunset } from 'sunrise-sunset-js';
 
 import { useCustomDatetime } from './router';
 
-import { getCenteredZoneViewport } from '../helpers/map';
 import { combineZoneData } from '../helpers/redux';
 import { mapValues } from 'lodash';
 
@@ -136,50 +133,4 @@ export function useSmallLoaderVisible() {
   const solarLoading = useSelector((state) => state.data.isLoadingSolar);
   const windLoading = useSelector((state) => state.data.isLoadingWind);
   return gridLoading || solarLoading || windLoading;
-}
-
-export function useCurrentNightTimes() {
-  const { zoneId } = useParams();
-  const zone = useSelector((state) => state.data.grid.zones[zoneId]);
-
-  const datetimeStr = useSelector((state) => state.data.grid.datetime);
-  const history = useCurrentZoneHistory();
-
-  return useMemo(() => {
-    if (!zone || !datetimeStr || !history || !history[0]) {
-      return [];
-    }
-    const { latitude, longitude } = getCenteredZoneViewport(zone);
-    const nightTimes = [];
-    let baseDatetime = startOfDay(new Date(datetimeStr));
-
-    const earliest = history && history[0] && new Date(history[0].stateDatetime);
-    const latest = new Date(
-      history && history[history.length - 1] ? history[history.length - 1].stateDatetime : datetimeStr
-    );
-    do {
-      // Get last nightTime
-      const nightStart = getSunset(latitude, longitude, baseDatetime);
-      let nightEnd = getSunrise(latitude, longitude, baseDatetime);
-      // Due to some bug in the library, sometimes we get nightStart > nightEnd
-      if (nightStart.getTime() > nightEnd.getTime()) {
-        nightEnd = addDays(nightEnd, 1);
-      }
-      // Only use nights that start before the latest time we have
-      // and that finishes after the earliest time we have
-      if (nightStart.getTime() < latest.getTime() && nightEnd.getTime() > earliest.getTime()) {
-        nightTimes.push([nightStart, nightEnd]);
-      }
-
-      // Abort at the first night that starts before our earliest time
-      if (nightStart.getTime() < earliest.getTime()) {
-        return nightTimes;
-      }
-
-      // Iterate to previous day
-      baseDatetime = subDays(baseDatetime, 1);
-      // The looping logic is handled inside the "do" block
-      // eslint-disable-next-line no-constant-condition
-    } while (true);
-  }, [zone, datetimeStr, history]);
 }
