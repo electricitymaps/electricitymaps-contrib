@@ -2,13 +2,10 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useCustomDatetime } from './router';
-
 import { combineZoneData } from '../helpers/redux';
 import { mapValues } from 'lodash';
 
 export function useCurrentZoneHistory() {
-  // TODO: memo
   const { zoneId } = useParams();
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const zones = useSelector((state) => state.data.zones);
@@ -52,12 +49,11 @@ export function useCurrentZoneHistoryDatetimes() {
 // as we want to make sure we account for the missing data at the end of
 // the graph (when not inferable from historyData timestamps).
 export function useCurrentZoneHistoryEndTime() {
-  const customDatetime = useCustomDatetime();
   const gridDatetime = useSelector((state) => (state.data.grid || {}).datetime);
 
   return useMemo(
-    () => new Date(customDatetime || (gridDatetime ?? Date.now())), // Moment return a date when gridDatetime is undefined, this matches that behavior.
-    [customDatetime, gridDatetime]
+    () => new Date(gridDatetime ?? Date.now()), // Moment return a date when gridDatetime is undefined, this matches that behavior.
+    [gridDatetime]
   );
 }
 

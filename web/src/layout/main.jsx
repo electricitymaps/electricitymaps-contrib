@@ -19,7 +19,7 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
+import { useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
@@ -76,7 +76,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
-  const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
@@ -158,7 +157,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <a
                 href=""
                 onClick={(e) => {
-                  dispatch(GRID_DATA_FETCH_REQUESTED({ datetime }));
+                  dispatch(GRID_DATA_FETCH_REQUESTED());
                   e.preventDefault();
                 }}
               >
