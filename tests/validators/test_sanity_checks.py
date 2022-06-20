@@ -1,16 +1,15 @@
 import pandas as pd
 
-from electricitymap.contrib.validators.sanity_checks import (
-    validate_positive_production,
-    validate_production_one_non_nan_value,
-    validate_production_is_plausible,
-    validate_reasonable_time_production,
-    validate_reasonable_time_exchange,
-    validate_exchange_netflow_is_plausible,
-    validate_exchange_netflow_doesnt_exceed_capacity,
-
-)
 from electricitymap.contrib.config import EXCHANGES_CONFIG
+from electricitymap.contrib.validators.sanity_checks import (
+    validate_exchange_netflow_doesnt_exceed_capacity,
+    validate_exchange_netflow_is_plausible,
+    validate_positive_production,
+    validate_production_is_plausible,
+    validate_production_one_non_nan_value,
+    validate_reasonable_time_exchange,
+    validate_reasonable_time_production,
+)
 
 from .lib.fixtures import load_fixture
 
@@ -29,6 +28,7 @@ def test_validate_production_one_non_nan_value():
     assert res["2022-01-01 00:00:00+00:00"] == 1
     assert res["2022-01-01 01:00:00+00:00"] == 0
     assert res["2022-01-01 02:00:00+00:00"] == 1
+
 
 def test_validate_production_is_plausible():
     events = load_fixture("production_with_unplausible_productions")

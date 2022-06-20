@@ -2,8 +2,8 @@ from datetime import datetime
 
 import pandas as pd
 
-from electricitymap.contrib.validators.lib.config import validator
 from electricitymap.contrib.config import EXCHANGES_CONFIG
+from electricitymap.contrib.validators.lib.config import validator
 
 
 @validator(kind="production")
@@ -25,6 +25,7 @@ def validate_production_one_non_nan_value(events: pd.DataFrame) -> pd.Series:
     res = events[production_cols].notnull().any(axis=1).astype(int)
     return res
 
+
 @validator(kind="production")
 def validate_production_is_plausible(events: pd.DataFrame) -> pd.Series:
     """
@@ -33,6 +34,7 @@ def validate_production_is_plausible(events: pd.DataFrame) -> pd.Series:
     production_cols = [col for col in events if col.startswith("production")]
     res = (events.fillna(0)[production_cols] < 500000).all(axis=1).astype(int)
     return res
+
 
 @validator(kind="production")
 def validate_reasonable_time_production(events: pd.DataFrame) -> pd.Series:
