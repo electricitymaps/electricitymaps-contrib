@@ -81,7 +81,6 @@ const ZoneMap = ({
         },
         properties: {
           color: undefined,
-          isClickable: true,
           zoneData: zone[selectedTimeAggregate].overviews,
           zoneId,
         },
@@ -89,13 +88,10 @@ const ZoneMap = ({
     });
 
     return {
+      // TODO: Clean up further
       zonesClickable: {
         type: 'FeatureCollection',
-        features: features.filter((f) => f.properties.isClickable),
-      },
-      zonesNonClickable: {
-        type: 'FeatureCollection',
-        features: features.filter((f) => !f.properties.isClickable),
+        features,
       },
     };
   }, [zones, selectedTimeAggregate]);
@@ -118,7 +114,6 @@ const ZoneMap = ({
           theme.clickableFill,
         ],
       },
-      zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
     [theme]
   );
@@ -284,9 +279,6 @@ const ZoneMap = ({
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
-        <Source type="geojson" data={sources.zonesNonClickable}>
-          <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
-        </Source>
         <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
           <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
