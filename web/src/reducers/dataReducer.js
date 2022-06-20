@@ -22,37 +22,28 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(GRID_DATA_FETCH_SUCCEEDED, (state, action) => {
       const { countries, datetimes, exchanges, stateAggregation } = action.payload;
-      const newState = Object.assign({}, state);
-      const newExchanges = Object.assign({}, state.exchanges);
-      const newZones = Object.assign({}, state.zones);
-
-      Object.keys(newExchanges).forEach((key) => {
-        newExchanges[key].netFlow = undefined;
-      });
       Object.entries(countries).map(([zoneId, zoneData]) => {
-        if (!newZones[zoneId]) {
+        if (!state.zones[zoneId]) {
           return;
         }
-        newZones[zoneId][stateAggregation].overviews = zoneData;
+        state.zones[zoneId][stateAggregation].overviews = zoneData;
       });
-
-      newState.zones = newZones;
-      newState.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
+      Object.keys(state.exchanges).forEach((key) => {
+        state.exchanges[key].netFlow = undefined;
+      });
       Object.entries(exchanges).forEach((entry) => {
         const [key, value] = entry;
-        const exchange = newExchanges[key];
+        const exchange = state.exchanges[key];
         if (!exchange || !exchange.lonlat) {
           console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
           return;
         }
         // Assign all data
         Object.keys(value).forEach((k) => {
-          newExchanges[k] = value[k];
+          state.exchanges[k] = value[k];
         });
       });
 
-      state.exchanges = newExchanges;
-      state.zones = newZones;
       state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
       state.isLoadingGrid = false;
       state.hasInitializedGrid = true;
