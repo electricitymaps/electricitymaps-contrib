@@ -1,8 +1,11 @@
-describe('General flow', () => {
-  it('Can interact with the map', () => {
+describe('Map', () => {
+  it('interacts with the map', () => {
     cy.visit('/');
     // sees modal and closes it
     cy.get('[data-test-id=onboarding]').get('.modal-close-button').click();
+
+    // closes left panel
+    cy.get('#left-panel-collapse-button').click();
 
     // tests toggle
     cy.contains('production').click();
