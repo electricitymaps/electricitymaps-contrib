@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { DATA_FETCH_INTERVAL } from '../helpers/constants';
+import { DATA_FETCH_INTERVAL, TIME } from '../helpers/constants';
 import {
   GRID_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_REQUESTED,
@@ -51,7 +51,14 @@ export function useGridDataPolling() {
     }
     if (!datetime) {
       pollInterval = setInterval(() => {
-        dispatch({ type: GRID_DATA_FETCH_REQUESTED, payload: { datetime, features, selectedTimeAggregate } });
+        dispatch(
+          GRID_DATA_FETCH_REQUESTED({
+            datetime,
+            features,
+            // We only refetch hourly state as the other aggregates are not updated frequently enough to justify a refresh
+            selectedTimeAggregate: TIME.HOURLY,
+          })
+        );
       }, DATA_FETCH_INTERVAL);
     }
     return () => clearInterval(pollInterval);
