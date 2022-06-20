@@ -25,8 +25,7 @@ export function useCurrentZoneList() {
   const zones = useSelector((state) => state.data.zones);
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-
-  if (!selectedZoneTimeIndex) {
+  if (!selectedZoneTimeIndex && selectedZoneTimeIndex !== 0) {
     return {};
   }
   const zoneList = mapValues(
