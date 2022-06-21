@@ -127,6 +127,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
+                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
               </div>
               <LayerButtons />
