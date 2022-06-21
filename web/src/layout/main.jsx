@@ -26,6 +26,7 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
 import FAQModal from '../components/faqmodal';
+import SettingsModal from '../components/settingsmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
@@ -139,6 +140,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
+                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
               </div>
               <LayerButtons />
@@ -184,6 +186,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
       <OnboardingModal />
       <InfoModal />
       <FAQModal />
+      <SettingsModal />
     </React.Fragment>
   );
 };
