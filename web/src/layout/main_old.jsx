@@ -28,7 +28,6 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
-import MobileLayerButtons from '../components/mobilelayerbuttons';
 import InfoModal from '../components/infomodal';
 import FAQModal from '../components/faqmodal';
 import SettingsModal from '../components/settingsmodal';
@@ -121,7 +120,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              <MobileLayerButtons />
               <Legend />
               <div className="controls-container">
                 <Toggle
@@ -132,6 +130,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
+                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
               </div>
               <LayerButtons />
