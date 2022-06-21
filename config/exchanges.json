@@ -1006,6 +1006,14 @@
     },
     "rotation": 180
   },
+  "HU->SI": {
+    "lonlat": [16.39, 46.69],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": -125
+  },
   "HU->SK": {
     "lonlat": [19.615617, 48.204006],
     "parsers": {
