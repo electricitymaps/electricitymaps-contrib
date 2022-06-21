@@ -11,7 +11,6 @@ import { debounce } from '../helpers/debounce';
 
 import { useInterpolatedSolarData, useInterpolatedWindData } from '../hooks/layers';
 import { useCo2ColorScale, useTheme } from '../hooks/theme';
-import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import ZoneMap from '../components/zonemap';
@@ -43,7 +42,6 @@ export default () => {
   const location = useLocation();
   const history = useHistory();
   const co2ColorScale = useCo2ColorScale();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   // TODO: Replace with useParams().zoneId once this component gets
   // put in the right render context and has this param available.
@@ -194,7 +192,6 @@ export default () => {
       <ZoneMap
         co2ColorScale={co2ColorScale}
         hoveringEnabled={hoveringEnabled}
-        isHistoryFeatureEnabled={isHistoryFeatureEnabled}
         onMapLoaded={handleMapLoaded}
         onMapError={handleMapError}
         onMouseMove={handleMouseMove}

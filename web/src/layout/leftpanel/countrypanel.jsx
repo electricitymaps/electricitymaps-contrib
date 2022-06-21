@@ -33,7 +33,6 @@ import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
-import { useFeatureToggle } from '../../hooks/router';
 import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
@@ -148,7 +147,7 @@ const CountryPanelStyled = styled.div`
 `;
 
 const StyledSources = styled.div`
-  margin-bottom: ${(props) => (props.historyFeatureEnabled ? '170px' : 0)};
+  margin-bottom: 170px;
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
@@ -198,7 +197,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
   const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
@@ -357,7 +355,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               )}
             </div>
             <hr />
-            <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
+            <StyledSources>
               {isDataEstimated && <CountryEstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
               {__('country-panel.source')}
               {': '}

@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TimeSlider from '../components/timeslider_new';
+import TimeSlider from '../components/timeslider';
 
 import { useCurrentDatetimes } from '../hooks/redux';
-import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
 import styled from 'styled-components';
 
@@ -65,11 +64,6 @@ const StyledTimeSlider = styled(TimeSlider)`
 
 const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const datetimes = useCurrentDatetimes();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
-
-  if (!isHistoryFeatureEnabled) {
-    return null;
-  }
 
   const startTime = datetimes.at(0);
   const endTime = datetimes.at(-1);

@@ -20,11 +20,7 @@ import {
 
 function* fetchZoneHistory(action) {
   const { zoneId, features, selectedTimeAggregate } = action.payload;
-  let endpoint = `/v4/history?countryCode=${zoneId}`;
-
-  if (features.includes('history')) {
-    endpoint = `/v5/history/${selectedTimeAggregate}?countryCode=${zoneId}`;
-  }
+  let endpoint = `/v5/history/${selectedTimeAggregate}?countryCode=${zoneId}`;
 
   if (features.length > 0) {
     endpoint += `${features.map((f) => `&${f}=true`)}`;
@@ -41,11 +37,7 @@ function* fetchZoneHistory(action) {
 
 function* fetchGridData(action) {
   const { features, selectedTimeAggregate } = action.payload;
-  let endpoint = '/v4/state';
-
-  if (features.includes('history')) {
-    endpoint = `/v5/state/${selectedTimeAggregate}`;
-  }
+  let endpoint = `/v5/state/${selectedTimeAggregate}`;
 
   if (features.length > 0) {
     endpoint += `?featureflag=true${features.map((f) => `&${f}=true`)}`;
