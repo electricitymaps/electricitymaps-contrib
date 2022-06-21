@@ -20,9 +20,9 @@ const CountryTableHeaderInner = styled.div`
 `;
 
 const TooltipContent = React.memo(
-  ({ isDataDelayed, hasData, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
     const { __ } = useTranslation();
-    if (!hasData) {
+    if (!hasParser) {
       return (
         <div className="no-parser-text">
           <span
@@ -88,7 +88,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
         <ZoneName zone={zoneData.countryCode} />
       </div>
       <TooltipContent
-        hasData={zoneData.hasData}
+        hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}
         co2intensity={co2intensity}
         fossilFuelPercentage={fossilFuelPercentage}

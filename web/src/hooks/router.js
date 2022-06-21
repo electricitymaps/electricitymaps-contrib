@@ -21,10 +21,6 @@ export function useFeatureToggle(selectedFeature = null) {
   }, [selectedFeature, featureToggles]);
 }
 
-export function useCustomDatetime() {
-  return useSearchParams().get('datetime');
-}
-
 export function useHeaderVisible() {
   return useSearchParams().get('header') !== 'false';
 }

@@ -19,15 +19,18 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
+import { useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
+import InfoModal from '../components/infomodal';
+import FAQModal from '../components/faqmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -75,7 +78,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
-  const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
@@ -157,7 +159,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <a
                 href=""
                 onClick={(e) => {
-                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+                  dispatch(GRID_DATA_FETCH_REQUESTED());
                   e.preventDefault();
                 }}
               >
@@ -180,6 +182,8 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
         </div>
       </div>
       <OnboardingModal />
+      <InfoModal />
+      <FAQModal />
     </React.Fragment>
   );
 };

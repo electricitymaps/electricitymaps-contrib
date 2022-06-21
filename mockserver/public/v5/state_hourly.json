@@ -108267,6 +108267,7 @@
     },
     "createdAt": "2022-04-27T09:00:00Z",
     "datetime": "2022-04-27T09:00:00Z",
+    "datetimes": ["2022-04-27T09:00:00Z"],
     "exchanges": {},
     "stateAggregation": "hourly"
   }

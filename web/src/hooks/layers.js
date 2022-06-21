@@ -5,11 +5,9 @@ import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
 
-import { useCustomDatetime } from './router';
-
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
-  const exchanges = useSelector((state) => state.data.grid.exchanges);
+  const exchanges = useSelector((state) => state.data.exchanges);
 
   return useMemo(
     () => (isConsumption ? Object.values(exchanges).filter((d) => d.lonlat && d.sortedCountryCodes) : []),
@@ -19,7 +17,6 @@ export function useExchangeArrowsData() {
 
 export function useInterpolatedWindData() {
   const windData = useSelector((state) => state.data.wind);
-  const customDatetime = useCustomDatetime();
 
   // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(() => {
@@ -31,7 +28,7 @@ export function useInterpolatedWindData() {
     const gribs2 = windData.forecasts[1];
     const tBefore = getTargetTime(gribs1[0]);
     const tAfter = getTargetTime(gribs2[0]);
-    const datetime = customDatetime ? new Date(customDatetime) : new Date();
+    const datetime = new Date();
     const k = (datetime - tBefore) / (tAfter - tBefore);
 
     if (datetime > tAfter) {
@@ -60,12 +57,11 @@ export function useInterpolatedWindData() {
       { ...gribs1[0], data: gribs1[0].data.map((d, i) => interpolate(d, gribs2[0].data[i])(k)) },
       { ...gribs1[1], data: gribs1[1].data.map((d, i) => interpolate(d, gribs2[1].data[i])(k)) },
     ];
-  }, [windData, customDatetime]);
+  }, [windData]);
 }
 
 export function useInterpolatedSolarData() {
   const solarData = useSelector((state) => state.data.solar);
-  const customDatetime = useCustomDatetime();
 
   // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(() => {
@@ -77,7 +73,7 @@ export function useInterpolatedSolarData() {
     const grib2 = solarData.forecasts[1];
     const tBefore = getTargetTime(grib1);
     const tAfter = getTargetTime(grib2);
-    const datetime = customDatetime ? new Date(customDatetime) : new Date();
+    const datetime = new Date();
     const k = (datetime - tBefore) / (tAfter - tBefore);
 
     if (datetime > tAfter) {
@@ -103,5 +99,5 @@ export function useInterpolatedSolarData() {
     );
 
     return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
-  }, [solarData, customDatetime]);
+  }, [solarData]);
 }

@@ -4,8 +4,6 @@ import { scaleTime } from 'd3-scale';
 
 import TimeAxis from './graph/timeaxis';
 import { useRefWidthHeightObserver } from '../hooks/viewport';
-import { useCurrentNightTimes } from '../hooks/redux';
-import { TimeSliderInput } from './TimeSliderInput';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -35,7 +33,6 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
 
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
-  const nightTimes = useCurrentNightTimes();
 
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
@@ -44,19 +41,6 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
 
   const startTimeValue = timeScale.domain()[0].valueOf();
   const endTimeValue = timeScale.domain()[1].valueOf();
-
-  // Creating a scale for the night-time background gradients
-  const gradientScale = useMemo(
-    () => getTimeScale(100, nightTimes, startTimeValue, endTimeValue),
-    [nightTimes, startTimeValue, endTimeValue]
-  );
-
-  const nightTimeSets = nightTimes.flatMap(([start, end]) => [
-    {
-      start: Math.max(0, gradientScale(start)),
-      end: Math.min(100, gradientScale(end)),
-    },
-  ]);
 
   const handleChangeAndInput = useMemo(
     () => createChangeAndInputHandler(datetimes, onChange, setAnchoredTimeIndex),
@@ -70,18 +54,14 @@ const TimeSlider = ({ className, onChange, selectedTimeIndex, datetimes, startTi
   const selectedTimeValue = typeof selectedTimeIndex === 'number' ? datetimes[selectedTimeIndex].valueOf() : null;
   const anchoredTimeValue = typeof anchoredTimeIndex === 'number' ? datetimes[anchoredTimeIndex].valueOf() : null;
 
-  const timeOnGradient = gradientScale(selectedTimeValue || anchoredTimeValue || endTimeValue);
-  const isSelectedTimeDuringNight = nightTimeSets.some(
-    ({ start, end }) => timeOnGradient >= start && timeOnGradient <= end
-  );
-
   return (
     <div className={className}>
-      <TimeSliderInput
+      <input
+        type="range"
+        className="time-slider-input"
         onChange={handleChangeAndInput}
+        onInput={handleChangeAndInput}
         value={selectedTimeValue || anchoredTimeValue || endTimeValue}
-        nightTimeSets={nightTimeSets}
-        isValueAtNight={isSelectedTimeDuringNight}
         min={startTimeValue}
         max={endTimeValue}
       />
