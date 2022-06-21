@@ -232,7 +232,7 @@ def datetime_from_date_sp(date, sp):
     return datetime.replace(tzinfo="Europe/London").datetime
 
 
-def _fetch_wind(target_datetime=None):
+def _fetch_wind(target_datetime=None, logger=logging.getLogger(__name__)):
     if target_datetime is None:
         target_datetime = dt.datetime.now()
 
@@ -249,6 +249,11 @@ def _fetch_wind(target_datetime=None):
     }
     response = query_ELEXON("FUELINST", session, params)
     csv_text = response.text
+
+    NO_DATA_TXT_ANSWER = "<httpCode>204</httpCode><errorType>No Content</errorType>"
+    if NO_DATA_TXT_ANSWER in csv_text:
+        logger.warning(f"Impossible to fetch wind data for {target_datetime}")
+        return pd.DataFrame(columns=["datetime", "Wind"])
 
     report = REPORT_META["FUELINST"]
     df = pd.read_csv(
@@ -293,6 +298,10 @@ def fetch_exchange(
     logger=logging.getLogger(__name__),
 ):
     session = session or requests.session()
+    try:
+        target_datetime = arrow.get(target_datetime).datetime
+    except arrow.parser.ParserError:
+        raise ValueError("Invalid target_datetime: {}".format(target_datetime))
     response = query_exchange(session, target_datetime)
     data = parse_exchange(zone_key1, zone_key2, response, target_datetime, logger)
     return data
@@ -306,12 +315,20 @@ def fetch_production(
     logger=logging.getLogger(__name__),
 ) -> dict:
     session = session or requests.session()
+    try:
+        target_datetime = arrow.get(target_datetime).datetime
+    except arrow.parser.ParserError:
+        raise ValueError("Invalid target_datetime: {}".format(target_datetime))
     response = query_production(session, target_datetime)
     data = parse_production(response, target_datetime, logger)
 
     # At times B1620 has had poor quality data for wind so fetch from FUELINST
+    # But that source is unavailable prior to cutout date
+    HISTORICAL_WIND_CUTOUT = "2016-03-01"
+    if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
+        FETCH_WIND_FROM_FUELINST = False
     if FETCH_WIND_FROM_FUELINST:
-        wind = _fetch_wind(target_datetime)
+        wind = _fetch_wind(target_datetime, logger=logger)
         for entry in data:
             datetime = entry["datetime"]
             wind_row = wind[wind["datetime"] == datetime]
@@ -322,7 +339,8 @@ def fetch_production(
 
     required = ["coal", "gas", "nuclear", "wind"]
     expected_range = {
-        "coal": (0, 10000),
+        # Historical data might be above the current capacity for coal
+        "coal": (0, 20000),
         "gas": (100, 30000),
         "nuclear": (100, 20000),
         "wind": (0, 30000),

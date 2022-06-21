@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TimeSlider from '../components/timeslider_new';
+import TimeSlider from '../components/timeslider';
 
 import { useCurrentDatetimes } from '../hooks/redux';
 import { dispatchApplication } from '../store';
@@ -10,10 +10,13 @@ const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
-const handleTimeAggregationChange = (aggregate) => {
+const handleTimeAggregationChange = (aggregate, zoneDatetimes) => {
   dispatchApplication('selectedTimeAggregate', aggregate);
-  // TODO: set index to the max of the range of selected time aggregate
-  dispatchApplication('selectedZoneTimeIndex', null);
+  if (zoneDatetimes[aggregate]) {
+    // set selectedZoneTimeIndex to max of datetimes (all the way to the right)
+    // if we know already the size of the datetimes array
+    dispatchApplication('selectedZoneTimeIndex', zoneDatetimes[aggregate].length - 1);
+  }
 };
 
 const mapStateToProps = (state) => ({
