@@ -4,27 +4,20 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
-import {
-  useWindEnabled,
-  useSolarEnabled,
-  useSolarToggledLocation,
-  useWindToggledLocation,
-  useFeatureToggle,
-} from '../hooks/router';
+import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const HiddenOnMobile = styled.div`
   @media screen and (max-width: 767px) {
-    display: ${(props) => (props.isHiddenOnMobile ? 'none' : 'block')};
+    display: none;
   }
 `;
 
 export default () => {
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
@@ -44,7 +37,7 @@ export default () => {
     !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
 
   return (
-    <Wrapper isHiddenOnMobile={isHistoryFeatureEnabled}>
+    <HiddenOnMobile>
       <div className="layer-buttons-container">
         <LanguageSelect />
         <Link to={windToggledLocation} hasError={windDataError}>
@@ -73,6 +66,6 @@ export default () => {
           icon="brightmode"
         />
       </div>
-    </Wrapper>
+    </HiddenOnMobile>
   );
 };
