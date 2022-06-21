@@ -15,6 +15,7 @@ import {
   ZONE_HISTORY_FETCH_REQUESTED,
   ZONE_HISTORY_FETCH_SUCCEEDED,
 } from '../helpers/redux';
+import { TIME } from '../helpers/constants';
 
 const initialState = initDataState();
 
@@ -28,21 +29,24 @@ const reducer = createReducer(initialState, (builder) => {
         }
         state.zones[zoneId][stateAggregation].overviews = zoneData;
       });
-      Object.keys(state.exchanges).forEach((key) => {
-        state.exchanges[key].netFlow = undefined;
-      });
-      Object.entries(exchanges).forEach((entry) => {
-        const [key, value] = entry;
-        const exchange = state.exchanges[key];
-        if (!exchange || !exchange.lonlat) {
-          console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
-          return;
-        }
-        // Assign all data
-        Object.keys(value).forEach((k) => {
-          exchange[k] = value[k];
+
+      if (stateAggregation === TIME.HOURLY) {
+        Object.keys(state.exchanges).forEach((key) => {
+          state.exchanges[key].netFlow = undefined;
         });
-      });
+        Object.entries(exchanges).forEach((entry) => {
+          const [key, value] = entry;
+          const exchange = state.exchanges[key];
+          if (!exchange || !exchange.lonlat) {
+            console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
+            return;
+          }
+          // Assign all data
+          Object.keys(value).forEach((k) => {
+            exchange[k] = value[k];
+          });
+        });
+      }
 
       state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
       state.isLoadingGrid = false;
