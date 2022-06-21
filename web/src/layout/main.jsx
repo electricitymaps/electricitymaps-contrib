@@ -33,7 +33,6 @@ import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
 import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
-import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -65,7 +64,7 @@ const NewVersionButton = styled.button`
   cursor: pointer;
 `;
 
-const ToggleWrapper = styled.div`
+const HiddenOnMobile = styled.div`
   @media (max-width: 767px) {
     display: none;
   }
@@ -140,7 +139,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <Map />
               <MobileLayerButtons />
               <Legend />
-              <ToggleWrapper className="controls-container">
+              <HiddenOnMobile className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
                   onChange={(value) => dispatchApplication('electricityMixMode', value)}
@@ -151,7 +150,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                   value={electricityMixMode}
                   tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
-              </ToggleWrapper>
+              </HiddenOnMobile>
               <LayerButtons />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
