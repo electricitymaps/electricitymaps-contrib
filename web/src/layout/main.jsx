@@ -63,6 +63,12 @@ const NewVersionButton = styled.button`
   cursor: pointer;
 `;
 
+const ToggleWrapper = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
 const StyledBottomSheet = styled(BottomSheet)`
   [data-rsbs-overlay] {
     z-index: ${(props) => (props.behind ? 0 : 5)};
@@ -133,7 +139,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <Map />
               <MobileLayerButtons />
               <Legend />
-              <div className="controls-container">
+              <ToggleWrapper className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
                   onChange={(value) => dispatchApplication('electricityMixMode', value)}
@@ -144,7 +150,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                   value={electricityMixMode}
                   tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
-              </div>
+              </ToggleWrapper>
               <LayerButtons />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
