@@ -8,6 +8,7 @@ import { dispatchApplication } from '../store';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
+import { getCO2IntensityByMode } from '../helpers/zonedata';
 
 const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
   if (!historyData || !historyData[0]) {
@@ -15,7 +16,7 @@ const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
   }
 
   const data = historyData.map((d) => ({
-    carbonIntensity: electricityMixMode === 'consumption' ? d.co2intensity : d.co2intensityProduction,
+    carbonIntensity: getCO2IntensityByMode(d, electricityMixMode),
     datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
