@@ -42,3 +42,15 @@ Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, val
 //         setSliderValue(value: number): Chainable<void>
 //     }
 // }
+
+Cypress.Commands.add('interceptAPI', (path) => {
+  const pathWithoutParams = path.split('?')[0];
+  cy.intercept('GET', `http://localhost:8001/${path}`, {
+    fixture: `${pathWithoutParams}.json`,
+  }).as(path);
+});
+Cypress.Commands.add('waitForAPISuccess', (path) => {
+  cy.wait(`@${path}`)
+    .its('response.statusCode')
+    .should('match', /200|304/);
+});
