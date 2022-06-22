@@ -61,10 +61,10 @@ const TimeAxis = React.memo(
     const [x1, x2] = scale.range();
     const { i18n } = useTranslation();
 
-    if (isLoading) {
+    if (!isLoading) {
       return (
         <LoadingWrapper>
-          <PulseLoader size={5} />
+          <PulseLoader color="#7A878D" size={5} />
         </LoadingWrapper>
       );
     }
