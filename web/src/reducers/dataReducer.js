@@ -40,7 +40,7 @@ const reducer = createReducer(initialState, (builder) => {
         }
         // Assign all data
         Object.keys(value).forEach((k) => {
-          state.exchanges[k] = value[k];
+          exchange[k] = value[k];
         });
       });
 
