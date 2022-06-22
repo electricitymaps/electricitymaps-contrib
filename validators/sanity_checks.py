@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import numpy as np
 import pandas as pd
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG
@@ -78,7 +79,7 @@ def validate_exchange_netflow_doesnt_exceed_capacity(
     Validates that exchanges doesn't exceed the interconnector capacity by more than 10%
     """
     ALLOWED_MARGIN = 1.1
-    interconnector_capacities = EXCHANGES_CONFIG[zone_key]["capacity"]
+    interconnector_capacities = EXCHANGES_CONFIG[zone_key].get("capacity", [-np.inf, np.inf])
 
     res = (
         (min(interconnector_capacities) * ALLOWED_MARGIN <= events["netFlow"])
