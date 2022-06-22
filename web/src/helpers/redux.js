@@ -85,6 +85,22 @@ function combineZoneData(zoneData, aggregate) {
   return combined;
 }
 
+function removeDuplicateSources(zoneData) {
+  if (!zoneData || !zoneData.source) {
+    return zoneData;
+  }
+  const sources = [
+    ...new Set(
+      zoneData.source
+        .split('","')
+        .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
+        .flat()
+    ),
+  ].join();
+
+  return { ...zoneData, source: sources };
+}
+
 export {
   GRID_DATA_FETCH_FAILED,
   GRID_DATA_FETCH_SUCCEEDED,
@@ -100,4 +116,5 @@ export {
   WIND_DATA_FETCH_REQUESTED,
   initDataState,
   combineZoneData,
+  removeDuplicateSources,
 };

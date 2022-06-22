@@ -5,6 +5,7 @@ import {
   GRID_DATA_FETCH_REQUESTED,
   GRID_DATA_FETCH_SUCCEEDED,
   initDataState,
+  removeDuplicateSources,
   SOLAR_DATA_FETCH_FAILED,
   SOLAR_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_SUCCEDED,
@@ -65,7 +66,8 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoadingHistories = false;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
-        details: zoneStates,
+        // TODO: Fix sources in DBT instead of here
+        details: zoneStates.map((v) => removeDuplicateSources(v)),
         hasDetailedData: true,
         hasData: Object.values(zoneStates).some((v) => v.co2intensity !== null),
       };
