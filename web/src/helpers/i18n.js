@@ -81,7 +81,7 @@ i18n.on('languageChanged', function (lng) {
   document.documentElement.setAttribute('lang', lng);
   // TODO: Use react-helmet to manage meta tags
   document.title = `electricityMap | ${i18n.t('misc.maintitle')}`;
-  document.querySelector('meta[property="og:locale"]').setAttribute('content', LOCALE_TO_FACEBOOK_LOCALE[lng]);
+  document.querySelector('meta[property="og:locale"]')?.setAttribute('content', LOCALE_TO_FACEBOOK_LOCALE[lng]);
 });
 
 export default i18n;
