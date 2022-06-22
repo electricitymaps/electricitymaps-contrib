@@ -52,4 +52,10 @@ describe('TimeController', () => {
     cy.get('[data-test-id=date-display').should('have.text', '2020');
     cy.get('[data-test-id=co2-square-value').should('have.text', '295');
   });
+
+  // TODO: Figure out how to get open/drag bottom sheet in Cypress on mobile
+  // I have tried a bunch of combinations with mousemove, etc. without success
+  it.skip('interacts with the timecontroller on mobile', () => {
+    cy.visitOnMobile('/?skip-onboarding=true');
+  });
 });
