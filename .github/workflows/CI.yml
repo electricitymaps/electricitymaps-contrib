@@ -51,3 +51,9 @@ jobs:
   prettier:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
+
+  jest:
+    name: Jest
+    needs: [setup]
+    if: needs.setup.outputs.frontend != 'false'
+    uses: ./.github/workflows/jest.yml
