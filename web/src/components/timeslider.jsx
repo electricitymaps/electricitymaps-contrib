@@ -108,7 +108,7 @@ const TimeSlider = ({
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
-  const isLoading = useSelector((state) => state.application.selectedTimeAggregate !== 'hourly');
+  const isLoading = useSelector((state) => state.data.isLoadingGrid);
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
     [width, datetimes, startTime, endTime]
