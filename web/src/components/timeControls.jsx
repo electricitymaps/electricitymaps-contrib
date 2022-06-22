@@ -37,7 +37,7 @@ const DateRangeOption = styled.span`
 `;
 
 const DateDisplay = styled.div`
-  display: flex;
+  display: ${(props) => (props.loading ? 'none' : 'flex')};
   align-items: center;
   font-size: calc(9px + 0.2vw);
   background-color: #f0f0f0;
@@ -84,7 +84,7 @@ const getOptions = (language) => [
   },
 ];
 
-const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange }) => {
+const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange, isLoading }) => {
   const { __, i18n } = useTranslation();
   const options = getOptions(i18n.language);
   const zoneDatetimes = useSelector((state) => state.data.zoneDatetimes);
@@ -93,7 +93,7 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
     <div>
       <Wrapper>
         <Title>{__('time-controller.title')}</Title>
-        <DateDisplay>{formatDate(date, i18n.language, selectedTimeAggregate)}</DateDisplay>
+        <DateDisplay loading={isLoading}>{formatDate(date, i18n.language, selectedTimeAggregate)}</DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
         {options.map((o) => (
