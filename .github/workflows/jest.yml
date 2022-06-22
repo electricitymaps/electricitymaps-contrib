@@ -11,5 +11,5 @@ jobs:
       - name: Install
         run: yarn
       - name: Run test
-        run: yarn test
+        run: yarn run test
         working-directory: ./web
