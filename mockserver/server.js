@@ -18,6 +18,20 @@ app.get('/v4/history', (req, res, next) => {
   }
 });
 
+
+app.get('/v5/history/:aggregate', (req, res, next) => {
+  const { aggregate } = req.params;
+  const { countryCode } = req.query;
+  if (countryCode && fs.existsSync(`./public/v5/history/${countryCode}/${aggregate}`)) {
+    // we alter the URL to use the specific zone history file if available
+    res.redirect(`/v5/history/${countryCode}/${aggregate}`);
+  } else {
+    // otherwise fallback to general history files (that are using data from DE)
+    next();
+  }
+});
+
+
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files
   if (Object.entries(req.query).length !== 0) {
