@@ -3,7 +3,7 @@ describe('Ranking Panel', () => {
     cy.visit('/?skip-onboarding=true');
 
     // See more than X countries on the list by default
-    cy.get('.zone-list a').should('have.length', 9);
+    cy.get('.zone-list a').should('have.length.above', 3);
 
     // Search for a country
     cy.get('.zone-search-bar > input').type('Germ');
