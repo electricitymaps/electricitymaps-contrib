@@ -67,7 +67,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
-        details: zoneStates.map((v) => removeDuplicateSources(v)),
+        details: zoneStates.map((v) => ({ ...v, source: removeDuplicateSources(v.source) })),
         hasDetailedData: true,
         hasData: Object.values(zoneStates).some((v) => v.co2intensity !== null),
       };

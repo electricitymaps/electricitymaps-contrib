@@ -85,20 +85,20 @@ function combineZoneData(zoneData, aggregate) {
   return combined;
 }
 
-function removeDuplicateSources(zoneData) {
-  if (!zoneData || !zoneData.source) {
-    return zoneData;
+function removeDuplicateSources(source) {
+  if (!source) {
+    return null;
   }
   const sources = [
     ...new Set(
-      zoneData.source
+      source
         .split('","')
         .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
         .flat()
     ),
   ].join();
 
-  return { ...zoneData, source: sources };
+  return sources;
 }
 
 export {
