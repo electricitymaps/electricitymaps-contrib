@@ -49,7 +49,7 @@ const scalePower = function (maxPower) {
 };
 
 const formatDate = function (date, lang, time) {
-  if (!date || !time || !date.getTime()) {
+  if (!isValidDate(date) || !time) {
     return '';
   }
 
@@ -59,9 +59,9 @@ const formatDate = function (date, lang, time) {
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
     case TIME.MONTHLY:
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(date);
     case TIME.YEARLY:
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:
       console.error(`${time} is not implemented`);
       return '';
@@ -102,7 +102,7 @@ const formatTimeRange = (lang, timeAggregate) => {
 };
 
 const formatDateTick = function (date, lang, timeAggregate) {
-  if (!date || !timeAggregate) {
+  if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
 
@@ -120,5 +120,17 @@ const formatDateTick = function (date, lang, timeAggregate) {
       return '';
   }
 };
+
+function isValidDate(date) {
+  if (!date) {
+    return false;
+  }
+
+  if (!date.getTime() || date.getTime() <= 1) {
+    return false;
+  }
+
+  return true;
+}
 
 export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
