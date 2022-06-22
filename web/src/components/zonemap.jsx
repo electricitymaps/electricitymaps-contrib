@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
-import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
+import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
+import { ZoomControls } from './zoomcontrols';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -33,8 +34,6 @@ const ZoneMap = ({
     longitude: 0,
     zoom: 2,
   },
-  zoomInLabel = '',
-  zoomOutLabel = '',
 }) => {
   const ref = useRef(null);
   const wrapperRef = useRef(null);
@@ -263,17 +262,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <div
-            className="mapboxgl-zoom-controls"
-            style={{
-              boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.15)',
-              position: 'absolute',
-              right: '24px',
-              top: '24px',
-            }}
-          >
-            <NavigationControl showCompass={false} zoomInLabel={zoomInLabel} zoomOutLabel={zoomOutLabel} />
-          </div>
+          <ZoomControls />
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />

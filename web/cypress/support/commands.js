@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/**
+ * The setSliderValue command will set the value of a input[type=range] element.
+ * See https://github.com/cypress-io/cypress/issues/1570#issuecomment-891244917
+ */
+Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, value) => {
+  const element = subject[0];
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
+
+  nativeInputValueSetter?.call(element, value);
+  element.dispatchEvent(new Event('input', { bubbles: true }));
+});
+// TypeScript declaration for future use
+// declare namespace Cypress {
+//     interface Chainable {
+//         setSliderValue(value: number): Chainable<void>
+//     }
+// }
