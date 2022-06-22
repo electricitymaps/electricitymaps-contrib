@@ -18,7 +18,6 @@ app.get('/v4/history', (req, res, next) => {
   }
 });
 
-
 app.get('/v5/history/:aggregate', (req, res, next) => {
   const { aggregate } = req.params;
   const { countryCode } = req.query;
@@ -30,7 +29,6 @@ app.get('/v5/history/:aggregate', (req, res, next) => {
     next();
   }
 });
-
 
 app.use(function (req, res, next) {
   // Get rid of query parameters so we can serve static files
