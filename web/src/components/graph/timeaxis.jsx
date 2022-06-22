@@ -2,6 +2,8 @@ import React from 'react';
 import { TIME } from '../../helpers/constants';
 import { formatDateTick } from '../../helpers/formatting';
 import { useTranslation } from '../../helpers/translation';
+import PulseLoader from 'react-spinners/PulseLoader';
+import styled from 'styled-components';
 
 // Frequency at which values are displayed for a tick
 const TIME_TO_TICK_FREQUENCY = {
@@ -10,6 +12,10 @@ const TIME_TO_TICK_FREQUENCY = {
   monthly: 1,
   yearly: 1,
 };
+
+const LoadingWrapper = styled.div`
+  height: 25px; // ensures there's no jump between loading and non-loading
+`;
 
 const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
   const shouldDisplayLive = idx === 24 && displayLive;
@@ -42,17 +48,42 @@ const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, i
 };
 
 const TimeAxis = React.memo(
-  ({ className, scale, transform, displayLive, selectedTimeAggregate = TIME.HOURLY, datetimes = [], isLoading }) => {
+  ({
+    className,
+    scale,
+    transform,
+    displayLive,
+    selectedTimeAggregate = TIME.HOURLY,
+    datetimes = [],
+    isLoading,
+    inputRef,
+  }) => {
     const [x1, x2] = scale.range();
     const { i18n } = useTranslation();
 
+    if (isLoading) {
+      return (
+        <LoadingWrapper>
+          <PulseLoader size={5} />
+        </LoadingWrapper>
+      );
+    }
+
     return (
-      <g className={className} transform={transform} fill="none" textAnchor="middle" style={{ pointerEvents: 'none' }}>
-        <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
-        {datetimes.map((v, idx) =>
-          renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate, isLoading)
-        )}
-      </g>
+      <svg className="time-slider-axis-container" ref={inputRef}>
+        <g
+          className={className}
+          transform={transform}
+          fill="none"
+          textAnchor="middle"
+          style={{ pointerEvents: 'none' }}
+        >
+          <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
+          {datetimes.map((v, idx) =>
+            renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate, isLoading)
+          )}
+        </g>
+      </svg>
     );
   }
 );
