@@ -109,7 +109,6 @@ const TimeSlider = ({
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
   const isLoading = useSelector((state) => state.data.isLoadingGrid);
-
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
     [width, datetimes, startTime, endTime]
@@ -138,6 +137,7 @@ const TimeSlider = ({
       />
       <TimeControls
         date={new Date(timeValue)}
+        isLoading={isLoading}
         selectedTimeAggregate={selectedTimeAggregate}
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
@@ -150,17 +150,16 @@ const TimeSlider = ({
         min={startTimeValue}
         max={endTimeValue}
       />
-      <svg className="time-slider-axis-container" ref={ref}>
-        <TimeAxis
-          datetimes={datetimes}
-          scale={timeScale}
-          transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
-          className="time-slider-axis"
-          displayLive={selectedTimeAggregate === TIME.HOURLY}
-          selectedTimeAggregate={selectedTimeAggregate}
-          isLoading={isLoading}
-        />
-      </svg>
+      <TimeAxis
+        inputRef={ref}
+        datetimes={datetimes}
+        scale={timeScale}
+        transform={`translate(${AXIS_HORIZONTAL_MARGINS}, 0)`}
+        className="time-slider-axis"
+        displayLive={selectedTimeAggregate === TIME.HOURLY}
+        selectedTimeAggregate={selectedTimeAggregate}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
