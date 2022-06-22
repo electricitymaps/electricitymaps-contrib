@@ -4,14 +4,20 @@ import { interpolate } from 'd3-interpolate';
 import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
+import { TIME } from '../helpers/constants';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
+  const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
+  const isLatestTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex === 24);
   const exchanges = useSelector((state) => state.data.exchanges);
 
   return useMemo(
-    () => (isConsumption ? Object.values(exchanges).filter((d) => d.lonlat && d.sortedCountryCodes) : []),
-    [isConsumption, exchanges]
+    () =>
+      isConsumption && isLatestTimeIndex && isHourly
+        ? Object.values(exchanges).filter((d) => d.lonlat && d.sortedCountryCodes)
+        : [],
+    [isConsumption, exchanges, isHourly, isLatestTimeIndex]
   );
 }
 
