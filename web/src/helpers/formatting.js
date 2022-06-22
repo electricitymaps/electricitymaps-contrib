@@ -122,16 +122,15 @@ const formatDateTick = function (date, lang, timeAggregate) {
 };
 
 function isValidDate(date) {
-  let isValid = true;
   if (!date) {
-    isValid = false;
+    return false;
   }
 
   if (!date.getTime() || date.getTime() <= 1) {
-    isValid = false;
+    return false;
   }
 
-  return isValid;
+  return true;
 }
 
 export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
