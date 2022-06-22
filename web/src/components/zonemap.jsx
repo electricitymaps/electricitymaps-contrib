@@ -5,6 +5,7 @@ import ReactMapGL, { NavigationControl, Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
+import { getCO2IntensityByMode } from '../helpers/zonedata';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -41,6 +42,7 @@ const ZoneMap = ({
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
   const zones = useSelector((state) => state.data.zones);
 
   const [isDragging, setIsDragging] = useState(false);
@@ -136,7 +138,12 @@ const ZoneMap = ({
       features.forEach((feature) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
-        const co2intensity = zones?.[zoneId]?.[selectedTimeAggregate]?.overviews[selectedZoneTimeIndex]?.co2intensity;
+        const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
+        if (!zoneData) {
+          return;
+        }
+        const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
+
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
           fillColor = co2ColorScale(co2intensity);
@@ -158,7 +165,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex]);
+  }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex, electricityMixMode]);
 
   const handleClick = useMemo(
     () => (e) => {

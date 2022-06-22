@@ -36,6 +36,7 @@ import SocialButtons from './socialbuttons';
 import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
+import { getCO2IntensityByMode } from '../../helpers/zonedata';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -229,7 +230,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { hasData, hasParser, estimationMethod } = data;
   const isDataEstimated = estimationMethod ? true : false;
 
-  const co2Intensity = electricityMixMode === 'consumption' ? data.co2intensity : data.co2intensityProduction;
+  const co2Intensity = getCO2IntensityByMode(data, electricityMixMode);
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);

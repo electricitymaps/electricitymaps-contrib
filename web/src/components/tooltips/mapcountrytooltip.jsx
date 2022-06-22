@@ -8,6 +8,7 @@ import CircularGauge from '../circulargauge';
 import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
+import { getCO2IntensityByMode } from '../../helpers/zonedata';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -72,7 +73,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
-  const co2intensity = electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
+  const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
 
   const fossilFuelRatio =
     electricityMixMode === 'consumption' ? zoneData.fossilFuelRatio : zoneData.fossilFuelRatioProduction;
