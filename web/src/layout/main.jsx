@@ -26,11 +26,13 @@ import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
 import InfoModal from '../components/infomodal';
 import FAQModal from '../components/faqmodal';
+import SettingsModal from '../components/settingsmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
 import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
+import MobileLayerButtons from '../components/mobilelayerbuttons';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -60,6 +62,12 @@ const NewVersionButton = styled.button`
   background-color: inherit;
   border: none;
   cursor: pointer;
+`;
+
+const HiddenOnMobile = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const StyledBottomSheet = styled(BottomSheet)`
@@ -129,8 +137,9 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
-              {!isMobile && <Legend />}
-              <div className="controls-container">
+              <MobileLayerButtons />
+              <Legend />
+              <HiddenOnMobile className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
                   onChange={(value) => dispatchApplication('electricityMixMode', value)}
@@ -139,8 +148,9 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
+                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
-              </div>
+              </HiddenOnMobile>
               <LayerButtons />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
@@ -184,6 +194,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
       <OnboardingModal />
       <InfoModal />
       <FAQModal />
+      <SettingsModal />
     </React.Fragment>
   );
 };
