@@ -19,6 +19,7 @@ import MapCountryTooltip from '../components/tooltips/mapcountrytooltip';
 import ExchangeLayer from '../components/layers/exchangelayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
+import { getCO2IntensityByMode } from '../helpers/zonedata';
 
 const debouncedReleaseMoving = debounce(() => {
   dispatchApplication('isMovingMap', false);
@@ -130,10 +131,7 @@ export default () => {
       if (!zoneOverview || !zoneConfig) {
         return;
       }
-      dispatchApplication(
-        'co2ColorbarValue',
-        electricityMixMode === 'consumption' ? zoneOverview.co2intensity : zoneOverview.co2intensityProduction
-      );
+      dispatchApplication('co2ColorbarValue', getCO2IntensityByMode(zoneOverview, electricityMixMode));
       setTooltipZoneData({ ...zoneOverview, ...zoneConfig });
     },
     [electricityMixMode, selectedTimeAggregate, selectedZoneTimeIndex, zones]

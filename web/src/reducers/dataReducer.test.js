@@ -1,9 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import { protectedJsonRequest } from '../helpers/api';
 import { GRID_DATA_FETCH_SUCCEEDED, ZONE_HISTORY_FETCH_SUCCEEDED } from '../helpers/redux';
 import reducer from './dataReducer';
+import historyData from '../../../mockserver/public/v5/history/DK-DK2/daily.json';
+import gridData from '../../../mockserver/public/v5/state/hourly.json';
 
 test('zones should have initial state with correct structure', () => {
   const state = reducer.getInitialState();
@@ -17,7 +18,6 @@ test('zones should have initial state with correct structure', () => {
       geography: expect.any(Object),
       config: {
         hasParser: true,
-        hasData: true,
         capacity: {
           nuclear: 0,
         },
@@ -30,10 +30,8 @@ test('zones should have initial state with correct structure', () => {
   expect(state.zones).toMatchObject(expectedZones);
 });
 
-/** The following tests assumes the mockserver is running */
-
 test('grid fetch updates correctly', async () => {
-  const payload = await protectedJsonRequest('/v5/state/hourly');
+  const payload = gridData.data;
   const action = GRID_DATA_FETCH_SUCCEEDED(payload);
   const state = reducer(undefined, action);
 
@@ -43,13 +41,13 @@ test('grid fetch updates correctly', async () => {
   };
 
   expect(state.zones['DK-DK2'].hourly.overviews[0]).toMatchObject(expectedHourly);
-  expect(state.zones['DK-DK2'].hourly.overviews).toHaveLength(24);
+  expect(state.zones['DK-DK2'].hourly.overviews).toHaveLength(25);
   expect(state.zones['DK-DK2'].daily.overviews).toHaveLength(0);
 });
 
 test('history contains required properties', async () => {
-  const payload = await protectedJsonRequest('/v5/history_DK-DK2_daily');
-  const action = ZONE_HISTORY_FETCH_SUCCEEDED({ ...payload, zoneId: 'DK-DK2' });
+  const payload = { ...historyData.data, zoneId: 'DK-DK2' };
+  const action = ZONE_HISTORY_FETCH_SUCCEEDED(payload);
   const state = reducer(undefined, action);
 
   expect(state.zones['DK-DK2'].daily.details[0]).toHaveProperty('totalCo2Production');
