@@ -42,6 +42,7 @@ function initDataState() {
     zone.config.hasParser = (zoneConfig.parsers || {}).production !== undefined;
     zone.config.delays = zoneConfig.delays;
     zone.config.disclaimer = zoneConfig.disclaimer;
+    zone.config.countryCode = key;
 
     zones[key] = zone;
   });
@@ -77,9 +78,15 @@ function combineZoneData(zoneData, aggregate) {
   // from zoneData for a specific aggregate into a single object
   const { overviews, details, hasData } = zoneData[aggregate];
   const { hasParser } = zoneData.config;
+  const { center } = zoneData.geography.properties;
+
+  if (!overviews.length) {
+    // if there is no data available return one entry with static data
+    return [{ hasData, hasParser, center }];
+  }
 
   const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData, center: zoneData.geography.properties.center };
+    return { ...overview, ...details[idx], hasParser, hasData, center };
   });
 
   return combined;
