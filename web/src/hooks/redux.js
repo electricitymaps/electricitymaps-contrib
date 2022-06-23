@@ -71,16 +71,15 @@ export function useCurrentZoneHistoryStartTime() {
 
 export function useCurrentZoneData() {
   const { zoneId } = useParams();
-  const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
   const zoneHistory = useCurrentZoneHistory();
+  const zoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
   const zones = useSelector((state) => state.data.zones);
 
   return useMemo(() => {
     if (!zoneId || !zones || !zoneHistory) {
       return null;
-    } else if (zoneTimeIndex === null || zoneHistory.length === 1) {
-      // if zonetimeIndex is null return latest history.
-      // if there is only one element return that element
+    } else if (zoneTimeIndex === null) {
+      // If null, return the latest history
       return zoneHistory.at(-1);
     } else {
       return zoneHistory[zoneTimeIndex];
