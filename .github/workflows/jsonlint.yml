@@ -1,20 +1,23 @@
-name: Prettier
+name: jsonlint
 
 on:
   workflow_call:
 
 jobs:
-  check:
+  lint_json:
     name: Check
     runs-on: ubuntu-latest
     timeout-minutes: 1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node
+      - name: Setup Node LTS
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-      - name: Prettier Check
+      - name: Install jsonlint-mod
         run: |
-          npx prettier@2.6.2 --check .
+          npm install -g jsonlint-mod
+      - name: Lint json
+        run: |
+          jsonlint -q config/*.json web/public/locales/*.json
