@@ -21,7 +21,7 @@ app.get('/v4/history', (req, res, next) => {
 app.get('/v5/history/:aggregate', (req, res, next) => {
   const { aggregate } = req.params;
   const { countryCode } = req.query;
-  if (countryCode && fs.existsSync(`./public/v5/history/${countryCode}/${aggregate}`)) {
+  if (countryCode && fs.existsSync(`./public/v5/history/${countryCode}/${aggregate}.json`)) {
     // we alter the URL to use the specific zone history file if available
     res.redirect(`/v5/history/${countryCode}/${aggregate}`);
   } else {
@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
   }
 });
 
-app.use(express.static('public'));
+app.use(express.static('public', { extensions: ['json'] }));
 
 const server = app.listen(PORT, () => {
   console.log('Started mockserver on port: ' + PORT);
