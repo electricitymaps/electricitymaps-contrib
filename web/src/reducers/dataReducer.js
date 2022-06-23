@@ -61,13 +61,13 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoadingGrid = false;
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
-      const { stateAggregation, zoneStates, zoneId } = action.payload;
+      const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
       state.isLoadingHistories = false;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         details: zoneStates,
         hasDetailedData: true,
-        hasData: Object.values(zoneStates).some((v) => v.co2intensity !== null),
+        hasData,
       };
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
