@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        env: 
+        env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
