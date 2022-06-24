@@ -1,6 +1,7 @@
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
-    cy.visit('/zone/DK-DK2?skip-onboarding=true');
+    // Note that we force language here as CI and local machines might display dates differently otherwise
+    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
 
     // Intercepts all API network requests and serves fixtures directly
     cy.interceptAPI('v5/state/hourly');
