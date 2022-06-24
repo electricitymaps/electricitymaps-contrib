@@ -1,6 +1,8 @@
 describe('Country Panel', () => {
   it('interacts with details', () => {
     cy.visit('/zone/DK-DK2?skip-onboarding=true');
+    cy.interceptAPI('v5/state/hourly');
+    cy.waitForAPISuccess(`v5/state/hourly`);
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
     cy.get('#country-lowcarbon-gauge').trigger('mousemove');
