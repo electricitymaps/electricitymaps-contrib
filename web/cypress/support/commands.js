@@ -44,9 +44,15 @@ Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, val
 // }
 
 Cypress.Commands.add('interceptAPI', (path) => {
-  const pathWithoutParams = path.split('?')[0];
+  const [pathWithoutParams, params] = path.split('?');
+  let fixturePath = pathWithoutParams;
+  // Change fixture path if countryCode query parameter is used to use correct response
+  if (params && params.includes('countryCode')) {
+    const zone = params.split('=')[1];
+    fixturePath = pathWithoutParams.replace('/history/hourly', `/history/${zone}/hourly`);
+  }
   cy.intercept('GET', `http://localhost:8001/${path}`, {
-    fixture: `${pathWithoutParams}.json`,
+    fixture: `${fixturePath}.json`,
   }).as(path);
 });
 Cypress.Commands.add('waitForAPISuccess', (path) => {
