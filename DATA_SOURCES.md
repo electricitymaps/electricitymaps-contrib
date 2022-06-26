@@ -266,7 +266,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Italy
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
-- India:
+- India: [National Power Portal](https://npp.gov.in/publishedReports)
   - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
