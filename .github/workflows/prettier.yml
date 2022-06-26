@@ -17,4 +17,4 @@ jobs:
           node-version: lts/*
       - name: Prettier Check
         run: |
-          npx prettier@2.6.2 --check .
+          npx prettier@2.7.1 --check .
