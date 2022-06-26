@@ -2020,7 +2020,6 @@
       "solar": 56951.33,
       "wind": 40706.38
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity1-2022-05.pdf",
     "contributors": ["systemcatch", "gopikrishna1793"],
     "parsers": {
       "production": "IN.fetch_production"
@@ -2039,7 +2038,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2060,7 +2058,6 @@
       "solar": 4254.3,
       "wind": 4096.7
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
     "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2081,7 +2078,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2098,7 +2094,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2115,7 +2110,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2136,7 +2130,6 @@
       "solar": 252.5,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
     "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2161,7 +2154,6 @@
       "solar": 193,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2186,7 +2178,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2207,7 +2198,6 @@
       "solar": 5131.6,
       "wind": 8758.4
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
     "contributors": ["sahitya-pavurala", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2232,7 +2222,6 @@
       "solar": 45,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["willbeaufoy", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2252,7 +2241,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2269,7 +2257,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2286,7 +2273,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2307,7 +2293,6 @@
       "solar": 7409.39,
       "wind": 4938.6
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
     "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2328,7 +2313,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2350,7 +2334,6 @@
       "unknown": 480.55,
       "wind": 5010.8
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
     "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2370,7 +2353,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2387,7 +2369,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2405,7 +2386,6 @@
       "unknown": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2422,7 +2402,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2439,7 +2418,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2456,7 +2434,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2477,7 +2454,6 @@
       "solar": 968.6,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["corradio", "hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2498,7 +2474,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2515,7 +2490,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2532,7 +2506,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2566,7 +2539,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
@@ -2587,7 +2559,6 @@
       "solar": 1840.3,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["sahitya-pavurala", "pierresegonne", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {},
@@ -2609,7 +2580,6 @@
       "solar": 398.3,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
     "contributors": ["alixunderplatz", "lorrieq", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
@@ -2629,7 +2599,6 @@
       "solar": 0,
       "wind": 0
     },
-    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
