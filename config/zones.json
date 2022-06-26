@@ -2011,22 +2011,36 @@
   },
   "IN": {
     "capacity": {
-      "biomass": 10339.56,
-      "coal": 208624.5,
-      "gas": 24924,
-      "hydro": 51116,
+      "biomass": 10682.36,
+      "coal": 210699.5,
+      "gas": 24879.21,
+      "hydro": 51608.52,
       "nuclear": 6780,
-      "oil": 509.7,
-      "solar": 42335.49,
-      "wind": 39486.65
+      "oil": 509.71,
+      "solar": 56951.33,
+      "wind": 40706.38
     },
-    "contributors": ["systemcatch"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity1-2022-05.pdf",
+    "contributors": ["systemcatch", "gopikrishna1793"],
     "parsers": {
       "production": "IN.fetch_production"
     },
     "timezone": "Asia/Kolkata"
   },
   "IN-AN": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 40.05,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2038,30 +2052,71 @@
     "capacity": {
       "biomass": 506.9,
       "coal": 11590,
-      "gas": 4898.5,
-      "hydro": 1772.11,
+      "gas": 4898.54,
+      "geothermal": 0,
+      "hydro": 1610,
       "nuclear": 0,
-      "oil": 37,
+      "oil": 36.8,
       "solar": 4254.3,
       "wind": 4096.7
     },
-    "contributors": ["hectorespert"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
       "production": "IN_AP.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-AR": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 1115,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-AS": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 750,
+      "gas": 620.36,
+      "geothermal": 0,
+      "hydro": 350,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-BR": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 8400,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2074,22 +2129,23 @@
       "biomass": 269.9,
       "coal": 23688,
       "gas": 0,
-      "hydro": 196,
+      "geothermal": 0,
+      "hydro": 120,
       "nuclear": 0,
       "oil": 0,
       "solar": 252.5,
       "wind": 0
     },
-    "contributors": ["hectorespert"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_CT.fetch_consumption",
       "production": "IN_CT.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-DL": {
-    "_comment": "biomass capacity is lower (16 MW) than generation from biomass, therefore not included",
     "bounding_box": [
       [76.3336877786681, 27.932605902840095],
       [77.83753299275344, 29.382087511129754]
@@ -2097,26 +2153,41 @@
     "capacity": {
       "biomass": 52,
       "coal": 0,
-      "gas": 2208,
+      "gas": 2208.4,
+      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
       "oil": 0,
       "solar": 193,
       "wind": 0
     },
-    "contributors": ["hectorespert"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_DL.fetch_consumption",
       "production": "IN_DL.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-DN": {
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-GA": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 48,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2128,14 +2199,16 @@
     "capacity": {
       "biomass": 77.3,
       "coal": 16092,
-      "gas": 7551,
-      "hydro": 2072.7,
+      "gas": 7551.41,
+      "geothermal": 0,
+      "hydro": 1990,
       "nuclear": 440,
       "oil": 0,
       "solar": 5131.6,
       "wind": 8758.4
     },
-    "contributors": ["sahitya-pavurala"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
+    "contributors": ["sahitya-pavurala", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_GJ.fetch_consumption",
@@ -2152,13 +2225,15 @@
       "biomass": 9.2,
       "coal": 0,
       "gas": 0,
-      "hydro": 10856.1,
+      "geothermal": 0,
+      "hydro": 10263.02,
       "nuclear": 0,
       "oil": 0,
       "solar": 45,
       "wind": 0
     },
-    "contributors": ["willbeaufoy"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["willbeaufoy", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_HP.fetch_production"
@@ -2166,14 +2241,53 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-HR": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 5330,
+      "gas": 431.59,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-JH": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 4250,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 210,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-JK": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 175,
+      "geothermal": 0,
+      "hydro": 3360,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2186,21 +2300,36 @@
       "biomass": 1888.3,
       "coal": 9480,
       "gas": 0,
-      "hydro": 4924.9,
+      "geothermal": 0,
+      "hydro": 3689.2,
       "nuclear": 880,
       "oil": 25.2,
       "solar": 7409.39,
       "wind": 4938.6
     },
-    "contributors": ["hectorespert"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_KA.fetch_consumption",
       "production": "IN_KA.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-KL": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 533.58,
+      "geothermal": 0,
+      "hydro": 1856.5,
+      "nuclear": 0,
+      "oil": 159.96,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2211,8 +2340,9 @@
     ],
     "capacity": {
       "biomass": 2597,
-      "coal": 24966,
+      "coal": 23856,
       "gas": 3207.08,
+      "geothermal": 0,
       "hydro": 3047,
       "nuclear": 1400,
       "oil": 0,
@@ -2220,8 +2350,8 @@
       "unknown": 480.55,
       "wind": 5010.8
     },
-    "comment": "partial source: installed capacity in Jun-2021 https://cea.nic.in/dashboard/?lang=en",
-    "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
+    "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_MH.fetch_production"
@@ -2229,26 +2359,105 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-ML": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 322,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MN": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 105,
+      "nuclear": 0,
+      "oil": 36,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MP": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 21950,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 2235,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "unknown": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Western-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MZ": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 60,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-NL": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 75,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-OR": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 9540,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 2154.55,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2261,37 +2470,104 @@
       "biomass": 484.3,
       "coal": 5680,
       "gas": 0,
-      "hydro": 1269.6,
+      "geothermal": 0,
+      "hydro": 1096.3,
       "nuclear": 0,
       "oil": 0,
       "solar": 968.6,
       "wind": 0
     },
-    "contributors": ["corradio", "hectorespert"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["corradio", "hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_PB.fetch_consumption",
       "production": "IN_PB.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-PY": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 32.5,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Southern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-RJ": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 10480,
+      "gas": 1022.83,
+      "geothermal": 0,
+      "hydro": 411,
+      "nuclear": 1180,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-SK": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 0,
+      "geothermal": 0,
+      "hydro": 2282,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-TN": {
+    "capacity": {
+      "biomass": 265.59,
+      "coal": 13685,
+      "gas": 516.1,
+      "geothermal": 4320,
+      "hydro": 2321.9,
+      "nuclear": 2440,
+      "oil": 211.7,
+      "solar": 5518.153,
+      "wind": 8618.070
+    },
+    "comment": "https://tnebsldc.org/reports1/peakdet.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-TR": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 1099.6,
+      "geothermal": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-North%20Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
@@ -2302,15 +2578,17 @@
     ],
     "capacity": {
       "biomass": 2117.3,
-      "coal": 23729,
-      "gas": 1493.1,
-      "hydro": 550.7,
+      "coal": 24389,
+      "gas": 1493.14,
+      "geothermal": 0,
+      "hydro": 501.6,
       "nuclear": 440,
       "oil": 0,
       "solar": 1840.3,
       "wind": 0
     },
-    "contributors": ["sahitya-pavurala", "pierresegonne"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["sahitya-pavurala", "pierresegonne", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {},
     "timezone": "Asia/Kolkata"
@@ -2324,13 +2602,15 @@
       "biomass": 130.2,
       "coal": 0,
       "gas": 450,
-      "hydro": 4069.7,
+      "geothermal": 0,
+      "hydro": 3855.35,
       "nuclear": 0,
       "oil": 0,
       "solar": 398.3,
       "wind": 0
     },
-    "contributors": ["alixunderplatz", "lorrieq"],
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Northern-2022-05.pdf",
+    "contributors": ["alixunderplatz", "lorrieq", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_UT.fetch_production"
@@ -2338,6 +2618,19 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-WB": {
+    "capacity": {
+      "biomass": 0,
+      "coal": 13697,
+      "gas": 80,
+      "geothermal": 0,
+      "hydro": 1341.2,
+      "nuclear": 0,
+      "oil": 0,
+      "solar": 0,
+      "wind": 0
+    },
+    "comment": "https://npp.gov.in/public-reports/cea/monthly/installcap/2022/MAY/capacity2-Eastern-2022-05.pdf",
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
