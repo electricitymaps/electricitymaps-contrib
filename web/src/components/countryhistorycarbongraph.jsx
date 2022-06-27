@@ -31,9 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
-  const [graphIndex, setGraphIndex] = useState(0);
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
@@ -47,21 +45,6 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
     [historyData, co2ColorScale, electricityMixMode]
   );
 
-  // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      setGraphIndex(timeIndex);
-      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
-    },
-    [setSelectedLayerIndex]
-  );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      setSelectedLayerIndex(null);
-      setGraphIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
@@ -89,14 +72,8 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
         startTime={startTime}
         endTime={endTime}
         valueAxisLabel="g / kWh"
-        backgroundMouseMoveHandler={mouseMoveHandler}
-        backgroundMouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={mouseMoveHandler}
-        layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={graphIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
       />

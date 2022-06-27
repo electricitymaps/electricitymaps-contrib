@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 
@@ -93,25 +93,10 @@ const AreaGraph = React.memo(
   */
     valueAxisLabel,
     /*
-    Mouse event callbacks for the graph background and individual layers respectively.
-  */
-    backgroundMouseMoveHandler,
-    backgroundMouseOutHandler,
-    layerMouseMoveHandler,
-    layerMouseOutHandler,
-    /*
     Marker hooks that get called when the marker selection gets updated or hidden
   */
     markerUpdateHandler,
     markerHideHandler,
-    /*
-    `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
-  */
-    selectedTimeIndex,
-    /*
-    `selectedLayerIndex` is an integer value representing the layer index of the datapoint in focus.
-  */
-    selectedLayerIndex,
     /*
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
@@ -145,6 +130,31 @@ const AreaGraph = React.memo(
 
     const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
+    const [graphIndex, setGraphIndex] = useState(null);
+    const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+    // Mouse action handlers
+    const mouseMoveHandler = useMemo(
+      () => (timeIndex, layerIndex) => {
+        setGraphIndex(timeIndex);
+        if (layers.length <= 1) {
+          // Select the first (and only) layer even when hovering over background
+          setSelectedLayerIndex(0);
+        } else {
+          // use the selected layer (or undefined to hide the tooltips)
+          setSelectedLayerIndex(layerIndex);
+        }
+      },
+      [layers, setGraphIndex, setSelectedLayerIndex]
+    );
+    const mouseOutHandler = useMemo(
+      () => () => {
+        setGraphIndex(null);
+        setSelectedLayerIndex(null);
+      },
+      [setGraphIndex, setSelectedLayerIndex]
+    );
+
     // Don't render the graph at all if no layers are present
     if (isEmpty(layers)) {
       return null;
@@ -156,8 +166,8 @@ const AreaGraph = React.memo(
           timeScale={timeScale}
           valueScale={valueScale}
           datetimes={datetimes}
-          mouseMoveHandler={backgroundMouseMoveHandler}
-          mouseOutHandler={backgroundMouseOutHandler}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={node}
         />
@@ -166,8 +176,8 @@ const AreaGraph = React.memo(
           datetimes={datetimes}
           timeScale={timeScale}
           valueScale={valueScale}
-          mouseMoveHandler={layerMouseMoveHandler}
-          mouseOutHandler={layerMouseOutHandler}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={node}
         />
@@ -187,7 +197,7 @@ const AreaGraph = React.memo(
           markerUpdateHandler={markerUpdateHandler}
           markerHideHandler={markerHideHandler}
           selectedLayerIndex={selectedLayerIndex}
-          selectedTimeIndex={selectedTimeIndex}
+          selectedTimeIndex={graphIndex}
           svgNode={node}
         />
       </svg>

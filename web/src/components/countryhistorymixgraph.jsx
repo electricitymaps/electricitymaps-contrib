@@ -112,9 +112,7 @@ const mapStateToProps = (state) => ({
 });
 
 const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile }) => {
-  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
@@ -129,33 +127,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
     [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
-  // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      setGraphIndex(timeIndex);
-    },
-    []
-  );
-  const backgroundMouseOutHandler = useMemo(
-    () => () => {
-      setGraphIndex(null);
-    },
-    []
-  );
-  const layerMouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex) => {
-      setGraphIndex(timeIndex);
-      setSelectedLayerIndex(layerIndex);
-    },
-    [setSelectedLayerIndex]
-  );
-  const layerMouseOutHandler = useMemo(
-    () => () => {
-      setGraphIndex(null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint, layerKey) => {
@@ -184,14 +155,8 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
         startTime={startTime}
         endTime={endTime}
         valueAxisLabel={valueAxisLabel}
-        backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-        backgroundMouseOutHandler={backgroundMouseOutHandler}
-        layerMouseMoveHandler={layerMouseMoveHandler}
-        layerMouseOutHandler={layerMouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={graphIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="10em"
       />
@@ -202,7 +167,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
             position={tooltip.position}
             zoneData={tooltip.zoneData}
             onClose={() => {
-              setSelectedLayerIndex(null);
               setTooltip(null);
             }}
           />
@@ -212,7 +176,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
             position={tooltip.position}
             zoneData={tooltip.zoneData}
             onClose={() => {
-              setSelectedLayerIndex(null);
               setTooltip(null);
             }}
           />

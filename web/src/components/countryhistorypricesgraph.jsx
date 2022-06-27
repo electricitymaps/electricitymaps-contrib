@@ -48,9 +48,7 @@ const mapStateToProps = (state) => ({
 });
 
 const CountryHistoryPricesGraph = ({ isMobile }) => {
-  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
   const datetimes = useCurrentZoneHistoryDatetimes();
@@ -63,21 +61,6 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
     [historyData]
   );
 
-  // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      setGraphIndex(timeIndex);
-      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
-    },
-    [setSelectedLayerIndex]
-  );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      setGraphIndex(null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
@@ -107,14 +90,8 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
         startTime={startTime}
         endTime={endTime}
         valueAxisLabel={valueAxisLabel}
-        backgroundMouseMoveHandler={mouseMoveHandler}
-        backgroundMouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={mouseMoveHandler}
-        layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={graphIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="6em"
       />
@@ -123,7 +100,6 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
           position={tooltip.position}
           zoneData={tooltip.zoneData}
           onClose={() => {
-            setSelectedLayerIndex(null);
             setTooltip(null);
           }}
         />

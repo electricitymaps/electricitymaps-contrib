@@ -36,9 +36,7 @@ const mapStateToProps = (state) => ({
 });
 
 const CountryHistoryEmissionsGraph = ({ isMobile }) => {
-  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
   const datetimes = useCurrentZoneHistoryDatetimes();
@@ -48,21 +46,6 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(() => prepareGraphData(historyData), [historyData]);
 
-  // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      setGraphIndex(timeIndex);
-      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
-    },
-    [setSelectedLayerIndex]
-  );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      setGraphIndex(null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
@@ -90,14 +73,8 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
         startTime={startTime}
         endTime={endTime}
         valueAxisLabel="tCO₂eq / min"
-        backgroundMouseMoveHandler={mouseMoveHandler}
-        backgroundMouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={mouseMoveHandler}
-        layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={graphIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
       />
@@ -106,7 +83,6 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
           position={tooltip.position}
           zoneData={tooltip.zoneData}
           onClose={() => {
-            setSelectedLayerIndex(null);
             setTooltip(null);
           }}
         />
