@@ -7,7 +7,6 @@ import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
 import { useCurrentZoneHistory, useCurrentZoneExchangeKeys, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
-import { dispatchApplication } from '../store';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
@@ -110,10 +109,10 @@ const mapStateToProps = (state) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, selectedTimeIndex }) => {
+const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile }) => {
+  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
@@ -133,26 +132,26 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
   // Mouse action handlers
   const backgroundMouseMoveHandler = useMemo(
     () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setGraphIndex(timeIndex);
     },
     []
   );
   const backgroundMouseOutHandler = useMemo(
     () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
+      setGraphIndex(null);
     },
     []
   );
   const layerMouseMoveHandler = useMemo(
     () => (timeIndex, layerIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setGraphIndex(timeIndex);
       setSelectedLayerIndex(layerIndex);
     },
     [setSelectedLayerIndex]
   );
   const layerMouseOutHandler = useMemo(
     () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
+      setGraphIndex(null);
       setSelectedLayerIndex(null);
     },
     [setSelectedLayerIndex]
@@ -190,7 +189,7 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
         layerMouseOutHandler={layerMouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
+        selectedTimeIndex={graphIndex}
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="10em"

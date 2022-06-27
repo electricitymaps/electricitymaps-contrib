@@ -5,7 +5,6 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { dispatchApplication } from '../store';
 import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
@@ -46,10 +45,10 @@ const prepareGraphData = (historyData) => {
 
 const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
+const CountryHistoryPricesGraph = ({ isMobile }) => {
+  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
@@ -67,14 +66,14 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
     () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setGraphIndex(timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
     [setSelectedLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
+      setGraphIndex(null);
       setSelectedLayerIndex(null);
     },
     [setSelectedLayerIndex]
@@ -113,7 +112,7 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
         layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
+        selectedTimeIndex={graphIndex}
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="6em"
