@@ -610,7 +610,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "ree"
-version = "2.2.2"
+version = "2.3.0"
 description = "UNOFFICIAL Red Eléctrica de España data client"
 category = "main"
 optional = true
@@ -859,7 +859,7 @@ validators = ["arrow", "pandas"]
 [metadata]
 lock-version = "1.1"
 python-versions = '>= 3.7.1, < 4.0'
-content-hash = "68978ace5fe91874c43268b45d8188b7d7cac2049b969becdf8d27ab4e14432a"
+content-hash = "868a31b7a926c7da2d6f71d52d5aabe34083ff81bd33517747e135edf0030177"
 
 [metadata.files]
 appdirs = [
@@ -1306,8 +1306,8 @@ pyyaml = [
     {file = "PyYAML-6.0.tar.gz", hash = "sha256:68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"},
 ]
 ree = [
-    {file = "ree-2.2.2-py3-none-any.whl", hash = "sha256:cc8c2bad5b02834c661e3d168d3bcf9152e58f97b0eae51e0e568eca730cd0b6"},
-    {file = "ree-2.2.2.tar.gz", hash = "sha256:ac5e3f074b114967e3c32854b8c40475f2be87aba88618035589308076e28632"},
+    {file = "ree-2.3.0-py3-none-any.whl", hash = "sha256:934bacc36b1fc813e628b3e9522eb1cb8312d2ddeb2548ec34e0f4e4747428e3"},
+    {file = "ree-2.3.0.tar.gz", hash = "sha256:cb8fedf6d3a9732c23b0f92c7927cff15319dc29f3ce64d2a14ecf9f1a5c9531"},
 ]
 regex = [
     {file = "regex-2022.4.24-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:f86aef546add4ff1202e1f31e9bb54f9268f17d996b2428877283146bf9bc013"},
