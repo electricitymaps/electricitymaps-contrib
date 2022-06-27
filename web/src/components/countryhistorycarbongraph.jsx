@@ -82,6 +82,7 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-carbon-graph"
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}

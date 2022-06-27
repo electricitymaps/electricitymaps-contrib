@@ -63,6 +63,7 @@ const AreaGraph = React.memo(
       * `datetime` timestamp
   */
     data,
+    testId,
     /*
     `layerKey` should be an array of strings denoting the graph layers (in bottom-to-top order).
   */
@@ -150,7 +151,7 @@ const AreaGraph = React.memo(
     }
 
     return (
-      <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
+      <svg data-test-id={testId} height={height} ref={ref} style={{ overflow: 'visible' }}>
         <GraphBackground
           timeScale={timeScale}
           valueScale={valueScale}

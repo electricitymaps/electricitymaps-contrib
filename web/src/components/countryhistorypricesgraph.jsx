@@ -98,6 +98,7 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-prices-graph"
         data={data}
         layerKeys={layerKeys}
         layerStroke={layerStroke}

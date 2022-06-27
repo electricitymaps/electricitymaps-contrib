@@ -177,6 +177,7 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-mix-graph"
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}

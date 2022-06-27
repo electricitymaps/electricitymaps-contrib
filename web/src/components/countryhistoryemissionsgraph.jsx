@@ -83,6 +83,7 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-emissions-graph"
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}
