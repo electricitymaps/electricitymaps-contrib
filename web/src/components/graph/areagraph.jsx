@@ -10,17 +10,17 @@ import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
+import { useCurrentZoneHistoryDatetimes } from '../../hooks/redux';
+
 import { useSelector } from 'react-redux';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
 const Y_AXIS_PADDING = 4;
 
-const getDatetimes = (data) => (data || []).map((d) => d.datetime);
-
-const getTimeScale = (width, datetimes, startTime, endTime) =>
+const getTimeScale = (width, startTime, endTime) =>
   scaleTime()
-    .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
+    .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
 
 const getTotalValues = (layers) => {
@@ -83,12 +83,6 @@ const AreaGraph = React.memo(
   */
     markerFill,
     /*
-    `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
-    If not provided, they'll be inferred from timestamps of the first/last datapoints.
-  */
-    startTime,
-    endTime,
-    /*
     `valueAxisLabel` is a string label for the values (Y-axis) scale.
   */
     valueAxisLabel,
@@ -122,10 +116,13 @@ const AreaGraph = React.memo(
     // Generate graph scales
     const totalValues = useMemo(() => getTotalValues(layers), [layers]);
     const valueScale = useMemo(() => getValueScale(containerHeight, totalValues), [containerHeight, totalValues]);
-    const datetimes = useMemo(() => getDatetimes(data), [data]);
+    const datetimes = useCurrentZoneHistoryDatetimes();
+    const startTime = datetimes.at(0);
+    const endTime = datetimes.at(-1);
+
     const timeScale = useMemo(
-      () => getTimeScale(containerWidth, datetimes, startTime, endTime),
-      [containerWidth, datetimes, startTime, endTime]
+      () => getTimeScale(containerWidth, startTime, endTime),
+      [containerWidth, startTime, endTime]
     );
 
     const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);

@@ -4,7 +4,7 @@ import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
+import { useCurrentZoneHistory } from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 
@@ -39,9 +39,6 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
   const [tooltip, setTooltip] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(() => prepareGraphData(historyData), [historyData]);
@@ -70,8 +67,6 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel="tCO₂eq / min"
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}

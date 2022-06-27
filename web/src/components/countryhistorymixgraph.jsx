@@ -6,7 +6,7 @@ import { scalePower } from '../helpers/formatting';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { useCurrentZoneHistory, useCurrentZoneExchangeKeys, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneExchangeKeys } from '../hooks/redux';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
@@ -117,9 +117,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
 
   const historyData = useCurrentZoneHistory();
   const exchangeKeys = useCurrentZoneExchangeKeys();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill, valueAxisLabel } = useMemo(
@@ -152,8 +149,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel={valueAxisLabel}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}

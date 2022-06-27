@@ -5,7 +5,7 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
+import { useCurrentZoneHistory } from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
@@ -51,9 +51,6 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
   const [tooltip, setTooltip] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerStroke, layerFill, markerFill, valueAxisLabel } = useMemo(
@@ -87,8 +84,6 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
         layerStroke={layerStroke}
         layerFill={layerFill}
         markerFill={markerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel={valueAxisLabel}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
