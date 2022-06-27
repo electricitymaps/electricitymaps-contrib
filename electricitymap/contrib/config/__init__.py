@@ -53,7 +53,7 @@ for zone in ZONES_CONFIG.keys():
         continue
 
     for subzone in subzones:
-        for subzone_neighbor in ZONE_NEIGHBOURS[subzone]:
+        for subzone_neighbor in ZONE_NEIGHBOURS.get(subzone, []):
             if subzone_neighbor in subzones:
                 # ignore the neighbours that are within the zone
                 continue
