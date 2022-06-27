@@ -1,6 +1,8 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.visit('/?skip-onboarding=true');
+    cy.interceptAPI('v5/state/hourly');
+    cy.waitForAPISuccess(`v5/state/hourly`);
 
     // See more than X countries on the list by default
     cy.get('.zone-list a').should('have.length.above', 3);
@@ -11,7 +13,7 @@ describe('Ranking Panel', () => {
 
     // Click a country and return the the ranking panel
     cy.get('.zone-list a.selected').click();
-    cy.contains('Low-carbon');
+    cy.contains('Data is temporarily unavailable for the selected time');
     cy.get('.left-panel-back-button').click();
 
     // TODO: Ideally the search result should either be reset or the typed value stay in the input
