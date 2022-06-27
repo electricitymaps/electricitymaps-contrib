@@ -63,6 +63,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Maharashtra) [mahasldc](https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg)
 - India (Karnataka): [kptclsldc.in](http://kptclsldc.in/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
+- India (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
 - Iraq: [Iraqi Power System](https://www.gdoco.org/generation.html)

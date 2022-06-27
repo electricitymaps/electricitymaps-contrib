@@ -2028,15 +2028,11 @@
   },
   "IN-AN": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 40.05,
-      "solar": 0,
-      "wind": 0
+      "oil": 40.05
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2051,7 +2047,6 @@
       "biomass": 506.9,
       "coal": 11590,
       "gas": 4898.54,
-      "geothermal": 0,
       "hydro": 1610,
       "nuclear": 0,
       "oil": 36.8,
@@ -2068,15 +2063,11 @@
   },
   "IN-AR": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 1115,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2084,15 +2075,11 @@
   },
   "IN-AS": {
     "capacity": {
-      "biomass": 0,
       "coal": 750,
       "gas": 620.36,
-      "geothermal": 0,
       "hydro": 350,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2100,15 +2087,11 @@
   },
   "IN-BR": {
     "capacity": {
-      "biomass": 0,
       "coal": 8400,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2123,7 +2106,6 @@
       "biomass": 269.9,
       "coal": 23688,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 120,
       "nuclear": 0,
       "oil": 0,
@@ -2147,7 +2129,6 @@
       "biomass": 52,
       "coal": 0,
       "gas": 2208.4,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
       "oil": 0,
@@ -2168,15 +2149,11 @@
   },
   "IN-GA": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 48,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2191,7 +2168,6 @@
       "biomass": 77.3,
       "coal": 16092,
       "gas": 7551.41,
-      "geothermal": 0,
       "hydro": 1990,
       "nuclear": 440,
       "oil": 0,
@@ -2215,7 +2191,6 @@
       "biomass": 9.2,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 10263.02,
       "nuclear": 0,
       "oil": 0,
@@ -2231,15 +2206,11 @@
   },
   "IN-HR": {
     "capacity": {
-      "biomass": 0,
       "coal": 5330,
       "gas": 431.59,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2247,15 +2218,11 @@
   },
   "IN-JH": {
     "capacity": {
-      "biomass": 0,
       "coal": 4250,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 210,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2263,15 +2230,11 @@
   },
   "IN-JK": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 175,
-      "geothermal": 0,
       "hydro": 3360,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2286,7 +2249,6 @@
       "biomass": 1888.3,
       "coal": 9480,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 3689.2,
       "nuclear": 880,
       "oil": 25.2,
@@ -2303,15 +2265,11 @@
   },
   "IN-KL": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 533.58,
-      "geothermal": 0,
       "hydro": 1856.5,
       "nuclear": 0,
-      "oil": 159.96,
-      "solar": 0,
-      "wind": 0
+      "oil": 159.96
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2326,7 +2284,6 @@
       "biomass": 2597,
       "coal": 23856,
       "gas": 3207.08,
-      "geothermal": 0,
       "hydro": 3047,
       "nuclear": 1400,
       "oil": 0,
@@ -2343,15 +2300,11 @@
   },
   "IN-ML": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 322,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2359,15 +2312,11 @@
   },
   "IN-MN": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 105,
       "nuclear": 0,
-      "oil": 36,
-      "solar": 0,
-      "wind": 0
+      "oil": 36
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2375,16 +2324,11 @@
   },
   "IN-MP": {
     "capacity": {
-      "biomass": 0,
       "coal": 21950,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 2235,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "unknown": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2392,15 +2336,11 @@
   },
   "IN-MZ": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 60,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2408,15 +2348,11 @@
   },
   "IN-NL": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 75,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2424,15 +2360,11 @@
   },
   "IN-OR": {
     "capacity": {
-      "biomass": 0,
       "coal": 9540,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 2154.55,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2447,7 +2379,6 @@
       "biomass": 484.3,
       "coal": 5680,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 1096.3,
       "nuclear": 0,
       "oil": 0,
@@ -2464,15 +2395,11 @@
   },
   "IN-PY": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 32.5,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2480,15 +2407,11 @@
   },
   "IN-RJ": {
     "capacity": {
-      "biomass": 0,
       "coal": 10480,
       "gas": 1022.83,
-      "geothermal": 0,
       "hydro": 411,
       "nuclear": 1180,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2496,15 +2419,11 @@
   },
   "IN-SK": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 0,
-      "geothermal": 0,
       "hydro": 2282,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2522,22 +2441,17 @@
       "solar": 5518.153,
       "wind": 8618.070
     },
-    "comment": "https://tnebsldc.org/reports1/peakdet.pdf",
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-TR": {
     "capacity": {
-      "biomass": 0,
       "coal": 0,
       "gas": 1099.6,
-      "geothermal": 0,
       "hydro": 0,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
@@ -2552,7 +2466,6 @@
       "biomass": 2117.3,
       "coal": 24389,
       "gas": 1493.14,
-      "geothermal": 0,
       "hydro": 501.6,
       "nuclear": 440,
       "oil": 0,
@@ -2573,7 +2486,6 @@
       "biomass": 130.2,
       "coal": 0,
       "gas": 450,
-      "geothermal": 0,
       "hydro": 3855.35,
       "nuclear": 0,
       "oil": 0,
@@ -2589,15 +2501,11 @@
   },
   "IN-WB": {
     "capacity": {
-      "biomass": 0,
       "coal": 13697,
       "gas": 80,
-      "geothermal": 0,
       "hydro": 1341.2,
       "nuclear": 0,
-      "oil": 0,
-      "solar": 0,
-      "wind": 0
+      "oil": 0
     },
     "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
