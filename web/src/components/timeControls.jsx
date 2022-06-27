@@ -93,11 +93,14 @@ const TimeControls = ({ date, selectedTimeAggregate, handleTimeAggregationChange
     <div>
       <Wrapper>
         <Title>{__('time-controller.title')}</Title>
-        <DateDisplay loading={isLoading}>{formatDate(date, i18n.language, selectedTimeAggregate)}</DateDisplay>
+        <DateDisplay data-test-id="date-display" loading={isLoading}>
+          {formatDate(date, i18n.language, selectedTimeAggregate)}
+        </DateDisplay>
       </Wrapper>
       <DateOptionWrapper>
         {options.map((o) => (
           <DateRangeOption
+            data-test-id={`time-controls-${o.key}-btn`}
             key={o.key}
             active={o.key === selectedTimeAggregate}
             onClick={() => {

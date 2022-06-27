@@ -1,6 +1,8 @@
 describe('Map', () => {
   it('interacts with the map', () => {
     cy.visit('/');
+    cy.interceptAPI('v5/state/hourly');
+    cy.waitForAPISuccess(`v5/state/hourly`);
     // sees modal and closes it
     cy.get('[data-test-id=onboarding]').get('.modal-close-button').click();
 
