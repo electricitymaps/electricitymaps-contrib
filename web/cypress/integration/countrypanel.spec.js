@@ -10,9 +10,9 @@ describe('Country Panel', () => {
     cy.contains('Carbon emissions').click().should('have.class', 'selected');
     cy.contains('0 t/min');
 
-    cy.get('.country-col').contains('152');
+    cy.get('.country-col').contains('151');
     cy.get('input.time-slider-input-new').setSliderValue('1655823600000');
-    cy.get('.country-col').contains('84');
+    cy.get('.country-col').contains('108');
 
     cy.get('.left-panel-back-button').click();
   });
