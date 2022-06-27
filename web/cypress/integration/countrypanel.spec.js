@@ -11,7 +11,7 @@ describe('Country Panel', () => {
     cy.contains('0 t/min');
 
     cy.get('.country-col').contains('152');
-    cy.get('input.time-slider-input-new').setSliderValue('1655823600000');
+    cy.get('input.time-slider-input').setSliderValue('1655823600000');
     cy.get('.country-col').contains('84');
 
     cy.get('.left-panel-back-button').click();

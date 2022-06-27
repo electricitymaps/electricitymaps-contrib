@@ -13,6 +13,21 @@ const TIME_TO_TICK_FREQUENCY = {
   yearly: 1,
 };
 
+const TimeSliderAxis = styled.svg`
+  width: 100%;
+  height: 20px;
+  margin: -6px 2px 0;
+  overflow: visible;
+`;
+
+const TickGroup = styled.g`
+  font-size: 0.7em;
+  font-family: 'Open Sans', sans-serif;
+  @media (max-width: 767px) {
+    font-size: 0.6em;
+  }
+`;
+
 const LoadingWrapper = styled.div`
   height: 25px; // ensures there's no jump between loading and non-loading
 `;
@@ -40,10 +55,10 @@ const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
 const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, isLoading) => {
   const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
   return (
-    <g key={`timeaxis-tick-${idx}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
+    <TickGroup key={`timeaxis-tick-${idx}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
       <line stroke="currentColor" y2="6" opacity={shouldShowValue ? 0.5 : 0.2} />
       {shouldShowValue && renderTickValue(val, idx, displayLive, lang, selectedTimeAggregate)}
-    </g>
+    </TickGroup>
   );
 };
 
@@ -70,7 +85,7 @@ const TimeAxis = React.memo(
     }
 
     return (
-      <svg className="time-slider-axis-container" ref={inputRef}>
+      <TimeSliderAxis className="time-slider-axis-container" ref={inputRef}>
         <g
           className={className}
           transform={transform}
@@ -83,7 +98,7 @@ const TimeAxis = React.memo(
             renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate, isLoading)
           )}
         </g>
-      </svg>
+      </TimeSliderAxis>
     );
   }
 );

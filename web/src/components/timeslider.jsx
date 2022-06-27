@@ -142,7 +142,7 @@ const TimeSlider = ({
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
       <StyledInput
-        className="time-slider-input-new"
+        className="time-slider-input"
         type="range"
         onChange={handleChangeAndInput}
         onInput={onChange}
