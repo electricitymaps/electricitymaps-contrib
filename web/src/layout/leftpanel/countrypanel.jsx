@@ -138,7 +138,7 @@ const CountryPanelStyled = styled.div`
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
-    margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
+    margin-bottom: 60px; /* height of time-slider plus padding*/
   }
 `;
 

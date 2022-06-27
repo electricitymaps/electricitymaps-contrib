@@ -35,7 +35,7 @@ describe('Country Panel', () => {
     cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '122');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
 
-    cy.get('input.time-slider-input-new').setSliderValue('1655823600000');
+    cy.get('input.time-slider-input').setSliderValue('1655823600000');
     cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '108');
 
     cy.get('.left-panel-back-button').click();
