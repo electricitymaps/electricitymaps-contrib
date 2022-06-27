@@ -29,6 +29,13 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     if "bounding_box" in zone_config:
         ZONE_BOUNDING_BOXES[zone_id] = zone_config["bounding_box"]
 
+# Add link from subzone to the full zone
+ZONE_PARENT: Dict[ZoneKey, ZoneKey] = {}
+for zone_id, zone_config in ZONES_CONFIG.items():
+    if "subZoneNames" in zone_config:
+        for sub_zone_id in zone_config["subZoneNames"]:
+            ZONE_PARENT[sub_zone_id] = zone_id
+
 # Prepare zone neighbours
 ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = {}
 for k, v in EXCHANGES_CONFIG.items():
@@ -38,6 +45,26 @@ for k, v in EXCHANGES_CONFIG.items():
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
         ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+
+# Find neighbors to subzones and add them to parent zone.
+for zone in ZONES_CONFIG.keys():
+    subzones = ZONES_CONFIG[zone].get("subZoneNames", [])
+    if not subzones:
+        continue
+
+    for subzone in subzones:
+        for subzone_neighbor in ZONE_NEIGHBOURS[subzone]:
+            if subzone_neighbor in subzones:
+                # ignore the neighbours that are within the zone
+                continue
+
+            if zone not in ZONE_NEIGHBOURS:
+                ZONE_NEIGHBOURS[zone] = set()
+
+            # If neighbor zone is a subzone, we add the exchange to the parent zone
+            neighbor_zone = ZONE_PARENT.get(subzone_neighbor, subzone_neighbor)
+            ZONE_NEIGHBOURS[zone].add(neighbor_zone)
+
 # we want neighbors to always be in the same order
 for zone, neighbors in ZONE_NEIGHBOURS.items():
     ZONE_NEIGHBOURS[zone] = sorted(neighbors)
