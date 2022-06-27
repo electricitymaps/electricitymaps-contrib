@@ -2,6 +2,7 @@
 
 # Needed for lint staged.
 .prettierignore
+yarn.lock
 
 world.json
 public/dist/
