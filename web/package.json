@@ -131,7 +131,7 @@
     "watch-poll": "webpack --watch --watch-poll --progress --mode development",
     "update-world": "node ./geo/update-world.js",
     "verify": "VERIFY_NO_UPDATES=1 yarn update-world",
-    "mockserver": "cd ../mockserver && node server.js",
+    "mockserver": "cd ../mockserver && yarn run start",
     "prepare": "cd .. && husky install web/.husky",
     "cypress-test": "TZ=Europe/Copenhagen cypress run",
     "cypress-open": "TZ=Europe/Copenhagen cypress open",
