@@ -7,7 +7,6 @@ import { getTooltipPosition } from '../helpers/graph';
 import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
-import { dispatchApplication } from '../store';
 
 import CountryPanelEmissionsTooltip from './tooltips/countrypanelemissionstooltip';
 import AreaGraph from './graph/areagraph';
@@ -34,10 +33,10 @@ const prepareGraphData = (historyData) => {
 
 const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryEmissionsGraph = ({ isMobile, selectedTimeIndex }) => {
+const CountryHistoryEmissionsGraph = ({ isMobile }) => {
+  const [graphIndex, setGraphIndex] = useState(null);
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
@@ -52,14 +51,14 @@ const CountryHistoryEmissionsGraph = ({ isMobile, selectedTimeIndex }) => {
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
     () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
+      setGraphIndex(timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
     [setSelectedLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
+      setGraphIndex(null);
       setSelectedLayerIndex(null);
     },
     [setSelectedLayerIndex]
@@ -96,7 +95,7 @@ const CountryHistoryEmissionsGraph = ({ isMobile, selectedTimeIndex }) => {
         layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
+        selectedTimeIndex={graphIndex}
         selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
