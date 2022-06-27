@@ -63,7 +63,6 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - India (Maharashtra) [mahasldc](https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg)
 - India (Karnataka): [kptclsldc.in](http://kptclsldc.in/StateGen.aspx)
 - India (Punjab): [punjabsldc](http://www.punjabsldc.org/pungenrealw.asp?pg=pbGenReal)
-- India (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - India (Uttar Pradesh): [upsldc](http://www.upsldc.org/real-time-data)
 - India (Uttarakhand): [uksldc](http://uksldc.in/real-time-data.php)
 - Iraq: [Iraqi Power System](https://www.gdoco.org/generation.html)
@@ -271,6 +270,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
+  - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
   - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
