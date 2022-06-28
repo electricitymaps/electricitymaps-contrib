@@ -1,10 +1,8 @@
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.visit('/');
+    cy.visit('/?skip-onboarding=true');
     cy.interceptAPI('v5/state/hourly');
     cy.waitForAPISuccess(`v5/state/hourly`);
-    // sees modal and closes it
-    cy.get('[data-test-id=onboarding]').get('.modal-close-button').click();
 
     // closes left panel
     cy.get('#left-panel-collapse-button').click();
@@ -30,7 +28,7 @@ describe('Map', () => {
     cy.contains('consumption');
 
     // test layers
-    cy.get('[href="/map?wind=true"]').click();
+    cy.get('[href*="wind=true"]').click();
     cy.contains('Wind power potential');
     // TODO: For some reason the link is not "mounted in DOM" until after a while...
     // Dunno how to solve it without avoid adding this delay
