@@ -1,8 +1,16 @@
 /**
  * @jest-environment jsdom
  */
-import { GRID_DATA_FETCH_SUCCEEDED, ZONE_HISTORY_FETCH_SUCCEEDED } from '../helpers/redux';
+import {
+  GRID_DATA_FETCH_FAILED,
+  GRID_DATA_FETCH_REQUESTED,
+  GRID_DATA_FETCH_SUCCEEDED,
+  GRID_STATUS,
+  ZONE_HISTORY_FETCH_SUCCEEDED,
+  ZONE_STATUS,
+} from '../helpers/redux';
 import reducer from './dataReducer';
+import hourlyHistoryData from '../../../mockserver/public/v5/history/DK-DK2/hourly.json';
 import historyData from '../../../mockserver/public/v5/history/DK-DK2/daily.json';
 import gridData from '../../../mockserver/public/v5/state/hourly.json';
 
@@ -51,4 +59,67 @@ test('history contains required properties', async () => {
   const state = reducer(undefined, action);
 
   expect(state.zones['DK-DK2'].daily.details[0]).toHaveProperty('totalCo2Production');
+});
+
+test('Grid status is updated', async () => {
+  // Ensures gridStatus is updated accordingly
+
+  const defaultState = reducer.getInitialState();
+  expect(defaultState.gridStatus.hourly).toEqual(GRID_STATUS.INVALID);
+
+  const loadingState = reducer(undefined, GRID_DATA_FETCH_REQUESTED({ selectedTimeAggregate: 'hourly' }));
+  expect(loadingState.gridStatus.hourly).toEqual(GRID_STATUS.LOADING);
+  expect(loadingState.gridStatus.yearly).toEqual(GRID_STATUS.INVALID);
+
+  const readyState = reducer(undefined, GRID_DATA_FETCH_SUCCEEDED(gridData.data));
+  expect(readyState.gridStatus.hourly).toEqual(GRID_STATUS.READY);
+  expect(readyState.gridStatus.daily).toEqual(GRID_STATUS.INVALID);
+
+  const invalidState = reducer(readyState, GRID_DATA_FETCH_FAILED({ selectedTimeAggregate: 'hourly' }));
+  expect(invalidState.gridStatus.hourly).toEqual(GRID_STATUS.INVALID);
+});
+test('Zone data status is updated', async () => {
+  // Ensures gridStatus is updated accordingly
+  const payload = { ...historyData.data, zoneId: 'DK-DK2' };
+  const action = ZONE_HISTORY_FETCH_SUCCEEDED(payload);
+  const state = reducer(undefined, action);
+
+  expect(state.zones['DK-DK2'].daily.dataStatus).toEqual(ZONE_STATUS.READY);
+  expect(state.zones['DK-DK2'].hourly.dataStatus).toEqual(ZONE_STATUS.INVALID);
+  expect(state.zones['DK-DK2'].yearly.dataStatus).toEqual(ZONE_STATUS.INVALID);
+  expect(state.zones['DK-DK2'].monthly.dataStatus).toEqual(ZONE_STATUS.INVALID);
+});
+
+test('Zone fetch expires grid data sync', async () => {
+  const readyState = reducer(undefined, GRID_DATA_FETCH_SUCCEEDED(gridData.data));
+  expect(readyState.gridStatus.hourly).toEqual(GRID_STATUS.READY);
+
+  const zonePayload = { ...hourlyHistoryData.data, zoneId: 'DK-DK2' };
+  zonePayload.zoneStates[0].stateDatetime = '2050-06-26T09:00:00Z';
+
+  const state = reducer(readyState, ZONE_HISTORY_FETCH_SUCCEEDED(zonePayload));
+  expect(state.gridStatus.hourly).toEqual(GRID_STATUS.EXPIRED);
+});
+
+test('Grid fetch expires zone data', async () => {
+  let state = undefined;
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED({ ...hourlyHistoryData.data, zoneId: 'DK-DK2' }));
+
+  const futureZonePayload = { ...hourlyHistoryData.data, zoneId: 'NO-NO1' };
+  futureZonePayload.zoneStates[0].stateDatetime = '2050-06-26T09:00:00Z';
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED(futureZonePayload));
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED({ ...historyData.data, zoneId: 'DK-DK2' }));
+
+  const gridPayload = gridData.data;
+  gridPayload.datetimes[24] = '2030-06-26T09:00:00Z';
+
+  const updatedState = reducer(state, GRID_DATA_FETCH_SUCCEEDED(gridPayload));
+  expect(updatedState.gridStatus.hourly).toEqual(GRID_STATUS.READY);
+
+  // Does not expire other aggregate
+  expect(updatedState.zones['DK-DK2'].daily.dataStatus).toEqual(ZONE_STATUS.READY);
+  expect(updatedState.zones['NO-NO1'].hourly.dataStatus).toEqual(ZONE_STATUS.READY);
+
+  // Expires relevant data
+  expect(updatedState.zones['DK-DK2'].hourly.dataStatus).toEqual(ZONE_STATUS.EXPIRED);
 });

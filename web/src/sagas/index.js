@@ -49,7 +49,7 @@ function* fetchGridData(action) {
     yield put(GRID_DATA_FETCH_SUCCEEDED(payload));
     yield put({ type: 'APPLICATION_STATE_UPDATE', key: 'selectedZoneTimeIndex', value: payload.datetimes.length - 1 });
   } catch (err) {
-    yield put(GRID_DATA_FETCH_FAILED());
+    yield put(GRID_DATA_FETCH_FAILED({ selectedTimeAggregate }));
     handleRequestError(err);
   }
 }

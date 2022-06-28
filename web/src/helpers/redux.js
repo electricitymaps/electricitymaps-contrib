@@ -20,6 +20,20 @@ const SOLAR_DATA_FETCH_FAILED = createAction('weather/solar-fetch-failed');
 const SOLAR_DATA_FETCH_SUCCEDED = createAction('weather/solar-fetch-succeded');
 const SOLAR_DATA_FETCH_REQUESTED = createAction('weather/solar-fetch-requested');
 
+const GRID_STATUS = {
+  INVALID: 'invalid',
+  EXPIRED: 'expired',
+  LOADING: 'loading',
+  READY: 'ready',
+};
+
+const ZONE_STATUS = {
+  EXPIRED: 'expired',
+  READY: 'ready',
+  INVALID: 'invalid',
+  LOADING: 'loading',
+};
+
 function initDataState() {
   const geographies = constructTopos();
   const zones = {};
@@ -33,7 +47,7 @@ function initDataState() {
     zone.geography = geographies[key];
     zone.config = {};
     Object.keys(TIME).forEach((agg) => {
-      zone[TIME[agg]] = { details: [], overviews: [] };
+      zone[TIME[agg]] = { details: [], overviews: [], dataStatus: ZONE_STATUS.INVALID };
     });
 
     zone.config.capacity = zoneConfig.capacity;
@@ -48,6 +62,10 @@ function initDataState() {
     zones[key] = zone;
   });
 
+  const gridStatus = {};
+  Object.keys(TIME).forEach((agg) => {
+    gridStatus[TIME[agg]] = GRID_STATUS.INVALID;
+  });
   const exchanges = Object.assign({}, exchangesConfig);
   Object.entries(exchanges).forEach((entry) => {
     const [key, value] = entry;
@@ -69,6 +87,7 @@ function initDataState() {
     solarDataError: null,
     windDataError: null,
     zoneDatetimes: {},
+    gridStatus,
     zones,
     exchanges,
   };
@@ -122,6 +141,8 @@ export {
   WIND_DATA_FETCH_FAILED,
   WIND_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_REQUESTED,
+  GRID_STATUS,
+  ZONE_STATUS,
   initDataState,
   combineZoneData,
   removeDuplicateSources,
