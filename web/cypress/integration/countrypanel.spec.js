@@ -24,19 +24,19 @@ describe('Country Panel', () => {
     // test graph tooltip
     cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'left');
     // ensure hovering the graph does not change underlying data
-    cy.get('.left-panel-zone-details [data-test-id=co2-square-value').should('have.text', '152');
+    cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '152');
     cy.get('input.time-slider-input-new').should('have.value', '1655874000000');
     // ensure tooltip is shown and changes depending on where on the graph is being hovered
     cy.get('#country-tooltip').should('be.visible');
-    cy.get('#country-tooltip [data-test-id=co2-square-value').should('have.text', '86');
+    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '86');
 
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'center');
-    cy.get('#country-tooltip [data-test-id=co2-square-value').should('have.text', '122');
+    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '122');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
 
     cy.get('input.time-slider-input-new').setSliderValue('1655823600000');
-    cy.get('.left-panel-zone-details [data-test-id=co2-square-value').should('have.text', '84');
+    cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '108');
 
     cy.get('.left-panel-back-button').click();
   });
