@@ -126,9 +126,12 @@ const AreaGraph = React.memo(
     );
 
     const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+    const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
 
     const [graphIndex, setGraphIndex] = useState(null);
     const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+    const hoverLineTimeIndex = graphIndex || selectedZoneTimeIndex;
 
     // Mouse action handlers
     const mouseMoveHandler = useMemo(
@@ -194,7 +197,7 @@ const AreaGraph = React.memo(
           markerUpdateHandler={markerUpdateHandler}
           markerHideHandler={markerHideHandler}
           selectedLayerIndex={selectedLayerIndex}
-          selectedTimeIndex={graphIndex}
+          selectedTimeIndex={hoverLineTimeIndex}
           svgNode={node}
         />
       </svg>
