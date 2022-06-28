@@ -17,18 +17,18 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v5/state/hourly`);
     cy.waitForAPISuccess(`v5/history/hourly?countryCode=DK-DK2`);
     cy.contains('LIVE');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '152');
-    cy.get('[data-test-id=date-display').should('have.text', '22 June 2022 at 07:00');
-    cy.get('input.time-slider-input-new').setSliderValue('1655834400000');
-    cy.get('[data-test-id=date-display').should('have.text', '21 June 2022 at 20:00');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '108');
+    cy.get('[data-test-id=co2-square-value').should('have.text', '151');
+    cy.get('[data-test-id=date-display').should('have.text', '27 June 2022 at 11:00');
+    cy.get('input.time-slider-input-new').setSliderValue('1656255600000');
+    cy.get('[data-test-id=date-display').should('have.text', '26 June 2022 at 17:00');
+    cy.get('[data-test-id=co2-square-value').should('have.text', '103');
 
     // Monthly
     cy.get('[data-test-id="time-controls-daily-btn"]').click();
     cy.waitForAPISuccess(`v5/state/daily`);
     cy.waitForAPISuccess(`v5/history/daily?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', '385');
-    cy.get('[data-test-id=date-display').should('have.text', '21 June 2022');
+    cy.get('[data-test-id=co2-square-value').should('have.text', '369');
+    cy.get('[data-test-id=date-display').should('have.text', '26 June 2022');
     cy.get('input.time-slider-input-new').setSliderValue('1653782400000');
     cy.get('[data-test-id=date-display').should('have.text', '29 May 2022');
     cy.get('[data-test-id=co2-square-value').should('have.text', '316');

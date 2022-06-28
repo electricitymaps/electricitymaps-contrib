@@ -128,10 +128,9 @@ export default () => {
     () => (zoneId) => {
       const zoneOverview = zones[zoneId][selectedTimeAggregate].overviews[selectedZoneTimeIndex];
       const zoneConfig = zones[zoneId].config;
-      if (!zoneOverview || !zoneConfig) {
-        return;
+      if (zoneOverview) {
+        dispatchApplication('co2ColorbarValue', getCO2IntensityByMode(zoneOverview, electricityMixMode));
       }
-      dispatchApplication('co2ColorbarValue', getCO2IntensityByMode(zoneOverview, electricityMixMode));
       setTooltipZoneData({ ...zoneOverview, ...zoneConfig });
     },
     [electricityMixMode, selectedTimeAggregate, selectedZoneTimeIndex, zones]
