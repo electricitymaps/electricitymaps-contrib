@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { getTooltipPosition } from '../helpers/graph';
 import { useCo2ColorScale } from '../hooks/theme';
-import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
-import { dispatchApplication } from '../store';
+import { useCurrentZoneHistory } from '../hooks/redux';
 
 import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
@@ -29,18 +28,13 @@ const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeIndex }) => {
+const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill } = useMemo(
@@ -48,21 +42,6 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeI
     [historyData, co2ColorScale, electricityMixMode]
   );
 
-  // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
-    },
-    [setSelectedLayerIndex]
-  );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
@@ -83,20 +62,13 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeI
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-carbon-graph"
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel="g / kWh"
-        backgroundMouseMoveHandler={mouseMoveHandler}
-        backgroundMouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={mouseMoveHandler}
-        layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="8em"
       />
@@ -105,7 +77,6 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile, selectedTimeI
           position={tooltip.position}
           zoneData={tooltip.zoneData}
           onClose={() => {
-            setSelectedLayerIndex(null);
             setTooltip(null);
           }}
         />

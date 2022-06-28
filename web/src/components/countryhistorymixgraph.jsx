@@ -6,8 +6,7 @@ import { scalePower } from '../helpers/formatting';
 import { useCo2ColorScale } from '../hooks/theme';
 import { getTooltipPosition } from '../helpers/graph';
 import { modeOrder, modeColor } from '../helpers/constants';
-import { useCurrentZoneHistory, useCurrentZoneExchangeKeys, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
-import { dispatchApplication } from '../store';
+import { useCurrentZoneHistory, useCurrentZoneExchangeKeys } from '../hooks/redux';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
@@ -110,19 +109,14 @@ const mapStateToProps = (state) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, selectedTimeIndex }) => {
+const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
   const historyData = useCurrentZoneHistory();
   const exchangeKeys = useCurrentZoneExchangeKeys();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerFill, valueAxisLabel } = useMemo(
@@ -130,33 +124,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
     [historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys]
   );
 
-  // Mouse action handlers
-  const backgroundMouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
-    },
-    []
-  );
-  const backgroundMouseOutHandler = useMemo(
-    () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
-    },
-    []
-  );
-  const layerMouseMoveHandler = useMemo(
-    () => (timeIndex, layerIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(layerIndex);
-    },
-    [setSelectedLayerIndex]
-  );
-  const layerMouseOutHandler = useMemo(
-    () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint, layerKey) => {
@@ -178,20 +145,13 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-mix-graph"
         data={data}
         layerKeys={layerKeys}
         layerFill={layerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel={valueAxisLabel}
-        backgroundMouseMoveHandler={backgroundMouseMoveHandler}
-        backgroundMouseOutHandler={backgroundMouseOutHandler}
-        layerMouseMoveHandler={layerMouseMoveHandler}
-        layerMouseOutHandler={layerMouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="10em"
       />
@@ -202,7 +162,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
             position={tooltip.position}
             zoneData={tooltip.zoneData}
             onClose={() => {
-              setSelectedLayerIndex(null);
               setTooltip(null);
             }}
           />
@@ -212,7 +171,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
             position={tooltip.position}
             zoneData={tooltip.zoneData}
             onClose={() => {
-              setSelectedLayerIndex(null);
               setTooltip(null);
             }}
           />
