@@ -166,6 +166,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 - Åland
   - Wind: [Finnish Wind Power Association](https://tuulivoimayhdistys.fi/en/wind-power-in-finland/map 'Note: the map states 43MW for the Långnabba project, but as [Vestas](https://www.vestas.com/en/media/company-news/2020/vestas-develops-highly-customised-power-plant-solution--c3249491) and [Kraftnat](https://kraftnat.ax/) state 42MW, the lower figure was used')
+  - Solar: [Ålands statistik- och utredningsbyrå](https://www.asub.ax/sv/ekologisk-hallbarhet-17-installerad-kapacitet-elproduktion-solpaneler-pa-aland)
   - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
 - Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)

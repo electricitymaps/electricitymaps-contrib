@@ -380,6 +380,7 @@
       "gas": 0,
       "nuclear": 0,
       "oil": 35,
+      "solar": 3.67,
       "wind": 63.8
     },
     "contributors": ["tmslaine", "systemcatch"],
