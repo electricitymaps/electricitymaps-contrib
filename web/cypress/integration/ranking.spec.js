@@ -13,7 +13,7 @@ describe('Ranking Panel', () => {
 
     // Click a country and return the the ranking panel
     cy.get('.zone-list a.selected').click();
-    cy.get('.country-name').should('exist');
+    cy.get('.left-panel-zone-details .country-name').should('exist');
     cy.get('.left-panel-back-button').click();
 
     // TODO: Ideally the search result should either be reset or the typed value stay in the input
