@@ -76,7 +76,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
-      state.isLoadingHistories = false;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
