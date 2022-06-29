@@ -162,15 +162,15 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
               {__('misc.oops')}{' '}
-              <a
-                href=""
+              <button
+                type="button"
                 onClick={(e) => {
                   dispatch(GRID_DATA_FETCH_REQUESTED());
                   e.preventDefault();
                 }}
               >
                 {__('misc.retrynow')}
-              </a>
+              </button>
               .
             </div>
           </div>
