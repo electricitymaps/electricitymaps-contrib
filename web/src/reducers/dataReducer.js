@@ -24,11 +24,21 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(GRID_DATA_FETCH_SUCCEEDED, (state, action) => {
       const { countries, datetimes, exchanges, stateAggregation } = action.payload;
+      state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
+      const maxGridDatetime = state.zoneDatetimes[stateAggregation].at(-1);
+
       Object.entries(countries).map(([zoneId, zoneData]) => {
         if (!state.zones[zoneId]) {
           return;
         }
         state.zones[zoneId][stateAggregation].overviews = zoneData;
+        const maxHistoryDatetime = new Date(
+          Math.max(...state.zones[zoneId][stateAggregation].details.map((x) => x.stateDatetime))
+        );
+
+        if (maxGridDatetime > maxHistoryDatetime) {
+          state.zones[zoneId][stateAggregation].isExpired = true;
+        }
       });
 
       if (stateAggregation === TIME.HOURLY) {
@@ -39,7 +49,6 @@ const reducer = createReducer(initialState, (builder) => {
           const [key, value] = entry;
           const exchange = state.exchanges[key];
           if (!exchange || !exchange.lonlat) {
-            console.warn(`Missing exchange configuration for ${key}. Ignoring..`);
             return;
           }
           // Assign all data
@@ -52,6 +61,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
       state.isLoadingGrid = false;
       state.hasInitializedGrid = true;
+      state.isGridExpired[stateAggregation] = false;
     })
     .addCase(GRID_DATA_FETCH_REQUESTED, (state) => {
       state.isLoadingGrid = true;
@@ -67,10 +77,25 @@ const reducer = createReducer(initialState, (builder) => {
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
-        details: zoneStates.map((v) => ({ ...v, source: removeDuplicateSources(v.source) })),
-        hasDetailedData: true,
+        details: zoneStates.map((v) => ({
+          ...v,
+          source: removeDuplicateSources(v.source),
+          stateDatetime: new Date(v.stateDatetime),
+        })),
+        isExpired: false,
         hasData,
       };
+
+      // Check if any of the zoneStates contains a datetime greater than the most recent gridDatetime. If so, expire the grid.
+      if (!state.zoneDatetimes[stateAggregation]) {
+        return;
+      }
+      const maxGridDatetime = state.zoneDatetimes[stateAggregation].at(-1);
+      zoneStates.forEach((zoneState) => {
+        if (new Date(zoneState.stateDatetime) > maxGridDatetime) {
+          state.isGridExpired[stateAggregation] = true;
+        }
+      });
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
       state.isLoadingHistories = false;

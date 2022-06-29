@@ -23,8 +23,8 @@ export function useConditionalZoneHistoryFetch() {
 
   // Fetch zone history data only if it's not there yet (and custom timestamp is not used).
   useEffect(() => {
-    const hasDetailedHistory = zones[zoneId]?.[selectedTimeAggregate].hasDetailedData;
-    if (zoneId && !hasDetailedHistory) {
+    const isExpired = zones[zoneId]?.[selectedTimeAggregate].isExpired;
+    if (zoneId && isExpired) {
       dispatch(ZONE_HISTORY_FETCH_REQUESTED({ zoneId, features, selectedTimeAggregate }));
     }
   }, [zoneId, dispatch, features, selectedTimeAggregate, zones]);
@@ -37,9 +37,10 @@ export function useGridDataPolling() {
   const dispatch = useDispatch();
 
   const hasOverviewData = Object.keys(zones).some((zoneId) => zones[zoneId][selectedTimeAggregate].overviews.length);
+  const isExpired = useSelector((state) => state.data.isGridExpired[selectedTimeAggregate]);
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
-    if (!hasOverviewData) {
+    if (!hasOverviewData || isExpired) {
       dispatch(GRID_DATA_FETCH_REQUESTED({ features, selectedTimeAggregate }));
     }
 
@@ -53,7 +54,7 @@ export function useGridDataPolling() {
       );
     }, DATA_FETCH_INTERVAL);
     return () => clearInterval(pollInterval);
-  }, [dispatch, features, selectedTimeAggregate, hasOverviewData]);
+  }, [dispatch, features, selectedTimeAggregate, hasOverviewData, isExpired]);
 }
 
 export function useConditionalWindDataPolling() {

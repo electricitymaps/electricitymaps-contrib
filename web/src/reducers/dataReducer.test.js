@@ -4,6 +4,7 @@
 import { GRID_DATA_FETCH_SUCCEEDED, ZONE_HISTORY_FETCH_SUCCEEDED } from '../helpers/redux';
 import reducer from './dataReducer';
 import historyData from '../../../mockserver/public/v5/history/DK-DK2/daily.json';
+import historyDataHourly from '../../../mockserver/public/v5/history/DK-DK2/hourly.json';
 import gridData from '../../../mockserver/public/v5/state/hourly.json';
 
 test('zones should have initial state with correct structure', () => {
@@ -51,4 +52,45 @@ test('history contains required properties', async () => {
   const state = reducer(undefined, action);
 
   expect(state.zones['DK-DK2'].daily.details[0]).toHaveProperty('totalCo2Production');
+});
+
+test('Histories are expired', () => {
+  let state = undefined;
+  state = reducer.getInitialState();
+  expect(state.zones['DK-DK2'].hourly.isExpired).toBe(true);
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED({ ...historyDataHourly.data, zoneId: 'DK-DK2' }));
+  expect(state.zones['DK-DK2'].hourly.isExpired).toBe(false);
+
+  const futureZonePayload = { ...historyDataHourly.data, zoneId: 'NO-NO1' };
+  futureZonePayload.zoneStates[0].stateDatetime = '2050-06-26T09:00:00Z';
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED(futureZonePayload));
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED({ ...historyData.data, zoneId: 'DK-DK2' }));
+
+  const gridPayload = gridData.data;
+  gridPayload.datetimes[24] = '2030-06-26T09:00:00Z';
+
+  const updatedState = reducer(state, GRID_DATA_FETCH_SUCCEEDED(gridPayload));
+  expect(updatedState.isGridExpired.hourly).toBe(false);
+
+  // Does not expire other aggregate
+  expect(updatedState.zones['DK-DK2'].daily.isExpired).toBe(false);
+  expect(updatedState.zones['NO-NO1'].hourly.isExpired).toBe(false);
+
+  // Expires relevant data
+  expect(updatedState.zones['DK-DK2'].hourly.isExpired).toBe(true);
+});
+
+test('Grid is expired', () => {
+  let state = undefined;
+  state = reducer.getInitialState();
+  expect(state.isGridExpired.hourly).toBe(true);
+
+  state = reducer(undefined, GRID_DATA_FETCH_SUCCEEDED(gridData.data));
+  expect(state.isGridExpired.hourly).toBe(false);
+
+  const zonePayload = { ...historyDataHourly.data, zoneId: 'DK-DK2' };
+  zonePayload.zoneStates[0].stateDatetime = '2050-06-26T09:00:00Z';
+
+  state = reducer(state, ZONE_HISTORY_FETCH_SUCCEEDED(zonePayload));
+  expect(state.isGridExpired.hourly).toBe(true);
 });
