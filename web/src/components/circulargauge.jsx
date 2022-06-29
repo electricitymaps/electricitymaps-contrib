@@ -28,9 +28,13 @@ const CircularGauge = React.memo(
 
     return (
       <div
-        onClick={(e) => onClick && onClick(e.clientX, e.clientY)}
+        role="tooltip"
+        aria-hidden="true"
+        onClick={() => onClick && onClick()}
         onMouseOver={() => onMouseOver && onMouseOver()}
+        onFocus={() => onMouseOver && onMouseOver()}
         onMouseOut={() => onMouseOut && onMouseOut()}
+        onBlur={() => onMouseOut && onMouseOut()}
         onMouseMove={(e) => onMouseMove && onMouseMove(e.clientX, e.clientY)}
       >
         <svg style={{ pointerEvents: 'none' }} width={radius * 2} height={radius * 2}>
