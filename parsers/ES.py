@@ -110,7 +110,7 @@ def fetch_production(
     session=None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
