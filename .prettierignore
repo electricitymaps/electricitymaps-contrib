@@ -9,5 +9,6 @@ mobileapp/ul_web_hooks
 mobileapp/www/electricitymap
 
 web/public/dist/
+web/public/images/
 
 mockserver/public
