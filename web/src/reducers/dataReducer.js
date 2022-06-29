@@ -61,8 +61,6 @@ const reducer = createReducer(initialState, (builder) => {
         });
       }
 
-      state.hasInitializedGrid = true;
-
       // Expire any outdated zone histories
       state.gridStatus[stateAggregation] = GRID_STATUS.READY;
     })

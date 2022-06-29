@@ -78,7 +78,6 @@ function initDataState() {
 
   return {
     hasConnectionWarning: false,
-    hasInitializedGrid: false,
     isLoadingHistories: false,
     isLoadingSolar: false,
     isLoadingWind: false,
