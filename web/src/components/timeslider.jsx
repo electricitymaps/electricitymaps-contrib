@@ -9,7 +9,8 @@ import TimeControls from './timeControls';
 import styled from 'styled-components';
 import { useTranslation } from '../helpers/translation';
 import { TIME } from '../helpers/constants';
-import { useSelector } from 'react-redux';
+import { useDataStatus } from '../hooks/redux';
+import { GRID_STATUS } from '../helpers/redux';
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -108,7 +109,7 @@ const TimeSlider = ({
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
-  const isLoading = useSelector((state) => state.data.isLoadingGrid);
+  const { gridStatus } = useDataStatus();
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
     [width, datetimes, startTime, endTime]
@@ -137,7 +138,7 @@ const TimeSlider = ({
       />
       <TimeControls
         date={new Date(timeValue)}
-        isLoading={isLoading}
+        isLoading={gridStatus === GRID_STATUS.LOADING}
         selectedTimeAggregate={selectedTimeAggregate}
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
@@ -158,7 +159,7 @@ const TimeSlider = ({
         className="time-slider-axis"
         displayLive={selectedTimeAggregate === TIME.HOURLY}
         selectedTimeAggregate={selectedTimeAggregate}
-        isLoading={isLoading}
+        isLoading={gridStatus === GRID_STATUS.LOADING}
       />
     </div>
   );

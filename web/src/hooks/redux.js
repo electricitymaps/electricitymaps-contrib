@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { combineZoneData } from '../helpers/redux';
+import { combineZoneData, GRID_STATUS } from '../helpers/redux';
 import { mapValues } from 'lodash';
 
 export function useCurrentZoneHistory() {
@@ -111,16 +111,28 @@ export function useCurrentZoneExchangeKeys() {
 }
 
 export function useLoadingOverlayVisible() {
+  const agg = useSelector((state) => state.application.selectedTimeAggregate);
   const mapInitializing = useSelector((state) => state.application.isLoadingMap);
-  const gridInitializing = useSelector((state) => state.data.isLoadingGrid && !state.data.hasInitializedGrid);
+  const gridInitializing = useSelector((state) => state.data.gridStatus[agg] === GRID_STATUS.DEFAULT);
   const solarInitializing = useSelector((state) => state.data.isLoadingSolar && !state.data.solar);
   const windInitializing = useSelector((state) => state.data.isLoadingWind && !state.data.wind);
   return mapInitializing || gridInitializing || solarInitializing || windInitializing;
 }
 
 export function useSmallLoaderVisible() {
-  const gridLoading = useSelector((state) => state.data.isLoadingGrid);
+  const { gridStatus } = useDataStatus();
+  const gridLoading = gridStatus === GRID_STATUS.LOADING;
+
   const solarLoading = useSelector((state) => state.data.isLoadingSolar);
   const windLoading = useSelector((state) => state.data.isLoadingWind);
   return gridLoading || solarLoading || windLoading;
+}
+
+export function useDataStatus() {
+  const { zoneId } = useParams();
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const gridStatus = useSelector((state) => state.data.gridStatus[timeAggregate]);
+  const zoneStatus = useSelector((state) => state.data.zones[zoneId]?.[timeAggregate].dataStatus);
+
+  return { gridStatus, zoneStatus };
 }

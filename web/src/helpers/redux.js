@@ -25,6 +25,7 @@ const GRID_STATUS = {
   EXPIRED: 'expired',
   LOADING: 'loading',
   READY: 'ready',
+  DEFAULT: 'default',
 };
 
 const ZONE_STATUS = {
@@ -64,7 +65,7 @@ function initDataState() {
 
   const gridStatus = {};
   Object.keys(TIME).forEach((agg) => {
-    gridStatus[TIME[agg]] = GRID_STATUS.INVALID;
+    gridStatus[TIME[agg]] = GRID_STATUS.DEFAULT;
   });
   const exchanges = Object.assign({}, exchangesConfig);
   Object.entries(exchanges).forEach((entry) => {
@@ -79,7 +80,6 @@ function initDataState() {
     hasConnectionWarning: false,
     hasInitializedGrid: false,
     isLoadingHistories: false,
-    isLoadingGrid: false,
     isLoadingSolar: false,
     isLoadingWind: false,
     solar: null,

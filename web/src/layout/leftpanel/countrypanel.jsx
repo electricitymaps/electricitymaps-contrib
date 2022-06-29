@@ -27,7 +27,7 @@ import Icon from '../../components/icon';
 import { dispatchApplication } from '../../store';
 
 // Modules
-import { useCurrentZoneData } from '../../hooks/redux';
+import { useCurrentZoneData, useDataStatus } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
@@ -37,6 +37,7 @@ import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { GRID_STATUS, ZONE_STATUS } from '../../helpers/redux';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -189,16 +190,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const [tooltip, setTooltip] = useState(null);
   const { __ } = useTranslation();
 
-  const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
-  // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
-  const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
+  const { zoneStatus, gridStatus } = useDataStatus();
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
 
@@ -242,7 +241,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     trackEvent('PanelProductionButton Clicked');
   };
 
-  if (isLoadingHistories || isLoadingGrid) {
+  if (zoneStatus === ZONE_STATUS.LOADING || gridStatus === GRID_STATUS.LOADING) {
     return (
       <CountryPanelStyled>
         <div id="country-table-header">

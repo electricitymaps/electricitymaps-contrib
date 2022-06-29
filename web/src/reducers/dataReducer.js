@@ -61,7 +61,6 @@ const reducer = createReducer(initialState, (builder) => {
         });
       }
 
-      state.isLoadingGrid = false;
       state.hasInitializedGrid = true;
 
       // Expire any outdated zone histories
@@ -69,7 +68,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(GRID_DATA_FETCH_REQUESTED, (state, action) => {
       const { selectedTimeAggregate: stateAggregation } = action.payload;
-      state.isLoadingGrid = true;
       state.hasConnectionWarning = false;
       state.gridStatus[stateAggregation] = GRID_STATUS.LOADING;
     })
@@ -77,7 +75,6 @@ const reducer = createReducer(initialState, (builder) => {
       const { selectedTimeAggregate: stateAggregation } = action.payload;
       state.hasConnectionWarning = true;
       state.gridStatus[stateAggregation] = GRID_STATUS.INVALID;
-      state.isLoadingGrid = false;
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
@@ -106,11 +103,13 @@ const reducer = createReducer(initialState, (builder) => {
         }
       });
     })
-    .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
-      state.isLoadingHistories = false;
+    .addCase(ZONE_HISTORY_FETCH_FAILED, (state, action) => {
+      const { zoneId, selectedTimeAggregate } = action.payload;
+      state.zones[zoneId][selectedTimeAggregate].dataStatus = ZONE_STATUS.INVALID;
     })
-    .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {
-      state.isLoadingHistories = true;
+    .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state, action) => {
+      const { zoneId, selectedTimeAggregate } = action.payload;
+      state.zones[zoneId][selectedTimeAggregate].dataStatus = ZONE_STATUS.LOADING;
     })
     .addCase(SOLAR_DATA_FETCH_SUCCEDED, (state, action) => {
       state.isLoadingSolar = false;
