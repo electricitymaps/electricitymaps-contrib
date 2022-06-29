@@ -60,6 +60,13 @@ ZONE_FUNCTION_MAP: Dict[str, Callable] = {
     "ES-IB": BalearicIslands,
 }
 
+EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
+    "ES->ES-IB": BalearicIslands,
+    "ES->ES-IB-MA": Mallorca,
+    "ES-IB-IZ->ES-IB-MA": Mallorca,
+    "ES-IB-FO->ES-IB-IZ": Formentera,
+    "ES-IB-MA->ES-IB-ME": Mallorca,
+}
 
 def fetch_island_data(zone_key: str, session):
     data = ZONE_FUNCTION_MAP[zone_key](session).get_all()
@@ -199,24 +206,11 @@ def fetch_exchange(
 
     ses = session or Session()
 
-    if sorted_zone_keys == "ES->ES-IB":
-        responses = BalearicIslands(ses, verify=False).get_all()
-        if not responses:
-            raise ParserException("ES-IB", "No responses")
-    elif (
-        sorted_zone_keys == "ES->ES-IB-MA"
-        or sorted_zone_keys == "ES-IB-MA->ES-IB-ME"
-        or sorted_zone_keys == "ES-IB-IZ->ES-IB-MA"
-    ):
-        responses = Mallorca(ses, verify=False).get_all()
-        if not responses:
-            raise ParserException("ES-IB-MA", "No responses")
-    elif sorted_zone_keys == "ES-IB-FO->ES-IB-IZ":
-        responses = Formentera(ses, verify=False).get_all()
-        if not responses:
-            raise ParserException("ES-IB-FO", "No responses")
-    else:
-        raise NotImplementedError("This exchange pair is not implemented")
+    responses = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all()
+    if not responses:
+        raise NotImplementedError(
+            f'Exchange pair "{sorted_zone_keys}" is not implemented in this parser'
+        )
 
     exchanges = []
     for response in responses:
