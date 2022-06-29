@@ -280,13 +280,21 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </CountryTableHeaderInner>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneProduction}
+                  className={!tableDisplayEmissions ? 'selected' : null}
+                >
                   {__(`country-panel.electricity${electricityMixMode}`)}
-                </a>
+                </button>
                 |
-                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneEmissions}
+                  className={tableDisplayEmissions ? 'selected' : null}
+                >
                   {__('country-panel.emissions')}
-                </a>
+                </button>
               </div>
             </div>
           </React.Fragment>
