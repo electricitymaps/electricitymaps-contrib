@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Dict, Union, Callable
+from typing import Callable, Dict, Union
 
 # The arrow library is used to handle datetimes
 from arrow import get
@@ -59,6 +59,7 @@ ZONE_FUNCTION_MAP: Dict[str, Callable] = {
     "ES-IB-ME": Menorca,
     "ES-IB": BalearicIslands,
 }
+
 
 def fetch_island_data(zone_key: str, session):
     data = ZONE_FUNCTION_MAP[zone_key](session).get_all()
