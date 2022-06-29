@@ -1,8 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-// TODO: re-enable rules
-
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';

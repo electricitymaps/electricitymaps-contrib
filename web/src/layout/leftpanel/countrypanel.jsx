@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { Redirect, Link, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';

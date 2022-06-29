@@ -2,9 +2,6 @@ import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { arc } from 'd3-shape';
 
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-// TODO: re-enable rule
-
 /*
   Note: Motion has a bug https://github.com/chenglou/react-motion/issues/567
   that causes a Warning: Can't perform a React state update on an unmounted component

@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
