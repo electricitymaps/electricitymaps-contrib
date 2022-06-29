@@ -166,6 +166,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 - Åland
   - Wind: [Finnish Wind Power Association](https://tuulivoimayhdistys.fi/en/wind-power-in-finland/map 'Note: the map states 43MW for the Långnabba project, but as [Vestas](https://www.vestas.com/en/media/company-news/2020/vestas-develops-highly-customised-power-plant-solution--c3249491) and [Kraftnat](https://kraftnat.ax/) state 42MW, the lower figure was used')
+  - Solar: [Ålands statistik- och utredningsbyrå](https://www.asub.ax/sv/ekologisk-hallbarhet-17-installerad-kapacitet-elproduktion-solpaneler-pa-aland)
   - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
 - Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
@@ -270,6 +271,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
+  - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
   - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
