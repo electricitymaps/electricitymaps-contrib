@@ -113,6 +113,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
         role="button"
         tabIndex="0"
+        aria-label="toggle left panel visibility"
       >
         <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
       </LeftPanelCollapseButton>

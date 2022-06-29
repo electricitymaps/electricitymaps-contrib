@@ -311,6 +311,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -333,6 +334,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -358,6 +360,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <a
                 href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
                 target="_blank"
+                rel="noreferrer"
               >
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>

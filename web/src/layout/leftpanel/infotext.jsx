@@ -21,11 +21,15 @@ export default () => {
       <ColorBlindCheckbox />
       <p>
         {__('panel-initial-text.thisproject')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
+        <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank" rel="noreferrer">
           {__('panel-initial-text.opensource')}
         </a>{' '}
         ({__('panel-initial-text.see')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md" target="_blank">
+        <a
+          href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md"
+          target="_blank"
+          rel="noreferrer"
+        >
           {__('panel-initial-text.datasources')}
         </a>
         ).{' '}
@@ -41,7 +45,7 @@ export default () => {
       </p>
       <p>
         {__('footer.foundbugs')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">
+        <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank" rel="noreferrer">
           {__('footer.here')}
         </a>
         .<br />

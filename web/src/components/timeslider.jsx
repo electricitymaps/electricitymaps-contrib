@@ -149,6 +149,7 @@ const TimeSlider = ({
         value={timeValue}
         min={startTimeValue}
         max={endTimeValue}
+        aria-label="Change selected time"
       />
       <TimeAxis
         inputRef={ref}
