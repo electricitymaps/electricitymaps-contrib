@@ -34,10 +34,10 @@ from .lib.validation import validate
 ZONE_FLOORS: Dict[str, int] = {
     "ES-CN-FVLZ": 50,
     "ES-CN-GC": 150,
+    "ES-CN-HI": 2,
     "ES-CN-IG": 3,
     "ES-CN-LP": 10,
     "ES-CN-TE": 150,
-    "ES-CN-HI": 2,
     ## Guess we'll need to figure these out later?! Adapted from ES-CN:
     "ES-IB": 0,
     "ES-IB-FO": 0,
@@ -49,15 +49,15 @@ ZONE_FLOORS: Dict[str, int] = {
 ZONE_FUNCTION_MAP: Dict[str, Callable] = {
     "ES-CN-FVLZ": LanzaroteFuerteventura,
     "ES-CN-GC": GranCanaria,
+    "ES-CN-HI": ElHierro,
     "ES-CN-IG": Gomera,
     "ES-CN-LP": LaPalma,
     "ES-CN-TE": Tenerife,
-    "ES-CN-HI": ElHierro,
+    "ES-IB": BalearicIslands,
     "ES-IB-FO": Formentera,
     "ES-IB-IZ": Ibiza,
     "ES-IB-MA": Mallorca,
     "ES-IB-ME": Menorca,
-    "ES-IB": BalearicIslands,
 }
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
@@ -68,7 +68,8 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
     "ES-IB-MA->ES-IB-ME": Mallorca,
 }
 
-def fetch_island_data(zone_key: str, session):
+
+def fetch_island_data(zone_key: str, session: Session):
     data = ZONE_FUNCTION_MAP[zone_key](session).get_all()
     if data:
         return data
@@ -82,7 +83,7 @@ def fetch_island_data(zone_key: str, session):
 
 def fetch_consumption(
     zone_key: str,
-    session=None,
+    session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
 ) -> list:
@@ -114,7 +115,7 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str,
-    session=None,
+    session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = getLogger(__name__),
 ) -> list:
@@ -194,7 +195,7 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session=None,
+    session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
 ) -> list:
