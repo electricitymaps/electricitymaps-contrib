@@ -93,11 +93,11 @@ class TestES(TestCase):
             self.assertIsNotNone(data["datetime"])
 
     @patch.object(ElHierro, "get_all")
-    def test_fetch_production_el_hierro(
-        self, mocked_get_all
-    ):
+    def test_fetch_production_el_hierro(self, mocked_get_all):
         date = get(1514629800).datetime
-        mocked_get_all.return_value = Response(date, 10.0, 1.5, 2.0, 0.5, 2.5, 2.5, 0.4, 5.0),
+        mocked_get_all.return_value = (
+            Response(date, 10.0, 1.5, 2.0, 0.5, 2.5, 2.5, 0.4, 5.0),
+        )
         data_list = ES.fetch_production("ES-CN-HI", self.session)
         self.assertIsNotNone(data_list)
         for data in data_list:
@@ -113,6 +113,7 @@ class TestES(TestCase):
             self.assertEqual(data["production"]["solar"], 0.4)
             self.assertEqual(data["production"]["wind"], 0.5)
             self.assertEqual(data["storage"]["hydro"], -5.0)
+
 
 if __name__ == "__main__":
     main()
