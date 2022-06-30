@@ -2,9 +2,9 @@
   "info-modal": {
     "title": "Info",
     "intro-text": "Appen electricityMap ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
-    "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en community.",
+    "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
     "feedback-button": "Ge återkoppling",
-    "github-button": "Se vår Github",
+    "github-button": "Se vår GitHub",
     "twitter-button": "Dela på Twitter",
     "slack-button": "Gå med i Slack-gemenskapen",
     "privacy-policy": "Integritetspolicy",
@@ -52,13 +52,13 @@
     "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "estimatedTooltip": "Realtidsdatan för denna region är uppskattad baserat på källdata och anntaganden av modelen.",
+    "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
     "now": "Nu"
   },
   "time-controller": {
-    "title": "Visa data från det förflutna"
+    "title": "Visa historisk data"
   },
   "left-panel": {
     "zone-list-header-title": "Klimatpåverkan per region",
