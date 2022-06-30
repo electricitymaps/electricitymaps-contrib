@@ -66,7 +66,7 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "carbonintensity": { 
+    "carbonintensity": {
       "default": "Kolintensitet under de senaste %1$s",
       "hourly": "Kolintensitet de senaste 24 timmarna",
       "daily": "Kolintensitet den senaste månaden",
@@ -78,42 +78,42 @@
       "hourly": "Utsläpp de senaste 24 timmarna",
       "daily": "Utsläpp den senaste månaden",
       "monthly": "Utsläpp det senaste året",
-      "yearly": "Utsläpp de senaste 5 åren"      
+      "yearly": "Utsläpp de senaste 5 åren"
     },
     "emissionsorigin": {
       "default": "Källa för utsläpp de senaste %1$s",
       "hourly": "Källa för utsläpp de senaste 24 timmarna",
       "daily": "Källa för utsläpp den senaste månaden",
       "monthly": "Källa för utsläpp det senaste året",
-      "yearly": "Källa för utsläpp de senaste 5 åren"      
+      "yearly": "Källa för utsläpp de senaste 5 åren"
     },
     "emissionsproduction": {
       "default": "Utsläpp producerad de senaste %1$s",
       "hourly": "Utsläpp producerad de senaste 24 timmarna",
       "daily": "Utsläpp producerad den senaste månaden",
       "monthly": "Utsläpp producerad det senaste året",
-      "yearly": "Utsläpp producerad de senaste 5 åren"      
+      "yearly": "Utsläpp producerad de senaste 5 åren"
     },
     "electricityorigin": {
       "default": "Källa för el de senaste %1$s",
       "hourly": "Källa för el de senaste 24 timmarna",
       "daily": "Källa för el den senaste månaden",
       "monthly": "Källa för el det senaste året",
-      "yearly": "Källa för el de senaste 5 åren"      
+      "yearly": "Källa för el de senaste 5 åren"
     },
     "electricityproduction": {
       "default": "El producerad de senaste %1$s",
       "hourly": "El producerad de senaste 24 timmarna",
       "daily": "El producerad den senaste månaden",
       "monthly": "El producerad det senaste året",
-      "yearly": "El producerad de senaste 5 åren"      
+      "yearly": "El producerad de senaste 5 åren"
     },
     "electricityprices": {
       "default": "Elpriser de senaste %1$s",
       "hourly": "Elpriser de senaste 24 timmarna",
       "daily": "Elpriser den senaste månaden",
       "monthly": "Elpriser det senaste året",
-      "yearly": "Elpriser de senaste 5 åren"      
+      "yearly": "Elpriser de senaste 5 åren"
     },
     "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med electricityMap API"
   },
