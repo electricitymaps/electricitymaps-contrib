@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, Dict, Union
+from typing import Callable, Dict, List, Literal, TypedDict, Union
 
 # The arrow library is used to handle datetimes
 from arrow import get
@@ -29,24 +29,47 @@ from requests import Session
 from .lib.exceptions import ParserException
 from .lib.validation import validate
 
+SOURCE = "demanda.ree.es"
+
+# Literal list of valid zone keys for this parser
+ZONE_KEYS = Literal[
+    "ES",  # Spain
+    "ES-CE",  # Ceuta
+    "ES-CN-FVLZ",  # Fuerteventura/Lanzarote
+    "ES-CN-GC",  # Gran Canaria
+    "ES-CN-HI",  # El Hierro
+    "ES-CN-IG",  # Isla de la Gomera
+    "ES-CN-LP",  # La Palma
+    "ES-CN-TE",  # Tenerife
+    "ES-IB",  # Balearic Islands
+    "ES-IB-FO",  # Formentera
+    "ES-IB-IZ",  # Ibiza
+    "ES-IB-MA",  # Mallorca
+    "ES-IB-ME",  # Menorca
+    "ES-ML",  # Melilla
+]
+
+# TODO: Update floors to be non zero.
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.
-ZONE_FLOORS: Dict[str, int] = {
+ZONE_FLOORS: Dict[ZONE_KEYS, int] = {
+    "ES": 0,
+    "ES-CE": 0,
     "ES-CN-FVLZ": 50,
     "ES-CN-GC": 150,
     "ES-CN-HI": 2,
     "ES-CN-IG": 3,
     "ES-CN-LP": 10,
     "ES-CN-TE": 150,
-    ## Guess we'll need to figure these out later?! Adapted from ES-CN:
     "ES-IB": 0,
     "ES-IB-FO": 0,
     "ES-IB-IZ": 0,
     "ES-IB-MA": 0,
     "ES-IB-ME": 0,
+    "ES-ML": 0,
 }
 
-ZONE_FUNCTION_MAP: Dict[str, Callable] = {
+ZONE_FUNCTION_MAP: Dict[ZONE_KEYS, Callable] = {
     "ES-CN-FVLZ": LanzaroteFuerteventura,
     "ES-CN-GC": GranCanaria,
     "ES-CN-HI": ElHierro,
@@ -69,7 +92,7 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 }
 
 
-def fetch_island_data(zone_key: str, session: Session):
+def fetch_island_data(zone_key: ZONE_KEYS, session: Session):
     data = ZONE_FUNCTION_MAP[zone_key](session).get_all()
     if data:
         return data
@@ -81,15 +104,25 @@ def fetch_island_data(zone_key: str, session: Session):
         )
 
 
+consumption_return = TypedDict(
+    "consumption_return",
+    {
+        "consumption": float,
+        "datetime": datetime,
+        "source": Literal["demanda.ree.es"],
+        "zoneKey": ZONE_KEYS,
+    },
+)
+
+
 def fetch_consumption(
-    zone_key: str,
+    zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
-) -> list:
+) -> List[consumption_return]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses)
     data = []
@@ -108,17 +141,29 @@ def fetch_consumption(
     else:
         raise ParserException(
             "ES.py",
-            "No consumption data returned for zone key: {0}".format(zone_key),
+            f"No consumption data returned for zone: {zone_key}",
             zone_key,
         )
 
 
+production_return = TypedDict(
+    "production_return",
+    {
+        "datetime": datetime,
+        "production": Dict[str, float],
+        "source": Literal["demanda.ree.es"],
+        "storage": Dict[str, float],
+        "zoneKey": ZONE_KEYS,
+    },
+)
+
+
 def fetch_production(
-    zone_key: str,
+    zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = getLogger(__name__),
-) -> list:
+) -> List[production_return]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -135,25 +180,25 @@ def fetch_production(
         for response in island_data:
             if response.production() >= 0:
                 response_data = {
-                    "zoneKey": zone_key,
                     "datetime": get(response.timestamp).datetime,
                     "production": {
+                        "biomass": response.waste,
                         "coal": response.carbon,
                         "gas": round((response.gas + response.combined), 2),
-                        "solar": response.solar,
-                        "oil": round((response.vapor + response.diesel), 2),
-                        "wind": response.wind,
-                        "hydro": response.hydraulic,
-                        "biomass": response.waste,
-                        "nuclear": 0.0,
                         "geothermal": 0.0,
+                        "hydro": response.hydraulic,
+                        "nuclear": 0.0,
+                        "oil": round((response.vapor + response.diesel), 2),
+                        "solar": response.solar,
                         "unknown": response.other,
+                        "wind": response.wind,
                     },
-                    "storage": {"hydro": 0.0, "battery": 0.0},
                     "source": "demanda.ree.es",
+                    "storage": {"hydro": 0.0, "battery": 0.0},
+                    "zoneKey": zone_key,
                 }
-                # Zone overrides
 
+                ### Zone overrides
                 # NOTE the LNG terminals are not built yet, so power generated by "gas" or "combined" in ES-CN domain is actually using oil.
                 # Recheck this every 6 months and move to gas key if there has been a change.
                 # Last checked: 2022-06-27
@@ -188,17 +233,28 @@ def fetch_production(
 
     else:
         raise ParserException(
-            "ES.py", "No production data returned for {0}".format(zone_key), zone_key
+            "ES.py", f"No production data returned for zone: {zone_key}", zone_key
         )
 
 
+exchange_return = TypedDict(
+    "exchange_return",
+    {
+        "datetime": datetime,
+        "netFlow": float,
+        "sortedZoneKeys": str,
+        "source": Literal["demanda.ree.es"],
+    },
+)
+
+
 def fetch_exchange(
-    zone_key1: str,
-    zone_key2: str,
+    zone_key1: ZONE_KEYS,
+    zone_key2: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
-) -> list:
+) -> List[exchange_return]:
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -225,9 +281,9 @@ def fetch_exchange(
             net_flow = response.link["pe_ma"]
 
         exchange = {
-            "sortedZoneKeys": sorted_zone_keys,
             "datetime": get(response.timestamp).datetime,
             "netFlow": net_flow,
+            "sortedZoneKeys": sorted_zone_keys,
             "source": "demanda.ree.es",
         }
 
