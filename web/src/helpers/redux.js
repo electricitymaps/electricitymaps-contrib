@@ -33,7 +33,7 @@ function initDataState() {
     zone.geography = geographies[key];
     zone.config = {};
     Object.keys(TIME).forEach((agg) => {
-      zone[TIME[agg]] = { details: [], overviews: [] };
+      zone[TIME[agg]] = { details: [], overviews: [], isExpired: true };
     });
 
     zone.config.capacity = zoneConfig.capacity;
@@ -46,6 +46,11 @@ function initDataState() {
     zone.config.countryCode = key;
 
     zones[key] = zone;
+  });
+
+  const isGridExpired = {};
+  Object.keys(TIME).forEach((agg) => {
+    isGridExpired[TIME[agg]] = true;
   });
 
   const exchanges = Object.assign({}, exchangesConfig);
@@ -62,6 +67,7 @@ function initDataState() {
     hasInitializedGrid: false,
     isLoadingHistories: false,
     isLoadingGrid: false,
+    isGridExpired,
     isLoadingSolar: false,
     isLoadingWind: false,
     solar: null,
