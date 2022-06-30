@@ -9,16 +9,17 @@ import { TIME } from '../helpers/constants';
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
   const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
-  const isLatestTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex === 24);
+
+  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
   const exchanges = useSelector((state) => state.data.exchanges);
 
-  return useMemo(
-    () =>
-      isConsumption && isLatestTimeIndex && isHourly
-        ? Object.values(exchanges).filter((d) => d.lonlat && d.sortedCountryCodes)
-        : [],
-    [isConsumption, exchanges, isHourly, isLatestTimeIndex]
-  );
+  if (!isConsumption || !isHourly) {
+    return [];
+  }
+
+  return Object.values(exchanges)
+    .filter((exchange) => exchange.data[selectedZoneTimeIndex])
+    .map((exchange) => ({ ...exchange.config, ...exchange.data[selectedZoneTimeIndex] }));
 }
 
 export function useInterpolatedWindData() {
