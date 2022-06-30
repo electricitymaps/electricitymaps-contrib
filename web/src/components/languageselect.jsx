@@ -6,12 +6,13 @@ import styled from 'styled-components';
 
 import ButtonToggle from './buttontoggle';
 
-const LanguageSelectContainer = styled.div`
+const LanguageSelectContainer = styled.ul`
   background-color: #fafafa;
   color: black;
   border-radius: 4px;
   font-size: 0.9rem;
   padding: 5px 0px;
+  margin-top: 0;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   position: absolute;
   left: -190px;
@@ -24,19 +25,20 @@ const LanguageSelectContainer = styled.div`
   min-height: 19.5rem;
   height: 100%;
   overflow-x: auto;
+  list-style: none;
   &.hidden {
     visibility: hidden;
     opacity: 0;
     transform: translateX(10px);
   }
-
-  li {
-    margin: 0;
-    padding: 5px 10px;
-    list-style: none;
-
+  button {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+    text-align: left;
     &:hover {
-      cursor: pointer;
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
@@ -66,8 +68,8 @@ const LanguageSelect = () => {
       {languagesVisible && (
         <LanguageSelectContainer className="language-select-container">
           {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
-            <li key={key} onClick={() => handleLanguageSelect(key)}>
-              {language}
+            <li key={key}>
+              <button onClick={() => handleLanguageSelect(key)}>{language}</button>
             </li>
           ))}
         </LanguageSelectContainer>

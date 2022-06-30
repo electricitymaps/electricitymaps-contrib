@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { Redirect, Link, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
@@ -285,13 +280,21 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </CountryTableHeaderInner>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneProduction}
+                  className={!tableDisplayEmissions ? 'selected' : null}
+                >
                   {__(`country-panel.electricity${electricityMixMode}`)}
-                </a>
+                </button>
                 |
-                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneEmissions}
+                  className={tableDisplayEmissions ? 'selected' : null}
+                >
                   {__('country-panel.emissions')}
-                </a>
+                </button>
               </div>
             </div>
           </React.Fragment>
@@ -316,6 +319,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -338,6 +342,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -363,6 +368,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <a
                 href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
                 target="_blank"
+                rel="noreferrer"
               >
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>

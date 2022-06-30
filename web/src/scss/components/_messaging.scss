@@ -19,9 +19,16 @@
     width: 100%;
     box-sizing: border-box;
 
-    a {
+    button {
+      background: transparent;
+      border: 0;
+      padding: 0;
       color: $white;
       font-weight: bold;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 

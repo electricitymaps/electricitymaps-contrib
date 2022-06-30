@@ -44,12 +44,14 @@ const StyledLanguageSelectWrapper = styled.ul`
   width: 232px;
   margin: 0;
   padding: 0;
-  margin-top: -6px;
   list-style: none;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.12);
   overflow: scroll;
   max-height: 300px;
-  li {
+  button {
+    width: 100%;
+    background: transparent;
+    border: 0;
     padding: 8px;
     cursor: pointer;
     &:hover {
@@ -72,8 +74,8 @@ const LanguageSelect = ({ isOpen, onSelect }) => {
   return (
     <StyledLanguageSelectWrapper>
       {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
-        <li key={key} onClick={() => onSelect(key)}>
-          {language}
+        <li key={key}>
+          <button onClick={() => onSelect(key)}>{language}</button>
         </li>
       ))}
     </StyledLanguageSelectWrapper>
