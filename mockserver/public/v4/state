@@ -1228,6 +1228,7 @@
           "HR": -181,
           "RO": -199.5,
           "RS": -117,
+          "SI": 28,
           "SK": 2013,
           "UA": 207
         },
@@ -1246,6 +1247,7 @@
           "HR": 267.58,
           "RO": 267.65,
           "RS": 267.58,
+          "SI": 256.22,
           "SK": 308.36,
           "UA": 237.93
         },
@@ -2807,12 +2809,14 @@
         "exchange": {
           "AT": 498.75,
           "HR": -28,
-          "IT-NO": -493
+          "IT-NO": -493,
+          "HU": -28
         },
         "exchangeCapacities": {},
         "exchangeCo2Intensities": {
           "AT": 235.4,
           "HR": 256.22,
+          "HU": 256.22,
           "IT-NO": 256.22
         },
         "fossilFuelRatio": 0.29510000000000003,
@@ -4778,6 +4782,15 @@
         ],
         "netFlow": 117,
         "sortedCountryCodes": "HU->RS"
+      },
+      "HU->SI": {
+        "co2intensity": 267.58,
+        "countryCodes": [
+          "HU",
+          "SI"
+        ],
+        "netFlow": -28,
+        "sortedCountryCodes": "HU->SI"
       },
       "HU->SK": {
         "co2intensity": 308.36,
