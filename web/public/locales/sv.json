@@ -1,4 +1,18 @@
 {
+  "info-modal": {
+    "title": "Info",
+    "intro-text": "Appen electricityMap ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
+    "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
+    "feedback-button": "Ge återkoppling",
+    "github-button": "Se vår GitHub",
+    "twitter-button": "Dela på Twitter",
+    "slack-button": "Gå med i Slack-gemenskapen",
+    "privacy-policy": "Integritetspolicy",
+    "legal-notice": "Rättsligt meddelande"
+  },
+  "settings-modal": {
+    "title": "Inställningar"
+  },
   "panel-initial-text": {
     "thisproject": "Denna app har",
     "opensource": "öppen källkod",
@@ -36,12 +50,15 @@
     "noDataAtTimestamp": "Data är för tillfället ej tillgänglig för vald tid",
     "noLiveData": "Aktuell data är för tillfället ej tillgänglig för denna region",
     "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
-    "estimated": "Uppskattad",
-    "dataIsEstimated": "Delar av datan för denna region är uppskattad. Läs mer om vår uppskattings metodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "estimatedTooltip": "Realtids datan för denna region är uppskattad baserat på källdata och anntaganden av modelen.",
+    "estimated": "uppskattad",
+    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
+    "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
     "noParserInfo": "Vi har ännu ingen information om denna region.<br/> Vill du hjälpa till med att fixa det? Du kan bidra genom att <a href=\"%s\" target=\"_blank\">lägga till data för regionen</a>.",
     "now": "Nu"
+  },
+  "time-controller": {
+    "title": "Visa historisk data"
   },
   "left-panel": {
     "zone-list-header-title": "Klimatpåverkan per region",
@@ -49,14 +66,56 @@
     "search": "Sök efter region"
   },
   "country-history": {
-    "Getdata": "API från electricityMap för att hämta timvis historisk data, aktuell data och prognos",
-    "carbonintensity": { "hourly": "Kolintensitet under de senaste 24 timmarna" },
-    "emissionsorigin": { "hourly": "Källa för utsläpp de senaste 24 timmarna" },
-    "emissionsproduction": { "hourly": "Utsläpp producerad de senaste 24 timmarna" },
-    "electricityorigin": { "hourly": "Källa för el under de senaste 24 timmarna" },
-    "electricityproduction": { "hourly": "El producerad de senaste 24 timmarna" },
-    "electricityprices": { "hourly": "Elpriser under de senaste 24 timmarna" },
-    "emissions": { "hourly": "Utsläpp de senaste 24 timmarna" }
+    "carbonintensity": {
+      "default": "Kolintensitet under de senaste %1$s",
+      "hourly": "Kolintensitet de senaste 24 timmarna",
+      "daily": "Kolintensitet den senaste månaden",
+      "monthly": "Kolintensitet det senaste året",
+      "yearly": "Kolintensitet de senaste 5 åren"
+    },
+    "emissions": {
+      "default": "Utsläpp de senaste %1$s",
+      "hourly": "Utsläpp de senaste 24 timmarna",
+      "daily": "Utsläpp den senaste månaden",
+      "monthly": "Utsläpp det senaste året",
+      "yearly": "Utsläpp de senaste 5 åren"
+    },
+    "emissionsorigin": {
+      "default": "Källa för utsläpp de senaste %1$s",
+      "hourly": "Källa för utsläpp de senaste 24 timmarna",
+      "daily": "Källa för utsläpp den senaste månaden",
+      "monthly": "Källa för utsläpp det senaste året",
+      "yearly": "Källa för utsläpp de senaste 5 åren"
+    },
+    "emissionsproduction": {
+      "default": "Utsläpp producerad de senaste %1$s",
+      "hourly": "Utsläpp producerad de senaste 24 timmarna",
+      "daily": "Utsläpp producerad den senaste månaden",
+      "monthly": "Utsläpp producerad det senaste året",
+      "yearly": "Utsläpp producerad de senaste 5 åren"
+    },
+    "electricityorigin": {
+      "default": "Källa för el de senaste %1$s",
+      "hourly": "Källa för el de senaste 24 timmarna",
+      "daily": "Källa för el den senaste månaden",
+      "monthly": "Källa för el det senaste året",
+      "yearly": "Källa för el de senaste 5 åren"
+    },
+    "electricityproduction": {
+      "default": "El producerad de senaste %1$s",
+      "hourly": "El producerad de senaste 24 timmarna",
+      "daily": "El producerad den senaste månaden",
+      "monthly": "El producerad det senaste året",
+      "yearly": "El producerad de senaste 5 åren"
+    },
+    "electricityprices": {
+      "default": "Elpriser de senaste %1$s",
+      "hourly": "Elpriser de senaste 24 timmarna",
+      "daily": "Elpriser den senaste månaden",
+      "monthly": "Elpriser det senaste året",
+      "yearly": "Elpriser de senaste 5 åren"
+    },
+    "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med electricityMap API"
   },
   "footer": {
     "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
@@ -98,7 +157,7 @@
     "dataIsDelayed": "Data är fördröjd"
   },
   "misc": {
-    "maintitle": "Aktuellt CO₂-utsläpp från elproduktion",
+    "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
     "oops": "Aj då! Vi har problem att nå servern. Vi kommer att försöka igen om några sekunder.",
     "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
     "webgl-not-supported": "Kartan kan inte renderas då denna webbläsare inte stöder WebGL.",
@@ -106,19 +165,21 @@
     "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
     "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
     "legend": "Förklaring",
-    "faq": "Vanliga frågor"
+    "faq": "Vanliga frågor",
+    "privacyPolicy": "Integritetspolicy",
+    "legalNotice": "Rättsligt meddelande"
   },
   "wind": "vind",
-  "windDataError": "Vind data är för nuvarande otillgängligt",
+  "windDataError": "Vinddata är för närvarande otillgänglig",
   "solar": "sol",
-  "solarDataError": "Sol data är för nuvarande otillgängligt",
+  "solarDataError": "Soldata är för närvarande otillgänglig",
   "hydro": "vatten",
   "hydro storage": "pumpkraft",
   "battery storage": "batterilager",
   "biomass": "biomassa",
   "nuclear": "kärnkraft",
   "geothermal": "geotermisk",
-  "gas": "naturgas",
+  "gas": "gas",
   "coal": "kol",
   "oil": "olja",
   "unknown": "okänd",
@@ -168,7 +229,6 @@
     "emissionsOfStored-question": "Hur är det med utsläpp från genererad el som sedan lagras i batterier eller som används för att fylla reservoarer?",
     "emissionsOfStored-answer": "Då för närvarande bara en liten andel av elen lagras, bör felaktigheter i modelleringen av dessa utsläpp för närvarande inte göra någon stor skillnad i slutänden. Men med tanke på den ökande mängden lagring hoppas vi att vi inom kort ska kunna ta hänsyn till detta fullt ut i vår modell.",
     "guaranteesOfOrigin-question": "Vad är elcertifikat, och vilken hänsyn tas till dem?",
-    "contribute-answer": null,
     "guaranteesOfOrigin-answer": "När producenter av förnyelsebar energi producerar el, kan de skapa ett elcertifikat - ett bevis på att förnyelsebar el har producerats och distribuerats till elnätet. Dessa certifikat kan sedan säljas, vilket ger elleverantörer ett sätt att hävda att elen de säljer kommer från förnybara källor, oavsett den faktiska fysiska källan.<br><br>Detta innebär att elkonsumenterna kan få höra att deras el kommer från sol och vind, även en vindlös natt. Detta är problematiskt då detta tar bort incitamentet för konsumenten att konsumera el vid bästa tidpunkt (t.ex. när mängden förnybar el i nätet faktiskt är som högst). Denna karta utesluter därför ursprungsgarantier, istället erbjuder vi en platsbaserad, fysisk bild av elnätet för att stärka konsumentmakten.",
     "otherSources-question": "Varför visar ni inte andra källor för utsläpp förutom elproduktion?",
     "otherSources-answer": "Det skulle vara utanför syftet med detta projekt. Men, på electricityMap arbetar vi aktivt med att utveckla en <a href=\"#whoAreYou\" class=\"entry-link\">ny lösning för att kvantifiera klimatpåverkan av dina vardagliga beslut</a>.",
@@ -191,10 +251,9 @@
     "whoAreYou-question": "Vilka är ni?",
     "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
     "feedback-question": "Kan jag ge er någon återkoppling?",
-    "NI": null,
     "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymap.org\">skicka oss ett e-brev!</a>",
     "contribute-question": "Kan jag bidra till ert projekt?",
-    "contribute-answer": " Ja! The Electricity Map är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! The Electricity Map är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi arbeta tillsammans?",
     "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymap.org\">Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
@@ -210,17 +269,17 @@
     "AM": { "zoneName": "Armenien" },
     "AO": { "zoneName": "Angola" },
     "AQ": { "zoneName": "Antarktis" },
+    "AR": { "zoneName": "Argentina" },
     "AS": { "zoneName": "Amerikanska Samoa" },
     "AT": { "zoneName": "Österrike" },
-    "AR": { "zoneName": "Argentina" },
     "AUS-NSW": { "countryName": "Australien", "zoneName": "New South Wales" },
     "AUS-NT": { "countryName": "Australien", "zoneName": "Northern Territory" },
     "AUS-QLD": { "countryName": "Australien", "zoneName": "Queensland" },
     "AUS-SA": { "countryName": "Australien", "zoneName": "South Australia" },
     "AUS-TAS": { "countryName": "Australien", "zoneName": "Tasmanien" },
+    "AUS-TAS-CBI": { "countryName": "Australien", "zoneName": "Cape Barren Island" },
     "AUS-TAS-KI": { "countryName": "Australien", "zoneName": "King Island" },
     "AUS-TAS-FI": { "countryName": "Australien", "zoneName": "Flinders Island" },
-    "AUS-TAS-CBI": { "countryName": "Australien", "zoneName": "Cape Barren Island" },
     "AUS-VIC": { "countryName": "Australien", "zoneName": "Victoria" },
     "AUS-WA": { "countryName": "Australien", "zoneName": "Western Australia" },
     "AUS-WA-RI": { "countryName": "Australien", "zoneName": "Rottnest Island" },
@@ -241,6 +300,7 @@
     "BO": { "zoneName": "Bolivia" },
     "BQ": { "zoneName": "Bonaire, Sint Eustatius och Saba" },
     "BR-CS": { "countryName": "Brasilien", "zoneName": "Centrala Brasilien" },
+    "BR-I": { "countryName": "Brasilien", "zoneName": "Isolerade system" },
     "BR-N": { "countryName": "Brasilien", "zoneName": "Norra Brasilien" },
     "BR-NE": { "countryName": "Brasilien", "zoneName": "Nordöstra Brasilien" },
     "BR-S": { "countryName": "Brasilien", "zoneName": "Södra Brasilien" },
@@ -253,12 +313,12 @@
     "CA-AB": { "countryName": "Kanada", "zoneName": "Alberta" },
     "CA-BC": { "countryName": "Kanada", "zoneName": "British Columbia" },
     "CA-MB": { "countryName": "Kanada", "zoneName": "Manitoba" },
+    "CA-NB": { "countryName": "Kanada", "zoneName": "New Brunswick" },
     "CA-NL": { "countryName": "Kanada", "zoneName": "Newfoundland och Labrador" },
     "CA-NL-LB": { "countryName": "Kanada", "zoneName": "Labrador" },
     "CA-NL-NF": { "countryName": "Kanada", "zoneName": "Newfoundland" },
-    "CA-NB": { "countryName": "Kanada", "zoneName": "New Brunswick" },
-    "CA-NT": { "countryName": "Kanada", "zoneName": "Northwest Territories" },
     "CA-NS": { "countryName": "Kanada", "zoneName": "Nova Scotia" },
+    "CA-NT": { "countryName": "Kanada", "zoneName": "Northwest Territories" },
     "CA-NU": { "countryName": "Kanada", "zoneName": "Nunavut" },
     "CA-ON": { "countryName": "Kanada", "zoneName": "Ontario" },
     "CA-PE": { "countryName": "Kanada", "zoneName": "Prince Edward Island" },
@@ -272,10 +332,10 @@
     "CH": { "zoneName": "Schweiz" },
     "CI": { "zoneName": "Elfenbenskusten" },
     "CK": { "zoneName": "Cooköarna" },
+    "CL-CHP": { "countryName": "Chile", "zoneName": "Påskön" },
     "CL-SEA": { "countryName": "Chile", "zoneName": "Sistema Eléctrico de Aysén" },
     "CL-SEM": { "countryName": "Chile", "zoneName": "Sistema Eléctrico de Magallanes" },
     "CL-SEN": { "countryName": "Chile", "zoneName": "Sistema Eléctrico Nacional" },
-    "CL-CHP": { "countryName": "Chile", "zoneName": "Påskön" },
     "CM": { "zoneName": "Kamerun" },
     "CN": { "zoneName": "Kina" },
     "CO": { "zoneName": "Colombia" },
@@ -506,10 +566,11 @@
     "RO": { "zoneName": "Rumänien" },
     "RS": { "zoneName": "Serbien" },
     "RU": { "zoneName": "Ryssland" },
-    "RU-1": { "countryName": "Ryssland", "zoneName": "Europeiska Ryssland och Ural" },
+    "RU-1": { "countryName": "Ryssland", "zoneName": "Europa-Ural" },
     "RU-2": { "countryName": "Ryssland", "zoneName": "Sibirien" },
-    "RU-EU": { "zoneName": "Ryssland" },
-    "RU-AS": { "zoneName": "Ryssland" },
+    "RU-AS": { "countryName": "Ryssland", "zoneName": "Öst" },
+    "RU-EU": { "countryName": "Ryssland", "zoneName": "Arktis" },
+    "RU-FE": { "countryName": "Russia", "zoneName": "Fjärran östern" },
     "RU-KGD": { "countryName": "Ryssland", "zoneName": "Kaliningrad" },
     "RW": { "zoneName": "Rwanda" },
     "SA": { "zoneName": "Saudiarabien" },
@@ -550,7 +611,7 @@
     "TW": { "zoneName": "Taiwan" },
     "TZ": { "zoneName": "Tanzania" },
     "UA": { "zoneName": "Ukraina" },
-    "UA-CR": { "countryName": "Krim", "zoneName": "Ukraina" },
+    "UA-CR": { "countryName": "Ukraina", "zoneName": "Krim" },
     "UG": { "zoneName": "Uganda" },
     "UM": { "zoneName": "Förenta staternas mindre öar i Oceanien och Västindien" },
     "US-HI-HA": { "countryName": "USA", "zoneName": "Hawaii" },
@@ -579,7 +640,7 @@
     "US-FLA-FPL": { "countryName": "USA", "zoneName": "Florida Power & Light Company" },
     "US-FLA-GVL": { "countryName": "USA", "zoneName": "Gainesville Regional Utilities" },
     "US-FLA-HST": { "countryName": "USA", "zoneName": "City Of Homestead" },
-    "US-FLA-JEA": { "countryName": "USA", "zoneName": "JEA" },
+    "US-FLA-JEA": { "countryName": "USA", "zoneName": "Jacksonville Electric Authority" },
     "US-FLA-NSB": { "countryName": "USA", "zoneName": "Utilities Commission Of New Smyrna Beach" },
     "US-FLA-SEC": { "countryName": "USA", "zoneName": "Seminole Electric Cooperative" },
     "US-FLA-TAL": { "countryName": "USA", "zoneName": "City Of Tallahassee" },
@@ -593,7 +654,7 @@
     },
     "US-MIDW-MISO": {
       "countryName": "USA",
-      "zoneName": "Midcontinent Independent Transmission System Operator, Inc.."
+      "zoneName": "Midcontinent Independent Transmission System Operator, Inc."
     },
     "US-NE-ISNE": { "countryName": "USA", "zoneName": "Iso New England Inc." },
     "US-NW-AVA": { "countryName": "USA", "zoneName": "Avista Corporation" },
