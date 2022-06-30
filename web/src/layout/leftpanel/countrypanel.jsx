@@ -222,7 +222,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     return <Redirect to={parentPage} />;
   }
 
-  const { hasData, hasParser, estimationMethod } = data;
+  const { hasParser, estimationMethod } = data;
   const isDataEstimated = estimationMethod ? true : false;
 
   const co2Intensity = getCO2IntensityByMode(data, electricityMixMode);
@@ -255,7 +255,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     <CountryPanelStyled>
       <div id="country-table-header">
         <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
-        {hasData && hasParser && (
+        {hasParser && (
           <React.Fragment>
             <CountryTableHeaderInner>
               <CarbonIntensitySquare value={co2Intensity} withSubtext />
