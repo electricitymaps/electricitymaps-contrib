@@ -10,6 +10,7 @@ https://www.eia.gov/opendata/register.php
 """
 import datetime
 
+import arrow
 import requests
 from dateutil import parser, tz
 
@@ -464,6 +465,12 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
     series = Series(series_id=series_id, session=s)
 
     if target_datetime:
+        try:
+            target_datetime = arrow.get(target_datetime).datetime
+        except arrow.parser.ParserError:
+            raise ValueError(
+                f"target_datetime must be a valid datetime - received {target_datetime}"
+            )
         utc = tz.gettz("UTC")
         # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
         end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
