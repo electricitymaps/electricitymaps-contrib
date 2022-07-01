@@ -11,6 +11,7 @@ import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Map from './map';
 import TimeController from './timeController';
+import TimeSliderHeader from '../components/timesliderheader';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
@@ -151,7 +152,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false}>
+              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false} header={<TimeSliderHeader />}>
                 <TimeController />
               </StyledBottomSheet>
             ) : (

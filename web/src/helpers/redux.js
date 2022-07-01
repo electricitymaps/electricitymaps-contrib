@@ -53,13 +53,13 @@ function initDataState() {
     isGridExpired[TIME[agg]] = true;
   });
 
-  const exchanges = Object.assign({}, exchangesConfig);
-  Object.entries(exchanges).forEach((entry) => {
-    const [key, value] = entry;
-    value.countryCodes = key.split('->').sort();
-    if (key.split('->')[0] !== value.countryCodes[0]) {
-      console.warn(`Exchange sorted key pair ${key} is not sorted alphabetically`);
-    }
+  const exchanges = {};
+
+  Object.entries(exchangesConfig).forEach(([key, value]) => {
+    exchanges[key] = {
+      config: { ...value, sortedCountryCodes: key.split('->').sort() },
+      data: [],
+    };
   });
 
   return {
