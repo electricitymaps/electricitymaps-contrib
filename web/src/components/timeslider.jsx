@@ -10,6 +10,14 @@ import { useTranslation } from '../helpers/translation';
 import { TIME } from '../helpers/constants';
 import { useSelector } from 'react-redux';
 import { TimeSliderInput } from './TimeSliderInput';
+import TimeSliderHeader from './timesliderheader';
+import styled from 'styled-components';
+
+const HiddenOnMobile = styled.div`
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
@@ -86,6 +94,9 @@ const TimeSlider = ({
         date={new Date(timeValue)}
         disabled // Disabled for now. Part of history feature
       />
+      <HiddenOnMobile>
+        <TimeSliderHeader />
+      </HiddenOnMobile>
       <TimeControls
         selectedTimeAggregate={selectedTimeAggregate}
         handleTimeAggregationChange={handleTimeAggregationChange}
