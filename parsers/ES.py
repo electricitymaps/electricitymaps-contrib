@@ -243,7 +243,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
-) -> List:
+) -> List[dict]:
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
