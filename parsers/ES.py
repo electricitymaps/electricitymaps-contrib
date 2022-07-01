@@ -237,24 +237,13 @@ def fetch_production(
         )
 
 
-exchange_return = TypedDict(
-    "exchange_return",
-    {
-        "datetime": datetime,
-        "netFlow": float,
-        "sortedZoneKeys": str,
-        "source": Literal["demanda.ree.es"],
-    },
-)
-
-
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
-) -> List[exchange_return]:
+) -> List:
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
