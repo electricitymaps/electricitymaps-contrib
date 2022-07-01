@@ -25,7 +25,7 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'left');
     // ensure hovering the graph does not change underlying data
     cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '152');
-    cy.get('input.time-slider-input-new').should('have.value', '1655874000000');
+    cy.get('input.time-slider-input').should('have.value', '1655874000000');
     // ensure tooltip is shown and changes depending on where on the graph is being hovered
     cy.get('#country-tooltip').should('be.visible');
     cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '86');
