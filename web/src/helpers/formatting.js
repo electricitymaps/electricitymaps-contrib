@@ -68,15 +68,6 @@ const formatDate = function (date, lang, time) {
   }
 };
 
-const getLocaleUnit = (dateUnit, lang) =>
-  new Intl.NumberFormat(lang, {
-    style: 'unit',
-    unit: dateUnit,
-    unitDisplay: 'long',
-  })
-    .formatToParts(1)
-    .filter((x) => x.type === 'unit')[0].value;
-
 const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) =>
   new Intl.NumberFormat(lang, {
     style: 'unit',
@@ -90,9 +81,9 @@ const formatTimeRange = (lang, timeAggregate) => {
     case TIME.HOURLY:
       return getLocaleNumberFormat(lang, { unit: 'hour', range: 24 });
     case TIME.DAILY:
-      return getLocaleUnit('month', lang);
+      return getLocaleNumberFormat(lang, { unit: 'day', range: 30 });
     case TIME.MONTHLY:
-      return getLocaleUnit('year', lang);
+      return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
     case TIME.YEARLY:
       return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
     default:
