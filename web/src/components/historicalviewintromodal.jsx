@@ -14,6 +14,8 @@ const DateSubtitle = styled.small`
   color: #666;
 `;
 
+// TODO: Use proper text and images (also remember to run images through TinyPNG and a gif optimizer)
+// Note: This content is not in translations on purpose, as it will only live a short while (1 month)
 const views = [
   {
     headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
@@ -52,9 +54,9 @@ const views = [
           <h2>Want to learn more about how and why this new feature came to be?</h2>
         </div>
         <div>
-          We have created <a href="">a YouTube explainer video</a>, written <a href="">a blog post</a> and shared{' '}
-          <a href="">our metholodogy on GitHub</a>. If you have any feedback (good and/or bad!) we&apos;d love to{' '}
-          <a href="">hear from you</a>!
+          We have created <a href="/">a YouTube explainer video</a>, written <a href="/">a blog post</a> and shared{' '}
+          <a href="/">our metholodogy on GitHub</a>. If you have any feedback (good and/or bad!) we&apos;d love to{' '}
+          <a href="/">hear from you</a>!
         </div>
       </React.Fragment>
     ),
@@ -84,11 +86,9 @@ const HistoricalViewIntroModal = () => {
   const { __ } = useTranslation();
   // Stop showing this modal a month after the feature is released
   const isExpired = new Date() > new Date('2022-08-12');
-
   // If user has skipped onboarding, also don't show this modal
-  // TODO: This parameter should ideally be called something else (e.g. "kiosk", "tv-mode" or similar)
-  // but we currently have users relying on existing naming
   const shouldSkip = useSearchParams().get('skip-onboarding') === 'true';
+
   const shouldShowModal = visible && !shouldSkip && !isExpired;
 
   const handleDismiss = () => {
