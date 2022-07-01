@@ -1,3 +1,6 @@
+import hourlyData from '../../../mockserver/public/v5/history/DK-DK2/hourly.json';
+import { formatDate } from '../../src/helpers/formatting';
+
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
     // Note that we force language here as CI and local machines might display dates differently otherwise
@@ -17,11 +20,23 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v5/state/hourly`);
     cy.waitForAPISuccess(`v5/history/hourly?countryCode=DK-DK2`);
     cy.contains('LIVE');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '150');
-    cy.get('[data-test-id=date-display').should('have.text', '30 June 2022 at 15:00');
-    cy.get('input.time-slider-input').setSliderValue('1656255600000');
-    cy.get('[data-test-id=date-display').should('have.text', '29 June 2022 at 15:00');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '170');
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      Math.round(hourlyData.data.zoneStates[24].co2intensity)
+    );
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      formatDate(new Date(hourlyData.data.zoneStates[24].stateDatetime), 'en-GB', 'hourly')
+    );
+    cy.get('input.time-slider-input').setSliderValue(new Date(hourlyData.data.zoneStates[5].stateDatetime).getTime());
+    cy.get('[data-test-id=date-display').should(
+      'have.text',
+      formatDate(new Date(hourlyData.data.zoneStates[5].stateDatetime), 'en-GB', 'hourly')
+    );
+    cy.get('[data-test-id=co2-square-value').should(
+      'have.text',
+      Math.round(hourlyData.data.zoneStates[5].co2intensity)
+    );
 
     // Monthly
     cy.get('[data-test-id="time-controls-daily-btn"]').click();
