@@ -101,8 +101,8 @@ jobs:
     secrets: inherit
 
   # Python checks
-  python-formatting:
-    name: Python Formatting
+  python:
+    name: Python
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python-formatting.yml
+    uses: ./.github/workflows/python.yml
