@@ -14,8 +14,8 @@ const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
 
   const isExporting = exchangeData.netFlow > 0;
   const netFlow = Math.abs(Math.round(exchangeData.netFlow));
-  const zoneFrom = exchangeData.countryCodes[isExporting ? 0 : 1];
-  const zoneTo = exchangeData.countryCodes[isExporting ? 1 : 0];
+  const zoneFrom = exchangeData.sortedCountryCodes[isExporting ? 0 : 1];
+  const zoneTo = exchangeData.sortedCountryCodes[isExporting ? 1 : 0];
 
   return (
     <Tooltip id="exchange-tooltip" position={position} onClose={onClose}>

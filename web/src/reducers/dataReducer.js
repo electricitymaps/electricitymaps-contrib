@@ -42,19 +42,9 @@ const reducer = createReducer(initialState, (builder) => {
       });
 
       if (stateAggregation === TIME.HOURLY) {
-        Object.keys(state.exchanges).forEach((key) => {
-          state.exchanges[key].netFlow = undefined;
-        });
         Object.entries(exchanges).forEach((entry) => {
           const [key, value] = entry;
-          const exchange = state.exchanges[key];
-          if (!exchange || !exchange.lonlat) {
-            return;
-          }
-          // Assign all data
-          Object.keys(value).forEach((k) => {
-            exchange[k] = value[k];
-          });
+          state.exchanges[key].data = value;
         });
       }
 
