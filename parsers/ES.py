@@ -104,23 +104,12 @@ def fetch_island_data(zone_key: ZONE_KEYS, session: Session):
         )
 
 
-consumption_return = TypedDict(
-    "consumption_return",
-    {
-        "consumption": float,
-        "datetime": datetime,
-        "source": Literal["demanda.ree.es"],
-        "zoneKey": ZONE_KEYS,
-    },
-)
-
-
 def fetch_consumption(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
-) -> List[consumption_return]:
+) -> List[dict]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     ses = session or Session()
@@ -146,24 +135,12 @@ def fetch_consumption(
         )
 
 
-production_return = TypedDict(
-    "production_return",
-    {
-        "datetime": datetime,
-        "production": Dict[str, float],
-        "source": Literal["demanda.ree.es"],
-        "storage": Dict[str, float],
-        "zoneKey": ZONE_KEYS,
-    },
-)
-
-
 def fetch_production(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = getLogger(__name__),
-) -> List[production_return]:
+) -> List[dict]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
