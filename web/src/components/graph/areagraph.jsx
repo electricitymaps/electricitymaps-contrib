@@ -131,7 +131,7 @@ const AreaGraph = React.memo(
     const [graphIndex, setGraphIndex] = useState(null);
     const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
-    const hoverLineTimeIndex = graphIndex || selectedZoneTimeIndex;
+    const hoverLineTimeIndex = graphIndex !== null ? graphIndex : selectedZoneTimeIndex;
 
     // Mouse action handlers
     const mouseMoveHandler = useMemo(
