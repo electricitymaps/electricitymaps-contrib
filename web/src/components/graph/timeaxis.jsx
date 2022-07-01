@@ -15,7 +15,7 @@ const TIME_TO_TICK_FREQUENCY = {
 
 const TimeSliderAxis = styled.svg`
   width: 100%;
-  height: 20px;
+  height: 22px;
   margin: -6px 2px 0;
   overflow: visible;
 `;
@@ -29,7 +29,7 @@ const TickGroup = styled.g`
 `;
 
 const LoadingWrapper = styled.div`
-  height: 25px; // ensures there's no jump between loading and non-loading
+  height: 22px; // ensures there's no jump between loading and non-loading
 `;
 
 const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
