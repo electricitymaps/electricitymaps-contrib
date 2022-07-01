@@ -15,7 +15,7 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import CountryDisclaimer from '../../components/countrydisclaimer';
-import CountryEstimatedDataInfo from '../../components/countryEstimatedDataInfo';
+import CountryDataInfo from '../../components/countrydatainfo';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import Icon from '../../components/icon';
 
@@ -362,7 +362,8 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </div>
             <hr />
             <StyledSources>
-              {isDataEstimated && <CountryEstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
+              {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
+              {timeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
               {__('country-panel.source')}
               {': '}
               <a
