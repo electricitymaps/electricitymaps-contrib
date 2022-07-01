@@ -87,8 +87,6 @@ const TimeSlider = ({
         disabled // Disabled for now. Part of history feature
       />
       <TimeControls
-        date={new Date(timeValue)}
-        isLoading={isLoading}
         selectedTimeAggregate={selectedTimeAggregate}
         handleTimeAggregationChange={handleTimeAggregationChange}
       />
