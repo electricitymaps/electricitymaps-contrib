@@ -27,7 +27,7 @@ const DateRangeOption = styled.span`
   text-transform: capitalize;
   cursor: pointer;
   font-weight: ${(props) => (props.active ? 700 : 500)};
-  opacity: ${(props) => (props.active ? 1 : 0.5)};
+  color: ${(props) => (props.active ? '#000' : '#666')};
   ${(props) =>
     props.active &&
     css`
