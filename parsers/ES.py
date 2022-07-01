@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Literal, TypedDict, Union
+from typing import Callable, Dict, List, Literal, Union
 
 # The arrow library is used to handle datetimes
 from arrow import get
@@ -156,6 +156,7 @@ def fetch_production(
     island_data = fetch_island_data(zone_key, ses, target_datetime)
     data = []
 
+    # If we add more zones this should be turned into a map similar to ZONE_FlOORS mapping.
     if zone_key == "ES-IB":
         expected_range = {"coal": (50, 600)}
     else:
