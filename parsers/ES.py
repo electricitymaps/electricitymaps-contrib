@@ -11,14 +11,17 @@ from arrow import get
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
 from ree import (
     BalearicIslands,
+    Ceuta,
     ElHierro,
     Formentera,
     Gomera,
     GranCanaria,
+    IberianPeninsula,
     Ibiza,
     LanzaroteFuerteventura,
     LaPalma,
     Mallorca,
+    Melilla,
     Menorca,
     Tenerife,
 )
@@ -70,6 +73,8 @@ ZONE_FLOORS: Dict[ZONE_KEYS, int] = {
 }
 
 ZONE_FUNCTION_MAP: Dict[ZONE_KEYS, Callable] = {
+    "ES": IberianPeninsula,
+    "ES-CE": Ceuta,
     "ES-CN-FVLZ": LanzaroteFuerteventura,
     "ES-CN-GC": GranCanaria,
     "ES-CN-HI": ElHierro,
@@ -81,6 +86,7 @@ ZONE_FUNCTION_MAP: Dict[ZONE_KEYS, Callable] = {
     "ES-IB-IZ": Ibiza,
     "ES-IB-MA": Mallorca,
     "ES-IB-ME": Menorca,
+    "ES-ML": Melilla,
 }
 
 EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
