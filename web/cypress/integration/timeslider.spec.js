@@ -38,6 +38,7 @@ describe('TimeController', () => {
       Math.round(hourlyData.data.zoneStates[5].co2intensity)
     );
 
+    // TODO: Switch away from fixed numbers for the remaining of the assertions here, so we can remove the timezone environment variable
     // Monthly
     cy.get('[data-test-id="time-controls-daily-btn"]').click();
     cy.waitForAPISuccess(`v5/state/daily`);
