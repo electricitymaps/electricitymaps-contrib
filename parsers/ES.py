@@ -265,6 +265,22 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
+    # Spain
+    print("fetch_consumption(ES)")
+    print(fetch_consumption("ES"))
+    print("fetch_production(ES)")
+    print(fetch_production("ES"))
+
+    # Autonomous cities
+    print("fetch_consumption(ES-CE)")
+    print(fetch_consumption("ES-CE"))
+    print("fetch_production(ES-CE)")
+    print(fetch_production("ES-CE"))
+    print("fetch_consumption(ES-ML)")
+    print(fetch_consumption("ES-ML"))
+    print("fetch_production(ES-ML)")
+    print(fetch_production("ES-ML"))
+
     # Canary Islands
     print("fetch_consumption(ES-CN-FVLZ)")
     print(fetch_consumption("ES-CN-FVLZ"))
