@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 
-const EstimatedDataInfoBox = styled.p`
+const DataInfoBox = styled.p`
   background-color: #eee;
   border-radius: 6px;
   padding: 6px;
@@ -9,9 +9,9 @@ const EstimatedDataInfoBox = styled.p`
   margin: 1rem 0;
 `;
 
-const EstimatedDataInfo = memo(({ text }) => (
+const DataInfo = memo(({ text }) => (
   <>
-    <EstimatedDataInfoBox
+    <DataInfoBox
       dangerouslySetInnerHTML={{
         __html: text,
       }}
@@ -20,4 +20,4 @@ const EstimatedDataInfo = memo(({ text }) => (
   </>
 ));
 
-export default EstimatedDataInfo;
+export default DataInfo;
