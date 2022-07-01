@@ -98,8 +98,14 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 }
 
 
-def fetch_island_data(zone_key: ZONE_KEYS, session: Session):
-    data = ZONE_FUNCTION_MAP[zone_key](session).get_all()
+def fetch_island_data(
+    zone_key: ZONE_KEYS, session: Session, target_datetime: Union[datetime, None]
+):
+    if isinstance(target_datetime, datetime):
+        date = target_datetime.strftime("%Y-%m-%d")
+    else:
+        date = target_datetime
+    data = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
     if data:
         return data
     else:
@@ -116,10 +122,8 @@ def fetch_consumption(
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
 ) -> List[dict]:
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
     ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses)
+    island_data = fetch_island_data(zone_key, ses, target_datetime)
     data = []
     if island_data:
         for response in island_data:
@@ -147,11 +151,9 @@ def fetch_production(
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = getLogger(__name__),
 ) -> List[dict]:
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     ses = session or Session()
-    island_data = fetch_island_data(zone_key, ses)
+    island_data = fetch_island_data(zone_key, ses, target_datetime)
     data = []
 
     if zone_key == "ES-IB":
@@ -227,15 +229,16 @@ def fetch_exchange(
     target_datetime: Union[datetime, None] = None,
     logger: Union[Logger, None] = None,
 ) -> List[dict]:
-
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
+    if isinstance(target_datetime, datetime):
+        date = target_datetime.strftime("%Y-%m-%d")
+    else:
+        date = target_datetime
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     ses = session or Session()
 
-    responses = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all()
+    responses = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(date)
     if not responses:
         raise NotImplementedError(
             f'Exchange pair "{sorted_zone_keys}" is not implemented in this parser'
