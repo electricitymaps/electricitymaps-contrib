@@ -60,7 +60,11 @@ jobs:
           path: .venv
           key: ${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}
           restore-keys: ${{ runner.os }}-venv
-      - name: Install Dependencies
+      - name: Install libxml2-dev and tesseract-ocr
+        run: |
+          sudo apt-get update
+          sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
+      - name: Install Poetry dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers
