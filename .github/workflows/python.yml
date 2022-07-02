@@ -35,7 +35,7 @@ jobs:
           poetry run black --check .
       - name: Check isort formatting
         run: |
-          poetry run isort -c . --profile black
+          poetry run isort -c .
 
   test:
     name: Tests

@@ -81,6 +81,9 @@ validators = [
     "pandas"
 ]
 
+[tool.isort]
+profile = "black"
+
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"
 
