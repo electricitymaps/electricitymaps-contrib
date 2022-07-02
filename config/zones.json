@@ -1345,6 +1345,15 @@
     },
     "timezone": "Europe/Madrid"
   },
+  "ES-CE": {
+    "contributors": ["VIKTORVAV99"],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
   "ES-CN-FVLZ": {
     "bounding_box": [
       [-15.007069464999915, 27.55068594000015],
@@ -1476,6 +1485,15 @@
       [4.837087436000104, 40.57941315300016]
     ],
     "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
+  "ES-ML": {
+    "contributors": ["VIKTORVAV99"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ES.fetch_consumption",
