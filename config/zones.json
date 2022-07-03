@@ -42,11 +42,11 @@
       [21.0200403175, 42.6882473822]
     ],
     "capacity": {
-      "biomass": 1,
-      "hydro": 2289,
-      "solar": 22
+      "gas": 98,
+      "hydro": 2484,
+      "solar": 23
     },
-    "contributors": ["corradio", "nessie2013"],
+    "contributors": ["corradio", "nessie2013", "autipial"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -55,7 +55,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "timezone": null
+    "timezone": "Europe/Tirane"
   },
   "AM": {
     "bounding_box": [
