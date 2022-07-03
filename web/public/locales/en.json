@@ -571,6 +571,10 @@
     "ES": {
       "zoneName": "Spain"
     },
+    "ES-CE": {
+      "countryName": "Spain",
+      "zoneName": "Ceuta"
+    },
     "ES-IB-FO": {
       "countryName": "Spain",
       "zoneName": "Formentera"
@@ -610,6 +614,10 @@
     "ES-CN-TE": {
       "countryName": "Spain",
       "zoneName": "Tenerife"
+    },
+    "ES-ML": {
+      "countryName": "Spain",
+      "zoneName": "Melilla"
     },
     "ET": {
       "zoneName": "Ethiopia"
