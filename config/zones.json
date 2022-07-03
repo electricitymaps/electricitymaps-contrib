@@ -10,10 +10,7 @@
       "hydro": 46,
       "solar": 0.231
     },
-    "contributors": [
-      "https://github.com/Manu1400",
-      "https://github.com/autipial"
-    ],
+    "contributors": ["Manu1400", "autipial"],
     "timezone": "Europe/Andorra"
   },
   "AE": {
