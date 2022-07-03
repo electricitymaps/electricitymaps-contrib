@@ -1,15 +1,26 @@
 {
   "AD": {
     "bounding_box": [
-      [0.9064563390001013, 41.92867747000005],
-      [2.2650907800001505, 43.14936167400003]
+      [
+        0.9064563390001013,
+        41.92867747000005
+      ],
+      [
+        2.2650907800001505,
+        43.14936167400003
+      ]
     ],
     "capacity": {
-      "hydro": 45,
-      "nuclear": 0
+      "biomass": 5,
+      "gas": 1.7,
+      "hydro": 46,
+      "solar": 0.231
     },
-    "contributors": ["Manu1400"],
-    "timezone": null
+    "contributors": [
+      "https://github.com/Manu1400",
+      "https://github.com/autipial"
+    ],
+    "timezone": "Europe/Andorra"
   },
   "AE": {
     "bounding_box": [
