@@ -4510,16 +4510,16 @@
     "capacity": {
       "battery storage": 2283.9,
       "biomass": 1179.8,
-      "coal": 62.5,
+      "coal": 19,
       "gas": 33077,
-      "geothermal": 2103.5,
+      "geothermal": 1425,
       "hydro": 6705.6,
       "hydro storage": 2094.4,
-      "nuclear": 2323,
+      "nuclear": 2300,
       "oil": 391.5,
-      "solar": 15842.4,
+      "solar": 15454,
       "unknown": 99.7,
-      "wind": 6140.2
+      "wind": 7890
     },
     "comment": "California Independent System Operator",
     "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
