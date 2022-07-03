@@ -370,7 +370,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
-    - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+    - Other: [CAISO Master Control Area Generating Capability List 2022-07-02](https://github.com/electricitymap/electricitymap-contrib/files/9034012/20220702_20220703_ATL_GEN_CAP_LST_N_20220702_20_14_16_v4.csv)
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
