@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { TIME } from '../helpers/constants';
 
 export function useSearchParams() {
   const { search } = useLocation();
@@ -26,11 +28,17 @@ export function useHeaderVisible() {
 }
 
 export function useSolarEnabled() {
-  return useSearchParams().get('solar') === 'true';
+  const isWeatherEnabled = useSelector(
+    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+  );
+  return useSearchParams().get('solar') === 'true' && isWeatherEnabled;
 }
 
 export function useWindEnabled() {
-  return useSearchParams().get('wind') === 'true';
+  const isWeatherEnabled = useSelector(
+    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+  );
+  return useSearchParams().get('wind') === 'true' && isWeatherEnabled;
 }
 
 export function useSolarToggledLocation() {
