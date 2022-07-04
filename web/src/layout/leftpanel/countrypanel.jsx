@@ -26,12 +26,12 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
-import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
 import { TimeDisplay } from '../../components/timeDisplay';
+import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -86,6 +86,7 @@ const Flag = styled.img`
 
 const CountryTime = styled.div`
   white-space: nowrap;
+  display: flex;
 `;
 
 const ProContainer = styled.small`
@@ -172,7 +173,8 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
               {shownDatetime && <StyledTimeDisplay />}
-              {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
+              {isDataEstimated && <ZoneLabel type={LABEL_TYPES.ESTIMATED} isMobile={isMobile} />}
+              {/* {isDataAggregated && <ZoneLabel type={LABEL_TYPES.AGGREGATED} isMobile={isMobile} />} */}
             </CountryTime>
           </div>
           {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
