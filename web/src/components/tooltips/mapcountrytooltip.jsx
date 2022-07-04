@@ -9,6 +9,7 @@ import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { TimeDisplay } from '../timeDisplay';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -18,6 +19,12 @@ const CountryTableHeaderInner = styled.div`
   display: flex;
   flex-basis: 33.3%;
   justify-content: space-between;
+`;
+
+const StyledTimeDisplay = styled(TimeDisplay)`
+  font-size: smaller;
+  margin-top: 0px;
+  margin-bottom: 12px;
 `;
 
 const TooltipContent = React.memo(
@@ -87,6 +94,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
+        <StyledTimeDisplay date={new Date(zoneData.stateDatetime)} />
       </div>
       <TooltipContent
         hasParser={zoneData.hasParser}

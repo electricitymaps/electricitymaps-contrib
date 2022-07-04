@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from '../helpers/translation';
 import styled from 'styled-components';
-import { formatDate } from '../helpers/formatting';
 import { useSelector } from 'react-redux';
-import { useCurrentDatetimes } from '../hooks/redux';
+import { TimeDisplay } from './timeDisplay';
 
 const Title = styled.span`
   font-size: calc(11px + 0.2vw);
@@ -41,21 +40,14 @@ const Wrapper = styled.div`
 `;
 
 const TimeSliderHeader = () => {
-  const { __, i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const { __ } = useTranslation();
   const isLoading = useSelector((state) => state.data.isLoadingGrid);
-  const datetimes = useCurrentDatetimes();
 
-  const timeValue = typeof selectedZoneTimeIndex === 'number' ? datetimes[selectedZoneTimeIndex]?.valueOf() : null;
-
-  // TODO: Do we need the anchored time index here?
-  const date = new Date(timeValue);
   return (
     <Wrapper>
       <Title>{__('time-controller.title')}</Title>
       <DateDisplay data-test-id="date-display" loading={isLoading}>
-        {formatDate(date, i18n.language, selectedTimeAggregate)}
+        <TimeDisplay />
       </DateDisplay>
     </Wrapper>
   );

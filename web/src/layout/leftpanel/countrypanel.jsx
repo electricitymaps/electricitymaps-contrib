@@ -28,10 +28,10 @@ import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
 import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
-import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { TimeDisplay } from '../../components/timeDisplay';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -99,6 +99,10 @@ const CountryNameTime = styled.div`
   margin-left: 25px;
 `;
 
+const StyledTimeDisplay = styled(TimeDisplay)`
+  margin-top: 0px;
+`;
+
 const CountryNameTimeTable = styled.div`
   display: flex;
   justify-content: space-between;
@@ -153,8 +157,6 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
-  const { i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -169,7 +171,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatDate(new Date(shownDatetime), i18n.language, selectedTimeAggregate)}
+              {shownDatetime && <StyledTimeDisplay />}
               {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
             </CountryTime>
           </div>
