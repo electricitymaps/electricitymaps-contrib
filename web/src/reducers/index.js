@@ -47,6 +47,7 @@ const initialApplicationState = {
     zoom: 1.5,
   },
   onboardingSeen: getStorageBool('onboardingSeen', false),
+  historicalViewIntroModalSeen: getStorageBool('historicalViewIntroModalSeen', false),
   searchQuery: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
