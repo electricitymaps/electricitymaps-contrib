@@ -23,25 +23,11 @@ const views = [
       <React.Fragment>
         <DateSubtitle>July 2022</DateSubtitle>
         <div>
-          <h2>Introducing the new historical view</h2>
+          <h2>New feature: Historical View</h2>
         </div>
         <div>
-          You can now explore how countries and regions have changed over time by diving into the historical view of the
-          map.
-        </div>
-      </React.Fragment>
-    ),
-  },
-  {
-    headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
-    renderContent: (__) => (
-      <React.Fragment>
-        <div>
-          <h2>How to use it</h2>
-        </div>
-        <div>
-          In the left corner (or bottom of your screen on a phone) you can choose between seeing the last 24 hours as
-          before, or select a monthly, yearly or 5 year aggregate for every single area that we have data for.
+          Dive deeper, explore and understand the evolution and variability of countries and regions all across the
+          world on our common path towards low-carbon electricity systems.
         </div>
       </React.Fragment>
     ),
@@ -51,11 +37,25 @@ const views = [
     renderContent: (__) => (
       <React.Fragment>
         <div>
-          <h2>Want to learn more about how and why this new feature came to be?</h2>
+          <h2>Explore your slice of history</h2>
+        </div>
+        <div>
+          In our updated time navigator, you can now select and scroll through a variety of different slices of time.
+          The map and details panel will update accordingly and show you the state of the grid at that point in time.
+        </div>
+      </React.Fragment>
+    ),
+  },
+  {
+    headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
+    renderContent: (__) => (
+      <React.Fragment>
+        <div>
+          <h2>Want to learn more and contribute?</h2>
         </div>
         <div>
           We have created <a href="/">a YouTube explainer video</a>, written <a href="/">a blog post</a> and shared{' '}
-          <a href="/">our metholodogy on GitHub</a>. If you have any feedback (good and/or bad!) we&apos;d love to{' '}
+          <a href="/">our metholodogy on GitHub</a>. If you have any feedback we&apos;d love to{' '}
           <a href="/">hear from you</a>!
         </div>
       </React.Fragment>
