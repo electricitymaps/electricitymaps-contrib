@@ -61,21 +61,6 @@ const views = [
       </React.Fragment>
     ),
   },
-  //   {
-  //     headerImage: resolvePath('images/onboarding/splitLayers.png'),
-  //     renderContent: (__) => (
-  //       <React.Fragment>
-  //         <div>
-  //           <h2>Go explore!</h2>
-  //         </div>
-  //         <div>
-  //           Otherwise you should just go explore how the electricity grids are changing throughout time and across the
-  //           globe! For example, you could check out how fast <a href="#">Spain is getting rid of coal</a> or{' '}
-  //           <a href="#">see an example of seasonality</a>.
-  //         </div>
-  //       </React.Fragment>
-  //     ),
-  //   },
 ];
 
 const HistoricalViewIntroModal = () => {
