@@ -113,7 +113,7 @@ const formatDateTick = function (date, lang, timeAggregate) {
 };
 
 function isValidDate(date) {
-  if (!date) {
+  if (!date || !(date instanceof Date)) {
     return false;
   }
 

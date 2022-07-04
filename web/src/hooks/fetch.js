@@ -6,9 +6,7 @@ import { DATA_FETCH_INTERVAL, TIME } from '../helpers/constants';
 import {
   GRID_DATA_FETCH_REQUESTED,
   SOLAR_DATA_FETCH_REQUESTED,
-  SOLAR_DATA_FETCH_SUCCEDED,
   WIND_DATA_FETCH_REQUESTED,
-  WIND_DATA_FETCH_SUCCEDED,
   ZONE_HISTORY_FETCH_REQUESTED,
 } from '../helpers/redux';
 
@@ -58,40 +56,38 @@ export function useGridDataPolling() {
 }
 
 export function useConditionalWindDataPolling() {
+  // TODO: ensure Wind/Solar is able to refetch if newer data were to become available
   const windEnabled = useWindEnabled();
+  const windData = useSelector((state) => state.data.wind);
   const dispatch = useDispatch();
 
   useEffect(() => {
     let pollInterval;
-    if (windEnabled) {
+    if (windEnabled && !windData) {
       dispatch(WIND_DATA_FETCH_REQUESTED());
       pollInterval = setInterval(() => {
-        dispatch(WIND_DATA_FETCH_SUCCEDED());
+        dispatch(WIND_DATA_FETCH_REQUESTED());
       }, DATA_FETCH_INTERVAL);
-    } else {
-      // TODO: Find a nicer way to invalidate the wind data (or remove it altogether when wind layer is moved to React).
-      dispatch(WIND_DATA_FETCH_SUCCEDED(null));
     }
     return () => clearInterval(pollInterval);
-  }, [windEnabled, dispatch]);
+  }, [windEnabled, dispatch, windData]);
 }
 
 export function useConditionalSolarDataPolling() {
+  // TODO: ensure Wind/Solar is able to refetch if newer data were to become available
   const solarEnabled = useSolarEnabled();
+  const solarData = useSelector((state) => state.data.solar);
   const dispatch = useDispatch();
 
   // After initial request, do the polling only if the custom datetime is not specified.
   useEffect(() => {
     let pollInterval;
-    if (solarEnabled) {
+    if (solarEnabled && !solarData) {
       dispatch(SOLAR_DATA_FETCH_REQUESTED());
       pollInterval = setInterval(() => {
         dispatch(SOLAR_DATA_FETCH_REQUESTED());
       }, DATA_FETCH_INTERVAL);
-    } else {
-      // TODO: Find a nicer way to invalidate the solar data (or remove it altogether when solar layer is moved to React).
-      dispatch(SOLAR_DATA_FETCH_SUCCEDED(null));
     }
     return () => clearInterval(pollInterval);
-  }, [solarEnabled, dispatch]);
+  }, [solarEnabled, dispatch, solarData]);
 }

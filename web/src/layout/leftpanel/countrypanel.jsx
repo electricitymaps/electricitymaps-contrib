@@ -26,12 +26,12 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
-import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
-import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { TimeDisplay } from '../../components/timeDisplay';
+import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -86,6 +86,7 @@ const Flag = styled.img`
 
 const CountryTime = styled.div`
   white-space: nowrap;
+  display: flex;
 `;
 
 const ProContainer = styled.small`
@@ -97,6 +98,10 @@ const ProContainer = styled.small`
 const CountryNameTime = styled.div`
   font-size: smaller;
   margin-left: 25px;
+`;
+
+const StyledTimeDisplay = styled(TimeDisplay)`
+  margin-top: 0px;
 `;
 
 const CountryNameTimeTable = styled.div`
@@ -153,8 +158,6 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
-  const { i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -169,8 +172,9 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatDate(new Date(shownDatetime), i18n.language, selectedTimeAggregate)}
-              {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
+              {shownDatetime && <StyledTimeDisplay />}
+              {isDataEstimated && <ZoneLabel type={LABEL_TYPES.ESTIMATED} isMobile={isMobile} />}
+              {/* {isDataAggregated && <ZoneLabel type={LABEL_TYPES.AGGREGATED} isMobile={isMobile} />} */}
             </CountryTime>
           </div>
           {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}

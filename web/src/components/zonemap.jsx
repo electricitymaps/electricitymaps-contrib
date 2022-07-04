@@ -138,10 +138,8 @@ const ZoneMap = ({
         const { color, zoneId } = feature.properties;
         let fillColor = color;
         const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
-        if (!zoneData) {
-          return;
-        }
-        const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
+
+        const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
 
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
