@@ -79,10 +79,12 @@ const OnboardingModal = ({ visible }) => {
     trackEvent('Onboarding Shown');
   };
 
+  const isDisabled = new Date() < new Date('2022-08-12');
+
   return (
     <Modal
       modalName="onboarding"
-      visible={visible && !shouldSkip}
+      visible={visible && !shouldSkip && !isDisabled}
       onModalShown={handleShown}
       onDismiss={handleDismiss}
       views={views}
