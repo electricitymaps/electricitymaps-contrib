@@ -117,10 +117,3 @@ export function useLoadingOverlayVisible() {
   const windInitializing = useSelector((state) => state.data.isLoadingWind && !state.data.wind);
   return mapInitializing || gridInitializing || solarInitializing || windInitializing;
 }
-
-export function useSmallLoaderVisible() {
-  const gridLoading = useSelector((state) => state.data.isLoadingGrid);
-  const solarLoading = useSelector((state) => state.data.isLoadingSolar);
-  const windLoading = useSelector((state) => state.data.isLoadingWind);
-  return gridLoading || solarLoading || windLoading;
-}

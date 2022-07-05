@@ -44,7 +44,7 @@ const Wrapper = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 24px;
+  height: 40px;
 `;
 
 const linkUnderline = css`

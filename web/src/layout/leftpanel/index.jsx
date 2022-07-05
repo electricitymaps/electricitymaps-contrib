@@ -5,7 +5,6 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
-import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
 import Icon from '../../components/icon';
 
@@ -34,15 +33,6 @@ const HandleLegacyRoutes = () => {
 };
 
 // TODO: Move all styles from styles.css to here
-
-const SmallLoader = styled.span`
-  background: transparent url(${resolvePath('images/loading/loading64_FA.gif')}) no-repeat center center;
-  background-size: 1.5em;
-  display: inline-block;
-  margin-right: 1em;
-  width: 1.5em;
-  height: 1em;
-`;
 
 const mapStateToProps = (state) => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
@@ -87,7 +77,6 @@ const Container = styled.div`
 `;
 
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
-  const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
 
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
@@ -101,7 +90,6 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <RightHeader className="right-header">
-            {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
           </RightHeader>
         </div>
