@@ -3,7 +3,7 @@
 # Run with  "$ docker run parsers US-CAL-CISO production"
 # If needed, pass any token env var using "docker run -e TOKEN=<token>"
 
-FROM python:3.10
+FROM python:3.8
 WORKDIR /workspace
 RUN apt-get update && apt-get install -y python3-opencv
 RUN pip install poetry
