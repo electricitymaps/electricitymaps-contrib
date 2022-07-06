@@ -428,10 +428,20 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
   const exchangeKeys = useCurrentZoneExchangeKeys();
   const data = useCurrentZoneData();
 
+  const history = useCurrentZoneHistory();
   const productionData = useMemo(
-    // Get production data and filter out modes with 0 capacity and 0 production.
-    () => getProductionData(data).filter((d) => !(d.capacity === 0 && getElectricityProductionValue(d) === 0)),
-    [data]
+    // Get production data and filter out modes with 0 capacity and 0 production over all the datapoints.
+    () =>
+      getProductionData(data).filter((d) => {
+        let isZero = true;
+        history.forEach((datapoint) => {
+          if (datapoint.production[d.mode] > 0) {
+            isZero = false;
+          }
+        });
+        return !(d.capacity === 0 && isZero);
+      }),
+    [data, history]
   );
 
   const exchangeData = useMemo(
