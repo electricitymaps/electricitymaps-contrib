@@ -6,10 +6,8 @@
 
   .logo .image {
     display: inline-block;
-    height: 21px;
-    width: 139px;
-    margin-right: 4px;
-    margin-top: 1.5px;
+    height: 25px;
+    width: 130px;
   }
 
   @include respond-to('small') {
