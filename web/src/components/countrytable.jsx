@@ -430,10 +430,10 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
 
   const productionData = useMemo(
     // Get production data and filter out modes with 0 capacity and 0 production.
-    () => getProductionData(data).filter(d => !(d.capacity === 0 && getElectricityProductionValue(d) === 0)),
+    () => getProductionData(data).filter((d) => !(d.capacity === 0 && getElectricityProductionValue(d) === 0)),
     [data]
   );
-  
+
   const exchangeData = useMemo(
     () => getExchangeData(data, exchangeKeys, electricityMixMode),
     [data, exchangeKeys, electricityMixMode]
