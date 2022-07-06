@@ -1,28 +1,31 @@
 #!/usr/bin/env python3
-import logging
 import datetime
-
-
-from PIL import Image
-from pytesseract import image_to_string
-from bs4 import BeautifulSoup
-from urllib.request import urlopen, Request
-from io import BytesIO
+import logging
 import re
+from io import BytesIO
+from urllib.request import Request, urlopen
 
 # The arrow library is used to handle datetimes
 import arrow
+
 # The request library is used to fetch content through HTTP
 import requests
+from bs4 import BeautifulSoup
+from PIL import Image
+from pytesseract import image_to_string
+
 from .JP import fetch_production as JP_fetch_production
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
 
-def fetch_production(zone_key='JP-KN', session=None,
-                     target_datetime: datetime.datetime = None,
-                     logger: logging.Logger = logging.getLogger(__name__)):
+def fetch_production(
+    zone_key="JP-KN",
+    session=None,
+    target_datetime: datetime.datetime = None,
+    logger: logging.Logger = logging.getLogger(__name__),
+):
 
     """
     This method adds nuclear production on top of the solar data returned by the JP parser.
@@ -31,16 +34,18 @@ def fetch_production(zone_key='JP-KN', session=None,
     """
     r = session or requests.session()
     if target_datetime is not None:
-         raise NotImplementedError('This parser can only fetch live data')
-    
+        raise NotImplementedError("This parser can only fetch live data")
+
     JP_data = JP_fetch_production(zone_key, session, target_datetime, logger)
     nuclear_mw, nuclear_datetime = get_nuclear_production()
-    latest = JP_data[-1] #latest solar data is the most likely to fit with nuclear production
+    latest = JP_data[
+        -1
+    ]  # latest solar data is the most likely to fit with nuclear production
     diff = None
     if nuclear_datetime > latest["datetime"]:
-        diff = nuclear_datetime-latest["datetime"]
+        diff = nuclear_datetime - latest["datetime"]
     else:
-        diff = latest["datetime"]-nuclear_datetime
+        diff = latest["datetime"] - nuclear_datetime
     if abs(diff.seconds) > 30 * 60:
         raise Exception("Difference between nuclear datetime and JP data is too large")
 
@@ -48,14 +53,18 @@ def fetch_production(zone_key='JP-KN', session=None,
     latest["production"]["unknown"] = latest["production"]["unknown"] - nuclear_mw
     return latest
 
-URL = "https://www.kepco.co.jp/energy_supply/energy/nuclear_power/info/monitor/live_unten"
+
+URL = (
+    "https://www.kepco.co.jp/energy_supply/energy/nuclear_power/info/monitor/live_unten"
+)
 IMAGE_CORE_URL = "https://www.kepco.co.jp/"
+
 
 def getImageText(imgUrl, lang):
     """
     Fetches image based on URL, crops it and extract text from the image.
     """
-    req = Request(imgUrl, headers={'User-Agent': 'Mozilla/5.0'})
+    req = Request(imgUrl, headers={"User-Agent": "Mozilla/5.0"})
     img_bytes = urlopen(req).read()
     img = Image.open(BytesIO(img_bytes))
     width, height = img.size
@@ -64,18 +73,20 @@ def getImageText(imgUrl, lang):
     text = image_to_string(img, lang=lang)
     return text
 
+
 def extractCapacity(tr):
     """
     The capacity for each unit has the class "list03".
     and it uses the chinese symbol for 10k(万).
     If this changes, the method will become inaccurate.
     """
-    td = tr.findAll("td", {"class":"list03"})
+    td = tr.findAll("td", {"class": "list03"})
     if len(td) == 0:
         return None
     raw_text = td[0].getText()
-    kw_energy = raw_text.split("万")[0]   
+    kw_energy = raw_text.split("万")[0]
     return float(kw_energy) * 10000
+
 
 def extractOperationPercentage(tr):
     """Operation percentage is located on images of type .gif"""
@@ -94,30 +105,37 @@ def extractOperationPercentage(tr):
     else:
         return None
 
+
 def extractTime(soup):
     """
     Time is located in an image.
     Decipher the text containing the data and assumes there will only be 4 digits making up the datetime.
     """
     imgRelative = soup.findAll("img", {"class": "time-data"})[0]["src"]
-    imgUrlFull = IMAGE_CORE_URL + imgRelative 
+    imgUrlFull = IMAGE_CORE_URL + imgRelative
     text = getImageText(imgUrlFull, "jpn")
-    digits = re.findall(r'\d+', text)
+    digits = re.findall(r"\d+", text)
     digits = list(map(lambda x: int(x), digits))
     if len(digits) != 4:
         # something went wrong while extracting time from Japan
         raise Exception("Something went wrong while extracting local time")
-    nuclear_datetime = arrow.now(tz="Asia/Tokyo").replace(month=digits[0], day=digits[1], hour=digits[2], minute=digits[3]).floor("minute").datetime
+    nuclear_datetime = (
+        arrow.now(tz="Asia/Tokyo")
+        .replace(month=digits[0], day=digits[1], hour=digits[2], minute=digits[3])
+        .floor("minute")
+        .datetime
+    )
     return nuclear_datetime
+
 
 def get_nuclear_production():
     """
     Fetches all the rows that contains data of nuclear units and calculates the total kw generated by all plants.
     Illogically, all the rows has the class "mihama_realtime" which they might fix in the future.
     """
-    r = Request(URL, headers={'User-Agent': 'Mozilla/5.0'})
+    r = Request(URL, headers={"User-Agent": "Mozilla/5.0"})
     html = urlopen(r).read()
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BeautifulSoup(html, "html.parser")
     nuclear_datetime = extractTime(soup)
     rows = soup.findAll("tr", {"class": "mihama_realtime"})
     tr_list = soup.findAll("tr")
@@ -125,17 +143,16 @@ def get_nuclear_production():
     for tr in tr_list:
         capacity = extractCapacity(tr)
         operation_percentage = extractOperationPercentage(tr)
-        if (capacity == None or operation_percentage == None):
+        if capacity == None or operation_percentage == None:
             continue
         kw = capacity * operation_percentage
         total_kw = total_kw + kw
-    nuclear_mw = total_kw / 1000.0 # convert to mw
+    nuclear_mw = total_kw / 1000.0  # convert to mw
     return (nuclear_mw, nuclear_datetime)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())

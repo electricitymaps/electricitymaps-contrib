@@ -1,0 +1,17 @@
+# Needed for lint staged.
+.prettierignore
+yarn.lock
+
+.venv
+**/parsers/test/mocks
+world.json
+
+mobileapp/plugins
+mobileapp/platforms
+mobileapp/src
+mobileapp/ul_web_hooks
+mobileapp/www/electricitymap
+
+web/public/dist/
+
+mockserver/public

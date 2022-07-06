@@ -1,34 +1,20 @@
 {
   "AD": {
     "bounding_box": [
-      [
-        0.9064563390001013,
-        41.92867747000005
-      ],
-      [
-        2.2650907800001505,
-        43.14936167400003
-      ]
+      [0.9064563390001013, 41.92867747000005],
+      [2.2650907800001505, 43.14936167400003]
     ],
     "capacity": {
       "hydro": 45,
       "nuclear": 0
     },
-    "contributors": [
-      "https://github.com/Manu1400"
-    ],
+    "contributors": ["Manu1400"],
     "timezone": null
   },
   "AE": {
     "bounding_box": [
-      [
-        51.069346550000034,
-        22.120945943000052
-      ],
-      [
-        56.88363691500007,
-        26.574791972000085
-      ]
+      [51.069346550000034, 22.120945943000052],
+      [56.88363691500007, 26.574791972000085]
     ],
     "capacity": {
       "biomass": 1,
@@ -36,9 +22,7 @@
       "solar": 2705,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -54,24 +38,15 @@
   },
   "AL": {
     "bounding_box": [
-      [
-        19.3044861183,
-        39.624997667
-      ],
-      [
-        21.0200403175,
-        42.6882473822
-      ]
+      [19.3044861183, 39.624997667],
+      [21.0200403175, 42.6882473822]
     ],
     "capacity": {
       "biomass": 1,
       "hydro": 2289,
       "solar": 22
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -84,14 +59,8 @@
   },
   "AM": {
     "bounding_box": [
-      [
-        43,
-        38.6
-      ],
-      [
-        46.3,
-        41.6
-      ]
+      [43, 38.6],
+      [46.3, 41.6]
     ],
     "capacity": {
       "biomass": 0,
@@ -101,15 +70,8 @@
       "solar": 183,
       "wind": 3
     },
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
-    ],
-    "parsers": {
-      "production": "AM.fetch_production"
-    },
+    "contributors": ["tmslaine", "systemcatch", "alixunderplatz", "nessie2013"],
+    "parsers": {},
     "timezone": "Asia/Yerevan"
   },
   "AO": {
@@ -118,14 +80,8 @@
   },
   "AR": {
     "bounding_box": [
-      [
-        -74.08803584899991,
-        -55.55201588299982
-      ],
-      [
-        -53.161551879999934,
-        -21.286937763999916
-      ]
+      [-74.08803584899991, -55.55201588299982],
+      [-53.161551879999934, -21.286937763999916]
     ],
     "capacity": {
       "biomass": 122,
@@ -136,11 +92,7 @@
       "solar": 759,
       "wind": 2990
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["systemcatch", "corradio", "nessie2013"],
     "parsers": {
       "production": "AR.fetch_production"
     },
@@ -148,14 +100,8 @@
   },
   "AT": {
     "bounding_box": [
-      [
-        9.47996951665,
-        46.4318173285
-      ],
-      [
-        16.9796667823,
-        49.0390742051
-      ]
+      [9.47996951665, 46.4318173285],
+      [16.9796667823, 49.0390742051]
     ],
     "capacity": {
       "biomass": 585,
@@ -170,10 +116,7 @@
       "unknown": 954,
       "wind": 3500
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/brandongalbraith"
-    ],
+    "contributors": ["corradio", "brandongalbraith"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -184,23 +127,10 @@
     },
     "timezone": "Europe/Vienna"
   },
-  "AUS-ACT": {
-    "capacity": {
-      "solar": 217
-    },
-    "flag_file_name": "au.png",
-    "timezone": null
-  },
   "AUS-NSW": {
     "bounding_box": [
-      [
-        148.26945193885587,
-        -36.41961598109262
-      ],
-      [
-        149.90440026326144,
-        -34.63950855917267
-      ]
+      [148.26945193885587, -36.41961598109262],
+      [149.90440026326144, -34.63950855917267]
     ],
     "capacity": {
       "battery storage": 0,
@@ -214,11 +144,7 @@
       "solar": 5892,
       "wind": 1802
     },
-    "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -228,14 +154,8 @@
   },
   "AUS-NT": {
     "bounding_box": [
-      [
-        128.50011587536375,
-        -26.499911390797962
-      ],
-      [
-        138.50018768629417,
-        -10.468357028999876
-      ]
+      [128.50011587536375, -26.499911390797962],
+      [138.50018768629417, -10.468357028999876]
     ],
     "capacity": {
       "solar": 158
@@ -245,14 +165,8 @@
   },
   "AUS-QLD": {
     "bounding_box": [
-      [
-        137.5001868021792,
-        -29.670622246919024
-      ],
-      [
-        154.0488387380003,
-        -8.740166924999826
-      ]
+      [137.5001868021792, -29.670622246919024],
+      [154.0488387380003, -8.740166924999826]
     ],
     "capacity": {
       "battery storage": 0,
@@ -266,11 +180,7 @@
       "solar": 6025,
       "wind": 644
     },
-    "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -280,14 +190,8 @@
   },
   "AUS-SA": {
     "bounding_box": [
-      [
-        128.50011600215169,
-        -38.57057057099979
-      ],
-      [
-        141.50010704970066,
-        -25.499911390797962
-      ]
+      [128.50011600215169, -38.57057057099979],
+      [141.50010704970066, -25.499911390797962]
     ],
     "capacity": {
       "battery storage": 155,
@@ -301,11 +205,7 @@
       "solar": 2065,
       "wind": 2141
     },
-    "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -315,14 +215,8 @@
   },
   "AUS-TAS": {
     "bounding_box": [
-      [
-        143.33716881600026,
-        -44.1412899719998
-      ],
-      [
-        148.98454837300017,
-        -39.07146575299984
-      ]
+      [143.33716881600026, -44.1412899719998],
+      [148.98454837300017, -39.07146575299984]
     ],
     "capacity": {
       "battery storage": 0,
@@ -336,11 +230,7 @@
       "solar": 187,
       "wind": 567
     },
-    "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["brandongalbraith", "jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -355,14 +245,8 @@
   "AUS-TAS-FI": {
     "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all. Battery storage is composed of 0.5 battery+0.2 of flywheel",
     "bounding_box": [
-      [
-        147.25766035200024,
-        -40.770603122999844
-      ],
-      [
-        148.83375084700015,
-        -39.211683851999794
-      ]
+      [147.25766035200024, -40.770603122999844],
+      [148.83375084700015, -39.211683851999794]
     ],
     "capacity": {
       "battery storage": 0.7,
@@ -377,10 +261,7 @@
       "solar": 4.1,
       "wind": 1.5
     },
-    "contributors": [
-      "https://github.com/chuqtas",
-      "https://github.com/ajoga"
-    ],
+    "contributors": ["chuqtas", "ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -390,14 +271,8 @@
   "AUS-TAS-KI": {
     "_comment": "Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf . Oil capacity is said to run with blended biodiesel : hense the diesel capacity is equal to the biomass capacity. Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "bounding_box": [
-      [
-        143.33716881600026,
-        -40.627373955999886
-      ],
-      [
-        144.64478600400025,
-        -39.07146575299984
-      ]
+      [143.33716881600026, -40.627373955999886],
+      [144.64478600400025, -39.07146575299984]
     ],
     "capacity": {
       "battery storage": 1.5,
@@ -412,9 +287,7 @@
       "solar": 0.47,
       "wind": 5.65
     },
-    "contributors": [
-      "https://github.com/ajoga"
-    ],
+    "contributors": ["ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -423,23 +296,14 @@
   },
   "AUS-VIC": {
     "bounding_box": [
-      [
-        140.46708580936263,
-        -39.64495208099984
-      ],
-      [
-        150.47207507627593,
-        -33.486452325214685
-      ]
+      [140.46708580936263, -39.64495208099984],
+      [150.47207507627593, -33.486452325214685]
     ],
     "capacity": {
       "solar": 3772,
       "wind": 1521
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["jarek", "corradio"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -449,24 +313,14 @@
   },
   "AUS-WA": {
     "bounding_box": [
-      [
-        112.41944420700008,
-        -35.637872002999956
-      ],
-      [
-        129.50011656788791,
-        -13.223565362999949
-      ]
+      [112.41944420700008, -35.637872002999956],
+      [129.50011656788791, -13.223565362999949]
     ],
     "capacity": {
       "solar": 1884,
       "wind": 491
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon"
-    ],
+    "contributors": ["jarek", "corradio", "MariusKroon"],
     "flag_file_name": "au.png",
     "parsers": {
       "price": "OPENNEM.fetch_price",
@@ -477,14 +331,8 @@
   "AUS-WA-RI": {
     "_comment": "Capacity data fetched from the test payload (capacity is sent in all payloads). Parsing for production is done on instantaneous measurements : this is not reliable at all",
     "bounding_box": [
-      [
-        114.94014224400007,
-        -32.52536222099991
-      ],
-      [
-        116.05219218900004,
-        -31.493806526999947
-      ]
+      [114.94014224400007, -32.52536222099991],
+      [116.05219218900004, -31.493806526999947]
     ],
     "capacity": {
       "battery storage": 0,
@@ -499,9 +347,7 @@
       "solar": 0.6,
       "wind": 0.6
     },
-    "contributors": [
-      "https://github.com/ajoga"
-    ],
+    "contributors": ["ajoga"],
     "flag_file_name": "au.png",
     "parsers": {
       "production": "ajenti.fetch_production"
@@ -510,22 +356,14 @@
   },
   "AW": {
     "bounding_box": [
-      [
-        -70.56240800699987,
-        11.917669989000046
-      ],
-      [
-        -69.37682044199994,
-        13.132147528000104
-      ]
+      [-70.56240800699987, 11.917669989000046],
+      [-69.37682044199994, 13.132147528000104]
     ],
     "capacity": {
       "oil": 257.88,
       "wind": 30
     },
-    "contributors": [
-      "https://github.com/pascalheraud"
-    ],
+    "contributors": ["pascalheraud"],
     "flag_file_name": "aw.png",
     "parsers": {
       "production": "AW.fetch_production"
@@ -534,26 +372,18 @@
   },
   "AX": {
     "bounding_box": [
-      [
-        19.013194207000083,
-        59.40448639500012
-      ],
-      [
-        21.59669030000012,
-        60.98078034100014
-      ]
+      [19.013194207000083, 59.40448639500012],
+      [21.59669030000012, 60.98078034100014]
     ],
     "capacity": {
       "coal": 0,
       "gas": 0,
       "nuclear": 0,
-      "oil": 65.3,
-      "wind": 16.56
+      "oil": 35,
+      "solar": 3.67,
+      "wind": 63.8
     },
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["tmslaine", "systemcatch"],
     "parsers": {
       "consumption": "AX.fetch_consumption",
       "price": "ENTSOE.fetch_price",
@@ -563,27 +393,15 @@
   },
   "AZ": {
     "bounding_box": [
-      [
-        44.27455855300013,
-        37.892644755000035
-      ],
-      [
-        51.125743035000085,
-        42.390441590000094
-      ]
+      [44.27455855300013, 37.892644755000035],
+      [51.125743035000085, 42.390441590000094]
     ],
     "timezone": null
   },
   "BA": {
     "bounding_box": [
-      [
-        15.7500260759,
-        42.65
-      ],
-      [
-        19.59976,
-        45.2337767604
-      ]
+      [15.7500260759, 42.65],
+      [19.59976, 45.2337767604]
     ],
     "capacity": {
       "coal": 1888,
@@ -591,10 +409,7 @@
       "hydro storage": 440,
       "wind": 135
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -611,19 +426,10 @@
   },
   "BD": {
     "bounding_box": [
-      [
-        87.52178959200009,
-        20.23871491100003
-      ],
-      [
-        93.14285119700017,
-        27.123544007000064
-      ]
+      [87.52178959200009, 20.23871491100003],
+      [93.14285119700017, 27.123544007000064]
     ],
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz"],
     "parsers": {
       "production": "BD.fetch_production"
     },
@@ -632,14 +438,8 @@
   "BE": {
     "_comment": "Biomass includes waste incineration",
     "bounding_box": [
-      [
-        2.51357303225,
-        49.5294835476
-      ],
-      [
-        6.15665815596,
-        51.4750237087
-      ]
+      [2.51357303225, 49.5294835476],
+      [6.15665815596, 51.4750237087]
     ],
     "capacity": {
       "biomass": 1046,
@@ -653,11 +453,7 @@
       "solar": 5898,
       "wind": 4883
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Fred-3000"
-    ],
+    "contributors": ["corradio", "nessie2013", "Fred-3000"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -674,14 +470,8 @@
   },
   "BG": {
     "bounding_box": [
-      [
-        22.3805257504,
-        41.2344859889
-      ],
-      [
-        28.5580814959,
-        44.2349230007
-      ]
+      [22.3805257504, 41.2344859889],
+      [28.5580814959, 44.2349230007]
     ],
     "capacity": {
       "biomass": 80,
@@ -695,14 +485,7 @@
       "solar": 1130,
       "wind": 701
     },
-    "contributors": [
-      "https://github.com/yurukov",
-      "https://github.com/ultibo",
-      "https://github.com/systemcatch",
-      "https://github.com/bogomil",
-      "https://github.com/Pantkowsky",
-      "https://github.com/MindFreeze"
-    ],
+    "contributors": ["yurukov", "ultibo", "systemcatch", "bogomil", "Pantkowsky", "MindFreeze"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -715,23 +498,14 @@
   },
   "BH": {
     "bounding_box": [
-      [
-        49.94890384200005,
-        25.289536851000037
-      ],
-      [
-        51.14565981318161,
-        26.742580471000053
-      ]
+      [49.94890384200005, 25.289536851000037],
+      [51.14565981318161, 26.742580471000053]
     ],
     "capacity": {
       "solar": 11,
       "wind": 1
     },
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -751,14 +525,8 @@
   },
   "BO": {
     "bounding_box": [
-      [
-        -70.1664922699999,
-        -23.397257587999945
-      ],
-      [
-        -56.965660766999946,
-        -9.179821471999972
-      ]
+      [-70.1664922699999, -23.397257587999945],
+      [-56.965660766999946, -9.179821471999972]
     ],
     "capacity": {
       "biomass": 61,
@@ -768,11 +536,7 @@
       "unknown": 2501.03,
       "wind": 102.6
     },
-    "contributors": [
-      "https://github.com/igorarduin",
-      "https://github.com/corradio",
-      "https://github.com/skovhus"
-    ],
+    "contributors": ["igorarduin", "corradio", "skovhus"],
     "parsers": {
       "generationForecast": "BO.fetch_generation_forecast",
       "production": "BO.fetch_production"
@@ -781,14 +545,8 @@
   },
   "BR-CS": {
     "bounding_box": [
-      [
-        -67.33051469619625,
-        -14.162844600948802
-      ],
-      [
-        -59.32226030077226,
-        -7.500493258457112
-      ]
+      [-67.33051469619625, -14.162844600948802],
+      [-59.32226030077226, -7.500493258457112]
     ],
     "capacity": {
       "hydro": 58171,
@@ -797,12 +555,7 @@
       "unknown": 21193,
       "wind": 28
     },
-    "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -814,14 +567,8 @@
   },
   "BR-N": {
     "bounding_box": [
-      [
-        -55.2979158185602,
-        -1.7192017552567194
-      ],
-      [
-        -49.37304648399993,
-        4.941122259000181
-      ]
+      [-55.2979158185602, -1.7192017552567194],
+      [-49.37304648399993, 4.941122259000181]
     ],
     "capacity": {
       "hydro": 22251,
@@ -829,12 +576,7 @@
       "unknown": 3645,
       "wind": 426
     },
-    "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -843,14 +585,8 @@
   },
   "BR-NE": {
     "bounding_box": [
-      [
-        -38.74484351301771,
-        -12.068905937658784
-      ],
-      [
-        -35.90615240593988,
-        -9.026808362815672
-      ]
+      [-38.74484351301771, -12.068905937658784],
+      [-35.90615240593988, -9.026808362815672]
     ],
     "capacity": {
       "hydro": 11032,
@@ -858,12 +594,7 @@
       "unknown": 8290,
       "wind": 16744
     },
-    "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -872,14 +603,8 @@
   },
   "BR-S": {
     "bounding_box": [
-      [
-        -55.11244991099991,
-        -27.20477792675979
-      ],
-      [
-        -47.53248898038211,
-        -22.021725762533777
-      ]
+      [-55.11244991099991, -27.20477792675979],
+      [-47.53248898038211, -22.021725762533777]
     ],
     "capacity": {
       "hydro": 17252,
@@ -887,12 +612,7 @@
       "unknown": 4252,
       "wind": 2022
     },
-    "contributors": [
-      "https://github.com/alexanmtz",
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
     "parsers": {
       "production": "BR.fetch_production"
@@ -914,14 +634,8 @@
   "BY": {
     "_comment": "biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273 CHP",
     "bounding_box": [
-      [
-        23.1994938494,
-        51.3195034857
-      ],
-      [
-        32.6936430193,
-        56.1691299506
-      ]
+      [23.1994938494, 51.3195034857],
+      [32.6936430193, 56.1691299506]
     ],
     "capacity": {
       "biomass": 31,
@@ -934,9 +648,7 @@
       "solar": 50.9,
       "wind": 70.4
     },
-    "contributors": [
-      "https://github.com/admetny"
-    ],
+    "contributors": ["admetny"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -949,27 +661,15 @@
   },
   "BZ": {
     "bounding_box": [
-      [
-        -89.73651220799991,
-        15.379651999000075
-      ],
-      [
-        -87.28307044199994,
-        18.99075876900004
-      ]
+      [-89.73651220799991, 15.379651999000075],
+      [-87.28307044199994, 18.99075876900004]
     ],
     "timezone": null
   },
   "CA-AB": {
     "bounding_box": [
-      [
-        -120.50101599759016,
-        48.4925145470001
-      ],
-      [
-        -109.49932108789892,
-        60.50005890629359
-      ]
+      [-120.50101599759016, 48.4925145470001],
+      [-109.49932108789892, 60.50005890629359]
     ],
     "capacity": {
       "geothermal": 0,
@@ -977,9 +677,7 @@
       "nuclear": 0,
       "oil": 0
     },
-    "contributors": [
-      "https://github.com/mlucchini"
-    ],
+    "contributors": ["mlucchini"],
     "flag_file_name": "ca.png",
     "parsers": {
       "price": "CA_AB.fetch_price",
@@ -989,14 +687,8 @@
   },
   "CA-BC": {
     "bounding_box": [
-      [
-        -139.56020662181913,
-        47.80609772300011
-      ],
-      [
-        -113.53745235883926,
-        60.50005890629359
-      ]
+      [-139.56020662181913, 47.80609772300011],
+      [-113.53745235883926, 60.50005890629359]
     ],
     "capacity": {
       "biomass": 838,
@@ -1005,23 +697,15 @@
       "solar": 1,
       "wind": 704
     },
-    "contributors": [
-      "https://github.com/daveachuk"
-    ],
+    "contributors": ["daveachuk"],
     "flag_file_name": "ca.png",
     "timezone": null
   },
   "CA-MB": {
     "_comment": "Coal capacity is 0MW after decomissioning of Selkirk in April 2021 (not reflected in latest report from March 2021)",
     "bounding_box": [
-      [
-        -102.50159786704786,
-        48.492669576869844
-      ],
-      [
-        -88.44699962056833,
-        60.500059011375754
-      ]
+      [-102.50159786704786, 48.492669576869844],
+      [-88.44699962056833, 60.500059011375754]
     ],
     "capacity": {
       "coal": 0,
@@ -1030,23 +714,15 @@
       "oil": 13,
       "wind": 258
     },
-    "contributors": [
-      "https://github.com/felixvanoost"
-    ],
+    "contributors": ["felixvanoost"],
     "flag_file_name": "ca.png",
     "timezone": "America/Winnipeg"
   },
   "CA-NB": {
     "_comment": "gas includes an 88 MW cogeneration plant",
     "bounding_box": [
-      [
-        -69.56355977593142,
-        44.102757112000205
-      ],
-      [
-        -63.27110755099994,
-        48.57514069200005
-      ]
+      [-69.56355977593142, 44.102757112000205],
+      [-63.27110755099994, 48.57514069200005]
     ],
     "capacity": {
       "biomass": 38,
@@ -1057,9 +733,7 @@
       "oil": 1497,
       "wind": 294
     },
-    "contributors": [
-      "https://github.com/jarek"
-    ],
+    "contributors": ["jarek"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NB.fetch_production"
@@ -1068,14 +742,8 @@
   },
   "CA-NL-LB": {
     "bounding_box": [
-      [
-        -68.3084780847808,
-        50.91899500027512
-      ],
-      [
-        -55.14755647556471,
-        60.80458831011339
-      ]
+      [-68.3084780847808, 50.91899500027512],
+      [-55.14755647556471, 60.80458831011339]
     ],
     "flag_file_name": "ca.png",
     "timezone": "America/St_Johns"
@@ -1083,14 +751,8 @@
   "CA-NL-NF": {
     "_comment": "5428 MW of hydro is Churchill Falls Generating Station, electricity from which is mostly sold to Quebec and might not appear on balance sheets",
     "bounding_box": [
-      [
-        -59.89879398793984,
-        46.117712095699915
-      ],
-      [
-        -52.12712627126267,
-        53.850894675202525
-      ]
+      [-59.89879398793984, 46.117712095699915],
+      [-52.12712627126267, 53.850894675202525]
     ],
     "flag_file_name": "ca.png",
     "timezone": "America/St_Johns"
@@ -1098,14 +760,8 @@
   "CA-NS": {
     "_comment": "http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says available capacity is 2453 MW and wind capacity 567 MW",
     "bounding_box": [
-      [
-        -66.82774817599997,
-        42.92206452000019
-      ],
-      [
-        -59.188628709999904,
-        47.53481679900011
-      ]
+      [-66.82774817599997, 42.92206452000019],
+      [-59.188628709999904, 47.53481679900011]
     ],
     "capacity": {
       "biomass": 90.1,
@@ -1114,10 +770,7 @@
       "hydro": 418,
       "wind": 567
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio"
-    ],
+    "contributors": ["jarek", "corradio"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_NS.fetch_production"
@@ -1126,42 +779,24 @@
   },
   "CA-NT": {
     "bounding_box": [
-      [
-        -136.94538692906352,
-        59.5000589062935
-      ],
-      [
-        -101.48658586274732,
-        79.26634349200017
-      ]
+      [-136.94538692906352, 59.5000589062935],
+      [-101.48658586274732, 79.26634349200017]
     ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
   "CA-NU": {
     "bounding_box": [
-      [
-        -121.1808194650578,
-        51.41864655200018
-      ],
-      [
-        -60.585479295999846,
-        83.61652252800013
-      ]
+      [-121.1808194650578, 51.41864655200018],
+      [-60.585479295999846, 83.61652252800013]
     ],
     "flag_file_name": "ca.png",
     "timezone": null
   },
   "CA-ON": {
     "bounding_box": [
-      [
-        -95.66119498965699,
-        41.229466804384714
-      ],
-      [
-        -73.84780324445131,
-        57.36127350500004
-      ]
+      [-95.66119498965699, 41.229466804384714],
+      [-73.84780324445131, 57.36127350500004]
     ],
     "capacity": {
       "biomass": 296,
@@ -1172,12 +807,7 @@
       "solar": 478,
       "wind": 4783
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/scriptator",
-      "https://github.com/felixvanoost"
-    ],
+    "contributors": ["corradio", "jarek", "scriptator", "felixvanoost"],
     "flag_file_name": "ca.png",
     "parsers": {
       "price": "CA_ON.fetch_price",
@@ -1187,23 +817,14 @@
   },
   "CA-PE": {
     "bounding_box": [
-      [
-        -64.9168188139999,
-        45.4507510440001
-      ],
-      [
-        -61.47695878799993,
-        47.567328192000076
-      ]
+      [-64.9168188139999, 45.4507510440001],
+      [-61.47695878799993, 47.567328192000076]
     ],
     "capacity": {
       "oil": 179,
       "wind": 203.6
     },
-    "contributors": [
-      "https://github.com/reinvented",
-      "https://github.com/jarek"
-    ],
+    "contributors": ["reinvented", "jarek"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_PE.fetch_production"
@@ -1212,14 +833,8 @@
   },
   "CA-QC": {
     "bounding_box": [
-      [
-        -80.26561438699991,
-        44.49802968400007
-      ],
-      [
-        -56.60087602420913,
-        63.0938174500001
-      ]
+      [-80.26561438699991, 44.49802968400007],
+      [-56.60087602420913, 63.0938174500001]
     ],
     "capacity": {
       "biomass": 374,
@@ -1233,12 +848,7 @@
       "unknown": 1056,
       "wind": 3772
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/pjakobsen",
-      "https://github.com/madsnedergaard",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["jarek", "pjakobsen", "madsnedergaard", "KabelWlan"],
     "flag_file_name": "ca.png",
     "parsers": {
       "consumption": "CA_QC.fetch_consumption",
@@ -1248,14 +858,8 @@
   },
   "CA-SK": {
     "bounding_box": [
-      [
-        -110.49997270417693,
-        48.49261789994816
-      ],
-      [
-        -100.86433964677866,
-        60.50005890629359
-      ]
+      [-110.49997270417693, 48.49261789994816],
+      [-100.86433964677866, 60.50005890629359]
     ],
     "capacity": {
       "coal": 1530,
@@ -1268,22 +872,13 @@
   },
   "CA-YT": {
     "bounding_box": [
-      [
-        -141.50554863710892,
-        59.500058906146876
-      ],
-      [
-        -123.31910336003193,
-        70.15420156500005
-      ]
+      [-141.50554863710892, 59.500058906146876],
+      [-123.31910336003193, 70.15420156500005]
     ],
     "capacity": {
       "hydro": 92
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["jarek", "nessie2013"],
     "flag_file_name": "ca.png",
     "parsers": {
       "production": "CA_YT.fetch_production"
@@ -1304,14 +899,8 @@
   },
   "CH": {
     "bounding_box": [
-      [
-        5.9559111595,
-        45.8179931641
-      ],
-      [
-        10.4920501709,
-        47.808380127
-      ]
+      [5.9559111595, 45.8179931641],
+      [10.4920501709, 47.808380127]
     ],
     "capacity": {
       "biomass": 635,
@@ -1325,12 +914,7 @@
       "solar": 3135.8,
       "wind": 88.6
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/postronium",
-      "https://github.com/Kikof2",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["corradio", "postronium", "Kikof2", "KabelWlan"],
     "disclaimer": "Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1348,34 +932,20 @@
   },
   "CL-CHP": {
     "bounding_box": [
-      [
-        -109.95372473899994,
-        -27.701429945999905
-      ],
-      [
-        -104.95954342399995,
-        -25.95549895599993
-      ]
+      [-109.95372473899994, -27.701429945999905],
+      [-104.95954342399995, -25.95549895599993]
     ],
     "capacity": {
       "oil": 8.05,
       "solar": 0.128
     },
-    "contributors": [
-      "https://github.com/autipial"
-    ],
+    "contributors": ["autipial"],
     "timezone": "Pacific/Easter"
   },
   "CL-SEA": {
     "bounding_box": [
-      [
-        -76.21141516799992,
-        -49.75087001999994
-      ],
-      [
-        -70.62239823399997,
-        -43.0301774319999
-      ]
+      [-76.21141516799992, -49.75087001999994],
+      [-70.62239823399997, -43.0301774319999]
     ],
     "capacity": {
       "battery storage": 0,
@@ -1394,14 +964,8 @@
   },
   "CL-SEM": {
     "bounding_box": [
-      [
-        -76.16104081899994,
-        -56.4185042229999
-      ],
-      [
-        -65.92080644399994,
-        -48.13730234199994
-      ]
+      [-76.16104081899994, -56.4185042229999],
+      [-65.92080644399994, -48.13730234199994]
     ],
     "capacity": {
       "battery storage": 0,
@@ -1420,14 +984,8 @@
   },
   "CL-SEN": {
     "bounding_box": [
-      [
-        -74.90721594999991,
-        -44.54499811646991
-      ],
-      [
-        -66.51396683799987,
-        -17.006588197999946
-      ]
+      [-74.90721594999991, -44.54499811646991],
+      [-66.51396683799987, -17.006588197999946]
     ],
     "capacity": {
       "battery storage": 0,
@@ -1442,10 +1000,7 @@
       "solar": 5112.58,
       "wind": 3535.2
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz"],
     "delays": {
       "production": 24
     },
@@ -1460,14 +1015,8 @@
   },
   "CN": {
     "bounding_box": [
-      [
-        73.10225630700006,
-        15.27537669500009
-      ],
-      [
-        135.27257938700006,
-        54.06944447900007
-      ]
+      [73.10225630700006, 15.27537669500009],
+      [135.27257938700006, 54.06944447900007]
     ],
     "timezone": null
   },
@@ -1477,14 +1026,8 @@
   },
   "CR": {
     "bounding_box": [
-      [
-        -85.94172543,
-        8.22502798099
-      ],
-      [
-        -82.5461962552,
-        11.2171192489
-      ]
+      [-85.94172543, 8.22502798099],
+      [-82.5461962552, 11.2171192489]
     ],
     "capacity": {
       "geothermal": 473,
@@ -1493,12 +1036,7 @@
       "unknown": 69,
       "wind": 595
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/mlucchini",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "jarek", "mlucchini", "nessie2013"],
     "parsers": {
       "production": "CR.fetch_production"
     },
@@ -1514,14 +1052,8 @@
   },
   "CY": {
     "bounding_box": [
-      [
-        32.2566671079,
-        34.5718694118
-      ],
-      [
-        34.0048808123,
-        35.1731247015
-      ]
+      [32.2566671079, 34.5718694118],
+      [34.0048808123, 35.1731247015]
     ],
     "capacity": {
       "biomass": 13,
@@ -1535,12 +1067,7 @@
       "solar": 316,
       "wind": 158
     },
-    "contributors": [
-      "https://github.com/ultibo",
-      "https://github.com/veqtrus",
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["ultibo", "veqtrus", "q--", "nessie2013"],
     "parsers": {
       "production": "CY.fetch_production"
     },
@@ -1548,14 +1075,8 @@
   },
   "CZ": {
     "bounding_box": [
-      [
-        12.2401111182,
-        48.5553052842
-      ],
-      [
-        18.8531441586,
-        51.1172677679
-      ]
+      [12.2401111182, 48.5553052842],
+      [18.8531441586, 51.1172677679]
     ],
     "capacity": {
       "biomass": 510,
@@ -1570,9 +1091,7 @@
       "unknown": 410,
       "wind": 338
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1586,14 +1105,8 @@
   "DE": {
     "_comment": "Hydro capacities from Fraunhofer include capacities in AT, CH, LU which are directly connected to the German grid. Fraunhofer has no values for geothermal and unknown - these are from BNetz",
     "bounding_box": [
-      [
-        5.8227539063,
-        47.2643200803
-      ],
-      [
-        15.0732421875,
-        55.1537662685
-      ]
+      [5.8227539063, 47.2643200803],
+      [15.0732421875, 55.1537662685]
     ],
     "capacity": {
       "battery storage": 580,
@@ -1609,14 +1122,7 @@
       "unknown": 3700,
       "wind": 64280
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/bohne13",
-      "https://github.com/chiefymuc",
-      "https://github.com/nessie2013",
-      "https://github.com/IV1T3",
-      "https://github.com/sin"
-    ],
+    "contributors": ["corradio", "bohne13", "chiefymuc", "nessie2013", "IV1T3", "sin"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1633,14 +1139,8 @@
   },
   "DK": {
     "bounding_box": [
-      [
-        7.60472,
-        54.509132
-      ],
-      [
-        13.30324,
-        57.751949
-      ]
+      [7.60472, 54.509132],
+      [13.30324, 57.751949]
     ],
     "capacity": {
       "biomass": 2391,
@@ -1654,10 +1154,7 @@
       "solar": 1536,
       "wind": 6949
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/Manu1400"
-    ],
+    "contributors": ["corradio", "Manu1400"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1666,29 +1163,18 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "subZoneNames": [
-      "DK-DK1",
-      "DK-DK2"
-    ],
+    "subZoneNames": ["DK-DK1", "DK-DK2"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {
     "bounding_box": [
-      [
-        14.7,
-        54.9
-      ],
-      [
-        15.2,
-        55.2
-      ]
+      [14.7, 54.9],
+      [15.2, 55.2]
     ],
     "capacity": {
       "wind": 30
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "price": "ENTSOE.fetch_price",
       "production": "DK_BHM.fetch_production"
@@ -1697,14 +1183,8 @@
   },
   "DK-DK1": {
     "bounding_box": [
-      [
-        10.535889,
-        54.380557
-      ],
-      [
-        12.788086,
-        56.36525
-      ]
+      [10.535889, 54.380557],
+      [12.788086, 56.36525]
     ],
     "capacity": {
       "battery storage": 0,
@@ -1719,10 +1199,7 @@
       "solar": 1086,
       "wind": 5165
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/tmslaine"
-    ],
+    "contributors": ["corradio", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1736,14 +1213,8 @@
   },
   "DK-DK2": {
     "bounding_box": [
-      [
-        7.261963,
-        54.661124
-      ],
-      [
-        11.304932,
-        57.803798
-      ]
+      [7.261963, 54.661124],
+      [11.304932, 57.803798]
     ],
     "capacity": {
       "battery storage": 0,
@@ -1758,10 +1229,7 @@
       "solar": 450,
       "wind": 1784
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/tmslaine"
-    ],
+    "contributors": ["corradio", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1779,14 +1247,8 @@
   },
   "DO": {
     "bounding_box": [
-      [
-        -71.9451120673,
-        17.598564358
-      ],
-      [
-        -68.3179432848,
-        19.8849105901
-      ]
+      [-71.9451120673, 17.598564358],
+      [-68.3179432848, 19.8849105901]
     ],
     "capacity": {
       "biomass": 30,
@@ -1797,11 +1259,7 @@
       "solar": 188,
       "wind": 370
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "nessie2013", "alixunderplatz"],
     "parsers": {
       "production": "DO.fetch_production"
     },
@@ -1817,14 +1275,8 @@
   },
   "EE": {
     "bounding_box": [
-      [
-        23.3397953631,
-        57.4745283067
-      ],
-      [
-        28.1316992531,
-        59.6110903998
-      ]
+      [23.3397953631, 57.4745283067],
+      [28.1316992531, 59.6110903998]
     ],
     "capacity": {
       "biomass": 147,
@@ -1839,10 +1291,7 @@
       "unknown": 13,
       "wind": 329
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1868,14 +1317,8 @@
   "ES": {
     "_comment": "Hydro capacity from IRENA includes pumped storage generation capacity. Note: ENTSO-E (not used for hydro capacity) lists 5645 MW for pumped storage CONSUMPTION capacity, whereas GENERATION from pumped storage is included in 'hydro reservoir' category.",
     "bounding_box": [
-      [
-        -9.3603515625,
-        35.9957853864
-      ],
-      [
-        3.6474609375,
-        43.6758180933
-      ]
+      [-9.3603515625, 35.9957853864],
+      [3.6474609375, 43.6758180933]
     ],
     "capacity": {
       "biomass": 1489,
@@ -1890,13 +1333,7 @@
       "unknown": 402,
       "wind": 27561
     },
-    "contributors": [
-      "https://github.com/brandongalbraith",
-      "https://github.com/corradio",
-      "https://github.com/JosepRey",
-      "https://github.com/nessie2013",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["brandongalbraith", "corradio", "JosepRey", "nessie2013", "KabelWlan"],
     "flag_file_name": "es.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -1910,233 +1347,139 @@
   },
   "ES-CN-FVLZ": {
     "bounding_box": [
-      [
-        -15.007069464999915,
-        27.55068594000015
-      ],
-      [
-        -12.91779537699989,
-        29.74331289300015
-      ]
+      [-15.007069464999915, 27.55068594000015],
+      [-12.91779537699989, 29.74331289300015]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-GC": {
     "bounding_box": [
-      [
-        -16.321766730999855,
-        27.23436107000005
-      ],
-      [
-        -14.863636847999885,
-        28.679754950000174
-      ]
+      [-16.321766730999855, 27.23436107000005],
+      [-14.863636847999885, 28.679754950000174]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-HI": {
     "bounding_box": [
-      [
-        -18.66722571499986,
-        27.14223867400007
-      ],
-      [
-        -17.379261847999913,
-        28.352036851000108
-      ]
+      [-18.66722571499986, 27.14223867400007],
+      [-17.379261847999913, 28.352036851000108]
     ],
     "capacity": {
       "hydro storage": 11.32,
       "oil": 11.78,
       "wind": 11.5
     },
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-IG": {
     "bounding_box": [
-      [
-        -17.843376510999917,
-        27.51910613200006
-      ],
-      [
-        -16.598419696999883,
-        28.717716638000084
-      ]
+      [-17.843376510999917, 27.51910613200006],
+      [-16.598419696999883, 28.717716638000084]
     ],
     "capacity": {
       "oil": 22.8
     },
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-LP": {
     "bounding_box": [
-      [
-        -18.502186652999853,
-        27.955389716000084
-      ],
-      [
-        -17.22104415999985,
-        29.355619032000007
-      ]
+      [-18.502186652999853, 27.955389716000084],
+      [-17.22104415999985, 29.355619032000007]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-CN-TE": {
     "bounding_box": [
-      [
-        -17.416058089999865,
-        27.497096487000093
-      ],
-      [
-        -15.617746548999946,
-        29.08344147300015
-      ]
+      [-17.416058089999865, 27.497096487000093],
+      [-15.617746548999946, 29.08344147300015]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["hectorespert", "systemcatch"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_CN.fetch_consumption",
-      "production": "ES_CN.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Atlantic/Canary"
   },
   "ES-IB-FO": {
     "bounding_box": [
-      [
-        0.8828231130000861,
-        38.1386463070001
-      ],
-      [
-        2.082367384000122,
-        39.25535716400017
-      ]
+      [0.8828231130000861, 38.1386463070001],
+      [2.082367384000122, 39.25535716400017]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_IB.fetch_consumption",
-      "production": "ES_IB.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Europe/Madrid"
   },
   "ES-IB-IZ": {
     "bounding_box": [
-      [
-        0.712168816000087,
-        38.33180940700015
-      ],
-      [
-        2.123057488000086,
-        39.618882554000066
-      ]
+      [0.712168816000087, 38.33180940700015],
+      [2.123057488000086, 39.618882554000066]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_IB.fetch_consumption",
-      "production": "ES_IB.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Europe/Madrid"
   },
   "ES-IB-MA": {
     "bounding_box": [
-      [
-        1.850759311000076,
-        38.76906972900008
-      ],
-      [
-        3.974375847000147,
-        40.46877676000017
-      ]
+      [1.850759311000076, 38.76906972900008],
+      [3.974375847000147, 40.46877676000017]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_IB.fetch_consumption",
-      "production": "ES_IB.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Europe/Madrid"
   },
   "ES-IB-ME": {
     "bounding_box": [
-      [
-        3.303151889000077,
-        39.31647370000019
-      ],
-      [
-        4.837087436000104,
-        40.57941315300016
-      ]
+      [3.303151889000077, 39.31647370000019],
+      [4.837087436000104, 40.57941315300016]
     ],
-    "contributors": [
-      "https://github.com/hectorespert",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["hectorespert", "systemcatch", "alixunderplatz"],
     "flag_file_name": "es.png",
     "parsers": {
-      "consumption": "ES_IB.fetch_consumption",
-      "production": "ES_IB.fetch_production"
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
     },
     "timezone": "Europe/Madrid"
   },
@@ -2146,14 +1489,8 @@
   },
   "FI": {
     "bounding_box": [
-      [
-        20.6455928891,
-        59.846373196
-      ],
-      [
-        31.5160921567,
-        70.1641930203
-      ]
+      [20.6455928891, 59.846373196],
+      [31.5160921567, 70.1641930203]
     ],
     "capacity": {
       "biomass": 2790,
@@ -2167,10 +1504,7 @@
       "unknown": 784,
       "wind": 3257
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2196,24 +1530,15 @@
   },
   "FO": {
     "bounding_box": [
-      [
-        -8.144154425999943,
-        60.894110419000086
-      ],
-      [
-        -5.775786912999905,
-        62.89891185100005
-      ]
+      [-8.144154425999943, 60.894110419000086],
+      [-5.775786912999905, 62.89891185100005]
     ],
     "capacity": {
       "hydro": 39.4,
       "oil": 66.7,
       "wind": 18.3
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/q--"
-    ],
+    "contributors": ["corradio", "q--"],
     "parsers": {
       "production": "FO.fetch_production"
     },
@@ -2221,14 +1546,8 @@
   },
   "FR": {
     "bounding_box": [
-      [
-        -5.44921875,
-        42.3098154157
-      ],
-      [
-        8.2177734375,
-        51.2894059027
-      ]
+      [-5.44921875, 42.3098154157],
+      [8.2177734375, 51.2894059027]
     ],
     "capacity": {
       "battery storage": 7,
@@ -2244,11 +1563,7 @@
       "unknown": 1366,
       "wind": 18549
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "lorrieq", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2261,14 +1576,8 @@
   },
   "FR-COR": {
     "bounding_box": [
-      [
-        8.361347,
-        41.315625
-      ],
-      [
-        9.90466,
-        43.047539
-      ]
+      [8.361347, 41.315625],
+      [9.90466, 43.047539]
     ],
     "capacity": {
       "biomass": 2.295,
@@ -2279,10 +1588,7 @@
       "solar": 145.123,
       "wind": 18
     },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien",
-      "https://github.com/VIKTORVAV99"
-    ],
+    "contributors": ["PETILLON-Sebastien", "VIKTORVAV99"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -2296,14 +1602,8 @@
   "GB": {
     "_comment": "Key should be GB-GBN (see https://en.wikipedia.org/wiki/ISO_3166-2:GB)",
     "bounding_box": [
-      [
-        -8.173828125,
-        49.6462914122
-      ],
-      [
-        2.1533203125,
-        61.0795442346
-      ]
+      [-8.173828125, 49.6462914122],
+      [2.1533203125, 61.0795442346]
     ],
     "capacity": {
       "biomass": 4528,
@@ -2312,18 +1612,13 @@
       "geothermal": 0,
       "hydro": 1919,
       "hydro storage": 4309,
-      "nuclear": 7888,
+      "nuclear": 6848,
       "oil": 0,
       "solar": 13378,
       "unknown": 4708,
       "wind": 25097
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013",
-      "https://github.com/AlexandreCouderc"
-    ],
+    "contributors": ["corradio", "lorrieq", "nessie2013", "AlexandreCouderc"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2336,14 +1631,8 @@
   },
   "GB-NIR": {
     "bounding_box": [
-      [
-        -8.673837442999911,
-        53.53457265800016
-      ],
-      [
-        -4.930775519999884,
-        55.81134674700017
-      ]
+      [-8.673837442999911, 53.53457265800016],
+      [-4.930775519999884, 55.81134674700017]
     ],
     "capacity": {
       "biomass": 35,
@@ -2353,43 +1642,27 @@
       "solar": 92,
       "wind": 995
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/brunolajoie",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "systemcatch", "brunolajoie", "alixunderplatz", "nessie2013"],
     "flag_file_name": "_Northern%20Ireland.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "GB_NIR.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": null
   },
   "GB-ORK": {
     "bounding_box": [
-      [
-        -3.933338995999918,
-        58.2306989600001
-      ],
-      [
-        -1.8924861319999025,
-        59.86090729400016
-      ]
+      [-3.933338995999918, 58.2306989600001],
+      [-1.8924861319999025, 59.86090729400016]
     ],
     "capacity": {
       "solar": 1.2,
       "wind": 48
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
-    ],
+    "contributors": ["systemcatch", "maxbellec"],
     "flag_file_name": "gb.png",
     "parsers": {
       "production": "GB_ORK.fetch_production"
@@ -2398,33 +1671,18 @@
   },
   "GB-SHI": {
     "bounding_box": [
-      [
-        -2.612294074999852,
-        59.0141055360001
-      ],
-      [
-        -0.25479081899990774,
-        61.34788646000004
-      ]
+      [-2.612294074999852, 59.0141055360001],
+      [-0.25479081899990774, 61.34788646000004]
     ],
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/maxbellec"
-    ],
+    "contributors": ["systemcatch", "maxbellec"],
     "flag_file_name": "gb.png",
     "timezone": null
   },
   "GE": {
     "_comment": "source:http://www.gse.com.ge/for-customers/data-from-the-power-system, gas incl. 13 MW of coal",
     "bounding_box": [
-      [
-        39.9550085793,
-        41.0644446885
-      ],
-      [
-        46.6379081561,
-        43.553104153
-      ]
+      [39.9550085793, 41.0644446885],
+      [46.6379081561, 43.553104153]
     ],
     "capacity": {
       "gas": 1189,
@@ -2432,11 +1690,7 @@
       "nuclear": 0,
       "wind": 21
     },
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/kruschk",
-      "https://github.com/tmslaine"
-    ],
+    "contributors": ["alixunderplatz", "kruschk", "tmslaine"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2448,14 +1702,8 @@
   },
   "GF": {
     "bounding_box": [
-      [
-        -54.708003,
-        2.10212
-      ],
-      [
-        -51.595232,
-        5.78601
-      ]
+      [-54.708003, 2.10212],
+      [-51.595232, 5.78601]
     ],
     "capacity": {
       "biomass": 1.976,
@@ -2464,9 +1712,7 @@
       "oil": 108,
       "solar": 44.879
     },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -2491,14 +1737,8 @@
   },
   "GP": {
     "bounding_box": [
-      [
-        -61.859314,
-        15.831168
-      ],
-      [
-        -60.992374,
-        16.56759
-      ]
+      [-61.859314, 15.831168],
+      [-60.992374, 16.56759]
     ],
     "capacity": {
       "biomass": 5.162,
@@ -2509,9 +1749,7 @@
       "solar": 60.447,
       "wind": 26.26
     },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -2524,14 +1762,8 @@
   },
   "GR": {
     "bounding_box": [
-      [
-        20.1500159034,
-        34.9199876979
-      ],
-      [
-        26.6041955909,
-        41.8269046087
-      ]
+      [20.1500159034, 34.9199876979],
+      [26.6041955909, 41.8269046087]
     ],
     "capacity": {
       "biomass": 106,
@@ -2546,9 +1778,7 @@
       "unknown": 109,
       "wind": 4150
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2561,14 +1791,8 @@
   },
   "GR-IS": {
     "bounding_box": [
-      [
-        23.018239780000044,
-        34.31500885600016
-      ],
-      [
-        26.821136915000068,
-        36.186957098000164
-      ]
+      [23.018239780000044, 34.31500885600016],
+      [26.821136915000068, 36.186957098000164]
     ],
     "timezone": null
   },
@@ -2578,14 +1802,8 @@
   },
   "GT": {
     "bounding_box": [
-      [
-        -92.2292486234,
-        13.7353376327
-      ],
-      [
-        -88.2250227526,
-        17.8193260767
-      ]
+      [-92.2292486234, 13.7353376327],
+      [-88.2250227526, 17.8193260767]
     ],
     "capacity": {
       "biomass": 1025.009,
@@ -2597,11 +1815,7 @@
       "solar": 91,
       "wind": 75.9
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/igorarduin",
-      "https://github.com/kruschk"
-    ],
+    "contributors": ["corradio", "igorarduin", "kruschk"],
     "parsers": {
       "consumption": "GT.fetch_consumption",
       "production": "GT.fetch_production"
@@ -2622,23 +1836,15 @@
   },
   "HK": {
     "bounding_box": [
-      [
-        113.337331576,
-        21.677069403000075
-      ],
-      [
-        114.90129642000011,
-        23.06394603200009
-      ]
+      [113.337331576, 21.677069403000075],
+      [114.90129642000011, 23.06394603200009]
     ],
     "capacity": {
       "coal": 2875,
       "gas": 3225,
       "oil": 210
     },
-    "contributors": [
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["nessie2013"],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
   },
@@ -2648,14 +1854,8 @@
   },
   "HN": {
     "bounding_box": [
-      [
-        -90.5131,
-        13.029
-      ],
-      [
-        -82.4981,
-        17.4603
-      ]
+      [-90.5131, 13.029],
+      [-82.4981, 17.4603]
     ],
     "capacity": {
       "biomass": 210,
@@ -2667,9 +1867,7 @@
       "solar": 451,
       "wind": 225
     },
-    "contributors": [
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["alixunderplatz"],
     "parsers": {
       "production": "ENTE.fetch_production"
     },
@@ -2677,14 +1875,8 @@
   },
   "HR": {
     "bounding_box": [
-      [
-        13.6569755388,
-        42.47999136
-      ],
-      [
-        19.3904757016,
-        46.5037509222
-      ]
+      [13.6569755388, 42.47999136],
+      [19.3904757016, 46.5037509222]
     ],
     "capacity": {
       "biomass": 117,
@@ -2698,9 +1890,7 @@
       "unknown": 57,
       "wind": 925
     },
-    "contributors": [
-      "https://github.com/PaulCornelissen"
-    ],
+    "contributors": ["PaulCornelissen"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2715,14 +1905,8 @@
   },
   "HU": {
     "bounding_box": [
-      [
-        16.2022982113,
-        45.7594811061
-      ],
-      [
-        22.710531447,
-        48.6238540716
-      ]
+      [16.2022982113, 45.7594811061],
+      [22.710531447, 48.6238540716]
     ],
     "capacity": {
       "biomass": 300,
@@ -2737,10 +1921,7 @@
       "unknown": 69,
       "wind": 323
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2755,14 +1936,8 @@
     "flag_file_name": "id.png",
     "timezone": "Asia/Jakarta",
     "bounding_box": [
-      [
-        94.51270592500003,
-        -11.422621351999908
-      ],
-      [
-        141.47762699400005,
-        6.410101630000042
-      ]
+      [94.51270592500003, -11.422621351999908],
+      [141.47762699400005, 6.410101630000042]
     ],
     "capacity": {
       "biomass": 1912,
@@ -2775,20 +1950,12 @@
       "solar": 211,
       "wind": 154
     },
-    "contributors": [
-      "https://github.com/nessie2013"
-    ]
+    "contributors": ["nessie2013"]
   },
   "IE": {
     "bounding_box": [
-      [
-        -9.97708574059,
-        51.6693012559
-      ],
-      [
-        -6.03298539878,
-        55.1316222195
-      ]
+      [-9.97708574059, 51.6693012559],
+      [-6.03298539878, 55.1316222195]
     ],
     "capacity": {
       "biomass": 107,
@@ -2802,10 +1969,7 @@
       "unknown": 647,
       "wind": 4332
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -2818,14 +1982,8 @@
   },
   "IL": {
     "bounding_box": [
-      [
-        32.8841,
-        29.0121
-      ],
-      [
-        37.4557,
-        34.2585
-      ]
+      [32.8841, 29.0121],
+      [37.4557, 34.2585]
     ],
     "capacity": {
       "biomass": 27,
@@ -2840,11 +1998,7 @@
       "unknown": 175,
       "wind": 28
     },
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/jarek",
-      "https://github.com/yuvalabou"
-    ],
+    "contributors": ["alixunderplatz", "jarek", "yuvalabou"],
     "parsers": {
       "consumption": "IL.fetch_consumption",
       "price": "IL.fetch_price",
@@ -2858,165 +2012,170 @@
   },
   "IN": {
     "capacity": {
-      "biomass": 10339.56,
-      "coal": 208624.5,
-      "gas": 24924,
-      "hydro": 51116,
+      "biomass": 10682.36,
+      "coal": 210699.5,
+      "gas": 24879.21,
+      "hydro": 51608.52,
       "nuclear": 6780,
-      "oil": 509.7,
-      "solar": 42335.49,
-      "wind": 39486.65
+      "oil": 509.71,
+      "solar": 56951.33,
+      "wind": 40706.38
     },
-    "contributors": [
-      "https://github.com/systemcatch"
-    ],
+    "contributors": ["systemcatch", "gopikrishna1793"],
     "parsers": {
       "production": "IN.fetch_production"
     },
     "timezone": "Asia/Kolkata"
   },
   "IN-AN": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 40.05
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-AP": {
     "bounding_box": [
-      [
-        76.21948286304365,
-        12.131916612162016
-      ],
-      [
-        85.28003991000008,
-        20.391292628951703
-      ]
+      [76.21948286304365, 12.131916612162016],
+      [85.28003991000008, 20.391292628951703]
     ],
     "capacity": {
       "biomass": 506.9,
       "coal": 11590,
-      "gas": 4898.5,
-      "hydro": 1772.11,
+      "gas": 4898.54,
+      "hydro": 1610,
       "nuclear": 0,
-      "oil": 37,
+      "oil": 36.8,
       "solar": 4254.3,
       "wind": 4096.7
     },
-    "contributors": [
-      "https://github.com/hectorespert"
-    ],
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_AP.fetch_consumption",
       "production": "IN_AP.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-AR": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 1115,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-AS": {
+    "capacity": {
+      "coal": 750,
+      "gas": 620.36,
+      "hydro": 350,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-BR": {
+    "capacity": {
+      "coal": 8400,
+      "gas": 0,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-CT": {
     "bounding_box": [
-      [
-        79.76055870971675,
-        17.276072903441786
-      ],
-      [
-        84.85333214706088,
-        24.640232245122036
-      ]
+      [79.76055870971675, 17.276072903441786],
+      [84.85333214706088, 24.640232245122036]
     ],
     "capacity": {
       "biomass": 269.9,
       "coal": 23688,
       "gas": 0,
-      "hydro": 196,
+      "hydro": 120,
       "nuclear": 0,
       "oil": 0,
       "solar": 252.5,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/hectorespert"
-    ],
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_CT.fetch_consumption",
       "production": "IN_CT.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-DL": {
-    "_comment": "biomass capacity is lower (16 MW) than generation from biomass, therefore not included",
     "bounding_box": [
-      [
-        76.3336877786681,
-        27.932605902840095
-      ],
-      [
-        77.83753299275344,
-        29.382087511129754
-      ]
+      [76.3336877786681, 27.932605902840095],
+      [77.83753299275344, 29.382087511129754]
     ],
     "capacity": {
       "biomass": 52,
       "coal": 0,
-      "gas": 2208,
+      "gas": 2208.4,
       "hydro": 0,
       "nuclear": 0,
       "oil": 0,
       "solar": 193,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/hectorespert"
-    ],
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_DL.fetch_consumption",
       "production": "IN_DL.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-DN": {
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-GA": {
+    "capacity": {
+      "coal": 0,
+      "gas": 48,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-GJ": {
     "bounding_box": [
-      [
-        67.64340254000018,
-        19.572644470095213
-      ],
-      [
-        74.95905236227674,
-        25.208362942495825
-      ]
+      [67.64340254000018, 19.572644470095213],
+      [74.95905236227674, 25.208362942495825]
     ],
     "capacity": {
       "biomass": 77.3,
       "coal": 16092,
-      "gas": 7551,
-      "hydro": 2072.7,
+      "gas": 7551.41,
+      "hydro": 1990,
       "nuclear": 440,
       "oil": 0,
       "solar": 5131.6,
       "wind": 8758.4
     },
-    "contributors": [
-      "https://github.com/sahitya-pavurala"
-    ],
+    "contributors": ["sahitya-pavurala", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_GJ.fetch_consumption",
@@ -3026,28 +2185,20 @@
   },
   "IN-HP": {
     "bounding_box": [
-      [
-        75.07784712064807,
-        29.88217682520036
-      ],
-      [
-        79.49706994002565,
-        33.7328555360541
-      ]
+      [75.07784712064807, 29.88217682520036],
+      [79.49706994002565, 33.7328555360541]
     ],
     "capacity": {
       "biomass": 9.2,
       "coal": 0,
       "gas": 0,
-      "hydro": 10856.1,
+      "hydro": 10263.02,
       "nuclear": 0,
       "oil": 0,
       "solar": 45,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/willbeaufoy"
-    ],
+    "contributors": ["willbeaufoy", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_HP.fetch_production"
@@ -3055,66 +2206,84 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-HR": {
+    "capacity": {
+      "coal": 5330,
+      "gas": 431.59,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-JH": {
+    "capacity": {
+      "coal": 4250,
+      "gas": 0,
+      "hydro": 210,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-JK": {
+    "capacity": {
+      "coal": 0,
+      "gas": 175,
+      "hydro": 3360,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-KA": {
     "bounding_box": [
-      [
-        73.59115644600661,
-        11.125595607751208
-      ],
-      [
-        79.06898237493664,
-        18.96081146897413
-      ]
+      [73.59115644600661, 11.125595607751208],
+      [79.06898237493664, 18.96081146897413]
     ],
     "capacity": {
       "biomass": 1888.3,
       "coal": 9480,
       "gas": 0,
-      "hydro": 4924.9,
+      "hydro": 3689.2,
       "nuclear": 880,
       "oil": 25.2,
       "solar": 7409.39,
       "wind": 4938.6
     },
-    "contributors": [
-      "https://github.com/hectorespert"
-    ],
+    "contributors": ["hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_KA.fetch_consumption",
       "production": "IN_KA.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-KL": {
+    "capacity": {
+      "coal": 0,
+      "gas": 533.58,
+      "hydro": 1856.5,
+      "nuclear": 0,
+      "oil": 159.96
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MH": {
     "bounding_box": [
-      [
-        72.79941,
-        15.613079
-      ],
-      [
-        80.661984,
-        22.105644
-      ]
+      [72.79941, 15.613079],
+      [80.661984, 22.105644]
     ],
     "capacity": {
       "biomass": 2597,
-      "coal": 24966,
+      "coal": 23856,
       "gas": 3207.08,
       "hydro": 3047,
       "nuclear": 1400,
@@ -3123,13 +2292,7 @@
       "unknown": 480.55,
       "wind": 5010.8
     },
-    "comment": "partial source: installed capacity in Jun-2021 https://cea.nic.in/dashboard/?lang=en",
-    "contributors": [
-      "https://github.com/GitMatze",
-      "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch",
-      "https://github.com/Manu1400"
-    ],
+    "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_MH.fetch_production"
@@ -3137,138 +2300,200 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-ML": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 322,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MN": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 105,
+      "nuclear": 0,
+      "oil": 36
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MP": {
+    "capacity": {
+      "coal": 21950,
+      "gas": 0,
+      "hydro": 2235,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-MZ": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 60,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-NL": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 75,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-OR": {
+    "capacity": {
+      "coal": 9540,
+      "gas": 0,
+      "hydro": 2154.55,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-PB": {
     "bounding_box": [
-      [
-        73.34234501100013,
-        29.059823920137802
-      ],
-      [
-        77.41037560365123,
-        33.016749376582425
-      ]
+      [73.34234501100013, 29.059823920137802],
+      [77.41037560365123, 33.016749376582425]
     ],
     "capacity": {
       "biomass": 484.3,
       "coal": 5680,
       "gas": 0,
-      "hydro": 1269.6,
+      "hydro": 1096.3,
       "nuclear": 0,
       "oil": 0,
       "solar": 968.6,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/hectorespert"
-    ],
+    "contributors": ["corradio", "hectorespert", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "consumption": "IN_PB.fetch_consumption",
       "production": "IN_PB.fetch_production"
     },
-    "timezone": null
+    "timezone": "Asia/Kolkata"
   },
   "IN-PY": {
+    "capacity": {
+      "coal": 0,
+      "gas": 32.5,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-RJ": {
+    "capacity": {
+      "coal": 10480,
+      "gas": 1022.83,
+      "hydro": 411,
+      "nuclear": 1180,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-SK": {
+    "capacity": {
+      "coal": 0,
+      "gas": 0,
+      "hydro": 2282,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-TN": {
+    "capacity": {
+      "biomass": 265.59,
+      "coal": 13685,
+      "gas": 516.1,
+      "geothermal": 4320,
+      "hydro": 2321.9,
+      "nuclear": 2440,
+      "oil": 211.7,
+      "solar": 5518.153,
+      "wind": 8618.07
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-TR": {
+    "capacity": {
+      "coal": 0,
+      "gas": 1099.6,
+      "hydro": 0,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IN-UP": {
     "bounding_box": [
-      [
-        76.5581702012937,
-        23.411047268416667
-      ],
-      [
-        85.11243777868054,
-        30.902020574789645
-      ]
+      [76.5581702012937, 23.411047268416667],
+      [85.11243777868054, 30.902020574789645]
     ],
     "capacity": {
       "biomass": 2117.3,
-      "coal": 23729,
-      "gas": 1493.1,
-      "hydro": 550.7,
+      "coal": 24389,
+      "gas": 1493.14,
+      "hydro": 501.6,
       "nuclear": 440,
       "oil": 0,
       "solar": 1840.3,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/sahitya-pavurala",
-      "https://github.com/pierresegonne"
-    ],
+    "contributors": ["sahitya-pavurala", "pierresegonne", "gopikrishna1793"],
     "flag_file_name": "in.png",
-    "parsers": {
-      "consumption": "IN_UP.fetch_consumption",
-      "production": "IN_UP.fetch_production"
-    },
+    "parsers": {},
     "timezone": "Asia/Kolkata"
   },
   "IN-UT": {
     "bounding_box": [
-      [
-        77.611412,
-        28.542876
-      ],
-      [
-        80.940177,
-        31.292794
-      ]
+      [77.611412, 28.542876],
+      [80.940177, 31.292794]
     ],
     "capacity": {
       "biomass": 130.2,
       "coal": 0,
       "gas": 450,
-      "hydro": 4069.7,
+      "hydro": 3855.35,
       "nuclear": 0,
       "oil": 0,
       "solar": 398.3,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["alixunderplatz", "lorrieq", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {
       "production": "IN_UT.fetch_production"
@@ -3276,26 +2501,24 @@
     "timezone": "Asia/Kolkata"
   },
   "IN-WB": {
+    "capacity": {
+      "coal": 13697,
+      "gas": 80,
+      "hydro": 1341.2,
+      "nuclear": 0,
+      "oil": 0
+    },
+    "contributors": ["gopikrishna1793"],
     "flag_file_name": "in.png",
     "timezone": "Asia/Kolkata"
   },
   "IQ": {
     "bounding_box": [
-      [
-        38.27451135200005,
-        28.56313669900004
-      ],
-      [
-        49.059255405000044,
-        37.562000619000116
-      ]
+      [38.27451135200005, 28.56313669900004],
+      [49.059255405000044, 37.562000619000116]
     ],
     "capacity": {},
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/systemcatch",
-      "https://github.com/byronwilliams"
-    ],
+    "contributors": ["alixunderplatz", "systemcatch", "byronwilliams"],
     "flag_file_name": "iq.png",
     "parsers": {
       "consumption": "IQ.fetch_consumption",
@@ -3305,40 +2528,22 @@
   },
   "IQ-KUR": {
     "bounding_box": [
-      [
-        41.85723840300011,
-        34.01280325000005
-      ],
-      [
-        46.827073608000035,
-        37.87549753800006
-      ]
+      [41.85723840300011, 34.01280325000005],
+      [46.827073608000035, 37.87549753800006]
     ],
     "timezone": null
   },
   "IR": {
     "bounding_box": [
-      [
-        43.51486332200011,
-        24.559408165000036
-      ],
-      [
-        63.81962813300004,
-        40.271526998000084
-      ]
+      [43.51486332200011, 24.559408165000036],
+      [63.81962813300004, 40.271526998000084]
     ],
     "timezone": null
   },
   "IS": {
     "bounding_box": [
-      [
-        -24.3261840479,
-        63.4963829617
-      ],
-      [
-        -13.609732225,
-        66.5267923041
-      ]
+      [-24.3261840479, 63.4963829617],
+      [-13.609732225, 66.5267923041]
     ],
     "capacity": {
       "biomass": 0,
@@ -3352,11 +2557,7 @@
       "unknown": 0,
       "wind": 2
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/SNPerkin",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "SNPerkin", "nessie2013"],
     "flag_file_name": "is.png",
     "parsers": {
       "production": "IS.fetch_production"
@@ -3365,14 +2566,8 @@
   },
   "IT": {
     "bounding_box": [
-      [
-        6.7499552751,
-        36.619987291
-      ],
-      [
-        18.4802470232,
-        47.1153931748
-      ]
+      [6.7499552751, 36.619987291],
+      [18.4802470232, 47.1153931748]
     ],
     "capacity": {
       "biomass": 4105.9,
@@ -3386,33 +2581,18 @@
       "solar": 21650.1,
       "wind": 10906.9
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast"
     },
-    "subZoneNames": [
-      "IT-CNO",
-      "IT-CSO",
-      "IT-NO",
-      "IT-SAR",
-      "IT-SIC",
-      "IT-SO"
-    ],
+    "subZoneNames": ["IT-CNO", "IT-CSO", "IT-NO", "IT-SAR", "IT-SIC", "IT-SO"],
     "timezone": "Europe/Rome"
   },
   "IT-CNO": {
     "bounding_box": [
-      [
-        9.186982333667714,
-        41.81872803200014
-      ],
-      [
-        14.40552664686598,
-        44.982966555562086
-      ]
+      [9.186982333667714, 41.81872803200014],
+      [14.40552664686598, 44.982966555562086]
     ],
     "capacity": {
       "biomass": 199.5,
@@ -3426,10 +2606,7 @@
       "solar": 1984.2,
       "wind": 162.7
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3442,14 +2619,8 @@
   },
   "IT-CSO": {
     "bounding_box": [
-      [
-        10.951496463496312,
-        39.49396986000008
-      ],
-      [
-        16.29054702002901,
-        43.40156077856554
-      ]
+      [10.951496463496312, 39.49396986000008],
+      [16.29054702002901, 43.40156077856554]
     ],
     "capacity": {
       "biomass": 487.2,
@@ -3463,10 +2634,7 @@
       "solar": 3547.5,
       "wind": 2085.7
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3479,14 +2647,8 @@
   },
   "IT-NO": {
     "bounding_box": [
-      [
-        6.1027283120000675,
-        43.24286154752235
-      ],
-      [
-        14.394686320000034,
-        47.585214945000075
-      ]
+      [6.1027283120000675, 43.24286154752235],
+      [14.394686320000034, 47.585214945000075]
     ],
     "capacity": {
       "biomass": 2569.3,
@@ -3500,10 +2662,7 @@
       "solar": 9649.7,
       "wind": 146.2
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3516,14 +2675,8 @@
   },
   "IT-SAR": {
     "bounding_box": [
-      [
-        7.633799675000148,
-        38.36432526200005
-      ],
-      [
-        10.326670769000089,
-        41.76264069200013
-      ]
+      [7.633799675000148, 38.36432526200005],
+      [10.326670769000089, 41.76264069200013]
     ],
     "capacity": {
       "biomass": 113.9,
@@ -3537,10 +2690,7 @@
       "solar": 973.8,
       "wind": 1087.5
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3553,14 +2703,8 @@
   },
   "IT-SIC": {
     "bounding_box": [
-      [
-        11.422211134000122,
-        34.98924388200004
-      ],
-      [
-        16.151621941000144,
-        39.311957098000164
-      ]
+      [11.422211134000122, 34.98924388200004],
+      [16.151621941000144, 39.311957098000164]
     ],
     "capacity": {
       "biomass": 72.7,
@@ -3574,10 +2718,7 @@
       "solar": 1486.6,
       "wind": 1925.2
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
@@ -3589,14 +2730,8 @@
   },
   "IT-SO": {
     "bounding_box": [
-      [
-        13.445700757783754,
-        37.419012762000136
-      ],
-      [
-        19.01742597700013,
-        42.57794649582388
-      ]
+      [13.445700757783754, 37.419012762000136],
+      [19.01742597700013, 42.57794649582388]
     ],
     "capacity": {
       "biomass": 663.4,
@@ -3610,10 +2745,7 @@
       "solar": 4008.3,
       "wind": 5499.5
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
@@ -3633,19 +2765,10 @@
   },
   "JP-CB": {
     "bounding_box": [
-      [
-        135.84,
-        33.82
-      ],
-      [
-        138.72,
-        37.17
-      ]
+      [135.84, 33.82],
+      [138.72, 37.17]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3655,19 +2778,10 @@
   },
   "JP-CG": {
     "bounding_box": [
-      [
-        130.66,
-        33.585
-      ],
-      [
-        134.54,
-        35.74
-      ]
+      [130.66, 33.585],
+      [134.54, 35.74]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3677,19 +2791,10 @@
   },
   "JP-HKD": {
     "bounding_box": [
-      [
-        139.35,
-        41.3
-      ],
-      [
-        146,
-        45.97
-      ]
+      [139.35, 41.3],
+      [146, 45.97]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3699,19 +2804,10 @@
   },
   "JP-HR": {
     "bounding_box": [
-      [
-        135.8,
-        35.39
-      ],
-      [
-        137.75,
-        37.9
-      ]
+      [135.8, 35.39],
+      [137.75, 37.9]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3721,14 +2817,8 @@
   },
   "JP-KN": {
     "bounding_box": [
-      [
-        134.24,
-        33.29
-      ],
-      [
-        136.38,
-        36.01
-      ]
+      [134.24, 33.29],
+      [136.38, 36.01]
     ],
     "capacity": {
       "biomass": 0,
@@ -3741,11 +2831,7 @@
       "solar": 4962,
       "wind": 146
     },
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq",
-      "https://github.com/kongkille"
-    ],
+    "contributors": ["tmslaine", "lorrieq", "kongkille"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3755,14 +2841,8 @@
   },
   "JP-KY": {
     "bounding_box": [
-      [
-        128.29,
-        27.03
-      ],
-      [
-        131.89,
-        35.11
-      ]
+      [128.29, 27.03],
+      [131.89, 35.11]
     ],
     "capacity": {
       "geothermal": 210.2,
@@ -3772,11 +2852,7 @@
       "wind": 3.25,
       "unknown": 9976.94
     },
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["tmslaine", "lorrieq", "nessie2013"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3786,19 +2862,10 @@
   },
   "JP-ON": {
     "bounding_box": [
-      [
-        122.43816165500004,
-        23.756984768000052
-      ],
-      [
-        131.82789147200003,
-        28.368963934000078
-      ]
+      [122.43816165500004, 23.756984768000052],
+      [131.82789147200003, 28.368963934000078]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3808,19 +2875,10 @@
   },
   "JP-SK": {
     "bounding_box": [
-      [
-        132.15,
-        32.53
-      ],
-      [
-        134.69,
-        34.63
-      ]
+      [132.15, 32.53],
+      [134.69, 34.63]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3830,19 +2888,10 @@
   },
   "JP-TH": {
     "bounding_box": [
-      [
-        137.65,
-        36.65
-      ],
-      [
-        142,
-        41.66
-      ]
+      [137.65, 36.65],
+      [142, 41.66]
     ],
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3852,14 +2901,8 @@
   },
   "JP-TK": {
     "bounding_box": [
-      [
-        138.5,
-        34.52
-      ],
-      [
-        141.16,
-        37.17
-      ]
+      [138.5, 34.52],
+      [141.16, 37.17]
     ],
     "capacity": {
       "biomass": 440,
@@ -3872,10 +2915,7 @@
       "solar": 11900,
       "wind": 440
     },
-    "contributors": [
-      "https://github.com/tmslaine",
-      "https://github.com/lorrieq"
-    ],
+    "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
       "price": "JP.fetch_price",
@@ -3905,14 +2945,8 @@
   },
   "KR": {
     "bounding_box": [
-      [
-        126.11,
-        34.39
-      ],
-      [
-        129.46,
-        38.61
-      ]
+      [126.11, 34.39],
+      [129.46, 38.61]
     ],
     "capacity": {
       "biomass": 1446,
@@ -3925,11 +2959,7 @@
       "solar": 18709,
       "wind": 1727
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/IV1T3"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz", "IV1T3"],
     "parsers": {
       "consumption": "KR.fetch_consumption",
       "production": "KR.fetch_production",
@@ -3939,14 +2969,8 @@
   },
   "KW": {
     "bounding_box": [
-      [
-        46.155,
-        28.3985
-      ],
-      [
-        48.7948,
-        30.4747
-      ]
+      [46.155, 28.3985],
+      [48.7948, 30.4747]
     ],
     "capacity": {
       "gas": 6525,
@@ -3954,10 +2978,7 @@
       "solar": 93,
       "wind": 12
     },
-    "contributors": [
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["alixunderplatz", "nessie2013"],
     "parsers": {
       "consumption": "KW.fetch_consumption",
       "production": "KW.fetch_production"
@@ -3966,14 +2987,8 @@
   },
   "KZ": {
     "bounding_box": [
-      [
-        45.97827884900005,
-        40.08465566000011
-      ],
-      [
-        87.82379602100013,
-        55.93455027300003
-      ]
+      [45.97827884900005, 40.08465566000011],
+      [87.82379602100013, 55.93455027300003]
     ],
     "timezone": null
   },
@@ -3997,14 +3012,8 @@
     "flag_file_name": "lk.png",
     "timezone": "Asia/Colombo",
     "bounding_box": [
-      [
-        81.37741877418776,
-        6.592635332223807
-      ],
-      [
-        82.37741877418776,
-        7.592635332223807
-      ]
+      [81.37741877418776, 6.592635332223807],
+      [82.37741877418776, 7.592635332223807]
     ],
     "capacity": {
       "battery storage": 0,
@@ -4020,9 +3029,7 @@
       "unknown": 0,
       "wind": 179
     },
-    "contributors": [
-      "https://github.com/q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "production": "LK.fetch_production"
     }
@@ -4037,14 +3044,8 @@
   },
   "LT": {
     "bounding_box": [
-      [
-        21.0558004086,
-        53.9057022162
-      ],
-      [
-        26.5882792498,
-        56.3725283881
-      ]
+      [21.0558004086, 53.9057022162],
+      [26.5882792498, 56.3725283881]
     ],
     "capacity": {
       "biomass": 165,
@@ -4059,10 +3060,7 @@
       "unknown": 37,
       "wind": 671
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4075,14 +3073,8 @@
   },
   "LU": {
     "bounding_box": [
-      [
-        5.67405195478,
-        49.4426671413
-      ],
-      [
-        6.24275109216,
-        50.1280516628
-      ]
+      [5.67405195478, 49.4426671413],
+      [6.24275109216, 50.1280516628]
     ],
     "capacity": {
       "biomass": 56.473,
@@ -4092,10 +3084,7 @@
       "unknown": 82.3648,
       "wind": 138.535
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/clawfire/"
-    ],
+    "contributors": ["corradio", "clawfire/"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4108,14 +3097,8 @@
   },
   "LV": {
     "bounding_box": [
-      [
-        21.0558004086,
-        55.61510692
-      ],
-      [
-        28.1767094256,
-        57.9701569688
-      ]
+      [21.0558004086, 55.61510692],
+      [28.1767094256, 57.9701569688]
     ],
     "capacity": {
       "biomass": 164,
@@ -4124,9 +3107,7 @@
       "solar": 14,
       "wind": 87
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4143,14 +3124,8 @@
   },
   "MA": {
     "bounding_box": [
-      [
-        -17.51374332534519,
-        20.919971097581723
-      ],
-      [
-        -0.5319994709999492,
-        36.426519149000015
-      ]
+      [-17.51374332534519, 20.919971097581723],
+      [-0.5319994709999492, 36.426519149000015]
     ],
     "capacity": {
       "biomass": 0,
@@ -4164,22 +3139,14 @@
       "solar": 711,
       "wind": 1220
     },
-    "contributors": [
-      "https://github.com/veqtrus"
-    ],
+    "contributors": ["veqtrus"],
     "parsers": {},
     "timezone": "Africa/Casablanca"
   },
   "MD": {
     "bounding_box": [
-      [
-        26.6193367856,
-        45.4882831895
-      ],
-      [
-        30.0246586443,
-        48.4671194525
-      ]
+      [26.6193367856, 45.4882831895],
+      [30.0246586443, 48.4671194525]
     ],
     "capacity": {
       "biomass": 6,
@@ -4189,13 +3156,7 @@
       "solar": 8,
       "wind": 51
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/nessie2013",
-      "https://github.com/lgrigoryeva1",
-      "https://github.com/Impelon"
-    ],
+    "contributors": ["systemcatch", "alixunderplatz", "nessie2013", "lgrigoryeva1", "Impelon"],
     "parsers": {
       "consumption": "MD.fetch_consumption",
       "price": "MD.fetch_price",
@@ -4205,14 +3166,8 @@
   },
   "ME": {
     "bounding_box": [
-      [
-        18.45,
-        41.87755
-      ],
-      [
-        20.3398,
-        43.52384
-      ]
+      [18.45, 41.87755],
+      [20.3398, 43.52384]
     ],
     "capacity": {
       "coal": 210,
@@ -4220,11 +3175,7 @@
       "solar": 3,
       "wind": 118
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Pantkowsky"
-    ],
+    "contributors": ["corradio", "nessie2013", "Pantkowsky"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4241,14 +3192,8 @@
   },
   "MK": {
     "bounding_box": [
-      [
-        20.46315,
-        40.8427269557
-      ],
-      [
-        22.9523771502,
-        42.3202595078
-      ]
+      [20.46315, 40.8427269557],
+      [22.9523771502, 42.3202595078]
     ],
     "capacity": {
       "coal": 824,
@@ -4277,27 +3222,15 @@
   },
   "MN": {
     "bounding_box": [
-      [
-        87.23570886300013,
-        41.086144918000016
-      ],
-      [
-        120.40702681500011,
-        52.62958404600003
-      ]
+      [87.23570886300013, 41.086144918000016],
+      [120.40702681500011, 52.62958404600003]
     ],
     "timezone": null
   },
   "MQ": {
     "bounding_box": [
-      [
-        -61.252194,
-        14.364404
-      ],
-      [
-        -60.732382,
-        14.888562
-      ]
+      [-61.252194, 14.364404],
+      [-60.732382, 14.888562]
     ],
     "capacity": {
       "biomass": 15.082,
@@ -4308,9 +3241,7 @@
       "solar": 53.97,
       "wind": 1.1
     },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -4323,14 +3254,8 @@
   },
   "MT": {
     "bounding_box": [
-      [
-        13.683604363000086,
-        35.301214911
-      ],
-      [
-        15.067149285000113,
-        36.5755882830001
-      ]
+      [13.683604363000086, 35.301214911],
+      [15.067149285000113, 36.5755882830001]
     ],
     "timezone": null
   },
@@ -4344,135 +3269,70 @@
   },
   "MX": {
     "bounding_box": [
-      [
-        -117.12776,
-        14.5388286402
-      ],
-      [
-        -86.811982388,
-        32.72083
-      ]
+      [-117.12776, 14.5388286402],
+      [-86.811982388, 32.72083]
     ],
     "capacity": {},
-    "contributors": [
-      "https://github.com/scriptator"
-    ],
+    "contributors": ["scriptator"],
     "parsers": {
       "production": "MX.fetch_production"
     },
-    "subZoneNames": [
-      "MX-BC",
-      "MX-CE",
-      "MX-NE",
-      "MX-NO",
-      "MX-NW",
-      "MX-OC",
-      "MX-OR",
-      "MX-PN"
-    ],
+    "subZoneNames": ["MX-BC", "MX-CE", "MX-NE", "MX-NO", "MX-NW", "MX-OC", "MX-OR", "MX-PN"],
     "timezone": null
   },
   "MX-BC": {
     "bounding_box": [
-      [
-        -118.86880422899992,
-        22.37215511800008
-      ],
-      [
-        -108.91362465499992,
-        33.21283640500009
-      ]
+      [-118.86880422899992, 22.37215511800008],
+      [-108.91362465499992, 33.21283640500009]
     ],
     "timezone": null
   },
   "MX-CE": {
     "bounding_box": [
-      [
-        -100.01069047658422,
-        17.392189846084534
-      ],
-      [
-        -96.22812130395499,
-        21.325344143417453
-      ]
+      [-100.01069047658422, 17.392189846084534],
+      [-96.22812130395499, 21.325344143417453]
     ],
     "timezone": null
   },
   "MX-NE": {
     "bounding_box": [
-      [
-        -101.71565100768782,
-        21.719780991999187
-      ],
-      [
-        -96.63927161399994,
-        28.293549303557484
-      ]
+      [-101.71565100768782, 21.719780991999187],
+      [-96.63927161399994, 28.293549303557484]
     ],
     "timezone": null
   },
   "MX-NO": {
     "bounding_box": [
-      [
-        -109.65359025758431,
-        21.8191030954315
-      ],
-      [
-        -99.30696277711047,
-        32.277751364000025
-      ]
+      [-109.65359025758431, 21.8191030954315],
+      [-99.30696277711047, 32.277751364000025]
     ],
     "timezone": null
   },
   "MX-NW": {
     "bounding_box": [
-      [
-        -115.53974260094026,
-        21.9489659687045
-      ],
-      [
-        -104.88862626838755,
-        32.99936330200008
-      ]
+      [-115.53974260094026, 21.9489659687045],
+      [-104.88862626838755, 32.99936330200008]
     ],
     "timezone": null
   },
   "MX-OC": {
     "bounding_box": [
-      [
-        -115.29857337099992,
-        17.415988111000047
-      ],
-      [
-        -97.5001883613038,
-        25.66554433840048
-      ]
+      [-115.29857337099992, 17.415988111000047],
+      [-97.5001883613038, 25.66554433840048]
     ],
     "timezone": null
   },
   "MX-OR": {
     "bounding_box": [
-      [
-        -102.67957149932522,
-        14.046279476000095
-      ],
-      [
-        -89.87985327199993,
-        22.98054026911808
-      ]
+      [-102.67957149932522, 14.046279476000095],
+      [-89.87985327199993, 22.98054026911808]
     ],
     "timezone": null
   },
   "MX-PN": {
     "bounding_box": [
-      [
-        -92.98614402599992,
-        17.301963603000004
-      ],
-      [
-        -86.20059160099993,
-        22.123439846000053
-      ]
+      [-92.98614402599992, 17.301963603000004],
+      [-86.20059160099993, 22.123439846000053]
     ],
     "timezone": null
   },
@@ -4482,14 +3342,8 @@
   },
   "MY-WM": {
     "bounding_box": [
-      [
-        99.14522806000014,
-        0.7704531920001614
-      ],
-      [
-        104.79468834700015,
-        7.207963766000191
-      ]
+      [99.14522806000014, 0.7704531920001614],
+      [104.79468834700015, 7.207963766000191]
     ],
     "capacity": {
       "coal": 12054,
@@ -4497,14 +3351,11 @@
       "gas": 10114,
       "hydro": 2160
     },
-    "contributors": [
-      "https://github.com/kruschk",
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["kruschk", "systemcatch", "nessie2013"],
     "parsers": {
       "consumption": "MY_WM.fetch_consumption",
-      "production": "MY_WM.fetch_production"
+      "production": "MY_WM.fetch_production",
+      "productionPerModeForecast": "MY_WM.fetch_wind_solar_forecasts"
     },
     "timezone": null
   },
@@ -4514,14 +3365,8 @@
   },
   "NA": {
     "bounding_box": [
-      [
-        11.217621290000068,
-        -29.45936818399987
-      ],
-      [
-        25.759780721000112,
-        -16.451057230999922
-      ]
+      [11.217621290000068, -29.45936818399987],
+      [25.759780721000112, -16.451057230999922]
     ],
     "capacity": {
       "coal": 120,
@@ -4530,11 +3375,7 @@
       "solar": 116,
       "wind": 5
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/jarek",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["systemcatch", "jarek", "alixunderplatz"],
     "timezone": null
   },
   "NC": {
@@ -4547,14 +3388,8 @@
   },
   "NG": {
     "bounding_box": [
-      [
-        2.1710819900001184,
-        3.7721621770000695
-      ],
-      [
-        15.16993615700008,
-        14.380290832000114
-      ]
+      [2.1710819900001184, 3.7721621770000695],
+      [15.16993615700008, 14.380290832000114]
     ],
     "capacity": {
       "gas": 11972,
@@ -4563,11 +3398,7 @@
       "unknown": 2333,
       "wind": 10
     },
-    "contributors": [
-      "https://github.com/byronwilliams",
-      "https://github.com/kruschk",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["byronwilliams", "kruschk", "nessie2013"],
     "parsers": {
       "production": "NG.fetch_production"
     },
@@ -4575,28 +3406,18 @@
   },
   "NI": {
     "bounding_box": [
-      [
-        -87.6684934151,
-        10.7268390975
-      ],
-      [
-        -83.147219001,
-        15.0162671981
-      ]
+      [-87.6684934151, 10.7268390975],
+      [-83.147219001, 15.0162671981]
     ],
     "capacity": {
-      "biomass": 218.20,
+      "biomass": 218.2,
       "geothermal": 153.24,
       "hydro": 157.42,
       "solar": 16.36,
       "oil": 888.31,
-      "wind": 186.20
+      "wind": 186.2
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/systemcatch",
-      "https://github.com/jarek"
-    ],
+    "contributors": ["corradio", "systemcatch", "jarek"],
     "parsers": {
       "price": "NI.fetch_price",
       "production": "NI.fetch_production"
@@ -4605,28 +3426,16 @@
   },
   "NKR": {
     "bounding_box": [
-      [
-        45.2,
-        38.6
-      ],
-      [
-        47.6,
-        40.7
-      ]
+      [45.2, 38.6],
+      [47.6, 40.7]
     ],
     "flag_file_name": "_Nagorno-Karabakh.png",
     "timezone": null
   },
   "NL": {
     "bounding_box": [
-      [
-        3.31497114423,
-        50.803721015
-      ],
-      [
-        7.09205325687,
-        53.5104033474
-      ]
+      [3.31497114423, 50.803721015],
+      [7.09205325687, 53.5104033474]
     ],
     "capacity": {
       "biomass": 1515,
@@ -4640,11 +3449,7 @@
       "solar": 14300,
       "wind": 7801
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/PaulCornelissen",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "PaulCornelissen", "nessie2013"],
     "disclaimer": "The data provider (ENTSO-E) underreports production and consumption data.",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -4670,9 +3475,7 @@
       "unknown": 112.6,
       "wind": 4619
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -4681,25 +3484,13 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "subZoneNames": [
-      "NO-NO1",
-      "NO-NO2",
-      "NO-NO3",
-      "NO-NO4",
-      "NO-NO5"
-    ],
+    "subZoneNames": ["NO-NO1", "NO-NO2", "NO-NO3", "NO-NO4", "NO-NO5"],
     "timezone": "Europe/Oslo"
   },
   "NO-NO1": {
     "bounding_box": [
-      [
-        7.610326512408815,
-        58.38472727500012
-      ],
-      [
-        13.388184448000061,
-        63.128901615737796
-      ]
+      [7.610326512408815, 58.38472727500012],
+      [13.388184448000061, 63.128901615737796]
     ],
     "capacity": {
       "biomass": 46,
@@ -4726,14 +3517,8 @@
   },
   "NO-NO2": {
     "bounding_box": [
-      [
-        4.570648634000037,
-        57.49315013200005
-      ],
-      [
-        11.014170769000089,
-        60.73048157269916
-      ]
+      [4.570648634000037, 57.49315013200005],
+      [11.014170769000089, 60.73048157269916]
     ],
     "capacity": {
       "biomass": 22.3,
@@ -4760,14 +3545,8 @@
   },
   "NO-NO3": {
     "bounding_box": [
-      [
-        4.143809441000116,
-        60.43027545054864
-      ],
-      [
-        14.661440063000043,
-        65.490423895
-      ]
+      [4.143809441000116, 60.43027545054864],
+      [14.661440063000043, 65.490423895]
     ],
     "capacity": {
       "biomass": 17.7,
@@ -4794,14 +3573,8 @@
   },
   "NO-NO4": {
     "bounding_box": [
-      [
-        11.018809441000087,
-        63.879640651798496
-      ],
-      [
-        31.576996290000153,
-        71.6652692730001
-      ]
+      [11.018809441000087, 63.879640651798496],
+      [31.576996290000153, 71.6652692730001]
     ],
     "capacity": {
       "biomass": 0.3,
@@ -4828,14 +3601,8 @@
   },
   "NO-NO5": {
     "bounding_box": [
-      [
-        4.27686608200014,
-        59.59392557929161
-      ],
-      [
-        10.10473435728148,
-        62.338893003403086
-      ]
+      [4.27686608200014, 59.59392557929161],
+      [10.10473435728148, 62.338893003403086]
     ],
     "capacity": {
       "biomass": 27,
@@ -4862,14 +3629,8 @@
   },
   "NP": {
     "bounding_box": [
-      [
-        26.33196174127239,
-        83.31609381672638
-      ],
-      [
-        29.2389869272311,
-        84.17810344629932
-      ]
+      [26.33196174127239, 83.31609381672638],
+      [29.2389869272311, 84.17810344629932]
     ],
     "capacity": {
       "biomass": 0,
@@ -4881,9 +3642,7 @@
       "solar": 0.7804,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/Subarna578"
-    ],
+    "contributors": ["Subarna578"],
     "flag_file_name": "np.png",
     "timezone": null
   },
@@ -4897,21 +3656,10 @@
   },
   "NZ": {
     "bounding_box": [
-      [
-        166.054687,
-        -47.638394
-      ],
-      [
-        178.798828,
-        -34.168835
-      ]
+      [166.054687, -47.638394],
+      [178.798828, -34.168835]
     ],
-    "contributors": [
-      "https://github.com/BobGrun",
-      "https://github.com/corradio",
-      "https://github.com/davidcole1340",
-      "https://github.com/drc38"
-    ],
+    "contributors": ["BobGrun", "corradio", "davidcole1340", "drc38"],
     "flag_file_name": "nz.png",
     "parsers": {
       "price": "NZ.fetch_price",
@@ -4921,14 +3669,8 @@
   },
   "NZ-NZST": {
     "bounding_box": [
-      [
-        166.91871178500003,
-        -47.777601820999905
-      ],
-      [
-        168.76099694100003,
-        -46.18303801899992
-      ]
+      [166.91871178500003, -47.777601820999905],
+      [168.76099694100003, -46.18303801899992]
     ],
     "capacity": {
       "biomass": 0,
@@ -4940,31 +3682,20 @@
       "solar": 0,
       "wind": 0
     },
-    "contributors": [
-      "https://github.com/madsnedergaard"
-    ],
+    "contributors": ["madsnedergaard"],
     "flag_file_name": "nz.png",
     "timezone": "Pacific/Auckland"
   },
   "OM": {
     "bounding_box": [
-      [
-        51.47861495000012,
-        16.142401434000078
-      ],
-      [
-        60.34457441500007,
-        26.885972398000035
-      ]
+      [51.47861495000012, 16.142401434000078],
+      [60.34457441500007, 26.885972398000035]
     ],
     "capacity": {
       "solar": 138,
       "wind": 50
     },
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -4972,14 +3703,8 @@
   },
   "PA": {
     "bounding_box": [
-      [
-        -82.9657830472,
-        7.2205414901
-      ],
-      [
-        -77.2425664944,
-        9.61161001224
-      ]
+      [-82.9657830472, 7.2205414901],
+      [-77.2425664944, 9.61161001224]
     ],
     "capacity": {
       "biomass": 33,
@@ -4993,16 +3718,7 @@
       "unknown": 0,
       "wind": 270
     },
-    "contributors": [
-      "https://github.com/paulotaviodr",
-      "https://github.com/jarek",
-      "https://github.com/systemcatch",
-      "https://github.com/7hibault",
-      "https://github.com/nessie2013",
-      "https://github.com/q--",
-      "https://github.com/IV1T3",
-      "https://github.com/r24mille"
-    ],
+    "contributors": ["paulotaviodr", "jarek", "systemcatch", "7hibault", "nessie2013", "q--", "IV1T3", "r24mille"],
     "parsers": {
       "production": "PA.fetch_production",
       "consumption": "PA.fetch_consumption"
@@ -5011,14 +3727,8 @@
   },
   "PE": {
     "bounding_box": [
-      [
-        -81.83755752899992,
-        -18.83774620693788
-      ],
-      [
-        -68.18425248299991,
-        0.47090728800013437
-      ]
+      [-81.83755752899992, -18.83774620693788],
+      [-68.18425248299991, 0.47090728800013437]
     ],
     "capacity": {
       "biomass": 195,
@@ -5026,10 +3736,7 @@
       "solar": 336,
       "wind": 409
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "production": "PE.fetch_production"
     },
@@ -5037,23 +3744,15 @@
   },
   "PF": {
     "bounding_box": [
-      [
-        -155.0369766919999,
-        -28.14120859199994
-      ],
-      [
-        -134.44298255099994,
-        -7.450127862999921
-      ]
+      [-155.0369766919999, -28.14120859199994],
+      [-134.44298255099994, -7.450127862999921]
     ],
     "capacity": {
       "hydro": 49.4,
       "oil": 201.86,
       "solar": 41.077
     },
-    "contributors": [
-      "https://github.com/autipial"
-    ],
+    "contributors": ["autipial"],
     "parsers": {
       "production": "PF.fetch_production"
     },
@@ -5073,36 +3772,24 @@
   },
   "PL": {
     "bounding_box": [
-      [
-        14.0745211117,
-        49.0273953314
-      ],
-      [
-        24.0299857927,
-        54.8515359564
-      ]
+      [14.0745211117, 49.0273953314],
+      [24.0299857927, 54.8515359564]
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 1508,
-      "coal": 26910,
-      "gas": 3705,
+      "biomass": 1178.5,
+      "coal": 33281.3,
+      "gas": 3773.8,
       "geothermal": 0,
-      "hydro": 791,
-      "hydro storage": 1591,
+      "hydro": 977.5,
+      "hydro storage": 1413,
       "nuclear": 0,
-      "oil": 393,
-      "solar": 6126,
+      "oil": 678.8,
+      "solar": 9401.1,
       "unknown": 0,
-      "wind": 7065
+      "wind": 7211.6
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/wojciej",
-      "https://github.com/nessie2013",
-      "https://github.com/filipc",
-      "https://github.com/Pantkowsky"
-    ],
+    "contributors": ["corradio", "wojciej", "nessie2013", "filipc", "Pantkowsky"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5120,14 +3807,8 @@
   },
   "PR": {
     "bounding_box": [
-      [
-        -68.43781490799995,
-        17.42291901200015
-      ],
-      [
-        -64.74461829299992,
-        19.022772528000033
-      ]
+      [-68.43781490799995, 17.42291901200015],
+      [-64.74461829299992, 19.022772528000033]
     ],
     "capacity": {
       "battery storage": 0,
@@ -5143,11 +3824,7 @@
       "unknown": 0,
       "wind": 125.1
     },
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/systemcatch",
-      "https://github.com/veqtrus"
-    ],
+    "contributors": ["q--", "systemcatch", "veqtrus"],
     "flag_file_name": "pr.png",
     "parsers": {
       "production": "US_PREPA.fetch_production"
@@ -5160,14 +3837,8 @@
   },
   "PT": {
     "bounding_box": [
-      [
-        -9.997466600999928,
-        36.46588776200015
-      ],
-      [
-        -5.705947224999932,
-        42.65362965999999
-      ]
+      [-9.997466600999928, 36.46588776200015],
+      [-5.705947224999932, 42.65362965999999]
     ],
     "capacity": {
       "biomass": 876,
@@ -5181,11 +3852,7 @@
       "solar": 1364,
       "wind": 5528
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013",
-      "https://github.com/Falconet8"
-    ],
+    "contributors": ["corradio", "nessie2013", "Falconet8"],
     "flag_file_name": "pt.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5199,28 +3866,16 @@
   },
   "PT-AC": {
     "bounding_box": [
-      [
-        -31.784901495999918,
-        36.43431224200016
-      ],
-      [
-        -24.51219641799986,
-        40.22833893400015
-      ]
+      [-31.784901495999918, 36.43431224200016],
+      [-24.51219641799986, 40.22833893400015]
     ],
     "flag_file_name": "pt.png",
     "timezone": null
   },
   "PT-MA": {
     "bounding_box": [
-      [
-        -17.752105272999927,
-        29.529242255000057
-      ],
-      [
-        -15.354969855999883,
-        33.61078522300012
-      ]
+      [-17.752105272999927, 29.529242255000057],
+      [-15.354969855999883, 33.61078522300012]
     ],
     "flag_file_name": "pt.png",
     "timezone": null
@@ -5231,36 +3886,21 @@
   },
   "PY": {
     "bounding_box": [
-      [
-        -63.15035721899994,
-        -28.08684214299994
-      ],
-      [
-        -53.74528885899994,
-        -18.78672861699995
-      ]
+      [-63.15035721899994, -28.08684214299994],
+      [-53.74528885899994, -18.78672861699995]
     ],
     "timezone": null
   },
   "QA": {
     "bounding_box": [
-      [
-        50.250987175000034,
-        24.059871521000062
-      ],
-      [
-        52.11654707100007,
-        26.660101630000042
-      ]
+      [50.250987175000034, 24.059871521000062],
+      [52.11654707100007, 26.660101630000042]
     ],
     "capacity": {
       "biomass": 38,
       "solar": 5
     },
-    "contributors": [
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["q--", "nessie2013"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -5268,14 +3908,8 @@
   },
   "RE": {
     "bounding_box": [
-      [
-        54.374008,
-        -22.069087
-      ],
-      [
-        56.33463,
-        -20.421464
-      ]
+      [54.374008, -22.069087],
+      [56.33463, -20.421464]
     ],
     "capacity": {
       "biomass": 215,
@@ -5286,9 +3920,7 @@
       "solar": 189,
       "wind": 15
     },
-    "contributors": [
-      "https://github.com/PETILLON-Sebastien"
-    ],
+    "contributors": ["PETILLON-Sebastien"],
     "parsers": {
       "price": "FR_O.fetch_price",
       "production": "FR_O.fetch_production"
@@ -5296,30 +3928,24 @@
     "timezone": "Indian/Reunion"
   },
   "RO": {
+    "_comment": "Biomass includes 19.227 MW of biogas and 6.03 MW of waste incineration",
     "bounding_box": [
-      [
-        20.2201924985,
-        43.6884447292
-      ],
-      [
-        29.62654341,
-        48.2208812526
-      ]
+      [20.2201924985, 43.6884447292],
+      [29.62654341, 48.2208812526]
     ],
     "capacity": {
-      "biomass": 116,
-      "coal": 2643,
-      "gas": 2218,
+      "biomass": 132,
+      "coal": 3092,
+      "gas": 2853,
       "geothermal": 0,
-      "hydro": 6137,
+      "hydro": 6639,
       "hydro storage": 0,
-      "nuclear": 1400,
-      "solar": 1160,
-      "wind": 2957
+      "nuclear": 1413,
+      "solar": 1393,
+      "unknown": 4,
+      "wind": 3014
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio", "mzaharie"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5332,14 +3958,8 @@
   },
   "RS": {
     "bounding_box": [
-      [
-        18.82982,
-        42.2452243971
-      ],
-      [
-        22.9860185076,
-        46.1717298447
-      ]
+      [18.82982, 42.2452243971],
+      [22.9860185076, 46.1717298447]
     ],
     "capacity": {
       "biomass": 2,
@@ -5351,10 +3971,7 @@
       "unknown": 35,
       "wind": 397
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5376,12 +3993,7 @@
       "solar": 75,
       "wind": 10
     },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/JeanBaptisteScellier"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz", "JeanBaptisteScellier", "aekrylov"],
     "flag_file_name": "ru.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5395,25 +4007,15 @@
   },
   "RU-1": {
     "bounding_box": [
-      [
-        26.444509311000104,
-        40.69268056200022
-      ],
-      [
-        86.53054243358639,
-        80.6748721370002
-      ]
+      [26.444509311000104, 40.69268056200022],
+      [86.53054243358639, 80.6748721370002]
     ],
     "capacity": {
       "hydro": 19500,
       "nuclear": 27914,
       "unknown": 125014
     },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -5422,24 +4024,14 @@
   },
   "RU-2": {
     "bounding_box": [
-      [
-        69.88395226418567,
-        48.571011048000116
-      ],
-      [
-        122.63913943863423,
-        81.78880442900012
-      ]
+      [69.88395226418567, 48.571011048000116],
+      [122.63913943863423, 81.78880442900012]
     ],
     "capacity": {
       "hydro": 25286,
       "unknown": 26570
     },
-    "contributors": [
-      "https://github.com/denplis",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["denplis", "systemcatch", "alixunderplatz"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -5448,18 +4040,10 @@
   },
   "RU-AS": {
     "bounding_box": [
-      [
-        105.0401526228452,
-        41.79511139500006
-      ],
-      [
-        163.3469389183963,
-        77.62579987200007
-      ]
+      [105.0401526228452, 41.79511139500006],
+      [163.3469389183963, 77.62579987200007]
     ],
-    "contributors": [
-      "https://github.com/JeanBaptisteScellier"
-    ],
+    "contributors": ["JeanBaptisteScellier"],
     "flag_file_name": "ru.png",
     "parsers": {
       "production": "RU.fetch_production"
@@ -5468,42 +4052,24 @@
   },
   "RU-EU": {
     "bounding_box": [
-      [
-        35.357377557328505,
-        58.708375963180174
-      ],
-      [
-        69.53394616000008,
-        82.35871002800013
-      ]
+      [35.357377557328505, 58.708375963180174],
+      [69.53394616000008, 82.35871002800013]
     ],
     "flag_file_name": "ru.png",
     "timezone": null
   },
   "RU-FE": {
     "bounding_box": [
-      [
-        141.5,
-        43.3
-      ],
-      [
-        179.9,
-        71.6
-      ]
+      [141.5, 43.3],
+      [179.9, 71.6]
     ],
     "flag_file_name": "ru.png",
     "timezone": null
   },
   "RU-KGD": {
     "bounding_box": [
-      [
-        19.10954837300008,
-        53.842937318000054
-      ],
-      [
-        23.348351684000107,
-        55.78995961500016
-      ]
+      [19.10954837300008, 53.842937318000054],
+      [23.348351684000107, 55.78995961500016]
     ],
     "flag_file_name": "ru.png",
     "timezone": null
@@ -5514,18 +4080,10 @@
   },
   "SA": {
     "bounding_box": [
-      [
-        34.07276451900009,
-        15.87095774900007
-      ],
-      [
-        56.13756473800004,
-        32.62134796200006
-      ]
+      [34.07276451900009, 15.87095774900007],
+      [56.13756473800004, 32.62134796200006]
     ],
-    "contributors": [
-      "https://github.com/q--"
-    ],
+    "contributors": ["q--"],
     "parsers": {
       "consumption": "GCCIA.fetch_consumption"
     },
@@ -5541,14 +4099,8 @@
   },
   "SE": {
     "bounding_box": [
-      [
-        11.25,
-        55.379110448
-      ],
-      [
-        21.2255859375,
-        69.0214140884
-      ]
+      [11.25, 55.379110448],
+      [21.2255859375, 69.0214140884]
     ],
     "capacity": {
       "biomass": 4462,
@@ -5561,19 +4113,13 @@
       "solar": 1586.32,
       "wind": 12200
     },
-    "contributors": [
-      "https://github.com/augustekman",
-      "https://github.com/RRyyas",
-      "https://github.com/corradio",
-      "https://github.com/VIKTORVAV99",
-      "https://github.com/dpkruczek"
-    ],
+    "contributors": ["augustekman", "RRyyas", "corradio", "VIKTORVAV99", "dpkruczek"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "SE.fetch_production",
+      "production": "ENTSOE.fetch_production_aggregate",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
@@ -5581,14 +4127,8 @@
   },
   "SE-SE1": {
     "bounding_box": [
-      [
-        14.926272420000089,
-        63.65992801849613
-      ],
-      [
-        24.663413534000114,
-        69.53635569300009
-      ]
+      [14.926272420000089, 63.65992801849613],
+      [24.663413534000114, 69.53635569300009]
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5601,14 +4141,8 @@
   },
   "SE-SE2": {
     "bounding_box": [
-      [
-        11.492425171000093,
-        60.280991513822045
-      ],
-      [
-        21.486074487958014,
-        66.78799631800014
-      ]
+      [11.492425171000093, 60.280991513822045],
+      [21.486074487958014, 66.78799631800014]
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5621,14 +4155,8 @@
   },
   "SE-SE3": {
     "bounding_box": [
-      [
-        10.608164910000113,
-        56.392035223000065
-      ],
-      [
-        19.8385522800001,
-        62.67478628775066
-      ]
+      [10.608164910000113, 56.392035223000065],
+      [19.8385522800001, 62.67478628775066]
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5641,14 +4169,8 @@
   },
   "SE-SE4": {
     "bounding_box": [
-      [
-        11.951426629000139,
-        54.84267812700013
-      ],
-      [
-        17.624522332000083,
-        57.85822174700009
-      ]
+      [11.951426629000139, 54.84267812700013],
+      [17.624522332000083, 57.85822174700009]
     ],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -5661,14 +4183,8 @@
   },
   "SG": {
     "bounding_box": [
-      [
-        103.14039147200003,
-        0.7643089860000885
-      ],
-      [
-        104.50342858200003,
-        1.9486351580000445
-      ]
+      [103.14039147200003, 0.7643089860000885],
+      [104.50342858200003, 1.9486351580000445]
     ],
     "capacity": {
       "geothermal": 0,
@@ -5678,15 +4194,7 @@
       "oil": 0,
       "solar": 486.9
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/jarek",
-      "https://github.com/r24mille",
-      "https://github.com/systemcatch",
-      "https://github.com/alixunderplatz",
-      "https://github.com/q--",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["corradio", "jarek", "r24mille", "systemcatch", "alixunderplatz", "q--", "nessie2013"],
     "parsers": {
       "price": "SG.fetch_price",
       "production": "SG.fetch_production"
@@ -5696,14 +4204,8 @@
   "SI": {
     "_comment": "hydro incl. 180 MW pumped storage",
     "bounding_box": [
-      [
-        13.6981099789,
-        45.4523163926
-      ],
-      [
-        16.5648083839,
-        46.8523859727
-      ]
+      [13.6981099789, 45.4523163926],
+      [16.5648083839, 46.8523859727]
     ],
     "capacity": {
       "battery storage": 0,
@@ -5718,9 +4220,7 @@
       "solar": 289,
       "wind": 3
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5737,29 +4237,22 @@
   },
   "SK": {
     "bounding_box": [
-      [
-        16.8799829444,
-        47.7584288601
-      ],
-      [
-        22.5581376482,
-        49.5715740017
-      ]
+      [16.8799829444, 47.7584288601],
+      [22.5581376482, 49.5715740017]
     ],
     "capacity": {
-      "biomass": 363,
-      "coal": 1008,
-      "gas": 1093,
-      "hydro": 1621,
+      "biomass": 225,
+      "coal": 309,
+      "gas": 1152,
+      "hydro": 1613,
       "hydro storage": 916,
       "nuclear": 1940,
-      "oil": 195,
-      "solar": 532,
-      "wind": 3
+      "oil": 257,
+      "solar": 535,
+      "wind": 3,
+      "unknown": 652
     },
-    "contributors": [
-      "https://github.com/corradio"
-    ],
+    "contributors": ["corradio", "nessie2013"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5796,14 +4289,8 @@
   },
   "SV": {
     "bounding_box": [
-      [
-        -90.0955545723,
-        13.1490168319
-      ],
-      [
-        -87.7235029772,
-        14.4241327987
-      ]
+      [-90.0955545723, 13.1490168319],
+      [-87.7235029772, 14.4241327987]
     ],
     "capacity": {
       "biomass": 300,
@@ -5813,10 +4300,7 @@
       "solar": 478,
       "wind": 54
     },
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["systemcatch", "nessie2013"],
     "parsers": {
       "production": "SV.fetch_production"
     },
@@ -5844,37 +4328,29 @@
   },
   "TH": {
     "bounding_box": [
-      [
-        96.85140100100011,
-        5.129890035000059
-      ],
-      [
-        106.15099776200003,
-        20.94500640900013
-      ]
+      [96.85140100100011, 5.129890035000059],
+      [106.15099776200003, 20.94500640900013]
     ],
-	"capacity": {
+    "capacity": {
       "battery storage": 0,
       "biomass": 996.94,
-      "coal": 6067.50,
-      "gas": 27356.00,
-      "geothermal": 0.30,
+      "coal": 6067.5,
+      "gas": 27356.0,
+      "geothermal": 0.3,
       "hydro": 6993.73,
-      "hydro storage": 1000.00,
+      "hydro storage": 1000.0,
       "nuclear": 0,
-      "oil": 1497.40,
-      "solar": 442.80,
+      "oil": 1497.4,
+      "solar": 442.8,
       "unknown": 0,
       "wind": 1447.69
     },
-	"parsers": {
+    "parsers": {
       "consumption": "TH.fetch_consumption",
       "price": "TH.fetch_price",
       "production": "TH.fetch_production"
     },
-	"contributors": [
-      "https://github.com/PPsyrius"
-    ],
+    "contributors": ["PPsyrius"],
     "timezone": "Asia/Bangkok"
   },
   "TJ": {
@@ -5900,14 +4376,8 @@
   "TR": {
     "_comment": "https://doi.org/10.1016/j.rser.2017.01.060 says pumped hydro not economically viable. http://www.hurriyetdailynews.com/turkey-plans-to-hold-new-big-tenders-for-wind-solar-plants-by-summer-2018-minister-127769 says battery will be tendered summer 2018 so below battery storage will need to be updated when built.",
     "bounding_box": [
-      [
-        25.16325931100002,
-        35.319778545000034
-      ],
-      [
-        45.30699282900011,
-        42.598781643000095
-      ]
+      [25.16325931100002, 35.319778545000034],
+      [45.30699282900011, 42.598781643000095]
     ],
     "capacity": {
       "battery storage": 0,
@@ -5922,13 +4392,7 @@
       "unknown": 801.6,
       "wind": 10861.5
     },
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/olivierSemet",
-      "https://github.com/lorrieq",
-      "https://github.com/nessie2013",
-      "https://github.com/lgrigoryeva1"
-    ],
+    "contributors": ["corradio", "olivierSemet", "lorrieq", "nessie2013", "lgrigoryeva1"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -5945,19 +4409,10 @@
   },
   "TW": {
     "bounding_box": [
-      [
-        120.106188593,
-        21.9705713974
-      ],
-      [
-        121.951243931,
-        25.2954588893
-      ]
+      [120.106188593, 21.9705713974],
+      [121.951243931, 25.2954588893]
     ],
-    "contributors": [
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon"
-    ],
+    "contributors": ["corradio", "MariusKroon"],
     "parsers": {
       "production": "TW.fetch_production"
     },
@@ -5969,14 +4424,8 @@
   },
   "UA": {
     "bounding_box": [
-      [
-        21.63283980300011,
-        44.713568427000055
-      ],
-      [
-        40.65954309100019,
-        52.86894928000005
-      ]
+      [21.63283980300011, 44.713568427000055],
+      [40.65954309100019, 52.86894928000005]
     ],
     "capacity": {
       "biomass": 230,
@@ -5989,13 +4438,7 @@
       "solar": 6226,
       "wind": 1529
     },
-    "contributors": [
-      "https://github.com/amkozlov",
-      "https://github.com/denplis",
-      "https://github.com/corradio",
-      "https://github.com/MariusKroon",
-      "https://github.com/alixunderplatz"
-    ],
+    "contributors": ["amkozlov", "denplis", "corradio", "MariusKroon", "alixunderplatz"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -6008,14 +4451,8 @@
   },
   "UA-CR": {
     "bounding_box": [
-      [
-        31.981618686000104,
-        43.88104889500005
-      ],
-      [
-        37.13835696700005,
-        46.716899045472104
-      ]
+      [31.981618686000104, 43.88104889500005],
+      [37.13835696700005, 46.716899045472104]
     ],
     "timezone": "Europe/Kiev"
   },
@@ -6025,28 +4462,16 @@
   },
   "US-AK": {
     "bounding_box": [
-      [
-        -179.64350338399993,
-        50.71539948100022
-      ],
-      [
-        180.28093509200022,
-        71.91250234600014
-      ]
+      [-179.64350338399993, 50.71539948100022],
+      [180.28093509200022, 71.91250234600014]
     ],
     "flag_file_name": "us.png",
     "timezone": null
   },
   "US-CAL-BANC": {
     "bounding_box": [
-      [
-        -124.123781,
-        37.076039301
-      ],
-      [
-        -120.084803325,
-        41.868139
-      ]
+      [-124.123781, 37.076039301],
+      [-120.084803325, 41.868139]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6063,11 +4488,7 @@
       "wind": 0
     },
     "comment": "Balancing Authority Of Northern California",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6083,14 +4504,8 @@
   },
   "US-CAL-CISO": {
     "bounding_box": [
-      [
-        -124.909721,
-        32.0341570000001
-      ],
-      [
-        -113.631212,
-        41.965851
-      ]
+      [-124.909721, 32.0341570000001],
+      [-113.631212, 41.965851]
     ],
     "capacity": {
       "battery storage": 2283.9,
@@ -6107,11 +4522,7 @@
       "wind": 6140.2
     },
     "comment": "California Independent System Operator",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -6122,14 +4533,8 @@
   },
   "US-CAL-IID": {
     "bounding_box": [
-      [
-        -116.925459495,
-        32.118592
-      ],
-      [
-        -113.962511,
-        34.535375
-      ]
+      [-116.925459495, 32.118592],
+      [-113.962511, 34.535375]
     ],
     "capacity": {
       "battery storage": 30,
@@ -6146,11 +4551,7 @@
       "wind": 0
     },
     "comment": "Imperial Irrigation District",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6166,14 +4567,8 @@
   },
   "US-CAL-LDWP": {
     "bounding_box": [
-      [
-        -119.168404,
-        33.204538
-      ],
-      [
-        -117.104019502,
-        37.963081
-      ]
+      [-119.168404, 33.204538],
+      [-117.104019502, 37.963081]
     ],
     "capacity": {
       "battery storage": 23.5,
@@ -6190,11 +4585,7 @@
       "wind": 440.5
     },
     "comment": "Los Angeles Department Of Water And Power",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6210,14 +4601,8 @@
   },
   "US-CAL-TIDC": {
     "bounding_box": [
-      [
-        -121.95216521,
-        36.780338348
-      ],
-      [
-        -119.868765123,
-        38.209221358
-      ]
+      [-121.95216521, 36.780338348],
+      [-119.868765123, 38.209221358]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6234,11 +4619,7 @@
       "wind": 0
     },
     "comment": "Turlock Irrigation District",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6254,14 +4635,8 @@
   },
   "US-CAR-CPLE": {
     "bounding_box": [
-      [
-        -81.37844,
-        32.6102500000001
-      ],
-      [
-        -75.53103,
-        37.04465
-      ]
+      [-81.37844, 32.6102500000001],
+      [-75.53103, 37.04465]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6278,11 +4653,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Progress East",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6298,14 +4669,8 @@
   },
   "US-CAR-CPLW": {
     "bounding_box": [
-      [
-        -83.86385,
-        34.5009
-      ],
-      [
-        -81.19208,
-        36.7872800000001
-      ]
+      [-83.86385, 34.5009],
+      [-81.19208, 36.7872800000001]
     ],
     "capacity": {
       "battery storage": 8.8,
@@ -6322,11 +4687,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Progress West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6342,14 +4703,8 @@
   },
   "US-CAR-DUK": {
     "bounding_box": [
-      [
-        -84.82173,
-        33.03163
-      ],
-      [
-        -77.75453,
-        37.0883200000001
-      ]
+      [-84.82173, 33.03163],
+      [-77.75453, 37.0883200000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6366,11 +4721,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Carolinas",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6386,14 +4737,8 @@
   },
   "US-CAR-SC": {
     "bounding_box": [
-      [
-        -82.8222040759999,
-        31.5821888830001
-      ],
-      [
-        -78.04086,
-        35.334748543
-      ]
+      [-82.8222040759999, 31.5821888830001],
+      [-78.04086, 35.334748543]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6410,11 +4755,7 @@
       "wind": 0
     },
     "comment": "South Carolina Public Service Authority",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6430,14 +4771,8 @@
   },
   "US-CAR-SCEG": {
     "bounding_box": [
-      [
-        -83.14555,
-        31.584470000000103
-      ],
-      [
-        -78.92575821,
-        35.2360579840001
-      ]
+      [-83.14555, 31.584470000000103],
+      [-78.92575821, 35.2360579840001]
     ],
     "capacity": {
       "battery storage": 4,
@@ -6454,11 +4789,7 @@
       "wind": 0
     },
     "comment": "South Carolina Electric & Gas Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6474,14 +4805,8 @@
   },
   "US-CAR-YAD": {
     "bounding_box": [
-      [
-        -80.825586319,
-        34.797960281
-      ],
-      [
-        -79.4523525239999,
-        36.2042064670001
-      ]
+      [-80.825586319, 34.797960281],
+      [-79.4523525239999, 36.2042064670001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6498,11 +4823,7 @@
       "wind": 0
     },
     "comment": "Alcoa Power Generating, Inc. - Yadkin Division",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -6514,14 +4835,8 @@
   },
   "US-CENT-SPA": {
     "bounding_box": [
-      [
-        -98.122757,
-        34.320635
-      ],
-      [
-        -89.033722,
-        40.781817
-      ]
+      [-98.122757, 34.320635],
+      [-89.033722, 40.781817]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6538,11 +4853,7 @@
       "wind": 499
     },
     "comment": "Southwestern Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6558,14 +4869,8 @@
   },
   "US-CENT-SWPP": {
     "bounding_box": [
-      [
-        -107.926457081158,
-        30.3593306971005
-      ],
-      [
-        -89.4563897448683,
-        49.5000212518403
-      ]
+      [-107.926457081158, 30.3593306971005],
+      [-89.4563897448683, 49.5000212518403]
     ],
     "capacity": {
       "battery storage": 27.9,
@@ -6582,11 +4887,7 @@
       "wind": 29163.9
     },
     "comment": "Southwest Power Pool",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -6598,14 +4899,8 @@
   },
   "US-FLA-FMPP": {
     "bounding_box": [
-      [
-        -83.03593,
-        24.044093
-      ],
-      [
-        -79.53074,
-        30.69435
-      ]
+      [-83.03593, 24.044093],
+      [-79.53074, 30.69435]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6622,11 +4917,7 @@
       "wind": 0
     },
     "comment": "Florida Municipal Power Pool",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6642,14 +4933,8 @@
   },
   "US-FLA-FPC": {
     "bounding_box": [
-      [
-        -86.49625,
-        25.7531500000001
-      ],
-      [
-        -79.99125,
-        31.214009
-      ]
+      [-86.49625, 25.7531500000001],
+      [-79.99125, 31.214009]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6666,11 +4951,7 @@
       "wind": 0
     },
     "comment": "Duke Energy Florida Inc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6686,14 +4967,8 @@
   },
   "US-FLA-FPL": {
     "bounding_box": [
-      [
-        -83.67149,
-        24.02126
-      ],
-      [
-        -79.53074,
-        31.33017
-      ]
+      [-83.67149, 24.02126],
+      [-79.53074, 31.33017]
     ],
     "capacity": {
       "battery storage": 493,
@@ -6710,11 +4985,7 @@
       "wind": 0
     },
     "comment": "Florida Power & Light Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6730,14 +5001,8 @@
   },
   "US-FLA-GVL": {
     "bounding_box": [
-      [
-        -83.1581599999999,
-        28.9170100000001
-      ],
-      [
-        -81.54976,
-        30.44528
-      ]
+      [-83.1581599999999, 28.9170100000001],
+      [-81.54976, 30.44528]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6754,11 +5019,7 @@
       "wind": 0
     },
     "comment": "Gainesville Regional Utilities",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6774,14 +5035,8 @@
   },
   "US-FLA-HST": {
     "bounding_box": [
-      [
-        -81.3738299999999,
-        24.6374500000001
-      ],
-      [
-        -79.61802,
-        26.47902
-      ]
+      [-81.3738299999999, 24.6374500000001],
+      [-79.61802, 26.47902]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6798,11 +5053,7 @@
       "wind": 0
     },
     "comment": "City Of Homestead",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6818,14 +5069,8 @@
   },
   "US-FLA-JEA": {
     "bounding_box": [
-      [
-        -86.0998,
-        29.463185332
-      ],
-      [
-        -80.848769105,
-        31.50107
-      ]
+      [-86.0998, 29.463185332],
+      [-80.848769105, 31.50107]
     ],
     "capacity": {
       "battery storage": 5,
@@ -6842,11 +5087,7 @@
       "wind": 0
     },
     "comment": "Jea",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6862,20 +5103,11 @@
   },
   "US-FLA-NSB": {
     "bounding_box": [
-      [
-        -82.18057,
-        28.1131300000001
-      ],
-      [
-        -80.23297,
-        29.92717
-      ]
+      [-82.18057, 28.1131300000001],
+      [-80.23297, 29.92717]
     ],
     "comment": "New Smyrna Beach, Utilities Commission Of",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
+    "contributors": ["systemcatch", "robertahunt"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6891,14 +5123,8 @@
   },
   "US-FLA-SEC": {
     "bounding_box": [
-      [
-        -85.65399,
-        25.7184577510001
-      ],
-      [
-        -80.123257233,
-        31.2115600000001
-      ]
+      [-85.65399, 25.7184577510001],
+      [-80.123257233, 31.2115600000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6915,11 +5141,7 @@
       "wind": 0
     },
     "comment": "Seminole Electric Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6935,14 +5157,8 @@
   },
   "US-FLA-TAL": {
     "bounding_box": [
-      [
-        -84.94623,
-        29.865082
-      ],
-      [
-        -83.591841,
-        31.123546
-      ]
+      [-84.94623, 29.865082],
+      [-83.591841, 31.123546]
     ],
     "capacity": {
       "battery storage": 0,
@@ -6959,11 +5175,7 @@
       "wind": 0
     },
     "comment": "City Of Tallahassee",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -6979,14 +5191,8 @@
   },
   "US-FLA-TEC": {
     "bounding_box": [
-      [
-        -83.214478374,
-        26.985591
-      ],
-      [
-        -81.1327000919999,
-        28.9295718550001
-      ]
+      [-83.214478374, 26.985591],
+      [-81.1327000919999, 28.9295718550001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7003,11 +5209,7 @@
       "wind": 0
     },
     "comment": "Tampa Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7023,112 +5225,64 @@
   },
   "US-HI-HA": {
     "bounding_box": [
-      [
-        -156.5601639279999,
-        18.40611714300016
-      ],
-      [
-        -154.31406356599993,
-        20.763429107000178
-      ]
+      [-156.5601639279999, 18.40611714300016],
+      [-154.31406356599993, 20.763429107000178]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-KA": {
     "bounding_box": [
-      [
-        -160.28721974299992,
-        21.368769246000056
-      ],
-      [
-        -158.7925919259999,
-        22.735494671000225
-      ]
+      [-160.28721974299992, 21.368769246000056],
+      [-158.7925919259999, 22.735494671000225]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-KH": {
     "bounding_box": [
-      [
-        -157.20056182399986,
-        20.004712932000132
-      ],
-      [
-        -156.03412841099995,
-        21.09995670100011
-      ]
+      [-157.20056182399986, 20.004712932000132],
+      [-156.03412841099995, 21.09995670100011]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-LA": {
     "bounding_box": [
-      [
-        -157.56313605799994,
-        20.232387730000227
-      ],
-      [
-        -156.30353909899995,
-        21.427508787000193
-      ]
+      [-157.56313605799994, 20.232387730000227],
+      [-156.30353909899995, 21.427508787000193]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-MA": {
     "bounding_box": [
-      [
-        -157.19600919699985,
-        20.081179336000048
-      ],
-      [
-        -155.47955290999988,
-        21.532653273000165
-      ]
+      [-157.19600919699985, 20.081179336000048],
+      [-155.47955290999988, 21.532653273000165]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-MO": {
     "bounding_box": [
-      [
-        -157.80426998599995,
-        20.553371486000145
-      ],
-      [
-        -156.20572493599994,
-        21.721879885000135
-      ]
+      [-157.80426998599995, 20.553371486000145],
+      [-156.20572493599994, 21.721879885000135]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-NI": {
     "bounding_box": [
-      [
-        -160.74803626199989,
-        21.280209463000062
-      ],
-      [
-        -159.55143635199994,
-        22.507756812000167
-      ]
+      [-160.74803626199989, 21.280209463000062],
+      [-159.55143635199994, 22.507756812000167]
     ],
     "flag_file_name": "us.png",
     "timezone": "Pacific/Honolulu"
   },
   "US-HI-OA": {
     "bounding_box": [
-      [
-        -158.7789330139999,
-        20.75418992400006
-      ],
-      [
-        -157.14716739499988,
-        22.209850429000085
-      ]
+      [-158.7789330139999, 20.75418992400006],
+      [-157.14716739499988, 22.209850429000085]
     ],
     "capacity": {
       "battery storage": 1,
@@ -7142,12 +5296,7 @@
       "unknown": 0,
       "wind": 126.6
     },
-    "contributors": [
-      "https://github.com/kepiej",
-      "https://github.com/systemcatch",
-      "https://github.com/KabelWlan",
-      "https://github.com/danielmatsuda"
-    ],
+    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda"],
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_HI.fetch_production"
@@ -7156,14 +5305,8 @@
   },
   "US-MIDA-PJM": {
     "bounding_box": [
-      [
-        -90.88416,
-        34.3029500000001
-      ],
-      [
-        -73.39368,
-        43.00836
-      ]
+      [-90.88416, 34.3029500000001],
+      [-73.39368, 43.00836]
     ],
     "capacity": {
       "battery storage": 306.7,
@@ -7180,11 +5323,7 @@
       "wind": 10662.2
     },
     "comment": "Pjm Interconnection, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -7196,14 +5335,8 @@
   },
   "US-MIDW-AECI": {
     "bounding_box": [
-      [
-        -98.45079,
-        34.168033532
-      ],
-      [
-        -88.5987499999999,
-        41.779649115
-      ]
+      [-98.45079, 34.168033532],
+      [-88.5987499999999, 41.779649115]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7220,11 +5353,7 @@
       "wind": 941.4
     },
     "comment": "Associated Electric Cooperative, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7238,16 +5367,10 @@
     },
     "timezone": "US/Central"
   },
-  "US-MIDW-EEI": {
+  "US-MIDW-GLHB": {
     "bounding_box": [
-      [
-        -89.44135,
-        36.44203
-      ],
-      [
-        -87.9829,
-        37.83698
-      ]
+      [-89.44135, 36.44203],
+      [-87.9829, 37.83698]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7263,27 +5386,8 @@
       "unknown": 0,
       "wind": 0
     },
-    "comment": "Electric Energy, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
-    "delays": {
-      "production": 30
-    },
-    "flag_file_name": "us.png",
-    "parsers": {
-      "production": "EIA.fetch_production_mix"
-    },
-    "timezone": "US/Central"
-  },
-  "US-MIDW-GLHB": {
     "comment": "GridLiance",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7295,14 +5399,8 @@
   },
   "US-MIDW-LGEE": {
     "bounding_box": [
-      [
-        -89.682531784,
-        36.073739711
-      ],
-      [
-        -82.355720806,
-        39.4703334770001
-      ]
+      [-89.682531784, 36.073739711],
+      [-82.355720806, 39.4703334770001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7319,11 +5417,7 @@
       "wind": 0
     },
     "comment": "Louisville Gas And Electric Company And Kentucky Utilities",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7339,14 +5433,8 @@
   },
   "US-MIDW-MISO": {
     "bounding_box": [
-      [
-        -107.862115248933,
-        28.4286900252724
-      ],
-      [
-        -81.9130970652477,
-        49.884274119856
-      ]
+      [-107.862115248933, 28.4286900252724],
+      [-81.9130970652477, 49.884274119856]
     ],
     "capacity": {
       "battery storage": 68.2,
@@ -7363,11 +5451,7 @@
       "wind": 29061
     },
     "comment": "Midcontinent Independent Transmission System Operator, Inc..",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7384,14 +5468,8 @@
   },
   "US-NE-ISNE": {
     "bounding_box": [
-      [
-        -74.22789,
-        40.10968
-      ],
-      [
-        -66.45013,
-        47.9598300000001
-      ]
+      [-74.22789, 40.10968],
+      [-66.45013, 47.9598300000001]
     ],
     "capacity": {
       "battery storage": 192.2,
@@ -7408,11 +5486,7 @@
       "wind": 1519.7
     },
     "comment": "Iso New England Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -7423,14 +5497,8 @@
   },
   "US-NW-AVA": {
     "bounding_box": [
-      [
-        -120.54268,
-        44.57814
-      ],
-      [
-        -113.68675,
-        49.50073
-      ]
+      [-120.54268, 44.57814],
+      [-113.68675, 49.50073]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7447,11 +5515,7 @@
       "wind": 249.3
     },
     "comment": "Avista Corporation",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7481,11 +5545,7 @@
       "wind": 1496.4
     },
     "comment": "Avangrid Renewables Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7497,14 +5557,8 @@
   },
   "US-NW-BPAT": {
     "bounding_box": [
-      [
-        -125.23688,
-        39.61659
-      ],
-      [
-        -105.50971,
-        49.50244
-      ]
+      [-125.23688, 39.61659],
+      [-105.50971, 49.50244]
     ],
     "capacity": {
       "battery storage": 3,
@@ -7521,11 +5575,7 @@
       "wind": 3397.5
     },
     "comment": "Bonneville Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7541,14 +5591,8 @@
   },
   "US-NW-CHPD": {
     "bounding_box": [
-      [
-        -121.680713,
-        46.760889
-      ],
-      [
-        -119.359734,
-        49.050725
-      ]
+      [-121.680713, 46.760889],
+      [-119.359734, 49.050725]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7565,11 +5609,7 @@
       "wind": 0
     },
     "comment": "Public Utility District No. 1 Of Chelan County",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7585,14 +5625,8 @@
   },
   "US-NW-DOPD": {
     "bounding_box": [
-      [
-        -120.819941629,
-        46.7200530000001
-      ],
-      [
-        -118.335197,
-        49.500448
-      ]
+      [-120.819941629, 46.7200530000001],
+      [-118.335197, 49.500448]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7609,11 +5643,7 @@
       "wind": 0
     },
     "comment": "Pud No. 1 Of Douglas County",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7629,14 +5659,8 @@
   },
   "US-NW-GCPD": {
     "bounding_box": [
-      [
-        -120.542866,
-        46.125243
-      ],
-      [
-        -118.473872746,
-        48.462236509
-      ]
+      [-120.542866, 46.125243],
+      [-118.473872746, 48.462236509]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7653,11 +5677,7 @@
       "wind": 0
     },
     "comment": "Public Utility District No. 2 Of Grant County, Washington",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7673,20 +5693,11 @@
   },
   "US-NW-GRID": {
     "bounding_box": [
-      [
-        -119.851352692,
-        44.7463779450001
-      ],
-      [
-        -118.363136292,
-        46.366308212
-      ]
+      [-119.851352692, 44.7463779450001],
+      [-118.363136292, 46.366308212]
     ],
     "comment": "Gridforce Energy Management, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt"
-    ],
+    "contributors": ["systemcatch", "robertahunt"],
     "delays": {
       "production": 30
     },
@@ -7698,14 +5709,8 @@
   },
   "US-NW-GWA": {
     "bounding_box": [
-      [
-        -113.660743713,
-        47.4742527010001
-      ],
-      [
-        -111.05112648,
-        49.491411209
-      ]
+      [-113.660743713, 47.4742527010001],
+      [-111.05112648, 49.491411209]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7722,11 +5727,7 @@
       "wind": 210
     },
     "comment": "Naturener Power Watch, Llc (Gwa)",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -7738,14 +5739,8 @@
   },
   "US-NW-IPCO": {
     "bounding_box": [
-      [
-        -120.44398,
-        41.48796
-      ],
-      [
-        -111.08807,
-        47.1707900000001
-      ]
+      [-120.44398, 41.48796],
+      [-111.08807, 47.1707900000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7762,11 +5757,7 @@
       "wind": 716.8
     },
     "comment": "Idaho Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7782,14 +5773,8 @@
   },
   "US-NW-NEVP": {
     "bounding_box": [
-      [
-        -121.98446,
-        34.50232
-      ],
-      [
-        -111.0849,
-        42.5017700000001
-      ]
+      [-121.98446, 34.50232],
+      [-111.0849, 42.5017700000001]
     ],
     "capacity": {
       "battery storage": 100,
@@ -7806,11 +5791,7 @@
       "wind": 150
     },
     "comment": "Nevada Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7826,14 +5807,8 @@
   },
   "US-NW-NWMT": {
     "bounding_box": [
-      [
-        -116.5492,
-        43.3016500000001
-      ],
-      [
-        -103.53947,
-        49.5011000000001
-      ]
+      [-116.5492, 43.3016500000001],
+      [-103.53947, 49.5011000000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7850,11 +5825,7 @@
       "wind": 452.9
     },
     "comment": "Northwestern Energy (Nwmt)",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7870,14 +5841,8 @@
   },
   "US-NW-PACE": {
     "bounding_box": [
-      [
-        -115.80505,
-        32.97563
-      ],
-      [
-        -104.15314,
-        45.5057600000001
-      ]
+      [-115.80505, 32.97563],
+      [-104.15314, 45.5057600000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7894,11 +5859,7 @@
       "wind": 3193.3
     },
     "comment": "Pacificorp - East",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7914,14 +5875,8 @@
   },
   "US-NW-PACW": {
     "bounding_box": [
-      [
-        -124.98038,
-        38.66544
-      ],
-      [
-        -115.96327,
-        47.5893300000001
-      ]
+      [-124.98038, 38.66544],
+      [-115.96327, 47.5893300000001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -7938,11 +5893,7 @@
       "wind": 694.3
     },
     "comment": "Pacificorp - West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -7958,14 +5909,8 @@
   },
   "US-NW-PGE": {
     "bounding_box": [
-      [
-        -124.225142777,
-        44.2721814650001
-      ],
-      [
-        -121.156917718,
-        46.4057731890001
-      ]
+      [-124.225142777, 44.2721814650001],
+      [-121.156917718, 46.4057731890001]
     ],
     "capacity": {
       "battery storage": 5,
@@ -7982,11 +5927,7 @@
       "wind": 716.5
     },
     "comment": "Portland General Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8002,14 +5943,8 @@
   },
   "US-NW-PSCO": {
     "bounding_box": [
-      [
-        -109.559308887,
-        35.7175500000001
-      ],
-      [
-        -102.094762152,
-        41.7250704890001
-      ]
+      [-109.559308887, 35.7175500000001],
+      [-102.094762152, 41.7250704890001]
     ],
     "capacity": {
       "battery storage": 2,
@@ -8026,11 +5961,7 @@
       "wind": 4490.8
     },
     "comment": "Public Service Company Of Colorado",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8046,14 +5977,8 @@
   },
   "US-NW-PSEI": {
     "bounding_box": [
-      [
-        -123.703117998,
-        45.902822584
-      ],
-      [
-        -119.816106194,
-        49.502493024
-      ]
+      [-123.703117998, 45.902822584],
+      [-119.816106194, 49.502493024]
     ],
     "capacity": {
       "battery storage": 2,
@@ -8070,11 +5995,7 @@
       "wind": 502.9
     },
     "comment": "Puget Sound Energy",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8090,14 +6011,8 @@
   },
   "US-NW-SCL": {
     "bounding_box": [
-      [
-        -122.936059783,
-        46.955507
-      ],
-      [
-        -121.725915999,
-        48.277929
-      ]
+      [-122.936059783, 46.955507],
+      [-121.725915999, 48.277929]
     ],
     "capacity": {
       "battery storage": 5,
@@ -8114,11 +6029,7 @@
       "wind": 0
     },
     "comment": "Seattle City Light",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8134,14 +6045,8 @@
   },
   "US-NW-TPWR": {
     "bounding_box": [
-      [
-        -124.00616,
-        45.8837600000001
-      ],
-      [
-        -120.56592,
-        48.28046
-      ]
+      [-124.00616, 45.8837600000001],
+      [-120.56592, 48.28046]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8158,11 +6063,7 @@
       "wind": 0
     },
     "comment": "City Of Tacoma, Department Of Public Utilities, Light Division",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8178,14 +6079,8 @@
   },
   "US-NW-WACM": {
     "bounding_box": [
-      [
-        -114.55,
-        35.43059
-      ],
-      [
-        -95.95176,
-        48.07463
-      ]
+      [-114.55, 35.43059],
+      [-95.95176, 48.07463]
     ],
     "capacity": {
       "battery storage": 8.2,
@@ -8202,11 +6097,7 @@
       "wind": 1091.2
     },
     "comment": "Western Area Power Administration - Rocky Mountain Region",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8222,14 +6113,8 @@
   },
   "US-NW-WAUW": {
     "bounding_box": [
-      [
-        -113.348433684,
-        43.730745552
-      ],
-      [
-        -102.051328941,
-        49.1340949710001
-      ]
+      [-113.348433684, 43.730745552],
+      [-102.051328941, 49.1340949710001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8246,11 +6131,7 @@
       "wind": 77.6
     },
     "comment": "Western Area Power Administration Ugp West",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8266,14 +6147,8 @@
   },
   "US-NW-WWA": {
     "bounding_box": [
-      [
-        -113.662527277,
-        48.163057327
-      ],
-      [
-        -110.887711776,
-        49.498921
-      ]
+      [-113.662527277, 48.163057327],
+      [-110.887711776, 49.498921]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8290,11 +6165,7 @@
       "wind": 189
     },
     "comment": "Naturener Wind Watch, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8306,14 +6177,8 @@
   },
   "US-NY-NYIS": {
     "bounding_box": [
-      [
-        -80.26197,
-        39.99603
-      ],
-      [
-        -71.35625,
-        45.51097
-      ]
+      [-80.26197, 39.99603],
+      [-71.35625, 45.51097]
     ],
     "capacity": {
       "battery storage": 65.6,
@@ -8330,12 +6195,7 @@
       "wind": 2192.9
     },
     "comment": "New York Independent System Operator",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan",
-      "https://github.com/brandongalbraith"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan", "brandongalbraith"],
     "flag_file_name": "us.png",
     "parsers": {
       "consumption": "EIA.fetch_consumption",
@@ -8346,14 +6206,8 @@
   },
   "US-SE-AEC": {
     "bounding_box": [
-      [
-        -88.9596785776442,
-        29.339638675596
-      ],
-      [
-        -84.3581394658229,
-        34.4502982778481
-      ]
+      [-88.9596785776442, 29.339638675596],
+      [-84.3581394658229, 34.4502982778481]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8370,11 +6224,7 @@
       "wind": 0
     },
     "comment": "Powersouth Energy Cooperative",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8390,14 +6240,8 @@
   },
   "US-SE-SEPA": {
     "bounding_box": [
-      [
-        -85.61569,
-        30.211187
-      ],
-      [
-        -83.357543,
-        33.075117
-      ]
+      [-85.61569, 30.211187],
+      [-83.357543, 33.075117]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8414,11 +6258,7 @@
       "wind": 0
     },
     "comment": "Southeastern Power Administration",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8430,14 +6270,8 @@
   },
   "US-SE-SOCO": {
     "bounding_box": [
-      [
-        -90.5406,
-        29.42398
-      ],
-      [
-        -80.251429,
-        35.5013030000001
-      ]
+      [-90.5406, 29.42398],
+      [-80.251429, 35.5013030000001]
     ],
     "capacity": {
       "battery storage": 42.2,
@@ -8454,11 +6288,7 @@
       "wind": 0
     },
     "comment": "Southern Company Services, Inc. - Trans",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8474,14 +6304,8 @@
   },
   "US-SW-AZPS": {
     "bounding_box": [
-      [
-        -115.31829,
-        30.8336654
-      ],
-      [
-        -108.777145881,
-        36.784585904
-      ]
+      [-115.31829, 30.8336654],
+      [-108.777145881, 36.784585904]
     ],
     "capacity": {
       "battery storage": 2,
@@ -8498,11 +6322,7 @@
       "wind": 374.3
     },
     "comment": "Arizona Public Service Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8518,14 +6338,8 @@
   },
   "US-SW-DEAA": {
     "bounding_box": [
-      [
-        -113.397006989,
-        32.8262615200001
-      ],
-      [
-        -112.375976563,
-        33.877473831
-      ]
+      [-113.397006989, 32.8262615200001],
+      [-112.375976563, 33.877473831]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8542,11 +6356,7 @@
       "wind": 0
     },
     "comment": "Arlington Valley, Llc - Avba",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8558,14 +6368,8 @@
   },
   "US-SW-EPE": {
     "bounding_box": [
-      [
-        -108.7302,
-        26.75944
-      ],
-      [
-        -98.29803,
-        33.98024
-      ]
+      [-108.7302, 26.75944],
+      [-98.29803, 33.98024]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8582,11 +6386,7 @@
       "wind": 0
     },
     "comment": "El Paso Electric Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8602,14 +6402,8 @@
   },
   "US-SW-GRIF": {
     "bounding_box": [
-      [
-        -114.764827728,
-        34.168836594
-      ],
-      [
-        -112.998666763,
-        35.717744827
-      ]
+      [-114.764827728, 34.168836594],
+      [-112.998666763, 35.717744827]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8626,11 +6420,7 @@
       "wind": 0
     },
     "comment": "Griffith Energy, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8642,14 +6432,8 @@
   },
   "US-SW-GRMA": {
     "bounding_box": [
-      [
-        -113.26607132,
-        31.246901321
-      ],
-      [
-        -111.760446548,
-        33.5380344390001
-      ]
+      [-113.26607132, 31.246901321],
+      [-111.760446548, 33.5380344390001]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8666,11 +6450,7 @@
       "wind": 0
     },
     "comment": "Gila River Power, Llc",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8682,14 +6462,8 @@
   },
   "US-SW-HGMA": {
     "bounding_box": [
-      [
-        -114.158504486,
-        32.855298996
-      ],
-      [
-        -112.449426651,
-        34.847730637
-      ]
+      [-114.158504486, 32.855298996],
+      [-112.449426651, 34.847730637]
     ],
     "capacity": {
       "battery storage": 0,
@@ -8706,11 +6480,7 @@
       "wind": 0
     },
     "comment": "New Harquahala Generating Company, Llc - Hgba",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "production": 30
     },
@@ -8722,14 +6492,8 @@
   },
   "US-SW-PNM": {
     "bounding_box": [
-      [
-        -123.550316649,
-        30.83222
-      ],
-      [
-        -101.52796,
-        44.59554275
-      ]
+      [-123.550316649, 30.83222],
+      [-101.52796, 44.59554275]
     ],
     "capacity": {
       "battery storage": 1.8,
@@ -8746,11 +6510,7 @@
       "wind": 2424
     },
     "comment": "Public Service Company Of New Mexico",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8766,14 +6526,8 @@
   },
   "US-SW-SRP": {
     "bounding_box": [
-      [
-        -113.83417,
-        32.00496
-      ],
-      [
-        -110.438901961,
-        34.54817
-      ]
+      [-113.83417, 32.00496],
+      [-110.438901961, 34.54817]
     ],
     "capacity": {
       "battery storage": 45,
@@ -8790,11 +6544,7 @@
       "wind": 63
     },
     "comment": "Salt River Project",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8810,14 +6560,8 @@
   },
   "US-SW-TEPC": {
     "bounding_box": [
-      [
-        -115.25595,
-        31.1808879800001
-      ],
-      [
-        -110.070620884,
-        36.710648233
-      ]
+      [-115.25595, 31.1808879800001],
+      [-110.070620884, 36.710648233]
     ],
     "capacity": {
       "battery storage": 50,
@@ -8834,11 +6578,7 @@
       "wind": 379.8
     },
     "comment": "Tucson Electric Power Company",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8854,14 +6594,8 @@
   },
   "US-SW-WALC": {
     "bounding_box": [
-      [
-        -124.21924,
-        30.83201
-      ],
-      [
-        -105.02991,
-        44.1167400000001
-      ]
+      [-124.21924, 30.83201],
+      [-105.02991, 44.1167400000001]
     ],
     "capacity": {
       "battery storage": 90,
@@ -8878,11 +6612,7 @@
       "wind": 350
     },
     "comment": "Western Area Power Administration - Desert Southwest Region",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8898,14 +6628,8 @@
   },
   "US-TEN-TVA": {
     "bounding_box": [
-      [
-        -90.849224442,
-        31.824126136000103
-      ],
-      [
-        -81.14647784,
-        38.101846827
-      ]
+      [-90.849224442, 31.824126136000103],
+      [-81.14647784, 38.101846827]
     ],
     "capacity": {
       "battery storage": 1,
@@ -8922,11 +6646,7 @@
       "wind": 28.8
     },
     "comment": "Tennessee Valley Authority",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8942,14 +6662,8 @@
   },
   "US-TEX-ERCO": {
     "bounding_box": [
-      [
-        -104.48406,
-        25.3370600000001
-      ],
-      [
-        -93.2943099999999,
-        36.55797
-      ]
+      [-104.48406, 25.3370600000001],
+      [-93.2943099999999, 36.55797]
     ],
     "capacity": {
       "battery storage": 780,
@@ -8966,11 +6680,7 @@
       "wind": 32699.2
     },
     "comment": "Electric Reliability Council Of Texas, Inc.",
-    "contributors": [
-      "https://github.com/systemcatch",
-      "https://github.com/robertahunt",
-      "https://github.com/KabelWlan"
-    ],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
@@ -8986,14 +6696,8 @@
   },
   "UY": {
     "bounding_box": [
-      [
-        -58.4270741441,
-        -34.9526465797
-      ],
-      [
-        -53.209588996,
-        -30.1096863746
-      ]
+      [-58.4270741441, -34.9526465797],
+      [-53.209588996, -30.1096863746]
     ],
     "capacity": {
       "biomass": 413,
@@ -9002,11 +6706,7 @@
       "unknown": 1170,
       "wind": 1511
     },
-    "contributors": [
-      "https://github.com/jarek",
-      "https://github.com/corradio",
-      "https://github.com/nessie2013"
-    ],
+    "contributors": ["jarek", "corradio", "nessie2013"],
     "parsers": {
       "production": "UY.fetch_production"
     },
@@ -9042,14 +6742,8 @@
   },
   "XK": {
     "bounding_box": [
-      [
-        20.013053,
-        41.848669
-      ],
-      [
-        21.791473,
-        43.269883
-      ]
+      [20.013053, 41.848669],
+      [21.791473, 43.269883]
     ],
     "capacity": {
       "coal": 1288,
@@ -9057,9 +6751,7 @@
       "solar": 10.002,
       "wind": 136
     },
-    "contributors": [
-      "https://github.com/veqtrus"
-    ],
+    "contributors": ["veqtrus"],
     "delays": {
       "production": 48
     },
@@ -9087,27 +6779,15 @@
   },
   "ZA": {
     "bounding_box": [
-      [
-        15.969981316000087,
-        -47.46575286299992
-      ],
-      [
-        38.47779381600009,
-        -21.626451924999927
-      ]
+      [15.969981316000087, -47.46575286299992],
+      [38.47779381600009, -21.626451924999927]
     ],
     "timezone": null
   },
   "ZM": {
     "bounding_box": [
-      [
-        21.47987756300006,
-        -18.569231871999946
-      ],
-      [
-        34.17420251500005,
-        -7.694124042999917
-      ]
+      [21.47987756300006, -18.569231871999946],
+      [34.17420251500005, -7.694124042999917]
     ],
     "timezone": null
   },

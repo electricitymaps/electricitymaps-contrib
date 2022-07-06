@@ -1,1137 +1,468 @@
 {
-    "panel-initial-text": {
-        "thisproject": "Ten app jest",
-        "opensource": "Open Source",
-        "see": "zobacz",
-        "datasources": "źródła danych",
-        "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>"
+  "panel-initial-text": {
+    "thisproject": "Ten app jest",
+    "opensource": "Open Source",
+    "see": "zobacz",
+    "datasources": "źródła danych",
+    "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>"
+  },
+  "mobile-main-menu": { "map": "electricityMap", "areas": "Obszary", "about": "O nas" },
+  "onboarding-modal": {
+    "view1": { "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat" },
+    "view2": {
+      "header": "Zobacz ile CO₂ jest aktualnie emitowane podczas produkcji twojej energii elektrycznej, w czasie rzeczywistym",
+      "text": "Regiony świata są kolorowane według intensywności emisji CO₂ (uwzględniając wszystkie gazy cieplarniane) zużywanej tam energii elektrycznej. Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu."
     },
-    "mobile-main-menu": {
-        "map": "electricityMap",
-        "areas": "Obszary",
-        "about": "O nas"
+    "view3": {
+      "header": "Dowiedz się skąd pochodzi twój prąd",
+      "text": "Strzałki na mapie wskazują przepływy energii elektrycznej pomiędzy różnymi obszarami. Kliknij obszar, aby zobaczyć więcej informacji o pochodzeniu jego energii elektrycznej."
     },
-    "onboarding-modal": {
-        "view1": {
-            "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat"
-        },
-        "view2": {
-            "header": "Zobacz ile CO₂ jest aktualnie emitowane podczas produkcji twojej energii elektrycznej, w czasie rzeczywistym",
-            "text": "Regiony świata są kolorowane według intensywności emisji CO₂ (uwzględniając wszystkie gazy cieplarniane) zużywanej tam energii elektrycznej. Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu."
-        },
-        "view3": {
-            "header": "Dowiedz się skąd pochodzi twój prąd",
-            "text": "Strzałki na mapie wskazują przepływy energii elektrycznej pomiędzy różnymi obszarami. Kliknij obszar, aby zobaczyć więcej informacji o pochodzeniu jego energii elektrycznej."
-        },
-        "view4": {
-            "header": "Warunki wiatrowe i słoneczne w czasie rzeczywistym",
-            "text": "Produkcja energii wiatrowej i słonecznej zależy od pogody. Naćiśnij przyciski \"wiatr\" i \"słońce\", aby wyświetlić siłę wiatru i nasłonecznienie w czasie rzeczywistym na całym świecie."
-        }
-    },
-    "country-panel": {
-        "source": "źródło",
-        "carbonintensity": "Emisja CO₂",
-        "lowcarbon": "Niskoemisyjne",
-        "renewable": "Odnawialne",
-        "electricityproduction": "Produkcja energii elektrycznej",
-        "bysource": "według źródeł energii",
-        "emissions": "Emisje CO₂",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
-        "helpfrom": "z wkładem",
-        "electricityconsumption": "Zużycie energii elektrycznej",
-        "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
-        "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
-        "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"%s\" target=\"_blank\">dodając dane dla obszaru</a>.",
-        "now": "Obecnie"
-    },
-    "left-panel": {
-        "zone-list-header-title": "Wpływ na klimat według obszaru",
-        "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
-        "search": "Szukaj"
-    },
-    "country-history": {
-        "carbonintensity24h": "Emisja CO₂ w ciągu ostatnich 24 godzin",
-        "emissionsorigin24h": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin",
-        "electricityorigin24h": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin",
-        "electricityprices24h": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin",
-        "emissions24h": "Emisja w ciągu ostatnich 24 godzin",
-        "emissionsproduction24h": "Emisja wyprodukowana w ciągu ostatnich 24 godzin",
-        "electricityproduction24h": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin",
-        "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API electricityMap"
-    },
-    "footer": {
-        "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
-        "here": "tutaj",
-        "faq-text": "Coś jest niejasne? Sprawdź nasze",
-        "faq": "najczęściej zadawane pytania."
-    },
-    "legends": {
-        "windpotential": "Potencjał wiatrowy",
-        "solarpotential": "Potencjał słoneczny",
-        "colorblindmode": "tryb bezbarwny",
-        "carbonintensity": "Emisja CO₂"
-    },
-    "tooltips": {
-        "carbonintensity": "Emisja CO₂",
-        "lowcarbon": "Niskoemisyjne źródła energii",
-        "renewable": "Odnawialne źródła energii",
-        "crossborderexport": "Eksport",
-        "carbonintensityexport": "Emisja CO₂ eksportu",
-        "ofinstalled": "zainstalowanej mocy",
-        "utilizing": "wykorzystując",
-        "representing": "reprezentując",
-        "ofemissions": "emisji",
-        "withcarbonintensity": "z emisją CO₂ wynoszącą",
-        "showWindLayer": "Pokaż wiatr",
-        "hideWindLayer": "Schowaj wiatr",
-        "showSolarLayer": "Pokaż nasłonecznienie",
-        "hideSolarLayer": "Schowaj nasłonecznienie",
-        "toggleDarkMode": "Włącz tryb nocny",
-        "noParserInfo": "Brak danych",
-        "temporaryDataOutage": "Tymczasowy brak danych",
-        "production": "produkcja",
-        "consumption": "konsumpcja",
-        "cpinfo": "<b>konsumpcja</b> uwzględnia import i eksport, <b>produkcja</b> je pomija",
-        "selectLanguage": "Wybierz język",
-        "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
-    },
-    "misc": {
-        "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
-        "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
-        "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
-        "retrynow": "Spróbuj teraz",
-        "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-        "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
-        "legend": "Legenda",
-        "faq": "Najczęściej Zadawane Pytania",
-        "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL."
-    },
-    "theMap": {
-        "groupName": "Mapa",
-        "mapColors-question": "Co oznaczają kolory na mapie?",
-        "mapColors-answer": "Obszary na mapie kolorujemy na podstawie ilości emitowanych gazów cieplarnianych przypadających na każdą zużytą jednostkę energii elektrycznej (jej <a href=\"#carbonIntensity\" class=\"entry-link\"> intensywności emisji dwutlenku węgla </a>). Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu.",
-        "mapArrows-question": "Co oznaczają strzałki między regionami na mapie?",
-        "mapArrows-answer": "Strzałki między regionami wskazują fizyczny przepływ (import i eksport) energii elektrycznej między nimi: Im szybciej migają, tym jest on większy. Przepływ energii elektrycznej jest ważny, ponieważ importując energię elektryczną z sąsiednich obszarów importujesz również emisję dwutlenku węgla związaną z jej produkcją.",
-        "mapSolarWindButtons-question": "Do czego służą przyciski „słońce” i „wiatr” na mapie?",
-        "mapSolarWindButtons-answer": "Te przyciski przełączają wyświetlanie w czasie rzeczywistym prędkości wiatru i intensywności nasłonecznienia, wskazując potencjalną możliwość przejścia na energię słoneczną i wiatrową w różnych obszarach.",
-        "mapNuclearColors-question": "Dlaczego kraje zasilane energią jądrową są oznaczone na mapie kolorem zielonym?",
-        "mapNuclearColors-answer": "Produkcja energii jądrowej charakteryzuje się bardzo niską emisyjnością (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), i kraje zasilane energią jądrową są zatem zaznaczone kolorem zielonym. To nie oznacza, że nie ma innych wyzwań środowiskowych związanych z energetyką jądrową (jak ma to również miejsce z innymi źródłami), ale te wyzwania nie są związane z emisjią gazów cieplarnianych i dlatego są poza zakresem tej mapy.",
-        "mapColorBlind-question": "Mam ślepotę barw. Jak mogę odczytywać waszą mapę?",
-        "mapColorBlind-answer": "Możesz zmieniać kolory wyświetlane na mapie, włączając ustawienie „tryb bezbarwny”. Znajduje się on na dole lewego panelu na pulpicie oraz w zakładce informacyjnej w aplikacji mobilnej."
-    },
-    "mapAreas": {
-        "groupName": "Obszary na mapie",
-        "noData-question": "Dlaczego dane dla mojego obszaru są niedostępne?",
-        "noData-answer": "Albo dlatego, że źródła obszaru są chwilowo niedostępne, albo nie mamy jeszcze skonfigurowanych żadnych źródł dla tego obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc w dodawaniu nowych źródeł danych</a>.",
-        "whySmallAreas-question": "Dlaczego dzielicie państwa na mniejsze obszary, zamiast pokazywać średniej wartości dla danego państwa?",
-        "whySmallAreas-answer": "Te obszary to najmniejsze obszary geograficzne, dla których mamy dane. Mając dostęp do informacji o najwyższym poziomie szczegółowości, konsumenci energii elektrycznej w różnych obszarach mogą mieć dokładniejszą wiedzę na temat pochodzenia zużywanej przez nich energii elektrycznej i związanego z tym wpływu na klimat.",
-        "divideExistingArea-question": "Czy możecie podzielić mój obszar na mniejsze części?",
-        "divideExistingArea-answer": "Oczywiście, jeżeli istnieją oddzielne źródła danych dla każdej części obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc dodając nowe źródła danych</a>",
-        "seeHistoricalData-question": "Czy mogę zobaczyć historię obszaru cofniętą w czasie o więcej niż 24 godziny?",
-        "seeHistoricalData-answer": "Możesz zakupić dostęp do naszych wszystkich danych historycznych za pośrednictwem <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">naszej bazy danych</a>."
-    },
-    "methodology": {
-        "groupName": "Nasze metody",
-        "carbonIntensity-question": "Co to jest „Intensywność emisji CO₂”?",
-        "carbonIntensity-answer": "Intensywność emisji CO₂ (w gCO₂eq/kWh - gramach ekwiwalentów dwutlenku węgla wyemitowanego na kilowatogodzinę zużytej energii elektrycznej). <br><br>Mierzymy emisje zużycia energii elektrycznej (nie produkcji), co oznacza wszystkie emisje gazów cieplarnianych (zarówno CO₂, jaki i innych gazów cieplarnianych, takich jak metan), które zostały wykorzystane do produkcji energii elektrycznej zużywanej na danym obszarze, biorąc pod uwagę intensywność emisji CO₂ importowanej z innych obszarów. Stosujemy podejście analizy cyklu życia (LCA, life cycle analysis), co oznacza, że bierzemy pod uwagę emisje z całego cyklu życia elektrowni (budowa, produkcja paliw, emisje eksploatacyjne i likwidacja).",
-        "consumptionFocus-question": "Dlaczego obliczacie intensywność emisji CO₂ zużycia energii elektrycznej zamiast jej produkcji?",
-        "consumptionFocus-answer": "Uważamy, że obywatele powinni być odpowiedzialni za zużywaną przez nich energię elektryczną, a nie za energię elektryczną wytwarzaną w obszarze, w którym akurat mieszkają. Co więcej uważamy, że obszary nie powinny być w stanie 'udawać' niskiego wpływu na klimat, po prostu przenosząc produkcję brudnej energii na inne obszary, a następnie ją z nich importując.",
-        "renewableLowCarbonDifference-question": "Jaka jest różnica pomiędzy „odnawialne” i „niskoemisyjne”?",
-        "renewableLowCarbonDifference-answer": "Produkcja energii odnawialnej opiera się na odnawialnych źródłach energii, takich jak energia wiatrowa, wodna, słoneczna i geotermalna. Niskoemisyjna produkcja energii oznacza, że produkcja wiąże się z bardzo niskim poziomem emisji gazów cieplarnianych, tak jak w przypadku energii jądrowej.",
-        "importsAndExports-question": "Czy bierzecie pod uwagę import i eksport energii elektrycznej?",
-        "importsAndExports-answer": "Tak. Import i eksport można zobaczyć na mapie jako małe <a href=\"#mapArrows\" class=\"entry-link\">strzałki pomiędzy różnymi obszarami</a>. Szczegółowe informacje można zobaczyć na wykresach wyświetlanych po kliknięciu obszaru.",
-        "emissionsOfStored-question": "Co z emisjami pochodzącymi z wytwarzania energii elektrycznej, która jest następnie magazynowana w bateriach lub wykorzystywana do napiełniania zbiorników?",
-        "emissionsOfStored-answer": "Ponieważ obecnie magazynowana jest tylko niewielka część energii elektrycznej, niedokładności w modelowaniu tych emisji nie powinny mieć dużego wpływu na obecną łączną wartość.",
-        "guaranteesOfOrigin-question": "Co to są zielone certyfikaty, i jak są one brane pod uwagę?",
-        "guaranteesOfOrigin-answer": "Kiedy producencji odnawialnych źródeł energii wytwarzają energię elektryczną, mogą stworzyc Gwarancję Pochodzenia (lub Renewable Energy Certificates) - dowód, że energia elektryczna została wyprodukowana i przekazana do sieci elektroenergetycznej. Gwarancję te można następnie sprzedać, dając detalistom energii elektrycznej sposób na potwierdzenie tego, że energia elektryczna, którą oni odsprzedają pochodzi z odnawialnych źródeł energii, niezależnie od rzeczywistego lub fizycznego źródła.",
-        "otherSources-question": "Dlaczego nie pokazujecie innych źródeł energii niż produkcja energii elektrycznej?",
-        "homeSolarPanel-question": "Co jeśli mam zainstalowany panel słoneczny w swoim domu?",
-        "emissionsPerCapita-question": "Dlaczego nie pokazujecie energii na mieszkańca?",
-        "emissionsPerCapita-answer": "Część energii elektrycznej zużywanej na danych obszarze jest wykorzystywana do wytwarzania dóbr fizycznych i produktów, które są później eksportowane i zużywane na innych obszarach. Ta produkcja, a także jej zużycie energii elektrycznej i związanie z nią emisje napędzane są przez konsumpcję produktów <em> w obszarach importu</em>, a nie w obszarze, w którym odbywa się produkcja. Uważamy, że ludzie powinni byc odpowiedzialni tylko za to, co konsumują, a nie za produkty wytwarzane na obszarze, na którym żyją, których nie wykorzystują. W tym sensie pokazywanie emisji zużycia energii elektrycznej na mieszkańca dla obszarów jest mylące."
-    },
-    "data": {
-        "groupName": "Nasze dane",
-        "dataOrigins-question": "Skąd bierzecie swoje dane?",
-        "dataOrigins-answer": "Wszystkie nasze dane obliczamy na podstawie publicznie dostępnych danych, publikowanych przez operatorów sieci elektroenergetycznych, oficjale agencje i innych. Możesz kliknąć na obszar aby zobaczyć więcej szczegółów na temat pochodzenia jego danych.",
-        "dataDownload-question": "Czy mogę pobrać wasze dane?",
-        "dataDownload-answer": "Możesz wykupić dostęp do naszych wszystkich danych w naszej <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">bazie danych</a>.",
-        "dataIntegration-question": "Czy mogę zintegrować wasze dane w czasie rzeczywistym z moją aplikacją lub urządzeniem?",
-        "dataIntegration-answer": "Tak! Sprzdajemy dostęp do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API w czasie rzeczywistym</a>, które zawiera prognozy na przyszłość."
-    },
-    "aboutUs": {
-        "groupName": "O nas",
-        "whoAreYou-question": "Kim jesteście?",
-        "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
-        "feedback-question": "Czy moge przekazać wam opinię?",
-        "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:hello@electricitymap.org\">wyślij do nas e-mail!</a>",
-        "contribute-question": "Czy mogę wspomóc wasz projekt?",
-        "contribute-answer": " Tak! Electricity Map jest projektem open-source, możliwym dzięki naszym wolontariuszom. Jeżeli chesz pomóc w rozwijaniu mapy, dodając źródła dla nowych obszarów, dodając nowe funkcjionalności lub naprawiając błędy, możesz to zrobić poprzez <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
-        "workTogether-question": "Czy możemy współpracować?",
-        "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:hello@electricitymap.org\">Wyślij do nas e-mail!</a>",
-        "disclaimer-question": "Zastrzeżenie"
-    },
-    "wind": "wiatrowa",
-    "windDataError": "Dane wiatru są obecnie niedostępne",
-    "solar": "słoneczna",
-    "solarDataError": "Dane nasłonecznienia obecnie niedostępne",
-    "hydro": "wodna",
-    "hydro storage": "szczytowo-pompowa",
-    "battery storage": "baterie",
-    "biomass": "biomasa",
-    "nuclear": "jądrowa",
-    "geothermal": "geotermalna",
-    "gas": "gazowa",
-    "coal": "węglowa",
-    "oil": "naftowa",
-    "unknown": "nieznana",
-    "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
-    "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
-    "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
-    "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
-    "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$d %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "CO₂eq na minutę",
-    "zoneShortName": {
-        "AE": {
-            "zoneName": "Zjednoczone Emiraty Arabskie"
-        },
-        "AL": {
-            "zoneName": "Albania"
-        },
-        "AF": {
-            "zoneName": "Afganistan"
-        },
-        "AR": {
-            "zoneName": "Argentyna"
-        },
-        "AT": {
-            "zoneName": "Austria"
-        },
-        "AUS-NSW": {
-            "countryName": "Australia",
-            "zoneName": "Nowa Południowa Walia"
-        },
-        "AUS-NT": {
-            "countryName": "Australia",
-            "zoneName": "Terytorium Północne"
-        },
-        "AUS-QLD": {
-            "countryName": "Australia",
-            "zoneName": "Queensland"
-        },
-        "AUS-SA": {
-            "countryName": "Australia",
-            "zoneName": "Australia Południowa"
-        },
-        "AUS-TAS": {
-            "countryName": "Australia",
-            "zoneName": "Tasmania"
-        },
-        "AUS-VIC": {
-            "countryName": "Australia",
-            "zoneName": "Wiktoria"
-        },
-        "AUS-WA": {
-            "countryName": "Australia",
-            "zoneName": "Australia Zachodnia"
-        },
-        "AX": {
-            "zoneName": "Wyspy Alandzkie"
-        },
-        "AZ": {
-            "zoneName": "Azerbejdżan"
-        },
-        "BA": {
-            "zoneName": "Bośnia i Hercegowina"
-        },
-        "BD": {
-            "zoneName": "Bangladesz"
-        },
-        "BE": {
-            "zoneName": "Belgia"
-        },
-        "BG": {
-            "zoneName": "Bułgaria"
-        },
-        "BH": {
-            "zoneName": "Bahrajn"
-        },
-        "BO": {
-            "zoneName": "Boliwia"
-        },
-        "BR-CS": {
-            "countryName": "Brazylia",
-            "zoneName": "Brazylia centralna"
-        },
-        "BR-N": {
-            "countryName": "Brazylia",
-            "zoneName": "Brazylia północna"
-        },
-        "BR-NE": {
-            "countryName": "Brazylia",
-            "zoneName": "Brazylia północno-wschodnia"
-        },
-        "BR-S": {
-            "countryName": "Brazylia",
-            "zoneName": "Brazylia południowa"
-        },
-        "BY": {
-            "zoneName": "Białoruś"
-        },
-        "CA-AB": {
-            "countryName": "Kanada",
-            "zoneName": "Alberta"
-        },
-        "CA-BC": {
-            "countryName": "Kanada",
-            "zoneName": "Kolumbia Brytyjska"
-        },
-        "CA-MB": {
-            "countryName": "Kanada",
-            "zoneName": "Manitoba"
-        },
-        "CA-NL": {
-            "countryName": "Kanada",
-            "zoneName": "Nowa Fundlandia i Labrador"
-        },
-        "CA-NB": {
-            "countryName": "Kanada",
-            "zoneName": "Nowy Brunszwik"
-        },
-        "CA-NT": {
-            "countryName": "Kanada",
-            "zoneName": "Terytoria Północno-Zachodnie"
-        },
-        "CA-NS": {
-            "countryName": "Kanada",
-            "zoneName": "Nowa Szkocja"
-        },
-        "CA-NU": {
-            "countryName": "Kanada",
-            "zoneName": "Nunavut"
-        },
-        "CA-ON": {
-            "countryName": "Kanada",
-            "zoneName": "Ontario"
-        },
-        "CA-PE": {
-            "countryName": "Kanada",
-            "zoneName": "Wyspa Księcia Edwarda"
-        },
-        "CA-QC": {
-            "countryName": "Kanada",
-            "zoneName": "Quebec"
-        },
-        "CA-SK": {
-            "countryName": "Kanada",
-            "zoneName": "Saskatchewan"
-        },
-        "CA-YT": {
-            "countryName": "Kanada",
-            "zoneName": "Jukon"
-        },
-        "CD": {
-            "zoneName": "Demokratyczna Republika Konga"
-        },
-        "CF": {
-            "zoneName": "Republika Środkowoafrykańska"
-        },
-        "CG": {
-            "zoneName": "Kongo"
-        },
-        "CH": {
-            "zoneName": "Szwajcaria"
-        },
-        "CI": {
-            "zoneName": "Wybrzeże Kości Słoniowej"
-        },
-        "CL": {
-            "zoneName": "Chile"
-        },
-        "CM": {
-            "zoneName": "Kamerun"
-        },
-        "CN": {
-            "zoneName": "Chiny"
-        },
-        "CO": {
-            "zoneName": "Kolumbia"
-        },
-        "CR": {
-            "zoneName": "Kostaryka"
-        },
-        "CU": {
-            "zoneName": "Kuba"
-        },
-        "CV": {
-            "zoneName": "Republika Zielonego Przylądka"
-        },
-        "CZ": {
-            "zoneName": "Czechy"
-        },
-        "DE": {
-            "zoneName": "Niemcy"
-        },
-        "DJ": {
-            "zoneName": "Dżibuti"
-        },
-        "DK": {
-            "zoneName": "Dania"
-        },
-        "DK-DK1": {
-            "countryName": "Dania",
-            "zoneName": "Dania zachodnia"
-        },
-        "DK-DK2": {
-            "countryName": "Denmark",
-            "zoneName": "Dania wschodnia"
-        },
-        "DK-BHM": {
-            "countryName": "Dania",
-            "zoneName": "Bornholm"
-        },
-        "DO": {
-            "zoneName": "Dominikana"
-        },
-        "DZ": {
-            "zoneName": "Algieria"
-        },
-        "EC": {
-            "zoneName": "Ekwador"
-        },
-        "EE": {
-            "zoneName": "Estonia"
-        },
-        "EG": {
-            "zoneName": "Egipt"
-        },
-        "EH": {
-            "zoneName": "Sahara Zachodnia"
-        },
-        "ER": {
-            "zoneName": "Erytrea"
-        },
-        "ES": {
-            "zoneName": "Hiszpania"
-        },
-        "ES-IB": {
-            "countryName": "Hiszpania",
-            "zoneName": "Baleary"
-        },
-        "ES-IB-ML": {
-            "countryName": "Hiszpania",
-            "zoneName": "Majorka"
-        },
-        "ES-IB-MN": {
-            "countryName": "Hiszpania",
-            "zoneName": "Minorka"
-        },
-        "ES-IB-IB": {
-            "countryName": "Hiszpania",
-            "zoneName": "Ibiza"
-        },
-        "ES-IB-FM": {
-            "countryName": "Hiszpania",
-            "zoneName": "Formentera"
-        },
-        "ES-CN-FVLZ": {
-            "countryName": "Hiszpania",
-            "zoneName": "Fuerteventura i Lanzarote"
-        },
-        "ES-CN-GC": {
-            "countryName": "Hiszpania",
-            "zoneName": "Gran Canaria"
-        },
-        "ES-CN-HI": {
-            "countryName": "Hiszpania",
-            "zoneName": "El Hierro"
-        },
-        "ES-CN-IG": {
-            "countryName": "Hiszpania",
-            "zoneName": "La Gomera"
-        },
-        "ES-CN-LP": {
-            "countryName": "Hiszpania",
-            "zoneName": "La Palma"
-        },
-        "ES-CN-TE": {
-            "countryName": "Hiszpania",
-            "zoneName": "Teneryfa"
-        },
-        "ET": {
-            "zoneName": "Etiopia"
-        },
-        "FI": {
-            "zoneName": "Finlandia"
-        },
-        "FO": {
-            "zoneName": "Wyspy Owcze"
-        },
-        "FR": {
-            "zoneName": "Francja"
-        },
-        "FR-COR": {
-            "countryName": "Francja",
-            "zoneName": "Korsyka"
-        },
-        "GB": {
-            "zoneName": "Wielka Brytania"
-        },
-        "GB-NIR": {
-            "zoneName": "Irlandia Północna"
-        },
-        "GE": {
-            "zoneName": "Gruzja"
-        },
-        "GF": {
-            "zoneName": "Gujana Francuska"
-        },
-        "GL": {
-            "zoneName": "Grenlandia"
-        },
-        "GN": {
-            "zoneName": "Gwinea"
-        },
-        "GQ": {
-            "zoneName": "Gwinea Równikowa"
-        },
-        "GR": {
-            "zoneName": "Grecja"
-        },
-        "GR-IS": {
-            "countryName": "Grecja",
-            "zoneName": "Wyspy Egejskie"
-        },
-        "GT": {
-            "zoneName": "Gwatemala"
-        },
-        "GW": {
-            "zoneName": "Gwinea Bissau"
-        },
-        "GY": {
-            "zoneName": "Gujana"
-        },
-        "HN": {
-            "zoneName": "Honduras"
-        },
-        "HR": {
-            "zoneName": "Chorwacja"
-        },
-        "HU": {
-            "zoneName": "Węgry"
-        },
-        "ID": {
-            "zoneName": "Indonezja"
-        },
-        "IE": {
-            "zoneName": "Irlandia"
-        },
-        "IL": {
-            "zoneName": "Izrael"
-        },
-        "IN-AN": {
-            "countryName": "Indie",
-            "zoneName": "Andamany i Nikobary"
-        },
-        "IN-AP": {
-            "countryName": "Indie",
-            "zoneName": "Andhra Pradesh"
-        },
-        "IN-AR": {
-            "countryName": "Indie",
-            "zoneName": "Arunachal Pradesh"
-        },
-        "IN-AS": {
-            "countryName": "Indie",
-            "zoneName": "Asam"
-        },
-        "IN-BR": {
-            "countryName": "Indie",
-            "zoneName": "Bihar"
-        },
-        "IN-CT": {
-            "countryName": "Indie",
-            "zoneName": "Chhattisgarh"
-        },
-        "IN-DL": {
-            "countryName": "Indie",
-            "zoneName": "Delhi"
-        },
-        "IN-GA": {
-            "countryName": "Indie",
-            "zoneName": "Goa"
-        },
-        "IN-GJ": {
-            "countryName": "Indie",
-            "zoneName": "Gudźarat"
-        },
-        "IN-HP": {
-            "countryName": "Indie",
-            "zoneName": "Himachal Pradesh"
-        },
-        "IN-HR": {
-            "countryName": "Indie",
-            "zoneName": "Hariana"
-        },
-        "IN-JH": {
-            "countryName": "Indie",
-            "zoneName": "Jharkhand"
-        },
-        "IN-JK": {
-            "countryName": "Indie",
-            "zoneName": "Dżammu i Kaszmir"
-        },
-        "IN-KA": {
-            "countryName": "Indie",
-            "zoneName": "Karnataka"
-        },
-        "IN-KL": {
-            "countryName": "Indie",
-            "zoneName": "Kerala"
-        },
-        "IN-MH": {
-            "countryName": "Indie",
-            "zoneName": "Maharasztra"
-        },
-        "IN-ML": {
-            "countryName": "Indie",
-            "zoneName": "Meghalaya"
-        },
-        "IN-MN": {
-            "countryName": "Indie",
-            "zoneName": "Manipur"
-        },
-        "IN-MP": {
-            "countryName": "Indie",
-            "zoneName": "Madhya Pradesh"
-        },
-        "IN-MZ": {
-            "countryName": "Indie",
-            "zoneName": "Mizoram"
-        },
-        "IN-NL": {
-            "countryName": "Indie",
-            "zoneName": "Nagaland"
-        },
-        "IN-OR": {
-            "countryName": "Indie",
-            "zoneName": "Orisa"
-        },
-        "IN-PB": {
-            "countryName": "Indie",
-            "zoneName": "Pendżab"
-        },
-        "IN-PY": {
-            "countryName": "Indie",
-            "zoneName": "Puducherry"
-        },
-        "IN-RJ": {
-            "countryName": "Indie",
-            "zoneName": "Radżastan"
-        },
-        "IN-SK": {
-            "countryName": "Indie",
-            "zoneName": "Sikkim"
-        },
-        "IN-TL": {
-            "countryName": "Indie",
-            "zoneName": "Tamilnadu"
-        },
-        "IN-TR": {
-            "countryName": "Indie",
-            "zoneName": "Tripura"
-        },
-        "IN-UP": {
-            "countryName": "Indie",
-            "zoneName": "Uttar Pradesh"
-        },
-        "IN-UT": {
-            "countryName": "Indie",
-            "zoneName": "Uttarakhand"
-        },
-        "IN-WB": {
-            "countryName": "Indie",
-            "zoneName": "Bengal Zachodni"
-        },
-        "IO": {
-            "zoneName": "Brytyjskie Terytorium Oceanu Indyjskiego"
-        },
-        "IQ": {
-            "zoneName": "Irak"
-        },
-        "IS": {
-            "zoneName": "Islandia"
-        },
-        "IT": {
-            "zoneName": "Włochy"
-        },
-        "IT-CNO": {
-            "countryName": "Włochy",
-            "zoneName": "Centralna północ"
-        },
-        "IT-CSO": {
-            "countryName": "Włochy",
-            "zoneName": "Centralne południe"
-        },
-        "IT-NO": {
-            "countryName": "Włochy",
-            "zoneName": "Północ"
-        },
-        "IT-SAR": {
-            "countryName": "Włochy",
-            "zoneName": "Sardynia"
-        },
-        "IT-SIC": {
-            "countryName": "Włochy",
-            "zoneName": "Sycylia"
-        },
-        "IT-SO": {
-            "countryName": "Włochy",
-            "zoneName": "Południe"
-        },
-        "JE": {
-            "zoneName": "Jersey"
-        },
-        "JM": {
-            "zoneName": "Jamajka"
-        },
-        "JO": {
-            "zoneName": "Jordania"
-        },
-        "JP": {
-            "zoneName": "Japonia"
-        },
-        "JP-CB": {
-            "countryName": "Japonia",
-            "zoneName": "Region Chūbu"
-        },
-        "JP-CG": {
-            "countryName": "Japonia",
-            "zoneName": "Region Chūgoku"
-        },
-        "JP-HKD": {
-            "countryName": "Japonia",
-            "zoneName": "Hokkaido"
-        },
-        "JP-HR": {
-            "countryName": "Japonia",
-            "zoneName": "Region Hokuriku"
-        },
-        "JP-KN": {
-            "countryName": "Japonia",
-            "zoneName": "Kansai"
-        },
-        "JP-KY": {
-            "countryName": "Japonia",
-            "zoneName": "Kiusiu"
-        },
-        "JP-ON": {
-            "countryName": "Japonia",
-            "zoneName": "Okinawa"
-        },
-        "JP-SK": {
-            "countryName": "Japonia",
-            "zoneName": "Sikoku"
-        },
-        "JP-TH": {
-            "countryName": "Japonia",
-            "zoneName": "Region Tōhoku"
-        },
-        "JP-TK": {
-            "countryName": "Japonia",
-            "zoneName": "Tokio"
-        },
-        "KE": {
-            "zoneName": "Kenia"
-        },
-        "KG": {
-            "zoneName": "Kirgistan"
-        },
-        "KH": {
-            "zoneName": "Kambodża"
-        },
-        "KI": {
-            "zoneName": "Kiribati"
-        },
-        "KM": {
-            "zoneName": "Komory"
-        },
-        "KP": {
-            "zoneName": "Korea Północna"
-        },
-        "KR": {
-            "zoneName": "Korea Południowa"
-        },
-        "KW": {
-            "zoneName": "Kuwejt"
-        },
-        "KZ": {
-            "zoneName": "Kazachstan"
-        },
-        "LB": {
-            "zoneName": "Liban"
-        },
-        "LT": {
-            "zoneName": "Litwa"
-        },
-        "LU": {
-            "zoneName": "Luksemburg"
-        },
-        "LV": {
-            "zoneName": "Łotwa"
-        },
-        "LY": {
-            "zoneName": "Libia"
-        },
-        "MA": {
-            "zoneName": "Maroko"
-        },
-        "MD": {
-            "zoneName": "Mołdawia"
-        },
-        "ME": {
-            "zoneName": "Czarnogóra"
-        },
-        "MG": {
-            "zoneName": "Madagaskar"
-        },
-        "MH": {
-            "zoneName": "Wyspy Marshalla"
-        },
-        "MK": {
-            "zoneName": "Macedonia Północna"
-        },
-        "MM": {
-            "zoneName": "Mjanma"
-        },
-        "MO": {
-            "zoneName": "Makau"
-        },
-        "MP": {
-            "zoneName": "Martynika"
-        },
-        "MR": {
-            "zoneName": "Mauretania"
-        },
-        "MT": {
-            "zoneName": "Malta"
-        },
-        "MV": {
-            "zoneName": "Malediwy"
-        },
-        "MX": {
-            "zoneName": "Meksyk"
-        },
-        "MX-BC": {
-            "countryName": "Meksyk",
-            "zoneName": "Kalifornia Dolna"
-        },
-        "MX-CE": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Centralny"
-        },
-        "MX-NE": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Północno Wschodni"
-        },
-        "MX-NO": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Północny"
-        },
-        "MX-NW": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Północno zachodni"
-        },
-        "MX-OC": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Zachodni"
-        },
-        "MX-OR": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Południowo Zachoni"
-        },
-        "MX-PN": {
-            "countryName": "Meksyk",
-            "zoneName": "Meksyk Południowo Wschodni"
-        },
-        "MY-EM": {
-            "countryName": "Malezja",
-            "zoneName": "Borneo"
-        },
-        "MY-WM": {
-            "countryName": "Malezja",
-            "zoneName": "Malezja zachodnia"
-        },
-        "MZ": {
-            "zoneName": "Mozambik"
-        },
-        "NC": {
-            "zoneName": "Nowa Kaledonia"
-        },
-        "NF": {
-            "zoneName": "Wyspa Norfolk"
-        },
-        "NI": {
-            "zoneName": "Nikaragua"
-        },
-        "NKR": {
-            "zoneName": "Nagorno-Karabakh"
-        },
-        "NL": {
-            "zoneName": "Holandia"
-        },
-        "NO": {
-            "zoneName": "Norwegia"
-        },
-        "NO-NO1": {
-            "countryName": "Norwegia",
-            "zoneName": "Norwegia południowo-wschodnia"
-        },
-        "NO-NO2": {
-            "countryName": "Norwegia",
-            "zoneName": "Norwegia południowo-zachodnia"
-        },
-        "NO-NO3": {
-            "countryName": "Norwegia",
-            "zoneName": "Norwegia środkowa"
-        },
-        "NO-NO4": {
-            "countryName": "Norwegia",
-            "zoneName": "Norwegia północna"
-        },
-        "NO-NO5": {
-            "countryName": "Norwegia",
-            "zoneName": "Norwegia zachodnia"
-        },
-        "NZ": {
-            "zoneName": "Nowa Zelandia"
-        },
-        "NZ-NZA": {
-            "countryName": "Nowa Zelandia",
-            "zoneName": "Wyspy Auckland"
-        },
-        "NZ-NZC": {
-            "countryName": "Nowa Zelandia",
-            "zoneName": "Wyspy Chatham"
-        },
-        "NZ-NZST": {
-            "countryName": "Nowa Zelandia",
-            "zoneName": "Wyspa Stewart"
-        },
-        "PA": {
-            "zoneName": "Panama"
-        },
-        "PE": {
-            "zoneName": "Peru"
-        },
-        "PG": {
-            "zoneName": "Papua-Nowa Gwinea"
-        },
-        "PH": {
-            "zoneName": "Filipiny"
-        },
-        "PL": {
-            "zoneName": "Polska"
-        },
-        "PM": {
-            "zoneName": "Saint-Pierre i Miquelon"
-        },
-        "PS": {
-            "zoneName": "Palestyna"
-        },
-        "PT": {
-            "zoneName": "Portugalia"
-        },
-        "PT-AC": {
-            "countryName": "Portugalia",
-            "zoneName": "Azory"
-        },
-        "PT-MA": {
-            "countryName": "Portugalia",
-            "zoneName": "Madera"
-        },
-        "PY": {
-            "zoneName": "Paragwaj"
-        },
-        "QA": {
-            "zoneName": "Katar"
-        },
-        "RO": {
-            "zoneName": "Rumunia"
-        },
-        "RS": {
-            "zoneName": "Serbia"
-        },
-        "RU": {
-            "zoneName": "Rosja"
-        },
-        "RU-EU": {
-            "zoneName": "Rosja"
-        },
-        "RU-AS": {
-            "zoneName": "Rosja"
-        },
-        "RU-FE": {
-            "countryName": "Rosja",
-            "zoneName": "Rosyjski Daleki Wschód"
-        },
-        "RU-1": {
-            "countryName": "Rosja",
-            "zoneName": "Rosja europejska i Ural"
-        },
-        "RU-2": {
-            "countryName": "Rosja",
-            "zoneName": "Syberia"
-        },
-        "RU-KGD": {
-            "countryName": "Rosja",
-            "zoneName": "Kaliningrad"
-        },
-        "SA": {
-            "zoneName": "Arabia Saudyjska"
-        },
-        "SE": {
-            "zoneName": "Szwecja"
-        },
-        "SG": {
-            "zoneName": "Singapur"
-        },
-        "SI": {
-            "zoneName": "Słowenia"
-        },
-        "SJ": {
-            "zoneName": "Svalbard i Jan Mayen"
-        },
-        "SK": {
-            "zoneName": "Słowacja"
-        },
-        "SR": {
-            "zoneName": "Surinam"
-        },
-        "SS": {
-            "zoneName": "Sudan Południowy"
-        },
-        "ST": {
-            "zoneName": "Wyspy Świętego Tomasza i Książęca"
-        },
-        "SV": {
-            "zoneName": "Salwador"
-        },
-        "SZ": {
-            "zoneName": "Suazi"
-        },
-        "TD": {
-            "zoneName": "Czad"
-        },
-        "TJ": {
-            "zoneName": "Tadżykistan"
-        },
-        "TL": {
-            "zoneName": "Timor Wschodni"
-        },
-        "TH": {
-            "zoneName": "Tajlandia"
-        },
-        "TN": {
-            "zoneName": "Tunezja"
-        },
-        "TR": {
-            "zoneName": "Turcja"
-        },
-        "TT": {
-            "zoneName": "Trynidad i Tobago"
-        },
-        "TW": {
-            "zoneName": "Tajwan"
-        },
-        "UA": {
-            "zoneName": "Ukraina"
-        },
-        "UY": {
-            "zoneName": "Urugwaj"
-        },
-        "VE": {
-            "zoneName": "Wenezuela"
-        },
-        "VN": {
-            "zoneName": "Wietnam"
-        },
-        "YE": {
-            "zoneName": "Jemen"
-        },
-        "ZA": {
-            "zoneName": "Południowa Afryka"
-        },
-        "ZM": {
-            "zoneName": "Zambia"
-        },
-        "ZW": {
-            "zoneName": "Zimbabwe"
-        },
-        "AD": {
-            "zoneName": "Andora"
-        },
-        "AG": {
-            "zoneName": "Antigua i Barbuda"
-        },
-        "AI": {
-            "zoneName": "Anguilla"
-        },
-        "AM": {
-            "zoneName": "Armenia"
-        },
-        "AO": {
-            "zoneName": "Angola"
-        },
-        "AQ": {
-            "zoneName": "Antarktyka"
-        },
-        "AS": {
-            "zoneName": "Samoa Amerykańskie"
-        },
-        "AUS-TAS-KI": {
-            "countryName": "Tasmania"
-        },
-        "AW": {
-            "zoneName": "Aruba"
-        },
-        "BB": {
-            "zoneName": "Barbados"
-        },
-        "BF": {
-            "zoneName": "Burkina Faso"
-        },
-        "BI": {
-            "zoneName": "Burundi"
-        },
-        "BJ": {
-            "zoneName": "Benin"
-        },
-        "BM": {
-            "zoneName": "Bermudy"
-        },
-        "BN": {
-            "zoneName": "Brunei"
-        },
-        "BQ": {
-            "zoneName": "Holandia Karaibska"
-        },
-        "BS": {
-            "zoneName": "Bahamy"
-        },
-        "BT": {
-            "zoneName": "Bhutan"
-        },
-        "BV": {
-            "zoneName": "Wyspa Bouveta"
-        },
-        "BW": {
-            "zoneName": "Botswana"
-        },
-        "BZ": {
-            "zoneName": "Belize"
-        }
+    "view4": {
+      "header": "Warunki wiatrowe i słoneczne w czasie rzeczywistym",
+      "text": "Produkcja energii wiatrowej i słonecznej zależy od pogody. Naćiśnij przyciski \"wiatr\" i \"słońce\", aby wyświetlić siłę wiatru i nasłonecznienie w czasie rzeczywistym na całym świecie."
     }
+  },
+  "country-panel": {
+    "source": "źródło",
+    "carbonintensity": "Emisja CO₂",
+    "lowcarbon": "Niskoemisyjne",
+    "renewable": "Odnawialne",
+    "electricityproduction": "Produkcja energii elektrycznej",
+    "bysource": "według źródeł energii",
+    "emissions": "Emisje CO₂",
+    "addeditsource": "<a href=\"%s\" target=\"_blank\">dodaj lub zmień źródło</a>",
+    "helpfrom": "z wkładem",
+    "electricityconsumption": "Zużycie energii elektrycznej",
+    "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
+    "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
+    "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"%s\" target=\"_blank\">dodając dane dla obszaru</a>.",
+    "now": "Obecnie"
+  },
+  "left-panel": {
+    "zone-list-header-title": "Wpływ na klimat według obszaru",
+    "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
+    "search": "Szukaj"
+  },
+  "country-history": {
+    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API electricityMap",
+    "carbonintensity": { "hourly": "Emisja CO₂ w ciągu ostatnich 24 godzin" },
+    "emissionsorigin": { "hourly": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin" },
+    "emissionsproduction": { "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin" },
+    "electricityorigin": { "hourly": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin" },
+    "electricityproduction": { "hourly": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin" },
+    "electricityprices": { "hourly": "Ceny energii elektrycznej w ciągu ostatnich 24 godzin" },
+    "emissions": { "hourly": "Emisja w ciągu ostatnich 24 godzin" }
+  },
+  "footer": {
+    "foundbugs": "Znalazłeś błąd lub masz własny pomysł? Daj nam znać",
+    "here": "tutaj",
+    "faq-text": "Coś jest niejasne? Sprawdź nasze",
+    "faq": "najczęściej zadawane pytania."
+  },
+  "legends": {
+    "windpotential": "Potencjał wiatrowy",
+    "solarpotential": "Potencjał słoneczny",
+    "colorblindmode": "tryb bezbarwny",
+    "carbonintensity": "Emisja CO₂"
+  },
+  "tooltips": {
+    "carbonintensity": "Emisja CO₂",
+    "lowcarbon": "Niskoemisyjne źródła energii",
+    "renewable": "Odnawialne źródła energii",
+    "crossborderexport": "Eksport",
+    "carbonintensityexport": "Emisja CO₂ eksportu",
+    "ofinstalled": "zainstalowanej mocy",
+    "utilizing": "wykorzystując",
+    "representing": "reprezentując",
+    "ofemissions": "emisji",
+    "withcarbonintensity": "z emisją CO₂ wynoszącą",
+    "showWindLayer": "Pokaż wiatr",
+    "hideWindLayer": "Schowaj wiatr",
+    "showSolarLayer": "Pokaż nasłonecznienie",
+    "hideSolarLayer": "Schowaj nasłonecznienie",
+    "toggleDarkMode": "Włącz tryb nocny",
+    "noParserInfo": "Brak danych",
+    "temporaryDataOutage": "Tymczasowy brak danych",
+    "production": "produkcja",
+    "consumption": "konsumpcja",
+    "cpinfo": "<b>konsumpcja</b> uwzględnia import i eksport, <b>produkcja</b> je pomija",
+    "selectLanguage": "Wybierz język",
+    "lowCarbDescription": "Zawiera niskoemisyjne i jądrowe źródła energii"
+  },
+  "misc": {
+    "maintitle": "Emisja CO₂ konsumpcji energii elektrycznej w czasie rzeczywistym",
+    "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
+    "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
+    "retrynow": "Spróbuj teraz",
+    "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
+    "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+    "legend": "Legenda",
+    "faq": "Najczęściej Zadawane Pytania",
+    "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL."
+  },
+  "theMap": {
+    "groupName": "Mapa",
+    "mapColors-question": "Co oznaczają kolory na mapie?",
+    "mapColors-answer": "Obszary na mapie kolorujemy na podstawie ilości emitowanych gazów cieplarnianych przypadających na każdą zużytą jednostkę energii elektrycznej (jej <a href=\"#carbonIntensity\" class=\"entry-link\"> intensywności emisji dwutlenku węgla </a>). Im bardziej zielony jest kolor, tym bardziej przyjazna jest energia elektryczna dla klimatu.",
+    "mapArrows-question": "Co oznaczają strzałki między regionami na mapie?",
+    "mapArrows-answer": "Strzałki między regionami wskazują fizyczny przepływ (import i eksport) energii elektrycznej między nimi: Im szybciej migają, tym jest on większy. Przepływ energii elektrycznej jest ważny, ponieważ importując energię elektryczną z sąsiednich obszarów importujesz również emisję dwutlenku węgla związaną z jej produkcją.",
+    "mapSolarWindButtons-question": "Do czego służą przyciski „słońce” i „wiatr” na mapie?",
+    "mapSolarWindButtons-answer": "Te przyciski przełączają wyświetlanie w czasie rzeczywistym prędkości wiatru i intensywności nasłonecznienia, wskazując potencjalną możliwość przejścia na energię słoneczną i wiatrową w różnych obszarach.",
+    "mapNuclearColors-question": "Dlaczego kraje zasilane energią jądrową są oznaczone na mapie kolorem zielonym?",
+    "mapNuclearColors-answer": "Produkcja energii jądrowej charakteryzuje się bardzo niską emisyjnością (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\" target=\"_blank\" >source</a>), i kraje zasilane energią jądrową są zatem zaznaczone kolorem zielonym. To nie oznacza, że nie ma innych wyzwań środowiskowych związanych z energetyką jądrową (jak ma to również miejsce z innymi źródłami), ale te wyzwania nie są związane z emisjią gazów cieplarnianych i dlatego są poza zakresem tej mapy.",
+    "mapColorBlind-question": "Mam ślepotę barw. Jak mogę odczytywać waszą mapę?",
+    "mapColorBlind-answer": "Możesz zmieniać kolory wyświetlane na mapie, włączając ustawienie „tryb bezbarwny”. Znajduje się on na dole lewego panelu na pulpicie oraz w zakładce informacyjnej w aplikacji mobilnej."
+  },
+  "mapAreas": {
+    "groupName": "Obszary na mapie",
+    "noData-question": "Dlaczego dane dla mojego obszaru są niedostępne?",
+    "noData-answer": "Albo dlatego, że źródła obszaru są chwilowo niedostępne, albo nie mamy jeszcze skonfigurowanych żadnych źródł dla tego obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc w dodawaniu nowych źródeł danych</a>.",
+    "whySmallAreas-question": "Dlaczego dzielicie państwa na mniejsze obszary, zamiast pokazywać średniej wartości dla danego państwa?",
+    "whySmallAreas-answer": "Te obszary to najmniejsze obszary geograficzne, dla których mamy dane. Mając dostęp do informacji o najwyższym poziomie szczegółowości, konsumenci energii elektrycznej w różnych obszarach mogą mieć dokładniejszą wiedzę na temat pochodzenia zużywanej przez nich energii elektrycznej i związanego z tym wpływu na klimat.",
+    "divideExistingArea-question": "Czy możecie podzielić mój obszar na mniejsze części?",
+    "divideExistingArea-answer": "Oczywiście, jeżeli istnieją oddzielne źródła danych dla każdej części obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc dodając nowe źródła danych</a>",
+    "seeHistoricalData-question": "Czy mogę zobaczyć historię obszaru cofniętą w czasie o więcej niż 24 godziny?",
+    "seeHistoricalData-answer": "Możesz zakupić dostęp do naszych wszystkich danych historycznych za pośrednictwem <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">naszej bazy danych</a>."
+  },
+  "methodology": {
+    "groupName": "Nasze metody",
+    "carbonIntensity-question": "Co to jest „Intensywność emisji CO₂”?",
+    "carbonIntensity-answer": "Intensywność emisji CO₂ (w gCO₂eq/kWh - gramach ekwiwalentów dwutlenku węgla wyemitowanego na kilowatogodzinę zużytej energii elektrycznej). <br><br>Mierzymy emisje zużycia energii elektrycznej (nie produkcji), co oznacza wszystkie emisje gazów cieplarnianych (zarówno CO₂, jaki i innych gazów cieplarnianych, takich jak metan), które zostały wykorzystane do produkcji energii elektrycznej zużywanej na danym obszarze, biorąc pod uwagę intensywność emisji CO₂ importowanej z innych obszarów. Stosujemy podejście analizy cyklu życia (LCA, life cycle analysis), co oznacza, że bierzemy pod uwagę emisje z całego cyklu życia elektrowni (budowa, produkcja paliw, emisje eksploatacyjne i likwidacja).",
+    "consumptionFocus-question": "Dlaczego obliczacie intensywność emisji CO₂ zużycia energii elektrycznej zamiast jej produkcji?",
+    "consumptionFocus-answer": "Uważamy, że obywatele powinni być odpowiedzialni za zużywaną przez nich energię elektryczną, a nie za energię elektryczną wytwarzaną w obszarze, w którym akurat mieszkają. Co więcej uważamy, że obszary nie powinny być w stanie 'udawać' niskiego wpływu na klimat, po prostu przenosząc produkcję brudnej energii na inne obszary, a następnie ją z nich importując.",
+    "renewableLowCarbonDifference-question": "Jaka jest różnica pomiędzy „odnawialne” i „niskoemisyjne”?",
+    "renewableLowCarbonDifference-answer": "Produkcja energii odnawialnej opiera się na odnawialnych źródłach energii, takich jak energia wiatrowa, wodna, słoneczna i geotermalna. Niskoemisyjna produkcja energii oznacza, że produkcja wiąże się z bardzo niskim poziomem emisji gazów cieplarnianych, tak jak w przypadku energii jądrowej.",
+    "importsAndExports-question": "Czy bierzecie pod uwagę import i eksport energii elektrycznej?",
+    "importsAndExports-answer": "Tak. Import i eksport można zobaczyć na mapie jako małe <a href=\"#mapArrows\" class=\"entry-link\">strzałki pomiędzy różnymi obszarami</a>. Szczegółowe informacje można zobaczyć na wykresach wyświetlanych po kliknięciu obszaru.",
+    "emissionsOfStored-question": "Co z emisjami pochodzącymi z wytwarzania energii elektrycznej, która jest następnie magazynowana w bateriach lub wykorzystywana do napiełniania zbiorników?",
+    "emissionsOfStored-answer": "Ponieważ obecnie magazynowana jest tylko niewielka część energii elektrycznej, niedokładności w modelowaniu tych emisji nie powinny mieć dużego wpływu na obecną łączną wartość.",
+    "guaranteesOfOrigin-question": "Co to są zielone certyfikaty, i jak są one brane pod uwagę?",
+    "guaranteesOfOrigin-answer": "Kiedy producencji odnawialnych źródeł energii wytwarzają energię elektryczną, mogą stworzyc Gwarancję Pochodzenia (lub Renewable Energy Certificates) - dowód, że energia elektryczna została wyprodukowana i przekazana do sieci elektroenergetycznej. Gwarancję te można następnie sprzedać, dając detalistom energii elektrycznej sposób na potwierdzenie tego, że energia elektryczna, którą oni odsprzedają pochodzi z odnawialnych źródeł energii, niezależnie od rzeczywistego lub fizycznego źródła.",
+    "otherSources-question": "Dlaczego nie pokazujecie innych źródeł energii niż produkcja energii elektrycznej?",
+    "homeSolarPanel-question": "Co jeśli mam zainstalowany panel słoneczny w swoim domu?",
+    "emissionsPerCapita-question": "Dlaczego nie pokazujecie energii na mieszkańca?",
+    "emissionsPerCapita-answer": "Część energii elektrycznej zużywanej na danych obszarze jest wykorzystywana do wytwarzania dóbr fizycznych i produktów, które są później eksportowane i zużywane na innych obszarach. Ta produkcja, a także jej zużycie energii elektrycznej i związanie z nią emisje napędzane są przez konsumpcję produktów <em> w obszarach importu</em>, a nie w obszarze, w którym odbywa się produkcja. Uważamy, że ludzie powinni byc odpowiedzialni tylko za to, co konsumują, a nie za produkty wytwarzane na obszarze, na którym żyją, których nie wykorzystują. W tym sensie pokazywanie emisji zużycia energii elektrycznej na mieszkańca dla obszarów jest mylące."
+  },
+  "data": {
+    "groupName": "Nasze dane",
+    "dataOrigins-question": "Skąd bierzecie swoje dane?",
+    "dataOrigins-answer": "Wszystkie nasze dane obliczamy na podstawie publicznie dostępnych danych, publikowanych przez operatorów sieci elektroenergetycznych, oficjale agencje i innych. Możesz kliknąć na obszar aby zobaczyć więcej szczegółów na temat pochodzenia jego danych.",
+    "dataDownload-question": "Czy mogę pobrać wasze dane?",
+    "dataDownload-answer": "Możesz wykupić dostęp do naszych wszystkich danych w naszej <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">bazie danych</a>.",
+    "dataIntegration-question": "Czy mogę zintegrować wasze dane w czasie rzeczywistym z moją aplikacją lub urządzeniem?",
+    "dataIntegration-answer": "Tak! Sprzdajemy dostęp do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API w czasie rzeczywistym</a>, które zawiera prognozy na przyszłość."
+  },
+  "aboutUs": {
+    "groupName": "O nas",
+    "whoAreYou-question": "Kim jesteście?",
+    "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
+    "feedback-question": "Czy moge przekazać wam opinię?",
+    "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:app@electricitymap.org\">wyślij do nas e-mail!</a>",
+    "contribute-question": "Czy mogę wspomóc wasz projekt?",
+    "contribute-answer": " Tak! Electricity Map jest projektem open-source, możliwym dzięki naszym wolontariuszom. Jeżeli chesz pomóc w rozwijaniu mapy, dodając źródła dla nowych obszarów, dodając nowe funkcjionalności lub naprawiając błędy, możesz to zrobić poprzez <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "workTogether-question": "Czy możemy współpracować?",
+    "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:app@electricitymap.org\">Wyślij do nas e-mail!</a>",
+    "disclaimer-question": "Zastrzeżenie"
+  },
+  "wind": "wiatrowa",
+  "windDataError": "Dane wiatru są obecnie niedostępne",
+  "solar": "słoneczna",
+  "solarDataError": "Dane nasłonecznienia obecnie niedostępne",
+  "hydro": "wodna",
+  "hydro storage": "szczytowo-pompowa",
+  "battery storage": "baterie",
+  "biomass": "biomasa",
+  "nuclear": "jądrowa",
+  "geothermal": "geotermalna",
+  "gas": "gazowa",
+  "coal": "węglowa",
+  "oil": "naftowa",
+  "unknown": "nieznana",
+  "electricityComesFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> energii elektrycznej",
+  "emissionsComeFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: produkcja %3$s tworzy <b>%1$s %%</b> emisji",
+  "electricityStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> energii elektrycznej",
+  "emissionsStoredUsing": "<img id=\"country-flag\"></img> <b>%2$s</b>: %3$s przetrzymywują <b>%1$s %%</b> emisji",
+  "electricityExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsExportedTo": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest eksportowane do <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> energii elektrycznej jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsImportedFrom": "<img id=\"country-flag\"></img> <b>%2$s</b>: <b>%1$s %%</b> emisji jest importowane z <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "ofCO2eqPerMinute": "CO₂eq na minutę",
+  "zoneShortName": {
+    "AE": { "zoneName": "Zjednoczone Emiraty Arabskie" },
+    "AL": { "zoneName": "Albania" },
+    "AF": { "zoneName": "Afganistan" },
+    "AR": { "zoneName": "Argentyna" },
+    "AT": { "zoneName": "Austria" },
+    "AUS-NSW": { "countryName": "Australia", "zoneName": "Nowa Południowa Walia" },
+    "AUS-NT": { "countryName": "Australia", "zoneName": "Terytorium Północne" },
+    "AUS-QLD": { "countryName": "Australia", "zoneName": "Queensland" },
+    "AUS-SA": { "countryName": "Australia", "zoneName": "Australia Południowa" },
+    "AUS-TAS": { "countryName": "Australia", "zoneName": "Tasmania" },
+    "AUS-VIC": { "countryName": "Australia", "zoneName": "Wiktoria" },
+    "AUS-WA": { "countryName": "Australia", "zoneName": "Australia Zachodnia" },
+    "AX": { "zoneName": "Wyspy Alandzkie" },
+    "AZ": { "zoneName": "Azerbejdżan" },
+    "BA": { "zoneName": "Bośnia i Hercegowina" },
+    "BD": { "zoneName": "Bangladesz" },
+    "BE": { "zoneName": "Belgia" },
+    "BG": { "zoneName": "Bułgaria" },
+    "BH": { "zoneName": "Bahrajn" },
+    "BO": { "zoneName": "Boliwia" },
+    "BR-CS": { "countryName": "Brazylia", "zoneName": "Brazylia centralna" },
+    "BR-N": { "countryName": "Brazylia", "zoneName": "Brazylia północna" },
+    "BR-NE": { "countryName": "Brazylia", "zoneName": "Brazylia północno-wschodnia" },
+    "BR-S": { "countryName": "Brazylia", "zoneName": "Brazylia południowa" },
+    "BY": { "zoneName": "Białoruś" },
+    "CA-AB": { "countryName": "Kanada", "zoneName": "Alberta" },
+    "CA-BC": { "countryName": "Kanada", "zoneName": "Kolumbia Brytyjska" },
+    "CA-MB": { "countryName": "Kanada", "zoneName": "Manitoba" },
+    "CA-NL": { "countryName": "Kanada", "zoneName": "Nowa Fundlandia i Labrador" },
+    "CA-NB": { "countryName": "Kanada", "zoneName": "Nowy Brunszwik" },
+    "CA-NT": { "countryName": "Kanada", "zoneName": "Terytoria Północno-Zachodnie" },
+    "CA-NS": { "countryName": "Kanada", "zoneName": "Nowa Szkocja" },
+    "CA-NU": { "countryName": "Kanada", "zoneName": "Nunavut" },
+    "CA-ON": { "countryName": "Kanada", "zoneName": "Ontario" },
+    "CA-PE": { "countryName": "Kanada", "zoneName": "Wyspa Księcia Edwarda" },
+    "CA-QC": { "countryName": "Kanada", "zoneName": "Quebec" },
+    "CA-SK": { "countryName": "Kanada", "zoneName": "Saskatchewan" },
+    "CA-YT": { "countryName": "Kanada", "zoneName": "Jukon" },
+    "CD": { "zoneName": "Demokratyczna Republika Konga" },
+    "CF": { "zoneName": "Republika Środkowoafrykańska" },
+    "CG": { "zoneName": "Kongo" },
+    "CH": { "zoneName": "Szwajcaria" },
+    "CI": { "zoneName": "Wybrzeże Kości Słoniowej" },
+    "CL": { "zoneName": "Chile" },
+    "CM": { "zoneName": "Kamerun" },
+    "CN": { "zoneName": "Chiny" },
+    "CO": { "zoneName": "Kolumbia" },
+    "CR": { "zoneName": "Kostaryka" },
+    "CU": { "zoneName": "Kuba" },
+    "CV": { "zoneName": "Republika Zielonego Przylądka" },
+    "CZ": { "zoneName": "Czechy" },
+    "DE": { "zoneName": "Niemcy" },
+    "DJ": { "zoneName": "Dżibuti" },
+    "DK": { "zoneName": "Dania" },
+    "DK-DK1": { "countryName": "Dania", "zoneName": "Dania zachodnia" },
+    "DK-DK2": { "countryName": "Denmark", "zoneName": "Dania wschodnia" },
+    "DK-BHM": { "countryName": "Dania", "zoneName": "Bornholm" },
+    "DO": { "zoneName": "Dominikana" },
+    "DZ": { "zoneName": "Algieria" },
+    "EC": { "zoneName": "Ekwador" },
+    "EE": { "zoneName": "Estonia" },
+    "EG": { "zoneName": "Egipt" },
+    "EH": { "zoneName": "Sahara Zachodnia" },
+    "ER": { "zoneName": "Erytrea" },
+    "ES": { "zoneName": "Hiszpania" },
+    "ES-IB": { "countryName": "Hiszpania", "zoneName": "Baleary" },
+    "ES-IB-ML": { "countryName": "Hiszpania", "zoneName": "Majorka" },
+    "ES-IB-MN": { "countryName": "Hiszpania", "zoneName": "Minorka" },
+    "ES-IB-IB": { "countryName": "Hiszpania", "zoneName": "Ibiza" },
+    "ES-IB-FM": { "countryName": "Hiszpania", "zoneName": "Formentera" },
+    "ES-CN-FVLZ": { "countryName": "Hiszpania", "zoneName": "Fuerteventura i Lanzarote" },
+    "ES-CN-GC": { "countryName": "Hiszpania", "zoneName": "Gran Canaria" },
+    "ES-CN-HI": { "countryName": "Hiszpania", "zoneName": "El Hierro" },
+    "ES-CN-IG": { "countryName": "Hiszpania", "zoneName": "La Gomera" },
+    "ES-CN-LP": { "countryName": "Hiszpania", "zoneName": "La Palma" },
+    "ES-CN-TE": { "countryName": "Hiszpania", "zoneName": "Teneryfa" },
+    "ET": { "zoneName": "Etiopia" },
+    "FI": { "zoneName": "Finlandia" },
+    "FO": { "zoneName": "Wyspy Owcze" },
+    "FR": { "zoneName": "Francja" },
+    "FR-COR": { "countryName": "Francja", "zoneName": "Korsyka" },
+    "GB": { "zoneName": "Wielka Brytania" },
+    "GB-NIR": { "zoneName": "Irlandia Północna" },
+    "GE": { "zoneName": "Gruzja" },
+    "GF": { "zoneName": "Gujana Francuska" },
+    "GL": { "zoneName": "Grenlandia" },
+    "GN": { "zoneName": "Gwinea" },
+    "GQ": { "zoneName": "Gwinea Równikowa" },
+    "GR": { "zoneName": "Grecja" },
+    "GR-IS": { "countryName": "Grecja", "zoneName": "Wyspy Egejskie" },
+    "GT": { "zoneName": "Gwatemala" },
+    "GW": { "zoneName": "Gwinea Bissau" },
+    "GY": { "zoneName": "Gujana" },
+    "HN": { "zoneName": "Honduras" },
+    "HR": { "zoneName": "Chorwacja" },
+    "HU": { "zoneName": "Węgry" },
+    "ID": { "zoneName": "Indonezja" },
+    "IE": { "zoneName": "Irlandia" },
+    "IL": { "zoneName": "Izrael" },
+    "IN-AN": { "countryName": "Indie", "zoneName": "Andamany i Nikobary" },
+    "IN-AP": { "countryName": "Indie", "zoneName": "Andhra Pradesh" },
+    "IN-AR": { "countryName": "Indie", "zoneName": "Arunachal Pradesh" },
+    "IN-AS": { "countryName": "Indie", "zoneName": "Asam" },
+    "IN-BR": { "countryName": "Indie", "zoneName": "Bihar" },
+    "IN-CT": { "countryName": "Indie", "zoneName": "Chhattisgarh" },
+    "IN-DL": { "countryName": "Indie", "zoneName": "Delhi" },
+    "IN-GA": { "countryName": "Indie", "zoneName": "Goa" },
+    "IN-GJ": { "countryName": "Indie", "zoneName": "Gudźarat" },
+    "IN-HP": { "countryName": "Indie", "zoneName": "Himachal Pradesh" },
+    "IN-HR": { "countryName": "Indie", "zoneName": "Hariana" },
+    "IN-JH": { "countryName": "Indie", "zoneName": "Jharkhand" },
+    "IN-JK": { "countryName": "Indie", "zoneName": "Dżammu i Kaszmir" },
+    "IN-KA": { "countryName": "Indie", "zoneName": "Karnataka" },
+    "IN-KL": { "countryName": "Indie", "zoneName": "Kerala" },
+    "IN-MH": { "countryName": "Indie", "zoneName": "Maharasztra" },
+    "IN-ML": { "countryName": "Indie", "zoneName": "Meghalaya" },
+    "IN-MN": { "countryName": "Indie", "zoneName": "Manipur" },
+    "IN-MP": { "countryName": "Indie", "zoneName": "Madhya Pradesh" },
+    "IN-MZ": { "countryName": "Indie", "zoneName": "Mizoram" },
+    "IN-NL": { "countryName": "Indie", "zoneName": "Nagaland" },
+    "IN-OR": { "countryName": "Indie", "zoneName": "Orisa" },
+    "IN-PB": { "countryName": "Indie", "zoneName": "Pendżab" },
+    "IN-PY": { "countryName": "Indie", "zoneName": "Puducherry" },
+    "IN-RJ": { "countryName": "Indie", "zoneName": "Radżastan" },
+    "IN-SK": { "countryName": "Indie", "zoneName": "Sikkim" },
+    "IN-TL": { "countryName": "Indie", "zoneName": "Tamilnadu" },
+    "IN-TR": { "countryName": "Indie", "zoneName": "Tripura" },
+    "IN-UP": { "countryName": "Indie", "zoneName": "Uttar Pradesh" },
+    "IN-UT": { "countryName": "Indie", "zoneName": "Uttarakhand" },
+    "IN-WB": { "countryName": "Indie", "zoneName": "Bengal Zachodni" },
+    "IO": { "zoneName": "Brytyjskie Terytorium Oceanu Indyjskiego" },
+    "IQ": { "zoneName": "Irak" },
+    "IS": { "zoneName": "Islandia" },
+    "IT": { "zoneName": "Włochy" },
+    "IT-CNO": { "countryName": "Włochy", "zoneName": "Centralna północ" },
+    "IT-CSO": { "countryName": "Włochy", "zoneName": "Centralne południe" },
+    "IT-NO": { "countryName": "Włochy", "zoneName": "Północ" },
+    "IT-SAR": { "countryName": "Włochy", "zoneName": "Sardynia" },
+    "IT-SIC": { "countryName": "Włochy", "zoneName": "Sycylia" },
+    "IT-SO": { "countryName": "Włochy", "zoneName": "Południe" },
+    "JE": { "zoneName": "Jersey" },
+    "JM": { "zoneName": "Jamajka" },
+    "JO": { "zoneName": "Jordania" },
+    "JP": { "zoneName": "Japonia" },
+    "JP-CB": { "countryName": "Japonia", "zoneName": "Region Chūbu" },
+    "JP-CG": { "countryName": "Japonia", "zoneName": "Region Chūgoku" },
+    "JP-HKD": { "countryName": "Japonia", "zoneName": "Hokkaido" },
+    "JP-HR": { "countryName": "Japonia", "zoneName": "Region Hokuriku" },
+    "JP-KN": { "countryName": "Japonia", "zoneName": "Kansai" },
+    "JP-KY": { "countryName": "Japonia", "zoneName": "Kiusiu" },
+    "JP-ON": { "countryName": "Japonia", "zoneName": "Okinawa" },
+    "JP-SK": { "countryName": "Japonia", "zoneName": "Sikoku" },
+    "JP-TH": { "countryName": "Japonia", "zoneName": "Region Tōhoku" },
+    "JP-TK": { "countryName": "Japonia", "zoneName": "Tokio" },
+    "KE": { "zoneName": "Kenia" },
+    "KG": { "zoneName": "Kirgistan" },
+    "KH": { "zoneName": "Kambodża" },
+    "KI": { "zoneName": "Kiribati" },
+    "KM": { "zoneName": "Komory" },
+    "KP": { "zoneName": "Korea Północna" },
+    "KR": { "zoneName": "Korea Południowa" },
+    "KW": { "zoneName": "Kuwejt" },
+    "KZ": { "zoneName": "Kazachstan" },
+    "LB": { "zoneName": "Liban" },
+    "LT": { "zoneName": "Litwa" },
+    "LU": { "zoneName": "Luksemburg" },
+    "LV": { "zoneName": "Łotwa" },
+    "LY": { "zoneName": "Libia" },
+    "MA": { "zoneName": "Maroko" },
+    "MD": { "zoneName": "Mołdawia" },
+    "ME": { "zoneName": "Czarnogóra" },
+    "MG": { "zoneName": "Madagaskar" },
+    "MH": { "zoneName": "Wyspy Marshalla" },
+    "MK": { "zoneName": "Macedonia Północna" },
+    "MM": { "zoneName": "Mjanma" },
+    "MO": { "zoneName": "Makau" },
+    "MP": { "zoneName": "Martynika" },
+    "MR": { "zoneName": "Mauretania" },
+    "MT": { "zoneName": "Malta" },
+    "MV": { "zoneName": "Malediwy" },
+    "MX": { "zoneName": "Meksyk" },
+    "MX-BC": { "countryName": "Meksyk", "zoneName": "Kalifornia Dolna" },
+    "MX-CE": { "countryName": "Meksyk", "zoneName": "Meksyk Centralny" },
+    "MX-NE": { "countryName": "Meksyk", "zoneName": "Meksyk Północno Wschodni" },
+    "MX-NO": { "countryName": "Meksyk", "zoneName": "Meksyk Północny" },
+    "MX-NW": { "countryName": "Meksyk", "zoneName": "Meksyk Północno zachodni" },
+    "MX-OC": { "countryName": "Meksyk", "zoneName": "Meksyk Zachodni" },
+    "MX-OR": { "countryName": "Meksyk", "zoneName": "Meksyk Południowo Zachoni" },
+    "MX-PN": { "countryName": "Meksyk", "zoneName": "Meksyk Południowo Wschodni" },
+    "MY-EM": { "countryName": "Malezja", "zoneName": "Borneo" },
+    "MY-WM": { "countryName": "Malezja", "zoneName": "Malezja zachodnia" },
+    "MZ": { "zoneName": "Mozambik" },
+    "NC": { "zoneName": "Nowa Kaledonia" },
+    "NF": { "zoneName": "Wyspa Norfolk" },
+    "NI": { "zoneName": "Nikaragua" },
+    "NKR": { "zoneName": "Nagorno-Karabakh" },
+    "NL": { "zoneName": "Holandia" },
+    "NO": { "zoneName": "Norwegia" },
+    "NO-NO1": { "countryName": "Norwegia", "zoneName": "Norwegia południowo-wschodnia" },
+    "NO-NO2": { "countryName": "Norwegia", "zoneName": "Norwegia południowo-zachodnia" },
+    "NO-NO3": { "countryName": "Norwegia", "zoneName": "Norwegia środkowa" },
+    "NO-NO4": { "countryName": "Norwegia", "zoneName": "Norwegia północna" },
+    "NO-NO5": { "countryName": "Norwegia", "zoneName": "Norwegia zachodnia" },
+    "NZ": { "zoneName": "Nowa Zelandia" },
+    "NZ-NZA": { "countryName": "Nowa Zelandia", "zoneName": "Wyspy Auckland" },
+    "NZ-NZC": { "countryName": "Nowa Zelandia", "zoneName": "Wyspy Chatham" },
+    "NZ-NZST": { "countryName": "Nowa Zelandia", "zoneName": "Wyspa Stewart" },
+    "PA": { "zoneName": "Panama" },
+    "PE": { "zoneName": "Peru" },
+    "PG": { "zoneName": "Papua-Nowa Gwinea" },
+    "PH": { "zoneName": "Filipiny" },
+    "PL": { "zoneName": "Polska" },
+    "PM": { "zoneName": "Saint-Pierre i Miquelon" },
+    "PS": { "zoneName": "Palestyna" },
+    "PT": { "zoneName": "Portugalia" },
+    "PT-AC": { "countryName": "Portugalia", "zoneName": "Azory" },
+    "PT-MA": { "countryName": "Portugalia", "zoneName": "Madera" },
+    "PY": { "zoneName": "Paragwaj" },
+    "QA": { "zoneName": "Katar" },
+    "RO": { "zoneName": "Rumunia" },
+    "RS": { "zoneName": "Serbia" },
+    "RU": { "zoneName": "Rosja" },
+    "RU-EU": { "zoneName": "Rosja" },
+    "RU-AS": { "zoneName": "Rosja" },
+    "RU-FE": { "countryName": "Rosja", "zoneName": "Rosyjski Daleki Wschód" },
+    "RU-1": { "countryName": "Rosja", "zoneName": "Rosja europejska i Ural" },
+    "RU-2": { "countryName": "Rosja", "zoneName": "Syberia" },
+    "RU-KGD": { "countryName": "Rosja", "zoneName": "Kaliningrad" },
+    "SA": { "zoneName": "Arabia Saudyjska" },
+    "SE": { "zoneName": "Szwecja" },
+    "SG": { "zoneName": "Singapur" },
+    "SI": { "zoneName": "Słowenia" },
+    "SJ": { "zoneName": "Svalbard i Jan Mayen" },
+    "SK": { "zoneName": "Słowacja" },
+    "SR": { "zoneName": "Surinam" },
+    "SS": { "zoneName": "Sudan Południowy" },
+    "ST": { "zoneName": "Wyspy Świętego Tomasza i Książęca" },
+    "SV": { "zoneName": "Salwador" },
+    "SZ": { "zoneName": "Suazi" },
+    "TD": { "zoneName": "Czad" },
+    "TJ": { "zoneName": "Tadżykistan" },
+    "TL": { "zoneName": "Timor Wschodni" },
+    "TH": { "zoneName": "Tajlandia" },
+    "TN": { "zoneName": "Tunezja" },
+    "TR": { "zoneName": "Turcja" },
+    "TT": { "zoneName": "Trynidad i Tobago" },
+    "TW": { "zoneName": "Tajwan" },
+    "UA": { "zoneName": "Ukraina" },
+    "UY": { "zoneName": "Urugwaj" },
+    "VE": { "zoneName": "Wenezuela" },
+    "VN": { "zoneName": "Wietnam" },
+    "YE": { "zoneName": "Jemen" },
+    "ZA": { "zoneName": "Południowa Afryka" },
+    "ZM": { "zoneName": "Zambia" },
+    "ZW": { "zoneName": "Zimbabwe" },
+    "AD": { "zoneName": "Andora" },
+    "AG": { "zoneName": "Antigua i Barbuda" },
+    "AI": { "zoneName": "Anguilla" },
+    "AM": { "zoneName": "Armenia" },
+    "AO": { "zoneName": "Angola" },
+    "AQ": { "zoneName": "Antarktyka" },
+    "AS": { "zoneName": "Samoa Amerykańskie" },
+    "AUS-TAS-KI": { "countryName": "Tasmania" },
+    "AW": { "zoneName": "Aruba" },
+    "BB": { "zoneName": "Barbados" },
+    "BF": { "zoneName": "Burkina Faso" },
+    "BI": { "zoneName": "Burundi" },
+    "BJ": { "zoneName": "Benin" },
+    "BM": { "zoneName": "Bermudy" },
+    "BN": { "zoneName": "Brunei" },
+    "BQ": { "zoneName": "Holandia Karaibska" },
+    "BS": { "zoneName": "Bahamy" },
+    "BT": { "zoneName": "Bhutan" },
+    "BV": { "zoneName": "Wyspa Bouveta" },
+    "BW": { "zoneName": "Botswana" },
+    "BZ": { "zoneName": "Belize" }
+  }
 }

@@ -8,6 +8,6 @@ export const useTrackEvent = () => {
     () => (eventName, context) => {
       dispatch({ type: 'TRACK_EVENT', payload: { eventName, context } });
     },
-    [dispatch],
+    [dispatch]
   );
 };

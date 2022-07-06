@@ -34,7 +34,6 @@ See also the [guide in documentation](https://cordova.apache.org/docs/en/latest/
 - Run `npm install`
 - Download `GoogleService-Info.plist` and `google-services.json` from Firebase and add them to this folder
 
-
 If you want your local JavaScript changes to be reflected, you need to disable Codepush by commenting out the `codePush.sync` calls in `../web/src/cordova.js`.
 
 To build the JavaScript:
@@ -44,6 +43,7 @@ docker-compose build web && ./build.sh
 ```
 
 If you want to access the public API you will need a token:
+
 ```bash
 docker-compose build web --build-arg ELECTRICITYMAP_PUBLIC_TOKEN=... && ./build.sh
 ```
@@ -77,15 +77,15 @@ open platforms/ios/electricityMap.xcworkspace
 Note when building from XCode, one has to remember to run `cordova prepare ios` before each build. This will push the `www/` files into the iOS platform. Without this, the `www` files won't be updated.
 This is not required when using `cordova build` (it automatically runs `cordova prepare`).
 
-
 ## Releasing a new (code-push) build
-
 
 To do a release build (android):
 
 ```bash
-cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey
+cordova build android --release -- --keystore=electricitymap.keystore --alias=electricitymapkey --storePassword XXX --password XXX
 ```
+
+(ask internally for the password)
 
 To do a release build (ios):
 
@@ -108,6 +108,7 @@ code-push promote electricitymap-{ios,android} Staging Production
 Note about releases: bumping the release number will cause a new binary to be created. All code-push updates are tied to a binary version, meaning that apps will only update to code-push updates that are compatible with their binary version.
 
 To push a new store release:
+
 - Update the version in config.xml
 - Run `cordova prepare` if you're planning to build directly from XCode
 - Make release builds (previously explained)
@@ -118,7 +119,7 @@ To push a new store release:
   - Go into TestFlight and test on your own device
   - Submit the new build for review when everything is looking good
 - Android
-  - TBD
+  - Open folder `mobileapp/platforms/android/app/build/outputs/apk/release` and upload the `app-release.apk` file on [Play Store Console](https://play.google.com/console)
 - Celebrate!
 
 ## App/Play Store Release Checklist
@@ -158,7 +159,6 @@ This will create a symlink from /usr/local/bin/node to your current node version
 ln -s $(eval which node) /usr/local/bin/node
 ```
 
-
 ### Cannot find module '../../src/plugman/platforms/ios'
 
 (From https://github.com/nordnet/cordova-universal-links-plugin/issues/131#issuecomment-387761895)
@@ -174,36 +174,52 @@ function loadProjectFile() {
 
   try {
     // try pre-5.0 cordova structure
-    platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms')['ios'];
+    platform_ios = context.requireCordovaModule(
+      'cordova-lib/src/plugman/platforms'
+    )['ios'];
     projectFile = platform_ios.parseProjectFile(iosPlatformPath());
   } catch (e) {
     // let's try cordova 5.0 structure
-    platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms/ios');
+    platform_ios = context.requireCordovaModule(
+      'cordova-lib/src/plugman/platforms/ios'
+    );
     projectFile = platform_ios.parseProjectFile(iosPlatformPath());
   }
 
   return projectFile;
 }
 ```
+
 To this:
+
 ```javascript
 function loadProjectFile() {
   var platform_ios;
   var projectFile;
   try {
     // try pre-5.0 cordova structure
-    platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms')['ios'];
+    platform_ios = context.requireCordovaModule(
+      'cordova-lib/src/plugman/platforms'
+    )['ios'];
     projectFile = platform_ios.parseProjectFile(iosPlatformPath());
   } catch (e) {
     try {
       // let's try cordova 5.0 structure
-      platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms/ios');
+      platform_ios = context.requireCordovaModule(
+        'cordova-lib/src/plugman/platforms/ios'
+      );
       projectFile = platform_ios.parse(iosPlatformPath());
     } catch (e) {
       // try cordova 7.0 structure
-      var iosPlatformApi = require(path.join(iosPlatformPath(), '/cordova/Api'));
-      var projectFileApi = require(path.join(iosPlatformPath(), '/cordova/lib/projectFile.js'));
-      var locations = (new iosPlatformApi()).locations;
+      var iosPlatformApi = require(path.join(
+        iosPlatformPath(),
+        '/cordova/Api'
+      ));
+      var projectFileApi = require(path.join(
+        iosPlatformPath(),
+        '/cordova/lib/projectFile.js'
+      ));
+      var locations = new iosPlatformApi().locations;
       projectFile = projectFileApi.parse(locations);
     }
   }
@@ -220,10 +236,10 @@ Go to file `plugins/cordova-universal-links-plugin/hooks/lib/android/manifestWri
 ```javascript
 var pathToManifest = path.join(
   cordovaContext.opts.projectRoot,
-  "platforms",
-  "android",
-  "cordovaLib",
-  "AndroidManifest.xml"
+  'platforms',
+  'android',
+  'cordovaLib',
+  'AndroidManifest.xml'
 );
 ```
 
@@ -232,11 +248,11 @@ to
 ```javascript
 var pathToManifest = path.join(
   cordovaContext.opts.projectRoot,
-  "platforms",
-  "android",
-  "app",
-  "src",
-  "main",
-  "AndroidManifest.xml"
+  'platforms',
+  'android',
+  'app',
+  'src',
+  'main',
+  'AndroidManifest.xml'
 );
 ```

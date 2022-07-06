@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { range, last } from 'lodash';
 import styled from 'styled-components';
 import parse from 'color-parse';
 
@@ -12,13 +11,13 @@ import { solarColor } from '../../helpers/scales';
 
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
-const maxSolar = last(solarColor.domain());
-const solarIntensityToOpacity = intensity => Math.floor(intensity / maxSolar * 255);
-const opacityToSolarIntensity = opacity => Math.floor(opacity * maxSolar / 255);
+const maxSolar = solarColor.domain().at(-1);
+const solarIntensityToOpacity = (intensity) => Math.floor((intensity / maxSolar) * 255);
+const opacityToSolarIntensity = (opacity) => Math.floor((opacity * maxSolar) / 255);
 
 // Pre-process solar color components across all integer values
 // for faster vertex shading when generating the canvas image.
-const solarColorComponents = range(maxSolar + 1).map((value) => {
+const solarColorComponents = [...Array(maxSolar + 1).keys()].map((value) => {
   const parsed = parse(solarColor(value));
   return {
     red: parsed.values[0],
@@ -39,15 +38,13 @@ const Canvas = styled.canvas`
 `;
 
 export default ({ unproject }) => {
-  const {
-    ref, width, height, node,
-  } = useRefWidthHeightObserver();
+  const { ref, width, height, node } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 
-  const mapZoom = useSelector(state => state.application.mapViewport.zoom);
-  const isMapLoaded = useSelector(state => !state.application.isLoadingMap);
-  const isMoving = useSelector(state => state.application.isMovingMap);
+  const mapZoom = useSelector((state) => state.application.mapViewport.zoom);
+  const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
+  const isMoving = useSelector((state) => state.application.isMovingMap);
   const isVisible = enabled && isMapLoaded && !isMoving;
 
   // Render the processed solar forecast image into the canvas.
@@ -94,20 +91,11 @@ export default ({ unproject }) => {
       ctx.clearRect(0, 0, width, height);
       ctx.putImageData(image, 0, 0);
     }
-  }, [node, isVisible, solar, width, height]);
+  }, [node, isVisible, solar, width, height, mapZoom, unproject]);
 
   return (
-    <CSSTransition
-      classNames="fade"
-      in={isVisible}
-      timeout={300}
-    >
-      <Canvas
-        id="solar"
-        width={width}
-        height={height}
-        ref={ref}
-      />
+    <CSSTransition classNames="fade" in={isVisible} timeout={300}>
+      <Canvas id="solar" width={width} height={height} ref={ref} />
     </CSSTransition>
   );
 };

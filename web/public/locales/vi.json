@@ -1,1434 +1,558 @@
 {
-    "panel-initial-text": {
-        "thisproject": "Dự án này là",
-        "opensource": "Dự Án Nguồn mở (Open-Source)",
-        "see": "xem",
-        "datasources": "các nguồn dữ liệu",
-        "contribute": "Tham gia bằng cách <a href=\"%s\" target=\"_blank\">thêm khu vực của bạn</a>"
+  "panel-initial-text": {
+    "thisproject": "Dự án này là",
+    "opensource": "Dự Án Nguồn mở (Open-Source)",
+    "see": "xem",
+    "datasources": "các nguồn dữ liệu",
+    "contribute": "Tham gia bằng cách <a href=\"%s\" target=\"_blank\">thêm khu vực của bạn</a>"
+  },
+  "mobile-main-menu": { "map": "Bản đồ", "areas": "Khu vực", "about": "Thông tin" },
+  "onboarding-modal": {
+    "view1": { "subtitle": "Mapping the climate impact of electricity" },
+    "view2": {
+      "header": "Xem lượng CO₂ được thải ra trong quá trình sản xuất điện năng của bạn trong thời gian thực",
+      "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
     },
-    "mobile-main-menu": {
-        "map": "Bản đồ",
-        "areas": "Khu vực",
-        "about": "Thông tin"
+    "view3": {
+      "header": "Xem nguồn điện bạn đang dùng đến từ đâu",
+      "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
     },
-    "onboarding-modal": {
-        "view1": {
-            "subtitle": "Mapping the climate impact of electricity"
-        },
-        "view2": {
-            "header": "Xem lượng CO₂ được thải ra trong quá trình sản xuất điện năng của bạn trong thời gian thực",
-            "text": "We color areas around the world by their Carbon Intensity (includes all greenhouse gases) of electricity consumed there. Greener colors means more climate friendly electricity."
-        },
-        "view3": {
-            "header": "Xem nguồn điện bạn đang dùng đến từ đâu",
-            "text": "Arrows on the map indicate flows of electricity between different areas. Click on an area to see more information about the origins of its electricity."
-        },
-        "view4": {
-            "header": "Real-time wind and solar conditions",
-            "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
-        }
-    },
-    "country-panel": {
-        "source": "Nguồn",
-        "carbonintensity": "Mật độ Cacbon",
-        "lowcarbon": "Mật độ Cacbon thấp",
-        "renewable": "Năng lượng tái tạo",
-        "electricityproduction": "Electricity production",
-        "electricityconsumption": "Electricity consumption",
-        "bysource": "bởi nguồn",
-        "emissions": "Chất thải cacbon",
-        "addeditsource": "<a href=\"%s\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
-        "helpfrom": "with help from",
-        "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
-        "noLiveData": "Live data is temporarily unavailable for this area",
-        "noParserInfo": "Chúng tôi vẫn chưa có thông tin cho khu vực này.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
-        "now": "Hiện tại"
-    },
-    "left-panel": {
-        "zone-list-header-title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
-        "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
-        "search": "Tìm khu vực"
-    },
-    "country-history": {
-        "carbonintensity24h": "Mật độ cacbon trong vòng 24 giờ",
-        "emissionsorigin24h": "Nguồn gốc chất thải trong vòng 24 giờ",
-        "emissionsproduction24h": "Chất thải được sản sinh ra trong vòng 24 giờ",
-        "electricityorigin24h": "Origin of electricity in the last 24 hours",
-        "electricityproduction24h": "Electricity production in the last 24 hours",
-        "electricityprices24h": "Electricity prices in the last 24 hours",
-        "Getdata": "Get historical data, marginal and forecast API"
-    },
-    "footer": {
-        "foundbugs": "Found bugs or have ideas? Report them",
-        "faq-text": "Anything unclear? Check out our",
-        "faq": "frequently asked questions.",
-        "here": "here"
-    },
-    "legends": {
-        "windpotential": "Wind power potential",
-        "solarpotential": "Solar power potential",
-        "colorblindmode": "chế độ mù màu",
-        "carbonintensity": "Carbon intensity"
-    },
-    "tooltips": {
-        "carbonintensity": "Carbon intensity",
-        "lowcarbon": "Low-carbon",
-        "renewable": "Renewable",
-        "crossborderexport": "Cross-border export",
-        "carbonintensityexport": "Carbon intensity of export",
-        "ofinstalled": "of installed capacity",
-        "utilizing": "utilizing",
-        "withcarbonintensity": "with a carbon intensity of",
-        "showWindLayer": "Show wind layer",
-        "hideWindLayer": "Hide wind layer",
-        "showSolarLayer": "Show solar layer",
-        "hideSolarLayer": "Hide solar layer",
-        "toggleDarkMode": "Toggle dark-mode",
-        "noParserInfo": "No data available",
-        "temporaryDataOutage": "Data temporarily unavailable",
-        "production": "production",
-        "consumption": "consumption",
-        "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-        "selectLanguage": "Select language"
-    },
-    "misc": {
-        "maintitle": "Live CO₂ emissions of electricity consumption",
-        "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
-        "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
-        "retrynow": "Retry now",
-        "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-        "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
-        "legend": "Legend",
-        "faq": "Các câu hỏi thường gặp"
-    },
-    "wind": "wind",
-    "solar": "solar",
-    "hydro": "hydro",
-    "hydro storage": "hydro storage",
-    "battery storage": "battery storage",
-    "biomass": "biomass",
-    "nuclear": "nuclear",
-    "geothermal": "geothermal",
-    "gas": "gas",
-    "coal": "coal",
-    "oil": "oil",
-    "unknown": "unknown",
-    "electricityComesFrom": "%1$s %% lượng điện năng ở <img id=\"country-flag\"></img> <b>%2$s</b> đến từ %3$s",
-    "emissionsComeFrom": "%1$s %% lượng khí thải từ viêc sản xuất điện ở <img id=\"country-flag\"></img> <b>%2$s</b> đến từ %3$s",
-    "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
-    "emissionsStoredUsing": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
-    "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsExportedTo": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "emissionsImportedFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
-    "ofCO2eqPerMinute": "of CO₂eq per minute",
-    "theMap": {
-        "groupName": "Bản đồ",
-        "mapColors-question": "Những màu trên bản đồ có ý nghĩa gì?",
-        "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Greener colours means more climate friendly electricity consumption.",
-        "mapArrows-question": "What do the arrows between areas on the map indicate?",
-        "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
-        "mapSolarWindButtons-question": "Biểu tượng nút 'mặt trời' và 'gió' trên bản đồ làm gì?",
-        "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunsine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells also is dependent on many other factors.",
-        "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
-        "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
-        "mapColorBlind-question": "Tôi bị mù màu. Làm thế nào tôi có thể đọc bản đồ?",
-        "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
-    },
-    "mapAreas": {
-        "groupName": "Các khu vực trên bản đồ",
-        "noData-question": "Why is data for my area not available?",
-        "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
-        "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
-        "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
-        "divideExistingArea-question": "Can you divide my area into smaller parts?",
-        "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
-        "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-        "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
-    },
-    "methodology": {
-        "groupName": "Phương pháp của chúng tôi",
-        "carbonIntensity-question": "What is \"carbon intensity\"?",
-        "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
-        "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
-        "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas and then import the electricity from those areas.",
-        "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
-        "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine,  and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
-        "importsAndExports-question": "Do you take into account imports and exports of electricity?",
-        "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
-        "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
-        "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
-        "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
-        "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based, physical picture of the power grid, in order to empower consumers.",
-        "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-        "otherSources-answer": "This would be outside of the scope of this project. However, at electricityMap we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
-        "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
-        "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
-        "emissionsPerCapita-question": "Why don't you show emissions per capita?",
-        "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used in for manufacturing of physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, is driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
-    },
-    "data": {
-        "groupName": "Dữ liệu của chúng tôi",
-        "dataOrigins-question": "How do you get your data?",
-        "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
-        "dataDownload-question": "Can I download your data?",
-        "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
-        "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-        "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
-    },
-    "aboutUs": {
-        "groupName": "Về chúng tôi",
-        "whoAreYou-question": "Who are you?",
-        "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
-        "feedback-question": "Can I give you some feedback?",
-        "feedback-answer": "Please do! Please fill out <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc-_sRr3mmhe0bifigGxfAzgh97-pJFcwpwWZGLFc6vvu8laA/viewform?c=0&w=1\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:hello@electricitymap.org\">send us an email!</a>",
-        "contribute-question": "Can I contribute to your project?",
-        "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
-        "workTogether-question": "Can we work together?",
-        "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:hello@electricitymap.org\">Send us an email!</a>",
-        "disclaimer-question": "Disclaimer",
-        "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
-    },
-    "zoneShortName": {
-        "AD": {
-            "zoneName": "Andorra"
-        },
-        "AE": {
-            "zoneName": "Các Tiểu vương quốc Ả rập Thống nhất"
-        },
-        "AF": {
-            "zoneName": "Afghanistan"
-        },
-        "AG": {
-            "zoneName": "Antigua và Barbuda"
-        },
-        "AI": {
-            "zoneName": "Anguilla"
-        },
-        "AL": {
-            "zoneName": "Albania"
-        },
-        "AM": {
-            "zoneName": "Armenia"
-        },
-        "AO": {
-            "zoneName": "Angola"
-        },
-        "AQ": {
-            "zoneName": "Bắc Cực"
-        },
-        "AS": {
-            "zoneName": "American Samoa"
-        },
-        "AT": {
-            "zoneName": "Áo"
-        },
-        "AR": {
-            "zoneName": "Argentina"
-        },
-        "AUS-NSW": {
-            "countryName": "Úc",
-            "zoneName": "New South Wales"
-        },
-        "AUS-NT": {
-            "countryName": "Úc",
-            "zoneName": "Lãnh thổ phía Bắc"
-        },
-        "AUS-QLD": {
-            "countryName": "Úc",
-            "zoneName": "Queensland"
-        },
-        "AUS-SA": {
-            "countryName": "Úc",
-            "zoneName": "Nam Úc"
-        },
-        "AUS-TAS": {
-            "countryName": "Úc",
-            "zoneName": "Tasmania"
-        },
-        "AUS-TAS-KI": {
-            "countryName": "Tasmania",
-            "zoneName": "Đảo King"
-        },
-        "AUS-VIC": {
-            "countryName": "Úc",
-            "zoneName": "Victoria"
-        },
-        "AUS-WA": {
-            "countryName": "Úc",
-            "zoneName": "Tây Úc"
-        },
-        "AW": {
-            "zoneName": "Aruba"
-        },
-        "AX": {
-            "zoneName": "Quần đảo Åland"
-        },
-        "AZ": {
-            "zoneName": "Azerbaijan"
-        },
-        "BA": {
-            "zoneName": "Bosnia và Herzegovina"
-        },
-        "BB": {
-            "zoneName": "Barbados"
-        },
-        "BD": {
-            "zoneName": "Bangladesh"
-        },
-        "BE": {
-            "zoneName": "Bỉ"
-        },
-        "BF": {
-            "zoneName": "Burkina Faso"
-        },
-        "BG": {
-            "zoneName": "Bulgaria"
-        },
-        "BH": {
-            "zoneName": "Bahrain"
-        },
-        "BI": {
-            "zoneName": "Burundi"
-        },
-        "BJ": {
-            "zoneName": "Benin"
-        },
-        "BM": {
-            "zoneName": "Bermuda"
-        },
-        "BN": {
-            "zoneName": "Brunei"
-        },
-        "BO": {
-            "zoneName": "Bolivia"
-        },
-        "BQ": {
-            "zoneName": "Bonaire, Sint Eustatius và Saba"
-        },
-        "BR-CS": {
-            "countryName": "Brazil",
-            "zoneName": "Trung Brazil"
-        },
-        "BR-N": {
-            "countryName": "Brazil",
-            "zoneName": "Đông Brazil"
-        },
-        "BR-NE": {
-            "countryName": "Brazil",
-            "zoneName": "Đông Bắc Brazil"
-        },
-        "BR-S": {
-            "countryName": "Brazil",
-            "zoneName": "Nam Brazil"
-        },
-        "BS": {
-            "zoneName": "Bahamas"
-        },
-        "BT": {
-            "zoneName": "Bhutan"
-        },
-        "BV": {
-            "zoneName": "Đảo Bouvet"
-        },
-        "BW": {
-            "zoneName": "Botswana"
-        },
-        "BY": {
-            "zoneName": "Belarus"
-        },
-        "BZ": {
-            "zoneName": "Belize"
-        },
-        "CA-AB": {
-            "countryName": "Canada",
-            "zoneName": "Alberta"
-        },
-        "CA-BC": {
-            "countryName": "Canada",
-            "zoneName": "British Columbia"
-        },
-        "CA-MB": {
-            "countryName": "Canada",
-            "zoneName": "Manitoba"
-        },
-        "CA-NL": {
-            "countryName": "Canada",
-            "zoneName": "Newfoundland và Labrador"
-        },
-        "CA-NB": {
-            "countryName": "Canada",
-            "zoneName": "New Brunswick"
-        },
-        "CA-NT": {
-            "countryName": "Canada",
-            "zoneName": "Các Lãnh thổ Tây Bắc"
-        },
-        "CA-NS": {
-            "countryName": "Canada",
-            "zoneName": "Nova Scotia"
-        },
-        "CA-NU": {
-            "countryName": "Canada",
-            "zoneName": "Nunavut"
-        },
-        "CA-ON": {
-            "countryName": "Canada",
-            "zoneName": "Ontario"
-        },
-        "CA-PE": {
-            "countryName": "Canada",
-            "zoneName": "Đảo Hoàng tử Edward"
-        },
-        "CA-QC": {
-            "countryName": "Canada",
-            "zoneName": "Québec"
-        },
-        "CA-SK": {
-            "countryName": "Canada",
-            "zoneName": "Saskatchewan"
-        },
-        "CA-YT": {
-            "countryName": "Canada",
-            "zoneName": "Yukon"
-        },
-        "CC": {
-            "zoneName": "Quần đảo Cocos"
-        },
-        "CD": {
-            "zoneName": "Cộng hòa Dân chủ Congo"
-        },
-        "CF": {
-            "zoneName": "Cộng hòa Trung Phi"
-        },
-        "CG": {
-            "zoneName": "Congo"
-        },
-        "CH": {
-            "zoneName": "Thụy Sỹ"
-        },
-        "CI": {
-            "zoneName": "Bờ Biển Ngà"
-        },
-        "CK": {
-            "zoneName": "Quần đảo Cook"
-        },
-        "CL-SING-SIC": {
-            "countryName": "Chile",
-            "zoneName": "SING/SIC"
-        },
-        "CL-SEM": {
-            "countryName": "Chile",
-            "zoneName": "SEM"
-        },
-        "CL-SEA": {
-            "countryName": "Chile",
-            "zoneName": "SEA"
-        },
-        "CM": {
-            "zoneName": "Cameroon"
-        },
-        "CN": {
-            "zoneName": "Trung Quốc"
-        },
-        "CO": {
-            "zoneName": "Colombia"
-        },
-        "CR": {
-            "zoneName": "Costa Rica"
-        },
-        "CU": {
-            "zoneName": "Cuba"
-        },
-        "CV": {
-            "zoneName": "Cabo Verde"
-        },
-        "CW": {
-            "zoneName": "Curaçao"
-        },
-        "CX": {
-            "zoneName": "Đảo Giáng Sinh"
-        },
-        "CY": {
-            "zoneName": "Cyprus"
-        },
-        "CZ": {
-            "zoneName": "Czechia"
-        },
-        "DE": {
-            "zoneName": "Đức"
-        },
-        "DJ": {
-            "zoneName": "Djibouti"
-        },
-        "DK": {
-            "zoneName": "Đan Mạch"
-        },
-        "DK-DK1": {
-            "countryName": "Đan Mạch",
-            "zoneName": "Tây Đan Mạch"
-        },
-        "DK-DK2": {
-            "countryName": "Đan Mạch",
-            "zoneName": "Đông Đan Mạch"
-        },
-        "DK-BHM": {
-            "countryName": "Đan Mạch",
-            "zoneName": "Bornholm"
-        },
-        "DM": {
-            "zoneName": "Dominica"
-        },
-        "DO": {
-            "zoneName": "Cộng hòa Dominican"
-        },
-        "DZ": {
-            "zoneName": "Algeria"
-        },
-        "EC": {
-            "zoneName": "Ecuador"
-        },
-        "EE": {
-            "zoneName": "Estonia"
-        },
-        "EG": {
-            "zoneName": "Ai Cập"
-        },
-        "EH": {
-            "zoneName": "Tây Sahara"
-        },
-        "ER": {
-            "zoneName": "Eritrea"
-        },
-        "ES": {
-            "zoneName": "Tây Ban Nha"
-        },
-        "ES-IB-FO": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Formentera"
-        },
-        "ES-IB-IZ": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Ibiza"
-        },
-        "ES-IB-MA": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Mallorca"
-        },
-        "ES-IB-ME": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Menorca"
-        },
-        "ES-CN-FVLZ": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Fuerteventura/Lanzarote"
-        },
-        "ES-CN-GC": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Gran Canaria"
-        },
-        "ES-CN-HI": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "El Hierro"
-        },
-        "ES-CN-IG": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Isla de la Gomera"
-        },
-        "ES-CN-LP": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "La Palma"
-        },
-        "ES-CN-TE": {
-            "countryName": "Tây Ban Nha",
-            "zoneName": "Tenerife"
-        },
-        "ET": {
-            "zoneName": "Ethiopia"
-        },
-        "FI": {
-            "zoneName": "Phần Lan"
-        },
-        "FJ": {
-            "zoneName": "Fiji"
-        },
-        "FK": {
-            "zoneName": "Quần đảo Falkland"
-        },
-        "FM": {
-            "zoneName": "Micronesia"
-        },
-        "FO": {
-            "zoneName": "Quần đảo Faroe"
-        },
-        "FR": {
-            "zoneName": "Pháp"
-        },
-        "FR-COR": {
-            "countryName": "Pháp",
-            "zoneName": "Corsica"
-        },
-        "GA": {
-            "zoneName": "Gabon"
-        },
-        "GB": {
-            "zoneName": "Đảo Anh"
-        },
-        "GB-NIR": {
-            "zoneName": "Bắc Ireland"
-        },
-        "GB-ORK": {
-            "countryName": "Great Britain",
-            "zoneName": "Quần đảo Orkney"
-        },
-        "GB-SHI": {
-            "countryName": "Great Britain",
-            "zoneName": "Quần đảo Shetland"
-        },
-        "GB-ZET": {
-            "countryName": "Great Britain",
-            "zoneName": "Quần đảo Shetland"
-        },
-        "GD": {
-            "zoneName": "Grenada"
-        },
-        "GE": {
-            "zoneName": "Georgia"
-        },
-        "GF": {
-            "zoneName": "French Guiana"
-        },
-        "GG": {
-            "zoneName": "Guernsey"
-        },
-        "GH": {
-            "zoneName": "Ghana"
-        },
-        "GI": {
-            "zoneName": "Gibraltar"
-        },
-        "GL": {
-            "zoneName": "Greenland"
-        },
-        "GM": {
-            "zoneName": "Gambia"
-        },
-        "GN": {
-            "zoneName": "Guinea"
-        },
-        "GP": {
-            "zoneName": "Guadeloupe"
-        },
-        "GQ": {
-            "zoneName": "Guinea Xích đạo"
-        },
-        "GR": {
-            "zoneName": "Hy Lạp"
-        },
-        "GR-IS": {
-            "countryName": "Hy Lạp",
-            "zoneName": "Quần đảo Aegean"
-        },
-        "GS": {
-            "zoneName": "Nam Georgia và Quần đảo Nam Sandwich"
-        },
-        "GT": {
-            "zoneName": "Guatemala"
-        },
-        "GU": {
-            "zoneName": "Guam"
-        },
-        "GW": {
-            "zoneName": "Guinea-Bissau"
-        },
-        "GY": {
-            "zoneName": "Guyana"
-        },
-        "HK": {
-            "zoneName": "Hồng Kông"
-        },
-        "HM": {
-            "zoneName": "Đảo Heard và Quần đảo McDonald"
-        },
-        "HN": {
-            "zoneName": "Honduras"
-        },
-        "HR": {
-            "zoneName": "Croatia"
-        },
-        "HT": {
-            "zoneName": "Haiti"
-        },
-        "HU": {
-            "zoneName": "Hungary"
-        },
-        "ID": {
-            "zoneName": "Indonesia"
-        },
-        "IE": {
-            "zoneName": "Ireland"
-        },
-        "IL": {
-            "zoneName": "Israel"
-        },
-        "IM": {
-            "zoneName": "Đảo Man"
-        },
-        "IN-AN": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Andaman và Quần đảo Nicobar"
-        },
-        "IN-AP": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Andhra Pradesh"
-        },
-        "IN-AR": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Arunachal Pradesh"
-        },
-        "IN-AS": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Assam"
-        },
-        "IN-BR": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Bihar"
-        },
-        "IN-CT": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Chhattisgarh"
-        },
-        "IN-DL": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Delhi"
-        },
-        "IN-DN": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Dadra và Nagar Haveli"
-        },
-        "IN-GA": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Goa"
-        },
-        "IN-GJ": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Gujarat"
-        },
-        "IN-HP": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Himachal Pradesh"
-        },
-        "IN-HR": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Haryana"
-        },
-        "IN-JH": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Jharkhand"
-        },
-        "IN-JK": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Jammu và Kashmir"
-        },
-        "IN-KA": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Karnataka"
-        },
-        "IN-KL": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Kerala"
-        },
-        "IN-MH": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Maharashtra"
-        },
-        "IN-ML": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Meghalaya"
-        },
-        "IN-MN": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Manipur"
-        },
-        "IN-MP": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Madhya Pradesh"
-        },
-        "IN-MZ": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Mizoram"
-        },
-        "IN-NL": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Nagaland"
-        },
-        "IN-OR": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Orissa"
-        },
-        "IN-PB": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Punjab"
-        },
-        "IN-PY": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Pondicherry"
-        },
-        "IN-RJ": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Rajasthan"
-        },
-        "IN-SK": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Sikkim"
-        },
-        "IN-TN": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Tamil Nadu"
-        },
-        "IN-TR": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Tripura"
-        },
-        "IN-UP": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Uttar Pradesh"
-        },
-        "IN-UT": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Uttarakhand"
-        },
-        "IN-WB": {
-            "countryName": "Ấn Độ",
-            "zoneName": "Tây Bengal"
-        },
-        "IO": {
-            "zoneName": "Lãnh thổ Ấn Độ Dương thuộc Anh"
-        },
-        "IQ": {
-            "zoneName": "Iraq"
-        },
-        "IQ-KUR": {
-            "countryName": "Iraq",
-            "zoneName": "Kurdistan"
-        },
-        "IR": {
-            "zoneName": "Iran"
-        },
-        "IS": {
-            "zoneName": "Iceland"
-        },
-        "IT": {
-            "zoneName": "Ý"
-        },
-        "IT-CNO": {
-            "countryName": "Ý",
-            "zoneName": "Trung Bắc"
-        },
-        "IT-CSO": {
-            "countryName": "Ý",
-            "zoneName": "Trung Nam"
-        },
-        "IT-NO": {
-            "countryName": "Ý",
-            "zoneName": "Bắc"
-        },
-        "IT-SAR": {
-            "countryName": "Ý",
-            "zoneName": "Sardinia"
-        },
-        "IT-SIC": {
-            "countryName": "Ý",
-            "zoneName": "Sicily"
-        },
-        "IT-SO": {
-            "countryName": "Ý",
-            "zoneName": "Nam"
-        },
-        "JE": {
-            "zoneName": "Jersey"
-        },
-        "JM": {
-            "zoneName": "Jamaica"
-        },
-        "JO": {
-            "zoneName": "Jordan"
-        },
-        "JP-CB": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Chūbu"
-        },
-        "JP-CG": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Chūgoku"
-        },
-        "JP-HKD": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Hokkaidō"
-        },
-        "JP-HR": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Hokuriku"
-        },
-        "JP-KN": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Kansai"
-        },
-        "JP-KY": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Kyūshū"
-        },
-        "JP-ON": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Okinawa"
-        },
-        "JP-SK": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Shikoku"
-        },
-        "JP-TH": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Tōhoku"
-        },
-        "JP-TK": {
-            "countryName": "Nhật Bản",
-            "zoneName": "Tōkyō"
-        },
-        "KE": {
-            "zoneName": "Kenya"
-        },
-        "KG": {
-            "zoneName": "Kyrgyzstan"
-        },
-        "KH": {
-            "zoneName": "Cam-pu-chia"
-        },
-        "KI": {
-            "zoneName": "Kiribati"
-        },
-        "KM": {
-            "zoneName": "Comoros"
-        },
-        "KN": {
-            "zoneName": "Saint Kitts và Nevis"
-        },
-        "KP": {
-            "zoneName": "Bắc Triều Tiên"
-        },
-        "KR": {
-            "zoneName": "Hàn Quốc"
-        },
-        "KW": {
-            "zoneName": "Kuwait"
-        },
-        "KY": {
-            "zoneName": "Quần đảo Cayman"
-        },
-        "KZ": {
-            "zoneName": "Kazakhstan"
-        },
-        "LA": {
-            "zoneName": "Lào"
-        },
-        "LB": {
-            "zoneName": "Lebanon"
-        },
-        "LC": {
-            "zoneName": "Saint Lucia"
-        },
-        "LI": {
-            "zoneName": "Liechtenstein"
-        },
-        "LK": {
-            "zoneName": "Sri Lanka"
-        },
-        "LR": {
-            "zoneName": "Liberia"
-        },
-        "LS": {
-            "zoneName": "Lesotho"
-        },
-        "LT": {
-            "zoneName": "Lithuania"
-        },
-        "LU": {
-            "zoneName": "Luxembourg"
-        },
-        "LV": {
-            "zoneName": "Latvia"
-        },
-        "LY": {
-            "zoneName": "Libya"
-        },
-        "MA": {
-            "zoneName": "Morocco"
-        },
-        "MC": {
-            "zoneName": "Monaco"
-        },
-        "MD": {
-            "zoneName": "Moldova"
-        },
-        "ME": {
-            "zoneName": "Montenegro"
-        },
-        "MF": {
-            "countryName": "Saint Martin",
-            "zoneName": "French"
-        },
-        "MG": {
-            "zoneName": "Madagascar"
-        },
-        "MH": {
-            "zoneName": "Quần đảo Marshall"
-        },
-        "MK": {
-            "zoneName": "Bắc Macedonia"
-        },
-        "ML": {
-            "zoneName": "Mali"
-        },
-        "MM": {
-            "zoneName": "Myanmar"
-        },
-        "MN": {
-            "zoneName": "Mông Cổ"
-        },
-        "MO": {
-            "zoneName": "Macao"
-        },
-        "MP": {
-            "zoneName": "Quần đảo Bắc Mariana"
-        },
-        "MQ": {
-            "zoneName": "Martinique"
-        },
-        "MR": {
-            "zoneName": "Mauritania"
-        },
-        "MS": {
-            "zoneName": "Montserrat"
-        },
-        "MT": {
-            "zoneName": "Malta"
-        },
-        "MU": {
-            "zoneName": "Mauritius"
-        },
-        "MV": {
-            "zoneName": "Maldives"
-        },
-        "MW": {
-            "zoneName": "Malawi"
-        },
-        "MX": {
-            "zoneName": "Mexico"
-        },
-        "MX-BC": {
-            "countryName": "Mexico",
-            "zoneName": "Baja California"
-        },
-        "MX-CE": {
-            "countryName": "Mexico",
-            "zoneName": "Central"
-        },
-        "MX-NE": {
-            "countryName": "Mexico",
-            "zoneName": "Đông Bắc"
-        },
-        "MX-NO": {
-            "countryName": "Mexico",
-            "zoneName": "Đông"
-        },
-        "MX-NW": {
-            "countryName": "Mexico",
-            "zoneName": "Đông Nam"
-        },
-        "MX-OC": {
-            "countryName": "Mexico",
-            "zoneName": "Occidental"
-        },
-        "MX-OR": {
-            "countryName": "Mexico",
-            "zoneName": "Oriental"
-        },
-        "MX-PN": {
-            "countryName": "Mexico",
-            "zoneName": "Peninsula"
-        },
-        "MY-EM": {
-            "countryName": "Malaysia",
-            "zoneName": "Borneo"
-        },
-        "MY-WM": {
-            "countryName": "Malaysia",
-            "zoneName": "Peninsula"
-        },
-        "MZ": {
-            "zoneName": "Mozambique"
-        },
-        "NA": {
-            "zoneName": "Namibia"
-        },
-        "NC": {
-            "zoneName": "Tân Caledonia"
-        },
-        "NE": {
-            "zoneName": "Niger"
-        },
-        "NF": {
-            "zoneName": "Đảo Norfolk"
-        },
-        "NG": {
-            "zoneName": "Nigeria"
-        },
-        "NI": {
-            "zoneName": "Nicaragua"
-        },
-        "NKR": {
-            "zoneName": "Nagorno-Karabakh"
-        },
-        "NL": {
-            "zoneName": "Hà Lan"
-        },
-        "NO-NO1": {
-            "countryName": "Na Uy",
-            "zoneName": "Đông Nam Na Uy"
-        },
-        "NO-NO2": {
-            "countryName": "Na Uy",
-            "zoneName": "Tây Bắc Na Uy"
-        },
-        "NO-NO3": {
-            "countryName": "Na Uy",
-            "zoneName": "Trung Na Uy"
-        },
-        "NO-NO4": {
-            "countryName": "Na Uy",
-            "zoneName": "Bắc Na Uy"
-        },
-        "NO-NO5": {
-            "countryName": "Na Uy",
-            "zoneName": "Tây Na Uy"
-        },
-        "NP": {
-            "zoneName": "Nepal"
-        },
-        "NR": {
-            "zoneName": "Nauru"
-        },
-        "NU": {
-            "zoneName": "Niue"
-        },
-        "NZ": {
-            "zoneName": "New Zealand"
-        },
-        "NZ-NZA": {
-            "countryName": "New Zealand",
-            "zoneName": "Quần đảo Auckland"
-        },
-        "NZ-NZC": {
-            "countryName": "New Zealand",
-            "zoneName": "Quần đảo Chatham"
-        },
-        "OM": {
-            "zoneName": "Oman"
-        },
-        "PA": {
-            "zoneName": "Panama"
-        },
-        "PE": {
-            "zoneName": "Peru"
-        },
-        "PF": {
-            "zoneName": "Polynésie thuộc Pháp"
-        },
-        "PG": {
-            "zoneName": "Papua New Guinea"
-        },
-        "PH": {
-            "zoneName": "Philippines"
-        },
-        "PK": {
-            "zoneName": "Pakistan"
-        },
-        "PL": {
-            "zoneName": "Ba Lan"
-        },
-        "PM": {
-            "zoneName": "Saint Pierre và Miquelon"
-        },
-        "PN": {
-            "zoneName": "Pitcairn"
-        },
-        "PR": {
-            "zoneName": "Puerto Rico"
-        },
-        "PS": {
-            "zoneName": "Nhà nước Palestine"
-        },
-        "PT": {
-            "zoneName": "Bồ Đào Nha"
-        },
-        "PT-AC": {
-            "countryName": "Bồ Đào Nha",
-            "zoneName": "Azores"
-        },
-        "PT-MA": {
-            "countryName": "Bồ Đào Nha",
-            "zoneName": "Madeira"
-        },
-        "PW": {
-            "zoneName": "Palau"
-        },
-        "PY": {
-            "zoneName": "Paraguay"
-        },
-        "QA": {
-            "zoneName": "Qatar"
-        },
-        "RE": {
-            "zoneName": "Réunion"
-        },
-        "RO": {
-            "zoneName": "Romania"
-        },
-        "RS": {
-            "zoneName": "Serbia"
-        },
-        "RU": {
-            "zoneName": "Nga"
-        },
-        "RU-1": {
-            "countryName": "Nga",
-            "zoneName": "Nga thuộc châu Âu và Ural"
-        },
-        "RU-2": {
-            "countryName": "Nga",
-            "zoneName": "Siberia"
-        },
-        "RU-EU": {
-            "zoneName": "Nga"
-        },
-        "RU-AS": {
-            "zoneName": "Nga"
-        },
-        "RU-KGD": {
-            "countryName": "Nga",
-            "zoneName": "Kaliningrad"
-        },
-        "RW": {
-            "zoneName": "Rwanda"
-        },
-        "SA": {
-            "zoneName": "Saudi Arabia"
-        },
-        "SB": {
-            "zoneName": "Quần đảo Solomon"
-        },
-        "SC": {
-            "zoneName": "Seychelles"
-        },
-        "SD": {
-            "zoneName": "Sudan"
-        },
-        "SE": {
-            "zoneName": "Thụy Điển"
-        },
-        "SG": {
-            "zoneName": "Singapore"
-        },
-        "SH": {
-            "zoneName": "Saint Helena, Ascension và Tristan da Cunha"
-        },
-        "SI": {
-            "zoneName": "Slovenia"
-        },
-        "SJ": {
-            "zoneName": "Svalbard và Jan Mayen"
-        },
-        "SK": {
-            "zoneName": "Slovakia"
-        },
-        "SL": {
-            "zoneName": "Sierra Leone"
-        },
-        "SM": {
-            "zoneName": "San Marino"
-        },
-        "SN": {
-            "zoneName": "Senegal"
-        },
-        "SO": {
-            "zoneName": "Somalia"
-        },
-        "SR": {
-            "zoneName": "Suriname"
-        },
-        "SS": {
-            "zoneName": "Nam Sudan"
-        },
-        "ST": {
-            "zoneName": "Sao Tome và Principe"
-        },
-        "SV": {
-            "zoneName": "El Salvador"
-        },
-        "SX": {
-            "countryName": "Sint Maarten",
-            "zoneName": "Dutch"
-        },
-        "SY": {
-            "zoneName": "Syria"
-        },
-        "SZ": {
-            "zoneName": "Swaziland"
-        },
-        "TC": {
-            "zoneName": "Quần đảo Turks và Caicos"
-        },
-        "TD": {
-            "zoneName": "Chad"
-        },
-        "TF": {
-            "zoneName": "Vùng đất phía Nam thuộc Pháp"
-        },
-        "TG": {
-            "zoneName": "Togo"
-        },
-        "TH": {
-            "zoneName": "Thái Lan"
-        },
-        "TJ": {
-            "zoneName": "Tajikistan"
-        },
-        "TK": {
-            "zoneName": "Tokelau"
-        },
-        "TL": {
-            "zoneName": "Timor-Leste"
-        },
-        "TM": {
-            "zoneName": "Turkmenistan"
-        },
-        "TN": {
-            "zoneName": "Tunisia"
-        },
-        "TO": {
-            "zoneName": "Tonga"
-        },
-        "TR": {
-            "zoneName": "Thổ Nhĩ Kỳ"
-        },
-        "TT": {
-            "zoneName": "Trinidad và Tobago"
-        },
-        "TV": {
-            "zoneName": "Tuvalu"
-        },
-        "TW": {
-            "zoneName": "Đài Loan"
-        },
-        "TZ": {
-            "zoneName": "Tanzania"
-        },
-        "UA": {
-            "zoneName": "Ukraine"
-        },
-        "UA-CR": {
-            "countryName": "Crimea",
-            "zoneName": "Ukraine"
-        },
-        "UG": {
-            "zoneName": "Uganda"
-        },
-        "UM": {
-            "zoneName": "Các tiểu đảo xa của Hoa Kỳ"
-        },
-        "US-HI-HA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Hawaii"
-        },
-        "US-HI-KA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Kauai"
-        },
-        "US-HI-KH": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Kahoolawe"
-        },
-        "US-HI-LA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Lanai"
-        },
-        "US-HI-MA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Maui"
-        },
-        "US-HI-MO": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Molokai"
-        },
-        "US-HI-NI": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Niihau"
-        },
-        "US-HI-OA": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Oahu"
-        },
-        "UY": {
-            "zoneName": "Uruguay"
-        },
-        "UZ": {
-            "zoneName": "Uzbekistan"
-        },
-        "VA": {
-            "zoneName": "Vatican City"
-        },
-        "VC": {
-            "zoneName": "Saint Vincent and the Grenadines"
-        },
-        "VE": {
-            "zoneName": "Venezuela"
-        },
-        "VG": {
-            "countryName": "Virgin Islands",
-            "zoneName": "Virgin Islands"
-        },
-        "VI": {
-            "countryName": "Hoa Kỳ",
-            "zoneName": "Virgin Islands"
-        },
-        "VN": {
-            "zoneName": "Việt Nam"
-        },
-        "VU": {
-            "zoneName": "Vanuatu"
-        },
-        "WF": {
-            "zoneName": "Wallis and Futuna"
-        },
-        "WS": {
-            "zoneName": "Samoa"
-        },
-        "XX": {
-            "zoneName": "Northern Cyprus"
-        },
-        "YE": {
-            "zoneName": "Yemen"
-        },
-        "YT": {
-            "zoneName": "Mayotte"
-        },
-        "ZA": {
-            "zoneName": "Nam Phi"
-        },
-        "ZM": {
-            "zoneName": "Zambia"
-        },
-        "ZW": {
-            "zoneName": "Zimbabwe"
-        }
+    "view4": {
+      "header": "Real-time wind and solar conditions",
+      "text": "Wind and solar energy production depend on the weather. Press the sun and wind buttons to display the real-time strength of wind and sunshine throughout the world."
     }
+  },
+  "country-panel": {
+    "source": "Nguồn",
+    "carbonintensity": "Mật độ Cacbon",
+    "lowcarbon": "Mật độ Cacbon thấp",
+    "renewable": "Năng lượng tái tạo",
+    "electricityproduction": "Electricity production",
+    "electricityconsumption": "Electricity consumption",
+    "bysource": "bởi nguồn",
+    "emissions": "Chất thải cacbon",
+    "addeditsource": "<a href=\"%s\" target=\"_blank\">thêm hoặc chỉnh sửa nguồn</a>",
+    "helpfrom": "with help from",
+    "noDataAtTimestamp": "Dữ liệu đang tạm thời chưa có trong khoảng thời gian được chọn",
+    "noLiveData": "Live data is temporarily unavailable for this area",
+    "noParserInfo": "Chúng tôi vẫn chưa có thông tin cho khu vực này.<br/> Want to help fix this? You can contribute by <a href=\"%s\" target=\"_blank\">adding area data</a>.",
+    "now": "Hiện tại"
+  },
+  "left-panel": {
+    "zone-list-header-title": "Ảnh hưởng tới thời tiếtClimate Impact by Area",
+    "zone-list-header-subtitle": "Ranked by carbon intensity of electricity consumed (gCO₂eq/kWh)",
+    "search": "Tìm khu vực"
+  },
+  "country-history": {
+    "Getdata": "Get historical data, marginal and forecast API",
+    "carbonintensity": { "hourly": "Mật độ cacbon trong vòng 24 giờ" },
+    "emissionsorigin": { "hourly": "Nguồn gốc chất thải trong vòng 24 giờ" },
+    "emissionsproduction": { "hourly": "Chất thải được sản sinh ra trong vòng 24 giờ" },
+    "electricityorigin": { "hourly": "Origin of electricity in the last 24 hours" },
+    "electricityproduction": { "hourly": "Electricity production in the last 24 hours" },
+    "electricityprices": { "hourly": "Electricity prices in the last 24 hours" }
+  },
+  "footer": {
+    "foundbugs": "Found bugs or have ideas? Report them",
+    "faq-text": "Anything unclear? Check out our",
+    "faq": "frequently asked questions.",
+    "here": "here"
+  },
+  "legends": {
+    "windpotential": "Wind power potential",
+    "solarpotential": "Solar power potential",
+    "colorblindmode": "chế độ mù màu",
+    "carbonintensity": "Carbon intensity"
+  },
+  "tooltips": {
+    "carbonintensity": "Carbon intensity",
+    "lowcarbon": "Low-carbon",
+    "renewable": "Renewable",
+    "crossborderexport": "Cross-border export",
+    "carbonintensityexport": "Carbon intensity of export",
+    "ofinstalled": "of installed capacity",
+    "utilizing": "utilizing",
+    "withcarbonintensity": "with a carbon intensity of",
+    "showWindLayer": "Show wind layer",
+    "hideWindLayer": "Hide wind layer",
+    "showSolarLayer": "Show solar layer",
+    "hideSolarLayer": "Hide solar layer",
+    "toggleDarkMode": "Toggle dark-mode",
+    "noParserInfo": "No data available",
+    "temporaryDataOutage": "Data temporarily unavailable",
+    "production": "production",
+    "consumption": "consumption",
+    "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+    "selectLanguage": "Select language"
+  },
+  "misc": {
+    "maintitle": "Live CO₂ emissions of electricity consumption",
+    "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",
+    "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
+    "retrynow": "Retry now",
+    "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+    "legend": "Legend",
+    "faq": "Các câu hỏi thường gặp"
+  },
+  "wind": "wind",
+  "solar": "solar",
+  "hydro": "hydro",
+  "hydro storage": "hydro storage",
+  "battery storage": "battery storage",
+  "biomass": "biomass",
+  "nuclear": "nuclear",
+  "geothermal": "geothermal",
+  "gas": "gas",
+  "coal": "coal",
+  "oil": "oil",
+  "unknown": "unknown",
+  "electricityComesFrom": "%1$s %% lượng điện năng ở <img id=\"country-flag\"></img> <b>%2$s</b> đến từ %3$s",
+  "emissionsComeFrom": "%1$s %% lượng khí thải từ viêc sản xuất điện ở <img id=\"country-flag\"></img> <b>%2$s</b> đến từ %3$s",
+  "electricityStoredUsing": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is stored using %3$s",
+  "emissionsStoredUsing": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are stored using %3$s",
+  "electricityExportedTo": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsExportedTo": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are exported to <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "electricityImportedFrom": "%1$s %% of electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> is imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "emissionsImportedFrom": "%1$s %% of emissions from electricity available in <img id=\"country-flag\"></img> <b>%2$s</b> are imported from <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
+  "ofCO2eqPerMinute": "of CO₂eq per minute",
+  "theMap": {
+    "groupName": "Bản đồ",
+    "mapColors-question": "Những màu trên bản đồ có ý nghĩa gì?",
+    "mapColors-answer": "We color areas on the map by the amounts of greenhouse gases that is emitted for each unit of electricity consumed there (its <a href=\"#carbonIntensity\" class=\"entry-link\">carbon intensity</a>). Greener colours means more climate friendly electricity consumption.",
+    "mapArrows-question": "What do the arrows between areas on the map indicate?",
+    "mapArrows-answer": "Arrows between the areas indicate the physical flow (imports and exports) of electricity between areas: the faster they blink, the faster the flow. The flow of electricity is important, because when you import some of your electricity from neighboring areas, you are also importing the carbon emissions associated with its production.",
+    "mapSolarWindButtons-question": "Biểu tượng nút 'mặt trời' và 'gió' trên bản đồ làm gì?",
+    "mapSolarWindButtons-answer": "These buttons toggle the display of real-time wind speeds and sunsine strength, giving an indication of the potential for transitioning to solar and wind based energy alternatives in different areas. Note that this is just a superficial indication, as the actual potential in installing wind turbines and solar cells also is dependent on many other factors.",
+    "mapNuclearColors-question": "Why are nuclear-powered countries shown as green on the map?",
+    "mapNuclearColors-answer": "Nuclear energy production has a very low carbon intensity (<a href=\"https://en.wikipedia.org/wiki/Life-cycle_greenhouse-gas_emissions_of_energy_sources#2014_IPCC.2C_Global_warming_potential_of_selected_electricity_sources\"  target=\"_blank\" >source</a>), and nuclear-powered countries are therefore shown as green on the map. This does not mean that there are not other environmental challenges associated nuclear energy (as is also the case with other forms of energy production), but these challenges are unrelated to the emissions of greenhouse gases and are therefore outside the scope of this map.",
+    "mapColorBlind-question": "Tôi bị mù màu. Làm thế nào tôi có thể đọc bản đồ?",
+    "mapColorBlind-answer": "You can change the colours displayed in the map by enabling the “color blind mode” setting. It is located on the bottom of the left panel on desktop and in the information tab on the mobile app."
+  },
+  "mapAreas": {
+    "groupName": "Các khu vực trên bản đồ",
+    "noData-question": "Why is data for my area not available?",
+    "noData-answer": " Either because the area's data sources are temporarily unavailable, or because we do not yet have any data sources setup for the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>.",
+    "whySmallAreas-question": "Why do you divide the world into smaller areas and not simply show country averages?",
+    "whySmallAreas-answer": "The areas are the smallest geographical areas we have data for. By having access to information at the highest level of granularity, electricity consumers in different areas can have a more precise knowledge about the origin of the electricity they are consuming, and its associated climate impact.",
+    "divideExistingArea-question": "Can you divide my area into smaller parts?",
+    "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
+    "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
+    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+  },
+  "methodology": {
+    "groupName": "Phương pháp của chúng tôi",
+    "carbonIntensity-question": "What is \"carbon intensity\"?",
+    "carbonIntensity-answer": "Carbon intensity is a measure of the greenhouse gas emissions associated with producing the electricity you consume (in gCO₂eq/kWh - grams of carbon dioxide equivalents emitted per kilowatt hour of electricity consumed). <br><br>We measure the emissions of electricity consumption (not production), meaning all greenhouse gas emissions (both CO₂ and other greenhouse gases such as methane) that has gone into producing the electricity which is being consumed in an area, taking into account the carbon intensities of the electricity imported from other areas. We use a life cycle analysis (LCA) approach, meaning that we take into account emissions arising from the whole life cycle of power plants (construction, fuel production, operational emissions, and decommissioning).",
+    "consumptionFocus-question": "Why do you calculate the carbon intensity of electricity consumption instead of production?",
+    "consumptionFocus-answer": "We believe citizens should be responsible for the electricity they consume, and not for the electricity that is produced in the area that they happen to live in. Furthermore, we believe areas should not be able to 'fake' a low climate impact simply by relocating dirty energy production to other areas and then import the electricity from those areas.",
+    "renewableLowCarbonDifference-question": "What is the difference between “renewable” and “low-carbon”?",
+    "renewableLowCarbonDifference-answer": "Renewable energy production is based on renewable energy sources such as wind and water flow, sunshine,  and geothermal energy. Low-carbon energy production means that the production involves a very low level of greenhouse gas emissions, such as in nuclear power production.",
+    "importsAndExports-question": "Do you take into account imports and exports of electricity?",
+    "importsAndExports-answer": "Yes, we do. Imports and exports can be seen on the map as small <a href=\"#mapArrows\" class=\"entry-link\">arrows between different areas</a>. Detailed information can be seen in the charts shown when you click on an area.",
+    "emissionsOfStored-question": "What about emissions from generating electricity which is then stored in batteries or used to fill reservoirs?",
+    "emissionsOfStored-answer": "As currently only a small proportion of electricity is stored, inaccuracies in the modelling of these emissions should not make much difference to the total at present. However given the increasing importance of storage we hope to take it into account more fully in our model shortly.",
+    "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
+    "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based, physical picture of the power grid, in order to empower consumers.",
+    "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
+    "otherSources-answer": "This would be outside of the scope of this project. However, at electricityMap we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
+    "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
+    "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
+    "emissionsPerCapita-question": "Why don't you show emissions per capita?",
+    "emissionsPerCapita-answer": "Some of the electricity consumed in an area is used in for manufacturing of physical goods and products which are later exported and consumed in other areas. This manufacturing, and therefore also its electricity consumption and associated emissions, is driven by the consumption of products in the <em>importing areas</em>, not in the area where the production is taking place. We believe people should only be responsible for what they consume, not for products manufactured in the area they live in that they do not consume it themselves. In this sense, showing per capita emissions of electricity consumption for areas is misleading."
+  },
+  "data": {
+    "groupName": "Dữ liệu của chúng tôi",
+    "dataOrigins-question": "How do you get your data?",
+    "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
+    "dataDownload-question": "Can I download your data?",
+    "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+    "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
+    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+  },
+  "aboutUs": {
+    "groupName": "Về chúng tôi",
+    "whoAreYou-question": "Who are you?",
+    "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, a small Danish/French start-up company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+    "feedback-question": "Can I give you some feedback?",
+    "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymap.org\">send us an email!</a>",
+    "contribute-question": "Can I contribute to your project?",
+    "contribute-answer": " Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "workTogether-question": "Can we work together?",
+    "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymap.org\">Send us an email!</a>",
+    "disclaimer-question": "Disclaimer",
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+  },
+  "zoneShortName": {
+    "AD": { "zoneName": "Andorra" },
+    "AE": { "zoneName": "Các Tiểu vương quốc Ả rập Thống nhất" },
+    "AF": { "zoneName": "Afghanistan" },
+    "AG": { "zoneName": "Antigua và Barbuda" },
+    "AI": { "zoneName": "Anguilla" },
+    "AL": { "zoneName": "Albania" },
+    "AM": { "zoneName": "Armenia" },
+    "AO": { "zoneName": "Angola" },
+    "AQ": { "zoneName": "Bắc Cực" },
+    "AS": { "zoneName": "American Samoa" },
+    "AT": { "zoneName": "Áo" },
+    "AR": { "zoneName": "Argentina" },
+    "AUS-NSW": { "countryName": "Úc", "zoneName": "New South Wales" },
+    "AUS-NT": { "countryName": "Úc", "zoneName": "Lãnh thổ phía Bắc" },
+    "AUS-QLD": { "countryName": "Úc", "zoneName": "Queensland" },
+    "AUS-SA": { "countryName": "Úc", "zoneName": "Nam Úc" },
+    "AUS-TAS": { "countryName": "Úc", "zoneName": "Tasmania" },
+    "AUS-TAS-KI": { "countryName": "Tasmania", "zoneName": "Đảo King" },
+    "AUS-VIC": { "countryName": "Úc", "zoneName": "Victoria" },
+    "AUS-WA": { "countryName": "Úc", "zoneName": "Tây Úc" },
+    "AW": { "zoneName": "Aruba" },
+    "AX": { "zoneName": "Quần đảo Åland" },
+    "AZ": { "zoneName": "Azerbaijan" },
+    "BA": { "zoneName": "Bosnia và Herzegovina" },
+    "BB": { "zoneName": "Barbados" },
+    "BD": { "zoneName": "Bangladesh" },
+    "BE": { "zoneName": "Bỉ" },
+    "BF": { "zoneName": "Burkina Faso" },
+    "BG": { "zoneName": "Bulgaria" },
+    "BH": { "zoneName": "Bahrain" },
+    "BI": { "zoneName": "Burundi" },
+    "BJ": { "zoneName": "Benin" },
+    "BM": { "zoneName": "Bermuda" },
+    "BN": { "zoneName": "Brunei" },
+    "BO": { "zoneName": "Bolivia" },
+    "BQ": { "zoneName": "Bonaire, Sint Eustatius và Saba" },
+    "BR-CS": { "countryName": "Brazil", "zoneName": "Trung Brazil" },
+    "BR-N": { "countryName": "Brazil", "zoneName": "Đông Brazil" },
+    "BR-NE": { "countryName": "Brazil", "zoneName": "Đông Bắc Brazil" },
+    "BR-S": { "countryName": "Brazil", "zoneName": "Nam Brazil" },
+    "BS": { "zoneName": "Bahamas" },
+    "BT": { "zoneName": "Bhutan" },
+    "BV": { "zoneName": "Đảo Bouvet" },
+    "BW": { "zoneName": "Botswana" },
+    "BY": { "zoneName": "Belarus" },
+    "BZ": { "zoneName": "Belize" },
+    "CA-AB": { "countryName": "Canada", "zoneName": "Alberta" },
+    "CA-BC": { "countryName": "Canada", "zoneName": "British Columbia" },
+    "CA-MB": { "countryName": "Canada", "zoneName": "Manitoba" },
+    "CA-NL": { "countryName": "Canada", "zoneName": "Newfoundland và Labrador" },
+    "CA-NB": { "countryName": "Canada", "zoneName": "New Brunswick" },
+    "CA-NT": { "countryName": "Canada", "zoneName": "Các Lãnh thổ Tây Bắc" },
+    "CA-NS": { "countryName": "Canada", "zoneName": "Nova Scotia" },
+    "CA-NU": { "countryName": "Canada", "zoneName": "Nunavut" },
+    "CA-ON": { "countryName": "Canada", "zoneName": "Ontario" },
+    "CA-PE": { "countryName": "Canada", "zoneName": "Đảo Hoàng tử Edward" },
+    "CA-QC": { "countryName": "Canada", "zoneName": "Québec" },
+    "CA-SK": { "countryName": "Canada", "zoneName": "Saskatchewan" },
+    "CA-YT": { "countryName": "Canada", "zoneName": "Yukon" },
+    "CC": { "zoneName": "Quần đảo Cocos" },
+    "CD": { "zoneName": "Cộng hòa Dân chủ Congo" },
+    "CF": { "zoneName": "Cộng hòa Trung Phi" },
+    "CG": { "zoneName": "Congo" },
+    "CH": { "zoneName": "Thụy Sỹ" },
+    "CI": { "zoneName": "Bờ Biển Ngà" },
+    "CK": { "zoneName": "Quần đảo Cook" },
+    "CL-SING-SIC": { "countryName": "Chile", "zoneName": "SING/SIC" },
+    "CL-SEM": { "countryName": "Chile", "zoneName": "SEM" },
+    "CL-SEA": { "countryName": "Chile", "zoneName": "SEA" },
+    "CM": { "zoneName": "Cameroon" },
+    "CN": { "zoneName": "Trung Quốc" },
+    "CO": { "zoneName": "Colombia" },
+    "CR": { "zoneName": "Costa Rica" },
+    "CU": { "zoneName": "Cuba" },
+    "CV": { "zoneName": "Cabo Verde" },
+    "CW": { "zoneName": "Curaçao" },
+    "CX": { "zoneName": "Đảo Giáng Sinh" },
+    "CY": { "zoneName": "Cyprus" },
+    "CZ": { "zoneName": "Czechia" },
+    "DE": { "zoneName": "Đức" },
+    "DJ": { "zoneName": "Djibouti" },
+    "DK": { "zoneName": "Đan Mạch" },
+    "DK-DK1": { "countryName": "Đan Mạch", "zoneName": "Tây Đan Mạch" },
+    "DK-DK2": { "countryName": "Đan Mạch", "zoneName": "Đông Đan Mạch" },
+    "DK-BHM": { "countryName": "Đan Mạch", "zoneName": "Bornholm" },
+    "DM": { "zoneName": "Dominica" },
+    "DO": { "zoneName": "Cộng hòa Dominican" },
+    "DZ": { "zoneName": "Algeria" },
+    "EC": { "zoneName": "Ecuador" },
+    "EE": { "zoneName": "Estonia" },
+    "EG": { "zoneName": "Ai Cập" },
+    "EH": { "zoneName": "Tây Sahara" },
+    "ER": { "zoneName": "Eritrea" },
+    "ES": { "zoneName": "Tây Ban Nha" },
+    "ES-IB-FO": { "countryName": "Tây Ban Nha", "zoneName": "Formentera" },
+    "ES-IB-IZ": { "countryName": "Tây Ban Nha", "zoneName": "Ibiza" },
+    "ES-IB-MA": { "countryName": "Tây Ban Nha", "zoneName": "Mallorca" },
+    "ES-IB-ME": { "countryName": "Tây Ban Nha", "zoneName": "Menorca" },
+    "ES-CN-FVLZ": { "countryName": "Tây Ban Nha", "zoneName": "Fuerteventura/Lanzarote" },
+    "ES-CN-GC": { "countryName": "Tây Ban Nha", "zoneName": "Gran Canaria" },
+    "ES-CN-HI": { "countryName": "Tây Ban Nha", "zoneName": "El Hierro" },
+    "ES-CN-IG": { "countryName": "Tây Ban Nha", "zoneName": "Isla de la Gomera" },
+    "ES-CN-LP": { "countryName": "Tây Ban Nha", "zoneName": "La Palma" },
+    "ES-CN-TE": { "countryName": "Tây Ban Nha", "zoneName": "Tenerife" },
+    "ET": { "zoneName": "Ethiopia" },
+    "FI": { "zoneName": "Phần Lan" },
+    "FJ": { "zoneName": "Fiji" },
+    "FK": { "zoneName": "Quần đảo Falkland" },
+    "FM": { "zoneName": "Micronesia" },
+    "FO": { "zoneName": "Quần đảo Faroe" },
+    "FR": { "zoneName": "Pháp" },
+    "FR-COR": { "countryName": "Pháp", "zoneName": "Corsica" },
+    "GA": { "zoneName": "Gabon" },
+    "GB": { "zoneName": "Đảo Anh" },
+    "GB-NIR": { "zoneName": "Bắc Ireland" },
+    "GB-ORK": { "countryName": "Great Britain", "zoneName": "Quần đảo Orkney" },
+    "GB-SHI": { "countryName": "Great Britain", "zoneName": "Quần đảo Shetland" },
+    "GB-ZET": { "countryName": "Great Britain", "zoneName": "Quần đảo Shetland" },
+    "GD": { "zoneName": "Grenada" },
+    "GE": { "zoneName": "Georgia" },
+    "GF": { "zoneName": "French Guiana" },
+    "GG": { "zoneName": "Guernsey" },
+    "GH": { "zoneName": "Ghana" },
+    "GI": { "zoneName": "Gibraltar" },
+    "GL": { "zoneName": "Greenland" },
+    "GM": { "zoneName": "Gambia" },
+    "GN": { "zoneName": "Guinea" },
+    "GP": { "zoneName": "Guadeloupe" },
+    "GQ": { "zoneName": "Guinea Xích đạo" },
+    "GR": { "zoneName": "Hy Lạp" },
+    "GR-IS": { "countryName": "Hy Lạp", "zoneName": "Quần đảo Aegean" },
+    "GS": { "zoneName": "Nam Georgia và Quần đảo Nam Sandwich" },
+    "GT": { "zoneName": "Guatemala" },
+    "GU": { "zoneName": "Guam" },
+    "GW": { "zoneName": "Guinea-Bissau" },
+    "GY": { "zoneName": "Guyana" },
+    "HK": { "zoneName": "Hồng Kông" },
+    "HM": { "zoneName": "Đảo Heard và Quần đảo McDonald" },
+    "HN": { "zoneName": "Honduras" },
+    "HR": { "zoneName": "Croatia" },
+    "HT": { "zoneName": "Haiti" },
+    "HU": { "zoneName": "Hungary" },
+    "ID": { "zoneName": "Indonesia" },
+    "IE": { "zoneName": "Ireland" },
+    "IL": { "zoneName": "Israel" },
+    "IM": { "zoneName": "Đảo Man" },
+    "IN-AN": { "countryName": "Ấn Độ", "zoneName": "Andaman và Quần đảo Nicobar" },
+    "IN-AP": { "countryName": "Ấn Độ", "zoneName": "Andhra Pradesh" },
+    "IN-AR": { "countryName": "Ấn Độ", "zoneName": "Arunachal Pradesh" },
+    "IN-AS": { "countryName": "Ấn Độ", "zoneName": "Assam" },
+    "IN-BR": { "countryName": "Ấn Độ", "zoneName": "Bihar" },
+    "IN-CT": { "countryName": "Ấn Độ", "zoneName": "Chhattisgarh" },
+    "IN-DL": { "countryName": "Ấn Độ", "zoneName": "Delhi" },
+    "IN-DN": { "countryName": "Ấn Độ", "zoneName": "Dadra và Nagar Haveli" },
+    "IN-GA": { "countryName": "Ấn Độ", "zoneName": "Goa" },
+    "IN-GJ": { "countryName": "Ấn Độ", "zoneName": "Gujarat" },
+    "IN-HP": { "countryName": "Ấn Độ", "zoneName": "Himachal Pradesh" },
+    "IN-HR": { "countryName": "Ấn Độ", "zoneName": "Haryana" },
+    "IN-JH": { "countryName": "Ấn Độ", "zoneName": "Jharkhand" },
+    "IN-JK": { "countryName": "Ấn Độ", "zoneName": "Jammu và Kashmir" },
+    "IN-KA": { "countryName": "Ấn Độ", "zoneName": "Karnataka" },
+    "IN-KL": { "countryName": "Ấn Độ", "zoneName": "Kerala" },
+    "IN-MH": { "countryName": "Ấn Độ", "zoneName": "Maharashtra" },
+    "IN-ML": { "countryName": "Ấn Độ", "zoneName": "Meghalaya" },
+    "IN-MN": { "countryName": "Ấn Độ", "zoneName": "Manipur" },
+    "IN-MP": { "countryName": "Ấn Độ", "zoneName": "Madhya Pradesh" },
+    "IN-MZ": { "countryName": "Ấn Độ", "zoneName": "Mizoram" },
+    "IN-NL": { "countryName": "Ấn Độ", "zoneName": "Nagaland" },
+    "IN-OR": { "countryName": "Ấn Độ", "zoneName": "Orissa" },
+    "IN-PB": { "countryName": "Ấn Độ", "zoneName": "Punjab" },
+    "IN-PY": { "countryName": "Ấn Độ", "zoneName": "Pondicherry" },
+    "IN-RJ": { "countryName": "Ấn Độ", "zoneName": "Rajasthan" },
+    "IN-SK": { "countryName": "Ấn Độ", "zoneName": "Sikkim" },
+    "IN-TN": { "countryName": "Ấn Độ", "zoneName": "Tamil Nadu" },
+    "IN-TR": { "countryName": "Ấn Độ", "zoneName": "Tripura" },
+    "IN-UP": { "countryName": "Ấn Độ", "zoneName": "Uttar Pradesh" },
+    "IN-UT": { "countryName": "Ấn Độ", "zoneName": "Uttarakhand" },
+    "IN-WB": { "countryName": "Ấn Độ", "zoneName": "Tây Bengal" },
+    "IO": { "zoneName": "Lãnh thổ Ấn Độ Dương thuộc Anh" },
+    "IQ": { "zoneName": "Iraq" },
+    "IQ-KUR": { "countryName": "Iraq", "zoneName": "Kurdistan" },
+    "IR": { "zoneName": "Iran" },
+    "IS": { "zoneName": "Iceland" },
+    "IT": { "zoneName": "Ý" },
+    "IT-CNO": { "countryName": "Ý", "zoneName": "Trung Bắc" },
+    "IT-CSO": { "countryName": "Ý", "zoneName": "Trung Nam" },
+    "IT-NO": { "countryName": "Ý", "zoneName": "Bắc" },
+    "IT-SAR": { "countryName": "Ý", "zoneName": "Sardinia" },
+    "IT-SIC": { "countryName": "Ý", "zoneName": "Sicily" },
+    "IT-SO": { "countryName": "Ý", "zoneName": "Nam" },
+    "JE": { "zoneName": "Jersey" },
+    "JM": { "zoneName": "Jamaica" },
+    "JO": { "zoneName": "Jordan" },
+    "JP-CB": { "countryName": "Nhật Bản", "zoneName": "Chūbu" },
+    "JP-CG": { "countryName": "Nhật Bản", "zoneName": "Chūgoku" },
+    "JP-HKD": { "countryName": "Nhật Bản", "zoneName": "Hokkaidō" },
+    "JP-HR": { "countryName": "Nhật Bản", "zoneName": "Hokuriku" },
+    "JP-KN": { "countryName": "Nhật Bản", "zoneName": "Kansai" },
+    "JP-KY": { "countryName": "Nhật Bản", "zoneName": "Kyūshū" },
+    "JP-ON": { "countryName": "Nhật Bản", "zoneName": "Okinawa" },
+    "JP-SK": { "countryName": "Nhật Bản", "zoneName": "Shikoku" },
+    "JP-TH": { "countryName": "Nhật Bản", "zoneName": "Tōhoku" },
+    "JP-TK": { "countryName": "Nhật Bản", "zoneName": "Tōkyō" },
+    "KE": { "zoneName": "Kenya" },
+    "KG": { "zoneName": "Kyrgyzstan" },
+    "KH": { "zoneName": "Cam-pu-chia" },
+    "KI": { "zoneName": "Kiribati" },
+    "KM": { "zoneName": "Comoros" },
+    "KN": { "zoneName": "Saint Kitts và Nevis" },
+    "KP": { "zoneName": "Bắc Triều Tiên" },
+    "KR": { "zoneName": "Hàn Quốc" },
+    "KW": { "zoneName": "Kuwait" },
+    "KY": { "zoneName": "Quần đảo Cayman" },
+    "KZ": { "zoneName": "Kazakhstan" },
+    "LA": { "zoneName": "Lào" },
+    "LB": { "zoneName": "Lebanon" },
+    "LC": { "zoneName": "Saint Lucia" },
+    "LI": { "zoneName": "Liechtenstein" },
+    "LK": { "zoneName": "Sri Lanka" },
+    "LR": { "zoneName": "Liberia" },
+    "LS": { "zoneName": "Lesotho" },
+    "LT": { "zoneName": "Lithuania" },
+    "LU": { "zoneName": "Luxembourg" },
+    "LV": { "zoneName": "Latvia" },
+    "LY": { "zoneName": "Libya" },
+    "MA": { "zoneName": "Morocco" },
+    "MC": { "zoneName": "Monaco" },
+    "MD": { "zoneName": "Moldova" },
+    "ME": { "zoneName": "Montenegro" },
+    "MF": { "countryName": "Saint Martin", "zoneName": "French" },
+    "MG": { "zoneName": "Madagascar" },
+    "MH": { "zoneName": "Quần đảo Marshall" },
+    "MK": { "zoneName": "Bắc Macedonia" },
+    "ML": { "zoneName": "Mali" },
+    "MM": { "zoneName": "Myanmar" },
+    "MN": { "zoneName": "Mông Cổ" },
+    "MO": { "zoneName": "Macao" },
+    "MP": { "zoneName": "Quần đảo Bắc Mariana" },
+    "MQ": { "zoneName": "Martinique" },
+    "MR": { "zoneName": "Mauritania" },
+    "MS": { "zoneName": "Montserrat" },
+    "MT": { "zoneName": "Malta" },
+    "MU": { "zoneName": "Mauritius" },
+    "MV": { "zoneName": "Maldives" },
+    "MW": { "zoneName": "Malawi" },
+    "MX": { "zoneName": "Mexico" },
+    "MX-BC": { "countryName": "Mexico", "zoneName": "Baja California" },
+    "MX-CE": { "countryName": "Mexico", "zoneName": "Central" },
+    "MX-NE": { "countryName": "Mexico", "zoneName": "Đông Bắc" },
+    "MX-NO": { "countryName": "Mexico", "zoneName": "Đông" },
+    "MX-NW": { "countryName": "Mexico", "zoneName": "Đông Nam" },
+    "MX-OC": { "countryName": "Mexico", "zoneName": "Occidental" },
+    "MX-OR": { "countryName": "Mexico", "zoneName": "Oriental" },
+    "MX-PN": { "countryName": "Mexico", "zoneName": "Peninsula" },
+    "MY-EM": { "countryName": "Malaysia", "zoneName": "Borneo" },
+    "MY-WM": { "countryName": "Malaysia", "zoneName": "Peninsula" },
+    "MZ": { "zoneName": "Mozambique" },
+    "NA": { "zoneName": "Namibia" },
+    "NC": { "zoneName": "Tân Caledonia" },
+    "NE": { "zoneName": "Niger" },
+    "NF": { "zoneName": "Đảo Norfolk" },
+    "NG": { "zoneName": "Nigeria" },
+    "NI": { "zoneName": "Nicaragua" },
+    "NKR": { "zoneName": "Nagorno-Karabakh" },
+    "NL": { "zoneName": "Hà Lan" },
+    "NO-NO1": { "countryName": "Na Uy", "zoneName": "Đông Nam Na Uy" },
+    "NO-NO2": { "countryName": "Na Uy", "zoneName": "Tây Bắc Na Uy" },
+    "NO-NO3": { "countryName": "Na Uy", "zoneName": "Trung Na Uy" },
+    "NO-NO4": { "countryName": "Na Uy", "zoneName": "Bắc Na Uy" },
+    "NO-NO5": { "countryName": "Na Uy", "zoneName": "Tây Na Uy" },
+    "NP": { "zoneName": "Nepal" },
+    "NR": { "zoneName": "Nauru" },
+    "NU": { "zoneName": "Niue" },
+    "NZ": { "zoneName": "New Zealand" },
+    "NZ-NZA": { "countryName": "New Zealand", "zoneName": "Quần đảo Auckland" },
+    "NZ-NZC": { "countryName": "New Zealand", "zoneName": "Quần đảo Chatham" },
+    "OM": { "zoneName": "Oman" },
+    "PA": { "zoneName": "Panama" },
+    "PE": { "zoneName": "Peru" },
+    "PF": { "zoneName": "Polynésie thuộc Pháp" },
+    "PG": { "zoneName": "Papua New Guinea" },
+    "PH": { "zoneName": "Philippines" },
+    "PK": { "zoneName": "Pakistan" },
+    "PL": { "zoneName": "Ba Lan" },
+    "PM": { "zoneName": "Saint Pierre và Miquelon" },
+    "PN": { "zoneName": "Pitcairn" },
+    "PR": { "zoneName": "Puerto Rico" },
+    "PS": { "zoneName": "Nhà nước Palestine" },
+    "PT": { "zoneName": "Bồ Đào Nha" },
+    "PT-AC": { "countryName": "Bồ Đào Nha", "zoneName": "Azores" },
+    "PT-MA": { "countryName": "Bồ Đào Nha", "zoneName": "Madeira" },
+    "PW": { "zoneName": "Palau" },
+    "PY": { "zoneName": "Paraguay" },
+    "QA": { "zoneName": "Qatar" },
+    "RE": { "zoneName": "Réunion" },
+    "RO": { "zoneName": "Romania" },
+    "RS": { "zoneName": "Serbia" },
+    "RU": { "zoneName": "Nga" },
+    "RU-1": { "countryName": "Nga", "zoneName": "Nga thuộc châu Âu và Ural" },
+    "RU-2": { "countryName": "Nga", "zoneName": "Siberia" },
+    "RU-EU": { "zoneName": "Nga" },
+    "RU-AS": { "zoneName": "Nga" },
+    "RU-KGD": { "countryName": "Nga", "zoneName": "Kaliningrad" },
+    "RW": { "zoneName": "Rwanda" },
+    "SA": { "zoneName": "Saudi Arabia" },
+    "SB": { "zoneName": "Quần đảo Solomon" },
+    "SC": { "zoneName": "Seychelles" },
+    "SD": { "zoneName": "Sudan" },
+    "SE": { "zoneName": "Thụy Điển" },
+    "SG": { "zoneName": "Singapore" },
+    "SH": { "zoneName": "Saint Helena, Ascension và Tristan da Cunha" },
+    "SI": { "zoneName": "Slovenia" },
+    "SJ": { "zoneName": "Svalbard và Jan Mayen" },
+    "SK": { "zoneName": "Slovakia" },
+    "SL": { "zoneName": "Sierra Leone" },
+    "SM": { "zoneName": "San Marino" },
+    "SN": { "zoneName": "Senegal" },
+    "SO": { "zoneName": "Somalia" },
+    "SR": { "zoneName": "Suriname" },
+    "SS": { "zoneName": "Nam Sudan" },
+    "ST": { "zoneName": "Sao Tome và Principe" },
+    "SV": { "zoneName": "El Salvador" },
+    "SX": { "countryName": "Sint Maarten", "zoneName": "Dutch" },
+    "SY": { "zoneName": "Syria" },
+    "SZ": { "zoneName": "Swaziland" },
+    "TC": { "zoneName": "Quần đảo Turks và Caicos" },
+    "TD": { "zoneName": "Chad" },
+    "TF": { "zoneName": "Vùng đất phía Nam thuộc Pháp" },
+    "TG": { "zoneName": "Togo" },
+    "TH": { "zoneName": "Thái Lan" },
+    "TJ": { "zoneName": "Tajikistan" },
+    "TK": { "zoneName": "Tokelau" },
+    "TL": { "zoneName": "Timor-Leste" },
+    "TM": { "zoneName": "Turkmenistan" },
+    "TN": { "zoneName": "Tunisia" },
+    "TO": { "zoneName": "Tonga" },
+    "TR": { "zoneName": "Thổ Nhĩ Kỳ" },
+    "TT": { "zoneName": "Trinidad và Tobago" },
+    "TV": { "zoneName": "Tuvalu" },
+    "TW": { "zoneName": "Đài Loan" },
+    "TZ": { "zoneName": "Tanzania" },
+    "UA": { "zoneName": "Ukraine" },
+    "UA-CR": { "countryName": "Crimea", "zoneName": "Ukraine" },
+    "UG": { "zoneName": "Uganda" },
+    "UM": { "zoneName": "Các tiểu đảo xa của Hoa Kỳ" },
+    "US-HI-HA": { "countryName": "Hoa Kỳ", "zoneName": "Hawaii" },
+    "US-HI-KA": { "countryName": "Hoa Kỳ", "zoneName": "Kauai" },
+    "US-HI-KH": { "countryName": "Hoa Kỳ", "zoneName": "Kahoolawe" },
+    "US-HI-LA": { "countryName": "Hoa Kỳ", "zoneName": "Lanai" },
+    "US-HI-MA": { "countryName": "Hoa Kỳ", "zoneName": "Maui" },
+    "US-HI-MO": { "countryName": "Hoa Kỳ", "zoneName": "Molokai" },
+    "US-HI-NI": { "countryName": "Hoa Kỳ", "zoneName": "Niihau" },
+    "US-HI-OA": { "countryName": "Hoa Kỳ", "zoneName": "Oahu" },
+    "UY": { "zoneName": "Uruguay" },
+    "UZ": { "zoneName": "Uzbekistan" },
+    "VA": { "zoneName": "Vatican City" },
+    "VC": { "zoneName": "Saint Vincent and the Grenadines" },
+    "VE": { "zoneName": "Venezuela" },
+    "VG": { "countryName": "Virgin Islands", "zoneName": "Virgin Islands" },
+    "VI": { "countryName": "Hoa Kỳ", "zoneName": "Virgin Islands" },
+    "VN": { "zoneName": "Việt Nam" },
+    "VU": { "zoneName": "Vanuatu" },
+    "WF": { "zoneName": "Wallis and Futuna" },
+    "WS": { "zoneName": "Samoa" },
+    "XX": { "zoneName": "Northern Cyprus" },
+    "YE": { "zoneName": "Yemen" },
+    "YT": { "zoneName": "Mayotte" },
+    "ZA": { "zoneName": "Nam Phi" },
+    "ZM": { "zoneName": "Zambia" },
+    "ZW": { "zoneName": "Zimbabwe" }
+  }
 }

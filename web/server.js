@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Modules
@@ -7,17 +8,13 @@ const fs = require('fs');
 const http = require('http');
 const auth = require('basic-auth');
 
-const {
-  localeToFacebookLocale,
-  supportedFacebookLocales,
-  languageNames,
-} = require('./locales-config.json');
+const { localeToFacebookLocale, supportedFacebookLocales, languageNames } = require('./locales-config.json');
 
 const app = express();
 const server = http.Server(app);
 
 // Constants
-const STATIC_PATH = process.env.STATIC_PATH || (`${__dirname}/public`);
+const STATIC_PATH = process.env.STATIC_PATH || `${__dirname}/public`;
 
 // * Common
 app.use(compression()); // Cloudflare already does gzip but we do it anyway
@@ -54,8 +51,7 @@ function getHash(key, ext, obj) {
     filename = obj.assetsByChunkName[key];
   } else {
     // assume list
-    filename = obj.assetsByChunkName[key]
-      .filter(d => d.match(new RegExp(`.${ext}$`)))[0];
+    filename = obj.assetsByChunkName[key].filter((d) => d.match(new RegExp(`.${ext}$`)))[0];
   }
   return filename.replace(`.${ext}`, '').replace(`${key}.`, '');
 }
@@ -71,12 +67,11 @@ app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymap.org
 // Source maps
 app.all('/dist/*.map', (req, res, next) => {
   // Allow sentry
-  if ([
-    '35.184.238.160',
-    '104.155.159.182',
-    '104.155.149.19',
-    '130.211.230.102',
-  ].indexOf(req.headers['x-forwarded-for']) !== -1) {
+  if (
+    ['35.184.238.160', '104.155.159.182', '104.155.149.19', '130.211.230.102'].indexOf(
+      req.headers['x-forwarded-for']
+    ) !== -1
+  ) {
     return res.status(401).json({ error: 'unauthorized' });
   }
   return next();
@@ -106,7 +101,7 @@ app.use('/', (req, res) => {
     }
     const { locale } = res;
     let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
-    if(req.query.lang) {
+    if (req.query.lang) {
       canonicalUrl += `?lang=${req.query.lang}`;
     }
 
@@ -140,7 +135,7 @@ app.use('/', (req, res) => {
       }),
       bundleHash: getHash('bundle', 'js', manifest),
       vendorHash: getHash('vendor', 'js', manifest),
-      stylesHash: getHash('styles', 'css', manifest),
+      bundleStylesHash: getHash('bundle', 'css', manifest),
       vendorStylesHash: getHash('vendor', 'css', manifest),
       // Make the paths absolute as that's required for BrowserHistory routing
       // to work normally and it's also ok when used with the https:// protocol
@@ -148,16 +143,17 @@ app.use('/', (req, res) => {
       // Note: `resolvePath` is executed on the client as well,
       // as it is used in react components. We can't therefore include any variables
       // in its closure. It would be better to pass a `pathPrefix` instead.
-      resolvePath: (!isProduction || isStaging)
-        ? relativePath => `/${relativePath}`
-        : relativePath =>
-          // Note we here point to static hosting in order to make
-          // sure we can serve older bundle versions
-          `https://static.electricitymap.org/public_web/${relativePath}`,
+      resolvePath:
+        !isProduction || isStaging
+          ? (relativePath) => `/${relativePath}`
+          : (relativePath) =>
+              // Note we here point to static hosting in order to make
+              // sure we can serve older bundle versions
+              `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale || 'en'],
-      supportedFBLocales: supportedFacebookLocales
+      supportedFBLocales: supportedFacebookLocales,
     });
   }
 });
@@ -165,7 +161,8 @@ app.use('/', (req, res) => {
 if (isProduction) {
   app.get('/*', (req, res) =>
     // Redirect all requests except root to static
-    res.redirect(`https://static.electricitymap.org/public_web${req.originalUrl}`));
+    res.redirect(`https://static.electricitymap.org/public_web${req.originalUrl}`)
+  );
 }
 
 // Start the application

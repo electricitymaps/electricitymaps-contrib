@@ -1,0 +1,23 @@
+name: jsonlint
+
+on:
+  workflow_call:
+
+jobs:
+  lint_json:
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Install jsonlint-mod
+        run: |
+          npm install -g jsonlint-mod
+      - name: Lint json
+        run: |
+          jsonlint -q config/*.json web/public/locales/*.json

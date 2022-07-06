@@ -9,59 +9,70 @@ import {
   useSolarEnabled,
   useSolarToggledLocation,
   useWindToggledLocation,
+  useFeatureToggle,
 } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    display: ${(props) => (props.isHiddenOnMobile ? 'none' : 'block')};
+  }
+`;
 
 export default () => {
+  const isHistoryFeatureEnabled = useFeatureToggle('history');
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const windDataError = useSelector(state => state.data.windDataError);
+  const windDataError = useSelector((state) => state.data.windDataError);
 
   const solarEnabled = useSolarEnabled();
-  const solarDataError = useSelector(state => state.data.solarDataError);
+  const solarDataError = useSelector((state) => state.data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
 
-  const brightModeEnabled = useSelector(state => state.application.brightModeEnabled);
+  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
   const Link = ({ to, hasError, children }) =>
-  !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
+    !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
 
   return (
-    <div className="layer-buttons-container">
-      <LanguageSelect />
-      <Link to={windToggledLocation} hasError={windDataError}>
+    <Wrapper isHiddenOnMobile={isHistoryFeatureEnabled}>
+      <div className="layer-buttons-container">
+        <LanguageSelect />
+        <Link to={windToggledLocation} hasError={windDataError}>
+          <ButtonToggle
+            active={windEnabled}
+            tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+            errorMessage={windDataError}
+            ariaLabel={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+            icon="weather/wind"
+          />
+        </Link>
+        <Link to={solarToggledLocation} hasError={solarDataError}>
+          <ButtonToggle
+            active={solarEnabled}
+            tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+            errorMessage={solarDataError}
+            ariaLabel={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+            icon="weather/sun"
+          />
+        </Link>
         <ButtonToggle
-          active={windEnabled}
-          tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
-          errorMessage={windDataError}
-          ariaLabel={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
-          icon="weather/wind"
+          active={brightModeEnabled}
+          onChange={toggleBrightMode}
+          tooltip={__('tooltips.toggleDarkMode')}
+          ariaLabel={__('tooltips.toggleDarkMode')}
+          icon="brightmode"
         />
-      </Link>
-      <Link to={solarToggledLocation} hasError={solarDataError}>
-        <ButtonToggle
-          active={solarEnabled}
-          tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
-          errorMessage={solarDataError}
-          ariaLabel={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
-          icon="weather/sun"
-        />
-      </Link>
-      <ButtonToggle
-        active={brightModeEnabled}
-        onChange={toggleBrightMode}
-        tooltip={__('tooltips.toggleDarkMode')}
-        ariaLabel={__('tooltips.toggleDarkMode')}
-        icon="brightmode"
-      />
-    </div>
+      </div>
+    </Wrapper>
   );
 };

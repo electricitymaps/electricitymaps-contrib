@@ -1,15 +1,10 @@
-import moment from 'moment';
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
-import {
-  useCurrentZoneHistory,
-  useCurrentZoneHistoryStartTime,
-  useCurrentZoneHistoryEndTime,
-} from '../hooks/redux';
+import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
 import { tonsPerHourToGramsPerMinute } from '../helpers/math';
 import { getTotalElectricity } from '../helpers/zonedata';
 import { dispatchApplication } from '../store';
@@ -18,46 +13,41 @@ import CountryPanelEmissionsTooltip from './tooltips/countrypanelemissionstoolti
 import AreaGraph from './graph/areagraph';
 
 const prepareGraphData = (historyData) => {
-  if (!historyData || !historyData[0]) return {};
+  if (!historyData || !historyData[0]) {
+    return {};
+  }
 
-  const data = historyData.map(d => ({
+  const data = historyData.map((d) => ({
     emissions: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),
-    datetime: moment(d.stateDatetime).toDate(),
+    datetime: new Date(d.stateDatetime),
     // Keep a pointer to original data
     meta: d,
   }));
 
-  const maxEmissions = d3Max(data.map(d => d.emissions));
-  const emissionsColorScale = scaleLinear()
-    .domain([0, maxEmissions])
-    .range(['yellow', 'brown']);
+  const maxEmissions = d3Max(data.map((d) => d.emissions));
+  const emissionsColorScale = scaleLinear().domain([0, maxEmissions]).range(['yellow', 'brown']);
 
   const layerKeys = ['emissions'];
-  const layerFill = key => d => emissionsColorScale(d.data[key]);
+  const layerFill = (key) => (d) => emissionsColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
   selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryEmissionsGraph = ({
-  isMobile,
-  selectedTimeIndex,
-}) => {
+const CountryHistoryEmissionsGraph = ({ isMobile, selectedTimeIndex }) => {
   const [tooltip, setTooltip] = useState(null);
   const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const startTime = useCurrentZoneHistoryStartTime();
-  const endTime = useCurrentZoneHistoryEndTime();
+  const datetimes = useCurrentZoneHistoryDatetimes();
+  const startTime = datetimes.at(0);
+  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
-  const { data, layerKeys, layerFill } = useMemo(
-    () => prepareGraphData(historyData),
-    [historyData],
-  );
+  const { data, layerKeys, layerFill } = useMemo(() => prepareGraphData(historyData), [historyData]);
 
   // Mouse action handlers
   const mouseMoveHandler = useMemo(
@@ -65,14 +55,14 @@ const CountryHistoryEmissionsGraph = ({
       dispatchApplication('selectedZoneTimeIndex', timeIndex);
       setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   const mouseOutHandler = useMemo(
     () => () => {
       dispatchApplication('selectedZoneTimeIndex', null);
       setSelectedLayerIndex(null);
     },
-    [setSelectedLayerIndex],
+    [setSelectedLayerIndex]
   );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
@@ -82,13 +72,13 @@ const CountryHistoryEmissionsGraph = ({
         zoneData: datapoint.meta,
       });
     },
-    [setTooltip, isMobile],
+    [setTooltip, isMobile]
   );
   const markerHideHandler = useMemo(
     () => () => {
       setTooltip(null);
     },
-    [setTooltip],
+    [setTooltip]
   );
 
   return (

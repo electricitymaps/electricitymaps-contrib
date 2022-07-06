@@ -1,27 +1,29 @@
 import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 
 import { useTranslation } from '../helpers/translation';
 import Icon from './icon';
 
+const TermsAndPrivacyContainer = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
+  text-align: left;
+  box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
+
+  a {
+    margin-right: 1rem;
+  }
+`;
+
 const orderings = [
   {
     groupKey: 'theMap',
-    entryOrder: [
-      'mapColors',
-      'mapArrows',
-      'mapSolarWindButtons',
-      'mapNuclearColors',
-      'mapColorBlind',
-    ],
+    entryOrder: ['mapColors', 'mapArrows', 'mapSolarWindButtons', 'mapNuclearColors', 'mapColorBlind'],
   },
   {
     groupKey: 'mapAreas',
-    entryOrder: [
-      'noData',
-      'whySmallAreas',
-      'divideExistingArea',
-      'seeHistoricalData',
-    ],
+    entryOrder: ['noData', 'whySmallAreas', 'divideExistingArea', 'seeHistoricalData'],
   },
   {
     groupKey: 'methodology',
@@ -38,37 +40,19 @@ const orderings = [
   },
   {
     groupKey: 'data',
-    entryOrder: [
-      'dataOrigins',
-      'dataDownload',
-      'dataIntegration',
-    ],
+    entryOrder: ['dataOrigins', 'dataDownload', 'dataIntegration'],
   },
   {
     groupKey: 'aboutUs',
-    entryOrder: [
-      'whoAreYou',
-      'feedback',
-      'contribute',
-      'workTogether',
-      'disclaimer',
-    ],
+    entryOrder: ['whoAreYou', 'feedback', 'contribute', 'workTogether', 'disclaimer'],
   },
 ];
 
-const QuestionAnswer = ({
-  answerVisible,
-  setAnswerVisible,
-  groupKey,
-  entryKey,
-}) => {
+const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey }) => {
   const { __ } = useTranslation();
   return (
     <div className="question-answer-container" id={entryKey}>
-      <div
-        className="question"
-        onClick={() => setAnswerVisible(entryKey, !answerVisible)}
-      >
+      <div className="question" onClick={() => setAnswerVisible(entryKey, !answerVisible)}>
         <Icon iconName={answerVisible ? 'expand_less' : 'expand_more'} />
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
       </div>
@@ -77,7 +61,8 @@ const QuestionAnswer = ({
           className="answer"
           dangerouslySetInnerHTML={{
             __html: __(`${groupKey}.${entryKey}-answer`),
-          }} />
+          }}
+        />
       )}
     </div>
   );
@@ -105,33 +90,39 @@ const FAQ = ({ className }) => {
       Array.prototype.forEach.call(links, (link) => {
         const entryKey = link.href.split('#')[1];
         if (entryKey) {
-          link.onclick = () => { setAnswerVisible(entryKey, true); };
+          link.onclick = () => {
+            setAnswerVisible(entryKey, true);
+          };
         }
       });
     }
   }, 50);
 
   return (
-    <div className={className} ref={ref}>
-      <div className="faq-container">
-        {orderings.map(({ groupKey, entryOrder }) => (
-          <div className="question-group-container" key={groupKey}>
-            <div className="question-group-header title">
-              {__(`${groupKey}.groupName`)}
+    <React.Fragment>
+      <div className={className} ref={ref}>
+        <div className="faq-container">
+          {orderings.map(({ groupKey, entryOrder }) => (
+            <div className="question-group-container" key={groupKey}>
+              <div className="question-group-header title">{__(`${groupKey}.groupName`)}</div>
+              {entryOrder.map((entryKey) => (
+                <QuestionAnswer
+                  key={entryKey}
+                  groupKey={groupKey}
+                  entryKey={entryKey}
+                  setAnswerVisible={setAnswerVisible}
+                  answerVisible={answersVisible[entryKey]}
+                />
+              ))}
             </div>
-            {entryOrder.map(entryKey => (
-              <QuestionAnswer
-                key={entryKey}
-                groupKey={groupKey}
-                entryKey={entryKey}
-                setAnswerVisible={setAnswerVisible}
-                answerVisible={answersVisible[entryKey]}
-              />
-            ))}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+      <TermsAndPrivacyContainer>
+        <a href="https://www.electricitymap.org/privacy-policy/">{__('misc.privacyPolicy')}</a>
+        <a href="https://www.electricitymap.org/legal-notice/">{__('misc.legalNotice')}</a>
+      </TermsAndPrivacyContainer>
+    </React.Fragment>
   );
 };
 

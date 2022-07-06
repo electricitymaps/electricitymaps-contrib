@@ -13,19 +13,24 @@ const headerLinks = [
     id: 'live',
   },
   {
-    label: <React.Fragment>We&apos;re hiring!<OpenPositionsBadge /></React.Fragment>,
-    href: 'https://electricitymap.org/jobs#joboffers?utm_source=app.electricitymap.org&utm_medium=referral',
+    label: (
+      <React.Fragment>
+        We&apos;re hiring!
+        <OpenPositionsBadge />
+      </React.Fragment>
+    ),
+    href: 'https://electricitymap.org/jobs/#joboffers?utm_source=app.electricitymap.org&utm_medium=referral',
     id: 'jobs',
   },
 
   {
     label: 'Open Source',
-    href: 'https://electricitymap.org/open-source?utm_source=app.electricitymap.org&utm_medium=referral',
+    href: 'https://electricitymap.org/open-source/?utm_source=app.electricitymap.org&utm_medium=referral',
     id: 'open-source',
   },
   {
     label: 'Blog',
-    href: 'https://electricitymap.org/blog?utm_source=app.electricitymap.org&utm_medium=referral',
+    href: 'https://electricitymap.org/blog/?utm_source=app.electricitymap.org&utm_medium=referral',
     id: 'blog',
   },
   {

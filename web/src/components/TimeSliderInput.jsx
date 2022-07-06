@@ -1,29 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { sortBy } from 'lodash';
 
 const COLORS = {
   DAY: '#EFEFEF',
   NIGHT: 'rgba(0, 0, 0, 0.15)',
 };
 
-const createGradient = sets => sortBy(sets, 'end')
-  .map(
-    ({ start, end }) => `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`,
-  )
-  .join(',\n');
+const createGradient = (sets) =>
+  sets
+    .sort((a, b) => a.end - b.end)
+    .map(
+      ({ start, end }) =>
+        `${COLORS.DAY} ${start}%, ${COLORS.NIGHT} ${start}%, ${COLORS.NIGHT} ${end}%, ${COLORS.DAY} ${end}%`
+    )
+    .join(',\n');
 
 export const StyledInput = styled.input`
-  --time-gradient: linear-gradient(
-    90deg,
-    ${props => createGradient(props.nightTimeSets)}
-  );
+  --time-gradient: linear-gradient(90deg, ${(props) => createGradient(props.nightTimeSets)});
 `;
 
-
-export const TimeSliderInput = ({
-  onChange, value, nightTimeSets, isValueAtNight, min, max,
-}) => {
+export const TimeSliderInput = ({ onChange, value, nightTimeSets, isValueAtNight, min, max }) => {
   const timeClass = isValueAtNight ? 'night' : 'day';
   return (
     <StyledInput

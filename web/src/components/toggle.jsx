@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { isEmpty } from 'lodash';
 import styled, { css } from 'styled-components';
 
 import InfoTooltip from './infotooltip';
+import { isEmpty } from '../helpers/isEmpty';
 
 const Wrapper = styled.div`
   align-content: center;
   background-color: #efefef;
   border: none;
   border-radius: 18px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   transition: all 0.4s;
   user-select: none;
   &:hover {
-    box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25);
+    box-shadow: 2px 0px 20px 0px rgba(0, 0, 0, 0.25);
   }
 `;
 
@@ -28,7 +28,7 @@ const Options = styled.div`
   align-self: center;
   background: #efefef;
   border-radius: 14px;
-  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
   height: 28px;
@@ -45,13 +45,15 @@ const OptionItem = styled.div`
   z-index: 9;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
 
-  ${props => props.active && css`
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
-    height: 28px;
-    z-index: 8;
-  `}
+  ${(props) =>
+    props.active &&
+    css`
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+      height: 28px;
+      z-index: 8;
+    `}
 `;
 
 const InfoButton = styled.div`
@@ -59,7 +61,7 @@ const InfoButton = styled.div`
   align-self: center;
   background: #ffffff;
   border-radius: 18px;
-  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   font-weight: bold;
   height: 28px;
@@ -70,22 +72,17 @@ const InfoButton = styled.div`
   width: 28px;
   user-select: none;
   &:hover {
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
   }
 `;
 
-export default ({
-  infoHTML,
-  onChange,
-  options,
-  value,
-}) => {
+export default ({ infoHTML, onChange, options, value, tooltipStyle }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
     <Wrapper>
       <Options>
-        {options.map(o => (
+        {options.map((o) => (
           <OptionItem key={o.value} active={o.value === value} onClick={() => onChange(o.value)}>
             {o.label}
           </OptionItem>
@@ -94,11 +91,7 @@ export default ({
       {!isEmpty(infoHTML) && (
         <React.Fragment>
           <InfoButton onClick={() => setTooltipVisible(!tooltipVisible)}>i</InfoButton>
-          <InfoTooltip
-            htmlContent={infoHTML}
-            style={{ left: 4, width: 204, top: 49 }}
-            visible={tooltipVisible}
-          />
+          <InfoTooltip htmlContent={infoHTML} style={tooltipStyle} visible={tooltipVisible} />
         </React.Fragment>
       )}
     </Wrapper>

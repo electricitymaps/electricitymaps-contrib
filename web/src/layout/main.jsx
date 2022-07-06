@@ -2,42 +2,43 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // TODO(olc): re-enable this rule
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
 import LayerButtons from './layerbuttons';
 import LeftPanel from './leftpanel';
 import Legend from './legend';
-import Tabs from './tabs';
 import Map from './map';
+import TimeController from './timeController';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
 import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
-import {
-  useGridDataPolling,
-  useConditionalWindDataPolling,
-  useConditionalSolarDataPolling,
-} from '../hooks/fetch';
+import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
 import OnboardingModal from '../components/onboardingmodal';
+import InfoModal from '../components/infomodal';
+import FAQModal from '../components/faqmodal';
+import SettingsModal from '../components/settingsmodal';
 import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import MobileLayerButtons from '../components/mobilelayerbuttons';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
   hasConnectionWarning: state.data.hasConnectionWarning,
@@ -45,23 +46,51 @@ const mapStateToProps = state => ({
 
 const MapContainer = styled.div`
   @media (max-width: 767px) {
-    display: ${props => props.pathname !== '/map' ? 'none !important' : 'block' };
+    display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
   }
 `;
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const NewVersionInner = styled.div`
+  background-color: #3f51b5;
+`;
 
-const Main = ({
-  electricityMixMode,
-  hasConnectionWarning,
-}) => {
+const NewVersionButton = styled.button`
+  background: transparent;
+  color: white;
+  margin-left: 12px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+`;
+
+const ToggleWrapper = styled.div`
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+const StyledBottomSheet = styled(BottomSheet)`
+  [data-rsbs-overlay] {
+    z-index: ${(props) => (props.behind ? 0 : 5)};
+  }
+  [data-rsbs-scroll] {
+    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
+    overflow: hidden;
+  }
+`;
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
-  const clientType = useSelector(state => state.application.clientType);
-  const isLocalhost = useSelector(state => state.application.isLocalhost);
+  const clientType = useSelector((state) => state.application.clientType);
+  const isLocalhost = useSelector((state) => state.application.isLocalhost);
+  const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
+  const isMobile = useSelector((state) => state.application.isMobile);
 
   const showLoadingOverlay = useLoadingOverlayVisible();
 
@@ -74,7 +103,9 @@ const Main = ({
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
-  const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {refreshInterval: CLIENT_VERSION_CHECK_INTERVAL})
+  const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {
+    refreshInterval: CLIENT_VERSION_CHECK_INTERVAL,
+  });
   const clientVersion = clientVersionData && clientVersionData.version;
 
   let isClientVersionOutdated = false;
@@ -83,45 +114,58 @@ const Main = ({
     isClientVersionOutdated = isNewClientVersion(clientVersion);
   }
 
+  if (isClientVersionOutdated) {
+    console.warn(`Current client version: ${clientVersion} is outdated`);
+  }
+
   return (
     <React.Fragment>
       <div
         style={{
-          position: 'fixed', /* This is done in order to ensure that dragging will not affect the body */
+          position: 'fixed' /* This is done in order to ensure that dragging will not affect the body */,
           width: '100vw',
           height: 'inherit',
           display: 'flex',
-          flexDirection: 'column', /* children will be stacked vertically */
-          alignItems: 'stretch', /* force children to take 100% width */
+          flexDirection: 'column' /* children will be stacked vertically */,
+          alignItems: 'stretch' /* force children to take 100% width */,
         }}
       >
         {headerVisible && <Header />}
         <div id="inner">
           <ErrorBoundary>
-          <LoadingOverlay visible={showLoadingOverlay} />
-          <LeftPanel />
+            <LoadingOverlay visible={showLoadingOverlay} />
+            <LeftPanel />
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
+              <MobileLayerButtons />
               <Legend />
-              <div className="controls-container">
+              <ToggleWrapper className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
-                  onChange={value => dispatchApplication('electricityMixMode', value)}
+                  onChange={(value) => dispatchApplication('electricityMixMode', value)}
                   options={[
                     { value: 'production', label: __('tooltips.production') },
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
+                  tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
-              </div>
+              </ToggleWrapper>
               <LayerButtons />
             </MapContainer>
+            {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
+            {isMobile ? (
+              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false}>
+                <TimeController />
+              </StyledBottomSheet>
+            ) : (
+              <TimeController />
+            )}
           </ErrorBoundary>
 
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
-              {__('misc.oops')}
-              {' '}
+              {__('misc.oops')}{' '}
               <a
                 href=""
                 onClick={(e) => {
@@ -134,17 +178,23 @@ const Main = ({
               .
             </div>
           </div>
-          <div id="new-version" className={`flash-message ${isClientVersionOutdated ? 'active' : ''}`}>
-            <div className="inner">
+          <div
+            id="new-version"
+            className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}
+          >
+            <NewVersionInner className="inner">
               <span dangerouslySetInnerHTML={{ __html: __('misc.newversion') }} />
-            </div>
+              <NewVersionButton onClick={() => setIsClientVersionForceHidden(true)}>&#x2715;</NewVersionButton>
+            </NewVersionInner>
           </div>
 
-          { /* end #inner */}
+          {/* end #inner */}
         </div>
-        <Tabs />
       </div>
       <OnboardingModal />
+      <InfoModal />
+      <FAQModal />
+      <SettingsModal />
     </React.Fragment>
   );
 };

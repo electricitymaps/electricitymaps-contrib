@@ -7,10 +7,9 @@ const { getZonesJson, saveZonesJson } = require('./files');
 
 let zones = getJSON(path.resolve(__dirname, './world.geojson'));
 
-
 if (args.length <= 0) {
-  console.log('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")')
-  process.exit(1)
+  console.error('ERROR: Please add a zoneName parameter ("node generate-zone-bounding-boxes.js DE")');
+  process.exit(1);
 }
 zones.features = zones.features.filter((d) => d.properties.zoneName === args[0]);
 
@@ -59,12 +58,16 @@ zones = getZonesJson();
 
 for (const [zone, bbox] of Object.entries(boundingBoxes)) {
   // do not add new entries to zones.json, do not add RU because it crosses the 180th meridian
-  if (!(zone in zones) || zone === 'RU' || zone === 'RU-FE') continue;
+  if (!(zone in zones) || zone === 'RU' || zone === 'RU-FE') {
+    continue;
+  }
   // do not modifiy current bounding boxes
-  if (zones[zone].bounding_box) continue;
+  if (zones[zone].bounding_box) {
+    continue;
+  }
   zones[zone].bounding_box = [bbox[0], bbox[1]];
 }
 
 saveZonesJson(zones);
 
-console.log('Done, check /config/zones.json to verify that the result looks good!')
+console.error('Done, check /config/zones.json to verify that the result looks good!');
