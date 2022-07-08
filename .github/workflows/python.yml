@@ -30,12 +30,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           poetry install -E parsers
-      - name: Check Black formatting
+      - name: Linting
         run: |
-          poetry run black --check .
-      - name: Check isort formatting
-        run: |
-          poetry run isort -c .
+          poetry run lint
 
   test:
     name: Tests
