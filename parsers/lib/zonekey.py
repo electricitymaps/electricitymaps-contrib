@@ -1,7 +1,9 @@
+from electricitymap.contrib.config import ZoneKey
+
 from .exceptions import ParserException
 
 
-def assert_zone_key(zone_key, expected, parser_name=None):
+def assert_zone_key(zone_key: ZoneKey, expected, parser_name=None):
     """Assert country code"""
     if not zone_key or zone_key != expected:
         if not parser_name:

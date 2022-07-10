@@ -1,12 +1,16 @@
+from typing import Union
+
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
+
+from electricitymap.contrib.config import ZoneKey
 
 from .exceptions import ParserException
 
 
-def get_response(zone_key, url, session=None):
+def get_response(zone_key: ZoneKey, url: str, session: Union[Session, None] = None):
     ses = session or Session()
-    response = ses.get(url)
+    response: Response = ses.get(url)
     if response.status_code != 200:
         raise ParserException(
             zone_key, "Response code: {0}".format(response.status_code)
@@ -14,9 +18,11 @@ def get_response(zone_key, url, session=None):
     return response
 
 
-def get_response_with_params(zone_key, url, session=None, params=None):
+def get_response_with_params(
+    zone_key: ZoneKey, url, session: Union[Session, None] = None, params=None
+):
     ses = session or Session()
-    response = ses.get(url, params=params)
+    response: Response = ses.get(url, params=params)
     if response.status_code != 200:
         raise ParserException(
             zone_key, "Response code: {0}".format(response.status_code)
@@ -24,13 +30,13 @@ def get_response_with_params(zone_key, url, session=None, params=None):
     return response
 
 
-def get_response_text(zone_key, url, session=None):
+def get_response_text(zone_key: ZoneKey, url, session: Union[Session, None] = None):
     response = get_response(zone_key, url, session)
     if not response.text:
         raise ParserException(zone_key, "Response empty")
     return response.text
 
 
-def get_response_soup(zone_key, url, session=None):
+def get_response_soup(zone_key: ZoneKey, url, session: Union[Session, None] = None):
     response_text = get_response_text(zone_key, url, session)
     return BeautifulSoup(response_text, "html.parser")

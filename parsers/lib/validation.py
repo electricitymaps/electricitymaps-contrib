@@ -7,8 +7,6 @@ from typing import Any, Dict, List, Tuple, Union
 import numpy as np
 import pandas as pd
 
-from electricitymap.contrib.config import ZoneKey
-
 
 def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
     """

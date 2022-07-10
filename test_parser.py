@@ -3,10 +3,11 @@
 Usage: poetry run test_parser FR production
 """
 
-import datetime
-import logging
 import pprint
 import time
+from datetime import datetime
+from logging import DEBUG, basicConfig, getLogger
+from typing import Any, Callable, Dict, List, Union
 
 import arrow
 import click
@@ -20,10 +21,8 @@ from parsers.lib.quality import (
     validate_production,
 )
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s"
-)
+logger = getLogger(__name__)
+basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(message)s")
 
 
 @click.command()
@@ -43,7 +42,7 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
     -------
     >>> poetry run test_parser FR
     >>> poetry run test_parser FR production
-    >>> poetry run test_parser NO-NO3-\>SE exchange
+    >>> poetry run test_parser "NO-NO3->SE" exchange
     >>> poetry run test_parser GE production --target_datetime="2022-04-10 15:00"
 
     """
@@ -51,14 +50,14 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
         target_datetime = arrow.get(target_datetime).datetime
     start = time.time()
 
-    parser = PARSER_KEY_TO_DICT[data_type][zone]
+    parser: Callable[
+        ..., Union[List[Dict[str, Any]], Dict[str, Any]]
+    ] = PARSER_KEY_TO_DICT[data_type][zone]
     if data_type in ["exchange", "exchangeForecast"]:
         args = zone.split("->")
     else:
         args = [zone]
-    res = parser(
-        *args, target_datetime=target_datetime, logger=logging.getLogger(__name__)
-    )
+    res = parser(*args, target_datetime=target_datetime, logger=getLogger(__name__))
 
     if not res:
         raise ValueError("Error: parser returned nothing ({})".format(res))
@@ -78,7 +77,7 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
         )
 
     assert all(
-        [type(e["datetime"]) is datetime.datetime for e in res_list]
+        [type(e["datetime"]) is datetime for e in res_list]
     ), "Datetimes must be returned as native datetime.datetime objects"
 
     last_dt = arrow.get(max(dts)).to("UTC")
@@ -105,7 +104,7 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
         )
     )
 
-    if type(res) == dict:
+    if isinstance(res, dict):
         res = [res]
     for event in res:
         try:
