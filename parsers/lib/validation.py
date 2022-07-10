@@ -1,14 +1,16 @@
 """Centralised validation function for all parsers."""
 
-import logging
 import math
-from logging import getLogger
+from logging import Logger, getLogger
+from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
 import pandas as pd
 
+from electricitymap.contrib.config import ZoneKey
 
-def has_value_for_key(datapoint, key, logger):
+
+def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
     """
     Checks that the key exists in datapoint and that the corresponding value is not None.
     """
@@ -24,7 +26,13 @@ def has_value_for_key(datapoint, key, logger):
     return True
 
 
-def check_expected_range(datapoint, value, expected_range, logger, key=None):
+def check_expected_range(
+    datapoint: Dict[str, Any],
+    value: Union[float, int],
+    expected_range: Tuple[float, float],
+    logger: Logger,
+    key: Union[str, None] = None,
+):
     low, high = min(expected_range), max(expected_range)
     if not (low <= value <= high):
         key_str = "for key `{}`".format(key) if key else ""
@@ -37,7 +45,7 @@ def check_expected_range(datapoint, value, expected_range, logger, key=None):
     return True
 
 
-def validate_production_diffs(datapoints: list, max_diff: dict, logger: logging.Logger):
+def validate_production_diffs(datapoints: List[Dict[str, Any]], max_diff: Dict, logger: Logger):
     """
     Parameters
     ----------
@@ -100,7 +108,7 @@ def validate_production_diffs(datapoints: list, max_diff: dict, logger: logging.
     return [datapoints[i] for i in ok_diff[ok_diff].index]
 
 
-def validate(datapoint, logger, **kwargs):
+def validate(datapoint: Dict, logger: Union[Logger, None], **kwargs):
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -118,11 +126,11 @@ def validate(datapoint, logger, **kwargs):
             For example ['gas', 'hydro']
             If any of these types are None the datapoint will be invalidated.
             Defaults to an empty list.
-        floor: float
+        floor: float | int
             Checks production sum is above floor value.
             If this is not the case the datapoint is invalidated.
             Defaults to None
-        expected_range: tuple or dict
+        expected_range: tuple | dict
             Checks production total against expected range.
             Tuple is in form (low threshold, high threshold), e.g. (1800, 12000).
             If a dict, it should be in the form
@@ -167,15 +175,15 @@ def validate(datapoint, logger, **kwargs):
     if logger is None:
         logger = getLogger(__name__)
 
-    remove_negative = kwargs.pop("remove_negative", False)
-    required = kwargs.pop("required", [])
-    floor = kwargs.pop("floor", False)
-    expected_range = kwargs.pop("expected_range", None)
+    remove_negative: bool = kwargs.pop("remove_negative", False)
+    required: list[Any] = kwargs.pop("required", [])
+    floor: Union[float, int, None] = kwargs.pop("floor", None)
+    expected_range: Union[Tuple, Dict, None] = kwargs.pop("expected_range", None)
     if kwargs:
         raise TypeError("Unexpected **kwargs: %r" % kwargs)
 
-    generation = datapoint["production"]
-    storage = datapoint.get("storage", {})
+    generation: Dict[str, Any] = datapoint["production"]
+    storage: Dict[str, Any] = datapoint.get("storage", {})
 
     if remove_negative:
         for key, val in generation.items():

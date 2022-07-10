@@ -1,3 +1,8 @@
+from typing import Union
+
+from electricitymap.contrib.config import ZoneKey
+
+
 class ParserException(Exception):
     """Parser Exception
 
@@ -11,7 +16,7 @@ class ParserException(Exception):
         message (str): String describing the exception.
         zone_key (str): Country code or sortedZoneKeys."""
 
-    def __init__(self, parser, message, zone_key=None):
+    def __init__(self, parser: str, message: str, zone_key: Union[ZoneKey, None]=None):
         super(ParserException, self).__init__(message)
         self.parser = parser
         self.zone_key = zone_key

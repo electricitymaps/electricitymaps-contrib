@@ -11,6 +11,7 @@ import time
 import arrow
 import click
 
+from electricitymap.contrib.config import ZoneKey
 from parsers.lib.parsers import PARSER_KEY_TO_DICT
 from parsers.lib.quality import (
     ValidationError,
@@ -29,7 +30,7 @@ logging.basicConfig(
 @click.argument("zone")
 @click.argument("data-type", default="production")
 @click.option("--target_datetime", default=None, show_default=True)
-def test_parser(zone, data_type, target_datetime):
+def test_parser(zone: ZoneKey, data_type, target_datetime):
     """\b
     Parameters
     ----------
