@@ -43,7 +43,9 @@ def check_expected_range(
     return True
 
 
-def validate_production_diffs(datapoints: List[Dict[str, Any]], max_diff: Dict, logger: Logger):
+def validate_production_diffs(
+    datapoints: List[Dict[str, Any]], max_diff: Dict, logger: Logger
+):
     """
     Parameters
     ----------
@@ -106,7 +108,9 @@ def validate_production_diffs(datapoints: List[Dict[str, Any]], max_diff: Dict, 
     return [datapoints[i] for i in ok_diff[ok_diff].index]
 
 
-def validate(datapoint: Dict, logger: Union[Logger, None], **kwargs):
+def validate(
+    datapoint: Dict, logger: Union[Logger, None], **kwargs
+) -> Union[Dict[str, Any], None]:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.

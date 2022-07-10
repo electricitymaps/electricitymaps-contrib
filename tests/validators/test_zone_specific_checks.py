@@ -1,4 +1,3 @@
-
 from validators.zone_specific_checks import validate_production_has_fossil_fuel
 
 from .lib.fixtures import load_fixture
