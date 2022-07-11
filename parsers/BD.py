@@ -4,6 +4,7 @@
 
 import logging
 from datetime import datetime
+from typing import List
 
 import arrow
 import pandas as pd
@@ -207,7 +208,7 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
 
     if not target_datetime:

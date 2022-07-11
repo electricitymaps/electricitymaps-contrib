@@ -4,6 +4,7 @@
 
 import logging
 from datetime import datetime
+from typing import Union
 
 import arrow
 import pandas as pd
@@ -14,7 +15,7 @@ URL = "https://www.hops.hr/Home/PowerExchange"
 
 def fetch_solar_production(
     feed_date, session=None, logger=logging.getLogger(__name__)
-) -> float:
+) -> Union[float, None]:
     """
     Calls extra resource at https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/<dd.m.yyyy>.json
     to get Solar power production in MW.

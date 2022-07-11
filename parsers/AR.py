@@ -2,16 +2,10 @@
 
 import datetime
 import logging
-from typing import Dict, List
+from typing import Dict, List, Union
 
 import arrow
 import requests
-from bs4 import BeautifulSoup
-
-try:
-    unicode  # Python 2
-except NameError:
-    unicode = str  # Python 3
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
@@ -29,7 +23,7 @@ CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/Renovab
 def fetch_production(
     zone_key="AR",
     session=None,
-    target_datetime: datetime.datetime = None,
+    target_datetime: Union[datetime.datetime, None] = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ) -> List[dict]:
     """Requests up to date list of production mixes (in MW) of a given country."""

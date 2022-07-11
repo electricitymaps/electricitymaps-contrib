@@ -1,3 +1,5 @@
+from typing import Union
+
 import arrow
 
 # Numpy and PIL are used to process the image
@@ -1063,7 +1065,7 @@ def fetch_exchange(
     # Here we assume that the net flow returned by the api is the flow from
     # country1 to country2. A positive flow indicates an export from country1
     # to country2. A negative flow indicates an import.
-
+    net_flow: Union[float, None] = None
     if sorted_zone_keys in ["AX->SE", "AX->SE-SE3"]:
         net_flow = obj["SE3->AX"]
 
@@ -1075,7 +1077,8 @@ def fetch_exchange(
     # from country1 to country2
 
     #  AX is before both FI and SE
-    data["netFlow"] = round(-1 * net_flow, 1)
+    if net_flow:
+        data["netFlow"] = round(-1 * net_flow, 1)
 
     return data
 

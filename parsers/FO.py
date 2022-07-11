@@ -2,6 +2,7 @@
 # coding=utf-8
 
 from logging import getLogger
+from typing import Union
 
 import arrow
 import requests
@@ -25,7 +26,7 @@ def map_generation_type(raw_generation_type):
 
 def fetch_production(
     zone_key="FO", session=None, target_datetime=None, logger=getLogger("FO")
-) -> dict:
+) -> Union[dict, None]:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

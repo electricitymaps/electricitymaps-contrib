@@ -9,7 +9,7 @@ SOURCE = "core.ap.gov.in"
 
 
 def fetch_production(
-    zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = ZONE_KEY, session=None, target_datetime=None, logger=None
 ) -> dict:
     """Fetch Andhra Pradesh  production"""
     if target_datetime:

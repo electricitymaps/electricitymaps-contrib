@@ -4,6 +4,7 @@ import logging
 from collections import defaultdict
 from math import isnan
 from operator import itemgetter
+from typing import List
 
 import arrow
 import numpy as np
@@ -183,7 +184,7 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df, logger) -> dict:
+def thermal_production(df, logger) -> List[dict]:
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
@@ -231,7 +232,7 @@ def thermal_production(df, logger) -> dict:
     return therms
 
 
-def total_production(df) -> dict:
+def total_production(df) -> List[dict]:
     """Takes DataFrame and finds generation totals for each hour."""
 
     vals = []
@@ -258,7 +259,7 @@ def total_production(df) -> dict:
     return vals
 
 
-def merge_production(thermal, total) -> defaultdict:
+def merge_production(thermal, total) -> List[dict]:
     """
     Takes thermal generation and total generation and merges them using 'datetime' key.
     """
@@ -288,7 +289,7 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

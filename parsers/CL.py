@@ -6,6 +6,7 @@ import logging
 from collections import defaultdict
 from datetime import datetime, timedelta
 from operator import itemgetter
+from typing import Union
 
 import arrow
 import requests
@@ -139,8 +140,8 @@ def production_processor_historical(raw_data):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
-    session: requests.session = None,
-    target_datetime: datetime = None,
+    session: Union[requests.Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
     logger: logging.Logger = logging.getLogger(__name__),
 ):
     if target_datetime is None and ENABLE_LIVE_PARSER:

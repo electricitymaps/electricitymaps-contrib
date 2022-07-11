@@ -2,6 +2,7 @@
 import datetime
 import logging
 import sys
+from typing import Any, Dict, List, Union
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -21,8 +22,8 @@ class CyprusParser:
         "Εγκατεστημένη Ισχύς Βιομάζας": "biomass",
     }
 
-    session = None
-    logger: logging.Logger = None
+    session: Union[requests.Session, None] = None
+    logger: Union[logging.Logger, None] = None
 
     def __init__(self, session, logger: logging.Logger):
         self.session = session
@@ -111,14 +112,15 @@ class CyprusParser:
 def fetch_production(
     zone_key="CY",
     session=None,
-    target_datetime: datetime.datetime = None,
+    target_datetime: Union[datetime.datetime, None] = None,
     logger: logging.Logger = logging.getLogger(__name__),
-) -> dict:
+) -> Union[List[Dict[str, Any]], None]:
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 
     parser = CyprusParser(session or requests.session(), logger)
-    return parser.fetch_production(target_datetime)
+    if isinstance(target_datetime, datetime.datetime):
+        return parser.fetch_production(target_datetime)
 
 
 if __name__ == "__main__":
@@ -131,5 +133,7 @@ if __name__ == "__main__":
         )
 
     print("fetch_production() ->")
-    for datum in fetch_production(target_datetime=target_datetime):
-        print(datum)
+    fetched_production = fetch_production(target_datetime=target_datetime)
+    if isinstance(fetched_production, list):
+        for datum in fetched_production:
+            print(datum)

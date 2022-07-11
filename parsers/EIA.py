@@ -9,6 +9,8 @@ Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
 import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
 import requests
@@ -453,9 +455,15 @@ def fetch_exchange(
     return exchange
 
 
-def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logger=None):
+def _fetch_series(
+    zone_key: str,
+    series_id,
+    session: Union[requests.Session, None] = None,
+    target_datetime: Union[datetime.datetime, None] = None,
+    logger: Union[Logger, None] = None,
+):
     """Fetches and converts a data series."""
-
+    logger = logger or getLogger(__name__)
     s = session or requests.Session()
 
     # local import to avoid the exception that happens if EIAPY token is not set
@@ -472,11 +480,15 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             )
         utc = tz.gettz("UTC")
-        # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
-        end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
-        start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime(
-            "%Y%m%dT%HZ"
-        )
+        if isinstance(target_datetime, datetime.datetime):
+            # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
+            end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
+            start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime(
+                "%Y%m%dT%HZ"
+            )
+        else:
+            end = None
+            start = None
         raw_data = series.get_data(start=start, end=end)
     else:
         # Get the last 24 hours available.

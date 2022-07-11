@@ -9,6 +9,7 @@ import csv
 import logging
 import re
 import urllib.parse
+from typing import Any, Dict, Union
 
 # Third-party library imports
 import arrow
@@ -84,7 +85,7 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> dict:
+) -> Union[Dict[str, Any], None]:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

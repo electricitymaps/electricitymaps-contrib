@@ -15,6 +15,7 @@ bmrs_api_data_push_user_guide_v1.1.pdf
 import datetime as dt
 import logging
 from io import StringIO
+from typing import List
 
 import arrow
 import pandas as pd
@@ -313,7 +314,7 @@ def fetch_production(
     session=None,
     target_datetime=None,
     logger=logging.getLogger(__name__),
-) -> dict:
+) -> List[dict]:
     session = session or requests.session()
     try:
         target_datetime = arrow.get(target_datetime).datetime

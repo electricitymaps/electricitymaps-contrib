@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import Any, Dict, Union
 
 import arrow
 import requests
@@ -80,7 +81,9 @@ def production_processor(json_data, zone_key) -> tuple:
     return dt, mapped_totals
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None) -> dict:
+def fetch_production(
+    zone_key, session=None, target_datetime=None, logger=None
+) -> Union[Dict[str, Any], None]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -119,10 +122,11 @@ def fetch_exchange(
     country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(
         zone_key2
     )
-
-    net_flow = (
-        data["internacional"][country_exchange["name"]] * country_exchange["flow"]
-    )
+    net_flow: Union[float, None] = None
+    if country_exchange:
+        net_flow = (
+            data["internacional"][country_exchange["name"]] * country_exchange["flow"]
+        )
 
     return {
         "datetime": dt,

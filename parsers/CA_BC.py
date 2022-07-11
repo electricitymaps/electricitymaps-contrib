@@ -13,7 +13,7 @@ timezone = "Canada/Pacific"
 
 
 def fetch_exchange(
-    zone_key1=None, zone_key2=None, session=None, target_datetime=None, logger=None
+    zone_key1: str, zone_key2: str, session=None, target_datetime=None, logger=None
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:

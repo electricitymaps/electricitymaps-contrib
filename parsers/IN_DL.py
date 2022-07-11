@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from typing import Dict
+
 from requests import Session
 
 from .lib import IN, web, zonekey
@@ -49,7 +51,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy = {"Gas": 0, "G2E": 0, "Coal": 0}
+    energy: Dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 
