@@ -5,7 +5,7 @@
 
 FROM python:3.8
 WORKDIR /workspace
-RUN apt-get update && apt-get install -y python3-opencv
+RUN apt-get update && apt-get install -y python3-opencv tesseract-ocr tesseract-ocr-jpn tesseract-ocr-eng libgl1
 RUN pip install poetry
 COPY . .
 RUN poetry install -E parsers
