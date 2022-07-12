@@ -6,13 +6,15 @@ Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gens
 """
 
 import json
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 # The arrow library is used to handle datetimes
 import arrow
 
 # The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 from parsers.lib.exceptions import ParserException
 
@@ -22,10 +24,10 @@ SOURCE_NAME = "ceb.lk"
 
 
 def fetch_production(
-    zone_key="LK",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "LK",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """Requests the previous day's production mix (in MW) for Sri Lanka, per quarter-hour"""
     if target_datetime is not None and target_datetime < arrow.utcnow().shift(days=-2):
@@ -33,7 +35,7 @@ def fetch_production(
             "The datasource currently only has data for yesterday"
         )  # so 0-24 hours ago just after local midnight to approx. 24-48 hours ago just before midnight
 
-    r = session or requests.session()
+    r = session or Session()
 
     response = r.get(GENERATION_BREAKDOWN_URL)
 

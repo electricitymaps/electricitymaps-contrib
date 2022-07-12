@@ -9,12 +9,20 @@ Shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: IEA; htt
 """
 
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 
-def fetch_production(zone_key="KW", session=None, target_datetime=None, logger=None):
+def fetch_production(
+    zone_key: str = "KW",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -36,11 +44,16 @@ def fetch_production(zone_key="KW", session=None, target_datetime=None, logger=N
     return datapoint
 
 
-def fetch_consumption(zone_key="KW", session=None, target_datetime=None, logger=None):
+def fetch_consumption(
+    zone_key: str = "KW",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.mew.gov.kw/en"
     response = r.get(url)
     load = re.findall(r"\((\d{4,5})\)", response.text)

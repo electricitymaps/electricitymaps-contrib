@@ -1,4 +1,6 @@
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
 import cv2
@@ -6,6 +8,7 @@ import numpy as np
 import pytesseract
 from imageio import imread
 from PIL import Image, ImageOps
+from requests import Session
 
 url = "https://mahasldc.in/wp-content/reports/sldc/mvrreport3.jpg"
 
@@ -113,10 +116,10 @@ def read(location, source):
 
 # TODO: this function actually fetches consumption data
 def fetch_production(
-    zone_key="IN-MH",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "IN-MH",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
 
     if target_datetime is not None:

@@ -8,13 +8,15 @@
 
 # Standard library imports
 import collections
-import datetime
 import json
-import logging
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Union
 
 # Third-party library imports
 import arrow
 import requests
+from requests import Session
 
 # Local library imports
 from parsers.lib import config, validation
@@ -29,9 +31,12 @@ PRODUCTION_URL = f"https://{DOMAIN}/SystemData/CurrentGen.aspx/GetChartDataSourc
 SOLAR_URL = f"https://{DOMAIN}/SystemData/LargeScaleSolar.aspx/ForecastChart"
 
 
-@config.refetch_frequency(datetime.timedelta(minutes=10))
+@config.refetch_frequency(timedelta(minutes=10))
 def fetch_consumption(
-    zone_key=DEFAULT_ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power consumption (in MW) of a given zone."""
     date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
@@ -43,7 +48,7 @@ def fetch_consumption(
             "zoneKey": zone_key,
         }
         for breakdown in get_api_data(
-            session or requests.Session(),
+            session or Session(),
             CONSUMPTION_URL,
             {
                 "Fromdate": date_string,
@@ -53,13 +58,17 @@ def fetch_consumption(
     ]
 
 
-@config.refetch_frequency(datetime.timedelta(minutes=10))
+@config.refetch_frequency(timedelta(minutes=10))
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power exchange (in MW) between two zones."""
     date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
-    session = session or requests.Session()
+    session = session or Session()
     sorted_zone_keys = "->".join(sorted((zone_key1, zone_key2)))
     if sorted_zone_keys == "MY-WM->SG":
         # The Singapore exchange is a PLTG tie.
@@ -116,12 +125,12 @@ def fetch_exchange(
         raise NotImplementedError("'{sorted_zone_keys}' is not implemented")
 
 
-@config.refetch_frequency(datetime.timedelta(minutes=10))
+@config.refetch_frequency(timedelta(minutes=10))
 def fetch_production(
-    zone_key=DEFAULT_ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the production mix (in MW) of a given zone."""
     date_string = arrow.get(target_datetime).to(TIMEZONE).format("DD/MM/YYYY")
@@ -145,7 +154,7 @@ def fetch_production(
             remove_negative=True,
         )
         for breakdown in get_api_data(
-            session or requests.Session(),
+            session or Session(),
             PRODUCTION_URL,
             {
                 "Fromdate": date_string,
@@ -155,14 +164,17 @@ def fetch_production(
     ]
 
 
-@config.refetch_frequency(datetime.timedelta(minutes=10))
+@config.refetch_frequency(timedelta(minutes=10))
 def fetch_wind_solar_forecasts(
-    zone_key=DEFAULT_ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the solar forecast (in MW) of a given zone."""
     date = arrow.get(target_datetime).to(TIMEZONE).floor("day")
     date_string = date.format("DD/MM/YYYY")
-    session = session or requests.Session()
+    session = session or Session()
     # Like the others, this endpoint presents data as a JSON object containing
     # the lone key 'd' and a string as its value, but the string now represents
     # a '$'-separated list of JSON strings rather than a proper JSON string.
@@ -199,7 +211,7 @@ def fetch_wind_solar_forecasts(
     return result
 
 
-def get_api_data(session, url, data):
+def get_api_data(session: Session, url, data):
     """Parse JSON data from the API."""
     # The API returns a JSON string containing only one key-value pair whose
     # value is another JSON string. We must therefore parse the response as

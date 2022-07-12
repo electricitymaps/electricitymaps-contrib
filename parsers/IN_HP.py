@@ -2,13 +2,14 @@
 
 """Parser for Himachal Pradesh (Indian State)."""
 
-import datetime
-import logging
+from datetime import datetime
 from enum import Enum
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 # This URL is called from within the
 # https://hpsldc.com/intra-state-power-transaction/
@@ -72,13 +73,13 @@ PLANT_NAMES_TO_TYPES = {
 
 
 def fetch_production(
-    zone_key=ZONE_KEY,
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Himachal Pradesh (India)"""
-    r = session or requests.session()
+    r = session or Session()
     if target_datetime is None:
         url = DATA_URL
     else:
@@ -99,7 +100,7 @@ def fetch_production(
     }
 
 
-def get_state_gen(soup, logger: logging.Logger):
+def get_state_gen(soup, logger: Logger):
     """
     Gets the total generation by type from state powerplants (MW).
     Data is from the table titled GENERATION OF HP(Z).
@@ -120,7 +121,7 @@ def get_state_gen(soup, logger: logging.Logger):
     return gen
 
 
-def get_isgs_gen(soup, logger: logging.Logger):
+def get_isgs_gen(soup, logger: Logger):
     """
     Gets the total generation by type from ISGS powerplants (MW).
     ISGS means Inter-State Generating Station: one owned by multiple states.
@@ -177,10 +178,10 @@ def combine_gen(gen1, gen2):
 
 
 def fetch_consumption(
-    zone_key=ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger=getLogger(__name__),
 ):
     # Not currently implemented as this function is not used by the map,
     # but if required the data is available as 'Demand Met' on
@@ -189,10 +190,10 @@ def fetch_consumption(
 
 
 def fetch_price(
-    zone_key=ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger=getLogger(__name__),
 ):
     # The only price data available in the source is 'DSM Rate'.
     # I.e. Demand side management rate.

@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
+
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import List, Union
 
 import arrow
 import requests
+from requests import Session
 
 GENERATION_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/pbGenData2"
 DATE_URL = "https://sldcapi.pstcl.org/wsDataService.asmx/dynamicData"
@@ -30,15 +34,18 @@ def calculate_average_timestamp(timestamps):
 
 
 def fetch_production(
-    zone_key="IN-PB", session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key: str = "IN-PB",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError(
             "The IN-PB production parser is not yet able to parse past dates"
         )
 
-    s = session or requests.Session()
+    s = session or Session()
     data_req = s.get(GENERATION_URL)
     timestamp_req = s.get(DATE_URL)
 
@@ -67,7 +74,10 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="IN-PB", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-PB",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known consumption (in MW) of a given zone."""
     if target_datetime:

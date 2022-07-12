@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
-import datetime
 import json
-import logging
 import pprint
 import re
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import List, Union
 
 import arrow
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -30,7 +31,7 @@ pp = pprint.PrettyPrinter(indent=4)
 # src: https://stackoverflow.com/questions/3463930/how-to-round-the-minute-of-a-datetime-object
 def time_floor(time, delta, epoch=None):
     if epoch is None:
-        epoch = datetime.datetime(1970, 1, 1, tzinfo=time.tzinfo)
+        epoch = datetime(1970, 1, 1, tzinfo=time.tzinfo)
     mod = (time - epoch) % delta
     return time - mod
 
@@ -56,7 +57,7 @@ def extract_chart_data(html):
         if item["regDate"] == "0":
             break
 
-        date = datetime.datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M")
+        date = datetime.strptime(item["regDate"], "%Y-%m-%d %H:%M")
         date = arrow.get(date, TIMEZONE).datetime
 
         timed_data[date] = {
@@ -72,12 +73,12 @@ def extract_chart_data(html):
     return timed_data
 
 
-@refetch_frequency(datetime.timedelta(minutes=5))
+@refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
-    zone_key="KR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "KR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """
     Fetches consumption.
@@ -86,7 +87,7 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = REAL_TIME_URL
 
     response = r.get(url)
@@ -100,7 +101,7 @@ def fetch_consumption(
 
     consumption_date_list = soup.find("p", {"class": "info_top"}).text.split(" ")[:2]
     consumption_date_list[0] = consumption_date_list[0].replace(".", "-").split("(")[0]
-    consumption_date = datetime.datetime.strptime(
+    consumption_date = datetime.strptime(
         " ".join(consumption_date_list), "%Y-%m-%d %H:%M"
     )
     consumption_date = arrow.get(consumption_date, TIMEZONE).datetime
@@ -115,16 +116,16 @@ def fetch_consumption(
     return data
 
 
-@refetch_frequency(datetime.timedelta(hours=1))
+@refetch_frequency(timedelta(hours=1))
 def fetch_price(
-    zone_key="KR",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "KR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
 
     first_available_date = time_floor(
-        arrow.now(TIMEZONE).shift(days=-6), datetime.timedelta(days=1)
+        arrow.now(TIMEZONE).shift(days=-6), timedelta(days=1)
     ).shift(hours=1)
 
     if target_datetime is not None and target_datetime < first_available_date:
@@ -135,7 +136,7 @@ def fetch_price(
     if target_datetime is None:
         target_datetime = arrow.now(TIMEZONE).datetime
 
-    r = session or requests.session()
+    r = session or Session()
     url = PRICE_URL
 
     response = r.get(url)
@@ -175,11 +176,11 @@ def fetch_price(
 
 
 def get_long_term_prod_data(
-    session=None, target_datetime: datetime.datetime = None
-) -> dict:
+    session: Union[Session, None] = None, target_datetime: Union[datetime, None] = None
+) -> List[dict]:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
-    r = session or requests.session()
+    r = session or Session()
 
     # CSRF token is needed to access the production data
     r.get(LONG_TERM_PRODUCTION_URL)
@@ -241,21 +242,21 @@ def get_long_term_prod_data(
     return all_data
 
 
-def get_granular_real_time_prod_data(session=None) -> dict:
-    r0 = session or requests.session()
+def get_granular_real_time_prod_data(session: Union[Session, None] = None) -> dict:
+    r0 = session or Session()
     res_0 = r0.get(REAL_TIME_URL)
     chart_data = extract_chart_data(res_0.text)
 
     return chart_data
 
 
-@refetch_frequency(datetime.timedelta(minutes=5))
+@refetch_frequency(timedelta(minutes=5))
 def fetch_production(
-    zone_key="KR",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
-) -> dict:
+    zone_key: str = "KR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
 
     if target_datetime is not None and target_datetime < arrow.get(
         2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE

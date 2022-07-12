@@ -128,7 +128,7 @@ def fetch_consumption(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
@@ -157,7 +157,7 @@ def fetch_production(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 
     ses = session or Session()
@@ -236,7 +236,7 @@ def fetch_exchange(
     zone_key2: ZONE_KEYS,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")

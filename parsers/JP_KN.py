@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-import datetime
-import logging
 import re
+from datetime import datetime
 from io import BytesIO
+from logging import Logger, getLogger
+from typing import Union
 from urllib.request import Request, urlopen
 
 # The arrow library is used to handle datetimes
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 from pytesseract import image_to_string
+
+# The request library is used to fetch content through HTTP
+from requests import Session
 
 from .JP import fetch_production as JP_fetch_production
 
@@ -21,10 +22,10 @@ from .JP import fetch_production as JP_fetch_production
 
 
 def fetch_production(
-    zone_key="JP-KN",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "JP-KN",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
 
     """
@@ -32,7 +33,7 @@ def fetch_production(
     It tries to match the solar data with the nuclear data.
     If there is a difference of more than 30 minutes between solar and nuclear data, the method will fail.
     """
-    r = session or requests.session()
+    r = session or Session()
     if target_datetime is not None:
         raise NotImplementedError("This parser can only fetch live data")
 

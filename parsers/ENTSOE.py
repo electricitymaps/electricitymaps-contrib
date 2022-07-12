@@ -475,7 +475,9 @@ def query_production(in_domain, session, target_datetime=None) -> Union[str, Non
         check_response(response, query_production.__name__)
 
 
-def query_production_per_units(psr_type, domain, session, target_datetime=None) -> Union[str, None]:
+def query_production_per_units(
+    psr_type, domain, session, target_datetime=None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A73",
@@ -491,7 +493,9 @@ def query_production_per_units(psr_type, domain, session, target_datetime=None) 
         check_response(response, query_production_per_units.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, target_datetime=None) -> Union[str, None]:
+def query_exchange(
+    in_domain, out_domain, session, target_datetime=None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A11",
@@ -536,7 +540,9 @@ def query_price(domain, session, target_datetime=None) -> Union[str, None]:
         check_response(response, query_price.__name__)
 
 
-def query_generation_forecast(in_domain, session, target_datetime=None) -> Union[str, None]:
+def query_generation_forecast(
+    in_domain, session, target_datetime=None
+) -> Union[str, None]:
     """Gets generation forecast for 48 hours ahead and previous 24 hours."""
 
     # Note: this does not give a breakdown of the production
@@ -552,7 +558,9 @@ def query_generation_forecast(in_domain, session, target_datetime=None) -> Union
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_consumption_forecast(in_domain, session, target_datetime=None) -> Union[str, None]:
+def query_consumption_forecast(
+    in_domain, session, target_datetime=None
+) -> Union[str, None]:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -756,7 +764,9 @@ def parse_production_per_units(xml_text) -> Union[dict, None]:
     return values.values()
 
 
-def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> Union[tuple, None]:
+def parse_exchange(
+    xml_text, is_import, quantities=None, datetimes=None
+) -> Union[tuple, None]:
 
     if not xml_text:
         return None
@@ -815,7 +825,9 @@ def parse_price(xml_text) -> Union[tuple, None]:
     return prices, currencies, datetimes
 
 
-def validate_production(datapoint: Dict[str, Any], logger: logging.Logger) -> Union[Dict[str, Any], bool, None]:
+def validate_production(
+    datapoint: Dict[str, Any], logger: logging.Logger
+) -> Union[Dict[str, Any], bool, None]:
     """
     Production data can sometimes be available but clearly wrong.
 

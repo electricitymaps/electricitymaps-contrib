@@ -1,27 +1,27 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import datetime
-import logging
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 # The arrow library is used to handle datetimes
 import arrow
-import numpy as np
-import pandas as pd
 
 # The request library is used to fetch content through HTTP
 import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from . import occtonet
 
 
 def fetch_production(
-    zone_key="JP-KY",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key: str = "JP-KY",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[dict, list]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
