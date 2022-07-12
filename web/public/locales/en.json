@@ -1,7 +1,7 @@
 {
   "info-modal": {
     "title": "Info",
-    "intro-text": "The electricityMap app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
+    "intro-text": "The Electricity Maps app provides real-time insights on web and mobile for citizens, energy experts, NGOs and policymakers promoting a deeper understanding of energy transition challenges.",
     "open-source-text": "This app is <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">see data sources</a>) and powered by the community.",
     "feedback-button": "Share feedback",
     "github-button": "View our GitHub",
@@ -21,7 +21,7 @@
     "contribute": "Contribute by <a href=\"%s\" target=\"_blank\">adding your territory</a>"
   },
   "mobile-main-menu": {
-    "map": "electricityMap",
+    "map": "Electricity Maps",
     "areas": "Areas",
     "about": "About"
   },
@@ -85,7 +85,7 @@
     "electricityorigin": { "default": "Origin of electricity in the last %1$s" },
     "electricityproduction": { "default": "Electricity production in the last %1$s" },
     "electricityprices": { "default": "Electricity prices in the last %1$s" },
-    "Getdata": "Get hourly historical, live, and forecast data with electricityMap API"
+    "Getdata": "Get hourly historical, live, and forecast data with Electricity Maps API"
   },
   "footer": {
     "foundbugs": "Found bugs or have ideas? Report them",
@@ -201,7 +201,7 @@
     "guaranteesOfOrigin-question": "What are green certificates, and how are they taken into account?",
     "guaranteesOfOrigin-answer": "When producers of renewable energy produce electricity, they can create Guarantees of Origin (or Renewable Energy Certificates) - a proof that renewable electricity has been produced and distributed into the power grid. These guarantees can then be sold, giving electricity retailers a way to claim that the electricity they resell comes from renewable sources, regardless of its actual, physical source.<br><br> This means that electricity consumers can be told that their electricity comes from solar and wind, even in a windless night. This is problematic, as it removes consumer incentives to consume electricity at the best time (for instance when the amount of renewable electricity in the grid is actually at its highest). This map therefore excludes Guarantees of Origin, instead offering a location-based physical picture of the power grid, in order to empower consumers.",
     "otherSources-question": "Why don’t you show other sources of emissions than electricity production?",
-    "otherSources-answer": "This would be outside of the scope of this project. However, at electricityMap we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
+    "otherSources-answer": "This would be outside of the scope of this project. However, at Electricity Maps we are actively working on developing <a href=\"#whoAreYou\" class=\"entry-link\">new solutions for quantifying the climate impact of your everyday decisions</a>.",
     "homeSolarPanel-question": "What if I have a solar panel installed in my home?",
     "homeSolarPanel-answer": "We measure the carbon intensity of the local power grid, so any electricity you consume directly from your solar panel (off-grid) is not a part of our measurements. However, if your solar panel is providing power to your local power grid, its production is included in our statistics in areas where estimations of local solar energy production is made publically available (such as in France and in the UK).",
     "emissionsPerCapita-question": "Why don't you show emissions per capita?",
@@ -219,15 +219,15 @@
   "aboutUs": {
     "groupName": "About us",
     "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The Electricity Map is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
     "feedback-question": "Can I give you some feedback?",
     "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymap.org\">send us an email!</a>",
     "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": "Yes! The Electricity Map is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Can we work together?",
     "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymap.org\">Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {

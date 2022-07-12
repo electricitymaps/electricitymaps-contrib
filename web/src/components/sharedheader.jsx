@@ -14,11 +14,16 @@ const Wrapper = styled.header`
   height: 58px;
   justify-content: space-between;
   min-height: 58px; /* required for old Safari */
-  padding: 0 48px 0 32px;
+  padding: 0 48px 0 25px;
   position: fixed;
   transition: background-color 0.5s;
   width: 100vw;
   z-index: 3;
+
+  @media (max-width: 850px) {
+    // provides some extra space for the logo on smaller screens
+    padding-right: 12px;
+  }
 
   ${(props) =>
     props.collapsed &&
@@ -44,7 +49,8 @@ const Wrapper = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 24px;
+  height: 48px;
+  margin-top: 3px;
 `;
 
 const linkUnderline = css`
