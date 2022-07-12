@@ -8,7 +8,6 @@ from typing import List, Union
 import arrow
 
 # The request library is used to fetch content through HTTP
-import requests
 from requests import Session
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
@@ -114,7 +113,7 @@ def fetch_production(
       ...
     ]
     """
-    r = session or requests.session()
+    r = session or Session()
     if target_datetime is None:
         url = "https://api.someservice.com/v1/productionmix/latest"
     else:
@@ -220,7 +219,7 @@ def fetch_price(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     assert r.status_code == 200
     url = "https://api.someservice.com/v1/price/latest"
 
@@ -301,7 +300,7 @@ def fetch_exchange(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://api.someservice.com/v1/exchange/latest?" "from={}&to={}".format(
         zone_key1, zone_key2
     )

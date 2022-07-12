@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-import logging
 from collections import defaultdict
+from datetime import datetime
+from logging import Logger, getLogger
 from math import isnan
 from operator import itemgetter
-from typing import List
+from typing import List, Union
 
 import arrow
 import numpy as np
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 # This parser gets hourly electricity generation data from oc.org.do for the Dominican Republic.
 # The data is in MWh but since it is updated hourly we can view it as MW.
@@ -87,14 +88,14 @@ thermal_plants = {
 }
 
 
-def get_data(session=None) -> list:
+def get_data(session: Union[Session, None] = None) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
     """
 
     data = []
-    s = session or requests.Session()
+    s = session or Session()
     data_req = s.get(url)
     soup = BeautifulSoup(data_req.content, "lxml")
 
@@ -184,7 +185,7 @@ def data_parser(formatted_data):
     return dft
 
 
-def thermal_production(df, logger) -> List[dict]:
+def thermal_production(df, logger: Logger) -> List[dict]:
     """
     Takes DataFrame and finds thermal generation for each hour.
     Removes any non generating plants then maps plants to type.
@@ -285,16 +286,16 @@ def merge_production(thermal, total) -> List[dict]:
 
 
 def fetch_production(
-    zone_key="DO",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "DO",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    dat = data_formatter(get_data(session=None))
+    dat = data_formatter(get_data(session=session))
     tot = data_parser(dat["totals"])
     th = data_parser(dat["thermal"])
     thermal = thermal_production(th, logger)
