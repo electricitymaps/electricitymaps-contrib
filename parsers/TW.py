@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
 import dateutil
 import pandas as pd
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="TW", session=None, target_datetime=None, logger=None
+    zone_key: str = "TW",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     url = "http://www.taipower.com.tw/d006/loadGraph/loadGraph/data/genary.txt"
-    s = session or requests.Session()
+    s = session or Session()
     response = s.get(url)
     data = response.json()
 

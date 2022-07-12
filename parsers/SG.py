@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-import logging
+
 import re
 from collections import defaultdict
-from typing import Optional
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional, Union
 
 import arrow
-import requests
 from PIL import Image, ImageOps
 from pytesseract import image_to_string
+from requests import Session
 
 TIMEZONE = "Asia/Singapore"
 
@@ -52,7 +54,7 @@ There exists an interconnection to Malaysia, it is implemented in MY_WM.py.
 TYPE_MAPPINGS = {"CCGT/COGEN/TRIGEN": "gas", "GT": "gas", "ST": "unknown"}
 
 
-def get_solar(session, logger) -> Optional[float]:
+def get_solar(session: Session, logger: Logger) -> Optional[float]:
     """
     Fetches a graphic showing estimated solar production data.
     Uses OCR (tesseract) to extract MW value.
@@ -134,16 +136,16 @@ def sg_data_to_datetime(data):
 
 
 def fetch_production(
-    zone_key="SG",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "SG",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Singapore."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
 
     response = requests_obj.get(TICKER_URL)
     data = response.json()
@@ -205,7 +207,12 @@ def fetch_production(
     }
 
 
-def fetch_price(zone_key="SG", session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(
+    zone_key: str = "SG",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     """
     Requests the most recent known power prices in Singapore (USEP).
 
@@ -245,7 +252,7 @@ def fetch_price(zone_key="SG", session=None, target_datetime=None, logger=None) 
     }
 
 
-def __detect_datetime_from_solar_image(solar_image, logger):
+def __detect_datetime_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
     crop_left = int(w * 0.75)
     crop_top = int(h * 0.87)
@@ -271,7 +278,7 @@ def __detect_datetime_from_solar_image(solar_image, logger):
     return solar_dt
 
 
-def __detect_output_from_solar_image(solar_image, logger):
+def __detect_output_from_solar_image(solar_image, logger: Logger):
     w, h = solar_image.size
     crop_left = int(w * 0.65)
     crop_top = int(h * 0.74)

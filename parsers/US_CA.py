@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-import logging
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import List, Union
 
 import arrow
 import pandas
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -19,10 +20,10 @@ MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegiona
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="US-CA",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "US-CA",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
@@ -90,15 +91,15 @@ def fetch_production(
     return daily_data
 
 
-def fetch_historical_production(target_datetime, zone_key):
+def fetch_historical_production(target_datetime: datetime, zone_key: str):
     return fetch_historical_data(target_datetime, zone_key)[0]
 
 
-def fetch_historical_exchange(target_datetime):
+def fetch_historical_exchange(target_datetime: datetime):
     return fetch_historical_data(target_datetime)[1]
 
 
-def fetch_historical_data(target_datetime, zone_key="US-CA"):
+def fetch_historical_data(target_datetime: datetime, zone_key: str = "US-CA"):
     # caiso.com provides daily data until the day before today
     # get a clean date at the beginning of yesterday
     target_date = (
@@ -180,7 +181,7 @@ def fetch_historical_data(target_datetime, zone_key="US-CA"):
     return daily_data, import_data
 
 
-def fetch_MX_exchange(s) -> float:
+def fetch_MX_exchange(s: Session) -> float:
     req = s.get(MX_EXCHANGE_URL)
     soup = BeautifulSoup(req.text, "html.parser")
     exchange_div = soup.find("div", attrs={"id": "IntercambioUSA-BCA"})
@@ -199,12 +200,16 @@ def fetch_MX_exchange(s) -> float:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    s = session or requests.Session()
+    s = session or Session()
 
     if sorted_zone_keys == "MX-BC->US-CA" or sorted_zone_keys == "MX-BC->US-CAL-CISO":
         netflow = fetch_MX_exchange(s)
@@ -216,7 +221,7 @@ def fetch_exchange(
         }
         return exchange
 
-    if target_datetime:
+    if isinstance(target_datetime, datetime):
         return fetch_historical_exchange(target_datetime)
 
     # CSV has imports to California as positive.

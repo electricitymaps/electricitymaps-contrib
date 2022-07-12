@@ -10,8 +10,7 @@ from typing import Union
 import arrow
 import numpy as np
 import pandas as pd
-import requests
-from requests import Session
+from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
@@ -180,7 +179,7 @@ def fetch_production(
 def fetch_production_energieopwek_nl(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
-    logger=logging.getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()
@@ -211,8 +210,8 @@ def fetch_production_energieopwek_nl(
     return output
 
 
-def get_production_data_energieopwek(date, session=None):
-    r = session or requests.session()
+def get_production_data_energieopwek(date, session: Union[Session, None] = None):
+    r = session or Session()
 
     # The API returns values per day from local time midnight until the last
     # round 10 minutes if the requested date is today or for the entire day if
@@ -267,7 +266,7 @@ def get_wind_capacities() -> pd.DataFrame:
 
     capacities_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
     try:
-        r = requests.get(url_wind_capacities)
+        r = get(url_wind_capacities)
         per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
     except Exception as e:
         logger.error(f"Error fetching wind capacities: {e}")
@@ -303,7 +302,7 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
 
     try:
-        r = requests.get(url_solar_capacity)
+        r = get(url_solar_capacity)
         per_year_capacity = r.json()["value"]
     except Exception as e:
         logger.error(f"Error fetching solar capacities: {e}")

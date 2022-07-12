@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
+
 import arrow
 import dateutil
-import requests
+from requests import Session
 
 """
 tec - same as `tes` but also working as central heater,
@@ -33,11 +37,14 @@ tz = "Europe/Kiev"
 
 
 def fetch_production(
-    zone_key="UA", session=None, target_datetime=None, logger=None
+    zone_key: str = "UA",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    r = session or requests.session()
+    r = session or Session()
 
     data = []
     today = arrow.now(tz=tz).format("DD.MM.YYYY")
