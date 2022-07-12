@@ -94,11 +94,11 @@ jobs:
     if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/verify.yml
 
-  # cypress:
-  #   name: Cypress
-  #   needs: [eslint, verify]
-  #   uses: ./.github/workflows/cypress.yml
-  #   secrets: inherit
+  cypress:
+    name: Cypress
+    needs: [eslint, verify]
+    uses: ./.github/workflows/cypress.yml
+    secrets: inherit
 
   # Python checks
   python:
