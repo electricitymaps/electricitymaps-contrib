@@ -3,7 +3,7 @@
     "defaults": {
       "powerOriginRatios": {
         "_comment": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf",
-        "_source": "BP Statistical Review of World Energy 2019, values from 2018, and Electricity Maps Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
+        "_source": "BP Statistical Review of World Energy 2019, values from 2018, and electricityMap Avg for average carbon intensity, and IRENA report for Biomass and geothermal",
         "value": {
           "battery charge": 0,
           "battery discharge": 0,
@@ -26,7 +26,7 @@
       "AR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -44,7 +44,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -62,7 +62,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -84,7 +84,7 @@
       "AT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -102,7 +102,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -120,7 +120,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -138,7 +138,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -156,7 +156,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -174,7 +174,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -192,7 +192,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -214,7 +214,7 @@
       "AUS-TAS-FI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.008755639165674524,
@@ -236,7 +236,7 @@
       "AUS-TAS-KI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.013766739653774968,
@@ -258,7 +258,7 @@
       "AUS-VIC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -276,7 +276,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0005359659463071047,
@@ -294,7 +294,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.000549937433619696,
@@ -316,7 +316,7 @@
       "AUS-WA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -334,7 +334,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -352,7 +352,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -370,7 +370,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -388,7 +388,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -410,7 +410,7 @@
       "AUS-WA-RI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -432,7 +432,7 @@
       "AW": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -450,7 +450,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -468,7 +468,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -486,7 +486,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -508,7 +508,7 @@
       "AX": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -526,7 +526,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -544,7 +544,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -562,7 +562,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -595,7 +595,7 @@
       "BA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -613,7 +613,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -631,7 +631,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -649,7 +649,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -667,7 +667,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -689,7 +689,7 @@
       "BE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -707,7 +707,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -725,7 +725,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -743,7 +743,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -761,7 +761,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -779,7 +779,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -797,7 +797,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -819,7 +819,7 @@
       "BG": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -837,7 +837,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -855,7 +855,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -873,7 +873,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -891,7 +891,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -909,7 +909,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -931,7 +931,7 @@
       "BO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -949,7 +949,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -967,7 +967,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -985,7 +985,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1003,7 +1003,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1025,7 +1025,7 @@
       "BR-CS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1043,7 +1043,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1061,7 +1061,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1079,7 +1079,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1101,7 +1101,7 @@
       "BR-N": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1119,7 +1119,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1137,7 +1137,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1155,7 +1155,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1173,7 +1173,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1195,7 +1195,7 @@
       "BR-NE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1213,7 +1213,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1231,7 +1231,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1253,7 +1253,7 @@
       "BR-S": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1271,7 +1271,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1289,7 +1289,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1307,7 +1307,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1325,7 +1325,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1357,7 +1357,7 @@
       "CA-AB": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1417,7 +1417,7 @@
       "CA-NS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1435,7 +1435,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1457,7 +1457,7 @@
       "CA-ON": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1475,7 +1475,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 5.455664708392035e-10,
@@ -1497,7 +1497,7 @@
       "CA-QC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1519,7 +1519,7 @@
       "CA-YT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1537,7 +1537,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1555,7 +1555,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1573,7 +1573,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1591,7 +1591,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1613,7 +1613,7 @@
       "CH": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1631,7 +1631,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1649,7 +1649,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1667,7 +1667,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1685,7 +1685,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1703,7 +1703,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1721,7 +1721,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1743,7 +1743,7 @@
       "CR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1765,7 +1765,7 @@
       "CY": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1783,7 +1783,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1801,7 +1801,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1819,7 +1819,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1837,7 +1837,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1859,7 +1859,7 @@
       "CZ": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1877,7 +1877,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1895,7 +1895,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1913,7 +1913,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1931,7 +1931,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1949,7 +1949,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1967,7 +1967,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -1989,7 +1989,7 @@
       "DE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2007,7 +2007,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2025,7 +2025,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2043,7 +2043,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2061,7 +2061,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2079,7 +2079,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2097,7 +2097,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2119,7 +2119,7 @@
       "DK-BHM": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2137,7 +2137,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2155,7 +2155,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2177,7 +2177,7 @@
       "DK-DK1": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2195,7 +2195,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2213,7 +2213,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2231,7 +2231,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2249,7 +2249,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2267,7 +2267,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2285,7 +2285,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2307,7 +2307,7 @@
       "DK-DK2": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2325,7 +2325,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2343,7 +2343,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2361,7 +2361,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2379,7 +2379,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2397,7 +2397,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2415,7 +2415,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2437,7 +2437,7 @@
       "DO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2455,7 +2455,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2473,7 +2473,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2495,7 +2495,7 @@
       "EE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2513,7 +2513,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2531,7 +2531,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2553,7 +2553,7 @@
       "ES": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2571,7 +2571,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2589,7 +2589,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2607,7 +2607,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2625,7 +2625,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2647,7 +2647,7 @@
       "ES-CN-FVLZ": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2665,7 +2665,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2683,7 +2683,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2701,7 +2701,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2723,7 +2723,7 @@
       "ES-CN-GC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2741,7 +2741,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2759,7 +2759,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2777,7 +2777,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2799,7 +2799,7 @@
       "ES-CN-HI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2817,7 +2817,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2835,7 +2835,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2857,7 +2857,7 @@
       "ES-CN-IG": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2875,7 +2875,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2893,7 +2893,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2911,7 +2911,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2933,7 +2933,7 @@
       "ES-CN-LP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2951,7 +2951,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2969,7 +2969,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -2987,7 +2987,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3009,7 +3009,7 @@
       "ES-CN-TE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3027,7 +3027,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3045,7 +3045,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3063,7 +3063,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3085,7 +3085,7 @@
       "ES-IB-FO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3103,7 +3103,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3121,7 +3121,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3143,7 +3143,7 @@
       "ES-IB-IZ": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3161,7 +3161,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3179,7 +3179,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3201,7 +3201,7 @@
       "ES-IB-MA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3219,7 +3219,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3237,7 +3237,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3255,7 +3255,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3277,7 +3277,7 @@
       "ES-IB-ME": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3295,7 +3295,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3313,7 +3313,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3331,7 +3331,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3353,7 +3353,7 @@
       "FI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3371,7 +3371,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3389,7 +3389,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3407,7 +3407,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3425,7 +3425,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3443,7 +3443,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3465,7 +3465,7 @@
       "FO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3483,7 +3483,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3505,7 +3505,7 @@
       "FR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3523,7 +3523,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3541,7 +3541,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3559,7 +3559,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3577,7 +3577,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3595,7 +3595,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3613,7 +3613,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3635,7 +3635,7 @@
       "GB": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3653,7 +3653,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3671,7 +3671,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3689,7 +3689,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3707,7 +3707,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3725,7 +3725,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3743,7 +3743,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3765,7 +3765,7 @@
       "GB-NIR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3783,7 +3783,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3801,7 +3801,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3819,7 +3819,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3837,7 +3837,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3855,7 +3855,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3873,7 +3873,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3895,7 +3895,7 @@
       "GB-ORK": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3913,7 +3913,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3931,7 +3931,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3949,7 +3949,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3971,7 +3971,7 @@
       "GE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -3993,7 +3993,7 @@
       "GR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4011,7 +4011,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4029,7 +4029,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4047,7 +4047,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4065,7 +4065,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4083,7 +4083,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4101,7 +4101,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4123,7 +4123,7 @@
       "GT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4163,7 +4163,7 @@
       "HN": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4181,7 +4181,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4203,7 +4203,7 @@
       "HR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4221,7 +4221,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4239,7 +4239,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4261,7 +4261,7 @@
       "HU": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4279,7 +4279,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4297,7 +4297,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4315,7 +4315,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4333,7 +4333,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4351,7 +4351,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4369,7 +4369,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4391,7 +4391,7 @@
       "IE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4409,7 +4409,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4427,7 +4427,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4445,7 +4445,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4463,7 +4463,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4481,7 +4481,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4499,7 +4499,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4521,7 +4521,7 @@
       "IL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4539,7 +4539,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4559,7 +4559,7 @@
         ]
       },
       "IN": {
-        "_source": "Electricity Maps",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "value": {
             "battery discharge": 0,
@@ -4580,7 +4580,7 @@
       "IN-AP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4598,7 +4598,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4616,7 +4616,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4634,7 +4634,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4656,7 +4656,7 @@
       "IN-CT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4674,7 +4674,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4692,7 +4692,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4710,7 +4710,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4728,7 +4728,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4750,7 +4750,7 @@
       "IN-DL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4768,7 +4768,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4786,7 +4786,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4804,7 +4804,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4826,7 +4826,7 @@
       "IN-GJ": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4848,7 +4848,7 @@
       "IN-KA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4866,7 +4866,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4884,7 +4884,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4902,7 +4902,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4920,7 +4920,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4942,7 +4942,7 @@
       "IN-PB": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4960,7 +4960,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4978,7 +4978,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -4996,7 +4996,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5014,7 +5014,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5034,7 +5034,7 @@
         ]
       },
       "IN-UP": {
-        "_source": "Electricity Maps",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "value": {
             "battery discharge": 0,
@@ -5055,7 +5055,7 @@
       "IQ": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5073,7 +5073,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5095,7 +5095,7 @@
       "IS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5113,7 +5113,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5131,7 +5131,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5153,7 +5153,7 @@
       "IT-CNO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5171,7 +5171,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5189,7 +5189,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5211,7 +5211,7 @@
       "IT-CSO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5229,7 +5229,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5247,7 +5247,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5265,7 +5265,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5287,7 +5287,7 @@
       "IT-NO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5305,7 +5305,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5323,7 +5323,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5341,7 +5341,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5359,7 +5359,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5377,7 +5377,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5395,7 +5395,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5417,7 +5417,7 @@
       "IT-SAR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5435,7 +5435,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5457,7 +5457,7 @@
       "IT-SIC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5475,7 +5475,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5493,7 +5493,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5515,7 +5515,7 @@
       "IT-SO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5533,7 +5533,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5551,7 +5551,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5569,7 +5569,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5587,7 +5587,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5609,7 +5609,7 @@
       "JP-KY": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5627,7 +5627,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5647,7 +5647,7 @@
         ]
       },
       "KR": {
-        "_source": "Electricity Maps",
+        "_source": "electricityMap",
         "powerOriginRatios": {
           "value": {
             "battery discharge": 0,
@@ -5668,7 +5668,7 @@
       "KW": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5686,7 +5686,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5736,7 +5736,7 @@
       "LU": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5758,7 +5758,7 @@
       "LV": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5793,7 +5793,7 @@
       "MD": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5811,7 +5811,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5829,7 +5829,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5851,7 +5851,7 @@
       "ME": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5869,7 +5869,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5887,7 +5887,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5905,7 +5905,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5923,7 +5923,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5941,7 +5941,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5959,7 +5959,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5981,7 +5981,7 @@
       "MK": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -5999,7 +5999,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6017,7 +6017,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6035,7 +6035,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6053,7 +6053,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6071,7 +6071,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6098,12 +6098,12 @@
             "wind": 0.077
           }
         },
-        "source": "Electricity Maps & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
+        "source": "electricityMap & Dra. Gabriela Mu\u00f1oz Mel\u00e9ndez"
       },
       "MY-WM": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6121,7 +6121,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6143,7 +6143,7 @@
       "NG": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6165,7 +6165,7 @@
       "NI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6183,7 +6183,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6201,7 +6201,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6231,7 +6231,7 @@
       "NL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6249,7 +6249,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6267,7 +6267,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6285,7 +6285,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6303,7 +6303,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6321,7 +6321,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6339,7 +6339,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6361,7 +6361,7 @@
       "NO-NO1": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6379,7 +6379,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6397,7 +6397,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6415,7 +6415,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6433,7 +6433,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6451,7 +6451,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6469,7 +6469,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6491,7 +6491,7 @@
       "NO-NO2": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6509,7 +6509,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6527,7 +6527,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6545,7 +6545,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6563,7 +6563,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6581,7 +6581,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6599,7 +6599,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6621,7 +6621,7 @@
       "NO-NO3": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6639,7 +6639,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6657,7 +6657,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6675,7 +6675,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6693,7 +6693,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6711,7 +6711,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6733,7 +6733,7 @@
       "NO-NO4": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6751,7 +6751,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6769,7 +6769,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6787,7 +6787,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6805,7 +6805,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6823,7 +6823,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6841,7 +6841,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6863,7 +6863,7 @@
       "NO-NO5": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6881,7 +6881,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6899,7 +6899,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6917,7 +6917,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6935,7 +6935,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6953,7 +6953,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6975,7 +6975,7 @@
       "PA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -6993,7 +6993,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7015,7 +7015,7 @@
       "PE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7033,7 +7033,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7051,7 +7051,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7069,7 +7069,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7087,7 +7087,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7109,7 +7109,7 @@
       "PF": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7131,7 +7131,7 @@
       "PL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7149,7 +7149,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7167,7 +7167,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7189,7 +7189,7 @@
       "PR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7211,7 +7211,7 @@
       "PT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7229,7 +7229,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7247,7 +7247,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7265,7 +7265,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7283,7 +7283,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7301,7 +7301,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7319,7 +7319,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7341,7 +7341,7 @@
       "RE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7359,7 +7359,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7377,7 +7377,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7399,7 +7399,7 @@
       "RO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7417,7 +7417,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7435,7 +7435,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7453,7 +7453,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7471,7 +7471,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7489,7 +7489,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7507,7 +7507,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7529,7 +7529,7 @@
       "RS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7547,7 +7547,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7565,7 +7565,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7583,7 +7583,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7601,7 +7601,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7623,7 +7623,7 @@
       "RU": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7641,7 +7641,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7659,7 +7659,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7677,7 +7677,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7699,7 +7699,7 @@
       "RU-1": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7717,7 +7717,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7735,7 +7735,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7753,7 +7753,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7775,7 +7775,7 @@
       "RU-2": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7797,7 +7797,7 @@
       "RU-AS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7830,7 +7830,7 @@
       "SE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7848,7 +7848,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7866,7 +7866,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7884,7 +7884,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7902,7 +7902,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7920,7 +7920,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7942,7 +7942,7 @@
       "SI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7960,7 +7960,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7978,7 +7978,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -7996,7 +7996,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8014,7 +8014,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8032,7 +8032,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8050,7 +8050,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8072,7 +8072,7 @@
       "SK": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2015 average",
+            "_source": "electricityMap, 2015 average",
             "datetime": "2015-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8090,7 +8090,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2016 average",
+            "_source": "electricityMap, 2016 average",
             "datetime": "2016-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8108,7 +8108,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8126,7 +8126,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8144,7 +8144,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8162,7 +8162,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8180,7 +8180,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8202,7 +8202,7 @@
       "SV": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8220,7 +8220,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8258,7 +8258,7 @@
       "TR": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8276,7 +8276,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8294,7 +8294,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8312,7 +8312,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8330,7 +8330,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8352,7 +8352,7 @@
       "TW": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8370,7 +8370,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8388,7 +8388,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8406,7 +8406,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8424,7 +8424,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8446,7 +8446,7 @@
       "UA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8464,7 +8464,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8486,7 +8486,7 @@
       "US-CAL-CISO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8504,7 +8504,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8522,7 +8522,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0002868314543533808,
@@ -8540,7 +8540,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.003793521021851026,
@@ -8562,7 +8562,7 @@
       "US-CAL-IID": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 9.631740657510178e-6,
@@ -8580,7 +8580,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 2.3515575011058532e-6,
@@ -8598,7 +8598,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 4.043871001549289e-6,
@@ -8620,7 +8620,7 @@
       "US-CAL-LDWP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 3.886545777436248e-8,
@@ -8642,7 +8642,7 @@
       "US-CAL-TIDC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 3.428763649103413e-5,
@@ -8660,7 +8660,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 4.9340315149169794e-5,
@@ -8678,7 +8678,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.00011059617538187569,
@@ -8700,7 +8700,7 @@
       "US-CAR-DUK": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8718,7 +8718,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8740,7 +8740,7 @@
       "US-CAR-SC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8758,7 +8758,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8776,7 +8776,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8798,7 +8798,7 @@
       "US-CAR-SCEG": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8816,7 +8816,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8834,7 +8834,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8856,7 +8856,7 @@
       "US-CAR-YAD": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8874,7 +8874,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8892,7 +8892,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8914,7 +8914,7 @@
       "US-CENT-SPA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8932,7 +8932,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8950,7 +8950,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8972,7 +8972,7 @@
       "US-CENT-SWPP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2017 average",
+            "_source": "electricityMap, 2017 average",
             "datetime": "2017-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -8990,7 +8990,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9008,7 +9008,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9026,7 +9026,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9048,7 +9048,7 @@
       "US-FLA-FMPP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9066,7 +9066,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9088,7 +9088,7 @@
       "US-FLA-FPC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9106,7 +9106,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9124,7 +9124,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9146,7 +9146,7 @@
       "US-FLA-FPL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9168,7 +9168,7 @@
       "US-FLA-GVL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9190,7 +9190,7 @@
       "US-FLA-JEA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9208,7 +9208,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9226,7 +9226,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9248,7 +9248,7 @@
       "US-FLA-SEC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9266,7 +9266,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9284,7 +9284,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9306,7 +9306,7 @@
       "US-FLA-TAL": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9324,7 +9324,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9346,7 +9346,7 @@
       "US-FLA-TEC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9368,7 +9368,7 @@
       "US-HI-OA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9386,7 +9386,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9404,7 +9404,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9426,7 +9426,7 @@
       "US-MIDA-PJM": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 2.8312263257073292e-8,
@@ -9444,7 +9444,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 2.819247815938517e-8,
@@ -9462,7 +9462,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9480,7 +9480,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 1.4300614307001254e-11,
@@ -9502,7 +9502,7 @@
       "US-MIDW-AECI": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9520,7 +9520,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9538,7 +9538,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9560,7 +9560,7 @@
       "US-MIDW-LGEE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9578,7 +9578,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9596,7 +9596,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9618,7 +9618,7 @@
       "US-NE-ISNE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0002922456007526549,
@@ -9636,7 +9636,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0005778999856298593,
@@ -9658,7 +9658,7 @@
       "US-NW-AVRN": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9680,7 +9680,7 @@
       "US-NW-CHPD": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9698,7 +9698,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.0986107517738444e-8,
@@ -9720,7 +9720,7 @@
       "US-NW-DOPD": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9738,7 +9738,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 3.717953893122635e-8,
@@ -9760,7 +9760,7 @@
       "US-NW-GCPD": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9778,7 +9778,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.6900703857980006e-8,
@@ -9800,7 +9800,7 @@
       "US-NW-GRID": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9818,7 +9818,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9840,7 +9840,7 @@
       "US-NW-IPCO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 4.284766250575873e-9,
@@ -9858,7 +9858,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.2903341686784697e-8,
@@ -9876,7 +9876,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9898,7 +9898,7 @@
       "US-NW-NEVP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 6.92044070136033e-6,
@@ -9916,7 +9916,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 3.7407885179599784e-6,
@@ -9934,7 +9934,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 2.9945039664482258e-6,
@@ -9956,7 +9956,7 @@
       "US-NW-NWMT": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9974,7 +9974,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -9992,7 +9992,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10010,7 +10010,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 1.8395067243238384e-8,
@@ -10032,7 +10032,7 @@
       "US-NW-PACE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 2.784229013177756e-9,
@@ -10050,7 +10050,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.5126619821300508e-8,
@@ -10068,7 +10068,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 4.025543556963931e-9,
@@ -10090,7 +10090,7 @@
       "US-NW-PSCO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10108,7 +10108,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10126,7 +10126,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10148,7 +10148,7 @@
       "US-NW-WACM": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10166,7 +10166,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10184,7 +10184,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10206,7 +10206,7 @@
       "US-NW-WAUW": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10224,7 +10224,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10242,7 +10242,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10264,7 +10264,7 @@
       "US-NY-NYIS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 3.9834624616495575e-7,
@@ -10282,7 +10282,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 4.4662494296152485e-6,
@@ -10304,7 +10304,7 @@
       "US-SE-AEC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10322,7 +10322,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10340,7 +10340,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10358,7 +10358,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10380,7 +10380,7 @@
       "US-SE-SEPA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10398,7 +10398,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10416,7 +10416,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10438,7 +10438,7 @@
       "US-SE-SOCO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10456,7 +10456,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10474,7 +10474,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10496,7 +10496,7 @@
       "US-SW-AZPS": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 4.225997406324278e-9,
@@ -10514,7 +10514,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 4.012407970407689e-9,
@@ -10532,7 +10532,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 4.126620485721663e-7,
@@ -10554,7 +10554,7 @@
       "US-SW-EPE": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10572,7 +10572,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10594,7 +10594,7 @@
       "US-SW-PNM": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10612,7 +10612,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10630,7 +10630,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 3.1261930104208885e-8,
@@ -10652,7 +10652,7 @@
       "US-SW-SRP": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 3.999919201632127e-9,
@@ -10670,7 +10670,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.1844777867044884e-8,
@@ -10688,7 +10688,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 8.090866977711728e-8,
@@ -10710,7 +10710,7 @@
       "US-SW-TEPC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 3.3564469458178838e-9,
@@ -10728,7 +10728,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 1.6498022147639583e-8,
@@ -10746,7 +10746,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 1.5068702052277529e-7,
@@ -10768,7 +10768,7 @@
       "US-SW-WALC": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 1.4862437401416612e-7,
@@ -10786,7 +10786,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 2.944959123012987e-7,
@@ -10804,7 +10804,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 2.2655112470358566e-6,
@@ -10826,7 +10826,7 @@
       "US-TEN-TVA": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10844,7 +10844,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10862,7 +10862,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10884,7 +10884,7 @@
       "US-TEX-ERCO": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2018 average",
+            "_source": "electricityMap, 2018 average",
             "datetime": "2018-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10902,7 +10902,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10920,7 +10920,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10938,7 +10938,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10960,7 +10960,7 @@
       "UY": {
         "powerOriginRatios": [
           {
-            "_source": "Electricity Maps, 2019 average",
+            "_source": "electricityMap, 2019 average",
             "datetime": "2019-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10978,7 +10978,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2020 average",
+            "_source": "electricityMap, 2020 average",
             "datetime": "2020-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -10996,7 +10996,7 @@
             }
           },
           {
-            "_source": "Electricity Maps, 2021 average",
+            "_source": "electricityMap, 2021 average",
             "datetime": "2021-01-01",
             "value": {
               "battery discharge": 0.0,
@@ -11044,73 +11044,73 @@
     "defaults": {
       "battery charge": {
         "_comment": "Battery charge does not contribute to the production/consumption mix",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "battery discharge": {
         "_comment": "Battery discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "biomass": {
         "_comment": "biomass is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "coal": {
         "_comment": "coal is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "gas": {
         "_comment": "gas is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "geothermal": {
         "_comment": "geothermal is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "hydro": {
         "_comment": "hydro is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "hydro charge": {
         "_comment": "Battery charge does not contribute to the production/consumption mix",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "hydro discharge": {
         "_comment": "Hydro discharge is assumed to be powered by low-carbon. Ideally this should be overriden per zone.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "nuclear": {
         "_comment": "nuclear is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "oil": {
         "_comment": "oil is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "solar": {
         "_comment": "solar is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "unknown": {
         "_comment": "By default unknown is assumed to be made up of fossil fuel based modes.",
         "datetime": "2020-01-01",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "wind": {
         "_comment": "wind is considered low-carbon.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       }
     },
@@ -11118,12 +11118,12 @@
       "CH": {
         "unknown": {
           "_comment": "Around 50% of unknown in CH is made up of hydro discharge, which is in turn mostly made up of low-carbon.",
-          "source": "Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
+          "source": "electricityMap, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
           "value": 0.465
         },
         "hydro discharge": {
           "_comment": "Average share of electricity coming from low carbon sources in 2021",
-          "source": "Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
+          "source": "electricityMap, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
           "value": 0.894
         }
       },
@@ -11199,72 +11199,72 @@
     "defaults": {
       "battery charge": {
         "_comment": "Battery charge does not contribute to the production/consumption mix",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "battery discharge": {
         "_comment": "Battery discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "biomass": {
         "_comment": "biomass is considered renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "coal": {
         "_comment": "coal is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "gas": {
         "_comment": "gas is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "geothermal": {
         "_comment": "geothermal is considered renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "hydro": {
         "_comment": "hydro is considered renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "hydro charge": {
         "_comment": "Battery charge does not contribute to the production/consumption mix",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "hydro discharge": {
         "_comment": "Hydro discharge is assumed to be powered by renewables. Ideally this should be overriden per zone.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "nuclear": {
         "_comment": "nuclear is a not renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "oil": {
         "_comment": "oil is a fossil fuel.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "solar": {
         "_comment": "solar is considered renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       },
       "unknown": {
         "_comment": "By default unknown is assumed to be made up of fossil fuel based modes.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 0
       },
       "wind": {
         "_comment": "wind is considered renewable.",
-        "source": "Electricity Maps",
+        "source": "electricityMap",
         "value": 1
       }
     },
@@ -11272,12 +11272,12 @@
       "CH": {
         "unknown": {
           "_comment": "Around 50% of unknown in CH is made up of hydro discharge, which is in turn half made up of renewables.",
-          "source": "Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
+          "source": "electricityMap, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
           "value": 0.3
         },
         "hydro discharge": {
           "_comment": "Average share of electricity coming from renewable sources in 2021",
-          "source": "Electricity Maps, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
+          "source": "electricityMap, https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E",
           "value": 0.5771
         }
       },
