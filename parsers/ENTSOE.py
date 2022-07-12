@@ -13,18 +13,17 @@ Generation Forecast
 Consumption Forecast
 """
 import itertools
-import logging
-import os
 import re
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
 from typing import Any, Dict, List, Union
 
 import arrow
 import numpy as np
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -826,7 +825,7 @@ def parse_price(xml_text) -> Union[tuple, None]:
 
 
 def validate_production(
-    datapoint: Dict[str, Any], logger: logging.Logger
+    datapoint: Dict[str, Any], logger: Logger
 ) -> Union[Dict[str, Any], bool, None]:
     """
     Production data can sometimes be available but clearly wrong.
@@ -860,11 +859,13 @@ def get_wind(values):
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
-) -> Union[List[dict], dict, None]:
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+):
     """Gets consumption for a specified zone."""
-    if not session:
-        session = requests.session()
+    session = session or Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -923,14 +924,17 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab production
     parsed = parse_production(
@@ -1033,7 +1037,10 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production_aggregate(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if zone_key not in ZONE_KEY_AGGREGATES:
         raise ValueError("Unknown aggregate key %s" % zone_key)
@@ -1049,11 +1056,14 @@ def fetch_production_aggregate(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
@@ -1086,18 +1096,18 @@ def fetch_production_per_units(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
@@ -1152,15 +1162,15 @@ def fetch_exchange(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange_forecast(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """Gets exchange forecast between two specified zones."""
     if not session:
-        session = requests.session()
+        session = Session()
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
@@ -1216,12 +1226,15 @@ def fetch_exchange_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_price(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """Gets day-ahead price for specified zone."""
     # Note: This is day-ahead prices
     if not session:
-        session = requests.session()
+        session = Session()
     if zone_key in ENTSOE_PRICE_DOMAIN_OVERRIDE:
         domain = ENTSOE_PRICE_DOMAIN_OVERRIDE[zone_key]
     else:
@@ -1247,11 +1260,14 @@ def fetch_price(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """Gets generation forecast for specified zone."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -1276,11 +1292,14 @@ def fetch_generation_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """Gets consumption forecast for specified zone."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -1305,14 +1324,17 @@ def fetch_consumption_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[list, None]:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab production
     parsed = parse_production(

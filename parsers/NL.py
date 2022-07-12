@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-import logging
+
 import math
 from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
 import numpy as np
 import pandas as pd
 import requests
+from requests import Session
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
@@ -20,16 +23,16 @@ ZONE_CONFIG = ZONES_CONFIG["NL"]
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="NL",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "NL",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
     else:
         target_datetime = arrow.get(target_datetime)
-    r = session or requests.session()
+    r = session or Session()
 
     consumptions = ENTSOE.fetch_consumption(
         zone_key=zone_key, session=r, target_datetime=target_datetime, logger=logger
@@ -175,7 +178,9 @@ def fetch_production(
 
 
 def fetch_production_energieopwek_nl(
-    session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger=logging.getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()

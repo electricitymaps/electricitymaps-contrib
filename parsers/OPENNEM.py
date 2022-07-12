@@ -1,14 +1,15 @@
-import datetime
-import logging
-from typing import Dict, List, Mapping, Tuple
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Dict, List, Mapping, Tuple, Union
 
 import arrow
 import pandas as pd
 import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
-REFETCH_FREQUENCY = datetime.timedelta(days=21)
+REFETCH_FREQUENCY = timedelta(days=21)
 
 
 ZONE_KEY_TO_REGION = {
@@ -122,7 +123,7 @@ def sum_vector(pd_series, keys, ignore_nans=False):
 
 
 def filter_production_objs(
-    objs: List[Dict], logger=logging.getLogger(__name__)
+    objs: List[Dict], logger: Logger = getLogger(__name__)
 ) -> List[Dict]:
     def filter_solar_production(obj: Dict) -> bool:
         if (
@@ -149,7 +150,9 @@ def filter_production_objs(
     return filtered_objs
 
 
-def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
+def generate_url(
+    zone_key: str, is_flow, target_datetime: datetime, logger: Logger
+) -> str:
     if target_datetime:
         network = ZONE_KEY_TO_NETWORK[zone_key]
         # We will fetch since the beginning of the current month
@@ -169,11 +172,11 @@ def generate_url(zone_key, is_flow, target_datetime, logger) -> str:
 
 
 def fetch_main_price_df(
-    zone_key=None,
-    sorted_zone_keys=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: Union[str, None] = None,
+    sorted_zone_keys: Union[str, None] = None,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
     return _fetch_main_df(
         "price",
@@ -186,11 +189,11 @@ def fetch_main_price_df(
 
 
 def fetch_main_power_df(
-    zone_key=None,
-    sorted_zone_keys=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: Union[str, None] = None,
+    sorted_zone_keys: Union[str, None] = None,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Tuple[pd.DataFrame, list]:
     df, filtered_datasets = _fetch_main_df(
         "power",
@@ -207,11 +210,11 @@ def fetch_main_power_df(
 
 def _fetch_main_df(
     data_type,
-    zone_key,
-    sorted_zone_keys,
-    session,
-    target_datetime,
-    logger,
+    zone_key: str,
+    sorted_zone_keys: str,
+    session: Session,
+    target_datetime: datetime,
+    logger: Logger,
 ) -> Tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
@@ -258,10 +261,10 @@ def _fetch_main_df(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
-    zone_key=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: Union[str, None] = None,
+    session: Union[Session, None] = None,
+    target_datetime: Union[Session, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
     df, filtered_datasets = fetch_main_power_df(
         zone_key=zone_key,
@@ -347,10 +350,10 @@ def fetch_production(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
-    zone_key=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     df = fetch_main_price_df(
         zone_key=zone_key,
@@ -373,11 +376,11 @@ def fetch_price(
 
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[Session, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)

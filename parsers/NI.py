@@ -2,10 +2,12 @@
 # coding=utf-8
 
 from collections import defaultdict
-from logging import getLogger
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 from .lib.validation import validate
 
@@ -65,7 +67,7 @@ PLANT_CLASSIFICATIONS = [
 # REFERENCE_TOTAL_PRODUCTION = 433  # MW
 
 
-def extract_text(full_text, start_text, end_text=None):
+def extract_text(full_text: str, start_text: str, end_text: Union[str, None] = None):
     start = full_text.find(start_text)
 
     if start == -1:
@@ -84,7 +86,7 @@ def extract_text(full_text, start_text, end_text=None):
         return full_text[start:end]
 
 
-def get_time_from_system_map(text):
+def get_time_from_system_map(text: str):
     # date format is: "'Actualizado: 07/07/2017 01:00:50 PM'"
 
     datetime_text = extract_text(text, "Actualizado: ", "'")
@@ -200,13 +202,16 @@ def get_production_from_summary(requests_obj) -> tuple:
 
 
 def fetch_production(
-    zone_key="NI", session=None, target_datetime=None, logger=getLogger(__name__)
-) -> dict:
+    zone_key: str = "NI",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[dict, None]:
     """Requests the last known production mix (in MW) of Nicaragua."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
 
     # We're currently using the summary page (SUMMARY_URL, via get_production_from_summary())
     # rather than the detailed map page (MAP_URL, via get_production_from_map())
@@ -229,14 +234,18 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
 
     response = requests_obj.get(MAP_URL)
     map_html = response.text
@@ -276,13 +285,16 @@ def fetch_exchange(
 
 
 def fetch_price(
-    zone_key="NI", session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key: str = "NI",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the most recent known power prices in Nicaragua grid."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
     response = requests_obj.get(PRICE_URL)
     response.encoding = "utf-8"
     prices_html = response.text

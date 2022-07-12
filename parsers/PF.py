@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 
 import json
-import logging
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import lxml
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 TZ = "Pacific/Tahiti"
 
 
 def fetch_production(
-    zone_key="PF",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "PF",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
-    r = session or requests.Session()
+    r = session or Session()
     if target_datetime is None:
         url = "https://www.edt.pf/transition-energetique-innovation"
     else:
