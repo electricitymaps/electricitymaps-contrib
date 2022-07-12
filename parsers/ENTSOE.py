@@ -1101,7 +1101,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict]:
+) -> List[dict]:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
