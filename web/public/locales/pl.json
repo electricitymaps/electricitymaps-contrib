@@ -6,7 +6,7 @@
     "datasources": "źródła danych",
     "contribute": "Pomóż nam <a href=\"%s\" target=\"_blank\">dodając więcej regionów</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Obszary", "about": "O nas" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Obszary", "about": "O nas" },
   "onboarding-modal": {
     "view1": { "subtitle": "Obrazujemy wpływ produkcji energii elektrycznej na klimat" },
     "view2": {
@@ -44,7 +44,7 @@
     "search": "Szukaj"
   },
   "country-history": {
-    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API electricityMap",
+    "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps",
     "carbonintensity": { "hourly": "Emisja CO₂ w ciągu ostatnich 24 godzin" },
     "emissionsorigin": { "hourly": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin" },
     "emissionsproduction": { "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin" },
@@ -155,7 +155,7 @@
   "aboutUs": {
     "groupName": "O nas",
     "whoAreYou-question": "Kim jesteście?",
-    "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
+    "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
     "feedback-question": "Czy moge przekazać wam opinię?",
     "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:app@electricitymap.org\">wyślij do nas e-mail!</a>",
     "contribute-question": "Czy mogę wspomóc wasz projekt?",

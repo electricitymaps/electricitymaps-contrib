@@ -1,4 +1,4 @@
-# electricityMap
+# Electricity Maps
 
 [![Slack Status](https://slack.electricitymap.org/badge.svg)](https://slack.electricitymap.org) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
 
@@ -52,7 +52,7 @@ The carbon intensity of each type of power plant takes into account emissions ar
 While the map relies on having real-time data to work it's still useful to collect data from days/months past. This older data can be used to show past emissions and build up a better dataset. So if there's an hourly data source that lags several days behind you can still build a parser for it.
 
 **Can scheduled/assumed generation data be used?**
-The electricityMap doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
+The Electricity Maps doesn't use scheduled generation data or make assumptions about unknown fuel mixes. This is to avoid introducing extra uncertainty into emissions calculations.
 
 **Can areas other than countries be shown?**
 Yes, providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example, we already split several countries into states and grid regions.

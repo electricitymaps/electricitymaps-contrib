@@ -1,7 +1,7 @@
 {
   "info-modal": {
     "title": "Info",
-    "intro-text": "Appen electricityMap ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
+    "intro-text": "Appen Electricity Maps ger insikter i realtid på webben och mobil för medborgare, energiexperter, icke-statliga organisationer och beslutsfattare och främjar en djupare förståelse för utmaningar i energiomställningen.",
     "open-source-text": "Den här appen är <a href=\"%s\" target=\"_blank\">Open Source</a> (<a href=\"%s\" target=\"_blank\">se källkoden</a>) och drivs av en gemenskap.",
     "feedback-button": "Ge återkoppling",
     "github-button": "Se vår GitHub",
@@ -115,7 +115,7 @@
       "monthly": "Elpriser det senaste året",
       "yearly": "Elpriser de senaste 5 åren"
     },
-    "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med electricityMap API"
+    "Getdata": "Hämta timvis historisk data, aktuell data och prognosdata med Electricity Maps API"
   },
   "footer": {
     "foundbugs": "Hittat buggar eller har idéer? Rapportera dem",
@@ -249,7 +249,7 @@
   "aboutUs": {
     "groupName": "Om oss",
     "whoAreYou-question": "Vilka är ni?",
-    "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
+    "whoAreYou-answer": "Electricity Map är utvecklad och förvaltad av <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
     "feedback-question": "Kan jag ge er någon återkoppling?",
     "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymap.org\">skicka oss ett e-brev!</a>",
     "contribute-question": "Kan jag bidra till ert projekt?",
@@ -257,7 +257,7 @@
     "workTogether-question": "Kan vi arbeta tillsammans?",
     "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymap.org\">Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publicerar data och bilder på The <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. electricityMap påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på electricityMap, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från electricityMap, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publicerar data och bilder på The <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Electricity Maps påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på Electricity Maps, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Electricity Maps, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
