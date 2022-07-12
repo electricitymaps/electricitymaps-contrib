@@ -1101,7 +1101,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> List[Dict]:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -1142,7 +1142,7 @@ def fetch_exchange(
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates):
-        return None
+        raise QueryError("No exchange data found")
     data = []
     for exchange_date in exchange_dates:
         net_flow = exchange_hashmap[exchange_date]
