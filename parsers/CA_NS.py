@@ -195,7 +195,7 @@ def fetch_exchange(
     if sorted_zone_keys != "CA-NB->CA-NS":
         raise NotImplementedError("This exchange pair is not implemented")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
     _, imports = _get_ns_info(requests_obj, logger)
 
     return imports

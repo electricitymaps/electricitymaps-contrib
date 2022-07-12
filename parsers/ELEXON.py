@@ -130,13 +130,13 @@ def parse_exchange(
         fields = line.split(",")
 
         # settlement date / period combinations are always local time
-        date = dt.datetime.strptime(fields[1], "%Y%m%d").date()
+        date = datetime.strptime(fields[1], "%Y%m%d").date()
         settlement_period = int(fields[2])
-        datetime = datetime_from_date_sp(date, settlement_period)
+        date_time = datetime_from_date_sp(date, settlement_period)
 
         data = {
             "sortedZoneKeys": exchange,
-            "datetime": datetime,
+            "datetime": date_time,
             "source": "bmreports.com",
         }
 
@@ -276,7 +276,7 @@ def _fetch_wind(
     df = df.iloc[:, [1, 2, 3, 8]]
     df.columns = ["Settlement Date", "Settlement Period", "published", "Wind"]
     df["Settlement Date"] = df["Settlement Date"].apply(
-        lambda x: dt.datetime.strptime(str(x), "%Y%m%d")
+        lambda x: datetime.strptime(str(x), "%Y%m%d")
     )
     df["Settlement Period"] = df["Settlement Period"].astype(int)
     df["datetime"] = df.apply(
@@ -285,7 +285,7 @@ def _fetch_wind(
     )
 
     df["published"] = df["published"].apply(
-        lambda x: dt.datetime.strptime(str(x), "%Y%m%d%H%M%S")
+        lambda x: datetime.strptime(str(x), "%Y%m%d%H%M%S")
     )
     # get the most recently published value for each datetime
     idx = df.groupby("datetime")["published"].transform(max) == df["published"]

@@ -12,7 +12,7 @@ import arrow
 import demjson3 as demjson
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
-from requests import Session
+from requests import Session, get
 
 from .lib.utils import get_token
 
@@ -146,7 +146,7 @@ def fetch_consumption_forecast_7_days(
 
     # query API
     url = API_ENDPOINT + "load_frcstd_7_day"
-    resp = requests.get(url, params, headers=headers)
+    resp = get(url, params, headers=headers)
     data = json.loads(resp.content)
 
     data_points = list()

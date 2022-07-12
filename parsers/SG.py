@@ -228,7 +228,7 @@ def fetch_price(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
     response = requests_obj.get(TICKER_URL)
     data = response.json()
 

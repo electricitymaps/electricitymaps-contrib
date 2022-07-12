@@ -182,7 +182,7 @@ def fetch_production(
         "Origin": "https://www.coordinador.cl",
     }
 
-    s = session or requests.Session()
+    s = session or Session()
     url = API_BASE_URL + date_component
 
     req = s.get(url, headers=headers)

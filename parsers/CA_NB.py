@@ -2,6 +2,7 @@
 
 # The arrow library is used to handle datetimes consistently with other parsers
 from datetime import datetime
+from logging import Logger, getLogger
 from typing import Union
 
 import arrow
