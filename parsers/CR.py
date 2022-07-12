@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import datetime as dt
-import logging
+
+from datetime import datetime, time
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 TIMEZONE = "America/Costa_Rica"
 DATE_FORMAT = "DD/MM/YYYY"
@@ -116,7 +118,7 @@ POWER_PLANTS = {
 CHARACTERISTIC_NAME = "Angostura"
 
 
-def empty_record(zone_key):
+def empty_record(zone_key: str):
     return {
         "zoneKey": zone_key,
         "capacity": {},
@@ -137,7 +139,7 @@ def empty_record(zone_key):
     }
 
 
-def df_to_data(zone_key, day, df, logger):
+def df_to_data(zone_key: str, day, df, logger: Logger):
     df = df.dropna(axis=1, how="any")
     # Check for empty dataframe
     if df.shape == (1, 1):
@@ -170,10 +172,10 @@ def df_to_data(zone_key, day, df, logger):
 
 
 def fetch_production(
-    zone_key="CR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "CR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
     # ensure we have an arrow object.
     # if no target_datetime is specified, this defaults to now.
@@ -185,7 +187,7 @@ def fetch_production(
     if target_datetime.date() == today:
         target_datetime = (
             target_datetime
-            if target_datetime.time() >= dt.time(1, 30)
+            if target_datetime.time() >= time(1, 30)
             else target_datetime.shift(days=-1)
         )
 
@@ -199,7 +201,7 @@ def fetch_production(
         return None
 
     # Do not use existing session as some amount of cache is taking place
-    r = requests.session()
+    r = Session()
     url = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
     response = r.get(url)
 
@@ -225,7 +227,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="CR", zone_key2="NI", session=None, target_datetime=None, logger=None
+    zone_key1: str = "CR",
+    zone_key2: str = "NI",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:

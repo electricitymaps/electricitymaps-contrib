@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-import logging
+
 import xml.etree.ElementTree as ET
-from datetime import timedelta, timezone
+from datetime import datetime, timedelta, timezone
+from logging import Logger, getLogger
+from typing import List, Union
 
 # The arrow library is used to handle datetimes
 import arrow
 
 # pandas processes tabular data
 import pandas as pd
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 """
 Some notes about timestamps:
@@ -75,14 +75,19 @@ EXCHANGES_URL = "http://reports.ieso.ca/public/IntertieScheduleFlow/PUB_Intertie
 XML_NS_TEXT = "{http://www.theIMO.com/schema}"
 
 
-def _fetch_ieso_xml(target_datetime, session, logger, url_template):
+def _fetch_ieso_xml(
+    target_datetime: Union[datetime, None],
+    session: Union[Session, None],
+    logger: Logger,
+    url_template,
+):
     dt = (
         arrow.get(target_datetime)
         .to(tz_obj)
         .replace(hour=0, minute=0, second=0, microsecond=0)
     )
 
-    r = session or requests.session()
+    r = session or Session()
     url = url_template.format(YYYYMMDD=dt.format("YYYYMMDD"))
     response = r.get(url)
 
@@ -107,10 +112,10 @@ def _parse_ieso_hour(output, target_dt):
 
 
 def fetch_production(
-    zone_key="CA-ON",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "CA-ON",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given region."""
 
@@ -175,11 +180,11 @@ def fetch_production(
 
 
 def fetch_price(
-    zone_key="CA-ON",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key: str = "CA-ON",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """Requests the last known power price per MWh of a given region."""
 
     # "HOEP" below is "Hourly Ontario Energy Price".
@@ -212,11 +217,11 @@ def fetch_price(
 
 
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two regions."""
 

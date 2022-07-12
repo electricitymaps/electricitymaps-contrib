@@ -1,11 +1,13 @@
+from datetime import datetime
+from logging import Logger, getLogger
 from typing import Union
 
 import arrow
 
 # Numpy and PIL are used to process the image
 import numpy as np
-import requests
 from PIL import Image
+from requests import Session
 
 URL = "http://194.110.178.135/grafik/stamnat.php"
 SOURCE = "kraftnat.ax"
@@ -883,14 +885,14 @@ def _get_masks(session=None):
     return dict(zip(shorts, masks))
 
 
-def _fetch_data(session=None) -> dict:
+def _fetch_data(session: Union[Session, None] = None) -> dict:
     """Return usable data from source."""
     # Load masks for reading numbers from the image
     # Create a dictionary of symbols and their pixel masks
     mapping = _get_masks(session)
 
     # Download the updating image from Kraftnät Åland
-    r = session or requests.session()
+    r = session or Session()
 
     im = Image.open(r.get(URL, stream=True).raw)
     # Get timestamp
@@ -1000,7 +1002,10 @@ def _fetch_data(session=None) -> dict:
 
 
 def fetch_production(
-    zone_key="AX", session=None, target_datetime=None, logger=None
+    zone_key: str = "AX",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
@@ -1029,7 +1034,10 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="AX", session=None, target_datetime=None, logger=None
+    zone_key: str = "AX",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -1045,7 +1053,11 @@ def fetch_consumption(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:

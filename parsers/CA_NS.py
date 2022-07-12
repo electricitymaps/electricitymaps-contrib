@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 # The arrow library is used to handle datetimes
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import List, Union
+
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 
-def _get_ns_info(requests_obj, logger):
+def _get_ns_info(requests_obj, logger: Logger):
     zone_key = "CA-NS"
 
     # This is based on validation logic in https://www.nspower.ca/site/renewables/assets/js/site.js
@@ -149,15 +151,18 @@ def _get_ns_info(requests_obj, logger):
 
 
 def fetch_production(
-    zone_key="CA-NS", session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key: str = "CA-NS",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError(
             "This parser is unable to give information more than 24 hours in the past"
         )
 
-    r = session or requests.session()
+    r = session or Session()
 
     production, imports = _get_ns_info(r, logger)
 
@@ -165,8 +170,12 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """
     Requests the last known power exchange (in MW) between two regions.
 
@@ -195,10 +204,9 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    import logging
     from pprint import pprint
 
-    test_logger = logging.getLogger()
+    test_logger = getLogger()
 
     print("fetch_production() ->")
     pprint(fetch_production(logger=test_logger))

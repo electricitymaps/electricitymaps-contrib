@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-import datetime
-import logging
+
 import sys
+from datetime import datetime
+from logging import Logger, getLogger
 from typing import Any, Dict, List, Union
 
 # The arrow library is used to handle datetimes
 import arrow
 
-# The request library is used to fetch content through HTTP
-import requests
-
 # BeautifulSoup is used to parse HTML
 from bs4 import BeautifulSoup
+from requests import Session
 
 
 class CyprusParser:
@@ -22,10 +21,10 @@ class CyprusParser:
         "Εγκατεστημένη Ισχύς Βιομάζας": "biomass",
     }
 
-    session: Union[requests.Session, None] = None
-    logger: Union[logging.Logger, None] = None
+    session: Session
+    logger: Logger
 
-    def __init__(self, session, logger: logging.Logger):
+    def __init__(self, session, logger: Logger = getLogger(__name__)):
         self.session = session
         self.logger = logger
 
@@ -84,7 +83,7 @@ class CyprusParser:
             data.append(datum)
         return data
 
-    def fetch_production(self, target_datetime: datetime.datetime) -> list:
+    def fetch_production(self, target_datetime: Union[datetime, None]) -> list:
         if target_datetime is None:
             url = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
         else:
@@ -110,16 +109,16 @@ class CyprusParser:
 
 
 def fetch_production(
-    zone_key="CY",
-    session=None,
-    target_datetime: Union[datetime.datetime, None] = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "CY",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[List[Dict[str, Any]], None]:
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 
-    parser = CyprusParser(session or requests.session(), logger)
-    if isinstance(target_datetime, datetime.datetime):
+    parser = CyprusParser(session or Session(), logger)
+    if isinstance(target_datetime, datetime):
         return parser.fetch_production(target_datetime)
 
 
@@ -128,9 +127,7 @@ if __name__ == "__main__":
 
     target_datetime = None
     if len(sys.argv) == 4:
-        target_datetime = datetime.datetime(
-            int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
-        )
+        target_datetime = datetime(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
 
     print("fetch_production() ->")
     fetched_production = fetch_production(target_datetime=target_datetime)

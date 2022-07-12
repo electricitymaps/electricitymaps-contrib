@@ -9,14 +9,14 @@ The electricity authority is known in English as PREPA (Puerto Rico Electric Pow
 """
 
 import json
-import logging
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 # The arrow library is used to handle datetimes
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 timezone_name = "America/Puerto_Rico"
 US_PROXY = "https://us-ca-proxy-jfnx5klx2a-uw.a.run.app"
@@ -48,7 +48,7 @@ def extract_data(html):
 
 
 def convert_timestamp(
-    zone_key, timestamp_string, logger: logging.Logger = logging.getLogger(__name__)
+    zone_key: str, timestamp_string: str, logger: Logger = getLogger(__name__)
 ):
     """
     Converts timestamp fetched from website into timezone-aware datetime object
@@ -70,10 +70,10 @@ def convert_timestamp(
 
 
 def fetch_production(
-    zone_key="US-PR",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "US-PR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
 
@@ -84,7 +84,7 @@ def fetch_production(
             "The datasource currently implemented is only real time"
         )
 
-    r = session or requests.session()
+    r = session or Session()
 
     data = {  # To be returned as response data
         "zoneKey": zone_key,

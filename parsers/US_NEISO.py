@@ -2,13 +2,15 @@
 
 
 """Real time parser for the New England ISO (NEISO) area."""
-import logging
+
 import time
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -37,7 +39,9 @@ def timestring_converter(time_string):
     return dt_aware
 
 
-def get_json_data(target_datetime, params, session=None):
+def get_json_data(
+    target_datetime: Union[datetime, None], params, session: Union[Session, None] = None
+):
     """Fetches json data for requested params and target_datetime using a post request."""
 
     epoch_time = str(int(time.time()))
@@ -56,7 +60,7 @@ def get_json_data(target_datetime, params, session=None):
     }
     postdata.update(params)
 
-    s = session or requests.Session()
+    s = session or Session()
 
     req = s.post(url, data=postdata)
     json_data = req.json()
@@ -65,7 +69,7 @@ def get_json_data(target_datetime, params, session=None):
     return raw_data
 
 
-def production_data_processer(raw_data, logger) -> list:
+def production_data_processer(raw_data, logger: Logger) -> list:
     """
     Takes raw json data and removes unnecessary keys.
     Separates datetime key and converts to a datetime object.
@@ -132,10 +136,10 @@ def production_data_processer(raw_data, logger) -> list:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="US-NEISO",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "US-NEISO",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
 
@@ -165,7 +169,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))

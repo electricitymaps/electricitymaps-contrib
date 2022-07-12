@@ -2,8 +2,10 @@
 
 """Real time parser for the state of New York."""
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Union
 from urllib.error import HTTPError
 
 import arrow
@@ -11,6 +13,7 @@ import pandas as pd
 
 # Pumped storage is present but is not split into a separate category.
 from arrow.parser import ParserError
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -97,8 +100,11 @@ def data_parser(df) -> list:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="US-NY", session=None, target_datetime=None, logger=None
-) -> list:
+    zone_key: str = "US-NY",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[list, None]:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         # ensure we have an arrow object
@@ -140,8 +146,12 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> list:
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[list, None]:
     """Requests the last known power exchange (in MW) between two zones."""
     url = (
         "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"

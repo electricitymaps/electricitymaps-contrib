@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-import datetime
-import logging
+
+from datetime import datetime
+from logging import Logger, getLogger
 from typing import Dict, List, Union
 
 import arrow
-import requests
+from requests import Session
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
@@ -22,16 +23,16 @@ CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/Renovab
 
 def fetch_production(
     zone_key="AR",
-    session=None,
-    target_datetime: Union[datetime.datetime, None] = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests up to date list of production mixes (in MW) of a given country."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    current_session = session or requests.session()
+    current_session = session or Session()
 
     non_renewables_production: Dict[str, dict] = non_renewables_production_mix(
         zone_key, current_session
@@ -75,7 +76,7 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
     return production_mix
 
 
-def renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
+def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
     today = arrow.now(tz="America/Argentina/Buenos Aires").format("DD-MM-YYYY")
@@ -104,7 +105,7 @@ def renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
     return renewables_production
 
 
-def non_renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
+def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
     """Retrieves production mix for non renewables using CAMMESA's API"""
 
     params = {"id_region": 1002}
@@ -135,7 +136,11 @@ def non_renewables_production_mix(zone_key: str, session) -> Dict[str, dict]:
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
 
@@ -143,10 +148,10 @@ def fetch_exchange(
 
 
 def fetch_price(
-    zone_key="AR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "AR",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""
 

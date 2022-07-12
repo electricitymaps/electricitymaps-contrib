@@ -2,12 +2,13 @@
 
 """Parser for Bangladesh."""
 
-import logging
 from datetime import datetime
-from typing import List
+from logging import Logger, getLogger
+from typing import List, Union
 
 import arrow
 import pandas as pd
+from requests import Session
 
 GENERATION_MAPPING = {
     "Gas (Public)": "gas_public",
@@ -58,7 +59,7 @@ def old_format_converter(df):
     return df
 
 
-def new_format_converter(df, logger):
+def new_format_converter(df, logger: Logger):
     """Returns a dataframe."""
 
     df = df.rename(columns={"Plant Name": "Hour"})
@@ -133,7 +134,7 @@ def exchange_processer(df, target_datetime, old_format=False) -> list:
     return processed_data
 
 
-def excel_handler(shifted_target_datetime, logger) -> tuple:
+def excel_handler(shifted_target_datetime, logger: Logger) -> tuple:
     """
     Decides which url to request based on supplied arrow object.
     Converts returned excel data into dataframe, format of data varies by date.
@@ -204,10 +205,10 @@ def excel_handler(shifted_target_datetime, logger) -> tuple:
 
 
 def fetch_production(
-    zone_key="BD",
-    session=None,
+    zone_key: str = "BD",
+    session: Union[Session, None] = None,
     target_datetime=None,
-    logger=logging.getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
 
@@ -241,11 +242,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key2: str,
+    zone_key1: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     if not target_datetime:

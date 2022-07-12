@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
 
-import datetime
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 
-def fetch_production(zone_key="AW", session=None, target_datetime=None, logger=None):
+def fetch_production(
+    zone_key: str = "AW",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
+):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
     # User agent is mandatory or services answers 404
     headers = {"user-agent": "electricitymap.org"}

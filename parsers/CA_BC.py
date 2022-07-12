@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 # The arrow library is used to handle datetimes
-import arrow
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
 
-# The request library is used to fetch content through HTTP
-import requests
+import arrow
+from requests import Session
 
 # More info:
 # https://www.bchydro.com/energy-in-bc/our_system/transmission/transmission-system/actual-flow-data.html
@@ -13,13 +15,17 @@ timezone = "Canada/Pacific"
 
 
 def fetch_exchange(
-    zone_key1: str, zone_key2: str, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.bchydro.com/bctc/system_cms/actual_flow/latest_values.txt"
     response = r.get(url)
     obj = response.text.split("\r\n")[1].replace("\r", "").split(",")

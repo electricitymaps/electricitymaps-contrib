@@ -2,10 +2,13 @@
 
 """Parser for the MISO area of the United States."""
 
-import logging
 
-import requests
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Union
+
 from dateutil import parser, tz
+from requests import Session
 
 mix_url = (
     "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerServices.asmx?messageType"
@@ -31,16 +34,16 @@ wind_forecast_url = "https://api.misoenergy.org/MISORTWDDataBroker/DataBrokerSer
 # Unsure exactly why EST is used, possibly due to operational connections with PJM.
 
 
-def get_json_data(logger, session=None):
+def get_json_data(logger: Logger, session: Union[Session, None] = None):
     """Returns 5 minute generation data in json format."""
 
-    s = session or requests.session()
+    s = session or Session()
     json_data = s.get(mix_url).json()
 
     return json_data
 
 
-def data_processer(json_data, logger):
+def data_processer(json_data, logger: Logger):
     """
     Identifies any unknown fuel types and logs a warning.
     Returns a tuple containing datetime object and production dictionary.
@@ -79,10 +82,10 @@ def data_processer(json_data, logger):
 
 
 def fetch_production(
-    zone_key="US-MISO",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "US-MISO",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
 
@@ -104,14 +107,17 @@ def fetch_production(
 
 
 def fetch_wind_forecast(
-    zone_key="US-MISO", session=None, target_datetime=None, logger=None
+    zone_key: str = "US-MISO",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the day ahead wind forecast (in MW) of a given zone."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(wind_forecast_url)
     raw_json = req.json()
     raw_data = raw_json["Forecast"]

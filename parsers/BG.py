@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import logging
+
+from logging import Logger, getLogger
+from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 TYPE_MAPPING = {  # Real values around midnight
     "АЕЦ": "nuclear",  # 2000
@@ -22,16 +24,16 @@ TYPE_MAPPING = {  # Real values around midnight
 
 
 def fetch_production(
-    zone_key="BG",
-    session=None,
+    zone_key: str = "BG",
+    session: Union[Session, None] = None,
     target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "http://www.eso.bg/api/rabota_na_EEC_json.php"
     res = r.get(url)
 

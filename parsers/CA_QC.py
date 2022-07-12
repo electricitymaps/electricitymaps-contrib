@@ -1,9 +1,11 @@
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
 from pprint import pprint
+from typing import Union
 
 # The arrow library is used to handle datetimes
 import arrow
-import requests
+from requests import Session
 
 PRODUCTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/production.json"
 CONSUMPTION_URL = "https://www.hydroquebec.com/data/documents-donnees/donnees-ouvertes/json/demande.json"
@@ -12,10 +14,10 @@ timezone_id = "America/Montreal"
 
 
 def fetch_production(
-    zone_key="CA-QC",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "CA-QC",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given region.
     In this particular case, translated mapping of JSON keys are also required"""
@@ -37,7 +39,7 @@ def fetch_production(
         except KeyError:
             return 0.0
 
-    data = _fetch_quebec_production()
+    data = _fetch_quebec_production(session)
     list_res = []
     for elem in reversed(data["details"]):
         if elem["valeurs"]["total"] != 0:
@@ -68,9 +70,12 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="CA-QC", session=None, target_datetime=None, logger=None
+    zone_key: str = "CA-QC",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ):
-    data = _fetch_quebec_consumption()
+    data = _fetch_quebec_consumption(session)
     list_res = []
     for elem in reversed(data["details"]):
         if "demandeTotal" in elem["valeurs"]:
@@ -85,8 +90,11 @@ def fetch_consumption(
     return list_res
 
 
-def _fetch_quebec_production(logger=logging.getLogger(__name__)) -> str:
-    response = requests.get(PRODUCTION_URL)
+def _fetch_quebec_production(
+    session: Union[Session, None] = None, logger: Logger = getLogger(__name__)
+) -> str:
+    s = session or Session()
+    response = s.get(PRODUCTION_URL)
 
     if not response.ok:
         logger.info(
@@ -97,8 +105,11 @@ def _fetch_quebec_production(logger=logging.getLogger(__name__)) -> str:
     return response.json()
 
 
-def _fetch_quebec_consumption(logger=logging.getLogger(__name__)) -> str:
-    response = requests.get(CONSUMPTION_URL)
+def _fetch_quebec_consumption(
+    session: Union[Session, None] = None, logger: Logger = getLogger(__name__)
+) -> str:
+    s = session or Session()
+    response = s.get(CONSUMPTION_URL)
 
     if not response.ok:
         logger.info(
@@ -112,7 +123,7 @@ def _fetch_quebec_consumption(logger=logging.getLogger(__name__)) -> str:
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    test_logger = logging.getLogger()
+    test_logger = getLogger()
 
     print("fetch_production() ->")
     pprint(fetch_production(logger=test_logger))

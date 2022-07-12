@@ -9,11 +9,13 @@ import csv
 import logging
 import re
 import urllib.parse
+from datetime import datetime
+from logging import Logger, getLogger
 from typing import Any, Dict, Union
 
 # Third-party library imports
 import arrow
-import requests
+from requests import Session
 
 # Local library imports
 from parsers.lib import validation
@@ -26,16 +28,16 @@ URL_STRING = urllib.parse.urlunsplit(URL)
 
 
 def fetch_exchange(
-    zone_key1=DEFAULT_ZONE_KEY,
-    zone_key2="CA-BC",
-    session=None,
-    target_datetime=None,
-    logger=None,
+    zone_key1: str = DEFAULT_ZONE_KEY,
+    zone_key2: str = "CA-BC",
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
-    session = session or requests.Session()
+    session = session or Session()
     response = session.get(
         f"{URL_STRING}/CSDReportServlet", params={"contentType": "csv"}
     )
@@ -58,12 +60,15 @@ def fetch_exchange(
 
 
 def fetch_price(
-    zone_key=DEFAULT_ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the last known power price of a given country."""
     if target_datetime:
         raise NotImplementedError("Currently unable to scrape historical data")
-    session = session or requests.Session()
+    session = session or Session()
     response = session.get(
         f"{URL_STRING}/SMPriceReportServlet", params={"contentType": "csv"}
     )
@@ -81,15 +86,15 @@ def fetch_price(
 
 
 def fetch_production(
-    zone_key=DEFAULT_ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Union[Session, None] = None,
+    target_datetime: Union[datetime, None] = None,
+    logger: Logger = getLogger(__name__),
 ) -> Union[Dict[str, Any], None]:
     """Request the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
-    session = session or requests.Session()
+    session = session or Session()
     response = session.get(
         f"{URL_STRING}/CSDReportServlet", params={"contentType": "csv"}
     )

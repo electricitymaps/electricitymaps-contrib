@@ -2,14 +2,15 @@
 
 """Parser for the electricity grid of Chile"""
 
-import logging
+
 from collections import defaultdict
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
 from operator import itemgetter
 from typing import Union
 
 import arrow
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -35,10 +36,10 @@ TYPE_MAPPING = {
 }
 
 
-def get_data_live(session, logger):
+def get_data_live(session: Union[Session, None], logger: Logger):
     """Requests live generation data in json format."""
 
-    s = session or requests.session()
+    s = session or Session()
     json_total = s.get(API_BASE_URL_LIVE_TOT).json()
     json_ren = s.get(API_BASE_URL_LIVE_REN).json()
 
@@ -140,9 +141,9 @@ def production_processor_historical(raw_data):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
-    session: Union[requests.Session, None] = None,
+    session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
