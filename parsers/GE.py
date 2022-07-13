@@ -28,7 +28,7 @@ def fetch_production(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[Union[Dict[str, Any], None]], Dict[str, Any], None]:
+) -> Union[List[Dict[str, Any]], Dict[str, Any]]:
     """Request the last known production mix (in MW) of a given country."""
     session = session or Session()
     if target_datetime is None:  # Get the current production mix.
@@ -113,7 +113,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger=getLogger(__name__),
-) -> Union[List[dict], dict, None]:
+) -> Union[List[dict], dict]:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         return ENTSOE_fetch_exchange(

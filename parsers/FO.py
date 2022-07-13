@@ -26,7 +26,7 @@ def map_generation_type(raw_generation_type):
 
 def fetch_production(
     zone_key="FO", session=None, target_datetime=None, logger=getLogger("FO")
-) -> Union[dict, None]:
+) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

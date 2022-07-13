@@ -63,7 +63,7 @@ def fetch_production(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, None]:
+) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     r = session or Session()
     if target_datetime is None:

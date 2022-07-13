@@ -130,7 +130,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[dict, None]:
+) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 
     session = session or Session()

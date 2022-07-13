@@ -928,7 +928,7 @@ def fetch_production(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
@@ -1167,7 +1167,7 @@ def fetch_exchange_forecast(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = Session()
@@ -1230,7 +1230,7 @@ def fetch_price(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Gets day-ahead price for specified zone."""
     # Note: This is day-ahead prices
     if not session:
@@ -1264,7 +1264,7 @@ def fetch_generation_forecast(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Gets generation forecast for specified zone."""
     if not session:
         session = Session()
@@ -1296,7 +1296,7 @@ def fetch_consumption_forecast(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Gets consumption forecast for specified zone."""
     if not session:
         session = Session()
@@ -1328,7 +1328,7 @@ def fetch_wind_solar_forecasts(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.

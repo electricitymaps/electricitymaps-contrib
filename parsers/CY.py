@@ -113,7 +113,7 @@ def fetch_production(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[Dict[str, Any]], None]:
+) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 

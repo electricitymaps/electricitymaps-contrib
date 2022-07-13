@@ -104,7 +104,7 @@ def fetch_production(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:
         # ensure we have an arrow object
@@ -151,7 +151,7 @@ def fetch_exchange(
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[list, None]:
+) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     url = (
         "http://mis.nyiso.com/public/csv/ExternalLimitsFlows/{}ExternalLimitsFlows.csv"
