@@ -1,4 +1,4 @@
-# electricityMap app
+# Electricity Maps
 
 **This documentation is specifically for the frontend web/mobile app.**
 

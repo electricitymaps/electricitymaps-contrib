@@ -1,9 +1,6 @@
 on:
   workflow_call:
 
-env:
-  CYPRESS_RECORD_KEY: '${{ secrets.CYPRESS_RECORD_KEY }}'
-
 jobs:
   cypress-test:
     name: Cypress tests
@@ -21,5 +18,4 @@ jobs:
         with:
           working-directory: ./web
           start: yarn develop, yarn run mockserver
-          record: true
           wait-on: 'http://localhost:8080'
