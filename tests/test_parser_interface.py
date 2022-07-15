@@ -36,7 +36,7 @@ _RETURN_PARSER_TYPE = [
     Union[list, dict],
     Union[List[dict], dict],
     Dict[str, Any],
-    Union[Dict[str, Any], List[Dict[str, Any]]]
+    Union[Dict[str, Any], List[Dict[str, Any]]],
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
