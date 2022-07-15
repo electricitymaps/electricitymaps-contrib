@@ -1,3 +1,7 @@
+# Needed for lint staged.
+.prettierignore
+yarn.lock
+
 .venv
 **/parsers/test/mocks
 world.json

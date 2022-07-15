@@ -1,3 +1,8 @@
 # All files in here should also be included in .prettierignore at the top level.
+
+# Needed for lint staged.
+.prettierignore
+yarn.lock
+
 world.json
 public/dist/

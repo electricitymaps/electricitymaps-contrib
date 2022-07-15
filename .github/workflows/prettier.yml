@@ -7,6 +7,7 @@ jobs:
   check:
     name: Check
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -16,4 +17,4 @@ jobs:
           node-version: lts/*
       - name: Prettier Check
         run: |
-          npx prettier@2.6.2 --check .
+          npx prettier@2.7.1 --check .

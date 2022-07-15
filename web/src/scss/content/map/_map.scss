@@ -87,31 +87,3 @@
     fill: #78cde8;
   }
 }
-
-/* override mapbox styling */
-.mapboxgl-zoom-controls {
-  right: 16px !important;
-  top: 69px !important;
-  transition: box-shadow 0.4s;
-  user-select: none;
-
-  @include respond-to('small') {
-    top: 66px !important;
-  }
-
-  &:hover {
-    box-shadow: 2px 0px 20px 0px rgba(0, 0, 0, 0.25) !important;
-  }
-
-  .mapboxgl-ctrl {
-    border-radius: 6px !important;
-    box-shadow: none !important;
-  }
-
-  button {
-    width: 35px !important;
-    height: 35px !important;
-    background-size: 100% 100%;
-    transition: background-color 0.4s;
-  }
-}

@@ -76,7 +76,7 @@ const InfoButton = styled.div`
   }
 `;
 
-export default ({ infoHTML, onChange, options, value }) => {
+export default ({ infoHTML, onChange, options, value, tooltipStyle }) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
@@ -91,7 +91,7 @@ export default ({ infoHTML, onChange, options, value }) => {
       {!isEmpty(infoHTML) && (
         <React.Fragment>
           <InfoButton onClick={() => setTooltipVisible(!tooltipVisible)}>i</InfoButton>
-          <InfoTooltip htmlContent={infoHTML} style={{ left: 4, width: 204, top: 49 }} visible={tooltipVisible} />
+          <InfoTooltip htmlContent={infoHTML} style={tooltipStyle} visible={tooltipVisible} />
         </React.Fragment>
       )}
     </Wrapper>

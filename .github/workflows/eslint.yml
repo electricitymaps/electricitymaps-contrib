@@ -1,0 +1,37 @@
+name: ESLint
+
+on:
+  workflow_call:
+
+jobs:
+  eslint:
+    name: Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: 'yarn'
+          cache-dependency-path: web/yarn.lock
+      - name: Install Dependencies
+        run: |
+          yarn install --frozen-lockfile
+      - name: Restore ESLint cache
+        uses: actions/cache@v3
+        with:
+          path: ./web/node_modules/.cache/eslint/.eslintcache
+          key: ${{ runner.os }}-eslint_cache-${{ github.head_ref }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-eslint_cache-${{ github.head_ref }}
+            ${{ runner.os }}-eslint_cache-master
+            ${{ runner.os }}-eslint_cache
+      - name: ESLint
+        run: |
+          yarn run lint
