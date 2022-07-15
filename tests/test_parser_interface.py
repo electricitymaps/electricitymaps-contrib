@@ -3,7 +3,7 @@ import inspect
 import unittest
 from inspect import isfunction
 from pathlib import Path
-from typing import Callable, List, NamedTuple, Union
+from typing import Any, Callable, Dict, List, NamedTuple, Union
 
 from electricitymap.contrib.config.model import CONFIG_MODEL
 
@@ -32,8 +32,11 @@ _RETURN_PARSER_TYPE = [
     dict,
     list,
     List[dict],
+    List[Dict[str, Any]],
     Union[list, dict],
     Union[List[dict], dict],
+    Dict[str, Any],
+    Union[Dict[str, Any], List[Dict[str, Any]]]
 ]
 EXPECTED_MODE_RETURN_ANNOTATIONS = {
     "consumption": _RETURN_PARSER_TYPE,
