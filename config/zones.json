@@ -3763,7 +3763,6 @@
     "timezone": "Pacific/Port_Moresby"
   },
   "PH": {
-    "_comment": "Capacity is based on Philippine Department of Energy's Power Situation Report as of 2020 - http://www.doe.gov.ph",
     "bounding_box": [
       [117.17427453, 5.58100332277],
       [126.537423944, 18.5052273625]
