@@ -6,7 +6,7 @@
     "datasources": "databronnen",
     "contribute": "Draag bij door <a href=\"%s\" target=\"_blank\">jouw land toe te voegen</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Gebieden", "about": "Over" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Gebieden", "about": "Over" },
   "country-panel": {
     "source": "bron",
     "lowcarbon": "Lage-uitstoot",

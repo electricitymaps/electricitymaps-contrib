@@ -125,6 +125,10 @@ const BySource = styled.div`
   top: 0.8rem;
 `;
 
+const LoadingText = styled.p`
+  margin-top: 2px;
+`;
+
 const CountryTableHeaderInner = styled.div`
   display: flex;
   flex-basis: 33.3%;
@@ -249,7 +253,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
         </div>
         <LoadingWrapper>
           <LoadingPlaceholder height="2rem" />
-          <p>Loading...</p>
+          <LoadingText>Loading...</LoadingText>
         </LoadingWrapper>
       </CountryPanelStyled>
     );
