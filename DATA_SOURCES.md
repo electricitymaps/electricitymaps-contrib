@@ -77,7 +77,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Kyūshū/Sendai NPP): [Kyūden](http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?A=s_power.fdat&B=ncp_state.fdat&_=1520532401043)
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
-- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
+- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv)
 - Kosovo: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Kuwait (TSO): [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)
 - Kuwait (Power Market): [GCCIA](https://www.gccia.com.sa/)
