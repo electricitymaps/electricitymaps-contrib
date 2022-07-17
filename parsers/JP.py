@@ -308,7 +308,7 @@ def fetch_price(
         return []
 
     start = target_datetime - dt.timedelta(days=1)
-    df["Date"] = df["Date"].apply(lambda x: dt.datetime.strptime(x, "%Y/%m/%d"))
+    df["Date"] = pd.to_datetime(df["Date"], format="%Y/%m/%d").dt.date
     df = df[(df["Date"] >= start.date()) & (df["Date"] <= target_datetime.date())]
 
     df["datetime"] = df.apply(
