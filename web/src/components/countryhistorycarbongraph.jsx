@@ -10,7 +10,7 @@ import AreaGraph from './graph/areagraph';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 
 const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
-  if (!historyData || !historyData[0] || !historyData[0].stateDatetime) {
+  if (!historyData || !historyData[0] || !historyData[0].hasData) {
     // Incomplete data
     return {};
   }

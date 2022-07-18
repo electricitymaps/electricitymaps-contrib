@@ -44,7 +44,9 @@ const reducer = createReducer(initialState, (builder) => {
       if (stateAggregation === TIME.HOURLY) {
         Object.entries(exchanges).forEach((entry) => {
           const [key, value] = entry;
-          state.exchanges[key].data = value;
+          if (state.exchanges[key]) {
+            state.exchanges[key].data = value;
+          }
         });
       }
 

@@ -117,12 +117,13 @@ const AreaGraph = React.memo(
     const totalValues = useMemo(() => getTotalValues(layers), [layers]);
     const valueScale = useMemo(() => getValueScale(containerHeight, totalValues), [containerHeight, totalValues]);
     const datetimes = useCurrentZoneHistoryDatetimes();
+
     const startTime = datetimes.at(0);
     const lastTime = datetimes.at(-1);
     const intervalMs = datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
     // The endTime needs to include the last interval so it can be shown
     const endTime = useMemo(() => new Date(lastTime.getTime() + intervalMs), [lastTime, intervalMs]);
-    const datetimesWithNext = [...datetimes, endTime];
+    const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
 
     const timeScale = useMemo(
       () => getTimeScale(containerWidth, startTime, endTime),
