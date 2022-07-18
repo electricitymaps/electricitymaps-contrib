@@ -153,7 +153,13 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false} header={<TimeSliderHeader />}>
+              <StyledBottomSheet
+                scrollLocking={false} // Ensures scrolling is not blocked on IOS
+                open
+                snapPoints={() => [60, 160]}
+                blocking={false}
+                header={<TimeSliderHeader />}
+              >
                 <TimeController />
               </StyledBottomSheet>
             ) : (
