@@ -157,7 +157,7 @@ const StyledSources = styled.div`
   }
 `;
 
-const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
+const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
@@ -177,7 +177,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
             <CountryTime>
               {shownDatetime && <StyledTimeDisplay />}
               {isDataEstimated && <ZoneLabel type={LABEL_TYPES.ESTIMATED} isMobile={isMobile} />}
-              {/* {isDataAggregated && <ZoneLabel type={LABEL_TYPES.AGGREGATED} isMobile={isMobile} />} */}
+              {isDataAggregated && <ZoneLabel type={LABEL_TYPES.AGGREGATED} isMobile={isMobile} />}
             </CountryTime>
           </div>
           {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
@@ -261,7 +261,13 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   return (
     <CountryPanelStyled>
       <div id="country-table-header">
-        <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
+        <CountryHeader
+          isDataAggregated={timeAggregate && timeAggregate !== TIME.HOURLY}
+          parentPage={parentPage}
+          zoneId={zoneId}
+          data={data}
+          isMobile={isMobile}
+        />
         {hasParser && (
           <React.Fragment>
             <CountryTableHeaderInner>
