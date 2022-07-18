@@ -43,13 +43,15 @@ export function useGridDataPolling() {
     }
 
     const pollInterval = setInterval(() => {
-      dispatch(
-        GRID_DATA_FETCH_REQUESTED({
-          features,
-          // We only refetch hourly state as the other aggregates are not updated frequently enough to justify a refresh
-          selectedTimeAggregate: TIME.HOURLY,
-        })
-      );
+      if (selectedTimeAggregate === TIME.HOURLY) {
+        dispatch(
+          GRID_DATA_FETCH_REQUESTED({
+            features,
+            // We only refetch hourly state as the other aggregates are not updated frequently enough to justify a refresh
+            selectedTimeAggregate: TIME.HOURLY,
+          })
+        );
+      }
     }, DATA_FETCH_INTERVAL);
     return () => clearInterval(pollInterval);
   }, [dispatch, features, selectedTimeAggregate, hasOverviewData, isExpired]);
