@@ -4,19 +4,11 @@ import TimeSlider from '../components/timeslider';
 
 import { useCurrentDatetimes } from '../hooks/redux';
 import { dispatchApplication } from '../store';
+import { useTrackEvent } from '../hooks/tracking';
 import styled from 'styled-components';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-
-const handleTimeAggregationChange = (aggregate, zoneDatetimes) => {
-  dispatchApplication('selectedTimeAggregate', aggregate);
-  if (zoneDatetimes[aggregate]) {
-    // set selectedZoneTimeIndex to max of datetimes (all the way to the right)
-    // if we know already the size of the datetimes array
-    dispatchApplication('selectedZoneTimeIndex', zoneDatetimes[aggregate].length - 1);
-  }
 };
 
 const mapStateToProps = (state) => ({
@@ -58,9 +50,23 @@ const StyledTimeSlider = styled(TimeSlider)`
 
 const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const datetimes = useCurrentDatetimes();
+  const trackEvent = useTrackEvent();
 
   const startTime = datetimes.at(0);
   const endTime = datetimes.at(-1);
+
+  const handleTimeAggregationChange = (aggregate, zoneDatetimes) => {
+    if (aggregate === selectedTimeAggregate) {
+      return;
+    }
+    trackEvent('AggregateButton Clicked', { aggregate });
+    dispatchApplication('selectedTimeAggregate', aggregate);
+    if (zoneDatetimes[aggregate]) {
+      // set selectedZoneTimeIndex to max of datetimes (all the way to the right)
+      // if we know already the size of the datetimes array
+      dispatchApplication('selectedZoneTimeIndex', zoneDatetimes[aggregate].length - 1);
+    }
+  };
 
   return (
     <StyledTimeSlider
