@@ -136,15 +136,15 @@
     transform: translate(-50%);
 
     .modal-footer-circle {
-      background-color: rgb(145, 145, 145);
+      background-color: white;
       border-radius: 50%;
       display: inline-block;
-      height: 8px;
+      height: 14px;
       margin: 0 4px;
-      width: 8px;
+      width: 14px;
 
       &.highlight {
-        background-color: $white;
+        background-color: rgb(134, 134, 134);
       }
     }
 
@@ -153,8 +153,9 @@
       height: 36px;
 
       .modal-footer-circle {
-        width: 6px;
-        height: 6px;
+        width: 12px;
+        height: 12px;
+        border: 1px solid rgb(190, 190, 190);
       }
     }
   }
