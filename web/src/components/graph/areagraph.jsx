@@ -117,8 +117,13 @@ const AreaGraph = React.memo(
     const totalValues = useMemo(() => getTotalValues(layers), [layers]);
     const valueScale = useMemo(() => getValueScale(containerHeight, totalValues), [containerHeight, totalValues]);
     const datetimes = useCurrentZoneHistoryDatetimes();
+
     const startTime = datetimes.at(0);
-    const endTime = datetimes.at(-1);
+    const lastTime = datetimes.at(-1);
+    const intervalMs = datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
+    // The endTime needs to include the last interval so it can be shown
+    const endTime = useMemo(() => new Date(lastTime.getTime() + intervalMs), [lastTime, intervalMs]);
+    const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
 
     const timeScale = useMemo(
       () => getTimeScale(containerWidth, startTime, endTime),
@@ -173,7 +178,7 @@ const AreaGraph = React.memo(
         />
         <AreaGraphLayers
           layers={layers}
-          datetimes={datetimes}
+          datetimes={datetimesWithNext}
           timeScale={timeScale}
           valueScale={valueScale}
           mouseMoveHandler={mouseMoveHandler}
@@ -186,7 +191,7 @@ const AreaGraph = React.memo(
           transform={`translate(-1 ${containerHeight - 1})`}
           className="x axis"
           selectedTimeAggregate={selectedTimeAggregate}
-          datetimes={datetimes}
+          datetimes={datetimesWithNext}
         />
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
