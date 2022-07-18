@@ -1,5 +1,11 @@
 describe('Onboarding', () => {
   it('Asserts onboarding works', () => {
+    // Onboarding is temporarily disabled
+    const isDisabled = new Date() < new Date('2022-08-18');
+    if (isDisabled) {
+      return;
+    }
+
     cy.visit('/map');
     cy.get('[data-test-id=onboarding]').should('be.visible');
     cy.get('[data-test-id=onboarding] .modal-footer .modal-footer-circle:nth-child(1)').should(

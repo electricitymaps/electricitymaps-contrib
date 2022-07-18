@@ -124,6 +124,7 @@ const BySource = styled.div`
   position: relative;
   top: 0.8rem;
 `;
+
 const LoadingText = styled.p`
   margin-top: 2px;
 `;
@@ -210,6 +211,11 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
       search: location.search,
     };
   }, [location]);
+
+  // Disable mix graph on aggregated consumption data because we do not
+  // show exchanges yet.
+  const isMixGraphOverlayEnabled =
+    timeAggregate && timeAggregate !== TIME.HOURLY && electricityMixMode == 'consumption';
 
   // Back button keyboard navigation
   useEffect(() => {
@@ -364,7 +370,21 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   pro
                 </span>
               </ProContainer>
-              <CountryHistoryMixGraph />
+              <div className="country-history">
+                {isMixGraphOverlayEnabled && (
+                  <div className="no-data-overlay visible">
+                    <div className="no-data-overlay-background" />
+                    <div
+                      className="no-data-overlay-message graph"
+                      dangerouslySetInnerHTML={{
+                        __html: 'Temporarily disabled. <br/> Switch to production view',
+                      }}
+                    />
+                  </div>
+                )}
+
+                <CountryHistoryMixGraph isOverlayEnabled={isMixGraphOverlayEnabled} />
+              </div>
 
               {timeAggregate === TIME.HOURLY && (
                 <>

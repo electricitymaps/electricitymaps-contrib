@@ -115,7 +115,7 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
     background-size: cover;
 
     @include respond-to('small') {

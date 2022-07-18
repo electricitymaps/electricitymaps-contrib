@@ -77,7 +77,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Kyūshū/Sendai NPP): [Kyūden](http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?A=s_power.fdat&B=ncp_state.fdat&_=1520532401043)
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
-- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
+- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv)
 - Kosovo: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Kuwait (TSO): [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)
 - Kuwait (Power Market): [GCCIA](https://www.gccia.com.sa/)
@@ -166,6 +166,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 - Åland
   - Wind: [Finnish Wind Power Association](https://tuulivoimayhdistys.fi/en/wind-power-in-finland/map 'Note: the map states 43MW for the Långnabba project, but as [Vestas](https://www.vestas.com/en/media/company-news/2020/vestas-develops-highly-customised-power-plant-solution--c3249491) and [Kraftnat](https://kraftnat.ax/) state 42MW, the lower figure was used')
+  - Solar: [Ålands statistik- och utredningsbyrå](https://www.asub.ax/sv/ekologisk-hallbarhet-17-installerad-kapacitet-elproduktion-solpaneler-pa-aland)
   - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
 - Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
@@ -270,6 +271,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [NPP](https://npp.gov.in/dashBoard/cp-map-dashboard)
   - Non-Renewable: [NPP](https://npp.gov.in/publishedReports)
   - (Punjab): [PUNJABSLDC](http://www.punjabsldc.org/realtimepbGen.aspx)
+  - (Tamil Nadu): [tnebsldc](https://tnebsldc.org/reports1/peakdet.pdf)
 - Japan:
   - Tokyo: [Power-Plants](http://agora.ex.nii.ac.jp/earthquake/201103-eastjapan/energy/electrical-japan/operator/3.html.ja)
   - Kyūshū: [Electrical Japan](https://agora-ex-nii-ac-jp.translate.goog/earthquake/201103-eastjapan/energy/electrical-japan/operator/9.html.ja?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp&_x_tr_sch=http)
@@ -313,6 +315,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/2020-power-situation-report)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)

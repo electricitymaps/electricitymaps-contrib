@@ -67,7 +67,7 @@ export const Button = ({ icon, children, iconSize = 16, ...rest }) => {
 
   const hasChildren = React.Children.count(children) > 0;
   return (
-    <StyledButton type="button" hasChildren={hasChildren} as={renderAs} {...rest}>
+    <StyledButton hasChildren={hasChildren} as={renderAs} {...rest}>
       {icon && <Icon iconName={icon} size={iconSize} />}
       {hasChildren && <span>{children}</span>}
     </StyledButton>

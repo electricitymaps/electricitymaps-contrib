@@ -11,7 +11,7 @@
     "zone-list-header-subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
     "search": "Søk etter land/region"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Regioner", "about": "Om kartet" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Regioner", "about": "Om kartet" },
   "onboarding-modal": {
     "view1": { "subtitle": "Kartlegger klimaeffekten av el-energi" },
     "view2": {
@@ -49,7 +49,7 @@
     "now": "Nå"
   },
   "country-history": {
-    "Getdata": "Skaff tilgang til live, historiske eller fremskrivingsdata med electricityMap API",
+    "Getdata": "Skaff tilgang til live, historiske eller fremskrivingsdata med Electricity Maps API",
     "carbonintensity": { "hourly": "CO₂-intensitet siste 24 timer" },
     "emissionsorigin": { "hourly": "CO₂-utslippskilde siste 24 timer" },
     "emissionsproduction": { "hourly": "CO₂-utslipp siste 24 timer" },
@@ -173,7 +173,7 @@
     "workTogether-question": "Kan vi samarbeide?",
     "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymap.org\">Send oss en e-post!</a>",
     "disclaimer-question": "Ansvarsfraskrivelse",
-    "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "wind": "Vind",
   "windDataError": "Data for vindenergi for tiden utilgjengelig",

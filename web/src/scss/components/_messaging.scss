@@ -74,6 +74,10 @@
   padding: 8px;
   text-align: center;
   z-index: 3;
+
+  &.graph {
+    margin-right: 40px;
+  }
 }
 
 .zone-details-no-parser-message {

@@ -18,7 +18,7 @@ const DateSubtitle = styled.small`
 // Note: This content is not in translations on purpose, as it will only live a short while (1 month)
 const views = [
   {
-    headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
+    headerImage: resolvePath('images/historicalviewmodal/step1_hw_modal.png'),
     renderContent: (__) => (
       <React.Fragment>
         <DateSubtitle>July 2022</DateSubtitle>
@@ -33,7 +33,7 @@ const views = [
     ),
   },
   {
-    headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
+    headerImage: resolvePath('images/historicalviewmodal/step2_hw_modal.gif'),
     renderContent: (__) => (
       <React.Fragment>
         <div>
@@ -46,21 +46,22 @@ const views = [
       </React.Fragment>
     ),
   },
-  {
-    headerImage: resolvePath('images/historicalviewmodal/timeslider.png'),
-    renderContent: (__) => (
-      <React.Fragment>
-        <div>
-          <h2>Want to learn more and contribute?</h2>
-        </div>
-        <div>
-          We have created <a href="/">a YouTube explainer video</a>, written <a href="/">a blog post</a> and shared{' '}
-          <a href="/">our metholodogy on GitHub</a>. If you have any feedback we&apos;d love to{' '}
-          <a href="/">hear from you</a>!
-        </div>
-      </React.Fragment>
-    ),
-  },
+  // temporarily disabled until we have all resources available
+  // {
+  //   headerImage: resolvePath('images/historicalviewmodal/step3_hw_modal.png'),
+  //   renderContent: (__) => (
+  //     <React.Fragment>
+  //       <div>
+  //         <h2>Want to learn more and contribute?</h2>
+  //       </div>
+  //       <div>
+  //         We have created <a href="/">a YouTube explainer video</a>, written <a href="/">a blog post</a> and shared{' '}
+  //         <a href="/">our metholodogy on GitHub</a>. If you have any feedback we&apos;d love to{' '}
+  //         <a href="/">hear from you</a>!
+  //       </div>
+  //     </React.Fragment>
+  //   ),
+  // },
 ];
 
 const HistoricalViewIntroModal = () => {
@@ -70,7 +71,7 @@ const HistoricalViewIntroModal = () => {
   const trackEvent = useTrackEvent();
   const { __ } = useTranslation();
   // Stop showing this modal a month after the feature is released
-  const isExpired = new Date() > new Date('2022-08-12');
+  const isExpired = new Date() > new Date('2022-08-18');
   // If user has skipped onboarding, also don't show this modal
   const shouldSkip = useSearchParams().get('skip-onboarding') === 'true';
 

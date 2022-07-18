@@ -99,6 +99,7 @@ const AreaGraph = React.memo(
     Height of the area graph canvas.
   */
     height = '10em',
+    isOverlayEnabled,
   }) => {
     const {
       ref,
@@ -186,13 +187,15 @@ const AreaGraph = React.memo(
           isMobile={isMobile}
           svgNode={node}
         />
-        <TimeAxis
-          scale={timeScale}
-          transform={`translate(-1 ${containerHeight - 1})`}
-          className="x axis"
-          selectedTimeAggregate={selectedTimeAggregate}
-          datetimes={datetimesWithNext}
-        />
+        {!isOverlayEnabled && (
+          <TimeAxis
+            scale={timeScale}
+            transform={`translate(-1 ${containerHeight - 1})`}
+            className="x axis"
+            selectedTimeAggregate={selectedTimeAggregate}
+            datetimes={datetimesWithNext}
+          />
+        )}
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
           layers={layers}

@@ -48,6 +48,7 @@ const StyledLanguageSelectWrapper = styled.ul`
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.12);
   overflow: scroll;
   max-height: 300px;
+
   button {
     width: 100%;
     background: transparent;

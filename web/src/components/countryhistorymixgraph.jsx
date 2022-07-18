@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
 });
 
-const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile }) => {
+const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, isOverlayEnabled }) => {
   const [tooltip, setTooltip] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
@@ -154,6 +154,7 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
         markerHideHandler={markerHideHandler}
         isMobile={isMobile}
         height="10em"
+        isOverlayEnabled={isOverlayEnabled}
       />
       {tooltip &&
         (exchangeKeys.includes(tooltip.mode) ? (
