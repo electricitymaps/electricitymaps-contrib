@@ -227,7 +227,7 @@
     "feedback-question": "Can I give you some feedback?",
     "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymap.org\">send us an email!</a>",
     "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Can we work together?",
     "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymap.org\">Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
