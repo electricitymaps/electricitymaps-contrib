@@ -257,7 +257,7 @@
     "feedback-question": "Kan jag ge er någon återkoppling?",
     "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymap.org\">skicka oss ett e-brev!</a>",
     "contribute-question": "Kan jag bidra till ert projekt?",
-    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi arbeta tillsammans?",
     "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymap.org\">Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
