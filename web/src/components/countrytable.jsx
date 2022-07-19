@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import { scaleLinear } from 'd3-scale';

@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { Redirect, Link, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
@@ -20,7 +15,7 @@ import CountryHistoryMixGraph from '../../components/countryhistorymixgraph';
 import CountryHistoryPricesGraph from '../../components/countryhistorypricesgraph';
 import CountryTable from '../../components/countrytable';
 import CountryDisclaimer from '../../components/countrydisclaimer';
-import CountryEstimatedDataInfo from '../../components/countryEstimatedDataInfo';
+import CountryDataInfo from '../../components/countrydatainfo';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import Icon from '../../components/icon';
 
@@ -31,12 +26,12 @@ import { useCurrentZoneData } from '../../hooks/redux';
 import { useTrackEvent } from '../../hooks/tracking';
 import { flagUri } from '../../helpers/flags';
 import { useTranslation, getZoneNameWithCountry } from '../../helpers/translation';
-import EstimatedLabel from '../../components/countryestimationlabel';
 import SocialButtons from './socialbuttons';
-import { useFeatureToggle } from '../../hooks/router';
-import { formatDate } from '../../helpers/formatting';
 import { TIME } from '../../helpers/constants';
 import { CountryHistoryTitle } from '../../components/countryhistorytitle';
+import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { TimeDisplay } from '../../components/timeDisplay';
+import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -73,7 +68,7 @@ const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
-  zones: state.data.grid.zones,
+  zones: state.data.zones,
 });
 
 const LoadingWrapper = styled.div`
@@ -91,6 +86,7 @@ const Flag = styled.img`
 
 const CountryTime = styled.div`
   white-space: nowrap;
+  display: flex;
 `;
 
 const ProContainer = styled.small`
@@ -102,6 +98,10 @@ const ProContainer = styled.small`
 const CountryNameTime = styled.div`
   font-size: smaller;
   margin-left: 25px;
+`;
+
+const StyledTimeDisplay = styled(TimeDisplay)`
+  margin-top: 0px;
 `;
 
 const CountryNameTimeTable = styled.div`
@@ -147,23 +147,21 @@ const CountryPanelStyled = styled.div`
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     -moz-user-select: none; /* Selection disabled on firefox to avoid android "select all" button popping up when pressing graphs */
-    margin-bottom: 60px; /* height of .zone-time-slider plus padding*/
+    margin-bottom: 60px; /* height of time-slider plus padding*/
   }
 `;
 
 const StyledSources = styled.div`
-  margin-bottom: ${(props) => (props.historyFeatureEnabled ? '170px' : 0)};
+  margin-bottom: 170px;
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
 `;
 
-const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
+const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated }) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
-  const { i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   return (
     <div className="left-panel-zone-details-toolbar">
@@ -178,8 +176,9 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile }) => {
           <div style={{ flexGrow: 1 }}>
             <div className="country-name">{getZoneNameWithCountry(zoneId)}</div>
             <CountryTime>
-              {shownDatetime && formatDate(new Date(shownDatetime), i18n.language, selectedTimeAggregate)}
-              {isDataEstimated && <EstimatedLabel isMobile={isMobile} />}
+              {shownDatetime && <StyledTimeDisplay />}
+              {isDataEstimated && <ZoneLabel type={LABEL_TYPES.ESTIMATED} isMobile={isMobile} />}
+              {isDataAggregated && <ZoneLabel type={LABEL_TYPES.AGGREGATED} isMobile={isMobile} />}
             </CountryTime>
           </div>
           {disclaimer && <CountryDisclaimer text={disclaimer} isMobile={isMobile} />}
@@ -194,13 +193,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { __ } = useTranslation();
 
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+
+  // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
   const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
   const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
@@ -211,6 +211,11 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
       search: location.search,
     };
   }, [location]);
+
+  // Disable mix graph on aggregated consumption data because we do not
+  // show exchanges yet.
+  const isMixGraphOverlayEnabled =
+    timeAggregate && timeAggregate !== TIME.HOURLY && electricityMixMode == 'consumption';
 
   // Back button keyboard navigation
   useEffect(() => {
@@ -230,10 +235,10 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     return <Redirect to={parentPage} />;
   }
 
-  const { hasData, hasParser, estimationMethod } = data;
+  const { hasParser, estimationMethod } = data;
   const isDataEstimated = estimationMethod ? true : false;
 
-  const co2Intensity = electricityMixMode === 'consumption' ? data.co2intensity : data.co2intensityProduction;
+  const co2Intensity = getCO2IntensityByMode(data, electricityMixMode);
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
@@ -262,8 +267,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   return (
     <CountryPanelStyled>
       <div id="country-table-header">
-        <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
-        {hasData && (
+        <CountryHeader
+          isDataAggregated={timeAggregate && timeAggregate !== TIME.HOURLY}
+          parentPage={parentPage}
+          zoneId={zoneId}
+          data={data}
+          isMobile={isMobile}
+        />
+        {hasParser && (
           <React.Fragment>
             <CountryTableHeaderInner>
               <CarbonIntensitySquare value={co2Intensity} withSubtext />
@@ -288,13 +299,21 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </CountryTableHeaderInner>
             <div className="country-show-emissions-wrap">
               <div className="menu">
-                <a onClick={switchToZoneProduction} className={!tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneProduction}
+                  className={!tableDisplayEmissions ? 'selected' : null}
+                >
                   {__(`country-panel.electricity${electricityMixMode}`)}
-                </a>
+                </button>
                 |
-                <a onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+                <button
+                  type="button"
+                  onClick={switchToZoneEmissions}
+                  className={tableDisplayEmissions ? 'selected' : null}
+                >
                   {__('country-panel.emissions')}
-                </a>
+                </button>
               </div>
             </div>
           </React.Fragment>
@@ -302,7 +321,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
       </div>
 
       <CountryPanelWrap>
-        {hasData || hasParser ? (
+        {hasParser ? (
           <React.Fragment>
             <BySource>{__('country-panel.bysource')}</BySource>
 
@@ -319,6 +338,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -341,6 +361,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <a
                   href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   {__('country-history.Getdata')}
                 </a>
@@ -349,7 +370,21 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   pro
                 </span>
               </ProContainer>
-              <CountryHistoryMixGraph />
+              <div className="country-history">
+                {isMixGraphOverlayEnabled && (
+                  <div className="no-data-overlay visible">
+                    <div className="no-data-overlay-background" />
+                    <div
+                      className="no-data-overlay-message graph"
+                      dangerouslySetInnerHTML={{
+                        __html: 'Temporarily disabled. <br/> Switch to production view',
+                      }}
+                    />
+                  </div>
+                )}
+
+                <CountryHistoryMixGraph isOverlayEnabled={isMixGraphOverlayEnabled} />
+              </div>
 
               {timeAggregate === TIME.HOURLY && (
                 <>
@@ -359,13 +394,15 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               )}
             </div>
             <hr />
-            <StyledSources historyFeatureEnabled={isHistoryFeatureEnabled}>
-              {isDataEstimated && <CountryEstimatedDataInfo text={__('country-panel.dataIsEstimated')} />}
+            <StyledSources>
+              {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
+              {timeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
               {__('country-panel.source')}
               {': '}
               <a
                 href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
                 target="_blank"
+                rel="noreferrer"
               >
                 <span className="country-data-source">{data.source || '?'}</span>
               </a>

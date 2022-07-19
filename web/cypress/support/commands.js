@@ -42,3 +42,34 @@ Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, val
 //         setSliderValue(value: number): Chainable<void>
 //     }
 // }
+
+Cypress.Commands.add('interceptAPI', (path) => {
+  const [pathWithoutParams, params] = path.split('?');
+  let fixturePath = pathWithoutParams;
+  // Change fixture path if countryCode query parameter is used to use correct response
+  if (params && params.includes('countryCode')) {
+    const zone = params.split('=')[1];
+    fixturePath = pathWithoutParams.replace('/history/hourly', `/history/${zone}/hourly`);
+  }
+  cy.intercept('GET', `http://localhost:8001/${path}`, {
+    fixture: `${fixturePath}.json`,
+  }).as(path);
+});
+Cypress.Commands.add('waitForAPISuccess', (path) => {
+  cy.wait(`@${path}`)
+    .its('response.statusCode')
+    .should('match', /200|304/);
+});
+
+Cypress.Commands.add('visitOnMobile', (path) => {
+  cy.viewport('iphone-6');
+  cy.visit(path, {
+    onBeforeLoad: (win) => {
+      win.ontouchstart = true;
+      Object.defineProperty(win.navigator, 'userAgent', {
+        value:
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
+      });
+    },
+  });
+});

@@ -1,8 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React, { useState, useEffect } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 
@@ -11,9 +6,10 @@ import { useIsMediumUpScreen } from '../../hooks/viewport';
 import FAQ from '../../components/faq';
 import ColorBlindCheckbox from '../../components/colorblindcheckbox';
 import SocialButtons from './socialbuttons';
+import Icon from '../../components/icon';
 
 const MobileInfoTab = () => {
-  const { __, i18n } = useTranslation();
+  const { __ } = useTranslation();
   const isMediumUpScreen = useIsMediumUpScreen();
   const location = useLocation();
   const [mobileAppVersion, setMobileAppVersion] = useState(null);
@@ -60,12 +56,13 @@ const MobileInfoTab = () => {
           data-show-faces="false"
         />
         <a
-          className="twitter-follow-button"
-          href="https://twitter.com/electricitymap"
-          data-show-screen-name="false"
-          data-show-count="false"
-          data-lang={i18n.language}
-        />
+          className="twitter-share-button"
+          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon iconName={'twitter'} size={16} /> Tweet
+        </a>
       </div>
 
       <div className="info-text">
@@ -73,11 +70,11 @@ const MobileInfoTab = () => {
         {mobileAppVersion ? <p>{`App version: ${mobileAppVersion}`}</p> : null}
         <p>
           {__('panel-initial-text.thisproject')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
+          <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank" rel="noreferrer">
             {__('panel-initial-text.opensource')}
           </a>{' '}
           ({__('panel-initial-text.see')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank">
+          <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank" rel="noreferrer">
             {__('panel-initial-text.datasources')}
           </a>
           ).{' '}
@@ -93,7 +90,7 @@ const MobileInfoTab = () => {
         </p>
         <p>
           {__('footer.foundbugs')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">
+          <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank" rel="noreferrer">
             {__('footer.here')}
           </a>
           .

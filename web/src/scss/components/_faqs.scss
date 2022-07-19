@@ -39,6 +39,10 @@
   }
 
   .question {
+    font-family: inherit;
+    background: transparent;
+    border: 0;
+    text-align: left;
     font-size: 0.95rem;
     padding: 5px 0;
     cursor: pointer;
