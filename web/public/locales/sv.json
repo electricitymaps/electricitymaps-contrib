@@ -53,7 +53,7 @@
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
     "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "exchangesAreMissing": "Överföringar är beaktade i beräkningarna, men visas inte för närvarande. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
+    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
     "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
