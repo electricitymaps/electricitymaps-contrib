@@ -149,7 +149,7 @@
     "hideWindLayer": "Dölj vind-lager",
     "showSolarLayer": "Visa sol-lager",
     "hideSolarLayer": "Dölj sol-lager",
-    "weatherDisabled": "Väderdata är ej tillgänglig för denna tid",
+    "weatherDisabled": "Väderdata är ej tillgänglig för denna period",
     "toggleDarkMode": "Växla mörkt läge",
     "noParserInfo": "Ingen data tillgänglig",
     "temporaryDataOutage": "Aktuell data tillfälligt ej tillgänglig",
