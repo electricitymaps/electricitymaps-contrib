@@ -69,6 +69,13 @@ const HiddenOnMobile = styled.div`
 `;
 
 const StyledBottomSheet = styled(BottomSheet)`
+  [data-rsbs-header] {
+    // override standard styling. Issue in Cordova IOS app
+    padding-top: 20px;
+    &:before {
+      top: 8px;
+    }
+  }
   [data-rsbs-overlay] {
     z-index: ${(props) => (props.behind ? 0 : 5)};
   }
