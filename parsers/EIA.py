@@ -292,6 +292,10 @@ TYPES = {
     "solar": "SUN",
     "wind": "WND",
 }
+
+EIA_PRODUCTION_GROUPS = {"US-SW-SRP": ["US-SW-HGMA", "US-SW-SRP"]}
+
+
 PRODUCTION_SERIES = "EBA.%s-ALL.NG.H"
 PRODUCTION_MIX_SERIES = "EBA.%s-ALL.NG.%s.H"
 DEMAND_SERIES = "EBA.%s-ALL.D.H"
