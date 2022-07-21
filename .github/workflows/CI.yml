@@ -75,6 +75,12 @@ jobs:
     if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
 
+  jest:
+    name: Jest
+    needs: [setup]
+    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/jest.yml
+
   jsonlint:
     name: JSONLint
     needs: [setup, prettier]
@@ -101,8 +107,8 @@ jobs:
     secrets: inherit
 
   # Python checks
-  python-formatting:
-    name: Python Formatting
+  python:
+    name: Python
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python-formatting.yml
+    uses: ./.github/workflows/python.yml

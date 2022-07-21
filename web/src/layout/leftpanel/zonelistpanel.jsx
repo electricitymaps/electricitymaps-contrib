@@ -7,7 +7,6 @@ import SearchBar from '../../components/searchbar';
 import ZoneList from '../../components/zonelist';
 
 import InfoText from './infotext';
-import { useFeatureToggle } from '../../hooks/router';
 import styled from 'styled-components';
 
 const documentSearchKeyUpHandler = (key, searchRef) => {
@@ -32,7 +31,7 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   flex: 1 1 0px;
   overflow-y: hidden;
-  margin-bottom: ${(props) => (props.historyFeatureEnabled ? '170px' : 0)};
+  margin-bottom: 170px;
 
   .info-text {
     flex-direction: column;
@@ -42,10 +41,9 @@ const StyledWrapper = styled.div`
 
 const ZoneListPanel = () => {
   const { __ } = useTranslation();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
 
   return (
-    <StyledWrapper historyFeatureEnabled={isHistoryFeatureEnabled}>
+    <StyledWrapper>
       <div className="zone-list-header">
         <div className="title"> {__('left-panel.zone-list-header-title')}</div>
         <div className="subtitle">{__('left-panel.zone-list-header-subtitle')}</div>

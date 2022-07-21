@@ -1576,7 +1576,7 @@
           }
         ],
         "unknown": {
-          "_comment": "Source ENTSOE, Swiss government and electricitymap: https://github.com/tmrowco/electricitymap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
+          "_comment": "Source ENTSOE, Swiss government and electricityMap: https://github.com/tmrowco/electricityMap-contrib/pull/2898 and https://docs.google.com/spreadsheets/d/1FLHQ6e9Es08BIqX654BM3SEb_fuAk4k4O-6cmRXyw_E/",
           "source": "52% hydro storage, 48% unknown thermal",
           "value": 383
         }
@@ -5067,7 +5067,7 @@
           }
         ],
         "unknown": {
-          "_url": "https://github.com/tmrowco/electricitymap-contrib/issues/3015#issuecomment-888154930",
+          "_url": "https://github.com/tmrowco/electricityMap-contrib/issues/3015#issuecomment-888154930",
           "source": "2020 average by electricityMap. See disclaimer",
           "value": 342
         }

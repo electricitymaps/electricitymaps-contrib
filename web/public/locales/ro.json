@@ -6,7 +6,7 @@
     "datasources": "surse de date",
     "contribute": "Contribuie prin <a href=\"%s\" target=\"_blank\">adăugarea teritoriului tău</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Zone", "about": "Despre" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Zone", "about": "Despre" },
   "onboarding-modal": {
     "view1": { "subtitle": "Cartografierea impactului electricității asupra climei" },
     "view2": {
@@ -45,7 +45,7 @@
     "search": "Căutați zone"
   },
   "country-history": {
-    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu electricityMap API",
+    "Getdata": "Acces la date din trecut, la interval de o ora, date în timp real, și predicții cu Electricity Maps API",
     "carbonintensity": { "hourly": "Concentrația de dioxid de carbon din ultimele 24 de ore" },
     "emissionsorigin": { "hourly": "Originea emisiilor din ultimele 24 de ore" },
     "emissionsproduction": { "hourly": "Emisii produse în ultimele 24 de ore" },
@@ -192,7 +192,7 @@
     "workTogether-question": "Putem lucra împreună?",
     "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href=\"mailto:app@electricitymap.org\">Trimite-ne un email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },

@@ -6,7 +6,7 @@
     "datasources": "andmeallikaid",
     "contribute": "Aidake kaasa <a href=\"%s\" target=\"_blank\">lisades enda piirkond</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Piirkonnad", "about": "Teave" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Piirkonnad", "about": "Teave" },
   "onboarding-modal": {
     "view1": { "subtitle": "Elektrienergia kliimamõju kaardistamine" },
     "view2": {
@@ -45,7 +45,7 @@
     "search": "Otsige piirkondi"
   },
   "country-history": {
-    "Getdata": "Hangi läbi electricityMap API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
+    "Getdata": "Hangi läbi Electricity Maps API tundide kaupa ajaloo, reaalaja ja prognoosi andmeid",
     "carbonintensity": { "hourly": "Süsiniku intensiivsus viimase 24 tunni jooksul" },
     "emissionsorigin": { "hourly": "Heitkoguste päritolu viimase 24 tunni jooksul" },
     "emissionsproduction": { "hourly": "Tootmisel tekkinud heitmed viimase 24 tunni jooksul" },
@@ -180,7 +180,7 @@
   "aboutUs": {
     "groupName": "Meist",
     "whoAreYou-question": "Kes te olete?",
-    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
+    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
     "feedback-question": "Kas ma saan teile saata tagasisidet?",
     "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymap.org\">saatke meile e-kiri!</a>",
     "contribute-question": "Kas ma saan aidata teie projektile kaasa?",
@@ -188,7 +188,7 @@
     "workTogether-question": "Kas me saaksime koos töötada?",
     "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymap.org\">Saatke meile e-kiri!</a>",
     "disclaimer-question": "Vastutusest loobumine",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> avaldab andmed ja pildid <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. electricityMap ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida electricityMap'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma electricityMap'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> avaldab andmed ja pildid <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },

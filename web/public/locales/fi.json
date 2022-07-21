@@ -6,7 +6,7 @@
     "datasources": "tietolähteet",
     "contribute": "Avusta <a href=\"%s\" target=\"_blank\">lisäämällä alueesi</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Alueet", "about": "Tietoa" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Alueet", "about": "Tietoa" },
   "onboarding-modal": {
     "view1": { "subtitle": "Sähkön ilmastovaikutusten kartoittaminen" },
     "view2": {
@@ -157,7 +157,7 @@
     "guaranteesOfOrigin-question": "Mitä ovat vihreät todistukset ja kuinka ne otetaan huomioon?",
     "guaranteesOfOrigin-answer": "Kun uusiutuvan energian tuottajat tuottavat sähköä, he voivat luoda alkuperätakuut (tai uusiutuvan energian todistukset) - todisteen siitä, että uusiutuvaa sähköä on tuotettu ja jaettu sähköverkkoon. Nämä takuut voidaan sitten myydä, jolloin sähkön vähittäiskauppiaat voivat väittää, että heidän jälleenmyyntinsä tulee uusiutuvista lähteistä riippumatta sen todellisesta fyysisestä lähteestä. <br> <br> Tämä tarkoittaa, että sähkön kuluttajille voidaan kertoa, että heidän sähkönsä tulee aurinko- ja tuulivoimasta, jopa tuulettomana yönä. Tämä on ongelmallista, koska se poistaa kuluttajien kannustimet kuluttaa sähköä parhaalla mahdollisella hetkellä (esimerkiksi kun uusiutuvan sähkön määrä verkossa on tosiasiallisesti suurin). Tästä syystä tämä kartta sulkee pois alkuperätakuut ja sen sijaan tarjoaa sijainnin perusteella oikean kuvan sähköverkosta kuluttajien käyttöön.",
     "otherSources-question": "Miksi ette näytä muita päästölähteitä kuin sähköntuotannon?",
-    "otherSources-answer": "Tämä olisi projektin laajuden ulkopuolella. electricityMap pyrkii kuitenkin aktiivisesti kehittäämään <a href=\"#whoAreYou\" class=\"entry-link\"> uusia ratkaisuja arjen ilmastovaikutusten määrittämiseksi </a>.",
+    "otherSources-answer": "Tämä olisi projektin laajuden ulkopuolella. Electricity Maps pyrkii kuitenkin aktiivisesti kehittäämään <a href=\"#whoAreYou\" class=\"entry-link\"> uusia ratkaisuja arjen ilmastovaikutusten määrittämiseksi </a>.",
     "homeSolarPanel-question": "Entä jos kotiini on asennettu aurinkopaneeli?",
     "homeSolarPanel-answer": "Mittaamme paikallisen sähköverkon hiili-intensiteetin, joten kaikki sähkö, jota kulutat suoraan aurinkopaneelistasi (off-grid), ei ole osa mittauksiamme. Jos aurinkopaneelisi kuitenkin tarjoaa virtaa paikalliselle sähköverkollesi, sen tuotanto sisältyy tilastoihimme alueilla, joilla arviot paikallisesta aurinkoenergian tuotannosta ovat julkisesti saatavilla (kuten Ranskassa ja Isossa-Britanniassa).",
     "emissionsPerCapita-question": "Miksi ette näytä päästöjä asukasta kohti?",
@@ -175,7 +175,7 @@
   "aboutUs": {
     "groupName": "Tietoa meistä",
     "whoAreYou-question": "Ketä olette",
-    "whoAreYou-answer": "The Electricity Map:in on kehittänyt ja ylläpitänyt <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, pieni tanskalais-ranskalainen startup yritys. Tavoitteenamme on auttaa ihmiskuntaa saavuttamaan kestävä olemassaolotila määrittelemällä ja tekemällä päivittäisten valintojen ilmastovaikutukset laajasti saataville.",
+    "whoAreYou-answer": "The Electricity Map:in on kehittänyt ja ylläpitänyt <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, pieni tanskalais-ranskalainen startup yritys. Tavoitteenamme on auttaa ihmiskuntaa saavuttamaan kestävä olemassaolotila määrittelemällä ja tekemällä päivittäisten valintojen ilmastovaikutukset laajasti saataville.",
     "feedback-question": "Voinko antaa palautetta?",
     "feedback-answer": "Kiitos kyllä! Täytâ <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">lomake</a> tai <a href=\"mailto:app@electricitymap.org\">lähetä meille sähköpostia!</a>",
     "contribute-question": "Voinko osallistua projektiisi?",
@@ -183,7 +183,7 @@
     "workTogether-question": "Voimmeko työskennellä yhdessä?",
     "workTogether-answer": "Etsimme aktiivisesti uusia mahdollisuuksia yhteistyöhön. <a href=\"mailto:app@electricitymap.org\">Lähetä meille sähköpostia!</a>",
     "disclaimer-question": "Vastuuvapauslauseke",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> julkaisee tietoja ja kuvia <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> tiedotustarkoituksiin. Se ei väitä oikeellisuudesta eikä anna minkäänlaisia takuita, ja pidättää oikeuden muuttaa sisältöä milloin tahansa tai poistaa osia tarvitsematta ilmoittaa sinulle siitä. electricityMap ei ota vastuuta mistään vahingoista tai kuluista, jotka saattavat aiheutua sähkökartan tai sen perusteella saatujen tietojen epätarkkuudesta, epätäydellisyydestä, ajantasaisuudesta tai vanhenemisesta. Tätä verkkosivua tai sen yksittäisiä osia ei saa sisällyttää toiselle verkkosivulle ilman virallista etukäteen annettua kirjallista suostumusta. <br><br> Kaikki immateriaalioikeudet kuuluvat laillisille omistajille ja sen lisenssinantajille. Näiden materiaalien, erityisesti energiadatojen, kopiointi, jakelu ja muu käyttö ei ole sallittua ilman kirjallista lupaa electricityMap:lta, paitsi ja vain siinä määrin kuin pakollisen lain säännöksissä (kuten lainausoikeudessa) toisin määrätään, ellei määritelty toisin tietyille materiaaleille. <br> <br> Tämä vastuuvapauslauseke voidaan päivittää ajoittain."
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Mapss</a> julkaisee tietoja ja kuvia <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> tiedotustarkoituksiin. Se ei väitä oikeellisuudesta eikä anna minkäänlaisia takuita, ja pidättää oikeuden muuttaa sisältöä milloin tahansa tai poistaa osia tarvitsematta ilmoittaa sinulle siitä. Electricity Maps ei ota vastuuta mistään vahingoista tai kuluista, jotka saattavat aiheutua sähkökartan tai sen perusteella saatujen tietojen epätarkkuudesta, epätäydellisyydestä, ajantasaisuudesta tai vanhenemisesta. Tätä verkkosivua tai sen yksittäisiä osia ei saa sisällyttää toiselle verkkosivulle ilman virallista etukäteen annettua kirjallista suostumusta. <br><br> Kaikki immateriaalioikeudet kuuluvat laillisille omistajille ja sen lisenssinantajille. Näiden materiaalien, erityisesti energiadatojen, kopiointi, jakelu ja muu käyttö ei ole sallittua ilman kirjallista lupaa Electricity Maps:lta, paitsi ja vain siinä määrin kuin pakollisen lain säännöksissä (kuten lainausoikeudessa) toisin määrätään, ellei määritelty toisin tietyille materiaaleille. <br> <br> Tämä vastuuvapauslauseke voidaan päivittää ajoittain."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },

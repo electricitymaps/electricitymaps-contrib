@@ -78,7 +78,7 @@
     "newversion": "En ny version er tilgængelig! Tryk <a onClick=\"location.reload(true);\">her</a> for at opdatere.",
     "retrynow": "Prøv igen nu"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Regioner", "about": "Om kortet" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Regioner", "about": "Om kortet" },
   "wind": "Vind",
   "solar": "Sol",
   "hydro": "Hydro",

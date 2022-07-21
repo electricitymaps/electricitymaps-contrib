@@ -1,6 +1,5 @@
 import { store } from '../store';
 import { isProduction } from '../helpers/environment';
-import twitterConnection from './thirdparty/twitter';
 import plausibleConnection from './thirdparty/plausible';
 import debugConsoleConnection from './thirdparty/debugconsole';
 
@@ -18,7 +17,6 @@ class ConnectionsService {
   constructor() {
     this.connections = [];
     if (isProduction()) {
-      this.addConnection(new twitterConnection());
       this.addConnection(new plausibleConnection());
     } else {
       this.addConnection(new debugConsoleConnection());
