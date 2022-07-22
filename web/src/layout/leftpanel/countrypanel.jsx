@@ -123,6 +123,7 @@ const BySource = styled.div`
   font-size: smaller;
   position: relative;
   top: 0.8rem;
+  margin-bottom: 5px;
 `;
 
 const LoadingText = styled.p`
@@ -323,7 +324,9 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
       <CountryPanelWrap>
         {hasParser ? (
           <React.Fragment>
-            <BySource>{__('country-panel.bysource')}</BySource>
+            <BySource>
+              {__(timeAggregate != TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
+            </BySource>
 
             <CountryTable />
 
