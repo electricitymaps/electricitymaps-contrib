@@ -882,26 +882,26 @@ def fetch_production(
     # Mapping columns to keys
     # Helpful: https://www.eskom.co.za/dataportal/glossary/
     column_mapping = {
-        0: "coal",          # Thermal_Gen_Excl_Pumping_and_SCO
-        1: "unknown",       # Eskom_OCGT_SCO_Pumping             changed to unknown since negative oil is not possible
-        2: "unknown",       # Eskom_Gas_SCO_Pumping              changed to unknown since negative gas is not possible
-        3: "hydro",         # Hydro_Water_SCO_Pumping
-        4: "hydro",         # Pumped_Water_SCO_Pumping
-        5: "unknown",       # Thermal_Generation                 sum of 0, 1, 2, 3, 4. This value is not used.
-        6: "nuclear",       # Nuclear_Generation
-        7: "unknown",       # International_Imports
-        8: "oil",           # Eskom_OCGT_Generation
-        9: "gas",           # Eskom_Gas_Generation
-        10: "oil",          # Dispatchable_IPP_OCGT
-        11: "hydro",        # Hydro_Water_Generation
-        12: "hydro",        # Pumped_Water_Generation
-        13: "unknown",      # IOS_Excl_ILS_and_MLR              Interruption of Supply. Not used.
-        14: "unknown",      # ILS_Usage                         Interruptible Load Shed = companies paid not to consume electricity. Not used.
-        15: "unknown",      # Manual_Load_Reduction_MLR         MLS = forced load shedding. Not used.
-        16: "wind",         # Wind
-        17: "solar",        # PV
-        18: "solar",        # CSP
-        19: "unknown",      # Other_RE
+        0: "coal",  # Thermal_Gen_Excl_Pumping_and_SCO
+        1: "unknown",  # Eskom_OCGT_SCO_Pumping             changed to unknown since negative oil is not possible
+        2: "unknown",  # Eskom_Gas_SCO_Pumping              changed to unknown since negative gas is not possible
+        3: "hydro",  # Hydro_Water_SCO_Pumping
+        4: "hydro",  # Pumped_Water_SCO_Pumping
+        5: "unknown",  # Thermal_Generation                 sum of 0, 1, 2, 3, 4. This value is not used.
+        6: "nuclear",  # Nuclear_Generation
+        7: "unknown",  # International_Imports
+        8: "oil",  # Eskom_OCGT_Generation
+        9: "gas",  # Eskom_Gas_Generation
+        10: "oil",  # Dispatchable_IPP_OCGT
+        11: "hydro",  # Hydro_Water_Generation
+        12: "hydro",  # Pumped_Water_Generation
+        13: "unknown",  # IOS_Excl_ILS_and_MLR              Interruption of Supply. Not used.
+        14: "unknown",  # ILS_Usage                         Interruptible Load Shed = companies paid not to consume electricity. Not used.
+        15: "unknown",  # Manual_Load_Reduction_MLR         MLS = forced load shedding. Not used.
+        16: "wind",  # Wind
+        17: "solar",  # PV
+        18: "solar",  # CSP
+        19: "unknown",  # Other_RE
     }
 
     all_data = []
