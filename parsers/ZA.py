@@ -3,6 +3,7 @@ from __future__ import annotations
 import datetime
 import logging
 import pprint
+import typing
 from collections import OrderedDict
 
 import arrow
@@ -714,7 +715,7 @@ def fetch_production(
     session=None,
     target_datetime: datetime.datetime = None,
     logger: logging.Logger = logging.getLogger(__name__),
-) -> dict:
+) -> typing.List[dict]:
 
     if target_datetime is not None:
         local_target_datetime = arrow.get(target_datetime).to(TIMEZONE)

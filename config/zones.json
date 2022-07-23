@@ -4110,10 +4110,9 @@
       [34.07276451900009, 15.87095774900007],
       [56.13756473800004, 32.62134796200006]
     ],
-    "contributors": ["q--", "IV1T3"],
+    "contributors": ["q--"],
     "parsers": {
-      "consumption": "GCCIA.fetch_consumption",
-      "production": "SA.fetch_production"
+      "consumption": "GCCIA.fetch_consumption"
     },
     "timezone": "Asia/Riyadh"
   },
@@ -6810,6 +6809,10 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
+    "contributors": ["IV1T3"],
+    "parsers": {
+      "production": "ZA.fetch_production"
+    },
     "timezone": null
   },
   "ZM": {
