@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import datetime
-import json
 import logging
 import pprint
 from collections import OrderedDict
@@ -694,7 +693,7 @@ def get_power_bi_values():
         headers=headers,
     )
 
-    data = json.loads(response.text)
+    data = response.json()
 
     only_power_values = data["results"][0]["result"]["data"]["dsr"]["DS"][0]["PH"][0][
         "DM0"
@@ -895,9 +894,9 @@ def fetch_production(
         5: "unknown",  # Thermal_Generation
         6: "nuclear",  # Nuclear_Generation
         7: "unknown",  # International_Imports
-        8: "gas",  # Eskom_OCGT_Generation                  ALWAYS POSITIVE
+        8: "oil",  # Eskom_OCGT_Generation                  ALWAYS POSITIVE
         9: "gas",  # Eskom_Gas_Generation                   ALWAYS 0
-        10: "gas",  # Dispatchable_IPP_OCGT                 ALWAYS POSITIVE
+        10: "oil",  # Dispatchable_IPP_OCGT                 ALWAYS POSITIVE
         11: "hydro",  # Hydro_Water_Generation
         12: "hydro",  # Pumped_Water_Generation
         13: "unknown",  # IOS_Excl_ILS_and_MLR
@@ -926,7 +925,7 @@ def fetch_production(
                 "coal": 0.0,
                 "gas": 0.0,
                 "nuclear": 0.0,
-                "oil": None,
+                "oil": 0.0,
                 "solar": 0.0,
                 "wind": 0.0,
                 "geothermal": None,
@@ -946,9 +945,9 @@ def fetch_production(
 
         for j, cleansed_csv_value in enumerate(cleansed_csv_values):
             if j in storage_inversion_idcs:
-                data["storage"][column_mapping[j]] += float(cleansed_csv_value) * -1
+                data["storage"][column_mapping[j]] = round(data["storage"][column_mapping[j]] + float(cleansed_csv_value) * -1, 13)
             elif j in production_idcs:
-                data["production"][column_mapping[j]] += float(cleansed_csv_value)
+                data["production"][column_mapping[j]] = round(data["production"][column_mapping[j]] + float(cleansed_csv_value), 13)
 
         all_data.append(data)
 
