@@ -711,7 +711,7 @@ def get_power_bi_values():
 
 
 def fetch_production(
-    zone_key="SA",
+    zone_key="ZA",
     session=None,
     target_datetime: datetime.datetime = None,
     logger: logging.Logger = logging.getLogger(__name__),

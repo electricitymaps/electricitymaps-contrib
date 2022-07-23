@@ -111,6 +111,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Singapore (Solar): [EMA](https://www.ema.gov.sg/solarmap.aspx)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Slovenia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- South Africa: [Eskom](https://www.eskom.co.za/dataportal/supply-side/station-build-up-for-the-last-7-days/)
 - South Korea (Nuclear): [KHNP](http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302)
 - South Korea (Hydro): [KHNP](http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203)
 - South Korea (Load): [KPX](http://power.kpx.or.kr/powerinfo_en.php)
