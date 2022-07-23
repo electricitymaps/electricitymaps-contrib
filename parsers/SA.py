@@ -887,16 +887,16 @@ def fetch_production(
     # Helpful: https://www.eskom.co.za/dataportal/glossary/
     column_mapping = {
         0: "coal",  # Thermal_Gen_Excl_Pumping_and_SCO
-        1: "gas",  # Eskom_OCGT_SCO_Pumping                 ALWAYS NEGATIVE
-        2: "gas",  # Eskom_Gas_SCO_Pumping                  always -1
+        1: "unknown",  # Eskom_OCGT_SCO_Pumping             # changed to unknown since negative oil is not possible
+        2: "unknown",  # Eskom_Gas_SCO_Pumping              # changed to unknown since negative gas is not possible
         3: "hydro",  # Hydro_Water_SCO_Pumping
         4: "hydro",  # Pumped_Water_SCO_Pumping
         5: "unknown",  # Thermal_Generation
         6: "nuclear",  # Nuclear_Generation
         7: "unknown",  # International_Imports
-        8: "oil",  # Eskom_OCGT_Generation                  ALWAYS POSITIVE
-        9: "gas",  # Eskom_Gas_Generation                   ALWAYS 0
-        10: "oil",  # Dispatchable_IPP_OCGT                 ALWAYS POSITIVE
+        8: "oil",  # Eskom_OCGT_Generation
+        9: "gas",  # Eskom_Gas_Generation
+        10: "oil",  # Dispatchable_IPP_OCGT
         11: "hydro",  # Hydro_Water_Generation
         12: "hydro",  # Pumped_Water_Generation
         13: "unknown",  # IOS_Excl_ILS_and_MLR
@@ -931,9 +931,7 @@ def fetch_production(
                 "geothermal": None,
                 "unknown": 0.0,
             },
-            "storage": {
-                "hydro": 0.0
-            },
+            "storage": {"hydro": 0.0},
             "source": " https://www.eskom.co.za",
         }
 
@@ -942,12 +940,17 @@ def fetch_production(
         storage_inversion_idcs = [3, 4, 11, 12]
         production_idcs = [0, 1, 2, 6, 7, 8, 9, 10, 16, 17, 18, 19]
 
-
         for j, cleansed_csv_value in enumerate(cleansed_csv_values):
             if j in storage_inversion_idcs:
-                data["storage"][column_mapping[j]] = round(data["storage"][column_mapping[j]] + float(cleansed_csv_value) * -1, 13)
+                data["storage"][column_mapping[j]] = round(
+                    data["storage"][column_mapping[j]] + float(cleansed_csv_value) * -1,
+                    13,
+                )
             elif j in production_idcs:
-                data["production"][column_mapping[j]] = round(data["production"][column_mapping[j]] + float(cleansed_csv_value), 13)
+                data["production"][column_mapping[j]] = round(
+                    data["production"][column_mapping[j]] + float(cleansed_csv_value),
+                    13,
+                )
 
         all_data.append(data)
 

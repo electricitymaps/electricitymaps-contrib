@@ -4110,9 +4110,10 @@
       [34.07276451900009, 15.87095774900007],
       [56.13756473800004, 32.62134796200006]
     ],
-    "contributors": ["q--"],
+    "contributors": ["q--", "IV1T3"],
     "parsers": {
-      "consumption": "GCCIA.fetch_consumption"
+      "consumption": "GCCIA.fetch_consumption",
+      "production": "SA.fetch_production"
     },
     "timezone": "Asia/Riyadh"
   },
