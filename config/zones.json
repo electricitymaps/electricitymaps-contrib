@@ -6813,7 +6813,7 @@
     "parsers": {
       "production": "ZA.fetch_production"
     },
-    "timezone": null
+    "timezone": "Africa/Johannesburg"
   },
   "ZM": {
     "bounding_box": [
