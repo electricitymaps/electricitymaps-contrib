@@ -242,8 +242,8 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key2: str,
     zone_key1: str,
+    zone_key2: str,
     session: Union[Session, None] = None,
     target_datetime: Union[datetime, None] = None,
     logger: Logger = getLogger(__name__),
