@@ -48,10 +48,11 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
 
     pattern = COUNTRY_CODE_MAPPING[zone_key] + '-mw-val">\s*(\d+)'
 
-    load = re.findall(pattern, response.text)
-    load = int(load[0])
-    consumption = {}
-    consumption["unknown"] = load
+    match = re.findall(pattern, response.text)
+    if not match:
+        # if no data, the text becomes " - "
+        raise RuntimeError(f"{zone_key} data is currently not available")
+    consumption = int(match[0])
 
     datapoint = {
         "zoneKey": zone_key,
@@ -73,4 +74,4 @@ if __name__ == "__main__":
         except IndexError as error:
             print("Could not fetch consumption data for {0}".format(i), file=stderr)
             print(type(error), ":", error, file=stderr)
-        print("\n")
+        print()
