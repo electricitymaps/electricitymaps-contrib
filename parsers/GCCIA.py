@@ -48,7 +48,7 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     url = "https://www.gccia.com.sa/"
     response = r.get(url)
 
-    pattern = COUNTRY_CODE_MAPPING[zone_key] + '-mw-val">\s*(\d+)'
+    pattern = COUNTRY_CODE_MAPPING[zone_key] + r'-mw-val">\s*(\d+)'
 
     match = re.findall(pattern, response.text)
     if not match:
