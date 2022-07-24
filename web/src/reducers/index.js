@@ -3,8 +3,7 @@ import { combineReducers } from 'redux';
 import { getKey } from '../helpers/storage';
 import { isLocalhost, isProduction } from '../helpers/environment';
 
-import dataReducer from './dataReducer';
-import dataReducerForHistoryFeature from './dataReducerForHistoryFeature';
+import reducer from './dataReducer';
 import { TIME } from '../helpers/constants';
 
 const getStorageBool = (key, defaultValue) => {
@@ -48,6 +47,7 @@ const initialApplicationState = {
     zoom: 1.5,
   },
   onboardingSeen: getStorageBool('onboardingSeen', false),
+  historicalViewIntroModalSeen: getStorageBool('historicalViewIntroModalSeen', false),
   searchQuery: null,
   selectedZoneTimeIndex: null,
   solarColorbarValue: null,
@@ -69,6 +69,11 @@ const applicationReducer = (state = initialApplicationState, action) => {
         return state;
       }
 
+      if (key === 'selectedZoneTimeIndex' && value === null) {
+        console.warn('selectedZoneTimeIndex should not be null');
+        return state;
+      }
+
       // Throw an error if electricity mode is of the wrong format
       if (key === 'electricityMixMode' && !['consumption', 'production'].includes(value)) {
         throw Error(`Unknown electricityMixMode "${value}"`);
@@ -82,11 +87,7 @@ const applicationReducer = (state = initialApplicationState, action) => {
   }
 };
 
-const urlSearchParams = new URLSearchParams(window.location.search);
-const isHistoryFeatureEnabled = Object.fromEntries(urlSearchParams.entries())?.feature === 'history';
-const dataReducerInUse = isHistoryFeatureEnabled ? dataReducerForHistoryFeature : dataReducer;
-
 export default combineReducers({
   application: applicationReducer,
-  data: dataReducerInUse,
+  data: reducer,
 });

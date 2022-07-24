@@ -5,8 +5,7 @@ import { max as d3Max } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
-import { dispatchApplication } from '../store';
-import { useCurrentZoneHistory, useCurrentZoneHistoryDatetimes } from '../hooks/redux';
+import { useCurrentZoneHistory } from '../hooks/redux';
 
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
@@ -46,17 +45,12 @@ const prepareGraphData = (historyData) => {
 
 const mapStateToProps = (state) => ({
   isMobile: state.application.isMobile,
-  selectedTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
+const CountryHistoryPricesGraph = ({ isMobile }) => {
   const [tooltip, setTooltip] = useState(null);
-  const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
 
   const historyData = useCurrentZoneHistory();
-  const datetimes = useCurrentZoneHistoryDatetimes();
-  const startTime = datetimes.at(0);
-  const endTime = datetimes.at(-1);
 
   // Recalculate graph data only when the history data is changed
   const { data, layerKeys, layerStroke, layerFill, markerFill, valueAxisLabel } = useMemo(
@@ -64,21 +58,6 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
     [historyData]
   );
 
-  // Mouse action handlers
-  const mouseMoveHandler = useMemo(
-    () => (timeIndex) => {
-      dispatchApplication('selectedZoneTimeIndex', timeIndex);
-      setSelectedLayerIndex(0); // Select the first (and only) layer even when hovering over graph background.
-    },
-    [setSelectedLayerIndex]
-  );
-  const mouseOutHandler = useMemo(
-    () => () => {
-      dispatchApplication('selectedZoneTimeIndex', null);
-      setSelectedLayerIndex(null);
-    },
-    [setSelectedLayerIndex]
-  );
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
     () => (position, datapoint) => {
@@ -99,22 +78,15 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        testId="history-prices-graph"
         data={data}
         layerKeys={layerKeys}
         layerStroke={layerStroke}
         layerFill={layerFill}
         markerFill={markerFill}
-        startTime={startTime}
-        endTime={endTime}
         valueAxisLabel={valueAxisLabel}
-        backgroundMouseMoveHandler={mouseMoveHandler}
-        backgroundMouseOutHandler={mouseOutHandler}
-        layerMouseMoveHandler={mouseMoveHandler}
-        layerMouseOutHandler={mouseOutHandler}
         markerUpdateHandler={markerUpdateHandler}
         markerHideHandler={markerHideHandler}
-        selectedTimeIndex={selectedTimeIndex}
-        selectedLayerIndex={selectedLayerIndex}
         isMobile={isMobile}
         height="6em"
       />
@@ -123,7 +95,6 @@ const CountryHistoryPricesGraph = ({ isMobile, selectedTimeIndex }) => {
           position={tooltip.position}
           zoneData={tooltip.zoneData}
           onClose={() => {
-            setSelectedLayerIndex(null);
             setTooltip(null);
           }}
         />

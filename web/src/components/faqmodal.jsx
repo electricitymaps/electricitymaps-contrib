@@ -36,9 +36,9 @@ const Title = ({ title }) => {
   return (
     <React.Fragment>
       <BackButtonWrapper>
-        <div className="modal-back-button" onClick={handleClick}>
+        <button className="modal-back-button" onClick={handleClick}>
           <Icon iconName="arrow_back" />
-        </div>
+        </button>
       </BackButtonWrapper>
       {title}
     </React.Fragment>

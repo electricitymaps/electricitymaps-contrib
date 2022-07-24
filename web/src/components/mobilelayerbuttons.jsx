@@ -25,8 +25,8 @@ export default () => {
 
   return (
     <Wrapper>
-      <ActionButton iconSize={18} icon="info" onClick={openInfoModal} />
-      <ActionButton iconSize={18} icon="sliders" onClick={openSettingsModal} />
+      <ActionButton aria-label="open info modal" iconSize={18} icon="info" onClick={openInfoModal} />
+      <ActionButton aria-label="open settings modal" iconSize={18} icon="sliders" onClick={openSettingsModal} />
     </Wrapper>
   );
 };

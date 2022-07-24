@@ -916,6 +916,7 @@
     },
     "contributors": ["corradio", "postronium", "Kikof2", "KabelWlan"],
     "disclaimer": "Data for the electricity consumption and generation mix is based on estimates stemming from different data sources. As such, it may diverge from aggregated public statistics of the Swiss Federal Office for Energy.",
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -1844,6 +1845,7 @@
       "gas": 3225,
       "oil": 210
     },
+    "estimation_method": "CONSTRUCT_BREAKDOWN",
     "contributors": ["nessie2013"],
     "flag_file_name": "hk.png",
     "timezone": "Asia/Hong_Kong"
@@ -1935,6 +1937,7 @@
   "ID": {
     "flag_file_name": "id.png",
     "timezone": "Asia/Jakarta",
+    "estimation_method": "CONSTRUCT_BREAKDOWN",
     "bounding_box": [
       [94.51270592500003, -11.422621351999908],
       [141.47762699400005, 6.410101630000042]
@@ -2294,6 +2297,7 @@
     },
     "contributors": ["GitMatze", "alixunderplatz", "systemcatch", "Manu1400", "gopikrishna1793"],
     "flag_file_name": "in.png",
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "parsers": {
       "production": "IN_MH.fetch_production"
     },
@@ -2473,6 +2477,7 @@
       "solar": 1840.3,
       "wind": 0
     },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "contributors": ["sahitya-pavurala", "pierresegonne", "gopikrishna1793"],
     "flag_file_name": "in.png",
     "parsers": {},
@@ -2831,6 +2836,7 @@
       "solar": 4962,
       "wind": 146
     },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "contributors": ["tmslaine", "lorrieq", "kongkille"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -2915,6 +2921,7 @@
       "solar": 11900,
       "wind": 440
     },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "contributors": ["tmslaine", "lorrieq"],
     "parsers": {
       "consumptionForecast": "JP.fetch_consumption_forecast",
@@ -2960,6 +2967,7 @@
       "wind": 1727
     },
     "contributors": ["systemcatch", "alixunderplatz", "IV1T3"],
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "parsers": {
       "consumption": "KR.fetch_consumption",
       "production": "KR.fetch_production",
@@ -3449,6 +3457,7 @@
       "solar": 14300,
       "wind": 7801
     },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "contributors": ["corradio", "PaulCornelissen", "nessie2013"],
     "disclaimer": "The data provider (ENTSO-E) underreports production and consumption data.",
     "parsers": {
