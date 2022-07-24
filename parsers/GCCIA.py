@@ -18,6 +18,8 @@ from sys import stderr
 import arrow
 import requests
 
+from .lib.exceptions import ParserException
+
 COUNTRY_CODE_MAPPING = {
     "AE": "uae",
     "BH": "bah",
@@ -51,7 +53,9 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     match = re.findall(pattern, response.text)
     if not match:
         # if no data, the text becomes " - "
-        raise RuntimeError(f"{zone_key} data is currently not available")
+        raise ParserException(
+            "GCCIA.py", "data is currently not available", zone_key=zone_key
+        )
     consumption = int(match[0])
 
     datapoint = {
