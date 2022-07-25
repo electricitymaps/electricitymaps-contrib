@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-from arrow import now, get
 from collections import OrderedDict
 from datetime import datetime
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from requests import Response, post, Session
-from requests import session as req_session
 from typing import List, Optional
 
+from arrow import get, now
+from requests import Response, Session, post
 
 pp = PrettyPrinter(indent=4)
 
@@ -712,8 +711,8 @@ def get_power_bi_values():
 
 
 def fetch_production(
-    zone_key: str="ZA",
-    session: Optional[Session]=None,
+    zone_key: str = "ZA",
+    session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -727,7 +726,7 @@ def fetch_production(
                 f"No production data is available for {local_target_datetime}."
             )
 
-    r = session or req_session()
+    r = session or Session()
 
     res: Response = r.get(PRODUCTION_URL)
     assert res.status_code == 200, (
