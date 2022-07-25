@@ -1,19 +1,20 @@
 from __future__ import annotations
 
-import datetime
-import logging
-import pprint
-import typing
+from arrow import now, get
 from collections import OrderedDict
+from datetime import datetime
+from logging import Logger, getLogger
+from pprint import PrettyPrinter
+from requests import Response, post, Session
+from requests import session as req_session
+from typing import List, Optional
 
-import arrow
-import requests
 
-pp = pprint.PrettyPrinter(indent=4)
+pp = PrettyPrinter(indent=4)
 
 TIMEZONE = "Africa/Johannesburg"
 
-curr_month = arrow.now().format("MM")
+curr_month = now().format("MM")
 PRODUCTION_URL = f"https://www.eskom.co.za/dataportal/wp-content/uploads/2022/{curr_month}/Station_Build_Up.csv"
 POWER_BI_URL = "https://wabi-south-africa-north-a-primary-api.analysis.windows.net/public/reports/querydata"
 
@@ -687,7 +688,7 @@ def get_power_bi_values():
         "Content-Type": "application/json; charset=utf-8",
     }
 
-    response = requests.post(
+    response = post(
         url=POWER_BI_URL,
         json=data,
         params=params,
@@ -711,24 +712,24 @@ def get_power_bi_values():
 
 
 def fetch_production(
-    zone_key="ZA",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
-) -> typing.List[dict]:
+    zone_key: str="ZA",
+    session: Optional[Session]=None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
 
     if target_datetime is not None:
-        local_target_datetime = arrow.get(target_datetime).to(TIMEZONE)
-        local_one_week_ago = arrow.now(TIMEZONE).shift(days=-7)
+        local_target_datetime = get(target_datetime).to(TIMEZONE)
+        local_one_week_ago = now(TIMEZONE).shift(days=-7)
 
         if local_target_datetime < local_one_week_ago:
             raise NotImplementedError(
                 f"No production data is available for {local_target_datetime}."
             )
 
-    r = session or requests.session()
+    r = session or req_session()
 
-    res = r.get(PRODUCTION_URL)
+    res: Response = r.get(PRODUCTION_URL)
     assert res.status_code == 200, (
         "Exception when fetching production for "
         "{}: error when calling url={}".format(zone_key, PRODUCTION_URL)
@@ -743,7 +744,7 @@ def fetch_production(
     for i, row in enumerate(csv_data[1:]):
         date = row.split(",")[0]
         if len(date) > 10:
-            date = arrow.get(date, "YYYY-MM-DD HH:mm:ss")
+            date = get(date, "YYYY-MM-DD HH:mm:ss")
             sanitized_csv_data = ",".join(row.split(",")[1:])
 
             if sanitized_csv_data != ",,,,,,,,,,,,,,,,,,,":
@@ -753,7 +754,7 @@ def fetch_production(
                 merged_csv_bi_data[date]["cleansed_csv"] = sanitized_csv_data
 
     for j, row in enumerate(power_bi_data):
-        date = arrow.get(row[0])
+        date = get(row[0])
 
         if date not in merged_csv_bi_data:
             merged_csv_bi_data[date] = {}
@@ -941,12 +942,12 @@ def fetch_production(
             if j in storage_inversion_idcs:
                 data["storage"][column_mapping[j]] = round(
                     data["storage"][column_mapping[j]] + float(cleansed_csv_value) * -1,
-                    13,
+                    2,
                 )
             elif j in production_idcs:
                 data["production"][column_mapping[j]] = round(
                     data["production"][column_mapping[j]] + float(cleansed_csv_value),
-                    13,
+                    2,
                 )
 
         all_data.append(data)
