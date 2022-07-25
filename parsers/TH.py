@@ -1,6 +1,6 @@
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
@@ -26,8 +26,8 @@ def fetch_EGAT() -> str:
 
 def fetch_price(
     zone_key: str = "TH",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime is not None:
@@ -52,8 +52,8 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = "TH",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
@@ -70,8 +70,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "TH",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:

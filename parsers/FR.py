@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
 import json
-import logging
 import math
-import os
 import xml.etree.ElementTree as ET
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -44,10 +44,10 @@ def is_not_nan_and_truthy(v) -> bool:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="FR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "FR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         to = arrow.get(target_datetime, "Europe/Paris")
@@ -55,7 +55,7 @@ def fetch_production(
         to = arrow.now(tz="Europe/Paris")
 
     # setup request
-    r = session or requests.session()
+    r = session or Session()
     formatted_from = to.shift(days=-1).format("YYYY-MM-DDTHH:mm")
     formatted_to = to.format("YYYY-MM-DDTHH:mm")
 
@@ -161,7 +161,7 @@ def fetch_price(
     else:
         now = arrow.now(tz="Europe/Paris")
 
-    r = session or requests.session()
+    r = session or Session()
     formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
     formatted_to = now.format("DD/MM/YYYY")
 

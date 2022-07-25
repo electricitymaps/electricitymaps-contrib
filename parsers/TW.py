@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import dateutil
@@ -14,8 +14,8 @@ from parsers.lib.config import refetch_frequency
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "TW",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:

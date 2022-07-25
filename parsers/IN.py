@@ -5,7 +5,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import requests
@@ -23,7 +23,7 @@ GENERATION_MAPPING = {
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 
-def get_data(session: Union[Session, None]):
+def get_data(session: Optional[Session]):
     """
     Requests html then extracts generation data.
     Returns a dictionary.
@@ -49,8 +49,8 @@ def get_data(session: Union[Session, None]):
 
 def fetch_production(
     zone_key: str = "IN",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""

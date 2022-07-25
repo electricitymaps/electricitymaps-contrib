@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Mapping, Tuple, Union
+from typing import Dict, List, Mapping, Optional, Tuple, Union
 
 import arrow
 import pandas as pd
@@ -174,8 +174,8 @@ def generate_url(
 def fetch_main_price_df(
     zone_key: Union[str, None] = None,
     sorted_zone_keys: Union[str, None] = None,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> pd.DataFrame:
     return _fetch_main_df(
@@ -191,8 +191,8 @@ def fetch_main_price_df(
 def fetch_main_power_df(
     zone_key: Union[str, None] = None,
     sorted_zone_keys: Union[str, None] = None,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Tuple[pd.DataFrame, list]:
     df, filtered_datasets = _fetch_main_df(
@@ -262,8 +262,8 @@ def _fetch_main_df(
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_production(
     zone_key: Union[str, None] = None,
-    session: Union[Session, None] = None,
-    target_datetime: Union[Session, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[Session] = None,
     logger: Logger = getLogger(__name__),
 ):
     df, filtered_datasets = fetch_main_power_df(
@@ -351,8 +351,8 @@ def fetch_production(
 @refetch_frequency(REFETCH_FREQUENCY)
 def fetch_price(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     df = fetch_main_price_df(
@@ -378,8 +378,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[Session, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[Session] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     sorted_zone_keys = sorted([zone_key1, zone_key2])

@@ -6,7 +6,7 @@ import re
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import bs4
@@ -38,8 +38,8 @@ PATTERN = re.compile(r"\((.*)\)")
 @config.refetch_frequency(timedelta(minutes=45))
 def fetch_production(
     zone_key: str = "NG",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""

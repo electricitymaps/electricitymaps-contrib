@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 from io import BytesIO
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 from urllib.request import Request, urlopen
 
 # The arrow library is used to handle datetimes
@@ -23,8 +23,8 @@ from .JP import fetch_production as JP_fetch_production
 
 def fetch_production(
     zone_key: str = "JP-KN",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
 

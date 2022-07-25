@@ -5,7 +5,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
@@ -65,8 +65,8 @@ def get_last_data_idx(productions) -> int:
 
 def fetch_price(
     zone_key: str = "TR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
@@ -114,8 +114,8 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = "TR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""

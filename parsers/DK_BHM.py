@@ -2,7 +2,7 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -14,7 +14,7 @@ PRODUCTION_MAPPING = {
 }
 
 
-def _fetch_data(session: Union[Session, None] = None):
+def _fetch_data(session: Optional[Session] = None):
     r = session or Session()
     url = "http://bornholm.powerlab.dk/visualizer/latestdata"
     response = r.get(url)
@@ -24,8 +24,8 @@ def _fetch_data(session: Union[Session, None] = None):
 
 def fetch_production(
     zone_key: str = "DK-BHM",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -50,8 +50,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "DK-BHM",
     zone_key2: str = "SE",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""

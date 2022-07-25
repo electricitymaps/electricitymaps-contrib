@@ -10,7 +10,7 @@ https://www.eia.gov/opendata/register.php
 """
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from dateutil import parser, tz
@@ -303,8 +303,8 @@ FORECAST_SERIES = "EBA.%s-ALL.DF.H"
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     return _fetch_series(
@@ -318,8 +318,8 @@ def fetch_consumption_forecast(
 
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     return _fetch_series(
@@ -334,8 +334,8 @@ def fetch_production(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     consumption = _fetch_series(
@@ -354,8 +354,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     mixes = []
@@ -452,8 +452,8 @@ def fetch_production_mix(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
@@ -480,8 +480,8 @@ def fetch_exchange(
 def _fetch_series(
     zone_key: str,
     series_id,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """Fetches and converts a data series."""

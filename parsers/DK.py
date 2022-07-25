@@ -2,7 +2,7 @@ import json
 import time
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
@@ -22,8 +22,8 @@ ids = {
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "DK-DK1",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """
@@ -134,8 +134,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "DK-DK1",
     zone_key2: str = "DK-DK2",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """

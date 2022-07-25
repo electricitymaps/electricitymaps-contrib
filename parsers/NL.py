@@ -5,7 +5,7 @@ from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import numpy as np
@@ -23,8 +23,8 @@ ZONE_CONFIG = ZONES_CONFIG["NL"]
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "NL",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
@@ -177,8 +177,8 @@ def fetch_production(
 
 
 def fetch_production_energieopwek_nl(
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
@@ -210,7 +210,7 @@ def fetch_production_energieopwek_nl(
     return output
 
 
-def get_production_data_energieopwek(date, session: Union[Session, None] = None):
+def get_production_data_energieopwek(date, session: Optional[Session] = None):
     r = session or Session()
 
     # The API returns values per day from local time midnight until the last

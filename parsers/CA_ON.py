@@ -4,7 +4,7 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -76,8 +76,8 @@ XML_NS_TEXT = "{http://www.theIMO.com/schema}"
 
 
 def _fetch_ieso_xml(
-    target_datetime: Union[datetime, None],
-    session: Union[Session, None],
+    target_datetime: Optional[datetime],
+    session: Optional[Session],
     logger: Logger,
     url_template,
 ):
@@ -113,8 +113,8 @@ def _parse_ieso_hour(output, target_dt):
 
 def fetch_production(
     zone_key: str = "CA-ON",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given region."""
@@ -181,8 +181,8 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str = "CA-ON",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known power price per MWh of a given region."""
@@ -219,8 +219,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two regions."""

@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Callable, Dict, List, Literal, Union
+from typing import Any, Callable, Dict, List, Literal, Optional
 
 # The arrow library is used to handle datetimes
 from arrow import get
@@ -100,7 +100,7 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 
 
 def fetch_island_data(
-    zone_key: ZONE_KEYS, session: Session, target_datetime: Union[datetime, None]
+    zone_key: ZONE_KEYS, session: Session, target_datetime: Optional[datetime]
 ) -> List[Response]:
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
@@ -126,8 +126,8 @@ def fetch_island_data(
 
 def fetch_consumption(
     zone_key: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     ses = session or Session()
@@ -155,8 +155,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 
@@ -234,8 +234,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     if isinstance(target_datetime, datetime):

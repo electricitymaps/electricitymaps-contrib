@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -80,8 +80,8 @@ def get_production_values(soup, zone_key, logger):
 def fetch_exchange(
     zone_key1: str = "IN-UP",
     zone_key2: str = "IN-UT",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     soup = web.get_response_soup(zone_key1, ENDPOINT)
@@ -112,8 +112,8 @@ def fetch_exchange(
 
 def fetch_production(
     zone_key: str = "IN-UT",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     soup = web.get_response_soup(zone_key, ENDPOINT)

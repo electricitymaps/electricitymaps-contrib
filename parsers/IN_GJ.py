@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -61,7 +61,7 @@ def split_and_sum(expression) -> float:
 
 def fetch_data(
     zone_key: str,
-    session: Union[Session, None] = None,
+    session: Optional[Session] = None,
     logger: Logger = getLogger(__name__),
 ):
     session = session or Session()
@@ -149,8 +149,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -186,8 +186,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key="IN-GJ",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger("IN-GJ"),
 ) -> dict:
     """Method to get consumption data of Gujarat."""

@@ -4,7 +4,7 @@
 
 from datetime import datetime, time
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import pandas as pd
@@ -173,8 +173,8 @@ def df_to_data(zone_key: str, day, df, logger: Logger):
 
 def fetch_production(
     zone_key: str = "CR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     # ensure we have an arrow object.
@@ -229,8 +229,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "CR",
     zone_key2: str = "NI",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""

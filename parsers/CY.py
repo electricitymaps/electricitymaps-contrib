@@ -3,7 +3,7 @@
 import sys
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -83,7 +83,7 @@ class CyprusParser:
             data.append(datum)
         return data
 
-    def fetch_production(self, target_datetime: Union[datetime, None]) -> list:
+    def fetch_production(self, target_datetime: Optional[datetime]) -> list:
         if target_datetime is None:
             url = "https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/"
         else:
@@ -110,8 +110,8 @@ class CyprusParser:
 
 def fetch_production(
     zone_key: str = "CY",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[Dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""

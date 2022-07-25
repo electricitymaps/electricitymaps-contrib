@@ -2,7 +2,7 @@
 # coding=utf-8
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -42,8 +42,8 @@ ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "JP-TK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -80,8 +80,8 @@ def fetch_production(
 
 def fetch_production_df(
     zone_key: str = "JP-TK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -129,7 +129,7 @@ def fetch_production_df(
 
 def fetch_consumption_df(
     zone_key: str = "JP-TK",
-    target_datetime: Union[datetime, None] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """
@@ -197,8 +197,8 @@ def fetch_consumption_df(
 
 def fetch_consumption_forecast(
     zone_key: str = "JP-KY",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -276,8 +276,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
     zone_key: str = "JP-TK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:

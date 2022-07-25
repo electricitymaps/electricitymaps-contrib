@@ -3,7 +3,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -78,8 +78,8 @@ exchanges_mapping = {
 @refetch_frequency(timedelta(hours=1))
 def fetch_production(
     zone_key: str = "SE",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()
@@ -155,8 +155,8 @@ def fetch_production(
 def fetch_exchange_by_bidding_zone(
     bidding_zone1: str = "DK1",
     bidding_zone2: str = "NO2",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     # Convert bidding zone names into statnett zones
@@ -197,8 +197,8 @@ def fetch_exchange_by_bidding_zone(
 
 def _fetch_exchanges_from_sorted_bidding_zones(
     sorted_bidding_zones,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
 ):
     zones = sorted_bidding_zones.split("->")
     return fetch_exchange_by_bidding_zone(zones[0], zones[1], session, target_datetime)
@@ -217,8 +217,8 @@ def _sum_of_exchanges(exchanges):
 def fetch_exchange(
     zone_key1: str = "DK",
     zone_key2: str = "NO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     r = session or Session()

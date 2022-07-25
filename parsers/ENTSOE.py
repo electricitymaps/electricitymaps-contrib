@@ -17,7 +17,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 import arrow
 import numpy as np
@@ -860,8 +860,8 @@ def get_wind(values):
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """Gets consumption for a specified zone."""
@@ -925,8 +925,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -1038,8 +1038,8 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
 @refetch_frequency(timedelta(days=2))
 def fetch_production_aggregate(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if zone_key not in ZONE_KEY_AGGREGATES:
@@ -1057,8 +1057,8 @@ def fetch_production_aggregate(
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
@@ -1098,8 +1098,8 @@ def fetch_production_per_units(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """
@@ -1164,8 +1164,8 @@ def fetch_exchange(
 def fetch_exchange_forecast(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets exchange forecast between two specified zones."""
@@ -1227,8 +1227,8 @@ def fetch_exchange_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_price(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets day-ahead price for specified zone."""
@@ -1261,8 +1261,8 @@ def fetch_price(
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets generation forecast for specified zone."""
@@ -1293,8 +1293,8 @@ def fetch_generation_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -1325,8 +1325,8 @@ def fetch_consumption_forecast(
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """

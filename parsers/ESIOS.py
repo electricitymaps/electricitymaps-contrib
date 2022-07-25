@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from os import environ
 from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes

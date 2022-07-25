@@ -3,7 +3,7 @@
 
 
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -25,7 +25,7 @@ TYPE_MAPPING = {  # Real values around midnight
 
 def fetch_production(
     zone_key: str = "BG",
-    session: Union[Session, None] = None,
+    session: Optional[Session] = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ) -> dict:

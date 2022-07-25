@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 from requests import Session
 
@@ -12,8 +12,8 @@ from .lib.exceptions import ParserException
 
 def fetch_consumption(
     zone_key: str = "IN-KA",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka consumption"""
@@ -39,8 +39,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "IN-KA",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka  production"""

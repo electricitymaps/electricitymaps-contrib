@@ -3,7 +3,7 @@
 # The arrow library is used to handle datetimes consistently with other parsers
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 
@@ -43,8 +43,8 @@ def _get_new_brunswick_flows(requests_obj):
 
 def fetch_production(
     zone_key: str = "CA-NB",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -89,8 +89,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""

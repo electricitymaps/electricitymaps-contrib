@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -36,7 +36,7 @@ TYPE_MAPPING = {
 }
 
 
-def get_data_live(session: Union[Session, None], logger: Logger):
+def get_data_live(session: Optional[Session], logger: Logger):
     """Requests live generation data in json format."""
 
     s = session or Session()
@@ -141,8 +141,8 @@ def production_processor_historical(raw_data):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None and ENABLE_LIVE_PARSER:

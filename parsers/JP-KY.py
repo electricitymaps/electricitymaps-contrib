@@ -3,23 +3,22 @@
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional, Union
 
 # The arrow library is used to handle datetimes
 import arrow
 
 # The request library is used to fetch content through HTTP
-import requests
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Session, get
 
 from . import occtonet
 
 
 def fetch_production(
     zone_key: str = "JP-KY",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[dict, list]:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -45,7 +44,7 @@ def fetch_production(
     }
     # url for consumption and solar
     url = "https://www.kyuden.co.jp/td_power_usages/pc.html"
-    r = requests.get(url)
+    r = get(url)
     r.encoding = "utf-8"
     html = r.text
     soup = BeautifulSoup(html, "lxml")
@@ -98,12 +97,12 @@ def fetch_production(
             "A=g_power.fdat&B=ncp_state.fdat&_=1520532904073",
         ]
     )
-    sendai = requests.get(url_s).text
+    sendai = get(url_s).text
     sendai = re.findall(
         "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
         sendai,
     )
-    genkai = requests.get(url_g).text
+    genkai = get(url_g).text
     genkai = re.findall(
         "(?<=gouki=)[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*" + "(?:[eE][-+]?\d+)?(?=&)",
         genkai,

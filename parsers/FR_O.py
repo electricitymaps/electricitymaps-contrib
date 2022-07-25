@@ -4,7 +4,7 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import requests
@@ -237,8 +237,8 @@ sources_mapping = {
 
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if (target_datetime is None) and zone_key not in REAL_TIME_SOURCES.keys():
@@ -314,8 +314,8 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:

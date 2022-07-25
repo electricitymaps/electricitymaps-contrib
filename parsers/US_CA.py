@@ -3,7 +3,7 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional, Union
 
 import arrow
 import pandas
@@ -21,8 +21,8 @@ MX_EXCHANGE_URL = "http://www.cenace.gob.mx/Paginas/Publicas/Info/DemandaRegiona
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-CA",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -202,8 +202,8 @@ def fetch_MX_exchange(s: Session) -> float:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""

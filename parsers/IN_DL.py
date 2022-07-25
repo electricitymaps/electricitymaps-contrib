@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-from typing import Dict
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Dict, Optional
 
 from requests import Session
 
@@ -17,7 +19,10 @@ plants = {
 
 
 def fetch_consumption(
-    zone_key="IN-DL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-DL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi consumption"""
     if target_datetime:
@@ -45,7 +50,10 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key="IN-DL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-DL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi production"""
     if target_datetime:

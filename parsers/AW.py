@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -10,8 +10,8 @@ from requests import Session
 
 def fetch_production(
     zone_key: str = "AW",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime:

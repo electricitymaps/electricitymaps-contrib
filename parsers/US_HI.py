@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -60,8 +60,8 @@ def validate_prod_timestamp(logger: Logger, energy_dt, request_dt):
 
 def fetch_production(
     zone_key: str = "US-HI-OA",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""

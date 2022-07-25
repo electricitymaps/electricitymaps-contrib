@@ -15,7 +15,7 @@ bmrs_api_data_push_user_guide_v1.1.pdf
 from datetime import date, datetime, time, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -79,7 +79,7 @@ def query_exchange(session: Session, target_datetime=None):
     return response.text
 
 
-def query_production(session: Session, target_datetime: Union[datetime, None] = None):
+def query_production(session: Session, target_datetime: Optional[datetime] = None):
     if target_datetime is None:
         target_datetime = datetime.now()
 
@@ -104,7 +104,7 @@ def parse_exchange(
     zone_key1: str,
     zone_key2: str,
     csv_text: str,
-    target_datetime: Union[datetime, None] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
@@ -156,7 +156,7 @@ def parse_exchange(
 
 def parse_production(
     csv_text: str,
-    target_datetime: Union[datetime, None] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
@@ -236,7 +236,7 @@ def datetime_from_date_sp(date, sp):
 
 
 def _fetch_wind(
-    target_datetime: Union[datetime, None] = None, logger: Logger = getLogger(__name__)
+    target_datetime: Optional[datetime] = None, logger: Logger = getLogger(__name__)
 ):
     if target_datetime is None:
         target_datetime = datetime.now()
@@ -298,8 +298,8 @@ def _fetch_wind(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     session = session or Session()
@@ -315,8 +315,8 @@ def fetch_exchange(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "GB",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     session = session or Session()

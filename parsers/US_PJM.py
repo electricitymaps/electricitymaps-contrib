@@ -6,7 +6,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional, Union
 
 import arrow
 import demjson3 as demjson
@@ -49,7 +49,7 @@ exchange_mapping = {
 }
 
 
-def extract_data(session: Union[Session, None] = None) -> tuple:
+def extract_data(session: Optional[Session] = None) -> tuple:
     """
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
@@ -127,8 +127,8 @@ def data_processer(data) -> dict:
 
 def fetch_consumption_forecast_7_days(
     zone_key: str = "US-PJM",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
@@ -165,8 +165,8 @@ def fetch_consumption_forecast_7_days(
 
 def fetch_production(
     zone_key: str = "US-PJM",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -196,7 +196,7 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session: Union[Session, None] = None) -> tuple:
+def get_miso_exchange(session: Optional[Session] = None) -> tuple:
     """
     Current exchange status between PJM and MISO.
     :return: tuple containing flow and timestamp.
@@ -233,7 +233,7 @@ def get_miso_exchange(session: Union[Session, None] = None) -> tuple:
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session: Union[Session, None] = None) -> list:
+def get_exchange_data(interface, session: Optional[Session] = None) -> list:
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
@@ -314,8 +314,8 @@ def combine_NY_exchanges() -> list:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""
@@ -366,8 +366,8 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "US-PJM",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""

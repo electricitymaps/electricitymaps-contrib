@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Dict, List, Union
+from typing import Dict, List, Optional
 
 import arrow
 from requests import Session
@@ -23,8 +23,8 @@ CAMMESA_RENEWABLES_ENDPOINT = "https://cdsrenovables.cammesa.com/exhisto/Renovab
 
 def fetch_production(
     zone_key="AR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests up to date list of production mixes (in MW) of a given country."""
@@ -138,8 +138,8 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
@@ -149,8 +149,8 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "AR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""

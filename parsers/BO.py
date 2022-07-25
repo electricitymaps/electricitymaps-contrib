@@ -4,7 +4,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, NamedTuple, Optional, Union
+from typing import List, NamedTuple, Optional
 
 import arrow
 from requests import Session
@@ -31,8 +31,8 @@ def extract_xsrf_token(html):
 
 
 def fetch_data(
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[HourlyProduction]:
     if target_datetime is not None:
@@ -89,8 +89,8 @@ def fetch_data(
 
 def fetch_production(
     zone_key: str = "BO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -127,8 +127,8 @@ def fetch_production(
 
 def fetch_generation_forecast(
     zone_key: str = "BO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     return [

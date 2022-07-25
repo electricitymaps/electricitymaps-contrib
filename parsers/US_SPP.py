@@ -6,7 +6,7 @@
 from datetime import datetime, timedelta
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import pandas as pd
 from dateutil import parser, tz
@@ -38,7 +38,7 @@ TIE_MAPPING = {"US-MISO->US-SPP": ["AMRN", "DPC", "GRE", "MDU", "MEC", "NSP", "O
 # Energy storage situation unclear as of 16/03/2018, likely to change quickly in future.
 
 
-def get_data(url, session: Union[Session, None] = None):
+def get_data(url, session: Optional[Session] = None):
     """Returns a pandas dataframe."""
 
     s = session or Session()
@@ -115,8 +115,8 @@ def data_processor(df, logger: Logger) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-SPP",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -175,8 +175,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """
@@ -220,8 +220,8 @@ def fetch_exchange(
 
 def fetch_load_forecast(
     zone_key: str = "US-SPP",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
@@ -263,8 +263,8 @@ def fetch_load_forecast(
 @refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
     zone_key: str = "US-SPP",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""

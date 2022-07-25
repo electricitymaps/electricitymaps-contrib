@@ -3,7 +3,7 @@
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import dateutil
@@ -26,7 +26,7 @@ INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session: Union[Session, None]) -> float:
+def get_salto_grande(session: Optional[Session]) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     current_time = arrow.now("UTC-3")
@@ -46,7 +46,7 @@ def get_salto_grande(session: Union[Session, None]) -> float:
     return generation
 
 
-def parse_page(session: Union[Session, None]):
+def parse_page(session: Optional[Session]):
     r = session or Session()
     url = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
     response = r.get(url)
@@ -103,8 +103,8 @@ def parse_page(session: Union[Session, None]):
 
 def fetch_production(
     zone_key: str = "UY",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
@@ -127,8 +127,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "UY",
     zone_key2: str = "BR-S",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""

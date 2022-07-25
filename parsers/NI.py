@@ -4,7 +4,7 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional, Union
 
 import arrow
 from requests import Session
@@ -203,8 +203,8 @@ def get_production_from_summary(requests_obj) -> tuple:
 
 def fetch_production(
     zone_key: str = "NI",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of Nicaragua."""
@@ -236,8 +236,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""
@@ -286,8 +286,8 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = "NI",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the most recent known power prices in Nicaragua grid."""

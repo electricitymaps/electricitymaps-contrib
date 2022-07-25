@@ -1,7 +1,7 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional, Union
 
 import arrow
 from requests import Session
@@ -47,7 +47,7 @@ COUNTRIES_EXCHANGE = {
 }
 
 
-def get_data(session: Union[Session, None]):
+def get_data(session: Optional[Session]):
     """Requests generation data in json format."""
     s = session or Session()
     json_data = s.get(URL).json()
@@ -85,8 +85,8 @@ def production_processor(json_data, zone_key: str) -> tuple:
 
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
@@ -116,8 +116,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""
@@ -148,8 +148,8 @@ def fetch_exchange(
 def fetch_region_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two Brazilian regions."""

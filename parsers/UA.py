@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import dateutil
@@ -38,8 +38,8 @@ tz = "Europe/Kiev"
 
 def fetch_production(
     zone_key: str = "UA",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:

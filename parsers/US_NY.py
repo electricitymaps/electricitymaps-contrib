@@ -5,7 +5,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Union
+from typing import Optional
 from urllib.error import HTTPError
 
 import arrow
@@ -101,8 +101,8 @@ def data_parser(df) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-NY",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -148,8 +148,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""

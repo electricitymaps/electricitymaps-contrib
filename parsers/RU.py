@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from functools import reduce
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional, Union
 
 import arrow
 import pandas as pd
@@ -60,8 +60,8 @@ tz = "Europe/Moscow"
 
 def fetch_production(
     zone_key: str = "RU",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the last known production mix (in MW) of a given country."""
@@ -106,8 +106,8 @@ def fetch_production(
 
 def fetch_production_1st_synchronous_zone(
     zone_key: str = "RU-1",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
 ) -> list:
     zone_key_price_zone_mapper = {
         "RU-1": 1,
@@ -178,8 +178,8 @@ def fetch_production_1st_synchronous_zone(
 
 def fetch_production_2nd_synchronous_zone(
     zone_key: str = "RU-AS",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
 ) -> List[dict]:
     if zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
@@ -267,8 +267,8 @@ def response_checker(json_content) -> bool:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""

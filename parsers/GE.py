@@ -2,9 +2,9 @@
 
 # Standard library imports
 import urllib.parse
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 # Third-party library imports
 import arrow
@@ -25,8 +25,8 @@ URL_STRING = URL.geturl()
 @config.refetch_frequency(timedelta(hours=1))
 def fetch_production(
     zone_key: str = "GE",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[Dict[str, Any]], Dict[str, Any]]:
     """Request the last known production mix (in MW) of a given country."""
@@ -110,8 +110,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str = "GE",
     zone_key2: str = "TR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Request the last known power exchange (in MW) between two countries."""

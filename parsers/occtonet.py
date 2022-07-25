@@ -3,7 +3,7 @@
 from datetime import datetime
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Dict, List, Union
+from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd
@@ -86,8 +86,8 @@ def _fetch_exchange(
 def fetch_exchange(
     zone_key1: str = "JP-TH",
     zone_key2: str = "JP-TK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
@@ -103,8 +103,8 @@ def fetch_exchange(
 def fetch_exchange_forecast(
     zone_key1: str = "JP-TH",
     zone_key2: str = "JP-TK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Gets exchange forecast between two specified zones."""
@@ -122,7 +122,7 @@ def fetch_exchange_forecast(
     return _fetch_exchange(session, query_datetime, sorted_zone_keys)
 
 
-def get_cookies(session: Union[Session, None] = None) -> cookies.RequestsCookieJar:
+def get_cookies(session: Optional[Session] = None) -> cookies.RequestsCookieJar:
     if not session:
         session = Session()
     session.get("http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login")

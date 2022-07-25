@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 
 
 class ParserException(Exception):
@@ -14,7 +14,7 @@ class ParserException(Exception):
         message (str): String describing the exception.
         zone_key (str | None): Country code or sortedZoneKeys."""
 
-    def __init__(self, parser: str, message: str, zone_key: Union[str, None] = None):
+    def __init__(self, parser: str, message: str, zone_key: Optional[str] = None):
         super(ParserException, self).__init__(message)
         self.parser = parser
         self.zone_key = zone_key

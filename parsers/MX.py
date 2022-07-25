@@ -4,7 +4,7 @@ import urllib
 from datetime import datetime
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 import pandas as pd
@@ -58,7 +58,7 @@ def parse_date(date, hour):
     return dt
 
 
-def fetch_csv_for_date(dt, session: Union[Session, None] = None):
+def fetch_csv_for_date(dt, session: Optional[Session] = None):
     """
     Fetches the whole month of the give datetime.
     returns the data as a DataFrame.
@@ -143,8 +143,8 @@ def convert_production(series):
 
 def fetch_production(
     zone_key: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     if zone_key != "MX":
@@ -202,8 +202,8 @@ def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""

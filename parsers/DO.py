@@ -5,7 +5,7 @@ from datetime import datetime
 from logging import Logger, getLogger
 from math import isnan
 from operator import itemgetter
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 import numpy as np
@@ -88,7 +88,7 @@ thermal_plants = {
 }
 
 
-def get_data(session: Union[Session, None] = None) -> list:
+def get_data(session: Optional[Session] = None) -> list:
     """
     Makes a request to source url.
     Finds main table and creates a list of all table elements in string format.
@@ -287,8 +287,8 @@ def merge_production(thermal, total) -> List[dict]:
 
 def fetch_production(
     zone_key: str = "DO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""

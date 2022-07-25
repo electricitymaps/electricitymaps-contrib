@@ -5,7 +5,7 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -76,8 +76,8 @@ def extract_chart_data(html):
 @refetch_frequency(timedelta(minutes=5))
 def fetch_consumption(
     zone_key: str = "KR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -119,8 +119,8 @@ def fetch_consumption(
 @refetch_frequency(timedelta(hours=1))
 def fetch_price(
     zone_key: str = "KR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
 
@@ -178,7 +178,7 @@ def fetch_price(
 
 
 def get_long_term_prod_data(
-    session: Union[Session, None] = None, target_datetime: Union[datetime, None] = None
+    session: Optional[Session] = None, target_datetime: Optional[datetime] = None
 ) -> List[dict]:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
@@ -244,7 +244,7 @@ def get_long_term_prod_data(
     return all_data
 
 
-def get_granular_real_time_prod_data(session: Union[Session, None] = None) -> dict:
+def get_granular_real_time_prod_data(session: Optional[Session] = None) -> dict:
     r0 = session or Session()
     res_0 = r0.get(REAL_TIME_URL)
     chart_data = extract_chart_data(res_0.text)
@@ -255,8 +255,8 @@ def get_granular_real_time_prod_data(session: Union[Session, None] = None) -> di
 @refetch_frequency(timedelta(minutes=5))
 def fetch_production(
     zone_key: str = "KR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 

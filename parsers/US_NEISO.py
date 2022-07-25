@@ -7,7 +7,7 @@ import time
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -40,7 +40,7 @@ def timestring_converter(time_string):
 
 
 def get_json_data(
-    target_datetime: Union[datetime, None], params, session: Union[Session, None] = None
+    target_datetime: Optional[datetime], params, session: Optional[Session] = None
 ):
     """Fetches json data for requested params and target_datetime using a post request."""
 
@@ -137,8 +137,8 @@ def production_data_processer(raw_data, logger: Logger) -> list:
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "US-NEISO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
@@ -171,8 +171,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""

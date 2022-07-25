@@ -8,7 +8,7 @@ Data is from the backend for the load curve graph on https://cebcare.ceb.lk/gens
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -25,8 +25,8 @@ SOURCE_NAME = "ceb.lk"
 
 def fetch_production(
     zone_key: str = "LK",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     """Requests the previous day's production mix (in MW) for Sri Lanka, per quarter-hour"""

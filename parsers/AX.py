@@ -1,6 +1,6 @@
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional, Union
 
 import arrow
 
@@ -885,7 +885,7 @@ def _get_masks(session=None):
     return dict(zip(shorts, masks))
 
 
-def _fetch_data(session: Union[Session, None] = None) -> dict:
+def _fetch_data(session: Optional[Session] = None) -> dict:
     """Return usable data from source."""
     # Load masks for reading numbers from the image
     # Create a dictionary of symbols and their pixel masks
@@ -1003,8 +1003,8 @@ def _fetch_data(session: Union[Session, None] = None) -> dict:
 
 def fetch_production(
     zone_key: str = "AX",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
@@ -1035,8 +1035,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "AX",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
@@ -1055,8 +1055,8 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""

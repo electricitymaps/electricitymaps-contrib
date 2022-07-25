@@ -1,7 +1,7 @@
 from datetime import datetime
 from logging import Logger, getLogger
 from pprint import pprint
-from typing import Union
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -15,8 +15,8 @@ timezone_id = "America/Montreal"
 
 def fetch_production(
     zone_key: str = "CA-QC",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given region.
@@ -71,8 +71,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "CA-QC",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
     data = _fetch_quebec_consumption(session)
@@ -91,7 +91,7 @@ def fetch_consumption(
 
 
 def _fetch_quebec_production(
-    session: Union[Session, None] = None, logger: Logger = getLogger(__name__)
+    session: Optional[Session] = None, logger: Logger = getLogger(__name__)
 ) -> str:
     s = session or Session()
     response = s.get(PRODUCTION_URL)
@@ -106,7 +106,7 @@ def _fetch_quebec_production(
 
 
 def _fetch_quebec_consumption(
-    session: Union[Session, None] = None, logger: Logger = getLogger(__name__)
+    session: Optional[Session] = None, logger: Logger = getLogger(__name__)
 ) -> str:
     s = session or Session()
     response = s.get(CONSUMPTION_URL)

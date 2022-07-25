@@ -6,7 +6,7 @@ from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
 from operator import itemgetter
-from typing import Union
+from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
@@ -35,7 +35,7 @@ generation_map = {
 }
 
 
-def get_data(session: Union[Session, None] = None):
+def get_data(session: Optional[Session] = None):
     """
     Makes a get request to data url.
     Parses the response then makes a post request to the same url using
@@ -149,8 +149,8 @@ def data_processer(data) -> list:
 
 def fetch_production(
     zone_key: str = "SV",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""

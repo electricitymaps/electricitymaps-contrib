@@ -6,7 +6,7 @@
 from collections import namedtuple
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, List, Union
+from typing import Callable, List, Optional, Union
 
 import arrow
 from requests import Session
@@ -125,7 +125,7 @@ def template_exchange_response(
     }
 
 
-def get_archive_data(session: Union[Session, None] = None, dates=None) -> list:
+def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
     """
     Returns archive data as a list of ArchiveDatapoint.
 
@@ -168,7 +168,7 @@ def get_archive_data(session: Union[Session, None] = None, dates=None) -> list:
         )
 
 
-def get_data(session: Union[Session, None] = None) -> list:
+def get_data(session: Optional[Session] = None) -> list:
     """Returns data as a list of floats."""
     s = session or Session()
 
@@ -188,8 +188,8 @@ def get_data(session: Union[Session, None] = None) -> list:
 
 def fetch_price(
     zone_key: str = "MD",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """
@@ -210,8 +210,8 @@ def fetch_price(
 
 def fetch_consumption(
     zone_key: str = "MD",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the consumption (in MW) of a given country."""
@@ -239,8 +239,8 @@ def fetch_consumption(
 
 def fetch_production(
     zone_key: str = "MD",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the production mix (in MW) of a given country."""
@@ -308,8 +308,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two countries."""

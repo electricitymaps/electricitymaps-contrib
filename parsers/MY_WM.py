@@ -11,7 +11,7 @@ import collections
 import json
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Union
+from typing import Optional
 
 # Third-party library imports
 import arrow
@@ -34,8 +34,8 @@ SOLAR_URL = f"https://{DOMAIN}/SystemData/LargeScaleSolar.aspx/ForecastChart"
 @config.refetch_frequency(timedelta(minutes=10))
 def fetch_consumption(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power consumption (in MW) of a given zone."""
@@ -62,8 +62,8 @@ def fetch_consumption(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the power exchange (in MW) between two zones."""
@@ -128,8 +128,8 @@ def fetch_exchange(
 @config.refetch_frequency(timedelta(minutes=10))
 def fetch_production(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the production mix (in MW) of a given zone."""
@@ -167,8 +167,8 @@ def fetch_production(
 @config.refetch_frequency(timedelta(minutes=10))
 def fetch_wind_solar_forecasts(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the solar forecast (in MW) of a given zone."""

@@ -13,10 +13,13 @@ Kuwait shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: I
 # TODO get this data for the other countries as well
 
 import re
+from datetime import datetime
+from logging import Logger, getLogger
 from sys import stderr
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 COUNTRY_CODE_MAPPING = {
     "AE": "uae",
@@ -37,12 +40,17 @@ TIME_ZONE_MAPPING = {
 }
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_consumption(
+    zone_key,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.gccia.com.sa/"
     response = r.get(url)
 

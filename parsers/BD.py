@@ -4,7 +4,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 import pandas as pd
@@ -206,7 +206,7 @@ def excel_handler(shifted_target_datetime, logger: Logger) -> tuple:
 
 def fetch_production(
     zone_key: str = "BD",
-    session: Union[Session, None] = None,
+    session: Optional[Session] = None,
     target_datetime=None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
@@ -244,8 +244,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""

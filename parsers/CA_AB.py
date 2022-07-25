@@ -11,7 +11,7 @@ import re
 import urllib.parse
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional
 
 # Third-party library imports
 import arrow
@@ -30,8 +30,8 @@ URL_STRING = urllib.parse.urlunsplit(URL)
 def fetch_exchange(
     zone_key1: str = DEFAULT_ZONE_KEY,
     zone_key2: str = "CA-BC",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Request the last known power exchange (in MW) between two countries."""
@@ -61,8 +61,8 @@ def fetch_exchange(
 
 def fetch_price(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
     """Request the last known power price of a given country."""
@@ -87,8 +87,8 @@ def fetch_price(
 
 def fetch_production(
     zone_key: str = DEFAULT_ZONE_KEY,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Dict[str, Any]:
     """Request the last known production mix (in MW) of a given country."""

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional, Union
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -16,8 +16,8 @@ from requests import Session
 
 def fetch_production(
     zone_key: str = "FR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """
@@ -158,8 +158,8 @@ def fetch_production(
 
 def fetch_price(
     zone_key: str = "FR",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """
@@ -242,8 +242,8 @@ def fetch_price(
 def fetch_exchange(
     zone_key1: str = "DK",
     zone_key2: str = "NO",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> Union[List[dict], dict]:
     """

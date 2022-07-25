@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 import requests
@@ -35,8 +35,8 @@ def calculate_average_timestamp(timestamps):
 
 def fetch_production(
     zone_key: str = "IN-PB",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known production mix (in MW) of a given zone."""
@@ -75,8 +75,8 @@ def fetch_production(
 
 def fetch_consumption(
     zone_key: str = "IN-PB",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known consumption (in MW) of a given zone."""

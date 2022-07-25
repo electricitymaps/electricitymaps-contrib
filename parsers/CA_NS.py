@@ -3,7 +3,7 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Union
+from typing import List, Optional
 
 import arrow
 from requests import Session
@@ -152,8 +152,8 @@ def _get_ns_info(requests_obj, logger: Logger):
 
 def fetch_production(
     zone_key: str = "CA-NS",
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """Requests the last known production mix (in MW) of a given country."""
@@ -172,8 +172,8 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: str,
     zone_key2: str,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     """
