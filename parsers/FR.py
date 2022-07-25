@@ -154,7 +154,10 @@ def fetch_production(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         now = arrow.get(target_datetime, tz="Europe/Paris")
