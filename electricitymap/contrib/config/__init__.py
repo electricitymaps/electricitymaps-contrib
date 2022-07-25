@@ -10,7 +10,7 @@ BoundingBox = NewType("BoundingBox", List[Point])
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 LOCALES_DIR =Path(__file__).absolute().parent.parent.parent.parent.joinpath("web/public/locales").resolve()
 
-# Read JOSN files
+# Read JSON files
 ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json")))
 EXCHANGES_CONFIG = json.load(open(CONFIG_DIR.joinpath("exchanges.json")))
 ZONE_SHORTNAME_CONFIG = json.load(open(LOCALES_DIR.joinpath("en.json")))["zoneShortName"]
