@@ -4692,7 +4692,7 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": ""
+    "timezone": "US/Eastern"
   },
   "US-CAR-CPLW": {
     "bounding_box": [
@@ -6361,7 +6361,7 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": ""
+    "timezone": "US/Arizona"
   },
   "US-SW-DEAA": {
     "bounding_box": [
