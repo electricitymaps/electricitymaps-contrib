@@ -7,6 +7,12 @@ import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 import { ZoomControls } from './zoomcontrols';
+import Geocoder from 'react-map-gl-geocoder';
+import { dispatchApplication } from '../store';
+import { getCenteredLocationViewport } from '../helpers/map';
+import { point, polygon } from '@turf/helpers';
+import { getCoords } from '@turf/invariant';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -36,6 +42,7 @@ const ZoneMap = ({
   },
 }) => {
   const ref = useRef(null);
+  const geocoderContainerRef = useRef();
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -45,6 +52,7 @@ const ZoneMap = ({
   const zones = useSelector((state) => state.data.zones);
 
   const [isDragging, setIsDragging] = useState(false);
+  const [searchZone, setSearchZone] = useState(null);
   const debouncedSetIsDragging = useMemo(
     () =>
       debounce((value) => {
@@ -98,12 +106,14 @@ const ZoneMap = ({
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
+  const selectedFilter = useMemo(() => ['==', 'zoneId', searchZone || ''], [searchZone]);
 
   // Calculate layer styles only when the theme changes
   // to keep the stable and prevent excessive rerendering.
   const styles = useMemo(
     () => ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
+      selected: { 'line-color': 'red' },
       ocean: { 'background-color': theme.oceanColor },
       zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
       zonesClickable: {
@@ -162,7 +172,16 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex, electricityMixMode]);
+  }, [
+    isLoaded,
+    searchZone,
+    isDragging,
+    selectedTimeAggregate,
+    co2ColorScale,
+    zones,
+    selectedZoneTimeIndex,
+    electricityMixMode,
+  ]);
 
   const handleClick = useMemo(
     () => (e) => {
@@ -210,6 +229,28 @@ const ZoneMap = ({
     [hoveringEnabled, isDragging, hoveredZoneId, onMouseMove, onZoneMouseEnter, onZoneMouseLeave]
   );
 
+  const handleResult = ({ result }) => {
+    const handlePolygon = (feature, props) => polygon(getCoords(feature), props);
+    const handleMultiPolygon = (feature, props) => {
+      return getCoords(feature).map((coord) => polygon(coord, props));
+    };
+
+    const centerPoint = point([result.center[0], result.center[1]]);
+    Object.entries(zones).forEach(([key, val]) => {
+      try {
+        const ft = val.geography.geometry;
+        const pol = ft.type === 'MultiPolygon' ? handleMultiPolygon(ft)[0] : handlePolygon(ft);
+        const isInside = booleanPointInPolygon(centerPoint, pol);
+        if (isInside && key) {
+          setSearchZone(key);
+          dispatchApplication('mapViewport', getCenteredLocationViewport(result.center));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  };
+
   const handleMouseOut = useMemo(
     () => () => {
       if (hoveredZoneId !== null) {
@@ -227,6 +268,18 @@ const ZoneMap = ({
 
   return (
     <div className="zone-map" style={style} ref={wrapperRef}>
+      <div
+        ref={geocoderContainerRef}
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: '50%',
+          transform: 'translate(-50%, 0)',
+          zIndex: 999999,
+          height: 100,
+          width: 200,
+        }}
+      />
       <ReactMapGL
         ref={ref}
         width="100%"
@@ -272,9 +325,22 @@ const ZoneMap = ({
         <Source type="geojson" data={sources.zonesClickable}>
           <Layer id="hover" type="fill" paint={styles.hover} filter={hoverFilter} />
         </Source>
+        <Source type="geojson" data={sources.zonesClickable}>
+          <Layer id="selected" type="line" paint={styles.selected} filter={selectedFilter} />
+        </Source>
         {/* Extra layers provided by user */}
         {children}
       </ReactMapGL>
+      <Geocoder
+        limit={3}
+        onResult={(res) => handleResult(res)}
+        mapRef={ref}
+        // onViewportChange={handleGeocoderViewportChange}
+        mapboxApiAccessToken={
+          'pk.eyJ1Ijoia29uZ2tpbGxlIiwiYSI6ImNqendyb3FlczBra2IzZ3E5b2Ftd3V2ajIifQ.QSE0o6qPUY-ZalCEQzJV8w'
+        }
+        containerRef={geocoderContainerRef}
+      />
     </div>
   );
 };

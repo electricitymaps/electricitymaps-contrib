@@ -7,7 +7,7 @@ const SearchBar = ({ className, documentKeyUpHandler, placeholder, searchHandler
   // Set up global key up handlers that apply to this search bar
   useEffect(() => {
     const keyUpHandler = documentKeyUpHandler ? (ev) => documentKeyUpHandler(ev.key, ref) : noop;
-    document.addEventListener('keyup', keyUpHandler);
+    // document.addEventListener('keyup', keyUpHandler); // annoys geocoder
     return () => {
       document.removeEventListener('keyup', keyUpHandler);
     };
