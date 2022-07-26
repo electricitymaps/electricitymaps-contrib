@@ -6810,7 +6810,7 @@
       [38.47779381600009, -21.626451924999927]
     ],
     "timezone": null,
-    "estimation_method": "RECONSTRUCT_BREAKDOWN"
+    "estimation_method": "ESTIMATED_TIME_SLICER_AVERAGE"
   },
   "ZM": {
     "bounding_box": [
