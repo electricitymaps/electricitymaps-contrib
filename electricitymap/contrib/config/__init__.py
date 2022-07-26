@@ -8,21 +8,12 @@ Point = NewType("Point", Tuple[float, float])
 BoundingBox = NewType("BoundingBox", List[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
-LOCALES_DIR = (
-    Path(__file__)
-    .absolute()
-    .parent.parent.parent.parent.joinpath("web/public/locales")
-    .resolve()
-)
 
 # Read JSON files
 ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json"), encoding="utf-8"))
 EXCHANGES_CONFIG = json.load(
     open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")
 )
-ZONE_SHORTNAME_CONFIG = json.load(
-    open(LOCALES_DIR.joinpath("en.json"), encoding="utf-8")
-)["zoneShortName"]
 CO2EQ_PARAMETERS_ALL = json.load(
     open(CONFIG_DIR.joinpath("co2eq_parameters_all.json"), encoding="utf-8")
 )
