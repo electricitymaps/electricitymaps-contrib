@@ -325,7 +325,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
         {hasParser ? (
           <React.Fragment>
             <BySource>
-              {__(timeAggregate != TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
+              {__(timeAggregate !== TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
             </BySource>
 
             <CountryTable />
