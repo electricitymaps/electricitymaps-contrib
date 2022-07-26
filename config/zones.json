@@ -4177,7 +4177,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
-    "timezone": null
+    "timezone": "Europe/Stockholm"
   },
   "SE-SE2": {
     "bounding_box": [
@@ -4203,7 +4203,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
-    "timezone": null
+    "timezone": "Europe/Stockholm"
   },
   "SE-SE3": {
     "bounding_box": [
@@ -4230,7 +4230,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
-    "timezone": null
+    "timezone": "Europe/Stockholm"
   },
   "SE-SE4": {
     "bounding_box": [
@@ -4257,7 +4257,7 @@
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts",
       "productionPerUnit": "ENTSOE.fetch_production_per_units"
     },
-    "timezone": null
+    "timezone": "Europe/Stockholm"
   },
   "SG": {
     "bounding_box": [
