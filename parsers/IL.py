@@ -34,6 +34,8 @@ def fetch_all() -> list:
     soup = BeautifulSoup(second.content, "lxml")
 
     values: list = soup.find_all("span", class_="statusVal")
+    if len(values) == 0:
+        raise ValueError("Could not parse IEC dashboard")
     del values[1]
 
     cleaned_list = []
