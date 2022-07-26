@@ -52,12 +52,21 @@ const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey })
   const { __ } = useTranslation();
   return (
     <div className="question-answer-container" id={entryKey}>
-      <div className="question" onClick={() => setAnswerVisible(entryKey, !answerVisible)}>
+      <button
+        className="question"
+        onClick={() => setAnswerVisible(entryKey, !answerVisible)}
+        id={`${groupKey}.${entryKey}-question`}
+        aria-controls={`${groupKey}.${entryKey}-answer`}
+        aria-expanded={answerVisible}
+      >
         <Icon iconName={answerVisible ? 'expand_less' : 'expand_more'} />
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
-      </div>
+      </button>
       {answerVisible && (
         <div
+          id={`${groupKey}.${entryKey}-answer`}
+          role="region"
+          aria-labelledby={`${groupKey}.${entryKey}-question`}
           className="answer"
           dangerouslySetInnerHTML={{
             __html: __(`${groupKey}.${entryKey}-answer`),

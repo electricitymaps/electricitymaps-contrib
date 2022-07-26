@@ -1,9 +1,11 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Portal } from 'react-portal';
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
+import { getCO2IntensityByMode } from '../helpers/zonedata';
 import { ZoomControls } from './zoomcontrols';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
@@ -13,7 +15,6 @@ const ZoneMap = ({
   children = null,
   co2ColorScale = null,
   hoveringEnabled = true,
-  isHistoryFeatureEnabled = false,
   onMapLoaded = noop,
   onMapError = noop,
   onMouseMove = noop,
@@ -25,7 +26,6 @@ const ZoneMap = ({
   onZoneMouseLeave = noop,
   scrollZoom = true,
   selectedZoneTimeIndex = null,
-  selectedTimeAggregate,
   style = {},
   theme = {},
   transitionDuration = 300,
@@ -34,14 +34,15 @@ const ZoneMap = ({
     longitude: 0,
     zoom: 2,
   },
-  zones = {},
-  zoneHistories = {},
 }) => {
   const ref = useRef(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
+  const zones = useSelector((state) => state.data.zones);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -75,29 +76,25 @@ const ZoneMap = ({
       return {
         type: 'Feature',
         geometry: {
-          ...zone.geometry,
-          coordinates: zone.geometry.coordinates.filter(length), // Remove empty geometries
+          ...zone.geography.geometry,
+          coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
         },
         properties: {
-          color: zone.color,
-          isClickable: zone.isClickable,
-          zoneData: zone,
+          color: undefined,
+          zoneData: zone[selectedTimeAggregate].overviews,
           zoneId,
         },
       };
     });
 
     return {
+      // TODO: Clean up further
       zonesClickable: {
         type: 'FeatureCollection',
-        features: features.filter((f) => f.properties.isClickable),
-      },
-      zonesNonClickable: {
-        type: 'FeatureCollection',
-        features: features.filter((f) => !f.properties.isClickable),
+        features,
       },
     };
-  }, [zones]);
+  }, [zones, selectedTimeAggregate]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
@@ -117,7 +114,6 @@ const ZoneMap = ({
           theme.clickableFill,
         ],
       },
-      zonesNonClickable: { 'fill-color': theme.nonClickableFill },
     }),
     [theme]
   );
@@ -133,7 +129,7 @@ const ZoneMap = ({
   // TODO: Consider moving the calculation to a useMemo function
   // change color of zones if timeslider is changed
   useEffect(() => {
-    if (isHistoryFeatureEnabled && isLoaded && co2ColorScale) {
+    if (isLoaded && co2ColorScale) {
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
       const features = ref.current.queryRenderedFeatures();
@@ -141,7 +137,9 @@ const ZoneMap = ({
       features.forEach((feature) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
-        const co2intensity = zoneHistories?.[zoneId]?.[selectedZoneTimeIndex]?.co2intensity;
+        const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
+
+        const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
 
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
@@ -164,15 +162,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [
-    isHistoryFeatureEnabled,
-    isLoaded,
-    isDragging,
-    zoneHistories,
-    selectedZoneTimeIndex,
-    selectedTimeAggregate,
-    co2ColorScale,
-  ]);
+  }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex, electricityMixMode]);
 
   const handleClick = useMemo(
     () => (e) => {
@@ -274,9 +264,6 @@ const ZoneMap = ({
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
-        <Source type="geojson" data={sources.zonesNonClickable}>
-          <Layer id="zones-static" type="fill" paint={styles.zonesNonClickable} />
-        </Source>
         <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
           <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
