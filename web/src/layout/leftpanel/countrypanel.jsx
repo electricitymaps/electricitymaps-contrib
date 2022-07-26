@@ -191,8 +191,8 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
 
 const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
-  const { __ } = useTranslation();
-
+  const { __, i18n } = useTranslation();
+  const formatter = new Intl.ListFormat(i18n.language, { style: 'long', type: 'conjunction' });
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
 
   // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
@@ -407,7 +407,10 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="country-data-source">{data.source || '?'}</span>
+                <span className="country-data-source">
+                  {/* TODO: Remove ternary operator when the source field is returned as a array in the history files. */}
+                  {formatter.format(typeof data.source === 'string' ? data.source?.split(',') : data.source) || '?'}
+                </span>
               </a>
               <small>
                 {' '}
