@@ -98,8 +98,8 @@ test('Grid is expired', () => {
 test('Exchange data is fetched', () => {
   let state = undefined;
   state = reducer.getInitialState();
-  expect(state.exchanges['DK-DK2->SE'].config).toHaveProperty('sortedCountryCodes');
-  expect(state.exchanges['DK-DK2->SE'].data).toHaveLength(0);
+  expect(state.exchanges['DK-DK2->SE-SE4'].config).toHaveProperty('sortedCountryCodes');
+  expect(state.exchanges['DK-DK2->SE-SE4'].data).toHaveLength(0);
 
   state = reducer(undefined, GRID_DATA_FETCH_SUCCEEDED(gridData.data));
 
@@ -107,6 +107,6 @@ test('Exchange data is fetched', () => {
     co2intensity: expect.any(Number),
     netFlow: expect.any(Number),
   };
-  expect(state.exchanges['DK-DK2->SE'].data).toHaveLength(25);
-  expect(state.exchanges['DK-DK2->SE'].data[0]).toMatchObject(expectedExchange);
+  expect(state.exchanges['DK-DK2->SE-SE4'].data).toHaveLength(25);
+  expect(state.exchanges['DK-DK2->SE-SE4'].data[0]).toMatchObject(expectedExchange);
 });
