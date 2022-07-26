@@ -6809,7 +6809,7 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
-    "timezone": null,
+    "timezone": "Africa/Johannesburg",
     "estimation_method": "ESTIMATED_TIME_SLICER_AVERAGE"
   },
   "ZM": {
