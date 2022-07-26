@@ -434,7 +434,7 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
       getProductionData(data).filter((d) => {
         let isZero = true;
         history.forEach((datapoint) => {
-          if (datapoint.production[d.mode] > 0) {
+          if (datapoint.production?.[d.mode] > 0) {
             isZero = false;
           }
         });
