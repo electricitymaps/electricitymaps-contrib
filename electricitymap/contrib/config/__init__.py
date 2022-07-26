@@ -16,19 +16,27 @@ LOCALES_DIR = (
 )
 
 # Read JSON files
-ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json")))
-EXCHANGES_CONFIG = json.load(open(CONFIG_DIR.joinpath("exchanges.json")))
-ZONE_SHORTNAME_CONFIG = json.load(open(LOCALES_DIR.joinpath("en.json")))[
-    "zoneShortName"
-]
-CO2EQ_PARAMETERS_ALL = json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_all.json")))
+ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json"), encoding="utf-8"))
+EXCHANGES_CONFIG = json.load(
+    open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")
+)
+ZONE_SHORTNAME_CONFIG = json.load(
+    open(LOCALES_DIR.joinpath("en.json"), encoding="utf-8")
+)["zoneShortName"]
+CO2EQ_PARAMETERS_ALL = json.load(
+    open(CONFIG_DIR.joinpath("co2eq_parameters_all.json"), encoding="utf-8")
+)
 CO2EQ_PARAMETERS_LIFECYCLE = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"))),
+    **json.load(
+        open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"), encoding="utf-8")
+    ),
 }
 CO2EQ_PARAMETERS_DIRECT = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"))),
+    **json.load(
+        open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"), encoding="utf-8")
+    ),
 }
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 
