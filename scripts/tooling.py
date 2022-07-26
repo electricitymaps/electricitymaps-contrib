@@ -24,7 +24,7 @@ def lint():
         "flake8 electricitymap tests parsers --count --select=E901,E999,F821,F822,F823 --show-source --statistics"
     )
     _run("black --check .")
-    _run("isort --profile=black -c .")
+    _run("isort -c .")
     for path in ["tests", "electricitymap", "*.py"]:
         _run(
             f"pylint -E {path} -d unsubscriptable-object,unsupported-assignment-operation,unpacking-non-sequence"

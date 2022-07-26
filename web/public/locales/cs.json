@@ -6,7 +6,7 @@
     "datasources": "zdroje dat",
     "contribute": "Zapojte se <a href=\"%s\" target=\"_blank\">přidáním své oblasti</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Oblasti", "about": "Info" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Oblasti", "about": "Info" },
   "onboarding-modal": {
     "view1": { "subtitle": "Mapování dopadu spotřeby elektřiny na klima" },
     "view2": {
@@ -173,15 +173,15 @@
   "aboutUs": {
     "groupName": "O nás",
     "whoAreYou-question": "Kdo jste?",
-    "whoAreYou-answer": "ElectricityMap je vyvíjená a udržována společností <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
+    "whoAreYou-answer": "Electricity Maps je vyvíjená a udržována společností <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
     "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymap.org\">nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! ElectricityMap je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
     "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymap.org\">Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. electricityMap nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti electricityMap nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu electricityMap, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
+    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. Electricity Maps nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti Electricity Maps nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu Electricity Maps, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },

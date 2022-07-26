@@ -18,6 +18,8 @@ from sys import stderr
 import arrow
 import requests
 
+from .lib.exceptions import ParserException
+
 COUNTRY_CODE_MAPPING = {
     "AE": "uae",
     "BH": "bah",
@@ -46,12 +48,15 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     url = "https://www.gccia.com.sa/"
     response = r.get(url)
 
-    pattern = COUNTRY_CODE_MAPPING[zone_key] + '-mw-val">\s*(\d+)'
+    pattern = COUNTRY_CODE_MAPPING[zone_key] + r'-mw-val">\s*(\d+)'
 
-    load = re.findall(pattern, response.text)
-    load = int(load[0])
-    consumption = {}
-    consumption["unknown"] = load
+    match = re.findall(pattern, response.text)
+    if not match:
+        # if no data, the text becomes " - "
+        raise ParserException(
+            "GCCIA.py", "data is currently not available", zone_key=zone_key
+        )
+    consumption = int(match[0])
 
     datapoint = {
         "zoneKey": zone_key,
@@ -73,4 +78,4 @@ if __name__ == "__main__":
         except IndexError as error:
             print("Could not fetch consumption data for {0}".format(i), file=stderr)
             print(type(error), ":", error, file=stderr)
-        print("\n")
+        print()

@@ -97,8 +97,16 @@
     font-size: smaller;
     text-align: center;
 
-    a {
+    button {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      color: #4178ac;
       font-size: smaller;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
 
       &.selected {
         pointer-events: none;
