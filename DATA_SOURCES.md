@@ -264,6 +264,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Israel
   - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
   - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
+  - [Ember](https://ember-climate.org/data/data-explorer/)
 - Italy
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)

@@ -1991,13 +1991,13 @@
     "capacity": {
       "biomass": 27,
       "coal": 4840,
-      "gas": 12776,
+      "gas": 11010,
       "geothermal": 0,
       "hydro": 6.72,
       "hydro storage": 150,
       "nuclear": 0,
       "oil": 44,
-      "solar": 1962,
+      "solar": 2470,
       "unknown": 175,
       "wind": 28
     },
