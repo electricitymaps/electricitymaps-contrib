@@ -438,7 +438,11 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
             isZero = false;
           }
         });
-        return !(d.capacity === 0 && isZero);
+        if (data.capacity) {
+          return !(d.capacity === 0 && isZero);
+        } else {
+          return !isZero;
+        }
       }),
     [data, history]
   );
