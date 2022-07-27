@@ -64,11 +64,10 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    """all mapped to unknown as there is no available breakdown"""
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "consumption": {"unknown": float(fetch_EGAT())},
+        "consumption": float(fetch_EGAT()),
         "source": EGAT_URL,
     }
 
