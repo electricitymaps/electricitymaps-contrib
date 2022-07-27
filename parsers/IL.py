@@ -16,8 +16,8 @@ Source: IRENA
 URL: https://pxweb.irena.org/pxweb/en/IRENASTAT/IRENASTAT__Power%20Capacity%20and%20Generation/ELECCAP_2022_cycle2.px/
 """
 
-from logging import getLogger
 import re
+from logging import getLogger
 
 import arrow
 import numpy as np
