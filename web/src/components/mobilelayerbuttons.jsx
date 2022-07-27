@@ -8,8 +8,8 @@ const Wrapper = styled.div`
     display: none;
   }
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   display: flex;
 `;
 
