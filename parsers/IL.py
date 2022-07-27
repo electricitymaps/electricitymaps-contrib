@@ -16,7 +16,7 @@ Source: IRENA
 URL: https://pxweb.irena.org/pxweb/en/IRENASTAT/IRENASTAT__Power%20Capacity%20and%20Generation/ELECCAP_2022_cycle2.px/
 """
 
-import logging
+from logging import getLogger
 import re
 
 import arrow
@@ -25,7 +25,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from requests import get, post
 
-logger = logging.getLogger(__name__)
+logger = getLogger(__name__)
 
 IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
