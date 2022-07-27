@@ -10,10 +10,10 @@ Shares of Electricity production in 2019:
     1.0% oil,
     4.0% Renewables
     (source: IEA; https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source)
-"""
 
-"""
-Historical renewable data available at IRENA
+Israel's electricity system capacity parser.
+Source: IRENA
+URL: https://pxweb.irena.org/pxweb/en/IRENASTAT/IRENASTAT__Power%20Capacity%20and%20Generation/ELECCAP_2022_cycle2.px/
 """
 
 import logging
@@ -138,22 +138,6 @@ def fetch_production(
 
     data = {"zoneKey": zone_key, "datetime": arrow.now(TZ).datetime}
 
-    # fetch production from IEC
-    try:
-        assert (
-            get(IEC_PRODUCTION).status_code == 200
-        ), "IEC production url is not accessible"
-        # current production parser is not able to parse past dates
-        if target_datetime:
-            raise NotImplementedError("This parser is not yet able to parse past dates")
-        production_data = fetch_all()
-        production = [float(item) for item in production_data]
-        # all mapped to unknown as there is no available breakdown
-        data["production"] = {"unknown": production[0] + production[1]}
-
-    except AssertionError:
-        logger.warning(f"{zone_key} production url not fetched ")
-
     # fetch pv capacity from IRENA
 
     try:
@@ -193,7 +177,22 @@ def fetch_production(
             f"Solar capacity for {zone_key} at {data['datetime']} not available"
         )
 
-    # all mapped to unknown as there is no available breakdown
+    # fetch production from IEC
+
+    try:
+        assert (
+            get(IEC_PRODUCTION).status_code == 200
+        ), "IEC production url is not accessible"
+        # current production parser is not able to parse past dates
+        if target_datetime:
+            raise NotImplementedError("This parser is not yet able to parse past dates")
+        production_data = fetch_all()
+        production = [float(item) for item in production_data]
+        # all mapped to unknown as there is no available breakdown
+        data["production"] = {"unknown": production[0] + production[1]}
+
+    except AssertionError:
+        logger.warning(f"{zone_key} production url not fetched ")
 
     return data
 
