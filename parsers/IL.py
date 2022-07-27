@@ -10,20 +10,67 @@ Shares of Electricity production in 2019:
     1.0% oil,
     4.0% Renewables
     (source: IEA; https://www.iea.org/data-and-statistics?country=ISRAEL&fuel=Electricity%20and%20heat&indicator=Electricity%20generation%20by%20source)
+
+Israel's electricity system capacity parser.
+Source: IRENA
+URL: https://pxweb.irena.org/pxweb/en/IRENASTAT/IRENASTAT__Power%20Capacity%20and%20Generation/ELECCAP_2022_cycle2.px/
 """
 
+from logging import getLogger
 import re
 
 import arrow
+import numpy as np
+import pandas as pd
 from bs4 import BeautifulSoup
-from requests import get
+from requests import get, post
+
+logger = getLogger(__name__)
 
 IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
     "https://www.iec.co.il/_layouts/iec/applicationpages/lackmanagment.aspx"
 )
 IEC_PRICE = "https://www.iec.co.il/homeclients/pages/tariffs.aspx"
+IRENA_CAPACITY_URL = "https://pxweb.irena.org:443/api/v1/en/IRENASTAT/Power Capacity and Generation/ELECCAP_2022_cycle2.px"
+IRENA_SOLAR_THERMAL_QUERY = {
+    "query": [
+        {"code": "Country/area", "selection": {"filter": "item", "values": ["ISR"]}},
+        {"code": "Technology", "selection": {"filter": "item", "values": ["1"]}},
+        {"code": "Grid connection", "selection": {"filter": "item", "values": ["0"]}},
+    ],
+    "response": {"format": "json"},
+}
+
+IRENA_SOLAR_PV_QUERY = {
+    "query": [
+        {"code": "Country/area", "selection": {"filter": "item", "values": ["ISR"]}},
+        {"code": "Technology", "selection": {"filter": "item", "values": ["0"]}},
+        {"code": "Grid connection", "selection": {"filter": "item", "values": ["0"]}},
+    ],
+    "response": {"format": "json"},
+}
+
 TZ = "Asia/Jerusalem"
+
+
+def fetch_IRENA_capacity(irena_url: str, irena_query: str) -> pd.DataFrame:
+    """Fetch renewable capacity from IRENA API"""
+    # Request data from IRENA
+    response = post(url=irena_url, json=irena_query)
+    response_json = response.json()
+    # Format json to human readable list
+    data = [[item["key"][3]] + item["values"] for item in response_json["data"]]
+    # Convert to pandas dataframe
+    df = pd.DataFrame(
+        data,
+        columns=["year", "capacity"],
+    )
+    # Convert to numeric
+    df.replace("..", np.nan, inplace=True)
+    df["year"] = df["year"].astype(int) + 2000
+    df["capacity"] = df["capacity"].astype(float)
+    return df
 
 
 def fetch_all() -> list:
@@ -94,19 +141,66 @@ def extract_price_date(soup):
 def fetch_production(
     zone_key="IL", session=None, target_datetime=None, logger=None
 ) -> dict:
-    if target_datetime:
-        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    data = fetch_all()
-    production = [float(item) for item in data]
+    data = {"zoneKey": zone_key, "datetime": arrow.now(TZ).datetime}
 
-    # all mapped to unknown as there is no available breakdown
-    return {
-        "zoneKey": zone_key,
-        "datetime": arrow.now(TZ).datetime,
-        "production": {"unknown": production[0] + production[1]},
-        "source": IEC_URL,
-    }
+    # fetch pv capacity from IRENA
+
+    try:
+        assert (
+            post(url=IRENA_CAPACITY_URL, json=IRENA_SOLAR_PV_QUERY).status_code == 200
+        ), "IRENA solar PV url is not accessible"
+        if target_datetime:
+            data["datetime"] = arrow.get(target_datetime).datetime
+        solar_pv = fetch_IRENA_capacity(
+            irena_url=IRENA_CAPACITY_URL, irena_query=IRENA_SOLAR_PV_QUERY
+        )
+
+    except AssertionError:
+        solar_pv = pd.DataFrame()
+
+    # fetch  solar thermal capacity from IRENA
+    try:
+        assert (
+            post(url=IRENA_CAPACITY_URL, json=IRENA_SOLAR_THERMAL_QUERY).status_code
+            == 200
+        ), "IRENA solar thermal url is not accessible"
+        if target_datetime:
+            data["datetime"] = arrow.get(target_datetime).datetime
+        solar_thermal = fetch_IRENA_capacity(
+            irena_url=IRENA_CAPACITY_URL, irena_query=IRENA_SOLAR_THERMAL_QUERY
+        )
+    except AssertionError:
+        solar_thermal = pd.DataFrame()
+
+    solar = pd.concat([solar_pv, solar_thermal]).groupby("year").sum()
+
+    # load solar capacity to data
+    try:
+        data["capacity"] = {"solar": solar.loc[data["datetime"].year, "capacity"]}
+    except KeyError:
+        logger.warning(
+            f"Solar capacity for {zone_key} at {data['datetime']} not available"
+        )
+
+    # fetch production from IEC
+
+    try:
+        assert (
+            get(IEC_PRODUCTION).status_code == 200
+        ), "IEC production url is not accessible"
+        # current production parser is not able to parse past dates
+        if target_datetime:
+            raise NotImplementedError("This parser is not yet able to parse past dates")
+        production_data = fetch_all()
+        production = [float(item) for item in production_data]
+        # all mapped to unknown as there is no available breakdown
+        data["production"] = {"unknown": production[0] + production[1]}
+
+    except AssertionError:
+        logger.warning(f"{zone_key} production url not fetched ")
+
+    return data
 
 
 def fetch_consumption(
