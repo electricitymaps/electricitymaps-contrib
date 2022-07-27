@@ -9,17 +9,25 @@ BoundingBox = NewType("BoundingBox", List[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
-# Read JOSN files
-ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json")))
-EXCHANGES_CONFIG = json.load(open(CONFIG_DIR.joinpath("exchanges.json")))
-CO2EQ_PARAMETERS_ALL = json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_all.json")))
+# Read JSON files
+ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json"), encoding="utf-8"))
+EXCHANGES_CONFIG = json.load(
+    open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")
+)
+CO2EQ_PARAMETERS_ALL = json.load(
+    open(CONFIG_DIR.joinpath("co2eq_parameters_all.json"), encoding="utf-8")
+)
 CO2EQ_PARAMETERS_LIFECYCLE = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"))),
+    **json.load(
+        open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"), encoding="utf-8")
+    ),
 }
 CO2EQ_PARAMETERS_DIRECT = {
     **CO2EQ_PARAMETERS_ALL,
-    **json.load(open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"))),
+    **json.load(
+        open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"), encoding="utf-8")
+    ),
 }
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 

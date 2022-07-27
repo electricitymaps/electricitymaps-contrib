@@ -49,7 +49,7 @@ const scalePower = function (maxPower) {
 };
 
 const formatDate = function (date, lang, time) {
-  if (!date || !time) {
+  if (!isValidDate(date) || !time) {
     return '';
   }
 
@@ -59,23 +59,14 @@ const formatDate = function (date, lang, time) {
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
     case TIME.MONTHLY:
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(date);
     case TIME.YEARLY:
-      return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
+      return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:
       console.error(`${time} is not implemented`);
       return '';
   }
 };
-
-const getLocaleUnit = (dateUnit, lang) =>
-  new Intl.NumberFormat(lang, {
-    style: 'unit',
-    unit: dateUnit,
-    unitDisplay: 'long',
-  })
-    .formatToParts(1)
-    .filter((x) => x.type === 'unit')[0].value;
 
 const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) =>
   new Intl.NumberFormat(lang, {
@@ -90,9 +81,9 @@ const formatTimeRange = (lang, timeAggregate) => {
     case TIME.HOURLY:
       return getLocaleNumberFormat(lang, { unit: 'hour', range: 24 });
     case TIME.DAILY:
-      return getLocaleUnit('month', lang);
+      return getLocaleNumberFormat(lang, { unit: 'day', range: 30 });
     case TIME.MONTHLY:
-      return getLocaleUnit('year', lang);
+      return getLocaleNumberFormat(lang, { unit: 'month', range: 12 });
     case TIME.YEARLY:
       return getLocaleNumberFormat(lang, { unit: 'year', range: 5 });
     default:
@@ -102,7 +93,7 @@ const formatTimeRange = (lang, timeAggregate) => {
 };
 
 const formatDateTick = function (date, lang, timeAggregate) {
-  if (!date || !timeAggregate) {
+  if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
 
@@ -120,5 +111,17 @@ const formatDateTick = function (date, lang, timeAggregate) {
       return '';
   }
 };
+
+function isValidDate(date) {
+  if (!date || !(date instanceof Date)) {
+    return false;
+  }
+
+  if (!date.getTime() || date.getTime() <= 1) {
+    return false;
+  }
+
+  return true;
+}
 
 export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };

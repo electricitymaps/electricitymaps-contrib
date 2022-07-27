@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 
+// TODO: add animation to logo to indicate loading
+
 const Overlay = styled.div`
   background-image: url(${resolvePath('images/electricitymap-logo.svg')});
   background-position: 50% center, center center;

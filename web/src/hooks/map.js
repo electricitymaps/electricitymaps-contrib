@@ -4,9 +4,10 @@ import mapValues from 'lodash.mapvalues';
 
 import { useCo2ColorScale } from './theme';
 
+// TODO: Delete
 export function useZonesWithColors() {
   const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const zones = useSelector((state) => state.data.grid.zones);
+  const zones = useSelector((state) => state.data.zones);
   const co2ColorScale = useCo2ColorScale();
 
   return useMemo(

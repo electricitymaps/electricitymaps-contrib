@@ -8,6 +8,8 @@ import CircularGauge from '../circulargauge';
 import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
+import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import { TimeDisplay } from '../timeDisplay';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -19,10 +21,16 @@ const CountryTableHeaderInner = styled.div`
   justify-content: space-between;
 `;
 
+const StyledTimeDisplay = styled(TimeDisplay)`
+  font-size: smaller;
+  margin-top: 0px;
+  margin-bottom: 12px;
+`;
+
 const TooltipContent = React.memo(
-  ({ isDataDelayed, hasData, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
     const { __ } = useTranslation();
-    if (!hasData) {
+    if (!hasParser) {
       return (
         <div className="no-parser-text">
           <span
@@ -72,7 +80,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
-  const co2intensity = electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
+  const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
 
   const fossilFuelRatio =
     electricityMixMode === 'consumption' ? zoneData.fossilFuelRatio : zoneData.fossilFuelRatioProduction;
@@ -86,9 +94,10 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
+        <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       </div>
       <TooltipContent
-        hasData={zoneData.hasData}
+        hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}
         co2intensity={co2intensity}
         fossilFuelPercentage={fossilFuelPercentage}

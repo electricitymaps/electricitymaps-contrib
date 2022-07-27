@@ -215,7 +215,7 @@ def fetch_consumption_forecast(
         "JP-TH": "https://setsuden.nw.tohoku-epco.co.jp/common/demand/juyo_02_{}.csv".format(
             datestamp
         ),
-        "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-j.csv",
+        "JP-TK": "http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv",
         "JP-HR": "http://www.rikuden.co.jp/nw/denki-yoho/csv/juyo_05_{}.csv".format(
             datestamp
         ),
@@ -233,8 +233,6 @@ def fetch_consumption_forecast(
     # Skip non-tabular data at the start of source files
     if zone_key == "JP-KN":
         startrow = 16
-    elif zone_key == "JP-TK":
-        startrow = 7
     else:
         startrow = 13
     # Read the 24 hourly values

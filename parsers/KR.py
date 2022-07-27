@@ -159,7 +159,9 @@ def fetch_price(
                 .shift(days=-1 * (7 - day))
                 .replace(hour=hour, minute=0, second=0, microsecond=0)
             )
-            price_value = table_prices.iloc[row_idx, col_idx]
+            price_value = (
+                table_prices.iloc[row_idx, col_idx] * 1000
+            )  # Convert from Won/kWh to Won/MWh
 
             data = {
                 "zoneKey": zone_key,
