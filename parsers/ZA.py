@@ -932,8 +932,8 @@ def fetch_production(
 
         cleansed_csv_values = value["cleansed_csv"].split(",")
 
-        storage_inversion_idcs = [3, 4, 11, 12]
-        production_idcs = [0, 1, 2, 6, 8, 9, 10, 16, 17, 18, 19]
+        storage_inversion_idcs = [3, 4, 12]
+        production_idcs = [0, 1, 2, 6, 8, 9, 10, 11, 16, 17, 18, 19]
 
         # Omitted values
         # 5, 7, 13, 14, 15
