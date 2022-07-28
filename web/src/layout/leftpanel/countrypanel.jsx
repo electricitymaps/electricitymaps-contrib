@@ -152,9 +152,10 @@ const CountryPanelStyled = styled.div`
 `;
 
 const StyledSources = styled.div`
+  // Provides extra space to scroll further than the timeController
   margin-bottom: 170px;
   @media (max-width: 767px) {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -421,6 +422,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               </small>{' '}
               {__('country-panel.helpfrom')}
               <ContributorList />
+              <SocialButtons hideOnDesktop />
             </StyledSources>
           </React.Fragment>
         ) : (
@@ -435,8 +437,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             />
           </div>
         )}
-
-        <SocialButtons hideOnDesktop />
       </CountryPanelWrap>
     </CountryPanelStyled>
   );
