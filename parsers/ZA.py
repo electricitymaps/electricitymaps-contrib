@@ -919,6 +919,7 @@ def fetch_production(
                 "biomass": None,
                 "coal": 0.0,
                 "gas": 0.0,
+                "hydro": 0.0,
                 "nuclear": 0.0,
                 "oil": 0.0,
                 "solar": 0.0,
