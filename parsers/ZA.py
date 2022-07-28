@@ -882,21 +882,21 @@ def fetch_production(
     # Helpful: https://www.eskom.co.za/dataportal/glossary/
     column_mapping = {
         0: "coal",  # Thermal_Gen_Excl_Pumping_and_SCO
-        1: "unknown",  # Eskom_OCGT_SCO_Pumping             changed to unknown since negative oil is not possible
-        2: "unknown",  # Eskom_Gas_SCO_Pumping              changed to unknown since negative gas is not possible
-        3: "hydro",  # Hydro_Water_SCO_Pumping
+        1: "ignored",  # Eskom_OCGT_SCO_Pumping             changed to ignored since negative oil is not possible, usually [-6, 0]
+        2: "ignored",  # Eskom_Gas_SCO_Pumping              changed to ignored since negative gas is not possible, usually -1 or 0
+        3: "ignored",  # Hydro_Water_SCO_Pumping            Probably electricity consumed by the plant itself (even) when not generating power. Can be ignored.
         4: "hydro",  # Pumped_Water_SCO_Pumping
-        5: "unknown",  # Thermal_Generation                 sum of 0, 1, 2, 3, 4. This value is not used.
+        5: "ignored",  # Thermal_Generation                 sum of 0, 1, 2, 3, 4. Can be ignored.
         6: "nuclear",  # Nuclear_Generation
-        7: "unknown",  # International_Imports
+        7: "ignored",  # International_Imports
         8: "oil",  # Eskom_OCGT_Generation
         9: "gas",  # Eskom_Gas_Generation
         10: "oil",  # Dispatchable_IPP_OCGT
         11: "hydro",  # Hydro_Water_Generation
         12: "hydro",  # Pumped_Water_Generation
-        13: "unknown",  # IOS_Excl_ILS_and_MLR              Interruption of Supply. Not used.
-        14: "unknown",  # ILS_Usage                         Interruptible Load Shed = companies paid not to consume electricity. Not used.
-        15: "unknown",  # Manual_Load_Reduction_MLR         MLS = forced load shedding. Not used.
+        13: "ignored",  # IOS_Excl_ILS_and_MLR              Interruption of Supply. Can be ignored.
+        14: "ignored",  # ILS_Usage                         Interruptible Load Shed = companies paid not to consume electricity. Can be ignored.
+        15: "ignored",  # Manual_Load_Reduction_MLR         MLS = forced load shedding. Can be ignored.
         16: "wind",  # Wind
         17: "solar",  # PV
         18: "solar",  # CSP
@@ -916,7 +916,6 @@ def fetch_production(
             "zoneKey": zone_key,
             "datetime": datetime_key.datetime,
             "production": {
-                "biomass": None,
                 "coal": 0.0,
                 "gas": 0.0,
                 "hydro": 0.0,
@@ -924,7 +923,6 @@ def fetch_production(
                 "oil": 0.0,
                 "solar": 0.0,
                 "wind": 0.0,
-                "geothermal": None,
                 "unknown": 0.0,
             },
             "storage": {"hydro": 0.0},
@@ -933,11 +931,11 @@ def fetch_production(
 
         cleansed_csv_values = value["cleansed_csv"].split(",")
 
-        storage_inversion_idcs = [3, 4, 12]
-        production_idcs = [0, 1, 2, 6, 8, 9, 10, 11, 16, 17, 18, 19]
+        storage_inversion_idcs = [4, 12]
+        production_idcs = [0, 6, 8, 9, 10, 11, 16, 17, 18, 19]
 
-        # Omitted values
-        # 5, 7, 13, 14, 15
+        # Ignored values
+        # 1, 2, 3, 5, 7, 13, 14, 15
         # TODO:
         # - 7 (international imports) can be further implemented in exchange function.
 
@@ -945,12 +943,12 @@ def fetch_production(
             if j in storage_inversion_idcs:
                 data["storage"][column_mapping[j]] = round(
                     data["storage"][column_mapping[j]] + float(cleansed_csv_value) * -1,
-                    2,
+                    13,
                 )
             elif j in production_idcs:
                 data["production"][column_mapping[j]] = round(
                     data["production"][column_mapping[j]] + float(cleansed_csv_value),
-                    2,
+                    13,
                 )
 
         all_data.append(data)
