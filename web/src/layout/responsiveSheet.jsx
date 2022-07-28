@@ -16,6 +16,8 @@ const StyledBottomSheet = styled(BottomSheet)`
     }
   }
   [data-rsbs-overlay] {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: constant(safe-area-inset-bottom, 0px);
     z-index: ${(props) => (props.behind ? 0 : 5)};
   }
   [data-rsbs-scroll] {

@@ -8,11 +8,9 @@ const Wrapper = styled.div`
     display: none;
   }
   position: absolute;
+  top: 10px;
   right: 10px;
   display: flex;
-
-  /* No variables */
-  top: 10px;
 
   /* iOS Safari 11.2, Safari 11 */
   top: constant(safe-area-inset-top, 10px);
@@ -32,7 +30,7 @@ export default () => {
   const openSettingsModal = () => dispatchApplication('settingsModalOpen', true);
 
   return (
-    <Wrapper id="mobile-layer-buttons-wrapper">
+    <Wrapper>
       <ActionButton aria-label="open info modal" iconSize={18} icon="info" onClick={openInfoModal} />
       <ActionButton aria-label="open settings modal" iconSize={18} icon="sliders" onClick={openSettingsModal} />
     </Wrapper>
