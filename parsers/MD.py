@@ -3,7 +3,7 @@
 
 """Parser for Moldova."""
 
-from collections import namedtuple
+from collections.abc import namedtuple
 
 import arrow
 import requests

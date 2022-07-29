@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections.abc import defaultdict
 
 import arrow
 import requests

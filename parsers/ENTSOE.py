@@ -16,7 +16,7 @@ import itertools
 import logging
 import os
 import re
-from collections import defaultdict
+from collections.abc import defaultdict
 from datetime import timedelta
 
 import arrow

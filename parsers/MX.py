@@ -2,7 +2,7 @@
 
 import datetime
 import urllib
-from collections import defaultdict
+from collections.abc import defaultdict
 from io import StringIO
 
 import arrow

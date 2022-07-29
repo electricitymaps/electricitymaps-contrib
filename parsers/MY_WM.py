@@ -7,7 +7,7 @@
 # https://www.scribd.com/document/354635277/Doubling-Up-in-Malaysia-International-Water-Power
 
 # Standard library imports
-import collections
+import collections.abc
 import datetime
 import json
 import logging
@@ -100,7 +100,7 @@ def fetch_exchange(
                 "Line": "HVDC",
             },
         )
-        exchanges = collections.defaultdict(float)
+        exchanges = collections.abc.defaultdict(float)
         for exchange in egat_exchanges + hvdc_exchanges:
             exchanges[exchange["Tarikhmasa"]] += exchange["MW"]
         return [

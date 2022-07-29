@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import collections
+import collections.abc
 import itertools
 import re
 from logging import getLogger
@@ -60,7 +60,7 @@ def split_and_sum(expression) -> float:
 def fetch_data(zone_key, session=None, logger=None):
     session = session or requests.session()
 
-    values = collections.Counter()
+    values = collections.abc.Counter()
     zonekey.assert_zone_key(zone_key, "IN-GJ")
 
     cookies_params = {

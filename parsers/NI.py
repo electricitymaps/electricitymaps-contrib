@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from collections import defaultdict
+from collections.abc import defaultdict
 from logging import getLogger
 
 import arrow

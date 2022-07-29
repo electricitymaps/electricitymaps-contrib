@@ -5,7 +5,7 @@ Mayorista (AMM) API.
 """
 
 # Standard library imports
-import collections
+import collections.abc
 import logging
 
 # Third-party library imports
@@ -99,7 +99,7 @@ def index_api_data_by_hour(json):
     representing one technology type. Collect this information into a list,
     with the list index representing the hour of day.
     """
-    results = [collections.defaultdict(float) for _ in range(24)]
+    results = [collections.abc.defaultdict(float) for _ in range(24)]
     for row in json:
         # The API returns hours in the range [1, 24], so each one refers to the
         # past hour (e.g., 1 is the time period [00:00, 01:00)). Shift the hour
