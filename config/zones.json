@@ -6809,7 +6809,11 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
-    "timezone": null
+    "contributors": ["IV1T3"],
+    "parsers": {
+      "production": "ZA.fetch_production"
+    },
+    "timezone": "Africa/Johannesburg"
   },
   "ZM": {
     "bounding_box": [
