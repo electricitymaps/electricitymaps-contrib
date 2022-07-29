@@ -46,7 +46,6 @@
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-zip": "^3.1.0",
-    "cordova-universal-links-plugin": "github:walteram/cordova-universal-links-plugin"
+    "cordova-plugin-zip": "^3.1.0"
   }
 }
