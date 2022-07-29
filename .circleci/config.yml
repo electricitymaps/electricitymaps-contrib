@@ -14,9 +14,6 @@ jobs:
       - restore_cache:
           key: venv-{{ checksum "poetry.lock" }}
       - run:
-          name: Upgrade pip
-          command: pip install -q --upgrade pip
-      - run:
           name: Install dependencies
           command: |
             set -eux -o pipefail
