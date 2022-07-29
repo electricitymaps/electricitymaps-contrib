@@ -8,7 +8,7 @@ executors:
 jobs:
   verify_python:
     docker:
-      - image: circleci/python:3.8.12
+      - image: cimg/python:3.10.5
     steps:
       - checkout
       - restore_cache:
@@ -20,8 +20,8 @@ jobs:
           name: Install dependencies
           command: |
             set -eux -o pipefail
-            sudo apt-get update
-            sudo apt-get install libxml2-dev tesseract-ocr tesseract-ocr-eng
+            sudo apt-get update -qqy --no-install-recommends
+            sudo apt-get install -qqy --no-install-recommends libxml2-dev tesseract-ocr tesseract-ocr-eng
             poetry install -E parsers
       - run:
           name: Verify changes
