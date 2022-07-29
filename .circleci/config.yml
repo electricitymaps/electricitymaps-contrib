@@ -15,7 +15,7 @@ jobs:
           key: venv-{{ checksum "poetry.lock" }}
       - run:
           name: Upgrade pip
-          command: sudo pip install -q --upgrade pip
+          command: pip install -q --upgrade pip
       - run:
           name: Install dependencies
           command: |
