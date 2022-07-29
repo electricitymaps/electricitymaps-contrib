@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
@@ -11,7 +10,6 @@ import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Map from './map';
 import TimeController from './timeController';
-import TimeSliderHeader from '../components/timesliderheader';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
@@ -31,6 +29,7 @@ import ErrorBoundary from '../components/errorboundary';
 import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
+import ResponsiveSheet from './responsiveSheet';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -65,16 +64,6 @@ const NewVersionButton = styled.button`
 const HiddenOnMobile = styled.div`
   @media (max-width: 767px) {
     display: none;
-  }
-`;
-
-const StyledBottomSheet = styled(BottomSheet)`
-  [data-rsbs-overlay] {
-    z-index: ${(props) => (props.behind ? 0 : 5)};
-  }
-  [data-rsbs-scroll] {
-    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
-    overflow: hidden;
   }
 `;
 
@@ -153,15 +142,9 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <StyledBottomSheet
-                scrollLocking={false} // Ensures scrolling is not blocked on IOS
-                open
-                snapPoints={() => [60, 160]}
-                blocking={false}
-                header={<TimeSliderHeader />}
-              >
+              <ResponsiveSheet>
                 <TimeController />
-              </StyledBottomSheet>
+              </ResponsiveSheet>
             ) : (
               <TimeController />
             )}

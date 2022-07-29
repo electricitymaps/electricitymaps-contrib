@@ -48,6 +48,14 @@ const MobileHeader = styled.div`
   @media (min-width: 768px) {
     display: none !important;
   }
+
+  padding-top: 0px;
+
+  /* iOS Safari 11.2, Safari 11 */
+  padding-top: constant(safe-area-inset-top, 0px);
+
+  /* iOS Safari 11.4+, Safari 11.1+, Chrome 69+, Opera 56+ */
+  padding-top: env(safe-area-inset-top, 0px);
 `;
 
 const RightHeader = styled.div`
