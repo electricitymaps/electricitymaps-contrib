@@ -6,6 +6,7 @@ from logging import getLogger
 import arrow
 import requests
 
+from .lib.exceptions import ParserException
 from .lib.validation import validate
 
 MAP_GENERATION = {
@@ -66,7 +67,9 @@ def fetch_production(
             raw_generation_type = key.replace("Sev_E", "")
             generation_type = map_generation_type(raw_generation_type)
             if not generation_type:
-                raise RuntimeError(f"Unknown generation type: {raw_generation_type}")
+                raise ParserException(
+                    "FO.py", f"Unknown generation type: {raw_generation_type}", "FO"
+                )
             # Power (MW)
             value = float(value.replace(",", "."))
             data["production"][generation_type] = (
