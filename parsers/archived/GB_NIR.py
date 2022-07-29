@@ -2,7 +2,7 @@
 # Archived reason: Data is no longer available.
 
 import logging
-from collections.abc import defaultdict
+from collections import defaultdict
 from datetime import datetime, timedelta
 from io import StringIO
 from operator import itemgetter

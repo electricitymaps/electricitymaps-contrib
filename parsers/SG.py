@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import logging
 import re
-from collections.abc import defaultdict
+from collections import defaultdict
 from typing import Optional
 
 import arrow

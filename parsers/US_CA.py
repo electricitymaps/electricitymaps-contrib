@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
-from collections.abc import defaultdict
+from collections import defaultdict
 from datetime import timedelta
 
 import arrow

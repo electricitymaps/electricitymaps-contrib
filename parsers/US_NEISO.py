@@ -4,7 +4,7 @@
 """Real time parser for the New England ISO (NEISO) area."""
 import logging
 import time
-from collections.abc import defaultdict
+from collections import defaultdict
 from datetime import timedelta
 
 import arrow

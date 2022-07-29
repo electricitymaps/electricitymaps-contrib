@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """Real time parser for the state of New York."""
-from collections.abc import defaultdict
+from collections import defaultdict
 from datetime import timedelta
 from operator import itemgetter
 from urllib.error import HTTPError

@@ -1,7 +1,7 @@
 # Archived reason: No longer in use and data url has changed.
 
 import datetime
-from collections.abc import defaultdict
+from collections import defaultdict
 
 import arrow
 import pytz

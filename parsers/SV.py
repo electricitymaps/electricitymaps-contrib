@@ -2,7 +2,7 @@
 
 import json
 import re
-from collections.abc import defaultdict
+from collections import defaultdict
 from operator import itemgetter
 
 import arrow

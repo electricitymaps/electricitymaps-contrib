@@ -3,7 +3,7 @@
 """Parser for the electricity grid of Chile"""
 
 import logging
-from collections.abc import defaultdict
+from collections import defaultdict
 from datetime import datetime, timedelta
 from operator import itemgetter
 
