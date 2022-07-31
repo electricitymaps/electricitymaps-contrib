@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 from urllib.parse import urlencode
 
 # The arrow library is used to handle datetimes
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Response, Session
 
 from .lib.exceptions import ParserException
 from .lib.utils import get_token
 
 
 def fetch_exchange(
-    zone_key1="ES", zone_key2="MA", session=None, target_datetime=None, logger=None
+    zone_key1: str = "ES",
+    zone_key2: str = "MA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
 
     if target_datetime:
@@ -22,7 +27,7 @@ def fetch_exchange(
     # Get ESIOS token
     token = get_token("ESIOS_TOKEN")
 
-    ses = session or requests.Session()
+    ses = session or Session()
 
     # Request headers
     headers = {
@@ -39,7 +44,7 @@ def fetch_exchange(
     query = urlencode(dates)
     url = "https://api.esios.ree.es/indicators/10209?{0}".format(query)
 
-    response = ses.get(url, headers=headers)
+    response: Response = ses.get(url, headers=headers)
     if response.status_code != 200 or not response.text:
         raise ParserException(
             "ESIOS", "Response code: {0}".format(response.status_code)
@@ -74,5 +79,5 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    session = requests.Session()
+    session = Session()
     print(fetch_exchange("ES", "MA", session))
