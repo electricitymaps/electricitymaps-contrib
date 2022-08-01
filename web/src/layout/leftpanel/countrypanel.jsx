@@ -253,6 +253,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   };
 
   if (isLoadingHistories || isLoadingGrid) {
+    // display loading
     return (
       <CountryPanelStyled>
         <div id="country-table-header">
@@ -266,6 +267,158 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     );
   }
 
+  const CountryDetails = () => {
+    return (
+      <React.Fragment>
+        <BySource>
+          {__(timeAggregate !== TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
+        </BySource>
+
+        <CountryTable />
+
+        <hr />
+        <div className="country-history">
+          <CountryHistoryTitle
+            translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
+          />
+          <br />
+          <ProContainer>
+            <Icon iconName="file_download" size={16} />
+            <a
+              href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {__('country-history.Getdata')}
+            </a>
+            <span className="pro">
+              <Icon iconName="lock" size={16} color="#4C4C4C" />
+              pro
+            </span>
+          </ProContainer>
+          {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
+          <CountryHistoryTitle
+            translationKey={
+              tableDisplayEmissions
+                ? `country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+                : `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
+            }
+          />
+          <br />
+          <ProContainer>
+            <Icon iconName="file_download" size={16} />
+            <a
+              href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {__('country-history.Getdata')}
+            </a>
+            <span className="pro">
+              <Icon iconName="lock" size={16} color="#4C4C4C" />
+              pro
+            </span>
+          </ProContainer>
+          <div className="country-history">
+            {isMixGraphOverlayEnabled && (
+              <div className="no-data-overlay visible">
+                <div className="no-data-overlay-background" />
+                <div
+                  className="no-data-overlay-message graph"
+                  dangerouslySetInnerHTML={{
+                    __html: 'Temporarily disabled. <br/> Switch to production view',
+                  }}
+                />
+              </div>
+            )}
+
+            <CountryHistoryMixGraph isOverlayEnabled={isMixGraphOverlayEnabled} />
+          </div>
+
+          {timeAggregate === TIME.HOURLY && (
+            <>
+              <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
+              <CountryHistoryPricesGraph />
+            </>
+          )}
+        </div>
+        <hr />
+        <StyledSources>
+          {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
+          {timeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
+          {__('country-panel.source')}
+          {': '}
+          <a
+            href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="country-data-source">{data.source || '?'}</span>
+          </a>
+          <small>
+            {' '}
+            (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: __(
+                  'country-panel.addeditsource',
+                  'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                ),
+              }}
+            />
+            )
+          </small>{' '}
+          {__('country-panel.helpfrom')}
+          <ContributorList />
+          <SocialButtons hideOnDesktop />
+        </StyledSources>
+      </React.Fragment>
+    );
+  };
+
+  const CountryOverview = () => {
+    return (
+      <React.Fragment>
+        <CountryTableHeaderInner>
+          <CarbonIntensitySquare value={co2Intensity} withSubtext />
+          <div className="country-col country-lowcarbon-wrap">
+            <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
+              <CountryLowCarbonGauge
+                onClick={isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
+                onMouseMove={!isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
+                onMouseOut={() => setTooltip(null)}
+              />
+              {tooltip && <LowCarbonInfoTooltip position={tooltip.position} onClose={() => setTooltip(null)} />}
+            </div>
+            <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
+            <div className="country-col-subtext" />
+          </div>
+          <div className="country-col country-renewable-wrap">
+            <div id="country-renewable-gauge" className="country-gauge-wrap">
+              <CountryRenewableGauge />
+            </div>
+            <div className="country-col-headline">{__('country-panel.renewable')}</div>
+          </div>
+        </CountryTableHeaderInner>
+        <div className="country-show-emissions-wrap">
+          <div className="menu">
+            <button
+              type="button"
+              onClick={switchToZoneProduction}
+              className={!tableDisplayEmissions ? 'selected' : null}
+            >
+              {__(`country-panel.electricity${electricityMixMode}`)}
+            </button>
+            |
+            <button type="button" onClick={switchToZoneEmissions} className={tableDisplayEmissions ? 'selected' : null}>
+              {__('country-panel.emissions')}
+            </button>
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  };
+
   return (
     <CountryPanelStyled>
       <div id="country-table-header">
@@ -276,158 +429,12 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
           data={data}
           isMobile={isMobile}
         />
-        {hasParser && (
-          <React.Fragment>
-            <CountryTableHeaderInner>
-              <CarbonIntensitySquare value={co2Intensity} withSubtext />
-              <div className="country-col country-lowcarbon-wrap">
-                <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
-                  <CountryLowCarbonGauge
-                    onClick={isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
-                    onMouseMove={!isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
-                    onMouseOut={() => setTooltip(null)}
-                  />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} onClose={() => setTooltip(null)} />}
-                </div>
-                <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
-                <div className="country-col-subtext" />
-              </div>
-              <div className="country-col country-renewable-wrap">
-                <div id="country-renewable-gauge" className="country-gauge-wrap">
-                  <CountryRenewableGauge />
-                </div>
-                <div className="country-col-headline">{__('country-panel.renewable')}</div>
-              </div>
-            </CountryTableHeaderInner>
-            <div className="country-show-emissions-wrap">
-              <div className="menu">
-                <button
-                  type="button"
-                  onClick={switchToZoneProduction}
-                  className={!tableDisplayEmissions ? 'selected' : null}
-                >
-                  {__(`country-panel.electricity${electricityMixMode}`)}
-                </button>
-                |
-                <button
-                  type="button"
-                  onClick={switchToZoneEmissions}
-                  className={tableDisplayEmissions ? 'selected' : null}
-                >
-                  {__('country-panel.emissions')}
-                </button>
-              </div>
-            </div>
-          </React.Fragment>
-        )}
+        {hasParser && <CountryOverview />}
       </div>
 
       <CountryPanelWrap>
         {hasParser ? (
-          <React.Fragment>
-            <BySource>
-              {__(timeAggregate !== TIME.HOURLY ? 'country-panel.averagebysource' : 'country-panel.bysource')}
-            </BySource>
-
-            <CountryTable />
-
-            <hr />
-            <div className="country-history">
-              <CountryHistoryTitle
-                translationKey={tableDisplayEmissions ? 'country-history.emissions' : 'country-history.carbonintensity'}
-              />
-              <br />
-              <ProContainer>
-                <Icon iconName="file_download" size={16} />
-                <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {__('country-history.Getdata')}
-                </a>
-                <span className="pro">
-                  <Icon iconName="lock" size={16} color="#4C4C4C" />
-                  pro
-                </span>
-              </ProContainer>
-              {tableDisplayEmissions ? <CountryHistoryEmissionsGraph /> : <CountryHistoryCarbonGraph />}
-              <CountryHistoryTitle
-                translationKey={
-                  tableDisplayEmissions
-                    ? `country-history.emissions${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
-                    : `country-history.electricity${electricityMixMode === 'consumption' ? 'origin' : 'production'}`
-                }
-              />
-              <br />
-              <ProContainer>
-                <Icon iconName="file_download" size={16} />
-                <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {__('country-history.Getdata')}
-                </a>
-                <span className="pro">
-                  <Icon iconName="lock" size={16} color="#4C4C4C" />
-                  pro
-                </span>
-              </ProContainer>
-              <div className="country-history">
-                {isMixGraphOverlayEnabled && (
-                  <div className="no-data-overlay visible">
-                    <div className="no-data-overlay-background" />
-                    <div
-                      className="no-data-overlay-message graph"
-                      dangerouslySetInnerHTML={{
-                        __html: 'Temporarily disabled. <br/> Switch to production view',
-                      }}
-                    />
-                  </div>
-                )}
-
-                <CountryHistoryMixGraph isOverlayEnabled={isMixGraphOverlayEnabled} />
-              </div>
-
-              {timeAggregate === TIME.HOURLY && (
-                <>
-                  <CountryHistoryTitle translationKey={'country-history.electricityprices'} />
-                  <CountryHistoryPricesGraph />
-                </>
-              )}
-            </div>
-            <hr />
-            <StyledSources>
-              {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
-              {timeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
-              {__('country-panel.source')}
-              {': '}
-              <a
-                href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="country-data-source">{data.source || '?'}</span>
-              </a>
-              <small>
-                {' '}
-                (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: __(
-                      'country-panel.addeditsource',
-                      'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
-                    ),
-                  }}
-                />
-                )
-              </small>{' '}
-              {__('country-panel.helpfrom')}
-              <ContributorList />
-              <SocialButtons hideOnDesktop />
-            </StyledSources>
-          </React.Fragment>
+          <CountryDetails />
         ) : (
           <div className="zone-details-no-parser-message" data-test-id="no-parser-message">
             <span

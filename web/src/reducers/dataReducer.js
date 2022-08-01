@@ -41,6 +41,7 @@ const reducer = createReducer(initialState, (builder) => {
         }
       });
 
+      // Populate exchanges. Only available on hourly.
       if (stateAggregation === TIME.HOURLY) {
         Object.entries(exchanges).forEach((entry) => {
           const [key, value] = entry;
@@ -73,6 +74,8 @@ const reducer = createReducer(initialState, (builder) => {
           ...v,
           source: removeDuplicateSources(v.source),
           stateDatetime: new Date(v.stateDatetime),
+          // TODO: Receive this from app-backend
+          isValid: v.co2intensity != null,
         })),
         isExpired: false,
         hasData,

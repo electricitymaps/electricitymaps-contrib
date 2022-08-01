@@ -89,11 +89,12 @@ function combineZoneData(zoneData, aggregate) {
 
   if (!overviews.length) {
     // if there is no data available return one entry with static data
+    // TODO: remove this
     return [{ hasData, hasParser, center }];
   }
 
   const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData, center };
+    return { ...overview, ...details[idx], hasParser, center };
   });
 
   return combined;
