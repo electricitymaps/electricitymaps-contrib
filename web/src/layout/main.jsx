@@ -1,12 +1,7 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-// TODO(olc): re-enable this rule
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
@@ -19,7 +14,7 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useCustomDatetime, useHeaderVisible } from '../hooks/router';
+import { useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
@@ -31,7 +26,10 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
+import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
+import HistoricalViewIntroModal from '../components/historicalviewintromodal';
+import ResponsiveSheet from './responsiveSheet';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -63,19 +61,9 @@ const NewVersionButton = styled.button`
   cursor: pointer;
 `;
 
-const ToggleWrapper = styled.div`
+const HiddenOnMobile = styled.div`
   @media (max-width: 767px) {
     display: none;
-  }
-`;
-
-const StyledBottomSheet = styled(BottomSheet)`
-  [data-rsbs-overlay] {
-    z-index: ${(props) => (props.behind ? 0 : 5)};
-  }
-  [data-rsbs-scroll] {
-    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
-    overflow: hidden;
   }
 `;
 
@@ -85,7 +73,6 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
-  const datetime = useCustomDatetime();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
@@ -139,7 +126,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
               <Map />
               <MobileLayerButtons />
               <Legend />
-              <ToggleWrapper className="controls-container">
+              <HiddenOnMobile className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
                   onChange={(value) => dispatchApplication('electricityMixMode', value)}
@@ -150,14 +137,14 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
                   value={electricityMixMode}
                   tooltipStyle={{ left: 4, width: 204, top: 49 }}
                 />
-              </ToggleWrapper>
+              </HiddenOnMobile>
               <LayerButtons />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <StyledBottomSheet open snapPoints={() => [60, 160]} blocking={false}>
+              <ResponsiveSheet>
                 <TimeController />
-              </StyledBottomSheet>
+              </ResponsiveSheet>
             ) : (
               <TimeController />
             )}
@@ -166,15 +153,15 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
             <div className="inner">
               {__('misc.oops')}{' '}
-              <a
-                href=""
+              <button
+                type="button"
                 onClick={(e) => {
-                  dispatch({ type: 'GRID_DATA_FETCH_REQUESTED', payload: { datetime } });
+                  dispatch(GRID_DATA_FETCH_REQUESTED());
                   e.preventDefault();
                 }}
               >
                 {__('misc.retrynow')}
-              </a>
+              </button>
               .
             </div>
           </div>
@@ -191,6 +178,7 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
           {/* end #inner */}
         </div>
       </div>
+      <HistoricalViewIntroModal />
       <OnboardingModal />
       <InfoModal />
       <FAQModal />

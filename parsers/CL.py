@@ -12,6 +12,7 @@ import requests
 
 from parsers.lib.config import refetch_frequency
 
+from .lib.exceptions import ParserException
 from .lib.validation import validate
 
 # Historical API
@@ -55,15 +56,19 @@ def production_processor_live(json_tot, json_ren):
     if json_ren["data"][1]["key"] == "ENERGÍA SOLAR":
         rawgen_sol = json_ren["data"][1]["values"]
     else:
-        raise RuntimeError(
-            f"Unexpected data label. Expected 'ENERGÍA SOLAR' and got {json_ren['data'][1]['key']}"
+        raise ParserException(
+            "CL.py",
+            f"Unexpected data label. Expected 'ENERGÍA SOLAR' and got {json_ren['data'][1]['key']}",
+            "CL",
         )
 
     if json_ren["data"][0]["key"] == "ENERGÍA EÓLICA":
         rawgen_wind = json_ren["data"][0]["values"]
     else:
-        raise RuntimeError(
-            f"Unexpected data label. Expected 'ENERGÍA EÓLICA' and got {json_ren['data'][0]['key']}"
+        raise ParserException(
+            "CL.py",
+            f"Unexpected data label. Expected 'ENERGÍA EÓLICA' and got {json_ren['data'][0]['key']}",
+            "CL",
         )
 
     mapped_totals = []

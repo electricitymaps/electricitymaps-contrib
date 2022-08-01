@@ -3,7 +3,6 @@ import { NavigationControl } from 'react-map-gl';
 import styled from 'styled-components';
 
 import { useTranslation } from '../helpers/translation';
-import { useFeatureToggle } from '../hooks/router';
 
 // override mapbox styling
 const Wrapper = styled.div`
@@ -16,12 +15,7 @@ const Wrapper = styled.div`
   user-select: none;
 
   @media screen and (max-width: 767px) {
-    top: 66px;
-    ${({ isHiddenOnMobile }) =>
-      isHiddenOnMobile &&
-      `
-      display: none;
-    `}
+    display: none;
   }
 
   &:hover {
@@ -42,12 +36,11 @@ const Wrapper = styled.div`
 `;
 
 export const ZoomControls = () => {
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
   const { __ } = useTranslation();
 
   return (
     // Note: the id property is being used by Cordova app
-    <Wrapper id="zoom-controls" isHiddenOnMobile={isHistoryFeatureEnabled}>
+    <Wrapper id="zoom-controls">
       <NavigationControl
         showCompass={false}
         zoomInLabel={__('tooltips.zoomIn')}

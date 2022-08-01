@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { stack, stackOffsetDiverging } from 'd3-shape';
 
@@ -10,17 +10,17 @@ import GraphHoverLine from './graphhoverline';
 import ValueAxis from './valueaxis';
 import TimeAxis from './timeaxis';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
+import { useCurrentZoneHistoryDatetimes } from '../../hooks/redux';
+
 import { useSelector } from 'react-redux';
 
 const X_AXIS_HEIGHT = 20;
 const Y_AXIS_WIDTH = 40;
 const Y_AXIS_PADDING = 4;
 
-const getDatetimes = (data) => (data || []).map((d) => d.datetime);
-
-const getTimeScale = (width, datetimes, startTime, endTime) =>
+const getTimeScale = (width, startTime, endTime) =>
   scaleTime()
-    .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
+    .domain([new Date(startTime), new Date(endTime)])
     .range([0, width]);
 
 const getTotalValues = (layers) => {
@@ -63,6 +63,7 @@ const AreaGraph = React.memo(
       * `datetime` timestamp
   */
     data,
+    testId,
     /*
     `layerKey` should be an array of strings denoting the graph layers (in bottom-to-top order).
   */
@@ -82,35 +83,14 @@ const AreaGraph = React.memo(
   */
     markerFill,
     /*
-    `startTime` and `endTime` are timestamps denoting the time interval of the rendered part of the graph.
-    If not provided, they'll be inferred from timestamps of the first/last datapoints.
-  */
-    startTime,
-    endTime,
-    /*
     `valueAxisLabel` is a string label for the values (Y-axis) scale.
   */
     valueAxisLabel,
-    /*
-    Mouse event callbacks for the graph background and individual layers respectively.
-  */
-    backgroundMouseMoveHandler,
-    backgroundMouseOutHandler,
-    layerMouseMoveHandler,
-    layerMouseOutHandler,
     /*
     Marker hooks that get called when the marker selection gets updated or hidden
   */
     markerUpdateHandler,
     markerHideHandler,
-    /*
-    `selectedTimeIndex` is am integer value representing the time index of the datapoint in focus.
-  */
-    selectedTimeIndex,
-    /*
-    `selectedLayerIndex` is an integer value representing the layer index of the datapoint in focus.
-  */
-    selectedLayerIndex,
     /*
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
@@ -119,6 +99,7 @@ const AreaGraph = React.memo(
     Height of the area graph canvas.
   */
     height = '10em',
+    isOverlayEnabled,
   }) => {
     const {
       ref,
@@ -136,13 +117,49 @@ const AreaGraph = React.memo(
     // Generate graph scales
     const totalValues = useMemo(() => getTotalValues(layers), [layers]);
     const valueScale = useMemo(() => getValueScale(containerHeight, totalValues), [containerHeight, totalValues]);
-    const datetimes = useMemo(() => getDatetimes(data), [data]);
+    const datetimes = useCurrentZoneHistoryDatetimes();
+
+    const startTime = datetimes.at(0);
+    const lastTime = datetimes.at(-1);
+    const intervalMs = datetimes.length > 1 ? lastTime.getTime() - datetimes.at(-2).getTime() : undefined;
+    // The endTime needs to include the last interval so it can be shown
+    const endTime = useMemo(() => new Date(lastTime.getTime() + intervalMs), [lastTime, intervalMs]);
+    const datetimesWithNext = useMemo(() => [...datetimes, endTime], [datetimes, endTime]);
+
     const timeScale = useMemo(
-      () => getTimeScale(containerWidth, datetimes, startTime, endTime),
-      [containerWidth, datetimes, startTime, endTime]
+      () => getTimeScale(containerWidth, startTime, endTime),
+      [containerWidth, startTime, endTime]
     );
 
     const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+    const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+
+    const [graphIndex, setGraphIndex] = useState(null);
+    const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+
+    const hoverLineTimeIndex = graphIndex ?? selectedZoneTimeIndex;
+
+    // Mouse action handlers
+    const mouseMoveHandler = useMemo(
+      () => (timeIndex, layerIndex) => {
+        setGraphIndex(timeIndex);
+        if (layers.length <= 1) {
+          // Select the first (and only) layer even when hovering over background
+          setSelectedLayerIndex(0);
+        } else {
+          // use the selected layer (or undefined to hide the tooltips)
+          setSelectedLayerIndex(layerIndex);
+        }
+      },
+      [layers, setGraphIndex, setSelectedLayerIndex]
+    );
+    const mouseOutHandler = useMemo(
+      () => () => {
+        setGraphIndex(null);
+        setSelectedLayerIndex(null);
+      },
+      [setGraphIndex, setSelectedLayerIndex]
+    );
 
     // Don't render the graph at all if no layers are present
     if (isEmpty(layers)) {
@@ -150,33 +167,35 @@ const AreaGraph = React.memo(
     }
 
     return (
-      <svg height={height} ref={ref} style={{ overflow: 'visible' }}>
+      <svg data-test-id={testId} height={height} ref={ref} style={{ overflow: 'visible' }}>
         <GraphBackground
           timeScale={timeScale}
           valueScale={valueScale}
           datetimes={datetimes}
-          mouseMoveHandler={backgroundMouseMoveHandler}
-          mouseOutHandler={backgroundMouseOutHandler}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={node}
         />
         <AreaGraphLayers
           layers={layers}
-          datetimes={datetimes}
+          datetimes={datetimesWithNext}
           timeScale={timeScale}
           valueScale={valueScale}
-          mouseMoveHandler={layerMouseMoveHandler}
-          mouseOutHandler={layerMouseOutHandler}
+          mouseMoveHandler={mouseMoveHandler}
+          mouseOutHandler={mouseOutHandler}
           isMobile={isMobile}
           svgNode={node}
         />
-        <TimeAxis
-          scale={timeScale}
-          transform={`translate(-1 ${containerHeight - 1})`}
-          className="x axis"
-          selectedTimeAggregate={selectedTimeAggregate}
-          datetimes={datetimes}
-        />
+        {!isOverlayEnabled && (
+          <TimeAxis
+            scale={timeScale}
+            transform={`translate(-1 ${containerHeight - 1})`}
+            className="x axis"
+            selectedTimeAggregate={selectedTimeAggregate}
+            datetimes={datetimesWithNext}
+          />
+        )}
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
           layers={layers}
@@ -186,7 +205,7 @@ const AreaGraph = React.memo(
           markerUpdateHandler={markerUpdateHandler}
           markerHideHandler={markerHideHandler}
           selectedLayerIndex={selectedLayerIndex}
-          selectedTimeIndex={selectedTimeIndex}
+          selectedTimeIndex={hoverLineTimeIndex}
           svgNode={node}
         />
       </svg>

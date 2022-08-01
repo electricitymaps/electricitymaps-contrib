@@ -2,9 +2,6 @@ import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { arc } from 'd3-shape';
 
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-// TODO: re-enable rule
-
 /*
   Note: Motion has a bug https://github.com/chenglou/react-motion/issues/567
   that causes a Warning: Can't perform a React state update on an unmounted component
@@ -31,9 +28,13 @@ const CircularGauge = React.memo(
 
     return (
       <div
-        onClick={(e) => onClick && onClick(e.clientX, e.clientY)}
+        role="tooltip"
+        aria-hidden="true"
+        onClick={() => onClick && onClick()}
         onMouseOver={() => onMouseOver && onMouseOver()}
+        onFocus={() => onMouseOver && onMouseOver()}
         onMouseOut={() => onMouseOut && onMouseOut()}
+        onBlur={() => onMouseOut && onMouseOut()}
         onMouseMove={(e) => onMouseMove && onMouseMove(e.clientX, e.clientY)}
       >
         <svg style={{ pointerEvents: 'none' }} width={radius * 2} height={radius * 2}>

@@ -34,6 +34,8 @@ def fetch_all() -> list:
     soup = BeautifulSoup(second.content, "lxml")
 
     values: list = soup.find_all("span", class_="statusVal")
+    if len(values) == 0:
+        raise ValueError("Could not parse IEC dashboard")
     del values[1]
 
     cleaned_list = []
@@ -76,7 +78,11 @@ def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) 
 
 def extract_price_date(soup):
     """Fetch updated price date."""
-    date_str = soup.find("span", lang="HE").text
+    span_soup = soup.find("span", lang="HE")
+    if span_soup:
+        date_str = span_soup.text
+    else:
+        raise ValueError("Could not parse IEC price date")
     date_str = date_str.split(sep=" - ")
     date_str = date_str.pop(1)
 

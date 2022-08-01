@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@globules-io/cordova-plugin-ios-xhr": "^1.2.4",
     "app-icon": "^0.13.2",
     "code-push": "^3.0.1",
     "cordova-plugin-advanced-http": "^3.2.2",
@@ -45,7 +46,6 @@
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-file": "^6.0.2",
-    "cordova-plugin-zip": "^3.1.0",
-    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git"
+    "cordova-plugin-zip": "^3.1.0"
   }
 }

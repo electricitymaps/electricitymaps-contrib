@@ -60,31 +60,31 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
   const currentView = views[currentViewIndex];
 
   const RightButton = isOnLastView() ? (
-    <div className="modal-right-button green" onClick={onDismiss}>
+    <button className="modal-right-button green" onClick={onDismiss}>
       <Icon iconName="check" />
-    </div>
+    </button>
   ) : (
-    <div className="modal-right-button" onClick={handleForward}>
+    <button className="modal-right-button" onClick={handleForward}>
       <Icon iconName="arrow_forward" />
-    </div>
+    </button>
   );
 
   return (
     <React.Fragment>
-      <div className="modal-background-overlay" onClick={onDismiss} />
-      <div className="modal" data-test-id={modalName}>
+      <div className="modal-background-overlay" onClick={onDismiss} aria-hidden />
+      <div className="modal" data-test-id={modalName} aria-modal="true">
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
-            <div className="modal-left-button" onClick={handleBack}>
+            <button className="modal-left-button" onClick={handleBack}>
               <Icon iconName="arrow_back" />
-            </div>
+            </button>
           )}
         </div>
         <div className={`modal-body ${currentView.headerImage ? 'fixed-height' : ''}`}>
           <div className="modal-close-button-container">
-            <div className="modal-close-button" onClick={onDismiss}>
+            <button className="modal-close-button" onClick={onDismiss}>
               <Icon iconName="close" />
-            </div>
+            </button>
           </div>
           <div
             className={`modal-header ${currentView.headerImage ? 'header-image' : ''} ${

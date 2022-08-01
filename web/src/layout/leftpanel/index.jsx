@@ -1,8 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-// TODO: re-enable rules
-
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -10,7 +5,6 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
 import { useSearchParams } from '../../hooks/router';
-import { useSmallLoaderVisible } from '../../hooks/redux';
 import LastUpdatedTime from '../../components/lastupdatedtime';
 import Icon from '../../components/icon';
 
@@ -40,15 +34,6 @@ const HandleLegacyRoutes = () => {
 
 // TODO: Move all styles from styles.css to here
 
-const SmallLoader = styled.span`
-  background: transparent url(${resolvePath('images/loading/loading64_FA.gif')}) no-repeat center center;
-  background-size: 1.5em;
-  display: inline-block;
-  margin-right: 1em;
-  width: 1.5em;
-  height: 1em;
-`;
-
 const mapStateToProps = (state) => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
@@ -63,6 +48,14 @@ const MobileHeader = styled.div`
   @media (min-width: 768px) {
     display: none !important;
   }
+
+  padding-top: 0px;
+
+  /* iOS Safari 11.2, Safari 11 */
+  padding-top: constant(safe-area-inset-top, 0px);
+
+  /* iOS Safari 11.4+, Safari 11.1+, Chrome 69+, Opera 56+ */
+  padding-top: env(safe-area-inset-top, 0px);
 `;
 
 const RightHeader = styled.div`
@@ -92,7 +85,6 @@ const Container = styled.div`
 `;
 
 const LeftPanel = ({ isLeftPanelCollapsed }) => {
-  const isLoaderVisible = useSmallLoaderVisible();
   const location = useLocation();
 
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
@@ -106,7 +98,6 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
             <div className="image" id="electricitymap-logo" />
           </div>
           <RightHeader className="right-header">
-            {isLoaderVisible && <SmallLoader />}
             <LastUpdatedTime />
           </RightHeader>
         </div>
@@ -118,6 +109,7 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
         role="button"
         tabIndex="0"
+        aria-label="toggle left panel visibility"
       >
         <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
       </LeftPanelCollapseButton>
