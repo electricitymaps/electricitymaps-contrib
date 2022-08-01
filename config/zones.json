@@ -6811,11 +6811,11 @@
       [38.47779381600009, -21.626451924999927]
     ],
     "capacity": {
-      "coal": 38.773,
-      "nuclear": 1.86,
-      "hydro": 0.6,
-      "hydro storage": 2.724,
-      "oil": 2.409
+      "coal": 38773,
+      "nuclear": 1860,
+      "hydro": 600,
+      "hydro storage": 2724,
+      "oil": 2409
     },
     "contributors": ["IV1T3"],
     "parsers": {
