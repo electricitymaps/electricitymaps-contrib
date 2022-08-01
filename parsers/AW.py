@@ -5,6 +5,8 @@ import datetime
 import arrow
 import requests
 
+from .lib.exceptions import ParserException
+
 
 def fetch_production(zone_key="AW", session=None, target_datetime=None, logger=None):
     if target_datetime:
@@ -37,8 +39,10 @@ def fetch_production(zone_key="AW", session=None, target_datetime=None, logger=N
     )
 
     if (sources_total / reported_total) > 1.1:
-        raise RuntimeError(
-            f"AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower"
+        raise ParserException(
+            "AW.py",
+            f"AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower",
+            zone_key,
         )
 
     missing_from_total = reported_total - sources_total
