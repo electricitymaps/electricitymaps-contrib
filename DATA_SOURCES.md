@@ -335,6 +335,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- South Africa:
+  - [Eskom] (https://www.eskom.co.za/wp-content/uploads/2021/08/2021IntegratedReport.pdf)
 - South Korea:
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
   - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
