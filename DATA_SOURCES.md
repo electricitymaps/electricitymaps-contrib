@@ -111,6 +111,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Singapore (Solar): [EMA](https://www.ema.gov.sg/solarmap.aspx)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Slovenia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- South Africa: [Eskom](https://www.eskom.co.za/dataportal/supply-side/station-build-up-for-the-last-7-days/)
 - South Korea (Nuclear): [KHNP](http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302)
 - South Korea (Hydro): [KHNP](http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203)
 - South Korea (Load): [KPX](http://power.kpx.or.kr/powerinfo_en.php)
@@ -359,8 +360,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Thailand:
-  - EGAT's production capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=452&Itemid=116)
-  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=355&Itemid=116)
+  - EGAT's production capacity: [EGAT](https://www.egat.co.th/home/statistics-all-egat/)
+  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/home/statistics-all-3rdparty/)
 - Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)

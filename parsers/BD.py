@@ -8,6 +8,8 @@ from datetime import datetime
 import arrow
 import pandas as pd
 
+from .lib.exceptions import ParserException
+
 GENERATION_MAPPING = {
     "Gas (Public)": "gas_public",
     "Gas (Private)": "gas_private",
@@ -70,8 +72,8 @@ def new_format_converter(df, logger):
     try:
         time_index = df.index.get_loc("24:00")
     except KeyError:
-        raise RuntimeError(
-            "Structure of xlsm file for BD has altered, unable to parse."
+        raise ParserException(
+            "BD.py", "Structure of xlsm file for BD has altered, unable to parse.", "BD"
         )
 
     df = df.iloc[: time_index + 1]

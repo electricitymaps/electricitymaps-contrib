@@ -4361,15 +4361,15 @@
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 996.94,
+      "biomass": 1006.95,
       "coal": 6067.5,
-      "gas": 27356.0,
+      "gas": 28695.0,
       "geothermal": 0.3,
-      "hydro": 6993.73,
+      "hydro": 7015.73,
       "hydro storage": 1000.0,
       "nuclear": 0,
       "oil": 1497.4,
-      "solar": 442.8,
+      "solar": 487.8,
       "unknown": 0,
       "wind": 1447.69
     },
@@ -6810,7 +6810,11 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
-    "timezone": null
+    "contributors": ["IV1T3"],
+    "parsers": {
+      "production": "ZA.fetch_production"
+    },
+    "timezone": "Africa/Johannesburg"
   },
   "ZM": {
     "bounding_box": [
