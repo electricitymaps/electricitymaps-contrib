@@ -23,7 +23,7 @@ import './helpers/i18n';
 
 // Initial greeting message for curious people
 console.log(
-  `%cWelcome to electricityMap!
+  `%cWelcome to Electricity Maps!
 🌍 %cReady to work on fixing the climate full-time?
   https://electricitymap.org/jobs
 🐙 Got comments or want to contribute?
