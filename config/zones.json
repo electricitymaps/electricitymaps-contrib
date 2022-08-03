@@ -6810,6 +6810,13 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
+    "capacity": {
+      "coal": 38773,
+      "nuclear": 1860,
+      "hydro": 600,
+      "hydro storage": 2724,
+      "oil": 2409
+    },
     "contributors": ["IV1T3"],
     "parsers": {
       "production": "ZA.fetch_production"
