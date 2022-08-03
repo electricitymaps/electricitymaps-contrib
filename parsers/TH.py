@@ -14,9 +14,9 @@ TZ = "Asia/Bangkok"
 
 
 def fetch_EGAT() -> str:
-    """Pull from Min. of Energy for now as I didn't wanted to write a parser for websocket yet"""
-    """The website took around 15s to load, unlike the websocket ver."""
-    """Consumption = Production + Import(the latter is done separately)"""
+    # Pull from Min. of Energy for now as I didn't want to write a parser for websocket yet.
+    # The website took around 15s to load, unlike the websocket ver.
+    # Consumption = Production + Import (the latter is done separately)
     with get(EGAT_GENERATION) as response:
         EGAT_soup = BeautifulSoup(response.content, "lxml")
 
@@ -33,11 +33,11 @@ def fetch_price(
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    """Fetch price from MEA table."""
+    # Fetch price from MEA table.
     with get(MEA_PRICE) as response:
         MEA_soup = BeautifulSoup(response.content, "lxml")
 
-    """'Over 400 kWh (up from 401st)' from Table 1.1"""
+    # 'Over 400 kWh (up from 401st)' from Table 1.1
     unit_price_table = MEA_soup.find_all("table")[1]
     price = unit_price_table.find_all("td")[19]
 
@@ -59,7 +59,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    """All mapped to unknown as there is no available breakdown"""
+    # All mapped to unknown as there is no available breakdown
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
@@ -77,11 +77,10 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    """all mapped to unknown as there is no available breakdown"""
     return {
         "zoneKey": zone_key,
         "datetime": arrow.now(TZ).datetime,
-        "consumption": {"unknown": float(fetch_EGAT())},
+        "consumption": float(fetch_EGAT()),
         "source": EGAT_URL,
     }
 

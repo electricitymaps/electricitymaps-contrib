@@ -44,6 +44,12 @@ const Container = styled.div`
   /* This makes sure the map and the other content doesn't
   go under the SharedHeader which has a fixed position. */
   height: 58px;
+
+  // Provides extra space for Ipad
+  padding-top: 0px;
+  padding-top: constant(safe-area-inset-top, 0px);
+  padding-top: env(safe-area-inset-top, 0px);
+
   @media (max-width: 767px) {
     display: none !important;
   }

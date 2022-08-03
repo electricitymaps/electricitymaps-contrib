@@ -5,7 +5,8 @@ import { useTrackEvent } from '../hooks/tracking';
 const Wrapper = styled.header`
   align-items: center;
   background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  // Shadow only towards bottom to allow having space above header
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   color: black;
   display: flex;

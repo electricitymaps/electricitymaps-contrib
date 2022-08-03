@@ -16,3 +16,5 @@ web/public/dist/
 web/public/images/
 
 mockserver/public
+
+.github/ISSUE_TEMPLATE/

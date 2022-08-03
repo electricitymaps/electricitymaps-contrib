@@ -9,6 +9,8 @@ import arrow
 import pandas as pd
 from requests import Session, cookies
 
+from .lib.exceptions import ParserException
+
 # Abbreviations:
 # JP-HKD : Hokkaido
 # JP-TH  : Tohoku (incl. Niigata)
@@ -161,10 +163,11 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str
     response_content = r.json()
 
     if response_content["root"]["errMessage"]:
-        raise RuntimeError(
+        raise ParserException(
+            "occtonet.py",
             "Headers not available due to {}".format(
                 response_content["root"]["errMessage"]
-            )
+            ),
         )
     else:
         form_data["msgArea"] = response_content["root"]["bizRoot"]["header"]["msgArea"][
@@ -188,10 +191,11 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str
     response_content = r.json()
 
     if response_content["root"]["errFields"]:
-        raise RuntimeError(
+        raise ParserException(
+            "occtonet.py",
             "Request token not available due to {}".format(
                 response_content["root"]["errFields"]
-            )
+            ),
         )
     else:
         form_data["downloadKey"] = response_content["root"]["bizRoot"]["header"][

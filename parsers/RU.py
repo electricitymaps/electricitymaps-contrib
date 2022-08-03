@@ -19,7 +19,7 @@ from requests import Session
 
 # http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
 HOST = "https://858127-cc16935.tmweb.ru"
-BASE_EXCHANGE_URL = f"${HOST}/webapi/api/flowDiagramm/GetData?"
+BASE_EXCHANGE_URL = f"{HOST}/webapi/api/flowDiagramm/GetData?"
 
 MAP_GENERATION_1 = {
     "P_AES": "nuclear",

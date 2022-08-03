@@ -7,6 +7,8 @@ from typing import Optional
 import arrow
 from requests import Session
 
+from .lib.exceptions import ParserException
+
 
 def fetch_production(
     zone_key: str = "AW",
@@ -44,8 +46,10 @@ def fetch_production(
     )
 
     if (sources_total / reported_total) > 1.1:
-        raise RuntimeError(
-            f"AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower"
+        raise ParserException(
+            "AW.py",
+            f"AW parser reports fuel sources add up to {sources_total} but total generation {reported_total} is lower",
+            zone_key,
         )
 
     missing_from_total = reported_total - sources_total

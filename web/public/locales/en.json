@@ -50,6 +50,7 @@
     "electricityproduction": "Electricity production",
     "electricityconsumption": "Electricity consumption",
     "bysource": "by source",
+    "averagebysource": "average by source",
     "emissions": "Carbon emissions",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">add or edit source</a>",
     "helpfrom": "with help from",
