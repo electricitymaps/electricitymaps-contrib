@@ -2,14 +2,15 @@
 
 """Parser for the Southwest Power Pool area of the United States."""
 
-import datetime
+
+from datetime import datetime, timedelta
 from io import StringIO
-from logging import getLogger
+from logging import Logger, getLogger
+from typing import Optional
 
 import pandas as pd
-import requests
 from dateutil import parser, tz
-from pandas.tseries.offsets import DateOffset
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -37,17 +38,17 @@ TIE_MAPPING = {"US-MISO->US-SPP": ["AMRN", "DPC", "GRE", "MDU", "MEC", "NSP", "O
 # Energy storage situation unclear as of 16/03/2018, likely to change quickly in future.
 
 
-def get_data(url, session=None):
+def get_data(url, session: Optional[Session] = None):
     """Returns a pandas dataframe."""
 
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(url, verify=False)
     df = pd.read_csv(StringIO(req.text))
 
     return df
 
 
-def data_processor(df, logger) -> list:
+def data_processor(df, logger: Logger) -> list:
     """
     Takes a dataframe and logging instance as input.
     Checks for new generation types and logs a warning if any are found.
@@ -111,14 +112,17 @@ def data_processor(df, logger) -> list:
     return processed_data
 
 
-@refetch_frequency(datetime.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
-) -> dict:
+    zone_key: str = "US-SPP",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
 
     if target_datetime is not None:
-        current_year = datetime.datetime.now().year
+        current_year = datetime.now().year
         target_year = target_datetime.year
 
         # Check if datetime is too far in the past
@@ -140,7 +144,7 @@ def fetch_production(
             raw_data["GMT MKT Interval"], utc=True
         )
         end = target_datetime
-        start = target_datetime - datetime.timedelta(days=1)
+        start = target_datetime - timedelta(days=1)
         start = max(start, raw_data["GMT MKT Interval"].min())
         raw_data = raw_data[
             (raw_data["GMT MKT Interval"] >= start)
@@ -169,7 +173,11 @@ def fetch_production(
 
 # NOTE disabled until discrepancy in MISO SPP flows is resolved.
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """
     Requests the last 24 hours of power exchange (in MW) between two zones."""
@@ -211,14 +219,17 @@ def fetch_exchange(
 
 
 def fetch_load_forecast(
-    zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key: str = "US-SPP",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
-        target_datetime = datetime.datetime.now()
+        target_datetime = datetime.now()
 
-    if isinstance(target_datetime, datetime.datetime):
+    if isinstance(target_datetime, datetime):
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)
@@ -249,16 +260,19 @@ def fetch_load_forecast(
     return data
 
 
-@refetch_frequency(datetime.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_wind_solar_forecasts(
-    zone_key="US-SPP", session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key: str = "US-SPP",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the load forecast (in MW) of a given zone."""
 
     if not target_datetime:
-        target_datetime = datetime.datetime.now()
+        target_datetime = datetime.now()
 
-    if isinstance(target_datetime, datetime.datetime):
+    if isinstance(target_datetime, datetime):
         dt = target_datetime
     else:
         dt = parser.parse(target_datetime)

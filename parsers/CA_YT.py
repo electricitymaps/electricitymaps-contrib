@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
+
 import arrow
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 timezone = "America/Whitehorse"
 
 
 def fetch_production(
-    zone_key="CA-YT", session=None, target_datetime=None, logger=None
+    zone_key: str = "CA-YT",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given region."""
 
@@ -47,7 +54,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
 
     url = "http://www.yukonenergy.ca/consumption/chart_current.php?chart=current&width=420"
     response = requests_obj.get(url)

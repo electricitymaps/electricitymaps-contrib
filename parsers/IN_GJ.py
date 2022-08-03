@@ -3,11 +3,13 @@
 import collections
 import itertools
 import re
-from logging import getLogger
+from datetime import datetime
+from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 from .lib import IN, web, zonekey
 from .lib.validation import validate
@@ -57,8 +59,12 @@ def split_and_sum(expression) -> float:
     return total
 
 
-def fetch_data(zone_key, session=None, logger=None):
-    session = session or requests.session()
+def fetch_data(
+    zone_key: str,
+    session: Optional[Session] = None,
+    logger: Logger = getLogger(__name__),
+):
+    session = session or Session()
 
     values = collections.Counter()
     zonekey.assert_zone_key(zone_key, "IN-GJ")
@@ -142,10 +148,13 @@ def fetch_data(zone_key, session=None, logger=None):
 
 
 def fetch_production(
-    zone_key="IN-GJ", session=None, target_datetime=None, logger=getLogger("IN-GJ")
-) -> list:
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
-    session = session or requests.session()
+    session = session or Session()
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -176,10 +185,13 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="IN-GJ", session=None, target_datetime=None, logger=getLogger("IN-GJ")
+    zone_key="IN-GJ",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger("IN-GJ"),
 ) -> dict:
     """Method to get consumption data of Gujarat."""
-    session = session or requests.session()
+    session = session or Session()
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -196,6 +208,6 @@ def fetch_consumption(
 
 
 if __name__ == "__main__":
-    session = requests.Session()
+    session = Session()
     print(fetch_production("IN-GJ", session))
     print(fetch_consumption("IN-GJ", session))

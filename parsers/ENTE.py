@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 # This parser gets all real time interconnection flows from the
 # Central American Electrical Interconnection System (SIEPAC).
@@ -25,10 +27,13 @@ JSON_MAPPING = {
 
 
 def fetch_production(
-    zone_key="HN", session=None, target_datetime=None, logger=None
+    zone_key: str = "HN",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
 
-    r = session or requests.session()
+    r = session or Session()
     response = r.get(DATA_URL).json()
 
     # Total production data for HN from the ENTE-data is the 57th element in the JSON ('4SISTEMA.GTOT.OSYMGENTOTR.-.MW')
@@ -66,7 +71,11 @@ def extract_exchange(raw_data, exchange) -> Optional[float]:
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Gets an exchange pair from the SIEPAC system."""
     if target_datetime:
@@ -77,7 +86,7 @@ def fetch_exchange(
     if sorted_zones not in JSON_MAPPING.keys():
         raise NotImplementedError("This exchange is not implemented.")
 
-    s = session or requests.Session()
+    s = session or Session()
 
     raw_data = s.get(DATA_URL).json()
     flow = round(extract_exchange(raw_data, sorted_zones), 1)

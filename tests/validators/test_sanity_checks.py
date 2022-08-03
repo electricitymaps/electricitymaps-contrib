@@ -1,7 +1,7 @@
 import pandas as pd
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG
-from electricitymap.contrib.validators.sanity_checks import (
+from validators.sanity_checks import (
     validate_exchange_netflow_doesnt_exceed_capacity,
     validate_exchange_netflow_is_plausible,
     validate_positive_production,

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
-import logging
+
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -63,7 +65,9 @@ def fetch_swiss_exchanges(session, target_datetime, logger):
     return swiss_transmissions
 
 
-def fetch_swiss_consumption(session, target_datetime, logger):
+def fetch_swiss_consumption(
+    session: Session, target_datetime: datetime, logger: Logger
+):
     """Returns the total consumption of Switzerland."""
     consumptions = ENTSOE.fetch_consumption(
         zone_key="CH", session=session, target_datetime=target_datetime, logger=logger
@@ -73,10 +77,10 @@ def fetch_swiss_consumption(session, target_datetime, logger):
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="CH",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "CH",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """
     Returns the total production by type for Switzerland.
@@ -89,7 +93,7 @@ def fetch_production(
         if target_datetime
         else arrow.now(tz="Europe/Zurich")
     )
-    r = session or requests.session()
+    r = session or Session()
 
     exchanges = fetch_swiss_exchanges(r, now, logger)
     consumptions = fetch_swiss_consumption(r, now, logger)
