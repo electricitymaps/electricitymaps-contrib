@@ -340,7 +340,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
                 <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+                  href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -363,7 +363,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
                 <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+                  href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                   rel="noreferrer"
                 >

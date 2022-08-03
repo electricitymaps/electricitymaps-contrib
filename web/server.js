@@ -61,8 +61,8 @@ const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`)
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 // API
-app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
-app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymaps.com${req.originalUrl}`));
+app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymaps.com${req.originalUrl}`));
 
 // Source maps
 app.all('/dist/*.map', (req, res, next) => {
@@ -119,7 +119,7 @@ app.use('/', (req, res) => {
       }
       if (!authorized) {
         res.statusCode = 401;
-        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymaps.com"');
         res.end('Access denied');
         return;
       }
@@ -149,7 +149,7 @@ app.use('/', (req, res) => {
           : (relativePath) =>
               // Note we here point to static hosting in order to make
               // sure we can serve older bundle versions
-              `https://static.electricitymap.org/public_web/${relativePath}`,
+              `https://static.electricitymaps.com/public_web/${relativePath}`,
       canonicalUrl,
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale || 'en'],
@@ -161,7 +161,7 @@ app.use('/', (req, res) => {
 if (isProduction) {
   app.get('/*', (req, res) =>
     // Redirect all requests except root to static
-    res.redirect(`https://static.electricitymap.org/public_web${req.originalUrl}`)
+    res.redirect(`https://static.electricitymaps.com/public_web${req.originalUrl}`)
   );
 }
 

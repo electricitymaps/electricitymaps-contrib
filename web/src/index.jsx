@@ -25,7 +25,7 @@ import './helpers/i18n';
 console.log(
   `%cWelcome to Electricity Maps!
 🌍 %cReady to work on fixing the climate full-time?
-  https://electricitymap.org/jobs
+  https://electricitymaps.com/jobs
 🐙 Got comments or want to contribute?
   https://github.com/electricitymap/electricitymap-contrib`,
   'color: green; font-weight: bold',

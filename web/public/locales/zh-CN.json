@@ -69,8 +69,8 @@
     "oops": "哎呀！ 我们无法连线到服务器。 我们会在几秒钟后再试一次。",
     "newversion": "有新版本可用！按<a onClick=\"location.reload(true);\">这里</a>重新载入。",
     "webgl-not-supported": "由于该浏览器不支持WebGL，无法渲染地图。",
-    "database-ad": "寻找历史数据？<a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">看看我们的数据库！</a>",
-    "api-ad": "想要在您的应用程序或设备上获得实时数据？ <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">试试我们的API!</a>",
+    "database-ad": "寻找历史数据？<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">看看我们的数据库！</a>",
+    "api-ad": "想要在您的应用程序或设备上获得实时数据？ <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">试试我们的API!</a>",
     "legend": "图例",
     "faq": "常见问题"
   },
@@ -116,7 +116,7 @@
     "divideExistingArea-question": "可以将我所在的地区划分为更小的部分吗",
     "divideExistingArea-answer": "当然可以，如果该区域的每个部分区域都存在单独的数据源。 您可以 <a href=\"#contribute\" class=\"entry-link\">帮我们添加新的数据源</a>",
     "seeHistoricalData-question": "我可以查看某个地区比24小时更早的历史记录吗？",
-    "seeHistoricalData-answer": "您可以通过我们的网站上的 <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">数据库</a>购买对我们所有历史数据的访问权限。"
+    "seeHistoricalData-answer": "您可以通过我们的网站上的 <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">数据库</a>购买对我们所有历史数据的访问权限。"
   },
   "zoneShortName": {
     "AL": { "zoneName": "阿尔巴尼亚" },
