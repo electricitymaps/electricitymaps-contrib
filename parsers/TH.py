@@ -1,8 +1,10 @@
-import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
-from requests import get
+from requests import Session, get
 
 EGAT_GENERATION = "https://energy.go.th/index.html"
 EGAT_URL = "www.egat.co.th"
@@ -22,7 +24,12 @@ def fetch_EGAT() -> str:
     return curr_production
 
 
-def fetch_price(zone_key="TH", session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(
+    zone_key: str = "TH",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
@@ -44,7 +51,10 @@ def fetch_price(zone_key="TH", session=None, target_datetime=None, logger=None) 
 
 
 def fetch_production(
-    zone_key="TH", session=None, target_datetime=None, logger=None
+    zone_key: str = "TH",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -59,7 +69,10 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="TH", session=None, target_datetime=None, logger=None
+    zone_key: str = "TH",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

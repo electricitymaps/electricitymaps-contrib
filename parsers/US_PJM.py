@@ -4,12 +4,15 @@
 
 import json
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import List, Optional, Union
 
 import arrow
 import demjson3 as demjson
-import requests
 from bs4 import BeautifulSoup
 from dateutil import parser, tz
+from requests import Session, get
 
 from .lib.utils import get_token
 
@@ -46,7 +49,7 @@ exchange_mapping = {
 }
 
 
-def extract_data(session=None) -> tuple:
+def extract_data(session: Optional[Session] = None) -> tuple:
     """
     Makes a request to the PJM data url.
     Finds timestamp of current data and converts into a useful form.
@@ -55,8 +58,8 @@ def extract_data(session=None) -> tuple:
     :return: tuple of generation data and datetime.
     """
 
-    s = session or requests.Session()
-    req = requests.get(url)
+    s = session or Session()
+    req = s.get(url)
     soup = BeautifulSoup(req.content, "html.parser")
 
     try:
@@ -123,14 +126,17 @@ def data_processer(data) -> dict:
 
 
 def fetch_consumption_forecast_7_days(
-    zone_key="US-PJM", session=None, target_datetime=None, logger=None
+    zone_key: str = "US-PJM",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
     if not session:
-        session = requests.session()
+        session = Session()
 
     headers = {"Ocp-Apim-Subscription-Key": get_token("PJM_TOKEN")}
 
@@ -140,7 +146,7 @@ def fetch_consumption_forecast_7_days(
 
     # query API
     url = API_ENDPOINT + "load_frcstd_7_day"
-    resp = requests.get(url, params, headers=headers)
+    resp = get(url, params, headers=headers)
     data = json.loads(resp.content)
 
     data_points = list()
@@ -158,7 +164,10 @@ def fetch_consumption_forecast_7_days(
 
 
 def fetch_production(
-    zone_key="US-PJM", session=None, target_datetime=None, logger=None
+    zone_key: str = "US-PJM",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime is not None:
@@ -187,7 +196,7 @@ def add_default_tz(timestamp):
     return modified_timestamp
 
 
-def get_miso_exchange(session=None) -> tuple:
+def get_miso_exchange(session: Optional[Session] = None) -> tuple:
     """
     Current exchange status between PJM and MISO.
     :return: tuple containing flow and timestamp.
@@ -195,7 +204,7 @@ def get_miso_exchange(session=None) -> tuple:
 
     map_url = "http://pjm.com/markets-and-operations/interregional-map.aspx"
 
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(map_url)
     soup = BeautifulSoup(req.content, "html.parser")
 
@@ -224,7 +233,7 @@ def get_miso_exchange(session=None) -> tuple:
     return flow, dt_aware
 
 
-def get_exchange_data(interface, session=None) -> list:
+def get_exchange_data(interface, session: Optional[Session] = None) -> list:
     """
     This function can fetch 5min data for any PJM interface in the current day.
     Extracts load and timestamp data from html source then joins them together.
@@ -233,7 +242,7 @@ def get_exchange_data(interface, session=None) -> list:
     base_url = "http://www.pjm.com/Charts/InterfaceChart.aspx?open="
     url = base_url + exchange_mapping[interface]
 
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(url)
     soup = BeautifulSoup(req.content, "html.parser")
 
@@ -303,8 +312,12 @@ def combine_NY_exchanges() -> list:
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> list:
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -352,14 +365,17 @@ def fetch_exchange(
 
 
 def fetch_price(
-    zone_key="US-PJM", session=None, target_datetime=None, logger=None
+    zone_key: str = "US-PJM",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power price of a given country."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    s = session or requests.Session()
-    req = requests.get(url)
+    s = session or Session()
+    req = s.get(url)
     soup = BeautifulSoup(req.content, "html.parser")
 
     price_tag = soup.find("span", class_="rtolmpico")

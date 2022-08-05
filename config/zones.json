@@ -1110,18 +1110,18 @@
       [15.0732421875, 55.1537662685]
     ],
     "capacity": {
-      "battery storage": 580,
-      "biomass": 9420,
-      "coal": 39870,
-      "gas": 31680,
+      "battery storage": 2500,
+      "biomass": 9510,
+      "coal": 37940,
+      "gas": 32090,
       "geothermal": 47,
       "hydro": 4940,
-      "hydro storage": 9800,
+      "hydro storage": 9780,
       "nuclear": 4055,
-      "oil": 4680,
-      "solar": 59400,
+      "oil": 4720,
+      "solar": 62510,
       "unknown": 3700,
-      "wind": 64280
+      "wind": 64900
     },
     "contributors": ["corradio", "bohne13", "chiefymuc", "nessie2013", "IV1T3", "sin"],
     "parsers": {
@@ -6810,6 +6810,13 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
+    "capacity": {
+      "coal": 38773,
+      "nuclear": 1860,
+      "hydro": 600,
+      "hydro storage": 2724,
+      "oil": 2409
+    },
     "contributors": ["IV1T3"],
     "parsers": {
       "production": "ZA.fetch_production"
