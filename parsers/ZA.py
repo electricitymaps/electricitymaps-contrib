@@ -878,17 +878,16 @@ def fetch_production(
             for update_i in range(len(cleansed_csv_value_updates) - 1, -1, -1):
                 break_outer_loop = False
                 for key in cleansed_csv_value_updates[update_i]:
-                    if key in value["cleansed_csv"]:
-                        if valid_substitution(value["cleansed_csv"], key):
-                            value["cleansed_csv"] = value["cleansed_csv"].replace(
-                                key, cleansed_csv_value_updates[update_i][key]
-                            )
-                            # Update curr_update_dict from 3. CLEANING STEP
-                            curr_update_dict[key] = cleansed_csv_value_updates[
-                                update_i
-                            ][key]
-                            break_outer_loop = True
-                            break
+                    if valid_substitution(value["cleansed_csv"], key):
+                        value["cleansed_csv"] = value["cleansed_csv"].replace(
+                            key, cleansed_csv_value_updates[update_i][key]
+                        )
+                        # Update curr_update_dict from 3. CLEANING STEP
+                        curr_update_dict[key] = cleansed_csv_value_updates[update_i][
+                            key
+                        ]
+                        break_outer_loop = True
+                        break
                 if break_outer_loop:
                     break
 
