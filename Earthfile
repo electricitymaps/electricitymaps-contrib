@@ -1,8 +1,8 @@
 VERSION 0.6
+WORKDIR /contrib
 
 prepare:
   FROM python:3.8
-  WORKDIR /contrib
   COPY electricitymap ./electricitymap
   COPY parsers ./parsers
   COPY validators ./validators
@@ -15,6 +15,7 @@ prepare:
 
 test:
   FROM +prepare
+  COPY tests ./tests
   RUN poetry run check
 
 artifact:
