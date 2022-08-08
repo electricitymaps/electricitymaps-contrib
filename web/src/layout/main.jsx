@@ -26,7 +26,7 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
-import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
+import { GRID_DATA_FETCH_REQUESTED, ZONE_HISTORY_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
 import ResponsiveSheet from './responsiveSheet';
@@ -39,7 +39,7 @@ const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 const mapStateToProps = (state) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  hasConnectionWarning: state.data.hasConnectionWarning,
+  failedRequestType: state.data.failedRequestType,
 });
 
 const MapContainer = styled.div`
@@ -69,7 +69,7 @@ const HiddenOnMobile = styled.div`
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Main = ({ electricityMixMode, hasConnectionWarning }) => {
+const Main = ({ electricityMixMode, failedRequestType }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -150,13 +150,14 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             )}
           </ErrorBoundary>
 
-          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
+          <div id="connection-warning" className={`flash-message ${failedRequestType ? 'active' : ''}`}>
             <div className="inner">
               {__('misc.oops')}{' '}
               <button
                 type="button"
                 onClick={(e) => {
-                  dispatch(GRID_DATA_FETCH_REQUESTED());
+                  failedRequestType === 'grid' && dispatch(GRID_DATA_FETCH_REQUESTED());
+                  failedRequestType === 'zone' && dispatch(ZONE_HISTORY_FETCH_REQUESTED());
                   e.preventDefault();
                 }}
               >

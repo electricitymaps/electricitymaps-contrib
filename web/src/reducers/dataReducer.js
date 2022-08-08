@@ -52,20 +52,21 @@ const reducer = createReducer(initialState, (builder) => {
 
       state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
       state.isLoadingGrid = false;
+      state.failedRequestType = null;
       state.hasInitializedGrid = true;
       state.isGridExpired[stateAggregation] = false;
     })
     .addCase(GRID_DATA_FETCH_REQUESTED, (state) => {
       state.isLoadingGrid = true;
-      state.hasConnectionWarning = false;
     })
     .addCase(GRID_DATA_FETCH_FAILED, (state) => {
-      state.hasConnectionWarning = true;
+      state.failedRequestType = 'grid';
       state.isLoadingGrid = false;
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
       state.isLoadingHistories = false;
+      state.failedRequestType = null;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
@@ -90,6 +91,7 @@ const reducer = createReducer(initialState, (builder) => {
       });
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
+      state.failedRequestType = 'zone';
       state.isLoadingHistories = false;
     })
     .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {
