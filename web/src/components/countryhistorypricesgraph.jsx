@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { max as d3Max } from 'd3-array';
+import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
@@ -19,7 +19,8 @@ const prepareGraphData = (historyData) => {
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
   const priceMaxValue = d3Max(historyData.map((d) => (d.price || {}).value));
-  const priceColorScale = scaleLinear().domain([0, priceMaxValue]).range(['lightgray', '#616161']);
+  const priceMinValue = d3Min(historyData.map((d) => (d.price || {}).value));
+  const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
 
   const data = historyData.map((d) => ({
     price: d.price && d.price.value,
