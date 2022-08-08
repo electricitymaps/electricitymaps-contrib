@@ -11,7 +11,7 @@ prepare:
   COPY pyproject.toml .
   RUN pip install poetry==1.1.12
   RUN poetry config virtualenvs.create false
-  RUN poetry install
+  RUN poetry install -E parsers -E validators
 
 test:
   FROM +prepare
