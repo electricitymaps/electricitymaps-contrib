@@ -14,7 +14,7 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useHeaderVisible } from '../hooks/router';
+import { useHeaderVisible, useFeatureToggle } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
@@ -39,7 +39,6 @@ const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 const mapStateToProps = (state) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  failedRequestType: state.data.failedRequestType,
 });
 
 const MapContainer = styled.div`
@@ -69,7 +68,7 @@ const HiddenOnMobile = styled.div`
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Main = ({ electricityMixMode, failedRequestType }) => {
+const Main = ({ electricityMixMode }) => {
   const { __ } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -79,6 +78,9 @@ const Main = ({ electricityMixMode, failedRequestType }) => {
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
   const isMobile = useSelector((state) => state.application.isMobile);
 
+  const features = useFeatureToggle();
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const { failedRequestType, failedRequestZoneId } = useSelector((state) => state.data);
   const showLoadingOverlay = useLoadingOverlayVisible();
 
   // Start grid data polling as soon as the app is mounted.
@@ -156,8 +158,14 @@ const Main = ({ electricityMixMode, failedRequestType }) => {
               <button
                 type="button"
                 onClick={(e) => {
-                  failedRequestType === 'grid' && dispatch(GRID_DATA_FETCH_REQUESTED());
-                  failedRequestType === 'zone' && dispatch(ZONE_HISTORY_FETCH_REQUESTED());
+                  if (failedRequestType === 'grid') {
+                    dispatch(GRID_DATA_FETCH_REQUESTED({ features, selectedTimeAggregate }));
+                  }
+                  if (failedRequestType === 'zone') {
+                    dispatch(
+                      ZONE_HISTORY_FETCH_REQUESTED({ zoneId: failedRequestZoneId, features, selectedTimeAggregate })
+                    );
+                  }
                   e.preventDefault();
                 }}
               >

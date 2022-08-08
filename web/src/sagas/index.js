@@ -30,7 +30,7 @@ function* fetchZoneHistory(action) {
     const payload = yield call(protectedJsonRequest, endpoint);
     yield put(ZONE_HISTORY_FETCH_SUCCEEDED({ ...payload, zoneId }));
   } catch (err) {
-    yield put(ZONE_HISTORY_FETCH_FAILED());
+    yield put(ZONE_HISTORY_FETCH_FAILED({ zoneId }));
     handleRequestError(err);
   }
 }

@@ -67,6 +67,7 @@ const reducer = createReducer(initialState, (builder) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
       state.isLoadingHistories = false;
       state.failedRequestType = null;
+      state.failedRequestZoneId = null;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
@@ -90,8 +91,10 @@ const reducer = createReducer(initialState, (builder) => {
         }
       });
     })
-    .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
+    .addCase(ZONE_HISTORY_FETCH_FAILED, (state, action) => {
+      const { zoneId } = action.payload;
       state.failedRequestType = 'zone';
+      state.failedRequestZoneId = zoneId;
       state.isLoadingHistories = false;
     })
     .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {

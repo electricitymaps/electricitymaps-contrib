@@ -64,6 +64,7 @@ function initDataState() {
 
   return {
     failedRequestType: null,
+    failedRequestZoneId: null,
     hasInitializedGrid: false,
     isLoadingHistories: false,
     isLoadingGrid: false,
