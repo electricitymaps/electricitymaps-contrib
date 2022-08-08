@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-import datetime
 import urllib
-from collections import defaultdict
+from datetime import datetime
 from io import StringIO
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import pandas
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
-from dateutil import parser, tz
+from dateutil import tz
+from requests import Session
 
 MX_PRODUCTION_URL = (
     "https://www.cenace.gob.mx/SIM/VISTA/REPORTES/EnergiaGenLiqAgregada.aspx"
@@ -53,19 +53,18 @@ DATA_CACHE = {}
 
 def parse_date(date, hour):
     tzoffset = tz.tzoffset("CST", -3600 * 6)
-    dt = datetime.datetime.strptime(date, "%d/%m/%Y")
+    dt = datetime.strptime(date, "%d/%m/%Y")
     dt = dt.replace(hour=int(hour) - 1, tzinfo=tzoffset)
     return dt
 
 
-def fetch_csv_for_date(dt, session=None):
+def fetch_csv_for_date(dt, session: Optional[Session] = None):
     """
     Fetches the whole month of the give datetime.
     returns the data as a DataFrame.
     throws an exception data is not available.
     """
-    if not session:
-        session = requests.session()
+    session = session or Session()
 
     # build the parameters and fill in the requested date
     # TODO find something prettier than string concatenation which works
@@ -142,7 +141,12 @@ def convert_production(series):
     return aggregated
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
     if zone_key != "MX":
         raise ValueError(
             "MX parser cannot fetch production for zone {}".format(zone_key)
@@ -174,7 +178,7 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     return data
 
 
-def fetch_MX_exchange(sorted_zone_keys, s) -> float:
+def fetch_MX_exchange(sorted_zone_keys: str, s: Session) -> float:
     """Finds current flow between two Mexican control areas."""
 
     req = s.get(MX_EXCHANGE_URL)
@@ -196,7 +200,11 @@ def fetch_MX_exchange(sorted_zone_keys, s) -> float:
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
@@ -206,7 +214,7 @@ def fetch_exchange(
             "Exchange pair not supported: {}".format(sorted_zone_keys)
         )
 
-    s = session or requests.Session()
+    s = session or Session()
 
     netflow = fetch_MX_exchange(sorted_zone_keys, s)
 
@@ -221,11 +229,7 @@ def fetch_exchange(
 
 
 if __name__ == "__main__":
-    print(
-        fetch_production(
-            "MX", target_datetime=datetime.datetime(year=2019, month=7, day=1)
-        )
-    )
+    print(fetch_production("MX", target_datetime=datetime(year=2019, month=7, day=1)))
     print("fetch_exchange(MX-NO, MX-NW)")
     print(fetch_exchange("MX-NO", "MX-NW"))
     print("fetch_exchange(MX-OR, MX-PN)")

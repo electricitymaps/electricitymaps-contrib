@@ -2,11 +2,15 @@
 
 """Parser for the electricity grid of Iraq"""
 
-import logging
+
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import requests
 from dateutil.tz import tz
+from requests import Session
 
 LIVE_PRODUCTION_API_URL = "https://www.gdoco.org/vueips.php"
 DATA_SOURCE = "www.gdoco.org"
@@ -17,7 +21,7 @@ CELL_MAPPING = {
 }
 
 
-def template_response(zone_key, datetime, source) -> dict:
+def template_response(zone_key: str, datetime: datetime, source: str) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,
@@ -32,7 +36,7 @@ def template_response(zone_key, datetime, source) -> dict:
     }
 
 
-def fetch_data(r):
+def fetch_data(r: Session):
     resp = r.get(LIVE_PRODUCTION_API_URL)
     data = resp.json()
 
@@ -44,10 +48,10 @@ def fetch_data(r):
 
 
 def fetch_production(
-    zone_key=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime is not None:
@@ -66,7 +70,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
 
     if target_datetime:
@@ -97,7 +105,10 @@ def fetch_exchange(
 
 
 def fetch_consumption(
-    zone_key="IQ", session=None, target_datetime=None, logger=None
+    zone_key: str = "IQ",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

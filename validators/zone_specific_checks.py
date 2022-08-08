@@ -1,8 +1,6 @@
-from datetime import datetime
-
 import pandas as pd
 
-from electricitymap.contrib.validators.lib.config import validator
+from validators.lib.config import validator
 
 
 @validator(
