@@ -1545,6 +1545,20 @@
     },
     "timezone": "Atlantic/Faroe"
   },
+  "FO-NI": {
+    "parsers": {
+      "production": "FO.fetch_production"
+    },
+    "contributors": ["corradio", "q--", "VIKTORVAV99"],
+    "timezone": "Atlantic/Faroe"
+  },
+  "FO-SI": {
+    "parsers": {
+      "production": "FO.fetch_production"
+    },
+    "contributors": ["corradio", "q--", "VIKTORVAV99"],
+    "timezone": "Atlantic/Faroe"
+  },
   "FR": {
     "bounding_box": [
       [-5.44921875, 42.3098154157],
