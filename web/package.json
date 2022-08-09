@@ -28,6 +28,7 @@
     "date-fns": "^2.28.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "fs": "^0.0.1-security",
     "history": "^4.10.1",
     "i18next": "^21.6.13",
     "i18next-browser-languagedetector": "^6.1.3",
