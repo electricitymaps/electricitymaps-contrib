@@ -1,0 +1,93 @@
+bounding_box:
+- - -80.26197
+  - 39.99603
+- - -71.35625
+  - 45.51097
+capacity:
+  battery storage: 65.6
+  biomass: 517.7
+  coal: 0
+  gas: 27101.2
+  geothermal: 0
+  hydro: 4690.2
+  hydro storage: 1240
+  nuclear: 3398.4
+  oil: 3853.7
+  solar: 749.1
+  unknown: 20
+  wind: 2192.9
+comment: New York Independent System Operator
+contributors:
+- systemcatch
+- robertahunt
+- KabelWlan
+- brandongalbraith
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 168.63187033920536
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 180.25650620309392
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 168.63187033920536
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 180.25650620309392
+  lifecycle:
+    battery discharge:
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 229.98354021758712
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 244.1288249460265
+    hydro discharge:
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 229.98354021758712
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 244.1288249460265
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 3.9834624616495575e-07
+      biomass: 0.0015236458759893409
+      coal: 0.01287817817323788
+      gas: 0.4022698912869475
+      geothermal: 1.5958266866941092e-08
+      hydro: 0.2487372269210103
+      hydro discharge: 7.1211367793512375e-06
+      nuclear: 0.2816190932223843
+      oil: 0.00016352959280419027
+      solar: 0.00047314848561446217
+      unknown: 0.017269940915413378
+      wind: 0.035086583625300184
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 4.4662494296152485e-06
+      biomass: 0.0020698311556562716
+      coal: 0.01934981729348317
+      gas: 0.42212736362167086
+      geothermal: 8.675127992504238e-08
+      hydro: 0.25316713931546475
+      hydro discharge: 8.55456730136974e-06
+      nuclear: 0.25014838629521474
+      oil: 0.00023891217312607503
+      solar: 0.0007829272873062293
+      unknown: 0.016108628684213998
+      wind: 0.036029430584006227
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: US_NY.fetch_production
+timezone: US/Eastern

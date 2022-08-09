@@ -1,0 +1,21 @@
+bounding_box:
+- - 117.17427453
+  - 5.58100332277
+- - 126.537423944
+  - 18.5052273625
+capacity:
+  battery storage: 11
+  biomass: 483
+  coal: 10944
+  gas: 3453
+  geothermal: 1928
+  hydro: 3031
+  hydro storage: 748
+  nuclear: 0
+  oil: 4237
+  solar: 1019
+  wind: 443
+contributors:
+- xomanuel
+flag_file_name: ph.png
+timezone: Asia/Manila

@@ -1,0 +1,135 @@
+bounding_box:
+- - -124.21924
+  - 30.83201
+- - -105.02991
+  - 44.1167400000001
+capacity:
+  battery storage: 90
+  biomass: 0
+  coal: 0
+  gas: 2407.3
+  geothermal: 0
+  hydro: 5610.5
+  hydro storage: 65.2
+  nuclear: 0
+  oil: 4.5
+  solar: 302.2
+  unknown: 0
+  wind: 350
+comment: Western Area Power Administration - Desert Southwest Region
+contributors:
+- systemcatch
+- robertahunt
+- KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 458.1928165758674
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 261.74465469059044
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 298.51377588409974
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 277.55427438086537
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 458.1928165758674
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 261.74465469059044
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 298.51377588409974
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 277.55427438086537
+  lifecycle:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 521.6844583074088
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 323.42344747004154
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 374.9738082323448
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 350.80514030230046
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 521.6844583074088
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 323.42344747004154
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 374.9738082323448
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 350.80514030230046
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 1.4862437401416612e-07
+      biomass: 5.4328014341787644e-05
+      coal: 0.48151201961888185
+      gas: 0.23597355554380237
+      geothermal: 6.916432636495957e-05
+      hydro: 0.13940178979741277
+      hydro discharge: 0.0018376364637361464
+      nuclear: 0.07965315076996424
+      oil: 4.839813404420682e-05
+      solar: 0.010276931331649428
+      unknown: 0.007494275494203621
+      wind: 0.0436965413076193
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 2.944959123012987e-07
+      biomass: 0.00035387774084005234
+      coal: 0.16566256467491536
+      gas: 0.33279037331038075
+      geothermal: 0.00016891112999581297
+      hydro: 0.24667758028524384
+      hydro discharge: 0.014998085094866541
+      nuclear: 0.19342070772548675
+      oil: 0.0005555529044863861
+      solar: 0.01811995445675253
+      unknown: 0.013203818303111826
+      wind: 0.014059607063375387
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 2.2655112470358566e-06
+      biomass: 0.0018103276092038463
+      coal: 0.1607857361383867
+      gas: 0.44914041059656196
+      geothermal: 0.0005208754586559541
+      hydro: 0.2642302125004186
+      hydro discharge: 0.008416324916474283
+      nuclear: 0.058973073638321674
+      oil: 0.0028696462453554014
+      solar: 0.02367922762344001
+      unknown: 0.011057601490701062
+      wind: 0.018541928702573193
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Arizona

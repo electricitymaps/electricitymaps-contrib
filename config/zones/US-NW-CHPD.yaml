@@ -1,0 +1,120 @@
+bounding_box:
+- - -121.680713
+  - 46.760889
+- - -119.359734
+  - 49.050725
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 1988.2
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: Public Utility District No. 1 Of Chelan County
+contributors:
+- systemcatch
+- robertahunt
+- KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 2.6616814565395046
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 2.3041693101987883
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 2.4969594481122965
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 1.3005033418468372
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 2.6616814565395046
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 2.3041693101987883
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 2.4969594481122965
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 1.3005033418468372
+  lifecycle:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 26.973666767230863
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 26.57420876131089
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 26.778356281052822
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 25.45848894063653
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 26.973666767230863
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 26.57420876131089
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 26.778356281052822
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 25.45848894063653
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 7.996587752667554e-05
+      coal: 0.002084187262099202
+      gas: 0.0022590418196802983
+      geothermal: 9.779001501527537e-06
+      hydro: 0.9904192371222919
+      hydro discharge: 1.1085180189083814e-05
+      nuclear: 0.001397252863478897
+      oil: 0.00012239934621711003
+      solar: 7.278767429683083e-05
+      unknown: 0.00035669081363373135
+      wind: 0.0032417505568598077
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 1.0986107517738444e-08
+      biomass: 7.368931617523061e-05
+      coal: 0.0017196334375365631
+      gas: 0.0020613947632521297
+      geothermal: 7.77267106879995e-06
+      hydro: 0.9906360022433631
+      hydro discharge: 5.4930537588692225e-08
+      nuclear: 0.0015189502115100352
+      oil: 7.875391174090804e-05
+      solar: 5.699592580202705e-05
+      unknown: 0.0004100125186695164
+      wind: 0.003535983072605537
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Pacific

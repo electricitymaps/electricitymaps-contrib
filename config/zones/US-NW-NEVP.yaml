@@ -1,0 +1,135 @@
+bounding_box:
+- - -121.98446
+  - 34.50232
+- - -111.0849
+  - 42.5017700000001
+capacity:
+  battery storage: 100
+  biomass: 35.2
+  coal: 809
+  gas: 7828.2
+  geothermal: 785.8
+  hydro: 12.8
+  hydro storage: 0
+  nuclear: 0
+  oil: 21
+  solar: 2346.7
+  unknown: 7.5
+  wind: 150
+comment: Nevada Power Company
+contributors:
+- systemcatch
+- robertahunt
+- KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 402.2738093042844
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 382.74370390170117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 358.66689177867426
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 363.7785287366052
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 402.2738093042844
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 382.74370390170117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 358.66689177867426
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 363.7785287366052
+  lifecycle:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 499.5457044781863
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 479.38264876344294
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 455.03164716152787
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 456.10420017388526
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 499.5457044781863
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 479.38264876344294
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 455.03164716152787
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 456.10420017388526
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 6.92044070136033e-06
+      biomass: 0.00046881604949300496
+      coal: 0.17601398911695784
+      gas: 0.6117416568415617
+      geothermal: 0.0005554680758534098
+      hydro: 0.04087991594749517
+      hydro discharge: 0.00012084044651297945
+      nuclear: 0.01983175166323238
+      oil: 0.00024669292366654263
+      solar: 0.05548868697657388
+      unknown: 0.07315139758641102
+      wind: 0.021748496292638583
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 3.7407885179599784e-06
+      biomass: 0.0002463272019908376
+      coal: 0.14337725998983444
+      gas: 0.5964477585463597
+      geothermal: 0.00033770576433703333
+      hydro: 0.059038614205602455
+      hydro discharge: 0.00018246644823033864
+      nuclear: 0.021747493682177238
+      oil: 0.00017759571721651788
+      solar: 0.06371072224477506
+      unknown: 0.09215729114070564
+      wind: 0.02268752196455142
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 2.9945039664482258e-06
+      biomass: 0.000804961386847304
+      coal: 0.11106956556444218
+      gas: 0.6032116623683818
+      geothermal: 0.00034132425788630075
+      hydro: 0.07932061020913206
+      hydro discharge: 0.0006064023933603367
+      nuclear: 0.011601076529730133
+      oil: 0.0005051200807463419
+      solar: 0.07740104615093436
+      unknown: 0.08822771121164555
+      wind: 0.02737366926473343
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Pacific

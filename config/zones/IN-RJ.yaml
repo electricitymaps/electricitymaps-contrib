@@ -1,0 +1,10 @@
+capacity:
+  coal: 10480
+  gas: 1022.83
+  hydro: 411
+  nuclear: 1180
+  oil: 0
+contributors:
+- gopikrishna1793
+flag_file_name: in.png
+timezone: Asia/Kolkata

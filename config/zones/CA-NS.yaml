@@ -1,0 +1,107 @@
+_comment: http://www.nspower.ca/en/home/about-us/todayspower.aspx HTML source says
+  available capacity is 2453 MW and wind capacity 567 MW
+bounding_box:
+- - -66.82774817599997
+  - 42.92206452000019
+- - -59.188628709999904
+  - 47.53481679900011
+capacity:
+  biomass: 90.1
+  coal: 1232
+  gas: 637
+  hydro: 418
+  wind: 567
+contributors:
+- jarek
+- corradio
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 488.90361929794744
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 469.3915393019316
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 462.2743862900789
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 469.8977318114941
+    hydro discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 488.90361929794744
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 469.3915393019316
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 462.2743862900789
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 469.8977318114941
+  lifecycle:
+    battery discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 553.6582881625282
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 531.2929754289981
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 519.4627300994506
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 533.3341352223714
+    hydro discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 553.6582881625282
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 531.2929754289981
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 519.4627300994506
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 533.3341352223714
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.014460363322564682
+      coal: 0.5403874690155583
+      gas: 0.13967811952959147
+      geothermal: 0.0
+      hydro: 0.09953478063696616
+      hydro discharge: 0.0
+      nuclear: 0.03195209246493644
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.1741993497212181
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.027371232566787498
+      coal: 0.5299924869182566
+      gas: 0.18136042452945517
+      geothermal: 0.0
+      hydro: 0.052403257764227856
+      hydro discharge: 0.0
+      nuclear: 0.022937144190647824
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.0
+      wind: 0.18593467419811177
+flag_file_name: ca.png
+parsers:
+  production: CA_NS.fetch_production
+timezone: America/Halifax

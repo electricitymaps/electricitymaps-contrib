@@ -1,0 +1,60 @@
+bounding_box:
+- - 96.85140100100011
+  - 5.129890035000059
+- - 106.15099776200003
+  - 20.94500640900013
+capacity:
+  battery storage: 0
+  biomass: 1006.95
+  coal: 6067.5
+  gas: 28695.0
+  geothermal: 0.3
+  hydro: 7015.73
+  hydro storage: 1000.0
+  nuclear: 0
+  oil: 1497.4
+  solar: 487.8
+  unknown: 0
+  wind: 1447.69
+contributors:
+- PPsyrius
+emissionFactors:
+  direct:
+    unknown:
+      _url: https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing
+      source: IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6%
+        solar, 1.7% wind, 0.1% other
+      value: 386.645
+  lifecycle:
+    unknown:
+      _url: https://docs.google.com/spreadsheets/d/16j5BVc4L34BDqVE0GeDBv0P3zQupT6zU77Kj5UK7GjE/edit?usp=sharing
+      source: IEA 2020; assumes 9.1% biomass, 19.3% coal, 64.7% gas, 2.5% hydro, 2.6%
+        solar, 1.7% wind, 0.1% other
+      value: 509.277
+fallbackZoneMixes:
+  _source: IEA 2020 (used because Our World in Data has a lot of 'other renewables'
+    generation not broken down by type). Biomass includes waste.
+  _url: https://www.iea.org/data-and-statistics/data-browser?country=THAILAND&fuel=Energy%20supply&indicator=ElecGenByFuel
+  powerOriginRatios:
+    value:
+      biomass: 0.0912401506077485
+      coal: 0.193458983021716
+      gas: 0.646700218606825
+      geothermal: 5.371175052e-06
+      hydro: 0.0248631693155512
+      oil: 0.0007036239318076
+      solar: 0.026469150656089
+      wind: 0.0165593326852115
+isLowCarbon:
+  unknown:
+    _comment: Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json
+    value: 0.159
+isRenewable:
+  unknown:
+    _comment: Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json
+    value: 0.159
+parsers:
+  consumption: TH.fetch_consumption
+  price: TH.fetch_price
+  production: TH.fetch_production
+timezone: Asia/Bangkok

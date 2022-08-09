@@ -1,0 +1,140 @@
+bounding_box:
+- - 21.63283980300011
+  - 44.713568427000055
+- - 40.65954309100019
+  - 52.86894928000005
+capacity:
+  biomass: 230
+  coal: 17242
+  gas: 4600
+  hydro: 4829
+  hydro storage: 1488
+  nuclear: 13835
+  oil: 756.6
+  solar: 6226
+  wind: 1529
+contributors:
+- amkozlov
+- denplis
+- corradio
+- MariusKroon
+- alixunderplatz
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 316.63816228687807
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 296.10913773136116
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 280.1620378073146
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 268.42438042875693
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 238.36347407994785
+    hydro discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 316.63816228687807
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 296.10913773136116
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 280.1620378073146
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 268.42438042875693
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 238.36347407994785
+  lifecycle:
+    battery discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 316.63816228687807
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 296.10913773136116
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 280.1620378073146
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 268.42438042875693
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 238.36347407994785
+    hydro discharge:
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 316.63816228687807
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 296.10913773136116
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 280.1620378073146
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 268.42438042875693
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 238.36347407994785
+    unknown:
+      _comment: estimated yearly share of solar & wind in this mixed renewable category
+        based on installed capacity in 2018
+      _url: https://en.wikipedia.org/wiki/Renewable_energy_in_Ukraine
+      source: renewable mix; assumes 50% solar, 50% wind
+      value: 28
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0007398173495635562
+      coal: 0.26865504136874163
+      gas: 0.10044772532042578
+      geothermal: 2.7337172617625123e-07
+      hydro: 0.053625210868959425
+      hydro discharge: 0.00023898157774442726
+      nuclear: 0.5189602996728421
+      oil: 0.00025398220716810557
+      solar: 0.0004448099515530973
+      unknown: 0.056105341186388935
+      wind: 0.0007799168009874606
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00040204637581622453
+      coal: 0.23791484014385547
+      gas: 0.06649669347726316
+      geothermal: 5.74267312115472e-08
+      hydro: 0.0682778282260914
+      hydro discharge: 0.00014778053985657337
+      nuclear: 0.555489603866399
+      oil: 0.0001382583470997779
+      solar: 0.0002864498914954356
+      unknown: 0.07014733288323172
+      wind: 0.0007047398962259384
+isLowCarbon:
+  unknown:
+    value: 1
+isRenewable:
+  unknown:
+    value: 1
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: UA.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: Europe/Kiev

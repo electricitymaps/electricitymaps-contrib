@@ -1,0 +1,130 @@
+bounding_box:
+- - -17.416058089999865
+  - 27.497096487000093
+- - -15.617746548999946
+  - 29.08344147300015
+contributors:
+- hectorespert
+- systemcatch
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 348.86315657322905
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 311.59532395388294
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 320.61427650959473
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 319.0330071188576
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 348.86315657322905
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 311.59532395388294
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 320.61427650959473
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 319.0330071188576
+  lifecycle:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 511.2270900136592
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 456.4159273249307
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 511.4855970816617
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 514.9603560421623
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 511.2270900136592
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 456.4159273249307
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 511.4855970816617
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 514.9603560421623
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.49015578342806987
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.41257183002589526
+      solar: 0.05315537185673095
+      unknown: 0.0
+      wind: 0.044113743036858166
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.4529480347646694
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.35469093270428115
+      solar: 0.05312681922630508
+      unknown: 0.0
+      wind: 0.13923435871980516
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.05773681935278592
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.7370730734324903
+      solar: 0.05411861641701489
+      unknown: 0.0
+      wind: 0.15107187933427815
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.7857956118860822
+      solar: 0.054029956428362155
+      unknown: 0.0
+      wind: 0.1601746792817262
+flag_file_name: es.png
+parsers:
+  consumption: ES.fetch_consumption
+  production: ES.fetch_production
+timezone: Atlantic/Canary

@@ -1,0 +1,135 @@
+bounding_box:
+- - -90.5406
+  - 29.42398
+- - -80.251429
+  - 35.5013030000001
+capacity:
+  battery storage: 42.2
+  biomass: 1979.5
+  coal: 16164.8
+  gas: 34941.7
+  geothermal: 0
+  hydro: 3310.4
+  hydro storage: 1306.6
+  nuclear: 6054.4
+  oil: 1284.8
+  solar: 3662
+  unknown: 0
+  wind: 0
+comment: Southern Company Services, Inc. - Trans
+contributors:
+- systemcatch
+- robertahunt
+- KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 387.86457393118644
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 363.98213837874664
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 330.5848387522014
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 348.1291170995103
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 387.86457393118644
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 363.98213837874664
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 330.5848387522014
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 348.1291170995103
+  lifecycle:
+    battery discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 464.98132403078444
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 442.9557928146596
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 410.45252859614135
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 425.9355918634684
+    hydro discharge:
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 464.98132403078444
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 442.9557928146596
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 410.45252859614135
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 425.9355918634684
+fallbackZoneMixes:
+  powerOriginRatios:
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 9.546140604700877e-05
+      coal: 0.2797167828654594
+      gas: 0.4637602178187591
+      geothermal: 1.6782726692706257e-05
+      hydro: 0.04420196140112448
+      hydro discharge: 0.00021964662060372343
+      nuclear: 0.19580734418038595
+      oil: 0.00029437537497293534
+      solar: 0.009387488363609673
+      unknown: 0.006089167407296419
+      wind: 0.0004195940321211135
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00010121614962977268
+      coal: 0.2288533288301263
+      gas: 0.4999407036499201
+      geothermal: 1.7794575365895203e-05
+      hydro: 0.04867814737865957
+      hydro discharge: 0.00029586011447239186
+      nuclear: 0.20136212718106142
+      oil: 0.0003015307506235957
+      solar: 0.011534895101301668
+      unknown: 0.008456382954464612
+      wind: 0.000469687283165379
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00012298562101701848
+      coal: 0.16880461000932043
+      gas: 0.5282282717410716
+      geothermal: 2.1632370667014012e-05
+      hydro: 0.056682440449819356
+      hydro discharge: 0.00037699089057999143
+      nuclear: 0.21348774789146954
+      oil: 0.00027706215778909387
+      solar: 0.019970136707254088
+      unknown: 0.011521498501719537
+      wind: 0.0005187118326642202
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Eastern

@@ -1,0 +1,49 @@
+bounding_box:
+- - 126.11
+  - 34.39
+- - 129.46
+  - 38.61
+capacity:
+  biomass: 1446
+  coal: 37338
+  gas: 41828
+  hydro: 1806
+  hydro storage: 4700
+  nuclear: 23250
+  oil: 960
+  solar: 18709
+  wind: 1727
+contributors:
+- systemcatch
+- alixunderplatz
+- IV1T3
+emissionFactors:
+  lifecycle:
+    unknown:
+      _comment: 'Source: 2020 annual electricity production by IEA'
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2020; assumes 54.1% coal, 36.1% gas, 1.5% oil, 4.4% solar, 0.8%
+        wind, 2.2% biofuels, 1.0% other
+      value: 644
+estimation_method: RECONSTRUCT_BREAKDOWN
+fallbackZoneMixes:
+  _source: electricityMap
+  powerOriginRatios:
+    value:
+      battery discharge: 0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.001966626193667225
+      hydro discharge: 0.0
+      nuclear: 0.2570880298380328
+      oil: 0.0
+      solar: 0.0
+      unknown: 0.7409453439683
+      wind: 0.0
+parsers:
+  consumption: KR.fetch_consumption
+  price: KR.fetch_price
+  production: KR.fetch_production
+timezone: Asia/Seoul

@@ -1,0 +1,12 @@
+bounding_box:
+- - 10.608164910000113
+  - 56.392035223000065
+- - 19.8385522800001
+  - 62.67478628775066
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: null

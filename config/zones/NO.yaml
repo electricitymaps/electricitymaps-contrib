@@ -1,0 +1,28 @@
+capacity:
+  biomass: 113.3
+  coal: 0
+  gas: 473.4
+  geothermal: 0
+  hydro: 33033
+  hydro storage: 1438
+  nuclear: 0
+  oil: 0
+  solar: 160
+  unknown: 112.6
+  wind: 4619
+contributors:
+- corradio
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+subZoneNames:
+- NO-NO1
+- NO-NO2
+- NO-NO3
+- NO-NO4
+- NO-NO5
+timezone: Europe/Oslo

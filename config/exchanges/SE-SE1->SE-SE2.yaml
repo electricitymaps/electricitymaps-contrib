@@ -1,0 +1,5 @@
+capacity:
+- -3300
+- 3300
+parsers:
+  exchangeForecast: ENTSOE.fetch_exchange_forecast

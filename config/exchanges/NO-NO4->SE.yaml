@@ -1,0 +1,11 @@
+_comment: statnett doesn't work. See for example 2018-05-14 which is off by a factor
+  two
+capacity:
+- -900
+- 950
+lonlat:
+- 15.462856
+- 66.273628
+parsers:
+  exchange: ENTSOE.fetch_exchange
+rotation: 130

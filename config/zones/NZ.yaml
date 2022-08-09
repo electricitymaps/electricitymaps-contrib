@@ -1,0 +1,23 @@
+bounding_box:
+- - 166.054687
+  - -47.638394
+- - 178.798828
+  - -34.168835
+contributors:
+- BobGrun
+- corradio
+- davidcole1340
+- drc38
+emissionFactors:
+  lifecycle:
+    battery discharge:
+      source: electricityMap, 2021 average
+      value: 213.52156469368532
+    hydro discharge:
+      source: electricityMap, 2021 average
+      value: 27.514624060792045
+flag_file_name: nz.png
+parsers:
+  price: NZ.fetch_price
+  production: NZ.fetch_production
+timezone: Pacific/Auckland
