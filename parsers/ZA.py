@@ -708,7 +708,7 @@ def get_power_bi_values():
     return cleaned_power_bi_values
 
 
-def valid_substitution(original, subs_key):
+def valid_substitution(original: str, subs_key: str):
     """
     Check if the substitution is valid.
     E.g., if original is        24018,0,0,0,-9,24027,876,1341,1884,100,988.415,603,1260,0,462.550,0,477.262,0,100.0100.19.02
