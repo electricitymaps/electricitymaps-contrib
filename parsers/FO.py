@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
+from datetime import datetime
 from logging import getLogger
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
+from .lib.exceptions import ParserException
 from .lib.validation import validate
 
 MAP_GENERATION = {
@@ -24,12 +27,15 @@ def map_generation_type(raw_generation_type):
 
 
 def fetch_production(
-    zone_key="FO", session=None, target_datetime=None, logger=getLogger("FO")
+    zone_key="FO",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger("FO"),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.sev.fo/api/realtimemap/now"
     response = r.get(url)
     obj = response.json()
@@ -66,7 +72,9 @@ def fetch_production(
             raw_generation_type = key.replace("Sev_E", "")
             generation_type = map_generation_type(raw_generation_type)
             if not generation_type:
-                raise RuntimeError(f"Unknown generation type: {raw_generation_type}")
+                raise ParserException(
+                    "FO.py", f"Unknown generation type: {raw_generation_type}", "FO"
+                )
             # Power (MW)
             value = float(value.replace(",", "."))
             data["production"][generation_type] = (

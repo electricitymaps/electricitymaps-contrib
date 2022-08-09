@@ -4,9 +4,12 @@
 """Parser for Moldova."""
 
 from collections import namedtuple
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Callable, List, Optional, Union
 
 import arrow
-import requests
+from requests import Session
 
 # Supports the following formats:
 # - type=csv for zip-data with semicolon-separated-values
@@ -80,7 +83,7 @@ other_fields = (
 # https://moldelectrica.md/ro/network/annual_report
 
 
-def template_price_response(zone_key, datetime, price) -> dict:
+def template_price_response(zone_key: str, datetime: datetime, price) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,
@@ -90,7 +93,9 @@ def template_price_response(zone_key, datetime, price) -> dict:
     }
 
 
-def template_consumption_response(zone_key, datetime, consumption) -> dict:
+def template_consumption_response(
+    zone_key: str, datetime: datetime, consumption
+) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,
@@ -99,7 +104,7 @@ def template_consumption_response(zone_key, datetime, consumption) -> dict:
     }
 
 
-def template_production_response(zone_key, datetime, production) -> dict:
+def template_production_response(zone_key: str, datetime: datetime, production) -> dict:
     return {
         "zoneKey": zone_key,
         "datetime": datetime,
@@ -109,7 +114,9 @@ def template_production_response(zone_key, datetime, production) -> dict:
     }
 
 
-def template_exchange_response(sorted_zone_keys, datetime, netflow) -> dict:
+def template_exchange_response(
+    sorted_zone_keys: str, datetime: datetime, netflow
+) -> dict:
     return {
         "sortedZoneKeys": sorted_zone_keys,
         "datetime": datetime,
@@ -118,7 +125,7 @@ def template_exchange_response(sorted_zone_keys, datetime, netflow) -> dict:
     }
 
 
-def get_archive_data(session=None, dates=None) -> list:
+def get_archive_data(session: Optional[Session] = None, dates=None) -> list:
     """
     Returns archive data as a list of ArchiveDatapoint.
 
@@ -127,7 +134,7 @@ def get_archive_data(session=None, dates=None) -> list:
     Specifying a date-range too high will cause errors with the archive-server.
     If no dates are specified data for the last 24 hours is fetched.
     """
-    s = session or requests.Session()
+    s = session or Session()
 
     try:
         date1, date2 = sorted(dates)
@@ -161,9 +168,9 @@ def get_archive_data(session=None, dates=None) -> list:
         )
 
 
-def get_data(session=None) -> list:
+def get_data(session: Optional[Session] = None) -> list:
     """Returns data as a list of floats."""
-    s = session or requests.Session()
+    s = session or Session()
 
     # In order for data_url to return data, cookies from display_url must be obtained then reused.
     response = s.get(display_url, verify=False)
@@ -179,7 +186,12 @@ def get_data(session=None) -> list:
     return data
 
 
-def fetch_price(zone_key="MD", session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(
+    zone_key: str = "MD",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     """
     Returns the static price of electricity (0.145 MDL per kWh) as specified here:
     https://moldelectrica.md/ro/activity/tariff
@@ -197,8 +209,11 @@ def fetch_price(zone_key="MD", session=None, target_datetime=None, logger=None) 
 
 
 def fetch_consumption(
-    zone_key="MD", session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key: str = "MD",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the consumption (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -223,8 +238,11 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key="MD", session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key: str = "MD",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the production mix (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -288,8 +306,12 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
@@ -330,7 +352,7 @@ def fetch_exchange(
 if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    def try_print(callable, *args, **kwargs):
+    def try_print(callable: Callable, *args, **kwargs):
         try:
             result = callable(*args, **kwargs)
             try:

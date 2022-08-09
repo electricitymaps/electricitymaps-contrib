@@ -3,11 +3,14 @@
 import json
 import re
 from collections import defaultdict
+from datetime import datetime
+from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Optional
 
 import arrow
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # El Salvador does have wind generation but there is no data available.
@@ -32,7 +35,7 @@ generation_map = {
 }
 
 
-def get_data(session=None):
+def get_data(session: Optional[Session] = None):
     """
     Makes a get request to data url.
     Parses the response then makes a post request to the same url using
@@ -40,7 +43,7 @@ def get_data(session=None):
     Returns a requests response object.
     """
 
-    s = session or requests.Session()
+    s = session or Session()
     pagereq = s.get(url)
 
     soup = BeautifulSoup(pagereq.content, "html.parser")
@@ -145,7 +148,10 @@ def data_processer(data) -> list:
 
 
 def fetch_production(
-    zone_key="SV", session=None, target_datetime=None, logger=None
+    zone_key: str = "SV",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:

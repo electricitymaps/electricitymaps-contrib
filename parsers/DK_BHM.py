@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # The arrow library is used to handle datetimes
-import arrow
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
-# The request library is used to fetch content through HTTP
-import requests
+import arrow
+from requests import Session
 
 PRODUCTION_MAPPING = {
     "wind": "wind_turbines",
@@ -12,8 +14,8 @@ PRODUCTION_MAPPING = {
 }
 
 
-def _fetch_data(session=None):
-    r = session or requests.session()
+def _fetch_data(session: Optional[Session] = None):
+    r = session or Session()
     url = "http://bornholm.powerlab.dk/visualizer/latestdata"
     response = r.get(url)
     obj = response.json()
@@ -21,7 +23,10 @@ def _fetch_data(session=None):
 
 
 def fetch_production(
-    zone_key="DK-BHM", session=None, target_datetime=None, logger=None
+    zone_key: str = "DK-BHM",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
@@ -43,11 +48,15 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="DK-BHM",
-    zone_key2="SE-SE4",
-    session=None,
-    target_datetime=None,
-    logger=None,
+    zone_key1: str = "DK-BHM",
+
+    zone_key2: str = "SE-SE4",
+
+    session: Optional[Session] = None,
+
+    target_datetime: Optional[datetime] = None,
+
+    logger: Logger = getLogger(__name__),,
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
 

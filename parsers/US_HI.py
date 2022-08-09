@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
-import datetime
-import logging
+
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 BASE_URL = "https://www.islandpulse.org/api/mix?"
 
@@ -42,7 +44,7 @@ def get_historical_prod(r, request_dt):
     return raw_data
 
 
-def validate_prod_timestamp(logger, energy_dt, request_dt):
+def validate_prod_timestamp(logger: Logger, energy_dt, request_dt):
     """Check that the energy production data was captured up to 2 hours after the requested datetime.
     Compares two Arrow objects in local HST time."""
     diff = energy_dt - request_dt
@@ -57,13 +59,13 @@ def validate_prod_timestamp(logger, energy_dt, request_dt):
 
 
 def fetch_production(
-    zone_key="US-HI-OA",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "US-HI-OA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
-    r = session or requests.session()
+    r = session or Session()
     if target_datetime is None:
         request_dt = arrow.now("Pacific/Honolulu")
         res = r.get(BASE_URL + "limit=1").json()

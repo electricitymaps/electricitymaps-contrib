@@ -2,13 +2,15 @@
 # coding=utf-8
 
 import json
-import logging
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 TIMEZONE = "America/Panama"
 
@@ -141,17 +143,17 @@ def sum_thermal_units(soup) -> float:
 
 
 def fetch_production(
-    zone_key="PA",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "PA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     # Fetch page and load into BeautifulSoup
-    r = session or requests.session()
+    r = session or Session()
     url = PRODUCTION_URL
     response = r.get(url)
     response.encoding = "utf-8"
@@ -261,11 +263,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="CR",
-    zone_key2="PA",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str = "CR",
+    zone_key2: str = "PA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """
     Requests the last known power exchange (in MW) between two countries.
@@ -276,7 +278,7 @@ def fetch_exchange(
 
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    r = session or requests.session()
+    r = session or Session()
     url = EXCHANGE_URL
 
     response = r.get(url)
@@ -337,10 +339,10 @@ def fetch_exchange(
 
 
 def fetch_consumption(
-    zone_key="PA",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "PA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """
     Fetches consumption of Panama.
@@ -349,7 +351,7 @@ def fetch_consumption(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = CONSUMPTION_URL
 
     response = r.get(url)

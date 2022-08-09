@@ -20,7 +20,7 @@ def get_token(token):
     return os.environ[token]
 
 
-def sum_production_dicts(prod1: dict, prod2: dict()):
+def sum_production_dicts(prod1: dict, prod2: dict):
     """
     Sum two productions dictionnaries.
     For a production mode key,

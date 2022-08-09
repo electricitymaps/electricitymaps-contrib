@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-import logging
+
 import math
 from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import numpy as np
 import pandas as pd
-import requests
+from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
@@ -20,16 +22,16 @@ ZONE_CONFIG = ZONES_CONFIG["NL"]
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="NL",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "NL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
         target_datetime = arrow.utcnow()
     else:
         target_datetime = arrow.get(target_datetime)
-    r = session or requests.session()
+    r = session or Session()
 
     consumptions = ENTSOE.fetch_consumption(
         zone_key=zone_key, session=r, target_datetime=target_datetime, logger=logger
@@ -175,7 +177,9 @@ def fetch_production(
 
 
 def fetch_production_energieopwek_nl(
-    session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()
@@ -206,8 +210,8 @@ def fetch_production_energieopwek_nl(
     return output
 
 
-def get_production_data_energieopwek(date, session=None):
-    r = session or requests.session()
+def get_production_data_energieopwek(date, session: Optional[Session] = None):
+    r = session or Session()
 
     # The API returns values per day from local time midnight until the last
     # round 10 minutes if the requested date is today or for the entire day if
@@ -262,7 +266,7 @@ def get_wind_capacities() -> pd.DataFrame:
 
     capacities_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
     try:
-        r = requests.get(url_wind_capacities)
+        r = get(url_wind_capacities)
         per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
     except Exception as e:
         logger.error(f"Error fetching wind capacities: {e}")
@@ -298,7 +302,7 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
 
     try:
-        r = requests.get(url_solar_capacity)
+        r = get(url_solar_capacity)
         per_year_capacity = r.json()["value"]
     except Exception as e:
         logger.error(f"Error fetching solar capacities: {e}")

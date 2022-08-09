@@ -2,10 +2,13 @@
 # coding=utf-8
 
 import json
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import requests
+from requests import Session
 
 # APIs
 HISTORICAL_API_ENDPOINT = (
@@ -30,7 +33,7 @@ zone_key_mapping = {
 # -------------- Parametrized properties functions -------------- #
 
 
-def get_param(zone_key: None, target_datetime: None):
+def get_param(zone_key: str, target_datetime: datetime):
     if target_datetime is None:
         params = {
             "FR-COR": {
@@ -64,21 +67,21 @@ def get_param(zone_key: None, target_datetime: None):
         }
 
 
-def get_api(zone_key: None, target_datetime: None):
+def get_api(zone_key: str, target_datetime: datetime):
     if target_datetime is None:
         return REAL_TIME_APIS[zone_key]
     else:
         return HISTORICAL_API_ENDPOINT
 
 
-def get_source(zone_key: None, target_datetime: None):
+def get_source(zone_key: str, target_datetime: datetime):
     if target_datetime is None:
         return REAL_TIME_SOURCES[zone_key]
     else:
         return HISTORICAL_SOURCE
 
 
-def get_date_name(zone_key: None, target_datetime: None):
+def get_date_name(zone_key: str, target_datetime: datetime):
     if target_datetime is None:
         return "date"
     else:
@@ -233,10 +236,10 @@ sources_mapping = {
 
 
 def fetch_production(
-    zone_key=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if (target_datetime is None) and zone_key not in REAL_TIME_SOURCES.keys():
         raise NotImplementedError("There is no real time data")
@@ -310,10 +313,10 @@ def fetch_production(
 
 
 def fetch_price(
-    zone_key=None,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
         raise NotImplementedError("There is no real time data")

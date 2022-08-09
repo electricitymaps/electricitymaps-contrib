@@ -1,3 +1,7 @@
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
+
 from requests import Session
 
 from .lib import IN, web, zonekey
@@ -9,7 +13,10 @@ TIME_FORMAT = "hh:m DD-MM-YY"
 
 
 def fetch_consumption(
-    zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = ZONE_KEY,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Chhattisgarh consumption"""
     if target_datetime:
@@ -31,7 +38,10 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key=ZONE_KEY, session=None, target_datetime=None, logger=None
+    zone_key: str = ZONE_KEY,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Chhattisgarh production"""
 
