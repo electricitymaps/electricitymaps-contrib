@@ -16,7 +16,7 @@ import {
   ZONE_HISTORY_FETCH_REQUESTED,
   ZONE_HISTORY_FETCH_SUCCEEDED,
 } from '../helpers/redux';
-import { TIME } from '../helpers/constants';
+import { TIME, failedRequestType } from '../helpers/constants';
 
 const initialState = initDataState();
 
@@ -60,14 +60,13 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoadingGrid = true;
     })
     .addCase(GRID_DATA_FETCH_FAILED, (state) => {
-      state.failedRequestType = 'grid';
+      state.failedRequestType = failedRequestType.GRID;
       state.isLoadingGrid = false;
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
       state.isLoadingHistories = false;
       state.failedRequestType = null;
-      state.failedRequestZoneId = null;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
@@ -91,10 +90,8 @@ const reducer = createReducer(initialState, (builder) => {
         }
       });
     })
-    .addCase(ZONE_HISTORY_FETCH_FAILED, (state, action) => {
-      const { zoneId } = action.payload;
-      state.failedRequestType = 'zone';
-      state.failedRequestZoneId = zoneId;
+    .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
+      state.failedRequestType = failedRequestType.ZONE;
       state.isLoadingHistories = false;
     })
     .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {

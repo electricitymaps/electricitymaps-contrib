@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -14,7 +14,7 @@ import TimeController from './timeController';
 // Modules
 import { useTranslation } from '../helpers/translation';
 import { isNewClientVersion } from '../helpers/environment';
-import { useHeaderVisible, useFeatureToggle } from '../hooks/router';
+import { useHeaderVisible } from '../hooks/router';
 import { useLoadingOverlayVisible } from '../hooks/redux';
 import { useGridDataPolling, useConditionalWindDataPolling, useConditionalSolarDataPolling } from '../hooks/fetch';
 import { dispatchApplication } from '../store';
@@ -26,10 +26,10 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
-import { GRID_DATA_FETCH_REQUESTED, ZONE_HISTORY_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
 import ResponsiveSheet from './responsiveSheet';
+import { RetryBanner } from '../components/retrybanner';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -70,17 +70,13 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Main = ({ electricityMixMode }) => {
   const { __ } = useTranslation();
-  const dispatch = useDispatch();
   const location = useLocation();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
   const isMobile = useSelector((state) => state.application.isMobile);
-
-  const features = useFeatureToggle();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const { failedRequestType, failedRequestZoneId } = useSelector((state) => state.data);
+  const { failedRequestType } = useSelector((state) => state.data);
   const showLoadingOverlay = useLoadingOverlayVisible();
 
   // Start grid data polling as soon as the app is mounted.
@@ -151,29 +147,7 @@ const Main = ({ electricityMixMode }) => {
               <TimeController />
             )}
           </ErrorBoundary>
-
-          <div id="connection-warning" className={`flash-message ${failedRequestType ? 'active' : ''}`}>
-            <div className="inner">
-              {__('misc.oops')}{' '}
-              <button
-                type="button"
-                onClick={(e) => {
-                  if (failedRequestType === 'grid') {
-                    dispatch(GRID_DATA_FETCH_REQUESTED({ features, selectedTimeAggregate }));
-                  }
-                  if (failedRequestType === 'zone') {
-                    dispatch(
-                      ZONE_HISTORY_FETCH_REQUESTED({ zoneId: failedRequestZoneId, features, selectedTimeAggregate })
-                    );
-                  }
-                  e.preventDefault();
-                }}
-              >
-                {__('misc.retrynow')}
-              </button>
-              .
-            </div>
-          </div>
+          {failedRequestType === 'grid' && <RetryBanner failedRequestType={failedRequestType} />}
           <div
             id="new-version"
             className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}
