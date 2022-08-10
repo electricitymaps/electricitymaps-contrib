@@ -1,8 +1,8 @@
 bounding_box:
-- - 126.11
-  - 34.39
-- - 129.46
-  - 38.61
+  - - 126.11
+    - 34.39
+  - - 129.46
+    - 38.61
 capacity:
   biomass: 1446
   coal: 37338
@@ -14,9 +14,9 @@ capacity:
   solar: 18709
   wind: 1727
 contributors:
-- systemcatch
-- alixunderplatz
-- IV1T3
+  - systemcatch
+  - alixunderplatz
+  - IV1T3
 emissionFactors:
   lifecycle:
     unknown:

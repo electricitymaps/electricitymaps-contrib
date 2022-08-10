@@ -1,6 +1,6 @@
 lonlat:
-- -84.7303
-- 11.0638
+  - -84.7303
+  - 11.0638
 parsers:
   exchange: ENTE.fetch_exchange
 rotation: -45

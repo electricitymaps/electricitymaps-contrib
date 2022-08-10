@@ -1,8 +1,8 @@
 bounding_box:
-- - 7.60472
-  - 54.509132
-- - 13.30324
-  - 57.751949
+  - - 7.60472
+    - 54.509132
+  - - 13.30324
+    - 57.751949
 capacity:
   biomass: 2391
   coal: 3165
@@ -15,8 +15,8 @@ capacity:
   solar: 1536
   wind: 6949
 contributors:
-- corradio
-- Manu1400
+  - corradio
+  - Manu1400
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -25,6 +25,6 @@ parsers:
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 subZoneNames:
-- DK-DK1
-- DK-DK2
+  - DK-DK1
+  - DK-DK2
 timezone: Europe/Copenhagen

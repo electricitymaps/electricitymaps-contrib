@@ -1,29 +1,29 @@
 bounding_box:
-- - 105.0401526228452
-  - 41.79511139500006
-- - 163.3469389183963
-  - 77.62579987200007
+  - - 105.0401526228452
+    - 41.79511139500006
+  - - 163.3469389183963
+    - 77.62579987200007
 contributors:
-- JeanBaptisteScellier
+  - JeanBaptisteScellier
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 309.83482298390635
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 309.83482298390635
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 309.83482298390635
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 309.83482298390635
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 381.2529713929112
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 381.2529713929112
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 381.2529713929112
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 381.2529713929112
     unknown:
       _comment: 'Assumes weighted average emission factor based on estimated 2021
         fuel consumption: 59.6% * 820 g/kWh (coal) + 0.3% * 650 g/kWh (oil) + 40.1%
@@ -33,21 +33,21 @@ emissionFactors:
       value: 687
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: electricityMap, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.0
-      coal: 0.0
-      gas: 0.0
-      geothermal: 0.0
-      hydro: 0.46115693042028794
-      hydro discharge: 0.0
-      nuclear: 0.0
-      oil: 0.0
-      solar: 0.0
-      unknown: 0.53884309309525
-      wind: 0.0
+    - _source: electricityMap, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.46115693042028794
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.53884309309525
+        wind: 0.0
 flag_file_name: ru.png
 parsers:
   production: RU.fetch_production

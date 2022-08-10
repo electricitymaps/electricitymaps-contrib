@@ -1,4 +1,3 @@
----
 fallbackZoneMixes:
   powerOriginRatios:
     _comment: https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html, https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Jul/IRENA_Renewable_Energy_Statistics_2018.pdf
@@ -69,7 +68,7 @@ isLowCarbon:
     value: 1
   unknown:
     _comment: By default unknown is assumed to be made up of fossil fuel based modes.
-    datetime: "2020-01-01"
+    datetime: '2020-01-01'
     source: electricityMap
     value: 0
   wind:
@@ -141,31 +140,31 @@ emissionFactors:
       value: 0
     battery discharge:
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2015-01-01"
+        datetime: '2015-01-01'
         source: 2015 annual mean carbon intensity by electricityMap
         value: 307.04
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2016-01-01"
+        datetime: '2016-01-01'
         source: 2016 annual mean carbon intensity by electricityMap
         value: 295.25
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2017-01-01"
+        datetime: '2017-01-01'
         source: 2017 annual mean carbon intensity by electricityMap
         value: 311.04
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2018-01-01"
+        datetime: '2018-01-01'
         source: 2018 annual mean carbon intensity by electricityMap
         value: 331.14
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2019-01-01"
+        datetime: '2019-01-01'
         source: 2019 annual mean carbon intensity by electricityMap
         value: 326.32
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2020-01-01"
+        datetime: '2020-01-01'
         source: 2020 annual mean carbon intensity by electricityMap
         value: 310.58
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2021-01-01"
+        datetime: '2021-01-01'
         source: 2021 annual mean carbon intensity by electricityMap
         value: 324.69
     biomass:
@@ -189,31 +188,31 @@ emissionFactors:
       value: 0
     hydro discharge:
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2015-01-01"
+        datetime: '2015-01-01'
         source: 2015 annual mean carbon intensity by electricityMap
         value: 307.04
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2016-01-01"
+        datetime: '2016-01-01'
         source: 2016 annual mean carbon intensity by electricityMap
         value: 295.25
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2017-01-01"
+        datetime: '2017-01-01'
         source: 2017 annual mean carbon intensity by electricityMap
         value: 311.04
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2018-01-01"
+        datetime: '2018-01-01'
         source: 2018 annual mean carbon intensity by electricityMap
         value: 331.14
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2019-01-01"
+        datetime: '2019-01-01'
         source: 2019 annual mean carbon intensity by electricityMap
         value: 326.32
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2020-01-01"
+        datetime: '2020-01-01'
         source: 2020 annual mean carbon intensity by electricityMap
         value: 310.58
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2021-01-01"
+        datetime: '2021-01-01'
         source: 2021 annual mean carbon intensity by electricityMap
         value: 324.69
     nuclear:
@@ -240,31 +239,31 @@ emissionFactors:
       value: 0
     battery discharge:
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2015-01-01"
+        datetime: '2015-01-01'
         source: 2015 annual mean carbon intensity by electricityMap
         value: 363.85
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2016-01-01"
+        datetime: '2016-01-01'
         source: 2016 annual mean carbon intensity by electricityMap
         value: 354.12
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2017-01-01"
+        datetime: '2017-01-01'
         source: 2017 annual mean carbon intensity by electricityMap
         value: 370.7
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2018-01-01"
+        datetime: '2018-01-01'
         source: 2018 annual mean carbon intensity by electricityMap
         value: 407.34
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2019-01-01"
+        datetime: '2019-01-01'
         source: 2019 annual mean carbon intensity by electricityMap
         value: 391.46
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2020-01-01"
+        datetime: '2020-01-01'
         source: 2020 annual mean carbon intensity by electricityMap
         value: 375.63
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2021-01-01"
+        datetime: '2021-01-01'
         source: 2021 annual mean carbon intensity by electricityMap
         value: 391.33
     biomass:
@@ -288,31 +287,31 @@ emissionFactors:
       value: 0
     hydro discharge:
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2015-01-01"
+        datetime: '2015-01-01'
         source: 2015 annual mean carbon intensity by electricityMap
         value: 363.85
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2016-01-01"
+        datetime: '2016-01-01'
         source: 2016 annual mean carbon intensity by electricityMap
         value: 354.12
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2017-01-01"
+        datetime: '2017-01-01'
         source: 2017 annual mean carbon intensity by electricityMap
         value: 370.7
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2018-01-01"
+        datetime: '2018-01-01'
         source: 2018 annual mean carbon intensity by electricityMap
         value: 407.34
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2019-01-01"
+        datetime: '2019-01-01'
         source: 2019 annual mean carbon intensity by electricityMap
         value: 391.46
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2020-01-01"
+        datetime: '2020-01-01'
         source: 2020 annual mean carbon intensity by electricityMap
         value: 375.63
       - _comment: As a default fallback, we use the annual mean carbon intensity of all electricityMap zones
-        datetime: "2021-01-01"
+        datetime: '2021-01-01'
         source: 2021 annual mean carbon intensity by electricityMap
         value: 391.33
     nuclear:

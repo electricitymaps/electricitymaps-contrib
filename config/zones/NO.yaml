@@ -11,7 +11,7 @@ capacity:
   unknown: 112.6
   wind: 4619
 contributors:
-- corradio
+  - corradio
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
@@ -20,9 +20,9 @@ parsers:
   production: ENTSOE.fetch_production
   productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
 subZoneNames:
-- NO-NO1
-- NO-NO2
-- NO-NO3
-- NO-NO4
-- NO-NO5
+  - NO-NO1
+  - NO-NO2
+  - NO-NO3
+  - NO-NO4
+  - NO-NO5
 timezone: Europe/Oslo

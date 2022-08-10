@@ -1,8 +1,8 @@
 bounding_box:
-- - 26.33196174127239
-  - 83.31609381672638
-- - 29.2389869272311
-  - 84.17810344629932
+  - - 26.33196174127239
+    - 83.31609381672638
+  - - 29.2389869272311
+    - 84.17810344629932
 capacity:
   biomass: 0
   coal: 0
@@ -13,6 +13,6 @@ capacity:
   solar: 0.7804
   wind: 0
 contributors:
-- Subarna578
+  - Subarna578
 flag_file_name: np.png
 timezone: null

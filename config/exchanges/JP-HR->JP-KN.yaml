@@ -1,6 +1,6 @@
 lonlat:
-- 136.13
-- 35.57
+  - 136.13
+  - 35.57
 parsers:
   exchange: occtonet.fetch_exchange
   exchangeForecast: occtonet.fetch_exchange_forecast

@@ -1,8 +1,8 @@
 bounding_box:
-- - -139.56020662181913
-  - 47.80609772300011
-- - -113.53745235883926
-  - 60.50005890629359
+  - - -139.56020662181913
+    - 47.80609772300011
+  - - -113.53745235883926
+    - 60.50005890629359
 capacity:
   biomass: 838
   gas: 507
@@ -10,7 +10,7 @@ capacity:
   solar: 1
   wind: 704
 contributors:
-- daveachuk
+  - daveachuk
 fallbackZoneMixes:
   _source: List of Generating Stations in BC (Wikipedia)
   _url: https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia

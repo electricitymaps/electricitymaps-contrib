@@ -1,9 +1,9 @@
 capacity:
-- -3000
-- 3000
+  - -3000
+  - 3000
 lonlat:
-- 0
-- 50.4
+  - 0
+  - 50.4
 parsers:
   exchange: ELEXON.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast

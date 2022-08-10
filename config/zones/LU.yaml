@@ -1,8 +1,8 @@
 bounding_box:
-- - 5.67405195478
-  - 49.4426671413
-- - 6.24275109216
-  - 50.1280516628
+  - - 5.67405195478
+    - 49.4426671413
+  - - 6.24275109216
+    - 50.1280516628
 capacity:
   biomass: 56.473
   gas: 11.603
@@ -11,44 +11,44 @@ capacity:
   unknown: 82.3648
   wind: 138.535
 contributors:
-- corradio
-- clawfire/
+  - corradio
+  - clawfire/
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 178.41865232807453
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 178.41865232807453
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 178.41865232807453
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 178.41865232807453
   lifecycle:
     battery discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 246.79495684659946
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 246.79495684659946
     hydro discharge:
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 246.79495684659946
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 246.79495684659946
 fallbackZoneMixes:
   powerOriginRatios:
-  - _source: electricityMap, 2021 average
-    datetime: '2021-01-01'
-    value:
-      battery discharge: 0.0
-      biomass: 0.13683191062360203
-      coal: 0.15346706775115065
-      gas: 0.1264632383266689
-      geothermal: 0.00021169172553920596
-      hydro: 0.04680064456188765
-      hydro discharge: 0.011667630183953117
-      nuclear: 0.22906003172926262
-      oil: 0.0038101838284090024
-      solar: 0.13108021125524777
-      unknown: 0.016793999410309606
-      wind: 0.14381581350105957
+    - _source: electricityMap, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.13683191062360203
+        coal: 0.15346706775115065
+        gas: 0.1264632383266689
+        geothermal: 0.00021169172553920596
+        hydro: 0.04680064456188765
+        hydro discharge: 0.011667630183953117
+        nuclear: 0.22906003172926262
+        oil: 0.0038101838284090024
+        solar: 0.13108021125524777
+        unknown: 0.016793999410309606
+        wind: 0.14381581350105957
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast
