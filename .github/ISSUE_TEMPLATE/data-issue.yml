@@ -7,27 +7,6 @@ body:
     attributes:
       value: |
         Thanks for taking the time to file this issue.
-  - type: dropdown
-    id: where-is-the-problem
-    attributes:
-      label: On what platform are you seeing the problem?
-      description: Please select the platforms where the problem is seen.
-      multiple: true
-      options:
-        - "Android"
-        - "iOS"
-        - "Web"
-        - "Other"
-    validations:
-      required: true
-  - type: textarea
-    id: if-other-platform
-    attributes:
-      label: If other, please specify
-      description: Please specify the other platform.
-      placeholder: e.g. "Web App or Android TV"
-    validations:
-      required: false
   - type: textarea
     id: when-did-this-happen
     attributes:
@@ -35,7 +14,7 @@ body:
       description: Please provide the date and time when the problem happened.
       placeholder: e.g. "2018-01-01 12:00"
     validations:
-      required: false
+      required: true
   - type: textarea
     id: what-zones-are-affected
     attributes:
