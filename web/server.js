@@ -61,8 +61,8 @@ const manifest = JSON.parse(fs.readFileSync(`${STATIC_PATH}/dist/manifest.json`)
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 // API
-app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymaps.com${req.originalUrl}`));
-app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymaps.com${req.originalUrl}`));
+app.get('/v1/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
+app.get('/v2/*', (req, res) => res.redirect(301, `https://api.electricitymap.org${req.originalUrl}`));
 
 // Source maps
 app.all('/dist/*.map', (req, res, next) => {
@@ -90,7 +90,7 @@ app.use('/', (req, res) => {
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
   if (!isStaging && isProduction && isNonAppDomain && !isFacebookRobot) {
-    res.redirect(301, `https://app.electricitymaps.com${req.originalUrl}`);
+    res.redirect(301, `https://app.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
@@ -100,7 +100,7 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    let canonicalUrl = `https://app.electricitymaps.com${req.baseUrl + req.path}`;
+    let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
     if (req.query.lang) {
       canonicalUrl += `?lang=${req.query.lang}`;
     }
