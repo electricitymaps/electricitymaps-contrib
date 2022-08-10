@@ -1,10 +1,10 @@
 # Electricity Maps
 
-[![Slack Status](https://slack.electricitymap.org/badge.svg)](https://slack.electricitymap.org) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/electricitymap.svg?style=social&label=Follow)](https://twitter.com/electricitymap)
+[![Slack Status](https://slack.electricitymaps.com/badge.svg)](https://slack.electricitymaps.com) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/ElectricityMaps.svg?style=social&label=Follow)](https://twitter.com/ElectricityMaps)
 
-A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/). Try it out at [app.electricitymap.org](https://app.electricitymap.org), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
+A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/). Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
 
-![image](https://app.electricitymap.org/images/electricitymap_social_image.png)
+![image](https://app.electricitymaps.com/images/electricitymap_social_image.png)
 
 ## Contribute
 
@@ -20,7 +20,7 @@ Here are some of the ways you can contribute:
 - [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymap.org)
 - [Updating region capacities](https://github.com/electricitymap/electricitymap-contrib/wiki/Update-region-capacities)
 
-Join us on [Slack](https://slack.electricitymap.org) if you wish to discuss development or need help to get started.
+Join us on [Slack](https://slack.electricitymaps.com) if you wish to discuss development or need help to get started.
 
 We would love your feedback on how to improve the contribution experience, please feel free to fill out this [form](https://forms.gle/VRWvEFwhtnhpzPVX8)
 
@@ -36,7 +36,7 @@ Real-time data is defined as a data source with an hourly (or better) frequency,
 In short, citizens should not be responsible for the emissions associated with all the products they export, but only for what they consume.
 Consumption-based accounting (CBA) is a very important aspect of climate policy and allows assigning responsibility to consumers instead of producers.
 Furthermore, this method is robust to governments relocating dirty production to neighboring countries in order to green their image while still importing from it.
-You can read more in our blog post [here](https://electricitymap.org/blog/flow-tracing/).
+You can read more in our blog post [here](https://electricitymaps.com/blog/flow-tracing/).
 
 **Why don't you show emissions per capita?**
 A country that has few inhabitants but a lot of factories will appear high on CO<sub>2</sub>/capita.
@@ -58,4 +58,4 @@ The Electricity Maps doesn't use scheduled generation data or make assumptions a
 Yes, providing there is a valid GeoJSON geometry (or another format that can be converted) for the area. As an example, we already split several countries into states and grid regions.
 
 **How can I get access to historical data or the live API?**
-All this and more can be found **[here](https://electricitymap.org/)**.
+All this and more can be found **[here](https://electricitymaps.com/)**.
