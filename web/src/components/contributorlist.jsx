@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { zonesConfig } from '../../generate-zones-config';
+import { zonesConfig } from '../helpers/zonedata';
 
 const ContributorList = () => {
   const { zoneId } = useParams();

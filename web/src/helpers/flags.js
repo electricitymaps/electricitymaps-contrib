@@ -1,5 +1,5 @@
 import { DEFAULT_FLAG_SIZE } from '../helpers/constants';
-import { zonesConfig } from '../../generate-zones-config';
+import { zonesConfig } from '../helpers/zonedata';
 
 const flagUri = function (countryCode, flagSize = DEFAULT_FLAG_SIZE) {
   if (!countryCode) {
