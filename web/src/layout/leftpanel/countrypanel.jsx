@@ -194,7 +194,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
 const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
   const { __ } = useTranslation();
-  const { failedRequestType } = useSelector((state) => state.data);
+  const failedRequestType = useSelector((state) => state.data.failedRequestType);
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
 
   // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.

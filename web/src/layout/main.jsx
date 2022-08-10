@@ -76,7 +76,7 @@ const Main = ({ electricityMixMode }) => {
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
   const isMobile = useSelector((state) => state.application.isMobile);
-  const { failedRequestType } = useSelector((state) => state.data);
+  const failedRequestType = useSelector((state) => state.data.failedRequestType);
   const showLoadingOverlay = useLoadingOverlayVisible();
 
   // Start grid data polling as soon as the app is mounted.
