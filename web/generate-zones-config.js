@@ -35,11 +35,11 @@ const mergeExchanges = () => {
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDir = exchangeFiles.map((file) => `${basePath}/${file}`);
 
-  const exchanges = filesWithDir.reduce(
-    (exchanges, filepath) =>
-      Object.assign(exchanges, { [path.parse(filepath).name]: yaml.load(fs.readFileSync(filepath, 'utf8')) }),
-    {}
-  );
+  const exchanges = filesWithDir.reduce((exchanges, filepath) => {
+    const exchangeKey = path.parse(filepath).name.split('→').join('->');
+    Object.assign(exchanges, { [exchangeKey]: yaml.load(fs.readFileSync(filepath, 'utf8')) });
+    return exchanges;
+  }, {});
 
   return exchanges;
 };
