@@ -384,16 +384,16 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
         "required": ["coal"],
     },
     "SE-SE1": {
-        "required": ["hydro", "wind", "unknown"],
+        "required": ["hydro", "wind", "unknown", "solar"],
     },
     "SE-SE2": {
-        "required": [ "hydro", "wind", "unknown"],
+        "required": ["gas", "hydro", "wind", "unknown", "solar"],
     },
     "SE-SE3": {
-        "required": ["hydro", "nuclear", "wind", "unknown"],
+        "required": ["gas", "hydro", "nuclear", "wind", "unknown", "solar"],
     },
     "SE-SE4": {
-        "required": ["hydro", "wind", "unknown"],
+        "required": ["gas", "hydro", "wind", "unknown", "solar"],
     },
     "SI": {
         # own total generation capacity is around 4 GW
