@@ -102,6 +102,11 @@ const TIME = {
   YEARLY: 'yearly',
 };
 
+const failedRequestType = {
+  ZONE: 'zone',
+  GRID: 'grid',
+};
+
 export {
   modeColor,
   modeOrder,
@@ -112,4 +117,5 @@ export {
   LANGUAGE_NAMES,
   LOCALE_TO_FACEBOOK_LOCALE,
   TIME,
+  failedRequestType,
 };

@@ -137,8 +137,8 @@
     "newversion": "A new version is available! Press <a onClick=\"location.reload(true);\">here</a> to reload.",
     "webgl-not-supported": "The map can't be rendered because this browser does not support WebGL.",
     "retrynow": "Retry now",
-    "database-ad": "Looking for historical data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
-    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
+    "database-ad": "Looking for historical data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Check out our Database!</a>",
+    "api-ad": "Want live data in your app or on your device? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Try our API!</a>",
     "legend": "Legend",
     "faq": "Frequently Asked Questions",
     "privacyPolicy": "Privacy Policy",
@@ -189,7 +189,7 @@
     "divideExistingArea-question": "Can you divide my area into smaller parts?",
     "divideExistingArea-answer": "Sure, if there exists separate data sources for each part of the area. You can <a href=\"#contribute\" class=\"entry-link\">help us with adding new data sources</a>",
     "seeHistoricalData-question": "Can I see the history for an area further back in time than 24 hours?",
-    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "You can purchase access to all of our historical data through our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
   },
   "methodology": {
     "groupName": "Our methods",
@@ -217,22 +217,22 @@
     "dataOrigins-question": "How do you get your data?",
     "dataOrigins-answer": "We compute all of our data from publically available data, published by electricity grid operators, official agencies, and others. You can click on an area to see more specifics on the origins of its data.",
     "dataDownload-question": "Can I download your data?",
-    "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+    "dataDownload-answer": "You can purchase access to all of our data in our <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
     "dataIntegration-question": "Can I integrate your data real-time into my application or device?",
-    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
   },
   "aboutUs": {
     "groupName": "About us",
     "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
+    "whoAreYou-answer": "The app is developed and maintained by <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, a Danish startup company. Our goal is to help humanity reach a sustainable state of existence by quantifying, and making widely accessible, the climate impact of the daily choices we make.",
     "feedback-question": "Can I give you some feedback?",
-    "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymap.org\">send us an email!</a>",
+    "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">send us an email!</a>",
     "contribute-question": "Can I contribute to your project?",
     "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Can we work together?",
-    "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymap.org\">Send us an email!</a>",
+    "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": {
