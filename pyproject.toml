@@ -2,7 +2,7 @@
 name = "electricitymap-contrib"
 version = "0.1.0"
 description = ""
-authors = ["electricityMap team <app@electricityMap.org>"]
+authors = ["Electricity Maps team <app@electricityMaps.com>"]
 packages = [
     { include = "electricitymap" }
 ]
