@@ -1,4 +1,14 @@
-const { polygon, getCoords, getType, featureEach, featureCollection, area, truncate } = require('@turf/turf');
+const {
+  polygon,
+  getCoords,
+  getType,
+  featureEach,
+  featureCollection,
+  area,
+  truncate,
+  polygonToLineString,
+  length,
+} = require('@turf/turf');
 const fs = require('fs');
 
 function getPolygons(input) {
@@ -32,14 +42,20 @@ function getPolygons(input) {
   return truncate(featureCollection(polygons), { precision: 6 });
 }
 
-function getHoles(fc, minArea) {
+function isSliver(polygon, polArea, sliverRatio) {
+  const lineStringLength = length(polygonToLineString(polygon));
+  return lineStringLength / polArea < sliverRatio;
+}
+
+function getHoles(fc, minArea, sliverRatio) {
   const holes = [];
   featureEach(fc, (ft) => {
     const coords = getCoords(ft);
     if (coords.length > 1) {
       for (let i = 1; i < coords.length; i++) {
         const pol = polygon([coords[i]]);
-        if (area(pol) < minArea) {
+        const polArea = area(pol);
+        if (polArea < minArea && !isSliver(pol, polArea, sliverRatio)) {
           holes.push(pol);
         }
       }
