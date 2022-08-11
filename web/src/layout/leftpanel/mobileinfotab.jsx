@@ -57,7 +57,7 @@ const MobileInfoTab = () => {
         />
         <a
           className="twitter-share-button"
-          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org"
+          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com"
           target="_blank"
           rel="noreferrer"
         >
