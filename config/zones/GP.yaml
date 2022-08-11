@@ -1,8 +1,8 @@
 bounding_box:
-- - -61.859314
-  - 15.831168
-- - -60.992374
-  - 16.56759
+  - - -61.859314
+    - 15.831168
+  - - -60.992374
+    - 16.56759
 capacity:
   biomass: 5.162
   gas: 100
@@ -12,7 +12,7 @@ capacity:
   solar: 60.447
   wind: 26.26
 contributors:
-- PETILLON-Sebastien
+  - PETILLON-Sebastien
 parsers:
   price: FR_O.fetch_price
   production: FR_O.fetch_production

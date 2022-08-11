@@ -1,9 +1,9 @@
 capacity:
-- -450
-- 450
+  - -450
+  - 450
 lonlat:
-- 103.539048
-- 2.016154
+  - 103.539048
+  - 2.016154
 parsers:
   exchange: MY_WM.fetch_exchange
 rotation: 155

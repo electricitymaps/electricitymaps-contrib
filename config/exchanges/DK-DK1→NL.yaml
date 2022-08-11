@@ -1,10 +1,10 @@
 _comment: 700MW from COBRAcable https://en.wikipedia.org/wiki/COBRAcable
 capacity:
-- -700
-- 700
+  - -700
+  - 700
 lonlat:
-- 7.4
-- 54.5
+  - 7.4
+  - 54.5
 parsers:
   exchange: DK.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast

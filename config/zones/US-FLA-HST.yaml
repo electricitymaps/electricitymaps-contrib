@@ -1,8 +1,8 @@
 bounding_box:
-- - -81.3738299999999
-  - 24.6374500000001
-- - -79.61802
-  - 26.47902
+  - - -81.3738299999999
+    - 24.6374500000001
+  - - -79.61802
+    - 26.47902
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: City Of Homestead
 contributors:
-- systemcatch
-- robertahunt
-- KabelWlan
+  - systemcatch
+  - robertahunt
+  - KabelWlan
 delays:
   consumption: 30
   consumptionForecast: 30

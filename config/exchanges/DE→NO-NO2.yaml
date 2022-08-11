@@ -1,9 +1,9 @@
 capacity:
-- -1444
-- 1444
+  - -1444
+  - 1444
 lonlat:
-- 7.2
-- 55.9
+  - 7.2
+  - 55.9
 parsers:
   exchange: ENTSOE.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast

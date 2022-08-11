@@ -1,15 +1,15 @@
 bounding_box:
-- - 19.3044861183
-  - 39.624997667
-- - 21.0200403175
-  - 42.6882473822
+  - - 19.3044861183
+    - 39.624997667
+  - - 21.0200403175
+    - 42.6882473822
 capacity:
   biomass: 1
   hydro: 2289
   solar: 22
 contributors:
-- corradio
-- nessie2013
+  - corradio
+  - nessie2013
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

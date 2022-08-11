@@ -1,15 +1,15 @@
 bounding_box:
-- - 20.013053
-  - 41.848669
-- - 21.791473
-  - 43.269883
+  - - 20.013053
+    - 41.848669
+  - - 21.791473
+    - 43.269883
 capacity:
   coal: 1288
   hydro: 68
   solar: 10.002
   wind: 136
 contributors:
-- veqtrus
+  - veqtrus
 delays:
   production: 48
 parsers:

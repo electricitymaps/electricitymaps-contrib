@@ -1,8 +1,8 @@
 bounding_box:
-- - -120.54268
-  - 44.57814
-- - -113.68675
-  - 49.50073
+  - - -120.54268
+    - 44.57814
+  - - -113.68675
+    - 49.50073
 capacity:
   battery storage: 0
   biomass: 199.9
@@ -18,9 +18,9 @@ capacity:
   wind: 249.3
 comment: Avista Corporation
 contributors:
-- systemcatch
-- robertahunt
-- KabelWlan
+  - systemcatch
+  - robertahunt
+  - KabelWlan
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -28,58 +28,58 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 192.24523949942247
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 156.7095216675603
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 121.19864096056943
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 135.69137283431053
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 192.24523949942247
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 156.7095216675603
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 121.19864096056943
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 135.69137283431053
     hydro discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 192.24523949942247
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 156.7095216675603
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 121.19864096056943
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 135.69137283431053
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 192.24523949942247
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 156.7095216675603
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 121.19864096056943
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 135.69137283431053
   lifecycle:
     battery discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 248.44347013173143
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 207.1104514026927
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 167.4007806240946
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 183.61633166677058
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 248.44347013173143
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 207.1104514026927
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 167.4007806240946
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 183.61633166677058
     hydro discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 248.44347013173143
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 207.1104514026927
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 167.4007806240946
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 183.61633166677058
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 248.44347013173143
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 207.1104514026927
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 167.4007806240946
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 183.61633166677058
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

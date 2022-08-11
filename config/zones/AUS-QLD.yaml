@@ -1,8 +1,8 @@
 bounding_box:
-- - 137.5001868021792
-  - -29.670622246919024
-- - 154.0488387380003
-  - -8.740166924999826
+  - - 137.5001868021792
+    - -29.670622246919024
+  - - 154.0488387380003
+    - -8.740166924999826
 capacity:
   battery storage: 0
   biomass: 253
@@ -15,64 +15,64 @@ capacity:
   solar: 6025
   wind: 644
 contributors:
-- brandongalbraith
-- jarek
-- corradio
+  - brandongalbraith
+  - jarek
+  - corradio
 emissionFactors:
   direct:
     battery discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 747.4158879215064
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 692.4802659084082
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 642.1653628024245
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 594.3595853433416
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 747.4158879215064
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 692.4802659084082
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 642.1653628024245
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 594.3595853433416
     hydro discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 747.4158879215064
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 692.4802659084082
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 642.1653628024245
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 594.3595853433416
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 747.4158879215064
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 692.4802659084082
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 642.1653628024245
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 594.3595853433416
   lifecycle:
     battery discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 747.4158879215064
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 692.4802659084082
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 642.1653628024245
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 594.3595853433416
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 747.4158879215064
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 692.4802659084082
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 642.1653628024245
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 594.3595853433416
     hydro discharge:
-    - datetime: '2018-01-01'
-      source: electricityMap, 2018 average
-      value: 747.4158879215064
-    - datetime: '2019-01-01'
-      source: electricityMap, 2019 average
-      value: 692.4802659084082
-    - datetime: '2020-01-01'
-      source: electricityMap, 2020 average
-      value: 642.1653628024245
-    - datetime: '2021-01-01'
-      source: electricityMap, 2021 average
-      value: 594.3595853433416
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 747.4158879215064
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 692.4802659084082
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 642.1653628024245
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 594.3595853433416
 flag_file_name: au.png
 parsers:
   price: OPENNEM.fetch_price

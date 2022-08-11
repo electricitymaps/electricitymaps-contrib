@@ -1,13 +1,13 @@
 bounding_box:
-- - 166.054687
-  - -47.638394
-- - 178.798828
-  - -34.168835
+  - - 166.054687
+    - -47.638394
+  - - 178.798828
+    - -34.168835
 contributors:
-- BobGrun
-- corradio
-- davidcole1340
-- drc38
+  - BobGrun
+  - corradio
+  - davidcole1340
+  - drc38
 emissionFactors:
   lifecycle:
     battery discharge:

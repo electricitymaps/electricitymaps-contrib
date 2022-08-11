@@ -1,9 +1,9 @@
 _comment: gas includes an 88 MW cogeneration plant
 bounding_box:
-- - -69.56355977593142
-  - 44.102757112000205
-- - -63.27110755099994
-  - 48.57514069200005
+  - - -69.56355977593142
+    - 44.102757112000205
+  - - -63.27110755099994
+    - 48.57514069200005
 capacity:
   biomass: 38
   coal: 467
@@ -13,7 +13,7 @@ capacity:
   oil: 1497
   wind: 294
 contributors:
-- jarek
+  - jarek
 fallbackZoneMixes:
   _source: Canada NEB yearly data for 2018
   _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
