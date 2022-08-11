@@ -1,8 +1,8 @@
 bounding_box:
-  - - 103.14039147200003
-    - 0.7643089860000885
-  - - 104.50342858200003
-    - 1.9486351580000445
+- - 103.14039147200003
+  - 0.7643089860000885
+- - 104.50342858200003
+  - 1.9486351580000445
 capacity:
   biomass: 256.8
   coal: 763.6
@@ -11,68 +11,68 @@ capacity:
   oil: 0
   solar: 486.9
 contributors:
-  - corradio
-  - jarek
-  - r24mille
-  - systemcatch
-  - alixunderplatz
-  - q--
-  - nessie2013
+- corradio
+- jarek
+- r24mille
+- systemcatch
+- alixunderplatz
+- q--
+- nessie2013
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 373.93472299872286
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 373.4849167376516
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 372.9033513236525
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 372.16040720903
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 373.93472299872286
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 373.4849167376516
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 372.9033513236525
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 372.16040720903
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 373.93472299872286
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 373.4849167376516
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 372.9033513236525
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 372.16040720903
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 373.93472299872286
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 373.4849167376516
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 372.9033513236525
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 372.16040720903
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 493.83082278143814
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 493.304923348922
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 492.5205635082304
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 491.6164625671815
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 493.83082278143814
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 493.304923348922
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 492.5205635082304
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 491.6164625671815
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 493.83082278143814
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 493.304923348922
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 492.5205635082304
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 491.6164625671815
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 493.83082278143814
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 493.304923348922
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 492.5205635082304
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 491.6164625671815
 isLowCarbon:
   unknown:
     value: 1

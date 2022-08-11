@@ -1,8 +1,8 @@
 bounding_box:
-  - - -113.26607132
-    - 31.246901321
-  - - -111.760446548
-    - 33.5380344390001
+- - -113.26607132
+  - 31.246901321
+- - -111.760446548
+  - 33.5380344390001
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: Gila River Power, Llc
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

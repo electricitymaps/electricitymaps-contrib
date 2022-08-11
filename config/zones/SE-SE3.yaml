@@ -1,8 +1,8 @@
 bounding_box:
-  - - 10.608164910000113
-    - 56.392035223000065
-  - - 19.8385522800001
-    - 62.67478628775066
+- - 10.608164910000113
+  - 56.392035223000065
+- - 19.8385522800001
+  - 62.67478628775066
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

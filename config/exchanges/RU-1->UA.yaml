@@ -1,9 +1,0 @@
-capacity:
-  - -3000
-  - 3000
-lonlat:
-  - 37.730064
-  - 50.089897
-parsers:
-  exchange: RU.fetch_exchange
-rotation: -135

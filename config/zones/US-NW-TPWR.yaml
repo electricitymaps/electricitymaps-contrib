@@ -1,8 +1,8 @@
 bounding_box:
-  - - -124.00616
-    - 45.8837600000001
-  - - -120.56592
-    - 48.28046
+- - -124.00616
+  - 45.8837600000001
+- - -120.56592
+  - 48.28046
 capacity:
   battery storage: 0
   biomass: 64
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: City Of Tacoma, Department Of Public Utilities, Light Division
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -28,58 +28,58 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 67.61255030616458
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 56.93168195584996
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 25.989293496070676
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 32.98563615085665
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 67.61255030616458
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 56.93168195584996
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 25.989293496070676
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 32.98563615085665
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 67.61255030616458
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 56.93168195584996
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 25.989293496070676
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 32.98563615085665
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 67.61255030616458
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 56.93168195584996
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 25.989293496070676
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 32.98563615085665
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 100.63370400691751
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 88.47659554532153
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 54.04721556799859
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 61.878854668906634
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 100.63370400691751
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 88.47659554532153
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 54.04721556799859
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 61.878854668906634
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 100.63370400691751
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 88.47659554532153
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 54.04721556799859
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 61.878854668906634
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 100.63370400691751
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 88.47659554532153
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 54.04721556799859
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 61.878854668906634
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

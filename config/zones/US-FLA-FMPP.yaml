@@ -1,8 +1,8 @@
 bounding_box:
-  - - -83.03593
-    - 24.044093
-  - - -79.53074
-    - 30.69435
+- - -83.03593
+  - 24.044093
+- - -79.53074
+  - 30.69435
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: Florida Municipal Power Pool
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   consumption: 30
   consumptionForecast: 30
@@ -28,90 +28,90 @@ delays:
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 477.2192753178431
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 462.3785463463708
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 441.0877526137168
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 440.5330707389499
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 477.2192753178431
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 462.3785463463708
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 441.0877526137168
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 440.5330707389499
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 477.2192753178431
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 462.3785463463708
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 441.0877526137168
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 440.5330707389499
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 477.2192753178431
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 462.3785463463708
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 441.0877526137168
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 440.5330707389499
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 569.0038724128434
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 556.3005808507281
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 549.6907953546347
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 536.0332636570112
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 569.0038724128434
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 556.3005808507281
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 549.6907953546347
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 536.0332636570112
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 569.0038724128434
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 556.3005808507281
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 549.6907953546347
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 536.0332636570112
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 569.0038724128434
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 556.3005808507281
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 549.6907953546347
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 536.0332636570112
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 7.97331124558987e-06
-        coal: 0.33872721914795545
-        gas: 0.5716712952664444
-        geothermal: 1.3697125083939193e-06
-        hydro: 0.00029581203624963964
-        hydro discharge: 7.515698010289313e-07
-        nuclear: 0.07067579989021451
-        oil: 0.00011104678350015541
-        solar: 0.004183862952028582
-        unknown: 0.014300271836855356
-        wind: 2.3225695890049404e-05
-    - _source: electricityMap, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.00011844889540099069
-        coal: 0.2330794859373745
-        gas: 0.5792211890050452
-        geothermal: 2.0807542712711284e-05
-        hydro: 0.00117868356401116
-        hydro discharge: 3.641028793701335e-07
-        nuclear: 0.06459015739271144
-        oil: 0.08353564303860109
-        solar: 0.010592557433304606
-        unknown: 0.02733898930104705
-        wind: 0.0003231147193475763
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 7.97331124558987e-06
+      coal: 0.33872721914795545
+      gas: 0.5716712952664444
+      geothermal: 1.3697125083939193e-06
+      hydro: 0.00029581203624963964
+      hydro discharge: 7.515698010289313e-07
+      nuclear: 0.07067579989021451
+      oil: 0.00011104678350015541
+      solar: 0.004183862952028582
+      unknown: 0.014300271836855356
+      wind: 2.3225695890049404e-05
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.00011844889540099069
+      coal: 0.2330794859373745
+      gas: 0.5792211890050452
+      geothermal: 2.0807542712711284e-05
+      hydro: 0.00117868356401116
+      hydro discharge: 3.641028793701335e-07
+      nuclear: 0.06459015739271144
+      oil: 0.08353564303860109
+      solar: 0.010592557433304606
+      unknown: 0.02733898930104705
+      wind: 0.0003231147193475763
 flag_file_name: us.png
 parsers:
   consumption: EIA.fetch_consumption

@@ -1,6 +1,0 @@
-lonlat:
-  - -73.279
-  - 42.739
-parsers:
-  exchange: US_NY.fetch_exchange
-rotation: -90

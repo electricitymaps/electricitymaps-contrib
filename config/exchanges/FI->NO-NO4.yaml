@@ -1,7 +1,0 @@
-lonlat:
-  - 25.35158
-  - 68.862684
-parsers:
-  exchange: statnett.fetch_exchange
-  exchangeForecast: ENTSOE.fetch_exchange_forecast
-rotation: -30

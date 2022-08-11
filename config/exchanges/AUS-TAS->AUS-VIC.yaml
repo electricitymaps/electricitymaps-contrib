@@ -1,9 +1,0 @@
-capacity:
-  - -500
-  - 500
-lonlat:
-  - 146.096047
-  - -39.836207
-parsers:
-  exchange: OPENNEM.fetch_exchange
-rotation: 0

@@ -1,7 +1,0 @@
-lonlat:
-  - 6.5
-  - 46.7
-parsers:
-  exchange: ENTSOE.fetch_exchange
-  exchangeForecast: ENTSOE.fetch_exchange_forecast
-rotation: -90

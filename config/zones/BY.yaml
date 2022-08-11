@@ -1,10 +1,10 @@
 _comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273
   CHP
 bounding_box:
-  - - 23.1994938494
-    - 51.3195034857
-  - - 32.6936430193
-    - 56.1691299506
+- - 23.1994938494
+  - 51.3195034857
+- - 32.6936430193
+  - 56.1691299506
 capacity:
   biomass: 31
   coal: 0
@@ -16,7 +16,7 @@ capacity:
   solar: 50.9
   wind: 70.4
 contributors:
-  - admetny
+- admetny
 fallbackZoneMixes:
   _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
   powerOriginRatios:

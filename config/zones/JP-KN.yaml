@@ -1,8 +1,8 @@
 bounding_box:
-  - - 134.24
-    - 33.29
-  - - 136.38
-    - 36.01
+- - 134.24
+  - 33.29
+- - 136.38
+  - 36.01
 capacity:
   biomass: 0
   coal: 2301
@@ -14,9 +14,9 @@ capacity:
   solar: 4962
   wind: 146
 contributors:
-  - tmslaine
-  - lorrieq
-  - kongkille
+- tmslaine
+- lorrieq
+- kongkille
 estimation_method: RECONSTRUCT_BREAKDOWN
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast

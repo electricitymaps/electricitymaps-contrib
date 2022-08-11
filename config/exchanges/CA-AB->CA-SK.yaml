@@ -1,9 +1,0 @@
-capacity:
-  - -153
-  - 153
-lonlat:
-  - -109.986644
-  - 54.883208
-parsers:
-  exchange: CA_AB.fetch_exchange
-rotation: 90

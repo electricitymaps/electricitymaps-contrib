@@ -1,6 +1,0 @@
-lonlat:
-  - 36.6
-  - 45.25
-parsers:
-  exchange: RU.fetch_exchange
-rotation: -90

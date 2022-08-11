@@ -1,6 +1,0 @@
-lonlat:
-  - 20.212
-  - 42.408
-parsers:
-  exchange: ENTSOE.fetch_exchange
-rotation: 45

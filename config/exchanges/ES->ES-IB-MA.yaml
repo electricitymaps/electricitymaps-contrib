@@ -1,9 +1,0 @@
-capacity:
-  - -400
-  - 400
-lonlat:
-  - 2.23
-  - 40.271
-parsers:
-  exchange: ES.fetch_exchange
-rotation: 135

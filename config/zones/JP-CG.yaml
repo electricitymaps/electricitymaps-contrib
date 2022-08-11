@@ -1,11 +1,11 @@
 bounding_box:
-  - - 130.66
-    - 33.585
-  - - 134.54
-    - 35.74
+- - 130.66
+  - 33.585
+- - 134.54
+  - 35.74
 contributors:
-  - tmslaine
-  - lorrieq
+- tmslaine
+- lorrieq
 parsers:
   consumptionForecast: JP.fetch_consumption_forecast
   price: JP.fetch_price

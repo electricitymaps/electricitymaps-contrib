@@ -1,8 +1,8 @@
 bounding_box:
-  - - 76.5581702012937
-    - 23.411047268416667
-  - - 85.11243777868054
-    - 30.902020574789645
+- - 76.5581702012937
+  - 23.411047268416667
+- - 85.11243777868054
+  - 30.902020574789645
 capacity:
   biomass: 2117.3
   coal: 24389
@@ -13,9 +13,9 @@ capacity:
   solar: 1840.3
   wind: 0
 contributors:
-  - sahitya-pavurala
-  - pierresegonne
-  - gopikrishna1793
+- sahitya-pavurala
+- pierresegonne
+- gopikrishna1793
 estimation_method: RECONSTRUCT_BREAKDOWN
 fallbackZoneMixes:
   _source: electricityMap

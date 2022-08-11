@@ -1,6 +1,0 @@
-lonlat:
-  - -78.9147
-  - 43.5523
-parsers:
-  exchange: CA_ON.fetch_exchange
-rotation: 135

@@ -1,76 +1,76 @@
 bounding_box:
-  - - 38.27451135200005
-    - 28.56313669900004
-  - - 49.059255405000044
-    - 37.562000619000116
+- - 38.27451135200005
+  - 28.56313669900004
+- - 49.059255405000044
+  - 37.562000619000116
 capacity: {}
 contributors:
-  - alixunderplatz
-  - systemcatch
-  - byronwilliams
+- alixunderplatz
+- systemcatch
+- byronwilliams
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 374.81625295398635
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 360.4540929615272
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 374.81625295398635
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 360.4540929615272
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 374.81625295398635
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 360.4540929615272
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 374.81625295398635
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 360.4540929615272
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 528.3195108025338
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 502.52405687611594
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 528.3195108025338
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 502.52405687611594
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 528.3195108025338
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 502.52405687611594
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 528.3195108025338
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 502.52405687611594
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0006326828771574089
-        coal: 0.013731271802191055
-        gas: 0.6552808061162272
-        geothermal: 0.0001113302338854286
-        hydro: 0.023856141091445772
-        hydro discharge: 0.0
-        nuclear: 0.0036857521970622233
-        oil: 0.30004985557688785
-        solar: 0.0007937334551775232
-        unknown: 0.00027924122676341735
-        wind: 0.0017242123955483867
-    - _source: electricityMap, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0010763946563922327
-        coal: 0.02336093556043354
-        gas: 0.656151960167095
-        geothermal: 0.00018941444391355023
-        hydro: 0.06283182771135898
-        hydro discharge: 0.0
-        nuclear: 0.006270572750270338
-        oil: 0.24606172266009518
-        solar: 0.0013503809058049486
-        unknown: 0.0004750960471788899
-        wind: 0.002933390740270117
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0006326828771574089
+      coal: 0.013731271802191055
+      gas: 0.6552808061162272
+      geothermal: 0.0001113302338854286
+      hydro: 0.023856141091445772
+      hydro discharge: 0.0
+      nuclear: 0.0036857521970622233
+      oil: 0.30004985557688785
+      solar: 0.0007937334551775232
+      unknown: 0.00027924122676341735
+      wind: 0.0017242123955483867
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0010763946563922327
+      coal: 0.02336093556043354
+      gas: 0.656151960167095
+      geothermal: 0.00018941444391355023
+      hydro: 0.06283182771135898
+      hydro discharge: 0.0
+      nuclear: 0.006270572750270338
+      oil: 0.24606172266009518
+      solar: 0.0013503809058049486
+      unknown: 0.0004750960471788899
+      wind: 0.002933390740270117
 flag_file_name: iq.png
 parsers:
   consumption: IQ.fetch_consumption

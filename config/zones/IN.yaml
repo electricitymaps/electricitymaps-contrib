@@ -8,8 +8,8 @@ capacity:
   solar: 56951.33
   wind: 40706.38
 contributors:
-  - systemcatch
-  - gopikrishna1793
+- systemcatch
+- gopikrishna1793
 emissionFactors:
   lifecycle:
     unknown:

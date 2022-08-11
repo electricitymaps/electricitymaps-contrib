@@ -1,8 +1,8 @@
 bounding_box:
-  - - -113.660743713
-    - 47.4742527010001
-  - - -111.05112648
-    - 49.491411209
+- - -113.660743713
+  - 47.4742527010001
+- - -111.05112648
+  - 49.491411209
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 210
 comment: Naturener Power Watch, Llc (Gwa)
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

@@ -1,0 +1,9 @@
+capacity:
+- -400
+- 800
+lonlat:
+- -116.027
+- 32.607
+parsers:
+  exchange: US_CA.fetch_exchange
+rotation: -10

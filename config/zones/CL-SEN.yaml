@@ -1,8 +1,8 @@
 bounding_box:
-  - - -74.90721594999991
-    - -44.54499811646991
-  - - -66.51396683799987
-    - -17.006588197999946
+- - -74.90721594999991
+  - -44.54499811646991
+- - -66.51396683799987
+  - -17.006588197999946
 capacity:
   battery storage: 0
   biomass: 439.05
@@ -16,73 +16,73 @@ capacity:
   solar: 5112.58
   wind: 3535.2
 contributors:
-  - systemcatch
-  - alixunderplatz
+- systemcatch
+- alixunderplatz
 delays:
   production: 24
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 195.02493762305187
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 208.9030408694993
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 195.02493762305187
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 208.9030408694993
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 195.02493762305187
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 208.9030408694993
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 195.02493762305187
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 208.9030408694993
     unknown:
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 298.9863864
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 367.2459401
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 364.8016099
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 349.6068089
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 351.9679562
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 298.9863864
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 367.2459401
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 364.8016099
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 349.6068089
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 351.9679562
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 239.9847501944717
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 258.08616563398533
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 239.9847501944717
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 258.08616563398533
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 239.9847501944717
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 258.08616563398533
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 239.9847501944717
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 258.08616563398533
     unknown:
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 345.5180312
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 424.6700811
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 424.370115
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 408.9363915
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
-        value: 415.2803301
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 345.5180312
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 424.6700811
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 424.370115
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 408.9363915
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average. https://docs.google.com/spreadsheets/d/1-iXUGhAM_9Ft5ejlNVxaqaAwG8Octh3gSjU-dm4e96o/edit#gid=0
+      value: 415.2803301
 parsers:
   production: CL.fetch_production
 timezone: America/Santiago

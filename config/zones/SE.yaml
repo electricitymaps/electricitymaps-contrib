@@ -1,8 +1,8 @@
 bounding_box:
-  - - 11.25
-    - 55.379110448
-  - - 21.2255859375
-    - 69.0214140884
+- - 11.25
+  - 55.379110448
+- - 21.2255859375
+  - 69.0214140884
 capacity:
   biomass: 4462
   coal: 0
@@ -14,334 +14,334 @@ capacity:
   solar: 1586.32
   wind: 12200
 contributors:
-  - augustekman
-  - RRyyas
-  - corradio
-  - VIKTORVAV99
-  - dpkruczek
+- augustekman
+- RRyyas
+- corradio
+- VIKTORVAV99
+- dpkruczek
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 37.49355055236267
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 58.11599195696885
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 47.6194051539446
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 51.29108253743617
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 52.79918134183244
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 40.05161032322605
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 47.31267597911351
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 37.49355055236267
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 58.11599195696885
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 47.6194051539446
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 51.29108253743617
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 52.79918134183244
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 40.05161032322605
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 47.31267597911351
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 37.49355055236267
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 58.11599195696885
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 47.6194051539446
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 51.29108253743617
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 52.79918134183244
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 40.05161032322605
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 47.31267597911351
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 37.49355055236267
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 58.11599195696885
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 47.6194051539446
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 51.29108253743617
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 52.79918134183244
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 40.05161032322605
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 47.31267597911351
     unknown:
-      - _comment: Uses the 2015 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2015-01-01'
-        source: assumes 85.46% biomass, 7.98% gas, 2.77% coal, 1.8% oil, 1.3% peat,
-          0.69% solar
-        value: 67.7
-      - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2016-01-01'
-        source: assumes 85.52% biomass, 7.84% gas, 2.6% oil, 1.74% coal, 1.38% peat,
-          0.94% solar
-        value: 63.1
-      - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2017-01-01'
-        source: assumes 87.2% biomass, 6.21% gas, 2.04% coal, 1.84% oil, 1.46% solar,
-          1.26% peat
-        value: 55.5
-      - _comment: Uses the 2018 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2018-01-01'
-        source: assumes 84.38% biomass, 7.15% gas, 2.55% solar, 2.10% coal, 1.92% oil,
-          1.90% peat
-        value: 64.6
-      - _comment: Uses the 2019 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2019-01-01'
-        source: assumes 86.15% biomass, 6.15% gas, 3.98% solar, 1.27% oil, 1.24% coal,
-          1.20% peat
-        value: 46.5
-      - _comment: Uses the 2020 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2020-01-01'
-        source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
-          0.01% coal
-        value: 25.2
-      - _comment: Uses the 2020 values minus solar and gas
-        datetime: '2022-01-01'
-        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-        value: 9.3
+    - _comment: Uses the 2015 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2015-01-01'
+      source: assumes 85.46% biomass, 7.98% gas, 2.77% coal, 1.8% oil, 1.3% peat,
+        0.69% solar
+      value: 67.7
+    - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2016-01-01'
+      source: assumes 85.52% biomass, 7.84% gas, 2.6% oil, 1.74% coal, 1.38% peat,
+        0.94% solar
+      value: 63.1
+    - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2017-01-01'
+      source: assumes 87.2% biomass, 6.21% gas, 2.04% coal, 1.84% oil, 1.46% solar,
+        1.26% peat
+      value: 55.5
+    - _comment: Uses the 2018 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2018-01-01'
+      source: assumes 84.38% biomass, 7.15% gas, 2.55% solar, 2.10% coal, 1.92% oil,
+        1.90% peat
+      value: 64.6
+    - _comment: Uses the 2019 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2019-01-01'
+      source: assumes 86.15% biomass, 6.15% gas, 3.98% solar, 1.27% oil, 1.24% coal,
+        1.20% peat
+      value: 46.5
+    - _comment: Uses the 2020 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2020-01-01'
+      source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
+        0.01% coal
+      value: 25.2
+    - _comment: Uses the 2020 values minus solar and gas
+      datetime: '2022-01-01'
+      source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+      value: 9.3
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 37.90998676195598
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 55.5151467459363
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 42.64305535137137
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 46.31123230864476
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 47.07636354686499
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 38.23254454049007
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 42.07081808517848
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 37.90998676195598
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 55.5151467459363
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 42.64305535137137
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 46.31123230864476
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 47.07636354686499
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 38.23254454049007
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 42.07081808517848
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 37.90998676195598
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 55.5151467459363
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 42.64305535137137
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 46.31123230864476
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 47.07636354686499
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 38.23254454049007
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 42.07081808517848
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 37.90998676195598
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 55.5151467459363
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 42.64305535137137
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 46.31123230864476
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 47.07636354686499
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 38.23254454049007
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 42.07081808517848
     unknown:
-      - _comment: Uses the 2015 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2015-01-01'
-        source: assumes 85.46% biomass, 7.98% gas, 2.77% coal, 1.8% oil, 1.3% peat,
-          0.69% solar
-        value: 281
-      - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2016-01-01'
-        source: assumes 85.52% biomass, 7.84% gas, 2.6% oil, 1.74% coal, 1.38% peat,
-          0.94% solar
-        value: 277.9
-      - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2017-01-01'
-        source: assumes 87.2% biomass, 6.21% gas, 2.04% coal, 1.84% oil, 1.46% solar,
-          1.26% peat
-        value: 270.6
-      - _comment: Uses the 2018 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2018-01-01'
-        source: assumes 84.38% biomass, 7.15% gas, 2.55% solar, 2.10% coal, 1.92% oil,
-          1.90% peat
-        value: 275.5
-      - _comment: Uses the 2019 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2019-01-01'
-        source: assumes 86.15% biomass, 6.15% gas, 3.98% solar, 1.27% oil, 1.24% coal,
-          1.20% peat
-        value: 258.4
-      - _comment: Uses the 2020 (2022 edition) eurostat production values for the sources
-          in unknown
-        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-        datetime: '2020-01-01'
-        source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
-          0.01% coal
-        value: 236
-      - _comment: Uses the 2020 values minus solar and gas
-        datetime: '2022-01-01'
-        source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
-        value: 238.4
+    - _comment: Uses the 2015 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2015-01-01'
+      source: assumes 85.46% biomass, 7.98% gas, 2.77% coal, 1.8% oil, 1.3% peat,
+        0.69% solar
+      value: 281
+    - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2016-01-01'
+      source: assumes 85.52% biomass, 7.84% gas, 2.6% oil, 1.74% coal, 1.38% peat,
+        0.94% solar
+      value: 277.9
+    - _comment: Uses the 2016 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2017-01-01'
+      source: assumes 87.2% biomass, 6.21% gas, 2.04% coal, 1.84% oil, 1.46% solar,
+        1.26% peat
+      value: 270.6
+    - _comment: Uses the 2018 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2018-01-01'
+      source: assumes 84.38% biomass, 7.15% gas, 2.55% solar, 2.10% coal, 1.92% oil,
+        1.90% peat
+      value: 275.5
+    - _comment: Uses the 2019 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2019-01-01'
+      source: assumes 86.15% biomass, 6.15% gas, 3.98% solar, 1.27% oil, 1.24% coal,
+        1.20% peat
+      value: 258.4
+    - _comment: Uses the 2020 (2022 edition) eurostat production values for the sources
+        in unknown
+      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+      datetime: '2020-01-01'
+      source: assumes 86.72% biomass, 7.17% solar, 4.58% gas, 0.96% oil, 0.56% peat,
+        0.01% coal
+      value: 236
+    - _comment: Uses the 2020 values minus solar and gas
+      datetime: '2022-01-01'
+      source: assumes 98.26% biomass, 1.09% oil, 0.64% peat, 0.01% coal
+      value: 238.4
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2015 average
-      datetime: '2015-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0008544602403404806
-        coal: 0.0030533526706254975
-        gas: 0.001922495681605918
-        geothermal: 6.442205900022875e-07
-        hydro: 0.5157980032770925
-        hydro discharge: 3.912496156542762e-05
-        nuclear: 0.31448953696475124
-        oil: 7.529063423769025e-05
-        solar: 0.0004042073266118967
-        unknown: 0.05985935476591089
-        wind: 0.10350350094651478
-    - _source: electricityMap, 2017 average
-      datetime: '2017-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.002703336570363933
-        coal: 0.0040595125780411466
-        gas: 0.0019678042104342526
-        geothermal: 1.5961214967401167e-06
-        hydro: 0.42898764284500635
-        hydro discharge: 7.574387472335791e-05
-        nuclear: 0.3738053281701499
-        oil: 0.00030848752957254817
-        solar: 0.0007856539401330721
-        unknown: 0.07598628070685348
-        wind: 0.1113980834483434
-    - _source: electricityMap, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.003508340534268401
-        coal: 0.007729076350902264
-        gas: 0.003322748159344714
-        geothermal: 2.2237553470221327e-06
-        hydro: 0.40972939178578516
-        hydro discharge: 7.008194349608262e-05
-        nuclear: 0.39160464047992843
-        oil: 0.0001620425064369419
-        solar: 0.001108404251540339
-        unknown: 0.07692329617225194
-        wind: 0.10613316319424362
-    - _source: electricityMap, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.003583195177984259
-        coal: 0.007813970814989331
-        gas: 0.0038667963694082566
-        geothermal: 3.119194526699014e-06
-        hydro: 0.407060294291785
-        hydro discharge: 9.558200949710847e-05
-        nuclear: 0.37285945113937663
-        oil: 0.00023752939567127853
-        solar: 0.0010335538495561977
-        unknown: 0.07899952668452763
-        wind: 0.12491315139689049
-    - _source: electricityMap, 2020 average
-      datetime: '2020-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0015603293014662134
-        coal: 0.002098255644429981
-        gas: 0.0019408346132010444
-        geothermal: 1.6026280386317445e-06
-        hydro: 0.4834399373136007
-        hydro discharge: 0.0012248507422473699
-        nuclear: 0.2772141168421819
-        oil: 9.343352314655959e-05
-        solar: 0.001164184252739176
-        unknown: 0.06494481842898729
-        wind: 0.1665160093607449
-    - _source: electricityMap, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.002079300408594006
-        coal: 0.003274527900304448
-        gas: 0.002279941849226517
-        geothermal: 1.5792825650631012e-06
-        hydro: 0.45871043384277455
-        hydro discharge: 0.0013481652830094084
-        nuclear: 0.2973897460071853
-        oil: 0.0001368612216556559
-        solar: 0.0009309922966439824
-        unknown: 0.07572132611010676
-        wind: 0.15836044754122586
+  - _source: electricityMap, 2015 average
+    datetime: '2015-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0008544602403404806
+      coal: 0.0030533526706254975
+      gas: 0.001922495681605918
+      geothermal: 6.442205900022875e-07
+      hydro: 0.5157980032770925
+      hydro discharge: 3.912496156542762e-05
+      nuclear: 0.31448953696475124
+      oil: 7.529063423769025e-05
+      solar: 0.0004042073266118967
+      unknown: 0.05985935476591089
+      wind: 0.10350350094651478
+  - _source: electricityMap, 2017 average
+    datetime: '2017-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.002703336570363933
+      coal: 0.0040595125780411466
+      gas: 0.0019678042104342526
+      geothermal: 1.5961214967401167e-06
+      hydro: 0.42898764284500635
+      hydro discharge: 7.574387472335791e-05
+      nuclear: 0.3738053281701499
+      oil: 0.00030848752957254817
+      solar: 0.0007856539401330721
+      unknown: 0.07598628070685348
+      wind: 0.1113980834483434
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.003508340534268401
+      coal: 0.007729076350902264
+      gas: 0.003322748159344714
+      geothermal: 2.2237553470221327e-06
+      hydro: 0.40972939178578516
+      hydro discharge: 7.008194349608262e-05
+      nuclear: 0.39160464047992843
+      oil: 0.0001620425064369419
+      solar: 0.001108404251540339
+      unknown: 0.07692329617225194
+      wind: 0.10613316319424362
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.003583195177984259
+      coal: 0.007813970814989331
+      gas: 0.0038667963694082566
+      geothermal: 3.119194526699014e-06
+      hydro: 0.407060294291785
+      hydro discharge: 9.558200949710847e-05
+      nuclear: 0.37285945113937663
+      oil: 0.00023752939567127853
+      solar: 0.0010335538495561977
+      unknown: 0.07899952668452763
+      wind: 0.12491315139689049
+  - _source: electricityMap, 2020 average
+    datetime: '2020-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0015603293014662134
+      coal: 0.002098255644429981
+      gas: 0.0019408346132010444
+      geothermal: 1.6026280386317445e-06
+      hydro: 0.4834399373136007
+      hydro discharge: 0.0012248507422473699
+      nuclear: 0.2772141168421819
+      oil: 9.343352314655959e-05
+      solar: 0.001164184252739176
+      unknown: 0.06494481842898729
+      wind: 0.1665160093607449
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.002079300408594006
+      coal: 0.003274527900304448
+      gas: 0.002279941849226517
+      geothermal: 1.5792825650631012e-06
+      hydro: 0.45871043384277455
+      hydro discharge: 0.0013481652830094084
+      nuclear: 0.2973897460071853
+      oil: 0.0001368612216556559
+      solar: 0.0009309922966439824
+      unknown: 0.07572132611010676
+      wind: 0.15836044754122586
 isLowCarbon:
   unknown:
-    - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
-      datetime: '2015-01-01'
-      value: 0.8615
-    - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
-      datetime: '2016-01-01'
-      value: 0.8646
-    - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
-      datetime: '2017-01-01'
-      value: 0.8866
-    - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
-      datetime: '2018-01-01'
-      value: 0.8693
-    - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
-      datetime: '2019-01-01'
-      value: 0.9013
-    - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
-      datetime: '2020-01-01'
-      value: 0.9332
-    - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
-      datetime: '2022-01-01'
-      value: 0.9826
+  - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
+    datetime: '2015-01-01'
+    value: 0.8615
+  - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
+    datetime: '2016-01-01'
+    value: 0.8646
+  - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
+    datetime: '2017-01-01'
+    value: 0.8866
+  - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
+    datetime: '2018-01-01'
+    value: 0.8693
+  - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
+    datetime: '2019-01-01'
+    value: 0.9013
+  - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
+    datetime: '2020-01-01'
+    value: 0.9332
+  - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
+    datetime: '2022-01-01'
+    value: 0.9826
 isRenewable:
   unknown:
-    - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
-      datetime: '2015-01-01'
-      value: 0.8615
-    - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
-      datetime: '2016-01-01'
-      value: 0.8646
-    - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
-      datetime: '2017-01-01'
-      value: 0.8866
-    - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
-      datetime: '2018-01-01'
-      value: 0.8693
-    - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
-      datetime: '2019-01-01'
-      value: 0.9013
-    - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
-      datetime: '2020-01-01'
-      value: 0.9332
-    - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
-      datetime: '2022-01-01'
-      value: 0.9826
+  - _comment: Sum of renewable sources in SE unknown production for 2015 from co2eq_parameters_lifecycle.json
+    datetime: '2015-01-01'
+    value: 0.8615
+  - _comment: Sum of renewable sources in SE unknown production for 2016 from co2eq_parameters_lifecycle.json
+    datetime: '2016-01-01'
+    value: 0.8646
+  - _comment: Sum of renewable sources in SE unknown production for 2017 from co2eq_parameters_lifecycle.json
+    datetime: '2017-01-01'
+    value: 0.8866
+  - _comment: Sum of renewable sources in SE unknown production for 2018 from co2eq_parameters_lifecycle.json
+    datetime: '2018-01-01'
+    value: 0.8693
+  - _comment: Sum of renewable sources in SE unknown production for 2019 from co2eq_parameters_lifecycle.json
+    datetime: '2019-01-01'
+    value: 0.9013
+  - _comment: Sum of renewable sources in SE unknown production for 2020 from co2eq_parameters_lifecycle.json
+    datetime: '2020-01-01'
+    value: 0.9332
+  - _comment: Sum of renewable sources in SE unknown production for 2022 from co2eq_parameters_lifecycle.json
+    datetime: '2022-01-01'
+    value: 0.9826
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

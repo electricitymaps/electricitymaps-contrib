@@ -1,8 +1,8 @@
 bounding_box:
-  - - 15.969981316000087
-    - -47.46575286299992
-  - - 38.47779381600009
-    - -21.626451924999927
+- - 15.969981316000087
+  - -47.46575286299992
+- - 38.47779381600009
+  - -21.626451924999927
 capacity:
   coal: 38773
   hydro: 600
@@ -10,7 +10,7 @@ capacity:
   nuclear: 1860
   oil: 2409
 contributors:
-  - IV1T3
+- IV1T3
 fallbackZoneMixes:
   _source: Our world in data 2019
   _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZAF

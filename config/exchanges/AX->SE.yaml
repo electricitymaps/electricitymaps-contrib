@@ -1,9 +1,0 @@
-capacity:
-  - -80
-  - 80
-lonlat:
-  - 19.239
-  - 60.063
-parsers:
-  exchange: AX.fetch_exchange
-rotation: -130

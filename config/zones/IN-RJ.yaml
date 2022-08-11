@@ -5,6 +5,6 @@ capacity:
   nuclear: 1180
   oil: 0
 contributors:
-  - gopikrishna1793
+- gopikrishna1793
 flag_file_name: in.png
 timezone: Asia/Kolkata

@@ -1,8 +1,8 @@
 bounding_box:
-  - - -114.158504486
-    - 32.855298996
-  - - -112.449426651
-    - 34.847730637
+- - -114.158504486
+  - 32.855298996
+- - -112.449426651
+  - 34.847730637
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: New Harquahala Generating Company, Llc - Hgba
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

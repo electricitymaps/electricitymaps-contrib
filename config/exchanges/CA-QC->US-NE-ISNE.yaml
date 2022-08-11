@@ -1,6 +1,0 @@
-lonlat:
-  - -71.737
-  - 45.011
-parsers:
-  exchange: US_NEISO.fetch_exchange
-rotation: 180

@@ -1,13 +1,12 @@
-_comment:
-  'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf
+_comment: 'Capacity data fetched from https://www.hydro.com.au/docs/default-source/clean-energy/hybrid-energy-solutions/king_island.pdf
   . Oil capacity is said to run with blended biodiesel : hense the diesel capacity
   is equal to the biomass capacity. Parsing for production is done on instantaneous
   measurements : this is not reliable at all'
 bounding_box:
-  - - 143.33716881600026
-    - -40.627373955999886
-  - - 144.64478600400025
-    - -39.07146575299984
+- - 143.33716881600026
+  - -40.627373955999886
+- - 144.64478600400025
+  - -39.07146575299984
 capacity:
   battery storage: 1.5
   biomass: 6
@@ -21,55 +20,55 @@ capacity:
   solar: 0.47
   wind: 5.65
 contributors:
-  - ajoga
+- ajoga
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 128.40787872056865
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 234.9086357355117
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 128.40787872056865
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 234.9086357355117
   lifecycle:
     battery discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 128.40787872056865
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 234.9086357355117
     hydro discharge:
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 128.40787872056865
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 234.9086357355117
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 128.40787872056865
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 234.9086357355117
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2021 average
-      datetime: '2021-01-01'
-      value:
-        battery discharge: 0.013766739653774968
-        biomass: 0.0
-        coal: 0.0
-        gas: 0.0
-        geothermal: 0.0
-        hydro: 0.0
-        hydro discharge: 0.0
-        nuclear: 0.0
-        oil: 0.43961368102156606
-        solar: 0.006841029239200127
-        unknown: 0.0
-        wind: 0.5403600850959404
+  - _source: electricityMap, 2021 average
+    datetime: '2021-01-01'
+    value:
+      battery discharge: 0.013766739653774968
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.0
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.43961368102156606
+      solar: 0.006841029239200127
+      unknown: 0.0
+      wind: 0.5403600850959404
 flag_file_name: au.png
 parsers:
   production: ajenti.fetch_production

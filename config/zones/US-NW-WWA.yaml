@@ -1,8 +1,8 @@
 bounding_box:
-  - - -113.662527277
-    - 48.163057327
-  - - -110.887711776
-    - 49.498921
+- - -113.662527277
+  - 48.163057327
+- - -110.887711776
+  - 49.498921
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 189
 comment: Naturener Wind Watch, Llc
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

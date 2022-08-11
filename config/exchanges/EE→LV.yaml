@@ -1,0 +1,9 @@
+capacity:
+- -1259
+- 1447
+lonlat:
+- 26.041706
+- 57.810982
+parsers:
+  exchange: statnett.fetch_exchange
+rotation: 180

@@ -1,7 +1,0 @@
-lonlat:
-  - 134.89
-  - 33.95
-parsers:
-  exchange: occtonet.fetch_exchange
-  exchangeForecast: occtonet.fetch_exchange_forecast
-rotation: -95

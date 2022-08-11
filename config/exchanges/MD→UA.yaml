@@ -1,0 +1,9 @@
+capacity:
+- -700
+- 700
+lonlat:
+- 29.218978
+- 47.646939
+parsers:
+  exchange: MD.fetch_exchange
+rotation: 50

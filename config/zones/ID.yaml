@@ -1,8 +1,8 @@
 bounding_box:
-  - - 94.51270592500003
-    - -11.422621351999908
-  - - 141.47762699400005
-    - 6.410101630000042
+- - 94.51270592500003
+  - -11.422621351999908
+- - 141.47762699400005
+  - 6.410101630000042
 capacity:
   biomass: 1912
   coal: 36668
@@ -14,7 +14,7 @@ capacity:
   solar: 211
   wind: 154
 contributors:
-  - nessie2013
+- nessie2013
 estimation_method: CONSTRUCT_BREAKDOWN
 flag_file_name: id.png
 timezone: Asia/Jakarta
