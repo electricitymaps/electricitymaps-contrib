@@ -1,4 +1,3 @@
-import json
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List, NewType, Tuple
@@ -22,7 +21,9 @@ exchanges_config = {}
 for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
     _exchange_key_unicode = exchange_path.stem
     exchange_key = "->".join(_exchange_key_unicode.split("→"))
-    exchanges_config[exchange_key] = yaml.safe_load(open(exchange_path, encoding="utf-8"))
+    exchanges_config[exchange_key] = yaml.safe_load(
+        open(exchange_path, encoding="utf-8")
+    )
 
 
 co2eq_parameters_all = {
@@ -63,8 +64,8 @@ for zone_key, zone_config in zones_config.items():
                     ] = zone_config["emissionFactors"][k]
         del zone_config["emissionFactors"]
 
-ZONES_CONFIG = zones_config
-EXCHANGES_CONFIG = exchanges_config
+ZONES_CONFIG = deepcopy(zones_config)
+EXCHANGES_CONFIG = deepcopy(exchanges_config)
 CO2EQ_PARAMETERS_DIRECT = {**co2eq_parameters_all, **co2eq_parameters_direct}
 CO2EQ_PARAMETERS_LIFECYCLE = {**co2eq_parameters_all, **co2eq_parameters_lifecycle}
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
