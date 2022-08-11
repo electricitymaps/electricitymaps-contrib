@@ -1,7 +1,14 @@
-from glob import glob
 from pathlib import Path
 
 import yaml
+from deepdiff import DeepDiff
+
+from electricitymap.contrib.config import (
+    CO2EQ_PARAMETERS_DIRECT,
+    CO2EQ_PARAMETERS_LIFECYCLE,
+    EXCHANGES_CONFIG,
+    ZONES_CONFIG,
+)
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
@@ -47,19 +54,38 @@ for zone_key, zone_config in zones.items():
     if "emissionFactors" in zone_config:
         for k in ["direct", "lifecycle"]:
             if k in zone_config["emissionFactors"]:
-                co2eq_parameters_direct["emissionFactors"]["zoneOverrides"][
-                    zone_key
-                ] = zone_config["emissionFactors"][k]
-                del zone_config["emissionFactors"][k]
-            if k in zone_config["emissionFactors"]:
-                co2eq_parameters_lifecycle["emissionFactors"]["zoneOverrides"][
-                    zone_key
-                ] = zone_config["emissionFactors"][k]
-                del zone_config["emissionFactors"][k]
+                if k == "direct":
+                    co2eq_parameters_direct["emissionFactors"]["zoneOverrides"][
+                        zone_key
+                    ] = zone_config["emissionFactors"][k]
+                elif k == "lifecycle":
+                    co2eq_parameters_lifecycle["emissionFactors"]["zoneOverrides"][
+                        zone_key
+                    ] = zone_config["emissionFactors"][k]
+        del zone_config["emissionFactors"]
 
 
 co2eq_parameters_direct = {**co2eq_parameters_all, **co2eq_parameters_direct}
 co2eq_parameters_lifecycle = {**co2eq_parameters_all, **co2eq_parameters_lifecycle}
 
+zone_diff = DeepDiff(zones, ZONES_CONFIG)
+assert zone_diff == {}, f"Zones config does not match: {list(zone_diff.values())[0]}"
+exchange_diff = DeepDiff(exchanges, EXCHANGES_CONFIG)
+assert (
+    exchange_diff == {}
+), f"Exchanges config does not match: {list(exchange_diff.values())[0]}"
+co2eq_parameters_direct_diff = DeepDiff(
+    co2eq_parameters_direct, CO2EQ_PARAMETERS_DIRECT
+)
+assert (
+    co2eq_parameters_direct_diff == {}
+), f"CO2EQ parameters direct config does not match: {list(co2eq_parameters_direct_diff.values())[0]}"
+co2eq_parameters_lifecycle_diff = DeepDiff(
+    co2eq_parameters_lifecycle, CO2EQ_PARAMETERS_LIFECYCLE
+)
+assert (
+    co2eq_parameters_lifecycle_diff == {}
+), f"CO2EQ parameters lifecycle config does not match: {list(co2eq_parameters_lifecycle_diff.values())[0]}"
 
-breakpoint()
+
+print("💪 All good!")
