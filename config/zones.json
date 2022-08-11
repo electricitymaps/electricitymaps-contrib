@@ -1538,7 +1538,8 @@
       "hydro": 40.6,
       "oil": 99.7,
       "wind": 43.5,
-      "solar": 0.24
+      "solar": 0.24,
+      "unknown": 0.1
     },
     "contributors": ["corradio", "q--"],
     "parsers": {
@@ -1547,6 +1548,12 @@
     "timezone": "Atlantic/Faroe"
   },
   "FO-NI": {
+    "capacity": {
+      "hydro": 37.3,
+      "oil": 86.1,
+      "wind": 37.5,
+      "unknown": 0.1
+    },
     "parsers": {
       "production": "FO.fetch_production"
     },
@@ -1554,6 +1561,12 @@
     "timezone": "Atlantic/Faroe"
   },
   "FO-SI": {
+    "capacity": {
+      "hydro": 3.3,
+      "oil": 13.6,
+      "wind": 6,
+      "solar": 0.24
+    },
     "parsers": {
       "production": "FO.fetch_production"
     },
