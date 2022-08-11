@@ -1,7 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
 import constructTopos from './topos';
-import { zonesConfig, exchangesConfig } from '../helpers/zonedata';
+import zonesConfig from '../config/zones.json';
+import exchangesConfig from '../config/exchanges.json';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
