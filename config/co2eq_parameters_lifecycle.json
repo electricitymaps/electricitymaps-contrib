@@ -2937,6 +2937,12 @@
           "value": 17
         }
       },
+      "FO-NI": {
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 17
+        }
+      },
       "FR": {
         "battery discharge": [
           {
