@@ -140,8 +140,8 @@
     "cypress-open": "TZ=Europe/Copenhagen cypress open",
     "test": "jest",
     "test:watch": "test -- --watch",
-    "prettier-fix": "prettier --write .",
-    "prettier-check": "prettier --check ."
+    "prettier-fix": "prettier --write . && prettier --write ../config",
+    "prettier-check": "prettier --check . && prettier --check ../config"
   },
   "browserslist": [
     "defaults",
