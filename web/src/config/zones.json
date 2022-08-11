@@ -1195,7 +1195,7 @@
       [-8.144154425999943, 60.894110419000086],
       [-5.775786912999905, 62.89891185100005]
     ],
-    "capacity": { "hydro": 39.4, "oil": 66.7, "wind": 18.3 },
+    "capacity": { "hydro": 40.6, "oil": 99.7, "solar": 0.24, "wind": 43.5 },
     "contributors": ["corradio", "q--"],
     "parsers": { "production": "FO.fetch_production" },
     "timezone": "Atlantic/Faroe"
