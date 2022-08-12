@@ -18,8 +18,8 @@ const prepareGraphData = (historyData) => {
   const currencySymbol = getSymbolFromCurrency(((historyData.at(0) || {}).price || {}).currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
-  const priceMaxValue = d3Max(historyData.map((d) => (d.price || {}).value));
-  const priceMinValue = d3Min(historyData.map((d) => (d.price || {}).value));
+  const priceMaxValue = d3Max(historyData.map((d) => d.price?.value));
+  const priceMinValue = d3Min(historyData.map((d) => d.price?.value));
   const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
 
   const data = historyData.map((d) => ({
@@ -30,14 +30,12 @@ const prepareGraphData = (historyData) => {
   }));
 
   const layerKeys = ['price'];
-  const layerStroke = undefined;
   const layerFill = (key) => (d) => priceColorScale(d.data[key]);
   const markerFill = (key) => (d) => priceColorScale(d.data[key]);
 
   return {
     data,
     layerKeys,
-    layerStroke,
     layerFill,
     markerFill,
     valueAxisLabel,
