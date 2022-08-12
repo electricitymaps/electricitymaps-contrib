@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Callable, Dict, List, Literal, Union
 
 # The arrow library is used to handle datetimes
 from arrow import get
+from lib.config import refetch_frequency
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
@@ -116,6 +117,7 @@ def fetch_island_data(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
@@ -145,6 +147,7 @@ def fetch_consumption(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZONE_KEYS,
     session: Union[Session, None] = None,
@@ -223,6 +226,7 @@ def fetch_production(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
