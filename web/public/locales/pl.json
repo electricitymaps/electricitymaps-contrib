@@ -94,8 +94,8 @@
     "oops": "Ups! Mamy problemy z komunikacją z serwerem. Spróbujemy ponownie za kilka sekund.",
     "newversion": "Jest dostępna nowa wersja! <a onClick=\"location.reload(true);\">Załaduj ją</a>.",
     "retrynow": "Spróbuj teraz",
-    "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
-    "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
+    "database-ad": "Szukasz danych historycznych? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sprawdź Electricity Map Database!</a>",
+    "api-ad": "Chcesz mieć aktualne dane w twojej aplikacji lub na urządzeniu? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Spróbuj Electricity Map API!</a>",
     "legend": "Legenda",
     "faq": "Najczęściej Zadawane Pytania",
     "webgl-not-supported": "Nie można wyrenderować mapy, ponieważ wykorzystywana przeglądarka nie obsługuje WebGL."
@@ -122,7 +122,7 @@
     "divideExistingArea-question": "Czy możecie podzielić mój obszar na mniejsze części?",
     "divideExistingArea-answer": "Oczywiście, jeżeli istnieją oddzielne źródła danych dla każdej części obszaru. Możesz <a href=\"#contribute\" class=\"entry-link\">nam pomóc dodając nowe źródła danych</a>",
     "seeHistoricalData-question": "Czy mogę zobaczyć historię obszaru cofniętą w czasie o więcej niż 24 godziny?",
-    "seeHistoricalData-answer": "Możesz zakupić dostęp do naszych wszystkich danych historycznych za pośrednictwem <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">naszej bazy danych</a>."
+    "seeHistoricalData-answer": "Możesz zakupić dostęp do naszych wszystkich danych historycznych za pośrednictwem <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">naszej bazy danych</a>."
   },
   "methodology": {
     "groupName": "Nasze metody",
@@ -148,20 +148,20 @@
     "dataOrigins-question": "Skąd bierzecie swoje dane?",
     "dataOrigins-answer": "Wszystkie nasze dane obliczamy na podstawie publicznie dostępnych danych, publikowanych przez operatorów sieci elektroenergetycznych, oficjale agencje i innych. Możesz kliknąć na obszar aby zobaczyć więcej szczegółów na temat pochodzenia jego danych.",
     "dataDownload-question": "Czy mogę pobrać wasze dane?",
-    "dataDownload-answer": "Możesz wykupić dostęp do naszych wszystkich danych w naszej <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">bazie danych</a>.",
+    "dataDownload-answer": "Możesz wykupić dostęp do naszych wszystkich danych w naszej <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">bazie danych</a>.",
     "dataIntegration-question": "Czy mogę zintegrować wasze dane w czasie rzeczywistym z moją aplikacją lub urządzeniem?",
-    "dataIntegration-answer": "Tak! Sprzdajemy dostęp do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API w czasie rzeczywistym</a>, które zawiera prognozy na przyszłość."
+    "dataIntegration-answer": "Tak! Sprzdajemy dostęp do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">API w czasie rzeczywistym</a>, które zawiera prognozy na przyszłość."
   },
   "aboutUs": {
     "groupName": "O nas",
     "whoAreYou-question": "Kim jesteście?",
-    "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
+    "whoAreYou-answer": "Electricity Map jest rozwijania i zarządzana przez <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, duński start-up. Naszym celem jest pomoc ludzkości w osiągnięciu zrównoważonego stanu egzystencji poprzez ilościowe określanie i udostępnianie wpływu naszych codziennych decyzji na klimat.",
     "feedback-question": "Czy moge przekazać wam opinię?",
-    "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:app@electricitymap.org\">wyślij do nas e-mail!</a>",
+    "feedback-answer": "Proszę przekaż! Proszę wypełnić <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nasz formularz opinii</a> lub <a href=\"mailto:app@electricitymaps.com\">wyślij do nas e-mail!</a>",
     "contribute-question": "Czy mogę wspomóc wasz projekt?",
     "contribute-answer": " Tak! Electricity Map jest projektem open-source, możliwym dzięki naszym wolontariuszom. Jeżeli chesz pomóc w rozwijaniu mapy, dodając źródła dla nowych obszarów, dodając nowe funkcjionalności lub naprawiając błędy, możesz to zrobić poprzez <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Czy możemy współpracować?",
-    "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:app@electricitymap.org\">Wyślij do nas e-mail!</a>",
+    "workTogether-answer": "Aktywnie poszukujemy nowych możliwości współpracy. <a href=\"mailto:app@electricitymaps.com\">Wyślij do nas e-mail!</a>",
     "disclaimer-question": "Zastrzeżenie"
   },
   "wind": "wiatrowa",

@@ -1,14 +1,15 @@
 """Fetch the status of the Georgian electricity grid."""
 
 # Standard library imports
-import datetime
-import logging
 import urllib.parse
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Any, Dict, List, Optional, Union
 
 # Third-party library imports
 import arrow
 import pandas
-import requests
+from requests import Session
 
 # Local library imports
 from parsers.lib import config, validation
@@ -21,15 +22,15 @@ URL = urllib.parse.urlsplit("https://gse.com.ge/apps/gsebackend/rest")
 URL_STRING = URL.geturl()
 
 
-@config.refetch_frequency(datetime.timedelta(hours=1))
+@config.refetch_frequency(timedelta(hours=1))
 def fetch_production(
-    zone_key="GE",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key: str = "GE",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[Dict[str, Any]], Dict[str, Any]]:
     """Request the last known production mix (in MW) of a given country."""
-    session = session or requests.session()
+    session = session or Session()
     if target_datetime is None:  # Get the current production mix.
         # TODO: remove `verify=False` ASAP.
         production_mix = session.get(f"{URL_STRING}/map", verify=False).json()[
@@ -107,19 +108,19 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="GE",
-    zone_key2="TR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key1: str = "GE",
+    zone_key2: str = "TR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger=getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         return ENTSOE_fetch_exchange(
             zone_key1, zone_key2, session, target_datetime, logger
         )
 
-    session = session or requests.session()
+    session = session or Session()
     # The API uses the convention of positive net flow into GE.
     net_flows = session.get(f"{URL_STRING}/map", verify=False).json()[
         "areaSum"
@@ -158,7 +159,7 @@ if __name__ == "__main__":
     print("fetch_production() ->")
     print(fetch_production())
     print("fetch_production(target_datetime=datetime.datetime(2020, 1, 1)) ->")
-    print(fetch_production(target_datetime=datetime.datetime(2020, 1, 1)))
+    print(fetch_production(target_datetime=datetime(2020, 1, 1)))
     print("fetch_exchange('GE', 'AM') ->")
     print(fetch_exchange("GE", "AM"))
     print("fetch_exchange('GE', 'AZ') ->")

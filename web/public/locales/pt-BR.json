@@ -99,8 +99,8 @@
     "newversion": "Uma nova versão está disponível! Clique <a onClick=\"location.reload(true);\">aqui</a> para recarregar.",
     "webgl-not-supported": "O mapa não pode ser renderizado porque este navegador não oferece suporte a WebGL.",
     "retrynow": "Tentar novamente",
-    "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
-    "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
+    "database-ad": "Procurando por dados históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Olhe nosso banco de dados!</a>",
+    "api-ad": "Gostaria de dados em tempo real no seu app ou no seu dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Tente nossa API!</a>",
     "legend": "Legenda",
     "faq": "Questões frequentes"
   },
@@ -147,7 +147,7 @@
     "divideExistingArea-question": "Você pode dividir minha área em partes menores?",
     "divideExistingArea-answer": "Claro, se houver fontes de dados separadas para cada parte da área. Você pode <a href=\"#contribute\" class=\"entry-link\"> nos ajudar a adicionar novas fontes de dados </a>",
     "seeHistoricalData-question": "Posso ver o histórico de uma área mais atrasada do que 24 horas?",
-    "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
+    "seeHistoricalData-answer": "Você pode adquirir acesso a todos os nossos dados históricos através de nosso <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\"> banco de dados </ a >."
   },
   "methodology": {
     "groupName": "Nossos métodos",
@@ -178,22 +178,22 @@
     "dataOrigins-question": "Como você obtém seus dados?",
     "dataOrigins-answer": "Computamos todos os nossos dados a partir de dados publicamente disponíveis, publicados por operadores de rede elétrica, agências oficiais e outros. Você pode clicar em uma área para ver mais detalhes sobre a origem de seus dados.",
     "dataDownload-question": "Posso baixar seus dados?",
-    "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
+    "dataDownload-answer": "Você pode adquirir acesso a todos os nossos dados em nosso <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">banco de dados </a>.",
     "dataIntegration-question": "Posso integrar seus dados em tempo real ao meu aplicativo ou dispositivo?",
-    "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
+    "dataIntegration-answer": "Sim! Nós vendemos acesso a nossa API <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\"> em tempo real</a>, que inclui previsões futuras."
   },
   "aboutUs": {
     "groupName": "Sobre nós",
     "whoAreYou-question": "Quem são vocês?",
-    "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
+    "whoAreYou-answer": "O Mapa da Eletricidade é desenvolvido e mantido por <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, uma pequena empresa dinamarquesa/francesa iniciante. Nosso objetivo é ajudar a humanidade a alcançar um estado sustentável de existência, quantificando e tornando amplamente acessível o impacto climático das escolhas diárias que fazemos.",
     "feedback-question": "Posso dar algum feedback?",
-    "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:app@electricitymap.org\"> envie-nos um email!</a>",
+    "feedback-answer": "Por favor, faça! Por favor, preencha <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_ blank\"> nosso formulário de comentários </a>ou <a href=\"mailto:app@electricitymaps.com\"> envie-nos um email!</a>",
     "contribut-question": "Posso contribuir para o seu projeto?",
     "contribut-answer": "Sim! O Mapa de Eletricidade é um projeto de código aberto, possibilitado por nossos colaboradores voluntários. Se você deseja ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, adicionando novos recursos ou corrigindo bugs, fique à vontade para juntar-se a nós em nosso <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>. ",
     "workTogether-question": "Podemos trabalhar juntos?",
-    "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:app@electricitymap.org\">Envie-nos um email!</a>",
+    "workTogether-answer": "Estamos buscando ativamente novas oportunidades de colaboração. <a href=\"mailto:app@electricitymaps.com\">Envie-nos um email!</a>",
     "disclaimer-question": "Aviso legal",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publica dados e imagens no <a href = \"https://www.electricitymap.org/\"target=\"_blank\">Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publica dados e imagens no <a href = \"https://www.electricitymaps.com/\"target=\"_blank\">Electricity Maps</a> para fins informativos. Não faz reivindicações de correção nem fornece qualquer forma de garantia e reserva-se o direito de alterar o conteúdo a qualquer momento ou para remover peças sem precisar informá-lo disso. A Electricity Maps não assume nenhuma responsabilidade e não será responsável por quaisquer danos ou despesas que você possa incorrer como resultado de qualquer imprecisão, incompletude, falta de tempo ou obsolescência da Electricity Maps, ou as informações derivadas. Não é permitido incluir esta página da Web ou qualquer de seus elementos individuais em outra página da Web sem o consentimento prévio e formal por escrito. <br><br>Todos os direitos de propriedade intelectual pertencem aos legítimos proprietários e cópia, distribuição e qualquer outro uso desses materiais, em particular os dados energéticos, não é permitido sem a permissão por escrito da Electricity Maps, exceto e somente na medida em que seja estabelecido de outra forma nos regulamentos da lei obrigatória (como o direito de cotação), a menos que especificado de outra forma para materiais específicos.<br><br> Este aviso pode ser atualizado periodicamente.",
     "contribute-question": "Como posso contribuir com o projeto?",
     "contribute-answer": "Sim! O Electricity Maps é um projeto de código aberto, possibilitado apenas por nossos colaboradores voluntários. Se você quer ajudar a desenvolver o mapa, adicionando fontes de dados para novas áreas, criando novas funcionalidades ou corrigindo bugs, fique à vontade para se juntar a nós no <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>."
   },

@@ -99,8 +99,8 @@
     "newversion": "È disponibile una nuova versione! Clicca <a onClick=\"location.reload(true);\">qua</a> per ricaricare.",
     "webgl-not-supported": "La mappa non può essere mostrata perché questo browser non supporta WebGL.",
     "retrynow": "Riprova ora",
-    "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
-    "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
+    "database-ad": "Stai cercando lo storico dei dati? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Controlla nel nostro Database!</a>",
+    "api-ad": "Vuoi i dati in tempo reale sulla tua app o sul tuo dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prova la nostra API!</a>",
     "legend": "Legenda",
     "faq": "Domande poste frequentemente"
   },
@@ -149,7 +149,7 @@
     "divideExistingArea-question": "Potete dividere la mia area in parti più piccole?",
     "divideExistingArea-answer": "Certamente, se esitono fonti separate per ogni parte di quest'area. Puoi <a href=\"#contribute\" class=\"entry-link\">aiutare aggiungendo nuove fonti di dati</a>",
     "seeHistoricalData-question": "Posso vedere la cronologia di un area per un periodo più lungo di 24 ore?",
-    "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "Puoi comprare l'accesso a tutto lo storico dei nostri dati sul nostro <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
   },
   "methodology": {
     "groupName": "I nostri metodi",
@@ -177,22 +177,22 @@
     "dataOrigins-question": "Dove prendete i dati?",
     "dataOrigins-answer": "Prendiamo tutti i dati da dati liberamente accessibili, pubblicati dagli operatori di linea, dalle agenzie ufficiali, ed altri. Puoi cliccare su un'area per vedere più specifiche sulle origini dei dati.",
     "dataDownload-question": "Posso scaricare i vostri dati?",
-    "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+    "dataDownload-answer": "Puoi comprare l'accesso a tutti i nostri dati sul nostro <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
     "dataIntegration-question": "Possono integrare i vostri dati in tempo reale nella mia applicazione o nel mio dispositivo?",
-    "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
+    "dataIntegration-answer": "Sì! Vendiamo l'accesso alle nostre <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">API in tempo reale</a>, che includono le previsioni future."
   },
   "aboutUs": {
     "groupName": "Informazioni su di noi",
     "whoAreYou-question": "Chi siete?",
-    "whoAreYou-answer": "Electricity Map è sviluppata e mantenuta da <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, una piccola start-up francodanese. Il nostro obiettivo è aiutare l'umanità a raggiungere uno stato di esistenza sostenibile quantificando, e rendendo largamente accessibile l'accesso alla visione dell'impatto climatico che hanno le nostre scelte di tutti i giorni.",
+    "whoAreYou-answer": "Electricity Map è sviluppata e mantenuta da <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, una piccola start-up francodanese. Il nostro obiettivo è aiutare l'umanità a raggiungere uno stato di esistenza sostenibile quantificando, e rendendo largamente accessibile l'accesso alla visione dell'impatto climatico che hanno le nostre scelte di tutti i giorni.",
     "feedback-question": "Posso darvi un parere?",
-    "feedback-answer": "Certamente! Riempi il <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nostro modello</a> o <a href=\"mailto:app@electricitymap.org\">mandaci una email!</a>",
+    "feedback-answer": "Certamente! Riempi il <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">nostro modello</a> o <a href=\"mailto:app@electricitymaps.com\">mandaci una email!</a>",
     "contribute-question": "Posso contribuire al progetto?",
     "contribute-answer": "Sì! Electricity Map è un progetto open-source, reso possibile dai nostri contributori volontari. Se vuoi aiutarci a sviluppare la mappa, sia aggiungendo fonti per nuove aree, sia aggiungendo nuove funzioni o risolvendo bug, sentiti libero di unirti al nostro <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Possiamo lavorare insieme?",
-    "workTogether-answer": "Siamo sempre alla ricerca di nuove opportunità di collaborazione. <a href=\"mailto:app@electricitymap.org\">Mandaci una email!</a>",
+    "workTogether-answer": "Siamo sempre alla ricerca di nuove opportunità di collaborazione. <a href=\"mailto:app@electricitymaps.com\">Mandaci una email!</a>",
     "disclaimer-question": "Esclusione di responsabilità",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> pubblica dati ed immagini per <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> solo a scopo informativo. Non fa affermazioni di correttezza né fornisce alcuna forma di garanzia, e si riserva il diritto di modificare il contenuto in qualsiasi momento o di rimuovere parti senza previo avviso. Electricity Maps non si assume nessuna responsabilità, e non sarà responsabile per alcun danno o spesa che potresti subire a causa dell'inesattezza, intempestività o obsolescenza di Electricity Maps, o le informazioni derivanti da essa. Non è consentito includere questa pagina web, o uno dei suoi singoli elementi senza un previo consenso formale scritto.<br><br>Tutti i diritti di proprietà intellettuale appartengono ai legittimi proprietari ed ai suoi licenziatari. La copia e qualsiasi altro uso di questi materiali, in particolare i dati sull'energia, non sono consentiti senza il permesso scritto di Electricity Maps, ad eccezione solo dei modi previsti dalla legge (come il diritto di citazione), a meno che non sia specificato diversamente per materiali specifici. <br><br>Questa esclusione di responsabilità può essere modificata in qualsiasi momento."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> pubblica dati ed immagini per <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> solo a scopo informativo. Non fa affermazioni di correttezza né fornisce alcuna forma di garanzia, e si riserva il diritto di modificare il contenuto in qualsiasi momento o di rimuovere parti senza previo avviso. Electricity Maps non si assume nessuna responsabilità, e non sarà responsabile per alcun danno o spesa che potresti subire a causa dell'inesattezza, intempestività o obsolescenza di Electricity Maps, o le informazioni derivanti da essa. Non è consentito includere questa pagina web, o uno dei suoi singoli elementi senza un previo consenso formale scritto.<br><br>Tutti i diritti di proprietà intellettuale appartengono ai legittimi proprietari ed ai suoi licenziatari. La copia e qualsiasi altro uso di questi materiali, in particolare i dati sull'energia, non sono consentiti senza il permesso scritto di Electricity Maps, ad eccezione solo dei modi previsti dalla legge (come il diritto di citazione), a meno che non sia specificato diversamente per materiali specifici. <br><br>Questa esclusione di responsabilità può essere modificata in qualsiasi momento."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },

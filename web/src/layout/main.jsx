@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 
 // Layout
 import Header from './header';
@@ -11,7 +10,6 @@ import LeftPanel from './leftpanel';
 import Legend from './legend';
 import Map from './map';
 import TimeController from './timeController';
-import TimeSliderHeader from '../components/timesliderheader';
 
 // Modules
 import { useTranslation } from '../helpers/translation';
@@ -28,9 +26,10 @@ import LoadingOverlay from '../components/loadingoverlay';
 import Toggle from '../components/toggle';
 import useSWR from 'swr';
 import ErrorBoundary from '../components/errorboundary';
-import { GRID_DATA_FETCH_REQUESTED } from '../helpers/redux';
 import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
+import ResponsiveSheet from './responsiveSheet';
+import { RetryBanner } from '../components/retrybanner';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -40,7 +39,6 @@ const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 const mapStateToProps = (state) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
-  hasConnectionWarning: state.data.hasConnectionWarning,
 });
 
 const MapContainer = styled.div`
@@ -68,28 +66,17 @@ const HiddenOnMobile = styled.div`
   }
 `;
 
-const StyledBottomSheet = styled(BottomSheet)`
-  [data-rsbs-overlay] {
-    z-index: ${(props) => (props.behind ? 0 : 5)};
-  }
-  [data-rsbs-scroll] {
-    // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
-    overflow: hidden;
-  }
-`;
-
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const Main = ({ electricityMixMode, hasConnectionWarning }) => {
+const Main = ({ electricityMixMode }) => {
   const { __ } = useTranslation();
-  const dispatch = useDispatch();
   const location = useLocation();
   const headerVisible = useHeaderVisible();
   const clientType = useSelector((state) => state.application.clientType);
   const isLocalhost = useSelector((state) => state.application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
   const isMobile = useSelector((state) => state.application.isMobile);
-
+  const failedRequestType = useSelector((state) => state.data.failedRequestType);
   const showLoadingOverlay = useLoadingOverlayVisible();
 
   // Start grid data polling as soon as the app is mounted.
@@ -153,35 +140,14 @@ const Main = ({ electricityMixMode, hasConnectionWarning }) => {
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <StyledBottomSheet
-                scrollLocking={false} // Ensures scrolling is not blocked on IOS
-                open
-                snapPoints={() => [60, 160]}
-                blocking={false}
-                header={<TimeSliderHeader />}
-              >
+              <ResponsiveSheet>
                 <TimeController />
-              </StyledBottomSheet>
+              </ResponsiveSheet>
             ) : (
               <TimeController />
             )}
           </ErrorBoundary>
-
-          <div id="connection-warning" className={`flash-message ${hasConnectionWarning ? 'active' : ''}`}>
-            <div className="inner">
-              {__('misc.oops')}{' '}
-              <button
-                type="button"
-                onClick={(e) => {
-                  dispatch(GRID_DATA_FETCH_REQUESTED());
-                  e.preventDefault();
-                }}
-              >
-                {__('misc.retrynow')}
-              </button>
-              .
-            </div>
-          </div>
+          {failedRequestType === 'grid' && <RetryBanner failedRequestType={failedRequestType} />}
           <div
             id="new-version"
             className={`flash-message ${isClientVersionOutdated && !isClientVersionForceHidden ? 'active' : ''}`}

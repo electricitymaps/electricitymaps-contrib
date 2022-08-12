@@ -1110,18 +1110,18 @@
       [15.0732421875, 55.1537662685]
     ],
     "capacity": {
-      "battery storage": 580,
-      "biomass": 9420,
-      "coal": 39870,
-      "gas": 31680,
+      "battery storage": 2500,
+      "biomass": 9510,
+      "coal": 37940,
+      "gas": 32090,
       "geothermal": 47,
       "hydro": 4940,
-      "hydro storage": 9800,
+      "hydro storage": 9780,
       "nuclear": 4055,
-      "oil": 4680,
-      "solar": 59400,
+      "oil": 4720,
+      "solar": 62510,
       "unknown": 3700,
-      "wind": 64280
+      "wind": 64900
     },
     "contributors": ["corradio", "bohne13", "chiefymuc", "nessie2013", "IV1T3", "sin"],
     "parsers": {
@@ -1553,9 +1553,10 @@
       [-5.775786912999905, 62.89891185100005]
     ],
     "capacity": {
-      "hydro": 39.4,
-      "oil": 66.7,
-      "wind": 18.3
+      "hydro": 40.6,
+      "oil": 99.7,
+      "wind": 43.5,
+      "solar": 0.24
     },
     "contributors": ["corradio", "q--"],
     "parsers": {
@@ -2009,13 +2010,13 @@
     "capacity": {
       "biomass": 27,
       "coal": 4840,
-      "gas": 12776,
+      "gas": 12143.0,
       "geothermal": 0,
       "hydro": 6.72,
       "hydro storage": 150,
       "nuclear": 0,
       "oil": 44,
-      "solar": 1962,
+      "solar": 2555.0,
       "unknown": 175,
       "wind": 28
     },
@@ -2025,7 +2026,8 @@
       "price": "IL.fetch_price",
       "production": "IL.fetch_production"
     },
-    "timezone": "Asia/Jerusalem"
+    "timezone": "Asia/Jerusalem",
+    "estimation_method": "RECONSTRUCT_BREAKDOWN"
   },
   "IM": {
     "flag_file_name": "im.png",
@@ -4378,15 +4380,15 @@
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 996.94,
+      "biomass": 1006.95,
       "coal": 6067.5,
-      "gas": 27356.0,
+      "gas": 28695.0,
       "geothermal": 0.3,
-      "hydro": 6993.73,
+      "hydro": 7015.73,
       "hydro storage": 1000.0,
       "nuclear": 0,
       "oil": 1497.4,
-      "solar": 442.8,
+      "solar": 487.8,
       "unknown": 0,
       "wind": 1447.69
     },
@@ -4710,7 +4712,7 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": ""
+    "timezone": "US/Eastern"
   },
   "US-CAR-CPLW": {
     "bounding_box": [
@@ -6379,7 +6381,7 @@
       "consumptionForecast": "EIA.fetch_consumption_forecast",
       "production": "EIA.fetch_production_mix"
     },
-    "timezone": ""
+    "timezone": "US/Arizona"
   },
   "US-SW-DEAA": {
     "bounding_box": [
@@ -6827,7 +6829,18 @@
       [15.969981316000087, -47.46575286299992],
       [38.47779381600009, -21.626451924999927]
     ],
-    "timezone": null
+    "capacity": {
+      "coal": 38773,
+      "nuclear": 1860,
+      "hydro": 600,
+      "hydro storage": 2724,
+      "oil": 2409
+    },
+    "contributors": ["IV1T3"],
+    "parsers": {
+      "production": "ZA.fetch_production"
+    },
+    "timezone": "Africa/Johannesburg"
   },
   "ZM": {
     "bounding_box": [

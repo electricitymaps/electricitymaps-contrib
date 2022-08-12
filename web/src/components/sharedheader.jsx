@@ -5,7 +5,8 @@ import { useTrackEvent } from '../hooks/tracking';
 const Wrapper = styled.header`
   align-items: center;
   background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  // Shadow only towards bottom to allow having space above header
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   color: black;
   display: flex;
@@ -162,7 +163,7 @@ const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo })
 
   return (
     <Wrapper inverted={inverted} collapsed={collapsed}>
-      <a href="https://app.electricitymap.org/map">
+      <a href="https://app.electricitymaps.com/map">
         <Logo src={logo} alt="logo" />
       </a>
       <ResponsiveMenu collapsed={collapsed}>

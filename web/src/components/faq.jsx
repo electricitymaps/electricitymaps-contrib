@@ -128,8 +128,8 @@ const FAQ = ({ className }) => {
         </div>
       </div>
       <TermsAndPrivacyContainer>
-        <a href="https://www.electricitymap.org/privacy-policy/">{__('misc.privacyPolicy')}</a>
-        <a href="https://www.electricitymap.org/legal-notice/">{__('misc.legalNotice')}</a>
+        <a href="https://www.electricitymaps.com/privacy-policy/">{__('misc.privacyPolicy')}</a>
+        <a href="https://www.electricitymaps.com/legal-notice/">{__('misc.legalNotice')}</a>
       </TermsAndPrivacyContainer>
     </React.Fragment>
   );

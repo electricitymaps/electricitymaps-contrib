@@ -2,7 +2,7 @@
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Literal, Union
+from typing import Any, Callable, Dict, List, Literal, Optional
 
 # The arrow library is used to handle datetimes
 from arrow import get
@@ -24,6 +24,7 @@ from ree import (
     Mallorca,
     Melilla,
     Menorca,
+    Response,
     Tenerife,
 )
 
@@ -56,7 +57,7 @@ ZONE_KEYS = Literal[
 # TODO: Update floors to be non zero.
 # Minimum valid zone demand. This is used to eliminate some cases
 # where generation for one or more modes is obviously missing.
-ZONE_FLOORS: Dict[ZONE_KEYS, int] = {
+ZONE_FLOORS: Dict[ZONE_KEYS, float] = {
     "ES": 0,
     "ES-CE": 0,
     "ES-CN-FVLZ": 50,
@@ -100,13 +101,20 @@ EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
 
 
 def fetch_island_data(
-    zone_key: ZONE_KEYS, session: Session, target_datetime: Union[datetime, None]
-):
+    zone_key: ZONE_KEYS, session: Session, target_datetime: Optional[datetime]
+) -> List[Response]:
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
     else:
         date = target_datetime
-    data = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
+    try:
+        data: List[Response] = ZONE_FUNCTION_MAP[zone_key](session).get_all(date)
+    except KeyError:
+        raise ParserException(
+            "ES.py",
+            f"This parser cannot parse data for zone: {zone_key}",
+            zone_key,
+        )
     if data:
         return data
     else:
@@ -120,9 +128,9 @@ def fetch_island_data(
 @refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
@@ -150,14 +158,14 @@ def fetch_consumption(
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = getLogger(__name__),
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
 
     ses = session or Session()
     island_data = fetch_island_data(zone_key, ses, target_datetime)
-    data = []
+    data: List[Dict[str, Any]] = []
 
     # If we add more zones this should be turned into a map similar to ZONE_FlOORS mapping.
     if zone_key == "ES-IB":
@@ -230,9 +238,9 @@ def fetch_production(
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
-    session: Union[Session, None] = None,
-    target_datetime: Union[datetime, None] = None,
-    logger: Union[Logger, None] = None,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[dict]:
     if isinstance(target_datetime, datetime):
         date = target_datetime.strftime("%Y-%m-%d")
@@ -243,7 +251,9 @@ def fetch_exchange(
 
     ses = session or Session()
 
-    responses = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(date)
+    responses: List[Response] = EXCHANGE_FUNCTION_MAP[sorted_zone_keys](ses).get_all(
+        date
+    )
     if not responses:
         raise NotImplementedError(
             f'Exchange pair "{sorted_zone_keys}" is not implemented in this parser'
@@ -251,6 +261,7 @@ def fetch_exchange(
 
     exchanges = []
     for response in responses:
+        net_flow: float
         if sorted_zone_keys == "ES-IB-MA->ES-IB-ME":
             net_flow = -1 * response.link["ma_me"]
         elif sorted_zone_keys == "ES-IB-IZ->ES-IB-MA":
