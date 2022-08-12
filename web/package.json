@@ -122,13 +122,13 @@
     ]
   },
   "scripts": {
-    "develop": "yarn generate-zones-config && snowpack dev",
-    "build-debug": "yarn generate-zones-config && webpack --bail --progress --mode development",
-    "build-release": "yarn generate-zones-config && export NODE_ENV=production && webpack --bail --mode production",
+    "develop": "snowpack dev",
+    "build-debug": "yarn prebuild && webpack --bail --progress --mode development",
+    "build-release": "yarn prebuild && export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "generate-zones-config": "node generate-zones-config.js",
-    "lint": "yarn generate-zones-config && eslint geo src --ext .js,.jsx --cache --cache-location node_modules/.cache/eslint/.eslintcache",
+    "lint": "yarn prebuild && eslint geo src --ext .js,.jsx --cache --cache-location node_modules/.cache/eslint/.eslintcache",
     "update-version": "echo '{\"version\": \"'$COMMIT_SHA'\"}' > public/client-version.json",
     "server-dev": "nodemon --delay 1 server.js",
     "watch": "yarn generate-zones-config && webpack --watch --progress --mode development",
@@ -140,10 +140,13 @@
     "prepare": "cd .. && husky install web/.husky",
     "cypress-test": "TZ=Europe/Copenhagen cypress run",
     "cypress-open": "TZ=Europe/Copenhagen cypress open",
-    "test": "yarn generate-zones-config && jest",
-    "test:watch": "yarn generate-zones-config && test -- --watch",
+    "test": "yarn prebuild && jest",
+    "test:watch": "yarn prebuild && test -- --watch",
     "prettier-fix": "prettier --write . && prettier --write ../config",
-    "prettier-check": "prettier --check . && prettier --check ../config"
+    "prettier-check": "prettier --check . && prettier --check ../config",
+    "predevelop": "yarn generate-zones-config",
+    "prebuild": "yarn generate-zones-config",
+    "postinstall": "yarn generate-zones-config"
   },
   "browserslist": [
     "defaults",

@@ -16,6 +16,7 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 ADD config /home/src/electricitymap/contrib/config
 ADD web ./
 RUN yarn build-release
+RUN yarn verify-zones-config
 
 EXPOSE 8000
 ENV PORT 8000
