@@ -25,6 +25,7 @@ steps:
       - mkdir -p public/dist
       - yarn update-version
       - yarn build-release
+      - yarn verify-zones-config
     outputs:
       - src/world.json
       - public/dist

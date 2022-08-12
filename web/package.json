@@ -122,9 +122,9 @@
     ]
   },
   "scripts": {
-    "develop": "snowpack dev",
-    "build-debug": "webpack --bail --progress --mode development",
-    "build-release": "export NODE_ENV=production && webpack --bail --mode production",
+    "develop": "yarn generate-zones-config && snowpack dev",
+    "build-debug": "yarn generate-zones-config && webpack --bail --progress --mode development",
+    "build-release": "yarn generate-zones-config && export NODE_ENV=production && webpack --bail --mode production",
     "clean": "mkdir -p public/dist && rm public/dist/bundle.*.js",
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "generate-zones-config": "node generate-zones-config.js",
@@ -134,7 +134,8 @@
     "watch": "webpack --watch --progress --mode development",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development",
     "update-world": "node ./geo/update-world.js",
-    "verify": "VERIFY_NO_UPDATES=1 yarn update-world && VERIFY_NO_UPDATES=1 yarn generate-zones-config",
+    "verify": "VERIFY_NO_UPDATES=1 yarn update-world",
+    "verify-zones-config": "VERIFY_NO_UPDATES=1 yarn generate-zones-config",
     "mockserver": "cd ../mockserver && yarn run start",
     "prepare": "cd .. && husky install web/.husky",
     "cypress-test": "TZ=Europe/Copenhagen cypress run",
