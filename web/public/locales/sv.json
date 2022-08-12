@@ -670,6 +670,14 @@
     "FO": {
       "zoneName": "Färöarna"
     },
+    "FO-NI": {
+      "countryName": "Färöarna",
+      "zoneName": "Norra Öarna"
+    },
+    "FO-SI": {
+      "countryName": "Färöarna",
+      "zoneName": "Söderön"
+    },
     "FR": {
       "zoneName": "Frankrike"
     },

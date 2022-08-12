@@ -634,6 +634,14 @@
     "FO": {
       "zoneName": "Faroe Islands"
     },
+    "FO-NI": {
+      "countryName": "Faroe Islands",
+      "zoneName": "Northern Islands"
+    },
+    "FO-SI": {
+      "countryName": "Faroe Islands",
+      "zoneName": "South Island"
+    },
     "FR": {
       "zoneName": "France"
     },
