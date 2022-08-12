@@ -15,7 +15,7 @@ const prepareGraphData = (historyData) => {
     return {};
   }
 
-  const currencySymbol = getSymbolFromCurrency(((historyData.at(0) || {}).price || {}).currency);
+  const currencySymbol = getSymbolFromCurrency(historyData.at(0)?.price?.currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
   const priceMaxValue = d3Max(historyData.map((d) => d.price?.value));
