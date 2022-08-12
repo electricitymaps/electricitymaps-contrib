@@ -1,10 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import List, Optional
 
 from requests import Session
 
 from .ENTSOE import fetch_exchange as fetch_ENTSOE_exchange
+from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 
 """
@@ -12,6 +13,7 @@ Fetches data for the FR-COR->IT-SAR exchange by wrapping the ENTSOE parser.
 """
 
 
+@refetch_frequency(timedelta(days=2))
 def fetch_exchange(
     zone_key1: str = "FR-COR",
     zone_key2: str = "IT-SAR",
