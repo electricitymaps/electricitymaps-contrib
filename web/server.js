@@ -149,7 +149,7 @@ app.use('/', (req, res) => {
           : (relativePath) =>
               // Note we here point to static hosting in order to make
               // sure we can serve older bundle versions
-              `https://static.electricitymaps.com/public_web/${relativePath}`,
+              `https://static.electricitymap.org/public_web/${relativePath}`,
       canonicalUrl,
       supportedLocales: locales,
       FBLocale: localeToFacebookLocale[locale || 'en'],
@@ -161,7 +161,7 @@ app.use('/', (req, res) => {
 if (isProduction) {
   app.get('/*', (req, res) =>
     // Redirect all requests except root to static
-    res.redirect(`https://static.electricitymaps.com/public_web${req.originalUrl}`)
+    res.redirect(`https://static.electricitymap.org/public_web${req.originalUrl}`)
   );
 }
 
