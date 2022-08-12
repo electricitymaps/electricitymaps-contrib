@@ -6,7 +6,6 @@ from typing import Any, Callable, Dict, List, Literal, Optional
 
 # The arrow library is used to handle datetimes
 from arrow import get
-from lib.config import refetch_frequency
 
 # package "ree" is used to parse data from www.ree.es
 # maintained on github by @hectorespert at https://github.com/hectorespert/ree
@@ -31,6 +30,7 @@ from ree import (
 # The request library is used to fetch content through HTTP
 from requests import Session
 
+from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 from .lib.validation import validate
 
