@@ -5,6 +5,7 @@ steps:
       - package.json
       - yarn.lock
       - ./generate-zones-config.js
+      - ../config
     commands:
       - yarn
 
