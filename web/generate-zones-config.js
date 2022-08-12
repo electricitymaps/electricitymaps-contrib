@@ -44,7 +44,14 @@ const mergeExchanges = () => {
   return exchanges;
 };
 
-const writeJSON = (fileName, obj, encoding = 'utf8') => fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
+const writeJSON = (fileName, obj, encoding = 'utf8') => {
+  const dir = path.resolve(path.dirname(fileName));
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
+};
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 

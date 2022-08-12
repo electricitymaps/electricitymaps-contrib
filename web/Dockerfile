@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 ADD web/generate-zones-config.js ./generate-zones-config.js
+ADD config/ ../config/
 RUN yarn install --frozen-lockfile
 
 
