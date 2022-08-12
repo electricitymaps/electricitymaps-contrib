@@ -5,6 +5,7 @@ WORKDIR /home/src/electricitymap/contrib/web
 RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
+ADD web/generate_zones_config.js ./generate_zones_config.js
 RUN yarn install --frozen-lockfile
 
 
