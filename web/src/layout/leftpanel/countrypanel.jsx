@@ -18,6 +18,7 @@ import CountryDisclaimer from '../../components/countrydisclaimer';
 import CountryDataInfo from '../../components/countrydatainfo';
 import LoadingPlaceholder from '../../components/loadingplaceholder';
 import Icon from '../../components/icon';
+import { RetryBanner } from '../../components/retrybanner';
 
 import { dispatchApplication } from '../../store';
 
@@ -193,7 +194,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
 const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
   const { __ } = useTranslation();
-
+  const failedRequestType = useSelector((state) => state.data.failedRequestType);
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
 
   // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
@@ -268,6 +269,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   return (
     <CountryPanelStyled>
+      {failedRequestType === 'zone' && <RetryBanner failedRequestType={failedRequestType} />}
       <div id="country-table-header">
         <CountryHeader
           isDataAggregated={timeAggregate && timeAggregate !== TIME.HOURLY}
@@ -340,7 +342,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
                 <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+                  href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -363,7 +365,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <ProContainer>
                 <Icon iconName="file_download" size={16} />
                 <a
-                  href="https://electricitymap.org/?utm_source=app.electricitymap.org&utm_medium=referral&utm_campaign=country_panel"
+                  href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
                   target="_blank"
                   rel="noreferrer"
                 >

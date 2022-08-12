@@ -22,7 +22,7 @@ def fetch_production(
     r = session or Session()
     url = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
     # User agent is mandatory or services answers 404
-    headers = {"user-agent": "electricitymap.org"}
+    headers = {"user-agent": "electricitymaps.com"}
     response = r.get(url, headers=headers)
     aruba_json = response.json()
     top_data = aruba_json["dashboard_top_data"]
