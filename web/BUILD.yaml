@@ -4,6 +4,7 @@ steps:
     inputs:
       - package.json
       - yarn.lock
+      - ./generate-zones-config.js
     commands:
       - yarn
 
@@ -16,7 +17,6 @@ steps:
       - geo
       # source code
       - ../config/{exchanges,zones}.json
-      - ../generate-zones-config.js
       - ./{locales-config.json,translation-status.js}
       - public/{fonts,images,locales,apple-app-site-association,browserconfig.xml,electricityMap.webmanifest,client-version.json}
       - src
