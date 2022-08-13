@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Optional, TypedDict
+from typing import Callable, Dict, List, Optional
 
 from requests import Session
 
@@ -49,19 +49,42 @@ def fetch_data(
         target_datetime=target_datetime,
         logger=logger,
     )
-
     returnList: List[dict] = []
-    for AC_data in AC_dataList:
-        for DC_data in DC_dataList:
-            if AC_data["datetime"] == DC_data["datetime"]:
-                returnList.append(
-                    {
-                        "datetime": AC_data["datetime"],
-                        "source": AC_data["source"],
-                        "sortedZoneKeys": "FR-COR->IT-SAR",
-                        "netFlow": AC_data["netFlow"] + DC_data["netFlow"],
-                    }
-                )
+
+    # Compare the length and datetimes of the two data lists and
+    # if they are the same combine the data from the two lists.
+    if (
+        len(AC_dataList) == len(DC_dataList)
+        and AC_dataList[0]["datetime"] == DC_dataList[0]["datetime"]
+        and AC_dataList[-1]["datetime"] == DC_dataList[-1]["datetime"]
+    ):
+        logger.info("Clean match! Merging data with simple loop")
+        for data in range(len(AC_dataList)):
+            returnList.append(
+                {
+                    "datetime": AC_dataList[data]["datetime"],
+                    "netFlow": AC_dataList[data]["netFlow"]
+                    + DC_dataList[data]["netFlow"],
+                    "sortedZoneKeys": "FR-COR->IT-SAR",
+                    "source": AC_dataList[data]["source"],
+                }
+            )
+
+    # Parse values from the two lists and loop over them to find missing datetimes
+    # if the two lists are not of equal length and do not have the same datetimes.
+    else:
+        logger.info("Data mismatch! Looping over both lists to match datetimes")
+        for AC_data in AC_dataList:
+            for DC_data in DC_dataList:
+                if AC_data["datetime"] == DC_data["datetime"]:
+                    returnList.append(
+                        {
+                            "datetime": AC_data["datetime"],
+                            "netFlow": AC_data["netFlow"] + DC_data["netFlow"],
+                            "sortedZoneKeys": "FR-COR->IT-SAR",
+                            "source": AC_data["source"],
+                        }
+                    )
     if returnList != []:
         return returnList
     else:
