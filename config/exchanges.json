@@ -833,7 +833,8 @@
   "FR-COR->IT-SAR": {
     "lonlat": [9.123283, 41.293785],
     "parsers": {
-      "exchange": "FR-COR_IT-SAR.fetch_exchange"
+      "exchange": "FR-COR_IT-SAR.fetch_exchange",
+      "exchangeForecast": "FR-COR_IT-SAR.fetch_exchange_forecast"
     },
     "rotation": 0
   },
