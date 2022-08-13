@@ -13,7 +13,7 @@ LOCALE_FILE_PATHS = [
 ]
 
 
-def run_shell_command(cmd: str, cwd: Union[PathLike, str] = None) -> str:
+def run_shell_command(cmd: str, cwd: Union[PathLike, str] = "") -> str:
     return subprocess.check_output(cmd, shell=True, encoding="utf8", cwd=cwd).rstrip(
         "\n"
     )

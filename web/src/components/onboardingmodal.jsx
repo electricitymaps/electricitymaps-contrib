@@ -11,13 +11,13 @@ import Modal from './modal';
 
 const views = [
   {
-    headerImage: resolvePath('images/onboarding/electricymapLogoIcon.svg'),
+    headerImage: resolvePath('images/electricitymap-icon.svg'),
     headerCssClass: 'logo-header',
     textCssClass: 'brand-text',
     renderContent: (__) => (
       <React.Fragment>
         <div>
-          <h1>electricityMap</h1>
+          <h1>Electricity Maps</h1>
         </div>
         <div>
           <h2>{__('onboarding-modal.view1.subtitle')}</h2>
@@ -79,10 +79,12 @@ const OnboardingModal = ({ visible }) => {
     trackEvent('Onboarding Shown');
   };
 
+  const isDisabled = new Date() < new Date('2022-08-12');
+
   return (
     <Modal
       modalName="onboarding"
-      visible={visible && !shouldSkip}
+      visible={visible && !shouldSkip && !isDisabled}
       onModalShown={handleShown}
       onDismiss={handleDismiss}
       views={views}

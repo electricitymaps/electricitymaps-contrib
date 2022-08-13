@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 import json
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Any, Dict, Optional
 
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 timezone = "Canada/Atlantic"
 
@@ -63,13 +64,16 @@ def _get_pei_info(requests_obj):
 
 
 def fetch_production(
-    zone_key="CA-PE", session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key: str = "CA-PE",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
     pei_info = _get_pei_info(requests_obj)
 
     if pei_info is None:
@@ -98,8 +102,12 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
-) -> dict:
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Dict[str, Any]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -109,7 +117,7 @@ def fetch_exchange(
     if sorted_zone_keys != "CA-NB->CA-PE":
         raise NotImplementedError("This exchange pair is not implemented")
 
-    requests_obj = session or requests.session()
+    requests_obj = session or Session()
     pei_info = _get_pei_info(requests_obj)
 
     if pei_info is None or pei_info["pei_load"] is None:

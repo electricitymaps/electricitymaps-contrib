@@ -104,6 +104,7 @@ class Zone(StrictBaseModelWithAlias):
     sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
     timezone: Optional[str]
     key: ZoneKey  # This is not part of zones.json, but added here to enable self referencing
+    estimation_method: Optional[str]
 
     def neighbors(self) -> List[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])

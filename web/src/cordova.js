@@ -39,9 +39,6 @@ export const cordovaApp = {
         #mobile-header {
           padding-top: ${top};
         }
-        .controls-container {
-          margin-top: ${top};
-        }
         .flash-message .inner {
           padding-top: ${top};
         }

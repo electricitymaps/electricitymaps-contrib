@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { differenceInHours } from 'date-fns';
 
-import { useCurrentZoneHistoryEndTime } from '../hooks/redux';
+import { useCurrentDatetimes } from '../hooks/redux';
 import { useTranslation } from '../helpers/translation';
+import { useSelector } from 'react-redux';
+import { TIME } from '../helpers/constants';
 
 const LastUpdatedTime = () => {
   const [style, setStyle] = useState({});
-  const timestamp = useCurrentZoneHistoryEndTime();
+  const timestamp = useCurrentDatetimes().at(-1);
+  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const { i18n } = useTranslation();
 
   // Every time the timestamp gets changed, jump to the highlighted state
@@ -17,6 +20,11 @@ const LastUpdatedTime = () => {
       setStyle({ transition: 'color 800ms ease-in-out' });
     }, 0);
   }, [timestamp]);
+
+  if (!timestamp || selectedTimeAggregate !== TIME.HOURLY) {
+    // last updated currently does not work for other time aggregates
+    return null;
+  }
 
   return (
     <span style={style}>

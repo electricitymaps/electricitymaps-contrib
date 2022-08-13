@@ -1,9 +1,11 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.visit('/?skip-onboarding=true');
+    cy.interceptAPI('v5/state/hourly');
+    cy.waitForAPISuccess(`v5/state/hourly`);
 
     // See more than X countries on the list by default
-    cy.get('.zone-list a').should('have.length', 9);
+    cy.get('.zone-list a').should('have.length.above', 3);
 
     // Search for a country
     cy.get('.zone-search-bar > input').type('Germ');
@@ -11,7 +13,7 @@ describe('Ranking Panel', () => {
 
     // Click a country and return the the ranking panel
     cy.get('.zone-list a.selected').click();
-    cy.contains('Low-carbon');
+    cy.get('.left-panel-zone-details .country-name').should('exist');
     cy.get('.left-panel-back-button').click();
 
     // TODO: Ideally the search result should either be reset or the typed value stay in the input

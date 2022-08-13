@@ -13,10 +13,15 @@ Kuwait shares of Electricity production in 2017: 65.6% oil, 34.4% gas (source: I
 # TODO get this data for the other countries as well
 
 import re
+from datetime import datetime
+from logging import Logger, getLogger
 from sys import stderr
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
+
+from .lib.exceptions import ParserException
 
 COUNTRY_CODE_MAPPING = {
     "AE": "uae",
@@ -37,21 +42,29 @@ TIME_ZONE_MAPPING = {
 }
 
 
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_consumption(
+    zone_key,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
 
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.gccia.com.sa/"
     response = r.get(url)
 
-    pattern = COUNTRY_CODE_MAPPING[zone_key] + '-mw-val">\s*(\d+)'
+    pattern = COUNTRY_CODE_MAPPING[zone_key] + r'-mw-val">\s*(\d+)'
 
-    load = re.findall(pattern, response.text)
-    load = int(load[0])
-    consumption = {}
-    consumption["unknown"] = load
+    match = re.findall(pattern, response.text)
+    if not match:
+        # if no data, the text becomes " - "
+        raise ParserException(
+            "GCCIA.py", "data is currently not available", zone_key=zone_key
+        )
+    consumption = int(match[0])
 
     datapoint = {
         "zoneKey": zone_key,
@@ -73,4 +86,4 @@ if __name__ == "__main__":
         except IndexError as error:
             print("Could not fetch consumption data for {0}".format(i), file=stderr)
             print(type(error), ":", error, file=stderr)
-        print("\n")
+        print()

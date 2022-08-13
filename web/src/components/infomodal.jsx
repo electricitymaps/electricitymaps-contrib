@@ -68,16 +68,16 @@ const InfoView = () => {
         <GitHubButton href="https://github.com/electricitymap/electricitymap-contrib" icon="github">
           {__('info-modal.github-button')}
         </GitHubButton>
-        <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org" icon="twitter">
+        <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com" icon="twitter">
           {__('info-modal.twitter-button')}
         </TwitterButton>
-        <SlackButton href="https://slack.electricitymap.org/" icon="slack">
+        <SlackButton href="https://slack.electricitymaps.com/" icon="slack">
           {__('info-modal.slack-button')}
         </SlackButton>
       </div>
       <TermsAndPrivacyContainer>
-        <a href="https://www.electricitymap.org/privacy-policy/">{__('info-modal.privacy-policy')}</a>
-        <a href="https://www.electricitymap.org/legal-notice/">{__('info-modal.legal-notice')}</a>
+        <a href="https://www.electricitymaps.com/privacy-policy/">{__('info-modal.privacy-policy')}</a>
+        <a href="https://www.electricitymaps.com/legal-notice/">{__('info-modal.legal-notice')}</a>
       </TermsAndPrivacyContainer>
     </InfoContainer>
   );

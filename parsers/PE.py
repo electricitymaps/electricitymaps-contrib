@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-from logging import getLogger
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import dateutil
-import requests
+from requests import Session
 
 from .lib.validation import validate
 
@@ -31,13 +33,16 @@ def parse_date(item):
 
 
 def fetch_production(
-    zone_key="PE", session=None, target_datetime=None, logger=getLogger(__name__)
+    zone_key: str = "PE",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://www.coes.org.pe/Portal/portalinformacion/generacion"
 
     current_date = arrow.now(tz=tz)

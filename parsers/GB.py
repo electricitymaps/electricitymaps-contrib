@@ -7,27 +7,30 @@ fetch_price method copied from FR parser.
 Day-ahead Price
 """
 
-import logging
-import os
 import xml.etree.ElementTree as ET
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         now = arrow.get(target_datetime, tz="Europe/Paris")
     else:
         now = arrow.now(tz="Europe/London")
 
-    r = session or requests.session()
+    r = session or Session()
     formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
     formatted_to = now.format("DD/MM/YYYY")
 

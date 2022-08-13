@@ -82,7 +82,7 @@ app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' :
 
 // App routes (managed by React Router)
 app.use('/', (req, res) => {
-  const isNonAppDomain = req.get('host') !== 'app.electricitymap.org';
+  const isNonAppDomain = req.get('host') !== 'app.electricitymaps.com';
   const isStaging = req.get('host').includes('staging');
   const isFacebookRobot = (req.headers['user-agent'] || '').indexOf('facebookexternalhit') !== -1;
 
@@ -119,7 +119,7 @@ app.use('/', (req, res) => {
       }
       if (!authorized) {
         res.statusCode = 401;
-        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymaps.com"');
         res.end('Access denied');
         return;
       }

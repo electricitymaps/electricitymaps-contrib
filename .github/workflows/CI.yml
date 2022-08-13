@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Check frontend files
         id: check-frontend
-        uses: tj-actions/changed-files@v23
+        uses: tj-actions/changed-files@v25
         with:
           files: |
             **/web/**/*
@@ -31,19 +31,19 @@ jobs:
             **/web/**/*.md
       - name: Check markdown files
         id: check-markdown
-        uses: tj-actions/changed-files@v23
+        uses: tj-actions/changed-files@v25
         with:
           files: |
             **/*.md
       - name: Check json files
         id: check-json
-        uses: tj-actions/changed-files@v23
+        uses: tj-actions/changed-files@v25
         with:
           files: |
             **/*.json
       - name: Check python files
         id: check-python
-        uses: tj-actions/changed-files@v23
+        uses: tj-actions/changed-files@v25
         with:
           files: |
             **/*.py
@@ -52,7 +52,7 @@ jobs:
             .python-version
       - name: Check if workflows have changed
         id: check-workflows
-        uses: tj-actions/changed-files@v23
+        uses: tj-actions/changed-files@v25
         with:
           files: |
             **/.github/workflows/**/*.yml
@@ -74,6 +74,12 @@ jobs:
     needs: [setup, prettier]
     if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/validate-local-links-in-md.yml
+
+  jest:
+    name: Jest
+    needs: [setup]
+    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
+    uses: ./.github/workflows/jest.yml
 
   jsonlint:
     name: JSONLint
@@ -101,8 +107,8 @@ jobs:
     secrets: inherit
 
   # Python checks
-  python-formatting:
-    name: Python Formatting
+  python:
+    name: Python
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python-formatting.yml
+    uses: ./.github/workflows/python.yml

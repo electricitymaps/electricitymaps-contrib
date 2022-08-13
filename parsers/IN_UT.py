@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
+from requests import Session
 
 from .lib import web
 
@@ -75,11 +78,11 @@ def get_production_values(soup, zone_key, logger):
 
 
 def fetch_exchange(
-    zone_key1="IN-UP",
-    zone_key2="IN-UT",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str = "IN-UP",
+    zone_key2: str = "IN-UT",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     soup = web.get_response_soup(zone_key1, ENDPOINT)
     datetime = get_datetime(soup, zone_key1, logger)
@@ -108,10 +111,10 @@ def fetch_exchange(
 
 
 def fetch_production(
-    zone_key="IN-UT",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "IN-UT",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     soup = web.get_response_soup(zone_key, ENDPOINT)
     datetime = get_datetime(soup, zone_key, logger)

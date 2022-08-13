@@ -1,20 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TimeSlider from '../components/timeslider_new';
+import TimeSlider from '../components/timeslider';
 
 import { useCurrentDatetimes } from '../hooks/redux';
-import { useFeatureToggle } from '../hooks/router';
 import { dispatchApplication } from '../store';
+import { useTrackEvent } from '../hooks/tracking';
 import styled from 'styled-components';
 
 const handleZoneTimeIndexChange = (timeIndex) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
-};
-
-const handleTimeAggregationChange = (aggregate) => {
-  dispatchApplication('selectedTimeAggregate', aggregate);
-  // TODO: set index to the max of the range of selected time aggregate
-  dispatchApplication('selectedZoneTimeIndex', null);
 };
 
 const mapStateToProps = (state) => ({
@@ -34,12 +28,6 @@ const StyledTimeSlider = styled(TimeSlider)`
   z-index: 99;
   position: fixed;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
-
-  .time-slider-axis-container {
-    width: 100%;
-    height: 20px;
-    overflow: visible;
-  }
 
   .domain {
     display: none;
@@ -62,14 +50,23 @@ const StyledTimeSlider = styled(TimeSlider)`
 
 const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
   const datetimes = useCurrentDatetimes();
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
-
-  if (!isHistoryFeatureEnabled) {
-    return null;
-  }
+  const trackEvent = useTrackEvent();
 
   const startTime = datetimes.at(0);
   const endTime = datetimes.at(-1);
+
+  const handleTimeAggregationChange = (aggregate, zoneDatetimes) => {
+    if (aggregate === selectedTimeAggregate) {
+      return;
+    }
+    trackEvent('AggregateButton Clicked', { aggregate });
+    dispatchApplication('selectedTimeAggregate', aggregate);
+    if (zoneDatetimes[aggregate]) {
+      // set selectedZoneTimeIndex to max of datetimes (all the way to the right)
+      // if we know already the size of the datetimes array
+      dispatchApplication('selectedZoneTimeIndex', zoneDatetimes[aggregate].length - 1);
+    }
+  };
 
   return (
     <StyledTimeSlider

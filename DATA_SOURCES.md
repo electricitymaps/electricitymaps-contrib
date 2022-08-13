@@ -77,7 +77,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Japan (Kyūshū/Sendai NPP): [Kyūden](http://www.kyuden.co.jp/php/nuclear/sendai/rename.php?A=s_power.fdat&B=ncp_state.fdat&_=1520532401043)
 - Japan (Shikoku): [Yonden](http://www.yonden.co.jp/denkiyoho/)
 - Japan (Tōhoku-Niigata): [TH-EPCO](http://setsuden.tohoku-epco.co.jp/graph.html)
-- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-j.csv)
+- Japan (Tōkyō area): [TEPCO](http://www.tepco.co.jp/forecast/html/images/juyo-d1-j.csv)
 - Kosovo: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Kuwait (TSO): [Ministry of Electricity & Water](https://www.mew.gov.kw/en/)
 - Kuwait (Power Market): [GCCIA](https://www.gccia.com.sa/)
@@ -111,6 +111,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Singapore (Solar): [EMA](https://www.ema.gov.sg/solarmap.aspx)
 - Slovakia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Slovenia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
+- South Africa: [Eskom](https://www.eskom.co.za/dataportal/supply-side/station-build-up-for-the-last-7-days/)
 - South Korea (Nuclear): [KHNP](http://cms.khnp.co.kr/eng/kori/realTimeMgr/list.do?mnCd=EN03020201&brnchCd=BR0302)
 - South Korea (Hydro): [KHNP](http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203)
 - South Korea (Load): [KPX](http://power.kpx.or.kr/powerinfo_en.php)
@@ -264,8 +265,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Non-Renewable [ESDM](https://www.esdm.go.id/assets/media/content/content-laporan-kinerja-ditjen-ketenagalistrikan-2020.pdf)
 - Israel
-  - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
-  - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
+  - [Irena](https://pxweb.irena.org/pxweb/en/IRENASTAT)
+  - [GEM](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Italy
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
@@ -317,6 +318,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/2020-power-situation-report)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
@@ -335,6 +337,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- South Africa:
+  - [Eskom](https://www.eskom.co.za/wp-content/uploads/2021/08/2021IntegratedReport.pdf)
 - South Korea:
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
   - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
@@ -360,8 +364,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Thailand:
-  - EGAT's production capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=452&Itemid=116)
-  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=355&Itemid=116)
+  - EGAT's production capacity: [EGAT](https://www.egat.co.th/home/statistics-all-egat/)
+  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/home/statistics-all-3rdparty/)
 - Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)

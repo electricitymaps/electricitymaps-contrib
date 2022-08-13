@@ -1,4 +1,4 @@
-# electricityMap app
+# Electricity Maps
 
 **This documentation is specifically for the frontend web/mobile app.**
 
@@ -9,7 +9,7 @@ _If you're looking for more info on the parsers, check out [how to setup Python 
 Prerequisites:
 
 - Ensure you have `NodeJS` and `yarn` installed locally
-- Run `yarn install`
+- Run `yarn install` in both the web and mockserver directories
 
 After the above steps, simply run the following steps:
 

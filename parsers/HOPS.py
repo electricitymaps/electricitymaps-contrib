@@ -2,25 +2,27 @@
 
 """Parser for power production in Croatia"""
 
-import logging
+
 from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional, Union
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 URL = "https://www.hops.hr/Home/PowerExchange"
 
 
 def fetch_solar_production(
-    feed_date, session=None, logger=logging.getLogger(__name__)
-) -> float:
+    feed_date, session: Optional[Session] = None, logger: Logger = getLogger(__name__)
+) -> Union[float, None]:
     """
     Calls extra resource at https://files.hrote.hr/files/EKO_BG/FORECAST/SOLAR/FTP/TEST_DRIVE/<dd.m.yyyy>.json
     to get Solar power production in MW.
     :param feed_date: date_time string from the original HOPS feed
     """
-    r = session or requests.session()
+    r = session or Session()
 
     dt = datetime.strptime(feed_date, "%Y-%m-%d %H:%M:%S")
     # Get all available files
@@ -55,15 +57,15 @@ def fetch_solar_production(
 
 
 def fetch_production(
-    zone_key="HR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "HR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    r = session or requests.session()
+    r = session or Session()
     response = r.get(URL)
     obj = response.json()
 
@@ -92,7 +94,7 @@ def fetch_production(
 
     return [
         {
-            "zoneKey": "HR",
+            "zoneKey": zone_key,
             "datetime": date_time.datetime,
             "production": {"wind": wind, "solar": solar, "unknown": unknown},
             "source": "hops.hr",

@@ -19,14 +19,26 @@
     width: 100%;
     box-sizing: border-box;
 
-    a {
+    button {
+      background: transparent;
+      border: 0;
+      padding: 0;
       color: $white;
       font-weight: bold;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 
   &.active {
     top: 0;
+  }
+
+  &.zone {
+    margin: 0 15% 0 15%;
+    width: 300px;
   }
 
   @include respond-to('medium-up') {
@@ -67,6 +79,10 @@
   padding: 8px;
   text-align: center;
   z-index: 3;
+
+  &.graph {
+    margin-right: 40px;
+  }
 }
 
 .zone-details-no-parser-message {

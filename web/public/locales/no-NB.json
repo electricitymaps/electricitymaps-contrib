@@ -11,7 +11,7 @@
     "zone-list-header-subtitle": "Sortert etter CO₂-intensitet fra strømforbruk (gCO₂eq/kWh)",
     "search": "Søk etter land/region"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Regioner", "about": "Om kartet" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Regioner", "about": "Om kartet" },
   "onboarding-modal": {
     "view1": { "subtitle": "Kartlegger klimaeffekten av el-energi" },
     "view2": {
@@ -49,7 +49,7 @@
     "now": "Nå"
   },
   "country-history": {
-    "Getdata": "Skaff tilgang til live, historiske eller fremskrivingsdata med electricityMap API",
+    "Getdata": "Skaff tilgang til live, historiske eller fremskrivingsdata med Electricity Maps API",
     "carbonintensity": { "hourly": "CO₂-intensitet siste 24 timer" },
     "emissionsorigin": { "hourly": "CO₂-utslippskilde siste 24 timer" },
     "emissionsproduction": { "hourly": "CO₂-utslipp siste 24 timer" },
@@ -103,8 +103,8 @@
     "newversion": "En ny version er tilgjengelig! Trykk <a onClick=\"location.reload(true);\">her for å oppdatere</a>.",
     "webgl-not-supported": "Kartet vises ikke riktig fordi nettleseren din mangler støtte for WebGL.",
     "retrynow": "Prøv igjen nå",
-    "database-ad": "På utkikk etter historiske data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">undersøk vår database</a>",
-    "api-ad": "Ønsker du ferske data til din tjeneste eller app? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prøv APIet vårt.</a>",
+    "database-ad": "På utkikk etter historiske data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">undersøk vår database</a>",
+    "api-ad": "Ønsker du ferske data til din tjeneste eller app? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prøv APIet vårt.</a>",
     "legend": "Forklaring",
     "faq": "Ofte stilte spørsmål"
   },
@@ -130,7 +130,7 @@
     "divideExistingArea-question": "Kan dere spalte opp mitt område i mindre enheter?",
     "divideExistingArea-answer": "Gjerne, hvis det finnes egne datakilder for hvert område. Du kan <a href=\"#contribute\" class=\"entry-link\">hjelpe oss med å legge til ytterligere datakilder</a>",
     "seeHistoricalData-question": "Kan jeg se historiske data for et område lenger tilbake i tid enn 24 timer?",
-    "seeHistoricalData-answer": "Du kan kjøpe adgang til alle våre historiske data gjennom vår <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "Du kan kjøpe adgang til alle våre historiske data gjennom vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
   },
   "methodology": {
     "groupName": "Våre metoder",
@@ -158,22 +158,22 @@
     "dataOrigins-question": "Hvordan får dere tak i dataene?",
     "dataOrigins-answer": "Vi beregner alle våre data fra offentlige kilder. Disse er publisert av nettselskap, offentlige myndigheter mfl. Ved å klikke på et område kan du se datakilder.",
     "dataDownload-question": "Kan jeg laste ned dataene?",
-    "dataDownload-answer": "Du kan kjøpe tilgang til alle våre data i fra <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">vår database</a>.",
+    "dataDownload-answer": "Du kan kjøpe tilgang til alle våre data i fra <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">vår database</a>.",
     "dataIntegration-question": "Kan jeg integrere dataene i min greie?",
-    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
+    "dataIntegration-answer": "Yes! We sell access to a <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, which includes future forecasts."
   },
   "aboutUs": {
     "groupName": "Om oss",
     "whoAreYou-question": "Hvem Har laget dette?",
     "whoAreYou-answer": "The Electricity Map er utviklet og vedlikeholdt av <a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a>, som er et dansk oppstartselskap. Selskapets mål er å hjelpe menneskeheten å oppnå bærekraft gjennom å tallfeste og gjøre offentlig tilgjengelig kunnskap våre beslutninger i dagliglivet vårt.",
     "feedback-question": "Kan jeg gi tilbakemeldinger?",
-    "feedback-answer": "Gjerne! Vennligst fyll ut <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt tilbakemeldingsskjema</a> eller <a href=\"mailto:app@electricitymap.org\">eller send oss en e-post</a>.",
+    "feedback-answer": "Gjerne! Vennligst fyll ut <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt tilbakemeldingsskjema</a> eller <a href=\"mailto:app@electricitymaps.com\">eller send oss en e-post</a>.",
     "contribute-question": "Kan jeg bidra til prosjektet?",
     "contribute-answer": "Ja! The Electricity Map er et åpen kildekode-prosjekt som er muliggjort av frivillige bidragsytere. Hvis du ønsker å hjelpe til med utviklingen av kartet, enten ved å legge til nye datakilder, forbedre det eller fikse bugs, bli med oss på <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi samarbeide?",
-    "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymap.org\">Send oss en e-post!</a>",
+    "workTogether-answer": "Vi er på jakt etter muligheter for å samarbeide. <a href=\"mailto:app@electricitymaps.com\">Send oss en e-post!</a>",
     "disclaimer-question": "Ansvarsfraskrivelse",
-    "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://www.tmrow.com/\" target=\"_blank\">Tomorrow</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Tomorrow assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Tomorrow, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "wind": "Vind",
   "windDataError": "Data for vindenergi for tiden utilgjengelig",

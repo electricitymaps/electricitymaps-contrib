@@ -6,7 +6,7 @@
     "datasources": "zdroje dát",
     "contribute": "Zapojte sa <a href=\"%s\" target=\"_blank\">pridaním svojej oblasti</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Oblasti", "about": "Info" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Oblasti", "about": "Info" },
   "onboarding-modal": {
     "view1": { "subtitle": "Mapovanie dopadu spotreby elektriny na klímu" },
     "view2": {
@@ -86,8 +86,8 @@
     "oops": "Achjaj! Máme problém v komunikácii so serverom. Skúsime to opäť o pár sekúnd.",
     "newversion": "Nová verzia je dostupná! Klikni <a onClick=\"location.reload(true);\">tu</a> pre znovunačítanie.",
     "retrynow": "Zopakuj teraz",
-    "database-ad": "Hladáte historické dáta? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Skontrolujte našu databázu!</a>",
-    "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
+    "database-ad": "Hladáte historické dáta? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Skontrolujte našu databázu!</a>",
+    "api-ad": "Chcete mať živé dáta vo svojej aplikácii alebo na svojom zariadení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyskúšajte naše API!</a>]",
     "legend": "Legenda",
     "faq": "Často kladené otázky"
   },
@@ -134,7 +134,7 @@
     "divideExistingArea-question": "Môžete rozdeliť moju oblasť na menšie?",
     "divideExistingArea-answer": "Určite, ak existujú separátne zdroje dát pre každú časť danej oblasti. Môžete <a href=\"#contribute\" class=\"entry-link\">nám pomôcť pridaním nových dátovych zdrojov</a>.",
     "seeHistoricalData-question": "Môžem zobraziť históriu oblasti staršiu ako 24 hodín?",
-    "seeHistoricalData-answer": "Môžete, ak si zakúpite prístup k všetkým historickým dátam prostredníctvom <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databázy</a>"
+    "seeHistoricalData-answer": "Môžete, ak si zakúpite prístup k všetkým historickým dátam prostredníctvom <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databázy</a>"
   },
   "methodology": {
     "groupName": "Naše metódy",
@@ -151,7 +151,7 @@
     "guaranteesOfOrigin-question": "Čo sú zelené cerfikáty a ako veľmi ich beriete v úvahu?",
     "guaranteesOfOrigin-answer": "Keď produkcovia obnoviteľnej energie produkujú elektrinu, môžu vytvoriť Záruku pôvodou (Guarantee of Origin alebo Renewable Energy Cerificates) - dôkaz toho, že obnovitelná elektrina bola vyprodukovaná a distribuovaná to rozvodnej siete. Tieto záruky môzu byť predané/dané produkcovi s neobnoviteľnou energiou ako spôsob \"kompenzácie\" za jeho emisie a právo tvrdiť, že elektrina, ktorú produkuje, je z obnoviteľných zdrojov, napriek jej skutočnému, fyzickému pôvodu. <br><br> Toto znamená, že spotrebiteľom elektrickej energie môže byť povedané, že ich eletrická energia je zelená, aj keď to nie je pravda vo fyzickom zmysle. Táto problematika, tým ako odstraňuje stimuly spotrebiteľov spotrebúvať elektrinu v najlepšom čase (napríklad keď množstvo obnoviteľnej elektriny v sieti je najvyššie). Táto mapa teda vylučuje Záruky pôvodu, namiesto toho ponúka fyzický obraz rozvodnej siete na základe lokácie, aby si mohli spotrebitelia plne uvedomiť svoju zodpovednosť.",
     "otherSources-question": "Prečo nezobrazujete iné zdroje emisii okrem produkcie elektriny?",
-    "otherSources-answer": "Bolo by to mimo záber tohto projektu. Napriek tomu, v electricityMap aktívne pracueme na vyvoji <a href=\"#whoAreYou\" class=\"entry-link\">nového riešenia pre kvantifikáciu dopadu na klímu našich každodenných rozhodnutí</a>",
+    "otherSources-answer": "Bolo by to mimo záber tohto projektu. Napriek tomu, v Electricity Maps aktívne pracueme na vyvoji <a href=\"#whoAreYou\" class=\"entry-link\">nového riešenia pre kvantifikáciu dopadu na klímu našich každodenných rozhodnutí</a>",
     "homeSolarPanel-question": "Čo ak mám doma nainštalovaný solárny panel?",
     "homeSolarPanel-answer": "Meriame intenzitu uhlíka lokálnej rozvodnej siete, takže akákoľvek elektrina, ktorú spotrebúvate z vášho solárneho panelu (mimo siete) nie je súčasťou našich meraní. Ale ak váš solárny panel dodáva energiu do vašej lokálnej rozvodnej siete, jeho produkcia je zahrnutá v našich štatistikách v obliastiach, kde odhady produkcie lokálnej solárnej energie sú verejne dostupnú (ako napríklad vo Francúzsku alebo Velkej Británii).",
     "emissionsPerCapita-question": "Prečo nezobrazujete emisie prepočítané na obyvateľa?",
@@ -162,22 +162,22 @@
     "dataOrigins-question": "Ako získavate vaše dáta?",
     "dataOrigins-answer": "Všetky naše dáta spracúvame z verejne prístupných zdrojov publikovaných operátormi elektrických rozvodných sietí, oficiálnych agentúr atď. Kliknutím na konkrétnu oblasť sa zobrazia detailnejšie informácie o pôvode dát.",
     "dataDownload-question": "Môžem si stiahnuť vaše dáta?",
-    "dataDownload-answer": "Môžete si zakúpiť prístup k všetkým naším dátam v našej <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze</a>.",
+    "dataDownload-answer": "Môžete si zakúpiť prístup k všetkým naším dátam v našej <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databáze</a>.",
     "dataIntegration-question": "Môžem integrovať vaše dáta do mojej aplikácie alebo zariadenia?",
-    "dataIntegration-answer": "Áno! Predávame prístup do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, ktoré zahrňuje budúce predpovede."
+    "dataIntegration-answer": "Áno! Predávame prístup do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, ktoré zahrňuje budúce predpovede."
   },
   "aboutUs": {
     "groupName": "O nás",
     "whoAreYou-question": "Kto ste?",
-    "whoAreYou-answer": "ElectricityMap je vyvýjaná a udržovaná spoločnosťou <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, malým dánsko-francúzskym startupom. Náš cieľ je pomôcť ľudstvu dosiahnuť udržateľný stav kvantifikovaním a konaním široko dostupných rozhodnutí pre dopad na klímu v našom kažodonennom živote ",
+    "whoAreYou-answer": "Electricity Maps je vyvýjaná a udržovaná spoločnosťou <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, malým dánsko-francúzskym startupom. Náš cieľ je pomôcť ľudstvu dosiahnuť udržateľný stav kvantifikovaním a konaním široko dostupných rozhodnutí pre dopad na klímu v našom kažodonennom živote ",
     "feedback-question": "Môžem vám nechať spätnú väzbu?",
-    "feedback-answer": "Prosím, urobte tak! Môžete vyplniť <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulár</a> alebo <a href=\"mailto:app@electricitymap.org\">nám poslať email!</a>",
+    "feedback-answer": "Prosím, urobte tak! Môžete vyplniť <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulár</a> alebo <a href=\"mailto:app@electricitymaps.com\">nám poslať email!</a>",
     "contribute-question": "Možem sa zapojiť do vášho projektu?",
-    "contribute-answer": "Áno! ElectricityMap je open-source projekt, to znamená, že funguje vďaka našim dobrovoľným prispievateľom. Ak chcete pomôcť pri vývoji mapy - pridávaním dátových zdrojov pre nové oblasti, pridávaním nových funkcionalít alebo opravovaním chýb, pridajte sa na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Áno! Electricity Maps je open-source projekt, to znamená, že funguje vďaka našim dobrovoľným prispievateľom. Ak chcete pomôcť pri vývoji mapy - pridávaním dátových zdrojov pre nové oblasti, pridávaním nových funkcionalít alebo opravovaním chýb, pridajte sa na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Môžeme pracovať spoločne?",
-    "workTogether-answer": "Aktívne hľadáme nové príležitosti k spolupráci. <a href=\"mailto:app@electricitymap.org\">Pošlite nám email!</a>",
+    "workTogether-answer": "Aktívne hľadáme nové príležitosti k spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlite nám email!</a>",
     "disclaimer-question": "Oznámenie",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publikuje dáta a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pre informačné účely. Nezaručuje správnosť ani žiadnu formu záruky a vyhradzuje si právo kedykoľvek zmeniť obsah alebo odstrániť časti bez toho, že by o tom musel informovať. electricityMap nepreberá žiadnu zodpovednosť za akékoľvek škody alebo výdavky, ktoré by mohli vzniknúť v dôsledku nepresnosti, neúplnosti, neopatrnosti alebo zastaranosti electricityMap alebo informácií ziskýnych z nej. Nie je dovolené zahrnúť túto webovú stránku alebo jej jednotlivé prvky do inej webovej stránky bez formálneho predchádzajúceho písomného súhlasu.<br><br> Všetky práva duševného vlastníctva patria oprávneným majiteľom a poskytovateľom licencií. Kopírovanie, distribúcia a akýkoľvek iné použitie týchto materiálov, najmä energetických údajov, nie je povolené bez písomného súhlasu electricityMap, s výnimkou prípadov, ktoré sú ustanovené inak v predpisoch povinného práva (ako je právo citovať), pokiaľ nie je pre konkrétne materiály uvedené inak. <br><br> Toto vylúčenie zodpovednosti môže byť z času na čas aktualizované."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publikuje dáta a obrázky na <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">electricityMap</a> pre informačné účely. Nezaručuje správnosť ani žiadnu formu záruky a vyhradzuje si právo kedykoľvek zmeniť obsah alebo odstrániť časti bez toho, že by o tom musel informovať. Electricity Maps nepreberá žiadnu zodpovednosť za akékoľvek škody alebo výdavky, ktoré by mohli vzniknúť v dôsledku nepresnosti, neúplnosti, neopatrnosti alebo zastaranosti Electricity Maps alebo informácií ziskýnych z nej. Nie je dovolené zahrnúť túto webovú stránku alebo jej jednotlivé prvky do inej webovej stránky bez formálneho predchádzajúceho písomného súhlasu.<br><br> Všetky práva duševného vlastníctva patria oprávneným majiteľom a poskytovateľom licencií. Kopírovanie, distribúcia a akýkoľvek iné použitie týchto materiálov, najmä energetických údajov, nie je povolené bez písomného súhlasu Electricity Maps, s výnimkou prípadov, ktoré sú ustanovené inak v predpisoch povinného práva (ako je právo citovať), pokiaľ nie je pre konkrétne materiály uvedené inak. <br><br> Toto vylúčenie zodpovednosti môže byť z času na čas aktualizované."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
