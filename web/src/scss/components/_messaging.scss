@@ -36,6 +36,11 @@
     top: 0;
   }
 
+  &.zone {
+    margin: 0 15% 0 15%;
+    width: 300px;
+  }
+
   @include respond-to('medium-up') {
     box-sizing: border-box;
     margin: 0 15% 0 45%;

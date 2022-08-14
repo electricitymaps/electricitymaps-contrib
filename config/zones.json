@@ -43,10 +43,11 @@
     ],
     "capacity": {
       "biomass": 1,
-      "hydro": 2289,
-      "solar": 22
+      "gas": 98,
+      "hydro": 2484,
+      "solar": 23
     },
-    "contributors": ["corradio", "nessie2013"],
+    "contributors": ["corradio", "nessie2013", "autipial"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -55,7 +56,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "timezone": null
+    "timezone": "Europe/Tirane"
   },
   "AM": {
     "bounding_box": [
@@ -84,13 +85,13 @@
       [-53.161551879999934, -21.286937763999916]
     ],
     "capacity": {
-      "biomass": 122,
-      "gas": 23669,
-      "hydro": 11344,
+      "biomass": 139,
+      "gas": 23579,
+      "hydro": 11347,
       "nuclear": 1755,
-      "oil": 1646,
-      "solar": 759,
-      "wind": 2990
+      "oil": 1696,
+      "solar": 1075,
+      "wind": 3291
     },
     "contributors": ["systemcatch", "corradio", "nessie2013"],
     "parsers": {
@@ -1535,9 +1536,10 @@
       [-5.775786912999905, 62.89891185100005]
     ],
     "capacity": {
-      "hydro": 39.4,
-      "oil": 66.7,
-      "wind": 18.3
+      "hydro": 40.6,
+      "oil": 99.7,
+      "wind": 43.5,
+      "solar": 0.24
     },
     "contributors": ["corradio", "q--"],
     "parsers": {
