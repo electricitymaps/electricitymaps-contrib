@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, List, Literal, Optional
 
 from requests import Session
 
@@ -27,7 +27,7 @@ def fetch_data(
     session: Optional[Session],
     target_datetime: Optional[datetime],
     logger: Logger,
-    type: str,
+    type: Literal["exchange", "exchange_forecast"],
 ) -> List[dict]:
 
     if target_datetime is None:
