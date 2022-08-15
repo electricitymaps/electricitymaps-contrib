@@ -407,7 +407,6 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     },
     "SE-SE4": {
         "required": ["gas", "hydro", "wind", "unknown", "solar"],
-        "required": ["coal"],
     },
     "SI": {
         # own total generation capacity is around 4 GW
