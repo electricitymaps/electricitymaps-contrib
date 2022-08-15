@@ -59,7 +59,7 @@ EXCHANGES = {
     "GB->NO-NO2": [10],  # North Sea Link
 }
 
-FETCH_WIND_FROM_FUELINST = True
+
 
 
 def query_ELEXON(report, session: Session, params):
@@ -330,6 +330,7 @@ def fetch_production(
     # At times B1620 has had poor quality data for wind so fetch from FUELINST
     # But that source is unavailable prior to cutout date
     HISTORICAL_WIND_CUTOUT = "2016-03-01"
+    FETCH_WIND_FROM_FUELINST = True
     if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
         FETCH_WIND_FROM_FUELINST = False
     if FETCH_WIND_FROM_FUELINST:
