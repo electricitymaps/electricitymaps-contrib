@@ -21,6 +21,7 @@ from validators.lib.config import validator
         "US-NW-GWA",
         "US-NW-DOPD",
         "US-NW-AVRN",
+        "LU",
     ],
 )
 def validate_production_has_fossil_fuel(events: pd.DataFrame) -> pd.Series:
