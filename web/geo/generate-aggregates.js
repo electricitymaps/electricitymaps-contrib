@@ -14,6 +14,7 @@ const generateAggregates = (geojson) => {
     .map((countries) => {
       if (countries.length === 1) {
         countries[0].properties.aggregated = true;
+        countries[0].properties.higestFidelityView = true; //todo add false value for detailed zones
         return countries[0];
       }
       if (countries.length > 1) {
@@ -23,6 +24,7 @@ const generateAggregates = (geojson) => {
           multiZoneCountry.geometry = union(multiZoneCountry.geometry, countries[i].geometry).geometry;
         }
         countries[0].properties.aggregated = true;
+        countries[0].properties.higestFidelityView = true; //todo
         countries[0].properties.zoneName = countries[0].properties.countryKey;
         return multiZoneCountry;
       }

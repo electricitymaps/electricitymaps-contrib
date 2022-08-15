@@ -16,9 +16,10 @@ const { getZonesJson } = require('./files');
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  const fcAggregated = { ...fc, features: fc.features.filter((feature) => feature.properties.aggregated) };
   const fcHighFidelity = { ...fc, features: fc.features.filter((feature) => !feature.properties.aggregated) };
-  console.log('Validating geometries high fidelity view...'); // eslint-disable-line no-console
+  const fcAggregated = { ...fc, features: fc.features.filter((feature) => feature.properties.aggregated) };
+
+  console.log('Validating geometries high fidelity view...', fcHighFidelity.features); // eslint-disable-line no-console
   zeroNullGeometries(fcHighFidelity);
   containsRequiredProperties(fcHighFidelity);
   zeroComplexPolygons(fcHighFidelity, config);
@@ -27,14 +28,16 @@ function validateGeometry(fc, config) {
   zeroOverlaps(fcHighFidelity, config);
   matchesZonesConfig(fcHighFidelity, config);
 
-  console.log('Validating geometries aggregated view..'); // eslint-disable-line no-console
-  zeroNullGeometries(fcAggregated);
-  containsRequiredProperties(fcAggregated);
-  zeroComplexPolygons(fcAggregated, config);
-  zeroNeighboringIds(fcAggregated);
-  zeroGaps(fcAggregated, config);
-  zeroOverlaps(fcAggregated, config);
-  matchesZonesConfig(fcAggregated, config);
+  if (fcAggregated.features.length) {
+    console.log('Validating geometries aggregated view..'); // eslint-disable-line no-console
+    zeroNullGeometries(fcAggregated);
+    containsRequiredProperties(fcAggregated);
+    zeroComplexPolygons(fcAggregated, config);
+    zeroNeighboringIds(fcAggregated);
+    zeroGaps(fcAggregated, config);
+    zeroOverlaps(fcAggregated, config);
+    matchesZonesConfig(fcAggregated, config);
+  }
 }
 
 function zeroNullGeometries(fc) {

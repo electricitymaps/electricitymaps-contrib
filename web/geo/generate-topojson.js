@@ -4,7 +4,7 @@ const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
   const geojsonFeatures = geojson.features.filter((f) => f.properties.zoneName === zoneName);
-  if (geojsonFeatures.length !== 1) {
+  if (geojsonFeatures.length !== 1 && geojsonFeatures.length !== 2) {
     console.error(`ERROR: Found ${geojsonFeatures.length} features matching zoneName ${zoneName}`);
     process.exit(1);
   }
@@ -34,7 +34,6 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   const topo = topology({
     objects: fc,
   });
-
   // We do the following to match the specific format needed for visualization
   const newObjects = {};
   topo.objects.objects.geometries.forEach((geo) => {
