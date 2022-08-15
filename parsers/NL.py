@@ -44,7 +44,7 @@ def fetch_production(
 
     # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
-    for exchange_key in ["BE", "DE", "GB"]:
+    for exchange_key in ["BE", "DE", "GB", "NO-NO2"]:
         zone_1, zone_2 = sorted([exchange_key, zone_key])
         exchange = ENTSOE.fetch_exchange(
             zone_key1=zone_1,
@@ -56,23 +56,6 @@ def fetch_production(
         if not exchange:
             return
         exchanges.extend(exchange or [])
-
-    zone_1, zone_2 = sorted(["NO", zone_key])
-    exchange_NO = [
-        ENTSOE.fetch_exchange(
-            zone_key1=zone_1,
-            zone_key2=zone_2,
-            session=r,
-            target_datetime=dt.datetime,
-            logger=logger,
-        )
-        for dt in arrow.Arrow.range(
-            "hour",
-            arrow.get(min([e["datetime"] for e in exchanges])).replace(minute=0),
-            arrow.get(max([e["datetime"] for e in exchanges])).replace(minute=0),
-        )
-    ]
-    exchanges.extend(exchange_NO)
 
     # add DK1 data (only for dates after operation)
     if target_datetime > arrow.get("2019-08-24", "YYYY-MM-DD"):
