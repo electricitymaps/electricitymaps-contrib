@@ -58,15 +58,14 @@ def fetch_data(
         and AC_dataList[0]["datetime"] == DC_dataList[0]["datetime"]
         and AC_dataList[-1]["datetime"] == DC_dataList[-1]["datetime"]
     ):
-        logger.info("Clean match! Merging data with simple loop")
-        for data in range(len(AC_dataList)):
+        logger.info("Clean match! Merging data with zip")
+        for AC, DC in zip(AC_dataList, DC_dataList):
             returnList.append(
                 {
-                    "datetime": AC_dataList[data]["datetime"],
-                    "netFlow": AC_dataList[data]["netFlow"]
-                    + DC_dataList[data]["netFlow"],
+                    "datetime": AC["datetime"],
+                    "netFlow": AC["netFlow"] + DC["netFlow"],
                     "sortedZoneKeys": "FR-COR->IT-SAR",
-                    "source": AC_dataList[data]["source"],
+                    "source": AC["source"],
                 }
             )
 
