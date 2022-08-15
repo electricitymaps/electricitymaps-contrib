@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# Archived reason: Replaced by ENTSO-E parser
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger

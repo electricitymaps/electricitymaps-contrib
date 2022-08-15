@@ -15,7 +15,7 @@ from requests import Session, get
 from electricitymap.contrib.config import ZONES_CONFIG
 from parsers.lib.config import refetch_frequency
 
-from . import DK, ENTSOE, statnett
+from . import DK, ENTSOE
 
 ZONE_CONFIG = ZONES_CONFIG["NL"]
 
@@ -57,13 +57,9 @@ def fetch_production(
             return
         exchanges.extend(exchange or [])
 
-    # add NO data, fetch once for every hour
-    # This introduces an error, because it doesn't use the average power flow
-    # during the hour, but rather only the value during the first minute of the
-    # hour!
     zone_1, zone_2 = sorted(["NO", zone_key])
     exchange_NO = [
-        statnett.fetch_exchange(
+        ENTSOE.fetch_exchange(
             zone_key1=zone_1,
             zone_key2=zone_2,
             session=r,
