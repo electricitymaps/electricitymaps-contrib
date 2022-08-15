@@ -89,9 +89,9 @@ function matchesZonesConfig(fc) {
   }
 }
 
-function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES }) {
+function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }) {
   const dissolved = getPolygons(dissolve(getPolygons(fc)));
-  const holes = getHoles(dissolved, MIN_AREA_HOLES);
+  const holes = getHoles(dissolved, MIN_AREA_HOLES, SLIVER_RATIO);
 
   if (holes.features.length > 0) {
     writeJSON(`${ERROR_PATH}/gaps.geojson`, holes);
