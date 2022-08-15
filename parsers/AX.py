@@ -1091,6 +1091,8 @@ def fetch_exchange(
     #  AX is before both FI and SE
     if net_flow:
         data["netFlow"] = round(-1 * net_flow, 1)
+    else:
+        data["netFlow"] = None
 
     return data
 
@@ -1104,5 +1106,5 @@ if __name__ == "__main__":
     print(fetch_consumption())
     print("fetch_exchange(AX, FI) ->")
     print(fetch_exchange("FI", "AX"))
-    print("fetch_exchange(AX, SE) ->")
-    print(fetch_exchange("SE", "AX"))
+    print("fetch_exchange(AX, SE-SE3) ->")
+    print(fetch_exchange("SE-SE3", "AX"))
