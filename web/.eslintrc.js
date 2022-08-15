@@ -3,10 +3,10 @@ module.exports = {
   parser: '@babel/eslint-parser',
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:you-dont-need-lodash-underscore/all',
     'plugin:react/recommended',
     'plugin:import/errors',
-    'plugin:jsx-a11y/recommended',
     'plugin:cypress/recommended',
     'plugin:prettier/recommended',
   ],
@@ -64,7 +64,8 @@ module.exports = {
     'no-use-before-define': ['error', { variables: true, functions: false, classes: true }],
     'prefer-const': 'error',
     'prefer-template': 'error',
-    'react/jsx-filename-extension': ['error'],
+
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
 
     'react/self-closing-comp': 'error',
     'import/newline-after-import': 'error',
@@ -85,8 +86,10 @@ module.exports = {
     // Rules that doesn't make sense for us:
     'import/prefer-default-export': 'off',
     'import/named': 'off',
-    'react/prop-types': 'off',
+    // 'react/prop-types': 'off',
     'react/display-name': 'off',
     'import/order': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };
