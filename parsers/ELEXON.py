@@ -60,8 +60,6 @@ EXCHANGES = {
 }
 
 
-
-
 def query_ELEXON(report, session: Session, params):
     params["APIKey"] = get_token("ELEXON_TOKEN")
     return session.get(ELEXON_ENDPOINT.format(report), params=params)
