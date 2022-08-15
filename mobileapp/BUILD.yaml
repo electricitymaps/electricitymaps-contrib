@@ -42,8 +42,8 @@ steps:
       - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
       - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
       # Promote
-      - code-push promote electricitymap-android Staging --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
-      - code-push promote electricitymap-ios Staging --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
+      - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
+      - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
     secrets:
       gcloud:
         src: ~/.config/gcloud
