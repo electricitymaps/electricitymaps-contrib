@@ -175,9 +175,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], "10Y1001C--00003F"],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
-    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
-    "DK-DK2->SE": [ENTSOE_DOMAIN_MAPPINGS["DK-DK2"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
+    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "FR-COR->IT-CNO": [
         ENTSOE_DOMAIN_MAPPINGS["IT-SACODC"],
         ENTSOE_DOMAIN_MAPPINGS["IT-CNO"],
@@ -408,6 +407,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     },
     "SE-SE4": {
         "required": ["gas", "hydro", "wind", "unknown", "solar"],
+        "required": ["coal"],
     },
     "SI": {
         # own total generation capacity is around 4 GW
