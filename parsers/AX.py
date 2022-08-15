@@ -1091,6 +1091,8 @@ def fetch_exchange(
     #  AX is before both FI and SE
     if net_flow:
         data["netFlow"] = round(-1 * net_flow, 1)
+    else:
+        data["netFlow"] = None
 
     return data
 
