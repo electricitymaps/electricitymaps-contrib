@@ -35,6 +35,7 @@ const BackToStartButton = styled.a`
 
 type State = any;
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 class ErrorBoundary extends React.Component<{}, State> {
   // eslint-disable-next-line @typescript-eslint/ban-types
   constructor(props: {}) {
