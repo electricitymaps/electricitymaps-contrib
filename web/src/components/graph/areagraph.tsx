@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
+
 import { scaleTime, scaleLinear } from 'd3-scale';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
+
 import { stack, stackOffsetDiverging } from 'd3-shape';
 
 import { isEmpty } from '../../helpers/isEmpty';
@@ -48,8 +48,8 @@ const getLayers = (data: any, layerKeys: any, layerStroke: any, layerFill: any, 
     .offset(stackOffsetDiverging)
     .value((d: any, key: any) => (d[key] === null ? undefined : d[key]))
     .keys(layerKeys)(data);
-  // @ts-expect-error TS(7006): Parameter 'key' implicitly has an 'any' type.
-  return layerKeys.map((key, ind) => ({
+
+  return layerKeys.map((key: any, ind: number) => ({
     key,
     stroke: layerStroke ? layerStroke(key) : 'none',
     fill: layerFill(key),
@@ -65,57 +65,57 @@ const AreaGraph = React.memo(
       * a numerical value for every key appearing in `layerKeys`
       * `datetime` timestamp
   */
-    // @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
+
     data,
-    // @ts-expect-error TS(2339): Property 'testId' does not exist on type '{}'.
+
     testId,
     /*
     `layerKey` should be an array of strings denoting the graph layers (in bottom-to-top order).
   */
-    // @ts-expect-error TS(2339): Property 'layerKeys' does not exist on type '{}'.
+
     layerKeys,
     /*
     `layerStroke` should be a function mapping each layer key into a string value representing the layer's stroke color.
   */
-    // @ts-expect-error TS(2339): Property 'layerStroke' does not exist on type '{}'... Remove this comment to see the full error message
+
     layerStroke,
     /*
     `layerFill` should be a function that maps each layer key into one of the following:
       * a string value representing the layer's fill color if it's homogenous
       * a function mapping each layer's data point to a string color value, rendering a horizontal gradient
   */
-    // @ts-expect-error TS(2339): Property 'layerFill' does not exist on type '{}'.
+
     layerFill,
     /*
     `markerFill` is an optional prop of that same format that overrides `layerFill` for the graph focal point fill.
   */
-    // @ts-expect-error TS(2339): Property 'markerFill' does not exist on type '{}'.
+
     markerFill,
     /*
     `valueAxisLabel` is a string label for the values (Y-axis) scale.
   */
-    // @ts-expect-error TS(2339): Property 'valueAxisLabel' does not exist on type '... Remove this comment to see the full error message
+
     valueAxisLabel,
     /*
     Marker hooks that get called when the marker selection gets updated or hidden
   */
-    // @ts-expect-error TS(2339): Property 'markerUpdateHandler' does not exist on t... Remove this comment to see the full error message
+
     markerUpdateHandler,
-    // @ts-expect-error TS(2339): Property 'markerHideHandler' does not exist on typ... Remove this comment to see the full error message
+
     markerHideHandler,
     /*
     If `isMobile` is true, the mouse hover events are triggered by clicks only.
   */
-    // @ts-expect-error TS(2339): Property 'isMobile' does not exist on type '{}'.
+
     isMobile,
     /*
     Height of the area graph canvas.
   */
-    // @ts-expect-error TS(2339): Property 'height' does not exist on type '{}'.
+
     height = '10em',
-    // @ts-expect-error TS(2339): Property 'isOverlayEnabled' does not exist on type... Remove this comment to see the full error message
+
     isOverlayEnabled,
-  }) => {
+  }: any) => {
     const {
       ref,
       width: containerWidth,
@@ -150,7 +150,7 @@ const AreaGraph = React.memo(
     const selectedZoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
 
     const [graphIndex, setGraphIndex] = useState(null);
-    const [selectedLayerIndex, setSelectedLayerIndex] = useState(null);
+    const [selectedLayerIndex, setSelectedLayerIndex] = useState<number | null>(null);
 
     const hoverLineTimeIndex = graphIndex ?? selectedZoneTimeIndex;
 
@@ -160,7 +160,7 @@ const AreaGraph = React.memo(
         setGraphIndex(timeIndex);
         if (layers.length <= 1) {
           // Select the first (and only) layer even when hovering over background
-          // @ts-expect-error TS(2345): Argument of type '0' is not assignable to paramete... Remove this comment to see the full error message
+
           setSelectedLayerIndex(0);
         } else {
           // use the selected layer (or undefined to hide the tooltips)
@@ -185,7 +185,6 @@ const AreaGraph = React.memo(
     return (
       <svg data-test-id={testId} height={height} ref={ref} style={{ overflow: 'visible' }}>
         <GraphBackground
-          // @ts-expect-error TS(2322): Type '{ timeScale: any; valueScale: any; datetimes... Remove this comment to see the full error message
           timeScale={timeScale}
           valueScale={valueScale}
           datetimes={datetimes}
@@ -195,7 +194,6 @@ const AreaGraph = React.memo(
           svgNode={node}
         />
         <AreaGraphLayers
-          // @ts-expect-error TS(2322): Type '{ layers: any; datetimes: any[]; timeScale: ... Remove this comment to see the full error message
           layers={layers}
           datetimes={datetimesWithNext}
           timeScale={timeScale}
@@ -207,7 +205,6 @@ const AreaGraph = React.memo(
         />
         {!isOverlayEnabled && (
           <TimeAxis
-            // @ts-expect-error TS(2322): Type '{ scale: any; transform: string; className: ... Remove this comment to see the full error message
             scale={timeScale}
             transform={`translate(-1 ${containerHeight - 1})`}
             className="x axis"
@@ -218,7 +215,6 @@ const AreaGraph = React.memo(
         {/* @ts-expect-error TS(2322): Type '{ scale: any; label: any; width: number; hei... Remove this comment to see the full error message */}
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
-          // @ts-expect-error TS(2322): Type '{ layers: any; timeScale: any; valueScale: a... Remove this comment to see the full error message
           layers={layers}
           timeScale={timeScale}
           valueScale={valueScale}

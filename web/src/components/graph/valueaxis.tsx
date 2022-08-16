@@ -1,7 +1,6 @@
 import React from 'react';
 
-// @ts-expect-error TS(2339): Property 'scale' does not exist on type '{}'.
-const ValueAxis = React.memo(({ scale, label, width, height }) => {
+const ValueAxis = React.memo(({ scale, label, width, height }: any) => {
   const [y1, y2] = scale.range();
   return (
     <g

@@ -152,8 +152,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }: any) => {
   /**
    * The HTML (JSX) for each row that should be rendered.
    */
-  // @ts-expect-error TS(2339): Property 'index' does not exist on type '{}'.
-  const Row = memo(({ index, style }) => {
+  const Row = memo(({ index, style }: any) => {
     return (
       <Link
         style={style} // This one is important to keep the list from flickering when scrolling.

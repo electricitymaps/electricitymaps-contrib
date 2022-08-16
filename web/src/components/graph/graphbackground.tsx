@@ -4,8 +4,7 @@ import { noop } from '../../helpers/noop';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const GraphBackground = React.memo(
-  // @ts-expect-error TS(2339): Property 'timeScale' does not exist on type '{}'.
-  ({ timeScale, valueScale, datetimes, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }) => {
+  ({ timeScale, valueScale, datetimes, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }: any) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
     const width = x2 - x1;

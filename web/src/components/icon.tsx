@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 
-// @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
 const path = (window as any).isCordova ? resolvePath('images/icon-sprite.svg') : '/images/icon-sprite.svg';
 
 /**
@@ -14,8 +13,7 @@ const path = (window as any).isCordova ? resolvePath('images/icon-sprite.svg') :
  *   </symbol>
  */
 
-// @ts-expect-error TS(2339): Property 'iconName' does not exist on type '{}'.
-const Icon = memo(({ iconName, size = 24, color }) => {
+const Icon = memo(({ iconName, size = 24, color }: any) => {
   return (
     <svg height={size} width={size} fill={color}>
       <use href={`${path}#${iconName}`} />

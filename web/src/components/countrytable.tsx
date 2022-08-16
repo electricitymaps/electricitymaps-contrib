@@ -201,30 +201,31 @@ const HorizontalBar = ({ className, fill, range, scale }: any) => {
     />
   );
 };
-
+interface TableProps {
+  data: any;
+  exchangeData: any;
+  height: any;
+  isMobile: any;
+  productionData: any;
+  onProductionRowMouseOver: any;
+  onProductionRowMouseOut: any;
+  onExchangeRowMouseOver: any;
+  onExchangeRowMouseOut: any;
+  width: any;
+}
 const CountryCarbonEmissionsTable = React.memo(
   ({
-    // @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
     data,
-    // @ts-expect-error TS(2339): Property 'exchangeData' does not exist on type '{}... Remove this comment to see the full error message
     exchangeData,
-    // @ts-expect-error TS(2339): Property 'height' does not exist on type '{}'.
     height,
-    // @ts-expect-error TS(2339): Property 'isMobile' does not exist on type '{}'.
     isMobile,
-    // @ts-expect-error TS(2339): Property 'productionData' does not exist on type '... Remove this comment to see the full error message
     productionData,
-    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOver' does not exist... Remove this comment to see the full error message
     onProductionRowMouseOver,
-    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOut' does not exist ... Remove this comment to see the full error message
     onProductionRowMouseOut,
-    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOver' does not exist o... Remove this comment to see the full error message
     onExchangeRowMouseOver,
-    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOut' does not exist on... Remove this comment to see the full error message
     onExchangeRowMouseOut,
-    // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
     width,
-  }) => {
+  }: TableProps) => {
     const { __ } = useTranslation();
     const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
@@ -300,27 +301,17 @@ const CountryCarbonEmissionsTable = React.memo(
 
 const CountryElectricityProductionTable = React.memo(
   ({
-    // @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
     data,
-    // @ts-expect-error TS(2339): Property 'exchangeData' does not exist on type '{}... Remove this comment to see the full error message
     exchangeData,
-    // @ts-expect-error TS(2339): Property 'height' does not exist on type '{}'.
     height,
-    // @ts-expect-error TS(2339): Property 'isMobile' does not exist on type '{}'.
     isMobile,
-    // @ts-expect-error TS(2339): Property 'productionData' does not exist on type '... Remove this comment to see the full error message
     productionData,
-    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOver' does not exist... Remove this comment to see the full error message
     onProductionRowMouseOver,
-    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOut' does not exist ... Remove this comment to see the full error message
     onProductionRowMouseOut,
-    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOver' does not exist o... Remove this comment to see the full error message
     onExchangeRowMouseOver,
-    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOut' does not exist on... Remove this comment to see the full error message
     onExchangeRowMouseOut,
-    // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
     width,
-  }) => {
+  }: TableProps) => {
     const { __ } = useTranslation();
     const co2ColorScale = useCo2ColorScale();
 

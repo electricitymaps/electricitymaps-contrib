@@ -73,23 +73,15 @@ const renderTick = (
 
 const TimeAxis = React.memo(
   ({
-    // @ts-expect-error TS(2339): Property 'className' does not exist on type '{}'.
     className,
-    // @ts-expect-error TS(2339): Property 'scale' does not exist on type '{}'.
     scale,
-    // @ts-expect-error TS(2339): Property 'transform' does not exist on type '{}'.
     transform,
-    // @ts-expect-error TS(2339): Property 'displayLive' does not exist on type '{}'... Remove this comment to see the full error message
     displayLive,
-    // @ts-expect-error TS(2339): Property 'selectedTimeAggregate' does not exist on... Remove this comment to see the full error message
     selectedTimeAggregate = TIME.HOURLY,
-    // @ts-expect-error TS(2339): Property 'datetimes' does not exist on type '{}'.
     datetimes = [],
-    // @ts-expect-error TS(2339): Property 'isLoading' does not exist on type '{}'.
     isLoading,
-    // @ts-expect-error TS(2339): Property 'inputRef' does not exist on type '{}'.
     inputRef,
-  }) => {
+  }: any) => {
     const [x1, x2] = scale.range();
     const { i18n } = useTranslation();
 

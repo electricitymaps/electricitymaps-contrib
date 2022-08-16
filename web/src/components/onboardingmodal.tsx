@@ -71,6 +71,7 @@ const mapStateToProps = (state: any) => ({
 
 const OnboardingModal = ({ visible }: any) => {
   const trackEvent = useTrackEvent();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { __ } = useTranslation();
   const shouldSkip = useSearchParams().get('skip-onboarding') === 'true';
 

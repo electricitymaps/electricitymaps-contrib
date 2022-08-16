@@ -1,13 +1,11 @@
 import React from 'react';
 import { noop } from '../../helpers/noop';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { area, curveStepAfter } from 'd3-shape';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const AreaGraphLayers = React.memo(
-  // @ts-expect-error TS(2339): Property 'layers' does not exist on type '{}'.
-  ({ layers, datetimes, timeScale, valueScale, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }) => {
+  ({ layers, datetimes, timeScale, valueScale, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }: any) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
     if (x1 >= x2 || y1 >= y2) {
@@ -55,7 +53,7 @@ const AreaGraphLayers = React.memo(
             datetime: datetimes[layer.datapoints.length],
           };
           const datapoints = [...layer.datapoints, lastDataPoint];
-
+          const lArea = layerArea(datapoints);
           return (
             <React.Fragment key={layer.key}>
               <path
@@ -63,7 +61,7 @@ const AreaGraphLayers = React.memo(
                 style={{ cursor: 'pointer' }}
                 stroke={layer.stroke}
                 fill={isGradient ? `url(#${gradientId})` : layer.fill}
-                d={layerArea(datapoints)}
+                d={lArea ? lArea : undefined}
                 /* Support only click events in mobile mode, otherwise react to mouse hovers */
                 onClick={isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}
                 onFocus={!isMobile ? (ev) => handleLayerMouseMove(ev, ind) : noop}

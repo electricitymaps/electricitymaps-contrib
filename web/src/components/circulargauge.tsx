@@ -10,25 +10,29 @@ import { arc } from 'd3-shape';
   including Motion.startAnimationIfNecessary in the stack trace.
 */
 
+interface CircularGaugeProps {
+  fontSize: string;
+  onClick: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onMouseMove: (x: any, y: any) => void;
+  onMouseOut: () => void;
+  onMouseOver: () => void;
+  percentage: number;
+  radius: number;
+  thickness: number;
+}
+
 const CircularGauge = React.memo(
   ({
-    // @ts-expect-error TS(2339): Property 'fontSize' does not exist on type '{}'.
     fontSize = '1rem',
-    // @ts-expect-error TS(2339): Property 'onClick' does not exist on type '{}'.
     onClick,
-    // @ts-expect-error TS(2339): Property 'onMouseMove' does not exist on type '{}'... Remove this comment to see the full error message
     onMouseMove,
-    // @ts-expect-error TS(2339): Property 'onMouseOut' does not exist on type '{}'.
     onMouseOut,
-    // @ts-expect-error TS(2339): Property 'onMouseOver' does not exist on type '{}'... Remove this comment to see the full error message
     onMouseOver,
-    // @ts-expect-error TS(2339): Property 'percentage' does not exist on type '{}'.
     percentage = 0,
-    // @ts-expect-error TS(2339): Property 'radius' does not exist on type '{}'.
     radius = 32,
-    // @ts-expect-error TS(2339): Property 'thickness' does not exist on type '{}'.
     thickness = 6,
-  }) => {
+  }: CircularGaugeProps) => {
     const percentageFill = (p: any) =>
       arc()
         .startAngle(0)

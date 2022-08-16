@@ -10,7 +10,7 @@ const DataInfoBox = styled.p`
 `;
 
 // @ts-expect-error TS(2339): Property 'text' does not exist on type '{}'.
-const DataInfo = memo(({ text }) => (
+const DataInfo = memo(({ text }: string) => (
   <>
     <DataInfoBox
       dangerouslySetInnerHTML={{

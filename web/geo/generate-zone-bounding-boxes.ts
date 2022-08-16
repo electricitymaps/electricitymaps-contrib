@@ -1,13 +1,13 @@
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'path'.
-const path = require('path');
+import path from 'path';
 
 // @ts-expect-error TS(2580): Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
 const args = process.argv.slice(2);
 
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'getJSON'.
-const { getJSON } = require('./utilities');
+import { getJSON } from './utilities';
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'getZonesJs... Remove this comment to see the full error message
-const { getZonesJson, saveZonesJson } = require('./files');
+import { getZonesJson, saveZonesJson } from './files';
 
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'zones'.
 let zones = getJSON(path.resolve(__dirname, './world.geojson'));

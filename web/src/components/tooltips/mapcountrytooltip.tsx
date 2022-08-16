@@ -28,8 +28,7 @@ const StyledTimeDisplay = styled(TimeDisplay)`
 `;
 
 const TooltipContent = React.memo(
-  // @ts-expect-error TS(2339): Property 'isDataDelayed' does not exist on type '{... Remove this comment to see the full error message
-  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }: any) => {
     const { __ } = useTranslation();
     if (!hasParser) {
       return (
@@ -100,7 +99,6 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }: 
         <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       </div>
       <TooltipContent
-        // @ts-expect-error TS(2322): Type '{ hasParser: any; isDataDelayed: any; co2int... Remove this comment to see the full error message
         hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}
         co2intensity={co2intensity}

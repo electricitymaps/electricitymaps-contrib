@@ -18,8 +18,7 @@ const Layer = styled.div`
   left: 0;
 `;
 
-// @ts-expect-error TS(2339): Property 'project' does not exist on type '{}'.
-export default React.memo(({ project }) => {
+export default React.memo(({ project }: any) => {
   const arrows = useExchangeArrowsData();
   const { ref, width, height } = useRefWidthHeightObserver();
 

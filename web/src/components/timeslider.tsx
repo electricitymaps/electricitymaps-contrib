@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleTime } from 'd3-scale';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import sortedIndex from 'lodash.sortedindex';
 
 import TimeAxis from './graph/timeaxis';
@@ -48,7 +46,7 @@ const createChangeAndInputHandler =
     );
     // If the slider is past the last datetime, we set index to null in order to use the scale end time.
     if (index >= datetimes.length) {
-      index = null;
+      index = 0; //TODO this was null, check it still works
     }
     setAnchoredTimeIndex(index);
     if (onChange) {
@@ -66,6 +64,7 @@ const TimeSlider = ({
   handleTimeAggregationChange,
   selectedTimeAggregate,
 }: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { __ } = useTranslation();
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);

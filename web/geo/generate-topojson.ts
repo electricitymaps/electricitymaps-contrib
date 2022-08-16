@@ -1,9 +1,9 @@
 // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const { topology } = require('topojson-server');
+import { topology } from 'topojson-server';
 // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'getJSON'.
-const { getJSON, writeJSON, round } = require('./utilities');
+import { getJSON, writeJSON, round } from './utilities';
 // @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
-const turf = require('@turf/turf');
+import turf from '@turf/turf';
 
 function getCenter(geojson: any, zoneName: any) {
   const geojsonFeatures = geojson.features.filter((f: any) => f.properties.zoneName === zoneName);

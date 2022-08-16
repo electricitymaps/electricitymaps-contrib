@@ -49,6 +49,7 @@ const Title = ({ title }: any) => {
 const views = [
   {
     title: (__: any) => <Title title={__('misc.faq')} />,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     renderContent: (__: any) => <MobileFAQ className="mobile-faq" />,
   },
 ];

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const {
   // @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'area'.
   area,

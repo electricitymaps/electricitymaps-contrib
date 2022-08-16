@@ -13,6 +13,33 @@ import { ZoomControls } from './zoomcontrols';
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
 
+export interface viewport {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+interface ZoneMapPropTypes {
+  children: any;
+  co2ColorScale?: any;
+  hoveringEnabled: boolean;
+  onMapLoaded: () => void;
+  onMapError: () => void;
+  onMouseMove: () => void;
+  onResize: () => void;
+  onSeaClick: () => void;
+  onViewportChange: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onZoneClick: (zoneId: string) => void;
+  onZoneMouseEnter: () => void;
+  onZoneMouseLeave: () => void;
+  scrollZoom: boolean;
+  selectedZoneTimeIndex: any;
+  style: any;
+  theme: any;
+  transitionDuration: number;
+  viewport: viewport;
+}
+
 const ZoneMap = ({
   children = null,
   co2ColorScale = null,
@@ -36,7 +63,7 @@ const ZoneMap = ({
     longitude: 0,
     zoom: 2,
   },
-}) => {
+}: ZoneMapPropTypes) => {
   const ref = useRef(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
@@ -49,7 +76,6 @@ const ZoneMap = ({
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
     () =>
-      // @ts-expect-error TS(2554): Expected 3 arguments, but got 2.
       debounce((value: any) => {
         setIsDragging(value);
       }, 200),
@@ -62,8 +88,8 @@ const ZoneMap = ({
   const handleWheel = useMemo(
     () => () => {
       setIsDragging(true);
-      // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
-      debouncedSetIsDragging(false);
+
+      debouncedSetIsDragging(false); //TODO bug
     },
     [] // eslint-disable-line react-hooks/exhaustive-deps
   );
@@ -75,7 +101,6 @@ const ZoneMap = ({
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(() => {
-    // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
     const features = Object.entries(zones).map(([zoneId, zone]) => {
       const length = (coordinate: any) => (coordinate ? coordinate.length : 0);
       return {
@@ -122,7 +147,7 @@ const ZoneMap = ({
   useEffect(() => {
     if (!ReactMapGL.supported()) {
       setIsSupported(false);
-      // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
+
       onMapError('WebGL not supported');
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -133,21 +158,20 @@ const ZoneMap = ({
     if (isLoaded && co2ColorScale) {
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
-      // @ts-expect-error TS(2531): Object is possibly 'null'.
+
       const features = ref.current.queryRenderedFeatures();
-      // @ts-expect-error TS(2531): Object is possibly 'null'.
+
       const map = ref.current.getMap();
       features.forEach((feature: any) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
-        // @ts-expect-error TS(2538): Type 'null' cannot be used as an index type.
+
         const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
 
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
 
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
-          // @ts-expect-error TS(2349): This expression is not callable.
           fillColor = co2ColorScale(co2intensity);
         }
         const existingColor = feature.id
@@ -176,7 +200,6 @@ const ZoneMap = ({
         if (isEmpty(features)) {
           onSeaClick();
         } else {
-          // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
           onZoneClick(features[0].properties.zoneId);
         }
       }
@@ -188,7 +211,6 @@ const ZoneMap = ({
     () => (e: any) => {
       if (ref.current) {
         if (hoveringEnabled) {
-          // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
           onMouseMove({
             x: e.point[0],
             y: e.point[1],
@@ -204,7 +226,6 @@ const ZoneMap = ({
           if (!isEmpty(features) && hoveringEnabled) {
             const { zoneId } = features[0].properties;
             if (hoveredZoneId !== zoneId) {
-              // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
               onZoneMouseEnter(zoneId);
               setHoveredZoneId(zoneId);
             }
