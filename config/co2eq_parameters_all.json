@@ -11130,6 +11130,9 @@
       "FO": {
         "unknown": { "value": 1 }
       },
+      "FO-NI": {
+        "unknown": { "value": 1 }
+      },
       "GB-ORK": {
         "unknown": { "value": 1 }
       },
@@ -11285,6 +11288,9 @@
         }
       },
       "FO": {
+        "unknown": { "value": 1 }
+      },
+      "FO-NI": {
         "unknown": { "value": 1 }
       },
       "GB-ORK": {
