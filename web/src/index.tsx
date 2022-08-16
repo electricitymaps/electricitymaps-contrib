@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -51,7 +52,7 @@ ReactDOM.render(
 );
 
 // Initialise mobile app (cordova)
-if (window.isCordova) {
+if ((window as any).isCordova) {
   cordovaApp.initialize();
 }
 
@@ -59,6 +60,7 @@ if (window.isCordova) {
 // Learn more: https://www.snowpack.dev/concepts/hot-module-replacement
 // eslint-disable-next-line
 if (undefined /* [snowpack] import.meta.hot */) {
+  // @ts-expect-error TS(2532): Object is possibly 'undefined'.
   undefined /* [snowpack] import.meta.hot */
     .accept();
 }

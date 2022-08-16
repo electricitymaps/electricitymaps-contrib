@@ -5,7 +5,7 @@ import { getTotalElectricity } from '../../helpers/zonedata';
 import { tonsPerHourToGramsPerMinute } from '../../helpers/math';
 import Tooltip from '../tooltip';
 
-const CountryPanelEmissionsTooltip = ({ position, zoneData, onClose }) => {
+const CountryPanelEmissionsTooltip = ({ position, zoneData, onClose }: any) => {
   const { __ } = useTranslation();
   if (!zoneData) {
     return null;

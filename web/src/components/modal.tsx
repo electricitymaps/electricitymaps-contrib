@@ -14,7 +14,7 @@ const ModalTitle = styled.h2`
   font-size: 1.25rem;
 `;
 
-const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
+const Modal = ({ modalName, views, visible, onModalShown, onDismiss }: any) => {
   const { __ } = useTranslation();
 
   const hasMultipleViews = views && views.length > 1;
@@ -35,7 +35,7 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
 
   // Dismiss the modal if SPACE key is pressed
   useEffect(() => {
-    const keyPressHandlers = (ev) => {
+    const keyPressHandlers = (ev: any) => {
       if (ev.keyCode === 32) {
         onDismiss();
       }
@@ -61,10 +61,12 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
 
   const RightButton = isOnLastView() ? (
     <button className="modal-right-button green" onClick={onDismiss}>
+      {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
       <Icon iconName="check" />
     </button>
   ) : (
     <button className="modal-right-button" onClick={handleForward}>
+      {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
       <Icon iconName="arrow_forward" />
     </button>
   );
@@ -76,6 +78,7 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
         <div className="modal-left-button-container">
           {!isOnFirstView() && (
             <button className="modal-left-button" onClick={handleBack}>
+              {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
               <Icon iconName="arrow_back" />
             </button>
           )}
@@ -83,6 +86,7 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
         <div className={`modal-body ${currentView.headerImage ? 'fixed-height' : ''}`}>
           <div className="modal-close-button-container">
             <button className="modal-close-button" onClick={onDismiss}>
+              {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
               <Icon iconName="close" />
             </button>
           </div>
@@ -98,7 +102,7 @@ const Modal = ({ modalName, views, visible, onModalShown, onDismiss }) => {
         </div>
         <div className="modal-footer">
           {hasMultipleViews &&
-            views.map((view, index) => (
+            views.map((view: any, index: any) => (
               <div
                 key={`modal-step-item-${index}`}
                 className={`modal-footer-circle ${index === currentViewIndex ? 'highlight' : ''}`}

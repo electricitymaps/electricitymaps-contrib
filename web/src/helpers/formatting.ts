@@ -1,17 +1,18 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-f... Remove this comment to see the full error message
 import * as d3 from 'd3-format';
 import { TIME } from './constants';
 import * as translation from './translation';
 
 const DEFAULT_NUM_DIGITS = 3;
 
-const formatPower = function (d, numDigits = DEFAULT_NUM_DIGITS) {
+const formatPower = function (d: any, numDigits = DEFAULT_NUM_DIGITS) {
   // Assume MW input
   if (d == null || isNaN(d)) {
     return d;
   }
   return `${d3.format(`.${numDigits}s`)(d * 1e6)}W`;
 };
-const formatCo2 = function (d, numDigits = DEFAULT_NUM_DIGITS) {
+const formatCo2 = function (d: any, numDigits = DEFAULT_NUM_DIGITS) {
   let value = d;
   // Assume gCO₂ / h input
   value /= 60; // Convert to gCO₂ / min
@@ -27,7 +28,7 @@ const formatCo2 = function (d, numDigits = DEFAULT_NUM_DIGITS) {
     return `${d3.format(`.${numDigits}s`)(value * 1e6)}g ${translation.translate('ofCO2eqPerMinute')}`;
   }
 };
-const scalePower = function (maxPower) {
+const scalePower = function (maxPower: any) {
   // Assume MW input
   if (maxPower < 1) {
     return {
@@ -48,15 +49,17 @@ const scalePower = function (maxPower) {
   }
 };
 
-const formatDate = function (date, lang, time) {
+const formatDate = function (date: any, lang: any, time: any) {
   if (!isValidDate(date) || !time) {
     return '';
   }
 
   switch (time) {
     case TIME.HOURLY:
+      // @ts-expect-error TS(2345): Argument of type '{ dateStyle: string; timeStyle: ... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeStyle: 'short' }).format(date);
     case TIME.DAILY:
+      // @ts-expect-error TS(2345): Argument of type '{ dateStyle: string; }' is not a... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
     case TIME.MONTHLY:
       return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(date);
@@ -68,14 +71,15 @@ const formatDate = function (date, lang, time) {
   }
 };
 
-const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) =>
+const getLocaleNumberFormat = (lang: any, { unit, unitDisplay, range }: any) =>
   new Intl.NumberFormat(lang, {
     style: 'unit',
+    // @ts-expect-error TS(2345): Argument of type '{ style: string; unit: any; unit... Remove this comment to see the full error message
     unit,
     unitDisplay: unitDisplay || 'long',
   }).format(range);
 
-const formatTimeRange = (lang, timeAggregate) => {
+const formatTimeRange = (lang: any, timeAggregate: any) => {
   // Note that not all browsers fully support all languages
   switch (timeAggregate) {
     case TIME.HOURLY:
@@ -92,13 +96,14 @@ const formatTimeRange = (lang, timeAggregate) => {
   }
 };
 
-const formatDateTick = function (date, lang, timeAggregate) {
+const formatDateTick = function (date: any, lang: any, timeAggregate: any) {
   if (!isValidDate(date) || !timeAggregate) {
     return '';
   }
 
   switch (timeAggregate) {
     case TIME.HOURLY:
+      // @ts-expect-error TS(2345): Argument of type '{ timeStyle: string; }' is not a... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
@@ -112,7 +117,7 @@ const formatDateTick = function (date, lang, timeAggregate) {
   }
 };
 
-function isValidDate(date) {
+function isValidDate(date: any) {
   if (!date || !(date instanceof Date)) {
     return false;
   }

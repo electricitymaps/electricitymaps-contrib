@@ -1,14 +1,14 @@
 import { addHours } from 'date-fns';
 
-export function getRefTime(grib) {
+export function getRefTime(grib: any) {
   return new Date(grib.header.refTime);
 }
 
-export function getTargetTime(grib) {
+export function getTargetTime(grib: any) {
   return addHours(getRefTime(grib), grib.header.forecastTime);
 }
 
-export function getValueAtPosition(longitude, latitude, grib) {
+export function getValueAtPosition(longitude: any, latitude: any, grib: any) {
   if (!grib) {
     return null;
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 

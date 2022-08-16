@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SharedHeader from '../components/sharedheader';
 import OpenPositionsBadge from '../components/openpositionsbadge';
 
+// @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
 const logo = resolvePath('images/electricitymap-logo.svg');
 
 const headerLinks = [

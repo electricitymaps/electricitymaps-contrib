@@ -1,8 +1,8 @@
 describe('Map', () => {
   it('interacts with the map', () => {
     cy.visit('/?skip-onboarding=true');
-    cy.interceptAPI('v5/state/hourly');
-    cy.waitForAPISuccess(`v5/state/hourly`);
+    (cy as any).interceptAPI('v5/state/hourly');
+    (cy as any).waitForAPISuccess(`v5/state/hourly`);
 
     // closes left panel
     cy.get('#left-panel-collapse-button').click();

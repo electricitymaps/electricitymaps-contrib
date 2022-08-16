@@ -33,18 +33,21 @@ const BackToStartButton = styled.a`
   }
 `;
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
+type State = any;
+
+class ErrorBoundary extends React.Component<{}, State> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor(props: {}) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: any, errorInfo: any) {
     // TODO: Send this to Sentry
     console.error(error, errorInfo);
   }
@@ -69,7 +72,7 @@ class ErrorBoundary extends React.Component {
       );
     }
 
-    return this.props.children;
+    return (this.props as any).children;
   }
 }
 

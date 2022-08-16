@@ -5,7 +5,7 @@ export const useTrackEvent = () => {
   const dispatch = useDispatch();
 
   return useMemo(
-    () => (eventName, context) => {
+    () => (eventName: any, context: any) => {
       dispatch({ type: 'TRACK_EVENT', payload: { eventName, context } });
     },
     [dispatch]

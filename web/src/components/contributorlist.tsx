@@ -1,6 +1,8 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useParams } from 'react-router-dom';
 
+// @ts-expect-error TS(2732): Cannot find module '../../../config/zones.json'. C... Remove this comment to see the full error message
 import zonesConfig from '../../../config/zones.json';
 
 const ContributorList = () => {
@@ -8,7 +10,7 @@ const ContributorList = () => {
 
   return (
     <div className="contributors">
-      {zonesConfig[zoneId]?.contributors?.map((contributor) => {
+      {zonesConfig[zoneId]?.contributors?.map((contributor: any) => {
         return (
           <a key={contributor} href={`https://github.com/${contributor}`} rel="noopener noreferrer" target="_blank">
             <img

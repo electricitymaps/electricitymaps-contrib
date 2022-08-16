@@ -55,7 +55,7 @@
         "object": true
       }
     ],
-    "@typescript-eslint/rule-name": "error",
+    // "@typescript-eslint/rule-name": "error",
     "dot-notation": "error",
     "no-await-in-loop": "error",
     "no-duplicate-imports": "error",

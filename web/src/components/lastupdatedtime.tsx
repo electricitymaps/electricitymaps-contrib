@@ -9,7 +9,7 @@ import { TIME } from '../helpers/constants';
 const LastUpdatedTime = () => {
   const [style, setStyle] = useState({});
   const timestamp = useCurrentDatetimes().at(-1);
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
   const { i18n } = useTranslation();
 
   // Every time the timestamp gets changed, jump to the highlighted state
@@ -28,7 +28,7 @@ const LastUpdatedTime = () => {
 
   return (
     <span style={style}>
-      {new Intl.RelativeTimeFormat(i18n.language).format(differenceInHours(timestamp, Date.now()), 'hour')}
+      {new (Intl as any).RelativeTimeFormat(i18n.language).format(differenceInHours(timestamp, Date.now()), 'hour')}
     </span>
   );
 };

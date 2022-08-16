@@ -18,22 +18,25 @@ const TooltipInner = styled.div`
   font-size: smaller;
 `;
 
-const DisclaimerTooltip = ({ onClose, text, position }) => (
+const DisclaimerTooltip = ({ onClose, text, position }: any) => (
   <Tooltip id="disclaimer-info-tooltip" position={{ x: position.clientX, y: position.clientY }} onClose={onClose}>
     <TooltipInner>{text}</TooltipInner>
   </Tooltip>
 );
 
-const CountryDisclaimer = ({ text, isMobile }) => {
+const CountryDisclaimer = ({ text, isMobile }: any) => {
   const [tooltip, setTooltip] = React.useState(null);
   return (
     <React.Fragment>
       <DisclaimerIcon
+        // @ts-expect-error TS(2345): Argument of type '{ clientX: number; clientY: numb... Remove this comment to see the full error message
         onClick={isMobile ? ({ clientX, clientY }) => setTooltip({ clientX, clientY }) : noop}
+        // @ts-expect-error TS(2345): Argument of type '{ clientX: number; clientY: numb... Remove this comment to see the full error message
         onMouseMove={!isMobile ? ({ clientX, clientY }) => setTooltip({ clientX, clientY }) : noop}
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}
       >
+        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName="error" />
       </DisclaimerIcon>
       {tooltip && <DisclaimerTooltip text={text} position={tooltip} />}

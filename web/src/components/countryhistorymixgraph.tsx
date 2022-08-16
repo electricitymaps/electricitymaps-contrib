@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max } from 'd3-array';
 
 import { scalePower } from '../helpers/formatting';
@@ -12,10 +13,10 @@ import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontool
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
 import AreaGraph from './graph/areagraph';
 
-const getValuesInfo = (historyData, displayByEmissions) => {
+const getValuesInfo = (historyData: any, displayByEmissions: any) => {
   const maxTotalValue = d3Max(
     historyData,
-    (d) =>
+    (d: any) =>
       displayByEmissions
         ? (d.totalCo2Production + d.totalCo2Import + d.totalCo2Discharge) / 1e6 / 60.0 // in tCO₂eq/min
         : d.totalProduction + d.totalImport + d.totalDischarge // in MW
@@ -27,7 +28,13 @@ const getValuesInfo = (historyData, displayByEmissions) => {
   return { valueAxisLabel, valueFactor };
 };
 
-const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electricityMixMode, exchangeKeys) => {
+const prepareGraphData = (
+  historyData: any,
+  co2ColorScale: any,
+  displayByEmissions: any,
+  electricityMixMode: any,
+  exchangeKeys: any
+) => {
   if (!historyData || !historyData[0]) {
     return {};
   }
@@ -36,12 +43,13 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
 
   // Format history data received by the API
   // TODO: Simplify this function and make it more readable
-  const data = historyData.map((d) => {
+  const data = historyData.map((d: any) => {
     const obj = {
       datetime: new Date(d.stateDatetime),
     };
 
-    const hasProductionData = d.production && Object.values(d.production).some((v) => v !== null);
+    // @ts-expect-error TS(2550): Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
+    const hasProductionData = d.production && Object.values(d.production).some((v: any) => v !== null);
 
     if (hasProductionData) {
       // Add production
@@ -56,12 +64,17 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
         }
 
         // in GW or MW
+        // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         obj[k] = value / valueFactor;
+        // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         if (Number.isFinite(value) && displayByEmissions && obj[k] != null) {
           // in tCO₂eq/min
+          // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           if (isStorage && obj[k] >= 0) {
+            // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
             obj[k] *= (d.dischargeCo2Intensities || {})[k.replace(' storage', '')] / 1e3 / 60.0;
           } else {
+            // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
             obj[k] *= (d.productionCo2Intensities || {})[k] / 1e3 / 60.0;
           }
         }
@@ -69,11 +82,15 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
 
       if (electricityMixMode === 'consumption') {
         // Add exchange
+        // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
         Object.entries(d.exchange).forEach(([key, value]) => {
           // in GW or MW
+          // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           obj[key] = Math.max(0, value / valueFactor);
+          // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           if (Number.isFinite(value) && displayByEmissions && obj[key] != null) {
             // in tCO₂eq/min
+            // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
             obj[key] *= (d.exchangeCo2Intensities || {})[key] / 1e3 / 60.0;
           }
         });
@@ -81,19 +98,20 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
     }
 
     // Keep a pointer to original data
-    obj.meta = d;
+    (obj as any).meta = d;
     return obj;
   });
 
   // Show the exchange layers (if they exist) on top of the standard sources.
   const layerKeys = modeOrder.concat(exchangeKeys);
 
-  const layerFill = (key) => {
+  const layerFill = (key: any) => {
     // If exchange layer, set the horizontal gradient by using a different fill for each datapoint.
     if (exchangeKeys.includes(key)) {
-      return (d) => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
+      return (d: any) => co2ColorScale((d.data.meta.exchangeCo2Intensities || {})[key]);
     }
     // Otherwise use regular production fill.
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     return modeColor[key];
   };
 
@@ -105,13 +123,13 @@ const prepareGraphData = (historyData, co2ColorScale, displayByEmissions, electr
   };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
-const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, isOverlayEnabled }) => {
+const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobile, isOverlayEnabled }: any) => {
   const [tooltip, setTooltip] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
@@ -126,8 +144,9 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
 
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
-    () => (position, datapoint, layerKey) => {
+    () => (position: any, datapoint: any, layerKey: any) => {
       setTooltip({
+        // @ts-expect-error TS(2345): Argument of type '{ mode: any; position: any; zone... Remove this comment to see the full error message
         mode: layerKey,
         position: getTooltipPosition(isMobile, position),
         zoneData: datapoint.meta,
@@ -145,6 +164,7 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
   return (
     <React.Fragment>
       <AreaGraph
+        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-mix-graph"
         data={data}
         layerKeys={layerKeys}
@@ -157,20 +177,20 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
         isOverlayEnabled={isOverlayEnabled}
       />
       {tooltip &&
-        (exchangeKeys.includes(tooltip.mode) ? (
+        (exchangeKeys.includes((tooltip as any).mode) ? (
           <CountryPanelExchangeTooltip
-            exchangeKey={tooltip.mode}
-            position={tooltip.position}
-            zoneData={tooltip.zoneData}
+            exchangeKey={(tooltip as any).mode}
+            position={(tooltip as any).position}
+            zoneData={(tooltip as any).zoneData}
             onClose={() => {
               setTooltip(null);
             }}
           />
         ) : (
           <CountryPanelProductionTooltip
-            mode={tooltip.mode}
-            position={tooltip.position}
-            zoneData={tooltip.zoneData}
+            mode={(tooltip as any).mode}
+            position={(tooltip as any).position}
+            zoneData={(tooltip as any).zoneData}
             onClose={() => {
               setTooltip(null);
             }}

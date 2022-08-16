@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable */
 const fs = require('fs');
 const readline = require('readline-sync');
 require('colors');

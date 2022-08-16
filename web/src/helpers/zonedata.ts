@@ -1,4 +1,4 @@
-export function getElectricityProductionValue({ capacity, isStorage, production, storage }) {
+export function getElectricityProductionValue({ capacity, isStorage, production, storage }: any) {
   const value = isStorage ? -storage : production;
   // If the value is not defined but the capacity
   // is zero, assume the value is also zero.
@@ -8,7 +8,7 @@ export function getElectricityProductionValue({ capacity, isStorage, production,
   return value;
 }
 
-export function getProductionCo2Intensity(mode, zoneData) {
+export function getProductionCo2Intensity(mode: any, zoneData: any) {
   const isStorage = mode.indexOf('storage') !== -1;
   const resource = mode.replace(' storage', '');
 
@@ -24,7 +24,7 @@ export function getProductionCo2Intensity(mode, zoneData) {
   return productionCo2Intensity;
 }
 
-export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
+export function getExchangeCo2Intensity(mode: any, zoneData: any, electricityMixMode: any) {
   const exchange = (zoneData.exchange || {})[mode];
   const exchangeCo2Intensity = (zoneData.exchangeCo2Intensities || {})[mode];
 
@@ -35,7 +35,7 @@ export function getExchangeCo2Intensity(mode, zoneData, electricityMixMode) {
   return getCO2IntensityByMode(zoneData, electricityMixMode);
 }
 
-export function getTotalElectricity(zoneData, displayByEmissions) {
+export function getTotalElectricity(zoneData: any, displayByEmissions: any) {
   const productionValue = displayByEmissions ? zoneData.totalCo2Production : zoneData.totalProduction;
 
   if (productionValue == null) {
@@ -47,6 +47,6 @@ export function getTotalElectricity(zoneData, displayByEmissions) {
     : productionValue + zoneData.totalDischarge + zoneData.totalImport;
 }
 
-export function getCO2IntensityByMode(zoneData, electricityMixMode) {
+export function getCO2IntensityByMode(zoneData: any, electricityMixMode: any) {
   return electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
 }

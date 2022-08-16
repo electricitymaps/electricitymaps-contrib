@@ -15,10 +15,10 @@ const DateRangeOption = styled.span`
   white-space: nowrap;
   text-transform: capitalize;
   cursor: pointer;
-  font-weight: ${(props) => (props.active ? 700 : 500)};
-  color: ${(props) => (props.active ? '#000' : '#666')};
+  font-weight: ${(props) => ((props as any).active ? 700 : 500)};
+  color: ${(props) => ((props as any).active ? '#000' : '#666')};
   ${(props) =>
-    props.active &&
+    (props as any).active &&
     css`
       background-color: white;
       box-shadow: 0.1px 0.1px 5px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@ const DateOptionWrapper = styled.div`
   padding-top: 8px;
 `;
 
-const getOptions = (language) => [
+const getOptions = (language: any) => [
   {
     key: TIME.HOURLY,
     label: formatTimeRange(language, TIME.HOURLY),
@@ -50,10 +50,10 @@ const getOptions = (language) => [
   },
 ];
 
-const TimeControls = ({ selectedTimeAggregate, handleTimeAggregationChange }) => {
+const TimeControls = ({ selectedTimeAggregate, handleTimeAggregationChange }: any) => {
   const { i18n } = useTranslation();
   const options = getOptions(i18n.language);
-  const zoneDatetimes = useSelector((state) => state.data.zoneDatetimes);
+  const zoneDatetimes = useSelector((state) => (state as any).data.zoneDatetimes);
 
   return (
     <div>
@@ -62,6 +62,7 @@ const TimeControls = ({ selectedTimeAggregate, handleTimeAggregationChange }) =>
           <DateRangeOption
             data-test-id={`time-controls-${o.key}-btn`}
             key={o.key}
+            // @ts-expect-error TS(2769): No overload matches this call.
             active={o.key === selectedTimeAggregate}
             onClick={() => {
               handleTimeAggregationChange(o.key, zoneDatetimes);

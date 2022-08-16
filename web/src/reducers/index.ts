@@ -6,7 +6,7 @@ import { isLocalhost, isProduction } from '../helpers/environment';
 import reducer from './dataReducer';
 import { TIME } from '../helpers/constants';
 
-const getStorageBool = (key, defaultValue) => {
+const getStorageBool = (key: any, defaultValue: any) => {
   const val = getKey(key);
   if (val == null) {
     return defaultValue;
@@ -16,9 +16,9 @@ const getStorageBool = (key, defaultValue) => {
 
 const initialApplicationState = {
   // Here we will store non-data specific state (to be sent in analytics and crash reporting)
-  bundleHash: window.bundleHash,
+  bundleHash: (window as any).bundleHash,
   callerLocation: null,
-  clientType: window.isCordova ? 'mobileapp' : 'web',
+  clientType: (window as any).isCordova ? 'mobileapp' : 'web',
   co2ColorbarValue: null,
   colorBlindModeEnabled: getStorageBool('colorBlindModeEnabled', false),
   brightModeEnabled: getStorageBool('brightModeEnabled', true),
@@ -26,7 +26,7 @@ const initialApplicationState = {
   faqModalOpen: false,
   settingsModalOpen: false,
   electricityMixMode: 'consumption',
-  isCordova: window.isCordova,
+  isCordova: (window as any).isCordova,
   isEmbedded: window.top !== window.self,
   // We have to track this here because map layers currently can't
   // be stopped from propagating mouse move events to the map.
@@ -54,17 +54,17 @@ const initialApplicationState = {
   webGLSupported: true,
   windColorbarValue: null,
   selectedTimeAggregate: TIME.HOURLY,
-
   // TODO(olc): move this to countryPanel once all React components have been made
   tableDisplayEmissions: false,
 };
 
-const applicationReducer = (state = initialApplicationState, action) => {
+const applicationReducer = (state = initialApplicationState, action: any) => {
   switch (action.type) {
     case 'APPLICATION_STATE_UPDATE': {
       const { key, value } = action;
 
       // Do nothing if the value is unchanged
+      // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       if (state[key] === value) {
         return state;
       }

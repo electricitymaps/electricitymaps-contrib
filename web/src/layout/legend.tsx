@@ -33,7 +33,7 @@ const LegendsContainer = styled.div`
 
   // Apply specific styles if the legend is collapsed
   ${(props) =>
-    props.isCollapsed &&
+    (props as any).isCollapsed &&
     css`
       width: 90px;
       height: 18px;
@@ -61,7 +61,7 @@ const ToggleLegendButton = styled.i`
 `;
 
 const StyledMobileHeader = styled.div`
-  text-align: ${(props) => (props.isCollapsed ? 'left' : 'center')};
+  text-align: ${(props) => ((props as any).isCollapsed ? 'left' : 'center')};
   font-weight: bold;
   margin-bottom: 5px;
 
@@ -71,16 +71,18 @@ const StyledMobileHeader = styled.div`
   }
 }`;
 
-const MobileHeader = ({ onToggle, isOpen, label }) => (
+const MobileHeader = ({ onToggle, isOpen, label }: any) => (
+  // @ts-expect-error TS(2769): No overload matches this call.
   <StyledMobileHeader isCollapsed={!isOpen}>
     <span>{label}</span>
     <ToggleLegendButton onClick={onToggle}>
+      {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
       <Icon iconName={isOpen ? 'call_received' : 'call_made'} />
     </ToggleLegendButton>
   </StyledMobileHeader>
 );
 
-const LegendItem = ({ isEnabled, label, unit, children }) =>
+const LegendItem = ({ isEnabled, label, unit, children }: any) =>
   !isEnabled ? null : (
     <LegendItemWrapper>
       <div>
@@ -90,14 +92,14 @@ const LegendItem = ({ isEnabled, label, unit, children }) =>
     </LegendItemWrapper>
   );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   co2ColorbarValue: state.application.co2ColorbarValue,
   legendVisible: state.application.legendVisible,
   solarColorbarValue: state.application.solarColorbarValue,
   windColorbarValue: state.application.windColorbarValue,
 });
 
-const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColorbarValue }) => {
+const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColorbarValue }: any) => {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
   const solarEnabled = useSolarEnabled();
@@ -108,6 +110,7 @@ const Legend = ({ co2ColorbarValue, legendVisible, solarColorbarValue, windColor
   };
 
   return (
+    // @ts-expect-error TS(2769): No overload matches this call.
     <LegendsContainer isCollapsed={!legendVisible}>
       <MobileHeader label={__('misc.legend')} onToggle={toggleLegend} isOpen={legendVisible} />
       {legendVisible && (

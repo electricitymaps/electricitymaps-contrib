@@ -11,7 +11,7 @@ import { ZoneName } from './common';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
 import { TimeDisplay } from '../timeDisplay';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   electricityMixMode: state.application.electricityMixMode,
 });
 
@@ -28,6 +28,7 @@ const StyledTimeDisplay = styled(TimeDisplay)`
 `;
 
 const TooltipContent = React.memo(
+  // @ts-expect-error TS(2339): Property 'isDataDelayed' does not exist on type '{... Remove this comment to see the full error message
   ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
     const { __ } = useTranslation();
     if (!hasParser) {
@@ -56,6 +57,7 @@ const TooltipContent = React.memo(
           <CarbonIntensitySquare value={co2intensity} />
           <div className="country-col country-lowcarbon-wrap">
             <div id="tooltip-country-lowcarbon-gauge" className="country-gauge-wrap">
+              {/* @ts-expect-error TS(2322): Type '{ percentage: any; }' is not assignable to t... Remove this comment to see the full error message */}
               <CircularGauge percentage={fossilFuelPercentage} />
             </div>
             <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
@@ -63,6 +65,7 @@ const TooltipContent = React.memo(
           </div>
           <div className="country-col country-renewable-wrap">
             <div id="tooltip-country-renewable-gauge" className="country-gauge-wrap">
+              {/* @ts-expect-error TS(2322): Type '{ percentage: any; }' is not assignable to t... Remove this comment to see the full error message */}
               <CircularGauge percentage={renewablePercentage} />
             </div>
             <div className="country-col-headline">{__('country-panel.renewable')}</div>
@@ -73,7 +76,7 @@ const TooltipContent = React.memo(
   }
 );
 
-const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
+const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }: any) => {
   if (!zoneData) {
     return null;
   }
@@ -97,6 +100,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
         <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       </div>
       <TooltipContent
+        // @ts-expect-error TS(2322): Type '{ hasParser: any; isDataDelayed: any; co2int... Remove this comment to see the full error message
         hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}
         co2intensity={co2intensity}

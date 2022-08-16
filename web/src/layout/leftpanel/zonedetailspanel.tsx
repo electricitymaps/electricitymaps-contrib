@@ -5,7 +5,7 @@ import { useConditionalZoneHistoryFetch } from '../../hooks/fetch';
 
 import CountryPanel from './countrypanel';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 

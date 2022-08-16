@@ -1,7 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'curr... Remove this comment to see the full error message
 import getSymbolFromCurrency from 'currency-symbol-map';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max, min as d3Min } from 'd3-array';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
@@ -10,7 +13,7 @@ import { useCurrentZoneHistory } from '../hooks/redux';
 import AreaGraph from './graph/areagraph';
 import PriceTooltip from './tooltips/pricetooltip';
 
-const prepareGraphData = (historyData) => {
+const prepareGraphData = (historyData: any) => {
   if (!historyData || !historyData[0]) {
     return {};
   }
@@ -18,20 +21,21 @@ const prepareGraphData = (historyData) => {
   const currencySymbol = getSymbolFromCurrency(historyData.at(0)?.price?.currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
-  const priceMaxValue = d3Max(historyData.map((d) => d.price?.value));
-  const priceMinValue = d3Min(historyData.map((d) => d.price?.value));
+  const priceMaxValue = d3Max(historyData.map((d: any) => d.price?.value));
+  const priceMinValue = d3Min(historyData.map((d: any) => d.price?.value));
   const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
 
-  const data = historyData.map((d) => ({
+  const data = historyData.map((d: any) => ({
     price: d.price && d.price.value,
     datetime: new Date(d.stateDatetime),
+
     // Keep a pointer to original data
     meta: d,
   }));
 
   const layerKeys = ['price'];
-  const layerFill = (key) => (d) => priceColorScale(d.data[key]);
-  const markerFill = (key) => (d) => priceColorScale(d.data[key]);
+  const layerFill = (key: any) => (d: any) => priceColorScale(d.data[key]);
+  const markerFill = (key: any) => (d: any) => priceColorScale(d.data[key]);
 
   return {
     data,
@@ -42,16 +46,17 @@ const prepareGraphData = (historyData) => {
   };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   isMobile: state.application.isMobile,
 });
 
-const CountryHistoryPricesGraph = ({ isMobile }) => {
+const CountryHistoryPricesGraph = ({ isMobile }: any) => {
   const [tooltip, setTooltip] = useState(null);
 
   const historyData = useCurrentZoneHistory();
 
   // Recalculate graph data only when the history data is changed
+  // @ts-expect-error TS(2339): Property 'layerStroke' does not exist on type '{ d... Remove this comment to see the full error message
   const { data, layerKeys, layerStroke, layerFill, markerFill, valueAxisLabel } = useMemo(
     () => prepareGraphData(historyData),
     [historyData]
@@ -59,8 +64,9 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
 
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
-    () => (position, datapoint) => {
+    () => (position: any, datapoint: any) => {
       setTooltip({
+        // @ts-expect-error TS(2345): Argument of type '{ position: any; zoneData: any; ... Remove this comment to see the full error message
         position: getTooltipPosition(isMobile, position),
         zoneData: datapoint.meta,
       });
@@ -77,6 +83,7 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-prices-graph"
         data={data}
         layerKeys={layerKeys}
@@ -91,8 +98,8 @@ const CountryHistoryPricesGraph = ({ isMobile }) => {
       />
       {tooltip && (
         <PriceTooltip
-          position={tooltip.position}
-          zoneData={tooltip.zoneData}
+          position={(tooltip as any).position}
+          zoneData={(tooltip as any).zoneData}
           onClose={() => {
             setTooltip(null);
           }}

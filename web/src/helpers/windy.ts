@@ -17,7 +17,7 @@
 
 import { windColor } from './scales';
 
-var Windy = function (params) {
+var Windy = function (params: any) {
   var VELOCITY_SCALE = 1 / 100000; //1/70000             // scale for wind velocity (completely arbitrary--this value looks nice)
   var INTENSITY_SCALE_STEP = 10; // step size of particle intensity color scale
   var MAX_WIND_INTENSITY = 30; // wind velocity at which particle intensity is maximum (m/s)
@@ -31,7 +31,7 @@ var Windy = function (params) {
   var TRANSPARENT_BLACK = [255, 0, 0, 0];
 
   // interpolation for vectors like wind (u,v,m)
-  var bilinearInterpolateVector = function (x, y, g00, g10, g01, g11) {
+  var bilinearInterpolateVector = function (x: any, y: any, g00: any, g10: any, g01: any, g11: any) {
     var rx = 1 - x;
     var ry = 1 - y;
     var a = rx * ry,
@@ -43,25 +43,25 @@ var Windy = function (params) {
     return [u, v, Math.sqrt(u * u + v * v)];
   };
 
-  var createWindBuilder = function (uComp, vComp) {
+  var createWindBuilder = function (uComp: any, vComp: any) {
     var uData = uComp.data,
       vData = vComp.data;
     return {
       header: uComp.header,
       //recipe: recipeFor("wind-" + uComp.header.surface1Value),
-      data: function (i) {
+      data: function (i: any) {
         return [uData[i], vData[i]];
       },
       interpolate: bilinearInterpolateVector,
     };
   };
 
-  var createBuilder = function (data) {
+  var createBuilder = function (data: any) {
     var uComp = null,
       vComp = null,
       scalar = null;
 
-    data.forEach(function (record) {
+    data.forEach(function (record: any) {
       switch (record.header.parameterCategory + ',' + record.header.parameterNumber) {
         case '2,2':
           uComp = record;
@@ -77,7 +77,7 @@ var Windy = function (params) {
     return createWindBuilder(uComp, vComp);
   };
 
-  var buildGrid = function (data, callback) {
+  var buildGrid = function (data: any, callback: any) {
     var builder = createBuilder(data);
 
     var header = builder.header;
@@ -92,7 +92,7 @@ var Windy = function (params) {
 
     // Scan mode 0 assumed. Longitude increases from λ0, and latitude decreases from φ0.
     // http://www.nco.ncep.noaa.gov/pmb/docs/grib2/grib2_table3-4.shtml
-    var grid = [],
+    var grid: any = [],
       p = 0;
     var isContinuous = Math.floor(ni * Δλ) >= 360;
     for (var j = 0; j < nj; j++) {
@@ -107,7 +107,7 @@ var Windy = function (params) {
       grid[j] = row;
     }
 
-    function interpolate(λ, φ) {
+    function interpolate(λ: any, φ: any) {
       var i = floorMod(λ - λ0, 360) / Δλ; // calculate longitude index in wrapped range [0, 360)
       var j = (φ0 - φ) / Δφ; // calculate latitude index in direction +90 to -90
 
@@ -140,7 +140,7 @@ var Windy = function (params) {
   /**
    * @returns {Boolean} true if the specified value is not null and not undefined.
    */
-  var isValue = function (x) {
+  var isValue = function (x: any) {
     return x !== null && x !== undefined;
   };
 
@@ -148,14 +148,14 @@ var Windy = function (params) {
    * @returns {Number} returns remainder of floored division, i.e., floor(a / n). Useful for consistent modulo
    *          of negative numbers. See http://en.wikipedia.org/wiki/Modulo_operation.
    */
-  var floorMod = function (a, n) {
+  var floorMod = function (a: any, n: any) {
     return a - n * Math.floor(a / n);
   };
 
   /**
    * @returns {Number} the value x clamped to the range [low, high].
    */
-  var clamp = function (x, range) {
+  var clamp = function (x: any, range: any) {
     return Math.max(range[0], Math.min(x, range[1]));
   };
 
@@ -170,7 +170,7 @@ var Windy = function (params) {
    * Calculate distortion of the wind vector caused by the shape of the projection at point (x, y). The wind
    * vector is modified in place and returned by this function.
    */
-  var distort = function (λ, φ, x, y, scale, wind, windy) {
+  var distort = function (λ: any, φ: any, x: any, y: any, scale: any, wind: any, windy: any) {
     var u = wind[0] * scale;
     var v = wind[1] * scale;
     var d = distortion(λ, φ, x, y, windy);
@@ -181,7 +181,7 @@ var Windy = function (params) {
     return wind;
   };
 
-  var distortion = function (λ, φ, x, y, windy) {
+  var distortion = function (λ: any, φ: any, x: any, y: any, windy: any) {
     var τ = 2 * Math.PI;
     var H = Math.pow(10, -5.2);
     var hλ = λ < 0 ? H : -H;
@@ -196,12 +196,12 @@ var Windy = function (params) {
     return [(pλ[0] - x) / hλ / k, (pλ[1] - y) / hλ / k, (pφ[0] - x) / hφ, (pφ[1] - y) / hφ];
   };
 
-  var createField = function (columns, bounds, callback) {
+  var createField = function (columns: any, bounds: any, callback: any) {
     /**
      * @returns {Array} wind vector [u, v, magnitude] at the point (x, y), or [NaN, NaN, null] if wind
      *          is undefined at that point.
      */
-    function field(x, y) {
+    function field(x: any, y: any) {
       var column = columns[Math.round(x)];
       return (column && column[Math.round(y)]) || NULL_WIND_VECTOR;
     }
@@ -212,7 +212,7 @@ var Windy = function (params) {
       columns = [];
     };
 
-    field.randomize = function (o) {
+    field.randomize = function (o: any) {
       // UNDONE: this method is terrible
       var x, y;
       var safetyNet = 0;
@@ -228,43 +228,45 @@ var Windy = function (params) {
     callback(bounds, field);
   };
 
-  var buildBounds = function (bounds, width, height) {
+  var buildBounds = function (bounds: any, width: any, height: any) {
     var upperLeft = bounds[0];
     var lowerRight = bounds[1];
     var x = Math.round(upperLeft[0]); //Math.max(Math.floor(upperLeft[0], 0), 0);
+    // @ts-expect-error TS(2554): Expected 1 arguments, but got 2.
     var y = Math.max(Math.floor(upperLeft[1], 0), 0);
+    // @ts-expect-error TS(2554): Expected 1 arguments, but got 2.
     var yMax = Math.min(Math.ceil(lowerRight[1], height), height - 1);
     return { x: x, y: y, yMax: yMax, width: width, height: height };
   };
 
-  var deg2rad = function (deg) {
+  var deg2rad = function (deg: any) {
     return (deg / 180) * Math.PI;
   };
 
-  var rad2deg = function (ang) {
+  var rad2deg = function (ang: any) {
     return ang / (Math.PI / 180.0);
   };
 
-  var invert = function (x, y, windy) {
+  var invert = function (x: any, y: any, windy: any) {
     return params.unproject([x, y]);
   };
 
-  var mercY = function (lat) {
+  var mercY = function (lat: any) {
     return Math.log(Math.tan(lat / 2 + Math.PI / 4));
   };
 
-  var project = function (lat, lon, windy) {
+  var project = function (lat: any, lon: any, windy: any) {
     // both in radians, use deg2rad if neccessary
     return params.project([lon, lat]);
   };
 
-  var interpolateField = function (grid, bounds, extent, callback) {
+  var interpolateField = function (grid: any, bounds: any, extent: any, callback: any) {
     var velocityScale = bounds.height * VELOCITY_SCALE;
 
-    var columns = [];
+    var columns: any = [];
     var x = bounds.x;
 
-    function interpolateColumn(x) {
+    function interpolateColumn(x: any) {
       var column = [];
       for (var y = bounds.y; y <= bounds.yMax; y += 2) {
         var coord = invert(x, y, extent);
@@ -298,25 +300,25 @@ var Windy = function (params) {
     })();
   };
 
-  var animate = function (bounds, field) {
-    function asColorStyle(r, g, b, a) {
+  var animate = function (bounds: any, field: any) {
+    function asColorStyle(r: any, g: any, b: any, a: any) {
       return 'rgba(' + 243 + ', ' + 243 + ', ' + 238 + ', ' + a + ')';
     }
 
-    function hexToR(h) {
+    function hexToR(h: any) {
       return parseInt(cutHex(h).substring(0, 2), 16);
     }
-    function hexToG(h) {
+    function hexToG(h: any) {
       return parseInt(cutHex(h).substring(2, 4), 16);
     }
-    function hexToB(h) {
+    function hexToB(h: any) {
       return parseInt(cutHex(h).substring(4, 6), 16);
     }
-    function cutHex(h) {
+    function cutHex(h: any) {
       return h.charAt(0) == '#' ? h.substring(1, 7) : h;
     }
 
-    function windIntensityColorScale(step, maxWind) {
+    function windIntensityColorScale(step: any, maxWind: any) {
       var result = [
         /* blue to red
           "rgba(" + hexToR('#178be7') + ", " + hexToG('#178be7') + ", " + hexToB('#178be7') + ", " + 0.5 + ")",
@@ -348,7 +350,8 @@ var Windy = function (params) {
           result.push(asColorStyle(j, j, j, 1));
         }
         */
-      result.indexFor = function (m) {
+      // @ts-expect-error TS(2551): Property 'indexFor' does not exist on type 'any[]'... Remove this comment to see the full error message
+      result.indexFor = function (m: any) {
         // map wind speed to a style
         return Math.floor((Math.min(m, maxWind) / maxWind) * (this.length - 1));
       };
@@ -365,7 +368,7 @@ var Windy = function (params) {
       particleCount *= PARTICLE_REDUCTION;
     }
 
-    var particles = [];
+    var particles: any = [];
     for (var i = 0; i < particleCount; i++) {
       particles.push(field.randomize({ age: Math.floor(Math.random() * MAX_PARTICLE_AGE) + 0 }));
     }
@@ -374,6 +377,7 @@ var Windy = function (params) {
       buckets.forEach(function (bucket) {
         bucket.length = 0;
       });
+      // @ts-expect-error TS(7006): Parameter 'particle' implicitly has an 'any' type.
       particles.forEach(function (particle) {
         if (particle.age > MAX_PARTICLE_AGE) {
           field.randomize(particle).age = 0;
@@ -391,6 +395,7 @@ var Windy = function (params) {
             // Path from (x,y) to (xt,yt) is visible, so add this particle to the appropriate draw bucket.
             particle.xt = xt;
             particle.yt = yt;
+            // @ts-expect-error TS(2551): Property 'indexFor' does not exist on type 'any[]'... Remove this comment to see the full error message
             buckets[colorStyles.indexFor(m)].push(particle);
           } else {
             // Particle isn't visible, but it still moves through the field.
@@ -430,10 +435,10 @@ var Windy = function (params) {
           g.strokeStyle = colorStyles[i];
           g.lineWidth = 1 + 0.25 * i;
           bucket.forEach(function (particle) {
-            g.moveTo(particle.x, particle.y);
-            g.lineTo(particle.xt, particle.yt);
-            particle.x = particle.xt;
-            particle.y = particle.yt;
+            g.moveTo((particle as any).x, (particle as any).y);
+            g.lineTo((particle as any).xt, (particle as any).yt);
+            (particle as any).x = (particle as any).xt;
+            (particle as any).y = (particle as any).yt;
           });
           g.stroke();
         }
@@ -451,9 +456,9 @@ var Windy = function (params) {
     frame();
   };
 
-  var windy;
+  var windy: any;
 
-  var start = function (bounds, width, height, extent) {
+  var start = function (bounds: any, width: any, height: any, extent: any) {
     var mapBounds = {
       south: deg2rad(extent[0][1]),
       north: deg2rad(extent[1][1]),
@@ -468,9 +473,9 @@ var Windy = function (params) {
     windy.paused = false;
 
     // build grid
-    buildGrid(params.data, function (grid) {
+    buildGrid(params.data, function (grid: any) {
       // interpolateField
-      interpolateField(grid, buildBounds(bounds, width, height), mapBounds, function (bounds, field) {
+      interpolateField(grid, buildBounds(bounds, width, height), mapBounds, function (bounds: any, field: any) {
         // animate the canvas with random points
         windy.field = field;
         animate(bounds, field);
@@ -498,28 +503,28 @@ var Windy = function (params) {
 
 // shim layer with setTimeout fallback
 window.requestAnimationFrame = (function () {
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
+  return (window.requestAnimationFrame ||
+    (window as any).webkitRequestAnimationFrame ||
+    (window as any).mozRequestAnimationFrame ||
+    // @ts-expect-error TS(2551): Property 'oRequestAnimationFrame' does not exist o... Remove this comment to see the full error message
     window.oRequestAnimationFrame ||
+    // @ts-expect-error TS(2551): Property 'msRequestAnimationFrame' does not exist ... Remove this comment to see the full error message
     window.msRequestAnimationFrame ||
     function (callback) {
-      window.setTimeout(callback, 1000 / 20);
-    }
-  );
+        window.setTimeout(callback, 1000 / 20);
+    });
 })();
 window.cancelAnimationFrame = (function () {
-  return (
-    window.cancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
+  return (window.cancelAnimationFrame ||
+    (window as any).webkitCancelAnimationFrame ||
+    (window as any).mozCancelAnimationFrame ||
+    // @ts-expect-error TS(2551): Property 'oCancelAnimationFrame' does not exist on... Remove this comment to see the full error message
     window.oCancelAnimationFrame ||
+    // @ts-expect-error TS(2551): Property 'msCancelAnimationFrame' does not exist o... Remove this comment to see the full error message
     window.msCancelAnimationFrame ||
     function (callback) {
-      window.clearTimeout(callback);
-    }
-  );
+        window.clearTimeout(callback);
+    });
 })();
 
 export default Windy;

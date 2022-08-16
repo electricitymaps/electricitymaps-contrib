@@ -1,5 +1,5 @@
 class DebugConsole {
-  track(event, data) {
+  track(event: any, data: any) {
     console.log('TRACK', event, data); // eslint-disable-line no-console
   }
 }

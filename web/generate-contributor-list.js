@@ -1,5 +1,6 @@
 // Pass as argument the path to zones.json
 /* eslint-disable no-console */
+/* eslint-disable */
 
 var d3 = require('d3');
 var fs = require('fs');

@@ -28,13 +28,13 @@ const shg_table = [
   24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
 ];
 
-function BlurStack() {
+function BlurStack(this: any) {
   this.a = 0;
   this.next = null;
 }
 
 // Derived from http://www.quasimondo.com/StackBlurForCanvas/StackBlur.js
-export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, radius) {
+export function stackBlurImageOpacity(imageData: any, top_x: any, top_y: any, width: any, height: any, radius: any) {
   if (isNaN(radius) || radius < 1) return;
   radius |= 0;
 
@@ -49,9 +49,11 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
   var radiusPlus1 = radius + 1;
   var sumFactor = (radiusPlus1 * (radiusPlus1 + 1)) / 2;
 
+  // @ts-expect-error TS(7009): 'new' expression, whose target lacks a construct s... Remove this comment to see the full error message
   var stackStart = new BlurStack();
   var stack = stackStart;
   for (i = 1; i < div; i++) {
+    // @ts-expect-error TS(7009): 'new' expression, whose target lacks a construct s... Remove this comment to see the full error message
     stack = stack.next = new BlurStack();
     if (i == radiusPlus1) var stackEnd = stack;
   }
@@ -127,6 +129,7 @@ export function stackBlurImageOpacity(imageData, top_x, top_y, width, height, ra
     for (i = 1; i <= radius; i++) {
       yi = (yp + x) << 2;
 
+      // @ts-expect-error TS(2532): Object is possibly 'undefined'.
       a_sum += (stack.a = pa = pixels[yi + 3]) * rbs;
 
       a_in_sum += pa;

@@ -3,10 +3,10 @@ import { isProduction } from '../helpers/environment';
 import plausibleConnection from './thirdparty/plausible';
 import debugConsoleConnection from './thirdparty/debugconsole';
 
-function reportToSentry(e) {
-  if (window.Sentry !== undefined) {
+function reportToSentry(e: any) {
+  if ((window as any).Sentry !== undefined) {
     try {
-      window.Sentry.captureException(e);
+      (window as any).Sentry.captureException(e);
     } catch (err) {
       console.error(`Error while reporting error to Sentry: ${err}`);
     }
@@ -14,6 +14,7 @@ function reportToSentry(e) {
 }
 
 class ConnectionsService {
+  connections: any;
   constructor() {
     this.connections = [];
     if (isProduction()) {
@@ -23,14 +24,14 @@ class ConnectionsService {
     }
   }
 
-  addConnection(i) {
+  addConnection(i: any) {
     this.connections.push(i);
     return i;
   }
 
-  trackEvent(eventName, context) {
+  trackEvent(eventName: any, context: any) {
     console.log(`Tracking event ${eventName}`); // eslint-disable-line no-console
-    this.connections.forEach((conn) => {
+    this.connections.forEach((conn: any) => {
       try {
         conn.track(eventName, context);
       } catch (err) {
@@ -40,7 +41,7 @@ class ConnectionsService {
   }
 
   // track errors
-  trackError(e) {
+  trackError(e: any) {
     console.error(`Error Caught! ${e}`);
     store.dispatch({
       type: 'TRACK_EVENT',

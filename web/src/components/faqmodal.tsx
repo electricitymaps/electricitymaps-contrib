@@ -28,7 +28,7 @@ const BackButtonWrapper = styled.div`
   top: 0;
 `;
 
-const Title = ({ title }) => {
+const Title = ({ title }: any) => {
   const handleClick = () => {
     dispatchApplication('faqModalOpen', false);
   };
@@ -37,6 +37,7 @@ const Title = ({ title }) => {
     <React.Fragment>
       <BackButtonWrapper>
         <button className="modal-back-button" onClick={handleClick}>
+          {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
           <Icon iconName="arrow_back" />
         </button>
       </BackButtonWrapper>
@@ -47,13 +48,13 @@ const Title = ({ title }) => {
 
 const views = [
   {
-    title: (__) => <Title title={__('misc.faq')} />,
-    renderContent: (__) => <MobileFAQ className="mobile-faq" />,
+    title: (__: any) => <Title title={__('misc.faq')} />,
+    renderContent: (__: any) => <MobileFAQ className="mobile-faq" />,
   },
 ];
 
 const FAQModal = () => {
-  const modalOpen = useSelector((state) => state.application.faqModalOpen);
+  const modalOpen = useSelector((state) => (state as any).application.faqModalOpen);
   const trackEvent = useTrackEvent();
 
   const handleDismiss = () => {
@@ -61,6 +62,7 @@ const FAQModal = () => {
   };
 
   const handleShown = () => {
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('FAQ Modal Shown');
   };
 

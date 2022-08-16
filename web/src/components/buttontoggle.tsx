@@ -11,11 +11,15 @@ const Wrapper = styled.div`
 const Button = styled.button`
   background-color: #ffffff;
   background-image: url(${(props) =>
-    props.active ? resolvePath(`images/${props.icon}_active.svg`) : resolvePath(`images/${props.icon}.svg`)});
+    (props as any).active
+      ? // @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
+        resolvePath(`images/${(props as any).icon}_active.svg`)
+      : // @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
+        resolvePath(`images/${(props as any).icon}.svg`)});
 `;
 
-const ButtonToggle = ({ active, icon, onChange, tooltip, errorMessage = null, ariaLabel }) => {
-  const isMobile = useSelector((state) => state.application.isMobile);
+const ButtonToggle = ({ active, icon, onChange, tooltip, errorMessage = null, ariaLabel }: any) => {
+  const isMobile = useSelector((state) => (state as any).application.isMobile);
 
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const showTooltip = () => {
@@ -35,6 +39,7 @@ const ButtonToggle = ({ active, icon, onChange, tooltip, errorMessage = null, ar
         onMouseOut={isMobile ? noop : hideTooltip}
         onBlur={isMobile ? noop : hideTooltip}
         onClick={onChange}
+        // @ts-expect-error TS(2769): No overload matches this call.
         active={active}
         icon={icon}
         errorMessage={errorMessage}

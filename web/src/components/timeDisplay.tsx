@@ -4,12 +4,12 @@ import { formatDate } from '../helpers/formatting';
 import React from 'react';
 import { useCurrentDatetimes } from '../hooks/redux';
 
-export const TimeDisplay = ({ className, date }) => {
+export const TimeDisplay = ({ className, date }: any) => {
   // if no date is provided, will use the current zonetime
   const datetimes = useCurrentDatetimes();
-  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const selectedZoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
   const { i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
 
   const shownDatetime = date ? date : datetimes[selectedZoneTimeIndex];
 

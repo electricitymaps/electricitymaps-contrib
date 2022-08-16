@@ -8,9 +8,9 @@ const Text = styled.span`
   font-size: 1.1em;
 `;
 
-export const CountryHistoryTitle = ({ translationKey }) => {
+export const CountryHistoryTitle = ({ translationKey }: any) => {
   const { __, i18n } = useTranslation();
-  const aggregation = useSelector((state) => state.application.selectedTimeAggregate);
+  const aggregation = useSelector((state) => (state as any).application.selectedTimeAggregate);
   const localExists = i18n.exists(`${translationKey}.${aggregation}`, { fallbackLng: i18n.language });
   const localDefaultExists = i18n.exists(`${translationKey}.default`, { fallbackLng: i18n.language });
   /*

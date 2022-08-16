@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Portal } from 'react-portal';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
@@ -40,14 +42,15 @@ const ZoneMap = ({
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const zones = useSelector((state) => state.data.zones);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
+  const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
+  const zones = useSelector((state) => (state as any).data.zones);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
     () =>
-      debounce((value) => {
+      // @ts-expect-error TS(2554): Expected 3 arguments, but got 2.
+      debounce((value: any) => {
         setIsDragging(value);
       }, 200),
     []
@@ -59,6 +62,7 @@ const ZoneMap = ({
   const handleWheel = useMemo(
     () => () => {
       setIsDragging(true);
+      // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
       debouncedSetIsDragging(false);
     },
     [] // eslint-disable-line react-hooks/exhaustive-deps
@@ -71,8 +75,9 @@ const ZoneMap = ({
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(() => {
+    // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
     const features = Object.entries(zones).map(([zoneId, zone]) => {
-      const length = (coordinate) => (coordinate ? coordinate.length : 0);
+      const length = (coordinate: any) => (coordinate ? coordinate.length : 0);
       return {
         type: 'Feature',
         geometry: {
@@ -104,15 +109,10 @@ const ZoneMap = ({
   const styles = useMemo(
     () => ({
       hover: { 'fill-color': 'white', 'fill-opacity': 0.3 },
-      ocean: { 'background-color': theme.oceanColor },
-      zonesBorder: { 'line-color': theme.strokeColor, 'line-width': theme.strokeWidth },
+      ocean: { 'background-color': (theme as any).oceanColor },
+      zonesBorder: { 'line-color': (theme as any).strokeColor, 'line-width': (theme as any).strokeWidth },
       zonesClickable: {
-        'fill-color': [
-          'coalesce', // // https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#coalesce
-          ['feature-state', 'color'],
-          ['get', 'color'],
-          theme.clickableFill,
-        ],
+        'fill-color': ['coalesce', ['feature-state', 'color'], ['get', 'color'], (theme as any).clickableFill],
       },
     }),
     [theme]
@@ -122,6 +122,7 @@ const ZoneMap = ({
   useEffect(() => {
     if (!ReactMapGL.supported()) {
       setIsSupported(false);
+      // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
       onMapError('WebGL not supported');
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -132,17 +133,21 @@ const ZoneMap = ({
     if (isLoaded && co2ColorScale) {
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
+      // @ts-expect-error TS(2531): Object is possibly 'null'.
       const features = ref.current.queryRenderedFeatures();
+      // @ts-expect-error TS(2531): Object is possibly 'null'.
       const map = ref.current.getMap();
-      features.forEach((feature) => {
+      features.forEach((feature: any) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
+        // @ts-expect-error TS(2538): Type 'null' cannot be used as an index type.
         const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
 
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
 
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
+          // @ts-expect-error TS(2349): This expression is not callable.
           fillColor = co2ColorScale(co2intensity);
         }
         const existingColor = feature.id
@@ -165,12 +170,13 @@ const ZoneMap = ({
   }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex, electricityMixMode]);
 
   const handleClick = useMemo(
-    () => (e) => {
-      if (ref.current && ref.current.state && !ref.current.state.isDragging) {
-        const features = ref.current.queryRenderedFeatures(e.point);
+    () => (e: any) => {
+      if (ref.current && (ref.current as any).state && !(ref.current as any).state.isDragging) {
+        const features = (ref.current as any).queryRenderedFeatures(e.point);
         if (isEmpty(features)) {
           onSeaClick();
         } else {
+          // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
           onZoneClick(features[0].properties.zoneId);
         }
       }
@@ -179,9 +185,10 @@ const ZoneMap = ({
   );
 
   const handleMouseMove = useMemo(
-    () => (e) => {
+    () => (e: any) => {
       if (ref.current) {
         if (hoveringEnabled) {
+          // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
           onMouseMove({
             x: e.point[0],
             y: e.point[1],
@@ -191,12 +198,13 @@ const ZoneMap = ({
         }
         // Ignore zone hovering when dragging (performance optimization).
         if (!isDragging) {
-          const features = ref.current.queryRenderedFeatures(e.point);
+          const features = (ref.current as any).queryRenderedFeatures(e.point);
           // Trigger onZoneMouseEnter if mouse enters a different
           // zone and onZoneMouseLeave when it leaves all zones.
           if (!isEmpty(features) && hoveringEnabled) {
             const { zoneId } = features[0].properties;
             if (hoveredZoneId !== zoneId) {
+              // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
               onZoneMouseEnter(zoneId);
               setHoveredZoneId(zoneId);
             }

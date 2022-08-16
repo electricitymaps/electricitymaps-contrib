@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
@@ -22,26 +23,28 @@ export default () => {
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const windDataError = useSelector((state) => state.data.windDataError);
+  const windDataError = useSelector((state) => (state as any).data.windDataError);
 
   const solarEnabled = useSolarEnabled();
-  const solarDataError = useSelector((state) => state.data.solarDataError);
+  const solarDataError = useSelector((state) => (state as any).data.solarDataError);
   const solarToggledLocation = useSolarToggledLocation();
 
-  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
+  const brightModeEnabled = useSelector((state) => (state as any).application.brightModeEnabled);
 
   const isWeatherEnabled = useSelector(
-    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+    (state) =>
+      (state as any).application.selectedTimeAggregate === TIME.HOURLY &&
+      (state as any).application.selectedZoneTimeIndex === 24
   );
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
   };
 
-  const Link = ({ to, hasError, children }) =>
+  const Link = ({ to, hasError, children }: any) =>
     !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
 
-  const getWeatherTranslateId = (weatherType, enabled, isWeatherEnabled) => {
+  const getWeatherTranslateId = (weatherType: any, enabled: any, isWeatherEnabled: any) => {
     if (!isWeatherEnabled) {
       return 'tooltips.weatherDisabled';
     }

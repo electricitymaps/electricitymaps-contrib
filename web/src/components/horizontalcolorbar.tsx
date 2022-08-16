@@ -1,5 +1,7 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { extent } from 'd3-array';
 
 import styled from 'styled-components';
@@ -28,12 +30,12 @@ const Wrapper = styled.svg`
   }
 `;
 
-const spreadOverDomain = (scale, count) => {
+const spreadOverDomain = (scale: any, count: any) => {
   const [x1, x2] = extent(scale.domain());
   return [...Array(count).keys()].map((v) => x1 + ((x2 - x1) * v) / (count - 1));
 };
 
-const HorizontalColorbar = ({ colorScale, currentValue, id, markerColor, ticksCount = 5 }) => {
+const HorizontalColorbar = ({ colorScale, currentValue, id, markerColor, ticksCount = 5 }: any) => {
   const { ref, width, height } = useRefWidthHeightObserver(2 * PADDING_X, 2 * PADDING_Y);
 
   const linearScale = scaleLinear().domain(extent(colorScale.domain())).range([0, width]);

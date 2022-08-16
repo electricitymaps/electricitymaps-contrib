@@ -1,8 +1,8 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
     cy.visit('/?skip-onboarding=true');
-    cy.interceptAPI('v5/state/hourly');
-    cy.waitForAPISuccess(`v5/state/hourly`);
+    (cy as any).interceptAPI('v5/state/hourly');
+    (cy as any).waitForAPISuccess(`v5/state/hourly`);
 
     // See more than X countries on the list by default
     cy.get('.zone-list a').should('have.length.above', 3);

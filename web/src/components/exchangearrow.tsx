@@ -15,10 +15,11 @@ const ArrowPicture = styled.picture`
   top: -41px;
 `;
 
+// @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
 export default React.memo(({ data, mouseMoveHandler, mouseOutHandler, project, viewportWidth, viewportHeight }) => {
-  const isMobile = useSelector((state) => state.application.isMobile);
-  const mapZoom = useSelector((state) => state.application.mapViewport.zoom);
-  const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
+  const isMobile = useSelector((state) => (state as any).application.isMobile);
+  const mapZoom = useSelector((state) => (state as any).application.mapViewport.zoom);
+  const colorBlindModeEnabled = useSelector((state) => (state as any).application.colorBlindModeEnabled);
   const absFlow = Math.abs(data.netFlow || 0);
   const { co2intensity, lonlat, netFlow, rotation } = data;
 
@@ -26,6 +27,7 @@ export default React.memo(({ data, mouseMoveHandler, mouseOutHandler, project, v
     const prefix = colorBlindModeEnabled ? 'colorblind-' : '';
     const intensity = quantizedCo2IntensityScale(co2intensity);
     const speed = quantizedExchangeSpeedScale(Math.abs(netFlow));
+    // @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
     return resolvePath(`images/arrows/${prefix}arrow-${intensity}-animated-${speed}`);
   }, [colorBlindModeEnabled, co2intensity, netFlow]);
 
@@ -68,6 +70,7 @@ export default React.memo(({ data, mouseMoveHandler, mouseOutHandler, project, v
       style={{
         transform: `translateX(${transform.x}px) translateY(${transform.y}px) rotate(${transform.r}deg) scale(${transform.k})`,
       }}
+      // @ts-expect-error TS(2769): No overload matches this call.
       width="49"
       height="81"
       /* Support only click events in mobile mode, otherwise react to mouse hovers */

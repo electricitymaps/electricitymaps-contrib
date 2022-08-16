@@ -17,7 +17,7 @@ const Title = styled.span`
 `;
 
 const DateDisplay = styled.div`
-  display: ${(props) => (props.loading ? 'none' : 'flex')};
+  display: ${(props) => ((props as any).loading ? 'none' : 'flex')};
   align-items: center;
   font-size: calc(9px + 0.2vw);
   background-color: #f0f0f0;
@@ -41,11 +41,12 @@ const Wrapper = styled.div`
 
 const TimeSliderHeader = () => {
   const { __ } = useTranslation();
-  const isLoading = useSelector((state) => state.data.isLoadingGrid);
+  const isLoading = useSelector((state) => (state as any).data.isLoadingGrid);
 
   return (
     <Wrapper>
       <Title>{__('time-controller.title')}</Title>
+      {/* @ts-expect-error TS(2769): No overload matches this call. */}
       <DateDisplay data-test-id="date-display" loading={isLoading}>
         <TimeDisplay />
       </DateDisplay>

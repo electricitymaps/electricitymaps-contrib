@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect, useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useLocation } from 'react-router-dom';
 
 // Layout
@@ -36,14 +37,14 @@ const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   brightModeEnabled: state.application.brightModeEnabled,
   electricityMixMode: state.application.electricityMixMode,
 });
 
 const MapContainer = styled.div`
   @media (max-width: 767px) {
-    display: ${(props) => (props.pathname !== '/map' ? 'none !important' : 'block')};
+    display: ${(props) => ((props as any).pathname !== '/map' ? 'none !important' : 'block')};
   }
 `;
 
@@ -66,17 +67,18 @@ const HiddenOnMobile = styled.div`
   }
 `;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// @ts-expect-error TS(2556): A spread argument must either have a tuple type or... Remove this comment to see the full error message
+const fetcher = (...args: any[]) => fetch(...args).then((res) => (res as any).json());
 
-const Main = ({ electricityMixMode }) => {
+const Main = ({ electricityMixMode }: any) => {
   const { __ } = useTranslation();
   const location = useLocation();
   const headerVisible = useHeaderVisible();
-  const clientType = useSelector((state) => state.application.clientType);
-  const isLocalhost = useSelector((state) => state.application.isLocalhost);
+  const clientType = useSelector((state) => (state as any).application.clientType);
+  const isLocalhost = useSelector((state) => (state as any).application.isLocalhost);
   const [isClientVersionForceHidden, setIsClientVersionForceHidden] = useState(false);
-  const isMobile = useSelector((state) => state.application.isMobile);
-  const failedRequestType = useSelector((state) => state.data.failedRequestType);
+  const isMobile = useSelector((state) => (state as any).application.isMobile);
+  const failedRequestType = useSelector((state) => (state as any).data.failedRequestType);
   const showLoadingOverlay = useLoadingOverlayVisible();
 
   // Start grid data polling as soon as the app is mounted.
@@ -120,6 +122,7 @@ const Main = ({ electricityMixMode }) => {
           <ErrorBoundary>
             <LoadingOverlay visible={showLoadingOverlay} />
             <LeftPanel />
+            {/* @ts-expect-error TS(2769): No overload matches this call. */}
             <MapContainer pathname={location.pathname} id="map-container">
               <Map />
               <MobileLayerButtons />
@@ -127,7 +130,7 @@ const Main = ({ electricityMixMode }) => {
               <HiddenOnMobile className="controls-container">
                 <Toggle
                   infoHTML={__('tooltips.cpinfo')}
-                  onChange={(value) => dispatchApplication('electricityMixMode', value)}
+                  onChange={(value: any) => dispatchApplication('electricityMixMode', value)}
                   options={[
                     { value: 'production', label: __('tooltips.production') },
                     { value: 'consumption', label: __('tooltips.consumption') },

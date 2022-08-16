@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Redirect, Link, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { noop } from '../../helpers/noop';
@@ -37,8 +38,8 @@ import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
 
-const CountryLowCarbonGauge = (props) => {
-  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
+const CountryLowCarbonGauge = (props: any) => {
+  const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
@@ -51,8 +52,8 @@ const CountryLowCarbonGauge = (props) => {
   return <CircularGauge percentage={countryLowCarbonPercentage} {...props} />;
 };
 
-const CountryRenewableGauge = (props) => {
-  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
+const CountryRenewableGauge = (props: any) => {
+  const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
 
   const d = useCurrentZoneData();
   if (!d) {
@@ -65,7 +66,7 @@ const CountryRenewableGauge = (props) => {
   return <CircularGauge percentage={countryRenewablePercentage} {...props} />;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
   tableDisplayEmissions: state.application.tableDisplayEmissions,
@@ -161,7 +162,7 @@ const StyledSources = styled.div`
   }
 `;
 
-const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated }) => {
+const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated }: any) => {
   const { disclaimer, estimationMethod, stateDatetime, datetime } = data;
   const shownDatetime = stateDatetime || datetime;
   const isDataEstimated = !(estimationMethod == null);
@@ -169,6 +170,7 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
   return (
     <div className="left-panel-zone-details-toolbar">
       <Link to={parentPage} className="left-panel-back-button">
+        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName="arrow_back" />
       </Link>
       <CountryNameTime>
@@ -191,20 +193,20 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
   );
 };
 
-const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
+const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }: any) => {
   const [tooltip, setTooltip] = useState(null);
   const { __ } = useTranslation();
-  const failedRequestType = useSelector((state) => state.data.failedRequestType);
-  const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
+  const failedRequestType = useSelector((state) => (state as any).data.failedRequestType);
+  const isLoadingHistories = useSelector((state) => (state as any).data.isLoadingHistories);
 
   // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
-  const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
+  const isLoadingGrid = useSelector((state) => (state as any).data.isLoadingGrid);
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const timeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};
 
@@ -222,7 +224,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   // Back button keyboard navigation
   useEffect(() => {
-    const keyHandler = (e) => {
+    const keyHandler = (e: any) => {
       if (e.key === 'Backspace' || e.key === '/') {
         history.push(parentPage);
       }
@@ -245,11 +247,13 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('PanelEmissionButton Clicked');
   };
 
   const switchToZoneProduction = () => {
     dispatchApplication('tableDisplayEmissions', false);
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('PanelProductionButton Clicked');
   };
 
@@ -260,6 +264,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
           <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
         </div>
         <LoadingWrapper>
+          {/* @ts-expect-error TS(2769): No overload matches this call. */}
           <LoadingPlaceholder height="2rem" />
           <LoadingText>Loading...</LoadingText>
         </LoadingWrapper>
@@ -285,11 +290,15 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               <div className="country-col country-lowcarbon-wrap">
                 <div id="country-lowcarbon-gauge" className="country-gauge-wrap">
                   <CountryLowCarbonGauge
-                    onClick={isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
-                    onMouseMove={!isMobile ? (x, y) => setTooltip({ position: { x, y } }) : noop}
+                    // @ts-expect-error TS(2345): Argument of type '{ position: { x: any; y: any; };... Remove this comment to see the full error message
+                    onClick={isMobile ? (x: any, y: any) => setTooltip({ position: { x, y } }) : noop}
+                    // @ts-expect-error TS(2345): Argument of type '{ position: { x: any; y: any; };... Remove this comment to see the full error message
+                    onMouseMove={!isMobile ? (x: any, y: any) => setTooltip({ position: { x, y } }) : noop}
                     onMouseOut={() => setTooltip(null)}
                   />
-                  {tooltip && <LowCarbonInfoTooltip position={tooltip.position} onClose={() => setTooltip(null)} />}
+                  {tooltip && (
+                    <LowCarbonInfoTooltip position={(tooltip as any).position} onClose={() => setTooltip(null)} />
+                  )}
                 </div>
                 <div className="country-col-headline">{__('country-panel.lowcarbon')}</div>
                 <div className="country-col-subtext" />
@@ -306,6 +315,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <button
                   type="button"
                   onClick={switchToZoneProduction}
+                  // @ts-expect-error TS(2322): Type 'string | null' is not assignable to type 'st... Remove this comment to see the full error message
                   className={!tableDisplayEmissions ? 'selected' : null}
                 >
                   {__(`country-panel.electricity${electricityMixMode}`)}
@@ -314,6 +324,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 <button
                   type="button"
                   onClick={switchToZoneEmissions}
+                  // @ts-expect-error TS(2322): Type 'string | null' is not assignable to type 'st... Remove this comment to see the full error message
                   className={tableDisplayEmissions ? 'selected' : null}
                 >
                   {__('country-panel.emissions')}
@@ -340,6 +351,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               />
               <br />
               <ProContainer>
+                {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
                 <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
@@ -349,6 +361,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
+                  {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; color: str... Remove this comment to see the full error message */}
                   <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
@@ -363,6 +376,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               />
               <br />
               <ProContainer>
+                {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
                 <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
@@ -372,6 +386,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
+                  {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; color: str... Remove this comment to see the full error message */}
                   <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
@@ -401,7 +416,9 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
             </div>
             <hr />
             <StyledSources>
+              {/* @ts-expect-error TS(2322): Type '{ text: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
               {isDataEstimated && <CountryDataInfo text={__('country-panel.dataIsEstimated')} />}
+              {/* @ts-expect-error TS(2322): Type '{ text: any; }' is not assignable to type 'I... Remove this comment to see the full error message */}
               {timeAggregate !== TIME.HOURLY && <CountryDataInfo text={__('country-panel.exchangesAreMissing')} />}
               {__('country-panel.source')}
               {': '}

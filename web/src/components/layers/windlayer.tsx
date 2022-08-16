@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
@@ -19,15 +20,15 @@ const Canvas = styled.canvas`
   height: 100%;
 `;
 
-export default ({ project, unproject }) => {
+export default ({ project, unproject }: any) => {
   const { ref, width, height, node } = useRefWidthHeightObserver();
   const interpolatedData = useInterpolatedWindData();
   const enabled = useWindEnabled();
 
   const [windy, setWindy] = useState(null);
 
-  const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
-  const isMoving = useSelector((state) => state.application.isMovingMap);
+  const isMapLoaded = useSelector((state) => !(state as any).application.isLoadingMap);
+  const isMoving = useSelector((state) => (state as any).application.isMovingMap);
   const isVisible = enabled && isMapLoaded && !isMoving;
 
   const viewport = useMemo(() => {
@@ -52,6 +53,7 @@ export default ({ project, unproject }) => {
   // See https://github.com/tmrowco/electricitymap-contrib/issues/944.
   useEffect(() => {
     if (!windy && isVisible && node && interpolatedData) {
+      // @ts-expect-error TS(7009): 'new' expression, whose target lacks a construct s... Remove this comment to see the full error message
       const w = new Windy({
         canvas: node,
         data: interpolatedData,
@@ -64,13 +66,13 @@ export default ({ project, unproject }) => {
         setWindy(w);
       }, 0);
     } else if (windy && !isVisible) {
-      windy.stop();
+      (windy as any).stop();
       setWindy(null);
     }
   }, [windy, isVisible, node, interpolatedData, project, unproject, viewport]);
 
   return (
-    <CSSTransition classNames="fade" in={isVisible && windy && windy.started} timeout={300}>
+    <CSSTransition classNames="fade" in={isVisible && windy && (windy as any).started} timeout={300}>
       <Canvas id="wind" width={width} height={height} ref={ref} />
     </CSSTransition>
   );

@@ -1,9 +1,10 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'curr... Remove this comment to see the full error message
 import getSymbolFromCurrency from 'currency-symbol-map';
 
 import Tooltip from '../tooltip';
 
-const PriceTooltip = ({ position, zoneData, onClose }) => {
+const PriceTooltip = ({ position, zoneData, onClose }: any) => {
   if (!zoneData) {
     return null;
   }

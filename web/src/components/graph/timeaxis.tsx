@@ -32,7 +32,7 @@ const LoadingWrapper = styled.div`
   height: 22px; // ensures there's no jump between loading and non-loading
 `;
 
-const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
+const renderTickValue = (v: any, idx: any, displayLive: any, lang: any, selectedTimeAggregate: any) => {
   const shouldDisplayLive = idx === 24 && displayLive;
   if (shouldDisplayLive) {
     return (
@@ -52,7 +52,16 @@ const renderTickValue = (v, idx, displayLive, lang, selectedTimeAggregate) => {
   }
 };
 
-const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, isLoading) => {
+const renderTick = (
+  scale: any,
+  val: any,
+  idx: any,
+  displayLive: any,
+  lang: any,
+  selectedTimeAggregate: any,
+  isLoading: any
+) => {
+  // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
   const shouldShowValue = idx % TIME_TO_TICK_FREQUENCY[selectedTimeAggregate] === 0 && !isLoading;
   return (
     <TickGroup key={`timeaxis-tick-${idx}`} className="tick" opacity={1} transform={`translate(${scale(val)},0)`}>
@@ -64,13 +73,21 @@ const renderTick = (scale, val, idx, displayLive, lang, selectedTimeAggregate, i
 
 const TimeAxis = React.memo(
   ({
+    // @ts-expect-error TS(2339): Property 'className' does not exist on type '{}'.
     className,
+    // @ts-expect-error TS(2339): Property 'scale' does not exist on type '{}'.
     scale,
+    // @ts-expect-error TS(2339): Property 'transform' does not exist on type '{}'.
     transform,
+    // @ts-expect-error TS(2339): Property 'displayLive' does not exist on type '{}'... Remove this comment to see the full error message
     displayLive,
+    // @ts-expect-error TS(2339): Property 'selectedTimeAggregate' does not exist on... Remove this comment to see the full error message
     selectedTimeAggregate = TIME.HOURLY,
+    // @ts-expect-error TS(2339): Property 'datetimes' does not exist on type '{}'.
     datetimes = [],
+    // @ts-expect-error TS(2339): Property 'isLoading' does not exist on type '{}'.
     isLoading,
+    // @ts-expect-error TS(2339): Property 'inputRef' does not exist on type '{}'.
     inputRef,
   }) => {
     const [x1, x2] = scale.range();
@@ -94,7 +111,7 @@ const TimeAxis = React.memo(
           style={{ pointerEvents: 'none' }}
         >
           <path className="domain" stroke="currentColor" d={`M${x1 + 0.5},6V0.5H${x2 + 0.5}V6`} />
-          {datetimes.map((v, idx) =>
+          {datetimes.map((v: any, idx: any) =>
             renderTick(scale, v, idx, displayLive, i18n.language, selectedTimeAggregate, isLoading)
           )}
         </g>

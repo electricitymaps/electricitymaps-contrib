@@ -1,7 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
 import constructTopos from './topos';
+// @ts-expect-error TS(2732): Cannot find module '../../../config/zones.json'. C... Remove this comment to see the full error message
 import zonesConfig from '../../../config/zones.json';
+// @ts-expect-error TS(2732): Cannot find module '../../../config/exchanges.json... Remove this comment to see the full error message
 import exchangesConfig from '../../../config/exchanges.json';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
@@ -27,35 +29,43 @@ function initDataState() {
   Object.keys(zonesConfig).forEach((key) => {
     const zone = {};
     const zoneConfig = zonesConfig[key];
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     if (!geographies[key]) {
       return;
     }
-    zone.geography = geographies[key];
-    zone.config = {};
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+    (zone as any).geography = geographies[key];
+    (zone as any).config = {};
     Object.keys(TIME).forEach((agg) => {
+      // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       zone[TIME[agg]] = { details: [], overviews: [], isExpired: true };
     });
 
-    zone.config.capacity = zoneConfig.capacity;
-    zone.config.contributors = zoneConfig.contributors;
-    zone.config.timezone = zoneConfig.timezone;
+    (zone as any).config.capacity = zoneConfig.capacity;
+    (zone as any).config.contributors = zoneConfig.contributors;
+    (zone as any).config.timezone = zoneConfig.timezone;
     // hasParser is true if parser exists, or if estimation method exists
-    zone.config.hasParser = zoneConfig.parsers?.production !== undefined || zoneConfig.estimation_method !== undefined;
-    zone.config.delays = zoneConfig.delays;
-    zone.config.disclaimer = zoneConfig.disclaimer;
-    zone.config.countryCode = key;
+    (zone as any).config.hasParser =
+      zoneConfig.parsers?.production !== undefined || zoneConfig.estimation_method !== undefined;
+    (zone as any).config.delays = zoneConfig.delays;
+    (zone as any).config.disclaimer = zoneConfig.disclaimer;
+    (zone as any).config.countryCode = key;
 
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     zones[key] = zone;
   });
 
   const isGridExpired = {};
   Object.keys(TIME).forEach((agg) => {
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     isGridExpired[TIME[agg]] = true;
   });
 
   const exchanges = {};
 
+  // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
   Object.entries(exchangesConfig).forEach(([key, value]) => {
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     exchanges[key] = {
       config: { ...value, sortedCountryCodes: key.split('->').sort() },
       data: [],
@@ -80,7 +90,7 @@ function initDataState() {
   };
 }
 
-function combineZoneData(zoneData, aggregate) {
+function combineZoneData(zoneData: any, aggregate: any) {
   // Combines details and overviews and other relevant keys
   // from zoneData for a specific aggregate into a single object
   const { overviews, details, hasData } = zoneData[aggregate];
@@ -92,14 +102,14 @@ function combineZoneData(zoneData, aggregate) {
     return [{ hasData, hasParser, center }];
   }
 
-  const combined = overviews.map((overview, idx) => {
+  const combined = overviews.map((overview: any, idx: any) => {
     return { ...overview, ...details[idx], hasParser, hasData, center };
   });
 
   return combined;
 }
 
-function removeDuplicateSources(source) {
+function removeDuplicateSources(source: any) {
   if (!source) {
     return null;
   }
@@ -107,7 +117,7 @@ function removeDuplicateSources(source) {
     ...new Set(
       source
         .split('","')
-        .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
+        .map((x: any) => x.split(',').map((x: any) => x.replace('\\', '').replace('"', '')))
         .flat()
     ),
   ].join();

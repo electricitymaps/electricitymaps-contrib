@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useParams } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { useCurrentZoneData } from '../hooks/redux';
 
-const getMessage = (__, zoneId, zoneData, zoneTimeIndex) => {
+const getMessage = (__: any, zoneId: any, zoneData: any, zoneTimeIndex: any) => {
   const isRealtimeData = zoneTimeIndex === null;
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
@@ -22,11 +23,11 @@ const getMessage = (__, zoneId, zoneData, zoneTimeIndex) => {
   return message;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   zoneTimeIndex: state.application.selectedZoneTimeIndex,
 });
 
-const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
+const CountryTableOverlayIfNoData = ({ zoneTimeIndex }: any) => {
   const { zoneId } = useParams();
   const zoneData = useCurrentZoneData();
   const { __ } = useTranslation();

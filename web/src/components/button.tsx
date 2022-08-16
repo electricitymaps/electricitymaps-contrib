@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from './icon';
@@ -9,7 +10,7 @@ const StyledButton = styled.button`
   font-family: 'Open Sans', sans-serif;
   font-size: 0.85rem;
   border-radius: 100px;
-  min-width: ${(props) => (props.hasChildren ? 232 : 45)}px;
+  min-width: ${(props) => ((props as any).hasChildren ? 232 : 45)}px;
   width: fit-content;
   padding: 6px 0;
   height: 45px;
@@ -42,7 +43,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const getAs = (passedProps) => {
+const getAs = (passedProps: any) => {
   if (passedProps.to) {
     return Link;
   }
@@ -62,12 +63,13 @@ const getAs = (passedProps) => {
  * <Button onClick={doSomething}>text only with action</Button>
  * <Button href="https://example.com">as link</Button>
  */
-export const Button = ({ icon, children, iconSize = 16, ...rest }) => {
+export const Button = ({ icon, children, iconSize = 16, ...rest }: any) => {
   const renderAs = getAs(rest);
 
   const hasChildren = React.Children.count(children) > 0;
   return (
     <StyledButton hasChildren={hasChildren} as={renderAs} {...rest}>
+      {/* @ts-expect-error TS(2322): Type '{ iconName: any; size: any; }' is not assign... Remove this comment to see the full error message */}
       {icon && <Icon iconName={icon} size={iconSize} />}
       {hasChildren && <span>{children}</span>}
     </StyledButton>

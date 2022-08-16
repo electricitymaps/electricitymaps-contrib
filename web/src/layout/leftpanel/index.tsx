@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
@@ -34,7 +35,7 @@ const HandleLegacyRoutes = () => {
 
 // TODO: Move all styles from styles.css to here
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   isLeftPanelCollapsed: state.application.isLeftPanelCollapsed,
 });
 
@@ -80,17 +81,18 @@ const Container = styled.div`
   }
   // Hide the panel completely if looking at the map on small screens.
   @media (max-width: 767px) {
-    display: ${(props) => (props.pathname === '/map' ? 'none !important' : 'flex')};
+    display: ${(props) => ((props as any).pathname === '/map' ? 'none !important' : 'flex')};
   }
 `;
 
-const LeftPanel = ({ isLeftPanelCollapsed }) => {
+const LeftPanel = ({ isLeftPanelCollapsed }: any) => {
   const location = useLocation();
 
   // TODO: Do this better when <Switch> is pulled up the hierarchy.
   const collapsedClass = isLeftPanelCollapsed ? 'collapsed' : '';
 
   return (
+    // @ts-expect-error TS(2769): No overload matches this call.
     <Container pathname={location.pathname} className={`panel left-panel ${collapsedClass}`}>
       <MobileHeader id="mobile-header" className="brightmode">
         <div className="header-content">
@@ -108,9 +110,11 @@ const LeftPanel = ({ isLeftPanelCollapsed }) => {
         className={`${collapsedClass}`}
         onClick={() => dispatchApplication('isLeftPanelCollapsed', !isLeftPanelCollapsed)}
         role="button"
+        // @ts-expect-error TS(2769): No overload matches this call.
         tabIndex="0"
         aria-label="toggle left panel visibility"
       >
+        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
       </LeftPanelCollapseButton>
 

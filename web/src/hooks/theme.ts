@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
 
 import { themes } from '../helpers/themes';
 
 export function useTheme() {
-  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
-  const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
+  const brightModeEnabled = useSelector((state) => (state as any).application.brightModeEnabled);
+  const colorBlindModeEnabled = useSelector((state) => (state as any).application.colorBlindModeEnabled);
 
   return useMemo(() => {
     if (brightModeEnabled) {

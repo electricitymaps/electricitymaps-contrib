@@ -1,7 +1,7 @@
-export function debounce(func, wait, immediate) {
-  var timeout;
-  return function () {
-    var context = this,
+export function debounce(func: any, wait: any, immediate: any) {
+  let timeout: any;
+  return function (this: any) {
+    const context = this,
       args = arguments;
     clearTimeout(timeout);
     timeout = setTimeout(function () {

@@ -10,7 +10,7 @@ const StyledBottomSheet = styled(BottomSheet)`
   [data-rsbs-header] {
     // override standard styling. Issue in Cordova IOS app
     padding-top: 20px;
-    padding-bottom: ${(props) => props.isLargeDevice && '13px'};
+    padding-bottom: ${(props) => (props as any).isLargeDevice && '13px'};
     &:before {
       top: 8px;
     }
@@ -18,7 +18,7 @@ const StyledBottomSheet = styled(BottomSheet)`
   [data-rsbs-overlay] {
     padding-bottom: env(safe-area-inset-bottom, 0px);
     padding-bottom: constant(safe-area-inset-bottom, 0px);
-    z-index: ${(props) => (props.behind ? 0 : 5)};
+    z-index: ${(props) => ((props as any).behind ? 0 : 5)};
   }
   [data-rsbs-scroll] {
     // Disables scrolling, as we want users to open the sheet instead of scrolling inside it
@@ -30,7 +30,7 @@ const isLargeDevice = window.screen.width >= LARGE_DEVICE_VIEWPORT_WIDTH;
 // Provide extra swipe up space for larger IOS devices
 const snapPoints = isLargeDevice ? [70, 180] : [60, 160];
 
-const ResponsiveSheet = ({ children }) => {
+const ResponsiveSheet = ({ children }: any) => {
   return (
     <StyledBottomSheet
       scrollLocking={false} // Ensures scrolling is not blocked on IOS
@@ -38,6 +38,7 @@ const ResponsiveSheet = ({ children }) => {
       snapPoints={() => snapPoints}
       blocking={false}
       header={<TimeSliderHeader />}
+      // @ts-expect-error TS(2769): No overload matches this call.
       isLargeDevice={isLargeDevice}
     >
       {children}

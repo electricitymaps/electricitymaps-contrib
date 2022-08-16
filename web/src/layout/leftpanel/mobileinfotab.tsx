@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { useTranslation } from '../../helpers/translation';
@@ -16,9 +17,10 @@ const MobileInfoTab = () => {
 
   // Check app version once
   useEffect(() => {
-    if (!mobileAppVersion && window.isCordova) {
+    if (!mobileAppVersion && (window as any).isCordova) {
+      // @ts-expect-error TS(2304): Cannot find name 'codePush'.
       codePush.getCurrentPackage(
-        (localPackage) => {
+        (localPackage: any) => {
           if (!localPackage) {
             console.warn('CodePush: No updates have been installed yet');
             setMobileAppVersion(null);
@@ -32,9 +34,10 @@ const MobileInfoTab = () => {
             label, // The internal label automatically given to the update by the CodePush server, such as v5. This value uniquely identifies the update within it's deployment
           } = localPackage;
 
+          // @ts-expect-error TS(2345): Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
           setMobileAppVersion(`${appVersion} ${label} (${description})`);
         },
-        (err) => console.error(err)
+        (err: any) => console.error(err)
       );
     }
   }, [mobileAppVersion]);
@@ -61,6 +64,7 @@ const MobileInfoTab = () => {
           target="_blank"
           rel="noreferrer"
         >
+          {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
           <Icon iconName={'twitter'} size={16} /> Tweet
         </a>
       </div>

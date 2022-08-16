@@ -6,7 +6,7 @@ import { isProduction } from './environment';
 import { LOCALE_TO_FACEBOOK_LOCALE } from './constants';
 import { history } from './router';
 
-const LOCALES_PATH = window.isCordova ? 'locales' : '/locales';
+const LOCALES_PATH = (window as any).isCordova ? 'locales' : '/locales';
 
 function hideLanguageSearchParam() {
   const searchParams = new URLSearchParams(history.location.search);
@@ -17,9 +17,10 @@ function hideLanguageSearchParam() {
 // This function is copied and slightly adjusted from https://github.com/i18next/i18next-http-backend/blob/master/lib/request.js
 // The changes are done in order to make it work cross-platform
 // See source for these changes: https://github.com/i18next/i18next-http-backend/issues/23#issuecomment-718929822
-function requestWithXmlHttpRequest(options, url, payload, callback) {
+function requestWithXmlHttpRequest(options: any, url: any, payload: any, callback: any) {
   try {
     const x = new XMLHttpRequest();
+    // @ts-expect-error TS(2345): Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
     x.open('GET', url, 1);
     if (!options.crossDomain) {
       x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -34,7 +35,7 @@ function requestWithXmlHttpRequest(options, url, payload, callback) {
     let h = options.customHeaders;
     h = typeof h === 'function' ? h() : h;
     if (h) {
-      for (var i in h) {
+      for (const i in h) {
         x.setRequestHeader(i, h[i]);
       }
     }
@@ -82,6 +83,7 @@ i18n.on('languageChanged', function (lng) {
   // TODO: Use react-helmet to manage meta tags
   document.title = `Electricity Maps | ${i18n.t('misc.maintitle')}`;
   // Optional chaining added to ensure jsdom works
+  // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
   document.querySelector('meta[property="og:locale"]')?.setAttribute('content', LOCALE_TO_FACEBOOK_LOCALE[lng]);
 });
 

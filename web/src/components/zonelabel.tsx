@@ -31,7 +31,7 @@ const Label = styled.div`
   margin-left: 4px;
   border-radius: 4px;
   max-height: 20px;
-  ${(props) => props.type.styling}
+  ${(props) => (props as any).type.styling}
   &:hover {
     cursor: help;
   }
@@ -42,12 +42,12 @@ const TooltipInner = styled.div`
   font-size: smaller;
 `;
 
-const ZoneLabel = ({ isMobile, type }) => {
+const ZoneLabel = ({ isMobile, type }: any) => {
   const [tooltip, setTooltip] = React.useState(null);
   const { __ } = useTranslation();
 
   const TooltipComponent = tooltip && (
-    <Tooltip id={`${type.id}-info-tooltip`} position={{ x: tooltip.clientX, y: tooltip.clientY }}>
+    <Tooltip id={`${type.id}-info-tooltip`} position={{ x: (tooltip as any).clientX, y: (tooltip as any).clientY }}>
       <TooltipInner>{__(type.tooltipTranslationId)}</TooltipInner>
     </Tooltip>
   );
@@ -55,8 +55,11 @@ const ZoneLabel = ({ isMobile, type }) => {
   return (
     <React.Fragment>
       <Label
+        // @ts-expect-error TS(2769): No overload matches this call.
         type={type}
+        // @ts-expect-error TS(2345): Argument of type '{ clientX: number; clientY: numb... Remove this comment to see the full error message
         onClick={isMobile ? ({ clientX, clientY }) => setTooltip({ clientX, clientY }) : noop}
+        // @ts-expect-error TS(2345): Argument of type '{ clientX: number; clientY: numb... Remove this comment to see the full error message
         onMouseMove={!isMobile ? ({ clientX, clientY }) => setTooltip({ clientX, clientY }) : noop}
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}

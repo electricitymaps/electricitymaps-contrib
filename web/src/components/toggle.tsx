@@ -46,7 +46,7 @@ const OptionItem = styled.div`
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
 
   ${(props) =>
-    props.active &&
+    (props as any).active &&
     css`
       background: #ffffff;
       border-radius: 14px;
@@ -76,13 +76,14 @@ const InfoButton = styled.div`
   }
 `;
 
-export default ({ infoHTML, onChange, options, value, tooltipStyle }) => {
+export default ({ infoHTML, onChange, options, value, tooltipStyle }: any) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
     <Wrapper>
       <Options>
-        {options.map((o) => (
+        {options.map((o: any) => (
+          // @ts-expect-error TS(2769): No overload matches this call.
           <OptionItem key={o.value} active={o.value === value} onClick={() => onChange(o.value)}>
             {o.label}
           </OptionItem>

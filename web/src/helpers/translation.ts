@@ -1,9 +1,10 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'spri... Remove this comment to see the full error message
 import { vsprintf } from 'sprintf-js';
 import { useTranslation as useTranslationHook } from 'react-i18next';
 import i18next from './i18n';
 
 // Todo: We should get rid of vsprintf and use i18next interpolation instead
-const translateWithTranslator = (translator, key, ...args) => {
+const translateWithTranslator = (translator: any, key: any, ...args: any[]) => {
   const translation = translator(key, '');
   if (args.length > 0) {
     return vsprintf(translation, args);
@@ -12,28 +13,28 @@ const translateWithTranslator = (translator, key, ...args) => {
 };
 
 // Used for translation outside of React components
-export const translate = (key, ...args) => translateWithTranslator(i18next.t, key, ...args);
+export const translate = (key: any, ...args: any[]) => translateWithTranslator(i18next.t, key, ...args);
 
 // Hook for translations inside React components
 export const useTranslation = () => {
   const { t, i18n } = useTranslationHook();
-  const __ = (key, ...args) => translateWithTranslator(t, key, ...args);
+  const __ = (key: any, ...args: any[]) => translateWithTranslator(t, key, ...args);
   return { __, i18n };
 };
 
-export const translateIfExists = (key) => {
+export const translateIfExists = (key: any) => {
   return i18next.exists(key) ? i18next.t(key) : '';
 };
 
-export const getZoneName = (zoneCode) => translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
-export const getCountryName = (zoneCode) => translateIfExists(`zoneShortName.${zoneCode}.countryName`);
+export const getZoneName = (zoneCode: any) => translateIfExists(`zoneShortName.${zoneCode}.zoneName`);
+export const getCountryName = (zoneCode: any) => translateIfExists(`zoneShortName.${zoneCode}.countryName`);
 
 /**
  * Gets the full name of a zone with the country name in parentheses.
  * @param {string} zoneCode
  * @returns string
  */
-export function getZoneNameWithCountry(zoneCode) {
+export function getZoneNameWithCountry(zoneCode: any) {
   const zoneName = getZoneName(zoneCode);
   if (!zoneName) {
     return zoneCode;
@@ -51,7 +52,7 @@ export function getZoneNameWithCountry(zoneCode) {
  * @param {string} zoneCode
  * @returns string
  */
-export function getShortenedZoneNameWithCountry(zoneCode, limit = 40) {
+export function getShortenedZoneNameWithCountry(zoneCode: any, limit = 40) {
   const zoneName = getZoneName(zoneCode);
   if (!zoneName) {
     return zoneCode;

@@ -4,6 +4,7 @@ import { noop } from '../../helpers/noop';
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const GraphBackground = React.memo(
+  // @ts-expect-error TS(2339): Property 'timeScale' does not exist on type '{}'.
   ({ timeScale, valueScale, datetimes, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
@@ -11,8 +12,8 @@ const GraphBackground = React.memo(
     const height = y2 - y1;
 
     // Mouse hover events
-    let mouseOutRectTimeout;
-    const handleRectMouseMove = (ev) => {
+    let mouseOutRectTimeout: any;
+    const handleRectMouseMove = (ev: any) => {
       if (mouseOutRectTimeout) {
         clearTimeout(mouseOutRectTimeout);
         mouseOutRectTimeout = undefined;

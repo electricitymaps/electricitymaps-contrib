@@ -9,7 +9,7 @@ import ZoneList from '../../components/zonelist';
 import InfoText from './infotext';
 import styled from 'styled-components';
 
-const documentSearchKeyUpHandler = (key, searchRef) => {
+const documentSearchKeyUpHandler = (key: any, searchRef: any) => {
   if (key === '/') {
     // Reset input and focus
     if (searchRef.current) {
@@ -53,7 +53,7 @@ const ZoneListPanel = () => {
         className="zone-search-bar"
         placeholder={__('left-panel.search')}
         documentKeyUpHandler={documentSearchKeyUpHandler}
-        searchHandler={(query) => dispatchApplication('searchQuery', query)}
+        searchHandler={(query: any) => dispatchApplication('searchQuery', query)}
       />
 
       <ZoneList />

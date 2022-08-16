@@ -10,7 +10,7 @@ import Tooltip from '../tooltip';
 import { CarbonIntensity, MetricRatio, ZoneName } from './common';
 import { getExchangeCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
 });
@@ -22,7 +22,7 @@ const CountryPanelExchangeTooltip = ({
   position,
   zoneData,
   onClose,
-}) => {
+}: any) => {
   const { __ } = useTranslation();
   if (!zoneData) {
     return null;

@@ -67,13 +67,14 @@ const SettingButton = styled(Button).attrs({
   color: ${(props) => (props.active ? '#000' : '#999')};
 `;
 
-const LanguageSelect = ({ isOpen, onSelect }) => {
+const LanguageSelect = ({ isOpen, onSelect }: any) => {
   if (!isOpen) {
     return null;
   }
 
   return (
     <StyledLanguageSelectWrapper>
+      {/* @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message */}
       {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
         <li key={key}>
           <button onClick={() => onSelect(key)}>{language}</button>
@@ -89,23 +90,23 @@ const SettingsView = () => {
 
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
-  const windDataError = useSelector((state) => state.data.windDataError);
+  const windDataError = useSelector((state) => (state as any).data.windDataError);
   const showWindErrorMessage = windEnabled && windDataError;
 
   const solarEnabled = useSolarEnabled();
   const solarToggledLocation = useSolarToggledLocation();
-  const solarDataError = useSelector((state) => state.data.solarDataError);
+  const solarDataError = useSelector((state) => (state as any).data.solarDataError);
   const showSolarErrorMessage = solarEnabled && solarDataError;
 
-  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const colorBlindModeEnabled = useSelector((state) => state.application.colorBlindModeEnabled);
-  const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
+  const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
+  const colorBlindModeEnabled = useSelector((state) => (state as any).application.colorBlindModeEnabled);
+  const brightModeEnabled = useSelector((state) => (state as any).application.brightModeEnabled);
 
-  const handleLanguageChange = (language) => {
+  const handleLanguageChange = (language: any) => {
     i18n.changeLanguage(language);
     setLanguageSelectOpen(false);
   };
-  const toggleSetting = (name, currentValue) => {
+  const toggleSetting = (name: any, currentValue: any) => {
     dispatchApplication(name, !currentValue);
     saveKey(name, !currentValue);
   };
@@ -114,7 +115,7 @@ const SettingsView = () => {
     <InfoContainer>
       <Toggle
         infoHTML={__('tooltips.cpinfo')}
-        onChange={(value) => dispatchApplication('electricityMixMode', value)}
+        onChange={(value: any) => dispatchApplication('electricityMixMode', value)}
         options={[
           { value: 'production', label: __('tooltips.production') },
           { value: 'consumption', label: __('tooltips.consumption') },
@@ -161,13 +162,13 @@ const SettingsView = () => {
 
 const views = [
   {
-    title: (__) => __('settings-modal.title'),
+    title: (__: any) => __('settings-modal.title'),
     renderContent: () => <SettingsView />,
   },
 ];
 
 const SettingsModal = () => {
-  const modalOpen = useSelector((state) => state.application.settingsModalOpen);
+  const modalOpen = useSelector((state) => (state as any).application.settingsModalOpen);
   const trackEvent = useTrackEvent();
 
   const handleDismiss = () => {
@@ -175,6 +176,7 @@ const SettingsModal = () => {
   };
 
   const handleShown = () => {
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('Settings Modal Shown');
   };
 

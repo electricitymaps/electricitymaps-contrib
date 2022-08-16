@@ -1,4 +1,5 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Portal } from 'react-portal';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -16,8 +17,8 @@ const FadedOverlay = styled.div`
   height: 100vh;
 `;
 
-const Tooltip = ({ id, children, position, onClose }) => {
-  const isMobile = useSelector((state) => state.application.isMobile);
+const Tooltip = ({ id, children, position, onClose }: any) => {
+  const isMobile = useSelector((state) => (state as any).application.isMobile);
 
   const { ref, width, height } = useRefWidthHeightObserver();
 
@@ -44,7 +45,7 @@ const Tooltip = ({ id, children, position, onClose }) => {
     ) {
       // TODO(olc): Once the tooltip has taken 100% width, it's width will always be 100%
       // as we base our decision to revert based on the current width
-      style.width = '100%';
+      (style as any).width = '100%';
     } else {
       x = position.x + MARGIN;
       // Check that tooltip does not go over the right bound
@@ -61,12 +62,12 @@ const Tooltip = ({ id, children, position, onClose }) => {
       y = position.y - height - MARGIN;
     }
 
-    style.transform = `translate(${x}px,${y}px)`;
+    (style as any).transform = `translate(${x}px,${y}px)`;
   }
 
   // Don't show the tooltip until its dimensions have
   // been set and its position correctly calculated.
-  style.opacity = hasDimensions ? 1 : 0;
+  (style as any).opacity = hasDimensions ? 1 : 0;
 
   return (
     <Portal>

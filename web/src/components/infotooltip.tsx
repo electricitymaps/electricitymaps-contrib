@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   transition: all 0.4s;
 
   ${(props) =>
-    props.visible
+    (props as any).visible
       ? css`
           opacity: 1;
           transform: translateX(0px);
@@ -32,7 +32,8 @@ const Content = styled.div`
   text-align: center;
 `;
 
-const InfoTooltip = ({ htmlContent, style, visible }) => (
+const InfoTooltip = ({ htmlContent, style, visible }: any) => (
+  // @ts-expect-error TS(2769): No overload matches this call.
   <Wrapper style={style} visible={visible}>
     <Content dangerouslySetInnerHTML={{ __html: htmlContent }} />
   </Wrapper>

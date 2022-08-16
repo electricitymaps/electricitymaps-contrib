@@ -1,7 +1,9 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { bisectLeft } from 'd3-array';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { touches } from 'd3-selection';
 
-export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgNode) => {
+export const detectHoveredDatapointIndex = (ev: any, datetimes: any, timeScale: any, svgNode: any) => {
   if (!datetimes.length) {
     return null;
   }
@@ -20,4 +22,4 @@ export const detectHoveredDatapointIndex = (ev, datetimes, timeScale, svgNode) =
 
 // If in mobile mode, put the tooltip to the top of the screen for
 // readability, otherwise float it depending on the marker position.
-export const getTooltipPosition = (isMobile, marker) => (isMobile ? { x: 0, y: 0 } : marker);
+export const getTooltipPosition = (isMobile: any, marker: any) => (isMobile ? { x: 0, y: 0 } : marker);

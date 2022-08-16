@@ -85,13 +85,13 @@ const InfoView = () => {
 
 const views = [
   {
-    title: (__) => __('info-modal.title'),
+    title: (__: any) => __('info-modal.title'),
     renderContent: () => <InfoView />,
   },
 ];
 
 const InfoModal = () => {
-  const modalOpen = useSelector((state) => state.application.infoModalOpen);
+  const modalOpen = useSelector((state) => (state as any).application.infoModalOpen);
   const trackEvent = useTrackEvent();
 
   const handleDismiss = () => {
@@ -99,6 +99,7 @@ const InfoModal = () => {
   };
 
   const handleShown = () => {
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('Info Modal Shown');
   };
 

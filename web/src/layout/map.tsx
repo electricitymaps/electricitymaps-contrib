@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -21,22 +22,23 @@ import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 
+// @ts-expect-error TS(2554): Expected 3 arguments, but got 2.
 const debouncedReleaseMoving = debounce(() => {
   dispatchApplication('isMovingMap', false);
 }, 200);
 
 export default () => {
-  const webGLSupported = useSelector((state) => state.application.webGLSupported);
-  const isHoveringExchange = useSelector((state) => state.application.isHoveringExchange);
-  const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const callerLocation = useSelector((state) => state.application.callerLocation);
-  const isLoadingMap = useSelector((state) => state.application.isLoadingMap);
-  const isEmbedded = useSelector((state) => state.application.isEmbedded);
-  const isMobile = useSelector((state) => state.application.isMobile);
-  const viewport = useSelector((state) => state.application.mapViewport);
-  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const zones = useSelector((state) => state.data.zones);
+  const webGLSupported = useSelector((state) => (state as any).application.webGLSupported);
+  const isHoveringExchange = useSelector((state) => (state as any).application.isHoveringExchange);
+  const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
+  const callerLocation = useSelector((state) => (state as any).application.callerLocation);
+  const isLoadingMap = useSelector((state) => (state as any).application.isLoadingMap);
+  const isEmbedded = useSelector((state) => (state as any).application.isEmbedded);
+  const isMobile = useSelector((state) => (state as any).application.isMobile);
+  const viewport = useSelector((state) => (state as any).application.mapViewport);
+  const selectedZoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
+  const zones = useSelector((state) => (state as any).data.zones);
   const { __ } = useTranslation();
   const solarData = useInterpolatedSolarData();
   const windData = useInterpolatedWindData();
@@ -79,7 +81,7 @@ export default () => {
     dispatchApplication('webGLSupported', true);
   };
 
-  const handleMapError = (e) => {
+  const handleMapError = (e: any) => {
     console.error(e.error);
     // Map loading is finished, lower the overlay shield.
     dispatchApplication('isLoadingMap', false);
@@ -91,7 +93,7 @@ export default () => {
 
   const handleMouseMove = useMemo(
     () =>
-      ({ longitude, latitude, x, y }) => {
+      ({ longitude, latitude, x, y }: any) => {
         if (solarData) {
           dispatchApplication('solarColorbarValue', getValueAtPosition(longitude, latitude, solarData));
         }
@@ -104,6 +106,7 @@ export default () => {
             )
           );
         }
+        // @ts-expect-error TS(2345): Argument of type '{ x: any; y: any; }' is not assi... Remove this comment to see the full error message
         setTooltipPosition({ x, y });
       },
     [solarData, windData]
@@ -117,7 +120,7 @@ export default () => {
   );
 
   const handleZoneClick = useMemo(
-    () => (id) => {
+    () => (id: any) => {
       dispatchApplication('isLeftPanelCollapsed', false);
       history.push({ pathname: `/zone/${id}`, search: location.search });
     },
@@ -125,7 +128,7 @@ export default () => {
   );
 
   const handleZoneMouseEnter = useMemo(
-    () => (zoneId) => {
+    () => (zoneId: any) => {
       const zoneOverview = zones[zoneId][selectedTimeAggregate].overviews[selectedZoneTimeIndex];
       const zoneConfig = zones[zoneId].config;
       if (zoneOverview) {
@@ -146,7 +149,7 @@ export default () => {
 
   const handleViewportChange = useMemo(
     () =>
-      ({ width, height, latitude, longitude, zoom }) => {
+      ({ width, height, latitude, longitude, zoom }: any) => {
         dispatchApplication('isMovingMap', true);
         dispatchApplication('mapViewport', {
           width,
@@ -164,7 +167,7 @@ export default () => {
 
   const handleResize = useMemo(
     () =>
-      ({ width, height }) => {
+      ({ width, height }: any) => {
         handleViewportChange({ ...viewport, width, height });
       },
     [viewport] // eslint-disable-line react-hooks/exhaustive-deps
@@ -186,17 +189,27 @@ export default () => {
           onClose={() => setTooltipZoneData(null)}
         />
       )}
+      {/* @ts-expect-error TS(2746): This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
       <ZoneMap
         co2ColorScale={co2ColorScale}
         hoveringEnabled={hoveringEnabled}
+        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onMapLoaded={handleMapLoaded}
+        // @ts-expect-error TS(2322): Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
         onMapError={handleMapError}
+        // @ts-expect-error TS(2322): Type '({ longitude, latitude, x, y }: any) => void... Remove this comment to see the full error message
         onMouseMove={handleMouseMove}
+        // @ts-expect-error TS(2322): Type '({ width, height }: any) => void' is not ass... Remove this comment to see the full error message
         onResize={handleResize}
+        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onSeaClick={handleSeaClick}
+        // @ts-expect-error TS(2322): Type '({ width, height, latitude, longitude, zoom ... Remove this comment to see the full error message
         onViewportChange={handleViewportChange}
+        // @ts-expect-error TS(2322): Type '(id: any) => void' is not assignable to type... Remove this comment to see the full error message
         onZoneClick={handleZoneClick}
+        // @ts-expect-error TS(2322): Type '(zoneId: any) => void' is not assignable to ... Remove this comment to see the full error message
         onZoneMouseEnter={handleZoneMouseEnter}
+        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onZoneMouseLeave={handleZoneMouseLeave}
         selectedZoneTimeIndex={selectedZoneTimeIndex}
         selectedTimeAggregate={selectedTimeAggregate}
@@ -205,8 +218,11 @@ export default () => {
         transitionDuration={transitionDuration}
         viewport={viewport}
       >
+        {/* @ts-expect-error TS(2322): Type 'NamedExoticComponent<object>' is not assigna... Remove this comment to see the full error message */}
         <MapLayer component={ExchangeLayer} />
+        {/* @ts-expect-error TS(2322): Type '({ project, unproject }: any) => JSX.Element... Remove this comment to see the full error message */}
         <MapLayer component={WindLayer} />
+        {/* @ts-expect-error TS(2322): Type '({ unproject }: any) => JSX.Element' is not ... Remove this comment to see the full error message */}
         <MapLayer component={SolarLayer} />
       </ZoneMap>
     </React.Fragment>

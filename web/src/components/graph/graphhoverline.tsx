@@ -2,14 +2,23 @@ import React, { useEffect } from 'react';
 
 const GraphHoverLine = React.memo(
   ({
+    // @ts-expect-error TS(2339): Property 'layers' does not exist on type '{}'.
     layers,
+    // @ts-expect-error TS(2339): Property 'datetimes' does not exist on type '{}'.
     datetimes,
+    // @ts-expect-error TS(2339): Property 'timeScale' does not exist on type '{}'.
     timeScale,
+    // @ts-expect-error TS(2339): Property 'valueScale' does not exist on type '{}'.
     valueScale,
+    // @ts-expect-error TS(2339): Property 'markerUpdateHandler' does not exist on t... Remove this comment to see the full error message
     markerUpdateHandler,
+    // @ts-expect-error TS(2339): Property 'markerHideHandler' does not exist on typ... Remove this comment to see the full error message
     markerHideHandler,
+    // @ts-expect-error TS(2339): Property 'selectedLayerIndex' does not exist on ty... Remove this comment to see the full error message
     selectedLayerIndex,
+    // @ts-expect-error TS(2339): Property 'selectedTimeIndex' does not exist on typ... Remove this comment to see the full error message
     selectedTimeIndex,
+    // @ts-expect-error TS(2339): Property 'svgNode' does not exist on type '{}'.
     svgNode,
   }) => {
     const layer = layers && layers[selectedLayerIndex];

@@ -7,7 +7,7 @@ export function useRefWidthHeightObserver(offsetX = 0, offsetY = 0) {
 
   // See https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node
   const ref = useCallback(
-    (newNode) => {
+    (newNode: any) => {
       // This callback will be called once the ref
       // returned has been attached to `node`.
       const update = () => {
@@ -46,7 +46,7 @@ export function useWindowSize() {
   // Resize hook
   useEffect(() => {
     const updateSize = () => {
-      if (windowSize.width !== window.innerWidth || windowSize.height !== window.innerHeight) {
+      if ((windowSize as any).width !== window.innerWidth || (windowSize as any).height !== window.innerHeight) {
         setWindowSize({
           width: window.innerWidth,
           height: window.innerHeight,
@@ -66,11 +66,13 @@ export function useWindowSize() {
 }
 
 export function useIsSmallScreen() {
+  // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
   const { width } = useWindowSize();
   return width < 768;
 }
 
 export function useIsMediumUpScreen() {
+  // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
   const { width } = useWindowSize();
   return width >= 768;
 }

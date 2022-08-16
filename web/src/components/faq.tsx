@@ -48,7 +48,7 @@ const orderings = [
   },
 ];
 
-const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey }) => {
+const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey }: any) => {
   const { __ } = useTranslation();
   return (
     <div className="question-answer-container" id={entryKey}>
@@ -59,6 +59,7 @@ const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey })
         aria-controls={`${groupKey}.${entryKey}-answer`}
         aria-expanded={answerVisible}
       >
+        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName={answerVisible ? 'expand_less' : 'expand_more'} />
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
       </button>
@@ -77,10 +78,10 @@ const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey })
   );
 };
 
-const FAQ = ({ className }) => {
+const FAQ = ({ className }: any) => {
   const [answersVisible, setAnswersVisible] = useState({});
   const { __ } = useTranslation();
-  const setAnswerVisible = (entryKey, value) => {
+  const setAnswerVisible = (entryKey: any, value: any) => {
     setAnswersVisible(Object.assign({}, answersVisible, { [entryKey]: value }));
   };
 
@@ -93,7 +94,7 @@ const FAQ = ({ className }) => {
   const ref = useRef(null);
   setTimeout(() => {
     if (ref && ref.current) {
-      const links = ref.current.querySelectorAll('.entry-link');
+      const links = (ref.current as any).querySelectorAll('.entry-link');
       // This seems to be the most browser-compatible way to iterate through a list of nodes.
       // See: https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example.
       Array.prototype.forEach.call(links, (link) => {
@@ -120,6 +121,7 @@ const FAQ = ({ className }) => {
                   groupKey={groupKey}
                   entryKey={entryKey}
                   setAnswerVisible={setAnswerVisible}
+                  // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
                   answerVisible={answersVisible[entryKey]}
                 />
               ))}

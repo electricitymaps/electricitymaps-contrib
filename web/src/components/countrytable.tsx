@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { noop } from '../helpers/noop';
 import styled from 'styled-components';
@@ -37,7 +39,7 @@ const CountryTableContainer = styled.div`
   position: relative;
 `;
 
-const getProductionData = (data) =>
+const getProductionData = (data: any) =>
   modeOrder.map((mode) => {
     const isStorage = mode.indexOf('storage') !== -1;
     const resource = mode.replace(' storage', '');
@@ -62,8 +64,8 @@ const getProductionData = (data) =>
     };
   });
 
-const getExchangeData = (data, exchangeKeys, electricityMixMode) =>
-  exchangeKeys.map((mode) => {
+const getExchangeData = (data: any, exchangeKeys: any, electricityMixMode: any) =>
+  exchangeKeys.map((mode: any) => {
     // Power in MW
     const exchange = (data.exchange || {})[mode];
     const exchangeCapacityRange = (data.exchangeCapacities || {})[mode];
@@ -82,12 +84,12 @@ const getExchangeData = (data, exchangeKeys, electricityMixMode) =>
     };
   });
 
-const getDataBlockPositions = (productionData, exchangeData) => {
+const getDataBlockPositions = (productionData: any, exchangeData: any) => {
   const productionHeight = productionData.length * (ROW_HEIGHT + PADDING_Y);
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
   const exchangeFlagX =
-    LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, (d) => d.mode.length) * 8;
+    LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, (d: any) => d.mode.length) * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
   const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
 
@@ -100,7 +102,7 @@ const getDataBlockPositions = (productionData, exchangeData) => {
   };
 };
 
-const Axis = ({ formatTick, height, scale }) => (
+const Axis = ({ formatTick, height, scale }: any) => (
   <g
     className="x axis"
     fill="none"
@@ -110,7 +112,7 @@ const Axis = ({ formatTick, height, scale }) => (
     transform={`translate(${scale.range()[0] + LABEL_MAX_WIDTH}, ${X_AXIS_HEIGHT})`}
   >
     <path className="domain" stroke="currentColor" d={`M${scale.range()[0] + 0.5},0.5H${scale.range()[1] + 0.5}`} />
-    {scale.ticks(SCALE_TICKS).map((t) => (
+    {scale.ticks(SCALE_TICKS).map((t: any) => (
       <g key={t} className="tick" opacity="1" transform={`translate(${scale(t)}, 0)`}>
         <line stroke="currentColor" y2={height - X_AXIS_HEIGHT} />
         <text fill="currentColor" y="-3" dy="0">
@@ -121,7 +123,7 @@ const Axis = ({ formatTick, height, scale }) => (
   </g>
 );
 
-const Row = ({ children, index, isMobile, label, scale, value, onMouseOver, onMouseOut, width }) => {
+const Row = ({ children, index, isMobile, label, scale, value, onMouseOver, onMouseOut, width }: any) => {
   // Don't render if the width is not positive
   if (width <= 0) {
     return null;
@@ -171,7 +173,7 @@ const Row = ({ children, index, isMobile, label, scale, value, onMouseOver, onMo
   );
 };
 
-const HorizontalBar = ({ className, fill, range, scale }) => {
+const HorizontalBar = ({ className, fill, range, scale }: any) => {
   // Don't render if the range is not valid
   if (!Array.isArray(range) || !Number.isFinite(range[0]) || !Number.isFinite(range[1])) {
     return null;
@@ -202,23 +204,33 @@ const HorizontalBar = ({ className, fill, range, scale }) => {
 
 const CountryCarbonEmissionsTable = React.memo(
   ({
+    // @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
     data,
+    // @ts-expect-error TS(2339): Property 'exchangeData' does not exist on type '{}... Remove this comment to see the full error message
     exchangeData,
+    // @ts-expect-error TS(2339): Property 'height' does not exist on type '{}'.
     height,
+    // @ts-expect-error TS(2339): Property 'isMobile' does not exist on type '{}'.
     isMobile,
+    // @ts-expect-error TS(2339): Property 'productionData' does not exist on type '... Remove this comment to see the full error message
     productionData,
+    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOver' does not exist... Remove this comment to see the full error message
     onProductionRowMouseOver,
+    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOut' does not exist ... Remove this comment to see the full error message
     onProductionRowMouseOut,
+    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOver' does not exist o... Remove this comment to see the full error message
     onExchangeRowMouseOver,
+    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOut' does not exist on... Remove this comment to see the full error message
     onExchangeRowMouseOut,
+    // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
     width,
   }) => {
     const { __ } = useTranslation();
     const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
-    const maxCO2eqExport = d3Max(exchangeData, (d) => Math.max(0, -d.tCo2eqPerMin));
-    const maxCO2eqImport = d3Max(exchangeData, (d) => Math.max(0, d.tCo2eqPerMin));
-    const maxCO2eqProduction = d3Max(productionData, (d) => d.tCo2eqPerMin);
+    const maxCO2eqExport = d3Max(exchangeData, (d: any) => Math.max(0, -d.tCo2eqPerMin));
+    const maxCO2eqImport = d3Max(exchangeData, (d: any) => Math.max(0, d.tCo2eqPerMin));
+    const maxCO2eqProduction = d3Max(productionData, (d: any) => d.tCo2eqPerMin);
 
     // in tCO₂eq/min
     const co2Scale = useMemo(
@@ -229,7 +241,7 @@ const CountryCarbonEmissionsTable = React.memo(
       [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
     );
 
-    const formatTick = (t) => {
+    const formatTick = (t: any) => {
       const [x1, x2] = co2Scale.domain();
       if (x2 - x1 <= 1) {
         return `${t * 1e3} kg/min`;
@@ -241,7 +253,7 @@ const CountryCarbonEmissionsTable = React.memo(
       <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
         <Axis formatTick={formatTick} height={height} scale={co2Scale} />
         <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
+          {productionData.map((d: any, index: any) => (
             <Row
               key={d.mode}
               index={index}
@@ -249,12 +261,13 @@ const CountryCarbonEmissionsTable = React.memo(
               width={width}
               scale={co2Scale}
               value={Math.abs(d.tCo2eqPerMin)}
-              onMouseOver={(ev) => onProductionRowMouseOver(d.mode, data, ev)}
+              onMouseOver={(ev: any) => onProductionRowMouseOver(d.mode, data, ev)}
               onMouseOut={onProductionRowMouseOut}
               isMobile={isMobile}
             >
               <HorizontalBar
                 className="production"
+                // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
                 fill={modeColor[d.mode]}
                 range={[0, Math.abs(d.tCo2eqPerMin)]}
                 scale={co2Scale}
@@ -263,7 +276,7 @@ const CountryCarbonEmissionsTable = React.memo(
           ))}
         </g>
         <g transform={`translate(0, ${exchangeY})`}>
-          {exchangeData.map((d, index) => (
+          {exchangeData.map((d: any, index: any) => (
             <Row
               key={d.mode}
               index={index}
@@ -271,7 +284,7 @@ const CountryCarbonEmissionsTable = React.memo(
               width={width}
               scale={co2Scale}
               value={d.tCo2eqPerMin}
-              onMouseOver={(ev) => onExchangeRowMouseOver(d.mode, data, ev)}
+              onMouseOver={(ev: any) => onExchangeRowMouseOver(d.mode, data, ev)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={isMobile}
             >
@@ -287,15 +300,25 @@ const CountryCarbonEmissionsTable = React.memo(
 
 const CountryElectricityProductionTable = React.memo(
   ({
+    // @ts-expect-error TS(2339): Property 'data' does not exist on type '{}'.
     data,
+    // @ts-expect-error TS(2339): Property 'exchangeData' does not exist on type '{}... Remove this comment to see the full error message
     exchangeData,
+    // @ts-expect-error TS(2339): Property 'height' does not exist on type '{}'.
     height,
+    // @ts-expect-error TS(2339): Property 'isMobile' does not exist on type '{}'.
     isMobile,
+    // @ts-expect-error TS(2339): Property 'productionData' does not exist on type '... Remove this comment to see the full error message
     productionData,
+    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOver' does not exist... Remove this comment to see the full error message
     onProductionRowMouseOver,
+    // @ts-expect-error TS(2339): Property 'onProductionRowMouseOut' does not exist ... Remove this comment to see the full error message
     onProductionRowMouseOut,
+    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOver' does not exist o... Remove this comment to see the full error message
     onExchangeRowMouseOver,
+    // @ts-expect-error TS(2339): Property 'onExchangeRowMouseOut' does not exist on... Remove this comment to see the full error message
     onExchangeRowMouseOut,
+    // @ts-expect-error TS(2339): Property 'width' does not exist on type '{}'.
     width,
   }) => {
     const { __ } = useTranslation();
@@ -310,7 +333,7 @@ const CountryElectricityProductionTable = React.memo(
       const historyOrCurrent = history && history.length ? history : [data];
       return [
         d3Min(
-          historyOrCurrent.map((zoneData) =>
+          historyOrCurrent.map((zoneData: any) =>
             Math.min(
               -zoneData.maxStorageCapacity || 0,
               -zoneData.maxStorage || 0,
@@ -320,7 +343,7 @@ const CountryElectricityProductionTable = React.memo(
           )
         ) || 0,
         d3Max(
-          historyOrCurrent.map((zoneData) =>
+          historyOrCurrent.map((zoneData: any) =>
             Math.max(
               zoneData.maxCapacity || 0,
               zoneData.maxProduction || 0,
@@ -339,7 +362,7 @@ const CountryElectricityProductionTable = React.memo(
       .domain([minPower, maxPower])
       .range([0, width - LABEL_MAX_WIDTH - PADDING_X]);
 
-    const formatTick = (t) => {
+    const formatTick = (t: any) => {
       const [x1, x2] = powerScale.domain();
       if (x2 - x1 <= 1) {
         return `${t * 1e3} kW`;
@@ -354,7 +377,7 @@ const CountryElectricityProductionTable = React.memo(
       <CountryTableSVG height={height} style={{ overflow: 'visible' }}>
         <Axis formatTick={formatTick} height={height} scale={powerScale} />
         <g transform={`translate(0, ${productionY})`}>
-          {productionData.map((d, index) => (
+          {productionData.map((d: any, index: any) => (
             <Row
               key={d.mode}
               index={index}
@@ -362,7 +385,7 @@ const CountryElectricityProductionTable = React.memo(
               width={width}
               scale={powerScale}
               value={getElectricityProductionValue(d)}
-              onMouseOver={(ev) => onProductionRowMouseOver(d.mode, data, ev)}
+              onMouseOver={(ev: any) => onProductionRowMouseOver(d.mode, data, ev)}
               onMouseOut={onProductionRowMouseOut}
               isMobile={isMobile}
             >
@@ -374,6 +397,7 @@ const CountryElectricityProductionTable = React.memo(
               />
               <HorizontalBar
                 className="production"
+                // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
                 fill={modeColor[d.mode]}
                 range={[0, getElectricityProductionValue(d)]}
                 scale={powerScale}
@@ -382,7 +406,7 @@ const CountryElectricityProductionTable = React.memo(
           ))}
         </g>
         <g transform={`translate(0, ${exchangeY})`}>
-          {exchangeData.map((d, index) => (
+          {exchangeData.map((d: any, index: any) => (
             <Row
               key={d.mode}
               index={index}
@@ -390,7 +414,7 @@ const CountryElectricityProductionTable = React.memo(
               width={width}
               scale={powerScale}
               value={d.exchange}
-              onMouseOver={(ev) => onExchangeRowMouseOver(d.mode, data, ev)}
+              onMouseOver={(ev: any) => onExchangeRowMouseOver(d.mode, data, ev)}
               onMouseOut={onExchangeRowMouseOut}
               isMobile={isMobile}
             >
@@ -415,13 +439,13 @@ const CountryElectricityProductionTable = React.memo(
   }
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
-const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
+const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }: any) => {
   const { ref, width } = useRefWidthHeightObserver();
 
   const exchangeKeys = useCurrentZoneExchangeKeys();
@@ -436,8 +460,9 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
   const [productionTooltip, setProductionTooltip] = useState(null);
   const [exchangeTooltip, setExchangeTooltip] = useState(null);
 
-  const handleProductionRowMouseOver = (mode, zoneData, ev) => {
+  const handleProductionRowMouseOver = (mode: any, zoneData: any, ev: any) => {
     dispatchApplication('co2ColorbarValue', getProductionCo2Intensity(mode, zoneData));
+    // @ts-expect-error TS(2345): Argument of type '{ mode: any; zoneData: any; posi... Remove this comment to see the full error message
     setProductionTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
   };
 
@@ -446,8 +471,9 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
     setProductionTooltip(null);
   };
 
-  const handleExchangeRowMouseOver = (mode, zoneData, ev) => {
+  const handleExchangeRowMouseOver = (mode: any, zoneData: any, ev: any) => {
     dispatchApplication('co2ColorbarValue', getExchangeCo2Intensity(mode, zoneData, electricityMixMode));
+    // @ts-expect-error TS(2345): Argument of type '{ mode: any; zoneData: any; posi... Remove this comment to see the full error message
     setExchangeTooltip({ mode, zoneData, position: getTooltipPosition(isMobile, { x: ev.clientX, y: ev.clientY }) });
   };
 
@@ -463,6 +489,7 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
     <CountryTableContainer ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
+          // @ts-expect-error TS(2322): Type '{ data: any; productionData: { isStorage: bo... Remove this comment to see the full error message
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
@@ -476,6 +503,7 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
         />
       ) : (
         <CountryElectricityProductionTable
+          // @ts-expect-error TS(2322): Type '{ data: any; productionData: { isStorage: bo... Remove this comment to see the full error message
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
@@ -490,17 +518,17 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }) => {
       )}
       {productionTooltip && (
         <CountryPanelProductionTooltip
-          mode={productionTooltip.mode}
-          position={productionTooltip.position}
-          zoneData={productionTooltip.zoneData}
+          mode={(productionTooltip as any).mode}
+          position={(productionTooltip as any).position}
+          zoneData={(productionTooltip as any).zoneData}
           onClose={() => setProductionTooltip(null)}
         />
       )}
       {exchangeTooltip && (
         <CountryPanelExchangeTooltip
-          exchangeKey={exchangeTooltip.mode}
-          position={exchangeTooltip.position}
-          zoneData={exchangeTooltip.zoneData}
+          exchangeKey={(exchangeTooltip as any).mode}
+          position={(exchangeTooltip as any).position}
+          zoneData={(exchangeTooltip as any).zoneData}
           onClose={() => setExchangeTooltip(null)}
         />
       )}

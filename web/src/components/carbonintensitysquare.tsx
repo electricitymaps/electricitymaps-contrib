@@ -13,7 +13,7 @@ import { useTranslation } from '../helpers/translation';
  * See https://github.com/tmrowco/electricitymap-contrib/issues/3365 for more informations.
  * @param {string} rgbColor a string with the background color (e.g. "rgb(0,5,4)")
  */
-const getTextColor = (rgbColor) => {
+const getTextColor = (rgbColor: any) => {
   const colors = rgbColor.replace(/[^\d,.]/g, '').split(',');
   const r = parseInt(colors[0], 10);
   const g = parseInt(colors[1], 10);
@@ -44,7 +44,7 @@ const Box = styled.div`
   font-size: 1rem;
 `;
 
-const CarbonIntensitySquare = ({ value, withSubtext }) => {
+const CarbonIntensitySquare = ({ value, withSubtext }: any) => {
   const { __ } = useTranslation();
   const co2ColorScale = useCo2ColorScale();
 

@@ -1,16 +1,20 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-r... Remove this comment to see the full error message
 import * as request from 'd3-request';
 import { sha256 } from 'js-sha256';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'js-c... Remove this comment to see the full error message
 import Cookies from 'js-cookie';
 
 import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
 
 function getToken() {
+  // @ts-expect-error TS(2304): Cannot find name 'ELECTRICITYMAP_PUBLIC_TOKEN'.
   if (ELECTRICITYMAP_PUBLIC_TOKEN === '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%') {
     throw new Error(
       'It seems like you are trying to run the app locally with remote API, but have not set the SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN environment variable.\n Try running `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN=<your-token> yarn develop`'
     );
   }
+  // @ts-expect-error TS(2304): Cannot find name 'ELECTRICITYMAP_PUBLIC_TOKEN'.
   return ELECTRICITYMAP_PUBLIC_TOKEN;
 }
 
@@ -30,7 +34,7 @@ export function getEndpoint() {
   return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
 }
 
-export function protectedJsonRequest(path) {
+export function protectedJsonRequest(path: any) {
   const url = getEndpoint() + path;
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = new Date().getTime();
@@ -41,13 +45,13 @@ export function protectedJsonRequest(path) {
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
       .header('x-signature', sha256(token + path + timestamp))
-      .get(null, (err, res) => {
+      .get(null, (err: any, res: any) => {
         if (err) {
           reject(err);
         } else if (!res || !res.data) {
           const errorToReturn = new Error(`Empty response received for ${url}`);
           // Treat as a 404
-          errorToReturn.target = {
+          (errorToReturn as any).target = {
             status: 404,
             statusText: errorToReturn.message,
           };
@@ -59,7 +63,7 @@ export function protectedJsonRequest(path) {
   });
 }
 
-export function handleRequestError(err) {
+export function handleRequestError(err: any) {
   if (err) {
     if (err.target) {
       const { responseText, responseURL, status, statusText } = err.target;

@@ -11,13 +11,13 @@ import { TIME } from '../../helpers/constants';
 import { CarbonIntensity, MetricRatio } from './common';
 import { getElectricityProductionValue, getProductionCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
 });
 
-const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zoneData, onClose }) => {
+const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zoneData, onClose }: any) => {
   const { __ } = useTranslation();
-  const aggregation = useSelector((state) => state.application.selectedTimeAggregate);
+  const aggregation = useSelector((state) => (state as any).application.selectedTimeAggregate);
   if (!zoneData) {
     return null;
   }

@@ -1,3 +1,4 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { select } from 'd3-selection';
 
 import { history } from './helpers/router';
@@ -15,21 +16,22 @@ export const cordovaApp = {
     document.addEventListener('backbutton', this.onBack, false);
   },
 
-  onBack(e) {
+  onBack(e: any) {
     // Go to previous page if it exists, otherwise exit the app.
     if (history.length > 1) {
       history.goBack();
       e.preventDefault();
     } else {
-      navigator.app.exitApp();
+      (navigator as any).app.exitApp();
     }
   },
 
   onDeviceReady() {
     console.log('Cordova: onDeviceReady'); // eslint-disable-line no-console
     // Resize if we're on iOS
+    // @ts-expect-error TS(2304): Cannot find name 'cordova'.
     if (cordova.platformId === 'ios') {
-      const styles = function (top, bottom) {
+      const styles = function (top: any, bottom: any) {
         return `
         /* TODO: this selects nothing, header on iPad still overlaps with the status bar */
         #header {
@@ -80,12 +82,14 @@ export const cordovaApp = {
           `);
     }
 
+    // @ts-expect-error TS(2304): Cannot find name 'codePush'.
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 
   onResume() {
     // Count as app visit
     store.dispatch({ type: 'TRACK_EVENT', payload: { eventName: 'Visit' } });
+    // @ts-expect-error TS(2304): Cannot find name 'codePush'.
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });
   },
 };

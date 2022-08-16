@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'colo... Remove this comment to see the full error message
 import parse from 'color-parse';
 
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
@@ -12,8 +14,8 @@ import { solarColor } from '../../helpers/scales';
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
 const maxSolar = solarColor.domain().at(-1);
-const solarIntensityToOpacity = (intensity) => Math.floor((intensity / maxSolar) * 255);
-const opacityToSolarIntensity = (opacity) => Math.floor((opacity * maxSolar) / 255);
+const solarIntensityToOpacity = (intensity: any) => Math.floor((intensity / maxSolar) * 255);
+const opacityToSolarIntensity = (opacity: any) => Math.floor((opacity * maxSolar) / 255);
 
 // Pre-process solar color components across all integer values
 // for faster vertex shading when generating the canvas image.
@@ -37,20 +39,20 @@ const Canvas = styled.canvas`
   height: 100%;
 `;
 
-export default ({ unproject }) => {
+export default ({ unproject }: any) => {
   const { ref, width, height, node } = useRefWidthHeightObserver();
   const solar = useInterpolatedSolarData();
   const enabled = useSolarEnabled();
 
-  const mapZoom = useSelector((state) => state.application.mapViewport.zoom);
-  const isMapLoaded = useSelector((state) => !state.application.isLoadingMap);
-  const isMoving = useSelector((state) => state.application.isMovingMap);
+  const mapZoom = useSelector((state) => (state as any).application.mapViewport.zoom);
+  const isMapLoaded = useSelector((state) => !(state as any).application.isLoadingMap);
+  const isMoving = useSelector((state) => (state as any).application.isMovingMap);
   const isVisible = enabled && isMapLoaded && !isMoving;
 
   // Render the processed solar forecast image into the canvas.
   useEffect(() => {
     if (node && isVisible && solar && width && height) {
-      const ctx = node.getContext('2d');
+      const ctx = (node as any).getContext('2d');
       const image = ctx.createImageData(width, height);
 
       const [minLon, minLat] = unproject([0, 0]);

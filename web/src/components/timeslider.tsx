@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleTime } from 'd3-scale';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import sortedIndex from 'lodash.sortedindex';
 
 import TimeAxis from './graph/timeaxis';
@@ -21,12 +23,12 @@ const HiddenOnMobile = styled.div`
 
 const AXIS_HORIZONTAL_MARGINS = 12;
 
-const getTimeScale = (rangeEnd, datetimes, startTime, endTime) =>
+const getTimeScale = (rangeEnd: any, datetimes: any, startTime: any, endTime: any) =>
   scaleTime()
     .domain([startTime ? new Date(startTime) : datetimes.at(0), endTime ? new Date(endTime) : datetimes.at(-1)])
     .range([0, rangeEnd]);
 
-const updateTooltipPosition = (ev, setTooltipPos) => {
+const updateTooltipPosition = (ev: any, setTooltipPos: any) => {
   const thumbSize = 25;
   const range = ev.target;
   const ratio = (range.value - range.min) / (range.max - range.min);
@@ -35,23 +37,24 @@ const updateTooltipPosition = (ev, setTooltipPos) => {
   setTooltipPos({ x: posX, y: posY });
 };
 
-const createChangeAndInputHandler = (datetimes, onChange, setAnchoredTimeIndex, setTooltipPos) => (ev) => {
-  const value = parseInt(ev.target.value, 10);
-  updateTooltipPosition(ev, setTooltipPos);
+const createChangeAndInputHandler =
+  (datetimes: any, onChange: any, setAnchoredTimeIndex: any, setTooltipPos: any) => (ev: any) => {
+    const value = parseInt(ev.target.value, 10);
+    updateTooltipPosition(ev, setTooltipPos);
 
-  let index = sortedIndex(
-    datetimes.map((t) => t.valueOf()),
-    value
-  );
-  // If the slider is past the last datetime, we set index to null in order to use the scale end time.
-  if (index >= datetimes.length) {
-    index = null;
-  }
-  setAnchoredTimeIndex(index);
-  if (onChange) {
-    onChange(index);
-  }
-};
+    let index = sortedIndex(
+      datetimes.map((t: any) => t.valueOf()),
+      value
+    );
+    // If the slider is past the last datetime, we set index to null in order to use the scale end time.
+    if (index >= datetimes.length) {
+      index = null;
+    }
+    setAnchoredTimeIndex(index);
+    if (onChange) {
+      onChange(index);
+    }
+  };
 
 const TimeSlider = ({
   className,
@@ -62,12 +65,12 @@ const TimeSlider = ({
   endTime,
   handleTimeAggregationChange,
   selectedTimeAggregate,
-}) => {
+}: any) => {
   const { __ } = useTranslation();
   const { ref, width } = useRefWidthHeightObserver(2 * AXIS_HORIZONTAL_MARGINS);
   const [tooltipPos, setTooltipPos] = useState(null);
   const [anchoredTimeIndex, setAnchoredTimeIndex] = useState(null);
-  const isLoading = useSelector((state) => state.data.isLoadingGrid);
+  const isLoading = useSelector((state) => (state as any).data.isLoadingGrid);
   const timeScale = useMemo(
     () => getTimeScale(width, datetimes, startTime, endTime),
     [width, datetimes, startTime, endTime]
@@ -112,6 +115,7 @@ const TimeSlider = ({
         aria-label="Change selected time"
       />
       <TimeAxis
+        // @ts-expect-error TS(2322): Type '{ inputRef: (newNode: any) => () => void; da... Remove this comment to see the full error message
         inputRef={ref}
         datetimes={datetimes}
         scale={timeScale}

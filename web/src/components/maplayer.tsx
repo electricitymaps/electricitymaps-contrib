@@ -1,8 +1,9 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { BaseControl } from 'react-map-gl';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   mapViewport: state.application.mapViewport,
 });
 
@@ -11,6 +12,10 @@ const mapStateToProps = (state) => ({
 // is important for capturing mouse events (e.g. clicks) and not
 // letting them propagate to the map.
 class MapLayer extends BaseControl {
+  _containerRef: any;
+  _context: any;
+  props: any;
+  setState: any;
   state = {
     project: null,
     unproject: null,
@@ -20,7 +25,7 @@ class MapLayer extends BaseControl {
   // only when the map viewport changes as ReactMapGL calls the _render() method
   // at all sorts of times and we don't want the layers to rerender more than needed.
   // Always set in the next cycle to make sure it's not picking up old methods.
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: any) {
     if (nextProps.mapViewport !== this.props.mapViewport) {
       setTimeout(() => {
         this.setState({
@@ -44,6 +49,7 @@ class MapLayer extends BaseControl {
 }
 
 // Pass through all drag events to the map.
-MapLayer.defaultProps.captureDrag = false;
+(MapLayer as any).defaultProps.captureDrag = false;
 
+// @ts-expect-error TS(2345): Argument of type 'typeof MapLayer' is not assignab... Remove this comment to see the full error message
 export default connect(mapStateToProps)(MapLayer);

@@ -7,11 +7,11 @@ import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
 import styled from 'styled-components';
 
-const handleZoneTimeIndexChange = (timeIndex) => {
+const handleZoneTimeIndexChange = (timeIndex: any) => {
   dispatchApplication('selectedZoneTimeIndex', timeIndex);
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   selectedZoneTimeIndex: state.application.selectedZoneTimeIndex,
   selectedTimeAggregate: state.application.selectedTimeAggregate,
 });
@@ -48,14 +48,14 @@ const StyledTimeSlider = styled(TimeSlider)`
   }
 `;
 
-const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }) => {
+const TimeController = ({ selectedZoneTimeIndex, selectedTimeAggregate }: any) => {
   const datetimes = useCurrentDatetimes();
   const trackEvent = useTrackEvent();
 
   const startTime = datetimes.at(0);
   const endTime = datetimes.at(-1);
 
-  const handleTimeAggregationChange = (aggregate, zoneDatetimes) => {
+  const handleTimeAggregationChange = (aggregate: any, zoneDatetimes: any) => {
     if (aggregate === selectedTimeAggregate) {
       return;
     }

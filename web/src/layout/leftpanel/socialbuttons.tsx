@@ -10,19 +10,26 @@ const StyledWrapper = styled.div`
     margin-top: 0px;
   }
   @media (min-width: 768px) {
-    display: ${({ hideOnDesktop }) => (hideOnDesktop ? 'none !important' : 'block')};
+    display: ${({
+      // @ts-expect-error TS(2339): Property 'hideOnDesktop' does not exist on type 'P... Remove this comment to see the full error message
+      hideOnDesktop,
+    }) => (hideOnDesktop ? 'none !important' : 'block')};
   }
   @media (max-width: 768px) {
-    display: ${({ hideOnMobile }) => (hideOnMobile ? 'none !important' : 'block')};
+    display: ${({
+      // @ts-expect-error TS(2339): Property 'hideOnMobile' does not exist on type 'Pi... Remove this comment to see the full error message
+      hideOnMobile,
+    }) => (hideOnMobile ? 'none !important' : 'block')};
   }
 `;
 
-const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
+const SocialButtons = ({ hideOnMobile, hideOnDesktop }: any) => {
   if (hideOnMobile && hideOnDesktop) {
     return null;
   }
 
   return (
+    // @ts-expect-error TS(2769): No overload matches this call.
     <StyledWrapper hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile}>
       <div>
         {/* Facebook share */}
@@ -33,6 +40,7 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
           target="_blank"
           rel="noreferrer"
         >
+          {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
           <Icon iconName={'twitter'} size={16} /> Tweet
         </a>
         {/* Slack */}

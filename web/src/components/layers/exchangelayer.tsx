@@ -18,18 +18,20 @@ const Layer = styled.div`
   left: 0;
 `;
 
+// @ts-expect-error TS(2339): Property 'project' does not exist on type '{}'.
 export default React.memo(({ project }) => {
   const arrows = useExchangeArrowsData();
   const { ref, width, height } = useRefWidthHeightObserver();
 
-  const isMoving = useSelector((state) => state.application.isMovingMap);
+  const isMoving = useSelector((state) => (state as any).application.isMovingMap);
   const [tooltip, setTooltip] = useState(null);
 
   // Mouse interaction handlers
   const handleArrowMouseMove = useMemo(
-    () => (exchangeData, x, y) => {
+    () => (exchangeData: any, x: any, y: any) => {
       dispatchApplication('isHoveringExchange', true);
       dispatchApplication('co2ColorbarValue', exchangeData.co2intensity);
+      // @ts-expect-error TS(2345): Argument of type '{ exchangeData: any; position: {... Remove this comment to see the full error message
       setTooltip({ exchangeData, position: { x, y } });
     },
     []
@@ -57,15 +59,16 @@ export default React.memo(({ project }) => {
     <Layer id="exchange" ref={ref}>
       {tooltip && (
         <MapExchangeTooltip
-          exchangeData={tooltip.exchangeData}
-          position={tooltip.position}
+          exchangeData={(tooltip as any).exchangeData}
+          position={(tooltip as any).position}
           onClose={() => setTooltip(null)}
         />
       )}
       {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
       {!isMoving &&
-        arrows.map((arrow) => (
+        arrows.map((arrow: any) => (
           <ExchangeArrow
+            // @ts-expect-error TS(2322): Type '{ data: any; key: any; mouseMoveHandler: (ex... Remove this comment to see the full error message
             data={arrow}
             key={arrow.sortedCountryCodes}
             mouseMoveHandler={handleArrowMouseMove}

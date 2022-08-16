@@ -1,10 +1,12 @@
 import React from 'react';
 import { noop } from '../../helpers/noop';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { area, curveStepAfter } from 'd3-shape';
 
 import { detectHoveredDatapointIndex } from '../../helpers/graph';
 
 const AreaGraphLayers = React.memo(
+  // @ts-expect-error TS(2339): Property 'layers' does not exist on type '{}'.
   ({ layers, datetimes, timeScale, valueScale, mouseMoveHandler, mouseOutHandler, isMobile, svgNode }) => {
     const [x1, x2] = timeScale.range();
     const [y2, y1] = valueScale.range();
@@ -16,13 +18,13 @@ const AreaGraphLayers = React.memo(
     const layerArea = area()
       // see https://github.com/d3/d3-shape#curveStep
       .curve(curveStepAfter)
-      .x((d) => timeScale(d.data.datetime))
-      .y0((d) => valueScale(d[0]))
-      .y1((d) => valueScale(d[1]))
-      .defined((d) => Number.isFinite(d[1]));
+      .x((d: any) => timeScale(d.data.datetime))
+      .y0((d: any) => valueScale(d[0]))
+      .y1((d: any) => valueScale(d[1]))
+      .defined((d: any) => Number.isFinite(d[1]));
     // Mouse hover events
-    let mouseOutTimeout;
-    const handleLayerMouseMove = (ev, layerIndex) => {
+    let mouseOutTimeout: any;
+    const handleLayerMouseMove = (ev: any, layerIndex: any) => {
       if (mouseOutTimeout) {
         clearTimeout(mouseOutTimeout);
         mouseOutTimeout = undefined;
@@ -40,7 +42,7 @@ const AreaGraphLayers = React.memo(
 
     return (
       <g>
-        {layers.map((layer, ind) => {
+        {layers.map((layer: any, ind: any) => {
           const isGradient = typeof layer.fill === 'function';
           const gradientId = `areagraph-gradient-${layer.key}`;
           // The datapoint valid until the next point
@@ -48,7 +50,7 @@ const AreaGraphLayers = React.memo(
           // Therefore, we add one here in order to make sure
           // the last point is visible for the following interval
           const lastDataPoint = [...layer.datapoints.at(-1)];
-          lastDataPoint.data = {
+          (lastDataPoint as any).data = {
             ...layer.datapoints.at(-1)?.data,
             datetime: datetimes[layer.datapoints.length],
           };

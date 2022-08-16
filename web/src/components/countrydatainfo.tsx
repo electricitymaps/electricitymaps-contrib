@@ -9,6 +9,7 @@ const DataInfoBox = styled.p`
   margin: 1rem 0;
 `;
 
+// @ts-expect-error TS(2339): Property 'text' does not exist on type '{}'.
 const DataInfo = memo(({ text }) => (
   <>
     <DataInfoBox

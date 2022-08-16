@@ -9,29 +9,30 @@ import MapCountryTooltip from './tooltips/mapcountrytooltip';
 import AreaGraph from './graph/areagraph';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 
-const prepareGraphData = (historyData, co2ColorScale, electricityMixMode) => {
+const prepareGraphData = (historyData: any, co2ColorScale: any, electricityMixMode: any) => {
   if (!historyData || !historyData[0] || !historyData[0].hasData) {
     // Incomplete data
     return {};
   }
 
-  const data = historyData.map((d) => ({
+  const data = historyData.map((d: any) => ({
     carbonIntensity: getCO2IntensityByMode(d, electricityMixMode),
     datetime: new Date(d.stateDatetime),
+
     // Keep a pointer to original data
     meta: d,
   }));
   const layerKeys = ['carbonIntensity'];
-  const layerFill = (key) => (d) => co2ColorScale(d.data[key]);
+  const layerFill = (key: any) => (d: any) => co2ColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   electricityMixMode: state.application.electricityMixMode,
   isMobile: state.application.isMobile,
 });
 
-const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
+const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }: any) => {
   const [tooltip, setTooltip] = useState(null);
   const co2ColorScale = useCo2ColorScale();
 
@@ -45,8 +46,9 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
 
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
-    () => (position, datapoint) => {
+    () => (position: any, datapoint: any) => {
       setTooltip({
+        // @ts-expect-error TS(2345): Argument of type '{ position: any; zoneData: any; ... Remove this comment to see the full error message
         position: getTooltipPosition(isMobile, position),
         zoneData: datapoint.meta,
       });
@@ -63,6 +65,7 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-carbon-graph"
         data={data}
         layerKeys={layerKeys}
@@ -75,8 +78,8 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }) => {
       />
       {tooltip && (
         <MapCountryTooltip
-          position={tooltip.position}
-          zoneData={tooltip.zoneData}
+          position={(tooltip as any).position}
+          zoneData={(tooltip as any).zoneData}
           onClose={() => {
             setTooltip(null);
           }}

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useLocation } from 'react-router-dom';
 import { TIME } from '../helpers/constants';
 
@@ -29,14 +30,18 @@ export function useHeaderVisible() {
 
 export function useSolarEnabled() {
   const isWeatherEnabled = useSelector(
-    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+    (state) =>
+      (state as any).application.selectedTimeAggregate === TIME.HOURLY &&
+      (state as any).application.selectedZoneTimeIndex === 24
   );
   return useSearchParams().get('solar') === 'true' && isWeatherEnabled;
 }
 
 export function useWindEnabled() {
   const isWeatherEnabled = useSelector(
-    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+    (state) =>
+      (state as any).application.selectedTimeAggregate === TIME.HOURLY &&
+      (state as any).application.selectedZoneTimeIndex === 24
   );
   return useSearchParams().get('wind') === 'true' && isWeatherEnabled;
 }
@@ -47,6 +52,7 @@ export function useSolarToggledLocation() {
   const solarEnabled = useSolarEnabled();
 
   return useMemo(() => {
+    // @ts-expect-error TS(2345): Argument of type 'boolean' is not assignable to pa... Remove this comment to see the full error message
     searchParams.set('solar', !solarEnabled);
     return {
       pathname: location.pathname,
@@ -61,6 +67,7 @@ export function useWindToggledLocation() {
   const windEnabled = useWindEnabled();
 
   return useMemo(() => {
+    // @ts-expect-error TS(2345): Argument of type 'boolean' is not assignable to pa... Remove this comment to see the full error message
     searchParams.set('wind', !windEnabled);
     return {
       pathname: location.pathname,

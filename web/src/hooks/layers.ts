@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-i... Remove this comment to see the full error message
 import { interpolate } from 'd3-interpolate';
 import { formatDistance } from 'date-fns';
 
@@ -7,23 +8,27 @@ import { getRefTime, getTargetTime } from '../helpers/grib';
 import { TIME } from '../helpers/constants';
 
 export function useExchangeArrowsData() {
-  const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
-  const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
+  const isConsumption = useSelector((state) => (state as any).application.electricityMixMode === 'consumption');
+  const isHourly = useSelector((state) => (state as any).application.selectedTimeAggregate === TIME.HOURLY);
 
-  const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
-  const exchanges = useSelector((state) => state.data.exchanges);
+  const selectedZoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
+  const exchanges = useSelector((state) => (state as any).data.exchanges);
 
   if (!isConsumption || !isHourly) {
     return [];
   }
 
+  // @ts-expect-error TS(2550): Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
   return Object.values(exchanges)
-    .filter((exchange) => exchange.data[selectedZoneTimeIndex])
-    .map((exchange) => ({ ...exchange.config, ...exchange.data[selectedZoneTimeIndex] }));
+    .filter((exchange: any) => exchange.data[selectedZoneTimeIndex])
+    .map((exchange: any) => ({
+      ...exchange.config,
+      ...exchange.data[selectedZoneTimeIndex],
+    }));
 }
 
 export function useInterpolatedWindData() {
-  const windData = useSelector((state) => state.data.wind);
+  const windData = useSelector((state) => (state as any).data.wind);
 
   // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(() => {
@@ -36,6 +41,7 @@ export function useInterpolatedWindData() {
     const tBefore = getTargetTime(gribs1[0]);
     const tAfter = getTargetTime(gribs2[0]);
     const datetime = new Date();
+    // @ts-expect-error TS(2362): The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     const k = (datetime - tBefore) / (tAfter - tBefore);
 
     if (datetime > tAfter) {
@@ -61,14 +67,14 @@ export function useInterpolatedWindData() {
     );
 
     return [
-      { ...gribs1[0], data: gribs1[0].data.map((d, i) => interpolate(d, gribs2[0].data[i])(k)) },
-      { ...gribs1[1], data: gribs1[1].data.map((d, i) => interpolate(d, gribs2[1].data[i])(k)) },
+      { ...gribs1[0], data: gribs1[0].data.map((d: any, i: any) => interpolate(d, gribs2[0].data[i])(k)) },
+      { ...gribs1[1], data: gribs1[1].data.map((d: any, i: any) => interpolate(d, gribs2[1].data[i])(k)) },
     ];
   }, [windData]);
 }
 
 export function useInterpolatedSolarData() {
-  const solarData = useSelector((state) => state.data.solar);
+  const solarData = useSelector((state) => (state as any).data.solar);
 
   // TODO: Recalculate every 5 minutes if custom datetime is not set.
   return useMemo(() => {
@@ -81,6 +87,7 @@ export function useInterpolatedSolarData() {
     const tBefore = getTargetTime(grib1);
     const tAfter = getTargetTime(grib2);
     const datetime = new Date();
+    // @ts-expect-error TS(2362): The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     const k = (datetime - tBefore) / (tAfter - tBefore);
 
     if (datetime > tAfter) {
@@ -105,6 +112,6 @@ export function useInterpolatedSolarData() {
       )}`
     );
 
-    return { ...grib1, data: grib1.data.map((d, i) => interpolate(d, grib2.data[i])(k)) };
+    return { ...grib1, data: grib1.data.map((d: any, i: any) => interpolate(d, grib2.data[i])(k)) };
   }, [solarData]);
 }

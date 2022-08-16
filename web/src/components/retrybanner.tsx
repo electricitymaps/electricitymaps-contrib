@@ -1,17 +1,18 @@
 import React from 'react';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useFeatureToggle } from '../hooks/router';
 import { useTranslation } from '../helpers/translation';
 import { GRID_DATA_FETCH_REQUESTED, ZONE_HISTORY_FETCH_REQUESTED } from '../helpers/redux';
 
-export const RetryBanner = ({ failedRequestType }) => {
+export const RetryBanner = ({ failedRequestType }: any) => {
   const { zoneId } = useParams();
   const { __ } = useTranslation();
   const features = useFeatureToggle();
   const dispatch = useDispatch();
 
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
   return (
     <div
       id="connection-warning"
@@ -25,9 +26,11 @@ export const RetryBanner = ({ failedRequestType }) => {
           type="button"
           onClick={(e) => {
             if (failedRequestType === 'grid') {
+              // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
               dispatch(GRID_DATA_FETCH_REQUESTED({ features, selectedTimeAggregate }));
             }
             if (failedRequestType === 'zone') {
+              // @ts-expect-error TS(2554): Expected 0 arguments, but got 1.
               dispatch(ZONE_HISTORY_FETCH_REQUESTED({ zoneId, features, selectedTimeAggregate }));
             }
             e.preventDefault();

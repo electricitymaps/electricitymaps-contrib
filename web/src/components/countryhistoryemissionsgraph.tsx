@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max } from 'd3-array';
 
 import { getTooltipPosition } from '../helpers/graph';
@@ -11,31 +13,32 @@ import { getTotalElectricity } from '../helpers/zonedata';
 import CountryPanelEmissionsTooltip from './tooltips/countrypanelemissionstooltip';
 import AreaGraph from './graph/areagraph';
 
-const prepareGraphData = (historyData) => {
+const prepareGraphData = (historyData: any) => {
   if (!historyData || !historyData[0]) {
     return {};
   }
 
-  const data = historyData.map((d) => ({
+  const data = historyData.map((d: any) => ({
     emissions: tonsPerHourToGramsPerMinute(getTotalElectricity(d, true)),
     datetime: new Date(d.stateDatetime),
+
     // Keep a pointer to original data
     meta: d,
   }));
 
-  const maxEmissions = d3Max(data.map((d) => d.emissions));
+  const maxEmissions = d3Max(data.map((d: any) => d.emissions));
   const emissionsColorScale = scaleLinear().domain([0, maxEmissions]).range(['yellow', 'brown']);
 
   const layerKeys = ['emissions'];
-  const layerFill = (key) => (d) => emissionsColorScale(d.data[key]);
+  const layerFill = (key: any) => (d: any) => emissionsColorScale(d.data[key]);
   return { data, layerKeys, layerFill };
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   isMobile: state.application.isMobile,
 });
 
-const CountryHistoryEmissionsGraph = ({ isMobile }) => {
+const CountryHistoryEmissionsGraph = ({ isMobile }: any) => {
   const [tooltip, setTooltip] = useState(null);
 
   const historyData = useCurrentZoneHistory();
@@ -45,8 +48,9 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
 
   // Graph marker callbacks
   const markerUpdateHandler = useMemo(
-    () => (position, datapoint) => {
+    () => (position: any, datapoint: any) => {
       setTooltip({
+        // @ts-expect-error TS(2345): Argument of type '{ position: any; zoneData: any; ... Remove this comment to see the full error message
         position: getTooltipPosition(isMobile, position),
         zoneData: datapoint.meta,
       });
@@ -63,6 +67,7 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
   return (
     <React.Fragment>
       <AreaGraph
+        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-emissions-graph"
         data={data}
         layerKeys={layerKeys}
@@ -75,8 +80,8 @@ const CountryHistoryEmissionsGraph = ({ isMobile }) => {
       />
       {tooltip && (
         <CountryPanelEmissionsTooltip
-          position={tooltip.position}
-          zoneData={tooltip.zoneData}
+          position={(tooltip as any).position}
+          zoneData={(tooltip as any).zoneData}
           onClose={() => {
             setTooltip(null);
           }}

@@ -5,9 +5,9 @@ import { useTranslation } from '../../helpers/translation';
 
 import Tooltip from '../tooltip';
 
-const TimeSliderTooltip = ({ position, onClose, date, disabled }) => {
+const TimeSliderTooltip = ({ position, onClose, date, disabled }: any) => {
   const { i18n } = useTranslation();
-  const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
   if (disabled) {
     return null;
   }

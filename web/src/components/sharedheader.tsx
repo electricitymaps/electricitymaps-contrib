@@ -27,13 +27,13 @@ const Wrapper = styled.header`
   }
 
   ${(props) =>
-    props.collapsed &&
+    (props as any).collapsed &&
     `
     padding: 0 24px;
   `};
 
   ${(props) =>
-    props.inverted &&
+    (props as any).inverted &&
     `
     background: transparent;
     color: white;
@@ -83,7 +83,7 @@ const Link = styled.a`
   }
 
   ${(props) =>
-    props.active &&
+    (props as any).active &&
     `
     text-shadow: 0.5px 0 0 currentColor;
     ${linkUnderline}
@@ -101,7 +101,7 @@ const MenuDrawerBackground = styled.div`
   height: 100vh;
 
   ${(props) =>
-    props.visible &&
+    (props as any).visible &&
     `
     display: block;
   `};
@@ -125,13 +125,13 @@ const MenuDrawerContent = styled.div`
   z-index: 1;
 
   ${(props) =>
-    props.visible &&
+    (props as any).visible &&
     `
     transform: translateY(0);
   `};
 `;
 
-const MenuButton = ({ onClick }) => (
+const MenuButton = ({ onClick }: any) => (
   <svg viewBox="0 0 100 80" width="48" height="48" onClick={onClick} style={{ cursor: 'pointer', padding: '8px 12px' }}>
     <rect width="100" height="10" fill="currentColor" />
     <rect y="30" width="100" height="10" fill="currentColor" />
@@ -139,7 +139,7 @@ const MenuButton = ({ onClick }) => (
   </svg>
 );
 
-const ResponsiveMenu = ({ children, collapsed }) => {
+const ResponsiveMenu = ({ children, collapsed }: any) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
   const openMenu = () => setMenuOpen(true);
@@ -148,7 +148,9 @@ const ResponsiveMenu = ({ children, collapsed }) => {
   return collapsed ? (
     <>
       <MenuButton onClick={openMenu} />
+      {/* @ts-expect-error TS(2769): No overload matches this call. */}
       <MenuDrawerBackground visible={menuOpen} onClick={closeMenu} />
+      {/* @ts-expect-error TS(2769): No overload matches this call. */}
       <MenuDrawerContent visible={menuOpen} onClick={closeMenu}>
         {children}
       </MenuDrawerContent>
@@ -158,16 +160,19 @@ const ResponsiveMenu = ({ children, collapsed }) => {
   );
 };
 
-const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo }) => {
+const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo }: any) => {
   const trackEvent = useTrackEvent();
 
   return (
+    // @ts-expect-error TS(2769): No overload matches this call.
     <Wrapper inverted={inverted} collapsed={collapsed}>
       <a href="https://app.electricitymaps.com/map">
         <Logo src={logo} alt="logo" />
       </a>
       <ResponsiveMenu collapsed={collapsed}>
+        {/* @ts-expect-error TS(7031): Binding element 'label' implicitly has an 'any' ty... Remove this comment to see the full error message */}
         {links.map(({ label, href, active, id }) => (
+          // @ts-expect-error TS(2769): No overload matches this call.
           <Link key={id} href={href} active={active} onClick={() => trackEvent('HeaderLink Clicked', { linkId: id })}>
             {label}
           </Link>

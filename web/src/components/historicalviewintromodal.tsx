@@ -18,8 +18,9 @@ const DateSubtitle = styled.small`
 // Note: This content is not in translations on purpose, as it will only live a short while (1 month)
 const views = [
   {
+    // @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
     headerImage: resolvePath('images/historicalviewmodal/step1_hw_modal.png'),
-    renderContent: (__) => (
+    renderContent: (__: any) => (
       <React.Fragment>
         <DateSubtitle>July 2022</DateSubtitle>
         <div>
@@ -33,8 +34,9 @@ const views = [
     ),
   },
   {
+    // @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
     headerImage: resolvePath('images/historicalviewmodal/step2_hw_modal.gif'),
-    renderContent: (__) => (
+    renderContent: (__: any) => (
       <React.Fragment>
         <div>
           <h2>Explore your slice of history</h2>
@@ -66,7 +68,7 @@ const views = [
 
 const HistoricalViewIntroModal = () => {
   const visible = useSelector(
-    (state) => !state.application.historicalViewIntroModalSeen && !state.application.isEmbedded
+    (state) => !(state as any).application.historicalViewIntroModalSeen && !(state as any).application.isEmbedded
   );
   const trackEvent = useTrackEvent();
   const { __ } = useTranslation();
@@ -83,6 +85,7 @@ const HistoricalViewIntroModal = () => {
   };
 
   const handleShown = () => {
+    // @ts-expect-error TS(2554): Expected 2 arguments, but got 1.
     trackEvent('HistoricalViewIntroModal Shown');
   };
 

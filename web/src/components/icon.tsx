@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 
-const path = window.isCordova ? resolvePath('images/icon-sprite.svg') : '/images/icon-sprite.svg';
+// @ts-expect-error TS(2304): Cannot find name 'resolvePath'.
+const path = (window as any).isCordova ? resolvePath('images/icon-sprite.svg') : '/images/icon-sprite.svg';
 
 /**
  * To add a new icon to the SVG sprite, open the icons SVG file and copy the the <svg> element.
@@ -13,6 +14,7 @@ const path = window.isCordova ? resolvePath('images/icon-sprite.svg') : '/images
  *   </symbol>
  */
 
+// @ts-expect-error TS(2339): Property 'iconName' does not exist on type '{}'.
 const Icon = memo(({ iconName, size = 24, color }) => {
   return (
     <svg height={size} width={size} fill={color}>

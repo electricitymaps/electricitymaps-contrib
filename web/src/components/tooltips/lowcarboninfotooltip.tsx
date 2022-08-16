@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from '../../helpers/translation';
 import Tooltip from '../tooltip';
 
-const LowCarbonInfoTooltip = ({ position, onClose }) => {
+const LowCarbonInfoTooltip = ({ position, onClose }: any) => {
   const { __ } = useTranslation();
   return (
     <Tooltip id="lowcarb-info-tooltip" position={position} onClose={onClose}>

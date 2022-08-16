@@ -1,8 +1,8 @@
-const saveKey = (key, val) => {
+const saveKey = (key: any, val: any) => {
   window.localStorage.setItem(key, val);
 };
 
-const getKey = (key) => {
+const getKey = (key: any) => {
   return window.localStorage.getItem(key);
 };
 

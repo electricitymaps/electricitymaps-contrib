@@ -6,7 +6,7 @@ import Tooltip from '../tooltip';
 
 import { CarbonIntensity, ZoneName } from './common';
 
-const MapExchangeTooltip = ({ exchangeData, position, onClose }) => {
+const MapExchangeTooltip = ({ exchangeData, position, onClose }: any) => {
   const { __ } = useTranslation();
   if (!exchangeData) {
     return null;
