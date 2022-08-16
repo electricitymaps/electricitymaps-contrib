@@ -1,7 +1,8 @@
 import json
 from copy import deepcopy
+from itertools import product
 from pathlib import Path
-from typing import Dict, List, NewType, Tuple
+from typing import Any, Dict, List, NewType, Set, Tuple
 
 ZoneKey = NewType("ZoneKey", str)
 Point = NewType("Point", Tuple[float, float])
@@ -45,14 +46,39 @@ for zone_id, zone_config in ZONES_CONFIG.items():
             ZONE_PARENT[sub_zone_id] = zone_id
 
 # Prepare zone neighbours
-ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = {}
-for k, v in EXCHANGES_CONFIG.items():
-    zone_names = k.split("->")
-    pairs = [(zone_names[0], zone_names[1]), (zone_names[1], zone_names[0])]
-    for zone_name_1, zone_name_2 in pairs:
-        if zone_name_1 not in ZONE_NEIGHBOURS:
-            ZONE_NEIGHBOURS[zone_name_1] = set()
-        ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+def generate_zone_neighbours(
+    exchanges: Dict[str, Any], zones: Dict[str, Any]
+) -> Dict[ZoneKey, Set[ZoneKey]]:
+    zone_neighbours = {}
+    for k, _ in exchanges.items():
+        zone_names = k.split("->")
+
+        def _get_all_zone_name_granularities(zone_name: str) -> List[str]:
+            zone_names = [zone_name]
+            base = zone_name.split("-")[0]
+            if zone_name in ZONES_CONFIG.get(base, {}).get("subZoneNames", []):
+                zone_names.append(base)
+            return zone_names
+
+        all_zone_names = [_get_all_zone_name_granularities(z_n) for z_n in zone_names]
+        # If we have an exchange between two subzones, we don't want to say that the parent zone is
+        # a neighbour of the subzone.
+        min_depth = min([len(z) for z in all_zone_names])
+        for depth in range(min_depth):
+            if all_zone_names[0][depth] == all_zone_names[1][depth]:
+                all_zone_names = [all_zone_names[0][:depth], all_zone_names[1][:depth]]
+                break
+        pairs = list(product(*all_zone_names))
+        all_zone_names.reverse()
+        pairs.extend(list(product(*all_zone_names)))
+        for zone_name_1, zone_name_2 in pairs:
+            if zone_name_1 not in zone_neighbours:
+                zone_neighbours[zone_name_1] = set()
+            zone_neighbours[zone_name_1].add(zone_name_2)
+    return zone_neighbours
+
+
+ZONE_NEIGHBOURS = generate_zone_neighbours(EXCHANGES_CONFIG, ZONES_CONFIG)
 
 # Find neighbors to subzones and add them to parent zone.
 for zone in ZONES_CONFIG.keys():
