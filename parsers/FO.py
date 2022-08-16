@@ -23,7 +23,7 @@ MAP_GENERATION = {
     "Tidal": "unknown",
 }
 
-VALID_ZONE_KEYS = Literal["FO", "FO-NI", "FO-SI"]
+VALID_ZONE_KEYS = Literal["FO", "FO-MI", "FO-SI"]
 
 
 class ValidationObject(TypedDict):
@@ -38,7 +38,7 @@ class ZoneData(TypedDict):
 
 ZONE_MAP: Dict[VALID_ZONE_KEYS, ZoneData] = {
     "FO": {"data_key": "Sev_E", "validation": {"required": ["hydro"], "floor": 10}},
-    "FO-NI": {"data_key": "H_E", "validation": {"required": ["hydro"], "floor": 9}},
+    "FO-MI": {"data_key": "H_E", "validation": {"required": ["hydro"], "floor": 9}},
     "FO-SI": {"data_key": "S_E", "validation": {"required": ["hydro"], "floor": 1}},
 }
 
