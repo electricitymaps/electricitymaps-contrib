@@ -708,6 +708,27 @@ def get_power_bi_values():
     return cleaned_power_bi_values
 
 
+def valid_substitution(original: str, subs_key: str):
+    """
+    Check if the substitution is valid.
+    E.g., if original is        24018,0,0,0,-9,24027,876,1341,1884,100,988.415,603,1260,0,462.550,0,477.262,0,100.0100.19.02
+    and subs_key                8,0
+    make sure that the comma does not get replaced by a dot at index 5.
+    """
+    if not subs_key in original:
+        return False
+
+    starting_idx = original.index(subs_key)
+    if (starting_idx - 1) >= 0 and original[starting_idx - 1].isdigit():
+        return False
+
+    ending_idx = starting_idx + len(subs_key)
+    if (ending_idx + 1) < len(original) and original[ending_idx].isdigit():
+        return False
+
+    return True
+
+
 def fetch_production(
     zone_key: str = "ZA",
     session: Optional[Session] = None,
@@ -783,13 +804,18 @@ def fetch_production(
                 x_without_lead_zeros = round(
                     float(x_without_lead_zeros) / 10 ** len(x_without_lead_zeros), 3
                 )
-                cleansed_csv_values[j] = "0" * zeros + str(
-                    int(x_without_lead_zeros * 1000)
-                )
 
-                cleansed_csv_values[j] = cleansed_csv_values[j][
-                    : len(cleansed_csv_values[j]) - zeros
-                ]
+                cleansed_csv_values[j] = str(int(x_without_lead_zeros * 1000))
+
+                if not cleansed_csv_values[j] == "1000":
+                    cleansed_csv_values[j] = "0" * zeros + cleansed_csv_values[j]
+
+                cleansed_csv_values[j] = cleansed_csv_values[j].rstrip("0")
+
+                if not cleansed_csv_values[j] == "1":
+                    cleansed_csv_values[j] = cleansed_csv_values[j][
+                        : len(cleansed_csv_values[j]) - zeros
+                    ]
 
                 memo_long_idcs.append(j)
 
@@ -822,10 +848,10 @@ def fetch_production(
         if "power_bi" in value:
             for pb_value in value["power_bi"]:
                 if isinstance(pb_value, float):
-                    if str(pb_value).replace(".", ",") in value["cleansed_csv"]:
-                        starting_idx = value["cleansed_csv"].index(
-                            str(pb_value).replace(".", ",")
-                        )
+                    subs_key = str(pb_value).replace(".", ",")
+
+                    if valid_substitution(value["cleansed_csv"], subs_key):
+                        starting_idx = value["cleansed_csv"].index(subs_key)
                         comma_idx = value["cleansed_csv"][starting_idx:].index(",")
                         value["cleansed_csv"] = (
                             value["cleansed_csv"][: comma_idx + starting_idx]
@@ -852,7 +878,7 @@ def fetch_production(
             for update_i in range(len(cleansed_csv_value_updates) - 1, -1, -1):
                 break_outer_loop = False
                 for key in cleansed_csv_value_updates[update_i]:
-                    if key in value["cleansed_csv"]:
+                    if valid_substitution(value["cleansed_csv"], key):
                         value["cleansed_csv"] = value["cleansed_csv"].replace(
                             key, cleansed_csv_value_updates[update_i][key]
                         )
@@ -869,7 +895,7 @@ def fetch_production(
 
         # This is useful if debugging corrupt rows
         # ---------------------------------------
-        # if last_cleansed_csv_len != curr_cleansed_csv_len:
+        # if curr_cleansed_csv_len != 20:
         #     print(f"{i}/{len(merged_csv_bi_data)}: {key}")
         #     print(f"last: {last_cleansed_csv_len} curr: {curr_cleansed_csv_len}")
         #     pp.pprint(value)
