@@ -14,7 +14,7 @@ class ConfigTestcase(unittest.TestCase):
             "FR": {},
         }
         zone_neighbours = config.generate_zone_neighbours(exchanges, zones)
-        self.assertDictEqual(zone_neighbours, {"DE": {"FR"}, "FR": {"DE"}})
+        self.assertDictEqual(zone_neighbours, {"DE": ["FR"], "FR": ["DE"]})
 
     def test_generate_zone_neighbours_one_country_one_subzone(self):
         exchanges = {
@@ -29,7 +29,7 @@ class ConfigTestcase(unittest.TestCase):
         }
         zone_neighbours = config.generate_zone_neighbours(exchanges, zones)
         self.assertDictEqual(
-            zone_neighbours, {"DE": {"SE", "SE-SE4"}, "SE": {"DE"}, "SE-SE4": {"DE"}}
+            zone_neighbours, {"DE": ["SE", "SE-SE4"], "SE": ["DE"], "SE-SE4": ["DE"]}
         )
 
     def test_generate_zone_neighbours_two_subzones(self):
@@ -60,14 +60,14 @@ class ConfigTestcase(unittest.TestCase):
         self.assertDictEqual(
             zone_neighbours,
             {
-                "NO": {"SE", "SE-SE1", "SE-SE2", "SE-SE3"},
-                "NO-NO1": {"SE", "SE-SE3"},
-                "NO-NO3": {"SE", "SE-SE2"},
-                "NO-NO4": {"SE", "SE-SE1", "SE-SE2"},
-                "SE": {"NO", "NO-NO1", "NO-NO3", "NO-NO4"},
-                "SE-SE1": {"NO", "NO-NO4"},
-                "SE-SE2": {"NO", "NO-NO3", "NO-NO4"},
-                "SE-SE3": {"NO", "NO-NO1"},
+                "NO": ["SE", "SE-SE1", "SE-SE2", "SE-SE3"],
+                "NO-NO1": ["SE", "SE-SE3"],
+                "NO-NO3": ["SE", "SE-SE2"],
+                "NO-NO4": ["SE", "SE-SE1", "SE-SE2"],
+                "SE": ["NO", "NO-NO1", "NO-NO3", "NO-NO4"],
+                "SE-SE1": ["NO", "NO-NO4"],
+                "SE-SE2": ["NO", "NO-NO3", "NO-NO4"],
+                "SE-SE3": ["NO", "NO-NO1"],
             },
         )
 
@@ -87,7 +87,7 @@ class ConfigTestcase(unittest.TestCase):
         zone_neighbours = config.generate_zone_neighbours(exchanges, zones)
         self.assertDictEqual(
             zone_neighbours,
-            {"SE-SE1": {"SE-SE2"}, "SE-SE2": {"SE-SE1"}},
+            {"SE-SE1": ["SE-SE2"], "SE-SE2": ["SE-SE1"]},
         )
 
     def test_ZONE_NEIGHBOURS(self):

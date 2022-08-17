@@ -48,7 +48,7 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 # Prepare zone neighbours
 def generate_zone_neighbours(
     exchanges: Dict[str, Any], zones: Dict[str, Any]
-) -> Dict[ZoneKey, Set[ZoneKey]]:
+) -> Dict[ZoneKey, List[ZoneKey]]:
     zone_neighbours = {}
     for k, _ in exchanges.items():
         zone_names = k.split("->")
@@ -56,7 +56,7 @@ def generate_zone_neighbours(
         def _get_all_zone_name_granularities(zone_name: str) -> List[str]:
             zone_names = [zone_name]
             base = zone_name.split("-")[0]
-            if zone_name in ZONES_CONFIG.get(base, {}).get("subZoneNames", []):
+            if zone_name in zones.get(base, {}).get("subZoneNames", []):
                 zone_names.append(base)
             return zone_names
 
@@ -75,33 +75,15 @@ def generate_zone_neighbours(
             if zone_name_1 not in zone_neighbours:
                 zone_neighbours[zone_name_1] = set()
             zone_neighbours[zone_name_1].add(zone_name_2)
+
+    # we want neighbors to always be in the same order
+    for zone, neighbors in zone_neighbours.items():
+        zone_neighbours[zone] = sorted(neighbors)
+
     return zone_neighbours
 
 
 ZONE_NEIGHBOURS = generate_zone_neighbours(EXCHANGES_CONFIG, ZONES_CONFIG)
-
-# Find neighbors to subzones and add them to parent zone.
-for zone in ZONES_CONFIG.keys():
-    subzones = ZONES_CONFIG[zone].get("subZoneNames", [])
-    if not subzones:
-        continue
-
-    for subzone in subzones:
-        for subzone_neighbor in ZONE_NEIGHBOURS.get(subzone, []):
-            if subzone_neighbor in subzones:
-                # ignore the neighbours that are within the zone
-                continue
-
-            if zone not in ZONE_NEIGHBOURS:
-                ZONE_NEIGHBOURS[zone] = set()
-
-            # If neighbor zone is a subzone, we add the exchange to the parent zone
-            neighbor_zone = ZONE_PARENT.get(subzone_neighbor, subzone_neighbor)
-            ZONE_NEIGHBOURS[zone].add(neighbor_zone)
-
-# we want neighbors to always be in the same order
-for zone, neighbors in ZONE_NEIGHBOURS.items():
-    ZONE_NEIGHBOURS[zone] = sorted(neighbors)
 
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
