@@ -504,9 +504,9 @@ def _fetch_series(
         if isinstance(target_datetime, datetime):
             # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
             end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
-            start = (
-                target_datetime.astimezone(utc) - timedelta(days=1)
-            ).strftime("%Y%m%dT%HZ")
+            start = (target_datetime.astimezone(utc) - timedelta(days=1)).strftime(
+                "%Y%m%dT%HZ"
+            )
         else:
             end = None
             start = None
