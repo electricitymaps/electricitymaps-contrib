@@ -30,7 +30,7 @@ from parsers.lib.config import refetch_frequency
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
-ENTSOE_ENDPOINT = "https://transparency.entsoe.eu/api"
+ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
