@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Any, Callable, Dict, List, Literal, Optional
 
@@ -30,6 +30,7 @@ from ree import (
 # The request library is used to fetch content through HTTP
 from requests import Session
 
+from .lib.config import refetch_frequency
 from .lib.exceptions import ParserException
 from .lib.validation import validate
 
@@ -124,6 +125,7 @@ def fetch_island_data(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption(
     zone_key: ZONE_KEYS,
     session: Optional[Session] = None,
@@ -153,6 +155,7 @@ def fetch_consumption(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: ZONE_KEYS,
     session: Optional[Session] = None,
@@ -231,6 +234,7 @@ def fetch_production(
         )
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
     zone_key1: ZONE_KEYS,
     zone_key2: ZONE_KEYS,
