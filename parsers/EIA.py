@@ -501,11 +501,11 @@ def _fetch_series(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             )
         utc = tz.gettz("UTC")
-        if isinstance(target_datetime, datetime.datetime):
+        if isinstance(target_datetime, datetime):
             # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
             end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
             start = (
-                target_datetime.astimezone(utc) - datetime.timedelta(days=1)
+                target_datetime.astimezone(utc) - timedelta(days=1)
             ).strftime("%Y%m%dT%HZ")
         else:
             end = None
