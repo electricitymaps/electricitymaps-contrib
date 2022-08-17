@@ -117,6 +117,8 @@ def fetch_production(
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 
+    target_datetime = target_datetime or datetime.utcnow()
+
     parser = CyprusParser(session or Session(), logger)
     if isinstance(target_datetime, datetime):
         return parser.fetch_production(target_datetime)
