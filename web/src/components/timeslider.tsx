@@ -114,7 +114,6 @@ const TimeSlider = ({
         aria-label="Change selected time"
       />
       <TimeAxis
-        // @ts-expect-error TS(2322): Type '{ inputRef: (newNode: any) => () => void; da... Remove this comment to see the full error message
         inputRef={ref}
         datetimes={datetimes}
         scale={timeScale}

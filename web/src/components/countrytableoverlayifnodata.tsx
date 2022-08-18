@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { useCurrentZoneData } from '../hooks/redux';
+import { ParamTypes } from '../hooks/router';
 
 const getMessage = (__: any, zoneId: any, zoneData: any, zoneTimeIndex: any) => {
   const isRealtimeData = zoneTimeIndex === null;
@@ -28,7 +29,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const CountryTableOverlayIfNoData = ({ zoneTimeIndex }: any) => {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const zoneData = useCurrentZoneData();
   const { __ } = useTranslation();
 

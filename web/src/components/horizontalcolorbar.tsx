@@ -1,7 +1,6 @@
+//@ts-nocheck
 import React from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { extent } from 'd3-array';
 
 import styled from 'styled-components';

@@ -1,9 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
 import constructTopos from './topos';
-// @ts-expect-error TS(2732): Cannot find module '../../../config/zones.json'. C... Remove this comment to see the full error message
 import zonesConfig from '../../../config/zones.json';
-// @ts-expect-error TS(2732): Cannot find module '../../../config/exchanges.json... Remove this comment to see the full error message
 import exchangesConfig from '../../../config/exchanges.json';
 
 interface ExchangeConfigTypes {
@@ -30,34 +28,68 @@ const SOLAR_DATA_FETCH_FAILED = createAction('weather/solar-fetch-failed');
 const SOLAR_DATA_FETCH_SUCCEDED = createAction('weather/solar-fetch-succeded');
 const SOLAR_DATA_FETCH_REQUESTED = createAction('weather/solar-fetch-requested');
 
+export interface Zone {
+  type?: string;
+  config?: any;
+  features?: {
+    type: string;
+    geometry: any;
+    properties: {
+      color: undefined;
+      zoneData: any;
+      zoneId: string;
+    };
+  };
+}
+
+export interface Zones {
+  type?: string;
+  name?: string;
+  crs?: { type: string; properties: { name: string } };
+  features?: [Zone];
+}
+
+interface ZoneConfig {
+  bounding_box?: [[number, number], [number, number]];
+  capacity?: {
+    hydro?: number;
+    nuclear?: number;
+  };
+  contributors?: [string];
+  timezone?: any;
+}
+interface ZonesConfig {
+  [key: string]: ZoneConfig;
+}
+
 function initDataState() {
   const geographies = constructTopos();
-  const zones = {};
+  const zones: Zones = {};
 
   Object.keys(zonesConfig).forEach((key) => {
-    const zone = {};
+    const zone: Zone = {};
+    //@ts-ignore
     const zoneConfig = zonesConfig[key];
     // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     if (!geographies[key]) {
       return;
     }
     // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-    (zone as any).geography = geographies[key];
-    (zone as any).config = {};
+    zone.geography = geographies[key];
+    zone.config = {};
     Object.keys(TIME).forEach((agg) => {
       // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       zone[TIME[agg]] = { details: [], overviews: [], isExpired: true };
     });
 
-    (zone as any).config.capacity = zoneConfig.capacity;
-    (zone as any).config.contributors = zoneConfig.contributors;
-    (zone as any).config.timezone = zoneConfig.timezone;
+    zone.config.capacity = zoneConfig.capacity;
+    zone.config.contributors = zoneConfig.contributors;
+    zone.config.timezone = zoneConfig.timezone;
     // hasParser is true if parser exists, or if estimation method exists
-    (zone as any).config.hasParser =
-      zoneConfig.parsers?.production !== undefined || zoneConfig.estimation_method !== undefined;
-    (zone as any).config.delays = zoneConfig.delays;
-    (zone as any).config.disclaimer = zoneConfig.disclaimer;
-    (zone as any).config.countryCode = key;
+    zone.config.hasParser = zoneConfig.parsers?.production !== undefined || zoneConfig.estimation_method !== undefined;
+    zone.config.delays = zoneConfig.delays;
+    zone.config.disclaimer = zoneConfig.disclaimer;
+    zone.config.countryCode = key;
 
     // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     zones[key] = zone;

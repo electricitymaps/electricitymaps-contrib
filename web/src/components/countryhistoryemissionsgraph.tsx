@@ -25,6 +25,7 @@ const prepareGraphData = (historyData: any) => {
   }));
 
   const maxEmissions = d3Max(data.map((d: any) => d.emissions));
+  //@ts-ignore
   const emissionsColorScale = scaleLinear().domain([0, maxEmissions]).range(['yellow', 'brown']);
 
   const layerKeys = ['emissions'];
@@ -65,7 +66,6 @@ const CountryHistoryEmissionsGraph = ({ isMobile }: any) => {
   return (
     <React.Fragment>
       <AreaGraph
-        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-emissions-graph"
         data={data}
         layerKeys={layerKeys}

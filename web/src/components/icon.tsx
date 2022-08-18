@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 
+//@ts-ignore
 const path = (window as any).isCordova ? resolvePath('images/icon-sprite.svg') : '/images/icon-sprite.svg';
 
 /**

@@ -1,6 +1,5 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'topo... Remove this comment to see the full error message
+// @ts-nocheck
 import { merge } from 'topojson';
-// @ts-expect-error TS(2732): Cannot find module '../world.json'. Consider using... Remove this comment to see the full error message
 import topo from '../world.json';
 
 const constructTopos = () => {

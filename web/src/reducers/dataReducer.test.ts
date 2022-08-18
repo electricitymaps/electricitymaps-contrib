@@ -3,11 +3,8 @@
  */
 import { GRID_DATA_FETCH_SUCCEEDED, ZONE_HISTORY_FETCH_SUCCEEDED } from '../helpers/redux';
 import reducer from './dataReducer';
-// @ts-expect-error TS(2732): Cannot find module '../../../mockserver/public/v5/... Remove this comment to see the full error message
 import historyData from '../../../mockserver/public/v5/history/DK-DK2/daily.json';
-// @ts-expect-error TS(2732): Cannot find module '../../../mockserver/public/v5/... Remove this comment to see the full error message
 import historyDataHourly from '../../../mockserver/public/v5/history/DK-DK2/hourly.json';
-// @ts-expect-error TS(2732): Cannot find module '../../../mockserver/public/v5/... Remove this comment to see the full error message
 import gridData from '../../../mockserver/public/v5/state/hourly.json';
 
 test('zones should have initial state with correct structure', () => {

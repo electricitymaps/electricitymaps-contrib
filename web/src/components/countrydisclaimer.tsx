@@ -36,7 +36,6 @@ const CountryDisclaimer = ({ text, isMobile }: any) => {
         onMouseOut={() => setTooltip(null)}
         onBlur={() => setTooltip(null)}
       >
-        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName="error" />
       </DisclaimerIcon>
       {tooltip && <DisclaimerTooltip text={text} position={tooltip} />}

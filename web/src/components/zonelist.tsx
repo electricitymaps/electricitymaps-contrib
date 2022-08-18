@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo } from 'react';
 
 import { Link, useLocation, useHistory } from 'react-router-dom';
 
-import { FixedSizeList as List, areEqual } from 'react-window';
+import { FixedSizeList as List, areEqual, FixedSizeList } from 'react-window';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -11,7 +11,6 @@ import { useCo2ColorScale } from '../hooks/theme';
 import { getCenteredLocationViewport } from '../helpers/map';
 import { getZoneNameWithCountry, getZoneName, getCountryName } from '../helpers/translation';
 import { flagUri } from '../helpers/flags';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { ascending } from 'd3-array';
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-c... Remove this comment to see the full error message
 import { values } from 'd3-collection';
@@ -72,7 +71,7 @@ const ZoneList = ({ electricityMixMode, searchQuery }: any) => {
   const co2IntensityAccessor = getCo2IntensityAccessor(electricityMixMode);
   const zones = processZones(zonesList, co2IntensityAccessor).filter((z: any) => zoneMatchesQuery(z, searchQuery));
 
-  const listRef = React.createRef();
+  const listRef = React.createRef<FixedSizeList<any>>();
   const history = useHistory();
   const location = useLocation();
   const trackEvent = useTrackEvent();
@@ -175,10 +174,12 @@ const ZoneList = ({ electricityMixMode, searchQuery }: any) => {
   }, areEqual);
 
   return (
+    //TODO check width
     <List
       className="zone-list"
       ref={listRef}
       height={height}
+      width={'100%'}
       itemSize={35}
       itemCount={zones.length}
       itemKey={(index: any) => {

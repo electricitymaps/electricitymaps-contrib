@@ -1,10 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'curr... Remove this comment to see the full error message
+//@ts-ignore
 import getSymbolFromCurrency from 'currency-symbol-map';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max, min as d3Min } from 'd3-array';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
@@ -23,6 +21,7 @@ const prepareGraphData = (historyData: any) => {
 
   const priceMaxValue = d3Max(historyData.map((d: any) => d.price?.value));
   const priceMinValue = d3Min(historyData.map((d: any) => d.price?.value));
+  //@ts-ignore
   const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
 
   const data = historyData.map((d: any) => ({
@@ -83,7 +82,6 @@ const CountryHistoryPricesGraph = ({ isMobile }: any) => {
   return (
     <React.Fragment>
       <AreaGraph
-        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-prices-graph"
         data={data}
         layerKeys={layerKeys}

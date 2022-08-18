@@ -37,7 +37,6 @@ const Title = ({ title }: any) => {
     <React.Fragment>
       <BackButtonWrapper>
         <button className="modal-back-button" onClick={handleClick}>
-          {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
           <Icon iconName="arrow_back" />
         </button>
       </BackButtonWrapper>

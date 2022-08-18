@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { connect } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max } from 'd3-array';
 
 import { scalePower } from '../helpers/formatting';
@@ -48,7 +47,6 @@ const prepareGraphData = (
       datetime: new Date(d.stateDatetime),
     };
 
-    // @ts-expect-error TS(2550): Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
     const hasProductionData = d.production && Object.values(d.production).some((v: any) => v !== null);
 
     if (hasProductionData) {
@@ -82,7 +80,7 @@ const prepareGraphData = (
 
       if (electricityMixMode === 'consumption') {
         // Add exchange
-        // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
+
         Object.entries(d.exchange).forEach(([key, value]) => {
           // in GW or MW
           // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
@@ -164,7 +162,6 @@ const CountryHistoryMixGraph = ({ displayByEmissions, electricityMixMode, isMobi
   return (
     <React.Fragment>
       <AreaGraph
-        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-mix-graph"
         data={data}
         layerKeys={layerKeys}

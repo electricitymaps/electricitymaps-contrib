@@ -2,12 +2,12 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useFeatureToggle } from '../hooks/router';
+import { useFeatureToggle, ParamTypes } from '../hooks/router';
 import { useTranslation } from '../helpers/translation';
 import { GRID_DATA_FETCH_REQUESTED, ZONE_HISTORY_FETCH_REQUESTED } from '../helpers/redux';
 
 export const RetryBanner = ({ failedRequestType }: any) => {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const { __ } = useTranslation();
   const features = useFeatureToggle();
   const dispatch = useDispatch();

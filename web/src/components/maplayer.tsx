@@ -11,6 +11,7 @@ const mapStateToProps = (state: any) => ({
 // based on the current map state. Setting _containerRef in a wrapper
 // is important for capturing mouse events (e.g. clicks) and not
 // letting them propagate to the map.
+//@ts-ignore
 class MapLayer extends BaseControl {
   _containerRef: any;
   _context: any;

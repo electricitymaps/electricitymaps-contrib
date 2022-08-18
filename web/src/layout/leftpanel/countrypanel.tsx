@@ -34,6 +34,7 @@ import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
 import { TimeDisplay } from '../../components/timeDisplay';
 import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
+import { ParamTypes } from '../../hooks/router';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -204,7 +205,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const timeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
 
   const data = useCurrentZoneData() || {};

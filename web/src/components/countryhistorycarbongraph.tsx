@@ -65,7 +65,6 @@ const CountryHistoryCarbonGraph = ({ electricityMixMode, isMobile }: any) => {
   return (
     <React.Fragment>
       <AreaGraph
-        // @ts-expect-error TS(2322): Type '{ testId: string; data: any; layerKeys: stri... Remove this comment to see the full error message
         testId="history-carbon-graph"
         data={data}
         layerKeys={layerKeys}

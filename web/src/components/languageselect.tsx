@@ -67,7 +67,6 @@ const LanguageSelect = () => {
       />
       {languagesVisible && (
         <LanguageSelectContainer className="language-select-container">
-          {/* @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message */}
           {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
             <li key={key}>
               <button onClick={() => handleLanguageSelect(key)}>{language}</button>

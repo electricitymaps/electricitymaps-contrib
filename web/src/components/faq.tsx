@@ -59,7 +59,6 @@ const QuestionAnswer = ({ answerVisible, setAnswerVisible, groupKey, entryKey }:
         aria-controls={`${groupKey}.${entryKey}-answer`}
         aria-expanded={answerVisible}
       >
-        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName={answerVisible ? 'expand_less' : 'expand_more'} />
         <span>{__(`${groupKey}.${entryKey}-question`)}</span>
       </button>

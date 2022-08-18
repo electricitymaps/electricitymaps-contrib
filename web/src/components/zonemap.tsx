@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Portal } from 'react-portal';
 
-import ReactMapGL, { Source, Layer } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, InteractiveMap } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
@@ -19,7 +19,26 @@ export interface Viewport {
   zoom: number;
 }
 
-//export interface Zones {}
+export interface Zone {
+  type: string;
+  features: {
+    type: string;
+    geometry: any;
+    properties: {
+      color: undefined;
+      zoneData: any;
+      zoneId: string;
+    };
+  };
+}
+
+export interface Zones {
+  type: string;
+  name: string;
+  crs: { type: string; properties: { name: string } };
+  features: [Zone];
+}
+
 interface ZoneMapPropTypes {
   children: any;
   co2ColorScale?: any;
@@ -64,7 +83,7 @@ const ZoneMap = ({
     zoom: 2,
   },
 }: ZoneMapPropTypes) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<InteractiveMap>(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -88,7 +107,7 @@ const ZoneMap = ({
   const handleWheel = useMemo(
     () => () => {
       setIsDragging(true);
-
+      //@ts-ignore
       debouncedSetIsDragging(false); //TODO bug
     },
     [] // eslint-disable-line react-hooks/exhaustive-deps
@@ -101,7 +120,7 @@ const ZoneMap = ({
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   const sources = useMemo(() => {
-    const features = Object.entries(zones).map(([zoneId, zone]) => {
+    const features = Object.entries(zones as Zones).map(([zoneId, zone]) => {
       const length = (coordinate: any) => (coordinate ? coordinate.length : 0);
       return {
         type: 'Feature',
@@ -145,7 +164,9 @@ const ZoneMap = ({
 
   // If WebGL is not supported trigger an error callback.
   useEffect(() => {
+    //@ts-ignore
     if (!ReactMapGL.supported()) {
+      //Todo looks like this is not working
       setIsSupported(false);
 
       onMapError('WebGL not supported');
@@ -159,9 +180,13 @@ const ZoneMap = ({
       // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
       // TODO: Consider using isdragging or similar to update this when new zones are rendered
 
-      const features = ref.current.queryRenderedFeatures();
+      const features = ref.current?.queryRenderedFeatures();
 
-      const map = ref.current.getMap();
+      const map = ref.current?.getMap();
+      if (!features || !map) {
+        //Todo throw error
+        return;
+      }
       features.forEach((feature: any) => {
         const { color, zoneId } = feature.properties;
         let fillColor = color;
@@ -174,8 +199,10 @@ const ZoneMap = ({
         if (selectedZoneTimeIndex !== null && co2intensity) {
           fillColor = co2ColorScale(co2intensity);
         }
+
         const existingColor = feature.id
-          ? map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
+          ? //@ts-ignore TODO
+            map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
           : color;
 
         if (feature.id && fillColor !== existingColor) {
@@ -292,11 +319,14 @@ const ZoneMap = ({
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />
+        {/*@ts-ignore TODO*/}
         <Source id="zones-clickable" generateId type="geojson" data={sources.zonesClickable}>
+          {/*@ts-ignore TODO*/}
           <Layer id="zones-clickable-layer" type="fill" paint={styles.zonesClickable} />
           <Layer id="zones-border" type="line" paint={styles.zonesBorder} />
           {/* Note: if stroke width is 1px, then it is faster to use fill-outline in fill layer */}
         </Source>
+        {/*@ts-ignore TODO*/}
         <Source type="geojson" data={sources.zonesClickable}>
           <Layer id="hover" type="fill" paint={styles.hover} filter={hoverFilter} />
         </Source>
