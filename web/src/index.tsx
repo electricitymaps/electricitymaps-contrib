@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -36,8 +36,9 @@ console.log(
 // Plug in the sagas
 sagaMiddleware.run(sagas);
 
+const root = ReactDOM.createRoot(document.getElementById('app') as Element);
 // Render DOM
-ReactDOM.render(
+root.render(
   <React.Suspense fallback={<div />}>
     <Provider store={store}>
       {/* TODO: Switch to BrowserRouter once we don't need to manipulate */}
@@ -48,6 +49,7 @@ ReactDOM.render(
       </Router>
     </Provider>
   </React.Suspense>,
+  //@ts-ignore TODO why is this needed?
   document.querySelector('#app')
 );
 
