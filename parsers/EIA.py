@@ -11,7 +11,7 @@ https://www.eia.gov/opendata/register.php
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
-import os 
+import os
 import arrow
 from dateutil import parser, tz
 from requests import Session
@@ -296,18 +296,28 @@ TYPES = {
     "wind": "WND",
 }
 
-BASE_URL = 'https://api.eia.gov/v2/electricity/rto'
+BASE_URL = "https://api.eia.gov/v2/electricity/rto"
 
-PRODUCTION = f'{BASE_URL}/region-data/data/' \
-    '?data[]=value&facets[respondent][]={}&facets[type][]=NG&frequency=hourly'
-CONSUMPTION = f'{BASE_URL}/region-data/data/' \
-    '?data[]=value&facets[respondent][]={}&facets[type][]=D&frequency=hourly'
-CONSUMPTION_FORECAST = f'{BASE_URL}/region-data/data/' \
-    '?data[]=value&facets[respondent][]={}&facets[type][]=DF&frequency=hourly'
-PRODUCTION_MIX = f'{BASE_URL}/fuel-type-data/data/' \
-    '?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly'
-EXCHANGE = f'{BASE_URL}/interchange-data/data/' \
-    '?data[]=value&facets[fromba][]={}&facets[toba][]={}&frequency=hourly'
+PRODUCTION = (
+    f"{BASE_URL}/region-data/data/"
+    "?data[]=value&facets[respondent][]={}&facets[type][]=NG&frequency=hourly"
+)
+CONSUMPTION = (
+    f"{BASE_URL}/region-data/data/"
+    "?data[]=value&facets[respondent][]={}&facets[type][]=D&frequency=hourly"
+)
+CONSUMPTION_FORECAST = (
+    f"{BASE_URL}/region-data/data/"
+    "?data[]=value&facets[respondent][]={}&facets[type][]=DF&frequency=hourly"
+)
+PRODUCTION_MIX = (
+    f"{BASE_URL}/fuel-type-data/data/"
+    "?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly"
+)
+EXCHANGE = (
+    f"{BASE_URL}/interchange-data/data/"
+    "?data[]=value&facets[fromba][]={}&facets[toba][]={}&frequency=hourly"
+)
 
 
 @refetch_frequency(timedelta(days=1))
@@ -497,10 +507,12 @@ def _fetch(
 ):
     # load EIA API key
     try:
-        API_KEY = os.environ['EIA_KEY']
+        API_KEY = os.environ["EIA_KEY"]
     except KeyError:
-        raise RuntimeError("Requires an API key, set in the EIA_KEY environment variable. \
-            Get one here: https://www.eia.gov/opendata/register.php")
+        raise RuntimeError(
+            "Requires an API key, set in the EIA_KEY environment variable. \
+            Get one here: https://www.eia.gov/opendata/register.php"
+        )
 
     if target_datetime:
         try:
@@ -513,9 +525,9 @@ def _fetch(
         eia_ts_format = "%Y-%m-%dT%HH"
         end = target_datetime.astimezone(utc)
         start = end - timedelta(days=1)
-        url = f'{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}'
+        url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
-        url = f'{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24'
+        url = f"{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24"
 
     s = session or Session()
     req = s.get(url)
@@ -523,19 +535,18 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": parser.parse(datapoint['period']),
-            "value": datapoint['value'],
+            "datetime": parser.parse(datapoint["period"]),
+            "value": datapoint["value"],
             "source": "eia.gov",
         }
-        for datapoint in raw_data['response']['data']
+        for datapoint in raw_data["response"]["data"]
     ]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from pprint import pprint
+
     # pprint(fetch_production('US-CAL-CISO'))
     # pprint(fetch_consumption_forecast('US-CAL-CISO'))
     # pprint(fetch_exchange("US-CAL-CISO", "US-SW-AZPS"))
-    pprint(fetch_production_mix('US-CAL-CISO'))
-
-
+    pprint(fetch_production_mix("US-CAL-CISO"))
