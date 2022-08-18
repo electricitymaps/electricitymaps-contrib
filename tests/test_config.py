@@ -5,6 +5,117 @@ from electricitymap.contrib import config
 
 
 class ConfigTestcase(unittest.TestCase):
+    def test_get_zone_keys_for_all_granularities(self):
+        zones = {
+            "DE": {},
+            "SE": {
+                "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
+            },
+            "SE-SE1": {},
+            "SE-SE2": {},
+            "SE-SE3": {},
+            "SE-SE4": {},
+            "US-CAL-CISO": {},
+        }
+        zone_keys = config._get_zone_keys_for_all_granularities("DE", zones)
+        self.assertListEqual(zone_keys, ["DE"])
+
+        zone_keys = config._get_zone_keys_for_all_granularities("SE", zones)
+        self.assertListEqual(zone_keys, ["SE"])
+
+        zone_keys = config._get_zone_keys_for_all_granularities("SE-SE1", zones)
+        self.assertListEqual(zone_keys, ["SE", "SE-SE1"])
+
+        zone_keys = config._get_zone_keys_for_all_granularities("US-CAL-CISO", zones)
+        self.assertListEqual(zone_keys, ["US-CAL-CISO"])
+
+    def test_generate_exchanges_top_level_zones(self):
+        exchanges = {
+            "DE->FR": {},
+        }
+        zones = {
+            "DE": {},
+            "FR": {},
+        }
+        exchanges = config.generate_exchanges(exchanges, zones)
+        self.assertDictEqual(exchanges, {"DE->FR": {}})
+
+    def test_generate_exchanges_with_one_top_level_one_subzone(self):
+        exchanges = {
+            "DE->SE-SE4": {},
+        }
+        zones = {
+            "DE": {},
+            "SE": {
+                "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
+            },
+            "SE-SE1": {},
+            "SE-SE2": {},
+            "SE-SE3": {},
+            "SE-SE4": {},
+        }
+        exchanges = config.generate_exchanges(exchanges, zones)
+        self.assertDictEqual(exchanges, {"DE->SE-SE4": {}, "DE->SE": {}})
+
+    def test_generate_exchanges_with_two_subzones(self):
+        exchanges = {
+            "NO-NO1->SE-SE3": {},
+            "NO-NO3->SE-SE2": {},
+            "NO-NO4->SE-SE1": {},
+            "NO-NO4->SE-SE2": {},
+        }
+        zones = {
+            "NO": {
+                "subZoneNames": ["NO-NO1", "NO-NO2", "NO-NO3", "NO-NO4", "NO-NO5"],
+            },
+            "NO-NO1": {},
+            "NO-NO2": {},
+            "NO-NO3": {},
+            "NO-NO4": {},
+            "NO-NO5": {},
+            "SE": {
+                "subZoneNames": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
+            },
+            "SE-SE1": {},
+            "SE-SE2": {},
+            "SE-SE3": {},
+            "SE-SE4": {},
+        }
+        exchanges = config.generate_exchanges(exchanges, zones)
+        self.assertDictEqual(
+            exchanges,
+            {
+                "NO-NO1->SE-SE3": {},
+                "NO-NO3->SE-SE2": {},
+                "NO-NO4->SE-SE1": {},
+                "NO-NO4->SE-SE2": {},
+                "NO->SE": {},
+            },
+        )
+
+    def test_generate_zone_to_exchanges(self):
+        exchanges = {
+            "NO-NO1->SE-SE3": {},
+            "NO-NO3->SE-SE2": {},
+            "NO-NO4->SE-SE1": {},
+            "NO-NO4->SE-SE2": {},
+            "NO->SE": {},
+        }
+        zones_to_exchanges = config.generate_zone_to_exchanges(exchanges)
+        self.assertDictEqual(
+            zones_to_exchanges,
+            {
+                "NO-NO1": ["NO-NO1->SE-SE3"],
+                "NO-NO3": ["NO-NO3->SE-SE2"],
+                "NO-NO4": ["NO-NO4->SE-SE1", "NO-NO4->SE-SE2"],
+                "NO": ["NO->SE"],
+                "SE-SE1": ["NO-NO4->SE-SE1"],
+                "SE-SE2": ["NO-NO3->SE-SE2", "NO-NO4->SE-SE2"],
+                "SE-SE3": ["NO-NO1->SE-SE3"],
+                "SE": ["NO->SE"],
+            },
+        )
+
     def test_generate_zone_neighbours_two_countries(self):
         exchanges = {
             "DE->FR": {},
