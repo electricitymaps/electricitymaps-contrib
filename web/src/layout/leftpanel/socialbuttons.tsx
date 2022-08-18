@@ -40,7 +40,6 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }: any) => {
           target="_blank"
           rel="noreferrer"
         >
-          {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
           <Icon iconName={'twitter'} size={16} /> Tweet
         </a>
         {/* Slack */}

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -22,7 +22,6 @@ import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 
-// @ts-expect-error TS(2554): Expected 3 arguments, but got 2.
 const debouncedReleaseMoving = debounce(() => {
   dispatchApplication('isMovingMap', false);
 }, 200);
@@ -189,30 +188,19 @@ export default () => {
           onClose={() => setTooltipZoneData(null)}
         />
       )}
-      {/* @ts-expect-error TS(2746): This JSX tag's 'children' prop expects a single ch... Remove this comment to see the full error message */}
       <ZoneMap
         co2ColorScale={co2ColorScale}
         hoveringEnabled={hoveringEnabled}
-        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onMapLoaded={handleMapLoaded}
-        // @ts-expect-error TS(2322): Type '(e: any) => void' is not assignable to type ... Remove this comment to see the full error message
         onMapError={handleMapError}
-        // @ts-expect-error TS(2322): Type '({ longitude, latitude, x, y }: any) => void... Remove this comment to see the full error message
         onMouseMove={handleMouseMove}
-        // @ts-expect-error TS(2322): Type '({ width, height }: any) => void' is not ass... Remove this comment to see the full error message
         onResize={handleResize}
-        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onSeaClick={handleSeaClick}
-        // @ts-expect-error TS(2322): Type '({ width, height, latitude, longitude, zoom ... Remove this comment to see the full error message
         onViewportChange={handleViewportChange}
-        // @ts-expect-error TS(2322): Type '(id: any) => void' is not assignable to type... Remove this comment to see the full error message
         onZoneClick={handleZoneClick}
-        // @ts-expect-error TS(2322): Type '(zoneId: any) => void' is not assignable to ... Remove this comment to see the full error message
         onZoneMouseEnter={handleZoneMouseEnter}
-        // @ts-expect-error TS(2322): Type '() => void' is not assignable to type '() =>... Remove this comment to see the full error message
         onZoneMouseLeave={handleZoneMouseLeave}
         selectedZoneTimeIndex={selectedZoneTimeIndex}
-        selectedTimeAggregate={selectedTimeAggregate}
         scrollZoom={!isEmbedded}
         theme={theme}
         transitionDuration={transitionDuration}

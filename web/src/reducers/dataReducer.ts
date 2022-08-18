@@ -29,7 +29,6 @@ const reducer = createReducer(initialState, (builder) => {
       // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       const maxGridDatetime = state.zoneDatetimes[stateAggregation].at(-1);
 
-      // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
       Object.entries(countries).map(([zoneId, zoneData]) => {
         // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         if (!state.zones[zoneId]) {
@@ -49,7 +48,6 @@ const reducer = createReducer(initialState, (builder) => {
       });
 
       if (stateAggregation === TIME.HOURLY) {
-        // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
         Object.entries(exchanges).forEach((entry: any) => {
           const [key, value] = entry;
           // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message

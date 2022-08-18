@@ -1,8 +1,12 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { useLocation } from 'react-router-dom';
 import { TIME } from '../helpers/constants';
+
+export interface ParamTypes {
+  zoneId: string;
+}
 
 export function useSearchParams() {
   const { search } = useLocation();

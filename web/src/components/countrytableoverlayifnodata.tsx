@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { useParams } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';

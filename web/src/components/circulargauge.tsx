@@ -1,7 +1,5 @@
 import React from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { Motion, spring } from 'react-motion';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { arc } from 'd3-shape';
 
 /*
@@ -33,13 +31,14 @@ const CircularGauge = React.memo(
     radius = 32,
     thickness = 6,
   }: CircularGaugeProps) => {
-    const percentageFill = (p: any) =>
-      arc()
+    const percentageFill = (p: any): string => {
+      // @ts-ignore
+      return arc()
         .startAngle(0)
         .outerRadius(radius)
         .innerRadius(radius - thickness)
         .endAngle((p / 100) * 2 * Math.PI)();
-
+    };
     return (
       <div
         role="tooltip"

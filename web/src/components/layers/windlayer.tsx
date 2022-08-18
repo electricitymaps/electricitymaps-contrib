@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 
@@ -72,7 +72,8 @@ export default ({ project, unproject }: any) => {
   }, [windy, isVisible, node, interpolatedData, project, unproject, viewport]);
 
   return (
-    <CSSTransition classNames="fade" in={isVisible && windy && (windy as any).started} timeout={300}>
+    //@ts-ignore
+    <CSSTransition classNames="fade" in={isVisible && windy && windy.started} timeout={300}>
       <Canvas id="wind" width={width} height={height} ref={ref} />
     </CSSTransition>
   );

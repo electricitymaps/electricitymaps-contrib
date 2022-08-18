@@ -1,5 +1,5 @@
 import React from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Icon from './icon';
@@ -69,7 +69,6 @@ export const Button = ({ icon, children, iconSize = 16, ...rest }: any) => {
   const hasChildren = React.Children.count(children) > 0;
   return (
     <StyledButton hasChildren={hasChildren} as={renderAs} {...rest}>
-      {/* @ts-expect-error TS(2322): Type '{ iconName: any; size: any; }' is not assign... Remove this comment to see the full error message */}
       {icon && <Icon iconName={icon} size={iconSize} />}
       {hasChildren && <span>{children}</span>}
     </StyledButton>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Redirect, useLocation } from 'react-router-dom';
 
 import { useTranslation } from '../../helpers/translation';
@@ -64,7 +64,6 @@ const MobileInfoTab = () => {
           target="_blank"
           rel="noreferrer"
         >
-          {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
           <Icon iconName={'twitter'} size={16} /> Tweet
         </a>
       </div>

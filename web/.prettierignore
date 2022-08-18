@@ -3,6 +3,10 @@
 # Needed for lint staged.
 .prettierignore
 yarn.lock
+.eslintrc.json
+.yarnrc
+BUILD.yaml
+build
 
 world.json
 public/dist/

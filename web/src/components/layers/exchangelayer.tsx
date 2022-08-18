@@ -67,7 +67,6 @@ export default React.memo(({ project }: any) => {
       {!isMoving &&
         arrows.map((arrow: any) => (
           <ExchangeArrow
-            // @ts-expect-error TS(2322): Type '{ data: any; key: any; mouseMoveHandler: (ex... Remove this comment to see the full error message
             data={arrow}
             key={arrow.sortedCountryCodes}
             mouseMoveHandler={handleArrowMouseMove}

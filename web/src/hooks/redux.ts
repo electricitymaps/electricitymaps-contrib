@@ -1,14 +1,12 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useParams } from 'react-router-dom';
-
 import { combineZoneData } from '../helpers/redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { mapValues } from 'lodash';
+import { ParamTypes } from './router';
 
 export function useCurrentZoneHistory() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
   const zones = useSelector((state) => (state as any).data.zones);
   return useMemo(() => {
@@ -72,7 +70,7 @@ export function useCurrentZoneHistoryStartTime() {
 }
 
 export function useCurrentZoneData() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const zoneHistory = useCurrentZoneHistory();
   const zoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
   const zones = useSelector((state) => (state as any).data.zones);

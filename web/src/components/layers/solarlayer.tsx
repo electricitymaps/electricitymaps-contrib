@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'colo... Remove this comment to see the full error message
@@ -13,7 +13,7 @@ import { solarColor } from '../../helpers/scales';
 
 import { useInterpolatedSolarData } from '../../hooks/layers';
 
-const maxSolar = solarColor.domain().at(-1);
+const maxSolar = solarColor.domain().at(-1) || 0;
 const solarIntensityToOpacity = (intensity: any) => Math.floor((intensity / maxSolar) * 255);
 const opacityToSolarIntensity = (opacity: any) => Math.floor((opacity * maxSolar) / 255);
 

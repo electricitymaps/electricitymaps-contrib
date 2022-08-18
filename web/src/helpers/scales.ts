@@ -1,13 +1,10 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear, scaleQuantize } from 'd3-scale';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { range } from 'd3-array';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-i... Remove this comment to see the full error message
 import { interpolate } from 'd3-interpolate';
 
 // ** Wind
 const maxWind = 15;
-export const windColor = scaleLinear()
+export const windColor = scaleLinear<string>()
   .domain(range(10).map((i: any) => interpolate(0, maxWind)(i / (10 - 1))))
   .range([
     'rgba(0,   255, 255, 1.0)',
@@ -25,7 +22,10 @@ export const windColor = scaleLinear()
   .clamp(true);
 
 // ** Solar
-export const solarColor = scaleLinear().domain([0, 500, 1000]).range(['black', 'transparent', 'gold']).clamp(true);
+export const solarColor = scaleLinear<string>()
+  .domain([0, 500, 1000])
+  .range(['black', 'transparent', 'gold'])
+  .clamp(true);
 
 // ** Exchange
 

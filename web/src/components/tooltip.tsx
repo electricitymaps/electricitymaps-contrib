@@ -1,5 +1,5 @@
 import React from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Portal } from 'react-portal';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';

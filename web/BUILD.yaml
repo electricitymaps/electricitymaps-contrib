@@ -20,7 +20,7 @@ steps:
       - public/{fonts,images,locales,apple-app-site-association,browserconfig.xml,electricityMap.webmanifest,client-version.json}
       - src
       - views
-      - ./{.babelrc,.eslintrc.js,server.js,webpack.config.js}
+      - ./{.babelrc,.eslintrc.json,server.js,webpack.config.js}
     commands:
       - mkdir -p public/dist
       - yarn update-version

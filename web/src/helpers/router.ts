@@ -1,4 +1,3 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'hist... Remove this comment to see the full error message
 import { createBrowserHistory, createHashHistory } from 'history';
 
 // Use BrowserHistory in the web browser and HashHistory

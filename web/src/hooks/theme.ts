@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
 
 import { themes } from '../helpers/themes';
@@ -22,7 +21,7 @@ export function useCo2ColorScale() {
   const theme = useTheme();
 
   return useMemo(
-    () => scaleLinear().domain(theme.co2Scale.steps).range(theme.co2Scale.colors).unknown('gray').clamp(true),
+    () => scaleLinear<string>().domain(theme.co2Scale.steps).range(theme.co2Scale.colors).unknown('gray').clamp(true),
     [theme]
   );
 }

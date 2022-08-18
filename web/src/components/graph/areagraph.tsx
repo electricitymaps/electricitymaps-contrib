@@ -212,7 +212,6 @@ const AreaGraph = React.memo(
             datetimes={datetimesWithNext}
           />
         )}
-        {/* @ts-expect-error TS(2322): Type '{ scale: any; label: any; width: number; hei... Remove this comment to see the full error message */}
         <ValueAxis scale={valueScale} label={valueAxisLabel} width={containerWidth} height={containerHeight} />
         <GraphHoverLine
           layers={layers}

@@ -1,8 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-s... Remove this comment to see the full error message
 import { scaleLinear } from 'd3-scale';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-a... Remove this comment to see the full error message
 import { max as d3Max, min as d3Min } from 'd3-array';
 import { noop } from '../helpers/noop';
 import styled from 'styled-components';
@@ -89,7 +87,7 @@ const getDataBlockPositions = (productionData: any, exchangeData: any) => {
   const productionY = X_AXIS_HEIGHT + PADDING_Y;
 
   const exchangeFlagX =
-    LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - d3Max(exchangeData, (d: any) => d.mode.length) * 8;
+    LABEL_MAX_WIDTH - 4.0 * PADDING_X - DEFAULT_FLAG_SIZE - Number(d3Max(exchangeData, (d: any) => d.mode.length)) * 8;
   const exchangeHeight = exchangeData.length * (ROW_HEIGHT + PADDING_Y);
   const exchangeY = productionY + productionHeight + ROW_HEIGHT + PADDING_Y;
 
@@ -229,15 +227,15 @@ const CountryCarbonEmissionsTable = React.memo(
     const { __ } = useTranslation();
     const { productionY, exchangeFlagX, exchangeY } = getDataBlockPositions(productionData, exchangeData);
 
-    const maxCO2eqExport = d3Max(exchangeData, (d: any) => Math.max(0, -d.tCo2eqPerMin));
-    const maxCO2eqImport = d3Max(exchangeData, (d: any) => Math.max(0, d.tCo2eqPerMin));
-    const maxCO2eqProduction = d3Max(productionData, (d: any) => d.tCo2eqPerMin);
+    const maxCO2eqExport = d3Max(exchangeData, (d: any) => Math.max(0, -d.tCo2eqPerMin)) || 0;
+    const maxCO2eqImport = d3Max(exchangeData, (d: any) => Math.max(0, d.tCo2eqPerMin)) || 0;
+    const maxCO2eqProduction = d3Max(productionData, (d: any) => Number(d.tCo2eqPerMin)) || 0;
 
     // in tCO₂eq/min
     const co2Scale = useMemo(
       () =>
         scaleLinear()
-          .domain([-maxCO2eqExport || 0, Math.max(maxCO2eqProduction || 0, maxCO2eqImport || 0)])
+          .domain([-maxCO2eqExport, Math.max(maxCO2eqProduction, maxCO2eqImport)])
           .range([0, width - LABEL_MAX_WIDTH - PADDING_X]),
       [maxCO2eqExport, maxCO2eqProduction, maxCO2eqImport, width]
     );
@@ -323,25 +321,29 @@ const CountryElectricityProductionTable = React.memo(
     const [minPower, maxPower] = useMemo(() => {
       const historyOrCurrent = history && history.length ? history : [data];
       return [
-        d3Min(
-          historyOrCurrent.map((zoneData: any) =>
-            Math.min(
-              -zoneData.maxStorageCapacity || 0,
-              -zoneData.maxStorage || 0,
-              -zoneData.maxExport || 0,
-              -zoneData.maxExportCapacity || 0
+        Number(
+          d3Min(
+            historyOrCurrent.map((zoneData: any) =>
+              Math.min(
+                -zoneData.maxStorageCapacity || 0,
+                -zoneData.maxStorage || 0,
+                -zoneData.maxExport || 0,
+                -zoneData.maxExportCapacity || 0
+              )
             )
           )
         ) || 0,
-        d3Max(
-          historyOrCurrent.map((zoneData: any) =>
-            Math.max(
-              zoneData.maxCapacity || 0,
-              zoneData.maxProduction || 0,
-              zoneData.maxDischarge || 0,
-              zoneData.maxStorageCapacity || 0,
-              zoneData.maxImport || 0,
-              zoneData.maxImportCapacity || 0
+        Number(
+          d3Max(
+            historyOrCurrent.map((zoneData: any) =>
+              Math.max(
+                zoneData.maxCapacity || 0,
+                zoneData.maxProduction || 0,
+                zoneData.maxDischarge || 0,
+                zoneData.maxStorageCapacity || 0,
+                zoneData.maxImport || 0,
+                zoneData.maxImportCapacity || 0
+              )
             )
           )
         ) || 0,
@@ -480,7 +482,6 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }: any)
     <CountryTableContainer ref={ref}>
       {displayByEmissions ? (
         <CountryCarbonEmissionsTable
-          // @ts-expect-error TS(2322): Type '{ data: any; productionData: { isStorage: bo... Remove this comment to see the full error message
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}
@@ -494,7 +495,6 @@ const CountryTable = ({ displayByEmissions, electricityMixMode, isMobile }: any)
         />
       ) : (
         <CountryElectricityProductionTable
-          // @ts-expect-error TS(2322): Type '{ data: any; productionData: { isStorage: bo... Remove this comment to see the full error message
           data={data}
           productionData={productionData}
           exchangeData={exchangeData}

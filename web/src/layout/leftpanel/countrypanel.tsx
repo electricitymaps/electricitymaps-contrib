@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Redirect, Link, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { noop } from '../../helpers/noop';
@@ -170,7 +170,6 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated }:
   return (
     <div className="left-panel-zone-details-toolbar">
       <Link to={parentPage} className="left-panel-back-button">
-        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName="arrow_back" />
       </Link>
       <CountryNameTime>
@@ -351,7 +350,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               />
               <br />
               <ProContainer>
-                {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
                 <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
@@ -361,7 +359,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; color: str... Remove this comment to see the full error message */}
                   <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>
@@ -376,7 +373,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
               />
               <br />
               <ProContainer>
-                {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; }' is not ... Remove this comment to see the full error message */}
                 <Icon iconName="file_download" size={16} />
                 <a
                   href="https://electricitymaps.com/?utm_source=app.electricitymaps.com&utm_medium=referral&utm_campaign=country_panel"
@@ -386,7 +382,6 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                   {__('country-history.Getdata')}
                 </a>
                 <span className="pro">
-                  {/* @ts-expect-error TS(2322): Type '{ iconName: string; size: number; color: str... Remove this comment to see the full error message */}
                   <Icon iconName="lock" size={16} color="#4C4C4C" />
                   pro
                 </span>

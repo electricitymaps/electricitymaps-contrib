@@ -26,7 +26,7 @@
     "node": true
   },
   "root": true,
-  "ignorePatterns": ["dist", "build", "**/node_modules", "!.eslintrc.js", "coverage"],
+  "ignorePatterns": ["dist", "build", "**/node_modules", "!.eslintrc.json", "coverage"],
   "settings": {
     "react": {
       "version": "detect"
@@ -48,6 +48,7 @@
     "createDefaultProgram": true
   },
   "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
     "prefer-destructuring": [
       "error",
       {
@@ -61,14 +62,6 @@
     "no-duplicate-imports": "error",
     "no-implicit-coercion": "error",
     "no-param-reassign": "error",
-    "no-unused-vars": [
-      "error",
-      {
-        "args": "after-used",
-        "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
-      }
-    ],
     "no-use-before-define": [
       "error",
       {

@@ -56,10 +56,8 @@ const formatDate = function (date: any, lang: any, time: any) {
 
   switch (time) {
     case TIME.HOURLY:
-      // @ts-expect-error TS(2345): Argument of type '{ dateStyle: string; timeStyle: ... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeStyle: 'short' }).format(date);
     case TIME.DAILY:
-      // @ts-expect-error TS(2345): Argument of type '{ dateStyle: string; }' is not a... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(date);
     case TIME.MONTHLY:
       return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(date);
@@ -74,7 +72,6 @@ const formatDate = function (date: any, lang: any, time: any) {
 const getLocaleNumberFormat = (lang: any, { unit, unitDisplay, range }: any) =>
   new Intl.NumberFormat(lang, {
     style: 'unit',
-    // @ts-expect-error TS(2345): Argument of type '{ style: string; unit: any; unit... Remove this comment to see the full error message
     unit,
     unitDisplay: unitDisplay || 'long',
   }).format(range);
@@ -103,7 +100,6 @@ const formatDateTick = function (date: any, lang: any, timeAggregate: any) {
 
   switch (timeAggregate) {
     case TIME.HOURLY:
-      // @ts-expect-error TS(2345): Argument of type '{ timeStyle: string; }' is not a... Remove this comment to see the full error message
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);

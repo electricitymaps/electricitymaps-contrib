@@ -76,7 +76,6 @@ const MobileHeader = ({ onToggle, isOpen, label }: any) => (
   <StyledMobileHeader isCollapsed={!isOpen}>
     <span>{label}</span>
     <ToggleLegendButton onClick={onToggle}>
-      {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
       <Icon iconName={isOpen ? 'call_received' : 'call_made'} />
     </ToggleLegendButton>
   </StyledMobileHeader>

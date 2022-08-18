@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-i... Remove this comment to see the full error message
 import { interpolate } from 'd3-interpolate';
 import { formatDistance } from 'date-fns';
 
@@ -18,7 +17,6 @@ export function useExchangeArrowsData() {
     return [];
   }
 
-  // @ts-expect-error TS(2550): Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
   return Object.values(exchanges)
     .filter((exchange: any) => exchange.data[selectedZoneTimeIndex])
     .map((exchange: any) => ({

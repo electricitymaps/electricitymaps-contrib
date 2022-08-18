@@ -1,5 +1,5 @@
 import React from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { NavigationControl } from 'react-map-gl';
 import styled from 'styled-components';
 

@@ -6,6 +6,14 @@ import zonesConfig from '../../../config/zones.json';
 // @ts-expect-error TS(2732): Cannot find module '../../../config/exchanges.json... Remove this comment to see the full error message
 import exchangesConfig from '../../../config/exchanges.json';
 
+interface ExchangeConfigTypes {
+  lonlat: [number, number];
+  parsers: {
+    exchange: string;
+  };
+  rotation: number;
+}
+
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
 const GRID_DATA_FETCH_FAILED = createAction('data/grid-fetch-failed');
@@ -63,11 +71,10 @@ function initDataState() {
 
   const exchanges = {};
 
-  // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
   Object.entries(exchangesConfig).forEach(([key, value]) => {
     // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     exchanges[key] = {
-      config: { ...value, sortedCountryCodes: key.split('->').sort() },
+      config: { ...(value as ExchangeConfigTypes), sortedCountryCodes: key.split('->').sort() },
       data: [],
     };
   });

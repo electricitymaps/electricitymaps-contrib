@@ -13,10 +13,10 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   devtool: isProduction ? 'source-map' : 'eval',
   entry: {
-    bundle: './src/index.jsx',
+    bundle: './src/index.tsx',
   },
   resolve: {
-    extensions: ['.jsx', '.tsx', '...'], // ... is for the defaults
+    extensions: ['.ts', '.tsx', '.js', '.jsx'], // ... is for the defaults
   },
   module: {
     rules: [
@@ -32,13 +32,13 @@ module.exports = {
         ],
       },
       {
-        test: [/\.(js|jsx)$/],
-        exclude: [/node_modules/],
-        loader: 'babel-loader',
-        options: {
-          cacheDirectory: true, // cache results for subsequent builds
-        },
+        test: /\.(t|j)sx?$/,
+        use: { loader: 'ts-loader' },
+        exclude: /node_modules/,
       },
+
+      // addition - add source-map support
+      { enforce: 'pre', test: /\.js$/, exclude: /node_modules/, loader: 'source-map-loader' },
     ],
   },
   plugins: [
@@ -88,4 +88,10 @@ module.exports = {
     pathinfo: false,
   },
   cache: false,
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
+  // addition - add source-map support
+  devtool: 'source-map',
 };

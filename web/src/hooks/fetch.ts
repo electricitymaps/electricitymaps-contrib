@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { useParams } from 'react-router-dom';
 
 import { DATA_FETCH_INTERVAL, TIME } from '../helpers/constants';
@@ -11,10 +11,10 @@ import {
   ZONE_HISTORY_FETCH_REQUESTED,
 } from '../helpers/redux';
 
-import { useWindEnabled, useSolarEnabled, useFeatureToggle } from './router';
+import { useWindEnabled, useSolarEnabled, useFeatureToggle, ParamTypes } from './router';
 
 export function useConditionalZoneHistoryFetch() {
-  const { zoneId } = useParams();
+  const { zoneId } = useParams<ParamTypes>();
   const zones = useSelector((state) => (state as any).data.zones);
   const features = useFeatureToggle();
   const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);

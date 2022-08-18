@@ -50,7 +50,7 @@ const CarbonIntensitySquare = ({ value, withSubtext }: any) => {
 
   return (
     <div className="country-col">
-      <Box color={co2ColorScale(value)}>
+      <Box color={co2ColorScale(value) as string}>
         <div>
           <Value data-test-id="co2-square-value">{Math.round(value) || '?'}</Value>g
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { dispatchApplication } from '../../store';
@@ -114,7 +114,6 @@ const LeftPanel = ({ isLeftPanelCollapsed }: any) => {
         tabIndex="0"
         aria-label="toggle left panel visibility"
       >
-        {/* @ts-expect-error TS(2322): Type '{ iconName: string; }' is not assignable to ... Remove this comment to see the full error message */}
         <Icon iconName={!isLeftPanelCollapsed ? 'arrow_left' : 'arrow_right'} />
       </LeftPanelCollapseButton>
 

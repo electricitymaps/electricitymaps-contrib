@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Portal } from 'react-portal';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import ReactMapGL, { Source, Layer } from 'react-map-gl';
 import { noop } from '../helpers/noop';
 import { isEmpty } from '../helpers/isEmpty';
@@ -13,31 +13,32 @@ import { ZoomControls } from './zoomcontrols';
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
 
-export interface viewport {
+export interface Viewport {
   latitude: number;
   longitude: number;
   zoom: number;
 }
+
+//export interface Zones {}
 interface ZoneMapPropTypes {
   children: any;
   co2ColorScale?: any;
   hoveringEnabled: boolean;
   onMapLoaded: () => void;
-  onMapError: () => void;
-  onMouseMove: () => void;
-  onResize: () => void;
+  onMapError: (e: any) => void;
+  onMouseMove: ({ longitude, latitude, x, y }: any) => void;
+  onResize: ({ width, height }: any) => void;
   onSeaClick: () => void;
-  onViewportChange: () => void;
-  // eslint-disable-next-line no-unused-vars
+  onViewportChange: ({ width, height, latitude, longitude, zoom }: any) => void;
   onZoneClick: (zoneId: string) => void;
-  onZoneMouseEnter: () => void;
+  onZoneMouseEnter: (zoneId: any) => void;
   onZoneMouseLeave: () => void;
   scrollZoom: boolean;
   selectedZoneTimeIndex: any;
-  style: any;
+
   theme: any;
   transitionDuration: number;
-  viewport: viewport;
+  viewport: Viewport;
 }
 
 const ZoneMap = ({
@@ -55,7 +56,6 @@ const ZoneMap = ({
   onZoneMouseLeave = noop,
   scrollZoom = true,
   selectedZoneTimeIndex = null,
-  style = {},
   theme = {},
   transitionDuration = 300,
   viewport = {
@@ -64,7 +64,7 @@ const ZoneMap = ({
     zoom: 2,
   },
 }: ZoneMapPropTypes) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef(null);
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
@@ -255,7 +255,7 @@ const ZoneMap = ({
   }
 
   return (
-    <div className="zone-map" style={style} ref={wrapperRef}>
+    <div className="zone-map" ref={wrapperRef}>
       <ReactMapGL
         ref={ref}
         width="100%"
@@ -269,7 +269,6 @@ const ZoneMap = ({
         scrollZoom={scrollZoom}
         mapStyle={mapStyle}
         maxZoom={10}
-        onBlur={handleMouseOut}
         onClick={handleClick}
         onError={onMapError}
         onLoad={handleLoad}

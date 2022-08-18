@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { CSSTransition } from 'react-transition-group';
 
 // TODO: add animation to logo to indicate loading

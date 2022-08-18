@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { Link, useLocation, useHistory } from 'react-router-dom';
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { FixedSizeList as List, areEqual } from 'react-window';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
