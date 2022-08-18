@@ -108,11 +108,18 @@ def generate_zone_neighbours(
             _get_zone_keys_for_all_granularities(z_k, zones) for z_k in zone_keys
         ]
 
-        def _can_zones_be_neighbours(z_k_1: ZoneKey, z_k_2: ZoneKey) -> bool:
+        def _can_zones_be_neighbours(
+            z_k_1: ZoneKey, z_k_2: ZoneKey, zones: Dict[str, Any]
+        ) -> bool:
             # If we have an exchange between two subzones, we don't want to say that the parent zone is
             # a neighbour of the subzone.
-            if _get_base_zone_key(z_k_1) == z_k_2 or _get_base_zone_key(z_k_2) == z_k_1:
-                return False
+            # That only happens when one is declared as subzone of the other.
+            if _get_base_zone_key(z_k_1) == z_k_2:
+                if z_k_1 in zones.get(z_k_2, {}).get("subZoneNames", []):
+                    return False
+            if _get_base_zone_key(z_k_2) == z_k_1:
+                if z_k_2 in zones.get(z_k_1, {}).get("subZoneNames", []):
+                    return False
             # Twice the same zone is not a neighbour
             if z_k_1 == z_k_2:
                 return False
@@ -122,7 +129,7 @@ def generate_zone_neighbours(
         all_zone_keys.reverse()
         pairs.extend(list(product(*all_zone_keys)))
         for zone_key_1, zone_key_2 in pairs:
-            if _can_zones_be_neighbours(zone_key_1, zone_key_2):
+            if _can_zones_be_neighbours(zone_key_1, zone_key_2, zones):
                 if zone_key_1 not in zone_neighbours:
                     zone_neighbours[zone_key_1] = set()
                 zone_neighbours[zone_key_1].add(zone_key_2)
