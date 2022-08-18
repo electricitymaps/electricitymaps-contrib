@@ -201,6 +201,25 @@ class ConfigTestcase(unittest.TestCase):
             {"SE-SE1": ["SE-SE2"], "SE-SE2": ["SE-SE1"]},
         )
 
+    def test_generate_zone_neighbours_GB(self):
+        # That's an interesting case as GB has islands, which are not subzones
+        # It means that GB->GB-NIR are valid exchanges and that
+        # GB and GB-NIR are neighbours
+        exchanges = {
+            "GB->GB-NIR": {},
+            "GB->GB-ORK": {},
+        }
+        zones = {
+            "GB": {},
+            "GB-NIR": {},
+            "GB-ORK": {},
+        }
+        zone_neighbours = config.generate_zone_neighbours(exchanges, zones)
+        self.assertDictEqual(
+            zone_neighbours,
+            {"GB": ["GB-NIR", "GB-ORK"], "GB-NIR": ["GB"], "GB-ORK": ["GB"]},
+        )
+
     def test_ZONE_NEIGHBOURS(self):
         self.assertIn("DK-DK1", config.ZONE_NEIGHBOURS.keys())
         dk_neighbours = config.ZONE_NEIGHBOURS["DK-DK1"]
