@@ -11,7 +11,7 @@ https://www.eia.gov/opendata/register.php
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
-
+import os 
 import arrow
 from dateutil import parser, tz
 from requests import Session
@@ -283,6 +283,7 @@ REGIONS = {
     "US-TEN-TVA": "TVA",  # Tennessee Valley Authority
     "US-TEX-ERCO": "ERCO",  # Electric Reliability Council Of Texas, Inc.
 }
+
 TYPES = {
     # 'biomass': 'BM',  # not currently supported
     "coal": "COL",
@@ -294,37 +295,31 @@ TYPES = {
     "solar": "SUN",
     "wind": "WND",
 }
-PRODUCTION_SERIES = "EBA.%s-ALL.NG.H"
-PRODUCTION_MIX_SERIES = "EBA.%s-ALL.NG.%s.H"
-DEMAND_SERIES = "EBA.%s-ALL.D.H"
-FORECAST_SERIES = "EBA.%s-ALL.DF.H"
+
+BASE_URL = 'https://api.eia.gov/v2/electricity/rto'
+
+PRODUCTION = f'{BASE_URL}/region-data/data/' \
+    '?data[]=value&facets[respondent][]={}&facets[type][]=NG&frequency=hourly'
+CONSUMPTION = f'{BASE_URL}/region-data/data/' \
+    '?data[]=value&facets[respondent][]={}&facets[type][]=D&frequency=hourly'
+CONSUMPTION_FORECAST = f'{BASE_URL}/region-data/data/' \
+    '?data[]=value&facets[respondent][]={}&facets[type][]=DF&frequency=hourly'
+PRODUCTION_MIX = f'{BASE_URL}/fuel-type-data/data/' \
+    '?data[]=value&facets[respondent][]={}&facets[fueltype][]={}&frequency=hourly'
+EXCHANGE = f'{BASE_URL}/interchange-data/data/' \
+    '?data[]=value&facets[fromba][]={}&facets[toba][]={}&frequency=hourly'
 
 
 @refetch_frequency(timedelta(days=1))
-def fetch_consumption_forecast(
-    zone_key: str,
-    session: Optional[Session] = None,
-    target_datetime: Optional[datetime] = None,
-    logger: Logger = getLogger(__name__),
-):
-    return _fetch_series(
-        zone_key,
-        FORECAST_SERIES % REGIONS[zone_key],
-        session=session,
-        target_datetime=target_datetime,
-        logger=logger,
-    )
-
-
 def fetch_production(
     zone_key: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    return _fetch_series(
+    return _fetch(
         zone_key,
-        PRODUCTION_SERIES % REGIONS[zone_key],
+        PRODUCTION.format(REGIONS[zone_key]),
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -338,9 +333,9 @@ def fetch_consumption(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    consumption = _fetch_series(
+    consumption = _fetch(
         zone_key,
-        DEMAND_SERIES % REGIONS[zone_key],
+        CONSUMPTION.format(REGIONS[zone_key]),
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -352,6 +347,22 @@ def fetch_consumption(
 
 
 @refetch_frequency(timedelta(days=1))
+def fetch_consumption_forecast(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
+    return _fetch(
+        zone_key,
+        CONSUMPTION_FORECAST.format(REGIONS[zone_key]),
+        session=session,
+        target_datetime=target_datetime,
+        logger=logger,
+    )
+
+
+@refetch_frequency(timedelta(days=1))
 def fetch_production_mix(
     zone_key: str,
     session: Optional[Session] = None,
@@ -360,10 +371,10 @@ def fetch_production_mix(
 ):
     mixes = []
     for type, code in TYPES.items():
-        series = PRODUCTION_MIX_SERIES % (REGIONS[zone_key], code)
-        mix = _fetch_series(
+        url_prefix = PRODUCTION_MIX.format(REGIONS[zone_key], code)
+        mix = _fetch(
             zone_key,
-            series,
+            url_prefix,
             session=session,
             target_datetime=target_datetime,
             logger=logger,
@@ -378,10 +389,10 @@ def fetch_production_mix(
         # https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid
         SC_VIRGIL_OWNERSHIP = 0.3333333
         if zone_key == "US-CAR-SC" and type == "nuclear":
-            series = PRODUCTION_MIX_SERIES % (REGIONS["US-CAR-SCEG"], code)
-            mix = _fetch_series(
+            series = PRODUCTION_MIX.format((REGIONS["US-CAR-SCEG"], code))
+            mix = _fetch(
                 "US-CAR-SCEG",
-                series,
+                url_prefix,
                 session=session,
                 target_datetime=target_datetime,
                 logger=logger,
@@ -457,9 +468,9 @@ def fetch_exchange(
     logger: Logger = getLogger(__name__),
 ):
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
-    exchange = _fetch_series(
+    exchange = _fetch(
         sortedcodes,
-        EXCHANGES[sortedcodes],
+        url_prefix=EXCHANGE.format(REGIONS[zone_key1], REGIONS[zone_key2]),
         session=session,
         target_datetime=target_datetime,
         logger=logger,
@@ -477,21 +488,19 @@ def fetch_exchange(
     return exchange
 
 
-def _fetch_series(
+def _fetch(
     zone_key: str,
-    series_id,
+    url_prefix: str,
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    """Fetches and converts a data series."""
-    s = session or Session()
-
-    # local import to avoid the exception that happens if EIAPY token is not set
-    # even if this module is unused
-    from eiapy import Series
-
-    series = Series(series_id=series_id, session=s)
+    # load EIA API key
+    try:
+        API_KEY = os.environ['EIA_KEY']
+    except KeyError:
+        raise RuntimeError("Requires an API key, set in the EIA_KEY environment variable. \
+            Get one here: https://www.eia.gov/opendata/register.php")
 
     if target_datetime:
         try:
@@ -501,52 +510,32 @@ def _fetch_series(
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             )
         utc = tz.gettz("UTC")
-        if isinstance(target_datetime, datetime):
-            # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
-            end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
-            start = (target_datetime.astimezone(utc) - timedelta(days=1)).strftime(
-                "%Y%m%dT%HZ"
-            )
-        else:
-            end = None
-            start = None
-        raw_data = series.get_data(start=start, end=end)
+        eia_ts_format = "%Y-%m-%dT%HH"
+        end = target_datetime.astimezone(utc)
+        start = end - timedelta(days=1)
+        url = f'{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}'
     else:
-        # Get the last 24 hours available.
-        raw_data = series.last(24)
+        url = f'{url_prefix}&api_key={API_KEY}&sort[0][column]=period&sort[0][direction]=desc&length=24'
 
-    eia_error_message = raw_data.get("data", {}).get("error")
-    if eia_error_message:
-        logger.error(f"EIA error, for series_id [{series_id}]: {eia_error_message}")
-        return []
-
-    # UTC timestamp with no offset returned.
-    if not raw_data.get("series"):
-        # Series doesn't exist. Probably requesting a fuel from a region that
-        # doesn't have any capacity for that fuel type.
-        return []
-
+    s = session or Session()
+    req = s.get(url)
+    raw_data = req.json()
     return [
         {
             "zoneKey": zone_key,
-            "datetime": parser.parse(datapoint[0]),
-            "value": datapoint[1],
+            "datetime": parser.parse(datapoint['period']),
+            "value": datapoint['value'],
             "source": "eia.gov",
         }
-        for datapoint in raw_data["series"][0]["data"]
+        for datapoint in raw_data['response']['data']
     ]
 
 
-def main():
-    "Main method, never used by the Electricity Map backend, but handy for testing."
+if __name__ == '__main__':
     from pprint import pprint
-
-    pprint(fetch_consumption_forecast("US-CAL-BANC"))
-    pprint(fetch_production("US-SEC"))
-    pprint(fetch_production_mix("US-MIDW-GLHB"))
-    pprint(fetch_consumption("US-MIDW-LGEE"))
-    pprint(fetch_exchange("US-CAL-BANC", "US-NW-BPAT"))
+    # pprint(fetch_production('US-CAL-CISO'))
+    # pprint(fetch_consumption_forecast('US-CAL-CISO'))
+    # pprint(fetch_exchange("US-CAL-CISO", "US-SW-AZPS"))
+    pprint(fetch_production_mix('US-CAL-CISO'))
 
 
-if __name__ == "__main__":
-    main()
