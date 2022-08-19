@@ -12,130 +12,9 @@ CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resol
 
 # Read JSON files
 ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json"), encoding="utf-8"))
-
-
-def _get_base_zone_key(zone_key: ZoneKey) -> ZoneKey:
-    return zone_key.split("-")[0]
-
-
-def _get_zone_keys_for_all_granularities(
-    zone_key: str, zones: Dict[str, Any]
-) -> List[str]:
-    """
-    From a given zone key return all zone keys that relate to that zone at different geographic granularities.
-    Ex: From SE-SE1 -> [SE, SE-SE1]
-    """
-    zone_keys = [zone_key]
-    base = _get_base_zone_key(zone_key)
-    if zone_key in zones.get(base, {}).get("subZoneNames", []):
-        zone_keys.append(base)
-    zone_keys.sort()
-    return zone_keys
-
-
-def generate_exchanges(
-    exchanges_config: Dict[str, Any], zones: Dict[str, Any]
-) -> Dict[str, Any]:
-    exchanges = deepcopy(exchanges_config)
-    # Add the other levels of exchanges
-    # For now, we only generate the keys - position of the exchanges will be determined later
-    # Same for capacities
-    for k, _ in exchanges_config.items():
-        zone_keys = k.split("->")
-        all_zone_keys = [
-            _get_zone_keys_for_all_granularities(z_k, zones) for z_k in zone_keys
-        ]
-        # Generate exchanges at other granularities
-        # For now it's only at the base
-        def _should_exchange_be_added(z_k_1: ZoneKey, z_k_2: ZoneKey) -> bool:
-            base_z_k_1 = _get_base_zone_key(z_k_1)
-            base_z_k_2 = _get_base_zone_key(z_k_2)
-            if base_z_k_1 != base_z_k_2 and (
-                z_k_1 == base_z_k_1 and z_k_2 == base_z_k_2
-            ):
-                return True
-            return False
-
-        pairs = list(product(*all_zone_keys))
-        all_zone_keys.reverse()
-        pairs.extend(list(product(*all_zone_keys)))
-        for pair in pairs:
-            if _should_exchange_be_added(*pair):
-                exchange_key = "->".join(sorted(pair))
-                if exchange_key not in exchanges:
-                    exchanges[exchange_key] = {}
-
-    return exchanges
-
-
-EXCHANGES_CONFIG = generate_exchanges(
-    json.load(open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")),
-    ZONES_CONFIG,
+EXCHANGES_CONFIG = json.load(
+    open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")
 )
-
-
-def generate_zone_to_exchanges(exhanges: Dict[str, Any]) -> Dict[str, Any]:
-    zone_to_exchanges = {}
-    for k, _ in exhanges.items():
-        zone_key_1, zone_key_2 = k.split("->")
-        if zone_key_1 not in zone_to_exchanges:
-            zone_to_exchanges[zone_key_1] = [k]
-        else:
-            zone_to_exchanges[zone_key_1].append(k)
-        if zone_key_2 not in zone_to_exchanges:
-            zone_to_exchanges[zone_key_2] = [k]
-        else:
-            zone_to_exchanges[zone_key_2].append(k)
-
-    # we want exchanges to always be in the same order
-    for z, ex in zone_to_exchanges.items():
-        zone_to_exchanges[z] = sorted(ex)
-
-    return zone_to_exchanges
-
-
-ZONES_TO_EXCHANGES = generate_zone_to_exchanges(EXCHANGES_CONFIG)
-
-
-# Prepare zone neighbours
-def generate_zone_neighbours(
-    exchanges: Dict[str, Any], zones: Dict[str, Any]
-) -> Dict[ZoneKey, List[ZoneKey]]:
-    zone_neighbours = {}
-    for k, _ in exchanges.items():
-        zone_keys = k.split("->")
-        all_zone_keys = [
-            _get_zone_keys_for_all_granularities(z_k, zones) for z_k in zone_keys
-        ]
-
-        def _can_zones_be_neighbours(z_k_1: ZoneKey, z_k_2: ZoneKey) -> bool:
-            # If we have an exchange between two subzones, we don't want to say that the parent zone is
-            # a neighbour of the subzone.
-            if _get_base_zone_key(z_k_1) == z_k_2 or _get_base_zone_key(z_k_2) == z_k_1:
-                return False
-            # Twice the same zone is not a neighbour
-            if z_k_1 == z_k_2:
-                return False
-            return True
-
-        pairs = list(product(*all_zone_keys))
-        all_zone_keys.reverse()
-        pairs.extend(list(product(*all_zone_keys)))
-        for zone_key_1, zone_key_2 in pairs:
-            if _can_zones_be_neighbours(zone_key_1, zone_key_2):
-                if zone_key_1 not in zone_neighbours:
-                    zone_neighbours[zone_key_1] = set()
-                zone_neighbours[zone_key_1].add(zone_key_2)
-
-    # we want neighbors to always be in the same order
-    for zone, neighbors in zone_neighbours.items():
-        zone_neighbours[zone] = sorted(neighbors)
-
-    return zone_neighbours
-
-
-ZONE_NEIGHBOURS = generate_zone_neighbours(EXCHANGES_CONFIG, ZONES_CONFIG)
-
 CO2EQ_PARAMETERS_ALL = json.load(
     open(CONFIG_DIR.joinpath("co2eq_parameters_all.json"), encoding="utf-8")
 )
@@ -165,6 +44,46 @@ for zone_id, zone_config in ZONES_CONFIG.items():
     if "subZoneNames" in zone_config:
         for sub_zone_id in zone_config["subZoneNames"]:
             ZONE_PARENT[sub_zone_id] = zone_id
+
+# Prepare zone neighbours
+def generate_zone_neighbours(
+    exchanges: Dict[str, Any], zones: Dict[str, Any]
+) -> Dict[ZoneKey, List[ZoneKey]]:
+    zone_neighbours = {}
+    for k, _ in exchanges.items():
+        zone_names = k.split("->")
+
+        def _get_all_zone_name_granularities(zone_name: str) -> List[str]:
+            zone_names = [zone_name]
+            base = zone_name.split("-")[0]
+            if zone_name in zones.get(base, {}).get("subZoneNames", []):
+                zone_names.append(base)
+            return zone_names
+
+        all_zone_names = [_get_all_zone_name_granularities(z_n) for z_n in zone_names]
+        # If we have an exchange between two subzones, we don't want to say that the parent zone is
+        # a neighbour of the subzone.
+        min_depth = min([len(z) for z in all_zone_names])
+        for depth in range(min_depth):
+            if all_zone_names[0][depth] == all_zone_names[1][depth]:
+                all_zone_names = [all_zone_names[0][:depth], all_zone_names[1][:depth]]
+                break
+        pairs = list(product(*all_zone_names))
+        all_zone_names.reverse()
+        pairs.extend(list(product(*all_zone_names)))
+        for zone_name_1, zone_name_2 in pairs:
+            if zone_name_1 not in zone_neighbours:
+                zone_neighbours[zone_name_1] = set()
+            zone_neighbours[zone_name_1].add(zone_name_2)
+
+    # we want neighbors to always be in the same order
+    for zone, neighbors in zone_neighbours.items():
+        zone_neighbours[zone] = sorted(neighbors)
+
+    return zone_neighbours
+
+
+ZONE_NEIGHBOURS = generate_zone_neighbours(EXCHANGES_CONFIG, ZONES_CONFIG)
 
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
