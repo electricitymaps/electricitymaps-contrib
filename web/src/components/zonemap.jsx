@@ -143,6 +143,12 @@ const ZoneMap = ({
       zoneValues.forEach((zone, i) => {
         const zoneData = zone[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
+
+        // Uncomment to enable price view
+        //const priceIntensity = zoneData ? zoneData.ProductionPrice : null;
+        //const fillColor = co2ColorScale(priceIntensity);
+
+        // comment next line when enabling price view
         const fillColor = co2ColorScale(co2intensity);
 
         const existingColor = map.getFeatureState({ source: 'zones-clickable', id: i }, 'color')?.color;
