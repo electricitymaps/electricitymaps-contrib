@@ -1461,13 +1461,14 @@
     "rotation": 30
   },
   "NO-NO3->NO-NO5": {
-    "capacity": [-500, 500],
+    "capacity": [-500, 800],
     "lonlat": [7.1, 61.194118],
     "parsers": {
       "exchange": "statnett.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
-    "rotation": 140
+    "rotation": 140,
+    "_source": "https://umm.nordpoolgroup.com/#/messages/3355b9ad-9ef8-48bf-8743-4b11a1a3b350/1"
   },
   "NO-NO3->SE-SE2": {
     "capacity": [-1000, 600],
