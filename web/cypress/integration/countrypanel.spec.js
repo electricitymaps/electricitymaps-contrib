@@ -1,13 +1,13 @@
 describe('Country Panel', () => {
   beforeEach(() => {
-    (cy as any).interceptAPI('v5/state/hourly');
+    cy.interceptAPI('v5/state/hourly');
   });
 
   it.skip('interacts with details', () => {
     cy.visit('/zone/DK-DK2?skip-onboarding=true');
-    (cy as any).interceptAPI('v5/history/hourly?countryCode=DK-DK2');
-    (cy as any).waitForAPISuccess('v5/state/hourly');
-    (cy as any).waitForAPISuccess('v5/history/hourly?countryCode=DK-DK2');
+    cy.interceptAPI('v5/history/hourly?countryCode=DK-DK2');
+    cy.waitForAPISuccess('v5/state/hourly');
+    cy.waitForAPISuccess('v5/history/hourly?countryCode=DK-DK2');
 
     cy.contains('East Denmark');
     cy.contains('Carbon Intensity');
@@ -35,7 +35,7 @@ describe('Country Panel', () => {
     cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '122');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
 
-    (cy.get('input.time-slider-input') as any).setSliderValue('1655823600000');
+    cy.get('input.time-slider-input').setSliderValue('1655823600000');
     cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '108');
 
     cy.get('.left-panel-back-button').click();
@@ -43,9 +43,9 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
     cy.visit('/zone/UA');
-    (cy as any).interceptAPI('v5/history/hourly?countryCode=UA');
-    (cy as any).waitForAPISuccess('v5/state/hourly');
-    (cy as any).waitForAPISuccess('v5/history/hourly?countryCode=UA');
+    cy.interceptAPI('v5/history/hourly?countryCode=UA');
+    cy.waitForAPISuccess('v5/state/hourly');
+    cy.waitForAPISuccess('v5/history/hourly?countryCode=UA');
 
     cy.get('.no-data-overlay-message')
       .should('exist')
@@ -54,7 +54,7 @@ describe('Country Panel', () => {
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
     cy.visit('/zone/CN');
-    (cy as any).waitForAPISuccess('v5/state/hourly');
+    cy.waitForAPISuccess('v5/state/hourly');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
 });

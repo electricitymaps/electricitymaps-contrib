@@ -28,9 +28,8 @@
  * The setSliderValue command will set the value of a input[type=range] element.
  * See https://github.com/cypress-io/cypress/issues/1570#issuecomment-891244917
  */
-// @ts-expect-error TS(2769): No overload matches this call.
 Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, value) => {
-  const element = (subject as any)[0];
+  const element = subject[0];
 
   const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
 
@@ -44,9 +43,8 @@ Cypress.Commands.add('setSliderValue', { prevSubject: 'element' }, (subject, val
 //     }
 // }
 
-// @ts-expect-error TS(2345): Argument of type '"interceptAPI"' is not assignabl... Remove this comment to see the full error message
 Cypress.Commands.add('interceptAPI', (path) => {
-  const [pathWithoutParams, params] = (path as any).split('?');
+  const [pathWithoutParams, params] = path.split('?');
   let fixturePath = pathWithoutParams;
   // Change fixture path if countryCode query parameter is used to use correct response
   if (params && params.includes('countryCode')) {
@@ -55,23 +53,18 @@ Cypress.Commands.add('interceptAPI', (path) => {
   }
   cy.intercept('GET', `http://localhost:8001/${path}`, {
     fixture: `${fixturePath}.json`,
-    // @ts-expect-error TS(2345): Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
   }).as(path);
 });
-// @ts-expect-error TS(2345): Argument of type '"waitForAPISuccess"' is not assi... Remove this comment to see the full error message
 Cypress.Commands.add('waitForAPISuccess', (path) => {
   cy.wait(`@${path}`)
     .its('response.statusCode')
     .should('match', /200|304/);
 });
 
-// @ts-expect-error TS(2345): Argument of type '"visitOnMobile"' is not assignab... Remove this comment to see the full error message
 Cypress.Commands.add('visitOnMobile', (path) => {
   cy.viewport('iphone-6');
-  // @ts-expect-error TS(2345): Argument of type 'unknown' is not assignable to pa... Remove this comment to see the full error message
   cy.visit(path, {
     onBeforeLoad: (win) => {
-      // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type '((this: ... Remove this comment to see the full error message
       win.ontouchstart = true;
       Object.defineProperty(win.navigator, 'userAgent', {
         value:

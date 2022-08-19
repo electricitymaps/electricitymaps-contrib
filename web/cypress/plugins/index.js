@@ -15,9 +15,8 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 // eslint-disable-next-line no-unused-vars
-module.exports = (on: any, config: any) => {
+module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 };
