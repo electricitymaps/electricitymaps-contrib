@@ -8,10 +8,11 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
+import os
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
-import os
+
 import arrow
 from dateutil import parser, tz
 from requests import Session
