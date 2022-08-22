@@ -612,6 +612,10 @@
     "ES": {
       "zoneName": "Spanien"
     },
+    "ES-CE": {
+      "countryName": "Spanien",
+      "zoneName": "Ceuta"
+    },
     "ES-IB-FO": {
       "countryName": "Spanien",
       "zoneName": "Formentera"
@@ -652,6 +656,10 @@
       "countryName": "Spanien",
       "zoneName": "Teneriffa"
     },
+    "ES-ML": {
+      "countryName": "Spanien",
+      "zoneName": "Melilla"
+    },
     "ET": {
       "zoneName": "Etiopien"
     },
@@ -669,6 +677,14 @@
     },
     "FO": {
       "zoneName": "Färöarna"
+    },
+    "FO-MI": {
+      "countryName": "Färöarna",
+      "zoneName": "Huvudöarna"
+    },
+    "FO-SI": {
+      "countryName": "Färöarna",
+      "zoneName": "Söderön"
     },
     "FR": {
       "zoneName": "Frankrike"
@@ -1353,6 +1369,22 @@
     },
     "SE": {
       "zoneName": "Sverige"
+    },
+    "SE-SE1": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Sverige"
+    },
+    "SE-SE2": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Mellansverige"
+    },
+    "SE-SE3": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Mellansverige"
+    },
+    "SE-SE4": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Sverige"
     },
     "SG": {
       "zoneName": "Singapore"
