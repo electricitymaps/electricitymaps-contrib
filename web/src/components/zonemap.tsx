@@ -91,6 +91,7 @@ const ZoneMap = ({
   const selectedTimeAggregate = useSelector((state) => (state as any).application.selectedTimeAggregate);
   const electricityMixMode = useSelector((state) => (state as any).application.electricityMixMode);
   const zones = useSelector((state) => (state as any).data.zones);
+  const zoneValues = useMemo(() => Object.values(zones), [zones]);
 
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
@@ -119,15 +120,22 @@ const ZoneMap = ({
   };
 
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
+  // The `sources` object will trigger a whole re-rendering of the map, and will
+  // thus re-render all zones.
+  // This is a slower process than `setFeatureState`.
   const sources = useMemo(() => {
-    const features = Object.entries(zones as Zones).map(([zoneId, zone]) => {
-      const length = (coordinate: any) => (coordinate ? coordinate.length : 0);
+    // We here iterate over the zones list (instead of dict) to keep the iteration
+    // order stable
+    const features = zoneValues.map((zone, i) => {
+      const length = (coordinate) => (coordinate ? coordinate.length : 0);
+      const zoneId = zone.config.countryCode;
       return {
         type: 'Feature',
         geometry: {
           ...zone.geography.geometry,
           coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
         },
+        id: i, // assign an integer id so the feature can be updated later on
         properties: {
           color: undefined,
           zoneData: zone[selectedTimeAggregate].overviews,
@@ -143,7 +151,10 @@ const ZoneMap = ({
         features,
       },
     };
-  }, [zones, selectedTimeAggregate]);
+    // TODO: `zoneValues` will change even in cases where the geometry doesn't change.
+    // This will cause this memo to re-update although it should only update when the
+    // geometry changes. This will slow down the map render..
+  }, [zoneValues, selectedTimeAggregate]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
@@ -173,27 +184,13 @@ const ZoneMap = ({
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // TODO: Consider moving the calculation to a useMemo function
-  // change color of zones if timeslider is changed
-  useEffect(() => {
-    if (isLoaded && co2ColorScale) {
-      // TODO: This will only change RENDERED zones, so if you change the time in Europe and zoom out, go to US, it will not be updated!
-      // TODO: Consider using isdragging or similar to update this when new zones are rendered
-
-      const features = ref.current?.queryRenderedFeatures();
-
-      const map = ref.current?.getMap();
-      if (!features || !map) {
-        //Todo throw error
-        return;
-      }
-      features.forEach((feature: any) => {
-        const { color, zoneId } = feature.properties;
-        let fillColor = color;
-
-        const zoneData = zones[zoneId]?.[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
-
+  useMemo(() => {
+    if (isLoaded) {
+      const map = ref.current.getMap();
+      zoneValues.forEach((zone, i) => {
+        const zoneData = zone[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
+        const fillColor = co2ColorScale(co2intensity);
 
         // Calculate new color if zonetime is selected and we have a co2intensity
         if (selectedZoneTimeIndex !== null && co2intensity) {
@@ -205,11 +202,11 @@ const ZoneMap = ({
             map.getFeatureState({ source: 'zones-clickable', id: feature.id }, 'color')?.color
           : color;
 
-        if (feature.id && fillColor !== existingColor) {
+        if (fillColor !== existingColor) {
           map.setFeatureState(
             {
               source: 'zones-clickable',
-              id: feature.id,
+              id: i,
             },
             {
               color: fillColor,
@@ -218,7 +215,7 @@ const ZoneMap = ({
         }
       });
     }
-  }, [isLoaded, isDragging, selectedTimeAggregate, co2ColorScale, zones, selectedZoneTimeIndex, electricityMixMode]);
+  }, [isLoaded, selectedTimeAggregate, co2ColorScale, zoneValues, selectedZoneTimeIndex, electricityMixMode]);
 
   const handleClick = useMemo(
     () => (e: any) => {

@@ -21,7 +21,8 @@ export function useCo2ColorScale() {
   const theme = useTheme();
 
   return useMemo(
-    () => scaleLinear<string>().domain(theme.co2Scale.steps).range(theme.co2Scale.colors).unknown('gray').clamp(true),
+    () =>
+      scaleLinear().domain(theme.co2Scale.steps).range(theme.co2Scale.colors).unknown(theme.clickableFill).clamp(true),
     [theme]
   );
 }

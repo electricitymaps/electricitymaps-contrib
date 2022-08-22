@@ -36,12 +36,18 @@
     "noDataAtTimestamp": "Dla wybranego okresu dane są tymczasowo niedostępne",
     "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
     "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"%s\" target=\"_blank\">dodając dane dla obszaru</a>.",
+    "estimated": "szacowane",
+    "estimatedTooltip": "Dane czasu rzeczywistego dla tego obszaru zostały oszacowane na podstawie danych źródłowych i przyjętych założeń modelu.",
+    "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
   "left-panel": {
     "zone-list-header-title": "Wpływ na klimat według obszaru",
     "zone-list-header-subtitle": "według emisji CO₂ poprzez wytwarzanie energii elektrycznej (gCO₂eq/kWh)",
     "search": "Szukaj"
+  },
+  "time-controller": {
+    "title": "Wyświetl dane historyczne"
   },
   "country-history": {
     "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps",
@@ -253,6 +259,7 @@
     "EH": { "zoneName": "Sahara Zachodnia" },
     "ER": { "zoneName": "Erytrea" },
     "ES": { "zoneName": "Hiszpania" },
+    "ES-CE": { "countryName": "Hiszpania", "zoneName": "Ceuta" },
     "ES-IB": { "countryName": "Hiszpania", "zoneName": "Baleary" },
     "ES-IB-ML": { "countryName": "Hiszpania", "zoneName": "Majorka" },
     "ES-IB-MN": { "countryName": "Hiszpania", "zoneName": "Minorka" },
@@ -264,6 +271,7 @@
     "ES-CN-IG": { "countryName": "Hiszpania", "zoneName": "La Gomera" },
     "ES-CN-LP": { "countryName": "Hiszpania", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Hiszpania", "zoneName": "Teneryfa" },
+    "ES-ML": { "countryName": "Hiszpania", "zoneName": "Melilla" },
     "ET": { "zoneName": "Etiopia" },
     "FI": { "zoneName": "Finlandia" },
     "FO": { "zoneName": "Wyspy Owcze" },
