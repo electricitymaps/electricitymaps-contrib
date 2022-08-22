@@ -37,7 +37,9 @@
     "noLiveData": "Dane na żywo są tymczasowo niedostępne dla tego obszaru",
     "noParserInfo": "Nie posiadamy jeszcze żadnych informacji o tym obszarze.<br/> Chcesz pomóc? Możesz to zrobić <a href=\"%s\" target=\"_blank\">dodając dane dla obszaru</a>.",
     "estimated": "szacowane",
+    "aggregated": "zagregowane",
     "estimatedTooltip": "Dane czasu rzeczywistego dla tego obszaru zostały oszacowane na podstawie danych źródłowych i przyjętych założeń modelu.",
+    "aggregatedTooltip": "Dane dla tego obszaru są zagregowane na podstawie historycznych wartości godzinowych.",
     "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
@@ -51,8 +53,18 @@
   },
   "country-history": {
     "Getdata": "Uzyskaj dane godzinowe, bieżące oraz prognozy za pomocą API Electricity Maps",
-    "carbonintensity": { "hourly": "Emisja CO₂ w ciągu ostatnich 24 godzin" },
-    "emissionsorigin": { "hourly": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin" },
+    "carbonintensity": {
+      "hourly": "Emisja CO₂ w ciągu ostatnich 24 godzin",
+      "daily": "Emisja CO₂ w ciągu ostatnich 30 dni",
+      "monthly": "Emisja CO₂ w ciągu ostatnich 12 miesięcy",
+      "yearly": "Emisja CO₂ w ciągu ostatnich 5 lat"
+    },
+    "emissionsorigin": {
+      "hourly": "Źródła emisji CO₂ w ciągu ostatnich 24 godzin",
+      "daily": "Źródła emisji CO₂ w ciągu ostatnich 30 dni",
+      "monthly": "Źródła emisji CO₂ w ciągu ostatnich 12 miesięcy",
+      "yearly": "Źródła emisji CO₂ w ciągu ostatnich 5 lat"
+    },
     "emissionsproduction": { "hourly": "Emisja wyprodukowana w ciągu ostatnich 24 godzin" },
     "electricityorigin": { "hourly": "Źródła energii elektrycznej w ciągu ostatnich 24 godzin" },
     "electricityproduction": { "hourly": "Energia elektryczna wyprodukowana w ciągu ostatnich 24 godzin" },
