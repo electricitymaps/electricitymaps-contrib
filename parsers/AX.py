@@ -1106,5 +1106,5 @@ if __name__ == "__main__":
     print(fetch_consumption())
     print("fetch_exchange(AX, FI) ->")
     print(fetch_exchange("FI", "AX"))
-    print("fetch_exchange(AX, SE-SE3) ->")
-    print(fetch_exchange("SE-SE3", "AX"))
+    print("fetch_exchange(AX, SE) ->")
+    print(fetch_exchange("SE", "AX"))
