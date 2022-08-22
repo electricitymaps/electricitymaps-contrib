@@ -43,10 +43,11 @@
     ],
     "capacity": {
       "biomass": 1,
-      "hydro": 2289,
-      "solar": 22
+      "gas": 98,
+      "hydro": 2484,
+      "solar": 23
     },
-    "contributors": ["corradio", "nessie2013"],
+    "contributors": ["corradio", "nessie2013", "autipial"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -55,7 +56,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "timezone": null
+    "timezone": "Europe/Tirane"
   },
   "AM": {
     "bounding_box": [
@@ -84,13 +85,13 @@
       [-53.161551879999934, -21.286937763999916]
     ],
     "capacity": {
-      "biomass": 122,
-      "gas": 23669,
-      "hydro": 11344,
+      "biomass": 139,
+      "gas": 23579,
+      "hydro": 11347,
       "nuclear": 1755,
-      "oil": 1646,
-      "solar": 759,
-      "wind": 2990
+      "oil": 1696,
+      "solar": 1075,
+      "wind": 3291
     },
     "contributors": ["systemcatch", "corradio", "nessie2013"],
     "parsers": {
@@ -1346,6 +1347,15 @@
     },
     "timezone": "Europe/Madrid"
   },
+  "ES-CE": {
+    "contributors": ["VIKTORVAV99"],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
   "ES-CN-FVLZ": {
     "bounding_box": [
       [-15.007069464999915, 27.55068594000015],
@@ -1484,6 +1494,15 @@
     },
     "timezone": "Europe/Madrid"
   },
+  "ES-ML": {
+    "contributors": ["VIKTORVAV99"],
+    "flag_file_name": "es.png",
+    "parsers": {
+      "consumption": "ES.fetch_consumption",
+      "production": "ES.fetch_production"
+    },
+    "timezone": "Europe/Madrid"
+  },
   "ET": {
     "flag_file_name": "et.png",
     "timezone": "Africa/Addis_Ababa"
@@ -1535,15 +1554,44 @@
       [-5.775786912999905, 62.89891185100005]
     ],
     "capacity": {
+      "biomass": 1.3,
       "hydro": 40.6,
       "oil": 99.7,
       "wind": 43.5,
-      "solar": 0.24
+      "solar": 0.24,
+      "unknown": 0.1
     },
     "contributors": ["corradio", "q--"],
     "parsers": {
       "production": "FO.fetch_production"
     },
+    "timezone": "Atlantic/Faroe"
+  },
+  "FO-MI": {
+    "capacity": {
+      "biomass": 1.3,
+      "hydro": 37.3,
+      "oil": 86.1,
+      "wind": 37.5,
+      "unknown": 0.1
+    },
+    "parsers": {
+      "production": "FO.fetch_production"
+    },
+    "contributors": ["corradio", "q--", "VIKTORVAV99"],
+    "timezone": "Atlantic/Faroe"
+  },
+  "FO-SI": {
+    "capacity": {
+      "hydro": 3.3,
+      "oil": 13.6,
+      "wind": 6,
+      "solar": 0.24
+    },
+    "parsers": {
+      "production": "FO.fetch_production"
+    },
+    "contributors": ["corradio", "q--", "VIKTORVAV99"],
     "timezone": "Atlantic/Faroe"
   },
   "FR": {
@@ -3779,16 +3827,16 @@
       [126.537423944, 18.5052273625]
     ],
     "capacity": {
-      "battery storage": 11,
-      "biomass": 483,
-      "coal": 10944,
+      "battery storage": 34,
+      "biomass": 501,
+      "coal": 11684,
       "gas": 3453,
-      "geothermal": 1928,
-      "hydro": 3031,
-      "hydro storage": 748,
+      "geothermal": 1932,
+      "hydro": 3045,
+      "hydro storage": 736,
       "nuclear": 0,
-      "oil": 4237,
-      "solar": 1019,
+      "oil": 4503,
+      "solar": 1385,
       "wind": 443
     },
     "contributors": ["xomanuel"],
