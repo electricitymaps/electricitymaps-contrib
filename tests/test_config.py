@@ -2,9 +2,9 @@ import unittest
 from pathlib import Path
 
 from electricitymap.contrib.config import (
-    generate_zone_neighbours,
     EXCHANGES_CONFIG,
     ZONES_CONFIG,
+    generate_zone_neighbours,
 )
 
 
