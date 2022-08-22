@@ -612,7 +612,7 @@
     "capacity": [-615, 615],
     "lonlat": [13.552264, 54.925814],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 0
@@ -793,7 +793,7 @@
     "capacity": [-2700, 2300],
     "lonlat": [20.979206, 63.441789],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -50
@@ -1248,7 +1248,7 @@
     "capacity": [-700, 700],
     "lonlat": [18.847674, 55.910978],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -90
@@ -1263,7 +1263,8 @@
     "capacity": [-970, 970],
     "lonlat": [27.7336, 56.87436],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 45
   },
@@ -1472,7 +1473,6 @@
   "NO-NO1->SE": {
     "capacity": [-2095, 2145],
     "lonlat": [12.254138, 61.008235],
-    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
@@ -1516,7 +1516,7 @@
     "capacity": [-1000, 600],
     "lonlat": [12.24842, 63.462916],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": 90
@@ -1530,9 +1530,9 @@
   "NO-NO4->SE": {
     "capacity": [-900, 950],
     "lonlat": [15.462856, 66.273628],
-    "_comment": "statnett doesn't work. See for example 2018-05-14 which is off by a factor two",
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange"
+      "exchange": "NO-NO4_SE.fetch_exchange",
+      "exchangeForecast": "NO-NO4_SE.fetch_exchange_forecast"
     },
     "rotation": 130
   },
@@ -1560,7 +1560,7 @@
     "capacity": [-600, 600],
     "lonlat": [15.969256, 55.215172],
     "parsers": {
-      "exchange": "statnett.fetch_exchange",
+      "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
     "rotation": -20
