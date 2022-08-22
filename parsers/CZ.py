@@ -1,16 +1,13 @@
 # based upon https://bitbucket.org/kds_consulting_team/kds-team.ex-ceps/
 
-import json
 import logging
 import logging.config
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import List
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
-import pytz
-import requests  # the request library is used to fetch content through HTTP
 import xmltodict
 import zeep
 from requests import Session
@@ -191,9 +188,9 @@ def fetch_production(
     r = session or Session()
     formatted_from = to.shift(days=-1).format("YYYY-MM-DDTHH:mm:ss")
     formatted_to = to.format("YYYY-MM-DDTHH:mm:ss")
-    test = CepsClient(session=r)
+    ceps = CepsClient(session=r)
 
-    production_data = test.get_timeseries_data(
+    production_data = ceps.get_timeseries_data(
         "Generation", formatted_from, formatted_to
     )
     pumping_data = test.get_timeseries_data(
@@ -266,9 +263,9 @@ def fetch_exchange(
     r = session or Session()
     formatted_from = date.shift(minutes=-30).format("YYYY-MM-DDTHH:mm:ss")
     formatted_to = date.shift(minutes=0).format("YYYY-MM-DDTHH:mm:ss")
-    test = CepsClient(session=r)
+    ceps = CepsClient(session=r)
 
-    cross_data = test.get_timeseries_data(
+    cross_data = ceps.get_timeseries_data(
         "CrossborderPowerFlows", formatted_from, formatted_to, add_para1=False
     )
     crossborder = cross_data[len(cross_data) - 1]
@@ -318,9 +315,9 @@ def fetch_exchange_forecast(
     r = session or Session()
     formatted_from = date.shift(minutes=-30).format("YYYY-MM-DDTHH:mm:ss")
     formatted_to = date.shift(minutes=0).format("YYYY-MM-DDTHH:mm:ss")
-    test = CepsClient(session=r)
+    ceps = CepsClient(session=r)
 
-    cross_data = test.get_timeseries_data(
+    cross_data = ceps.get_timeseries_data(
         "CrossborderPowerFlows", formatted_from, formatted_to, add_para1=False
     )
     crossborder = cross_data[len(cross_data) - 1]
@@ -365,9 +362,9 @@ def fetch_consumption(
     r = session or Session()
     formatted_from = to.shift(days=-1).format("YYYY-MM-DDTHH:mm:ss")
     formatted_to = to.format("YYYY-MM-DDTHH:mm:ss")
-    test = CepsClient(session=r)
+    ceps = CepsClient(session=r)
 
-    production_data = test.get_timeseries_data(
+    production_data = ceps.get_timeseries_data(
         "Load", formatted_from, formatted_to, add_para1=False, granularity="MI"
     )
 
