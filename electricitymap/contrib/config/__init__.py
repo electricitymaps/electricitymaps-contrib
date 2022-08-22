@@ -51,8 +51,11 @@ for k, v in EXCHANGES_CONFIG.items():
         # Interconnector config has no parser, and will therefore not be part
         # of the flowtracing graph
         continue
-    zone_names = k.split("->")
-    pairs = [(zone_names[0], zone_names[1]), (zone_names[1], zone_names[0])]
+    zone_1, zone_2 = k.split("->")
+    if ZONES_CONFIG[zone_1].get('subZoneNames') or ZONES_CONFIG[zone_2].get('subZoneNames'):
+        # Both zones must not have subzones
+        continue
+    pairs = [(zone_1, zone_2), (zone_2, zone_1)]
     for zone_name_1, zone_name_2 in pairs:
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
