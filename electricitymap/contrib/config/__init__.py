@@ -47,12 +47,14 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 # This object represents the edges of the flow-tracing graph
 ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = {}
 for k, v in EXCHANGES_CONFIG.items():
-    if not v.get('parsers', {}).get('exchange', None):
+    if not v.get("parsers", {}).get("exchange", None):
         # Interconnector config has no parser, and will therefore not be part
         # of the flowtracing graph
         continue
     zone_1, zone_2 = k.split("->")
-    if ZONES_CONFIG[zone_1].get('subZoneNames') or ZONES_CONFIG[zone_2].get('subZoneNames'):
+    if ZONES_CONFIG[zone_1].get("subZoneNames") or ZONES_CONFIG[zone_2].get(
+        "subZoneNames"
+    ):
         # Both zones must not have subzones
         continue
     pairs = [(zone_1, zone_2), (zone_2, zone_1)]
