@@ -193,7 +193,7 @@ def fetch_production(
     production_data = ceps.get_timeseries_data(
         "Generation", formatted_from, formatted_to
     )
-    pumping_data = test.get_timeseries_data(
+    pumping_data = ceps.get_timeseries_data(
         "Load", formatted_from, formatted_to, add_para1=False, granularity="MI"
     )
     # Thermal Power Plant - TPP
