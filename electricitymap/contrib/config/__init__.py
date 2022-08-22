@@ -62,6 +62,8 @@ for k, v in EXCHANGES_CONFIG.items():
         if zone_name_1 not in ZONE_NEIGHBOURS:
             ZONE_NEIGHBOURS[zone_name_1] = set()
         ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+# Sort
+ZONE_NEIGHBOURS = {k: sorted(v) for k, v in ZONE_NEIGHBOURS.items()}
 
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
