@@ -38,7 +38,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Faroe Islands: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
+- Faroe Islands:
+  - Biomass: [Fjarhiti](https://www.fjarhiti.fo/kunning/biogassverki%C3%B0-roynist-vael-%C3%AD-fjarhitaskipanini/)
+  - Other: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](https://opendata.reseaux-energies.fr)
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
