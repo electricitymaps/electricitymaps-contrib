@@ -140,7 +140,7 @@ const Main = ({ electricityMixMode }) => {
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (
-              <ResponsiveSheet>
+              <ResponsiveSheet visible={!showLoadingOverlay}>
                 <TimeController />
               </ResponsiveSheet>
             ) : (
