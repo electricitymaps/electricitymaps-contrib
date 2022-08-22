@@ -1,4 +1,5 @@
 import json
+from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List, NewType, Tuple
@@ -48,22 +49,20 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 def generate_zone_neighbours(
     zones_config, exchanges_config
 ) -> Dict[ZoneKey, List[ZoneKey]]:
-    zone_neighbours = {}
+    zone_neighbours = defaultdict(set)
     for k, v in exchanges_config.items():
         if not v.get("parsers", {}).get("exchange", None):
             # Interconnector config has no parser, and will therefore not be part
             # of the flowtracing graph
             continue
         zone_1, zone_2 = k.split("->")
-        if ZONES_CONFIG[zone_1].get("subZoneNames") or ZONES_CONFIG[zone_2].get(
+        if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
             "subZoneNames"
         ):
             # Both zones must not have subzones
             continue
         pairs = [(zone_1, zone_2), (zone_2, zone_1)]
         for zone_name_1, zone_name_2 in pairs:
-            if zone_name_1 not in zone_neighbours:
-                zone_neighbours[zone_name_1] = set()
             zone_neighbours[zone_name_1].add(zone_name_2)
     # Sort
     return {k: sorted(v) for k, v in zone_neighbours.items()}
