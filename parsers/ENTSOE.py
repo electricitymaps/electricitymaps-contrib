@@ -30,7 +30,7 @@ from parsers.lib.config import refetch_frequency
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
-ENTSOE_ENDPOINT = "https://transparency.entsoe.eu/api"
+ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -113,6 +113,8 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "IT-FO": "10Y1001A1001A72K",
     "IT-NO": "10Y1001A1001A73I",
     "IT-PR": "10Y1001A1001A76C",
+    "IT-SACOAC": "10Y1001A1001A885",
+    "IT-SACODC": "10Y1001A1001A893",
     "IT-SAR": "10Y1001A1001A74G",
     "IT-SIC": "10Y1001A1001A75E",
     "IT-SO": "10Y1001A1001A788",
@@ -175,7 +177,11 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
     "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
-    "FR-COR->IT-CNO": ["10Y1001A1001A893", ENTSOE_DOMAIN_MAPPINGS["IT-CNO"]],
+    "DK-DK2->SE": [ENTSOE_DOMAIN_MAPPINGS["DK-DK2"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "FR-COR->IT-CNO": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACODC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-CNO"],
+    ],
     "GE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["GE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "GR->IT-SO": [ENTSOE_DOMAIN_MAPPINGS["GR"], ENTSOE_DOMAIN_MAPPINGS["IT-SO"]],
     "IT-CSO->ME": [ENTSOE_DOMAIN_MAPPINGS["IT"], ENTSOE_DOMAIN_MAPPINGS["ME"]],
@@ -183,6 +189,14 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "IT-SIC->IT-SO": [
         ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
         ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
+    ],
+    "FR-COR-AC->IT-SAR": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACOAC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-SAR"],
+    ],
+    "FR-COR-DC->IT-SAR": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACODC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-SAR"],
     ],
 }
 # Some zone_keys are part of bidding zone domains for price data
