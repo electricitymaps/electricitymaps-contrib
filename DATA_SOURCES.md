@@ -156,7 +156,8 @@ When determining the installed capacity for a country, these sources might help 
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
-- Coal: [Global Coal Plant Tracker](https://endcoal.org/global-coal-plant-tracker/)
+- Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
+- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
