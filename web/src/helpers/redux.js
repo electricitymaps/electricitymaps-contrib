@@ -89,7 +89,6 @@ function combineZoneData(zoneData, aggregate) {
 
   if (!overviews.length) {
     // if there is no data available return one entry with static data
-    // TODO: remove this
     return [{ hasData, hasParser, center }];
   }
 
