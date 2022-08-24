@@ -836,7 +836,7 @@
       "exchange": "FR-COR_IT-SAR.fetch_exchange",
       "exchangeForecast": "FR-COR_IT-SAR.fetch_exchange_forecast"
     },
-    "rotation": 0
+    "rotation": 180
   },
   "GB->GB-NIR": {
     "capacity": [-500, 500],
