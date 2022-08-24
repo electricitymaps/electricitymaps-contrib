@@ -1551,8 +1551,7 @@
   "NO-NO4->RU-1": {
     "lonlat": [30.1437, 69.52],
     "parsers": {
-      "exchange": "ENTSOE.fetch_exchange",
-      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+      "exchange": "statnett.fetch_exchange"
     },
     "rotation": 120
   },
