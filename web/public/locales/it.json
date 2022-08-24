@@ -654,9 +654,9 @@
       "zoneName": "Francia"
     },
     "FR-COR": {
-       "countryName": "Francia",
-       "zoneName": "Corsica"
-      },
+      "countryName": "Francia",
+      "zoneName": "Corsica"
+    },
     "GA": {
       "zoneName": "Gabon"
     },
@@ -898,7 +898,7 @@
       "zoneName": "Iraq"
     },
     "IQ-KUR": {
-      "countryName": "Iraq", 
+      "countryName": "Iraq",
       "zoneName": "Curdistan"
     },
     "IR": {
