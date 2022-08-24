@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-
+# Note: This parser is only used for the NO-NO4->RU-1 exchange
+# and should be archived if this data becomes available on ENTSO-E.
 
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
