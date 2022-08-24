@@ -9,10 +9,10 @@ const StyledWrapper = styled.div`
     margin-bottom: 12px;
     margin-top: 0px;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     display: ${({ hideOnDesktop }) => (hideOnDesktop ? 'none !important' : 'block')};
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: ${({ hideOnMobile }) => (hideOnMobile ? 'none !important' : 'block')};
   }
 `;

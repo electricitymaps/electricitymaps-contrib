@@ -67,10 +67,10 @@ export function useWindowSize() {
 
 export function useIsSmallScreen() {
   const { width } = useWindowSize();
-  return width < 768;
+  return width < 767;
 }
 
 export function useIsMediumUpScreen() {
   const { width } = useWindowSize();
-  return width >= 768;
+  return width >= 767;
 }

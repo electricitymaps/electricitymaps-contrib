@@ -45,7 +45,7 @@ const LeftPanelCollapseButton = styled.div`
 `;
 
 const MobileHeader = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 767.1px) {
     display: none !important;
   }
 
@@ -59,7 +59,7 @@ const MobileHeader = styled.div`
 `;
 
 const RightHeader = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 767.1px) {
     display: none !important;
   }
 `;

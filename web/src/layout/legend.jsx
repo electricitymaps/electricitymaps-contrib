@@ -65,7 +65,7 @@ const StyledMobileHeader = styled.div`
   font-weight: bold;
   margin-bottom: 5px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     display: none;
     text-align: center;
   }

@@ -11,7 +11,7 @@ const Title = styled.span`
   height: 100%;
   display: flex;
   align-items: center;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     font-size: 13px;
   }
 `;

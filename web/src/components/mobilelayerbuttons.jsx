@@ -4,7 +4,7 @@ import { dispatchApplication } from '../store';
 import { Button } from './button';
 
 const Wrapper = styled.div`
-  @media (min-width: 768px) {
+  @media (min-width: 767.1px) {
     display: none;
   }
   position: absolute;
