@@ -41,7 +41,6 @@ const reducer = createReducer(initialState, (builder) => {
         }
       });
 
-      // Populate exchanges. Only available on hourly.
       if (stateAggregation === TIME.HOURLY) {
         Object.entries(exchanges).forEach((entry) => {
           const [key, value] = entry;
