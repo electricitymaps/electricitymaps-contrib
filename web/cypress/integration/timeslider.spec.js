@@ -1,5 +1,20 @@
 import hourlyData from '../../../mockserver/public/v5/history/DK-DK2/hourly.json';
+import dailyData from '../../../mockserver/public/v5/history/daily.json';
+import monthlyData from '../../../mockserver/public/v5/history/monthly.json';
+import yearlyData from '../../../mockserver/public/v5/history/yearly.json';
 import { formatDate } from '../../src/helpers/formatting';
+
+const getco2intensity = (index, data) => {
+  return Math.round(data.data.zoneStates[index].co2intensity);
+};
+
+const getFormattedDate = (index, data, format) => {
+  return formatDate(new Date(data.data.zoneStates[index].stateDatetime), 'en-GB', format);
+};
+
+const getTime = (index, date) => {
+  return new Date(date.data.zoneStates[index].stateDatetime).getTime();
+};
 
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
@@ -20,54 +35,41 @@ describe('TimeController', () => {
     cy.waitForAPISuccess(`v5/state/hourly`);
     cy.waitForAPISuccess(`v5/history/hourly?countryCode=DK-DK2`);
     cy.contains('LIVE');
-    cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
-      Math.round(hourlyData.data.zoneStates[24].co2intensity)
-    );
-    cy.get('[data-test-id=date-display').should(
-      'have.text',
-      formatDate(new Date(hourlyData.data.zoneStates[24].stateDatetime), 'en-GB', 'hourly')
-    );
-    cy.get('input.time-slider-input').setSliderValue(new Date(hourlyData.data.zoneStates[5].stateDatetime).getTime());
-    cy.get('[data-test-id=date-display').should(
-      'have.text',
-      formatDate(new Date(hourlyData.data.zoneStates[5].stateDatetime), 'en-GB', 'hourly')
-    );
-    cy.get('[data-test-id=co2-square-value').should(
-      'have.text',
-      Math.round(hourlyData.data.zoneStates[5].co2intensity)
-    );
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(24, hourlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(24, hourlyData, 'hourly'));
+    cy.get('input.time-slider-input').setSliderValue(getTime(5, hourlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(5, hourlyData, 'hourly'));
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(5, hourlyData));
 
-    // TODO: Switch away from fixed numbers for the remaining of the assertions here, so we can remove the timezone environment variable
     // Monthly
     cy.get('[data-test-id="time-controls-daily-btn"]').click();
     cy.waitForAPISuccess(`v5/state/daily`);
     cy.waitForAPISuccess(`v5/history/daily?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', '392');
-    cy.get('[data-test-id=date-display').should('have.text', '29 June 2022');
-    cy.get('input.time-slider-input').setSliderValue('1653782400000');
-    cy.get('[data-test-id=date-display').should('have.text', '30 May 2022');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '388');
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(30, dailyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(30, dailyData, 'daily'));
+    cy.get('input.time-slider-input').setSliderValue(getTime(16, dailyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(16, dailyData, 'daily'));
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(16, dailyData));
 
     // Yearly
     cy.get('[data-test-id="time-controls-monthly-btn"]').click();
     cy.waitForAPISuccess(`v5/state/monthly`);
     cy.waitForAPISuccess(`v5/history/monthly?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', '328');
-    cy.get('[data-test-id=date-display').should('have.text', 'May 2022');
-    cy.get('input.time-slider-input').setSliderValue('1640995200000');
-    cy.get('[data-test-id=date-display').should('have.text', 'January 2022');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '360');
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(11, monthlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(11, monthlyData, 'monthly'));
+    cy.get('input.time-slider-input').setSliderValue(getTime(5, monthlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(5, monthlyData, 'monthly'));
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(5, monthlyData));
 
     // 5 Years
     cy.get('[data-test-id="time-controls-yearly-btn"]').click();
     cy.waitForAPISuccess(`v5/state/yearly`);
     cy.waitForAPISuccess(`v5/history/yearly?countryCode=DK-DK2`);
-    cy.get('[data-test-id=co2-square-value').should('have.text', '331');
-    cy.get('[data-test-id=date-display').should('have.text', '2021');
-    cy.get('input.time-slider-input').setSliderValue('1577836800000');
-    cy.get('[data-test-id=date-display').should('have.text', '2020');
-    cy.get('[data-test-id=co2-square-value').should('have.text', '295');
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(4, yearlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(4, yearlyData, 'yearly'));
+    cy.get('input.time-slider-input').setSliderValue(getTime(2, yearlyData));
+    cy.get('[data-test-id=date-display').should('have.text', getFormattedDate(2, yearlyData, 'yearly'));
+    cy.get('[data-test-id=co2-square-value').should('have.text', getco2intensity(2, yearlyData));
   });
 
   // TODO: Figure out how to get open/drag bottom sheet in Cypress on mobile
