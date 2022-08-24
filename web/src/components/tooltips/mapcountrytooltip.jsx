@@ -99,7 +99,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, is
   const renewablePercentage = renewableRatio !== null ? Math.round(100 * renewableRatio) : '?';
 
   return (
-    <Tooltip id="country-tooltip" position={position} onClose={onClose}>
+    <Tooltip position={position} onClose={onClose}>
       <ZoneNameHeader>
         {isZoneNameDisplayed && <ZoneName zone={zoneData.countryCode} />}
         <StyledTooltipTimeDisplay date={zoneData.stateDatetime} isZoneNameDisplayed={isZoneNameDisplayed} />
