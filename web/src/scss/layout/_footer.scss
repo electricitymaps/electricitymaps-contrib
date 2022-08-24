@@ -1,9 +1,3 @@
-#footer {
-  @include respond-to('small') {
-    display: table-cell;
-  }
-}
-
 #tab {
   position: relative;
   background-color: $lighter-gray;
