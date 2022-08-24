@@ -90,7 +90,7 @@ app.use('/', (req, res) => {
   // redirect everyone except the Facebook crawler,
   // else, we will lose all likes
   if (!isStaging && isProduction && isNonAppDomain && !isFacebookRobot) {
-    res.redirect(301, `https://app.electricitymaps.com${req.originalUrl}`);
+    res.redirect(301, `https://app.electricitymap.org${req.originalUrl}`);
   } else {
     // Set locale if facebook requests it
     if (req.query.fb_locale) {
@@ -100,7 +100,7 @@ app.use('/', (req, res) => {
       res.setLocale(lr[0]);
     }
     const { locale } = res;
-    let canonicalUrl = `https://app.electricitymaps.com${req.baseUrl + req.path}`;
+    let canonicalUrl = `https://app.electricitymap.org${req.baseUrl + req.path}`;
     if (req.query.lang) {
       canonicalUrl += `?lang=${req.query.lang}`;
     }
@@ -119,7 +119,7 @@ app.use('/', (req, res) => {
       }
       if (!authorized) {
         res.statusCode = 401;
-        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymaps.com"');
         res.end('Access denied');
         return;
       }

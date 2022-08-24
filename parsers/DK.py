@@ -1,12 +1,13 @@
 import json
-import logging
 import time
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import List, Optional
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
 import pytz
-import requests  # the request library is used to fetch content through HTTP
+from requests import Session, exceptions
 
 from parsers.lib.config import refetch_frequency
 
@@ -20,18 +21,18 @@ ids = {
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="DK-DK1",
-    session=None,
-    target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
-) -> dict:
+    zone_key: str = "DK-DK1",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones
 
     NOTE: Missing historical wind/solar data @ 2017-08-01
     """
-    r = session or requests.session()
+    r = session or Session()
 
     if zone_key not in ["DK-DK1", "DK-DK2"]:
         raise NotImplementedError(
@@ -80,7 +81,7 @@ def fetch_production(
             msg = "error while fetching production data for {}: {}".format(
                 zone_key, json.dumps(j)
             )
-        raise requests.exceptions.HTTPError(msg)
+        exceptions.HTTPError(msg)
     if not response.json()["result"]["records"]:
         raise ParserException("DK.py", "API returned no data", zone_key=zone_key)
 
@@ -131,17 +132,17 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="DK-DK1",
-    zone_key2="DK-DK2",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str = "DK-DK1",
+    zone_key2: str = "DK-DK2",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """
     Fetches 5-minute frequency exchange data for Danish bidding zones
     from api.energidataservice.dk
     """
-    r = session or requests.session()
+    r = session or Session()
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
 
     # pick the correct zone to search
@@ -210,7 +211,7 @@ def fetch_exchange(
             msg = "error while fetching exchange data for {}: {}".format(
                 sorted_keys, json.dumps(j)
             )
-        raise requests.exceptions.HTTPError(msg)
+        raise exceptions.HTTPError(msg)
     if not response.json()["result"]["records"]:
         raise ParserException("DK.py", "API returned no data", zone_key=sorted_keys)
 

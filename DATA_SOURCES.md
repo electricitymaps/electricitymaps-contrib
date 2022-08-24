@@ -38,7 +38,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Faroe Islands: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
+- Faroe Islands:
+  - Biomass: [Fjarhiti](https://www.fjarhiti.fo/kunning/biogassverki%C3%B0-roynist-vael-%C3%AD-fjarhitaskipanini/)
+  - Other: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](https://opendata.reseaux-energies.fr)
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
@@ -154,7 +156,8 @@ When determining the installed capacity for a country, these sources might help 
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
-- Coal: [Global Coal Plant Tracker](https://endcoal.org/global-coal-plant-tracker/)
+- Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
+- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
@@ -169,7 +172,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind: [Finnish Wind Power Association](https://tuulivoimayhdistys.fi/en/wind-power-in-finland/map 'Note: the map states 43MW for the Långnabba project, but as [Vestas](https://www.vestas.com/en/media/company-news/2020/vestas-develops-highly-customised-power-plant-solution--c3249491) and [Kraftnat](https://kraftnat.ax/) state 42MW, the lower figure was used')
   - Solar: [Ålands statistik- och utredningsbyrå](https://www.asub.ax/sv/ekologisk-hallbarhet-17-installerad-kapacitet-elproduktion-solpaneler-pa-aland)
   - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
-- Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Albania:
+  - Biomass: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Other: [ERE](https://ere.gov.al/images/2022/04/Raporti%20Vjetor%202021%20perfundimtare.pdf)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
 - Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
 - Armenia
@@ -263,8 +268,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Non-Renewable [ESDM](https://www.esdm.go.id/assets/media/content/content-laporan-kinerja-ditjen-ketenagalistrikan-2020.pdf)
 - Israel
-  - [Global Power Plant Database](http://datasets.wri.org/dataset/globalpowerplantdatabase)
-  - [LNRG capacities data](https://www.lnrg.technology/app/download/12390579357/IL+electricity+capacities.json)
+  - [Irena](https://pxweb.irena.org/pxweb/en/IRENASTAT)
+  - [GEM](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Italy
   - Coal and Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedCapacityPerProductionUnit/show)
   - Other: [Terna](https://www.terna.it/it/sistema-elettrico/statistiche/pubblicazioni-statistiche)
@@ -316,7 +321,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/2020-power-situation-report)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
@@ -335,6 +340,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [SEPS](https://www.sepsas.sk/media/4951/rocenka-sed-2020.pdf)
 - Slovenia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- South Africa:
+  - [Eskom](https://www.eskom.co.za/wp-content/uploads/2021/08/2021IntegratedReport.pdf)
 - South Korea:
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
   - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
@@ -360,8 +367,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
 - Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
 - Thailand:
-  - EGAT's production capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=452&Itemid=116)
-  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/index.php?option=com_content&view=article&id=355&Itemid=116)
+  - EGAT's production capacity: [EGAT](https://www.egat.co.th/home/statistics-all-egat/)
+  - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/home/statistics-all-3rdparty/)
 - Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)

@@ -2,12 +2,13 @@
 This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
-import datetime
-import warnings
+from datetime import datetime
+from typing import Any, Dict, List
+from warnings import warn
 
 import arrow
 
-from electricitymap.contrib.config import EXCHANGES_CONFIG, emission_factors
+from electricitymap.contrib.config import EXCHANGES_CONFIG, ZoneKey, emission_factors
 
 
 class ValidationError(ValueError):
@@ -29,7 +30,7 @@ def validate_reasonable_time(item, k):
         )
 
 
-def validate_consumption(obj, zone_key):
+def validate_consumption(obj: Dict, zone_key: ZoneKey) -> None:
     if (obj.get("consumption") or 0) < 0:
         raise ValidationError(
             "%s: consumption has negative value " "%s" % (zone_key, obj["consumption"])
@@ -43,7 +44,7 @@ def validate_consumption(obj, zone_key):
     validate_reasonable_time(obj, zone_key)
 
 
-def validate_exchange(item, k):
+def validate_exchange(item, k) -> None:
     if item.get("sortedZoneKeys", None) != k:
         raise ValidationError(
             "Sorted country codes %s and %s don't "
@@ -51,14 +52,16 @@ def validate_exchange(item, k):
         )
     if "datetime" not in item:
         raise ValidationError("datetime was not returned for %s" % k)
-    if type(item["datetime"]) != datetime.datetime:
+    if type(item["datetime"]) != datetime:
         raise ValidationError("datetime %s is not valid for %s" % (item["datetime"], k))
     validate_reasonable_time(item, k)
+    if "netFlow" not in item:
+        raise ValidationError("netFlow was not returned for %s" % k)
     # Verify that the exchange flow is not greater than the interconnector
     # capacity and has physical sense (no exchange should exceed 100GW)
     # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
-        zone_names = item["sortedZoneKeys"]
+        zone_names: List[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
             raise ValidationError(
                 "netFlow %s exceeds physical plausibility (>100GW) for %s"
@@ -81,17 +84,17 @@ def validate_exchange(item, k):
                     )
 
 
-def validate_production(obj, zone_key):
+def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
     if "datetime" not in obj:
         raise ValidationError("datetime was not returned for %s" % zone_key)
     if "countryCode" in obj:
-        warnings.warn(
+        warn(
             "object has field `countryCode`. It should have "
             "`zoneKey` instead. In {}".format(obj)
         )
     if "zoneKey" not in obj and "countryCode" not in obj:
         raise ValidationError("zoneKey was not returned for %s" % zone_key)
-    if not isinstance(obj["datetime"], datetime.datetime):
+    if not isinstance(obj["datetime"], datetime):
         raise ValidationError(
             "datetime %s is not valid for %s" % (obj["datetime"], zone_key)
         )
@@ -123,6 +126,7 @@ def validate_production(obj, zone_key):
             "US-NW-GWA",
             "US-NW-DOPD",
             "US-NW-AVRN",
+            "LU",
         ]
     ):
         raise ValidationError(

@@ -1,25 +1,26 @@
 #!python3
-import datetime
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
 
 # The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 # please try to write PEP8 compliant code (use a linter). One of PEP8's
 # requirement is to limit your line length to 79 characters.
 
 
 def fetch_production(
-    zone_key="IS",
-    session=None,
-    target_datetime: datetime.datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    zone_key: str = "IS",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
-    r = session or requests.session()
+    r = session or Session()
     if target_datetime is None:
         url = "https://amper.landsnet.is/generation/api/Values"
     else:

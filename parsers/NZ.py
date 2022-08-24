@@ -2,20 +2,23 @@
 
 # The arrow library is used to handle datetimes
 import json
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
+from bs4 import BeautifulSoup
 
 # The request library is used to fetch content through HTTP
-import requests
-from bs4 import BeautifulSoup
+from requests import Session
 
 timezone = "Pacific/Auckland"
 
 NZ_PRICE_REGIONS = set([i for i in range(1, 14)])
 
 
-def fetch(session=None):
-    r = session or requests.session()
+def fetch(session: Optional[Session] = None):
+    r = session or Session()
     url = "https://www.transpower.co.nz/power-system-live-data"
     response = r.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -32,7 +35,12 @@ def fetch(session=None):
     return obj
 
 
-def fetch_price(zone_key="NZ", session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(
+    zone_key: str = "NZ",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     """
     Requests the current price of electricity based on the zone key.
 
@@ -44,9 +52,9 @@ def fetch_price(zone_key="NZ", session=None, target_datetime=None, logger=None) 
             "This parser is not able to retrieve data for past dates"
         )
 
-    r = session or requests.session()
+    r = session or Session()
     url = "https://api.em6.co.nz/ords/em6/data_api/region/price/"
-    response = requests.get(url, verify=False)
+    response = r.get(url, verify=False)
     obj = response.json()
     region_prices = []
 
@@ -71,7 +79,10 @@ def fetch_price(zone_key="NZ", session=None, target_datetime=None, logger=None) 
 
 
 def fetch_production(
-    zone_key="NZ", session=None, target_datetime=None, logger=None
+    zone_key: str = "NZ",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
     if target_datetime:

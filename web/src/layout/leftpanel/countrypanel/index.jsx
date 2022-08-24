@@ -3,6 +3,7 @@ import { Redirect, useLocation, useParams, useHistory } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import LoadingPlaceholder from '../../../components/loadingplaceholder';
+import { RetryBanner } from '../../../components/retrybanner';
 import { dispatchApplication } from '../../../store';
 import { useCurrentZoneData } from '../../../hooks/redux';
 import { useTrackEvent } from '../../../hooks/tracking';
@@ -61,6 +62,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { __ } = useTranslation();
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
   const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
+  const failedRequestType = useSelector((state) => state.data.failedRequestType);
 
   const trackEvent = useTrackEvent();
   const history = useHistory();
@@ -124,6 +126,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
 
   return (
     <CountryPanelStyled>
+      {failedRequestType === 'zone' && <RetryBanner failedRequestType={failedRequestType} />}
       <div id="country-table-header">
         <CountryHeader
           isDataAggregated={timeAggregate && timeAggregate !== TIME.HOURLY}

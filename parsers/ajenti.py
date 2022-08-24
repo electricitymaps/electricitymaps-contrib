@@ -9,9 +9,9 @@ That means that if we fetch these counters every 15 minutes, we only are reading
 To get the very exact data, we would need to have a parser running constanty to collect those 2-sec interval counters.
 """
 
-import asyncio
 import json
-import logging
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -66,7 +66,7 @@ class SignalR:
             return self.res
 
 
-def parse_payload(logger, payload) -> dict:
+def parse_payload(logger: Logger, payload) -> dict:
     technologies_parsed = {
         "biomass": 0,
         "battery": 0,
@@ -130,10 +130,10 @@ def sum_storage_techs(technologies_parsed):
 
 
 def fetch_production(
-    zone_key="AUS-TAS-KI",
-    session=None,
+    zone_key: str = "AUS-TAS-KI",
+    session: Optional[Session] = None,
     target_datetime=None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    logger: Logger = getLogger(__name__),
 ) -> dict:
 
     if target_datetime is not None:

@@ -63,7 +63,7 @@ function initDataState() {
   });
 
   return {
-    hasConnectionWarning: false,
+    failedRequestType: null,
     hasInitializedGrid: false,
     isLoadingHistories: false,
     isLoadingGrid: false,

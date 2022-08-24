@@ -2,11 +2,15 @@
 
 """Parser for all of India"""
 
-import logging
+
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 GENERATION_MAPPING = {
     "THERMAL GENERATION": "coal",
@@ -19,7 +23,7 @@ GENERATION_MAPPING = {
 GENERATION_URL = "http://meritindia.in/Dashboard/BindAllIndiaMap"
 
 
-def get_data(session):
+def get_data(session: Optional[Session]):
     """
     Requests html then extracts generation data.
     Returns a dictionary.
@@ -44,10 +48,10 @@ def get_data(session):
 
 
 def fetch_production(
-    zone_key="IN",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "IN",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
 
