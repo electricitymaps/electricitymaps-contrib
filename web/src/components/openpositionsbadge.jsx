@@ -24,7 +24,7 @@ const OpenPositionsBadge = () => {
 
   // Fetch the RSS feed to get the number of open positions
   React.useEffect(() => {
-    fetch('https://electricitymap.org/jobs/rss.xml')
+    fetch('https://electricitymaps.com/jobs/rss.xml')
       .then((res) => res.text())
       .then((str) => new window.DOMParser().parseFromString(str, 'text/xml'))
       .then((data) => {
