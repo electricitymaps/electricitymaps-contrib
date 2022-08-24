@@ -77,6 +77,7 @@ const ZoneListPanel = () => {
       </ZoneListHeader>
 
       <ZoneSearchBar
+        className="zone-search-bar"
         placeholder={__('left-panel.search')}
         documentKeyUpHandler={documentSearchKeyUpHandler}
         searchHandler={(query) => dispatchApplication('searchQuery', query)}
