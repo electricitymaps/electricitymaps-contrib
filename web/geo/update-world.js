@@ -26,6 +26,7 @@ const configV2 = {
   MIN_AREA_INTERSECTION: 600000,
   SLIVER_RATIO: 10, // ratio of length and area to determine if the polygon is a sliver and should be ignored
 
+
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
