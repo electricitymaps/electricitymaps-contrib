@@ -155,20 +155,23 @@ const ZoneMap = ({
   useEffect(() => {
     if (!ReactMapGL.supported()) {
       setIsSupported(false);
-      onMapError('WebGL not supported');
+      onMapError({ error: 'WebGL not supported' });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useMemo(() => {
     if (isLoaded) {
       const map = ref.current.getMap();
+      const isSourceLoaded = map.getSource('zones-clickable') != null;
+      // An issue on ios where the map has not loaded source yet causing map errors
+      if (!isSourceLoaded) {
+        return;
+      }
       zoneValues.forEach((zone, i) => {
         const zoneData = zone[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
         const fillColor = co2ColorScale(co2intensity);
-
         const existingColor = map.getFeatureState({ source: 'zones-clickable', id: i }, 'color')?.color;
-
         if (fillColor !== existingColor) {
           map.setFeatureState(
             {
