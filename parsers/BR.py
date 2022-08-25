@@ -1,7 +1,10 @@
 from collections import defaultdict
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Any, Dict, Optional, Union
 
 import arrow
-import requests
+from requests import Session
 
 from .lib.validation import validate
 
@@ -44,15 +47,15 @@ COUNTRIES_EXCHANGE = {
 }
 
 
-def get_data(session):
+def get_data(session: Optional[Session]):
     """Requests generation data in json format."""
-    s = session or requests.session()
+    s = session or Session()
     json_data = s.get(URL).json()
 
     return json_data
 
 
-def production_processor(json_data, zone_key) -> tuple:
+def production_processor(json_data, zone_key: str) -> tuple:
     """Extracts data timestamp and sums regional data into totals by key."""
 
     dt = arrow.get(json_data["Data"])
@@ -80,7 +83,12 @@ def production_processor(json_data, zone_key) -> tuple:
     return dt, mapped_totals
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None) -> dict:
+def fetch_production(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -106,7 +114,11 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None) 
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
@@ -119,10 +131,11 @@ def fetch_exchange(
     country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(
         zone_key2
     )
-
-    net_flow = (
-        data["internacional"][country_exchange["name"]] * country_exchange["flow"]
-    )
+    net_flow: Union[float, None] = None
+    if country_exchange:
+        net_flow = (
+            data["internacional"][country_exchange["name"]] * country_exchange["flow"]
+        )
 
     return {
         "datetime": dt,
@@ -133,7 +146,11 @@ def fetch_exchange(
 
 
 def fetch_region_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two Brazilian regions."""
     if target_datetime:

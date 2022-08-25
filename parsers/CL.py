@@ -2,13 +2,15 @@
 
 """Parser for the electricity grid of Chile"""
 
-import logging
+
 from collections import defaultdict
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Optional
 
 import arrow
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -35,10 +37,10 @@ TYPE_MAPPING = {
 }
 
 
-def get_data_live(session, logger):
+def get_data_live(session: Optional[Session], logger: Logger):
     """Requests live generation data in json format."""
 
-    s = session or requests.session()
+    s = session or Session()
     json_total = s.get(API_BASE_URL_LIVE_TOT).json()
     json_ren = s.get(API_BASE_URL_LIVE_REN).json()
 
@@ -144,9 +146,9 @@ def production_processor_historical(raw_data):
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
     zone_key: str = "CL-SEN",
-    session: requests.session = None,
-    target_datetime: datetime = None,
-    logger: logging.Logger = logging.getLogger(__name__),
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None and ENABLE_LIVE_PARSER:
         gen_tot, gen_ren = get_data_live(session, logger)
@@ -185,7 +187,7 @@ def fetch_production(
         "Origin": "https://www.coordinador.cl",
     }
 
-    s = session or requests.Session()
+    s = session or Session()
     url = API_BASE_URL + date_component
 
     req = s.get(url, headers=headers)

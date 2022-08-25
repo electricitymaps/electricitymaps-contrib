@@ -4,7 +4,7 @@
     <description>
         Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
-    <author email="app@electricitymap.org" href="https://www.electricitymaps.com">
+    <author email="app@electricitymaps.com" href="https://www.electricitymaps.com">
         Electricity Maps
     </author>
     <content src="index.html" />
@@ -48,8 +48,8 @@
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
     </platform>
     <universal-links>
-        <host name="app.electricitymap.org" scheme="https" />
-        <host name="app.electricitymap.org" scheme="http" />
+        <host name="app.electricitymaps.com" scheme="https" />
+        <host name="app.electricitymaps.com" scheme="http" />
     </universal-links>
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />

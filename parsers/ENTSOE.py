@@ -13,24 +13,24 @@ Generation Forecast
 Consumption Forecast
 """
 import itertools
-import logging
-import os
 import re
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Any, Dict, List, Optional, Union
 
 import arrow
 import numpy as np
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
-ENTSOE_ENDPOINT = "https://transparency.entsoe.eu/api"
+ENTSOE_ENDPOINT = "https://web-api.tp.entsoe.eu/api"
 ENTSOE_PARAMETER_DESC = {
     "B01": "Biomass",
     "B02": "Fossil Brown coal/Lignite",
@@ -78,7 +78,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 )
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
-ENTSOE_DOMAIN_MAPPINGS = {
+ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "AL": "10YAL-KESH-----5",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
@@ -113,6 +113,8 @@ ENTSOE_DOMAIN_MAPPINGS = {
     "IT-FO": "10Y1001A1001A72K",
     "IT-NO": "10Y1001A1001A73I",
     "IT-PR": "10Y1001A1001A76C",
+    "IT-SACOAC": "10Y1001A1001A885",
+    "IT-SACODC": "10Y1001A1001A893",
     "IT-SAR": "10Y1001A1001A74G",
     "IT-SIC": "10Y1001A1001A75E",
     "IT-SO": "10Y1001A1001A788",
@@ -149,7 +151,7 @@ ENTSOE_DOMAIN_MAPPINGS = {
 }
 
 # Generation per unit can only be obtained at EIC (Control Area) level
-ENTSOE_EIC_MAPPING = {
+ENTSOE_EIC_MAPPING: Dict[str, str] = {
     "DK-DK1": "10Y1001A1001A796",
     "DK-DK2": "10Y1001A1001A796",
     "FI": "10YFI-1--------U",
@@ -159,35 +161,50 @@ ENTSOE_EIC_MAPPING = {
 }
 
 # Define zone_keys to an array of zone_keys for aggregated production data
-ZONE_KEY_AGGREGATES = {
+ZONE_KEY_AGGREGATES: Dict[str, List[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
     "SE": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
 }
 
 # Some exchanges require specific domains
-ENTSOE_EXCHANGE_DOMAIN_OVERRIDE = {
+ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "AT->IT-NO": [ENTSOE_DOMAIN_MAPPINGS["AT"], ENTSOE_DOMAIN_MAPPINGS["IT"]],
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], "10Y1001C--00003F"],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
+    "DE->SE": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
-    "DK-DK2->SE": [ENTSOE_DOMAIN_MAPPINGS["DK-DK2"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
-    "FR-COR->IT-CNO": ["10Y1001A1001A893", ENTSOE_DOMAIN_MAPPINGS["IT-CNO"]],
+    "DK-DK2->SE": [ENTSOE_DOMAIN_MAPPINGS["DK-DK2"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "EE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["EE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
+    "FI->RU-1": [ENTSOE_DOMAIN_MAPPINGS["FI"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
+    "FR-COR->IT-CNO": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACODC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-CNO"],
+    ],
+    "FR-COR-AC->IT-SAR": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACOAC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-SAR"],
+    ],
+    "FR-COR-DC->IT-SAR": [
+        ENTSOE_DOMAIN_MAPPINGS["IT-SACODC"],
+        ENTSOE_DOMAIN_MAPPINGS["IT-SAR"],
+    ],
     "GE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["GE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "GR->IT-SO": [ENTSOE_DOMAIN_MAPPINGS["GR"], ENTSOE_DOMAIN_MAPPINGS["IT-SO"]],
     "IT-CSO->ME": [ENTSOE_DOMAIN_MAPPINGS["IT"], ENTSOE_DOMAIN_MAPPINGS["ME"]],
-    "NO-NO3->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO3"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
-    "NO-NO4->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO4"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
-    "NO-NO1->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO1"], ENTSOE_DOMAIN_MAPPINGS["SE-SE3"]],
-    "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], "10Y1001A1001A869"],
     "IT-SIC->IT-SO": [
         ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
         ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
     ],
+    "LV->RU-1": [ENTSOE_DOMAIN_MAPPINGS["LV"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
+    "NO-NO1->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO1"], ENTSOE_DOMAIN_MAPPINGS["SE-SE3"]],
+    "NO-NO3->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO3"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
+    "NO-NO4->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO4"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
+    "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], "10Y1001A1001A869"],
 }
 # Some zone_keys are part of bidding zone domains for price data
-ENTSOE_PRICE_DOMAIN_OVERRIDE = {
+ENTSOE_PRICE_DOMAIN_OVERRIDE: Dict[str, str] = {
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
@@ -195,7 +212,7 @@ ENTSOE_PRICE_DOMAIN_OVERRIDE = {
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
-ENTSOE_UNITS_TO_ZONE = {
+ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
     # DK-DK1
     "Anholt": "DK-DK1",
     "Esbjergvaerket 3": "DK-DK1",
@@ -289,7 +306,7 @@ ENTSOE_UNITS_TO_ZONE = {
     "Ãbyverket Ãrebro": "SE",
 }
 
-VALIDATIONS = {
+VALIDATIONS: Dict[str, Dict[str, Any]] = {
     # This is a list of criteria to ensure validity of data,
     # used in validate_production()
     # Note that "required" means data is present in ENTSOE.
@@ -445,7 +462,7 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, target_datetime=None) -> str:
+def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
 
     params = {
         "documentType": "A65",
@@ -459,7 +476,7 @@ def query_consumption(domain, session, target_datetime=None) -> str:
         check_response(response, query_consumption.__name__)
 
 
-def query_production(in_domain, session, target_datetime=None) -> str:
+def query_production(in_domain, session, target_datetime=None) -> Union[str, None]:
     params = {
         "documentType": "A75",
         "processType": "A16",  # Realised
@@ -474,7 +491,9 @@ def query_production(in_domain, session, target_datetime=None) -> str:
         check_response(response, query_production.__name__)
 
 
-def query_production_per_units(psr_type, domain, session, target_datetime=None) -> str:
+def query_production_per_units(
+    psr_type, domain, session, target_datetime=None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A73",
@@ -490,7 +509,9 @@ def query_production_per_units(psr_type, domain, session, target_datetime=None) 
         check_response(response, query_production_per_units.__name__)
 
 
-def query_exchange(in_domain, out_domain, session, target_datetime=None) -> str:
+def query_exchange(
+    in_domain, out_domain, session, target_datetime=None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A11",
@@ -506,7 +527,7 @@ def query_exchange(in_domain, out_domain, session, target_datetime=None) -> str:
 
 def query_exchange_forecast(
     in_domain, out_domain, session, target_datetime=None
-) -> str:
+) -> Union[str, None]:
     """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -521,7 +542,7 @@ def query_exchange_forecast(
         check_response(response, query_exchange_forecast.__name__)
 
 
-def query_price(domain, session, target_datetime=None) -> str:
+def query_price(domain, session, target_datetime=None) -> Union[str, None]:
 
     params = {
         "documentType": "A44",
@@ -535,7 +556,9 @@ def query_price(domain, session, target_datetime=None) -> str:
         check_response(response, query_price.__name__)
 
 
-def query_generation_forecast(in_domain, session, target_datetime=None) -> str:
+def query_generation_forecast(
+    in_domain, session, target_datetime=None
+) -> Union[str, None]:
     """Gets generation forecast for 48 hours ahead and previous 24 hours."""
 
     # Note: this does not give a breakdown of the production
@@ -551,7 +574,9 @@ def query_generation_forecast(in_domain, session, target_datetime=None) -> str:
         check_response(response, query_generation_forecast.__name__)
 
 
-def query_consumption_forecast(in_domain, session, target_datetime=None) -> str:
+def query_consumption_forecast(
+    in_domain, session, target_datetime=None
+) -> Union[str, None]:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -568,7 +593,7 @@ def query_consumption_forecast(in_domain, session, target_datetime=None) -> str:
 
 def query_wind_solar_production_forecast(
     in_domain, session, target_datetime=None
-) -> str:
+) -> Union[str, None]:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
     params = {
@@ -597,7 +622,7 @@ def datetime_from_position(start, position, resolution):
 
 def parse_scalar(
     xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False
-) -> tuple:
+) -> Union[tuple, None]:
 
     if not xml_text:
         return None
@@ -624,7 +649,7 @@ def parse_scalar(
     return values, datetimes
 
 
-def parse_production(xml_text) -> tuple:
+def parse_production(xml_text) -> Union[tuple, None]:
 
     if not xml_text:
         return None
@@ -703,7 +728,7 @@ def parse_self_consumption(xml_text):
     return res
 
 
-def parse_production_per_units(xml_text) -> dict:
+def parse_production_per_units(xml_text) -> Union[dict, None]:
     values = {}
 
     if not xml_text:
@@ -755,7 +780,9 @@ def parse_production_per_units(xml_text) -> dict:
     return values.values()
 
 
-def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tuple:
+def parse_exchange(
+    xml_text, is_import, quantities=None, datetimes=None
+) -> Union[tuple, None]:
 
     if not xml_text:
         return None
@@ -791,7 +818,7 @@ def parse_exchange(xml_text, is_import, quantities=None, datetimes=None) -> tupl
     return quantities, datetimes
 
 
-def parse_price(xml_text) -> tuple:
+def parse_price(xml_text) -> Union[tuple, None]:
 
     if not xml_text:
         return None
@@ -814,7 +841,9 @@ def parse_price(xml_text) -> tuple:
     return prices, currencies, datetimes
 
 
-def validate_production(datapoint, logger) -> bool:
+def validate_production(
+    datapoint: Dict[str, Any], logger: Logger
+) -> Union[Dict[str, Any], bool, None]:
     """
     Production data can sometimes be available but clearly wrong.
 
@@ -847,11 +876,13 @@ def get_wind(values):
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
-) -> dict:
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     """Gets consumption for a specified zone."""
-    if not session:
-        session = requests.session()
+    session = session or Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -910,14 +941,17 @@ def fetch_consumption(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab production
     parsed = parse_production(
@@ -1020,7 +1054,10 @@ def merge_production_outputs(parser_outputs, merge_zone_key, merge_source=None):
 
 @refetch_frequency(timedelta(days=2))
 def fetch_production_aggregate(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if zone_key not in ZONE_KEY_AGGREGATES:
         raise ValueError("Unknown aggregate key %s" % zone_key)
@@ -1036,11 +1073,14 @@ def fetch_production_aggregate(
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production_per_units(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Returns all production units and production values."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_EIC_MAPPING[zone_key]
     data = []
     # Iterate over all psr types
@@ -1073,18 +1113,18 @@ def fetch_production_per_units(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> list:
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
@@ -1119,7 +1159,7 @@ def fetch_exchange(
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates):
-        return None
+        raise QueryError("No exchange data found")
     data = []
     for exchange_date in exchange_dates:
         net_flow = exchange_hashmap[exchange_date]
@@ -1139,15 +1179,15 @@ def fetch_exchange(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_exchange_forecast(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets exchange forecast between two specified zones."""
     if not session:
-        session = requests.session()
+        session = Session()
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     key = "->".join(sorted_zone_keys)
     if key in ENTSOE_EXCHANGE_DOMAIN_OVERRIDE:
@@ -1203,12 +1243,15 @@ def fetch_exchange_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_price(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets day-ahead price for specified zone."""
     # Note: This is day-ahead prices
     if not session:
-        session = requests.session()
+        session = Session()
     if zone_key in ENTSOE_PRICE_DOMAIN_OVERRIDE:
         domain = ENTSOE_PRICE_DOMAIN_OVERRIDE[zone_key]
     else:
@@ -1234,11 +1277,14 @@ def fetch_price(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_generation_forecast(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets generation forecast for specified zone."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -1263,11 +1309,14 @@ def fetch_generation_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_consumption_forecast(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
     parsed = parse_scalar(
@@ -1292,14 +1341,17 @@ def fetch_consumption_forecast(
 
 @refetch_frequency(timedelta(days=2))
 def fetch_wind_solar_forecasts(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """
     Gets values and corresponding datetimes for all production types in the specified zone.
     Removes any values that are in the future or don't have a datetime associated with them.
     """
     if not session:
-        session = requests.session()
+        session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab production
     parsed = parse_production(

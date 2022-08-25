@@ -2753,7 +2753,17 @@
             "source": "electricityMap, 2021 average",
             "value": 248.37990993773258
           }
-        ]
+        ],
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 0
+        }
+      },
+      "FO-MI": {
+        "unknown": {
+          "source": "Tidal (IPCC 2014)",
+          "value": 0
+        }
       },
       "FR": {
         "battery discharge": [

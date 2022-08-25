@@ -8,11 +8,13 @@ and exposes them via a unified API.
 Requires an API key, set in the EIA_KEY environment variable. Get one here:
 https://www.eia.gov/opendata/register.php
 """
-import datetime
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import requests
 from dateutil import parser, tz
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -298,9 +300,12 @@ DEMAND_SERIES = "EBA.%s-ALL.D.H"
 FORECAST_SERIES = "EBA.%s-ALL.DF.H"
 
 
-@refetch_frequency(datetime.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_consumption_forecast(
-    zone_key, session=None, target_datetime=None, logger=None
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     return _fetch_series(
         zone_key,
@@ -311,7 +316,12 @@ def fetch_consumption_forecast(
     )
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
+def fetch_production(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     return _fetch_series(
         zone_key,
         PRODUCTION_SERIES % REGIONS[zone_key],
@@ -321,8 +331,13 @@ def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
     )
 
 
-@refetch_frequency(datetime.timedelta(days=1))
-def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None):
+@refetch_frequency(timedelta(days=1))
+def fetch_consumption(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     consumption = _fetch_series(
         zone_key,
         DEMAND_SERIES % REGIONS[zone_key],
@@ -336,8 +351,13 @@ def fetch_consumption(zone_key, session=None, target_datetime=None, logger=None)
     return consumption
 
 
-@refetch_frequency(datetime.timedelta(days=1))
-def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=None):
+@refetch_frequency(timedelta(days=1))
+def fetch_production_mix(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     mixes = []
     for type, code in TYPES.items():
         series = PRODUCTION_MIX_SERIES % (REGIONS[zone_key], code)
@@ -428,9 +448,13 @@ def fetch_production_mix(zone_key, session=None, target_datetime=None, logger=No
     return merge_production_outputs(correct_mixes, zone_key, merge_source="eia.gov")
 
 
-@refetch_frequency(datetime.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     sortedcodes = "->".join(sorted([zone_key1, zone_key2]))
     exchange = _fetch_series(
@@ -453,10 +477,15 @@ def fetch_exchange(
     return exchange
 
 
-def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logger=None):
+def _fetch_series(
+    zone_key: str,
+    series_id,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     """Fetches and converts a data series."""
-
-    s = session or requests.Session()
+    s = session or Session()
 
     # local import to avoid the exception that happens if EIAPY token is not set
     # even if this module is unused
@@ -472,11 +501,15 @@ def _fetch_series(zone_key, series_id, session=None, target_datetime=None, logge
                 f"target_datetime must be a valid datetime - received {target_datetime}"
             )
         utc = tz.gettz("UTC")
-        # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
-        end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
-        start = (target_datetime.astimezone(utc) - datetime.timedelta(days=1)).strftime(
-            "%Y%m%dT%HZ"
-        )
+        if isinstance(target_datetime, datetime):
+            # eia currently only accepts utc timestamps in the form YYYYMMDDTHHZ
+            end = target_datetime.astimezone(utc).strftime("%Y%m%dT%HZ")
+            start = (target_datetime.astimezone(utc) - timedelta(days=1)).strftime(
+                "%Y%m%dT%HZ"
+            )
+        else:
+            end = None
+            start = None
         raw_data = series.get_data(start=start, end=end)
     else:
         # Get the last 24 hours available.

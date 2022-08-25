@@ -2,18 +2,16 @@
 
 """Parser for the Nigerian electricity grid"""
 
-# Standard library imports
-import datetime
-import logging
 import re
 import urllib.parse
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
-# Third-party library imports
 import arrow
 import bs4
-import requests
+from requests import Session
 
-# Local library imports
 from parsers.lib import config, validation
 
 API_URL = urllib.parse.urlparse("https://niggrid.org/GenerationProfile")
@@ -37,12 +35,12 @@ PATTERN = re.compile(r"\((.*)\)")
 # ensure that if the live data is missing for a given hour when it's first
 # fetched, it will be fetched again during the same hour. (As far as I can
 # tell, the table is always populated within 15 min of the turn of the hour).
-@config.refetch_frequency(datetime.timedelta(minutes=45))
+@config.refetch_frequency(timedelta(minutes=45))
 def fetch_production(
-    zone_key="NG",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "NG",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given zone."""
     timestamp = (
@@ -52,7 +50,7 @@ def fetch_production(
     )
 
     # GET the landing page (HTML) and scrape some form data from it.
-    session = session or requests.Session()
+    session = session or Session()
     response = session.get(API_URL_STRING)
     soup = bs4.BeautifulSoup(response.text, "html.parser")
     data = {tag["name"]: tag["value"] for tag in soup.find_all("input")}

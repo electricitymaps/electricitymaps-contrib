@@ -12,13 +12,14 @@ https://www.elexon.co.uk/wp-content/uploads/2017/06/
 bmrs_api_data_push_user_guide_v1.1.pdf
 """
 
-import datetime as dt
-import logging
+from datetime import date, datetime, time, timedelta
 from io import StringIO
+from logging import Logger, getLogger
+from typing import List, Optional
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -58,19 +59,17 @@ EXCHANGES = {
     "GB->NO-NO2": [10],  # North Sea Link
 }
 
-FETCH_WIND_FROM_FUELINST = True
 
-
-def query_ELEXON(report, session, params):
+def query_ELEXON(report, session: Session, params):
     params["APIKey"] = get_token("ELEXON_TOKEN")
     return session.get(ELEXON_ENDPOINT.format(report), params=params)
 
 
-def query_exchange(session, target_datetime=None):
+def query_exchange(session: Session, target_datetime=None):
     if target_datetime is None:
-        target_datetime = dt.date.today()
+        target_datetime = date.today()
 
-    from_date = (target_datetime - dt.timedelta(days=1)).strftime("%Y-%m-%d")
+    from_date = (target_datetime - timedelta(days=1)).strftime("%Y-%m-%d")
     to_date = target_datetime.strftime("%Y-%m-%d")
 
     params = {"FromDate": from_date, "ToDate": to_date, "ServiceType": "csv"}
@@ -78,15 +77,15 @@ def query_exchange(session, target_datetime=None):
     return response.text
 
 
-def query_production(session, target_datetime=None):
+def query_production(session: Session, target_datetime: Optional[datetime] = None):
     if target_datetime is None:
-        target_datetime = dt.datetime.now()
+        target_datetime = datetime.now()
 
     # we can only fetch one date at a time.
     # if target_datetime is first 30 minutes of the day fetch the day before.
     # otherwise fetch the day of target_datetime.
-    if target_datetime.time() <= dt.time(0, 30):
-        settlement_date = target_datetime.date() - dt.timedelta(1)
+    if target_datetime.time() <= time(0, 30):
+        settlement_date = target_datetime.date() - timedelta(1)
     else:
         settlement_date = target_datetime.date()
 
@@ -100,11 +99,11 @@ def query_production(session, target_datetime=None):
 
 
 def parse_exchange(
-    zone_key1,
-    zone_key2,
-    csv_text,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    csv_text: str,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
         return None
@@ -129,13 +128,13 @@ def parse_exchange(
         fields = line.split(",")
 
         # settlement date / period combinations are always local time
-        date = dt.datetime.strptime(fields[1], "%Y%m%d").date()
+        date = datetime.strptime(fields[1], "%Y%m%d").date()
         settlement_period = int(fields[2])
-        datetime = datetime_from_date_sp(date, settlement_period)
+        date_time = datetime_from_date_sp(date, settlement_period)
 
         data = {
             "sortedZoneKeys": exchange,
-            "datetime": datetime,
+            "datetime": date_time,
             "source": "bmreports.com",
         }
 
@@ -154,7 +153,9 @@ def parse_exchange(
 
 
 def parse_production(
-    csv_text, target_datetime=None, logger=logging.getLogger(__name__)
+    csv_text: str,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if not csv_text:
         return None
@@ -177,7 +178,7 @@ def parse_production(
     df = df.iloc[:-1, [7, 8, 9, 4]]
 
     df["Settlement Date"] = df["Settlement Date"].apply(
-        lambda x: dt.datetime.strptime(x, "%Y-%m-%d")
+        lambda x: datetime.strptime(x, "%Y-%m-%d")
     )
     df["Settlement Period"] = df["Settlement Period"].astype(int)
     df["datetime"] = df.apply(
@@ -232,16 +233,18 @@ def datetime_from_date_sp(date, sp):
     return datetime.replace(tzinfo="Europe/London").datetime
 
 
-def _fetch_wind(target_datetime=None, logger=logging.getLogger(__name__)):
+def _fetch_wind(
+    target_datetime: Optional[datetime] = None, logger: Logger = getLogger(__name__)
+):
     if target_datetime is None:
-        target_datetime = dt.datetime.now()
+        target_datetime = datetime.now()
 
     # line up with B1620 (main production report) search range
     d = target_datetime.date()
-    start = d - dt.timedelta(hours=48)
-    end = dt.datetime.combine(d + dt.timedelta(days=1), dt.time(0))
+    start = d - timedelta(hours=48)
+    end = datetime.combine(d + timedelta(days=1), time(0))
 
-    session = requests.session()
+    session = Session()
     params = {
         "FromDateTime": start.strftime("%Y-%m-%d %H:%M:%S"),
         "ToDateTime": end.strftime("%Y-%m-%d %H:%M:%S"),
@@ -271,7 +274,7 @@ def _fetch_wind(target_datetime=None, logger=logging.getLogger(__name__)):
     df = df.iloc[:, [1, 2, 3, 8]]
     df.columns = ["Settlement Date", "Settlement Period", "published", "Wind"]
     df["Settlement Date"] = df["Settlement Date"].apply(
-        lambda x: dt.datetime.strptime(str(x), "%Y%m%d")
+        lambda x: datetime.strptime(str(x), "%Y%m%d")
     )
     df["Settlement Period"] = df["Settlement Period"].astype(int)
     df["datetime"] = df.apply(
@@ -280,7 +283,7 @@ def _fetch_wind(target_datetime=None, logger=logging.getLogger(__name__)):
     )
 
     df["published"] = df["published"].apply(
-        lambda x: dt.datetime.strptime(str(x), "%Y%m%d%H%M%S")
+        lambda x: datetime.strptime(str(x), "%Y%m%d%H%M%S")
     )
     # get the most recently published value for each datetime
     idx = df.groupby("datetime")["published"].transform(max) == df["published"]
@@ -289,15 +292,15 @@ def _fetch_wind(target_datetime=None, logger=logging.getLogger(__name__)):
     return df[["datetime", "Wind"]]
 
 
-@refetch_frequency(dt.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
-    session = session or requests.session()
+    session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
     except arrow.parser.ParserError:
@@ -307,14 +310,14 @@ def fetch_exchange(
     return data
 
 
-@refetch_frequency(dt.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="GB",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
-    session = session or requests.session()
+    zone_key: str = "GB",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
+    session = session or Session()
     try:
         target_datetime = arrow.get(target_datetime).datetime
     except arrow.parser.ParserError:
@@ -325,6 +328,7 @@ def fetch_production(
     # At times B1620 has had poor quality data for wind so fetch from FUELINST
     # But that source is unavailable prior to cutout date
     HISTORICAL_WIND_CUTOUT = "2016-03-01"
+    FETCH_WIND_FROM_FUELINST = True
     if target_datetime < arrow.get(HISTORICAL_WIND_CUTOUT).datetime:
         FETCH_WIND_FROM_FUELINST = False
     if FETCH_WIND_FROM_FUELINST:

@@ -13,10 +13,13 @@ Shares of Electricity production in 2019:
 """
 
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 from bs4 import BeautifulSoup
-from requests import get
+from requests import Session, get
 
 IEC_URL = "www.iec.co.il"
 IEC_PRODUCTION = (
@@ -57,7 +60,12 @@ def fetch_all() -> list:
     return flatten_list(cleaned_list)
 
 
-def fetch_price(zone_key="IL", session=None, target_datetime=None, logger=None) -> dict:
+def fetch_price(
+    zone_key: str = "IL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
     """Fetch price from IEC table."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -92,7 +100,10 @@ def extract_price_date(soup):
 
 
 def fetch_production(
-    zone_key="IL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -110,7 +121,10 @@ def fetch_production(
 
 
 def fetch_consumption(
-    zone_key="IL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

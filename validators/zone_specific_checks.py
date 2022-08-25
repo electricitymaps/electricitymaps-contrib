@@ -1,8 +1,6 @@
-from datetime import datetime
-
 import pandas as pd
 
-from electricitymap.contrib.validators.lib.config import validator
+from validators.lib.config import validator
 
 
 @validator(
@@ -23,6 +21,7 @@ from electricitymap.contrib.validators.lib.config import validator
         "US-NW-GWA",
         "US-NW-DOPD",
         "US-NW-AVRN",
+        "LU",
     ],
 )
 def validate_production_has_fossil_fuel(events: pd.DataFrame) -> pd.Series:

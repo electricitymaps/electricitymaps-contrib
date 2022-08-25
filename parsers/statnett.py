@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-# The arrow library is used to handle datetimes
-import logging
-from datetime import timedelta
+# Note: This parser is only used for the NO-NO4->RU-1 exchange
+# and should be archived if this data becomes available on ENTSO-E.
+
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-
-# The request library is used to fetch content through HTTP
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -77,12 +78,12 @@ exchanges_mapping = {
 
 @refetch_frequency(timedelta(hours=1))
 def fetch_production(
-    zone_key="SE",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "SE",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
-    r = session or requests.session()
+    r = session or Session()
     timestamp = (
         target_datetime.timestamp() if target_datetime else arrow.now().timestamp
     ) * 1000
@@ -153,11 +154,11 @@ def fetch_production(
 
 @refetch_frequency(timedelta(hours=1))
 def fetch_exchange_by_bidding_zone(
-    bidding_zone1="DK1",
-    bidding_zone2="NO2",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    bidding_zone1: str = "DK1",
+    bidding_zone2: str = "NO2",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     # Convert bidding zone names into statnett zones
     bidding_zone_1_trimmed, bidding_zone_2_trimmed = [
@@ -166,7 +167,7 @@ def fetch_exchange_by_bidding_zone(
     bidding_zone_a, bidding_zone_b = sorted(
         [bidding_zone_1_trimmed, bidding_zone_2_trimmed]
     )
-    r = session or requests.session()
+    r = session or Session()
     timestamp = (
         target_datetime.timestamp() if target_datetime else arrow.now().timestamp
     ) * 1000
@@ -196,7 +197,9 @@ def fetch_exchange_by_bidding_zone(
 
 
 def _fetch_exchanges_from_sorted_bidding_zones(
-    sorted_bidding_zones, session=None, target_datetime=None
+    sorted_bidding_zones,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
 ):
     zones = sorted_bidding_zones.split("->")
     return fetch_exchange_by_bidding_zone(zones[0], zones[1], session, target_datetime)
@@ -213,13 +216,13 @@ def _sum_of_exchanges(exchanges):
 
 @refetch_frequency(timedelta(hours=1))
 def fetch_exchange(
-    zone_key1="DK",
-    zone_key2="NO",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str = "DK",
+    zone_key2: str = "NO",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
-    r = session or requests.session()
+    r = session or Session()
 
     sorted_exchange = "->".join(sorted([zone_key1, zone_key2]))
     data = _sum_of_exchanges(

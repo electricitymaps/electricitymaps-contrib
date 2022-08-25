@@ -116,6 +116,8 @@
     "DK-DK2": { "countryName": "Danmark", "zoneName": "Østdanmark" },
     "EE": { "zoneName": "Estland" },
     "ES": { "zoneName": "Spanien" },
+    "ES-CE": { "countryName": "Spanien", "zoneName": "Ceuta" },
+    "ES-ML": { "countryName": "Spanien", "zoneName": "Melilla" },
     "FI": { "zoneName": "Finland" },
     "FR": { "zoneName": "Frankrig" },
     "GB": { "zoneName": "Storbritannien" },
