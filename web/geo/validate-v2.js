@@ -15,15 +15,47 @@ const { getZonesJson } = require('./files');
 
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
-function validateGeometry(fc, config) {
-  console.log('Validating geometries...'); // eslint-disable-line no-console
-  zeroNullGeometries(fc);
-  containsRequiredProperties(fc);
-  zeroComplexPolygons(fc, config);
-  zeroNeighboringIds(fc);
-  zeroGaps(fc, config);
-  zeroOverlaps(fc, config);
-  matchesZonesConfig(fc, config);
+function validateGeometryV2(fc, config) {
+  const fcHighFidelity = {
+    ...fc,
+    features: fc.features.filter((feature) => {
+      try {
+        return !feature.properties.aggregatedView;
+      } catch (e) {
+        console.log('Error: ', e, 'Feature: ', feature); // eslint-disable-line no-console
+      }
+    }),
+  };
+
+  const fcAggregated = {
+    ...fc,
+    features: fc.features.filter((feature) => {
+      try {
+        return feature.properties.aggregatedView;
+      } catch (e) {
+        console.log('Error: ', e, 'Feature: ', feature); // eslint-disable-line no-console
+      }
+    }),
+  };
+  console.log('Validating geometries high fidelity view...'); // eslint-disable-line no-console
+  zeroNullGeometries(fcHighFidelity);
+  containsRequiredProperties(fcHighFidelity);
+  zeroComplexPolygons(fcHighFidelity, config);
+  zeroNeighboringIds(fcHighFidelity);
+  zeroGaps(fcHighFidelity, config);
+  zeroOverlaps(fcHighFidelity, config);
+  matchesZonesConfig(fcHighFidelity, config);
+
+  if (fcAggregated.features.length) {
+    console.log('Validating geometries aggregated view..'); // eslint-disable-line no-console
+    zeroNullGeometries(fcAggregated);
+    containsRequiredProperties(fcAggregated);
+    zeroComplexPolygons(fcAggregated, config);
+    zeroNeighboringIds(fcAggregated);
+    zeroGaps(fcAggregated, config);
+    zeroOverlaps(fcAggregated, config);
+    matchesZonesConfig(fcAggregated, config);
+  }
 }
 
 function zeroNullGeometries(fc) {
@@ -152,4 +184,4 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
   }
 }
 
-module.exports = { validateGeometry };
+module.exports = { validateGeometryV2 };

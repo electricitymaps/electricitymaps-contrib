@@ -64,9 +64,12 @@ function getHoles(fc, minArea, sliverRatio) {
   return featureCollection(holes);
 }
 
+const fileExists = (fileName) => fs.existsSync(fileName);
+
 const getJSON = (fileName, encoding = 'utf8') => JSON.parse(fs.readFileSync(fileName, encoding));
 
-const writeJSON = (fileName, obj, encoding = 'utf8') => fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
+const writeJSON = (fileName, obj, encoding = 'utf8') =>
+  fs.writeFileSync(fileName, JSON.stringify(obj), { encoding, flag: 'w' });
 
 function log(message) {
   console.error('\x1b[31m%s\x1b[0m', `ERROR: ${message}`);
@@ -82,4 +85,4 @@ const round = (number, decimals = 2) => {
   return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 };
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, round };
+module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, round, fileExists };

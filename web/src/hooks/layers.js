@@ -12,7 +12,7 @@ export function useExchangeArrowsData() {
 
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
   const exchanges = useSelector((state) => state.data.exchanges);
-
+  //TODO Remove internal exchanges from aggregated zones
   if (!isConsumption || !isHourly) {
     return [];
   }
