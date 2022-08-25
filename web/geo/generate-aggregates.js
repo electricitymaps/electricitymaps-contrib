@@ -40,7 +40,7 @@ const generateAggregates = (geojson) => {
         }
         multiZoneCountry.properties.aggregatedView = true;
         multiZoneCountry.properties.isCombined = true;
-        multiZoneCountry.properties.zoneName = zonesToCombine[0].properties.countryKey;
+        multiZoneCountry.properties.zoneName = multiZoneCountry.properties.countryKey;
         return multiZoneCountry;
       }
     });
