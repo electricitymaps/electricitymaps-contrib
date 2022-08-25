@@ -1,6 +1,6 @@
 import { merge } from 'topojson';
 import topoV1 from '../world.json';
-import topoV2 from '../world2.json';
+import topoV2 from '../world-aggregated.json';
 import { isAggregatedViewEnabled } from './featureFlags';
 
 const constructTopos = () => {
