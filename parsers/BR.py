@@ -1,250 +1,207 @@
-#!/usr/bin/env python3
-
 from collections import defaultdict
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Any, Dict, Optional, Union
 
 import arrow
-import requests
+from requests import Session
 
 from .lib.validation import validate
 
+URL = "http://tr.ons.org.br/Content/GetBalancoEnergetico/null"
+SOURCE = "ons.org.br"
 
-url = 'http://tr.ons.org.br/Content/GetBalancoEnergetico/null'
+GENERATION_MAPPING = {
+    "nuclear": "nuclear",
+    "eolica": "wind",
+    "termica": "unknown",
+    "solar": "solar",
+    "hydro": "hydro",
+}
 
-generation_mapping = {
-                      u'nuclear': 'nuclear',
-                      u'eolica': 'wind',
-                      u'termica': 'unknown',
-                      u'solar': 'solar',
-                      'hydro': 'hydro'
-                      }
+REGIONS = {
+    "BR-NE": "nordeste",
+    "BR-N": "norte",
+    "BR-CS": "sudesteECentroOeste",
+    "BR-S": "sul",
+}
 
-regions = {
-           'BR-NE': u'nordeste',
-           'BR-N': u'norte',
-           'BR-CS': u'sudesteECentroOeste',
-           'BR-S': u'sul'
-           }
+REGION_EXCHANGES = {
+    "BR-CS->BR-S": "sul_sudeste",
+    "BR-CS->BR-NE": "sudeste_nordeste",
+    "BR-CS->BR-N": "sudeste_norteFic",
+    "BR-N->BR-NE": "norteFic_nordeste",
+}
 
-region_exchanges = {
-                    'BR-CS->BR-S': "sul_sudeste",
-                    'BR-CS->BR-NE': "sudeste_nordeste",
-                    'BR-CS->BR-N': "sudeste_norteFic",
-                    'BR-N->BR-NE': "norteFic_nordeste"
-                    }
+REGION_EXCHANGES_DIRECTIONS = {
+    "BR-CS->BR-S": -1,
+    "BR-CS->BR-NE": 1,
+    "BR-CS->BR-N": 1,
+    "BR-N->BR-NE": 1,
+}
 
-
-region_exchanges_directions = {
-                    'BR-CS->BR-S': -1,
-                    'BR-CS->BR-NE': 1,
-                    'BR-CS->BR-N': 1,
-                    'BR-N->BR-NE': 1
-                    }
-
-countries_exchange = {
-    'UY': {
-        'name': u'uruguai',
-        'flow': 1
-    },
-    'AR': {
-        'name': u'argentina',
-        'flow': -1
-    },
-    'PY': {
-        'name': u'paraguai',
-        'flow': -1
-    }
+COUNTRIES_EXCHANGE = {
+    "UY": {"name": "uruguai", "flow": 1},
+    "AR": {"name": "argentina", "flow": -1},
+    "PY": {"name": "paraguai", "flow": -1},
 }
 
 
-def get_data(session, logger):
+def get_data(session: Optional[Session]):
     """Requests generation data in json format."""
+    s = session or Session()
+    json_data = s.get(URL).json()
 
-    s = session or requests.session()
-    json_data = s.get(url).json()
     return json_data
 
 
-def production_processor(json_data, zone_key):
-    """
-    Extracts data timestamp and sums regional data into totals by key.
-    Maps keys to type and returns a tuple.
-    """
+def production_processor(json_data, zone_key: str) -> tuple:
+    """Extracts data timestamp and sums regional data into totals by key."""
 
-    dt = arrow.get(json_data['Data'])
+    dt = arrow.get(json_data["Data"])
     totals = defaultdict(lambda: 0.0)
 
-    region = regions[zone_key]
-    breakdown = json_data[region][u'geracao']
+    region = REGIONS[zone_key]
+    breakdown = json_data[region]["geracao"]
     for generation, val in breakdown.items():
         totals[generation] += val
 
     # BR_CS contains the Itaipu Dam.
     # We merge the hydro keys into one, then remove unnecessary keys.
-    totals['hydro'] = totals.get(u'hidraulica', 0.0) + totals.get(u'itaipu50HzBrasil', 0.0) + totals.get(u'itaipu60Hz', 0.0)
-    entriesToRemove = (u'hidraulica', u'itaipu50HzBrasil', u'itaipu60Hz', u'total')
-    for k in entriesToRemove:
-        totals.pop(k, None)
-
-    mapped_totals = {generation_mapping.get(name, 'unknown'): val for name, val
-                     in totals.items()}
+    totals["hydro"] = (
+        totals.get("hidraulica", 0.0)
+        + totals.get("itaipu50HzBrasil", 0.0)
+        + totals.get("itaipu60Hz", 0.0)
+    )
+    entries_to_remove = {"hidraulica", "itaipu50HzBrasil", "itaipu60Hz", "total"}
+    mapped_totals = {
+        GENERATION_MAPPING.get(name, "unknown"): val
+        for name, val in totals.items()
+        if name not in entries_to_remove
+    }
 
     return dt, mapped_totals
 
 
-def fetch_production(zone_key, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(
+    zone_key: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Dict[str, Any]:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
-    generation = production_processor(gd, zone_key)
+    data = get_data(session)
+    timestamp, production = production_processor(data, zone_key)
 
     datapoint = {
-      'zoneKey': zone_key,
-      'datetime': generation[0].datetime,
-      'production': generation[1],
-      'storage': {
-          'hydro': None,
-      },
-      'source': 'ons.org.br'
+        "zoneKey": zone_key,
+        "datetime": timestamp.datetime,
+        "production": production,
+        "storage": {
+            "hydro": None,
+        },
+        "source": SOURCE,
     }
 
-    datapoint = validate(datapoint, logger,
-                         remove_negative=True, required=['hydro'], floor=1000)
+    datapoint = validate(
+        datapoint, logger, remove_negative=True, required=["hydro"], floor=1000
+    )
 
     return datapoint
 
 
-def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
+    data = get_data(session)
+    dt = arrow.get(data["Data"]).datetime
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    if zone_key1 in countries_exchange.keys():
-        country_exchange = countries_exchange[zone_key1]
+    country_exchange = COUNTRIES_EXCHANGE.get(zone_key1) or COUNTRIES_EXCHANGE.get(
+        zone_key2
+    )
+    net_flow: Union[float, None] = None
+    if country_exchange:
+        net_flow = (
+            data["internacional"][country_exchange["name"]] * country_exchange["flow"]
+        )
 
-    if zone_key2 in countries_exchange.keys():
-        country_exchange = countries_exchange[zone_key2]
-
-    data = {
-        'datetime': arrow.get(gd['Data']).datetime,
-        'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
-        'netFlow': gd['internacional'][country_exchange['name']] * country_exchange['flow'],
-        'source': 'ons.org.br'
+    return {
+        "datetime": dt,
+        "sortedZoneKeys": sorted_zone_keys,
+        "netFlow": net_flow,
+        "source": SOURCE,
     }
 
-    return data
 
-
-def fetch_region_exchange(region1, region2, session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known power exchange (in MW) between two Brazilian regions.
-    Arguments:
-    region1           -- the first region
-    region2           -- the second region; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-    where net flow is from DK into NO
-    """
+def fetch_region_exchange(
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    """Requests the last known power exchange (in MW) between two Brazilian regions."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    gd = get_data(session, logger)
-    dt = arrow.get(gd['Data']).datetime
-    scc = '->'.join(sorted([region1, region2]))
+    data = get_data(session)
+    dt = arrow.get(data["Data"]).datetime
+    sorted_regions = "->".join(sorted([zone_key1, zone_key2]))
 
-    exchange = region_exchanges[scc]
-    nf = gd['intercambio'][exchange] * region_exchanges_directions[scc]
+    exchange = REGION_EXCHANGES[sorted_regions]
+    net_flow = (
+        data["intercambio"][exchange] * REGION_EXCHANGES_DIRECTIONS[sorted_regions]
+    )
 
-    data = {
-        'datetime': dt,
-        'sortedZoneKeys': scc,
-        'netFlow': nf,
-        'source': 'ons.org.br'
+    return {
+        "datetime": dt,
+        "sortedZoneKeys": sorted_regions,
+        "netFlow": net_flow,
+        "source": SOURCE,
     }
 
-    return data
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production(BR-NE) ->')
-    print(fetch_production('BR-NE'))
+    print("fetch_production(BR-NE) ->")
+    print(fetch_production("BR-NE"))
 
-    print('fetch_production(BR-N) ->')
-    print(fetch_production('BR-N'))
+    print("fetch_production(BR-N) ->")
+    print(fetch_production("BR-N"))
 
-    print('fetch_production(BR-CS) ->')
-    print(fetch_production('BR-CS'))
+    print("fetch_production(BR-CS) ->")
+    print(fetch_production("BR-CS"))
 
-    print('fetch_production(BR-S) ->')
-    print(fetch_production('BR-S'))
+    print("fetch_production(BR-S) ->")
+    print(fetch_production("BR-S"))
 
-    print('fetch_exchange(BR-S, UY) ->')
-    print(fetch_exchange('BR-S', 'UY'))
+    print("fetch_exchange(BR-S, UY) ->")
+    print(fetch_exchange("BR-S", "UY"))
 
-    print('fetch_exchange(BR-S, AR) ->')
-    print(fetch_exchange('BR-S', 'AR'))
+    print("fetch_exchange(BR-S, AR) ->")
+    print(fetch_exchange("BR-S", "AR"))
 
-    print('fetch_region_exchange(BR-CS->BR-S)')
-    print(fetch_region_exchange('BR-CS', 'BR-S'))
+    print("fetch_region_exchange(BR-CS->BR-S)")
+    print(fetch_region_exchange("BR-CS", "BR-S"))
 
-    print('fetch_region_exchange(BR-CS->BR-NE)')
-    print(fetch_region_exchange('BR-CS', 'BR-NE'))
+    print("fetch_region_exchange(BR-CS->BR-NE)")
+    print(fetch_region_exchange("BR-CS", "BR-NE"))
 
-    print('fetch_region_exchange(BR-CS->BR-N)')
-    print(fetch_region_exchange('BR-CS', 'BR-N'))
+    print("fetch_region_exchange(BR-CS->BR-N)")
+    print(fetch_region_exchange("BR-CS", "BR-N"))
 
-    print('fetch_region_exchange(BR-N->BR-NE)')
-    print(fetch_region_exchange('BR-N', 'BR-NE'))
+    print("fetch_region_exchange(BR-N->BR-NE)")
+    print(fetch_region_exchange("BR-N", "BR-NE"))

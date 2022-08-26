@@ -1,217 +1,128 @@
-const { isEmpty } = require('lodash');
-const moment = require('moment');
+import * as translation from '../helpers/translation';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  GRID_DATA_FETCH_FAILED,
+  GRID_DATA_FETCH_REQUESTED,
+  GRID_DATA_FETCH_SUCCEEDED,
+  initDataState,
+  removeDuplicateSources,
+  SOLAR_DATA_FETCH_FAILED,
+  SOLAR_DATA_FETCH_REQUESTED,
+  SOLAR_DATA_FETCH_SUCCEDED,
+  WIND_DATA_FETCH_FAILED,
+  WIND_DATA_FETCH_REQUESTED,
+  WIND_DATA_FETCH_SUCCEDED,
+  ZONE_HISTORY_FETCH_FAILED,
+  ZONE_HISTORY_FETCH_REQUESTED,
+  ZONE_HISTORY_FETCH_SUCCEEDED,
+} from '../helpers/redux';
+import { TIME, failedRequestType } from '../helpers/constants';
 
-const { modeOrder } = require('../helpers/constants');
-const constructTopos = require('../helpers/topos');
-const translation = require('../helpers/translation');
+const initialState = initDataState();
 
-const exchangesConfig = require('../../../config/exchanges.json');
-const zonesConfig = require('../../../config/zones.json');
+const reducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(GRID_DATA_FETCH_SUCCEEDED, (state, action) => {
+      const { countries, datetimes, exchanges, stateAggregation } = action.payload;
+      state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
+      const maxGridDatetime = state.zoneDatetimes[stateAggregation].at(-1);
 
-// ** Prepare initial zone data
-const zones = constructTopos();
-Object.entries(zonesConfig).forEach((d) => {
-  const [key, zoneConfig] = d;
-  const zone = zones[key];
-  if (!zone) {
-    console.warn(`Zone ${key} from configuration is not found. Ignoring..`);
-    return;
-  }
-  // copy attributes ("capacity", "contributors"...)
-  zone.capacity = zoneConfig.capacity;
-  zone.contributors = zoneConfig.contributors;
-  zone.timezone = zoneConfig.timezone;
-  zone.shortname = translation.getFullZoneName(key);
-  zone.hasParser = (zoneConfig.parsers || {}).production !== undefined;
-  zone.delays = zoneConfig.delays;
-});
-// Add id to each zone
-Object.keys(zones).forEach((k) => { zones[k].countryCode = k; });
-
-// ** Prepare initial exchange data
-const exchanges = Object.assign({}, exchangesConfig);
-Object.entries(exchanges).forEach((entry) => {
-  const [key, value] = entry;
-  value.countryCodes = key.split('->').sort();
-  if (key.split('->')[0] !== value.countryCodes[0]) {
-    console.warn(`Exchange sorted key pair ${key} is not sorted alphabetically`);
-  }
-});
-
-const initialDataState = {
-  // Here we will store data items
-  grid: { zones, exchanges },
-  hasConnectionWarning: false,
-  hasInitializedGrid: false,
-  histories: {},
-  isLoadingHistories: false,
-  isLoadingGrid: false,
-  isLoadingSolar: false,
-  isLoadingWind: false,
-  solar: null,
-  wind: null,
-};
-
-module.exports = (state = initialDataState, action) => {
-  switch (action.type) {
-    case 'GRID_DATA_FETCH_REQUESTED': {
-      return { ...state, hasConnectionWarning: false, isLoadingGrid: true };
-    }
-
-    case 'GRID_DATA_FETCH_SUCCEEDED': {
-      // Create new grid object
-      const newGrid = Object.assign({}, {
-        zones: Object.assign({}, state.grid.zones),
-        exchanges: Object.assign({}, state.grid.exchanges),
-      });
-      // Create new state
-      const newState = Object.assign({}, state);
-      newState.grid = newGrid;
-
-      // Reset histories that expired
-      newState.histories = Object.assign({}, state.histories);
-      Object.keys(state.histories).forEach((k) => {
-        const history = state.histories[k];
-        const lastHistoryMoment = moment(history[history.length - 1].stateDatetime).utc();
-        const stateMoment = moment(action.payload.datetime).utc();
-        if (lastHistoryMoment.add(15, 'minutes').isBefore(stateMoment)) {
-          delete newState.histories[k];
-        }
-      });
-
-      // Set date
-      newGrid.datetime = action.payload.datetime;
-
-      // Reset all data we want to update (for instance, not maxCapacity)
-      Object.keys(newGrid.zones).forEach((key) => {
-        const zone = Object.assign({}, newGrid.zones[key]);
-        zone.co2intensity = undefined;
-        zone.exchange = {};
-        zone.production = {};
-        zone.productionCo2Intensities = {};
-        zone.productionCo2IntensitySources = {};
-        zone.dischargeCo2Intensities = {};
-        zone.dischargeCo2IntensitySources = {};
-        zone.storage = {};
-        zone.source = undefined;
-        newGrid.zones[key] = zone;
-      });
-      Object.keys(newGrid.exchanges).forEach((key) => {
-        newGrid.exchanges[key].netFlow = undefined;
-      });
-
-      // Populate with realtime country data
-      Object.entries(action.payload.countries).forEach((entry) => {
-        const [key, value] = entry;
-        const zone = newGrid.zones[key];
-        if (!zone) {
-          console.warn(`${key} has no zone configuration.`);
+      Object.entries(countries).map(([zoneId, zoneData]) => {
+        if (!state.zones[zoneId]) {
           return;
         }
-        // Assign data from payload
-        Object.keys(value).forEach((k) => {
-          // Warning: k takes all values, even those that are not meant
-          // to be updated (like maxCapacity)
-          zone[k] = value[k];
-        });
-        // Set date
-        zone.datetime = action.payload.datetime;
-        // Validate data
-        if (!zone.production) return;
-        modeOrder.forEach((mode) => {
-          if (mode === 'other' || mode === 'unknown' || !zone.datetime) { return; }
-          // Check missing values
-          // if (country.production[mode] === undefined && country.storage[mode] === undefined)
-          //    console.warn(`${key} is missing production or storage of ' + mode`);
-          // Check validity of production
-          if (zone.production[mode] !== undefined && zone.production[mode] < 0) {
-            console.warn(`${key} has negative production of ${mode}`);
-          }
-          // Check load factors > 1
-          if (zone.production[mode] !== undefined
-            && (zone.capacity || {})[mode] !== undefined
-            && zone.production[mode] > zone.capacity[mode]) {
-            console.warn(`${key} produces more than its capacity of ${mode}`);
-          }
-        });
-      });
+        state.zones[zoneId][stateAggregation].overviews = zoneData;
+        const maxHistoryDatetime = new Date(
+          Math.max(...state.zones[zoneId][stateAggregation].details.map((x) => x.stateDatetime))
+        );
 
-      // Populate exchange pairs for exchange layer
-      Object.entries(action.payload.exchanges).forEach((entry) => {
-        const [key, value] = entry;
-        const exchange = newGrid.exchanges[key];
-        if (!exchange || !exchange.lonlat) {
-          console.warn(`Missing exchange configuration for ${key}`);
-          return;
+        if (maxGridDatetime > maxHistoryDatetime) {
+          state.zones[zoneId][stateAggregation].isExpired = true;
         }
-        // Assign all data
-        Object.keys(value).forEach((k) => {
-          exchange[k] = value[k];
-        });
       });
 
-      newState.hasInitializedGrid = true;
-      newState.isLoadingGrid = false;
-      return newState;
-    }
+      if (stateAggregation === TIME.HOURLY) {
+        Object.entries(exchanges).forEach((entry) => {
+          const [key, value] = entry;
+          if (state.exchanges[key]) {
+            state.exchanges[key].data = value;
+          }
+        });
+      }
 
-    case 'GRID_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, hasConnectionWarning: true, isLoadingGrid: false };
-    }
-
-    case 'ZONE_HISTORY_FETCH_REQUESTED': {
-      return { ...state, isLoadingHistories: true };
-    }
-
-    case 'ZONE_HISTORY_FETCH_SUCCEEDED': {
-      return {
-        ...state,
-        isLoadingHistories: false,
-        histories: {
-          ...state.histories,
-          [action.zoneId]: action.payload.map(datapoint => ({
-            ...datapoint,
-            hasParser: true,
-            // Exchange information is not shown in history observations without production data, as the percentages are incorrect
-            exchange: isEmpty(datapoint.production) ? {} : datapoint.exchange,
-          })),
-        },
+      state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
+      state.isLoadingGrid = false;
+      state.failedRequestType = null;
+      state.hasInitializedGrid = true;
+      state.isGridExpired[stateAggregation] = false;
+    })
+    .addCase(GRID_DATA_FETCH_REQUESTED, (state) => {
+      state.isLoadingGrid = true;
+    })
+    .addCase(GRID_DATA_FETCH_FAILED, (state) => {
+      state.failedRequestType = failedRequestType.GRID;
+      state.isLoadingGrid = false;
+    })
+    .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
+      const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
+      state.isLoadingHistories = false;
+      state.failedRequestType = null;
+      state.zones[zoneId][stateAggregation] = {
+        ...state.zones[zoneId][stateAggregation],
+        // TODO: Fix sources in DBT instead of here
+        details: zoneStates.map((v) => ({
+          ...v,
+          source: removeDuplicateSources(v.source),
+          stateDatetime: new Date(v.stateDatetime),
+        })),
+        isExpired: false,
+        hasData,
       };
-    }
 
-    case 'ZONE_HISTORY_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingHistories: false };
-    }
+      // Check if any of the zoneStates contains a datetime greater than the most recent gridDatetime. If so, expire the grid.
+      if (!state.zoneDatetimes[stateAggregation]) {
+        return;
+      }
+      const maxGridDatetime = state.zoneDatetimes[stateAggregation].at(-1);
+      zoneStates.forEach((zoneState) => {
+        if (new Date(zoneState.stateDatetime) > maxGridDatetime) {
+          state.isGridExpired[stateAggregation] = true;
+        }
+      });
+    })
+    .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
+      state.failedRequestType = failedRequestType.ZONE;
+      state.isLoadingHistories = false;
+    })
+    .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {
+      state.isLoadingHistories = true;
+    })
+    .addCase(SOLAR_DATA_FETCH_SUCCEDED, (state, action) => {
+      state.isLoadingSolar = false;
+      state.solar = action.payload;
+    })
+    .addCase(SOLAR_DATA_FETCH_REQUESTED, (state) => {
+      state.isLoadingSolar = true;
+      state.solarDataError = null;
+    })
+    .addCase(SOLAR_DATA_FETCH_FAILED, (state) => {
+      state.isLoadingSolar = false;
+      state.solar = null;
+      state.solarDataError = translation.translate('solarDataError');
+    })
+    .addCase(WIND_DATA_FETCH_SUCCEDED, (state, action) => {
+      state.isLoadingWind = false;
+      state.wind = action.payload;
+    })
+    .addCase(WIND_DATA_FETCH_REQUESTED, (state) => {
+      state.isLoadingWind = true;
+      state.windDataError = null;
+    })
+    .addCase(WIND_DATA_FETCH_FAILED, (state) => {
+      state.isLoadingWind = false;
+      state.wind = null;
+      state.windDataError = translation.translate('windDataError');
+    });
+});
 
-    case 'SOLAR_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingSolar: true };
-    }
-
-    case 'SOLAR_DATA_FETCH_SUCCEEDED': {
-      return { ...state, isLoadingSolar: false, solar: action.payload };
-    }
-
-    case 'SOLAR_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingSolar: false, solar: null };
-    }
-
-    case 'WIND_DATA_FETCH_REQUESTED': {
-      return { ...state, isLoadingWind: true };
-    }
-
-    case 'WIND_DATA_FETCH_SUCCEEDED': {
-      return { ...state, isLoadingWind: false, wind: action.payload };
-    }
-
-    case 'WIND_DATA_FETCH_FAILED': {
-      // TODO: Implement error handling
-      return { ...state, isLoadingWind: false, wind: null };
-    }
-
-    default:
-      return state;
-  }
-};
+export default reducer;

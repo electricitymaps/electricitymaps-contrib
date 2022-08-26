@@ -1,142 +1,150 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import datetime as dt
-import logging
+
+from datetime import datetime, time
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import pandas as pd
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
-TIMEZONE = 'America/Costa_Rica'
-DATE_FORMAT = 'DD/MM/YYYY'
-MONTH_FORMAT = 'MM/YYYY'
+TIMEZONE = "America/Costa_Rica"
+DATE_FORMAT = "DD/MM/YYYY"
+MONTH_FORMAT = "MM/YYYY"
 POWER_PLANTS = {
-    u'Aeroenergía': 'wind',
-    u'Altamira': 'wind',
-    u'Angostura': 'hydro',
-    u'Arenal': 'hydro',
-    u'Balsa Inferior': 'hydro',
-    u'Barranca': 'oil',
-    u'Barro Morado': 'geothermal',
-    u'Bijagua': 'hydro',
-    u'Birris12': 'hydro',
-    u'Birris3': 'hydro',
-    u'Boca de Pozo': 'hydro',
-    u'CNFL': 'hydro',
-    u'Cachí': 'hydro',
-    u'Campos Azules': 'wind',
-    u'Canalete': 'hydro',
-    u'Cariblanco': 'hydro',
-    u'Carrillos': 'hydro',
-    u'Caño Grande': 'hydro',
-    u'Caño Grande III': 'hydro',
-    u'Chiripa': 'wind',
-    u'Chocosuelas': 'hydro',
-    u'Chucás': 'hydro',
-    u'Cubujuquí': 'hydro',
-    u'Daniel Gutiérrez': 'hydro',
-    u'Dengo': 'hydro',
-    u'Don Pedro': 'hydro',
-    u'Doña Julia': 'hydro',
-    u'Echandi': 'hydro',
-    u'El Angel': 'hydro',
-    u'El Angel Ampliación': 'hydro',
-    u'El Embalse': 'hydro',
-    u'El General': 'hydro',
-    u'El Viejo': 'biomass',
-    u'Garabito': 'oil',
-    u'Garita': 'hydro',
-    u'Guápiles': 'oil',
-    u'Hidrozarcas': 'hydro',
-    u'Jorge Manuel Dengo': 'hydro',
-    u'La Esperanza (CoopeL)': 'hydro',
-    u'La Joya': 'hydro',
-    u'Las Pailas II': 'geothermal',
-    u'Los Negros': 'hydro',
-    u'Los Negros II': 'hydro',
-    u'Los Santos': 'wind',
-    u'MOVASA': 'wind',
-    u'Matamoros': 'hydro',
-    u'Miravalles I': 'geothermal',
-    u'Miravalles II': 'geothermal',
-    u'Miravalles III': 'geothermal',
-    u'Miravalles V': 'geothermal',
-    u'Moín I': 'oil',
-    u'Moín II': 'oil',
-    u'Moín III': 'oil',
-    u'Orosí': 'wind',
-    u'Orotina': 'unknown',
-    u'Otros': 'unknown',
-    u'PE Cacao': 'wind',
-    u'PE Mogote': 'wind',
-    u'PE Río Naranjo': 'hydro',
-    u'PEG': 'wind',
-    u'Pailas': 'geothermal',
-    u'Parque Solar Juanilama': 'solar',
-    u'Parque Solar Miravalles': 'solar',
-    u'Peñas Blancas': 'hydro',
-    u'Pirrís': 'hydro',
-    u'Plantas Eólicas': 'wind',
-    u'Platanar': 'hydro',
-    u'Pocosol': 'hydro',
-    u'Poás I y II': 'hydro',
-    u'Reventazón': 'hydro',
-    u'Río Lajas': 'hydro',
-    u'Río Macho': 'hydro',
-    u'San Antonio': 'oil',
-    u'San Lorenzo (C)': 'hydro',
-    u'Sandillal': 'hydro',
-    u'Suerkata': 'hydro',
-    u'Taboga': 'biomass',
-    u'Tacares': 'hydro',
-    u'Tejona': 'wind',
-    u'Tilawind': 'wind',
-    u'Torito': 'hydro',
-    u'Toro I': 'hydro',
-    u'Toro II': 'hydro',
-    u'Toro III': 'hydro',
-    u'Tuis (JASEC)': 'hydro',
-    u'Valle Central': 'wind',
-    u'Vara Blanca': 'hydro',
-    u'Ventanas-Garita': 'hydro',
-    u'Vientos de La Perla': 'wind',
-    u'Vientos de Miramar': 'wind',
-    u'Vientos del Este': 'wind',
-    u'Volcán': 'hydro',
+    "Aeroenergía": "wind",
+    "Altamira": "wind",
+    "Angostura": "hydro",
+    "Arenal": "hydro",
+    "Balsa Inferior": "hydro",
+    "Barranca": "oil",
+    "Barro Morado": "geothermal",
+    "Belén": "hydro",
+    "Bijagua": "hydro",
+    "Birris12": "hydro",
+    "Birris3": "hydro",
+    "Boca de Pozo": "hydro",
+    "CNFL": "hydro",
+    "Cachí": "hydro",
+    "Campos Azules": "wind",
+    "Canalete": "hydro",
+    "Cariblanco": "hydro",
+    "Carrillos": "hydro",
+    "Caño Grande": "hydro",
+    "Caño Grande III": "hydro",
+    "Chiripa": "wind",
+    "Chocosuelas": "hydro",
+    "Chucás": "hydro",
+    "Cote": "hydro",
+    "Cubujuquí": "hydro",
+    "Daniel Gutiérrez": "hydro",
+    "Dengo": "hydro",
+    "Don Pedro": "hydro",
+    "Doña Julia": "hydro",
+    "Echandi": "hydro",
+    "Electriona": "hydro",
+    "El Encanto": "hydro",
+    "El Angel": "hydro",
+    "El Angel Ampliación": "hydro",
+    "El Embalse": "hydro",
+    "El General": "hydro",
+    "El Viejo": "biomass",
+    "Garabito": "oil",
+    "Garita": "hydro",
+    "Guápiles": "oil",
+    "Hidrozarcas": "hydro",
+    "Jorge Manuel Dengo": "hydro",
+    "La Esperanza (CoopeL)": "hydro",
+    "La Joya": "hydro",
+    "Las Pailas II": "geothermal",
+    "Los Negros": "hydro",
+    "Los Negros II": "hydro",
+    "Los Santos": "wind",
+    "MOVASA": "wind",
+    "Matamoros": "hydro",
+    "Miravalles I": "geothermal",
+    "Miravalles II": "geothermal",
+    "Miravalles III": "geothermal",
+    "Miravalles V": "geothermal",
+    "Moín I": "oil",
+    "Moín II": "oil",
+    "Moín III": "oil",
+    "Orosí": "wind",
+    "Orotina": "unknown",
+    "Otros": "unknown",
+    "PE Cacao": "wind",
+    "PE Mogote": "wind",
+    "PE Río Naranjo": "hydro",
+    "PEG": "wind",
+    "Pailas": "geothermal",
+    "Parque Solar Juanilama": "solar",
+    "Parque Solar Miravalles": "solar",
+    "Peñas Blancas": "hydro",
+    "Pirrís": "hydro",
+    "Plantas Eólicas": "wind",
+    "Platanar": "hydro",
+    "Pocosol": "hydro",
+    "Poás I y II": "hydro",
+    "Reventazón": "hydro",
+    "Río Lajas": "hydro",
+    "Río Macho": "hydro",
+    "Río Segundo": "hydro",
+    "San Antonio": "oil",
+    "San Lorenzo (C)": "hydro",
+    "Sandillal": "hydro",
+    "Suerkata": "hydro",
+    "Taboga": "biomass",
+    "Tacares": "hydro",
+    "Tejona": "wind",
+    "Tilawind": "wind",
+    "Torito": "hydro",
+    "Toro I": "hydro",
+    "Toro II": "hydro",
+    "Toro III": "hydro",
+    "Tuis (JASEC)": "hydro",
+    "Valle Central": "wind",
+    "Vara Blanca": "hydro",
+    "Ventanas": "hydro",
+    "Ventanas-Garita": "hydro",
+    "Vientos de La Perla": "wind",
+    "Vientos de Miramar": "wind",
+    "Vientos del Este": "wind",
+    "Volcán": "hydro",
 }
 
-CHARACTERISTIC_NAME = 'Angostura'
+CHARACTERISTIC_NAME = "Angostura"
 
 
-def empty_record(zone_key):
+def empty_record(zone_key: str):
     return {
-        'zoneKey': zone_key,
-        'capacity': {},
-        'production': {
-            'biomass': 0.0,
-            'coal': 0.0,
-            'gas': 0.0,
-            'hydro': 0.0,
-            'nuclear': 0.0,
-            'oil': 0.0,
-            'solar': 0.0,
-            'wind': 0.0,
-            'geothermal': 0.0,
-            'unknown': 0.0
+        "zoneKey": zone_key,
+        "capacity": {},
+        "production": {
+            "biomass": 0.0,
+            "coal": 0.0,
+            "gas": 0.0,
+            "hydro": 0.0,
+            "nuclear": 0.0,
+            "oil": 0.0,
+            "solar": 0.0,
+            "wind": 0.0,
+            "geothermal": 0.0,
+            "unknown": 0.0,
         },
-        'storage': {},
-        'source': 'grupoice.com'
+        "storage": {},
+        "source": "grupoice.com",
     }
 
 
-def df_to_data(zone_key, day, df, logger):
-    df = df.dropna(axis=1, how='any')
+def df_to_data(zone_key: str, day, df, logger: Logger):
+    df = df.dropna(axis=1, how="any")
     # Check for empty dataframe
     if df.shape == (1, 1):
         return []
-    df = df.drop(['Intercambio Sur', 'Intercambio Norte', 'Total'], errors='ignore')
+    df = df.drop(["Intercambio Sur", "Intercambio Norte", "Total"], errors="ignore")
     df = df.iloc[:, :-1]
 
     results = []
@@ -148,22 +156,27 @@ def df_to_data(zone_key, day, df, logger):
         for index, value in df[column].items():
             source = POWER_PLANTS.get(index)
             if not source:
-                source = 'unknown'
+                source = "unknown"
                 unknown_plants.add(index)
-            data['datetime'] = data_time
-            data['production'][source] += max(0.0, value)
+            data["datetime"] = data_time
+            data["production"][source] += max(0.0, value)
         hour += 1
         results.append(data)
 
     for plant in unknown_plants:
-        logger.warning(u'{} is not mapped to generation type'.format(plant),
-                       extra={'key': zone_key})
+        logger.warning(
+            "{} is not mapped to generation type".format(plant), extra={"key": zone_key}
+        )
 
     return results
 
 
-def fetch_production(zone_key='CR', session=None,
-                     target_datetime=None, logger=logging.getLogger(__name__)):
+def fetch_production(
+    zone_key: str = "CR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+):
     # ensure we have an arrow object.
     # if no target_datetime is specified, this defaults to now.
     target_datetime = arrow.get(target_datetime).to(TIMEZONE)
@@ -172,101 +185,99 @@ def fetch_production(zone_key='CR', session=None,
     # data lag.
     today = arrow.get().to(TIMEZONE).date()
     if target_datetime.date() == today:
-        target_datetime = target_datetime if target_datetime.time() >= dt.time(1, 30) \
+        target_datetime = (
+            target_datetime
+            if target_datetime.time() >= time(1, 30)
             else target_datetime.shift(days=-1)
+        )
 
-    if target_datetime < arrow.get('2012-07-01'):
+    if target_datetime < arrow.get("2012-07-01"):
         # data availability limit found by manual trial and error
-        logger.error('CR API does not provide data before 2012-07-01, '
-                     '{} was requested'.format(target_datetime),
-                     extra={"key": zone_key})
+        logger.error(
+            "CR API does not provide data before 2012-07-01, "
+            "{} was requested".format(target_datetime),
+            extra={"key": zone_key},
+        )
         return None
 
     # Do not use existing session as some amount of cache is taking place
-    r = requests.session()
-    url = 'https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf'
+    r = Session()
+    url = "https://apps.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf"
     response = r.get(url)
 
-    soup = BeautifulSoup(response.text, 'html.parser')
-    jsf_view_state = soup.find("input", {"name": 'javax.faces.ViewState'})['value']
+    soup = BeautifulSoup(response.text, "html.parser")
+    jsf_view_state = soup.find("input", {"name": "javax.faces.ViewState"})["value"]
 
     data = [
-        ('formPosdespacho:txtFechaInicio_input', target_datetime.format(DATE_FORMAT)),
-        ('formPosdespacho:pickFecha', ''),
-        ('formPosdespacho_SUBMIT', 1),
-        ('javax.faces.ViewState', jsf_view_state),
+        ("formPosdespacho:txtFechaInicio_input", target_datetime.format(DATE_FORMAT)),
+        ("formPosdespacho:pickFecha", ""),
+        ("formPosdespacho_SUBMIT", 1),
+        ("javax.faces.ViewState", jsf_view_state),
     ]
     response = r.post(url, data=data)
 
     # tell pandas which table to use by providing CHARACTERISTIC_NAME
-    df = pd.read_html(response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0)[0]
+    df = pd.read_html(
+        response.text, match=CHARACTERISTIC_NAME, skiprows=1, index_col=0
+    )[0]
 
     results = df_to_data(zone_key, target_datetime, df, logger)
 
     return results
 
 
-def fetch_exchange(zone_key1='CR', zone_key2='NI', session=None, target_datetime=None, logger=None):
-    """Requests the last known power exchange (in MW) between two regions
-
-    Arguments:
-    zone_key1           -- the first country code
-    zone_key2           -- the second country code; order of the two codes in params doesn't matter
-    session (optional)      -- request session passed in order to re-use an existing session
-
-    Return:
-    A dictionary in the form:
-    {
-      'sortedZoneKeys': 'DK->NO',
-      'datetime': '2017-01-01T00:00:00Z',
-      'netFlow': 0.0,
-      'source': 'mysource.com'
-    }
-
-    where net flow is from DK into NO
-    """
+def fetch_exchange(
+    zone_key1: str = "CR",
+    zone_key2: str = "NI",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> dict:
+    """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    sorted_zone_keys = '->'.join(sorted([zone_key1, zone_key2]))
+    sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 
-    df = pd.read_csv('http://www.enteoperador.org/newsite/flash/data.csv', index_col=False)
+    df = pd.read_csv(
+        "http://www.enteoperador.org/newsite/flash/data.csv", index_col=False
+    )
 
-    if sorted_zone_keys == 'CR->NI':
-        flow = df['NICR'][0]
-    elif sorted_zone_keys == 'CR->PA':
-        flow = -1 * df['CRPA'][0]
+    if sorted_zone_keys == "CR->NI":
+        flow = df["NICR"][0]
+    elif sorted_zone_keys == "CR->PA":
+        flow = -1 * df["CRPA"][0]
     else:
-        raise NotImplementedError('This exchange pair is not implemented')
+        raise NotImplementedError("This exchange pair is not implemented")
 
     data = {
-        'datetime': arrow.now(TIMEZONE).datetime,
-        'sortedZoneKeys': sorted_zone_keys,
-        'netFlow': flow,
-        'source': 'enteoperador.org'
+        "datetime": arrow.now(TIMEZONE).datetime,
+        "sortedZoneKeys": sorted_zone_keys,
+        "netFlow": flow,
+        "source": "enteoperador.org",
     }
 
     return data
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
     from pprint import pprint
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     pprint(fetch_production())
 
     print('fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get('2018-03-13T12:00Z')))
+    pprint(fetch_production(target_datetime=arrow.get("2018-03-13T12:00Z")))
 
     # this should work
     print('fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get('2013-03-13T12:00Z')))
+    pprint(fetch_production(target_datetime=arrow.get("2013-03-13T12:00Z")))
 
     # this should return None
     print('fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z") ->')
-    pprint(fetch_production(target_datetime=arrow.get('2007-03-13T12:00Z')))
+    pprint(fetch_production(target_datetime=arrow.get("2007-03-13T12:00Z")))
 
-    print('fetch_exchange() ->')
+    print("fetch_exchange() ->")
     print(fetch_exchange())

@@ -2,14 +2,10 @@ root = true
 
 [*]
 indent_style = space
+end_of_line = lf
 insert_final_newline = true
 charset = utf-8
-
-[*.{js,json}]
 indent_size = 2
-
-[web/locales/**.json]
-indent_size = 4
 
 [*.py]
 indent_size = 4

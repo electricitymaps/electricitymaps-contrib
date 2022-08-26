@@ -1,126 +1,89 @@
 #map-container {
-    position: absolute; /* required for Safari iPad */
-    flex-grow: 1; /* This takes up available horizontal space */
-    overflow: hidden; /* hide overflowing children */
+  position: absolute; /* required for Safari iPad */
+  flex-grow: 1; /* This takes up available horizontal space */
+  overflow: hidden; /* hide overflowing children */
+  width: 100%;
+  height: 100%;
+
+  /* Proper sizing */
+  box-sizing: border-box;
+
+  @include respond-to('small') {
     width: 100%;
     height: 100%;
+  }
 
-    /* Proper sizing */
-    box-sizing: border-box;
-
-    @include respond-to('small') {
-        width: 100%;
-        height: 100%;
-    }
-
-    .zone-map {
-        height: 100%;
-    }
+  .zone-map {
+    height: 100%;
+  }
 }
 
 #map-container *:focus {
-    /* Disable orange border on Android Chrome when :focus; */
-    outline-width: 0px;
+  /* Disable orange border on Android Chrome when :focus; */
+  outline-width: 0px;
 }
 
 #inner {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    position: relative;
-    flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  flex: 1 1 auto;
 }
 
 .tooltip {
-    border: 1px solid lightgray;
-    background-color: $lighter-gray;
-    color: black;
-    padding: 12px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    border-radius: 5px;
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
-    box-sizing: border-box;
-    pointer-events: none;
+  border: 1px solid lightgray;
+  background-color: $lighter-gray;
+  color: black;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
 #country-tooltip {
-    .zone-name-header{
-        margin-bottom: 5px;
-    }
-    .zone-details > div{
-        margin-bottom: 5px;
-    }
+  .zone-name-header {
+    margin-bottom: 5px;
+  }
+  .zone-details > div {
+    margin-bottom: 5px;
+  }
 
-    .country-col:not(:first-of-type) {
-        margin-left: 1.25rem;
-    }
+  .country-col:not(:first-of-type) {
+    margin-left: 1.25rem;
+  }
 
-    &.country-tooltip-visible  {
-        @include respond-to('small') {
-            display: none;
-        }
+  &.country-tooltip-visible {
+    @include respond-to('small') {
+      display: none;
     }
+  }
 }
 
-.country-emission-intensity,
 .country-spot-price,
 .emission-intensity,
 .fossil-fuel-percentage,
 #exchange-tooltip .flow {
-    font-weight: bold;
-}
-
-.emission-rect-overview {
-    width: 4rem;
-    height: 4rem;
-    display: inline-flex;
-    font-size: 1rem;
-    border-radius: 1rem;
-    color: #fff;
-    flex-direction: column;
-    justify-content: center;
+  font-weight: bold;
 }
 
 .emission-rect {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
 }
 
 .circular-gauge {
-    .background{
-        fill: $light-gray;
-    }
+  .background {
+    fill: $light-gray;
+  }
 
-    .foreground{
-        fill: #78cde8;
-    }
-}
-
-/* override mapbox styling */
-.mapboxgl-zoom-controls {
-    right: 16px !important;
-    top: 69px !important;
-
-    @include respond-to('small') {
-        top: 66px !important;
-    }
-
-    &:hover {
-        box-shadow: 2px 0px 20px 0px rgba(0,0,0,0.25) !important;
-    }
-
-    .mapboxgl-ctrl {
-        border-radius: 6px !important;
-        box-shadow: none !important;
-    }
-
-    button {
-        width: 35px !important;
-        height: 35px !important;
-        background-size: 100% 100%;
-    }
+  .foreground {
+    fill: #78cde8;
+  }
 }

@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
-import arrow
-from bs4 import BeautifulSoup
-import requests
 import json
 import re
 from collections import defaultdict
+from datetime import datetime
+from logging import Logger, getLogger
 from operator import itemgetter
+from typing import Optional
+
+import arrow
+from bs4 import BeautifulSoup
+from requests import Session
 
 # This parser gets hourly electricity generation data from ut.com.sv for El Salvador.
 # El Salvador does have wind generation but there is no data available.
@@ -17,72 +21,78 @@ from operator import itemgetter
 
 # Thanks to jarek for figuring out how to make the correct POST request to the data url.
 
-url = 'http://estadistico.ut.com.sv/OperacionDiaria.aspx'
+url = "http://estadistico.ut.com.sv/OperacionDiaria.aspx"
 
 generation_map = {
-    0: 'biomass',
-    1: 'wind',
-    2: 'geothermal',
-    3: 'hydro',
-    4: 'interconnection',
-    5: 'thermal',
-    6: 'solar',
-    'datetime': 'datetime'
+    0: "biomass",
+    1: "wind",
+    2: "geothermal",
+    3: "hydro",
+    4: "interconnection",
+    5: "thermal",
+    6: "solar",
+    "datetime": "datetime",
 }
 
 
-def get_data(session=None):
+def get_data(session: Optional[Session] = None):
     """
-    Makes a get request to data url.  Parses the response then makes a post request to the same url using
+    Makes a get request to data url.
+    Parses the response then makes a post request to the same url using
     parsed parameters from the get request.
     Returns a requests response object.
     """
 
-    s = session or requests.Session()
+    s = session or Session()
     pagereq = s.get(url)
 
-    soup = BeautifulSoup(pagereq.content, 'html.parser')
+    soup = BeautifulSoup(pagereq.content, "html.parser")
 
     # Find and define parameters needed to send a POST request for the actual data.
-    viewstategenerator = soup.find("input", attrs={'id': '__VIEWSTATEGENERATOR'})['value']
-    viewstate = soup.find("input", attrs={'id': '__VIEWSTATE'})['value']
-    eventvalidation = soup.find("input", attrs={'id': '__EVENTVALIDATION'})['value']
-    DXCss = '1_33,1_4,1_9,1_5,15_2,15_4'
-    DXScript = '1_232,1_134,1_225,1_169,1_187,15_1,1_183,1_182,1_140,1_147,1_148,1_142,1_141,1_143,1_144,1_145,1_146,15_0,15_6,15_7'
+    viewstategenerator = soup.find("input", attrs={"id": "__VIEWSTATEGENERATOR"})[
+        "value"
+    ]
+    viewstate = soup.find("input", attrs={"id": "__VIEWSTATE"})["value"]
+    eventvalidation = soup.find("input", attrs={"id": "__EVENTVALIDATION"})["value"]
+    DXCss = "1_33,1_4,1_9,1_5,15_2,15_4"
+    DXScript = "1_232,1_134,1_225,1_169,1_187,15_1,1_183,1_182,1_140,1_147,1_148,1_142,1_141,1_143,1_144,1_145,1_146,15_0,15_6,15_7"
     callback_param_init = 'c0:{"Task":"Initialize","DashboardId":"OperacionDiaria","Settings":{"calculateHiddenTotals":false},"RequestMarker":0,"ClientState":{}}'
 
-    postdata = {'__VIEWSTATE': viewstate,
-                '__VIEWSTATEGENERATOR': viewstategenerator,
-                '__EVENTVALIDATION': eventvalidation,
-                '__CALLBACKPARAM': callback_param_init,
-                '__CALLBACKID': 'ASPxDashboardViewer1',
-                'DXScript': DXScript,
-                'DXCss': DXCss
-                }
+    postdata = {
+        "__VIEWSTATE": viewstate,
+        "__VIEWSTATEGENERATOR": viewstategenerator,
+        "__EVENTVALIDATION": eventvalidation,
+        "__CALLBACKPARAM": callback_param_init,
+        "__CALLBACKID": "ASPxDashboardViewer1",
+        "DXScript": DXScript,
+        "DXCss": DXCss,
+    }
 
     datareq = s.post(url, data=postdata)
 
     return datareq
 
 
-def data_parser(datareq):
+def data_parser(datareq) -> list:
     """
-    Accepts a requests response.text object.  Slices the object down to a smaller size then converts
-    to usable json.  Loads the data as json then finds the 'result' key.  Uses regex to find the start
-    and endpoints of the actual data.  Splits the data into datapoints then cleans them up for processing.
-    Returns a list of lists.
+    Accepts a requests response.text object.
+    Slices the object down to a smaller size then converts to usable json.
+    Loads the data as json then finds the 'result' key.
+    Uses regex to find the start
+    and endpoints of the actual data.
+    Splits the data into datapoints then cleans them up for processing.
     """
 
-    double_json = datareq.text[len('0|/*DX*/('):-1]
-    double_json = double_json.replace('\'', '"')
-    data = (json.loads(double_json))
-    jsresult = data['result']
+    double_json = datareq.text[len("0|/*DX*/(") : -1]
+    double_json = double_json.replace("'", '"')
+    data = json.loads(double_json)
+    jsresult = data["result"]
 
     startpoints = [m.end(0) for m in re.finditer('"Data":{', jsresult)]
     endpoints = [m.start(0) for m in re.finditer('"KeyIds"', jsresult)]
 
-    sliced = jsresult[startpoints[1]:endpoints[2]]
-    sliced = ''.join(sliced.split())
+    sliced = jsresult[startpoints[1] : endpoints[2]]
+    sliced = "".join(sliced.split())
     sliced = sliced[1:-4]
 
     chopped = sliced.split(',"')
@@ -103,69 +113,49 @@ def data_parser(datareq):
     return clean_data
 
 
-def data_processer(data):
+def data_processer(data) -> list:
     """
-    Takes data in the form of a list of lists.  Converts each list to a dictionary.
-    Joins dictionaries based on shared datetime key.  Maps generation to type.
-    Returns a list of dictionaries.
+    Takes data in the form of a list of lists.
+    Converts each list to a dictionary.
+    Joins dictionaries based on shared datetime key.
+    Maps generation to type.
     """
 
     converted = []
     for val in data:
-        newval = {'datetime': val[2], val[0]: val[3]}
+        newval = {"datetime": val[2], val[0]: val[3]}
         converted.append(newval)
 
     # Join dicts on 'datetime' key.
     d = defaultdict(dict)
     for elem in converted:
-        d[elem['datetime']].update(elem)
+        d[elem["datetime"]].update(elem)
 
     joined_data = sorted(d.values(), key=itemgetter("datetime"))
 
     def get_datetime(hour):
-        at = arrow.now('UTC-6').floor('hour')
+        at = arrow.now("UTC-6").floor("hour")
         dt = (at.replace(hour=int(hour), minute=0, second=0)).datetime
         return dt
 
     mapped_data = []
     for point in joined_data:
         point = {generation_map[num]: val for num, val in point.items()}
-        point['datetime'] = get_datetime(point['datetime'])
+        point["datetime"] = get_datetime(point["datetime"])
         mapped_data.append(point)
 
     return mapped_data
 
 
-def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=None):
-    """
-    Requests the last known production mix (in MW) of a given country
-    Arguments:
-    zone_key (optional) -- used in case a parser is able to fetch multiple countries
-    Return:
-    A list of dictionaries in the form:
-    {
-      'zoneKey': 'FR',
-      'datetime': '2017-01-01T00:00:00Z',
-      'production': {
-          'biomass': 0.0,
-          'coal': 0.0,
-          'gas': 0.0,
-          'hydro': 0.0,
-          'nuclear': null,
-          'oil': 0.0,
-          'solar': 0.0,
-          'wind': 0.0,
-          'geothermal': 0.0,
-          'unknown': 0.0
-      },
-      'storage': {
-          'hydro': -10.0,
-      },
-      'source': 'mysource.com'
-    }
-    """
+def fetch_production(
+    zone_key: str = "SV",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> list:
+    """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
-        raise NotImplementedError('This parser is not yet able to parse past dates')
+        raise NotImplementedError("This parser is not yet able to parse past dates")
 
     req = get_data(session=None)
     parsed = data_parser(req)
@@ -173,32 +163,32 @@ def fetch_production(zone_key='SV', session=None, target_datetime=None, logger=N
     production_mix_by_hour = []
     for hour in data:
         production_mix = {
-            'zoneKey': zone_key,
-            'datetime': hour['datetime'],
-            'production': {
-                'biomass': hour.get('biomass', 0.0),
-                'coal': 0.0,
-                'gas': 0.0,
-                'hydro': hour.get('hydro', 0.0),
-                'nuclear': 0.0,
-                'oil': hour.get('thermal', 0.0),
-                'solar': hour.get('solar', 0.0),
-                'wind': hour.get('wind', 0.0),
-                'geothermal': hour.get('geothermal', 0.0),
-                'unknown': 0.0
+            "zoneKey": zone_key,
+            "datetime": hour["datetime"],
+            "production": {
+                "biomass": hour.get("biomass", 0.0),
+                "coal": 0.0,
+                "gas": 0.0,
+                "hydro": hour.get("hydro", 0.0),
+                "nuclear": 0.0,
+                "oil": hour.get("thermal", 0.0),
+                "solar": hour.get("solar", 0.0),
+                "wind": hour.get("wind", 0.0),
+                "geothermal": hour.get("geothermal", 0.0),
+                "unknown": 0.0,
             },
-            'storage': {
-                'hydro': None,
+            "storage": {
+                "hydro": None,
             },
-            'source': 'ut.com.sv'
+            "source": "ut.com.sv",
         }
         production_mix_by_hour.append(production_mix)
 
     return production_mix_by_hour
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """Main method, never used by the Electricity Map backend, but handy for testing."""
 
-    print('fetch_production() ->')
+    print("fetch_production() ->")
     print(fetch_production())

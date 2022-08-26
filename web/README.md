@@ -1,36 +1,28 @@
-*This file should host other explanations. Yours are welcome.*
+# Electricity Maps
 
-## How is world.json generated?
+**This documentation is specifically for the frontend web/mobile app.**
 
-The world map data is open source and provided by [NACIS](http://nacis.org/initiatives/natural-earth/).
+_If you're looking for more info on the parsers, check out [how to setup Python development environment](https://github.com/electricitymap/electricitymap-contrib/wiki/Set-up-local-environment#setup-python-development-environment) and [how to fix a broken parser (and test it locally)](https://github.com/electricityMap/electricitymap-contrib/wiki/Fixing-a-broken-parser)._
 
-To generate a new world.json run the following command from the web directory after making changes.
-```
-docker-compose run --rm web ./topogen.sh
-```
+## Local development
 
-### `topogen.sh`
+Prerequisites:
 
-The file `topogen.sh` does the following :
+- Ensure you have `NodeJS` and `yarn` installed locally
+- Run `yarn install` in both the web and mockserver directories
 
-- download data from NACIS, at 1:10M scale. Both countries and states data are downloaded,
-and added to the `web/build` folder
-- other data (at 12.01.2018, only Canaries Islands) is added to the `build` folder
-- the module `shp2json` is used to convert the shp data to the GeoJSON format
-- `generate-geometries.js` is then called
+After the above steps, simply run the following steps:
 
-### `generate-geometries.js`
+1. Start the mockserver: `yarn run mockserver`
+2. Run app in another tab: `yarn develop`
 
-The variables `zoneDefinitions` should be updated manually to reflect intended changes in mapping between electricityMap zones and NACIS geometries. It relates each zone from the electricityMap to how it is described by data from NACIS (or third party). A zone can correspond to a country, a group of countries, a state, a group of states...
+### Using production API (internal eMap team only)
 
-The function `geomerge` merges a list of GeoJSON Polygons or MultiPolygons into a single
-multi-polygon. This allows to merge a group of geometries into a single one.
+As an eMap internal team member, you can also run the app connected to production API instead of the mockserver:
 
-According to `zoneDefinition`, a single GeoJSON MultiPolygon is created for each zone, by
-grouping all geometries corresponding to that zone.
+- Run `SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN='YOUR_TOKEN' yarn develop`
+- Add a `?remote=true` query parameter
 
-Finally, the module `topojson` converts the GeoJSON into into the
-TopoJSON format, which is a more compressed format than geoJSON. It only stores arcs that are used multiple times once. We also perform some simplifications and project points
-on a grid. All together, this allows to convert a ~`24MB` file to a ~`1MB` one.
+## Geometries development
 
-The final file is named `world.json` and is the one sent to the client.
+See [how to edit world geometries](https://github.com/electricitymap/electricitymap-contrib/wiki/Edit-world-geometries).

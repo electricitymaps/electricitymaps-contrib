@@ -1,17 +1,16 @@
-const topojson = require('topojson');
-const topo = require('../world.json');
+import { merge } from 'topojson';
+import topo from '../world.json';
 
 const constructTopos = () => {
   const zones = {};
   Object.keys(topo.objects).forEach((k) => {
-    if (!topo.objects[k].arcs) { return; }
-    let geo;
-    // Do merge inner arcs for those
-    if (['US'].indexOf(k.split('-')[0]) !== -1) {
-      geo = topojson.feature(topo, topo.objects[k]);
-    } else {
-      geo = { geometry: topojson.merge(topo, [topo.objects[k]]) };
+    if (!topo.objects[k].arcs) {
+      return;
     }
+    const geo = {
+      geometry: merge(topo, [topo.objects[k]]),
+      properties: topo.objects[k].properties,
+    };
     // Exclude zones with null geometries.
     if (geo.geometry) {
       zones[k] = geo;
@@ -21,4 +20,4 @@ const constructTopos = () => {
   return zones;
 };
 
-module.exports = constructTopos;
+export default constructTopos;

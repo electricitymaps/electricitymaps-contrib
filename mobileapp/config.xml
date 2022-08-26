@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tmrow.electricitymap" version="1.2.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>electricityMap</name>
+<widget id="com.tmrow.electricitymap" version="1.3.4" android-versionCode='10306' xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Electricity Maps</name>
     <description>
-        electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
+        Electricity Maps is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it.
     </description>
-    <author email="hello@tmrow.com" href="https://www.tmrow.com">
-        Tomorrow
+    <author email="app@electricitymaps.com" href="https://www.electricitymaps.com">
+        Electricity Maps
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -17,6 +17,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="https://www.facebook.com/v*/plugins/*" />
     <allow-navigation href="https://platform.twitter.com/*" />
+    <allow-navigation href="about:*" />
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
         <preference name="CodePushDeploymentKey" value="pq5LiNRfRy4cBGU-a5Njke45jUclEJ-bjzkpG" />
@@ -27,7 +28,7 @@
         <preference name="SplashScreenDelay" value="0" />
         <preference name="StatusBarStyle" value="default" />
         <preference name="android-minSdkVersion" value="19" />
-        <preference name="android-targetSdkVersion" value="28" />
+        <preference name="android-targetSdkVersion" value="30" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
     </platform>
@@ -38,27 +39,19 @@
         <!-- <preference name="CodePushDeploymentKey" value="EgyH71oYOglC8w-se8f-EDACw0KtEJ-bjzkpG" /> -->
         <preference name="StatusBarStyle" value="default" />
         <preference name="DisallowOverscroll" value="true" />
+        <preference name="AllowUntrustedCerts" value="true" />
+        <preference name="InterceptRemoteRequests" value="all" />
+        <preference name="allowUniversalAccessFromFileURLs" value="true" />
+        <preference name="allowFileAccessFromFileURLs" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
     </platform>
     <universal-links>
-        <host name="electricitymap.org" scheme="https" />
-        <host name="electricitymap.org" scheme="http" />
-        <host name="www.electricitymap.org" scheme="https" />
-        <host name="www.electricitymap.org" scheme="http" />
+        <host name="app.electricitymaps.com" scheme="https" />
+        <host name="app.electricitymaps.com" scheme="http" />
     </universal-links>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.4" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
-    <plugin name="cordova-plugin-file" spec="^6.0.2" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
-    <plugin name="cordova-plugin-zip" spec="^3.1.0" />
-    <plugin name="cordova-plugin-code-push" spec="^1.12.5" />
-    <plugin name="sentry-cordova" spec="^0.16.2" />
-    <engine name="android" spec="^8.1.0" />
-    <plugin name="cordova-plugin-firebase-analytics" spec="^4.1.2">
-        <variable name="FIREBASE_VERSION" value="11.6.+" />
-    </plugin>
 </widget>

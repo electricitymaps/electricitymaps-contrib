@@ -1,76 +1,68 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF8" />
-        <meta name="description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta property="og:description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta property="og:image" content="https://www.electricitymap.org/images/electricitymap_social_image.jpg" />
-        <meta property="og:title" content="<%= __('misc.maintitle') %>" />
+        <meta charset="utf-8" />
+        <meta name="description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta property="og:description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta property="og:image" content="https://app.electricitymaps.com/images/electricitymap_social_image.png" />
+        <meta property="og:title" content="<%= maintitle %>" />
         <meta property="og:type" content="website" />
         <!-- It's import to keep the old og:url, else, likes will not accumulate properly -->
         <meta property="og:url" content="http://electricitymap.tmrow.co" />
+
         <meta property="og:locale" content="<%= FBLocale %>" />
-        <% for(var i=0; i<supportedFBLocales.length; i++) {%>
+<% for(var i=0; i<supportedFBLocales.length; i++) { -%>
         <meta property="og:locale:alternate" content="<%= supportedFBLocales[i] %>" />
-        <% } %>
+<% } %>
         <meta property="fb:app_id" content="1267173759989113" />
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@corradio">
-        <meta name="twitter:description" content="electricityMap is a live visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
-        <meta name="twitter:image" content="https://www.electricitymap.org/images/electricitymap_social_image.jpg">
-        <meta name="twitter:site" content="@tmrowco">
-        <meta name="twitter:title" content="@electricityMap | Live CO2 emissions of electricity consumption" />
+        <meta name="twitter:description" content="Electricity Maps is a live 24/7 visualization of where your electricity comes from and how much CO2 was emitted to produce it." />
+        <meta name="twitter:image" content="https://app.electricitymaps.com/images/electricitymap_social_image.png">
+        <meta name="twitter:site" content="@ElectricityMaps">
+        <meta name="twitter:title" content="@ElectricityMaps | Live 24/7 CO2 emissions of electricity consumption" />
         <meta name="viewport" content="width=device-width, viewport-fit=cover" />
 
         <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' data: gap: https://ssl.gstatic.com 'unsafe-eval' blob:; style-src * 'unsafe-inline'; media-src *;" />
 
         <meta name="apple-itunes-app" content="app-id=1224594248" />
 
-        <title>electricityMap | <%= __('misc.maintitle') %></title>
+        <title>Electricity Maps | <%= maintitle %></title>
 
-        <link rel="apple-touch-icon" sizes="57x57" href="<%= resolvePath('images/apple-icon-57x57.png') %>">
-        <link rel="apple-touch-icon" sizes="60x60" href="<%= resolvePath('images/apple-icon-60x60.png') %>">
-        <link rel="apple-touch-icon" sizes="72x72" href="<%= resolvePath('images/apple-icon-72x72.png') %>">
-        <link rel="apple-touch-icon" sizes="76x76" href="<%= resolvePath('images/apple-icon-76x76.png') %>">
-        <link rel="apple-touch-icon" sizes="114x114" href="<%= resolvePath('images/apple-icon-114x114.png') %>">
-        <link rel="apple-touch-icon" sizes="120x120" href="<%= resolvePath('images/apple-icon-120x120.png') %>">
-        <link rel="apple-touch-icon" sizes="144x144" href="<%= resolvePath('images/apple-icon-144x144.png') %>">
-        <link rel="apple-touch-icon" sizes="152x152" href="<%= resolvePath('images/apple-icon-152x152.png') %>">
+        <link rel="icon" type="image/svg+xml" href="<%= resolvePath('images/electricitymap-favicon-dark-light.svg') %>">
         <link rel="apple-touch-icon" sizes="180x180" href="<%= resolvePath('images/apple-icon-180x180.png') %>">
-        <link rel="icon" type="image/png" sizes="192x192"  href="<%= resolvePath('images/android-icon-192x192.pn') %>g">
         <link rel="icon" type="image/png" sizes="32x32" href="<%= resolvePath('images/favicon-32x32.png') %>">
-        <link rel="icon" type="image/png" sizes="96x96" href="<%= resolvePath('images/favicon-96x96.png') %>">
         <link rel="icon" type="image/png" sizes="16x16" href="<%= resolvePath('images/favicon-16x16.png') %>">
-        <link rel="manifest" href="/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="<%= resolvePath('images/ms-icon-144x144.png') %>">
+        <link rel="manifest" href="/electricityMap.webmanifest">
         <meta name="theme-color" content="#ffffff">
 
+        <!-- Pre-connect to improve performances -->
+        <link rel="preconnect" href="https://app-backend.electricitymaps.com/">
+
+
+        <!-- Preload font files to improve performance-->
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Regular.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/OpenSans-Bold.woff2') %>" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="<%= resolvePath('fonts/EuclidTriangle-Regular.woff') %>" as="font" type="font/woff" crossorigin>
+
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/styles.' + stylesHash + '.css') %>">
+        <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/bundle.' + bundleStylesHash + '.css') %>">
         <link rel="stylesheet" type="text/css" href="<%= resolvePath('dist/vendor.' + vendorStylesHash + '.css') %>">
 
-        <!-- Fonts -->
-        <link href="<%= resolvePath('css/EuclidTriangleFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/OpenSansFont.css') %>" rel="stylesheet">
-        <link href="<%= resolvePath('css/MaterialIcons.css') %>" rel="stylesheet">
 
         <!-- Language -->
-        <% for(var i=0; i<alternateUrls.length; i++) {%>
+<% for(var i=0; i<alternateUrls.length; i++) { -%>
         <link rel="alternate" href="<%- alternateUrls[i] %>" hreflang="<%= supportedLocales[i] %>" />
-        <% } %>
-        <% if (typeof fullUrl != 'undefined') { %>
-        <link rel="alternate" href="<%- fullUrl.replace(/[?|&]lang=[^&]*/, '') %>" hreflang="x-default" />
-        <link rel="canonical" href="<%- fullUrl %>" />
-        <% } %>
-
+<% } %>
+        <!-- Canonical -->
+<% if (typeof canonicalUrl != 'undefined') { -%>
+        <link rel="alternate" href="<%- canonicalUrl.replace(/[?|&]lang=[^&]*/, '') %>" hreflang="x-default" />
+        <link rel="canonical" href="<%- canonicalUrl %>" />
+<% } %>
         <!-- Set Global Variables -->
         <script>
             var bundleHash = '<%= bundleHash %>';
-            var locale = '<%= locale %>';
-            var FBLocale = '<%= FBLocale %>';
             var resolvePath = <%- resolvePath %>;
-            var locales = <%- JSON.stringify(locales) %>;
             var isCordova = <%= (typeof isCordova !== 'undefined' && isCordova) %>;
         </script>
 
@@ -78,27 +70,28 @@
         <script
           src="https://browser.sentry-cdn.com/5.9.1/bundle.min.js"
           integrity="sha384-/x1aHz0nKRd6zVUazsV6CbQvjJvr6zQL2CHbQZf3yoLkezyEtZUpqUNnOLW9Nt3v"
-          crossorigin="anonymous"></script>
+          crossorigin="anonymous">
+        </script>
         <script>
             if (bundleHash.indexOf('dev') === -1 && !isCordova) {
                 Sentry.init({
                     dsn: 'https://bdda83aba5724206bf02a880b14c56d1@sentry.io/1295430',
                     release: '<%= bundleHash %>',
+                    ignoreErrors: [
+                        // Non actionable errors:
+                        "invalid pixel coordinate"
+                    ]
                 });
             }
         </script>
 
         <!-- Google App Indexing (Android) -->
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/www.electricitymap.org" />
-        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/www.electricitymap.org" />
+        <link rel="alternate" href="android-app://com.tmrow.electricitymap/https/app.electricitymaps.com" />
+        <link rel="alternate" href="android-app://com.tmrow.electricitymap/http/app.electricitymaps.com" />
 
         <!-- Google App Indexing (iOS) -->
-        <link rel="alternate" href="ios-app://1224594248/https/electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/http/electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/https/www.electricitymap.org" />
-        <link rel="alternate" href="ios-app://1224594248/http/www.electricitymap.org" />
+        <link rel="alternate" href="ios-app://1224594248/https/app.electricitymaps.com" />
+        <link rel="alternate" href="ios-app://1224594248/http/app.electricitymaps.com" />
 
         <% if (typeof isCordova != 'undefined' && isCordova) { %>
         <script src="../cordova.js"></script>
@@ -106,9 +99,19 @@
         <script defer src="<%= resolvePath('dist/vendor.' + vendorHash + '.js') %>"></script>
         <script defer src="<%= resolvePath('dist/bundle.' + bundleHash + '.js') %>"></script>
 
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79729918-1"></script>
+        <!-- Plausible -->
+        <script defer data-domain="app.electricitymaps.com" src="https://plausible.io/js/plausible.local.js"></script>
     </head>
-    <body lang="<%= locale %>" id="app"></body>
-
+    <body id="app">
+        <noscript>
+            <img src="images/electricitymap-logo.svg" alt="Electricity Maps logo" />
+            <div>
+                <h1>JavaScript required!</h1>
+                <p>
+                For the Electricity Maps app to function properly JavaScript is required, please enable it to continue using
+                the app.
+                </p>
+            </div>
+        </noscript>
+    </body>
 </html>

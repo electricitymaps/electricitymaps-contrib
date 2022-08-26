@@ -1,8 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-
-import thirdPartyServices from '../services/thirdparty';
 
 export const useTrackEvent = () => {
   const dispatch = useDispatch();
@@ -11,28 +8,6 @@ export const useTrackEvent = () => {
     () => (eventName, context) => {
       dispatch({ type: 'TRACK_EVENT', payload: { eventName, context } });
     },
-    [dispatch],
+    [dispatch]
   );
-};
-
-export const usePageViewsTracker = () => {
-  const { pathname, search } = useLocation();
-  const trackEvent = useTrackEvent();
-
-  // Track app visit once initially.
-  useEffect(() => {
-    trackEvent('Visit');
-  }, []);
-
-  // Update GA config whenever the URL changes.
-  useEffect(() => {
-    if (thirdPartyServices._ga) {
-      thirdPartyServices._ga.config({ page_path: `${pathname}${search}` });
-    }
-  }, [pathname, search]);
-
-  // Track page view whenever the pathname changes (ignore search params changes).
-  useEffect(() => {
-    trackEvent('pageview');
-  }, [pathname]);
 };

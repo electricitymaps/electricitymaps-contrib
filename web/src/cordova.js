@@ -26,27 +26,58 @@ export const cordovaApp = {
   },
 
   onDeviceReady() {
+    console.log('Cordova: onDeviceReady'); // eslint-disable-line no-console
     // Resize if we're on iOS
     if (cordova.platformId === 'ios') {
-      // TODO(olc): What about Xr and Xs?
-      const extraPadding = (device.model === 'iPhone10,3' || device.model === 'iPhone10,6')
-        ? 30
-        : 20;
-      select('#header')
-        .style('padding-top', `${extraPadding}px`);
-      select('#mobile-header')
-        .style('padding-top', `${extraPadding}px`);
+      const styles = function (top, bottom) {
+        return `
+        /* TODO: this selects nothing, header on iPad still overlaps with the status bar */
+        #header {
+          padding-top: ${top};
+        }
 
-      select('.controls-container')
-        .style('margin-top', `${extraPadding}px`);
+        #mobile-header {
+          padding-top: ${top};
+        }
+        .flash-message .inner {
+          padding-top: ${top};
+        }
+        .mapboxgl-zoom-controls {
+          transform: translate(0, ${top});
+        }
+        .layer-buttons-container {
+          /* Note: Don't use transform here, as it breaks child position fixed elements (lang. selector) */
+          margin-top: ${top};
+        }
+        .language-select-container {
+          padding-top: ${top};
+        }
 
-      select('.flash-message .inner')
-        .style('padding-top', `${extraPadding}px`);
+        #tab {
+          padding-bottom: ${bottom};
+        }
+        .modal {
+          padding-bottom: ${bottom};
+        }
+        `;
+      };
 
-      select('.mapboxgl-zoom-controls')
-        .style('transform', `translate(0,${extraPadding}px)`);
-      select('.layer-buttons-container')
-        .style('transform', `translate(0,${extraPadding}px)`);
+      select('head').append('style').text(`
+            /* Fixes current issue on iOS where there's a gap at bottom.
+            See https://github.com/apache/cordova-plugin-wkwebview-engine/issues/172
+            */
+            html {height: 100vh;}
+            /* iOS 10 */
+            ${styles('20px', '0px')}
+            /* iOS 11.0 */
+            @supports(padding-top: constant(safe-area-inset-top)) {
+              ${styles('constant(safe-area-inset-top, 20px)', 'constant(safe-area-inset-bottom, 0px)')}
+            }
+            /* iOS 11+ */
+            @supports(padding-top: env(safe-area-inset-top)) {
+              ${styles('env(safe-area-inset-top, 20px)', 'env(safe-area-inset-bottom, 0px)')}
+            }
+          `);
     }
 
     codePush.sync(null, { installMode: InstallMode.ON_NEXT_RESUME });

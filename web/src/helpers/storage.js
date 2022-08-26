@@ -1,21 +1,9 @@
-const Cookies = require('js-cookie');
-
 const saveKey = (key, val) => {
-  if (window.isCordova) {
-    window.localStorage.setItem(key, val);
-  } else {
-    Cookies.set(key, val, { expires: 365 });
-  }
+  window.localStorage.setItem(key, val);
 };
 
 const getKey = (key) => {
-  if (window.isCordova) {
-    return window.localStorage.getItem(key);
-  }
-  return Cookies.get(key);
+  return window.localStorage.getItem(key);
 };
 
-module.exports = {
-  saveKey,
-  getKey,
-};
+export { saveKey, getKey };
