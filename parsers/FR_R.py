@@ -2,178 +2,79 @@
 
 import arrow
 import json
-import logging
+from logging import Logger, getLogger
 import os
 import math
 
+import numpy as np
 import pandas as pd
 import requests
 
+from datetime import datetime, timedelta
+from io import BytesIO
+from unidecode import unidecode
+from zipfile import ZipFile
+
+from electricitymap.contrib.config import EXCHANGES_CONFIG
+
+from parsers.lib.config import refetch_frequency
+from parsers.lib.exceptions import ParserException
 from .lib.validation import validate, validate_production_diffs
 
-API_ENDPOINT = 'https://opendata.reseaux-energies.fr/api/records/1.0/search/'
+API_ENDPOINT = 'https://eco2mix.rte-france.com/curves/eco2mixDl'
 
 # note: thermal lump sum for coal, oil, gas as breakdown not available at regional level
 MAP_GENERATION = {
-    'nucleaire': 'nuclear',
-    'thermique': 'unknown',
-    'eolien': 'wind',
-    'solaire': 'solar',
-    'hydraulique': 'hydro',
-    'bioenergies': 'biomass'
+    'Nucléaire': 'nuclear',
+    'Thermique': 'unknown',
+    'Eolien': 'wind',
+    'Solaire': 'solar',
+    'Hydraulique': 'hydro',
+    'Bioénergies': 'biomass'
 }
 
 MAP_STORAGE = {
-    'pompage': 'hydro',
+    'Pompage': 'hydro',
 }
 
 # define all RTE French regional zone-key <-> domain mapping
-FR_REGIONS = {
+ZONE_IDENTIFIERS = {
+    'BE': 'Belgique',
+    'CH': 'Suisse',
+    'DE': 'Allemagne',
+    'ES': 'Espagne',
+    'GB': 'Royaume-Uni',
+    'IT-NO': 'Italie',
+    'LU': 'Luxembourg',
+    'FR-ACA': 'Grand-Est',
     'FR-ARA': 'Auvergne-Rhône-Alpes',
+    'FR-ALP': 'Nouvelle-Aquitaine',
     'FR-BFC': 'Bourgogne-Franche-Comté',
     'FR-BRE': 'Bretagne',
-    'FR-CVL': 'Centre-Val de Loire',
-    'FR-GES': 'Grand-Est',
-    'FR-HDF': 'Hauts-de-France',
+    'FR-CEN': 'Centre-Val de Loire',
+    'FR-NPP': 'Hauts-de-France',
     'FR-IDF': 'Ile-de-France',
     'FR-NOR': 'Normandie',
-    'FR-NAQ': 'Nouvelle-Aquitaine',
-    'FR-OCC': 'Occitanie',
-    'FR-PDL': 'Pays de la Loire',
+    'FR-LRM': 'Occitanie',
+    'FR-PLO': 'Pays de la Loire',
     'FR-PAC': 'Provence-Alpes-Côte d\'Azur'
 }
 
 # validations for each region
 VALIDATIONS = {
+    'FR-ACA': ['unknown', 'nuclear', 'hydro'],
     'FR-ARA': ['unknown', 'nuclear', 'hydro'],
+    'FR-ALP': ['nuclear', 'hydro'],
     'FR-BFC': ['wind'],
     'FR-BRE': ['unknown', 'wind'],
-    'FR-CVL': ['nuclear', 'wind'],
-    'FR-GES': ['unknown', 'nuclear', 'hydro'],
-    'FR-HDF': ['unknown', 'nuclear'],
+    'FR-CEN': ['nuclear', 'wind'],
+    'FR-NPP': ['unknown', 'nuclear'],
     'FR-IDF': ['unknown'],
     'FR-NOR': ['unknown', 'nuclear'],
-    'FR-NAQ': ['nuclear', 'hydro'],
-    'FR-OCC': ['nuclear', 'hydro'],
-    'FR-PDL': ['unknown', 'wind'],
+    'FR-LRM': ['nuclear', 'hydro'],
+    'FR-PLO': ['unknown', 'wind'],
     'FR-PAC': ['unknown', 'hydro'],
 }
-
-EXCHANGE = {
-    'FR-ARA': {
-        'FR-BFC': {
-
-        },
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_auvergne_rhone_alpes'
-            }
-        },
-    'FR-BFC': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_bourgogne_franche_comte',
-            'export': 'flux_physiques_de_bourgogne_franche_comte_vers_grand_est'
-            }
-        },
-    'FR-BRE': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_bretagne',
-            'export': 'flux_physiques_de_bretagne_vers_grand_est'
-            }
-        },
-    'FR-CVL': {
-        'FR-GES': {
-            'import': 'flux_physiques_de_grand_est_vers_centre_val_de_loire',
-            'export': 'flux_physiques_de_centre_val_de_loire_vers_grand_est'
-            }
-        },
-    'FR-GES': {
-        # BE to GB inclusive import and export are the other way around to allow for zones to be aligned in alphabetical order
-        'BE': {
-            'import': 'flux_physiques_de_grand_est_vers_belgique',
-            'export': 'flux_physiques_belgique_vers_grand_est'
-        },
-        'CH': {
-            'import': 'flux_physiques_de_grand_est_vers_suisse',
-            'export': 'flux_physiques_suisse_vers_grand_est'
-        },
-        'DE': {
-            'import': 'flux_physiques_de_grand_est_vers_allemagne',
-            'export': 'flux_physiques_allemagne_vers_grand_est'
-        },
-        'ES': {
-            'import': 'flux_physiques_de_grand_est_vers_espagne',
-            'export': 'flux_physiques_espagne_vers_grand_est'
-        },
-        # normal again
-        'GB': {
-            'import': 'flux_physiques_royaume_uni_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_royaume_uni'
-        },
-        'IT': {
-            'import': 'flux_physiques_italie_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_italie'
-        },
-        'LU': {
-            'import': 'flux_physiques_luxembourg_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_luxembourg'
-        },
-        'FR-HDF': {
-            'import': 'flux_physiques_de_hauts_de_france_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_hauts_de_france'
-        },
-        'FR-IDF': {
-            'export': 'flux_physiques_de_grand_est_vers_ile_de_france'
-        },
-        'FR-NOR': {
-            'import': 'flux_physiques_de_normandie_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_normandie'
-        },
-        'FR-NAQ': {
-            'import': 'flux_physiques_de_nouvelle_aquitaine_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_nouvelle_aquitaine'
-        },
-        'FR-OCC': {
-            'export': 'flux_physiques_de_grand_est_vers_occitanie'
-        },
-        'FR-PAC': {
-            'import': 'flux_physiques_de_paca_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_paca'
-        },
-        'FR-PDL': {
-            'import': 'flux_physiques_de_pays_de_la_loire_vers_grand_est',
-            'export': 'flux_physiques_de_grand_est_vers_pays_de_la_loire'
-        },
-    }
-}
-
-ALL_INTERCONNECTOR_COLUMNS = {
-    c for a in EXCHANGE.values() for b in a.values() for c in b.values()
-}
-
-
-# These interconnectors are ordered alphabetically
-INTERCONNECTORS = [
-    'ARA->BFC',
-    'ARA->CH',
-    'ARA->CVL',
-    'ARA->NAQ',
-    'ARA->OCC',
-    'ARA->IT',
-
-    'BFC->CVL',
-    'BFC->GES',
-    'BFC->IDF',
-
-    'BRE->PDL',
-    'BRE->NOR',
-
-    # 'CVL->ARA',  # Redundant
-    # 'CVL->BFC',  # Redundant
-    'CVL->IDF',
-    'CVL->PDL',
-    'CVL->OCC',
-    'CVL->NOR',
-]
 
 
 def is_not_nan_and_truthy(v):
@@ -187,31 +88,37 @@ def fetch(zone_key, session=None, target_datetime=None):
     else:
         to = arrow.now(tz='Europe/Paris')
 
+    assert 'FR-' in zone_key
+
     # setup request
     r = session or requests.session()
-    formatted_from = to.shift(days=-1).format('YYYY-MM-DDTHH:mm')
-    formatted_to = to.format('YYYY-MM-DDTHH:mm')
 
     params = {
-        'dataset': 'eco2mix-regional-tr',
-        'q': 'date_heure >= {} AND date_heure <= {}'.format(
-            formatted_from, formatted_to),
-        'timezone': 'Europe/Paris',
-        'rows': 100,
-        'refine.libelle_region': FR_REGIONS[zone_key]
+        'date': to.floor('day').format('DD/MM/YYYY'),
+        'region': zone_key.replace('FR-', ''),
     }
-
-    # make request and create dataframe with response
     response = r.get(API_ENDPOINT, params=params)
-    data = json.loads(response.content)
-    data = [d['fields'] for d in data['records']]
-    df = pd.DataFrame(data)
+    response.raise_for_status()
+    # Write content to in-memory zip file
+    buf = BytesIO()
+    buf.write(response.content)
+    buf.seek(0)
+    # Decode zip and extract XLS
+    zip = ZipFile(buf)
+    with zip.open(zip.namelist()[0], 'r') as file:
+        df = pd.read_csv(file, sep='\t', encoding='latin-1', nrows=4*24, na_values=['-', 'ND'])
+
+    # Add datetime
+    df['date_heure'] = df['Date'] + ' ' + df['Heures']
+    df = df.set_index('date_heure')
+    assert not df.index.isna().any(), 'date_heure can\'t have any nan'
 
     return df
 
 
+@refetch_frequency(timedelta(days=1))
 def fetch_production(zone_key, session=None, target_datetime=None,
-                     logger=logging.getLogger(__name__)):
+                     logger: Logger = getLogger(__name__)):
 
     df = fetch(zone_key, session=session, target_datetime=target_datetime)
 
@@ -219,16 +126,15 @@ def fetch_production(zone_key, session=None, target_datetime=None,
     value_columns = list(MAP_GENERATION.keys()) + list(MAP_STORAGE.keys()) + [f'tch_{x}' for x in MAP_GENERATION.keys()]
     missing_columns = [v for v in value_columns if v not in df.columns]
     present_columns = [v for v in value_columns if v in df.columns]
-    if len(missing_columns) == len(value_columns):
-        logger.warning('All columns of interest are missing from the API response')
-        return list()
-    elif len(missing_columns) > 0:
+    assert len(missing_columns) != len(value_columns), 'All columns of interest are missing from the API response'
+
+    if len(missing_columns) > 0:
         mf_str = ', '.join(missing_columns)
         logger.warning('Columns [{}] are not present in the API '
                        'response'.format(mf_str))
         # note this happens and is ok as not all French regions have all fuels.
 
-    df = df.loc[:, ['date_heure'] + present_columns]
+    df = df.loc[:, present_columns]
     df[present_columns] = df[present_columns].astype(float)
 
     datapoints = list()
@@ -246,19 +152,21 @@ def fetch_production(zone_key, session=None, target_datetime=None,
                 logger.warning('Setting small value of %s (%s) to 0.' % (key, value))
                 production[value] = 0
             else:
-                production[value] = row[key]
+                production[value] = None if np.isnan(row[key]) else row[key]
 
-            # Capacity
-            load_factor = row[f'tch_{key}'] / 100.0
-            # We can't estimate capacity if load factor is too small
-            if load_factor > 0.05:
-                capacity[value] = round(row[key] / load_factor)
+            # # Capacity
+            # load_factor = row[f'tch_{key}'] / 100.0
+            # # We can't estimate capacity if load factor is too small
+            # if load_factor > 0.05:
+            #     capacity[value] = round(row[key] / load_factor)
 
         for key, value in MAP_STORAGE.items():
             if key not in present_columns:
                 continue
             else:
-                storage[value] = row[key]
+                # Note: in the data, negative value means storage,
+                # which is the opposite of our convention
+                storage[value] = None if np.isnan(row[key]) else -1 * row[key]
 
         # if all production values are null, ignore datapoint
         if not any([is_not_nan_and_truthy(v)
@@ -267,7 +175,7 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
         datapoint = {
             'zoneKey': zone_key,
-            'datetime': arrow.get(row['date_heure']).datetime,
+            'datetime': arrow.get(row.name, tzinfo='Europe/Paris').datetime,
             'production': production,
             'storage': storage,
             'capacity': capacity,
@@ -289,71 +197,95 @@ def fetch_production(zone_key, session=None, target_datetime=None,
 
     return datapoints
 
+
+@refetch_frequency(timedelta(days=1))
 def fetch_exchange(zone_key1, zone_key2, session=None, target_datetime=None,
-                   logger=logging.getLogger(__name__)):
+                   logger: Logger = getLogger(__name__)):
 
     # two scenarios: zone_key1 either a French region or another EU country
-    if zone_key1 in FR_REGIONS.keys():
-        df = fetch(zone_key1, session=session, target_datetime=target_datetime)
-        exchange_zone = EXCHANGE[zone_key1][zone_key2]
-    else:
-        df = fetch(zone_key2, session=session, target_datetime=target_datetime)
-        exchange_zone = EXCHANGE[zone_key2][zone_key1]
+    # we can't fetch another EU country, so fetch the other region
+    df = fetch(zone_key1 if 'FR-' in zone_key1 else zone_key2, session=session, target_datetime=target_datetime)
 
     if df.empty:
         return []
 
     # Verify that all columns are indeed part of exchange_zone
     # to make sure we don't miss a single one
-    print(f'Calculating {zone_key1} -> {zone_key2}')
-    print(df.columns)
-    sfgdsf
-    #print([col.replace('flux_physiques_', '').split('_vers_') for col in df.filter(like='flux_physiques_').columns])
-    #INTERCONNECTORS
+    logger.debug(f'Calculating {zone_key1} -> {zone_key2}')
 
-    # cleaning data
-    value_columns = list(exchange_zone.values())
-    df = df.loc[:, ['date_heure'] + value_columns]
+    series = None # Resulting series
 
-    x_export = exchange_zone['export']
-    if 'import' not in exchange_zone:
-        x_import = 'default_column'
-        df[x_import] = 0
-    else:
-        x_import = exchange_zone['import']
+    def match_region(str1, str2):
+        str1, str2 = [
+            # Strip accents
+            unidecode(x.replace('PACA', 'Provence-Alpes-Côte d\'Azur').lower().replace('-', ' '))
+        for x in (str1, str2)]
+        return str1 == str2
 
-    df.dropna(how='any', inplace=True)
-    df.replace({x_import: "-", x_export: "-"}, 0, inplace=True)
+    for key in df.filter(like='Flux physiques').columns:
+        # e.g. flux_physiques_de_nouvelle_aquitaine_vers_auvergne_rhone_alpes
 
-    # converting data to float
-    df[value_columns] = df[value_columns].astype(float)
-    df['net_flow'] = (df[x_export] + df[x_import]) * -1
+        # Ignore some testing columns
+        if '.1' in key:
+            continue
+
+        label1, label2 = key.replace('Flux physiques d\'', '').replace('Flux physiques de ', '').replace('Flux physiques ', '').split(' vers ')
+        if label1 == '': label1 = ZONE_IDENTIFIERS[zone_key1]
+        if label2 == '': label2 = ZONE_IDENTIFIERS[zone_key2]
+        zone_1_matches = [k for k, v in ZONE_IDENTIFIERS.items() if match_region(v, label1)]
+        zone_2_matches = [k for k, v in ZONE_IDENTIFIERS.items() if match_region(v, label2)]
+
+        if df[key].abs().sum() > 0:
+            assert len(zone_1_matches) > 0, f"key '{key}' doesn't correspond to a known exchange ({label1} has no ZONE_IDENTIFIERS matches)"
+            assert len(zone_2_matches) > 0, f"key '{key}' doesn't correspond to a known exchange ({label2} has no ZONE_IDENTIFIERS matches)"
+            # Verify that the exchange is in config
+            exchange_key = '->'.join(sorted([zone_1_matches[0], zone_2_matches[0]]))
+            assert exchange_key in EXCHANGES_CONFIG, f'Exchange key {exchange_key} is not in exchanges.json'
+
+        if not zone_1_matches or not zone_2_matches: continue
+
+        if zone_1_matches[0] == zone_2_matches[0]:
+            # Ignore flow to self
+            continue
+
+        if zone_1_matches[0] in [zone_key1, zone_key2] and zone_2_matches[0] in [zone_key1, zone_key2]:
+            # We found the right column
+            if zone_1_matches[0] == zone_key1:
+                assert zone_2_matches[0] == zone_key2
+                multiplier = 1 # Same direction as asked
+            else:
+                assert zone_2_matches[0] == zone_key1
+                multiplier = -1 # Flow will need to be reversed
+
+            if series is None:
+                series = df[key] * multiplier
+            else:
+                # When adding, make sure that NaNs + <value> yields <value>
+                series = series.add(multiplier * df[key], fill_value=0)
+
+    if series is None:
+        raise ParserException("Couldn\'t find proper interconnector column")
+
+    # RTE doesn't report 0 when data is known, so we have to
+    # assume that any nan is actually 0
+    series = series.fillna(0)
 
     # compiling datapoints
-    datapoints = list()
-
-    for row in df.iterrows():
-        if row[1]['net_flow'] == 0:
-          net_flow = 0
-        else:
-          net_flow = row[1]['net_flow']
-
-        datapoint = {
+    datapoints = [
+        {
             'sortedZoneKeys': '->'.join(sorted([zone_key1, zone_key2])),
-            'datetime': arrow.get(row[1]['date_heure']).datetime,
-            'netFlow': net_flow,
+            'datetime': arrow.get(index, tzinfo='Europe/Paris').datetime,
+            'netFlow': value,
             'source': 'opendata.reseaux-energies.fr'
         }
+    for index, value in series.sort_index().iteritems()]
 
-        datapoints.append(datapoint)
-
-    datapoints = sorted(datapoints, key=lambda x: x['datetime'])
-
-    return datapoints
+    now = arrow.now(tz='Europe/Paris').datetime
+    return list(filter(lambda d: d['datetime'] <= now, datapoints))
 
 
 # enter any of the regional zone keys when calling method
 if __name__ == '__main__':
-    # print(fetch_production('FR-OCC'))
+    # print(fetch_production('FR-LRM'))
     print("J. rocks!")
-    print(fetch_exchange('FR-GES', 'GB'))
+    print(fetch_exchange('FR-ACA', 'GB'))

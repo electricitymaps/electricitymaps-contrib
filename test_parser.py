@@ -26,7 +26,7 @@ basicConfig(level=DEBUG, format="%(asctime)s %(levelname)-8s %(name)-30s %(messa
 
 @click.command()
 @click.argument("zone")
-@click.argument("data-type", default="production")
+@click.argument("data-type", default='')
 @click.option("--target_datetime", default=None, show_default=True)
 def test_parser(zone: ZoneKey, data_type, target_datetime):
     """\b

@@ -1627,15 +1627,15 @@
       "FR-ARA",
       "FR-BFC",
       "FR-BRE",
-      "FR-CVL",
-      "FR-GES",
-      "FR-HDF",
+      "FR-CEN",
+      "FR-ACA",
+      "FR-NPP",
       "FR-IDF",
       "FR-NOR",
-      "FR-NAQ",
-      "FR-OCC",
+      "FR-ALP",
+      "FR-LRM",
       "FR-PAC",
-      "FR-PDL"
+      "FR-PLO"
     ]
   },
   "FR-ARA":{
@@ -1740,7 +1740,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-CVL":{
+  "FR-CEN":{
     "bounding_box": [
       [
         0.053277684947378,
@@ -1767,7 +1767,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-GES":{
+  "FR-ACA":{
     "bounding_box": [
       [
         3.3883584814447,
@@ -1794,7 +1794,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-HDF":{
+  "FR-NPP":{
     "bounding_box": [
       [
         1.3796981484469,
@@ -1875,7 +1875,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-NAQ":{
+  "FR-ALP":{
     "bounding_box": [
       [
         -1.7908870919282,
@@ -1902,7 +1902,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-OCC":{
+  "FR-LRM":{
     "bounding_box": [
       [
         -0.3270823405503,
@@ -1956,7 +1956,7 @@
     },
     "timezone": "Europe/Paris"
   },
-  "FR-PDL":{
+  "FR-PLO":{
     "bounding_box": [
       [
         -2.5589448655806,
