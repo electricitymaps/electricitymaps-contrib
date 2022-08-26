@@ -32,6 +32,19 @@ CO2EQ_PARAMETERS_DIRECT = {
 }
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 
+# Prepare zone bounding boxes
+ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = {}
+for zone_id, zone_config in ZONES_CONFIG.items():
+    if "bounding_box" in zone_config:
+        ZONE_BOUNDING_BOXES[zone_id] = zone_config["bounding_box"]
+
+# Add link from subzone to the full zone
+ZONE_PARENT: Dict[ZoneKey, ZoneKey] = {}
+for zone_id, zone_config in ZONES_CONFIG.items():
+    if "subZoneNames" in zone_config:
+        for sub_zone_id in zone_config["subZoneNames"]:
+            ZONE_PARENT[sub_zone_id] = zone_id
+
 # This object represents the edges of the flow-tracing graph
 def generate_zone_neighbours(
     zones_config, exchanges_config
