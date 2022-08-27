@@ -76,7 +76,7 @@ const CountryPanelProductionTooltip = ({ displayByEmissions, mode, position, zon
 
   return (
     <Tooltip id="countrypanel-production-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
+      <StyledTimeDisplay date={zoneData.stateDatetime} />
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio value={usage} total={totalElectricity} format={format} />

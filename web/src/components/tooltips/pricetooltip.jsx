@@ -21,7 +21,7 @@ const PriceTooltip = ({ position, zoneData, onClose }) => {
 
   return (
     <Tooltip id="price-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
+      <StyledTimeDisplay date={zoneData.stateDatetime} />
       {value} {currency} / MWh
     </Tooltip>
   );
