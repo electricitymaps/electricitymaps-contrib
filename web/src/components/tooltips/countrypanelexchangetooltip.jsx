@@ -69,7 +69,7 @@ const CountryPanelExchangeTooltip = ({
 
   return (
     <Tooltip id="countrypanel-exchange-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
+      <StyledTimeDisplay date={zoneData.stateDatetime} />
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio value={usage} total={totalElectricity} format={format} />
