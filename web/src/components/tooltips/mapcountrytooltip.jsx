@@ -24,7 +24,7 @@ const CountryTableHeaderInner = styled.div`
 const StyledTimeDisplay = styled(TimeDisplay)`
   font-size: smaller;
   margin-top: 0px;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 `;
 
 const TooltipContent = React.memo(
@@ -92,9 +92,9 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
+      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
-        <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       </div>
       <TooltipContent
         hasParser={zoneData.hasParser}
