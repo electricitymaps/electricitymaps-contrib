@@ -92,7 +92,7 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
+      <StyledTimeDisplay date={zoneData.stateDatetime} />
       <div className="zone-name-header">
         <ZoneName zone={zoneData.countryCode} />
       </div>
