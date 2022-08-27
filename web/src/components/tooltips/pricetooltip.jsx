@@ -1,7 +1,14 @@
 import React from 'react';
 import getSymbolFromCurrency from 'currency-symbol-map';
+import { TimeDisplay } from '../timeDisplay';
 
 import Tooltip from '../tooltip';
+import styled from 'styled-components';
+
+const StyledTimeDisplay = styled(TimeDisplay)`
+  font-size: smaller;
+  margin-top: 0px;
+`;
 
 const PriceTooltip = ({ position, zoneData, onClose }) => {
   if (!zoneData) {
@@ -14,6 +21,7 @@ const PriceTooltip = ({ position, zoneData, onClose }) => {
 
   return (
     <Tooltip id="price-tooltip" position={position} onClose={onClose}>
+      <StyledTimeDisplay date={zoneData.stateDatetime ? new Date(zoneData.stateDatetime) : null} />
       {value} {currency} / MWh
     </Tooltip>
   );
