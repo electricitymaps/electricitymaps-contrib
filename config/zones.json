@@ -3140,9 +3140,13 @@
       "hydro": 22.977,
       "solar": 268.281942,
       "unknown": 82.3648,
-      "wind": 138.535
+      "wind": 138.535,
+      "nuclear": 0,
+      "hydro storage": 1096,
+      "geothermal": 0,
+      "coal": 0
     },
-    "contributors": ["corradio", "clawfire/"],
+    "contributors": ["corradio", "clawfire"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
