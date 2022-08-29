@@ -15,6 +15,7 @@ import styled from 'styled-components';
 const StyledTimeDisplay = styled(TimeDisplay)`
   font-size: smaller;
   margin-top: 0px;
+  font-weight: 600;
 `;
 
 const mapStateToProps = (state) => ({
