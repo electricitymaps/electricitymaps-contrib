@@ -128,9 +128,6 @@ class ConfigTestcase(unittest.TestCase):
         self.assertGreater(
             len(dk_neighbours), 1, "expected a few neighbours for DK-DK1"
         )
-        self.assertEqual(
-            sorted(dk_neighbours), dk_neighbours, "neighbours should be sorted"
-        )
 
 
 if __name__ == "__main__":
