@@ -5,6 +5,7 @@ import InfoTooltip from './infotooltip';
 import { isEmpty } from '../helpers/isEmpty';
 
 const Wrapper = styled.div`
+  margin-bottom: 10px;
   align-content: center;
   background-color: #efefef;
   border: none;
@@ -14,7 +15,6 @@ const Wrapper = styled.div`
   cursor: pointer;
   display: flex;
   height: 36px;
-  justify-content: flex-end;
   outline: none;
   transition: all 0.4s;
   user-select: none;
@@ -32,8 +32,8 @@ const Options = styled.div`
   display: flex;
   flex-direction: row;
   height: 28px;
-  justify-content: flex-end;
   margin: 0 4px;
+  width: 100%;
 `;
 
 const OptionItem = styled.div`
@@ -45,6 +45,8 @@ const OptionItem = styled.div`
   z-index: 9;
   font-family: 'Euclid Triangle', 'Open Sans', sans-serif;
 
+  text-align: center;
+  width: 100%;
   ${(props) =>
     props.active &&
     css`
@@ -60,7 +62,7 @@ const InfoButton = styled.div`
   align-content: center;
   align-self: center;
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 14px;
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   font-weight: bold;
@@ -69,7 +71,7 @@ const InfoButton = styled.div`
   line-height: 28px;
   margin: 0 4px;
   transition: all 0.4s;
-  width: 28px;
+  min-width: 28px;
   user-select: none;
   &:hover {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);

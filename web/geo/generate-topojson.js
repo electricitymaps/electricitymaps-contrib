@@ -4,7 +4,7 @@ const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
   const geojsonFeatures = geojson.features.filter((f) => f.properties.zoneName === zoneName);
-  if (geojsonFeatures.length !== 1 && geojsonFeatures.length !== 2) {
+  if (geojsonFeatures.length !== 1) {
     console.error(`ERROR: Found ${geojsonFeatures.length} features matching zoneName ${zoneName}`);
     process.exit(1);
   }

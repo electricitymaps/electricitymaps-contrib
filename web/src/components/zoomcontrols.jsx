@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   position: absolute;
   right: 16px;
-  top: 69px;
+  top: 115px;
   transition: box-shadow 0.4s;
   user-select: none;
 

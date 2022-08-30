@@ -5,6 +5,8 @@ const { validateGeometryV2 } = require('./validate-v2');
 const { getJSON } = require('./utilities');
 const { generateTopojson } = require('./generate-topojson');
 const { generateAggregates } = require('./generate-aggregates');
+const { generateExchangesToIgnore } = require('./generate-exchanges-to-exclude');
+const { getZonesJson } = require('./files');
 
 const config = {
   WORLD_PATH: path.resolve(__dirname, './world.geojson'),
@@ -13,7 +15,7 @@ const config = {
   MIN_AREA_HOLES: 600000000,
   MAX_CONVEX_DEVIATION: 0.708,
   MIN_AREA_INTERSECTION: 500000,
-  SLIVER_RATIO: 10, // ratio of length and area to determine if the polygon is a sliver and should be ignored
+  SLIVER_RATIO: 1, // ratio of length and area to determine if the polygon is a sliver and should be ignored
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 const configV2 = {
@@ -23,7 +25,7 @@ const configV2 = {
   MIN_AREA_HOLES: 600000000,
   MAX_CONVEX_DEVIATION: 0.708,
   MIN_AREA_INTERSECTION: 600000,
-  SLIVER_RATIO: 10, // ratio of length and area to determine if the polygon is a sliver and should be ignored
+  SLIVER_RATIO: 1, // ratio of length and area to determine if the polygon is a sliver and should be ignored
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
@@ -32,8 +34,11 @@ validateGeometry(fc, config);
 generateTopojson(fc, config);
 
 const fcV2 = getJSON(config.WORLD_PATH);
-const aggregates = generateAggregates(fcV2);
-fcV2.features = [...fc.features, ...aggregates];
+const zoneConfig = getZonesJson();
+const aggregates = generateAggregates(fcV2, zoneConfig);
+
+fcV2.features = aggregates;
 
 validateGeometryV2(fcV2, configV2);
 generateTopojson(fcV2, configV2);
+generateExchangesToIgnore('../src/excluded-aggregated-exchanges.json', fcV2);
