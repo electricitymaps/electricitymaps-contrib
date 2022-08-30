@@ -29,6 +29,8 @@ const configV2 = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
+const EXCHANGE_OUT_PATH = path.resolve(__dirname, '../src/excluded-aggregated-exchanges.json');
+
 const fc = getJSON(config.WORLD_PATH);
 validateGeometry(fc, config);
 generateTopojson(fc, config);
@@ -41,4 +43,4 @@ fcV2.features = aggregates;
 
 validateGeometryV2(fcV2, configV2);
 generateTopojson(fcV2, configV2);
-generateExchangesToIgnore('../src/excluded-aggregated-exchanges.json', fcV2);
+generateExchangesToIgnore(EXCHANGE_OUT_PATH, fcV2);
