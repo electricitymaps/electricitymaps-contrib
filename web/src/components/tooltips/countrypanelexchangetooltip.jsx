@@ -9,14 +9,7 @@ import Tooltip from '../tooltip';
 
 import { CarbonIntensity, MetricRatio, ZoneName } from './common';
 import { getExchangeCo2Intensity, getTotalElectricity } from '../../helpers/zonedata';
-import { TimeDisplay } from '../timeDisplay';
-import styled from 'styled-components';
-
-const StyledTimeDisplay = styled(TimeDisplay)`
-  font-size: smaller;
-  margin-top: 0px;
-  font-weight: 600;
-`;
+import TooltipTimeDisplay from './tooltiptimedisplay';
 
 const mapStateToProps = (state) => ({
   displayByEmissions: state.application.tableDisplayEmissions,
@@ -70,7 +63,7 @@ const CountryPanelExchangeTooltip = ({
 
   return (
     <Tooltip id="countrypanel-exchange-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime} />
+      <TooltipTimeDisplay date={zoneData.stateDatetime} />
       <span dangerouslySetInnerHTML={{ __html: headline }} />
       <br />
       <MetricRatio value={usage} total={totalElectricity} format={format} />

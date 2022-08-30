@@ -4,14 +4,7 @@ import { useTranslation } from '../../helpers/translation';
 import { getTotalElectricity } from '../../helpers/zonedata';
 import { tonsPerHourToGramsPerMinute } from '../../helpers/math';
 import Tooltip from '../tooltip';
-import { TimeDisplay } from '../timeDisplay';
-import styled from 'styled-components';
-
-const StyledTimeDisplay = styled(TimeDisplay)`
-  font-size: smaller;
-  margin-top: 0px;
-  font-weight: 600;
-`;
+import TooltipTimeDisplay from './tooltiptimedisplay';
 
 const CountryPanelEmissionsTooltip = ({ position, zoneData, onClose }) => {
   const { __ } = useTranslation();
@@ -23,7 +16,7 @@ const CountryPanelEmissionsTooltip = ({ position, zoneData, onClose }) => {
 
   return (
     <Tooltip id="countrypanel-emissions-tooltip" position={position} onClose={onClose}>
-      <StyledTimeDisplay date={zoneData.stateDatetime} />
+      <TooltipTimeDisplay date={zoneData.stateDatetime} />
       <b>{totalEmissions}t</b> {__('ofCO2eqPerMinute')}
     </Tooltip>
   );
