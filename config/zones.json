@@ -1618,7 +1618,7 @@
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
       "generationForecast": "ENTSOE.fetch_generation_forecast",
-      "price": "FR.fetch_price",
+      "price": "ENTSOE.fetch_price",
       "production": "FR.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
@@ -3140,9 +3140,13 @@
       "hydro": 22.977,
       "solar": 268.281942,
       "unknown": 82.3648,
-      "wind": 138.535
+      "wind": 138.535,
+      "nuclear": 0,
+      "hydro storage": 1096,
+      "geothermal": 0,
+      "coal": 0
     },
-    "contributors": ["corradio", "clawfire/"],
+    "contributors": ["corradio", "clawfire"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
