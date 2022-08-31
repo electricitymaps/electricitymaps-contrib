@@ -165,7 +165,10 @@
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "selectLanguage": "Välj språk",
     "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
-    "dataIsDelayed": "Data är fördröjd"
+    "dataIsDelayed": "Data är fördröjd",
+    "aggregated": "aggregerad",
+    "detailed": "detaljerad",
+    "aggregateinfo": "Länder med zoner som sakanar data kan inte bli aggregerade"
   },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
