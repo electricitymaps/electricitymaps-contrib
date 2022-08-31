@@ -315,7 +315,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - [USAID](https://www.usaid.gov/powerafrica/nigeria)
   - [TCN ISO grid data portal](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
+- Norway:
+  - Solar: [NVE Excel report](https://www.nve.no/media/13861/oversikt-over-solcelleanlegg-i-norge_2021.xlsx)
+  - Other: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
