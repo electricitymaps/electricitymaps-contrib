@@ -30,7 +30,7 @@ import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
 import ResponsiveSheet from './responsiveSheet';
 import { RetryBanner } from '../components/retrybanner';
-import { isAggregatedViewFF } from '../helpers/featureFlags';
+import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -105,11 +105,10 @@ const Main = ({ electricityMixMode }) => {
     console.warn(`Current client version: ${clientVersion} is outdated`);
   }
 
-  const isAggregatedFFEnabled = isAggregatedViewFF();
-
-  const toggleAggregates = useAggregatesToggle();
+  const isAggregatedFFEnabled = aggregatedViewFFEnabled();
 
   const isAggregated = useAggregatesEnabled() ? 'aggregated' : 'detailed';
+  const toggleAggregates = useAggregatesToggle();
 
   return (
     <React.Fragment>
@@ -146,7 +145,7 @@ const Main = ({ electricityMixMode }) => {
                 {isAggregatedFFEnabled && (
                   <Toggle
                     infoHTML={__('tooltips.aggregateinfo')}
-                    onChange={() => history.push(toggleAggregates)}
+                    onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
                     options={[
                       { value: 'aggregated', label: __('tooltips.aggregated') },
                       { value: 'detailed', label: __('tooltips.detailed') },
@@ -156,7 +155,7 @@ const Main = ({ electricityMixMode }) => {
                   />
                 )}
               </HiddenOnMobile>
-              <LayerButtons />
+              <LayerButtons aggregatedViewFFEnabled={isAggregatedFFEnabled} />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (

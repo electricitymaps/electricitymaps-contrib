@@ -7,7 +7,7 @@ import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 import { ZoomControls } from './zoomcontrols';
-import { isAggregatedViewFF } from '../helpers/featureFlags';
+import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
 import { useAggregatesEnabled } from '../hooks/router';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
@@ -72,7 +72,7 @@ const ZoneMap = ({
   };
 
   const isAggregateEnabled = useAggregatesEnabled();
-  const aggregatedViewFFEnabled = isAggregatedViewFF();
+  const isAggregatedViewFFEnabled = aggregatedViewFFEnabled();
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   // The `sources` object will trigger a whole re-rendering of the map, and will
   // thus re-render all zones.
@@ -81,7 +81,7 @@ const ZoneMap = ({
     // We here iterate over the zones list (instead of dict) to keep the iteration
     // order stable
     const features = zoneValues.map((zone, i) => {
-      if (aggregatedViewFFEnabled) {
+      if (isAggregatedViewFFEnabled) {
         if (isAggregateEnabled && zone.geography.properties.isAggregatedView) {
           const length = (coordinate) => (coordinate ? coordinate.length : 0);
           const zoneId = zone.config.countryCode;
@@ -120,7 +120,7 @@ const ZoneMap = ({
           return {};
         }
       }
-      if (!aggregatedViewFFEnabled) {
+      if (!isAggregatedViewFFEnabled) {
         const length = (coordinate) => (coordinate ? coordinate.length : 0);
         const zoneId = zone.config.countryCode;
         return {
@@ -149,7 +149,7 @@ const ZoneMap = ({
     // TODO: `zoneValues` will change even in cases where the geometry doesn't change.
     // This will cause this memo to re-update although it should only update when the
     // geometry changes. This will slow down the map render..
-  }, [zoneValues, selectedTimeAggregate, isAggregateEnabled, aggregatedViewFFEnabled]);
+  }, [zoneValues, selectedTimeAggregate, isAggregateEnabled, isAggregatedViewFFEnabled]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
@@ -305,7 +305,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <ZoomControls />
+          <ZoomControls aggregatedViewFF={isAggregatedViewFFEnabled} />
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />

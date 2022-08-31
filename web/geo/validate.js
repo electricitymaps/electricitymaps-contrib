@@ -28,8 +28,8 @@ function validateGeometry(fc, config) {
 
 function zeroNullGeometries(fc) {
   const nullGeometries = fc.features
-    .filter((ft) => !getGeom(ft)?.coordinates?.length)
-    .map((ft) => ft.properties?.zoneName);
+    .filter((ft) => !getGeom(ft).coordinates.length)
+    .map((ft) => ft.properties.zoneName);
   if (nullGeometries.length) {
     nullGeometries.forEach((zoneName) => log(`${zoneName} has null geometry`));
     throw Error('Feature(s) contains null geometry');

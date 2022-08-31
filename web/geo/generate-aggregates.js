@@ -6,7 +6,6 @@ const generateAggregates = (geojson, zones) => {
   const countryZonesToCombine = Object.values(zones)
     .filter((zone) => zone?.subZoneNames?.length > 0)
     .map((zone) => zone.subZoneNames);
-  //const countryKeysToCombine = [...new Set(countryZonesToCombine.map((zone) => zone.split('-')[0]))];
 
   const zonesToFlagAsNotAggregated = Object.values(zones)
     .filter((zone) => zone?.subZoneNames?.length > 0)

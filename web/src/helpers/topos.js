@@ -1,11 +1,11 @@
 import { merge } from 'topojson';
 import topoV1 from '../world.json';
 import topoV2 from '../world-aggregated.json';
-import { isAggregatedViewFF } from './featureFlags';
+import { aggregatedViewFFEnabled } from './featureFlags';
 
 const constructTopos = () => {
   const zones = {};
-  const topo = isAggregatedViewFF() ? topoV2 : topoV1;
+  const topo = aggregatedViewFFEnabled() ? topoV2 : topoV1;
 
   Object.keys(topo.objects).forEach((k) => {
     if (!topo.objects[k].arcs) {
