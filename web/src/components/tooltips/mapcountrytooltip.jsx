@@ -23,6 +23,7 @@ const CountryTableHeaderInner = styled.div`
 
 const StyledTooltipTimeDisplay = styled(TooltipTimeDisplay)`
   margin-bottom: 5px;
+  font-weight: ${(props) => (props.isZoneNameDisplayed ? '500' : '600')};
 `;
 
 const TooltipContent = React.memo(
@@ -71,7 +72,7 @@ const TooltipContent = React.memo(
   }
 );
 
-const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
+const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, isZoneNameDisplayed }) => {
   if (!zoneData) {
     return null;
   }
@@ -90,9 +91,9 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
-      <StyledTooltipTimeDisplay date={zoneData.stateDatetime} />
       <div className="zone-name-header">
-        <ZoneName zone={zoneData.countryCode} />
+        {isZoneNameDisplayed && <ZoneName zone={zoneData.countryCode} />}
+        <StyledTooltipTimeDisplay date={zoneData.stateDatetime} isZoneNameDisplayed={isZoneNameDisplayed} />
       </div>
       <TooltipContent
         hasParser={zoneData.hasParser}
