@@ -3140,9 +3140,13 @@
       "hydro": 22.977,
       "solar": 268.281942,
       "unknown": 82.3648,
-      "wind": 138.535
+      "wind": 138.535,
+      "nuclear": 0,
+      "hydro storage": 1096,
+      "geothermal": 0,
+      "coal": 0
     },
-    "contributors": ["corradio", "clawfire/"],
+    "contributors": ["corradio", "clawfire"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
@@ -3560,7 +3564,7 @@
       "hydro storage": 1,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
+      "solar": 78.9,
       "unknown": 0,
       "wind": 222
     },
@@ -3588,7 +3592,7 @@
       "hydro storage": 892,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
+      "solar": 46.1,
       "unknown": 14,
       "wind": 1427
     },
@@ -3616,7 +3620,7 @@
       "hydro storage": 87,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
+      "solar": 21.9,
       "unknown": 46.8,
       "wind": 2095
     },
@@ -3644,7 +3648,7 @@
       "hydro storage": 2,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
+      "solar": 1.6,
       "unknown": 39.3,
       "wind": 876
     },
@@ -3672,7 +3676,7 @@
       "hydro storage": 457,
       "nuclear": 0,
       "oil": 0,
-      "solar": 0,
+      "solar": 11.9,
       "unknown": 12.5,
       "wind": 0
     },
