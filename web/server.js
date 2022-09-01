@@ -119,7 +119,7 @@ app.use('/', (req, res) => {
       }
       if (!authorized) {
         res.statusCode = 401;
-        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymap.org"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Premium access to electricitymaps.com"');
         res.end('Access denied');
         return;
       }

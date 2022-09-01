@@ -99,8 +99,8 @@
     "newversion": "O nouă versiune e disponibilă! Apăsați <a onClick=\"location.reload(true);\">here</a> pentru a reîncărca.",
     "webgl-not-supported": "Harta nu poate fi afișată pentru că acest browser nu este compatibil cu WebGL.",
     "retrynow": "Reîncercați acum",
-    "database-ad": "Căutați date din trecut? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Verificați în baza noastră de date!</a>",
-    "api-ad": "Doriți date în timp real în aplicația sau dispozitivul dumneavoastră? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Încercați API-ul nostru!</a>",
+    "database-ad": "Căutați date din trecut? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Verificați în baza noastră de date!</a>",
+    "api-ad": "Doriți date în timp real în aplicația sau dispozitivul dumneavoastră? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Încercați API-ul nostru!</a>",
     "legend": "Legendă",
     "faq": "Întrebări frecvente"
   },
@@ -149,7 +149,7 @@
     "divideExistingArea-question": "Puteți diviza o zonă în părți mai mici?",
     "divideExistingArea-answer": "Desigur, dacă există surse de date pentru fiecare parte. Ne puteți ajuta cu <a href=\"#contribute\" class=\"entry-link\">noi surse de date</a>",
     "seeHistoricalData-question": "Pot să văd istoricul unei zone mai mult de 24 de ore în trecut?",
-    "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecție de date</a>."
+    "seeHistoricalData-answer": "Puteți cumpăra access la întreaga <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">colecție de date</a>."
   },
   "methodology": {
     "groupName": "Metodele noastre",
@@ -177,22 +177,22 @@
     "dataOrigins-question": "De unde obțineți datele?",
     "dataOrigins-answer": "Folosim date făcute publice, publicate de operatori de rețele electrice, agenții oficiale și altele. Dați click pe o zonă pentru a afla mai multe detalii despre originea datelor.",
     "dataDownload-question": "Pot să downloadez datele?",
-    "dataDownload-answer": "Puteți cumpăra acces la toată <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">colecția noastră de date</a>.",
+    "dataDownload-answer": "Puteți cumpăra acces la toată <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">colecția noastră de date</a>.",
     "dataIntegration-question": "Pot integra datele voastre în timp real în aplicația / dispozitivul meu?",
-    "dataIntegration-answer": "Da! Vindem acces la <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">API-ul în timp real</a>, care include predicții pe viitor."
+    "dataIntegration-answer": "Da! Vindem acces la <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">API-ul în timp real</a>, care include predicții pe viitor."
   },
   "aboutUs": {
     "groupName": "Despre noi",
     "whoAreYou-question": "Cine sunteți?",
-    "whoAreYou-answer": "Electricity Map e dezvoltat și menținut de <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, o companie startup daneză. Scopul nostru este să ajutăm umanitatea să atingă o existență sustenabilă prin cuantificarea și accesibilitatea impactului asupra climei a alegerilor noastre de zi cu zi.",
+    "whoAreYou-answer": "Electricity Map e dezvoltat și menținut de <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, o companie startup daneză. Scopul nostru este să ajutăm umanitatea să atingă o existență sustenabilă prin cuantificarea și accesibilitatea impactului asupra climei a alegerilor noastre de zi cu zi.",
     "feedback-question": "Pot oferi feedback?",
-    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:app@electricitymap.org\">trimite-ne un email!</a>",
+    "feedback-answer": "Te rugăm! Te rugăm să completezi <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">formularul nostru de feedback </a> sau <a href=\"mailto:app@electricitymaps.com\">trimite-ne un email!</a>",
     "contribute-question": "Pot să contribui la proiect?",
     "contribute-answer": "Da! Electricity Map e un proiect open-source, făcut posibil de voluntarii noștri. Dacă vrei să ajuți să dezvolți harta, fie prin surse noi de date, zone noi, componente noi sau bugfixes, nu ezitați să explorați pagina noastră de <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Putem lucra împreună?",
-    "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href=\"mailto:app@electricitymap.org\">Trimite-ne un email!</a>",
+    "workTogether-answer": "Căutăm în mod activ noi oportunități de colaborare. <a href=\"mailto:app@electricitymaps.com\">Trimite-ne un email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -295,6 +295,7 @@
     "EH": { "zoneName": "Western Sahara" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "Spain" },
+    "ES-CE": { "countryName": "Spain", "zoneName": "Ceuta" },
     "ES-IB-FO": { "countryName": "Spain", "zoneName": "Formentera" },
     "ES-IB-IZ": { "countryName": "Spain", "zoneName": "Ibiza" },
     "ES-IB-MA": { "countryName": "Spain", "zoneName": "Mallorca" },
@@ -305,6 +306,7 @@
     "ES-CN-IG": { "countryName": "Spain", "zoneName": "Isla de la Gomera" },
     "ES-CN-LP": { "countryName": "Spain", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Spain", "zoneName": "Tenerife" },
+    "ES-ML": { "countryName": "Spain", "zoneName": "Melilla" },
     "ET": { "zoneName": "Ethiopia" },
     "FI": { "zoneName": "Finland" },
     "FJ": { "zoneName": "Fiji" },

@@ -22,7 +22,7 @@ def fetch_production(
     r = session or Session()
     url = "https://www.webaruba.com/renewable-energy-dashboard/app/rest/results.json"
     # User agent is mandatory or services answers 404
-    headers = {"user-agent": "electricitymap.org"}
+    headers = {"user-agent": "electricitymaps.com"}
     response = r.get(url, headers=headers)
     aruba_json = response.json()
     top_data = aruba_json["dashboard_top_data"]
@@ -55,9 +55,7 @@ def fetch_production(
     missing_from_total = reported_total - sources_total
     unknown = missing_from_total if missing_from_total > 0 else 0
     # We're using Fossil data to get timestamp in correct time zone
-    local_date_time = datetime.datetime.strptime(
-        fossil["timestamp"], "%Y-%m-%d %H:%M:%S.%f"
-    )
+    local_date_time = datetime.strptime(fossil["timestamp"], "%Y-%m-%d %H:%M:%S.%f")
     zone_date_time = arrow.Arrow.fromdatetime(local_date_time, "America/Aruba")
 
     data = {

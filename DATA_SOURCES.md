@@ -38,7 +38,9 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
 - Estonia: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Faroe Islands: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
+- Faroe Islands:
+  - Biomass: [Fjarhiti](https://www.fjarhiti.fo/kunning/biogassverki%C3%B0-roynist-vael-%C3%AD-fjarhitaskipanini/)
+  - Other: [SEV](https://www.sev.fo/framleidsla/el-orka-i-foroyum/)
 - Finland: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - France: [RTE](https://opendata.reseaux-energies.fr)
 - French Polynesia: [EDT](https://www.edt.pf/transition-energetique-innovation)
@@ -154,7 +156,8 @@ When determining the installed capacity for a country, these sources might help 
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
-- Coal: [Global Coal Plant Tracker](https://endcoal.org/global-coal-plant-tracker/)
+- Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
+- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
@@ -169,7 +172,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Wind: [Finnish Wind Power Association](https://tuulivoimayhdistys.fi/en/wind-power-in-finland/map 'Note: the map states 43MW for the Långnabba project, but as [Vestas](https://www.vestas.com/en/media/company-news/2020/vestas-develops-highly-customised-power-plant-solution--c3249491) and [Kraftnat](https://kraftnat.ax/) state 42MW, the lower figure was used')
   - Solar: [Ålands statistik- och utredningsbyrå](https://www.asub.ax/sv/ekologisk-hallbarhet-17-installerad-kapacitet-elproduktion-solpaneler-pa-aland)
   - Oil: [Kraftnät Åland](https://kraftnat.ax/stamnatet/)
-- Albania: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+- Albania:
+  - Biomass: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
+  - Other: [ERE](https://ere.gov.al/images/2022/04/Raporti%20Vjetor%202021%20perfundimtare.pdf)
 - Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
 - Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
 - Armenia
@@ -282,7 +287,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Solar & wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Luxembourg: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
+- Luxembourg:
+  - Hydro Storage: [Société Electrique de L'Our](http://www.seo.lu/fr/Activites-principales/PSW-Vianden/Installations/Donnees-techniques)
+  - Other: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova
   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -308,7 +315,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - [USAID](https://www.usaid.gov/powerafrica/nigeria)
   - [TCN ISO grid data portal](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
+- Norway:
+  - Solar: [NVE Excel report](https://www.nve.no/media/13861/oversikt-over-solcelleanlegg-i-norge_2021.xlsx)
+  - Other: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
@@ -316,7 +325,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Oil, Gas and Coal: [CND](http://www.cnd.com.pa/index.php/estadisticas)
   - Biomass: [Secretaría de Energía de Panamá](http://www.energia.gob.pa/mercado-energetico/?tag=84#documents-list)
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/2020-power-situation-report)
+- Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
 - Portugal
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
@@ -350,13 +359,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Coal: [wikipedia.org](https://es.wikipedia.org/wiki/Central_t%C3%A9rmica_de_Es_Murterar)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
 - Sri Lanka: [Ceylon Electricity Board](https://ceb.lk/front_img/img_reports/1636539187LTGEP_2022-2041_Web_compressed.pdf 'Renewable installed capacity taken from Figure 1.13 (private-owned) and Table 2.1 (government-owned hydro), except for biomass, where the higher figure mentioned in the section "5.4 Other Renewable Energy Development" was used. Together, these add up to within 1 MW of the stated total renewable capacity of 2,447 MW (which is mentioned in e.g. "1.4.2.1 Overview"). Solar includes rooftop solar.  Thermal capactity taken from "2.2 Thermal Generation". Thermal Electricity generation is only from coal and oil, see Figure 1.14. According to ["CEB - ANNUAL REPORT 2020" page 18 (20 in PDF)](https://ceb.lk/front_img/img_reports/164887150703-CEB-Annual_Report-2020-English.pdf), the 900MW Lakvijaya plant is the only coal plant in Sri Lanka, implying the others are oil-fired. Installed capacity figures do not add up exactly to the 2,168 MW mentioned in the opening paragraph; I went with the combined total nameplate capacity from Table 2.5 (government-owned) and Table 2.6 (private-owned), adding up to 2197.9 MW. Then I put 900MW under coal and categorized the remainder as oil.  Pumped hydro is mentioned as being planned/investigated in several places, but currently isn\'t deployed. The same goes for battery storage.  Sri Lanka has no nuclear power plants. A report has been commissioned to investigate the possibility, see 4.2 (v).')
-- Sweden
-  - Biomass, Solar, Geothermal: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-  - Wind: [Svensk Vindenergi](https://svenskvindenergi.org/vindkraft/statistik)
-  - Solar: [Energimyndigheten](http://pxexternal.energimyndigheten.se/sq/6aa0da99-4f46-46ef-ac30-a3355016f061)
-  - Nuclear: [IAEA PRIS](https://pris.iaea.org/pris/CountryStatistics/CountryDetails.aspx?current=SE)
-  - Coal: [Stockholm Exergi](https://www.stockholmexergi.se/nyheter/kvv6/)
-  - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
+- Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf)
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
