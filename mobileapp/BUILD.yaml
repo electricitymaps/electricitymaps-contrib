@@ -37,7 +37,7 @@ steps:
       # - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/GoogleService-Info.plist .
       # - cordova prepare
       # Release to staging
-      # - code-push login --accessKey 85338aa1bb9bf218bfd54c91151d355e62e81288
+      # - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
       # - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
       # - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
       # Promote
