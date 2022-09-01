@@ -141,7 +141,7 @@ const Main = ({ electricityMixMode }) => {
                     { value: 'consumption', label: __('tooltips.consumption') },
                   ]}
                   value={electricityMixMode}
-                  tooltipStyle={{ left: 4, width: 204, top: 49, zindex: 520 }}
+                  tooltipStyle={{ left: 5, width: 204, top: 40, zIndex: 99 }}
                 />
                 {isAggregatedFFEnabled && (
                   <Toggle
@@ -152,7 +152,7 @@ const Main = ({ electricityMixMode }) => {
                       { value: 'detailed', label: __('tooltips.detailed') },
                     ]}
                     value={isAggregated}
-                    tooltipStyle={{ left: 4, width: 204, top: 79 }}
+                    tooltipStyle={{ left: 5, width: 204, top: 85 }}
                   />
                 )}
               </HiddenOnMobile>
