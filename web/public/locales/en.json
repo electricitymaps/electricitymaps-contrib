@@ -1337,6 +1337,22 @@
     "SE": {
       "zoneName": "Sweden"
     },
+    "SE-SE1": {
+      "countryName": "Sweden",
+      "zoneName": "North Sweden"
+    },
+    "SE-SE2": {
+      "countryName": "Sweden",
+      "zoneName": "North Central Sweden"
+    },
+    "SE-SE3": {
+      "countryName": "Sweden",
+      "zoneName": "South Central Sweden"
+    },
+    "SE-SE4": {
+      "countryName": "Sweden",
+      "zoneName": "South Sweden"
+    },
     "SG": {
       "zoneName": "Singapore"
     },

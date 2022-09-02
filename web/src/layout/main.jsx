@@ -90,6 +90,7 @@ const Main = ({ electricityMixMode }) => {
   // Poll solar data if the toggle is enabled.
   useConditionalSolarDataPolling();
 
+  // Note: we could also query static.electricitymap.org/public_web/client-version.json instead
   const { data: clientVersionData } = useSWR('/client-version.json', fetcher, {
     refreshInterval: CLIENT_VERSION_CHECK_INTERVAL,
   });
@@ -102,7 +103,7 @@ const Main = ({ electricityMixMode }) => {
   }
 
   if (isClientVersionOutdated) {
-    console.warn(`Current client version: ${clientVersion} is outdated`);
+    console.warn(`New client version available: ${clientVersion}`);
   }
 
   const isAggregatedFFEnabled = aggregatedViewFFEnabled();

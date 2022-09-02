@@ -77,6 +77,11 @@ app.all('/dist/*.map', (req, res, next) => {
   return next();
 });
 
+app.use('/client-version.json', (req, res, next) => {
+  res.header('Cache-Control', 'no-cache,max-age=0');
+  next();
+});
+
 // Static files
 app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
 
