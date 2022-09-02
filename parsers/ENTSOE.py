@@ -1312,7 +1312,7 @@ def fetch_exchange_forecast(
         data.append(
             {
                 "sortedZoneKeys": key,
-                "datetime": exchange_date.datetime,
+                "datetime": exchange_date,
                 "netFlow": netFlow
                 if zone_key1[0] == sorted_zone_keys
                 else -1 * netFlow,
