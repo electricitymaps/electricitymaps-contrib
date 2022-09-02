@@ -370,16 +370,16 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Turkey: [TEIAS](https://www.teias.gov.tr/tr-TR/kurulu-guc-raporlari)
 - Ukraine: [UKRENERGO](https://ua.energy/vstanovlena-potuzhnist-energosystemy-ukrayiny/)
 - United Arab Emirates: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
-- United States of America:
+- United States of America
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
-  - CAISO:
+  - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
-  - Hawaii:
+  - Hawaii
       - Battery storage: https://www.kapoleienergystorage.com/
       - Coal: [https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
       - Other: https://www.eia.gov/electricity/data/eia860M/
