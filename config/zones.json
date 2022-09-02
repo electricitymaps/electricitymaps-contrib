@@ -5428,7 +5428,7 @@
       "unknown": 0,
       "wind": 126.6
     },
-    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda"],
+    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda", "brandongalbraith"],
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_HI.fetch_production"
