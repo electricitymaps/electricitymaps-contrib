@@ -17,16 +17,17 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 
+from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
@@ -424,12 +425,16 @@ class QueryError(Exception):
     """Raised when a query to ENTSOE returns no matching data."""
 
 
-def closest_in_time_key(x, target_datetime, datetime_key="datetime"):
-    target_datetime = arrow.get(target_datetime)
-    return np.abs((x[datetime_key] - target_datetime).seconds)
+def closest_in_time_key(
+    x, target_datetime: Optional[datetime], datetime_key="datetime"
+):
+    if target_datetime is None:
+        target_datetime = datetime.utcnow()
+    if isinstance(target_datetime, datetime):
+        return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
-def check_response(response, function_name):
+def check_response(response: Response, function_name):
     """
     Searches for an error message in response if the query to ENTSOE fails.
     Returns a QueryError message containing function name and reason for failure.
@@ -443,17 +448,20 @@ def check_response(response, function_name):
             if "No matching data found" in error_text:
                 return
             raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(function_name, error_text)
+                f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
             )
         else:
             raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(
-                    function_name, response.text
-                )
+                f"{function_name} failed in ENTSOE.py. Reason: {response.text}"
             )
 
 
-def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
+def query_ENTSOE(
+    session: Session,
+    params: Dict[str, str],
+    target_datetime: Optional[datetime] = None,
+    span: Tuple[int, int] = (-48, 24),
+) -> Response:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -461,12 +469,15 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     Returns a request object.
     """
     if target_datetime is None:
-        target_datetime = arrow.utcnow()
-    else:
+        target_datetime = datetime.utcnow()
+    if isinstance(target_datetime, datetime):
         # make sure we have an arrow object
-        target_datetime = arrow.get(target_datetime)
-    params["periodStart"] = target_datetime.shift(hours=span[0]).format("YYYYMMDDHH00")
-    params["periodEnd"] = target_datetime.shift(hours=span[1]).format("YYYYMMDDHH00")
+        params["periodStart"] = (target_datetime + timedelta(hours=span[0])).strftime(
+            "%Y%m%d%H00"  # YYYYMMDDHH00
+        )
+        params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
+            "%Y%m%d%H00"  # YYYYMMDDHH00
+        )
 
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = get_token("ENTSOE_TOKEN").split(",")
@@ -475,7 +486,9 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
     return session.get(ENTSOE_ENDPOINT, params=params)
 
 
-def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
+def query_consumption(
+    domain: str, session: Session, target_datetime: Optional[datetime] = None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A65",
@@ -489,7 +502,9 @@ def query_consumption(domain, session, target_datetime=None) -> Union[str, None]
         check_response(response, query_consumption.__name__)
 
 
-def query_production(in_domain, session, target_datetime=None) -> Union[str, None]:
+def query_production(
+    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
+) -> Union[str, None]:
     params = {
         "documentType": "A75",
         "processType": "A16",  # Realised
@@ -505,7 +520,10 @@ def query_production(in_domain, session, target_datetime=None) -> Union[str, Non
 
 
 def query_production_per_units(
-    psr_type, domain, session, target_datetime=None
+    psr_type: str,
+    domain: str,
+    session: Session,
+    target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
 
     params = {
@@ -523,7 +541,10 @@ def query_production_per_units(
 
 
 def query_exchange(
-    in_domain, out_domain, session, target_datetime=None
+    in_domain: str,
+    out_domain: str,
+    session: Session,
+    target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
 
     params = {
@@ -539,7 +560,10 @@ def query_exchange(
 
 
 def query_exchange_forecast(
-    in_domain, out_domain, session, target_datetime=None
+    in_domain: str,
+    out_domain: str,
+    session: Session,
+    target_datetime: Optional[datetime] = None,
 ) -> Union[str, None]:
     """Gets exchange forecast for 48 hours ahead and previous 24 hours."""
 
@@ -555,7 +579,9 @@ def query_exchange_forecast(
         check_response(response, query_exchange_forecast.__name__)
 
 
-def query_price(domain, session, target_datetime=None) -> Union[str, None]:
+def query_price(
+    domain: str, session: Session, target_datetime: Optional[datetime] = None
+) -> Union[str, None]:
 
     params = {
         "documentType": "A44",
@@ -570,7 +596,7 @@ def query_price(domain, session, target_datetime=None) -> Union[str, None]:
 
 
 def query_generation_forecast(
-    in_domain, session, target_datetime=None
+    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
     """Gets generation forecast for 48 hours ahead and previous 24 hours."""
 
@@ -588,7 +614,7 @@ def query_generation_forecast(
 
 
 def query_consumption_forecast(
-    in_domain, session, target_datetime=None
+    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
@@ -605,7 +631,7 @@ def query_consumption_forecast(
 
 
 def query_wind_solar_production_forecast(
-    in_domain, session, target_datetime=None
+    in_domain: str, session: Session, target_datetime: Optional[datetime] = None
 ) -> Union[str, None]:
     """Gets consumption forecast for 48 hours ahead and previous 24 hours."""
 
@@ -621,21 +647,25 @@ def query_wind_solar_production_forecast(
         check_response(response, query_generation_forecast.__name__)
 
 
-def datetime_from_position(start, position, resolution):
+def datetime_from_position(
+    start: arrow.Arrow, position: int, resolution: str
+) -> datetime:
     """Finds time granularity of data."""
 
     m = re.search(r"PT(\d+)([M])", resolution)
-    if m:
+    if m is not None:
         digits = int(m.group(1))
         scale = m.group(2)
         if scale == "M":
-            return start.shift(minutes=(position - 1) * digits)
+            return start.shift(minutes=(position - 1) * digits).datetime
     raise NotImplementedError("Could not recognise resolution %s" % resolution)
 
 
 def parse_scalar(
-    xml_text, only_inBiddingZone_Domain=False, only_outBiddingZone_Domain=False
-) -> Union[tuple, None]:
+    xml_text: str,
+    only_inBiddingZone_Domain: bool = False,
+    only_outBiddingZone_Domain: bool = False,
+) -> Union[Tuple[List[float], List[datetime]], None]:
 
     if not xml_text:
         return None
@@ -644,7 +674,7 @@ def parse_scalar(
     values = []
     datetimes = []
     for timeseries in soup.find_all("timeseries"):
-        resolution = timeseries.find_all("resolution")[0].contents[0]
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
         datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
         if only_inBiddingZone_Domain:
             if not len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())):
@@ -662,7 +692,9 @@ def parse_scalar(
     return values, datetimes
 
 
-def parse_production(xml_text) -> Union[tuple, None]:
+def parse_production(
+    xml_text,
+) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
 
     if not xml_text:
         return None
@@ -671,12 +703,14 @@ def parse_production(xml_text) -> Union[tuple, None]:
     productions = []
     datetimes = []
     for timeseries in soup.find_all("timeseries"):
-        resolution = timeseries.find_all("resolution")[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        datetime_start: arrow.Arrow = arrow.get(
+            timeseries.find_all("start")[0].contents[0]
+        )
         is_production = (
             len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
         )
-        psr_type = (
+        psr_type = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
 
@@ -699,7 +733,7 @@ def parse_production(xml_text) -> Union[tuple, None]:
     return productions, datetimes
 
 
-def parse_self_consumption(xml_text):
+def parse_self_consumption(xml_text: str):
     """
     Parses the XML text and returns a dict of datetimes to the total self-consumption
     value from all sources.
@@ -722,13 +756,15 @@ def parse_self_consumption(xml_text):
         )
         if not is_consumption:
             continue
-        psr_type = (
+        psr_type = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
         if psr_type in ENTSOE_STORAGE_PARAMETERS:
             continue
-        resolution = timeseries.find_all("resolution")[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        datetime_start: arrow.Arrow = arrow.get(
+            timeseries.find_all("start")[0].contents[0]
+        )
 
         for entry in timeseries.find_all("point"):
             quantity = float(entry.find_all("quantity")[0].contents[0])
@@ -741,7 +777,7 @@ def parse_self_consumption(xml_text):
     return res
 
 
-def parse_production_per_units(xml_text) -> Union[dict, None]:
+def parse_production_per_units(xml_text: str) -> Union[Any, None]:
     values = {}
 
     if not xml_text:
@@ -749,21 +785,23 @@ def parse_production_per_units(xml_text) -> Union[dict, None]:
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = timeseries.find_all("resolution")[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        datetime_start: arrow.Arrow = arrow.get(
+            timeseries.find_all("start")[0].contents[0]
+        )
         is_production = (
             len(timeseries.find_all("inBiddingZone_Domain.mRID".lower())) > 0
         )
-        psr_type = (
+        psr_type = str(
             timeseries.find_all("mktpsrtype")[0].find_all("psrtype")[0].contents[0]
         )
-        unit_key = (
+        unit_key = str(
             timeseries.find_all("mktpsrtype")[0]
             .find_all("powersystemresources")[0]
             .find_all("mrid")[0]
             .contents[0]
         )
-        unit_name = (
+        unit_name = str(
             timeseries.find_all("mktpsrtype")[0]
             .find_all("powersystemresources")[0]
             .find_all("name")[0]
@@ -794,8 +832,11 @@ def parse_production_per_units(xml_text) -> Union[dict, None]:
 
 
 def parse_exchange(
-    xml_text, is_import, quantities=None, datetimes=None
-) -> Union[tuple, None]:
+    xml_text: str,
+    is_import: bool,
+    quantities: Optional[List[float]] = None,
+    datetimes: Optional[List[datetime]] = None,
+) -> Union[Tuple[List[float], List[datetime]], None]:
 
     if not xml_text:
         return None
@@ -804,8 +845,10 @@ def parse_exchange(
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
     for timeseries in soup.find_all("timeseries"):
-        resolution = timeseries.find_all("resolution")[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        datetime_start: arrow.Arrow = arrow.get(
+            timeseries.find_all("start")[0].contents[0]
+        )
         # Only use contract_marketagreement.type == A01 (Total to avoid double counting some columns)
         if (
             timeseries.find_all("contract_marketagreement.type")
@@ -831,24 +874,28 @@ def parse_exchange(
     return quantities, datetimes
 
 
-def parse_price(xml_text) -> Union[tuple, None]:
+def parse_price(
+    xml_text: str,
+) -> Union[Tuple[List[float], List[str], List[datetime]], None]:
 
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
-    prices = []
-    currencies = []
-    datetimes = []
+    prices: List[float] = []
+    currencies: List[str] = []
+    datetimes: List[datetime] = []
     for timeseries in soup.find_all("timeseries"):
-        currency = timeseries.find_all("currency_unit.name")[0].contents[0]
-        resolution = timeseries.find_all("resolution")[0].contents[0]
-        datetime_start = arrow.get(timeseries.find_all("start")[0].contents[0])
+        currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
+        resolution = str(timeseries.find_all("resolution")[0].contents[0])
+        datetime_start: arrow.Arrow = arrow.get(
+            timeseries.find_all("start")[0].contents[0]
+        )
         for entry in timeseries.find_all("point"):
             position = int(entry.find_all("position")[0].contents[0])
-            datetime = datetime_from_position(datetime_start, position, resolution)
+            dt = datetime_from_position(datetime_start, position, resolution)
             prices.append(float(entry.find_all("price.amount")[0].contents[0]))
-            datetimes.append(datetime)
+            datetimes.append(dt)
             currencies.append(currency)
 
     return prices, currencies, datetimes
@@ -866,13 +913,14 @@ def validate_production(
     This function checks datapoints for a selection of countries and returns False if invalid and True otherwise.
     """
 
-    zone_key = datapoint["zoneKey"]
+    zone_key: str = datapoint["zoneKey"]
 
     validation_criteria = VALIDATIONS.get(zone_key, {})
 
     if validation_criteria:
         return validate(datapoint, logger=logger, **validation_criteria)
 
+    # NOTE: Why are there sepcial checks for these zones?
     if zone_key.startswith("DK-"):
         return validate(datapoint, logger=logger, required=["coal", "solar", "wind"])
 
@@ -898,58 +946,61 @@ def fetch_consumption(
     session = session or Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_scalar(
-        query_consumption(domain, session, target_datetime=target_datetime),
-        only_outBiddingZone_Domain=True,
-    )
-    if parsed:
+    parsed = None
+    raw_consumption = query_consumption(domain, session, target_datetime)
+    if raw_consumption is not None:
+        parsed = parse_scalar(
+            raw_consumption,
+            only_outBiddingZone_Domain=True,
+        )
+    if parsed is not None:
         quantities, datetimes = parsed
-
         # Add power plant self-consumption data.
         # This is reported as part of the production data by ENTSOE.
         # self_consumption is a dict of datetimes to the total self-consumption value from all sources.
         # Only datetimes where the value > 0 are included.
-        self_consumption = parse_self_consumption(
-            query_production(domain, session, target_datetime=target_datetime)
-        )
-        for dt, value in self_consumption.items():
-            try:
-                i = datetimes.index(dt)
-            except ValueError:
-                logger.warning(
-                    f"No corresponding consumption value found for self-consumption at {dt}"
-                )
-                continue
-            quantities[i] += value
-
-        # if a target_datetime was requested, we return everything
-        if target_datetime:
-            return [
-                {
-                    "zoneKey": zone_key,
-                    "datetime": dt.datetime,
-                    "consumption": quantity,
-                    "source": "entsoe.eu",
-                }
-                for dt, quantity in zip(datetimes, quantities)
-            ]
-
-        # else we keep the last stored value
-        # Note, this may not include self-consumption data as sometimes consumption
-        # data is available for a given TZ a few minutes before production data is.
-        dt, quantity = datetimes[-1].datetime, quantities[-1]
-        if dt not in self_consumption:
-            logger.warning(
-                f"Self-consumption data not yet available for {zone_key} at {dt}"
+        self_consumption = None
+        raw_production = query_production(domain, session, target_datetime)
+        if raw_production is not None:
+            self_consumption = parse_self_consumption(
+                raw_production,
             )
-        data = {
-            "zoneKey": zone_key,
-            "datetime": dt,
-            "consumption": quantity,
-            "source": "entsoe.eu",
-        }
-
-        return data
+        if self_consumption is not None:
+            for dt, value in self_consumption.items():
+                try:
+                    i = datetimes.index(dt)
+                except ValueError:
+                    logger.warning(
+                        f"No corresponding consumption value found for self-consumption at {dt}"
+                    )
+                    continue
+                quantities[i] += value
+            # if a target_datetime was requested, we return everything
+            if target_datetime:
+                return [
+                    {
+                        "zoneKey": zone_key,
+                        "datetime": dt,
+                        "consumption": quantity,
+                        "source": "entsoe.eu",
+                    }
+                    for dt, quantity in zip(datetimes, quantities)
+                ]
+            # else we keep the last stored value
+            # Note, this may not include self-consumption data as sometimes consumption
+            # data is available for a given TZ a few minutes before production data is.
+            dt, quantity = datetimes[-1], quantities[-1]
+            if dt not in self_consumption:
+                logger.warning(
+                    f"Self-consumption data not yet available for {zone_key} at {dt}"
+                )
+            data = {
+                "zoneKey": zone_key,
+                "datetime": dt,
+                "consumption": quantity,
+                "source": "entsoe.eu",
+            }
+            return data
 
 
 @refetch_frequency(timedelta(days=2))
@@ -972,7 +1023,11 @@ def fetch_production(
     )
 
     if not parsed:
-        return None
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No production data found for {zone_key}",
+            zone_key=zone_key,
+        )
 
     productions, production_dates = parsed
 
@@ -1001,7 +1056,7 @@ def fetch_production(
         data.append(
             {
                 "zoneKey": zone_key,
-                "datetime": production_date.datetime,
+                "datetime": production_date,
                 "production": production_types["production"],
                 "storage": {
                     "hydro": production_types["storage"]["hydro storage"],
@@ -1099,25 +1154,23 @@ def fetch_production_per_units(
     # Iterate over all psr types
     for k in ENTSOE_PARAMETER_DESC.keys():
         try:
-            values = (
-                parse_production_per_units(
-                    query_production_per_units(k, domain, session, target_datetime)
-                )
-                or []
+            raw_production_per_units = query_production_per_units(
+                k, domain, session, target_datetime
             )
-            for v in values:
-                if not v:
-                    continue
-                v["datetime"] = v["datetime"].datetime
-                v["source"] = "entsoe.eu"
-                if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
-                    logger.warning(
-                        "Unknown unit %s with id %s" % (v["unitName"], v["unitKey"])
-                    )
-                else:
-                    v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
-                    if v["zoneKey"] == zone_key:
-                        data.append(v)
+            if raw_production_per_units is not None:
+                values = parse_production_per_units(raw_production_per_units) or []
+                for v in values:
+                    if not v:
+                        continue
+                    v["source"] = "entsoe.eu"
+                    if not v["unitName"] in ENTSOE_UNITS_TO_ZONE:
+                        logger.warning(
+                            f"Unknown unit {v['unitName']} with id {v['unitKey']}"
+                        )
+                    else:
+                        v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
+                        if v["zoneKey"] == zone_key:
+                            data.append(v)
         except QueryError:
             pass
 
@@ -1131,7 +1184,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list:
     """
     Gets exchange status between two specified zones.
     Removes any datapoints that are in the future.
@@ -1149,45 +1202,52 @@ def fetch_exchange(
     exchange_hashmap = {}
     # Grab exchange
     # Import
-    parsed = parse_exchange(
-        query_exchange(domain1, domain2, session, target_datetime=target_datetime),
-        is_import=True,
-    )
-    if parsed:
-        # Export
+    raw_exchange = query_exchange(domain1, domain2, session, target_datetime)
+    if raw_exchange is not None:
         parsed = parse_exchange(
-            xml_text=query_exchange(
-                domain2, domain1, session, target_datetime=target_datetime
-            ),
-            is_import=False,
-            quantities=parsed[0],
-            datetimes=parsed[1],
+            raw_exchange,
+            is_import=True,
         )
         if parsed:
-            quantities, datetimes = parsed
-            for i in range(len(quantities)):
-                exchange_hashmap[datetimes[i]] = quantities[i]
+            # Export
+            raw_exchange = query_exchange(domain2, domain1, session, target_datetime)
+            if raw_exchange is not None:
+                parsed = parse_exchange(
+                    xml_text=raw_exchange,
+                    is_import=False,
+                    quantities=parsed[0],
+                    datetimes=parsed[1],
+                )
+                if parsed:
+                    quantities, datetimes = parsed
+                    for i in range(len(quantities)):
+                        exchange_hashmap[datetimes[i]] = quantities[i]
 
-    # Remove all dates in the future
-    exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
-    exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
-    if not len(exchange_dates):
-        raise QueryError("No exchange data found")
-    data = []
-    for exchange_date in exchange_dates:
-        net_flow = exchange_hashmap[exchange_date]
-        data.append(
-            {
-                "sortedZoneKeys": key,
-                "datetime": exchange_date.datetime,
-                "netFlow": net_flow
-                if zone_key1[0] == sorted_zone_keys
-                else -1 * net_flow,
-                "source": "entsoe.eu",
-            }
+        # Remove all dates in the future
+        exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
+        exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
+        if not len(exchange_dates):
+            raise QueryError("No exchange data found")
+        data = []
+        for exchange_date in exchange_dates:
+            net_flow = float(exchange_hashmap[exchange_date])
+            data.append(
+                {
+                    "sortedZoneKeys": key,
+                    "datetime": exchange_date,
+                    "netFlow": net_flow
+                    if zone_key1[0] == sorted_zone_keys
+                    else -1 * net_flow,
+                    "source": "entsoe.eu",
+                }
+            )
+
+        return data
+    else:
+        raise ParserException(
+            parser="entsoe.eu",
+            message=f"No exchange data found for {zone_key1} -> {zone_key2}",
         )
-
-    return data
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1212,23 +1272,28 @@ def fetch_exchange_forecast(
     exchange_hashmap = {}
     # Grab exchange
     # Import
-    parsed = parse_exchange(
-        query_exchange_forecast(
-            domain1, domain2, session, target_datetime=target_datetime
-        ),
-        is_import=True,
+    parsed = None
+    raw_exchange_forecast = query_exchange_forecast(
+        domain1, domain2, session, target_datetime=target_datetime
     )
-    if parsed:
-        # Export
+    if raw_exchange_forecast is not None:
         parsed = parse_exchange(
-            xml_text=query_exchange_forecast(
-                domain2, domain1, session, target_datetime=target_datetime
-            ),
-            is_import=False,
-            quantities=parsed[0],
-            datetimes=parsed[1],
+            raw_exchange_forecast,
+            is_import=True,
         )
-        if parsed:
+    if parsed is not None:
+        # Export
+        raw_exchange_forecast = query_exchange_forecast(
+            domain2, domain1, session, target_datetime=target_datetime
+        )
+        if raw_exchange_forecast is not None:
+            parsed = parse_exchange(
+                xml_text=raw_exchange_forecast,
+                is_import=False,
+                quantities=parsed[0],
+                datetimes=parsed[1],
+            )
+        if parsed is not None:
             quantities, datetimes = parsed
             for i in range(len(quantities)):
                 exchange_hashmap[datetimes[i]] = quantities[i]
@@ -1237,7 +1302,10 @@ def fetch_exchange_forecast(
     sorted_zone_keys = sorted([zone_key1, zone_key2])
     exchange_dates = list(sorted(set(exchange_hashmap.keys()), reverse=True))
     if not len(exchange_dates):
-        return None
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No exchange forecast data found for {zone_key1} -> {zone_key2}",
+        )
     data = []
     for exchange_date in exchange_dates:
         netFlow = exchange_hashmap[exchange_date]
@@ -1269,16 +1337,19 @@ def fetch_price(
         domain = ENTSOE_PRICE_DOMAIN_OVERRIDE[zone_key]
     else:
         domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    parsed = None
     # Grab consumption
-    parsed = parse_price(query_price(domain, session, target_datetime=target_datetime))
-    if parsed:
+    raw_price = query_price(domain, session, target_datetime=target_datetime)
+    if raw_price is not None:
+        parsed = parse_price(raw_price)
+    if parsed is not None:
         data = []
         prices, currencies, datetimes = parsed
         for i in range(len(prices)):
             data.append(
                 {
                     "zoneKey": zone_key,
-                    "datetime": datetimes[i].datetime,
+                    "datetime": datetimes[i],
                     "currency": currencies[i],
                     "price": prices[i],
                     "source": "entsoe.eu",
@@ -1286,6 +1357,12 @@ def fetch_price(
             )
 
         return data
+    else:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No price data found for {zone_key}",
+            zone_key=zone_key,
+        )
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1299,25 +1376,34 @@ def fetch_generation_forecast(
     if not session:
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
+    parsed = None
     # Grab consumption
-    parsed = parse_scalar(
-        query_generation_forecast(domain, session, target_datetime=target_datetime),
-        only_inBiddingZone_Domain=True,
-    )
-    if parsed:
+    test = query_generation_forecast(domain, session, target_datetime=target_datetime)
+    if test is not None:
+        parsed = parse_scalar(
+            test,
+            only_inBiddingZone_Domain=True,
+        )
+    if parsed is not None:
         data = []
         values, datetimes = parsed
         for i in range(len(values)):
             data.append(
                 {
                     "zoneKey": zone_key,
-                    "datetime": datetimes[i].datetime,
+                    "datetime": datetimes[i],
                     "value": values[i],
                     "source": "entsoe.eu",
                 }
             )
 
         return data
+    else:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No generation forecast data found for {zone_key}",
+            zone_key=zone_key,
+        )
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1332,24 +1418,35 @@ def fetch_consumption_forecast(
         session = Session()
     domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
     # Grab consumption
-    parsed = parse_scalar(
-        query_consumption_forecast(domain, session, target_datetime=target_datetime),
-        only_outBiddingZone_Domain=True,
+    parsed = None
+    raw_consumption_forecast = query_consumption_forecast(
+        domain, session, target_datetime=target_datetime
     )
-    if parsed:
+    if raw_consumption_forecast is not None:
+        parsed = parse_scalar(
+            raw_consumption_forecast,
+            only_outBiddingZone_Domain=True,
+        )
+    if parsed is not None:
         data = []
         values, datetimes = parsed
         for i in range(len(values)):
             data.append(
                 {
                     "zoneKey": zone_key,
-                    "datetime": datetimes[i].datetime,
+                    "datetime": datetimes[i],
                     "value": values[i],
                     "source": "entsoe.eu",
                 }
             )
 
         return data
+    else:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No consumption forecast found for {zone_key}",
+            zone_key=zone_key,
+        )
 
 
 @refetch_frequency(timedelta(days=2))
@@ -1374,7 +1471,11 @@ def fetch_wind_solar_forecasts(
     )
 
     if not parsed:
-        return None
+        raise ParserException(
+            parser="ENTSOE.py",
+            message=f"No production per mode forecast data found for {zone_key}",
+            zone_key=zone_key,
+        )
 
     productions, production_dates = parsed
 
@@ -1388,7 +1489,7 @@ def fetch_wind_solar_forecasts(
         data.append(
             {
                 "zoneKey": zone_key,
-                "datetime": production_date.datetime,
+                "datetime": production_date,
                 "production": {
                     "solar": production_values.get("Solar", None),
                     "wind": get_wind(production_values),
