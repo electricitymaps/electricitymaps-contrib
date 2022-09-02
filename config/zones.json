@@ -5417,9 +5417,9 @@
       [-157.14716739499988, 22.209850429000085]
     ],
     "capacity": {
-      "battery storage": 1,
+      "battery storage": 186,
       "biomass": 157.7,
-      "coal": 203,
+      "coal": 0,
       "gas": 0,
       "geothermal": 0,
       "hydro": 0,
@@ -5428,7 +5428,7 @@
       "unknown": 0,
       "wind": 126.6
     },
-    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda"],
+    "contributors": ["kepiej", "systemcatch", "KabelWlan", "danielmatsuda", "brandongalbraith"],
     "flag_file_name": "us.png",
     "parsers": {
       "production": "US_HI.fetch_production"
