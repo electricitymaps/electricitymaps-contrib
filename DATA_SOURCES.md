@@ -374,6 +374,10 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Federal: [EIA](https://www.eia.gov/electricity/data.cfm#gencapacity)
   - Balancing Authorities: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - States: [EIA](https://www.eia.gov/electricity/data/state/)
+    - Hawaii
+      - Battery storage: https://www.kapoleienergystorage.com/
+      - Coal: [https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
+      - Other: https://www.eia.gov/electricity/data/eia860M/
   - BPA: [BPA](https://transmission.bpa.gov/business/operations/Wind/baltwg.aspx)
   - CAISO
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
