@@ -327,7 +327,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
-- Portugal
+- Portugal: [REN](https://datahub.ren.pt/pt/eletricidade/balanco-mensal/)
   - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Puerto Rico: [EIA](https://www.eia.gov/electricity/data/eia860M/)
