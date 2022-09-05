@@ -524,7 +524,7 @@ def _fetch(
             )
         utc = tz.gettz("UTC")
         eia_ts_format = "%Y-%m-%dT%HH"
-        end = target_datetime.astimezone(utc)
+        end = target_datetime.astimezone(utc) + timedelta(hours=1)
         start = end - timedelta(days=1)
         url = f"{url_prefix}&api_key={API_KEY}&start={start.strftime(eia_ts_format)}&end={end.strftime(eia_ts_format)}"
     else:
