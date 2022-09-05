@@ -21,6 +21,9 @@
     "NO-NO1->NO-NO5",
     "NO-NO2->NO-NO5",
     "NO-NO3->NO-NO4",
-    "NO-NO3->NO-NO5"
+    "NO-NO3->NO-NO5",
+    "SE-SE1->SE-SE2",
+    "SE-SE2->SE-SE3",
+    "SE-SE3->SE-SE4"
   ]
 }

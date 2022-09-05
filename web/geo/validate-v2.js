@@ -132,6 +132,8 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
   // add bbox to features to increase speed
   const features = getPolygons(fc).features.map((ft) => ({ ft, bbox: bboxPolygon(bbox(ft)) }));
 
+  const countriesToIgnore = fc.features.filter((ft) => ft.properties.isCombined).map((ft) => ft.properties.countryKey);
+
   const overlaps = features
     .filter(
       (ft1, idx1) =>
@@ -139,13 +141,16 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
           if (idx1 !== idx2 && intersect(ft1.bbox, ft2.bbox)) {
             const intersection = intersect(ft1.ft, ft2.ft);
             if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
+              if (countriesToIgnore.includes(ft1.ft.properties.countryKey)) {
+                return false;
+              }
               return true;
             }
           }
         }).length
     )
     .map(({ ft, _ }) => ft.properties.zoneName);
-  if (overlaps.length > 143) {
+  if (overlaps.length > 0) {
     //With the current number of zones combined there should be 143 overlaps
     overlaps.forEach((x) => console.error(`${x} overlaps with another feature`));
     throw Error('Feature(s) overlap');

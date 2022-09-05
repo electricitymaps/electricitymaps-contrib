@@ -8,7 +8,6 @@ const {
   truncate,
   length,
   polygonToLineString,
-
 } = require('@turf/turf');
 const fs = require('fs');
 
@@ -45,15 +44,15 @@ function getPolygons(input) {
 
 function isSliver(polygon, polArea, sliverRatio) {
   const lineStringLength = length(polygonToLineString(polygon));
-  return lineStringLength / polArea < sliverRatio;
+  return Number(lineStringLength / polArea) > Number(sliverRatio);
 }
 
 function getHoles(fc, minArea, sliverRatio) {
   const holes = [];
   featureEach(fc, (ft) => {
     const coords = getCoords(ft);
-    if (coords.length > 1) {
-      for (let i = 1; i < coords.length; i++) {
+    if (coords.length > 0) {
+      for (let i = 0; i < coords.length; i++) {
         const pol = polygon([coords[i]]);
         const polArea = area(pol);
         if (polArea < minArea && !isSliver(pol, polArea, sliverRatio)) {
@@ -86,4 +85,4 @@ const round = (number, decimals = 2) => {
   return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 };
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, round, fileExists };
+module.exports = { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };

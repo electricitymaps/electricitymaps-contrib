@@ -12,20 +12,20 @@ const config = {
   WORLD_PATH: path.resolve(__dirname, './world.geojson'),
   OUT_PATH: path.resolve(__dirname, '../src/world.json'),
   ERROR_PATH: path.resolve(__dirname, '.'),
-  MIN_AREA_HOLES: 600000000,
+  MIN_AREA_HOLES: 5000000,
   MAX_CONVEX_DEVIATION: 0.708,
   MIN_AREA_INTERSECTION: 500000,
-  SLIVER_RATIO: 0.01, // ratio of length and area to determine if the polygon is a sliver and should be ignored
+  SLIVER_RATIO: 0.0001, // ratio of length and area to determine if the polygon is a sliver and should be ignored
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 const configV2 = {
   WORLD_PATH: path.resolve(__dirname, './world.geojson'),
   OUT_PATH: path.resolve(__dirname, '../src/world-aggregated.json'),
   ERROR_PATH: path.resolve(__dirname, '.'),
-  MIN_AREA_HOLES: 600000000,
+  MIN_AREA_HOLES: 5000000,
   MAX_CONVEX_DEVIATION: 0.708,
-  MIN_AREA_INTERSECTION: 600000,
-  SLIVER_RATIO: 1, // ratio of length and area to determine if the polygon is a sliver and should be ignored
+  MIN_AREA_INTERSECTION: 6000000,
+  SLIVER_RATIO: 0.0001, // ratio of length and area to determine if the polygon is a sliver and should be ignored
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
