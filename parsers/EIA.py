@@ -536,12 +536,22 @@ def _fetch(
     return [
         {
             "zoneKey": zone_key,
-            "datetime": parser.parse(datapoint["period"]),
+            "datetime": _conform_timestamp_convention(
+                parser.parse(datapoint["period"])
+            ),
             "value": datapoint["value"],
             "source": "eia.gov",
         }
         for datapoint in raw_data["response"]["data"]
     ]
+
+
+def _conform_timestamp_convention(dt: datetime):
+    # The timestamp given by EIA represents the end of the time interval.
+    # ElectricityMap using another convention,
+    # where the timestamp represents the beginning of the interval.
+    # So we need shift the datetime 1 hour back.
+    return dt - timedelta(hours=1)
 
 
 if __name__ == "__main__":
