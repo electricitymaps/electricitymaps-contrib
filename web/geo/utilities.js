@@ -6,8 +6,8 @@ const {
   featureCollection,
   area,
   truncate,
-  polygonToLineString,
   length,
+  polygonToLineString,
 } = require('@turf/turf');
 const fs = require('fs');
 
@@ -44,15 +44,15 @@ function getPolygons(input) {
 
 function isSliver(polygon, polArea, sliverRatio) {
   const lineStringLength = length(polygonToLineString(polygon));
-  return lineStringLength / polArea < sliverRatio;
+  return Number(lineStringLength / polArea) > Number(sliverRatio);
 }
 
 function getHoles(fc, minArea, sliverRatio) {
   const holes = [];
   featureEach(fc, (ft) => {
     const coords = getCoords(ft);
-    if (coords.length > 1) {
-      for (let i = 1; i < coords.length; i++) {
+    if (coords.length > 0) {
+      for (let i = 0; i < coords.length; i++) {
         const pol = polygon([coords[i]]);
         const polArea = area(pol);
         if (polArea < minArea && !isSliver(pol, polArea, sliverRatio)) {
@@ -64,9 +64,12 @@ function getHoles(fc, minArea, sliverRatio) {
   return featureCollection(holes);
 }
 
+const fileExists = (fileName) => fs.existsSync(fileName);
+
 const getJSON = (fileName, encoding = 'utf8') => JSON.parse(fs.readFileSync(fileName, encoding));
 
-const writeJSON = (fileName, obj, encoding = 'utf8') => fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
+const writeJSON = (fileName, obj, encoding = 'utf8') =>
+  fs.writeFileSync(fileName, JSON.stringify(obj), { encoding, flag: 'w' });
 
 function log(message) {
   console.error('\x1b[31m%s\x1b[0m', `ERROR: ${message}`);
@@ -82,4 +85,4 @@ const round = (number, decimals = 2) => {
   return Math.round((number + Number.EPSILON) * 10 ** decimals) / 10 ** decimals;
 };
 
-module.exports = { getPolygons, getHoles, writeJSON, getJSON, log, round };
+module.exports = { getPolygons, getHoles, isSliver, writeJSON, getJSON, log, round, fileExists };

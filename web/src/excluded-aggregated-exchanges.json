@@ -1,0 +1,29 @@
+{
+  "exchangesToExclude": [
+    "DK-DK1->DK-DK2",
+    "IT-CNO->IT-CSO",
+    "IT-CNO->IT-NO",
+    "IT-CSO->IT-SAR",
+    "IT-CSO->IT-SO",
+    "IT-SIC->IT-SO",
+    "MX-CE->MX-OC",
+    "MX-CE->MX-OR",
+    "MX-NE->MX-NO",
+    "MX-NE->MX-OC",
+    "MX-NE->MX-OR",
+    "MX-NO->MX-NW",
+    "MX-NW->MX-OC",
+    "MX-NO->MX-OC",
+    "MX-OC->MX-OR",
+    "MX-OR->MX-PN",
+    "NO-NO1->NO-NO2",
+    "NO-NO1->NO-NO3",
+    "NO-NO1->NO-NO5",
+    "NO-NO2->NO-NO5",
+    "NO-NO3->NO-NO4",
+    "NO-NO3->NO-NO5",
+    "SE-SE1->SE-SE2",
+    "SE-SE2->SE-SE3",
+    "SE-SE3->SE-SE4"
+  ]
+}

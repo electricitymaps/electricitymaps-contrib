@@ -2637,10 +2637,7 @@
       "wind": 10906.9
     },
     "contributors": ["corradio"],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast"
-    },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "subZoneNames": ["IT-CNO", "IT-CSO", "IT-NO", "IT-SAR", "IT-SIC", "IT-SO"],
     "timezone": "Europe/Rome"
   },
