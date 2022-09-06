@@ -379,6 +379,10 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+  - Hawaii
+    - Battery storage: [Kapolei Energy Storage Project](https://www.kapoleienergystorage.com/)
+    - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
+    - Other: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
