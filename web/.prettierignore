@@ -7,6 +7,5 @@ yarn.lock
 world.json
 world-aggregated.json
 excluded-aggregated-exchanges.json
-Dockerfile
 public/dist/
 public/images/
