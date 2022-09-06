@@ -25,8 +25,13 @@
     "addeditsource": "<a href=\"%s\" target=\"_blank\">Tilføj eller rediger kilde</a>",
     "noDataAtTimestamp": "Data er midlertidigt utilgængeligt for det valgte tidspunkt",
     "noLiveData": "Realtidsdata er midlertidigt utilgængeligt for dette område",
+    "estimated": "anslået",
+    "aggregated": "aggregeret",
     "noParserInfo": "Vi har endnu ingen information om dette område.<br/>Vil du hjælpe med at løse det? Du kan bidrage ved at <a href=\"%s\" target=\"_blank\">tilføje områdedata</a>.",
     "now": "Nu"
+  },
+  "time-controller": {
+    "title": "Vis historiske data"
   },
   "country-history": {
     "carbonintensity": { "hourly": "CO₂-intensitet i de sidste 24 timer" },
