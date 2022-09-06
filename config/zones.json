@@ -3922,18 +3922,18 @@
       [-5.705947224999932, 42.65362965999999]
     ],
     "capacity": {
-      "biomass": 876,
+      "biomass": 700,
       "coal": 0,
-      "gas": 4580,
+      "gas": 4520,
       "geothermal": 0,
-      "hydro": 4372,
-      "hydro storage": 2827,
+      "hydro": 4578,
+      "hydro storage": 3585,
       "nuclear": 0,
       "oil": 0,
-      "solar": 1364,
-      "wind": 5528
+      "solar": 1616,
+      "wind": 5389
     },
-    "contributors": ["corradio", "nessie2013", "Falconet8"],
+    "contributors": ["corradio", "nessie2013", "Musketeiro"],
     "flag_file_name": "pt.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
