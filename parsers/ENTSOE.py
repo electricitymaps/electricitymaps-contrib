@@ -70,32 +70,18 @@ ENTSOE_PARAMETER_GROUPS = {
     "storage": {"hydro storage": ["B10"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
-ENTSOE_PARAMETER_BY_GROUP = {
-    "B01": "biomass",
-    "B02": "coal",
-    "B03": "gas",
-    "B04": "gas",
-    "B05": "coal",
-    "B06": "oil",
-    "B07": "coal",
-    "B08": "coal",
-    "B09": "geothermal",
-    "B10": "hydro storage",
-    "B11": "hydro",
-    "B12": "hydro",
-    "B13": "unknown",
-    "B14": "nuclear",
-    "B15": "unknown",
-    "B16": "solar",
-    "B17": "biomass",
-    "B18": "wind",
-    "B19": "wind",
-    "B20": "unknown",
-}
+ENTSOE_PARAMETER_BY_GROUP: Dict[str, str] = {}
+for key in ["production", "storage"]:
+  parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
+  for type, groups in parameter_groups.items():
+    for ENTSOE_fuel_code in groups:
+      ENTSOE_PARAMETER_BY_GROUP[ENTSOE_fuel_code] = type
+
 # Get all the individual storage parameters in one list
 ENTSOE_STORAGE_PARAMETERS = list(
     itertools.chain.from_iterable(ENTSOE_PARAMETER_GROUPS["storage"].values())
 )
+print(ENTSOE_STORAGE_PARAMETERS)
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
 ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
