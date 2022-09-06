@@ -11,4 +11,4 @@ To update geographies on the app
 1. Create manual changes on world.geojson
 2. Run `node update-world.js`
 
-This will validate and generate the new world.json file which is a compressed version of the world.geojson.
+This will validate and generate the new world.json and world-aggregated.json files which are compressed versions of the world.geojson.
