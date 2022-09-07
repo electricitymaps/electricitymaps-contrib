@@ -127,6 +127,9 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+    "aggregated": "aggregated",
+    "detailed": "detailed",
+    "aggregateinfo": "Countries with missing zone data are unable to be aggregated",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"
@@ -1179,6 +1182,9 @@
     },
     "NL": {
       "zoneName": "Netherlands"
+    },
+    "NO": {
+      "zoneName": "Norway"
     },
     "NO-NO1": {
       "countryName": "Norway",
