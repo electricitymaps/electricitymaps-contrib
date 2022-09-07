@@ -20,6 +20,7 @@ from requests import Session
 from parsers.lib.config import refetch_frequency
 
 from .ENTSOE import merge_production_outputs
+from .lib.utils import get_token
 from .lib.validation import validate
 
 # Reverse exchanges need to be multiplied by -1, since they are reported in the opposite direction
@@ -352,14 +353,8 @@ def _fetch(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ):
-    # load EIA API key
-    try:
-        API_KEY = os.environ["EIA_KEY"]
-    except KeyError:
-        raise RuntimeError(
-            "Requires an API key, set in the EIA_KEY environment variable. \
-            Get one here: https://www.eia.gov/opendata/register.php"
-        )
+    # get EIA API key
+    API_KEY = get_token("EIA_KEY")
 
     if target_datetime:
         try:
