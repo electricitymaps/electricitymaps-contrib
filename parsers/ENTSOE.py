@@ -17,16 +17,18 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from random import shuffle
 from typing import Any, Dict, List, Optional, Union
 
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 
+from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
@@ -470,9 +472,19 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
 
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = get_token("ENTSOE_TOKEN").split(",")
-
-    params["securityToken"] = np.random.choice(tokens)
-    return session.get(ENTSOE_ENDPOINT, params=params)
+    # Shuffle the tokens so that we don't always use the first one.
+    shuffle(tokens)
+    # Try each token until we get a valid response
+    for token in tokens:
+        params["securityToken"] = token
+        response: Response = session.get(ENTSOE_ENDPOINT, params=params)
+        if response.ok:
+            return response
+    # If we get here, none of the tokens worked
+    raise ParserException(
+        parser="ENTSOE.py",
+        message="No working ENTSOE token found, this is probably due to rate limits.",
+    )
 
 
 def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
