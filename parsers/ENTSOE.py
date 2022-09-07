@@ -459,29 +459,27 @@ def query_ENTSOE(
             last_respone_if_all_fail = response
     # If we get here, all tokens failed to fetch valid data
     # and we will check the last response for a error message.
+    exception_message = None
     if last_respone_if_all_fail is not None:
         soup = BeautifulSoup(last_respone_if_all_fail.text, "html.parser")
         text = soup.find_all("text")
         if len(text):
             error_text = soup.find_all("text")[0].prettify()
             if "No matching data found" in error_text:
-                raise ParserException(
-                    parser="ENTSOE.py", message="No matching data found"
+                exception_message = "No matching data found"
+            else:
+                exception_message = (
+                    f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
                 )
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"{function_name} failed in ENTSOE.py. Reason: {error_text}",
-            )
         else:
-            raise ParserException(
-                parser="ENTSOE.py",
-                message=f"{function_name} failed in ENTSOE.py. Reason: {last_respone_if_all_fail.text}",
-            )
-    else:
-        raise ParserException(
-            parser="ENTSOE.py",
-            message="An unknown error occured while querying ENTSOE.",
-        )
+            exception_message = f"{function_name} failed in ENTSOE.py. Reason: {last_respone_if_all_fail.text}"
+
+    raise ParserException(
+        parser="ENTSOE.py",
+        message=exception_message
+        if exception_message
+        else "An unknown error occured while querying ENTSOE.",
+    )
 
 
 def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
