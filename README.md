@@ -17,7 +17,7 @@ Here are some of the ways you can contribute:
 - [Changes to the frontend](https://github.com/electricitymap/electricitymap-contrib/wiki/Changes-to-the-frontend)
 - [Find data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Find-data-sources)
 - [Verify data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Verify-data-sources)
-- [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymap.org)
+- [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymaps.com)
 - [Updating region capacities](https://github.com/electricitymap/electricitymap-contrib/wiki/Update-region-capacities)
 
 Join us on [Slack](https://slack.electricitymaps.com) if you wish to discuss development or need help to get started.
