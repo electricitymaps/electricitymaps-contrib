@@ -4,7 +4,7 @@ describe('Country Panel', () => {
   });
 
   it.skip('interacts with details', () => {
-    cy.visit('/zone/DK-DK2?skip-onboarding=true');
+    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.interceptAPI('v5/history/hourly?countryCode=DK-DK2');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.waitForAPISuccess('v5/history/hourly?countryCode=DK-DK2');
@@ -42,7 +42,7 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.visit('/zone/UA');
+    cy.visit('/zone/UA?lang=en-GB');
     cy.interceptAPI('v5/history/hourly?countryCode=UA');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.waitForAPISuccess('v5/history/hourly?countryCode=UA');
@@ -53,7 +53,7 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains no parser message when zone has no data', () => {
-    cy.visit('/zone/CN');
+    cy.visit('/zone/CN?lang=en-GB');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.get('[data-test-id=no-parser-message]').should('exist');
   });
