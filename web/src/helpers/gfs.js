@@ -1,4 +1,4 @@
-import { addHours, getHours, startOfHour, subHours } from 'date-fns';
+import { addHours, formatISO, getHours, startOfHour, subHours } from 'date-fns';
 
 import { protectedJsonRequest } from './api';
 
@@ -28,7 +28,7 @@ function getGfsRefTimeForTarget(datetime) {
 
 export function fetchGfsForecast(resource, targetTime) {
   const requestForecastAtRef = (refTime) =>
-    protectedJsonRequest(`/v3/gfs/${resource}?refTime=${refTime.toISOString()}&targetTime=${targetTime.toISOString()}`);
+    protectedJsonRequest(`/v3/gfs/${resource}?refTime=${formatISO(refTime)}&targetTime=${formatISO(targetTime)}`);
   // Try fetching the forecast at the given timestamp and if it fails, try one more time.
   return new Promise((resolve, reject) => {
     requestForecastAtRef(getGfsRefTimeForTarget(targetTime))
