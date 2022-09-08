@@ -70,12 +70,12 @@ ENTSOE_PARAMETER_GROUPS = {
     "storage": {"hydro storage": ["B10"]},
 }
 # ENTSOE production type codes mapped to their Electricity Maps production type.
-ENTSOE_PARAMETER_BY_GROUP: Dict[str, str] = {}
-for key in ["production", "storage"]:
-    parameter_groups = ENTSOE_PARAMETER_GROUPS[key]
-    for type, groups in parameter_groups.items():
-        for ENTSOE_production_code in groups:
-            ENTSOE_PARAMETER_BY_GROUP[ENTSOE_production_code] = type
+ENTSOE_PARAMETER_BY_GROUP = {
+    ENTSOE_key: type
+    for key in ["production", "storage"]
+    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for ENTSOE_key in groups
+}
 
 # Get all the individual storage parameters in one list
 ENTSOE_STORAGE_PARAMETERS = list(
