@@ -30,7 +30,6 @@ describe('Map', () => {
     // TODO: Find a way to test these reliably.
     // test layers
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    // cy.wait(200);
     // cy.get('[href*="wind=true"]').click();
     // cy.contains('Wind power potential');
     // TODO: For some reason the link is not "mounted in DOM" until after a while...
