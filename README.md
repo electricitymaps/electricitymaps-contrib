@@ -12,13 +12,14 @@ Thank you for your interest. Check out the [Wiki](https://github.com/electricity
 
 Here are some of the ways you can contribute:
 
-- [Building a new parser](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Building-a-new-parser)
-- [Fixing a broken parser](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Fixing-a-broken-parser)
-- [Changes to the frontend](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Changes-to-the-frontend)
-- [Find data sources](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Find-data-sources)
-- [Verify data sources](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Verify-data-sources)
-- [Translating the app](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Translating-electricitymap.org)
-- [Updating region capacities](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Update-region-capacities)
+
+- [Building a new parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Building-a-new-parser)
+- [Fixing a broken parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Fixing-a-broken-parser)
+- [Changes to the frontend](https://github.com/electricitymap/electricitymap-contrib/wiki/Changes-to-the-frontend)
+- [Find data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Find-data-sources)
+- [Verify data sources](https://github.com/electricitymap/electricitymap-contrib/wiki/Verify-data-sources)
+- [Translating the app](https://github.com/electricitymap/electricitymap-contrib/wiki/Translating-electricitymaps.com)
+- [Updating region capacities](https://github.com/electricitymap/electricitymap-contrib/wiki/Update-region-capacities)
 
 Join us on [Slack](https://slack.electricitymaps.com) if you wish to discuss development or need help to get started.
 
