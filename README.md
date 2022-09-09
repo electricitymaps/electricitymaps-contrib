@@ -12,7 +12,6 @@ Thank you for your interest. Check out the [Wiki](https://github.com/electricity
 
 Here are some of the ways you can contribute:
 
-
 - [Building a new parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Building-a-new-parser)
 - [Fixing a broken parser](https://github.com/electricitymap/electricitymap-contrib/wiki/Fixing-a-broken-parser)
 - [Changes to the frontend](https://github.com/electricitymap/electricitymap-contrib/wiki/Changes-to-the-frontend)

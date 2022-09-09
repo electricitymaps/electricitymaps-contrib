@@ -1,7 +1,6 @@
 # Needed for lint staged.
 .prettierignore
 yarn.lock
-README.md
 
 .venv
 **/parsers/test/mocks
