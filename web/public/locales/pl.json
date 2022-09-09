@@ -40,7 +40,7 @@
     "aggregated": "zagregowane",
     "estimatedTooltip": "Dane czasu rzeczywistego dla tego obszaru zostały oszacowane na podstawie danych źródłowych i przyjętych założeń modelu.",
     "aggregatedTooltip": "Dane dla tego obszaru są zagregowane na podstawie historycznych wartości godzinowych.",
-    "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
+    "dataIsEstimated": "Niektóre dane dla tego obszaru zostały oszacowane. Przeczytaj więcej o naszej metodologii szacowania <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">tutaj</a>.",
     "now": "Obecnie"
   },
   "left-panel": {
