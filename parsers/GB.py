@@ -29,7 +29,7 @@ def fetch_price(
 
     url = ("https://www.rte-france.com/themes/swi/xml/power-market-data.xml")
 
-    response = r.get(url)
+    response = r.get(url, verify=False)
     obj = ET.fromstring(response.content)
     datas = {}
 
