@@ -35,7 +35,7 @@ def fetch_price(
     formatted_to = now.format("DD/MM/YYYY")
 
     url = (
-        "http://eco2mix.rte-france.com/curves/getDonneesMarche?=&da"
+        "http://eco2mix.rte-france.com/curves/getDonneesMarche?da"
         "teDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
     )
     response = r.get(url)
