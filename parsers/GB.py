@@ -25,11 +25,6 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
-    if target_datetime:
-        now = arrow.get(target_datetime, tz="Europe/Paris")
-    else:
-        now = arrow.now(tz="Europe/London")
-
     r = session or Session()
 
     url = ("https://www.rte-france.com/themes/swi/xml/power-market-data.xml")
