@@ -25,11 +25,20 @@ def fetch_price(
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
 ) -> list:
+    if target_datetime:
+        now = arrow.get(target_datetime, tz="Europe/Paris")
+    else:
+        now = arrow.now(tz="Europe/London")
+
     r = session or Session()
+    formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
+    formatted_to = now.format("DD/MM/YYYY")
 
-    url = "https://www.rte-france.com/themes/swi/xml/power-market-data.xml"
-
-    response = r.get(url, verify=False)
+    url = (
+        "http://eco2mix.rte-france.com/curves/getDonneesMarche?=&da"
+        "teDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
+    )
+    response = r.get(url)
     obj = ET.fromstring(response.content)
     datas = {}
 
