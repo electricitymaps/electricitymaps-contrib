@@ -31,13 +31,9 @@ def fetch_price(
         now = arrow.now(tz="Europe/London")
 
     r = session or Session()
-    formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
-    formatted_to = now.format("DD/MM/YYYY")
 
-    url = (
-        "http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&da"
-        "teDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
-    )
+    url = ("https://www.rte-france.com/themes/swi/xml/power-market-data.xml")
+
     response = r.get(url)
     obj = ET.fromstring(response.content)
     datas = {}
