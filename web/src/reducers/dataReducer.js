@@ -31,7 +31,10 @@ const reducer = createReducer(initialState, (builder) => {
         if (!state.zones[zoneId]) {
           return;
         }
-        state.zones[zoneId][stateAggregation].overviews = zoneData;
+        state.zones[zoneId][stateAggregation].overviews = zoneData.map((v) => ({
+          ...v,
+          stateDatetime: new Date(v.stateDatetime),
+        }));
         const maxHistoryDatetime = new Date(
           Math.max(...state.zones[zoneId][stateAggregation].details.map((x) => x.stateDatetime))
         );
