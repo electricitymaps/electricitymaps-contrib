@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
       - name: Print Poetry version
         run: |
-          echo ${{ steps.get-poetry-version.outputs.poetry-version }}
+          echo "${{ steps.get-poetry-version.outputs.poetry-version }}"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
