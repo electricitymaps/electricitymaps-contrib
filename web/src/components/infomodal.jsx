@@ -65,7 +65,7 @@ const InfoView = () => {
         <FeedbackButton href="https://forms.gle/VHaeHzXyGodFKZY18" icon="comment">
           {__('info-modal.feedback-button')}
         </FeedbackButton>
-        <GitHubButton href="https://github.com/electricitymap/electricitymap-contrib" icon="github">
+        <GitHubButton href="https://github.com/electricityMaps/electricitymaps-contrib" icon="github">
           {__('info-modal.github-button')}
         </GitHubButton>
         <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com" icon="twitter">

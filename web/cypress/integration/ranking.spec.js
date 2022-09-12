@@ -1,6 +1,6 @@
 describe('Ranking Panel', () => {
   it('interacts with details', () => {
-    cy.visit('/?skip-onboarding=true');
+    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.interceptAPI('v5/state/hourly');
     cy.waitForAPISuccess(`v5/state/hourly`);
 
