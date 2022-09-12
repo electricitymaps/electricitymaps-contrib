@@ -434,7 +434,7 @@ def closest_in_time_key(x, target_datetime, datetime_key="datetime"):
 
 def query_ENTSOE(
     session, params, target_datetime=None, span=(-48, 24), function_name=""
-) -> Response:
+) -> str:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -459,7 +459,7 @@ def query_ENTSOE(
         params["securityToken"] = token
         response: Response = session.get(ENTSOE_ENDPOINT, params=params)
         if response.ok:
-            return response
+            return response.text
         else:
             last_response_if_all_fail = response
     # If we get here, all tokens failed to fetch valid data
@@ -499,7 +499,7 @@ def query_consumption(domain, session, target_datetime=None) -> Union[str, None]
         params,
         target_datetime=target_datetime,
         function_name=query_consumption.__name__,
-    ).text
+    )
 
 
 def query_production(in_domain, session, target_datetime=None) -> Union[str, None]:
@@ -514,7 +514,7 @@ def query_production(in_domain, session, target_datetime=None) -> Union[str, Non
         target_datetime=target_datetime,
         span=(-48, 0),
         function_name=query_production.__name__,
-    ).text
+    )
 
 
 def query_production_per_units(
@@ -534,7 +534,7 @@ def query_production_per_units(
         target_datetime,
         span=(-24, 0),
         function_name=query_production_per_units.__name__,
-    ).text
+    )
 
 
 def query_exchange(
@@ -551,7 +551,7 @@ def query_exchange(
         params,
         target_datetime=target_datetime,
         function_name=query_exchange.__name__,
-    ).text
+    )
 
 
 def query_exchange_forecast(
@@ -569,7 +569,7 @@ def query_exchange_forecast(
         params,
         target_datetime=target_datetime,
         function_name=query_exchange_forecast.__name__,
-    ).text
+    )
 
 
 def query_price(domain, session, target_datetime=None) -> Union[str, None]:
@@ -584,7 +584,7 @@ def query_price(domain, session, target_datetime=None) -> Union[str, None]:
         params,
         target_datetime=target_datetime,
         function_name=query_price.__name__,
-    ).text
+    )
 
 
 def query_generation_forecast(
@@ -603,7 +603,7 @@ def query_generation_forecast(
         params,
         target_datetime=target_datetime,
         function_name=query_generation_forecast.__name__,
-    ).text
+    )
 
 
 def query_consumption_forecast(
@@ -621,7 +621,7 @@ def query_consumption_forecast(
         params,
         target_datetime=target_datetime,
         function_name=query_consumption_forecast.__name__,
-    ).text
+    )
 
 
 def query_wind_solar_production_forecast(
@@ -639,7 +639,7 @@ def query_wind_solar_production_forecast(
         params,
         target_datetime=target_datetime,
         function_name=query_wind_solar_production_forecast.__name__,
-    ).text
+    )
 
 
 def datetime_from_position(start, position, resolution):
