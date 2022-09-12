@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: venv-{{ checksum "poetry.lock" }}
+          key: venv-$(poetry --version | grep -oP '(?<=Poetry ).*')-{{ checksum "poetry.lock" }}
       - run:
           name: Upgrade pip
           command: sudo pip install -q --upgrade pip
@@ -29,7 +29,7 @@ jobs:
             set -eux -o pipefail
             poetry run check
       - save_cache:
-          key: venv-{{ checksum "poetry.lock" }}
+          key: venv-$(poetry --version | grep -oP '(?<=Poetry ).*')-{{ checksum "poetry.lock" }}
           paths:
             - '.venv'
 
