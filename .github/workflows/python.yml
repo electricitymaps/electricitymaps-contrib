@@ -18,21 +18,18 @@ jobs:
         id: get-poetry-version
         run: |
           echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
-      - name: Print Poetry version
-        run: |
-          echo "${{ steps.get-poetry-version.outputs.poetry-version }}"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version-file: '.python-version'
           cache: 'poetry'
-      #- name: Restore cache
-      #  id: cache
-      #  uses: actions/cache@v3
-      #  with:
-      #    path: .venv
-      #    key: ${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}
-      #    restore-keys: ${{ runner.os }}-venv
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
@@ -52,18 +49,22 @@ jobs:
       - name: Install poetry
         run: |
           pipx install poetry
+      - name: Get poetry version
+        id: get-poetry-version
+        run: |
+          echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version-file: '.python-version'
           cache: 'poetry'
-      #- name: Restore cache
-      #  id: cache
-      #  uses: actions/cache@v3
-      #  with:
-      #    path: .venv
-      #    key: ${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}
-      #    restore-keys: ${{ runner.os }}-venv
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
