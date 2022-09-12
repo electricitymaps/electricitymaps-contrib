@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: venv-$(poetry --version | grep -oP '(?<=Poetry ).*')-{{ checksum "poetry.lock" }}
+          key: venv-{{poetry --version | grep -oP '(?<=Poetry ).*'}}-{{ checksum "poetry.lock" }}
       - run:
           name: Upgrade pip
           command: sudo pip install -q --upgrade pip
