@@ -32,7 +32,7 @@ tablib = {version="~0.12.1", optional=true}
 tqdm = {version="^4.64.0", optional=true}
 xlrd = {version="^1.2.0", optional=true}
 black = "21.6b0"
-isort = "5.9.3"
+isort = "^5.10.1"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
