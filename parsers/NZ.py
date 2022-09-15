@@ -109,6 +109,7 @@ def fetch_production(
             ],
             "wind": productions.get("Wind", {"generation": 0.0})["generation"],
             "hydro": productions.get("Hydro", {"generation": 0.0})["generation"],
+            "solar": productions.get("Solar", {"generation": 0.0})["generation"],
             "unknown": productions.get("Co-Gen", {"generation": 0.0})["generation"],
             "nuclear": 0,  # famous issue in NZ politics
         },
@@ -119,6 +120,7 @@ def fetch_production(
             "geothermal": productions.get("Geothermal", {"capacity": 0.0})["capacity"],
             "wind": productions.get("Wind", {"capacity": 0.0})["capacity"],
             "hydro": productions.get("Hydro", {"capacity": 0.0})["capacity"],
+            "solar": productions.get("Solar", {"capacity": 0.0})["capacity"],
             "battery storage": productions.get("Battery", {"capacity": 0.0})[
                 "capacity"
             ],
