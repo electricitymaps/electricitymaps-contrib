@@ -5,6 +5,7 @@ yarn.lock
 .venv
 **/parsers/test/mocks
 world.json
+world-aggregated.json
 
 mobileapp/plugins
 mobileapp/platforms

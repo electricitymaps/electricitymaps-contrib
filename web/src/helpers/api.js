@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
+import { isRemoteParam } from './featureFlags';
 
 function getToken() {
   if (ELECTRICITYMAP_PUBLIC_TOKEN === '%SNOWPACK_PUBLIC_ELECTRICITYMAP_PUBLIC_TOKEN%') {
@@ -12,10 +13,6 @@ function getToken() {
     );
   }
   return ELECTRICITYMAP_PUBLIC_TOKEN;
-}
-
-function isRemoteParam() {
-  return new URLSearchParams(window.location.search).get('remote') === 'true';
 }
 
 // Use local endpoint only if ALL of the following conditions are true:
