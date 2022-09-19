@@ -53,8 +53,8 @@ const InfoView = () => {
         dangerouslySetInnerHTML={{
           __html: __(
             'info-modal.open-source-text',
-            'https://github.com/tmrowco/electricitymap-contrib',
-            'https://github.com/tmrowco/electricitymap-contrib#data-sources'
+            'https://github.com/electricitymaps/electricitymaps-contrib',
+            'https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources'
           ),
         }}
       />
