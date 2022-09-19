@@ -14,6 +14,10 @@ jobs:
       - name: Install poetry
         run: |
           pipx install poetry
+      - name: Get poetry version
+        id: get-poetry-version
+        run: |
+          echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -24,12 +28,12 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv
+          key: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          poetry install -E parsers
+          poetry install -E parsers --sync
       - name: Linting
         run: |
           poetry run lint
@@ -45,6 +49,10 @@ jobs:
       - name: Install poetry
         run: |
           pipx install poetry
+      - name: Get poetry version
+        id: get-poetry-version
+        run: |
+          echo "::set-output name=poetry-version::$(poetry --version | grep -oP '(?<=Poetry ).*')"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -55,8 +63,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('poetry.lock') }}
-          restore-keys: ${{ runner.os }}-venv
+          key: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}-${{ hashFiles('poetry.lock') }}
+          restore-keys: ${{ runner.os }}-venv-${{steps.get-poetry-version.outputs.poetry-version}}
       - name: Install libxml2-dev and tesseract-ocr
         run: |
           sudo apt-get update
@@ -64,7 +72,7 @@ jobs:
       - name: Install Poetry dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          poetry install -E parsers
+          poetry install -E parsers --sync
       - name: Run tests
         run: |
           poetry run test
