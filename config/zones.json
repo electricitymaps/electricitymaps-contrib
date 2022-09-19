@@ -451,8 +451,8 @@
       "hydro storage": 1308,
       "nuclear": 5943,
       "oil": 280,
-      "solar": 5898,
-      "wind": 4883
+      "solar": 6170,
+      "wind": 5041
     },
     "contributors": ["corradio", "nessie2013", "Fred-3000"],
     "parsers": {
