@@ -1,6 +1,6 @@
 # Electricity Maps
 
-[![Slack Status](https://slack.electricitymaps.com/badge.svg)](https://slack.electricitymaps.com) [![CircleCI](https://circleci.com/gh/electricitymap/electricitymap-contrib.svg?style=shield)](https://circleci.com/gh/electricitymap/electricitymap-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/ElectricityMaps.svg?style=social&label=Follow)](https://twitter.com/ElectricityMaps)
+[![Slack Status](https://slack.electricitymaps.com/badge.svg)](https://slack.electricitymaps.com) [![CircleCI](https://circleci.com/gh/electricitymaps/electricitymaps-contrib.svg?style=shield)](https://circleci.com/gh/electricitymaps/electricitymaps-contrib) [![Twitter Follow](https://img.shields.io/twitter/follow/ElectricityMaps.svg?style=social&label=Follow)](https://twitter.com/ElectricityMaps)
 
 A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equivalent) footprint of electricity consumption built with [d3.js](https://d3js.org/) and [mapbox GL](https://github.com/mapbox/mapbox-gl-js/). Try it out at [app.electricitymaps.com](https://app.electricitymaps.com), or download the app on [Google Play](https://play.google.com/store/apps/details?id=com.tmrow.electricitymap&utm_source=github) or [App store](https://itunes.apple.com/us/app/electricity-map/id1224594248&utm_source=github).
 
@@ -8,7 +8,7 @@ A real-time visualisation of the Greenhouse Gas (in terms of CO<sub>2</sub> equi
 
 ## Contribute
 
-Thank you for your interest. Check out the [Wiki](https://github.com/electricitymap/electricitymap-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/electricitymap/electricitymap-contrib/issues) and [discussions](https://github.com/electricitymap/electricitymap-contrib/discussions)
+Thank you for your interest. Check out the [Wiki](https://github.com/electricityMaps/electricitymaps-contrib/wiki) for how to get started. Also, have a look at our current [issues](https://github.com/electricityMaps/electricitymaps-contrib/issues) and [discussions](https://github.com/electricityMaps/electricitymaps-contrib/discussions)
 
 Here are some of the ways you can contribute:
 
@@ -27,7 +27,7 @@ We would love your feedback on how to improve the contribution experience, pleas
 ## Frequently asked questions
 
 **Where does the data come from?**
-The data comes from many different sources. You can check them out [here](https://github.com/electricitymap/electricitymap-contrib/blob/master/DATA_SOURCES.md)
+The data comes from many different sources. You can check them out [here](https://github.com/electricityMaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md)
 
 **How do you define real-time data?**
 Real-time data is defined as a data source with an hourly (or better) frequency, delayed by less than 2hrs. It should provide a breakdown by generation type. Often fossil fuel generation (coal/gas/oil) is combined under a single heading like 'thermal' or 'conventional', this is not a problem.
