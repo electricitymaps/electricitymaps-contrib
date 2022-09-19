@@ -6,7 +6,7 @@ const GFS_STEP_ORIGIN = 6; // hours
 const GFS_STEP_HORIZON = 1; // hours
 
 export function getGfsTargetTimeBefore(datetime) {
-  let horizon = startOfHour(datetime);
+  let horizon = startOfHour(datetime ?? new Date());
   while (getHours(horizon) % GFS_STEP_HORIZON !== 0) {
     horizon = subHours(horizon, 1);
   }
