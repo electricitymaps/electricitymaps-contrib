@@ -95,7 +95,10 @@ def fetch_price(
         for i, val in enumerate(data)
         if i % 5 == 1
     ]
-    prices = [float(val.replace(",", ".")) for i, val in enumerate(data) if i % 5 == 2]
+    prices = [val.replace(",", ".") for i, val in enumerate(data) if i % 5 == 2]
+    # sometimes the price will now have 2 decimals in it, e.g. 4.299.99
+    # therefore below removes decimals which are not the last one, e.g. changing to 4299.99 to avoid conversion error
+    prices = [float(val.replace(".", "", (val.count(".") - 1))) for val in prices]
 
     datapoints = [
         {

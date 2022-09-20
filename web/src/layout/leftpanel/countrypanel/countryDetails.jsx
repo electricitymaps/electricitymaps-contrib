@@ -69,10 +69,6 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
           >
             {__('country-history.Getdata')}
           </a>
-          <span className="pro">
-            <Icon iconName="lock" size={16} color="#4C4C4C" />
-            pro
-          </span>
         </ProContainer>
         {tableDisplayEmissions ? <Countryhistoryemissionsgraph /> : <Countryhistorycarbongraph />}
         <CountryHistoryTitle
@@ -92,10 +88,6 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
           >
             {__('country-history.Getdata')}
           </a>
-          <span className="pro">
-            <Icon iconName="lock" size={16} color="#4C4C4C" />
-            pro
-          </span>
         </ProContainer>
         <div className="country-history">
           {isMixGraphOverlayEnabled && (
