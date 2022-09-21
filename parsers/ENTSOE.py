@@ -17,16 +17,18 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from random import shuffle
 from typing import Any, Dict, List, Optional, Union
 
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 
+from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
@@ -69,9 +71,14 @@ ENTSOE_PARAMETER_GROUPS = {
     },
     "storage": {"hydro storage": ["B10"]},
 }
+# ENTSOE production type codes mapped to their Electricity Maps production type.
 ENTSOE_PARAMETER_BY_GROUP = {
-    v: k for k, g in ENTSOE_PARAMETER_GROUPS.items() for v in g
+    ENTSOE_key: type
+    for key in ["production", "storage"]
+    for type, groups in ENTSOE_PARAMETER_GROUPS[key].items()
+    for ENTSOE_key in groups
 }
+
 # Get all the individual storage parameters in one list
 ENTSOE_STORAGE_PARAMETERS = list(
     itertools.chain.from_iterable(ENTSOE_PARAMETER_GROUPS["storage"].values())
@@ -156,7 +163,10 @@ ENTSOE_EIC_MAPPING: Dict[str, str] = {
     "DK-DK2": "10Y1001A1001A796",
     "FI": "10YFI-1--------U",
     "PL": "10YPL-AREA-----S",
-    "SE": "10YSE-1--------K",
+    "SE-SE1": "10YSE-1--------K",
+    "SE-SE2": "10YSE-1--------K",
+    "SE-SE3": "10YSE-1--------K",
+    "SE-SE4": "10YSE-1--------K",
     # TODO: ADD DE
 }
 
@@ -172,10 +182,8 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], "10Y1001C--00003F"],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
-    "DE->SE": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
-    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
-    "DK-DK2->SE": [ENTSOE_DOMAIN_MAPPINGS["DK-DK2"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
+    "DE->SE-SE4": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["SE-SE4"]],
     "EE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["EE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FI->RU-1": [ENTSOE_DOMAIN_MAPPINGS["FI"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "FR-COR->IT-CNO": [
@@ -198,9 +206,6 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
         ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
     ],
     "LV->RU-1": [ENTSOE_DOMAIN_MAPPINGS["LV"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
-    "NO-NO1->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO1"], ENTSOE_DOMAIN_MAPPINGS["SE-SE3"]],
-    "NO-NO3->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO3"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
-    "NO-NO4->SE": [ENTSOE_DOMAIN_MAPPINGS["NO-NO4"], ENTSOE_DOMAIN_MAPPINGS["SE-SE2"]],
     "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], "10Y1001A1001A869"],
 }
 # Some zone_keys are part of bidding zone domains for price data
@@ -246,64 +251,67 @@ ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
     "Olkiluoto 1 B1": "FI",
     "Olkiluoto 2 B2": "FI",
     "Toppila B2": "FI",
-    # SE
-    "Bastusel G1": "SE",
-    "Forsmark block 1 G11": "SE",
-    "Forsmark block 1 G12": "SE",
-    "Forsmark block 2 G21": "SE",
-    "Forsmark block 2 G22": "SE",
-    "Forsmark block 3 G31": "SE",
-    "Gallejaur G1": "SE",
-    "Gallejaur G2": "SE",
-    "Gasturbiner Halmstad G12": "SE",
-    "HarsprÃ¥nget G1": "SE",
-    "HarsprÃ¥nget G2": "SE",
-    "HarsprÃ¥nget G4": "SE",
-    "HarsprÃ¥nget G5": "SE",
-    "KVV Västerås G3": "SE",
-    "KVV1 VÃ¤rtaverket": "SE",
-    "KVV6 VÃ¤rtaverket ": "SE",
-    "KVV8 VÃ¤rtaverket": "SE",
-    "Karlshamn G1": "SE",
-    "Karlshamn G2": "SE",
-    "Karlshamn G3": "SE",
-    "Letsi G1": "SE",
-    "Letsi G2": "SE",
-    "Letsi G3": "SE",
-    "Ligga G3": "SE",
-    "Messaure G1": "SE",
-    "Messaure G2": "SE",
-    "Messaure G3": "SE",
-    "Oskarshamn G1Ö+G1V": "SE",
-    "Oskarshamn G3": "SE",
-    "Porjus G11": "SE",
-    "Porjus G12": "SE",
-    "Porsi G3": "SE",
-    "Ringhals block 1 G11": "SE",
-    "Ringhals block 1 G12": "SE",
-    "Ringhals block 2 G21": "SE",
-    "Ringhals block 2 G22": "SE",
-    "Ringhals block 3 G31": "SE",
-    "Ringhals block 3 G32": "SE",
-    "Ringhals block 4 G41": "SE",
-    "Ringhals block 4 G42": "SE",
-    "Ritsem G1": "SE",
-    "Rya KVV": "SE",
-    "Seitevare G1": "SE",
-    "Stalon G1": "SE",
-    "Stenungsund B3": "SE",
-    "Stenungsund B4": "SE",
-    "Stornorrfors G1": "SE",
-    "Stornorrfors G2": "SE",
-    "Stornorrfors G3": "SE",
-    "Stornorrfors G4": "SE",
-    "TrÃ¤ngslet G1": "SE",
-    "TrÃ¤ngslet G2": "SE",
-    "TrÃ¤ngslet G3": "SE",
-    "Uppsala KVV": "SE",
-    "Vietas G1": "SE",
-    "Vietas G2": "SE",
-    "Ãbyverket Ãrebro": "SE",
+    # SE-SE1
+    "Bastusel G1": "SE-SE1",
+    "Gallejaur G1": "SE-SE1",
+    "Gallejaur G2": "SE-SE1",
+    "Harsprånget G1": "SE-SE1",
+    "Harsprånget G2": "SE-SE1",
+    "Harsprånget G4": "SE-SE1",
+    "Harsprånget G5": "SE-SE1",
+    "Letsi G1": "SE-SE1",
+    "Letsi G2": "SE-SE1",
+    "Letsi G3": "SE-SE1",
+    "Ligga G3": "SE-SE1",
+    "Messaure G1": "SE-SE1",
+    "Messaure G2": "SE-SE1",
+    "Messaure G3": "SE-SE1",
+    "Porjus G11": "SE-SE1",
+    "Porjus G12": "SE-SE1",
+    "Porsi G3": "SE-SE1",
+    "Ritsem G1": "SE-SE1",
+    "Seitevare G1": "SE-SE1",
+    "Vietas G1": "SE-SE1",
+    "Vietas G2": "SE-SE1",
+    # SE-SE2
+    "Stalon G1": "SE-SE2",
+    "Stornorrfors G1": "SE-SE2",
+    "Stornorrfors G2": "SE-SE2",
+    "Stornorrfors G3": "SE-SE2",
+    "Stornorrfors G4": "SE-SE2",
+    # SE-SE3
+    "Forsmark block 1 G11": "SE-SE3",
+    "Forsmark block 1 G12": "SE-SE3",
+    "Forsmark block 2 G21": "SE-SE3",
+    "Forsmark block 2 G22": "SE-SE3",
+    "Forsmark block 3 G31": "SE-SE3",
+    "KVV Västerås G3": "SE-SE3",
+    "KVV1 Värtaverket": "SE-SE3",
+    "KVV6 Värtaverket": "SE-SE3",
+    "KVV8 Värtaverket": "SE-SE3",
+    "Oskarshamn G3": "SE-SE3",
+    "Oskarshamn G1Ö+G1V": "SE-SE3",
+    "Ringhals block 1 G11": "SE-SE3",
+    "Ringhals block 1 G12": "SE-SE3",
+    "Ringhals block 2 G21": "SE-SE3",
+    "Ringhals block 2 G22": "SE-SE3",
+    "Ringhals block 3 G31": "SE-SE3",
+    "Ringhals block 3 G32": "SE-SE3",
+    "Ringhals block 4 G41": "SE-SE3",
+    "Ringhals block 4 G42": "SE-SE3",
+    "Rya KVV": "SE-SE3",
+    "Stenungsund B3": "SE-SE3",
+    "Stenungsund B4": "SE-SE3",
+    "Trängslet G1": "SE-SE3",
+    "Trängslet G2": "SE-SE3",
+    "Trängslet G3": "SE-SE3",
+    "Uppsala KVV": "SE-SE3",
+    "Åbyverket Örebro": "SE-SE3",
+    # SE-SE4
+    "Gasturbiner Halmstad G12": "SE-SE4",
+    "Karlshamn G1": "SE-SE4",
+    "Karlshamn G2": "SE-SE4",
+    "Karlshamn G3": "SE-SE4",
 }
 
 VALIDATIONS: Dict[str, Dict[str, Any]] = {
@@ -398,6 +406,18 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     "RS": {
         "required": ["coal"],
     },
+    "SE-SE1": {
+        "required": ["hydro", "wind", "unknown", "solar"],
+    },
+    "SE-SE2": {
+        "required": ["gas", "hydro", "wind", "unknown", "solar"],
+    },
+    "SE-SE3": {
+        "required": ["gas", "hydro", "nuclear", "wind", "unknown", "solar"],
+    },
+    "SE-SE4": {
+        "required": ["gas", "hydro", "wind", "unknown", "solar"],
+    },
     "SI": {
         # own total generation capacity is around 4 GW
         "required": ["nuclear"],
@@ -407,40 +427,14 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
 }
 
 
-class QueryError(Exception):
-    """Raised when a query to ENTSOE returns no matching data."""
-
-
 def closest_in_time_key(x, target_datetime, datetime_key="datetime"):
     target_datetime = arrow.get(target_datetime)
     return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
-def check_response(response, function_name):
-    """
-    Searches for an error message in response if the query to ENTSOE fails.
-    Returns a QueryError message containing function name and reason for failure.
-    """
-
-    soup = BeautifulSoup(response.text, "html.parser")
-    text = soup.find_all("text")
-    if not response.ok:
-        if len(text):
-            error_text = soup.find_all("text")[0].prettify()
-            if "No matching data found" in error_text:
-                return
-            raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(function_name, error_text)
-            )
-        else:
-            raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(
-                    function_name, response.text
-                )
-            )
-
-
-def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
+def query_ENTSOE(
+    session, params, target_datetime=None, span=(-48, 24), function_name=""
+) -> str:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -457,9 +451,40 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
 
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = get_token("ENTSOE_TOKEN").split(",")
+    # Shuffle the tokens so that we don't always use the same one first.
+    shuffle(tokens)
+    last_response_if_all_fail = None
+    # Try each token until we get a valid response
+    for token in tokens:
+        params["securityToken"] = token
+        response: Response = session.get(ENTSOE_ENDPOINT, params=params)
+        if response.ok:
+            return response.text
+        else:
+            last_response_if_all_fail = response
+    # If we get here, all tokens failed to fetch valid data
+    # and we will check the last response for a error message.
+    exception_message = None
+    if last_response_if_all_fail is not None:
+        soup = BeautifulSoup(last_response_if_all_fail.text, "html.parser")
+        text = soup.find_all("text")
+        if len(text):
+            error_text = soup.find_all("text")[0].prettify()
+            if "No matching data found" in error_text:
+                exception_message = "No matching data found"
+            else:
+                exception_message = (
+                    f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
+                )
+        else:
+            exception_message = f"{function_name} failed in ENTSOE.py. Reason: {last_response_if_all_fail.text}"
 
-    params["securityToken"] = np.random.choice(tokens)
-    return session.get(ENTSOE_ENDPOINT, params=params)
+    raise ParserException(
+        parser="ENTSOE.py",
+        message=exception_message
+        if exception_message
+        else "An unknown error occured while querying ENTSOE.",
+    )
 
 
 def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
@@ -469,11 +494,12 @@ def query_consumption(domain, session, target_datetime=None) -> Union[str, None]
         "processType": "A16",
         "outBiddingZone_Domain": domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_consumption.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_consumption.__name__,
+    )
 
 
 def query_production(in_domain, session, target_datetime=None) -> Union[str, None]:
@@ -482,13 +508,13 @@ def query_production(in_domain, session, target_datetime=None) -> Union[str, Non
         "processType": "A16",  # Realised
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(
-        session, params, target_datetime=target_datetime, span=(-48, 0)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        span=(-48, 0),
+        function_name=query_production.__name__,
     )
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_production.__name__)
 
 
 def query_production_per_units(
@@ -502,11 +528,13 @@ def query_production_per_units(
         "in_Domain": domain,
     }
     # Note: ENTSOE only supports 1d queries for this type
-    response = query_ENTSOE(session, params, target_datetime, span=(-24, 0))
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_production_per_units.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime,
+        span=(-24, 0),
+        function_name=query_production_per_units.__name__,
+    )
 
 
 def query_exchange(
@@ -518,11 +546,12 @@ def query_exchange(
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_exchange.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_exchange.__name__,
+    )
 
 
 def query_exchange_forecast(
@@ -535,11 +564,12 @@ def query_exchange_forecast(
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_exchange_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_exchange_forecast.__name__,
+    )
 
 
 def query_price(domain, session, target_datetime=None) -> Union[str, None]:
@@ -549,11 +579,12 @@ def query_price(domain, session, target_datetime=None) -> Union[str, None]:
         "in_Domain": domain,
         "out_Domain": domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_price.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_price.__name__,
+    )
 
 
 def query_generation_forecast(
@@ -567,11 +598,12 @@ def query_generation_forecast(
         "processType": "A01",  # Realised
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_generation_forecast.__name__,
+    )
 
 
 def query_consumption_forecast(
@@ -584,11 +616,12 @@ def query_consumption_forecast(
         "processType": "A01",
         "outBiddingZone_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_consumption_forecast.__name__,
+    )
 
 
 def query_wind_solar_production_forecast(
@@ -601,11 +634,12 @@ def query_wind_solar_production_forecast(
         "processType": "A01",
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_wind_solar_production_forecast.__name__,
+    )
 
 
 def datetime_from_position(start, position, resolution):
@@ -1105,8 +1139,12 @@ def fetch_production_per_units(
                     v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                     if v["zoneKey"] == zone_key:
                         data.append(v)
-        except QueryError:
-            pass
+        except:
+            ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch data for {k} in {zone_key}",
+                zone_key=zone_key,
+            )
 
     return data
 
@@ -1159,7 +1197,7 @@ def fetch_exchange(
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates):
-        raise QueryError("No exchange data found")
+        raise ParserException(parser="ENTSOE.py", message="No exchange data found")
     data = []
     for exchange_date in exchange_dates:
         net_flow = exchange_hashmap[exchange_date]

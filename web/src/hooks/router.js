@@ -41,6 +41,22 @@ export function useWindEnabled() {
   return useSearchParams().get('wind') === 'true' && isWeatherEnabled;
 }
 
+export const useAggregatesEnabled = () => {
+  return useSearchParams().get('aggregated') === 'true';
+};
+
+export const useAggregatesToggle = () => {
+  const location = useLocation();
+  const searchParams = useSearchParams();
+  const aggregatesEnabled = useAggregatesEnabled();
+
+  searchParams.set('aggregated', !aggregatesEnabled);
+  return {
+    pathname: location.pathname,
+    search: searchParams.toString(),
+  };
+};
+
 export function useSolarToggledLocation() {
   const location = useLocation();
   const searchParams = useSearchParams();

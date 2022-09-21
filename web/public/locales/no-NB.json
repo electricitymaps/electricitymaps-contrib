@@ -42,7 +42,7 @@
     "noDataAtTimestamp": "Data midlertidig utilgjengelig for tidspunktet",
     "noLiveData": "Sanntidsdata er midlertidig utilgjengelig for dette området",
     "dataIsDelayed": "Data fra denne regionen kan være %s timer forsinka. Sanntidsdata kan derfor ikke vises.",
-    "dataIsEstimated": "Data for dette området er forsinket. Nåtidsverdiene er estimater. <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">Les mer om estimeringsmetodene våre</a>.",
+    "dataIsEstimated": "Data for dette området er forsinket. Nåtidsverdiene er estimater. <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">Les mer om estimeringsmetodene våre</a>.",
     "estimatedDisclaimer": "Sanntidsdataene er estimert basert på datakilden samt modellforutsetninger. Ingen garantier for at dataene er nøyaktig.",
     "helpUs": "Hjelp oss å finne årsaken til problemet ved å undersøke <a href=\"%s\" target=\"_blank\">loggene</a> eller ta kontakt med datatilbyder.",
     "noParserInfo": "Vi har ennå ingen datakilder om området.<br/>Vil du hjelpe med å løse det? Du kan bidra ved å <a href=\"%s\" target=\"_blank\">tilføye regionale data</a>.",

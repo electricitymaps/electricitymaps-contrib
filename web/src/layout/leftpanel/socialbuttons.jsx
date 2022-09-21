@@ -37,7 +37,7 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
         </a>
         {/* Slack */}
         <span className="slack-button">
-          <a href="https://slack.tmrow.com" target="_blank" className="slack-btn" rel="noreferrer">
+          <a href="https://slack.electricitymaps.com" target="_blank" className="slack-btn" rel="noreferrer">
             <span className="slack-ico" />
             <span className="slack-text">Slack</span>
           </a>

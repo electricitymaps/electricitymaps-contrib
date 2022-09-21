@@ -2,7 +2,7 @@
 
 **This documentation is specifically for the frontend web/mobile app.**
 
-_If you're looking for more info on the parsers, check out [how to setup Python development environment](https://github.com/electricitymap/electricitymap-contrib/wiki/Set-up-local-environment#setup-python-development-environment) and [how to fix a broken parser (and test it locally)](https://github.com/electricityMap/electricitymap-contrib/wiki/Fixing-a-broken-parser)._
+_If you're looking for more info on the parsers, check out [how to setup Python development environment](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Set-up-local-environment#setup-python-development-environment) and [how to fix a broken parser (and test it locally)](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Fixing-a-broken-parser)._
 
 ## Local development
 
@@ -25,4 +25,4 @@ As an eMap internal team member, you can also run the app connected to productio
 
 ## Geometries development
 
-See [how to edit world geometries](https://github.com/electricitymap/electricitymap-contrib/wiki/Edit-world-geometries).
+See [how to edit world geometries](https://github.com/electricityMaps/electricitymaps-contrib/wiki/Edit-world-geometries).

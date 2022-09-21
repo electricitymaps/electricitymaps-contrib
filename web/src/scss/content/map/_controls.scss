@@ -9,6 +9,17 @@
     top: 148px;
   }
 }
+.layer-buttons-container-FF {
+  position: absolute;
+  right: 16px;
+  top: 197px;
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to('small') {
+    top: 148px;
+  }
+}
 
 .layer-button {
   background-color: $lighter-gray;
@@ -90,9 +101,9 @@
   }
 }
 
-/* 
+/*
     custom "color blind mode" checkbox and others
-    adopted with tweeks from source: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp 
+    adopted with tweeks from source: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
 */
 
 /* The container */

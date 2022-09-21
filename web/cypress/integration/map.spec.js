@@ -1,6 +1,6 @@
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.visit('/?skip-onboarding=true');
+    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.interceptAPI('v5/state/hourly');
     cy.waitForAPISuccess(`v5/state/hourly`);
 
@@ -27,6 +27,7 @@ describe('Map', () => {
     cy.contains('English').click();
     cy.contains('consumption');
 
+    // TODO: Find a way to test these reliably.
     // test layers
     cy.get('[href*="wind=true"]').click();
     cy.contains('Wind power potential');
