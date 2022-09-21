@@ -17,16 +17,18 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
+from random import shuffle
 from typing import Any, Dict, List, Optional, Union
 
 import arrow
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from requests import Session
+from requests import Response, Session
 
 from parsers.lib.config import refetch_frequency
 
+from .lib.exceptions import ParserException
 from .lib.utils import get_token, sum_production_dicts
 from .lib.validation import validate
 
@@ -425,40 +427,14 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
 }
 
 
-class QueryError(Exception):
-    """Raised when a query to ENTSOE returns no matching data."""
-
-
 def closest_in_time_key(x, target_datetime, datetime_key="datetime"):
     target_datetime = arrow.get(target_datetime)
     return np.abs((x[datetime_key] - target_datetime).seconds)
 
 
-def check_response(response, function_name):
-    """
-    Searches for an error message in response if the query to ENTSOE fails.
-    Returns a QueryError message containing function name and reason for failure.
-    """
-
-    soup = BeautifulSoup(response.text, "html.parser")
-    text = soup.find_all("text")
-    if not response.ok:
-        if len(text):
-            error_text = soup.find_all("text")[0].prettify()
-            if "No matching data found" in error_text:
-                return
-            raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(function_name, error_text)
-            )
-        else:
-            raise QueryError(
-                "{0} failed in ENTSOE.py. Reason: {1}".format(
-                    function_name, response.text
-                )
-            )
-
-
-def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
+def query_ENTSOE(
+    session, params, target_datetime=None, span=(-48, 24), function_name=""
+) -> str:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
     Allows an existing session to be passed.
@@ -475,9 +451,40 @@ def query_ENTSOE(session, params, target_datetime=None, span=(-48, 24)):
 
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = get_token("ENTSOE_TOKEN").split(",")
+    # Shuffle the tokens so that we don't always use the same one first.
+    shuffle(tokens)
+    last_response_if_all_fail = None
+    # Try each token until we get a valid response
+    for token in tokens:
+        params["securityToken"] = token
+        response: Response = session.get(ENTSOE_ENDPOINT, params=params)
+        if response.ok:
+            return response.text
+        else:
+            last_response_if_all_fail = response
+    # If we get here, all tokens failed to fetch valid data
+    # and we will check the last response for a error message.
+    exception_message = None
+    if last_response_if_all_fail is not None:
+        soup = BeautifulSoup(last_response_if_all_fail.text, "html.parser")
+        text = soup.find_all("text")
+        if len(text):
+            error_text = soup.find_all("text")[0].prettify()
+            if "No matching data found" in error_text:
+                exception_message = "No matching data found"
+            else:
+                exception_message = (
+                    f"{function_name} failed in ENTSOE.py. Reason: {error_text}"
+                )
+        else:
+            exception_message = f"{function_name} failed in ENTSOE.py. Reason: {last_response_if_all_fail.text}"
 
-    params["securityToken"] = np.random.choice(tokens)
-    return session.get(ENTSOE_ENDPOINT, params=params)
+    raise ParserException(
+        parser="ENTSOE.py",
+        message=exception_message
+        if exception_message
+        else "An unknown error occured while querying ENTSOE.",
+    )
 
 
 def query_consumption(domain, session, target_datetime=None) -> Union[str, None]:
@@ -487,11 +494,12 @@ def query_consumption(domain, session, target_datetime=None) -> Union[str, None]
         "processType": "A16",
         "outBiddingZone_Domain": domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_consumption.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_consumption.__name__,
+    )
 
 
 def query_production(in_domain, session, target_datetime=None) -> Union[str, None]:
@@ -500,13 +508,13 @@ def query_production(in_domain, session, target_datetime=None) -> Union[str, Non
         "processType": "A16",  # Realised
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(
-        session, params, target_datetime=target_datetime, span=(-48, 0)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        span=(-48, 0),
+        function_name=query_production.__name__,
     )
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_production.__name__)
 
 
 def query_production_per_units(
@@ -520,11 +528,13 @@ def query_production_per_units(
         "in_Domain": domain,
     }
     # Note: ENTSOE only supports 1d queries for this type
-    response = query_ENTSOE(session, params, target_datetime, span=(-24, 0))
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_production_per_units.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime,
+        span=(-24, 0),
+        function_name=query_production_per_units.__name__,
+    )
 
 
 def query_exchange(
@@ -536,11 +546,12 @@ def query_exchange(
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_exchange.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_exchange.__name__,
+    )
 
 
 def query_exchange_forecast(
@@ -553,11 +564,12 @@ def query_exchange_forecast(
         "in_Domain": in_domain,
         "out_Domain": out_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_exchange_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_exchange_forecast.__name__,
+    )
 
 
 def query_price(domain, session, target_datetime=None) -> Union[str, None]:
@@ -567,11 +579,12 @@ def query_price(domain, session, target_datetime=None) -> Union[str, None]:
         "in_Domain": domain,
         "out_Domain": domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_price.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_price.__name__,
+    )
 
 
 def query_generation_forecast(
@@ -585,11 +598,12 @@ def query_generation_forecast(
         "processType": "A01",  # Realised
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_generation_forecast.__name__,
+    )
 
 
 def query_consumption_forecast(
@@ -602,11 +616,12 @@ def query_consumption_forecast(
         "processType": "A01",
         "outBiddingZone_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_consumption_forecast.__name__,
+    )
 
 
 def query_wind_solar_production_forecast(
@@ -619,11 +634,12 @@ def query_wind_solar_production_forecast(
         "processType": "A01",
         "in_Domain": in_domain,
     }
-    response = query_ENTSOE(session, params, target_datetime=target_datetime)
-    if response.ok:
-        return response.text
-    else:
-        check_response(response, query_generation_forecast.__name__)
+    return query_ENTSOE(
+        session,
+        params,
+        target_datetime=target_datetime,
+        function_name=query_wind_solar_production_forecast.__name__,
+    )
 
 
 def datetime_from_position(start, position, resolution):
@@ -1123,8 +1139,12 @@ def fetch_production_per_units(
                     v["zoneKey"] = ENTSOE_UNITS_TO_ZONE[v["unitName"]]
                     if v["zoneKey"] == zone_key:
                         data.append(v)
-        except QueryError:
-            pass
+        except:
+            ParserException(
+                parser="ENTSOE.py",
+                message=f"Failed to fetch data for {k} in {zone_key}",
+                zone_key=zone_key,
+            )
 
     return data
 
@@ -1177,7 +1197,7 @@ def fetch_exchange(
     exchange_dates = sorted(set(exchange_hashmap.keys()), reverse=True)
     exchange_dates = list(filter(lambda x: x <= arrow.now(), exchange_dates))
     if not len(exchange_dates):
-        raise QueryError("No exchange data found")
+        raise ParserException(parser="ENTSOE.py", message="No exchange data found")
     data = []
     for exchange_date in exchange_dates:
         net_flow = exchange_hashmap[exchange_date]
