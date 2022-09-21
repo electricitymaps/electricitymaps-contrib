@@ -9,6 +9,7 @@ from .lib.exceptions import ParserException
 
 EXCHANGE_MAPPING = {
     "DE->DK-DK1": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK1"},
+    "DE->DK-DK2": {"id": "ExchangeGermany", "direction": 1, "priceArea": "DK2"},
     "DK-DK1->DK-DK2": {"id": "ExchangeGreatBelt", "direction": -1, "priceArea": "DK1"},
     "DK-DK1->NL": {"id": "ExchangeNetherlands", "direction": -1, "priceArea": "DK1"},
     "DK-DK1->NO-NO2": {"id": "ExchangeNorway", "direction": -1, "priceArea": "DK1"},
