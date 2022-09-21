@@ -4,7 +4,7 @@ describe('Ranking Panel', () => {
     cy.interceptAPI('v5/state/hourly');
     cy.waitForAPISuccess(`v5/state/hourly`);
 
-    // See more than X countries on the list by default test
+    // See more than X countries on the list by default
     cy.get('.zone-list a').should('have.length.above', 3);
 
     // Search for a country
