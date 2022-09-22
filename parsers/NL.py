@@ -10,14 +10,15 @@ from typing import Optional
 import arrow
 import numpy as np
 import pandas as pd
+import pytz
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
-from . import DK, ENTSOE
-
 ZONE_CONFIG = ZONES_CONFIG["NL"]
+UTC = pytz.UTC
 
 
 @refetch_frequency(timedelta(days=1))
@@ -40,7 +41,7 @@ def fetch_production(
         return
     for c in consumptions:
         del c["source"]
-    df_consumptions = pd.DataFrame.from_dict(consumptions).set_index("datetime")
+    df_consumptions = pd.DataFrame.from_dict(consumptions)
 
     # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
@@ -95,7 +96,10 @@ def fetch_production(
         del e["source"]
         del e["netFlow"]
 
-    df_exchanges = pd.DataFrame.from_dict(exchanges).set_index("datetime")
+    df_exchanges = pd.DataFrame.from_dict(exchanges)
+    df_exchanges["datetime"] = df_exchanges["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
     # Sum all exchanges to NL imports
     df_exchanges = df_exchanges.groupby("datetime").sum()
 
