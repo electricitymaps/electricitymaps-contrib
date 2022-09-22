@@ -40,6 +40,9 @@ def fetch_production(
     for c in consumptions:
         del c["source"]
     df_consumptions = pd.DataFrame.from_dict(consumptions)
+    df_consumptions["datetime"] = df_consumptions["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
 
     # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
