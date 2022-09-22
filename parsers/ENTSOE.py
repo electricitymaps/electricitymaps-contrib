@@ -437,7 +437,11 @@ def closest_in_time_key(
 
 
 def query_ENTSOE(
-    session, params, target_datetime=None, span=(-48, 24), function_name=""
+    session: Session,
+    params: Dict[str, str],
+    target_datetime: Optional[datetime] = None,
+    span: tuple = (-48, 24),
+    function_name: str = "",
 ) -> str:
     """
     Makes a standard query to the ENTSOE API with a modifiable set of parameters.
