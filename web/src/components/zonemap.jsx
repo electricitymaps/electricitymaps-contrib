@@ -7,6 +7,8 @@ import { isEmpty } from '../helpers/isEmpty';
 import { debounce } from '../helpers/debounce';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
 import { ZoomControls } from './zoomcontrols';
+import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
+import { useAggregatesEnabled } from '../hooks/router';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -44,7 +46,6 @@ const ZoneMap = ({
   const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
   const zones = useSelector((state) => state.data.zones);
   const zoneValues = useMemo(() => Object.values(zones), [zones]);
-
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
     () =>
@@ -70,6 +71,8 @@ const ZoneMap = ({
     onMapLoaded();
   };
 
+  const isAggregateEnabled = useAggregatesEnabled();
+  const isAggregatedViewFFEnabled = aggregatedViewFFEnabled();
   // Generate two sources (clickable and non-clickable zones), based on the zones data.
   // The `sources` object will trigger a whole re-rendering of the map, and will
   // thus re-render all zones.
@@ -78,21 +81,62 @@ const ZoneMap = ({
     // We here iterate over the zones list (instead of dict) to keep the iteration
     // order stable
     const features = zoneValues.map((zone, i) => {
-      const length = (coordinate) => (coordinate ? coordinate.length : 0);
-      const zoneId = zone.config.countryCode;
-      return {
-        type: 'Feature',
-        geometry: {
-          ...zone.geography.geometry,
-          coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
-        },
-        id: i, // assign an integer id so the feature can be updated later on
-        properties: {
-          color: undefined,
-          zoneData: zone[selectedTimeAggregate].overviews,
-          zoneId,
-        },
-      };
+      if (isAggregatedViewFFEnabled) {
+        if (isAggregateEnabled && zone.geography.properties.isAggregatedView) {
+          const length = (coordinate) => (coordinate ? coordinate.length : 0);
+          const zoneId = zone.config.countryCode;
+          return {
+            type: 'Feature',
+            geometry: {
+              ...zone.geography.geometry,
+              coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
+            },
+            id: i, // assign an integer id so the feature can be updated later on
+            properties: {
+              color: undefined,
+              zoneData: zone[selectedTimeAggregate].overviews,
+              zoneId,
+            },
+          };
+        }
+        if (!isAggregateEnabled && !zone.geography.properties.isCombined) {
+          const length = (coordinate) => (coordinate ? coordinate.length : 0);
+          const zoneId = zone.config.countryCode;
+          return {
+            type: 'Feature',
+            geometry: {
+              ...zone.geography.geometry,
+              coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
+            },
+            id: i, // assign an integer id so the feature can be updated later on
+            properties: {
+              color: undefined,
+              zoneData: zone[selectedTimeAggregate].overviews,
+              zoneId,
+            },
+          };
+        }
+        if (!zone.geography.properties.aggregatedView) {
+          return {};
+        }
+      }
+      if (!isAggregatedViewFFEnabled) {
+        const length = (coordinate) => (coordinate ? coordinate.length : 0);
+        const zoneId = zone.config.countryCode;
+        return {
+          type: 'Feature',
+          geometry: {
+            ...zone.geography.geometry,
+            coordinates: zone.geography.geometry.coordinates.filter(length), // Remove empty geometries
+          },
+          id: i, // assign an integer id so the feature can be updated later on
+          properties: {
+            color: undefined,
+            zoneData: zone[selectedTimeAggregate].overviews,
+            zoneId,
+          },
+        };
+      }
     });
 
     return {
@@ -105,7 +149,7 @@ const ZoneMap = ({
     // TODO: `zoneValues` will change even in cases where the geometry doesn't change.
     // This will cause this memo to re-update although it should only update when the
     // geometry changes. This will slow down the map render..
-  }, [zoneValues, selectedTimeAggregate]);
+  }, [zoneValues, selectedTimeAggregate, isAggregateEnabled, isAggregatedViewFFEnabled]);
 
   // Every time the hovered zone changes, update the hover map layer accordingly.
   const hoverFilter = useMemo(() => ['==', 'zoneId', hoveredZoneId || ''], [hoveredZoneId]);
@@ -261,7 +305,7 @@ const ZoneMap = ({
           hovering over zoom buttons doesn't fire hover events on the map.
         */}
         <Portal node={wrapperRef.current}>
-          <ZoomControls />
+          <ZoomControls aggregatedViewFF={isAggregatedViewFFEnabled} />
         </Portal>
         {/* Layers */}
         <Layer id="ocean" type="background" paint={styles.ocean} />

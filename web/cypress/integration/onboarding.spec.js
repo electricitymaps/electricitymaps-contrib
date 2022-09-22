@@ -6,7 +6,7 @@ describe('Onboarding', () => {
       return;
     }
 
-    cy.visit('/map');
+    cy.visit('/map?lang=en-GB');
     cy.get('[data-test-id=onboarding]').should('be.visible');
     cy.get('[data-test-id=onboarding] .modal-footer .modal-footer-circle:nth-child(1)').should(
       'have.class',
@@ -28,7 +28,7 @@ describe('Onboarding', () => {
       });
 
     cy.get('[data-test-id=onboarding]').should('not.exist');
-    cy.visit('/map');
+    cy.visit('/map?lang=en-GB');
     cy.get('[data-test-id=onboarding]').should('not.exist');
   });
 });

@@ -183,6 +183,7 @@ export default () => {
       </div>
       {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
+          isZoneNameDisplayed
           zoneData={tooltipZoneData}
           position={tooltipPosition}
           onClose={() => setTooltipZoneData(null)}

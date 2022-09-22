@@ -56,7 +56,7 @@ class ErrorBoundary extends React.Component {
         <ErrorBox>
           <h1>Oh no, something went wrong...</h1>
           <p>
-            Please let us know <a href="https://github.com/electricitymap/electricitymap-contrib">on Github</a> so we
+            Please let us know <a href="https://github.com/electricityMaps/electricitymaps-contrib">on Github</a> so we
             can fix this!
           </p>
           <ErrorMessage>

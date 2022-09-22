@@ -451,8 +451,8 @@
       "hydro storage": 1308,
       "nuclear": 5943,
       "oil": 280,
-      "solar": 5898,
-      "wind": 4883
+      "solar": 6170,
+      "wind": 5041
     },
     "contributors": ["corradio", "nessie2013", "Fred-3000"],
     "parsers": {
@@ -530,12 +530,12 @@
       [-56.965660766999946, -9.179821471999972]
     ],
     "capacity": {
-      "biomass": 61,
-      "hydro": 734.84,
+      "biomass": 122.72,
+      "hydro": 734.85,
       "nuclear": 0,
       "solar": 165.08,
-      "unknown": 2501.03,
-      "wind": 102.6
+      "unknown": 2484.39,
+      "wind": 131.4
     },
     "contributors": ["igorarduin", "corradio", "skovhus"],
     "parsers": {
@@ -550,10 +550,10 @@
       [-59.32226030077226, -7.500493258457112]
     ],
     "capacity": {
-      "hydro": 58171,
+      "hydro": 58242,
       "nuclear": 1990,
-      "solar": 1181,
-      "unknown": 21193,
+      "solar": 1324,
+      "unknown": 21923,
       "wind": 28
     },
     "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
@@ -572,8 +572,8 @@
       [-49.37304648399993, 4.941122259000181]
     ],
     "capacity": {
-      "hydro": 22251,
-      "solar": 5,
+      "hydro": 22273,
+      "solar": 3,
       "unknown": 3645,
       "wind": 426
     },
@@ -590,10 +590,10 @@
       [-35.90615240593988, -9.026808362815672]
     ],
     "capacity": {
-      "hydro": 11032,
-      "solar": 3215,
-      "unknown": 8290,
-      "wind": 16744
+      "hydro": 11048,
+      "solar": 3620,
+      "unknown": 8287,
+      "wind": 19316
     },
     "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
@@ -608,10 +608,10 @@
       [-47.53248898038211, -22.021725762533777]
     ],
     "capacity": {
-      "hydro": 17252,
-      "solar": 9,
-      "unknown": 4252,
-      "wind": 2022
+      "hydro": 17377,
+      "solar": 13,
+      "unknown": 3872,
+      "wind": 2002
     },
     "contributors": ["alexanmtz", "corradio", "systemcatch", "nessie2013"],
     "flag_file_name": "br.png",
@@ -955,12 +955,12 @@
       "coal": 0,
       "gas": 0,
       "geothermal": 0,
-      "hydro": 22.64,
+      "hydro": 25.94,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 40.27,
-      "solar": 0,
-      "wind": 3.12
+      "oil": 39.09,
+      "solar": 2.96,
+      "wind": 1.8
     },
     "timezone": "America/Santiago"
   },
@@ -978,9 +978,9 @@
       "hydro": 0,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 16.09,
+      "oil": 19.11,
       "solar": 0,
-      "wind": 2.55
+      "wind": 12.9
     },
     "timezone": "America/Punta_Arenas"
   },
@@ -991,16 +991,16 @@
     ],
     "capacity": {
       "battery storage": 0,
-      "biomass": 439.05,
-      "coal": 4641.27,
+      "biomass": 438.61,
+      "coal": 4637.89,
       "gas": 3805.02,
-      "geothermal": 39.7,
-      "hydro": 6788.59,
+      "geothermal": 51.4,
+      "hydro": 7246.16,
       "hydro storage": 0,
       "nuclear": 0,
-      "oil": 4172.1,
-      "solar": 5112.58,
-      "wind": 3535.2
+      "oil": 4052.4,
+      "solar": 5439.14,
+      "wind": 3834.25
     },
     "contributors": ["systemcatch", "alixunderplatz"],
     "delays": {
@@ -2637,10 +2637,7 @@
       "wind": 10906.9
     },
     "contributors": ["corradio"],
-    "parsers": {
-      "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
-      "generationForecast": "ENTSOE.fetch_generation_forecast"
-    },
+    "estimation_method": "RECONSTRUCT_BREAKDOWN",
     "subZoneNames": ["IT-CNO", "IT-CSO", "IT-NO", "IT-SAR", "IT-SIC", "IT-SO"],
     "timezone": "Europe/Rome"
   },
@@ -3922,18 +3919,18 @@
       [-5.705947224999932, 42.65362965999999]
     ],
     "capacity": {
-      "biomass": 876,
+      "biomass": 700,
       "coal": 0,
-      "gas": 4580,
+      "gas": 4520,
       "geothermal": 0,
-      "hydro": 4372,
-      "hydro storage": 2827,
+      "hydro": 4578,
+      "hydro storage": 3585,
       "nuclear": 0,
       "oil": 0,
-      "solar": 1364,
-      "wind": 5528
+      "solar": 1616,
+      "wind": 5389
     },
-    "contributors": ["corradio", "nessie2013", "Falconet8"],
+    "contributors": ["corradio", "nessie2013", "Musketeiro"],
     "flag_file_name": "pt.png",
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
@@ -6832,11 +6829,11 @@
       [-53.209588996, -30.1096863746]
     ],
     "capacity": {
-      "biomass": 413,
+      "biomass": 401,
       "hydro": 1538,
-      "solar": 242,
+      "solar": 258,
       "unknown": 1170,
-      "wind": 1511
+      "wind": 1506
     },
     "contributors": ["jarek", "corradio", "nessie2013"],
     "parsers": {
