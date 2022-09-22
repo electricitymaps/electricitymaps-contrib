@@ -20,7 +20,6 @@ from requests import Session
 from parsers.lib.config import refetch_frequency
 
 from .ENTSOE import merge_production_outputs
-from .lib.exceptions import ParserException
 from .lib.utils import get_token
 from .lib.validation import validate
 
@@ -537,7 +536,7 @@ def _fetch(
     req = s.get(url)
     raw_data = req.json()
     if not raw_data["response"]["data"]:
-        raise ParserException("EIA", f"No data returned for zone: {zone_key}")
+        return []
     return [
         {
             "zoneKey": zone_key,
