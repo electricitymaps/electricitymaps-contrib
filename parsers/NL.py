@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
 import math
-from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import numpy as np
 import pandas as pd
 import pytz
 from requests import Session, get
@@ -252,7 +250,7 @@ def get_wind_capacities() -> pd.DataFrame:
         r = get(url_wind_capacities)
         per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
     except Exception as e:
-        logger.error(f"Error fetching wind capacities: {e}")
+        Logger.error(f"Error fetching wind capacities: {e}")
         return capacities_df
 
     per_year_capacity = {
@@ -288,7 +286,7 @@ def get_solar_capacities() -> pd.DataFrame:
         r = get(url_solar_capacity)
         per_year_capacity = r.json()["value"]
     except Exception as e:
-        logger.error(f"Error fetching solar capacities: {e}")
+        Logger.error(f"Error fetching solar capacities: {e}")
         return solar_capacity_df
 
     for yearly_row in per_year_capacity:
