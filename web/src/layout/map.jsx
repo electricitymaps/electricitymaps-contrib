@@ -17,6 +17,7 @@ import ZoneMap from '../components/zonemap';
 import MapLayer from '../components/maplayer';
 import MapCountryTooltip from '../components/tooltips/mapcountrytooltip';
 import ExchangeLayer from '../components/layers/exchangelayer';
+import PowerPlantsLayer from '../components/layers/powerplantslayer';
 import SolarLayer from '../components/layers/solarlayer';
 import WindLayer from '../components/layers/windlayer';
 import { getCO2IntensityByMode } from '../helpers/zonedata';
@@ -209,6 +210,7 @@ export default () => {
         viewport={viewport}
       >
         <MapLayer component={ExchangeLayer} />
+        <MapLayer component={PowerPlantsLayer} />
         <MapLayer component={WindLayer} />
         <MapLayer component={SolarLayer} />
       </ZoneMap>
