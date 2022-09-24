@@ -101,32 +101,34 @@ def fetch_production(
         "zoneKey": zone_key,
         "datetime": datetime,
         "production": {
-            "coal": productions.get("Coal", {"generation": 0.0})["generation"],
-            "oil": productions.get("Liquid", {"generation": 0.0})["generation"],
-            "gas": productions.get("Gas", {"generation": 0.0})["generation"],
-            "geothermal": productions.get("Geothermal", {"generation": 0.0})[
+            "coal": productions.get("Coal", {"generation": None})["generation"],
+            "oil": productions.get("Liquid", {"generation": None})["generation"],
+            "gas": productions.get("Gas", {"generation": None})["generation"],
+            "geothermal": productions.get("Geothermal", {"generation": None})[
                 "generation"
             ],
-            "wind": productions.get("Wind", {"generation": 0.0})["generation"],
-            "hydro": productions.get("Hydro", {"generation": 0.0})["generation"],
-            "unknown": productions.get("Co-Gen", {"generation": 0.0})["generation"],
+            "wind": productions.get("Wind", {"generation": None})["generation"],
+            "hydro": productions.get("Hydro", {"generation": None})["generation"],
+            "solar": productions.get("Solar", {"generation": None})["generation"],
+            "unknown": productions.get("Co-Gen", {"generation": None})["generation"],
             "nuclear": 0,  # famous issue in NZ politics
         },
         "capacity": {
-            "coal": productions.get("Coal", {"capacity": 0.0})["capacity"],
-            "oil": productions.get("Liquid", {"capacity": 0.0})["capacity"],
-            "gas": productions.get("Gas", {"capacity": 0.0})["capacity"],
-            "geothermal": productions.get("Geothermal", {"capacity": 0.0})["capacity"],
-            "wind": productions.get("Wind", {"capacity": 0.0})["capacity"],
-            "hydro": productions.get("Hydro", {"capacity": 0.0})["capacity"],
-            "battery storage": productions.get("Battery", {"capacity": 0.0})[
+            "coal": productions.get("Coal", {"capacity": None})["capacity"],
+            "oil": productions.get("Liquid", {"capacity": None})["capacity"],
+            "gas": productions.get("Gas", {"capacity": None})["capacity"],
+            "geothermal": productions.get("Geothermal", {"capacity": None})["capacity"],
+            "wind": productions.get("Wind", {"capacity": None})["capacity"],
+            "hydro": productions.get("Hydro", {"capacity": None})["capacity"],
+            "solar": productions.get("Solar", {"capacity": None})["capacity"],
+            "battery storage": productions.get("Battery", {"capacity": None})[
                 "capacity"
             ],
-            "unknown": productions.get("Co-Gen", {"capacity": 0.0})["capacity"],
+            "unknown": productions.get("Co-Gen", {"capacity": None})["capacity"],
             "nuclear": 0,  # famous issue in NZ politics
         },
         "storage": {
-            "battery": productions.get("Battery", {"generation": 0.0})["generation"],
+            "battery": productions.get("Battery", {"generation": None})["generation"],
         },
         "source": "transpower.co.nz",
     }
