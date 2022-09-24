@@ -43,9 +43,9 @@ def get_param(zone_key: str, target_datetime: datetime):
                 "rows": "288",
             },
             "RE": {
-                "dataset": "prod-electricite-temps-reel",
+                "dataset": "courbe-de-charge-de-la-production-delectricite-par-filiere",
                 "timezone": "Indian/Reunion",
-                "sort": "date",
+                "sort": "date_heure",
                 "rows": 288,
             },
         }
@@ -83,7 +83,7 @@ def get_source(zone_key: str, target_datetime: datetime):
 
 def get_date_name(zone_key: str, target_datetime: datetime):
     if target_datetime is None:
-        return "date"
+        return "date_heure" if zone_key == "RE" else "date"
     else:
         return "date_heure"
 

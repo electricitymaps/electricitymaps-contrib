@@ -101,7 +101,7 @@ const formatDateTick = function (date, lang, timeAggregate) {
     case TIME.HOURLY:
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
-      return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(date);
     case TIME.MONTHLY:
       return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
     case TIME.YEARLY:
