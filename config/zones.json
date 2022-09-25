@@ -1348,7 +1348,7 @@
     "timezone": "Europe/Madrid"
   },
   "ES-CE": {
-    "capacities":{
+    "capacities": {
       "biomass": 0,
       "coal": 0,
       "gas": 13,
@@ -1508,7 +1508,7 @@
     "timezone": "Europe/Madrid"
   },
   "ES-ML": {
-    "capacities":{
+    "capacities": {
       "biomass": 2,
       "coal": 0,
       "gas": 12,
@@ -1518,7 +1518,6 @@
       "oil": 64,
       "solar": 0,
       "wind": 0
-    },
     },
     "contributors": ["VIKTORVAV99"],
     "flag_file_name": "es.png",
