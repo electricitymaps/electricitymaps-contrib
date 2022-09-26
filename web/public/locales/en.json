@@ -127,6 +127,7 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+    "delayedDataInfo": "Live data is currently unavaible, displaying the latest available data",
     "aggregated": "aggregated",
     "detailed": "detailed",
     "aggregateinfo": "Countries with missing zone data are unable to be aggregated",

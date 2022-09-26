@@ -9,6 +9,11 @@ import { getCO2IntensityByMode } from '../helpers/zonedata';
 import { ZoomControls } from './zoomcontrols';
 import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
 import { useAggregatesEnabled } from '../hooks/router';
+import { useTranslation } from '../helpers/translation';
+import zoneDummyData from './zoneDummyData.json';
+import { dispatchApplication } from '../store';
+
+import InfoTooltip from './infotooltip';
 
 const interactiveLayerIds = ['zones-clickable-layer'];
 const mapStyle = { version: 8, sources: {}, layers: [] };
@@ -37,15 +42,18 @@ const ZoneMap = ({
     zoom: 2,
   },
 }) => {
+  const { __ } = useTranslation();
   const ref = useRef(null);
   const wrapperRef = useRef(null);
+  const [lastAvailableTimeIndex, setLastAvailableTimeIndex] = useState(null);
+  //  const [baselineCountriesForNodataFlag, setBaselineCountriesForNodataFlag] = useState();
   const [hoveredZoneId, setHoveredZoneId] = useState(null);
   const [isSupported, setIsSupported] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const electricityMixMode = useSelector((state) => state.application.electricityMixMode);
-  const zones = useSelector((state) => state.data.zones);
-  const zoneValues = useMemo(() => Object.values(zones), [zones]);
+  //const zones = useSelector((state) => state.data.zones);
+  const zoneValues = useMemo(() => Object.values(zoneDummyData), []);
   const [isDragging, setIsDragging] = useState(false);
   const debouncedSetIsDragging = useMemo(
     () =>
@@ -189,7 +197,34 @@ const ZoneMap = ({
       if (!isSourceLoaded) {
         return;
       }
+      const baselineCountriesForNodataFlag = {
+        FR: null,
+        KR: null,
+        DE: null,
+      };
       zoneValues.forEach((zone, i) => {
+        if (
+          (zone.geography.properties.zoneName === 'FR' ||
+            zone.geography.properties.zoneName === 'DE' ||
+            zone.geography.properties.zoneName === 'KR') &&
+          selectedZoneTimeIndex === 24 &&
+          !zone[selectedTimeAggregate].overviews[selectedZoneTimeIndex].co2intensity
+        ) {
+          for (let j = 23; j > 0; j--) {
+            if (zone[selectedTimeAggregate].overviews[j].co2intensity > 0) {
+              baselineCountriesForNodataFlag[zone.geography.properties.zoneName] = j;
+              if (
+                baselineCountriesForNodataFlag.FR === j &&
+                baselineCountriesForNodataFlag.KR === j &&
+                baselineCountriesForNodataFlag.DE === j
+              ) {
+                setLastAvailableTimeIndex(j);
+                dispatchApplication('selectedZoneTimeIndex', j);
+              }
+              break;
+            }
+          }
+        }
         const zoneData = zone[selectedTimeAggregate].overviews[selectedZoneTimeIndex];
         const co2intensity = zoneData ? getCO2IntensityByMode(zoneData, electricityMixMode) : null;
         const fillColor = co2ColorScale(co2intensity);
@@ -272,6 +307,16 @@ const ZoneMap = ({
 
   return (
     <div className="zone-map" style={style} ref={wrapperRef}>
+      <InfoTooltip
+        htmlContent={__('tooltips.delayedDataInfo')}
+        style={{
+          width: 190,
+          top: 10,
+          left: '50%',
+          zIndex: 99,
+        }}
+        visible={Boolean(lastAvailableTimeIndex)}
+      />
       <ReactMapGL
         ref={ref}
         width="100%"
