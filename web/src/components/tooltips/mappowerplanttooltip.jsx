@@ -1,15 +1,18 @@
 import React from 'react';
 
+import { useTranslation } from '../../helpers/translation';
 import Tooltip from '../tooltip';
+import { ZoneName } from './common';
 
 const MapPowerPlantTooltip = ({ powerPlantData, position, onClose }) => {
+  const { __ } = useTranslation();
   if (!powerPlantData) {
     return null;
   }
 
   return (
     <Tooltip id="powerplant-tooltip" position={position} onClose={onClose}>
-      {'Power Plant Name'}:
+      <ZoneName zone={powerPlantData.zoneKey} />
       <br />
       {powerPlantData.name}
       <br />
@@ -24,7 +27,7 @@ const MapPowerPlantTooltip = ({ powerPlantData, position, onClose }) => {
       {powerPlantData.dataSource}
       <br />
       <br />
-      {'Capacity'}:
+      {'Capacity (MW)'}:
       <br />
       {powerPlantData.capacity}
       <br />

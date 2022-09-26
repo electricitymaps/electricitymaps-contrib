@@ -26,9 +26,9 @@ export default React.memo(({ data, mouseMoveHandler, mouseOutHandler, project, v
     () => ({
       x: project(lonlat)[0],
       y: project(lonlat)[1],
-      k: 0.04 + (mapZoom - 1.5) * 0.1,
+      k: 0.04 + (mapZoom - 1.5) * (0.1 * (capacity / 1000)),
     }),
-    [project, lonlat, mapZoom]
+    [project, lonlat, mapZoom, capacity]
   );
 
   // ... or if the arrow would be very tiny ...

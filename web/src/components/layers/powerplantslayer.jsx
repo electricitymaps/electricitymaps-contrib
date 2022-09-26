@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { dispatchApplication } from '../../store';
 import { useRefWidthHeightObserver } from '../../hooks/viewport';
 
+import powerPlants from '../../all_power_plants.json';
+
 import MapPowerPlantTooltip from '../tooltips/mappowerplanttooltip';
 import PowerPlant from '../powerplant';
 
@@ -23,20 +25,22 @@ const mockPowerPlants = [
         lonlat: [-2.6240066, 52.1414211],
         fuelType: "coal",
         dataSource: "EIA",
-        capacity: 1000
+        capacity: 1000,
+        zoneKey: "GB",
     }, {
       name: "Power Plant 2",
-       lonlat: [12.465132, 64.745638],
+       lonlat: [12.5937767, 55.6570916],
        fuelType: "gas",
        dataSource: "EIA",
-       capacity: 1000
+       capacity: 1000,
+       zoneKey: "DK-DK2",
    },
 ];
 
 const getPowerPlants = () => (mockPowerPlants);
 
 export default React.memo(({ project }) => {
-  const powerPlants = getPowerPlants();
+  // const powerPlants = getPowerPlants();
   const { ref, width, height } = useRefWidthHeightObserver();
 
   const isMoving = useSelector((state) => state.application.isMovingMap);
@@ -80,16 +84,16 @@ export default React.memo(({ project }) => {
       {/* Don't render arrows when moving map - see https://github.com/tmrowco/electricitymap-contrib/issues/1590. */}
       {!isMoving &&
         powerPlants.map((powerPlant) => (
-          <PowerPlant
-            data={powerPlant}
-            key={powerPlant.name}
-            mouseMoveHandler={handleArrowMouseMove}
-            mouseOutHandler={handleArrowMouseOut}
-            project={project}
-            viewportWidth={width}
-            viewportHeight={height}
-          />
-        ))}
+              <PowerPlant
+                data={powerPlant}
+                key={powerPlant.name}
+                mouseMoveHandler={handleArrowMouseMove}
+                mouseOutHandler={handleArrowMouseOut}
+                project={project}
+                viewportWidth={width}
+                viewportHeight={height}
+              />
+            ))}
     </Layer>
   );
 });
