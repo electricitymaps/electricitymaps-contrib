@@ -14,6 +14,7 @@ import { modeOrder, modeColor, DEFAULT_FLAG_SIZE } from '../helpers/constants';
 import { getElectricityProductionValue, getProductionCo2Intensity, getExchangeCo2Intensity } from '../helpers/zonedata';
 import { flagUri } from '../helpers/flags';
 import { useTranslation } from '../helpers/translation';
+import { truncateWithEllipsesIfLengthExceeds } from './../helpers/string';
 
 import CountryPanelProductionTooltip from './tooltips/countrypanelproductiontooltip';
 import CountryPanelExchangeTooltip from './tooltips/countrypanelexchangetooltip';
@@ -245,7 +246,7 @@ const CountryCarbonEmissionsTable = React.memo(
             <Row
               key={d.mode}
               index={index}
-              label={__(d.mode)}
+              label={truncateWithEllipsesIfLengthExceeds(__(d.mode), 14)}
               width={width}
               scale={co2Scale}
               value={Math.abs(d.tCo2eqPerMin)}
@@ -358,7 +359,7 @@ const CountryElectricityProductionTable = React.memo(
             <Row
               key={d.mode}
               index={index}
-              label={__(d.mode)}
+              label={truncateWithEllipsesIfLengthExceeds(__(d.mode), 15)}
               width={width}
               scale={powerScale}
               value={getElectricityProductionValue(d)}
