@@ -1348,6 +1348,23 @@
     "timezone": "Europe/Madrid"
   },
   "ES-CE": {
+    "bounding_box": [
+      [-5.887418011072289, 35.37135845199824],
+      [-4.778463534102098, 36.42262502599443]
+    ],
+    "capacity": {
+      "biomass": 0,
+      "coal": 0,
+      "gas": 13,
+      "geothermal": 0,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 78,
+      "solar": 0,
+      "unknown": 0,
+      "wind": 0
+    },
     "contributors": ["VIKTORVAV99"],
     "flag_file_name": "es.png",
     "parsers": {
@@ -1495,6 +1512,21 @@
     "timezone": "Europe/Madrid"
   },
   "ES-ML": {
+    "bounding_box": [
+      [-3.470256683510813, 34.76572463778479],
+      [-2.426766941365234, 35.8209422034335]
+    ],
+    "capacity": {
+      "biomass": 2,
+      "coal": 0,
+      "gas": 12,
+      "hydro": 0,
+      "hydro storage": 0,
+      "nuclear": 0,
+      "oil": 64,
+      "solar": 0,
+      "wind": 0
+    },
     "contributors": ["VIKTORVAV99"],
     "flag_file_name": "es.png",
     "parsers": {
@@ -2040,13 +2072,13 @@
     "capacity": {
       "biomass": 27,
       "coal": 4840,
-      "gas": 12143.0,
+      "gas": 12143,
       "geothermal": 0,
       "hydro": 6.72,
       "hydro storage": 150,
       "nuclear": 0,
       "oil": 44,
-      "solar": 2555.0,
+      "solar": 2555,
       "unknown": 175,
       "wind": 28
     },
@@ -4464,10 +4496,10 @@
       "battery storage": 0,
       "biomass": 1006.95,
       "coal": 6067.5,
-      "gas": 28695.0,
+      "gas": 28695,
       "geothermal": 0.3,
       "hydro": 7015.73,
-      "hydro storage": 1000.0,
+      "hydro storage": 1000,
       "nuclear": 0,
       "oil": 1497.4,
       "solar": 487.8,
