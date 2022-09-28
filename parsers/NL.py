@@ -27,9 +27,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
-        target_datetime = arrow.utcnow()
-    else:
-        target_datetime = arrow.get(target_datetime)
+        target_datetime = arrow.utcnow().datetime
+
     r = session or Session()
 
     consumptions = ENTSOE.fetch_consumption(
