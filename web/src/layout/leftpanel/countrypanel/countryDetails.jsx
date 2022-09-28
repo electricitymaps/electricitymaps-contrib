@@ -69,10 +69,6 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
           >
             {__('country-history.Getdata')}
           </a>
-          <span className="pro">
-            <Icon iconName="lock" size={16} color="#4C4C4C" />
-            pro
-          </span>
         </ProContainer>
         {tableDisplayEmissions ? <Countryhistoryemissionsgraph /> : <Countryhistorycarbongraph />}
         <CountryHistoryTitle
@@ -92,10 +88,6 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
           >
             {__('country-history.Getdata')}
           </a>
-          <span className="pro">
-            <Icon iconName="lock" size={16} color="#4C4C4C" />
-            pro
-          </span>
         </ProContainer>
         <div className="country-history">
           {isMixGraphOverlayEnabled && (
@@ -127,7 +119,7 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
         {__('country-panel.source')}
         {': '}
         <a
-          href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+          href="https://github.com/electricitymaps/electricitymaps-contrib#data-sources/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
           target="_blank"
           rel="noreferrer"
         >
@@ -140,7 +132,7 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
             dangerouslySetInnerHTML={{
               __html: __(
                 'country-panel.addeditsource',
-                'https://github.com/tmrowco/electricitymap-contrib/tree/master/parsers'
+                'https://github.com/electricitymaps/electricitymaps-contrib#data-sources/tree/master/parsers'
               ),
             }}
           />

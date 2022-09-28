@@ -1,5 +1,4 @@
 import * as request from 'd3-request';
-import { sha256 } from 'js-sha256';
 import Cookies from 'js-cookie';
 
 import { isLocalhost } from './environment';
@@ -23,21 +22,29 @@ function isUsingLocalEndpoint() {
   return isLocalhost() && !isRemoteParam() && document.domain !== '';
 }
 
+async function sha256(message) {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 export function getEndpoint() {
   return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
 }
 
-export function protectedJsonRequest(path) {
+export async function protectedJsonRequest(path) {
   const url = getEndpoint() + path;
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = new Date().getTime();
+  const signature = await sha256(token + path + timestamp);
 
   return new Promise((resolve, reject) => {
     request
       .json(url)
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
-      .header('x-signature', sha256(token + path + timestamp))
+      .header('x-signature', signature)
       .get(null, (err, res) => {
         if (err) {
           reject(err);
