@@ -557,13 +557,12 @@ def _conform_timestamp_convention(dt: datetime):
     # So we need shift the datetime 1 hour back.
     return dt - timedelta(hours=1)
 
-def _get_utc_datetime_from_datapoint(dt: datetime):
-    """update to beginning hour convention and timezone to utc
-    """
-    dt_beginning_hour = _conform_timestamp_convention(dt)
-    dt_utc = arrow.get(dt_beginning_hour).to('utc')
-    return dt_utc.datetime
 
+def _get_utc_datetime_from_datapoint(dt: datetime):
+    """update to beginning hour convention and timezone to utc"""
+    dt_beginning_hour = _conform_timestamp_convention(dt)
+    dt_utc = arrow.get(dt_beginning_hour).to("utc")
+    return dt_utc.datetime
 
 
 if __name__ == "__main__":
