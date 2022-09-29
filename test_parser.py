@@ -80,6 +80,17 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
         [type(e["datetime"]) is datetime for e in res_list]
     ), "Datetimes must be returned as native datetime.datetime objects"
 
+    assert (
+        any(
+            [
+                e["datetime"].tzinfo is None
+                or e["datetime"].tzinfo.utcoffset(e["datetime"]) is None
+                for e in res_list
+            ]
+        )
+        == False
+    ), "Datetimes must be timezone aware"
+
     last_dt = arrow.get(max(dts)).to("UTC")
     first_dt = arrow.get(min(dts)).to("UTC")
     max_dt_warning = ""
