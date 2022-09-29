@@ -6659,7 +6659,7 @@
     "capacity": {
       "battery storage": 1.8,
       "biomass": 14.6,
-      "coal": 1128,
+      "coal": 573,
       "gas": 1833.9,
       "geothermal": 19.2,
       "hydro": 0,
@@ -6671,7 +6671,7 @@
       "wind": 2424
     },
     "comment": "Public Service Company Of New Mexico",
-    "contributors": ["systemcatch", "robertahunt", "KabelWlan"],
+    "contributors": ["systemcatch", "robertahunt", "KabelWlan", "brandongalbraith"],
     "delays": {
       "consumption": 30,
       "consumptionForecast": 30,
