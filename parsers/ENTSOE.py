@@ -459,6 +459,10 @@ def query_ENTSOE(
         params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
             "%Y%m%d%H00"  # YYYYMMDDHH00
         )
+    else:
+        raise ParserException(
+            parser="ENTSOE.py", message="target_datetime has to be a datetime in query_entsoe"
+        )
 
     # Due to rate limiting, we need to spread our requests across different tokens
     tokens = get_token("ENTSOE_TOKEN").split(",")
