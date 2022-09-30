@@ -33,7 +33,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }: any) => {
   const zoneData = useCurrentZoneData();
   const { __ } = useTranslation();
 
-  if (zoneData.hasData) {
+  if (zoneData.isValid) {
     return null;
   }
 

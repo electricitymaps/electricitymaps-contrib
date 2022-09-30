@@ -9,5 +9,7 @@ BUILD.yaml
 build
 
 world.json
+world-aggregated.json
+excluded-aggregated-exchanges.json
 public/dist/
 public/images/

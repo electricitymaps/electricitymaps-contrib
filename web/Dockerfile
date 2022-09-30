@@ -7,8 +7,9 @@ ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
 
-
 ADD web/src/world.json ./src/world.json
+ADD web/src/world-aggregated.json ./src/world-aggregated.json
+ADD web/src/excluded-aggregated-exchanges.json ./src/excluded-aggregated-exchanges.json
 ARG ELECTRICITYMAP_PUBLIC_TOKEN
 
 # Build

@@ -13,7 +13,6 @@ const DateRangeOption = styled.span`
   padding-right: 12px;
   border-radius: 16px;
   white-space: nowrap;
-  text-transform: capitalize;
   cursor: pointer;
   font-weight: ${(props) => ((props as any).active ? 700 : 500)};
   color: ${(props) => ((props as any).active ? '#000' : '#666')};

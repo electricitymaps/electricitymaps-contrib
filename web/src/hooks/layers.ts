@@ -5,14 +5,17 @@ import { formatDistance } from 'date-fns';
 
 import { getRefTime, getTargetTime } from '../helpers/grib';
 import { TIME } from '../helpers/constants';
+import exchangesToExclude from '../excluded-aggregated-exchanges.json';
+import { useAggregatesEnabled } from './router';
 
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => (state as any).application.electricityMixMode === 'consumption');
   const isHourly = useSelector((state) => (state as any).application.selectedTimeAggregate === TIME.HOURLY);
 
   const selectedZoneTimeIndex = useSelector((state) => (state as any).application.selectedZoneTimeIndex);
-  const exchanges = useSelector((state) => (state as any).data.exchanges);
+  //const exchanges = useSelector((state) => (state as any).data.exchanges);
 
+  const exchanges = isAggregatedToggled ? aggregateViewExchanges : detailedExchanges;
   if (!isConsumption || !isHourly) {
     return [];
   }

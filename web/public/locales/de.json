@@ -40,7 +40,7 @@
     "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
-    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
+    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
     "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"%s\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },

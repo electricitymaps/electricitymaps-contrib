@@ -35,7 +35,10 @@ const reducer = createReducer(initialState, (builder) => {
           return;
         }
         // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
-        state.zones[zoneId][stateAggregation].overviews = zoneData;
+        state.zones[zoneId][stateAggregation].overviews = zoneData.map((v) => ({
+          ...v,
+          stateDatetime: new Date(v.stateDatetime),
+        }));
         const maxHistoryDatetime = new Date(
           // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
           Math.max(...state.zones[zoneId][stateAggregation].details.map((x: any) => x.stateDatetime))

@@ -142,7 +142,7 @@ function combineZoneData(zoneData: any, aggregate: any) {
   }
 
   const combined = overviews.map((overview: any, idx: any) => {
-    return { ...overview, ...details[idx], hasParser, hasData, center };
+    return { ...overview, ...details[idx], hasParser, center };
   });
 
   return combined;

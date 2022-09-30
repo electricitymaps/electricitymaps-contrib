@@ -118,8 +118,10 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - South Korea (Hydro): [KHNP](http://cms.khnp.co.kr/eng/realTimeMgr/water.do?mnCd=EN040203)
 - South Korea (Load): [KPX](http://power.kpx.or.kr/powerinfo_en.php)
 - Spain: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
-- Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
 - Spain (Balearic Islands): [REE](https://demanda.ree.es/movil)
+- Spain (Canary Islands): [REE](https://demanda.ree.es/movil)
+- Spain (Ceuta): [REE](https://demanda.ree.es/visiona/sistema/ceuta5m/)
+- Spain (Melilla): [REE](https://demanda.ree.es/visiona/sistema/melilla5m/)
 - Sweden: [ENTSOE](https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html)
 - Saudi Arabia: [GCCIA](https://www.gccia.com.sa/)
 - Sri Lanka: [Ceylon Electricity Board](https://cebcare.ceb.lk/gensum/details)
@@ -156,7 +158,8 @@ When determining the installed capacity for a country, these sources might help 
 
 - Renewables: [IRENA](https://www.irena.org/Search?keywords=%22Renewable+Capacity+Statistics%22&sort=date&content_type=2803e86c173c440f840aa721825b3656)
 - Nuclear: [IAEA PRIS](https://pris.iaea.org/PRIS/WorldStatistics/OperationalReactorsByCountry.aspx)
-- Coal: [Global Coal Plant Tracker](https://endcoal.org/global-coal-plant-tracker/)
+- Coal: [Global Coal Plant Tracker](https://globalenergymonitor.org/projects/global-coal-plant-tracker/tracker/)
+- Gas : [Global Gas Plant Tracker](https://globalenergymonitor.org/projects/global-gas-plant-tracker/tracker-map/)
 - Various:
   - [Climatescope](https://global-climatescope.org/capacity-generation)
   - [Global Power Plant Database](https://datasets.wri.org/dataset/globalpowerplantdatabase)
@@ -189,6 +192,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Bahrain: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Belarus: [belstat.gov.by](http://www.belstat.gov.by/upload/iblock/7f7/7f70938f51eb9e49abc4a6e62f831a2c.rar), [RenEn](http://director.by/zhurnal/arkhiv-zhurnala/arkhiv-nomerov-2017/375-7-2017-iyul-2017/5456-zelenaya-energetika-nabiraet-oboroty)
 - Belgium
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=BE)
+  - Nuclear: [FANC](https://afcn.fgov.be/fr/actualites/doel-3-arret-en-toute-surete)
   - Solar: [ELIA](https://www.elia.be/en/grid-data/power-generation/solar-pv-power-generation-data)
   - Hydro: [ELIA](https://www.elia.be/-/media/project/elia/shared/documents/elia-group/publications-pdfs/20200414_elia_annual-report-sustainability_en.pdf)
   - Wind: [ELIA](https://www.elia.be/en/grid-data/power-generation/wind-power-generation)
@@ -233,6 +238,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Estonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Faroe Islands: [Johan Pauli Magnussen's Thesis, p44](https://setur.fo/uploads/tx_userpubrep/BScThesis_JohanPauliMagnussen.pdf)
 - Finland:
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=FI)
   - Renewables: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - France:
@@ -250,7 +256,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Other: [Frauenhofer ISE](https://energy-charts.info/charts/installed_power/chart.htm)
 - Georgia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Great Britain:
-  - Nuclear: [EDF](https://www.edfenergy.com/energy/power-station/daily-statuses)
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=GB)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Greece: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Guatemala: [AMM](http://www.amm.org.gt/pdfs2/2017/Capacidad_Instalada_2017.xls)
@@ -286,7 +292,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - Solar & wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Latvia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Lithuania: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Luxembourg: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
+- Luxembourg:
+  - Hydro Storage: [Société Electrique de L'Our](http://www.seo.lu/fr/Activites-principales/PSW-Vianden/Installations/Donnees-techniques)
+  - Other: [Institut luxembourgeois de régulation](https://data.public.lu/fr/datasets/la-production-denergie-electrique-au-luxembourg-1/)
 - Malaysia: [GSO](https://www.gso.org.my/SystemData/PowerStation.aspx)
 - Moldova
   - Renewable: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -312,7 +320,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
   - [USAID](https://www.usaid.gov/powerafrica/nigeria)
   - [TCN ISO grid data portal](https://www.niggrid.org)
 - North Macedonia: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
-- Norway: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
+- Norway:
+  - Solar: [NVE Excel report](https://www.nve.no/media/13861/oversikt-over-solcelleanlegg-i-norge_2021.xlsx)
+  - Other: [NVE](https://www.nve.no/energiforsyning/kraftproduksjon/?ref=mainmenu)
 - Northern Ireland: [ENTSO-E](https://m-transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Oman: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Panama:
@@ -322,8 +332,8 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Peru: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
 - Philippines: [Philippine Department of Energy](https://www.doe.gov.ph/electric-power/list-existing-power-plants-june-30-2022)
 - Poland: [ARE](https://www.are.waw.pl/badania-statystyczne/wynikowe-informacje-statystyczne/publikacje-miesieczne#informacja-statystyczna-o-energii-elektrycznej)
-- Portugal
-  - Coal: [TEJO](https://www.tejoenergia.com/en/aboutus/)
+- Portugal:
+  - Biomass, Hydro, Solar, Wind: [REN](https://datahub.ren.pt/pt/eletricidade/balanco-mensal/)
   - Other: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show)
 - Puerto Rico: [EIA](https://www.eia.gov/electricity/data/eia860M/)
 - Qatar: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
@@ -342,17 +352,20 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - South Africa:
   - [Eskom](https://www.eskom.co.za/wp-content/uploads/2021/08/2021IntegratedReport.pdf)
 - South Korea:
+  - Nuclear: [IAEA](https://pris.iaea.org/PRIS/CountryStatistics/CountryDetails.aspx?current=KR)
   - [KHNP](http://cms.khnp.co.kr/content/163/main.do?mnCd=FN05040101)
   - [EPSIS](http://epsis.kpx.or.kr/epsisnew/selectEkpoBftChart.do?menuId=020100)
 - Spain
   - Geothermal, Oil: [ENTSO-E](https://transparency.entsoe.eu/generation/r2/installedGenerationCapacityAggregation/show?)
-  - Other: [REE](https://www.ree.es/es/datos/publicaciones/boletines-mensuales)
-- Spain (Canary Islands)
-  - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
-  - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
+  - Other: [REE](https://www.ree.es/es/datos/generacion/potencia-instalada)
 - Spain (Balearic Islands)
   - Coal: [wikipedia.org](https://es.wikipedia.org/wiki/Central_t%C3%A9rmica_de_Es_Murterar)
   - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
+- Spain (Canary Islands)
+  - Hydro storage: [goronadelviento.es](http://www.goronadelviento.es/)
+  - Wind, Solar: [REE](http://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/Renovables-2016-v3.pdf)
+- Spain (Ceuta): [REE](https://www.ree.es/es/datos/generacion/potencia-instalada)
+- Spain (Melilla): [REE](https://www.ree.es/es/datos/generacion/potencia-instalada)
 - Sri Lanka: [Ceylon Electricity Board](https://ceb.lk/front_img/img_reports/1636539187LTGEP_2022-2041_Web_compressed.pdf 'Renewable installed capacity taken from Figure 1.13 (private-owned) and Table 2.1 (government-owned hydro), except for biomass, where the higher figure mentioned in the section "5.4 Other Renewable Energy Development" was used. Together, these add up to within 1 MW of the stated total renewable capacity of 2,447 MW (which is mentioned in e.g. "1.4.2.1 Overview"). Solar includes rooftop solar.  Thermal capactity taken from "2.2 Thermal Generation". Thermal Electricity generation is only from coal and oil, see Figure 1.14. According to ["CEB - ANNUAL REPORT 2020" page 18 (20 in PDF)](https://ceb.lk/front_img/img_reports/164887150703-CEB-Annual_Report-2020-English.pdf), the 900MW Lakvijaya plant is the only coal plant in Sri Lanka, implying the others are oil-fired. Installed capacity figures do not add up exactly to the 2,168 MW mentioned in the opening paragraph; I went with the combined total nameplate capacity from Table 2.5 (government-owned) and Table 2.6 (private-owned), adding up to 2197.9 MW. Then I put 900MW under coal and categorized the remainder as oil.  Pumped hydro is mentioned as being planned/investigated in several places, but currently isn\'t deployed. The same goes for battery storage.  Sri Lanka has no nuclear power plants. A report has been commissioned to investigate the possibility, see 4.2 (v).')
 - Sweden: [SVK](https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf)
 - Switzerland
@@ -374,8 +387,15 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - CEC: [CEC](https://ww2.energy.ca.gov/almanac/electricity_data/electric_generation_capacity.html)
     - Renewables: [CAISO](http://www.caiso.com/informed/Pages/CleanGrid/default.aspx)
     - Nuclear: [wikipedia.org](https://en.wikipedia.org/wiki/Diablo_Canyon_Power_Plant)
+  - Hawaii
+    - Battery storage: [Kapolei Energy Storage Project](https://www.kapoleienergystorage.com/)
+    - Coal: [The Guardian: Hawaii to close its only coal power plant in a step toward renewable energy](https://web.archive.org/web/20220902132250/https://www.theguardian.com/us-news/2022/aug/31/hawaii-close-coal-power-plant-renewable-energy)
+    - Other: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
+  - PNM
+    - Coal: [Github|electricitymap-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
+    - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
   &nbsp;</details>

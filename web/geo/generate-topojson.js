@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { topology } = require('topojson-server');
-const { getJSON, writeJSON, round } = require('./utilities');
+const { getJSON, writeJSON, round, fileExists } = require('./utilities');
 const turf = require('@turf/turf');
 
 function getCenter(geojson, zoneName) {
@@ -31,11 +31,11 @@ function getCenter(geojson, zoneName) {
 }
 
 function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
-  console.log('Generating new world.json'); // eslint-disable-line no-console
+  const output = OUT_PATH.split('/').pop();
+  console.log(`Generating new ${output}`); // eslint-disable-line no-console
   const topo = topology({
     objects: fc,
   });
-
   // We do the following to match the specific format needed for visualization
   const newObjects = {};
   topo.objects.objects.geometries.forEach((geo) => {
@@ -46,9 +46,9 @@ function generateTopojson(fc, { OUT_PATH, verifyNoUpdates }) {
   });
   topo.objects = newObjects;
 
-  const currentTopo = getJSON(OUT_PATH);
+  const currentTopo = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(currentTopo) === JSON.stringify(topo)) {
-    console.log('No changes to world.json'); // eslint-disable-line no-console
+    console.log(`No changes to ${output}`); // eslint-disable-line no-console
     return;
   }
 

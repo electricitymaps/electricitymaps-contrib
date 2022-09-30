@@ -30,11 +30,11 @@ const isLargeDevice = window.screen.width >= LARGE_DEVICE_VIEWPORT_WIDTH;
 // Provide extra swipe up space for larger IOS devices
 const snapPoints = isLargeDevice ? [70, 180] : [60, 160];
 
-const ResponsiveSheet = ({ children }: any) => {
+const ResponsiveSheet = ({ children, visible }: any) => {
   return (
     <StyledBottomSheet
       scrollLocking={false} // Ensures scrolling is not blocked on IOS
-      open
+      open={visible}
       snapPoints={() => snapPoints}
       blocking={false}
       header={<TimeSliderHeader />}

@@ -41,19 +41,24 @@ const LanguageSelectContainer = styled.ul`
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
     }
+    &.preferred-language {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
 `;
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
   const { __, i18n } = useTranslation();
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
   };
 
-  const handleLanguageSelect = (languageKey: any) => {
+  const handleLanguageSelect = (languageKey: any, preferredLanguage: any) => {
     i18n.changeLanguage(languageKey);
+    setSelectedLanguage(preferredLanguage);
     setLanguagesVisible(false);
   };
 
@@ -69,7 +74,12 @@ const LanguageSelect = () => {
         <LanguageSelectContainer className="language-select-container">
           {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
             <li key={key}>
-              <button onClick={() => handleLanguageSelect(key)}>{language}</button>
+              <button
+                onClick={() => handleLanguageSelect(key, language)}
+                className={selectedLanguage === language ? 'preferred-language' : null}
+              >
+                {language}
+              </button>
             </li>
           ))}
         </LanguageSelectContainer>

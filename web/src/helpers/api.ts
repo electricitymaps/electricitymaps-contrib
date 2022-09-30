@@ -1,11 +1,11 @@
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'd3-r... Remove this comment to see the full error message
 import * as request from 'd3-request';
-import { sha256 } from 'js-sha256';
 // @ts-expect-error TS(7016): Could not find a declaration file for module 'js-c... Remove this comment to see the full error message
 import Cookies from 'js-cookie';
 
 import { isLocalhost } from './environment';
 import thirdPartyServices from '../services/thirdparty';
+import { isRemoteParam } from './featureFlags';
 
 function getToken() {
   // @ts-expect-error TS(2304): Cannot find name 'ELECTRICITYMAP_PUBLIC_TOKEN'.
@@ -18,10 +18,6 @@ function getToken() {
   return ELECTRICITYMAP_PUBLIC_TOKEN;
 }
 
-function isRemoteParam() {
-  return new URLSearchParams(window.location.search).get('remote') === 'true';
-}
-
 // Use local endpoint only if ALL of the following conditions are true:
 // 1. The app is running on localhost
 // 2. The `remote` search param hasn't been explicitly set to true
@@ -30,21 +26,29 @@ function isUsingLocalEndpoint() {
   return isLocalhost() && !isRemoteParam() && document.domain !== '';
 }
 
+async function sha256(message) {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(message));
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 export function getEndpoint() {
   return isUsingLocalEndpoint() ? 'http://localhost:8001' : 'https://app-backend.electricitymap.org';
 }
 
-export function protectedJsonRequest(path: any) {
+export async function protectedJsonRequest(path: any) {
   const url = getEndpoint() + path;
   const token = isUsingLocalEndpoint() ? 'development' : getToken();
   const timestamp = new Date().getTime();
+  const signature = await sha256(token + path + timestamp);
 
   return new Promise((resolve, reject) => {
     request
       .json(url)
       .header('electricitymap-token', Cookies.get('electricitymap-token'))
       .header('x-request-timestamp', timestamp)
-      .header('x-signature', sha256(token + path + timestamp))
+      .header('x-signature', signature)
       .get(null, (err: any, res: any) => {
         if (err) {
           reject(err);

@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
@@ -27,7 +27,7 @@ console.log(
 🌍 %cReady to work on fixing the climate full-time?
   https://electricitymaps.com/jobs
 🐙 Got comments or want to contribute?
-  https://github.com/electricitymap/electricitymap-contrib`,
+  https://github.com/electricityMaps/electricitymaps-contrib`,
   'color: green; font-weight: bold',
   'color: #666; font-style: italic'
 );
