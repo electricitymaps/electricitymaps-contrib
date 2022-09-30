@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
 
 import math
-from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from typing import Optional
 
 import arrow
-import numpy as np
 import pandas as pd
+import pytz
 from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
-from . import DK, ENTSOE
-
 ZONE_CONFIG = ZONES_CONFIG["NL"]
+UTC = pytz.UTC
 
 
 @refetch_frequency(timedelta(days=1))
@@ -28,9 +27,8 @@ def fetch_production(
     logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
-        target_datetime = arrow.utcnow()
-    else:
-        target_datetime = arrow.get(target_datetime)
+        target_datetime = arrow.utcnow().datetime
+
     r = session or Session()
 
     consumptions = ENTSOE.fetch_consumption(
@@ -40,7 +38,10 @@ def fetch_production(
         return
     for c in consumptions:
         del c["source"]
-    df_consumptions = pd.DataFrame.from_dict(consumptions).set_index("datetime")
+    df_consumptions = pd.DataFrame.from_dict(consumptions)
+    df_consumptions["datetime"] = df_consumptions["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
 
     # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
@@ -95,7 +96,10 @@ def fetch_production(
         del e["source"]
         del e["netFlow"]
 
-    df_exchanges = pd.DataFrame.from_dict(exchanges).set_index("datetime")
+    df_exchanges = pd.DataFrame.from_dict(exchanges)
+    df_exchanges["datetime"] = df_exchanges["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
     # Sum all exchanges to NL imports
     df_exchanges = df_exchanges.groupby("datetime").sum()
 
@@ -248,7 +252,7 @@ def get_wind_capacities() -> pd.DataFrame:
         r = get(url_wind_capacities)
         per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
     except Exception as e:
-        logger.error(f"Error fetching wind capacities: {e}")
+        Logger.error(f"Error fetching wind capacities: {e}")
         return capacities_df
 
     per_year_capacity = {
@@ -284,7 +288,7 @@ def get_solar_capacities() -> pd.DataFrame:
         r = get(url_solar_capacity)
         per_year_capacity = r.json()["value"]
     except Exception as e:
-        logger.error(f"Error fetching solar capacities: {e}")
+        Logger.error(f"Error fetching solar capacities: {e}")
         return solar_capacity_df
 
     for yearly_row in per_year_capacity:
