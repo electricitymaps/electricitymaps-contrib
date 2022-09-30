@@ -38,7 +38,7 @@
   "devDependencies": {
     "@globules-io/cordova-plugin-ios-xhr": "^1.2.4",
     "app-icon": "^0.13.2",
-    "code-push": "^3.0.1",
+    "code-push": "^3.1.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-advanced-http": "^3.2.2",
     "cordova-plugin-code-push": "^2.0.0",
