@@ -461,7 +461,8 @@ def query_ENTSOE(
         )
     else:
         raise ParserException(
-            parser="ENTSOE.py", message="target_datetime has to be a datetime in query_entsoe"
+            parser="ENTSOE.py",
+            message="target_datetime has to be a datetime in query_entsoe",
         )
 
     # Due to rate limiting, we need to spread our requests across different tokens
