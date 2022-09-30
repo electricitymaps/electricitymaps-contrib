@@ -30,7 +30,6 @@ import MobileLayerButtons from '../components/mobilelayerbuttons';
 import HistoricalViewIntroModal from '../components/historicalviewintromodal';
 import ResponsiveSheet from './responsiveSheet';
 import { RetryBanner } from '../components/retrybanner';
-import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
 
 const CLIENT_VERSION_CHECK_INTERVAL = 15 * 60 * 1000; // 15 minutes
 
@@ -106,9 +105,7 @@ const Main = ({ electricityMixMode }) => {
     console.warn(`New client version available: ${clientVersion}`);
   }
 
-  const isAggregatedFFEnabled = aggregatedViewFFEnabled();
-
-  const isAggregated = useAggregatesEnabled() ? 'aggregated' : 'detailed';
+  const isAggregated = useAggregatesEnabled() ? 'country' : 'zone';
   const toggleAggregates = useAggregatesToggle();
 
   return (
@@ -143,20 +140,19 @@ const Main = ({ electricityMixMode }) => {
                   value={electricityMixMode}
                   tooltipStyle={{ left: 5, width: 204, top: 40, zIndex: 99 }}
                 />
-                {isAggregatedFFEnabled && (
-                  <Toggle
-                    infoHTML={__('tooltips.aggregateinfo')}
-                    onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
-                    options={[
-                      { value: 'aggregated', label: __('tooltips.aggregated') },
-                      { value: 'detailed', label: __('tooltips.detailed') },
-                    ]}
-                    value={isAggregated}
-                    tooltipStyle={{ left: 5, width: 204, top: 85 }}
-                  />
-                )}
+
+                <Toggle
+                  infoHTML={__('tooltips.aggregateinfo')}
+                  onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
+                  options={[
+                    { value: 'country', label: __('buttons.country') },
+                    { value: 'zone', label: __('buttons.zone') },
+                  ]}
+                  value={isAggregated}
+                  tooltipStyle={{ left: 5, width: 204, top: 85 }}
+                />
               </HiddenOnMobile>
-              <LayerButtons aggregatedViewFFEnabled={isAggregatedFFEnabled} />
+              <LayerButtons />
             </MapContainer>
             {/* // TODO: Get CountryPanel shown here in a separate BottomSheet behind the other one */}
             {isMobile ? (

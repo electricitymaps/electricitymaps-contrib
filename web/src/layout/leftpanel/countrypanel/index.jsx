@@ -12,6 +12,7 @@ import { TIME } from '../../../helpers/constants';
 import { CountryOverview } from './countryOverview';
 import { CountryDetails } from './countryDetails';
 import { CountryHeader } from './countryHeader';
+import { useAggregatesEnabled } from '../../../hooks/router';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -57,20 +58,42 @@ const CountryPanelStyled = styled.div`
     margin-bottom: 60px; /* height of time-slider plus padding*/
   }
 `;
+//The changes are all WIP, will find the optimal solution later
+// const getExchangesForZone = (zoneId, exchanges) => {
+//   const exchangesKeysForZone = Object.keys(exchanges).filter(
+//     (exchange) => exchange.split('->')[0] === zoneId || exchange.split('->')[1] === zoneId
+//   );
+//   const exchangesForZone = exchangesKeysForZone.map((exchangeKey) => exchanges[exchangeKey]);
+
+//   return exchangesForZone;
+// };
 
 const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const { __ } = useTranslation();
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
   const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
   const failedRequestType = useSelector((state) => state.data.failedRequestType);
-
+  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
-  const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
+  //const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
+  const showAggregated = useAggregatesEnabled();
+  const zoneViewLeftPanelData = useCurrentZoneData() || {};
+  //const allExchanges = useSelector((state) => state.data.exchanges);
+  //const exchangesForZone = getExchangesForZone(zoneId, allExchanges);
 
-  const data = useCurrentZoneData() || {};
+  // const countryViewLeftPanelData = {
+  //   ...zoneViewLeftPanelData,
+  //   exchange: zoneForTimePeriod?.exchange,
+  //   exchangeCapacities: zoneForTimePeriod?.exchangeCapacities,
+  //   exchangeCo2Intensities: zoneForTimePeriod?.exchangeCo2Intensities,
+  // };
+
+  const leftPanelData = showAggregated ? zoneViewLeftPanelData : zoneViewLeftPanelData;
+  //const zones = useSelector((state) => state.data.zones);
+  //console.log('data', zoneViewLeftPanelData, exchangesForZone);
 
   const parentPage = useMemo(() => {
     return {
@@ -97,7 +120,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     return <Redirect to={parentPage} />;
   }
 
-  const { hasParser } = data;
+  const { hasParser } = leftPanelData;
 
   const switchToZoneEmissions = () => {
     dispatchApplication('tableDisplayEmissions', true);
@@ -114,7 +137,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     return (
       <CountryPanelStyled>
         <div id="country-table-header">
-          <CountryHeader parentPage={parentPage} zoneId={zoneId} data={data} isMobile={isMobile} />
+          <CountryHeader parentPage={parentPage} zoneId={zoneId} data={leftPanelData} isMobile={isMobile} />
         </div>
         <LoadingWrapper>
           <LoadingPlaceholder height="2rem" />
@@ -132,14 +155,14 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
           isDataAggregated={timeAggregate && timeAggregate !== TIME.HOURLY}
           parentPage={parentPage}
           zoneId={zoneId}
-          data={data}
+          data={leftPanelData}
           isMobile={isMobile}
         />
         {hasParser && (
           <CountryOverview
             switchToZoneEmissions={switchToZoneEmissions}
             switchToZoneProduction={switchToZoneProduction}
-            data={data}
+            data={leftPanelData}
             isMobile={isMobile}
             tableDisplayEmissions={tableDisplayEmissions}
             electricityMixMode={electricityMixMode}
@@ -150,7 +173,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
       <CountryPanelWrap>
         {hasParser ? (
           <CountryDetails
-            data={data}
+            data={leftPanelData}
             tableDisplayEmissions={tableDisplayEmissions}
             electricityMixMode={electricityMixMode}
           />

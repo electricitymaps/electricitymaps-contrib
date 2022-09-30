@@ -127,13 +127,12 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
-    "aggregated": "aggregated",
-    "detailed": "detailed",
-    "aggregateinfo": "Countries with missing zone data are unable to be aggregated",
+    "aggregateinfo": "Countries are aggregated when the annual zone capacity is greater than 90% of the total capacity",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"
   },
+  "buttons": { "country": "country", "zone": "zone" },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",

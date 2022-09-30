@@ -20,11 +20,23 @@ const generateExchangesToIgnore = (OUT_PATH, fc) => {
     const split = key.split('->');
     const zoneOne = split[0].slice(0, 2);
     const zoneTwo = split[1].slice(0, 2);
-    if (zoneOne === zoneTwo && countryKeysToExclude.includes(key.slice(0, 2))) {
+    if (key.length > 6 && (countryKeysToExclude.includes(zoneOne) || countryKeysToExclude.includes(zoneTwo))) {
       return key;
     }
   });
-  const exchanges = { exchangesToExclude: unCombinedExchanges };
+
+  const countryExchangesWithSubzones = Object.keys(exchangeConfig).filter((key) => {
+    const split = key.split('->');
+    const zoneOne = split[0].slice(0, 2);
+    const zoneTwo = split[1].slice(0, 2);
+    if (key.length === 6 && (countryKeysToExclude.includes(zoneOne) || countryKeysToExclude.includes(zoneTwo))) {
+      return key;
+    }
+  });
+  const exchanges = {
+    exchangesToExcludeCountryView: unCombinedExchanges,
+    exchangesToExcludeZoneView: countryExchangesWithSubzones,
+  };
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
     console.log(`No changes to excluded-aggregated-exchanges.json`); // eslint-disable-line no-console
