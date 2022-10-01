@@ -50,16 +50,16 @@ const LanguageSelectContainer = styled.ul`
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(getPreferredLanguage());
+  const [selectedLanguageKey, setSelectedLanguageKey] = useState(getPreferredLanguage());
   const { __, i18n } = useTranslation();
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
   };
 
-  const handleLanguageSelect = (languageKey, preferredLanguage) => {
+  const handleLanguageSelect = (languageKey) => {
     i18n.changeLanguage(languageKey);
-    setSelectedLanguage(preferredLanguage);
+    setSelectedLanguageKey(languageKey);
     setLanguagesVisible(false);
   };
 
@@ -76,8 +76,8 @@ const LanguageSelect = () => {
           {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
             <li key={key}>
               <button
-                onClick={() => handleLanguageSelect(key, language)}
-                className={selectedLanguage === language ? 'preferred-language' : null}
+                onClick={() => handleLanguageSelect(key)}
+                className={selectedLanguageKey === key ? 'preferred-language' : null}
               >
                 {language}
               </button>

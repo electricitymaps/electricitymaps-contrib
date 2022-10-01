@@ -1,7 +1,3 @@
-import { getKey } from '../helpers/storage';
-import { LANGUAGE_NAMES } from '../helpers/constants';
+import i18next from './i18n';
 
-export const getPreferredLanguage = () => {
-  const preferredLanguage = getKey('i18nextLng');
-  return LANGUAGE_NAMES[preferredLanguage];
-};
+export const getPreferredLanguage = () => i18next.language;
