@@ -1,7 +1,7 @@
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.interceptAPI('v5/state/hourly');
+    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.waitForAPISuccess(`v5/state/hourly`);
 
     // closes left panel

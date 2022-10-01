@@ -42,8 +42,8 @@ describe('Country Panel', () => {
   });
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.visit('/zone/UA?lang=en-GB');
     cy.interceptAPI('v5/history/hourly?countryCode=UA');
+    cy.visit('/zone/UA?lang=en-GB');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.waitForAPISuccess('v5/history/hourly?countryCode=UA');
 
