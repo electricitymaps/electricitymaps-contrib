@@ -60,9 +60,9 @@ const LANGUAGE_NAMES = {
   sk: 'Slovenčina',
   sv: 'Svenska',
   vi: 'Tiếng Việt',
-  'zh-cn': '中文 (Mainland China)',
-  'zh-hk': '中文 (Hong Kong)',
-  'zh-tw': '中文 (Taiwan)',
+  'zh-CN': '中文 (Mainland China)',
+  'zh-HK': '中文 (Hong Kong)',
+  'zh-TW': '中文 (Taiwan)',
 };
 const LOCALE_TO_FACEBOOK_LOCALE = {
   ar: 'ar_AR',
