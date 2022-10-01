@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import i18next from 'i18next';
 
 import { useTranslation } from '../helpers/translation';
 import { LANGUAGE_NAMES } from '../helpers/constants';
@@ -49,9 +48,9 @@ const LanguageSelectContainer = styled.ul`
 `;
 
 const LanguageSelect = () => {
-  const [languagesVisible, setLanguagesVisible] = useState(false);
-  const [selectedLanguageKey, setSelectedLanguageKey] = useState(i18next.language);
   const { __, i18n } = useTranslation();
+  const [selectedLanguageKey, setSelectedLanguageKey] = useState(i18n.language);
+  const [languagesVisible, setLanguagesVisible] = useState(false);
 
   const toggleLanguagesVisible = () => {
     setLanguagesVisible(!languagesVisible);
