@@ -41,7 +41,7 @@ const LANGUAGE_NAMES = {
   da: 'Dansk',
   de: 'Deutsch',
   el: 'Ελληνικά',
-  en: 'English',
+  'en-GB': 'English',
   es: 'Español',
   et: 'Eesti',
   fi: 'Suomi',

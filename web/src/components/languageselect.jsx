@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import i18next from 'i18next';
 
 import { useTranslation } from '../helpers/translation';
 import { LANGUAGE_NAMES } from '../helpers/constants';
-import { getPreferredLanguage } from '../helpers/language';
 import styled from 'styled-components';
 
 import ButtonToggle from './buttontoggle';
@@ -50,7 +50,7 @@ const LanguageSelectContainer = styled.ul`
 
 const LanguageSelect = () => {
   const [languagesVisible, setLanguagesVisible] = useState(false);
-  const [selectedLanguageKey, setSelectedLanguageKey] = useState(getPreferredLanguage());
+  const [selectedLanguageKey, setSelectedLanguageKey] = useState(i18next.language);
   const { __, i18n } = useTranslation();
 
   const toggleLanguagesVisible = () => {
