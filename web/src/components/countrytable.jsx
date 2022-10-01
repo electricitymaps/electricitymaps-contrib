@@ -31,6 +31,11 @@ const SCALE_TICKS = 4;
 
 const CountryTableSVG = styled.svg`
   width: 100%;
+  text {
+    white-space: 'nowrap';
+    overflow: 'hidden';
+    text-overflow: 'ellipsis';
+  }
 `;
 
 const CountryTableContainer = styled.div`
@@ -149,6 +154,7 @@ const Row = ({ children, index, isMobile, label, scale, value, onMouseOver, onMo
       <text
         className="name"
         style={{ pointerEvents: 'none', textAnchor: 'end' }}
+        textLength={`${label.length}em` * 0.8}
         transform={`translate(${LABEL_MAX_WIDTH - 1.5 * PADDING_Y}, ${TEXT_ADJUST_Y})`}
       >
         {label}
