@@ -393,6 +393,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
     - Other: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - NYISO: [NYISO Gold Book](https://www.nyiso.com/documents/20142/2226333/2021-Gold-Book-Final-Public.pdf)
   - PJM: [PJM](http://www.pjm.com/-/media/markets-ops/ops-analysis/capacity-by-fuel-type-2019.ashx?la=en)
+  - PNM
+    - Coal: [Github|electricitymap-contrib|PR#4614](https://github.com/electricitymaps/electricitymaps-contrib/pull/4614)
+    - EIA: [EIA](https://www.eia.gov/electricity/data/eia860M/)
   - SPP: [SPP](https://www.spp.org/about-us/fast-facts/)
 - Uruguay: [UTE](https://portal.ute.com.uy/institucional/infraestructura/fuentes-de-generacion)
   &nbsp;</details>
