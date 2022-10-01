@@ -31,7 +31,7 @@ const SCALE_TICKS = 4;
 
 const CountryTableSVG = styled.svg`
   width: 100%;
-  text {
+  text.name {
     white-space: 'nowrap';
     overflow: 'hidden';
     text-overflow: 'ellipsis';
