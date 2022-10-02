@@ -93,4 +93,4 @@ def emission_factors(zone_key: ZoneKey) -> dict[str, float]:
     override = get_most_recent_value(override)
 
     merged = {**defaults, **override}
-    return {[(k, (v or {}).get("value")) for (k, v) in merged.items()]}
+    return dict([(k, (v or {}).get("value")) for (k, v) in merged.items()])
