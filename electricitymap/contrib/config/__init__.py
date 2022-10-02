@@ -2,11 +2,11 @@ import json
 from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
-from typing import NewType
+from typing import List, NewType, Tuple
 
 ZoneKey = NewType("ZoneKey", str)
-Point = NewType("Point", tuple[float, float])
-BoundingBox = NewType("BoundingBox", list[Point])
+Point = NewType("Point", Tuple[float, float])
+BoundingBox = NewType("BoundingBox", List[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
