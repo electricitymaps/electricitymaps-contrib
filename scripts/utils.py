@@ -2,7 +2,7 @@ import json
 import pathlib
 import subprocess
 from os import PathLike, listdir, path
-from typing import Dict, Union
+from typing import Union
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 LOCALES_FOLDER_PATH = ROOT_PATH / "web/public/locales/"
@@ -36,7 +36,7 @@ class JsonFilePatcher(object):
 
     def __enter__(self):
         with open(self.file_path) as f:
-            self.content: Dict = json.load(f)
+            self.content: dict = json.load(f)
 
         return self
 

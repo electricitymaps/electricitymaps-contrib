@@ -3,7 +3,7 @@ import json
 import time
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Optional
 
 import arrow  # the arrow library is used to handle datetimes
 import pandas as pd
@@ -26,7 +26,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Queries "Electricity balance Non-Validated" from energinet api
     for Danish bidding zones

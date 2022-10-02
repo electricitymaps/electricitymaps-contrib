@@ -7,7 +7,7 @@ import pprint
 import time
 from datetime import datetime
 from logging import DEBUG, basicConfig, getLogger
-from typing import Any, Callable, Dict, List, Union
+from typing import Any, Callable,Union
 
 import arrow
 import click
@@ -51,7 +51,7 @@ def test_parser(zone: ZoneKey, data_type, target_datetime):
     start = time.time()
 
     parser: Callable[
-        ..., Union[List[Dict[str, Any]], Dict[str, Any]]
+        ..., Union[list[dict[str, Any]], dict[str, Any]]
     ] = PARSER_KEY_TO_DICT[data_type][zone]
     if data_type in ["exchange", "exchangeForecast"]:
         args = zone.split("->")

@@ -3,7 +3,7 @@
 # The arrow library is used to handle datetimes
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Optional
 
 import arrow
 from requests import Session
@@ -155,7 +155,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError(
@@ -175,7 +175,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """
     Requests the last known power exchange (in MW) between two regions.
 

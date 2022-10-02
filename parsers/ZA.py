@@ -2,7 +2,7 @@ from collections import OrderedDict
 from datetime import datetime
 from logging import Logger, getLogger
 from pprint import PrettyPrinter
-from typing import List, Optional
+from typing import Optional
 
 from arrow import get, now
 from requests import Response, Session, post
@@ -734,7 +734,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
 
     if target_datetime is not None:
         local_target_datetime = get(target_datetime).to(TIMEZONE)

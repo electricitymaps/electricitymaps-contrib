@@ -3,7 +3,7 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import arrow
 import pandas
@@ -205,7 +205,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 

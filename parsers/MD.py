@@ -3,10 +3,10 @@
 
 """Parser for Moldova."""
 
-from collections import namedtuple
+from collections import NamedTuple
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Callable, List, Optional, Union
+from typing import Callable, Optional, Union
 
 import arrow
 from requests import Session
@@ -39,7 +39,7 @@ archive_fields = (
 )
 
 # Datapoint in the archive-data.
-ArchiveDatapoint = namedtuple("ArchiveDatapoint", archive_fields)
+ArchiveDatapoint = NamedTuple("ArchiveDatapoint", archive_fields)
 
 display_url = "http://www.moldelectrica.md/ro/activity/system_state"
 data_url = "http://www.moldelectrica.md/utils/load5.php"
@@ -213,7 +213,7 @@ def fetch_consumption(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the consumption (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -242,7 +242,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the production mix (in MW) of a given country."""
     if target_datetime:
         archive_data = get_archive_data(session, target_datetime)
@@ -311,7 +311,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the last known power exchange (in MW) between two countries."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))
 

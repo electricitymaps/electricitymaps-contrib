@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Dict, List, Mapping, Optional, Tuple, Union
+from typing import Mapping, Optional, Union
 
 import arrow
 import pandas as pd
@@ -97,7 +97,7 @@ def process_solar_rooftop(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_capacities(filtered_datasets: List[Mapping], region: str) -> pd.Series:
+def get_capacities(filtered_datasets: list[Mapping], region: str) -> pd.Series:
     # Parse capacity data
     capacities = dict(
         [
@@ -123,9 +123,9 @@ def sum_vector(pd_series, keys, ignore_nans=False):
 
 
 def filter_production_objs(
-    objs: List[Dict], logger: Logger = getLogger(__name__)
-) -> List[Dict]:
-    def filter_solar_production(obj: Dict) -> bool:
+    objs: list[dict], logger: Logger = getLogger(__name__)
+) -> list[dict]:
+    def filter_solar_production(obj: dict) -> bool:
         if (
             "solar" in obj.get("production", {})
             and obj["production"]["solar"] is not None
@@ -194,7 +194,7 @@ def fetch_main_power_df(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     df, filtered_datasets = _fetch_main_df(
         "power",
         zone_key=zone_key,
@@ -215,7 +215,7 @@ def _fetch_main_df(
     session: Session,
     target_datetime: datetime,
     logger: Logger,
-) -> Tuple[pd.DataFrame, list]:
+) -> tuple[pd.DataFrame, list]:
     region = ZONE_KEY_TO_REGION.get(zone_key)
     url = generate_url(
         zone_key=zone_key or sorted_zone_keys[0],

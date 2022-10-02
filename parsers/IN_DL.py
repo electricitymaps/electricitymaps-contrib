@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Dict, Optional
+from typing import Optional
 
 from requests import Session
 
@@ -59,7 +59,7 @@ def fetch_production(
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy: Dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
+    energy: dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 

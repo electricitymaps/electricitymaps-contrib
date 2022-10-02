@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Callable, Dict, List, Optional, Tuple, Union
+from typing import Callable, Optional, Union
 
 from pydantic import (
     BaseModel,
@@ -93,20 +93,20 @@ class Delays(StrictBaseModel):
 
 
 class Zone(StrictBaseModelWithAlias):
-    bounding_box: Optional[List[Point]]
+    bounding_box: Optional[list[Point]]
     capacity: Optional[Capacity]
     comment: Optional[str] = Field(None, alias="_comment")
-    contributors: Optional[List[str]]
+    contributors: Optional[list[str]]
     delays: Optional[Delays]
     disclaimer: Optional[str]
     flag_file_name: Optional[str]
     parsers: Parsers = Parsers()
-    sub_zone_names: Optional[List[str]] = Field(None, alias="subZoneNames")
+    sub_zone_names: Optional[list[str]] = Field(None, alias="subZoneNames")
     timezone: Optional[str]
     key: ZoneKey  # This is not part of zones.json, but added here to enable self referencing
     estimation_method: Optional[str]
 
-    def neighbors(self) -> List[ZoneKey]:
+    def neighbors(self) -> list[ZoneKey]:
         return ZONE_NEIGHBOURS.get(self.key, [])
 
 
@@ -116,9 +116,9 @@ class ExchangeParsers(ParsersBaseModel):
 
 
 class Exchange(StrictBaseModelWithAlias):
-    capacity: Optional[Tuple[int, int]]
+    capacity: Optional[tuple[int, int]]
     comment: Optional[str] = Field(None, alias="_comment")
-    lonlat: Optional[Tuple[float, float]]
+    lonlat: Optional[tuple[float, float]]
     parsers: Optional[ExchangeParsers]
     rotation: Optional[int]
 
@@ -154,7 +154,7 @@ class PowerOriginRatiosValues(StrictBaseModelWithAlias):
 class PowerOriginRatios(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
-    url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
+    url: Optional[Union[str, list[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[date, datetime]]
     value: PowerOriginRatiosValues
 
@@ -162,50 +162,50 @@ class PowerOriginRatios(StrictBaseModelWithAlias):
 class PowerOriginRatiosForZone(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
-    url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
-    power_origin_ratios: Union[List[PowerOriginRatios], PowerOriginRatios] = Field(
+    url: Optional[Union[str, list[str]]] = Field(None, alias="_url")
+    power_origin_ratios: Union[list[PowerOriginRatios], PowerOriginRatios] = Field(
         alias="powerOriginRatios"
     )
 
 
 class FallbackZoneMixes(StrictBaseModelWithAlias):
     defaults: PowerOriginRatiosForZone
-    zone_overrides: Dict[str, PowerOriginRatiosForZone] = Field(alias="zoneOverrides")
+    zone_overrides: dict[str, PowerOriginRatiosForZone] = Field(alias="zoneOverrides")
 
 
 class ModeCategoryContribution(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
-    url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
+    url: Optional[Union[str, list[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[datetime, date]]
     value: Optional[Percentage]
 
 
 class CategoryContribution(StrictBaseModelWithAlias):
     battery_charge: Optional[
-        Union[ModeCategoryContribution, List[ModeCategoryContribution]]
+        Union[ModeCategoryContribution, list[ModeCategoryContribution]]
     ] = Field(None, alias="battery charge")
     battery_discharge: Optional[
-        Union[ModeCategoryContribution, List[ModeCategoryContribution]]
+        Union[ModeCategoryContribution, list[ModeCategoryContribution]]
     ] = Field(None, alias="battery discharge")
-    biomass: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    coal: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    gas: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
+    biomass: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    coal: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    gas: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
     geothermal: Optional[
-        Union[ModeCategoryContribution, List[ModeCategoryContribution]]
+        Union[ModeCategoryContribution, list[ModeCategoryContribution]]
     ]
     hydro_charge: Optional[
-        Union[ModeCategoryContribution, List[ModeCategoryContribution]]
+        Union[ModeCategoryContribution, list[ModeCategoryContribution]]
     ] = Field(None, alias="hydro charge")
     hydro_discharge: Optional[
-        Union[ModeCategoryContribution, List[ModeCategoryContribution]]
+        Union[ModeCategoryContribution, list[ModeCategoryContribution]]
     ] = Field(None, alias="hydro discharge")
-    hydro: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    nuclear: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    oil: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    solar: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    unknown: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
-    wind: Optional[Union[ModeCategoryContribution, List[ModeCategoryContribution]]]
+    hydro: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    nuclear: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    oil: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    solar: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    unknown: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
+    wind: Optional[Union[ModeCategoryContribution, list[ModeCategoryContribution]]]
 
     @root_validator
     @classmethod
@@ -221,45 +221,45 @@ class CategoryContribution(StrictBaseModelWithAlias):
 
 class IsLowCarbon(StrictBaseModelWithAlias):
     defaults: CategoryContribution = CategoryContribution()
-    zone_overrides: Dict[str, CategoryContribution] = Field(alias="zoneOverrides")
+    zone_overrides: dict[str, CategoryContribution] = Field(alias="zoneOverrides")
 
 
 class IsRenewable(StrictBaseModelWithAlias):
     defaults: CategoryContribution = CategoryContribution()
-    zone_overrides: Dict[str, CategoryContribution] = Field(alias="zoneOverrides")
+    zone_overrides: dict[str, CategoryContribution] = Field(alias="zoneOverrides")
 
 
 class ModeEmissionFactor(StrictBaseModelWithAlias):
     source: Optional[str] = Field(None, alias="_source")
     comment: Optional[str] = Field(None, alias="_comment")
-    url: Optional[Union[str, List[str]]] = Field(None, alias="_url")
+    url: Optional[Union[str, list[str]]] = Field(None, alias="_url")
     datetime: Optional[Union[date, datetime]]
     value: NonNegativeFloat
 
 
 class AllModesEmissionFactors(StrictBaseModelWithAlias):
     battery_charge: Optional[
-        Union[List[ModeEmissionFactor], ModeEmissionFactor]
+        Union[list[ModeEmissionFactor], ModeEmissionFactor]
     ] = Field(None, alias="battery charge")
     battery_discharge: Optional[
-        Union[List[ModeEmissionFactor], ModeEmissionFactor]
+        Union[list[ModeEmissionFactor], ModeEmissionFactor]
     ] = Field(None, alias="battery discharge")
-    biomass: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    coal: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    gas: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    geothermal: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    hydro_charge: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]] = Field(
+    biomass: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    coal: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    gas: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    geothermal: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    hydro_charge: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]] = Field(
         None, alias="hydro charge"
     )
     hydro_discharge: Optional[
-        Union[List[ModeEmissionFactor], ModeEmissionFactor]
+        Union[list[ModeEmissionFactor], ModeEmissionFactor]
     ] = Field(None, alias="hydro discharge")
-    hydro: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    nuclear: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    oil: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    solar: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    unknown: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
-    wind: Optional[Union[List[ModeEmissionFactor], ModeEmissionFactor]]
+    hydro: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    nuclear: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    oil: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    solar: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    unknown: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
+    wind: Optional[Union[list[ModeEmissionFactor], ModeEmissionFactor]]
 
     @root_validator
     @classmethod
@@ -275,7 +275,7 @@ class AllModesEmissionFactors(StrictBaseModelWithAlias):
 
 class EmissionFactors(StrictBaseModelWithAlias):
     defaults: AllModesEmissionFactors
-    zone_overrides: Dict[str, AllModesEmissionFactors] = Field(alias="zoneOverrides")
+    zone_overrides: dict[str, AllModesEmissionFactors] = Field(alias="zoneOverrides")
 
 
 class CO2eqParameters(StrictBaseModelWithAlias):
@@ -286,8 +286,8 @@ class CO2eqParameters(StrictBaseModelWithAlias):
 
 
 class ConfigModel(StrictBaseModel):
-    exchanges: Dict[str, Exchange]
-    zones: Dict[str, Zone]
+    exchanges: dict[str, Exchange]
+    zones: dict[str, Zone]
 
 
 # The co2eq parameters config model is separated as it does not respect the

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -19,7 +19,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """
     Requests the last known production mix (in MW) of a given country.
 
@@ -161,7 +161,7 @@ def fetch_price(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """
     Requests the last known power price of a given country.
 
@@ -245,7 +245,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """
     Requests the last known power exchange (in MW) between two countries.
 

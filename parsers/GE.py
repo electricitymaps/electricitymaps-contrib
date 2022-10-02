@@ -4,7 +4,7 @@
 import urllib.parse
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 # Third-party library imports
 import arrow
@@ -28,7 +28,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[Dict[str, Any]], Dict[str, Any]]:
+) -> Union[list[dict[str, Any]], dict[str, Any]]:
     """Request the last known production mix (in MW) of a given country."""
     session = session or Session()
     if target_datetime is None:  # Get the current production mix.
@@ -113,7 +113,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger=getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Request the last known power exchange (in MW) between two countries."""
     if target_datetime:
         return ENTSOE_fetch_exchange(

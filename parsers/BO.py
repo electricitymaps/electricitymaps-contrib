@@ -4,7 +4,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, NamedTuple, Optional
+from typing import NamedTuple, Optional
 
 import arrow
 from requests import Session
@@ -34,7 +34,7 @@ def fetch_data(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[HourlyProduction]:
+) -> list[HourlyProduction]:
     if target_datetime is not None:
         dt = arrow.get(target_datetime, tz_bo)
     else:
@@ -56,7 +56,7 @@ def fetch_data(
 
     hour_rows = json.loads(resp.text.replace("ï»¿", ""))["data"]
 
-    result: List[HourlyProduction] = []
+    result: list[HourlyProduction] = []
 
     for hour_row in hour_rows:
         [hour, forecast, total, thermo, hydro, wind, solar, bagasse] = hour_row

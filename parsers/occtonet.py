@@ -3,7 +3,7 @@
 from datetime import datetime
 from io import StringIO
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
+from typing import Optional
 
 import arrow
 import pandas as pd
@@ -52,7 +52,7 @@ EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
 
 def _fetch_exchange(
     session: Session, datetime: datetime, sorted_zone_keys: str
-) -> List[dict]:
+) -> list[dict]:
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
@@ -91,7 +91,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if not session:
         session = Session()
@@ -108,7 +108,7 @@ def fetch_exchange_forecast(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Gets exchange forecast between two specified zones."""
     if not session:
         session = Session()
@@ -131,7 +131,7 @@ def get_cookies(session: Optional[Session] = None) -> cookies.RequestsCookieJar:
     return session.cookies
 
 
-def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str, str]:
+def get_form_data(session: Session, exchange_id: int, datetime: str) -> dict[str, str]:
     form_data = {
         "ajaxToken": "",
         "downloadKey": "",
@@ -207,7 +207,7 @@ def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str
     return form_data
 
 
-def _get_exchange(session: Session, form_data: Dict[str, str], columns: List[str]):
+def _get_exchange(session: Session, form_data: dict[str, str], columns: list[str]):
     def parse_dt(str_dt: str) -> datetime:
         return arrow.get(str_dt).replace(tzinfo="Asia/Tokyo").datetime
 

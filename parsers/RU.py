@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 from functools import reduce
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import arrow
 import pandas as pd
@@ -63,7 +63,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if zone_key == "RU":
         # Get data for all zones
@@ -180,7 +180,7 @@ def fetch_production_2nd_synchronous_zone(
     zone_key: str = "RU-AS",
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
-) -> List[dict]:
+) -> list[dict]:
     if zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
 

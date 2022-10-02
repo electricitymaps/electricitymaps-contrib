@@ -18,7 +18,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
 from random import shuffle
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Optional, Union
 
 import arrow
 import numpy as np
@@ -85,7 +85,7 @@ ENTSOE_STORAGE_PARAMETERS = list(
 )
 # Define all ENTSOE zone_key <-> domain mapping
 # see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html
-ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
+ENTSOE_DOMAIN_MAPPINGS: dict[str, str] = {
     "AL": "10YAL-KESH-----5",
     "AT": "10YAT-APG------L",
     "AZ": "10Y1001A1001B05V",
@@ -159,7 +159,7 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
 }
 
 # Generation per unit can only be obtained at EIC (Control Area) level
-ENTSOE_EIC_MAPPING: Dict[str, str] = {
+ENTSOE_EIC_MAPPING: dict[str, str] = {
     "DK-DK1": "10Y1001A1001A796",
     "DK-DK2": "10Y1001A1001A796",
     "FI": "10YFI-1--------U",
@@ -172,13 +172,13 @@ ENTSOE_EIC_MAPPING: Dict[str, str] = {
 }
 
 # Define zone_keys to an array of zone_keys for aggregated production data
-ZONE_KEY_AGGREGATES: Dict[str, List[str]] = {
+ZONE_KEY_AGGREGATES: dict[str, list[str]] = {
     "IT-SO": ["IT-CA", "IT-SO"],
     "SE": ["SE-SE1", "SE-SE2", "SE-SE3", "SE-SE4"],
 }
 
 # Some exchanges require specific domains
-ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
+ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: dict[str, list[str]] = {
     "AT->IT-NO": [ENTSOE_DOMAIN_MAPPINGS["AT"], ENTSOE_DOMAIN_MAPPINGS["IT"]],
     "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
@@ -215,7 +215,7 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "SK->UA": [ENTSOE_DOMAIN_MAPPINGS["SK"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
 }
 # Some zone_keys are part of bidding zone domains for price data
-ENTSOE_PRICE_DOMAIN_OVERRIDE: Dict[str, str] = {
+ENTSOE_PRICE_DOMAIN_OVERRIDE: dict[str, str] = {
     "AX": ENTSOE_DOMAIN_MAPPINGS["SE-SE3"],
     "DK-BHM": ENTSOE_DOMAIN_MAPPINGS["DK-DK2"],
     "DE": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
@@ -223,7 +223,7 @@ ENTSOE_PRICE_DOMAIN_OVERRIDE: Dict[str, str] = {
     "LU": ENTSOE_DOMAIN_MAPPINGS["DE-LU"],
 }
 
-ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
+ENTSOE_UNITS_TO_ZONE: dict[str, str] = {
     # DK-DK1
     "Anholt": "DK-DK1",
     "Esbjergvaerket 3": "DK-DK1",
@@ -320,7 +320,7 @@ ENTSOE_UNITS_TO_ZONE: Dict[str, str] = {
     "Karlshamn G3": "SE-SE4",
 }
 
-VALIDATIONS: Dict[str, Dict[str, Any]] = {
+VALIDATIONS: dict[str, dict[str, Any]] = {
     # This is a list of criteria to ensure validity of data,
     # used in validate_production()
     # Note that "required" means data is present in ENTSOE.
@@ -444,7 +444,7 @@ def closest_in_time_key(
 
 def query_ENTSOE(
     session: Session,
-    params: Dict[str, str],
+    params: dict[str, str],
     target_datetime: Optional[datetime] = None,
     span: tuple = (-48, 24),
     function_name: str = "",
@@ -697,7 +697,7 @@ def parse_scalar(
     xml_text: str,
     only_inBiddingZone_Domain: bool = False,
     only_outBiddingZone_Domain: bool = False,
-) -> Union[Tuple[List[float], List[datetime]], None]:
+) -> Union[tuple[list[float], list[datetime]], None]:
 
     if not xml_text:
         return None
@@ -726,7 +726,7 @@ def parse_scalar(
 
 def parse_production(
     xml_text,
-) -> Union[Tuple[List[Dict[str, Any]], List[datetime]], None]:
+) -> Union[tuple[list[dict[str, Any]], list[datetime]], None]:
 
     if not xml_text:
         return None
@@ -866,9 +866,9 @@ def parse_production_per_units(xml_text: str) -> Union[Any, None]:
 def parse_exchange(
     xml_text: str,
     is_import: bool,
-    quantities: Optional[List[float]] = None,
-    datetimes: Optional[List[datetime]] = None,
-) -> Union[Tuple[List[float], List[datetime]], None]:
+    quantities: Optional[list[float]] = None,
+    datetimes: Optional[list[datetime]] = None,
+) -> Union[tuple[list[float], list[datetime]], None]:
 
     if not xml_text:
         return None
@@ -908,15 +908,15 @@ def parse_exchange(
 
 def parse_price(
     xml_text: str,
-) -> Union[Tuple[List[float], List[str], List[datetime]], None]:
+) -> Union[tuple[list[float], list[str], list[datetime]], None]:
 
     if not xml_text:
         return None
     soup = BeautifulSoup(xml_text, "html.parser")
     # Get all points
-    prices: List[float] = []
-    currencies: List[str] = []
-    datetimes: List[datetime] = []
+    prices: list[float] = []
+    currencies: list[str] = []
+    datetimes: list[datetime] = []
     for timeseries in soup.find_all("timeseries"):
         currency = str(timeseries.find_all("currency_unit.name")[0].contents[0])
         resolution = str(timeseries.find_all("resolution")[0].contents[0])
@@ -934,8 +934,8 @@ def parse_price(
 
 
 def validate_production(
-    datapoint: Dict[str, Any], logger: Logger
-) -> Union[Dict[str, Any], bool, None]:
+    datapoint: dict[str, Any], logger: Logger
+) -> Union[dict[str, Any], bool, None]:
     """
     Production data can sometimes be available but clearly wrong.
 

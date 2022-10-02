@@ -6,7 +6,7 @@ import json
 import re
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 import arrow
 import demjson3 as demjson
@@ -317,7 +317,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Union[List[dict], dict]:
+) -> Union[list[dict], dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime is not None:
         raise NotImplementedError("This parser is not yet able to parse past dates")

@@ -1,8 +1,8 @@
-from typing import Callable, List
+from typing import Callable
 
 
 def validator(
-    kind: str, zone_keys: List[str] = None, not_zone_keys: List[str] = None
+    kind: str, zone_keys: list[str] = None, not_zone_keys: list[str] = None
 ) -> Callable:
     """
     Decorator function to mark a function as a validator.
@@ -16,9 +16,9 @@ def validator(
     ----------
     kind : str
         The kind of data that validator supports. e.g. "production", "exchange"
-    zone_keys : List[str]
+    zone_keys : list[str]
         If this is included, the validator will only be run for the given zone keys.
-    not_zone_keys : List[str]
+    not_zone_keys : list[str]
         If this is included, the validator will run for ALL OTHER zones.
     """
     assert isinstance(kind, str)
@@ -32,7 +32,7 @@ def validator(
         wrapped_f.VALIDATOR_KIND = kind
         wrapped_f.args = f.__code__.co_varnames[
             : f.__code__.co_argcount
-        ]  # List of argument names
+        ]  # list of argument names
 
         wrapped_f.zone_keys = zone_keys
         wrapped_f.not_zone_keys = not_zone_keys

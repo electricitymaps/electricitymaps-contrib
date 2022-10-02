@@ -3,7 +3,7 @@ This library contains validation functions applied to all parsers by the feeder.
 This is a higher level validation than validation.py
 """
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 from warnings import warn
 
 import arrow
@@ -30,7 +30,7 @@ def validate_reasonable_time(item, k):
         )
 
 
-def validate_consumption(obj: Dict, zone_key: ZoneKey) -> None:
+def validate_consumption(obj: dict, zone_key: ZoneKey) -> None:
     if (obj.get("consumption") or 0) < 0:
         raise ValidationError(
             "%s: consumption has negative value " "%s" % (zone_key, obj["consumption"])
@@ -61,7 +61,7 @@ def validate_exchange(item, k) -> None:
     # capacity and has physical sense (no exchange should exceed 100GW)
     # Use https://github.com/tmrowco/electricitymap-contrib/blob/master/parsers/example.py for expected format
     if item.get("sortedZoneKeys", None) and item.get("netFlow", None):
-        zone_names: List[str] = item["sortedZoneKeys"]
+        zone_names: list[str] = item["sortedZoneKeys"]
         if abs(item.get("netFlow", 0)) > 100000:
             raise ValidationError(
                 "netFlow %s exceeds physical plausibility (>100GW) for %s"
@@ -84,7 +84,7 @@ def validate_exchange(item, k) -> None:
                     )
 
 
-def validate_production(obj: Dict[str, Any], zone_key: ZoneKey) -> None:
+def validate_production(obj: dict[str, Any], zone_key: ZoneKey) -> None:
     if "datetime" not in obj:
         raise ValidationError("datetime was not returned for %s" % zone_key)
     if "countryCode" in obj:

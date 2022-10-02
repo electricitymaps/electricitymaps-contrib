@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import Callable, Dict, List, Literal, Optional
+from typing import Callable, Literal, Optional
 
 from requests import Session
 
@@ -15,7 +15,7 @@ by wrapping the ENTSOE.py parser and combining the data from the two
 to produce a single data list for the NO-NO4->SE exchange.
 """
 
-EXCHANGE_FUNCTION_MAP: Dict[str, Callable] = {
+EXCHANGE_FUNCTION_MAP: dict[str, Callable] = {
     "exchange": fetch_ENTSOE_exchange,
     "exchange_forecast": fetch_ENTSOE_exchange_forecast,
 }
@@ -28,7 +28,7 @@ def fetch_data(
     target_datetime: Optional[datetime],
     logger: Logger,
     type: Literal["exchange", "exchange_forecast"],
-) -> List[dict]:
+) -> list[dict]:
 
     if target_datetime is None:
         target_datetime = datetime.utcnow()
@@ -49,7 +49,7 @@ def fetch_data(
         target_datetime=target_datetime,
         logger=logger,
     )
-    returnList: List[dict] = []
+    returnList: list[dict] = []
 
     # Compare the length and datetimes of the two data lists and
     # if they are the same combine the data from the two lists.
@@ -100,7 +100,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return fetch_data(
         zone_key1=zone_key1,
         zone_key2=zone_key2,
@@ -118,7 +118,7 @@ def fetch_exchange_forecast(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     return fetch_data(
         zone_key1=zone_key1,
         zone_key2=zone_key2,

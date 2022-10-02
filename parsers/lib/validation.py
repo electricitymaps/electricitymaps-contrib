@@ -2,13 +2,13 @@
 
 import math
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Union
 
 import numpy as np
 import pandas as pd
 
 
-def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
+def has_value_for_key(datapoint: dict[str, Any], key: str, logger: Logger):
     """
     Checks that the key exists in datapoint and that the corresponding value is not None.
     """
@@ -25,9 +25,9 @@ def has_value_for_key(datapoint: Dict[str, Any], key: str, logger: Logger):
 
 
 def check_expected_range(
-    datapoint: Dict[str, Any],
+    datapoint: dict[str, Any],
     value: Union[float, int],
-    expected_range: Tuple[float, float],
+    expected_range: tuple[float, float],
     logger: Logger,
     key: Union[str, None] = None,
 ):
@@ -44,7 +44,7 @@ def check_expected_range(
 
 
 def validate_production_diffs(
-    datapoints: List[Dict[str, Any]], max_diff: Dict, logger: Logger
+    datapoints: list[dict[str, Any]], max_diff: dict, logger: Logger
 ):
     """
     Parameters
@@ -109,8 +109,8 @@ def validate_production_diffs(
 
 
 def validate(
-    datapoint: Dict, logger: Union[Logger, None], **kwargs
-) -> Union[Dict[str, Any], None]:
+    datapoint: dict, logger: Union[Logger, None], **kwargs
+) -> Union[dict[str, Any], None]:
     """
     Validates a production datapoint based on given constraints.
     If the datapoint is found to be invalid then None is returned.
@@ -180,12 +180,12 @@ def validate(
     remove_negative: bool = kwargs.pop("remove_negative", False)
     required: list[Any] = kwargs.pop("required", [])
     floor: Union[float, int, None] = kwargs.pop("floor", None)
-    expected_range: Union[Tuple, Dict, None] = kwargs.pop("expected_range", None)
+    expected_range: Union[tuple, dict, None] = kwargs.pop("expected_range", None)
     if kwargs:
         raise TypeError("Unexpected **kwargs: %r" % kwargs)
 
-    generation: Dict[str, Any] = datapoint["production"]
-    storage: Dict[str, Any] = datapoint.get("storage", {})
+    generation: dict[str, Any] = datapoint["production"]
+    storage: dict[str, Any] = datapoint.get("storage", {})
 
     if remove_negative:
         for key, val in generation.items():

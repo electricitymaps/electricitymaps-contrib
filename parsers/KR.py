@@ -5,7 +5,7 @@ import pprint
 import re
 from datetime import datetime, timedelta
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Optional
 
 import arrow
 import pandas as pd
@@ -179,7 +179,7 @@ def fetch_price(
 
 def get_long_term_prod_data(
     session: Optional[Session] = None, target_datetime: Optional[datetime] = None
-) -> List[dict]:
+) -> list[dict]:
     target_datetime_formatted_daily = target_datetime.strftime("%Y-%m-%d")
 
     r = session or Session()
@@ -258,7 +258,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
 
     if target_datetime is not None and target_datetime < arrow.get(
         2021, 12, 22, 0, 0, 0, tzinfo=TIMEZONE

@@ -3,14 +3,14 @@
 
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Dict, List, Optional
+from typing import Optional
 
 import arrow
 from requests import Session
 
 # Useful links.
 # https://en.wikipedia.org/wiki/Electricity_sector_in_Argentina
-# https://en.wikipedia.org/wiki/List_of_power_stations_in_Argentina
+# https://en.wikipedia.org/wiki/list_of_power_stations_in_Argentina
 # http://globalenergyobservatory.org/countryid/10#
 # http://www.industcards.com/st-other-argentina.htm
 
@@ -26,7 +26,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests up to date list of production mixes (in MW) of a given country."""
 
     if target_datetime:
@@ -34,10 +34,10 @@ def fetch_production(
 
     current_session = session or Session()
 
-    non_renewables_production: Dict[str, dict] = non_renewables_production_mix(
+    non_renewables_production: dict[str, dict] = non_renewables_production_mix(
         zone_key, current_session
     )
-    renewables_production: Dict[str, dict] = renewables_production_mix(
+    renewables_production: dict[str, dict] = renewables_production_mix(
         zone_key, current_session
     )
 
@@ -76,7 +76,7 @@ def merged_production_mix(non_renewables_mix: dict, renewables_mix: dict) -> dic
     return production_mix
 
 
-def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
+def renewables_production_mix(zone_key: str, session: Session) -> dict[str, dict]:
     """Retrieves production mix for renewables using CAMMESA's API"""
 
     today = arrow.now(tz="America/Argentina/Buenos Aires").format("DD-MM-YYYY")
@@ -92,7 +92,7 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     production_list = renewables_response.json()
     sorted_production_list = sorted(production_list, key=lambda d: d["momento"])
 
-    renewables_production: Dict[str, dict] = {
+    renewables_production: dict[str, dict] = {
         production_info["momento"]: {
             "biomass": production_info["biocombustible"],
             "hydro": production_info["hidraulica"],
@@ -105,7 +105,7 @@ def renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict
     return renewables_production
 
 
-def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, dict]:
+def non_renewables_production_mix(zone_key: str, session: Session) -> dict[str, dict]:
     """Retrieves production mix for non renewables using CAMMESA's API"""
 
     params = {"id_region": 1002}
@@ -120,7 +120,7 @@ def non_renewables_production_mix(zone_key: str, session: Session) -> Dict[str, 
     production_list = api_cammesa_response.json()
     sorted_production_list = sorted(production_list, key=lambda d: d["fecha"])
 
-    non_renewables_production: Dict[str, dict] = {
+    non_renewables_production: dict[str, dict] = {
         production_info["fecha"]: {
             "hydro": production_info["hidraulico"],
             "nuclear": production_info["nuclear"],

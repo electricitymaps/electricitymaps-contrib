@@ -3,7 +3,7 @@
 import sys
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any, Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -113,7 +113,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Requests the last known production mix (in MW) of a given country."""
     assert zone_key == "CY"
 

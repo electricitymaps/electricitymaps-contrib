@@ -1,7 +1,7 @@
 from collections import defaultdict
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 import arrow
 from requests import Session
@@ -88,7 +88,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")

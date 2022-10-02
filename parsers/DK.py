@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from requests import Response, Session
 
@@ -90,7 +90,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     sorted_keys = "->".join(sorted([zone_key1, zone_key2]))
     data = fetch_data(
         EXCHANGE_MAPPING[sorted_keys]["priceArea"], session, target_datetime, logger
@@ -102,7 +102,7 @@ def fetch_exchange(
             "Only able to fetch data for exchanges that are connected to Denmark (DK-DK1, DK-DK2, DK-BHM)",
         )
     else:
-        return_list: List[dict] = []
+        return_list: list[dict] = []
         for datapoint in data["records"]:
             return_list.append(
                 {

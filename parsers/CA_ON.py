@@ -4,7 +4,7 @@
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
-from typing import List, Optional
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
@@ -184,7 +184,7 @@ def fetch_price(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> List[dict]:
+) -> list[dict]:
     """Requests the last known power price per MWh of a given region."""
 
     # "HOEP" below is "Hourly Ontario Energy Price".

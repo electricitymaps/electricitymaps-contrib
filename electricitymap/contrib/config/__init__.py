@@ -2,11 +2,11 @@ import json
 from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List, NewType, Tuple
+from typing import NewType
 
 ZoneKey = NewType("ZoneKey", str)
-Point = NewType("Point", Tuple[float, float])
-BoundingBox = NewType("BoundingBox", List[Point])
+Point = NewType("Point", tuple[float, float])
+BoundingBox = NewType("BoundingBox", list[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
@@ -33,13 +33,13 @@ CO2EQ_PARAMETERS_DIRECT = {
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
 
 # Prepare zone bounding boxes
-ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = {}
+ZONE_BOUNDING_BOXES: dict[ZoneKey, BoundingBox] = {}
 for zone_id, zone_config in ZONES_CONFIG.items():
     if "bounding_box" in zone_config:
         ZONE_BOUNDING_BOXES[zone_id] = zone_config["bounding_box"]
 
 # Add link from subzone to the full zone
-ZONE_PARENT: Dict[ZoneKey, ZoneKey] = {}
+ZONE_PARENT: dict[ZoneKey, ZoneKey] = {}
 for zone_id, zone_config in ZONES_CONFIG.items():
     if "subZoneNames" in zone_config:
         for sub_zone_id in zone_config["subZoneNames"]:
@@ -48,7 +48,7 @@ for zone_id, zone_config in ZONES_CONFIG.items():
 # This object represents the edges of the flow-tracing graph
 def generate_zone_neighbours(
     zones_config, exchanges_config
-) -> Dict[ZoneKey, List[ZoneKey]]:
+) -> dict[ZoneKey, list[ZoneKey]]:
     zone_neighbours = defaultdict(set)
     for k, v in exchanges_config.items():
         if not v.get("parsers", {}).get("exchange", None):
@@ -68,16 +68,16 @@ def generate_zone_neighbours(
     return {k: sorted(v) for k, v in zone_neighbours.items()}
 
 
-ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
+ZONE_NEIGHBOURS: dict[ZoneKey, list[ZoneKey]] = generate_zone_neighbours(
     ZONES_CONFIG, EXCHANGES_CONFIG
 )
 
 
-def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
+def emission_factors(zone_key: ZoneKey) -> dict[str, float]:
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})
     defaults = CO2EQ_PARAMETERS["emissionFactors"]["defaults"]
 
-    def get_most_recent_value(emission_factors: Dict) -> Dict:
+    def get_most_recent_value(emission_factors: dict) -> dict:
         _emission_factors = deepcopy(emission_factors)
         keys_with_yearly = [
             k for (k, v) in _emission_factors.items() if isinstance(v, list)
@@ -93,4 +93,4 @@ def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
     override = get_most_recent_value(override)
 
     merged = {**defaults, **override}
-    return dict([(k, (v or {}).get("value")) for (k, v) in merged.items()])
+    return {[(k, (v or {}).get("value")) for (k, v) in merged.items()]}

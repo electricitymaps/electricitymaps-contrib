@@ -3,7 +3,7 @@
 import json
 from datetime import datetime
 from logging import Logger, getLogger
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 # The arrow library is used to handle datetimes consistently with other parsers
 import arrow
@@ -68,7 +68,7 @@ def fetch_production(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -107,7 +107,7 @@ def fetch_exchange(
     session: Optional[Session] = None,
     target_datetime: Optional[datetime] = None,
     logger: Logger = getLogger(__name__),
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Requests the last known power exchange (in MW) between two regions."""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
