@@ -7,7 +7,7 @@ import pprint
 import time
 from datetime import datetime
 from logging import DEBUG, basicConfig, getLogger
-from typing import Any, Callable,Union
+from typing import Any, Callable, Union
 
 import arrow
 import click
