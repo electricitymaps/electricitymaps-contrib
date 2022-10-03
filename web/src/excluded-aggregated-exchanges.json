@@ -56,7 +56,6 @@
     "NO-NO4->SE-SE2",
     "NO-NO4->SE-SE1",
     "NO-NO4->RU-1",
-    "NO->RU-1",
     "PL->SE-SE4",
     "SE-SE1->SE-SE2",
     "SE-SE2->SE-SE3",
@@ -64,6 +63,7 @@
   ],
   "exchangesToExcludeZoneView": [
     "AT->IT",
+    "AX->SE",
     "CH->IT",
     "DE->DK",
     "DE->SE",
@@ -77,6 +77,7 @@
     "IT->SI",
     "IT->MT",
     "LT->SE",
-    "NO->SE"
+    "NO->SE",
+    "NO->RU-1"
   ]
 }

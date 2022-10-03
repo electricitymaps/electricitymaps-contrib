@@ -173,6 +173,11 @@
     },
     "rotation": -130
   },
+  "AX->SE": {
+    "capacity": [-80, 80],
+    "lonlat": [19.239, 60.063],
+    "rotation": -130
+  },
   "AZ->GE": {
     "lonlat": [45.153, 41.398],
     "parsers": {
