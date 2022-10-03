@@ -128,7 +128,7 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "LT": "10YLT-1001A0008Q",
     "LU": "10YLU-CEGEDEL-NQ",
     "LV": "10YLV-1001A00074",
-    # 'MD': 'MD',
+    "MD": "10Y1001A1001A990",
     "ME": "10YCS-CG-TSO---S",
     "MK": "10YMK-MEPSO----8",
     "MT": "10Y1001A1001A93C",
@@ -154,6 +154,7 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "SK": "10YSK-SEPS-----K",
     "TR": "10YTR-TEIAS----W",
     "UA": "10YUA-WEPS-----0",
+    "UA-IPS": "10Y1001C--000182",
     "XK": "10Y1001C--00100H",
 }
 
@@ -179,7 +180,7 @@ ZONE_KEY_AGGREGATES: Dict[str, List[str]] = {
 # Some exchanges require specific domains
 ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     "AT->IT-NO": [ENTSOE_DOMAIN_MAPPINGS["AT"], ENTSOE_DOMAIN_MAPPINGS["IT"]],
-    "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], "10Y1001C--00003F"],
+    "BY->UA": [ENTSOE_DOMAIN_MAPPINGS["BY"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "DE->DK-DK1": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK1"]],
     "DE->DK-DK2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["DK-DK2"]],
     "DE->NO-NO2": [ENTSOE_DOMAIN_MAPPINGS["DE-LU"], ENTSOE_DOMAIN_MAPPINGS["NO-NO2"]],
@@ -200,13 +201,18 @@ ENTSOE_EXCHANGE_DOMAIN_OVERRIDE: Dict[str, List[str]] = {
     ],
     "GE->RU-1": [ENTSOE_DOMAIN_MAPPINGS["GE"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
     "GR->IT-SO": [ENTSOE_DOMAIN_MAPPINGS["GR"], ENTSOE_DOMAIN_MAPPINGS["IT-SO"]],
+    "HU->UA": [ENTSOE_DOMAIN_MAPPINGS["HU"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
     "IT-CSO->ME": [ENTSOE_DOMAIN_MAPPINGS["IT"], ENTSOE_DOMAIN_MAPPINGS["ME"]],
     "IT-SIC->IT-SO": [
         ENTSOE_DOMAIN_MAPPINGS["IT-SIC"],
         ENTSOE_DOMAIN_MAPPINGS["IT-CA"],
     ],
     "LV->RU-1": [ENTSOE_DOMAIN_MAPPINGS["LV"], ENTSOE_DOMAIN_MAPPINGS["RU"]],
-    "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], "10Y1001A1001A869"],
+    "MD->UA": [ENTSOE_DOMAIN_MAPPINGS["MD"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
+    "PL->UA": [ENTSOE_DOMAIN_MAPPINGS["PL"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
+    "RO->UA": [ENTSOE_DOMAIN_MAPPINGS["RO"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
+    "RU-1->UA": [ENTSOE_DOMAIN_MAPPINGS["RU"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
+    "SK->UA": [ENTSOE_DOMAIN_MAPPINGS["SK"], ENTSOE_DOMAIN_MAPPINGS["UA-IPS"]],
 }
 # Some zone_keys are part of bidding zone domains for price data
 ENTSOE_PRICE_DOMAIN_OVERRIDE: Dict[str, str] = {
@@ -458,6 +464,11 @@ def query_ENTSOE(
         )
         params["periodEnd"] = (target_datetime + timedelta(hours=span[1])).strftime(
             "%Y%m%d%H00"  # YYYYMMDDHH00
+        )
+    else:
+        raise ParserException(
+            parser="ENTSOE.py",
+            message="target_datetime has to be a datetime in query_entsoe",
         )
 
     # Due to rate limiting, we need to spread our requests across different tokens
