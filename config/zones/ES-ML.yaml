@@ -1,8 +1,8 @@
 bounding_box:
-- - -3.470256683510813
-  - 34.76572463778479
-- - -2.426766941365234
-  - 35.8209422034335
+  - - -3.470256683510813
+    - 34.76572463778479
+  - - -2.426766941365234
+    - 35.8209422034335
 capacity:
   biomass: 2
   coal: 0
@@ -14,7 +14,7 @@ capacity:
   solar: 0
   wind: 0
 contributors:
-- VIKTORVAV99
+  - VIKTORVAV99
 flag_file_name: es.png
 parsers:
   consumption: ES.fetch_consumption

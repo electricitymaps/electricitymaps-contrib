@@ -1,8 +1,8 @@
 bounding_box:
-- - -114.764827728
-  - 34.168836594
-- - -112.998666763
-  - 35.717744827
+  - - -114.764827728
+    - 34.168836594
+  - - -112.998666763
+    - 35.717744827
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: Griffith Energy, Llc
 contributors:
-- systemcatch
-- robertahunt
-- KabelWlan
+  - systemcatch
+  - robertahunt
+  - KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

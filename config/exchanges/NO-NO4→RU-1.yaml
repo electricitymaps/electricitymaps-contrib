@@ -1,6 +1,6 @@
 lonlat:
-- 30.1437
-- 69.52
+  - 30.1437
+  - 69.52
 parsers:
   exchange: statnett.fetch_exchange
 rotation: 120

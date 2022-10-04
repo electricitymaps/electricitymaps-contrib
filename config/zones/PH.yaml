@@ -1,8 +1,8 @@
 bounding_box:
-- - 117.17427453
-  - 5.58100332277
-- - 126.537423944
-  - 18.5052273625
+  - - 117.17427453
+    - 5.58100332277
+  - - 126.537423944
+    - 18.5052273625
 capacity:
   battery storage: 34
   biomass: 501
@@ -16,6 +16,6 @@ capacity:
   solar: 1385
   wind: 443
 contributors:
-- xomanuel
+  - xomanuel
 flag_file_name: ph.png
 timezone: Asia/Manila

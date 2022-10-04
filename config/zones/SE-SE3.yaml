@@ -1,8 +1,8 @@
 bounding_box:
-- - 10.608164910000113
-  - 56.392035223000065
-- - 19.8385522800001
-  - 62.67478628775066
+  - - 10.608164910000113
+    - 56.392035223000065
+  - - 19.8385522800001
+    - 62.67478628775066
 capacity:
   biomass: 2561
   coal: 0
@@ -16,13 +16,13 @@ capacity:
 emissionFactors:
   lifecycle:
     unknown:
-    - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
-        the sources in unknown
-      _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
-      datetime: '2020-01-01'
-      source: assumes 98.26 % biomass, 1.09% oil based thermal, 0.64% peat, 0.01%
-        coal
-      value: 238.4
+      - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
+          the sources in unknown
+        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+        datetime: '2020-01-01'
+        source: assumes 98.26 % biomass, 1.09% oil based thermal, 0.64% peat, 0.01%
+          coal
+        value: 238.4
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

@@ -5,9 +5,9 @@ capacity:
   unknown: 0.1
   wind: 37.5
 contributors:
-- corradio
-- q--
-- VIKTORVAV99
+  - corradio
+  - q--
+  - VIKTORVAV99
 emissionFactors:
   direct:
     unknown:

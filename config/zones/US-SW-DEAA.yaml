@@ -1,8 +1,8 @@
 bounding_box:
-- - -113.397006989
-  - 32.8262615200001
-- - -112.375976563
-  - 33.877473831
+  - - -113.397006989
+    - 32.8262615200001
+  - - -112.375976563
+    - 33.877473831
 capacity:
   battery storage: 0
   biomass: 0
@@ -18,9 +18,9 @@ capacity:
   wind: 0
 comment: Arlington Valley, Llc - Avba
 contributors:
-- systemcatch
-- robertahunt
-- KabelWlan
+  - systemcatch
+  - robertahunt
+  - KabelWlan
 delays:
   production: 30
 flag_file_name: us.png

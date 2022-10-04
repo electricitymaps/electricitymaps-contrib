@@ -1,8 +1,8 @@
 bounding_box:
-- - 75.07784712064807
-  - 29.88217682520036
-- - 79.49706994002565
-  - 33.7328555360541
+  - - 75.07784712064807
+    - 29.88217682520036
+  - - 79.49706994002565
+    - 33.7328555360541
 capacity:
   biomass: 9.2
   coal: 0
@@ -13,8 +13,8 @@ capacity:
   solar: 45
   wind: 0
 contributors:
-- willbeaufoy
-- gopikrishna1793
+  - willbeaufoy
+  - gopikrishna1793
 flag_file_name: in.png
 parsers:
   production: IN_HP.fetch_production

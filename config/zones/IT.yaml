@@ -1,8 +1,8 @@
 bounding_box:
-- - 6.7499552751
-  - 36.619987291
-- - 18.4802470232
-  - 47.1153931748
+  - - 6.7499552751
+    - 36.619987291
+  - - 18.4802470232
+    - 47.1153931748
 capacity:
   biomass: 4105.9
   coal: 6981
@@ -15,7 +15,7 @@ capacity:
   solar: 21650.1
   wind: 10906.9
 contributors:
-- corradio
+  - corradio
 emissionFactors:
   lifecycle:
     hydro discharge:
@@ -23,10 +23,10 @@ emissionFactors:
       value: 0.0
 estimation_method: RECONSTRUCT_BREAKDOWN
 subZoneNames:
-- IT-CNO
-- IT-CSO
-- IT-NO
-- IT-SAR
-- IT-SIC
-- IT-SO
+  - IT-CNO
+  - IT-CSO
+  - IT-NO
+  - IT-SAR
+  - IT-SIC
+  - IT-SO
 timezone: Europe/Rome
