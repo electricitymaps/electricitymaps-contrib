@@ -8,23 +8,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      #- name: Prepare Playwright
-      #  run: npx playwright install-deps webkit
-      # - name: Cypress run (Safari)
-      #   uses: cypress-io/github-action@v4
-      #   env:
-      #     TZ: Europe/Copenhagen
-      #   with:
-      #     browser: webkit
-      #     working-directory: ./web
-      #     start: yarn develop
-      #     wait-on: 'http://localhost:8080'
+      - name: Prepare Playwright  
+        run: npx playwright install-deps webkit
       - name: Cypress run (new)
         uses: cypress-io/github-action@v4
         env:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
+          browser: webkit
           build: yarn run build-debug
           start: yarn server-dev
           wait-on: 'http://localhost:8080'
@@ -34,5 +26,6 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
+          browser: webkit
           start: yarn run dev
           wait-on: 'http://localhost:8080'
