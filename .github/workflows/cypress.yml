@@ -16,7 +16,7 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          browser: webkit
+          #browser: webkit
           start: yarn run develop
           wait-on: 'http://localhost:8080'
       - name: Cypress run (new)
@@ -25,7 +25,7 @@ jobs:
           TZ: Europe/Copenhagen
         with:
           working-directory: ./web
-          browser: webkit
+          #browser: webkit
           build: yarn run build-debug
-          start: yarn server-dev
+          start: yarn run server-dev
           wait-on: 'http://localhost:8080'
