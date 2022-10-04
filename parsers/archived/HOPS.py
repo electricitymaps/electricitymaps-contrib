@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Archived reason: Replaced by the ENTSOE parser for higher data granularity.
 
 """Parser for power production in Croatia"""
 
