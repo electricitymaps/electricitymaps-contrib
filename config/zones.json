@@ -1973,12 +1973,14 @@
       "unknown": 57,
       "wind": 925
     },
-    "contributors": ["PaulCornelissen"],
+    "contributors": ["PaulCornelissen", "VIKTORVAV99"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "HOPS.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": "Europe/Belgrade"
   },
