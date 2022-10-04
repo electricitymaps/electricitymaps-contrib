@@ -122,7 +122,9 @@ class ConfigTestcase(unittest.TestCase):
         self.assertDictEqual(zone_neighbours, {})
 
     def test_ZONE_NEIGHBOURS(self):
-        zone_neighbours = config.generate_zone_neighbours(config.ZONES_CONFIG, config.EXCHANGES_CONFIG)
+        zone_neighbours = config.generate_zone_neighbours(
+            config.ZONES_CONFIG, config.EXCHANGES_CONFIG
+        )
         self.assertIn("DK-DK1", zone_neighbours.keys())
         dk_neighbours = zone_neighbours["DK-DK1"]
 
