@@ -13,71 +13,71 @@ capacity:
   wind: 1496.4
 comment: Avangrid Renewables Cooperative
 contributors:
-  - systemcatch
-  - robertahunt
-  - KabelWlan
+- systemcatch
+- robertahunt
+- KabelWlan
 delays:
   production: 30
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 21.056347721310882
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 207.3509981331674
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 270.8334094579008
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 21.056347721310882
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 207.3509981331674
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 270.8334094579008
     hydro discharge:
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 21.056347721310882
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 207.3509981331674
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 270.8334094579008
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 21.056347721310882
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 207.3509981331674
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 270.8334094579008
   lifecycle:
     battery discharge:
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 35.39906669808514
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 279.27521841941507
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 361.53704498269894
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 35.39906669808514
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 279.27521841941507
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 361.53704498269894
     hydro discharge:
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 35.39906669808514
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 279.27521841941507
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 361.53704498269894
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 35.39906669808514
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 279.27521841941507
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 361.53704498269894
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2019 average
-      datetime: '2019-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0008936789959421657
-        coal: 0.019516124161713392
-        gas: 0.014483122388978848
-        geothermal: 0.00015725407825476983
-        hydro: 0.012263828047224739
-        hydro discharge: 0.0
-        nuclear: 0.005357895846771578
-        oil: 0.0015344524844273116
-        solar: 0.0011211395004957815
-        unknown: 0.00042127816091043605
-        wind: 0.9442503303147507
+  - _source: electricityMap, 2019 average
+    datetime: '2019-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0008936789959421657
+      coal: 0.019516124161713392
+      gas: 0.014483122388978848
+      geothermal: 0.00015725407825476983
+      hydro: 0.012263828047224739
+      hydro discharge: 0.0
+      nuclear: 0.005357895846771578
+      oil: 0.0015344524844273116
+      solar: 0.0011211395004957815
+      unknown: 0.00042127816091043605
+      wind: 0.9442503303147507
 flag_file_name: us.png
 parsers:
   production: EIA.fetch_production_mix

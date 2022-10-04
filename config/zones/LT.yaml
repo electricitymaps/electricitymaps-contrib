@@ -1,8 +1,8 @@
 bounding_box:
-  - - 21.0558004086
-    - 53.9057022162
-  - - 26.5882792498
-    - 56.3725283881
+- - 21.0558004086
+  - 53.9057022162
+- - 26.5882792498
+  - 56.3725283881
 capacity:
   biomass: 165
   coal: 0
@@ -16,99 +16,99 @@ capacity:
   unknown: 37
   wind: 671
 contributors:
-  - corradio
-  - nessie2013
+- corradio
+- nessie2013
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 456.2232591860777
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 458.2067145264293
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 360.76413440271364
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 408.58225605719963
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 460.20444383445204
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 200.67100610475939
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 232.42336519914036
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 456.2232591860777
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 458.2067145264293
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 360.76413440271364
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 408.58225605719963
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 460.20444383445204
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 200.67100610475939
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 232.42336519914036
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 456.2232591860777
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 458.2067145264293
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 360.76413440271364
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 408.58225605719963
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 460.20444383445204
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 200.67100610475939
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 232.42336519914036
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 456.2232591860777
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 458.2067145264293
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 360.76413440271364
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 408.58225605719963
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 460.20444383445204
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 200.67100610475939
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 232.42336519914036
   lifecycle:
     battery discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 456.2232591860777
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 458.2067145264293
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 360.76413440271364
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 408.58225605719963
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 460.20444383445204
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 265.2136626591556
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 307.2126162460251
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 456.2232591860777
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 458.2067145264293
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 360.76413440271364
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 408.58225605719963
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 460.20444383445204
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 265.2136626591556
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 307.2126162460251
     hydro discharge:
-      - datetime: '2015-01-01'
-        source: electricityMap, 2015 average
-        value: 456.2232591860777
-      - datetime: '2016-01-01'
-        source: electricityMap, 2016 average
-        value: 458.2067145264293
-      - datetime: '2017-01-01'
-        source: electricityMap, 2017 average
-        value: 360.76413440271364
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 408.58225605719963
-      - datetime: '2019-01-01'
-        source: electricityMap, 2019 average
-        value: 460.20444383445204
-      - datetime: '2020-01-01'
-        source: electricityMap, 2020 average
-        value: 265.2136626591556
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 307.2126162460251
+    - datetime: '2015-01-01'
+      source: electricityMap, 2015 average
+      value: 456.2232591860777
+    - datetime: '2016-01-01'
+      source: electricityMap, 2016 average
+      value: 458.2067145264293
+    - datetime: '2017-01-01'
+      source: electricityMap, 2017 average
+      value: 360.76413440271364
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 408.58225605719963
+    - datetime: '2019-01-01'
+      source: electricityMap, 2019 average
+      value: 460.20444383445204
+    - datetime: '2020-01-01'
+      source: electricityMap, 2020 average
+      value: 265.2136626591556
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 307.2126162460251
 parsers:
   consumption: ENTSOE.fetch_consumption
   consumptionForecast: ENTSOE.fetch_consumption_forecast

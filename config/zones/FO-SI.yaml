@@ -1,0 +1,12 @@
+capacity:
+  hydro: 3.3
+  oil: 13.6
+  solar: 0.24
+  wind: 6
+contributors:
+- corradio
+- q--
+- VIKTORVAV99
+parsers:
+  production: FO.fetch_production
+timezone: Atlantic/Faroe

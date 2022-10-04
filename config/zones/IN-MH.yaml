@@ -1,8 +1,8 @@
 bounding_box:
-  - - 72.79941
-    - 15.613079
-  - - 80.661984
-    - 22.105644
+- - 72.79941
+  - 15.613079
+- - 80.661984
+  - 22.105644
 capacity:
   biomass: 2597
   coal: 23856
@@ -14,11 +14,11 @@ capacity:
   unknown: 480.55
   wind: 5010.8
 contributors:
-  - GitMatze
-  - alixunderplatz
-  - systemcatch
-  - Manu1400
-  - gopikrishna1793
+- GitMatze
+- alixunderplatz
+- systemcatch
+- Manu1400
+- gopikrishna1793
 estimation_method: RECONSTRUCT_BREAKDOWN
 flag_file_name: in.png
 parsers:

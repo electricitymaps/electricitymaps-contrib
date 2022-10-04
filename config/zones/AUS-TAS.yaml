@@ -1,8 +1,8 @@
 bounding_box:
-  - - 143.33716881600026
-    - -44.1412899719998
-  - - 148.98454837300017
-    - -39.07146575299984
+- - 143.33716881600026
+  - -44.1412899719998
+- - 148.98454837300017
+  - -39.07146575299984
 capacity:
   battery storage: 0
   biomass: 2
@@ -15,28 +15,28 @@ capacity:
   solar: 187
   wind: 567
 contributors:
-  - brandongalbraith
-  - jarek
-  - corradio
+- brandongalbraith
+- jarek
+- corradio
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 59.68143335393224
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 59.68143335393224
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 59.68143335393224
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 59.68143335393224
   lifecycle:
     battery discharge:
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 84.71824008741794
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 84.71824008741794
     hydro discharge:
-      - datetime: '2021-01-01'
-        source: electricityMap, 2021 average
-        value: 84.71824008741794
+    - datetime: '2021-01-01'
+      source: electricityMap, 2021 average
+      value: 84.71824008741794
 flag_file_name: au.png
 parsers:
   price: OPENNEM.fetch_price

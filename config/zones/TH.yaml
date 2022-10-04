@@ -1,23 +1,23 @@
 bounding_box:
-  - - 96.85140100100011
-    - 5.129890035000059
-  - - 106.15099776200003
-    - 20.94500640900013
+- - 96.85140100100011
+  - 5.129890035000059
+- - 106.15099776200003
+  - 20.94500640900013
 capacity:
   battery storage: 0
-  biomass: 1006.95
+  biomass: 1040.79
   coal: 6067.5
-  gas: 28695.0
+  gas: 29358
   geothermal: 0.3
-  hydro: 7015.73
-  hydro storage: 1000.0
+  hydro: 7530.03
+  hydro storage: 1000
   nuclear: 0
   oil: 1497.4
   solar: 487.8
   unknown: 0
   wind: 1447.69
 contributors:
-  - PPsyrius
+- PPsyrius
 emissionFactors:
   direct:
     unknown:

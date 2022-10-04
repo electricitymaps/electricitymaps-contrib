@@ -1,0 +1,8 @@
+capacity:
+- -500
+- 500
+lonlat:
+- -5.428149
+- 54.87826
+parsers: {}
+rotation: -110

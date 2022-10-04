@@ -1,8 +1,8 @@
 bounding_box:
-  - - 81.37741877418776
-    - 6.592635332223807
-  - - 82.37741877418776
-    - 7.592635332223807
+- - 81.37741877418776
+  - 6.592635332223807
+- - 82.37741877418776
+  - 7.592635332223807
 capacity:
   battery storage: 0
   biomass: 50.09
@@ -17,7 +17,7 @@ capacity:
   unknown: 0
   wind: 179
 contributors:
-  - q--
+- q--
 flag_file_name: lk.png
 parsers:
   production: LK.fetch_production

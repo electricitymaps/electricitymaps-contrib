@@ -1,8 +1,8 @@
 bounding_box:
-  - - 67.64340254000018
-    - 19.572644470095213
-  - - 74.95905236227674
-    - 25.208362942495825
+- - 67.64340254000018
+  - 19.572644470095213
+- - 74.95905236227674
+  - 25.208362942495825
 capacity:
   biomass: 77.3
   coal: 16092
@@ -13,44 +13,44 @@ capacity:
   solar: 5131.6
   wind: 8758.4
 contributors:
-  - sahitya-pavurala
-  - gopikrishna1793
+- sahitya-pavurala
+- gopikrishna1793
 emissionFactors:
   direct:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 587.3520843990214
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 587.3520843990214
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 587.3520843990214
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 587.3520843990214
   lifecycle:
     battery discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 649.8630381967355
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 649.8630381967355
     hydro discharge:
-      - datetime: '2018-01-01'
-        source: electricityMap, 2018 average
-        value: 649.8630381967355
+    - datetime: '2018-01-01'
+      source: electricityMap, 2018 average
+      value: 649.8630381967355
 fallbackZoneMixes:
   powerOriginRatios:
-    - _source: electricityMap, 2018 average
-      datetime: '2018-01-01'
-      value:
-        battery discharge: 0.0
-        biomass: 0.0
-        coal: 0.6983766125618412
-        gas: 0.14536664919692363
-        geothermal: 0.0
-        hydro: 0.005387908835595175
-        hydro discharge: 0.0
-        nuclear: 0.006973208352765687
-        oil: 0.0
-        solar: 0.02391389959829987
-        unknown: 0.004844329355440729
-        wind: 0.11508224818233796
+  - _source: electricityMap, 2018 average
+    datetime: '2018-01-01'
+    value:
+      battery discharge: 0.0
+      biomass: 0.0
+      coal: 0.6983766125618412
+      gas: 0.14536664919692363
+      geothermal: 0.0
+      hydro: 0.005387908835595175
+      hydro discharge: 0.0
+      nuclear: 0.006973208352765687
+      oil: 0.0
+      solar: 0.02391389959829987
+      unknown: 0.004844329355440729
+      wind: 0.11508224818233796
 flag_file_name: in.png
 parsers:
   consumption: IN_GJ.fetch_consumption
