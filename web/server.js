@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const isProduction = process.env.NODE_ENV === 'production';
+const isLocal = process.env.LOCAL === 'true';
 
 // Modules
 const compression = require('compression');
@@ -83,7 +84,9 @@ app.use('/client-version.json', (req, res, next) => {
 });
 
 // Static files
-app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0' }));
+// Ignore index.html if running locally
+const serveIndex = isLocal ? false : true;
+app.use(express.static(STATIC_PATH, { etag: true, maxAge: isProduction ? '24h' : '0', index: serveIndex }));
 
 // App routes (managed by React Router)
 app.use('/', (req, res) => {

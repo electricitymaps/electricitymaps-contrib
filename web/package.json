@@ -127,7 +127,7 @@
     "generate-arrows": "yarn install && node -r esm generate-arrows.js",
     "lint": "eslint geo src --ext .js,.jsx --cache --cache-location node_modules/.cache/eslint/.eslintcache",
     "update-version": "echo '{\"version\": \"'$COMMIT_SHA'\"}' > public/client-version.json",
-    "server-dev": "nodemon --delay 1 server.js",
+    "server-dev": "PORT=8080 LOCAL=true nodemon --delay 1 server.js",
     "watch": "webpack --watch --progress --mode development",
     "watch-poll": "webpack --watch --watch-poll --progress --mode development",
     "update-world": "node ./geo/update-world.js",
