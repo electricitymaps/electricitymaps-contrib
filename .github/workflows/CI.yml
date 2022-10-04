@@ -69,46 +69,8 @@ jobs:
     name: Prettier
     uses: ./.github/workflows/prettier.yml
 
-  validate_local_links:
-    name: Validate Markdown
-    needs: [setup, prettier]
-    if: needs.setup.outputs.markdown != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/validate-local-links-in-md.yml
-
-  jest:
-    name: Jest
-    needs: [setup]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/jest.yml
-
-  jsonlint:
-    name: JSONLint
-    needs: [setup, prettier]
-    if: needs.setup.outputs.json != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/jsonlint.yml
-
-  # Frontend checks
-  eslint:
-    name: ESLint
-    needs: [setup, prettier]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/eslint.yml
-
-  verify:
-    name: Verify
-    needs: [setup, prettier]
-    if: needs.setup.outputs.frontend != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/verify.yml
-
   cypress:
     name: Cypress
-    needs: [eslint, verify]
+    needs: [prettier]
     uses: ./.github/workflows/cypress.yml
     secrets: inherit
-
-  # Python checks
-  python:
-    name: Python
-    needs: [setup]
-    if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
-    uses: ./.github/workflows/python.yml
