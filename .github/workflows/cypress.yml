@@ -29,3 +29,12 @@ jobs:
           build: yarn run build-debug
           start: yarn run server-dev
           wait-on: 'http://localhost:8080'
+      - name: Cypress run (old)
+        uses: cypress-io/github-action@v4
+        env:
+          TZ: Europe/Copenhagen
+        with:
+          working-directory: ./web
+          #browser: webkit
+          start: yarn run develop
+          wait-on: 'http://localhost:8080'
