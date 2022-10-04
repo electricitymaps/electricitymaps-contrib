@@ -19,4 +19,14 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    if (browser.family === 'chromium' && browser.name !== 'electron') {
+      // Cypress adds --disable-gpu flag by default on Linux
+      // Get rid of it, as the map is rendered using WebGL, for which the GPU is required
+      return {
+        ...launchOptions,
+        args: [...launchOptions.args.filter((arg) => arg !== '--disable-gpu'), '--ignore-gpu-blacklist'],
+      };
+    }
+  });
 };
