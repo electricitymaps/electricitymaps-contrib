@@ -80,7 +80,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const { zoneId } = useParams();
   //const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
   const showAggregated = useAggregatesEnabled();
-  const zoneViewLeftPanelData = useCurrentZoneData() || {};
+  const zoneViewLeftPanelData = useCurrentZoneData() ?? {};
   //const allExchanges = useSelector((state) => state.data.exchanges);
   //const exchangesForZone = getExchangesForZone(zoneId, allExchanges);
 

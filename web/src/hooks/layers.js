@@ -13,7 +13,7 @@ export function useExchangeArrowsData() {
   const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
   const allExchanges = useSelector((state) => state.data.exchanges);
 
-  const detailedExchanges = Object.keys(allExchanges)
+  const zoneViewExchanges = Object.keys(allExchanges)
     .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
     .reduce((cur, key) => {
       return Object.assign(cur, { [key]: allExchanges[key] });
@@ -22,13 +22,13 @@ export function useExchangeArrowsData() {
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
 
   const isAggregatedToggled = useAggregatesEnabled();
-  const aggregateViewExchanges = Object.keys(allExchanges)
+  const countryViewExchanges = Object.keys(allExchanges)
     .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
     .reduce((cur, key) => {
       return Object.assign(cur, { [key]: allExchanges[key] });
     }, {});
 
-  const exchanges = isAggregatedToggled ? aggregateViewExchanges : detailedExchanges;
+  const exchanges = isAggregatedToggled ? countryViewExchanges : zoneViewExchanges;
   if (!isConsumption || !isHourly) {
     return [];
   }

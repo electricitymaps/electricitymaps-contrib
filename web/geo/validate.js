@@ -16,7 +16,7 @@ const { getZonesJson } = require('./files');
 // TODO: Improve this function so each check returns error messages,
 // so we can show all errors instead of taking them one at a time.
 function validateGeometry(fc, config) {
-  console.log('Validating geometries aggregated data...'); // eslint-disable-line no-console
+  console.log('Validating geometries...'); // eslint-disable-line no-console
   zeroNullGeometries(fc);
   containsRequiredProperties(fc);
   zeroComplexPolygons(fc, config);
