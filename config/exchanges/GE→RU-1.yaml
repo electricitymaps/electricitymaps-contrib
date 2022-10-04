@@ -1,6 +1,6 @@
 lonlat:
-  - 42.822242
-  - 43.158267
+- 42.822242
+- 43.158267
 parsers:
   exchange: ENTSOE.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast

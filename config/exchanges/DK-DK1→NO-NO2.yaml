@@ -1,9 +1,9 @@
 capacity:
-  - -1632
-  - 1632
+- -1632
+- 1632
 lonlat:
-  - 8.8
-  - 57.7
+- 8.8
+- 57.7
 parsers:
   exchange: DK.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast

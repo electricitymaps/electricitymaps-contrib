@@ -1,10 +1,10 @@
 capacity:
-  - -3500
-  - 2200
+- -3500
+- 2200
 lonlat:
-  - 9.3
-  - 59.844429
+- 9.3
+- 59.844429
 parsers:
-  exchange: statnett.fetch_exchange
+  exchange: ENTSOE.fetch_exchange
   exchangeForecast: ENTSOE.fetch_exchange_forecast
 rotation: -110

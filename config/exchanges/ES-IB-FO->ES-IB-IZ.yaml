@@ -1,6 +1,0 @@
-lonlat:
-- 0.989
-- 38.746
-parsers:
-  exchange: ES.fetch_exchange
-rotation: -10

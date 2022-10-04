@@ -1,7 +1,0 @@
-lonlat:
-- 45.153
-- 41.398
-parsers:
-  exchange: GE.fetch_exchange
-  exchangeForecast: ENTSOE.fetch_exchange_forecast
-rotation: -35

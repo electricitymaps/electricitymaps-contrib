@@ -1,6 +1,6 @@
 lonlat:
-  - -67.7771
-  - 46.139
+- -67.7771
+- 46.139
 parsers:
   exchange: CA_NB.fetch_exchange
 rotation: -90

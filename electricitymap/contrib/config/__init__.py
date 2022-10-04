@@ -22,7 +22,9 @@ for zone_path in CONFIG_DIR.joinpath("zones").glob("*.yaml"):
 exchanges_config = {}
 for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
     _exchange_key_unicode = exchange_path.stem
-    exchange_key = "->".join(_exchange_key_unicode.split("→"))
+    _zone_keys = _exchange_key_unicode.split("→")
+    assert len(_zone_keys) == 2
+    exchange_key = "->".join(_zone_keys)
     exchanges_config[exchange_key] = yaml.safe_load(
         open(exchange_path, encoding="utf-8")
     )

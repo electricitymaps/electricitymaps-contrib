@@ -1,6 +1,0 @@
-lonlat:
-- 28.009764
-- 47.003312
-parsers:
-  exchange: MD.fetch_exchange
-rotation: -120
