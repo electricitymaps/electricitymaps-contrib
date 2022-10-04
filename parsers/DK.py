@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import Logger, getLogger
 from typing import List, Optional, Union
 
@@ -35,10 +35,12 @@ def fetch_data(
         "filter": '{"PriceArea":"DK1"}'
         if price_area == "DK1"
         else '{"PriceArea":"DK2"}',
-        "start": (target_datetime - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M")
+        "start": (target_datetime - timedelta(days=1)).isoformat(timespec="minutes")
         if target_datetime
         else None,
-        "end": target_datetime.strftime("%Y-%m-%dT%H:%M") if target_datetime else None,
+        "end": target_datetime.isoformat(timespec="minutes")
+        if target_datetime
+        else None,
     }
     response: Response = ses.get(
         "https://api.energidataservice.dk/dataset/ElectricityProdex5MinRealtime",
@@ -105,9 +107,9 @@ def fetch_exchange(
             return_list.append(
                 {
                     "sortedZoneKeys": sorted_keys,
-                    "datetime": datetime.strptime(
-                        datapoint["Minutes5UTC"], "%Y-%m-%dT%H:%M:%S"
-                    ),
+                    "datetime": datetime.fromisoformat(
+                        datapoint["Minutes5UTC"]
+                    ).replace(tzinfo=timezone.utc),
                     "netFlow": flow(sorted_keys, datapoint),
                     "source": "energidataservice.dk",
                 }

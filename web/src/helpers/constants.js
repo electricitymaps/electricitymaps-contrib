@@ -56,7 +56,7 @@ const LANGUAGE_NAMES = {
   pl: 'Polski',
   'pt-BR': 'Português (Brasileiro)',
   ro: 'Română',
-  ru: 'Русский язык',
+  ru: 'Русский',
   sk: 'Slovenčina',
   sv: 'Svenska',
   vi: 'Tiếng Việt',
