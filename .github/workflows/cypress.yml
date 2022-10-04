@@ -19,7 +19,7 @@ jobs:
       #     working-directory: ./web
       #     start: yarn develop
       #     wait-on: 'http://localhost:8080'
-      - name: Cypress run (Chrome)
+      - name: Cypress run (new)
         uses: cypress-io/github-action@v4
         env:
           TZ: Europe/Copenhagen
@@ -27,4 +27,12 @@ jobs:
           working-directory: ./web
           build: yarn run build-debug
           start: yarn server-dev
+          wait-on: 'http://localhost:8080'
+      - name: Cypress run (old)
+        uses: cypress-io/github-action@v4
+        env:
+          TZ: Europe/Copenhagen
+        with:
+          working-directory: ./web
+          start: yarn run dev
           wait-on: 'http://localhost:8080'
