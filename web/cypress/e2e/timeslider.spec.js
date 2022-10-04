@@ -18,9 +18,6 @@ const getTime = (index, date) => {
 
 describe('TimeController', () => {
   it('interacts with the timecontroller on map', () => {
-    // Note that we force language here as CI and local machines might display dates differently otherwise
-    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
-
     // Intercepts all API network requests and serves fixtures directly
     cy.interceptAPI('v5/state/hourly');
     cy.interceptAPI('v5/history/hourly?countryCode=DK-DK2');
@@ -30,6 +27,9 @@ describe('TimeController', () => {
     cy.interceptAPI('v5/history/daily?countryCode=DK-DK2');
     cy.interceptAPI('v5/history/monthly?countryCode=DK-DK2');
     cy.interceptAPI('v5/history/yearly?countryCode=DK-DK2');
+
+    // Note that we force language here as CI and local machines might display dates differently otherwise
+    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
 
     // Hourly
     cy.waitForAPISuccess(`v5/state/hourly`);

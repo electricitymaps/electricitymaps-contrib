@@ -1,7 +1,7 @@
 describe('Map', () => {
   it('interacts with the map', () => {
-    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.interceptAPI('v5/state/hourly');
+    cy.visit('/?skip-onboarding=true&lang=en-GB');
     cy.waitForAPISuccess(`v5/state/hourly`);
 
     // closes left panel
@@ -27,15 +27,11 @@ describe('Map', () => {
     cy.contains('English').click();
     cy.contains('consumption');
 
-    // TODO: Find a way to test these reliably.
     // test layers
-    cy.get('[href*="wind=true"]').click();
+    cy.get('a[href*="wind=true"]').should('be.visible').click();
     cy.contains('Wind power potential');
-    // TODO: For some reason the link is not "mounted in DOM" until after a while...
-    // Dunno how to solve it without avoid adding this delay
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(200);
-    cy.get('a[href*="solar=true"]').click();
+
+    cy.get('a[href*="solar=true"]').should('be.visible').click();
     cy.contains('Solar power potential');
 
     // test dark mode

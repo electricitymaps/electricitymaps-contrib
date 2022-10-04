@@ -3,9 +3,9 @@ describe('Country Panel', () => {
     cy.interceptAPI('v5/state/hourly');
   });
 
-  it.skip('interacts with details', () => {
-    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
+  it('interacts with details', () => {
     cy.interceptAPI('v5/history/hourly?countryCode=DK-DK2');
+    cy.visit('/zone/DK-DK2?skip-onboarding=true&lang=en-GB');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.waitForAPISuccess('v5/history/hourly?countryCode=DK-DK2');
 
@@ -25,25 +25,25 @@ describe('Country Panel', () => {
     cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'left');
     // ensure hovering the graph does not change underlying data
     cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '152');
-    cy.get('input.time-slider-input').should('have.value', '1655874000000');
+    cy.get('input.time-slider-input').should('have.value', '1661331600000');
     // ensure tooltip is shown and changes depending on where on the graph is being hovered
     cy.get('#country-tooltip').should('be.visible');
-    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '86');
+    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '176');
 
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mousemove', 'center');
-    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '122');
+    cy.get('#country-tooltip [data-test-id=co2-square-value]').should('have.text', '177');
     cy.get('[data-test-id=history-carbon-graph]').trigger('mouseout');
 
-    cy.get('input.time-slider-input').setSliderValue('1655823600000');
-    cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '108');
+    cy.get('input.time-slider-input').setSliderValue('1661306400000');
+    cy.get('.left-panel-zone-details [data-test-id=co2-square-value]').should('have.text', '205');
 
     cy.get('.left-panel-back-button').click();
   });
 
   it('asserts countryPanel contains "no-recent-data" message', () => {
-    cy.visit('/zone/UA?lang=en-GB');
     cy.interceptAPI('v5/history/hourly?countryCode=UA');
+    cy.visit('/zone/UA?lang=en-GB');
     cy.waitForAPISuccess('v5/state/hourly');
     cy.waitForAPISuccess('v5/history/hourly?countryCode=UA');
 
