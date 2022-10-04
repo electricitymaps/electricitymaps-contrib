@@ -17,7 +17,7 @@ jobs:
         with:
           working-directory: ./web
           browser: webkit
-          start: yarn run dev
+          start: yarn run develop
           wait-on: 'http://localhost:8080'
       - name: Cypress run (new)
         uses: cypress-io/github-action@v4
