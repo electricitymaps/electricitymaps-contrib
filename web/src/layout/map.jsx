@@ -85,8 +85,10 @@ export default () => {
     dispatchApplication('isLoadingMap', false);
 
     // Disable the map and redirect to zones ranking.
-    dispatchApplication('webGLSupported', false);
-    history.push({ pathname: '/ranking', search: location.search });
+    if (e.error === 'WebGL not supported') {
+      dispatchApplication('webGLSupported', false);
+      history.push({ pathname: '/ranking', search: location.search });
+    }
   };
 
   const handleMouseMove = useMemo(
@@ -181,6 +183,7 @@ export default () => {
       </div>
       {tooltipPosition && tooltipZoneData && hoveringEnabled && (
         <MapCountryTooltip
+          isZoneNameDisplayed
           zoneData={tooltipZoneData}
           position={tooltipPosition}
           onClose={() => setTooltipZoneData(null)}

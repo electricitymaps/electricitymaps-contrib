@@ -108,6 +108,8 @@
     "DK": { "zoneName": "Denemarken" },
     "EE": { "zoneName": "Estland" },
     "ES": { "zoneName": "Spanje" },
+    "ES-CE": { "countryName": "Spanje", "zoneName": "Ceuta" },
+    "ES-ML": { "countryName": "Spanje", "zoneName": "Melilla" },
     "FI": { "zoneName": "Finland" },
     "FR": { "zoneName": "Frankrijk" },
     "GB": { "zoneName": "Groot-Brittannië" },

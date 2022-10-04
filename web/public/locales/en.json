@@ -59,8 +59,8 @@
     "dataIsDelayed": "Data for this region can be up to %s hours delayed. Live data cannot be displayed.",
     "estimated": "estimated",
     "aggregated": "aggregated",
-    "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
-    "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
+    "dataIsEstimated": "Some of the data for this region is estimated. Read more about our estimation methodology <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">here</a>.",
+    "exchangesAreMissing": "Exchanges are accounted for in the calculations but not currently shown. Read more about our historical aggregations <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">here</a>.",
     "estimatedTooltip": "The real-time data for this zone is estimated based on data from the source and the assumptions of the model.",
     "aggregatedTooltip": "The data for this zone is aggregated based on historical hourly values",
     "helpUs": "Help us identify the problem by taking a look at the <a href=\"%s\" target=\"_blank\">runtime logs</a> or contact the data provider.",
@@ -127,6 +127,9 @@
     "production": "production",
     "consumption": "consumption",
     "cpinfo": "<b>consumption</b> takes imports and exports into account, <b>production</b> ignores them",
+    "aggregated": "aggregated",
+    "detailed": "detailed",
+    "aggregateinfo": "Countries with missing zone data are unable to be aggregated",
     "selectLanguage": "Select language",
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"
@@ -228,7 +231,7 @@
     "feedback-question": "Can I give you some feedback?",
     "feedback-answer": "Please do! Please fill out <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">our feedback form</a> or <a href=\"mailto:app@electricitymaps.com\">send us an email!</a>",
     "contribute-question": "Can I contribute to your project?",
-    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Yes! The app is an open-source project, made possible by our volunteer contributors. If you want to help develop the map, either by adding data sources for new areas, adding new features or fixing bugs, feel free to join us in our <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Can we work together?",
     "workTogether-answer": "We are actively looking for new opportunities to collaborate. <a href=\"mailto:app@electricitymaps.com\">Send us an email!</a>",
     "disclaimer-question": "Disclaimer",
@@ -576,6 +579,10 @@
     "ES": {
       "zoneName": "Spain"
     },
+    "ES-CE": {
+      "countryName": "Spain",
+      "zoneName": "Ceuta"
+    },
     "ES-IB-FO": {
       "countryName": "Spain",
       "zoneName": "Formentera"
@@ -616,6 +623,10 @@
       "countryName": "Spain",
       "zoneName": "Tenerife"
     },
+    "ES-ML": {
+      "countryName": "Spain",
+      "zoneName": "Melilla"
+    },
     "ET": {
       "zoneName": "Ethiopia"
     },
@@ -633,6 +644,14 @@
     },
     "FO": {
       "zoneName": "Faroe Islands"
+    },
+    "FO-MI": {
+      "countryName": "Faroe Islands",
+      "zoneName": "Main Islands"
+    },
+    "FO-SI": {
+      "countryName": "Faroe Islands",
+      "zoneName": "South Island"
     },
     "FR": {
       "zoneName": "France"
@@ -1164,6 +1183,9 @@
     "NL": {
       "zoneName": "Netherlands"
     },
+    "NO": {
+      "zoneName": "Norway"
+    },
     "NO-NO1": {
       "countryName": "Norway",
       "zoneName": "Southeast Norway"
@@ -1317,6 +1339,22 @@
     },
     "SE": {
       "zoneName": "Sweden"
+    },
+    "SE-SE1": {
+      "countryName": "Sweden",
+      "zoneName": "North Sweden"
+    },
+    "SE-SE2": {
+      "countryName": "Sweden",
+      "zoneName": "North Central Sweden"
+    },
+    "SE-SE3": {
+      "countryName": "Sweden",
+      "zoneName": "South Central Sweden"
+    },
+    "SE-SE4": {
+      "countryName": "Sweden",
+      "zoneName": "South Sweden"
     },
     "SG": {
       "zoneName": "Singapore"

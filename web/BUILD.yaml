@@ -30,6 +30,8 @@ steps:
       - yarn verify-zones-config
     outputs:
       - src/world.json
+      - src/world-aggregated.json
+      - src/excluded-aggregated-exchanges.json
       - public/dist
     tag: eu.gcr.io/tmrow-152415/electricitymap_web
 

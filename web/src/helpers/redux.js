@@ -93,7 +93,7 @@ function combineZoneData(zoneData, aggregate) {
   }
 
   const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData, center };
+    return { ...overview, ...details[idx], hasParser, center };
   });
 
   return combined;
