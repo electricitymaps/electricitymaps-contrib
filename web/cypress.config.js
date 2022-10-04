@@ -4,6 +4,7 @@ module.exports = defineConfig({
   projectId: '9z8tgk',
   video: false,
   fixturesFolder: '../mockserver/public',
+  experimentalWebKitSupport: true,
   e2e: {
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config);

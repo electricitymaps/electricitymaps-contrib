@@ -38,6 +38,7 @@
     "lodash.sortedindex": "^4.1.0",
     "mapbox-gl": "^1.13.0",
     "moment": "^2.29.4",
+    "playwright-webkit": "^1.26.1",
     "prop-types": "15.6.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
