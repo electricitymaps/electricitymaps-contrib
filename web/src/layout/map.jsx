@@ -56,7 +56,7 @@ export default () => {
   // Center the map initially based on the focused zone and the user geolocation.
   useEffect(() => {
     if (!hasCentered) {
-      if (zoneId) {
+      if (zoneId && zones[zoneId]) {
         console.log(`Centering on zone ${zoneId}`); // eslint-disable-line no-console
         dispatchApplication('mapViewport', getCenteredZoneViewport(zones[zoneId].geography));
         setHasCentered(true);
