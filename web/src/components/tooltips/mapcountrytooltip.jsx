@@ -8,6 +8,8 @@ import CircularGauge from '../circulargauge';
 import CarbonIntensitySquare from '../carbonintensitysquare';
 import Tooltip from '../tooltip';
 import { ZoneName } from './common';
+import { getCO2IntensityByMode } from '../../helpers/zonedata';
+import TooltipTimeDisplay from './tooltiptimedisplay';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -19,10 +21,15 @@ const CountryTableHeaderInner = styled.div`
   justify-content: space-between;
 `;
 
+const StyledTooltipTimeDisplay = styled(TooltipTimeDisplay)`
+  margin-bottom: 5px;
+  font-weight: ${(props) => (props.isZoneNameDisplayed ? '500' : '600')};
+`;
+
 const TooltipContent = React.memo(
-  ({ isDataDelayed, hasData, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
+  ({ isDataDelayed, hasParser, co2intensity, fossilFuelPercentage, renewablePercentage }) => {
     const { __ } = useTranslation();
-    if (!hasData) {
+    if (!hasParser) {
       return (
         <div className="no-parser-text">
           <span
@@ -65,14 +72,14 @@ const TooltipContent = React.memo(
   }
 );
 
-const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) => {
+const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose, isZoneNameDisplayed }) => {
   if (!zoneData) {
     return null;
   }
 
   const isDataDelayed = zoneData.delays && zoneData.delays.production;
 
-  const co2intensity = electricityMixMode === 'consumption' ? zoneData.co2intensity : zoneData.co2intensityProduction;
+  const co2intensity = getCO2IntensityByMode(zoneData, electricityMixMode);
 
   const fossilFuelRatio =
     electricityMixMode === 'consumption' ? zoneData.fossilFuelRatio : zoneData.fossilFuelRatioProduction;
@@ -85,10 +92,11 @@ const MapCountryTooltip = ({ electricityMixMode, position, zoneData, onClose }) 
   return (
     <Tooltip id="country-tooltip" position={position} onClose={onClose}>
       <div className="zone-name-header">
-        <ZoneName zone={zoneData.countryCode} />
+        {isZoneNameDisplayed && <ZoneName zone={zoneData.countryCode} />}
+        <StyledTooltipTimeDisplay date={zoneData.stateDatetime} isZoneNameDisplayed={isZoneNameDisplayed} />
       </div>
       <TooltipContent
-        hasData={zoneData.hasData}
+        hasParser={zoneData.hasParser}
         isDataDelayed={isDataDelayed}
         co2intensity={co2intensity}
         fossilFuelPercentage={fossilFuelPercentage}

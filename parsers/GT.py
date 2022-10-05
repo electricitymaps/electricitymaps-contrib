@@ -6,11 +6,13 @@ Mayorista (AMM) API.
 
 # Standard library imports
 import collections
-import logging
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 # Third-party library imports
 import arrow
-import requests
+from requests import Session
 
 # Local library imports
 from parsers.lib import validation
@@ -23,10 +25,10 @@ URL = f"https://{DOMAIN}/GraficaPW/graficaCombustible"
 
 
 def fetch_consumption(
-    zone_key=DEFAULT_ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """Fetch a list of hourly consumption data, in MW, for the day of the
     requested date-time.
@@ -49,10 +51,10 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key=DEFAULT_ZONE_KEY,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = DEFAULT_ZONE_KEY,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """Fetch a list of hourly production data, in MW, for the day of the
     requested date-time.
@@ -109,11 +111,11 @@ def index_api_data_by_hour(json):
     return results
 
 
-def get_api_data(session, url, date_time):
+def get_api_data(session: Session, url, date_time):
     """Get the JSON-formatted response from the AMM API for the desired
     date-time.
     """
-    session = session or requests.Session()
+    session = session or Session()
     return session.get(url, params={"dt": date_time.format("DD/MM/YYYY")}).json()
 
 

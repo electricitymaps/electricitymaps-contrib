@@ -90,8 +90,8 @@
     "oops": "이런! 서버 접속에 문제가 있네요. 잠시 후 다시 시도해보겠습니다.",
     "newversion": "새 버전이 출시되었습니다! 누르세요 <a onClick=\"location.reload(true);\">here</a> to reload.",
     "retrynow": "지금 다시 눌러보세요",
-    "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
-    "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
+    "database-ad": "역사학적 데이터를 찾으시나요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터 베이스를 확인해보세요!</a>",
+    "api-ad": "당신의 앱이나 기기에 라이브 데이터가 필요한가요? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">저희 API를 체험해보세요!</a>",
     "legend": "범주",
     "faq": "자주 묻는 질문"
   },
@@ -138,7 +138,7 @@
     "divideExistingArea-question": "나의 지역도 더 작은 부분으로 나눌 수 있습니까?",
     "divideExistingArea-answer": "물론입니다. 해당 영역의 각 부분에 대해 별도의 데이터 소스가 있는 경우. <a href=\"#contribute\" class=\"entry-link\">사용자는 새로운 데이터를 우리에게 제공함으로써 우리를 도울 수 있습니다.</a>",
     "seeHistoricalData-question": "지역의 더 많은 역사를 24시간 안에 받아 볼 수 있습니까?",
-    "seeHistoricalData-answer": "당신은 우리의 <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스를</a> 통해 모든 우리의 역사적 데이터를 구매할 수 있습니다."
+    "seeHistoricalData-answer": "당신은 우리의 <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터베이스를</a> 통해 모든 우리의 역사적 데이터를 구매할 수 있습니다."
   },
   "methodology": {
     "groupName": "접근 방법/연구 방법",
@@ -166,22 +166,22 @@
     "dataOrigins-question": "어떻게 데이터를 얻나요?",
     "dataOrigins-answer": "저희는 전력망이나, 공식 에이전시 등을 통해 공개적으로 접근 가능한 모든 데이터를 다룹니다. 각 섹션을 클릭하시면 데이터의 출처를 더 자세히 알 수 있습니다.",
     "dataDownload-question": "데이터를 다운로드 받을 수 있나요?",
-    "dataDownload-answer": "<a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">데이터베이스</a>에서 구입하시면 모든 데이터에 접근 가능합니다.",
+    "dataDownload-answer": "<a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">데이터베이스</a>에서 구입하시면 모든 데이터에 접근 가능합니다.",
     "dataIntegration-question": "여기 데이터를 실시간으로 내 어플리케이션이나 장치에 실시간으로 업데이트 할 수 있나요?",
-    "dataIntegration-answer": "네!! 구입하시면 <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">실시간 API</a>, 에 접근할 수 있습니다. 향후 예측도 포함되어 있습니다."
+    "dataIntegration-answer": "네!! 구입하시면 <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">실시간 API</a>, 에 접근할 수 있습니다. 향후 예측도 포함되어 있습니다."
   },
   "aboutUs": {
     "groupName": "About us",
     "whoAreYou-question": "Who are you?",
-    "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
+    "whoAreYou-answer": "The Electricity Map은 덴마크/프랑스 스타트업 기업인 <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>이 개발한 어플리케이션입니다. 우리 목표는 일상 습관이 기후에 미치는 영향을 수치화하고 쉽게 접근할 수 있도록 하여 인류의 지속가능성에 기여하는 것입니다.",
     "feedback-question": "어떻게 피드백을 줄 수 있나요?",
-    "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:app@electricitymap.org\">에서 작성하신 후 이메일을 보내주세요!</a>",
+    "feedback-answer": "모든 피드백은 환영입니다! <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">피드백 양식</a> 혹은 <a href=\"mailto:app@electricitymaps.com\">에서 작성하신 후 이메일을 보내주세요!</a>",
     "contribute-question": "저도 프로젝트에 기여할 수 있을까요?",
     "contribute-answer": "네! The Electricity Map 은 자원자 분들의 도움으로 만들어진 오픈 소스 프로젝트입니다. 새로운 분야의 데이터 소스를 추가하거나, 버그 수정, 새 기능 추가 등 지도 개발을 돕고 싶으신 경우, <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>에서 참여하세요.",
     "workTogether-question": "함께 일할 수 있나요?",
-    "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:app@electricitymap.org\">이메일을 보내주세요!</a>",
+    "workTogether-answer": "저희는 협력할 기회를 항상 찾고 있습니다. <a href=\"mailto:app@electricitymaps.com\">이메일을 보내주세요!</a>",
     "disclaimer-question": "고지 사항",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>는 <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. electricityMap는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 electricityMap의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>는 <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>에 정보제공 목적으로 이미지를 포함한 데이터를 사용합니다. 정보의 정확성에 대해 책임지지 않으며 어떤 형태의 보증도 제공하지 않습니다. the electricityMap 은 언제든 별도의 고지 없이 콘텐츠를 변경하거나 삭제할 권리를 유보합니다. electricityMap는 the electricityMap의 정보나 그로부터 유추되는 내용의 부정확성, 불완전성, 시기부적절성, 진부화로 인해 발생하는 손해나 비용에 대해 어떤 법적 책임도 지지 않습니다. 다른 웹페이지에 사전 공식 서면 허가 없이 본 웹페이지 자체나 부분적인 요소들을 포함시키는 것은 허용하지 않습니다.<br><br> 모든 지적 재산권은 정당한 소유자와 그 라이센스 소유자에게 있습니다. 에너지 데이터를 비롯한 모든 정보의 복사, 배포, 또는 그 외 모든 자료 사용은 특정 자료에 대해 따로 공지하지 않는 이상 electricityMap의 서면 허가 없이는 허용하지 않는다. (인용할 권리와 같이) 법적 규정에서 지정하는 경우만 예외로 둡니다. <br><br>본 고지 내용은 추후에 변경될 수 있습니다."
   },
   "zoneShortName": {
     "AD": { "zoneName": "안도라" },

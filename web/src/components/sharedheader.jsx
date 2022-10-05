@@ -5,7 +5,8 @@ import { useTrackEvent } from '../hooks/tracking';
 const Wrapper = styled.header`
   align-items: center;
   background: white;
-  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);
+  // Shadow only towards bottom to allow having space above header
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   color: black;
   display: flex;
@@ -14,11 +15,16 @@ const Wrapper = styled.header`
   height: 58px;
   justify-content: space-between;
   min-height: 58px; /* required for old Safari */
-  padding: 0 48px 0 32px;
+  padding: 0 48px 0 25px;
   position: fixed;
   transition: background-color 0.5s;
   width: 100vw;
   z-index: 3;
+
+  @media (max-width: 850px) {
+    // provides some extra space for the logo on smaller screens
+    padding-right: 12px;
+  }
 
   ${(props) =>
     props.collapsed &&
@@ -44,7 +50,8 @@ const Wrapper = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 24px;
+  height: 48px;
+  margin-top: 3px;
 `;
 
 const linkUnderline = css`
@@ -156,7 +163,7 @@ const SharedHeader = ({ collapsed = false, inverted = false, links = [], logo })
 
   return (
     <Wrapper inverted={inverted} collapsed={collapsed}>
-      <a href="https://app.electricitymap.org/map">
+      <a href="https://app.electricitymaps.com/map">
         <Logo src={logo} alt="logo" />
       </a>
       <ResponsiveMenu collapsed={collapsed}>

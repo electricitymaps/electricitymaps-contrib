@@ -6,7 +6,7 @@
     "datasources": "zdroje dat",
     "contribute": "Zapojte se <a href=\"%s\" target=\"_blank\">přidáním své oblasti</a>"
   },
-  "mobile-main-menu": { "map": "electricityMap", "areas": "Oblasti", "about": "Info" },
+  "mobile-main-menu": { "map": "Electricity Maps", "areas": "Oblasti", "about": "Info" },
   "onboarding-modal": {
     "view1": { "subtitle": "Mapování dopadu spotřeby elektřiny na klima" },
     "view2": {
@@ -90,8 +90,8 @@
     "oops": "Ach jo! Máme problém v komunikaci se serverem. Zkusíme to znovu za pár vteřin.",
     "newversion": "Nová verze je dostupná! <a onClick=\"location.reload(true);\">Klikněte zde</a> pro aktualizaci.",
     "retrynow": "Zkusit znovu",
-    "database-ad": "Hledáte historická data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
-    "api-ad": "Chcete mít aktuální data ve své aplikaci nebo na svém zařízení? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
+    "database-ad": "Hledáte historická data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Zkontrolujte naši databázi!</a>",
+    "api-ad": "Chcete mít aktuální data ve své aplikaci nebo na svém zařízení? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vyzkoušejte naše API!</a>]",
     "legend": "Legenda",
     "faq": "Často kladené otázky"
   },
@@ -138,7 +138,7 @@
     "divideExistingArea-question": "Můžete rozdělit mou oblast na menší?",
     "divideExistingArea-answer": "Určitě, když existují separátní zdroje dat pro každou část dané oblasti. Můžete <a href=\"#contribute\" class=\"entry-link\">nám pomoci přidáním nových datových zdrojů</a>.",
     "seeHistoricalData-question": "Můžu zobrazit historii oblasti starší než 24 hodin?",
-    "seeHistoricalData-answer": "Můžete si zakoupíte přístup do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databáze historických dat</a>."
+    "seeHistoricalData-answer": "Můžete si zakoupíte přístup do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databáze historických dat</a>."
   },
   "methodology": {
     "groupName": "Metogologie",
@@ -166,22 +166,22 @@
     "dataOrigins-question": "Jak získáváte vaše data?",
     "dataOrigins-answer": "Všechna naše data zpracováváme z veřejně přístupných zdrojů publikovaných operátory elektrických rozvodných sítí, oficiálních agentur atd. Kliknutím na konkrétní oblast se zobrazí detailnější informace o původu dat.",
     "dataDownload-question": "Můžu si stáhnout vaše data?",
-    "dataDownload-answer": "Můžete si zakoupit přístup ke všem našim datům v naší <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databázi</a>.",
+    "dataDownload-answer": "Můžete si zakoupit přístup ke všem našim datům v naší <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databázi</a>.",
     "dataIntegration-question": "Můžu integrovat vaše data do mé aplikace nebo zařízení?",
-    "dataIntegration-answer": "Ano! Prodáváme přístup do <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, které zahrnuje budoucí předpovědi."
+    "dataIntegration-answer": "Ano! Prodáváme přístup do <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, které zahrnuje budoucí předpovědi."
   },
   "aboutUs": {
     "groupName": "O nás",
     "whoAreYou-question": "Kdo jste?",
-    "whoAreYou-answer": "ElectricityMap je vyvíjená a udržována společností <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
+    "whoAreYou-answer": "Electricity Maps je vyvíjená a udržována společností <a href=\"https://electricitymaps.com/\" target=\"_blank\">electricityMap</a>, malým dánsko-francouzským startupem. Naším cílem je pomoci lidstvu dosáhnout udržitelný stav pomocí kvantifikace dopadů a podpory rozhodování s velkými dopady na klima v našem každodenním životě.",
     "feedback-question": "Můžu vám nechat zpětnou vazbu?",
-    "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymap.org\">nám poslat email!</a>",
+    "feedback-answer": "Prosím, udělejte to! Můžete vyplnit <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">náš formulář</a> nebo <a href=\"mailto:app@electricitymaps.com\">nám poslat email!</a>",
     "contribute-question": "Můžu se zapojit do vašeho projektu?",
-    "contribute-answer": "Ano! ElectricityMap je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ano! Electricity Maps je open-source projekt. To znamená, že funguje díky našim dobrovolným přispěvatelům. Když chcete pomoci při vývoji mapy - přidáváním datových zdrojů pro nové oblasti, přidáváním nových funkcionalit, nebo opravováním chyb, přidejte se na náš <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Můžeme pracovat společně?",
-    "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymap.org\">Pošlete nám email!</a>",
+    "workTogether-answer": "Aktivně hledáme nové příležitosti ke spolupráci. <a href=\"mailto:app@electricitymaps.com\">Pošlete nám email!</a>",
     "disclaimer-question": "Oznámení",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publikuje data a obrázky na <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. electricityMap nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti electricityMap nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu electricityMap, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publikuje data a obrázky na <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> pouze pro informační účely. Nezaručuje správnost ani žádnou formu záruky a vyhrazuje si právo kdykoliv změnit obsah nebo odstranit jeho části bez toho, aby o tom musel informovat. Electricity Maps nepřebírá žádnou zodpovědnost za jakékoliv škody nebo výdaje, které by mohly vzniknout v důsledku nepřesností, neúplnosti, neopatrnosti nebo zastaralosti Electricity Maps nebo informací získaných z ní. Není dovolené zahrnout tuto webovou stránku, nebo její jednotlivé prvky do jiné webové stránky bez předchozího písemného souhlasu.<br><br> Všechna práva duševního vlastnictví patří oprávněným majitelům a poskytovatelům licencí. Kopírování, distribuce a jakékoliv jiné použití těchto materiálů, především energetických údajů, není povolené bez písemného souhlasu Electricity Maps, s výjimkou případů, které jsou stanovené jinými předpisy (jako je právo citovat), pokud není pro konkrétní materiály uvedeno jinak. <br><br> Toto vyloučení odpovědnosti může být aktualizováno."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -277,6 +277,7 @@
     "EH": { "zoneName": "Západní Sahara" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "Španělsko" },
+    "ES-CE": { "countryName": "Španělsko", "zoneName": "Ceuta" },
     "ES-IB-FO": { "countryName": "Španělsko", "zoneName": "Formentera" },
     "ES-IB-IZ": { "countryName": "Španělsko", "zoneName": "Ibiza" },
     "ES-IB-MA": { "countryName": "Španělsko", "zoneName": "Mallorca" },
@@ -287,6 +288,7 @@
     "ES-CN-IG": { "countryName": "Španělsko", "zoneName": "La Gomera" },
     "ES-CN-LP": { "countryName": "Španělsko", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Španělsko", "zoneName": "Tenerife" },
+    "ES-ML": { "countryName": "Španělsko", "zoneName": "Melilla" },
     "ET": { "zoneName": "Etiopie" },
     "FI": { "zoneName": "Finsko" },
     "FJ": { "zoneName": "Fidži" },

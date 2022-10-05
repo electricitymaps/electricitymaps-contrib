@@ -11,8 +11,7 @@ import { store, sagaMiddleware } from './store';
 import { cordovaApp } from './cordova';
 import sagas from './sagas';
 
-import Main from './layout/main_old';
-import MainForHistoricalView from './layout/main';
+import Main from './layout/main';
 import GlobalStyle from './globalstyle';
 
 // init styling
@@ -24,22 +23,17 @@ import './helpers/i18n';
 
 // Initial greeting message for curious people
 console.log(
-  `%cWelcome to electricityMap!
+  `%cWelcome to Electricity Maps!
 🌍 %cReady to work on fixing the climate full-time?
-  https://electricitymap.org/jobs
+  https://electricitymaps.com/jobs
 🐙 Got comments or want to contribute?
-  https://github.com/electricitymap/electricitymap-contrib`,
+  https://github.com/electricityMaps/electricitymaps-contrib`,
   'color: green; font-weight: bold',
   'color: #666; font-style: italic'
 );
 
 // Plug in the sagas
 sagaMiddleware.run(sagas);
-
-// Switches Main component if historical view feature google is used
-const urlSearchParams = new URLSearchParams(window.location.search);
-const isHistoryFeatureEnabled = Object.fromEntries(urlSearchParams.entries())?.feature === 'history';
-const MainComponent = isHistoryFeatureEnabled ? MainForHistoricalView : Main;
 
 // Render DOM
 ReactDOM.render(
@@ -49,7 +43,7 @@ ReactDOM.render(
       {/* the route history outside of React components anymore */}
       <Router history={history}>
         <GlobalStyle />
-        <MainComponent />
+        <Main />
       </Router>
     </Provider>
   </React.Suspense>,

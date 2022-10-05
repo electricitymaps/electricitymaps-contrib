@@ -47,6 +47,10 @@
   font-weight: bold;
   float: left;
   line-height: 14px;
+  &:hover {
+    background: #eee;
+    text-decoration: none;
+  }
 }
 
 .slack-ico {
@@ -64,11 +68,29 @@
   margin-right: 0.4em;
 }
 
+.twitter-share-button {
+  background-color: #1b95e0;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  float: left;
+  line-height: 12px;
+  padding: 3px 5px 2px 4px;
+  margin-right: 4px;
+  svg {
+    vertical-align: middle;
+    fill: #fff;
+  }
+  &:hover {
+    background-color: #0c7abf;
+    text-decoration: none;
+  }
+}
+
 div.fb-share-button,
 div.fb-like,
 div.fb-follow,
-iframe.twitter-share-button,
-iframe.twitter-follow-button,
+.twitter-share-button,
 .slack-button {
   vertical-align: bottom;
 }

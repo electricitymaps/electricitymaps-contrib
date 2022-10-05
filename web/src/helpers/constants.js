@@ -56,7 +56,7 @@ const LANGUAGE_NAMES = {
   pl: 'Polski',
   'pt-BR': 'Português (Brasileiro)',
   ro: 'Română',
-  ru: 'Русский язык',
+  ru: 'Русский',
   sk: 'Slovenčina',
   sv: 'Svenska',
   vi: 'Tiếng Việt',
@@ -102,6 +102,11 @@ const TIME = {
   YEARLY: 'yearly',
 };
 
+const failedRequestType = {
+  ZONE: 'zone',
+  GRID: 'grid',
+};
+
 export {
   modeColor,
   modeOrder,
@@ -112,4 +117,5 @@ export {
   LANGUAGE_NAMES,
   LOCALE_TO_FACEBOOK_LOCALE,
   TIME,
+  failedRequestType,
 };

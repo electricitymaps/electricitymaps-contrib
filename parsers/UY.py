@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import dateutil
-import requests
 
 # BeautifulSoup is used to parse HTML to get information
 from bs4 import BeautifulSoup
+from requests import Session
 
 tz = "America/Montevideo"
 
@@ -23,7 +26,7 @@ INV_MAP_GENERATION = dict([(v, k) for (k, v) in MAP_GENERATION.items()])
 SALTO_GRANDE_URL = "http://www.cammesa.com/uflujpot.nsf/FlujoW?OpenAgent&Tensiones y Flujos de Potencia&"
 
 
-def get_salto_grande(session) -> float:
+def get_salto_grande(session: Optional[Session]) -> float:
     """Finds the current generation from the Salto Grande Dam that is allocated to Uruguay."""
 
     current_time = arrow.now("UTC-3")
@@ -32,7 +35,7 @@ def get_salto_grande(session) -> float:
         current_time = current_time.shift(hours=-1)
     lookup_time = current_time.floor("hour").format("DD/MM/YYYY HH:mm")
 
-    s = session or requests.Session()
+    s = session or Session()
     url = SALTO_GRANDE_URL + lookup_time
     response = s.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -43,10 +46,10 @@ def get_salto_grande(session) -> float:
     return generation
 
 
-def parse_page(session):
-    r = session or requests.session()
+def parse_page(session: Optional[Session]):
+    r = session or Session()
     url = "https://apps.ute.com.uy/SgePublico/ConsPotenciaGeneracionArbolXFuente.aspx"
-    response = requests.get(url)
+    response = r.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     datefield = soup.find(
@@ -99,7 +102,10 @@ def parse_page(session):
 
 
 def fetch_production(
-    zone_key="UY", session=None, target_datetime=None, logger=None
+    zone_key: str = "UY",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
@@ -119,9 +125,15 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1="UY", zone_key2="BR-S", session=None, target_datetime=None, logger=None
+    zone_key1: str = "UY",
+    zone_key2: str = "BR-S",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two countries."""
+
+    session = session or Session()
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 

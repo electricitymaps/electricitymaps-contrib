@@ -79,25 +79,6 @@ path {
   font-size: 60%;
 }
 
-.pro {
-  border-radius: 0.25rem;
-  background-color: gold;
-  color: rgb(76, 76, 76);
-  font-weight: bold;
-  padding: 0.2rem;
-  font-size: 0.8em;
-  margin-left: 0.4em;
-  line-height: 0.8em;
-  margin-bottom: 0.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  > svg {
-    margin-right: 0.1em;
-  }
-}
-
 @keyframes appear-from-top {
   0% {
     top: -40px;

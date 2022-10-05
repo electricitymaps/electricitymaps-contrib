@@ -3,10 +3,11 @@
 import json
 import re
 from datetime import datetime
+from logging import Logger, getLogger
 from typing import List, NamedTuple, Optional
 
 import arrow
-import requests
+from requests import Session
 
 tz_bo = "America/La_Paz"
 
@@ -30,7 +31,9 @@ def extract_xsrf_token(html):
 
 
 def fetch_data(
-    session=None, target_datetime=None, logger=None
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> List[HourlyProduction]:
     if target_datetime is not None:
         dt = arrow.get(target_datetime, tz_bo)
@@ -38,7 +41,7 @@ def fetch_data(
         dt = arrow.now(tz=tz_bo)
         print("current dt", dt)
 
-    r = session or requests.session()
+    r = session or Session()
 
     # Define actual and previous day (for midnight data).
     formatted_dt = dt.format("YYYY-MM-DD")
@@ -85,7 +88,10 @@ def fetch_data(
 
 
 def fetch_production(
-    zone_key="BO", session=None, target_datetime=None, logger=None
+    zone_key: str = "BO",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     payload = []
@@ -120,7 +126,10 @@ def fetch_production(
 
 
 def fetch_generation_forecast(
-    zone_key="BO", session=None, target_datetime=None, logger=None
+    zone_key: str = "BO",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     return [
         {

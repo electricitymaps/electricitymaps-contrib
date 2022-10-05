@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from '../helpers/translation';
 import { dispatchApplication } from '../store';
 import { useTrackEvent } from '../hooks/tracking';
 import { saveKey } from '../helpers/storage';
-import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
+import {
+  useWindEnabled,
+  useSolarEnabled,
+  useSolarToggledLocation,
+  useWindToggledLocation,
+  useAggregatesToggle,
+  useAggregatesEnabled,
+} from '../hooks/router';
 import { LANGUAGE_NAMES } from '../helpers/constants';
+
+import { aggregatedViewFFEnabled } from '../helpers/featureFlags';
 import Toggle from './toggle';
 
 import styled from 'styled-components';
@@ -44,12 +54,15 @@ const StyledLanguageSelectWrapper = styled.ul`
   width: 232px;
   margin: 0;
   padding: 0;
-  margin-top: -6px;
   list-style: none;
   box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.12);
   overflow: scroll;
   max-height: 300px;
-  li {
+
+  button {
+    width: 100%;
+    background: transparent;
+    border: 0;
     padding: 8px;
     cursor: pointer;
     &:hover {
@@ -72,8 +85,8 @@ const LanguageSelect = ({ isOpen, onSelect }) => {
   return (
     <StyledLanguageSelectWrapper>
       {Object.entries(LANGUAGE_NAMES).map(([key, language]) => (
-        <li key={key} onClick={() => onSelect(key)}>
-          {language}
+        <li key={key}>
+          <button onClick={() => onSelect(key)}>{language}</button>
         </li>
       ))}
     </StyledLanguageSelectWrapper>
@@ -107,6 +120,11 @@ const SettingsView = () => {
     saveKey(name, !currentValue);
   };
 
+  const history = useHistory();
+  const isAggregatedFFEnabled = aggregatedViewFFEnabled();
+  const toggleAggregates = useAggregatesToggle();
+  const isAggregated = useAggregatesEnabled() ? 'aggregated' : 'detailed';
+
   return (
     <InfoContainer>
       <Toggle
@@ -117,8 +135,20 @@ const SettingsView = () => {
           { value: 'consumption', label: __('tooltips.consumption') },
         ]}
         value={electricityMixMode}
-        tooltipStyle={{ width: 250, top: 110, zIndex: 9 }}
+        tooltipStyle={{ width: 250, top: 110, zIndex: 99 }}
       />
+      {isAggregatedFFEnabled && (
+        <Toggle
+          infoHTML={__('tooltips.aggregateinfo')}
+          onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
+          options={[
+            { value: 'aggregated', label: __('tooltips.aggregated') },
+            { value: 'detailed', label: __('tooltips.detailed') },
+          ]}
+          value={isAggregated}
+          tooltipStyle={{ width: 250, top: 146, zIndex: 99 }}
+        />
+      )}
       <SettingsWrapper>
         <SettingButton active icon="language" onClick={() => setLanguageSelectOpen(!languageSelectOpen)}>
           {__('tooltips.selectLanguage')}

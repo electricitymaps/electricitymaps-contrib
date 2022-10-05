@@ -40,7 +40,7 @@
     "electricity": "Elektrizität",
     "dataIsDelayed": "Die Daten in dieser Region können bis zu %s Stunden verzögert sein. Das Darstellen von Live-Daten steht nicht zur Verfügung.",
     "estimated": "Geschätzt",
-    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
+    "dataIsEstimated": "Teile der Daten für diese Region sind geschätzt. Mehr über unsere Schätzungsmethoden kannst du <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">hier</a> lesen.",
     "estimatedTooltip": "Die Echtzeit-Daten für diese Zone sind auf Basis der Daten der Quelle und den Annahmen des Modells geschätzt.",
     "helpUs": "Hilf uns Problem zu finden indem du dir die <a href=\"%s\" target=\"_blank\">Laufzeit Logs</a> anschaust oder den Datenanbieter kontaktierst."
   },
@@ -103,8 +103,8 @@
     "oops": "Ups! Wir haben Probleme den Server zu erreichen. Wir versuchen es in wenigen Sekunden noch einmal.",
     "newversion": "Eine neuere Version ist verfügbar! Klick <a onClick=\"location.reload(true);\">hier</a>, um sie zu laden.",
     "retrynow": "Erneut versuchen",
-    "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
-    "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
+    "database-ad": "Auf der Suche nach historischen Daten? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Sieh dir unsere Datenbank an!</a>",
+    "api-ad": "Benötigst du Live-Daten für deine Apps oder Geräte? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Probiere unsere API!</a>",
     "legend": "Legende",
     "faq": "Häufig gestellte Fragen",
     "webgl-not-supported": "Diese Karte kann nicht angezeigt werden, weil dieser Webbrowser kein WebGL unterstützt."
@@ -152,7 +152,7 @@
     "divideExistingArea-question": "Können Sie meinen Bereich in kleinere Teile aufteilen?",
     "divideExistingArea-answer": "Das ist möglich, sofern es für diese Region eigene Datenquellen gibt. Du kannst <a href=\"#contribute\" class=\"entry-link\">uns helfen, neue Datenquellen hinzuzufügen</a>.",
     "seeHistoricalData-question": "Kann ich die Zeitreihe eines Bereiches sehen, die weiter als 24 Stunden zurückliegt?",
-    "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
+    "seeHistoricalData-answer": "Sie können Zugriff auf alle unsere historischen Daten über unsere <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben."
   },
   "methodology": {
     "groupName": "Unsere Methoden",
@@ -169,7 +169,7 @@
     "guaranteesOfOrigin-question": "Was sind Grünstrom-Zertifikate und wie werden sie berücksichtigt?",
     "guaranteesOfOrigin-answer": "Wenn Produzenten erneuerbarer Energie Strom produzieren, können sie Herkunftsnachweise (oder Renewable Energy Certificates) erstellen - ein Beweis dafür, dass erneuerbarer Strom produziert und in das Stromnetz eingespeist worden ist. Diese Garantien können dann verkauft werden, was anderen nicht erneuerbaren Stromerzeugern einen Weg öffnet, ihre Emissionen zu \"kompensieren\" sowie das Recht gibt zu behaupten, dass der von ihnen erzeugte Strom aus erneuerbaren Quellen stammt, unabhängig von seiner tatsächlichen, physischen Quelle. Dies ist problematisch, da es die Anreize der Verbraucher, Strom zum besten Zeitpunkt zu verbrauchen (z.B. wenn die Menge an erneuerbarem Strom im Netz am höchsten ist), zunichte macht. Diese Karte schließt daher Herkunftsnachweise aus und bietet stattdessen ein ortsbezogenes, physisches Bild des Stromnetzes, um die Verbraucher zu mehr Verantwortung zu bewegen.",
     "otherSources-question": "Warum zeigen Sie nicht andere Emissionsquellen als die Stromerzeugung?",
-    "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei electricityMap aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
+    "otherSources-answer": "Dies würde den Rahmen dieses Projekts sprengen. Allerdings arbeiten wir bei Electricity Maps aktiv an der Entwicklung von <a href=\"#whoAreYou\" class=\"entry-link\">neuen Lösungen zur Quantifizierung des Klimaeinflusses Ihrer täglichen Entscheidungen </a>.",
     "homeSolarPanel-question": "Was ist, wenn ich eine Photovoltaikanlage in meinem Haus installiert habe?",
     "homeSolarPanel-answer": "Wir bewerten die Kohlenstoffintensität des regionalen Stromnetzes, sodass Strom, den Sie direkt von Ihrer PV-Anlage (netzunabhängig) beziehen, nicht Teil unserer Bewertung ist. Wenn Ihre PV-Anlage jedoch Strom in Ihr lokales Stromnetz liefert, wird diese Produktion in unseren Statistiken in Regionen erfasst, in denen Schätzungen der lokalen Solarenergieproduktion öffentlich zugänglich gemacht werden (z.B. in Frankreich und Großbritannien).",
     "emissionsPerCapita-question": "Warum zeigen Sie nicht die Emissionen pro Kopf an?",
@@ -180,22 +180,22 @@
     "dataOrigins-question": "Wie erhalten Sie Ihre Daten?",
     "dataOrigins-answer": "Wir berechnen alle unsere Daten aus öffentlich zugänglichen Datenquellen, die von Stromnetzbetreibern, Behörden und anderen Institutionen veröffentlicht werden. Sie können auf eine Region klicken, um mehr über die Herkunft der Daten zu erfahren.",
     "dataDownload-question": "Kann ich Ihre Daten herunterladen?",
-    "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
+    "dataDownload-answer": "Sie können einen Zugang zu allen unseren Daten über unsere <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Datenbank</a> erwerben.",
     "dataIntegration-question": "Kann ich Ihre Daten in Echtzeit in meine Anwendung oder mein Gerät integrieren?",
-    "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
+    "dataIntegration-answer": "Ja! Wir bieten den Zugang zu einer kostenpflichtigen <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echtzeit API</a> an, die auch Zukunftsprognosen beinhaltet."
   },
   "aboutUs": {
     "groupName": "Über uns",
     "whoAreYou-question": "Wer sind Sie?",
-    "whoAreYou-answer": "Die electricityMap wird entwickelt und gepflegt von <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
+    "whoAreYou-answer": "Die Electricity Maps wird entwickelt und gepflegt von <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, einem dänisch/französischen Start-up-Unternehmen. Unser Ziel ist es, der Menschheit zu helfen, einen nachhaltigen Existenzzustand zu erreichen, indem wir die Klimaauswirkungen unserer täglichen Entscheidungen quantifizieren und allgemein zugänglich machen.",
     "feedback-question": "Kann ich Ihnen Feedback geben?",
-    "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:app@electricitymap.org\">senden Sie uns eine E-Mail!</a>",
+    "feedback-answer": "Bitte tun Sie das! Bitte füllen Sie <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">unser Feedback-Formular</a> aus oder <a href=\"mailto:app@electricitymaps.com\">senden Sie uns eine E-Mail!</a>",
     "contribute-question": "Kann ich zu Ihrem Projekt beitragen?",
-    "contribute-answer": "Ja, gerne! Die electricityMap ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
+    "contribute-answer": "Ja, gerne! Die Electricity Maps ist ein Open-Source-Projekt, das von unseren ehrenamtlichen Mitwirkenden ermöglicht wird. Wenn Sie bei der Entwicklung der Karte helfen wollen, indem Sie entweder Datenquellen für neue Bereiche hinzufügen, neue Funktionen hinzufügen oder Fehler beheben, können Sie sich uns gerne unserem <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">Github</a> anschließen.",
     "workTogether-question": "Können wir zusammenarbeiten?",
-    "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:app@electricitymap.org\">Schicken Sie uns eine E-Mail!</a>",
+    "workTogether-answer": "Wir suchen aktiv nach neuen Möglichkeiten der Zusammenarbeit. <a href=\"mailto:app@electricitymaps.com\">Schicken Sie uns eine E-Mail!</a>",
     "disclaimer-question": "Haftungsausschluss",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. electricityMap übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der electricityMap oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von electricityMap nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> veröffentlicht Daten und Bilder auf der <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">electricityMap</a> zu Informationszwecken. Sie erhebt keinen Anspruch auf Richtigkeit und übernimmt keinerlei Gewährleistung und behält sich das Recht vor, den Inhalt jederzeit zu ändern oder Teile davon zu entfernen, ohne Sie darüber informieren zu müssen. Electricity Maps übernimmt keine Verantwortung und ist nicht haftbar für Schäden oder Ausgaben, die Ihnen durch Ungenauigkeit, Unvollständigkeit, Unpünktlichkeit oder Veralterung der Electricity Maps oder der daraus abgeleiteten Informationen entstehen. Es ist nicht erlaubt, diese Webseite oder einzelne ihrer Elemente ohne vorherige schriftliche Genehmigung in eine andere Webseite einzubinden. Die Vervielfältigung, Verbreitung und sonstige Nutzung dieser Materialien, insbesondere der Energiedaten, ist ohne die schriftliche Zustimmung von Electricity Maps nicht gestattet, soweit nicht zwingende gesetzliche Vorschriften (wie z.B. das Zitatrecht) etwas anderes vorsehen. Dieser Haftungsausschluss kann von Zeit zu Zeit aktualisiert werden."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -294,6 +294,7 @@
     "EH": { "zoneName": "Westsahara" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "Spanien" },
+    "ES-CE": { "countryName": "Spanien", "zoneName": "Ceuta" },
     "ES-IB": { "countryName": "Spanien", "zoneName": "Balearen" },
     "ES-CN-FVLZ": { "countryName": "Spanien", "zoneName": "Fuerteventura/Lanzarote" },
     "ES-CN-GC": { "countryName": "Spanien", "zoneName": "Gran Canaria" },
@@ -301,6 +302,7 @@
     "ES-CN-IG": { "countryName": "Spanien", "zoneName": "La Gomera" },
     "ES-CN-LP": { "countryName": "Spanien", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Spanien", "zoneName": "Teneriffa" },
+    "ES-ML": { "countryName": "Spanien", "zoneName": "Melilla" },
     "ET": { "zoneName": "Äthiopien" },
     "FI": { "zoneName": "Finnland" },
     "FJ": { "zoneName": "Fidschi" },

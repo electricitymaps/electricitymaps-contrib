@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from '../../helpers/translation';
+import Icon from '../../components/icon';
 
 const StyledWrapper = styled.div`
   margin-top: 12px;
@@ -18,7 +18,6 @@ const StyledWrapper = styled.div`
 `;
 
 const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
-  const { i18n } = useTranslation();
   if (hideOnMobile && hideOnDesktop) {
     return null;
   }
@@ -27,19 +26,18 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
     <StyledWrapper hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile}>
       <div>
         {/* Facebook share */}
-        <div className="fb-share-button" data-href="https://app.electricitymap.org/" data-layout="button_count" />
-        {/* Twitter share */}
+        <div className="fb-share-button" data-href="https://app.electricitymaps.com/" data-layout="button_count" />
         <a
           className="twitter-share-button"
-          data-url="https://app.electricitymap.org"
-          data-via="electricitymap"
-          data-lang={i18n.language}
+          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com"
+          target="_blank"
+          rel="noreferrer"
         >
-          &nbsp;
+          <Icon iconName={'twitter'} size={16} /> Tweet
         </a>
         {/* Slack */}
         <span className="slack-button">
-          <a href="https://slack.tmrow.com" target="_blank" className="slack-btn" rel="noreferrer">
+          <a href="https://slack.electricitymaps.com" target="_blank" className="slack-btn" rel="noreferrer">
             <span className="slack-ico" />
             <span className="slack-text">Slack</span>
           </a>

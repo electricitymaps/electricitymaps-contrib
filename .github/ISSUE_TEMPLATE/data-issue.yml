@@ -1,0 +1,36 @@
+name: Data Issue
+description: Use this form if you believe there is a issue with the data on the app.
+title: "[Data Issue]: "
+labels: ["data", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file this issue.
+  - type: textarea
+    id: when-did-this-happen
+    attributes:
+      label: When did this happen?
+      description: Please provide the date and time when the problem happened.
+      placeholder: e.g. "2018-01-01 12:00"
+    validations:
+      required: true
+  - type: textarea
+    id: what-zones-are-affected
+    attributes:
+      label: What zones are affected?
+      description: Please provide the zones affected.
+      placeholder: e.g. "Dk-DK1, DK-DK2, SE-SE4"
+    validations:
+      required: true
+  - type: textarea
+    id: what-is-the-problem
+    attributes:
+      label: What is the problem?
+      description: |
+        What appears to be the problem with the data?
+        Please provide as much detail as possible.
+        You can also add screenshots here if you have them.
+      placeholder: e.g. "The data for biomass is not being displayed even though it's available at the source."
+    validations:
+      required: true

@@ -4,27 +4,21 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { useTranslation } from '../helpers/translation';
 import { saveKey } from '../helpers/storage';
-import {
-  useWindEnabled,
-  useSolarEnabled,
-  useSolarToggledLocation,
-  useWindToggledLocation,
-  useFeatureToggle,
-} from '../hooks/router';
+import { useWindEnabled, useSolarEnabled, useSolarToggledLocation, useWindToggledLocation } from '../hooks/router';
 import { dispatchApplication } from '../store';
 
 import LanguageSelect from '../components/languageselect';
 import ButtonToggle from '../components/buttontoggle';
 import styled from 'styled-components';
+import { TIME } from '../helpers/constants';
 
-const Wrapper = styled.div`
+const HiddenOnMobile = styled.div`
   @media screen and (max-width: 767px) {
-    display: ${(props) => (props.isHiddenOnMobile ? 'none' : 'block')};
+    display: none;
   }
 `;
 
-export default () => {
-  const isHistoryFeatureEnabled = useFeatureToggle('history');
+export default ({ aggregatedViewFFEnabled }) => {
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
@@ -35,6 +29,10 @@ export default () => {
   const solarToggledLocation = useSolarToggledLocation();
 
   const brightModeEnabled = useSelector((state) => state.application.brightModeEnabled);
+
+  const isWeatherEnabled = useSelector(
+    (state) => state.application.selectedTimeAggregate === TIME.HOURLY && state.application.selectedZoneTimeIndex === 24
+  );
   const toggleBrightMode = () => {
     dispatchApplication('brightModeEnabled', !brightModeEnabled);
     saveKey('brightModeEnabled', !brightModeEnabled);
@@ -43,25 +41,33 @@ export default () => {
   const Link = ({ to, hasError, children }) =>
     !hasError ? <RouterLink to={to}>{children}</RouterLink> : <div>{children}</div>;
 
+  const getWeatherTranslateId = (weatherType, enabled, isWeatherEnabled) => {
+    if (!isWeatherEnabled) {
+      return 'tooltips.weatherDisabled';
+    }
+
+    return enabled ? `tooltips.hide${weatherType}Layer` : `tooltips.show${weatherType}Layer`;
+  };
+
   return (
-    <Wrapper isHiddenOnMobile={isHistoryFeatureEnabled}>
-      <div className="layer-buttons-container">
+    <HiddenOnMobile>
+      <div className={aggregatedViewFFEnabled ? 'layer-buttons-container-FF' : 'layer-buttons-container'}>
         <LanguageSelect />
-        <Link to={windToggledLocation} hasError={windDataError}>
+        <Link to={windToggledLocation} hasError={windDataError || !isWeatherEnabled}>
           <ButtonToggle
             active={windEnabled}
-            tooltip={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+            tooltip={__(getWeatherTranslateId('Wind', windEnabled, isWeatherEnabled))}
             errorMessage={windDataError}
-            ariaLabel={__(windEnabled ? 'tooltips.hideWindLayer' : 'tooltips.showWindLayer')}
+            ariaLabel={__(getWeatherTranslateId('Wind', solarEnabled, isWeatherEnabled))}
             icon="weather/wind"
           />
         </Link>
-        <Link to={solarToggledLocation} hasError={solarDataError}>
+        <Link to={solarToggledLocation} hasError={solarDataError || !isWeatherEnabled}>
           <ButtonToggle
             active={solarEnabled}
-            tooltip={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+            tooltip={__(getWeatherTranslateId('Solar', solarEnabled, isWeatherEnabled))}
             errorMessage={solarDataError}
-            ariaLabel={__(solarEnabled ? 'tooltips.hideSolarLayer' : 'tooltips.showSolarLayer')}
+            ariaLabel={__(getWeatherTranslateId('Solar', solarEnabled, isWeatherEnabled))}
             icon="weather/sun"
           />
         </Link>
@@ -73,6 +79,6 @@ export default () => {
           icon="brightmode"
         />
       </div>
-    </Wrapper>
+    </HiddenOnMobile>
   );
 };

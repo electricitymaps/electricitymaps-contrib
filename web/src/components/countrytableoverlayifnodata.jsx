@@ -31,12 +31,7 @@ const CountryTableOverlayIfNoData = ({ zoneTimeIndex }) => {
   const zoneData = useCurrentZoneData();
   const { __ } = useTranslation();
 
-  // TODO: Shouldn't be hardcoded
-  const zonesThatCanHaveZeroProduction = ['AX', 'DK-BHM', 'CA-PE', 'ES-IB-FO'];
-  const zoneHasProductionValues = zoneData.production && !Object.values(zoneData.production).every((v) => v === null);
-  const zoneHasProductionData = zoneHasProductionValues || zonesThatCanHaveZeroProduction.includes(zoneId);
-
-  if (zoneHasProductionData) {
+  if (zoneData.isValid) {
     return null;
   }
 

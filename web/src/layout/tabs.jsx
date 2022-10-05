@@ -16,7 +16,7 @@ export default () => {
       <div id="tab-content">
         {canRenderMap && (
           <NavLink className="list-item" to={{ pathname: '/map', search: location.search }}>
-            <Icon iconName="electricitymap" />
+            <Icon iconName="electricitymaps" />
             <span className="tab-label">{__('mobile-main-menu.map')}</span>
           </NavLink>
         )}

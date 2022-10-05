@@ -1,9 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/jsx-no-target-blank */
-// TODO: re-enable rules
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -27,11 +21,15 @@ export default () => {
       <ColorBlindCheckbox />
       <p>
         {__('panel-initial-text.thisproject')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank">
+        <a href="https://github.com/electricitymaps/electricitymaps-contrib" target="_blank" rel="noreferrer">
           {__('panel-initial-text.opensource')}
         </a>{' '}
         ({__('panel-initial-text.see')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib/blob/master/DATA_SOURCES.md" target="_blank">
+        <a
+          href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md"
+          target="_blank"
+          rel="noreferrer"
+        >
           {__('panel-initial-text.datasources')}
         </a>
         ).{' '}
@@ -39,7 +37,7 @@ export default () => {
           dangerouslySetInnerHTML={{
             __html: __(
               'panel-initial-text.contribute',
-              'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started'
+              'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started'
             ),
           }}
         />
@@ -47,7 +45,11 @@ export default () => {
       </p>
       <p>
         {__('footer.foundbugs')}{' '}
-        <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank">
+        <a
+          href="https://github.com/electricitymaps/electricitymaps-contrib/issues/new"
+          target="_blank"
+          rel="noreferrer"
+        >
           {__('footer.here')}
         </a>
         .<br />

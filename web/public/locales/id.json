@@ -90,8 +90,8 @@
     "oops": "Oops! Kami mengalami masalah menghubungkan ke dalam server. Kami akan coba beberapa detik lagi.",
     "newversion": "Versi baru tersedia! Klik <a onClick=\"location.reload(true);\">di sini</a> untuk memuat ulang.",
     "retrynow": "Ulangi sekarang",
-    "database-ad": "Mencari data historikal? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
-    "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
+    "database-ad": "Mencari data historikal? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Periksa di database Kami!</a>",
+    "api-ad": "Ingin mendapatkan data langsung di aplikasi atau perangkat Anda? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Coba API kami!</a>",
     "legend": "Legenda",
     "faq": "Pertanyaan yang Sering Diajukan"
   },
@@ -138,7 +138,7 @@
     "divideExistingArea-question": "Bisakah Anda membagi area di wilayah Saya menjadi bagian lebih kecil lagi?",
     "divideExistingArea-answer": "Tentu, jika ada data terpisah yang lebih lengkap di setiap wilayah tersebut. Kamu bisa <a href=\"#contribute\" class=\"entry-link\">membantu Kami dengan menambahkan data di wilayah tersebut</a>",
     "seeHistoricalData-question": "Dapatkah saya melihat sejarah untuk suatu daerah lebih jauh ke belakang dalam waktu 24 jam?",
-    "seeHistoricalData-answer": "Anda bisa membeli untuk mengakses seluruh data historikal kami melalui <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>."
+    "seeHistoricalData-answer": "Anda bisa membeli untuk mengakses seluruh data historikal kami melalui <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>."
   },
   "methodology": {
     "groupName": "Metode Kami",
@@ -166,22 +166,22 @@
     "dataOrigins-question": "Bagaimana Anda mendapatkan data Anda?",
     "dataOrigins-answer": "Kami menghitung semua data kami dari data yang tersedia untuk umum, diterbitkan oleh operator jaringan listrik, agen resmi, dan lainnya. Anda dapat mengklik area untuk melihat lebih spesifik tentang asal-usul datanya.",
     "dataDownload-question": "Bisakah Saya mengunduh data Anda?",
-    "dataDownload-answer": "Anda dapat membeli akses ke semua data di <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">database</a>.",
+    "dataDownload-answer": "Anda dapat membeli akses ke semua data di <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">database</a>.",
     "dataIntegration-question": "Dapatkah saya mengintegrasikan data Anda secara langsung ke aplikasi atau perangkat saya?",
-    "dataIntegration-answer": "Ya! Kami menjual akses ke dalam <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">real-time API</a>, yang mencakup prakiraan cuaca."
+    "dataIntegration-answer": "Ya! Kami menjual akses ke dalam <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">real-time API</a>, yang mencakup prakiraan cuaca."
   },
   "aboutUs": {
     "groupName": "Tentang Kami",
     "whoAreYou-question": "Siapa Anda?",
-    "whoAreYou-answer": "Pemetaan Listrik dikembangkan dan dikelola oleh <a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a>, sebuah perusahaan kecil Denmark / Perancis. Tujuan kami adalah untuk membantu umat manusia mencapai keadaan keberadaan yang berkelanjutan dengan mengkuantifikasi, dan membuat aksesibilitas luas, dampak iklim dari pilihan sehari-hari yang kami buat.",
+    "whoAreYou-answer": "Pemetaan Listrik dikembangkan dan dikelola oleh <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, sebuah perusahaan kecil Denmark / Perancis. Tujuan kami adalah untuk membantu umat manusia mencapai keadaan keberadaan yang berkelanjutan dengan mengkuantifikasi, dan membuat aksesibilitas luas, dampak iklim dari pilihan sehari-hari yang kami buat.",
     "feedback-question": "Bisakah saya memberi Anda umpan balik?",
-    "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:app@electricitymap.org\">kirim via Email!</a>",
+    "feedback-answer": "Lakukan! Silahkan isi  <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">form umpan balik kami</a> atau <a href=\"mailto:app@electricitymaps.com\">kirim via Email!</a>",
     "contribute-question": "Dapatkah saya berkontribusi pada proyek Anda?",
     "contribute-answer": " Iya! Electricity Map adalah proyek sumber terbuka, dimungkinkan oleh kontributor sukarela kami. Jika Anda ingin membantu mengembangkan peta, baik dengan menambahkan sumber data untuk area baru, menambahkan fitur baru atau memperbaiki bug, silakan bergabung dengan kami di <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Bisakah kita bekerja bersama?",
-    "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:app@electricitymap.org\">Kirimkan pada kami via email!</a>",
+    "workTogether-answer": "Kami secara aktif mencari peluang baru untuk berkolaborasi. <a href=\"mailto:app@electricitymaps.com\">Kirimkan pada kami via email!</a>",
     "disclaimer-question": "Disclaimer",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">electricityMap</a> publishes data and images on the <a href=\"https://www.electricitymap.org/\" target=\"_blank\">electricityMap</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. electricityMap assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the electricityMap, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of electricityMap, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publishes data and images on the <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> for information purposes. It makes no claims of correctness nor provides any form of warranties, and reserves the right to change the content at any time or to remove parts without having to inform you of this. Electricity Maps assumes no responsibility for, and shall not be liable for, any damages or expenses you may incur as a result of any inaccuracy, incompleteness, untimeliness or obsolescence of the Electricity Maps, or the information derived from them.  It is not allowed to include this webpage, or any of its individual elements, in another webpage, without formal prior written consent.<br><br> All intellectual property rights belong to the rightful owners and its licensors. Copying, distribution and any other use of these materials, in particular the energy data, is not permitted without the written permission of Electricity Maps, except and only to the extent otherwise provided in regulations of mandatory law (such as the right to quote), unless specified otherwise for specific materials. <br><br>This disclaimer may be updated from time to time."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -278,6 +278,7 @@
     "EH": { "zoneName": "Sahara Barat" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "Spanyol" },
+    "ES-CE": { "countryName": "Spanyol", "zoneName": "Ceuta" },
     "ES-IB-FO": { "countryName": "Spanyol", "zoneName": "Formentera" },
     "ES-IB-IZ": { "countryName": "Spanyol", "zoneName": "Ibiza" },
     "ES-IB-MA": { "countryName": "Spanyol", "zoneName": "Mallorca" },
@@ -288,6 +289,7 @@
     "ES-CN-IG": { "countryName": "Spanyol", "zoneName": "Isla de la Gomera" },
     "ES-CN-LP": { "countryName": "Spanyol", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Spanyol", "zoneName": "Tenerife" },
+    "ES-ML": { "countryName": "Spanyol", "zoneName": "Melilla" },
     "ET": { "zoneName": "Etiopia" },
     "FI": { "zoneName": "Finlandia" },
     "FJ": { "zoneName": "Fiji" },
