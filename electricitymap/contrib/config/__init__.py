@@ -85,7 +85,7 @@ def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
 
 
 ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(
-    ZONES_CONFIG, EXCHANGES_CONFIG
+     EXCHANGES_CONFIG
 )
 
 
