@@ -4,37 +4,42 @@ import argparse
 import datetime
 import json
 import os
-import pathlib
 import sys
+from copy import deepcopy
 
 import pandas as pd
 import requests
 import xmltodict
+import yaml
+from utils import ROOT_PATH, run_shell_command
 
+from electricitymap.contrib.config import CONFIG_DIR, ZONES_CONFIG, ZoneKey
 from parsers.ENTSOE import (
     ENTSOE_DOMAIN_MAPPINGS,
     ENTSOE_PARAMETER_DESC,
     ENTSOE_PARAMETER_GROUPS,
 )
 
-ZONESFILE = pathlib.Path(__file__).parent.parent / "config" / "zones.json"
+
+def update_zone(zone_key: ZoneKey, data: dict) -> None:
+    if zone_key not in ZONES_CONFIG:
+        raise ValueError("Zone {} does not exist in the zones config".format(zone_key))
+
+    _new_zone_config = deepcopy(ZONES_CONFIG[zone_key])
+    _new_zone_config["capacity"].update(data)
+    # sort keys
+    _new_zone_config["capacity"] = {
+        k: _new_zone_config["capacity"][k] for k in sorted(_new_zone_config["capacity"])
+    }
+    ZONES_CONFIG[zone_key] = _new_zone_config
+
+    with open(
+        CONFIG_DIR.joinpath(f"zones/{zone_key}.yaml"), "w", encoding="utf-8"
+    ) as f:
+        f.write(yaml.dump(_new_zone_config, default_flow_style=False))
 
 
-def update_zone(zone, data, zonesfile):
-    with open(zonesfile) as zf:
-        zones = json.load(zf)
-
-    if zone not in zones:
-        raise ValueError("Zone {} does not exist in the zonesfile".format(zone))
-
-    zones[zone]["capacity"].update(data)
-
-    with open(zonesfile, "w") as zf:
-        json.dump(zones, zf, indent=2)
-        zf.write("\n")
-
-
-def aggregate_data(data):
+def aggregate_data(data: dict) -> dict:
     """Aggregates data the way it is stated in
     parsers.ENTSOE.ENTSOE_PARAMETER_GROUPS"""
     categories = dict(ENTSOE_PARAMETER_GROUPS["production"])
@@ -49,9 +54,8 @@ def aggregate_data(data):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--zonesfile", default=ZONESFILE)
     parser.add_argument("--api-token", help="Security token of the ENTSOE API")
-    parser.add_argument("zone", help="The zone abbreviation (e.g. AT)")
+    parser.add_argument("zone_key", help="The zone key abbreviation (e.g. AT)")
     parser.add_argument(
         "data_file",
         nargs="?",
@@ -60,17 +64,18 @@ def parse_args():
     return parser.parse_args()
 
 
-def parse_from_entsoe_api(zone, token):
+def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
     """Parses installed generation capacities from the ENTSOE API,
     see https://transparency.entsoe.eu/content/static_content/Static%20content/web%20api/Guide.html#_reference_documentation"""
-    if zone not in ENTSOE_DOMAIN_MAPPINGS:
+
+    if zone_key not in ENTSOE_DOMAIN_MAPPINGS:
         print(
-            "Zone {} does not exist in the ENTSOE domain mapping".format(zone),
+            "Zone {} does not exist in the ENTSOE domain mapping".format(zone_key),
             file=sys.stderr,
         )
         exit(1)
 
-    domain = ENTSOE_DOMAIN_MAPPINGS[zone]
+    domain = ENTSOE_DOMAIN_MAPPINGS[zone_key]
 
     # TODO not sure whether selecting the date always works like that
     date = datetime.datetime.now().strftime("%Y%m%d")
@@ -102,13 +107,13 @@ def parse_from_entsoe_api(zone, token):
             result[generation_type] = int(value)
     except Exception as e:
         raise ValueError(
-            "Data for zone {} could not be retrieved from ENTSOE".format(zone), e
+            "Data for zone {} could not be retrieved from ENTSOE".format(zone_key), e
         )
 
     return result
 
 
-def parse_from_csv(filepath):
+def parse_from_csv(filepath: str) -> dict:
     data = pd.read_csv(filepath).set_index("Production Type").to_dict()
 
     # choose the column with the most current data
@@ -123,13 +128,8 @@ def parse_from_csv(filepath):
 def main():
     args = parse_args()
 
-    zone = args.zone
-    zonesfile = args.zonesfile
+    zone_key = args.zone_key
     data_file = args.data_file
-
-    if not os.path.exists(zonesfile):
-        print("ERROR: Zonesfile {} does not exist.".format(zonesfile), file=sys.stderr)
-        sys.exit(1)
 
     if data_file is not None:
         if not os.path.exists(data_file):
@@ -147,14 +147,18 @@ def main():
             )
             exit(1)
 
-        data = parse_from_entsoe_api(zone, token)
+        data = parse_from_entsoe_api(zone_key, token)
 
     aggregated_data = aggregate_data(data)
 
     print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))
-    print("Updating zone {}".format(zone))
+    print("Updating zone {}".format(zone_key))
 
-    update_zone(zone, aggregated_data, zonesfile)
+    update_zone(zone_key, aggregated_data)
+
+    run_shell_command(
+        f"npx prettier --write {ROOT_PATH / 'config/zones/'}", cwd=ROOT_PATH
+    )
 
 
 if __name__ == "__main__":
