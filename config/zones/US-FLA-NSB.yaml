@@ -1,0 +1,19 @@
+bounding_box:
+  - - -82.18057
+    - 28.1131300000001
+  - - -80.23297
+    - 29.92717
+comment: New Smyrna Beach, Utilities Commission Of
+contributors:
+  - systemcatch
+  - robertahunt
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Eastern

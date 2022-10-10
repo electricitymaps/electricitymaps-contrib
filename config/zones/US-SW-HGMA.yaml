@@ -1,0 +1,29 @@
+bounding_box:
+  - - -114.158504486
+    - 32.855298996
+  - - -112.449426651
+    - 34.847730637
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 1325.1
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: New Harquahala Generating Company, Llc - Hgba
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+timezone: US/Arizona

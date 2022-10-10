@@ -5,6 +5,8 @@ WORKDIR /home/src/electricitymap/contrib/web
 RUN apt-get update && apt-get install -y jq unzip
 ADD web/package.json ./package.json
 ADD web/yarn.lock ./yarn.lock
+ADD web/generate-zones-config.js ./generate-zones-config.js
+ADD config/ ../config/
 RUN yarn install --frozen-lockfile
 
 ADD web/src/world.json ./src/world.json
@@ -17,6 +19,7 @@ ARG ELECTRICITYMAP_PUBLIC_TOKEN
 ADD config /home/src/electricitymap/contrib/config
 ADD web ./
 RUN yarn build-release
+RUN yarn verify-zones-config
 
 EXPOSE 8000
 ENV PORT 8000

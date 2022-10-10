@@ -1,0 +1,6 @@
+lonlat:
+  - 47.834
+  - 31.784
+parsers:
+  exchange: IQ.fetch_exchange
+rotation: 90
