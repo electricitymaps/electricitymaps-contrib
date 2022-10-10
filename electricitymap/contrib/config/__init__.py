@@ -1,10 +1,11 @@
-import json
 from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List, NewType, Tuple
 
 import yaml
+
+from electricitymap.contrib.config.constants import EXCHANGE_FILENAME_ZONE_SEPARATOR
 
 ZoneKey = NewType("ZoneKey", str)
 Point = NewType("Point", Tuple[float, float])
@@ -22,7 +23,7 @@ for zone_path in CONFIG_DIR.joinpath("zones").glob("*.yaml"):
 exchanges_config = {}
 for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
     _exchange_key_unicode = exchange_path.stem
-    _zone_keys = _exchange_key_unicode.split("→")
+    _zone_keys = _exchange_key_unicode.split(EXCHANGE_FILENAME_ZONE_SEPARATOR)
     assert len(_zone_keys) == 2
     exchange_key = "->".join(_zone_keys)
     exchanges_config[exchange_key] = yaml.safe_load(
