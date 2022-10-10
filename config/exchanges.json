@@ -939,6 +939,10 @@
   },
   "GT->MX": {
     "lonlat": [-90.967, 16.035],
+    "rotation": -55
+  },
+  "GT->MX-OR": {
+    "lonlat": [-90.967, 16.035],
     "parsers": {
       "exchange": "ENTE.fetch_exchange"
     },
