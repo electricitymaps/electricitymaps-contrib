@@ -66,11 +66,13 @@
     "AX->SE",
     "CH->IT",
     "DE->DK",
+    "DE->NO",
     "DE->SE",
     "DK->SE",
     "FI->NO",
     "FI->SE",
     "FR->IT",
+    "FR-COR->IT",
     "GB->NO",
     "GT->MX",
     "GR->IT",
@@ -78,6 +80,7 @@
     "IT->MT",
     "LT->SE",
     "NO->SE",
-    "NO->RU-1"
+    "NO->RU-1",
+    "PL->SE"
   ]
 }

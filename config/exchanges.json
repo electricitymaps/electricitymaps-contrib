@@ -618,6 +618,11 @@
     },
     "rotation": -10
   },
+  "DE->NO": {
+    "capacity": [-1444, 1444],
+    "lonlat": [7.2, 55.9],
+    "rotation": -10
+  },
   "DE->PL": {
     "lonlat": [14.585163, 52.410625],
     "parsers": {
@@ -637,6 +642,7 @@
   },
   "DE->SE": {
     "lonlat": [13.552264, 54.925814],
+    "capacity": [-615, 615],
     "rotation": 0
   },
   "DK-BHM->SE-SE4": {
@@ -841,6 +847,14 @@
   "FR->IT": {
     "lonlat": [6.9, 44.4],
     "rotation": 70
+  },
+  "FR-COR->IT": {
+    "lonlat": [10.091148, 42.686804],
+    "parsers": {
+      "exchange": "ENTSOE.fetch_exchange",
+      "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
+    },
+    "rotation": 45
   },
   "FR-COR->IT-CNO": {
     "lonlat": [10.091148, 42.686804],
@@ -1588,6 +1602,11 @@
       "exchange": "ENTSOE.fetch_exchange",
       "exchangeForecast": "ENTSOE.fetch_exchange_forecast"
     },
+    "rotation": -20
+  },
+  "PL->SE": {
+    "capacity": [-600, 600],
+    "lonlat": [15.969256, 55.215172],
     "rotation": -20
   },
   "PL->SK": {
