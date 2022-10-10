@@ -1,0 +1,34 @@
+_comment: biomass includes 24.4 MW of biogas and 6.6 MW of biomass. gas includes 1273
+  CHP
+bounding_box:
+  - - 23.1994938494
+    - 51.3195034857
+  - - 32.6936430193
+    - 56.1691299506
+capacity:
+  biomass: 31
+  coal: 0
+  gas: 9468
+  hydro: 73
+  hydro storage: 0
+  nuclear: 0
+  oil: 447
+  solar: 50.9
+  wind: 70.4
+contributors:
+  - admetny
+fallbackZoneMixes:
+  _source: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~BLR
+  powerOriginRatios:
+    value:
+      gas: 0.98
+      hydro: 0.01
+      unknown: 0.01
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: null

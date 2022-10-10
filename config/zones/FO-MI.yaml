@@ -1,0 +1,28 @@
+capacity:
+  biomass: 1.3
+  hydro: 37.3
+  oil: 86.1
+  unknown: 0.1
+  wind: 37.5
+contributors:
+  - corradio
+  - q--
+  - VIKTORVAV99
+emissionFactors:
+  direct:
+    unknown:
+      source: Tidal (IPCC 2014)
+      value: 0
+  lifecycle:
+    unknown:
+      source: Tidal (IPCC 2014)
+      value: 17
+isLowCarbon:
+  unknown:
+    value: 1
+isRenewable:
+  unknown:
+    value: 1
+parsers:
+  production: FO.fetch_production
+timezone: Atlantic/Faroe

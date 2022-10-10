@@ -1,0 +1,10 @@
+bounding_box:
+  - - 34.07276451900009
+    - 15.87095774900007
+  - - 56.13756473800004
+    - 32.62134796200006
+contributors:
+  - q--
+parsers:
+  consumption: GCCIA.fetch_consumption
+timezone: Asia/Riyadh

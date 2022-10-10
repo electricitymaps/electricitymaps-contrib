@@ -1,0 +1,105 @@
+bounding_box:
+  - - -119.168404
+    - 33.204538
+  - - -117.104019502
+    - 37.963081
+capacity:
+  battery storage: 23.5
+  biomass: 56
+  coal: 1640
+  gas: 5005.5
+  geothermal: 0
+  hydro: 328.3
+  hydro storage: 1626
+  nuclear: 0
+  oil: 0
+  solar: 988.1
+  unknown: 31.9
+  wind: 440.5
+comment: Los Angeles Department Of Water And Power
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 373.4891538291923
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 310.3885328037442
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 286.7818339775986
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 310.7828655963285
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 373.4891538291923
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 310.3885328037442
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 286.7818339775986
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 310.7828655963285
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 439.61637519264525
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 374.82645634803305
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 351.24215440062176
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 376.1834951129568
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 439.61637519264525
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 374.82645634803305
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 351.24215440062176
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 376.1834951129568
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 3.886545777436248e-08
+        biomass: 0.0007219228594824509
+        coal: 0.23485073650946198
+        gas: 0.285106267593032
+        geothermal: 0.00010236482375592378
+        hydro: 0.19937761286081515
+        hydro discharge: 0.0007655325444470763
+        nuclear: 0.11980663145782462
+        oil: 0.0008712043281246942
+        solar: 0.07286539039675208
+        unknown: 0.04514383966874513
+        wind: 0.040907937196724184
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Pacific
