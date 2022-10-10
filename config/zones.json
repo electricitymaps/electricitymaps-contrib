@@ -5,11 +5,13 @@
       [2.2650907800001505, 43.14936167400003]
     ],
     "capacity": {
-      "hydro": 45,
-      "nuclear": 0
+      "biomass": 5,
+      "gas": 1.7,
+      "hydro": 46,
+      "solar": 0.231
     },
-    "contributors": ["Manu1400"],
-    "timezone": null
+    "contributors": ["Manu1400", "autipial"],
+    "timezone": "Europe/Andorra"
   },
   "AE": {
     "bounding_box": [
@@ -1165,7 +1167,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "subZoneNames": ["DK-DK1", "DK-DK2"],
+    "subZoneNames": ["DK-DK1", "DK-DK2", "DK-BHM"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {

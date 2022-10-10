@@ -1,30 +1,47 @@
 const { getJSON, writeJSON, fileExists } = require('./utilities');
 const exchangeConfig = require('../../config/exchanges.json');
 
-const generateExchangesToIgnore = (OUT_PATH, fc) => {
+const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
   console.log(`Generating new excluded-aggregated-exchanges.json...`); // eslint-disable-line no-console
-  const fcCombined = {
-    ...fc,
-    features: fc.features.filter((feature) => {
-      try {
-        return feature.properties.isCombined;
-      } catch (e) {
-        console.log('Error: ', e, 'Feature: ', feature); // eslint-disable-line no-console
-      }
-    }),
-  };
 
-  const countryKeysToExclude = fcCombined.features.map((feature) => feature.properties.countryKey);
-
-  const unCombinedExchanges = Object.keys(exchangeConfig).filter((key) => {
-    const split = key.split('->');
-    const zoneOne = split[0].slice(0, 2);
-    const zoneTwo = split[1].slice(0, 2);
-    if (zoneOne === zoneTwo && countryKeysToExclude.includes(key.slice(0, 2))) {
+  const countryKeysToExclude = Object.keys(zonesConfig).filter((key) => {
+    if (zonesConfig[key].subZoneNames?.length > 0) {
       return key;
     }
   });
-  const exchanges = { exchangesToExclude: unCombinedExchanges };
+
+  //Create a list of the exchange keys that we don't want to display in a country view
+  const unCombinedExchanges = Object.keys(exchangeConfig).filter((key) => {
+    const split = key.split('->');
+    const zoneOne = split[0];
+    const zoneTwo = split[1];
+
+    const subzoneSplitOne = zoneOne.split('-');
+    const subzoneSplitTwo = zoneTwo.split('-');
+    if (
+      (zoneOne.includes('-') && countryKeysToExclude.includes(subzoneSplitOne[0])) ||
+      (zoneTwo.includes('-') && countryKeysToExclude.includes(subzoneSplitTwo[0]))
+    ) {
+      return key;
+    }
+  });
+
+  //Create a list of the exchange keys that we don't want to display in the zone view
+  const countryExchangesWithSubzones = Object.keys(exchangeConfig).filter((key) => {
+    const split = key.split('->');
+    const zoneOne = split[0];
+    const zoneTwo = split[1];
+    if (
+      (!zoneOne.includes('-') && countryKeysToExclude.includes(zoneOne)) ||
+      (!zoneTwo.includes('-') && countryKeysToExclude.includes(zoneTwo))
+    ) {
+      return key;
+    }
+  });
+  const exchanges = {
+    exchangesToExcludeCountryView: unCombinedExchanges,
+    exchangesToExcludeZoneView: countryExchangesWithSubzones,
+  };
   const existingExchanges = fileExists(OUT_PATH) ? getJSON(OUT_PATH) : {};
   if (JSON.stringify(exchanges) === JSON.stringify(existingExchanges)) {
     console.log(`No changes to excluded-aggregated-exchanges.json`); // eslint-disable-line no-console
