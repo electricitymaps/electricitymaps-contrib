@@ -27,4 +27,5 @@ parsers:
 subZoneNames:
   - DK-DK1
   - DK-DK2
+  - DK-BHM
 timezone: Europe/Copenhagen
