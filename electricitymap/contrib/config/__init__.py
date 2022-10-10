@@ -84,9 +84,7 @@ def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
     return {k: sorted(v) for k, v in zone_neighbours.items()}
 
 
-ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(
-     EXCHANGES_CONFIG
-)
+ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
 
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
