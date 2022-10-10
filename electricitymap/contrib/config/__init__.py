@@ -115,6 +115,20 @@ ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
     ZONES_CONFIG, EXCHANGES_CONFIG
 )
 
+# This object represents all neighbours regardless of granularity
+def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
+    zone_neighbours = defaultdict(set)
+    for k, v in exchanges_config.items():
+        zone_1, zone_2 = k.split("->")
+        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+        for zone_name_1, zone_name_2 in pairs:
+            zone_neighbours[zone_name_1].add(zone_name_2)
+    # Sort
+    return {k: sorted(v) for k, v in zone_neighbours.items()}
+
+
+ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
+
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:
     override = CO2EQ_PARAMETERS["emissionFactors"]["zoneOverrides"].get(zone_key, {})

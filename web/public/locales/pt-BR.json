@@ -66,6 +66,9 @@
     "colorblindmode": "Modo para daltônicos",
     "carbonintensity": "Intensidade de carbono"
   },
+  "time-controller": {
+    "title": "Exibir dados do passado"
+  },
   "tooltips": {
     "carbonintensity": "Intensidade de emissões de CO₂",
     "lowcarbon": "Baixo carbono",
