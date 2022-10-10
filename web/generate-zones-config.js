@@ -9,7 +9,7 @@ const config = {
 };
 
 const mergeZones = () => {
-  const basePath = '../config/zones';
+  const basePath = path.resolve(__dirname, '../config/zones');
 
   const zoneFiles = fs.readdirSync(basePath);
   const filesWithDir = zoneFiles.map((file) => `${basePath}/${file}`);
@@ -30,7 +30,7 @@ const mergeZones = () => {
 };
 
 const mergeExchanges = () => {
-  const basePath = '../config/exchanges';
+  const basePath = path.resolve(__dirname, '../config/exchanges');
 
   const exchangeFiles = fs.readdirSync(basePath);
   const filesWithDir = exchangeFiles.map((file) => `${basePath}/${file}`);
@@ -52,6 +52,7 @@ const writeJSON = (fileName, obj, encoding = 'utf8') => {
   }
   fs.writeFileSync(fileName, JSON.stringify(obj), encoding);
 };
+
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
@@ -70,3 +71,9 @@ if (config.verifyNoUpdates) {
 
 writeJSON('src/config/zones.json', zonesConfig);
 writeJSON('src/config/exchanges.json', exchangesConfig);
+
+// export merge function
+module.exports = {
+  mergeZones,
+  mergeExchanges,
+};
