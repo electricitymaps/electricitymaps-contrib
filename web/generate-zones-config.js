@@ -56,9 +56,11 @@ const writeJSON = (fileName, obj, encoding = 'utf8') => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
+const autogenConfigPath = path.resolve(__dirname, 'src/config');
+
 if (config.verifyNoUpdates) {
-  const zonesConfigPrevious = JSON.parse(fs.readFileSync('src/config/zones.json', 'utf8'));
-  const exchangesConfigPrevious = JSON.parse(fs.readFileSync('src/config/exchanges.json', 'utf8'));
+  const zonesConfigPrevious = JSON.parse(fs.readFileSync(`${autogenConfigPath}/zones.json`, 'utf8'));
+  const exchangesConfigPrevious = JSON.parse(fs.readFileSync(`${autogenConfigPath}/exchanges.json`, 'utf8'));
   if (JSON.stringify(zonesConfigPrevious) !== JSON.stringify(zonesConfig)) {
     console.error('Did not expect any updates to zones.json. Please run "yarn generate-zones-config" to update.');
     process.exit(1);
@@ -69,8 +71,8 @@ if (config.verifyNoUpdates) {
   }
 }
 
-writeJSON('src/config/zones.json', zonesConfig);
-writeJSON('src/config/exchanges.json', exchangesConfig);
+writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
+writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
 // export merge function
 module.exports = {

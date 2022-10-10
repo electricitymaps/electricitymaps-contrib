@@ -150,7 +150,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 
 ### Production capacity data sources
 
-Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
+Production capacities are centralized in the [zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) files. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
 #### International sources
 

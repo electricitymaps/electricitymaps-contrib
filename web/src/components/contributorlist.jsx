@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { mergeZones } from '../../generate-zones-config';
 
-import zonesConfig from '../config/zones.json';
+const zonesConfig = mergeZones;
 
 const ContributorList = () => {
   const { zoneId } = useParams();

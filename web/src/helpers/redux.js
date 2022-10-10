@@ -1,8 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
+import { mergeZones, mergeExchanges } from '../../generate-zones-config';
 import constructTopos from './topos';
-import zonesConfig from '../config/zones.json';
-import exchangesConfig from '../config/exchanges.json';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
@@ -19,6 +18,9 @@ const WIND_DATA_FETCH_REQUESTED = createAction('weather/wind-fetch-requested');
 const SOLAR_DATA_FETCH_FAILED = createAction('weather/solar-fetch-failed');
 const SOLAR_DATA_FETCH_SUCCEDED = createAction('weather/solar-fetch-succeded');
 const SOLAR_DATA_FETCH_REQUESTED = createAction('weather/solar-fetch-requested');
+
+const zonesConfig = mergeZones();
+const exchangesConfig = mergeExchanges();
 
 function initDataState() {
   const geographies = constructTopos();
