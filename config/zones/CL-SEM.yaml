@@ -1,0 +1,18 @@
+bounding_box:
+  - - -76.16104081899994
+    - -56.4185042229999
+  - - -65.92080644399994
+    - -48.13730234199994
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 97.3
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 19.11
+  solar: 0
+  wind: 12.9
+timezone: America/Punta_Arenas

@@ -1,0 +1,38 @@
+bounding_box:
+  - - 76.5581702012937
+    - 23.411047268416667
+  - - 85.11243777868054
+    - 30.902020574789645
+capacity:
+  biomass: 2117.3
+  coal: 24389
+  gas: 1493.14
+  hydro: 501.6
+  nuclear: 440
+  oil: 0
+  solar: 1840.3
+  wind: 0
+contributors:
+  - sahitya-pavurala
+  - pierresegonne
+  - gopikrishna1793
+estimation_method: RECONSTRUCT_BREAKDOWN
+fallbackZoneMixes:
+  _source: electricityMap
+  powerOriginRatios:
+    value:
+      battery discharge: 0
+      biomass: 0.0
+      coal: 0.0
+      gas: 0.0
+      geothermal: 0.0
+      hydro: 0.04625864213952837
+      hydro discharge: 0.0
+      nuclear: 0.0
+      oil: 0.0
+      solar: 0.00373789004634303
+      unknown: 0.9500034678141287
+      wind: 0.0
+flag_file_name: in.png
+parsers: {}
+timezone: Asia/Kolkata

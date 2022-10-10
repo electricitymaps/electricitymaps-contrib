@@ -1,0 +1,14 @@
+bounding_box:
+  - - 50.250987175000034
+    - 24.059871521000062
+  - - 52.11654707100007
+    - 26.660101630000042
+capacity:
+  biomass: 38
+  solar: 5
+contributors:
+  - q--
+  - nessie2013
+parsers:
+  consumption: GCCIA.fetch_consumption
+timezone: Asia/Qatar

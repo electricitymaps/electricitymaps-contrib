@@ -1,0 +1,32 @@
+bounding_box:
+  - - 6.7499552751
+    - 36.619987291
+  - - 18.4802470232
+    - 47.1153931748
+capacity:
+  biomass: 4105.9
+  coal: 6981
+  gas: 50382.3
+  geothermal: 817.1
+  hydro: 15659.1
+  hydro storage: 7328.5
+  nuclear: 0
+  oil: 1325
+  solar: 21650.1
+  wind: 10906.9
+contributors:
+  - corradio
+emissionFactors:
+  lifecycle:
+    hydro discharge:
+      source: 2018 average by electricityMap
+      value: 0.0
+estimation_method: RECONSTRUCT_BREAKDOWN
+subZoneNames:
+  - IT-CNO
+  - IT-CSO
+  - IT-NO
+  - IT-SAR
+  - IT-SIC
+  - IT-SO
+timezone: Europe/Rome

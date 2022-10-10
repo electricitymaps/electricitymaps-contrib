@@ -1,0 +1,29 @@
+bounding_box:
+  - - -113.662527277
+    - 48.163057327
+  - - -110.887711776
+    - 49.498921
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 0
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 189
+comment: Naturener Wind Watch, Llc
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+timezone: US/Mountain

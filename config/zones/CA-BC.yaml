@@ -1,0 +1,25 @@
+bounding_box:
+  - - -139.56020662181913
+    - 47.80609772300011
+  - - -113.53745235883926
+    - 60.50005890629359
+capacity:
+  biomass: 838
+  gas: 507
+  hydro: 15898
+  solar: 1
+  wind: 704
+contributors:
+  - daveachuk
+fallbackZoneMixes:
+  _source: List of Generating Stations in BC (Wikipedia)
+  _url: https://en.wikipedia.org/wiki/List_of_generating_stations_in_British_Columbia
+  powerOriginRatios:
+    value:
+      biomass: 0.09
+      gas: 0.01
+      hydro: 0.88
+      unknown: 0.01
+      wind: 0.01
+flag_file_name: ca.png
+timezone: null

@@ -1,0 +1,80 @@
+bounding_box:
+  - - 128.50011600215169
+    - -38.57057057099979
+  - - 141.50010704970066
+    - -25.499911390797962
+capacity:
+  battery storage: 155
+  biomass: 20
+  coal: 0
+  gas: 2946
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 734
+  solar: 2065
+  wind: 2141
+contributors:
+  - brandongalbraith
+  - jarek
+  - corradio
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 254.20761977966023
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 260.8060391664488
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 220.96263613980696
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 207.83318272590503
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 254.20761977966023
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 260.8060391664488
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 220.96263613980696
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 207.83318272590503
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 254.20761977966023
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 260.8060391664488
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 220.96263613980696
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 207.83318272590503
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 254.20761977966023
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 260.8060391664488
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 220.96263613980696
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 207.83318272590503
+flag_file_name: au.png
+parsers:
+  price: OPENNEM.fetch_price
+  production: OPENNEM.fetch_production
+timezone: null
