@@ -140,8 +140,8 @@ const SettingsView = () => {
         infoHTML={__('tooltips.aggregateinfo')}
         onChange={(value) => value !== isAggregated && history.push(toggleAggregates)}
         options={[
-          { value: 'country', label: __('buttons.country') },
-          { value: 'zone', label: __('buttons.zone') },
+          { value: 'country', label: __('aggregateButtons.country') },
+          { value: 'zone', label: __('aggregateButtons.zone') },
         ]}
         value={isAggregated}
         tooltipStyle={{ width: 250, top: 146, zIndex: 99 }}

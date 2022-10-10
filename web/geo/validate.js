@@ -138,12 +138,12 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
     .filter(
       (ft1, idx1) =>
         features.filter((ft2, idx2) => {
+          if (countriesToIgnore.includes(ft1.ft.properties.countryKey)) {
+            return false;
+          }
           if (idx1 !== idx2 && intersect(ft1.bbox, ft2.bbox)) {
             const intersection = intersect(ft1.ft, ft2.ft);
             if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
-              if (countriesToIgnore.includes(ft1.ft.properties.countryKey)) {
-                return false;
-              }
               return true;
             }
           }
@@ -151,7 +151,6 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
     )
     .map(({ ft, _ }) => ft.properties.zoneName);
   if (overlaps.length > 0) {
-    //With the current number of zones combined there should be 143 overlaps
     overlaps.forEach((x) => console.error(`${x} overlaps with another feature`));
     throw Error('Feature(s) overlap');
   }

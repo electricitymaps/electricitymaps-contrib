@@ -132,7 +132,7 @@
     "lowCarbDescription": "Includes renewables and nuclear",
     "dataIsDelayed": "Data is delayed"
   },
-  "buttons": { "country": "country", "zone": "zone" },
+  "aggregateButtons": { "country": "country", "zone": "zone" },
   "misc": {
     "maintitle": "Live 24/7 CO₂ emissions of electricity consumption",
     "oops": "Oops! We are having trouble reaching the server. We will try again in a few seconds.",

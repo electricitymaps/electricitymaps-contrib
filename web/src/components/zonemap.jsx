@@ -79,6 +79,7 @@ const ZoneMap = ({
     // We here iterate over the zones list (instead of dict) to keep the iteration
     // order stable
     const features = zoneValues.map((zone, i) => {
+      // Map a country view of all zones with "subZoneNames" to the aggregated view
       if (isAggregateEnabled && zone.geography.properties.isAggregatedView) {
         const length = (coordinate) => (coordinate ? coordinate.length : 0);
         const zoneId = zone.config.countryCode;
@@ -96,6 +97,7 @@ const ZoneMap = ({
           },
         };
       }
+      // Map zone view of all zones and exclude countries that are combined from subzones
       if (!isAggregateEnabled && !zone.geography.properties.isCombined) {
         const length = (coordinate) => (coordinate ? coordinate.length : 0);
         const zoneId = zone.config.countryCode;
