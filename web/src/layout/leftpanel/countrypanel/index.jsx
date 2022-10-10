@@ -63,13 +63,11 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
   const isLoadingGrid = useSelector((state) => state.data.isLoadingGrid);
   const failedRequestType = useSelector((state) => state.data.failedRequestType);
-
   const trackEvent = useTrackEvent();
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
   const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-
   const data = useCurrentZoneData() || {};
 
   const parentPage = useMemo(() => {

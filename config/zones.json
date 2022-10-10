@@ -1167,7 +1167,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "subZoneNames": ["DK-DK1", "DK-DK2"],
+    "subZoneNames": ["DK-DK1", "DK-DK2", "DK-BHM"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {
