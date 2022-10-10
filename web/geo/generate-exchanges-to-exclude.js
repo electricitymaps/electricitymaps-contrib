@@ -1,5 +1,7 @@
+const { mergeExchanges } = require('../generate-zones-config');
 const { getJSON, writeJSON, fileExists } = require('./utilities');
-const exchangeConfig = require('../../config/exchanges.json');
+
+const exchangeConfig = mergeExchanges;
 
 const generateExchangesToIgnore = (OUT_PATH, zonesConfig) => {
   console.log(`Generating new excluded-aggregated-exchanges.json...`); // eslint-disable-line no-console
