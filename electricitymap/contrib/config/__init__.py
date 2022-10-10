@@ -72,7 +72,7 @@ ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
     ZONES_CONFIG, EXCHANGES_CONFIG
 )
 
-# This object represents all neights regardless of granularity
+# This object represents all neighbours regardless of granularity
 def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
     zone_neighbours = defaultdict(set)
     for k, v in exchanges_config.items():
