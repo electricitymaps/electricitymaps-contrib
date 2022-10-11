@@ -34,6 +34,7 @@ black = "21.6b0"
 isort = "5.9.3"
 deepdiff = "^5.8.1"
 xmltodict = {version = "^0.13.0", extras = ["scripts"]}
+PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.9.2"
