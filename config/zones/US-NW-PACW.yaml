@@ -1,0 +1,88 @@
+bounding_box:
+  - - -124.98038
+    - 38.66544
+  - - -115.96327
+    - 47.5893300000001
+capacity:
+  battery storage: 0
+  biomass: 161
+  coal: 2441.9
+  gas: 621.2
+  geothermal: 3.7
+  hydro: 1127.6
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 411.7
+  unknown: 0
+  wind: 694.3
+comment: Pacificorp - West
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 330.51632672419134
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 310.368608788063
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 246.15102694995622
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 270.51293346887013
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 330.51632672419134
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 310.368608788063
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 246.15102694995622
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 270.51293346887013
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 378.5766325490713
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 355.2770809756254
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 289.751131181963
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 315.24940626350605
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 378.5766325490713
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 355.2770809756254
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 289.751131181963
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 315.24940626350605
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Pacific

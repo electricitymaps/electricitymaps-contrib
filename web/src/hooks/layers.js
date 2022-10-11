@@ -11,18 +11,24 @@ import { useAggregatesEnabled } from './router';
 export function useExchangeArrowsData() {
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
   const isHourly = useSelector((state) => state.application.selectedTimeAggregate === TIME.HOURLY);
-  const detailedExchanges = useSelector((state) => state.data.exchanges);
+  const allExchanges = useSelector((state) => state.data.exchanges);
+
+  const zoneViewExchanges = Object.keys(allExchanges)
+    .filter((key) => !exchangesToExclude.exchangesToExcludeZoneView.includes(key))
+    .reduce((cur, key) => {
+      return Object.assign(cur, { [key]: allExchanges[key] });
+    }, {});
 
   const selectedZoneTimeIndex = useSelector((state) => state.application.selectedZoneTimeIndex);
 
   const isAggregatedToggled = useAggregatesEnabled();
-  const aggregateViewExchanges = Object.keys(detailedExchanges)
-    .filter((key) => !exchangesToExclude.exchangesToExclude.includes(key))
+  const countryViewExchanges = Object.keys(allExchanges)
+    .filter((key) => !exchangesToExclude.exchangesToExcludeCountryView.includes(key))
     .reduce((cur, key) => {
-      return Object.assign(cur, { [key]: detailedExchanges[key] });
+      return Object.assign(cur, { [key]: allExchanges[key] });
     }, {});
 
-  const exchanges = isAggregatedToggled ? aggregateViewExchanges : detailedExchanges;
+  const exchanges = isAggregatedToggled ? countryViewExchanges : zoneViewExchanges;
   if (!isConsumption || !isHourly) {
     return [];
   }

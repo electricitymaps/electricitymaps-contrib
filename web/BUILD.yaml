@@ -4,6 +4,8 @@ steps:
     inputs:
       - package.json
       - yarn.lock
+      - ./generate-zones-config.js
+      - ../config
     commands:
       - yarn
 
@@ -25,6 +27,7 @@ steps:
       - mkdir -p public/dist
       - yarn update-version
       - yarn build-release
+      - yarn verify-zones-config
     outputs:
       - src/world.json
       - src/world-aggregated.json

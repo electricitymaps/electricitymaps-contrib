@@ -1,0 +1,14 @@
+bounding_box:
+  - - 51.47861495000012
+    - 16.142401434000078
+  - - 60.34457441500007
+    - 26.885972398000035
+capacity:
+  solar: 138
+  wind: 50
+contributors:
+  - q--
+  - nessie2013
+parsers:
+  consumption: GCCIA.fetch_consumption
+timezone: Asia/Muscat

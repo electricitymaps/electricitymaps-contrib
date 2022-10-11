@@ -5,11 +5,13 @@
       [2.2650907800001505, 43.14936167400003]
     ],
     "capacity": {
-      "hydro": 45,
-      "nuclear": 0
+      "biomass": 5,
+      "gas": 1.7,
+      "hydro": 46,
+      "solar": 0.231
     },
-    "contributors": ["Manu1400"],
-    "timezone": null
+    "contributors": ["Manu1400", "autipial"],
+    "timezone": "Europe/Andorra"
   },
   "AE": {
     "bounding_box": [
@@ -1165,7 +1167,7 @@
       "production": "ENTSOE.fetch_production",
       "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
-    "subZoneNames": ["DK-DK1", "DK-DK2"],
+    "subZoneNames": ["DK-DK1", "DK-DK2", "DK-BHM"],
     "timezone": "Europe/Copenhagen"
   },
   "DK-BHM": {
@@ -1973,12 +1975,14 @@
       "unknown": 57,
       "wind": 925
     },
-    "contributors": ["PaulCornelissen"],
+    "contributors": ["PaulCornelissen", "VIKTORVAV99"],
     "parsers": {
       "consumption": "ENTSOE.fetch_consumption",
       "consumptionForecast": "ENTSOE.fetch_consumption_forecast",
+      "generationForecast": "ENTSOE.fetch_generation_forecast",
       "price": "ENTSOE.fetch_price",
-      "production": "HOPS.fetch_production"
+      "production": "ENTSOE.fetch_production",
+      "productionPerModeForecast": "ENTSOE.fetch_wind_solar_forecasts"
     },
     "timezone": "Europe/Belgrade"
   },
@@ -5053,7 +5057,7 @@
     "parsers": {
       "consumption": "EIA.fetch_consumption",
       "consumptionForecast": "EIA.fetch_consumption_forecast",
-      "production": "US_SPP.fetch_production",
+      "production": "EIA.fetch_production_mix",
       "productionPerModeForecast": "US_SPP.fetch_wind_solar_forecasts"
     },
     "timezone": "US/Central"

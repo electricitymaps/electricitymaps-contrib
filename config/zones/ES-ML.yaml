@@ -1,0 +1,22 @@
+bounding_box:
+  - - -3.470256683510813
+    - 34.76572463778479
+  - - -2.426766941365234
+    - 35.8209422034335
+capacity:
+  biomass: 2
+  coal: 0
+  gas: 12
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 64
+  solar: 0
+  wind: 0
+contributors:
+  - VIKTORVAV99
+flag_file_name: es.png
+parsers:
+  consumption: ES.fetch_consumption
+  production: ES.fetch_production
+timezone: Europe/Madrid

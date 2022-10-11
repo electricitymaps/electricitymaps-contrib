@@ -1,0 +1,11 @@
+bounding_box:
+  - - -109.95372473899994
+    - -27.701429945999905
+  - - -104.95954342399995
+    - -25.95549895599993
+capacity:
+  oil: 8.05
+  solar: 0.128
+contributors:
+  - autipial
+timezone: Pacific/Easter

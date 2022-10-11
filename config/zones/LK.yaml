@@ -1,0 +1,24 @@
+bounding_box:
+  - - 81.37741877418776
+    - 6.592635332223807
+  - - 82.37741877418776
+    - 7.592635332223807
+capacity:
+  battery storage: 0
+  biomass: 50.09
+  coal: 900
+  gas: 0
+  geothermal: 0
+  hydro: 1795
+  hydro storage: 0
+  nuclear: 0
+  oil: 1297.9
+  solar: 422
+  unknown: 0
+  wind: 179
+contributors:
+  - q--
+flag_file_name: lk.png
+parsers:
+  production: LK.fetch_production
+timezone: Asia/Colombo

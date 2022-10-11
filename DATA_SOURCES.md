@@ -33,7 +33,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 - Costa Rica: [ICE](https://appcenter.grupoice.com/CenceWeb/CencePosdespachoNacional.jsf)
 - Croatia (Exchanges): [HOPS](https://www.hops.hr/wps/portal/hr/web)
 - Cyprus: [TSO](https://tsoc.org.cy/electrical-system/total-daily-system-generation-on-the-transmission-system/)
-- Denmark: [TSO](https://www.energidataservice.dk/en/group/production-and-consumption)
+- Denmark: [TSO](https://www.energidataservice.dk/groups/production-and-consumption)
 - Denmark (Bornholm): [PowerlabDK](http://bornholm.powerlab.dk/)
 - Dominican Republic: [OC](http://www.oc.org.do/Reportes/postdespacho.aspx)
 - El Salvador: [Unidad de Transacciones](http://estadistico.ut.com.sv/OperacionDiaria.aspx)
@@ -177,7 +177,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Albania:
   - Biomass: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
   - Other: [ERE](https://ere.gov.al/images/2022/04/Raporti%20Vjetor%202021%20perfundimtare.pdf)
-- Andorra: [UNFCC](https://unfccc.int/sites/default/files/resource/AND_BUR1_Definitiu.pdf)
+- Andorra: [FEDA](https://www.feda.ad/sobre-feda/memories-i-documents-oficials/memoria-de-sostenibilitat-2013)
 - Argentina: [Cammesa](https://cammesaweb.cammesa.com/informe-sintesis-mensual/)
 - Armenia
   - Biomass, Hydro, Solar, Wind: [IRENA](https://www.irena.org/publications/2022/Apr/Renewable-Capacity-Statistics-2022)
