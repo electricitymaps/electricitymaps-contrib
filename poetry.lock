@@ -588,7 +588,7 @@ name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
 category = "main"
-optional = true
+optional = false
 python-versions = ">=3.6"
 
 [[package]]
@@ -829,7 +829,7 @@ name = "xmltodict"
 version = "0.13.0"
 description = "Makes working with XML feel like you are working with JSON"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.4"
 
 [extras]
@@ -840,7 +840,7 @@ validators = ["arrow", "pandas"]
 [metadata]
 lock-version = "1.1"
 python-versions = '>= 3.8, < 4.0'
-content-hash = "a85ef400d12144938f129f17d74e778d8911b125f4549070fe848b1131099335"
+content-hash = "5b1deb4f63e81d83e4090a86e2acbb8138ef03d282e894f5ec522463b1ee8bb3"
 
 [metadata.files]
 appdirs = [
