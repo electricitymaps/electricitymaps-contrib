@@ -44,7 +44,7 @@ const mergeExchanges = () => {
   return exchanges;
 };
 
-const mergeRatiosParameters = () => {
+const mergeRatioParameters = () => {
   // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
   const basePath = path.resolve(__dirname, '../config');
 
@@ -115,5 +115,5 @@ writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 module.exports = {
   mergeZones,
   mergeExchanges,
-  mergeRatiosParameters,
+  mergeRatioParameters,
 };
