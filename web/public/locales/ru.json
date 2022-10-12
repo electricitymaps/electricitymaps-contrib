@@ -20,15 +20,23 @@
     "lowcarbon": "с низким уровнем CO₂",
     "renewable": "ВИЭ",
     "electricityproduction": "производство электричества",
-    "bysource": "по видам генерации",
+    "bysource": "по источнику",
     "emissions": "эмиссии CO₂эк",
     "addeditsource": "<a href=\"%s\" target=\"_blank\">добавить или изменить источник</a>",
     "helpfrom": "с помощью",
     "electricityconsumption": "Потребление электричества",
     "noDataAtTimestamp": "Данные временно недоступны в указанном промежутке времени",
     "noLiveData": "Актуализированные данные временно недоступны для данной зоны",
+    "estimated": "приближенные данные",
+    "aggregated": "сводные данные",
+    "dataIsEstimated": "Некоторые данные по этому региону приблизительные. Мы описали нашу методологию оценки <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">здесь</a>.",
+    "estimatedTooltip": "Данные в реальном времени для этой зоны приближены на основе данных из источника и допущений модели",
+    "aggregatedTooltip": "Данные для этой зоны агрегируются на основе исторических почасовых значений",
     "noParserInfo": "У нас пока нет данных для данного региона.<br/> Хотите помочь нам исправить это? Вы поможете помочь <a href=\"%s\" target=\"_blank\">добавив данные для этого региона</a>.",
     "now": "Сейчас"
+  },
+  "time-controller": {
+    "title": "Показать исторические данные"
   },
   "left-panel": {
     "zone-list-header-title": "Влияние зон на климат",
@@ -36,7 +44,7 @@
     "search": "Найти зону"
   },
   "country-history": {
-    "Getdata": "Доступ к историческим данным и к API для прогноза",
+    "Getdata": "Доступ к историческим данным и прогнозам через Electricity Maps API",
     "carbonintensity": { "hourly": "Интенсивность выбросов CO₂ за последние 24 часа" },
     "emissionsorigin": { "hourly": "Источники выбросов за последние 24 часа" },
     "emissionsproduction": { "hourly": "Объем выбросов за последние 24 часа" },
@@ -58,12 +66,14 @@
   },
   "tooltips": {
     "carbonintensity": "Интенсивность выбросов CO₂",
-    "lowcarbon": "низкии уровень CO₂",
+    "lowcarbon": "низкий уровень CO₂",
     "renewable": "ВИЭ",
     "crossborderexport": "Экспорт через границу",
     "carbonintensityexport": "Интенсивность выбросов CO₂ экспорта",
     "ofinstalled": "установленной мощности",
     "utilizing": "Используются",
+    "representing": "представляют",
+    "ofemissions": "выбросов",
     "withcarbonintensity": "Интенсивность выбросов CO₂",
     "showWindLayer": "Показать слой ветра",
     "hideWindLayer": "Скрыть слой ветра",
@@ -79,12 +89,12 @@
     "lowCarbDescription": "Включая возобновляемые и ядерные источники"
   },
   "misc": {
-    "maintitle": "Эмиссии CO₂ производства электроенергии в прямом эфире",
+    "maintitle": "Эмиссии CO₂ производства электроенергии в реальном времени",
     "oops": "Ой! У нас возникли проблемы с доступом к серверу. Подождите несколько секунд.",
     "newversion": "Доступна новая версия! Нажмите <a onClick=\"location.reload(true);\">здесь</a> чтобы обновить сайт.",
     "retrynow": "Повторить попытку",
-    "database-ad": "Ищите исторические данные? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
-    "api-ad": "Хотите получить данные в прямом эфире для приложения или электронного устройства? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
+    "database-ad": "Ищите исторические данные? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите нашу базу данных!</a>",
+    "api-ad": "Хотите получать данные в реальном времени для своего приложения или устройства? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Посетите наш API!</a>",
     "legend": "Легенда",
     "faq": "Часто Задаваемые Вопросы"
   },
@@ -101,9 +111,9 @@
   "oil": "нефтепродукты",
   "unknown": "неизвестно",
   "electricityComesFrom": "<b>%1$s %%</b> доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> вырабатываются на базе (топлива) <b>%3$s</b>",
-  "emissionsComeFrom": "<b>%1$s %%</b> эмисии CO₂ зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущенны из-за использования (топлива) <b>%3$s</b>",
-  "electricityStoredUsing": "<b>%1$s %%</b> доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> использованны для аккумуляции в <b>%3$s<b>",
-  "emissionsStoredUsing": "<b>%1$s %%</b> эмисии CO₂ зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущенны из-за аккумуляции в <b>%3$s<?b>",
+  "emissionsComeFrom": "<b>%1$s %%</b> эмисии CO₂ зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущены из-за использования (топлива) <b>%3$s</b>",
+  "electricityStoredUsing": "<b>%1$s %%</b> доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> использованы для аккумуляции в <b>%3$s<b>",
+  "emissionsStoredUsing": "<b>%1$s %%</b> эмисии CO₂ зоны <img id=\"country-flag\"></img> <b>%2$s</b> выпущены из-за аккумуляции в <b>%3$s<?b>",
   "electricityExportedTo": "<b>%1$s %%</b> доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> экспортируются в зону <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "emissionsExportedTo": "<b>%1$s %%</b> эмисии CO₂ зоны <img id=\"country-flag\"></img> <b>%2$s</b> экспортируются в зону <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
   "electricityImportedFrom": "<b>%1$s %%</b> доступного электричества зоны <img id=\"country-flag\"></img> <b>%2$s</b> имспортируются из зоны <img id=\"country-exchange-flag\"></img> <b>%3$s</b>",
@@ -524,7 +534,7 @@
     "divideExistingArea-question": "Можете ли вы разделить мою зону на меньшие части?",
     "divideExistingArea-answer": "Конечно, если мы сможем получить данные разделенные для каждого участка этой зоны. Вы можете <a href=\"#contribute\" class=\"entry-link\">помочь добавив новые источники данных</a>",
     "seeHistoricalData-question": "Могу ли я просмотреть историю определенного региона дальше чем 24 часа?",
-    "seeHistoricalData-answer": "Вы можете купить доступ ко всей нашей <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">исторической базе</a>."
+    "seeHistoricalData-answer": "Вы можете купить доступ ко всей нашей <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">исторической базе</a>."
   },
   "methodology": {
     "groupName": "Наши методы",
@@ -536,17 +546,17 @@
     "dataOrigins-question": "Как вы получаете данные?",
     "dataDownload-question": "Могу ли я скачать эти данные?",
     "dataIntegration-question": "Могу ли я интегрировать ваши данные в реальном времени в свое приложение или устройство?",
-    "dataIntegration-answer": "Да! Вы можете купить доступ <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">к нашему API</a>, которое так же предоставляет ближайшие прогнозы."
+    "dataIntegration-answer": "Да! Вы можете купить доступ <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">к нашему API</a>, которое так же предоставляет ближайшие прогнозы."
   },
   "aboutUs": {
     "groupName": "О нас",
     "whoAreYou-question": "Кто вы?",
-    "whoAreYou-answer": "The Electricity Map разработана и поддерживается <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, маленькой Датско-Французской стартап компанией. Наша цель состоит в том, чтобы помочь человечеству достичь устойчивого состояния существования путем количественной оценки и обеспечения доступной информации о влиянии нашей повседневной жизни на климат.",
+    "whoAreYou-answer": "The Electricity Map разработана и поддерживается <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, маленькой Датско-Французской стартап компанией. Наша цель состоит в том, чтобы помочь человечеству достичь устойчивого состояния существования путем количественной оценки и обеспечения доступной информации о влиянии нашей повседневной жизни на климат.",
     "feedback-question": "Могу ли я оставить отзыв?",
     "contribute-question": "Могу ли я как-то помочь проекту?",
     "workTogether-question": "Можем ли мы работать вместе?",
-    "workTogether-answer": "Мы активно ищем новые возможности для сотрудничества. <a href=\"mailto:app@electricitymap.org\">Пришлите нам E-mail!</a>",
+    "workTogether-answer": "Мы активно ищем новые возможности для сотрудничества. <a href=\"mailto:app@electricitymaps.com\">Пришлите нам E-mail!</a>",
     "disclaimer-question": "Отказ от ответственности",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> публикует данные и изображения на ресурсе <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> для ознакомительных целей. Данный проект не гарантирует корректность и не предоставляет каких-либо форм гарантий. Проект сохраняет за собой право изменять содержимое в любое время или удалять его части без какого-либо уведомления. electricityMap не предполагает какой-либо ответственности, и не может преследоваться за какой-либо урон или потери возможные в результате неточности, неполноценности, несвоевременности или устаревания информации на проекте electicityMap или информации полученной из данного ресурса. Запрещается использовать данную веб-страницу или индивидуальные элементы в других веб-проектах, без официального уведомления и согласия со стороны electricityMap. <br/><br/>Вся интеллектуальная собственность принадлежит правообладателям и лицензорам. Копирование, поставка или любое другое использование данных материалов, в частности данных электроэнергии, запрещается без письменного разрешения со стороны electricityMap, за исключением и только в случаях разрешенных законодательным образом (таких как \"Право на цитирование\"), если не указано иное для конкретных материалов. <br/><br/>Этот отказ от ответственности может время от времени обновляться."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> публикует данные и изображения на ресурсе <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> для ознакомительных целей. Данный проект не гарантирует корректность и не предоставляет каких-либо форм гарантий. Проект сохраняет за собой право изменять содержимое в любое время или удалять его части без какого-либо уведомления. electricityMap не предполагает какой-либо ответственности, и не может преследоваться за какой-либо урон или потери возможные в результате неточности, неполноценности, несвоевременности или устаревания информации на проекте electicityMap или информации полученной из данного ресурса. Запрещается использовать данную веб-страницу или индивидуальные элементы в других веб-проектах, без официального уведомления и согласия со стороны electricityMap. <br/><br/>Вся интеллектуальная собственность принадлежит правообладателям и лицензорам. Копирование, поставка или любое другое использование данных материалов, в частности данных электроэнергии, запрещается без письменного разрешения со стороны electricityMap, за исключением и только в случаях разрешенных законодательным образом (таких как \"Право на цитирование\"), если не указано иное для конкретных материалов. <br/><br/>Этот отказ от ответственности может время от времени обновляться."
   }
 }

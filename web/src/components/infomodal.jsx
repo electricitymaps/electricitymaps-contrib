@@ -53,8 +53,8 @@ const InfoView = () => {
         dangerouslySetInnerHTML={{
           __html: __(
             'info-modal.open-source-text',
-            'https://github.com/tmrowco/electricitymap-contrib',
-            'https://github.com/tmrowco/electricitymap-contrib#data-sources'
+            'https://github.com/electricitymaps/electricitymaps-contrib',
+            'https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources'
           ),
         }}
       />
@@ -65,19 +65,19 @@ const InfoView = () => {
         <FeedbackButton href="https://forms.gle/VHaeHzXyGodFKZY18" icon="comment">
           {__('info-modal.feedback-button')}
         </FeedbackButton>
-        <GitHubButton href="https://github.com/electricitymap/electricitymap-contrib" icon="github">
+        <GitHubButton href="https://github.com/electricityMaps/electricitymaps-contrib" icon="github">
           {__('info-modal.github-button')}
         </GitHubButton>
-        <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org" icon="twitter">
+        <TwitterButton href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com" icon="twitter">
           {__('info-modal.twitter-button')}
         </TwitterButton>
-        <SlackButton href="https://slack.electricitymap.org/" icon="slack">
+        <SlackButton href="https://slack.electricitymaps.com/" icon="slack">
           {__('info-modal.slack-button')}
         </SlackButton>
       </div>
       <TermsAndPrivacyContainer>
-        <a href="https://www.electricitymap.org/privacy-policy/">{__('info-modal.privacy-policy')}</a>
-        <a href="https://www.electricitymap.org/legal-notice/">{__('info-modal.legal-notice')}</a>
+        <a href="https://www.electricitymaps.com/privacy-policy/">{__('info-modal.privacy-policy')}</a>
+        <a href="https://www.electricitymaps.com/legal-notice/">{__('info-modal.legal-notice')}</a>
       </TermsAndPrivacyContainer>
     </InfoContainer>
   );

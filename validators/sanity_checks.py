@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 from electricitymap.contrib.config import EXCHANGES_CONFIG
-from electricitymap.contrib.validators.lib.config import validator
+from validators.lib.config import validator
 
 
 @validator(kind="production")

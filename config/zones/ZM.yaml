@@ -1,0 +1,14 @@
+bounding_box:
+  - - 21.47987756300006
+    - -18.569231871999946
+  - - 34.17420251500005
+    - -7.694124042999917
+fallbackZoneMixes:
+  _source: Our world in data 2019
+  _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZMB
+  powerOriginRatios:
+    value:
+      coal: 0.11
+      hydro: 0.83
+      oil: 0.06
+timezone: null

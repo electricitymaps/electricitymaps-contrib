@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
 import json
-import logging
 import math
-import os
 import xml.etree.ElementTree as ET
-from datetime import timedelta
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 from parsers.lib.config import refetch_frequency
 
@@ -44,10 +44,10 @@ def is_not_nan_and_truthy(v) -> bool:
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="FR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "FR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime:
         to = arrow.get(target_datetime, "Europe/Paris")
@@ -55,7 +55,7 @@ def fetch_production(
         to = arrow.now(tz="Europe/Paris")
 
     # setup request
-    r = session or requests.session()
+    r = session or Session()
     formatted_from = to.shift(days=-1).format("YYYY-MM-DDTHH:mm")
     formatted_to = to.format("YYYY-MM-DDTHH:mm")
 
@@ -150,60 +150,6 @@ def fetch_production(
     datapoints = validate_production_diffs(datapoints, max_diffs, logger)
 
     return datapoints
-
-
-@refetch_frequency(timedelta(days=1))
-def fetch_price(
-    zone_key, session=None, target_datetime=None, logger=logging.getLogger(__name__)
-) -> list:
-    if target_datetime:
-        now = arrow.get(target_datetime, tz="Europe/Paris")
-    else:
-        now = arrow.now(tz="Europe/Paris")
-
-    r = session or requests.session()
-    formatted_from = now.shift(days=-1).format("DD/MM/YYYY")
-    formatted_to = now.format("DD/MM/YYYY")
-
-    url = (
-        "http://www.rte-france.com/getEco2MixXml.php?type=donneesMarche&da"
-        "teDeb={}&dateFin={}&mode=NORM".format(formatted_from, formatted_to)
-    )
-    response = r.get(url)
-    obj = ET.fromstring(response.content)
-    datas = {}
-
-    for donnesMarche in obj:
-        if donnesMarche.tag != "donneesMarche":
-            continue
-
-        start_date = arrow.get(
-            arrow.get(donnesMarche.attrib["date"]).datetime, "Europe/Paris"
-        )
-
-        for item in donnesMarche:
-            if item.get("granularite") != "Global":
-                continue
-            country_c = item.get("perimetre")
-            if zone_key != country_c:
-                continue
-            value = None
-            for value in item:
-                if value.text == "ND":
-                    continue
-                period = int(value.attrib["periode"])
-                datetime = start_date.shift(hours=+period).datetime
-                if not datetime in datas:
-                    datas[datetime] = {
-                        "zoneKey": zone_key,
-                        "currency": "EUR",
-                        "datetime": datetime,
-                        "source": "rte-france.com",
-                    }
-                data = datas[datetime]
-                data["price"] = float(value.text)
-
-    return list(datas.values())
 
 
 if __name__ == "__main__":

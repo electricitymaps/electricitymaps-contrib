@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
+
 from requests import Session
 
 from .lib import IN, web, zonekey
@@ -7,7 +11,10 @@ from .lib.exceptions import ParserException
 
 
 def fetch_consumption(
-    zone_key="IN-KA", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-KA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka consumption"""
     if target_datetime:
@@ -31,7 +38,10 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key="IN-KA", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-KA",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Karnataka  production"""
     if target_datetime:

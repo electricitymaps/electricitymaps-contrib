@@ -1,0 +1,120 @@
+bounding_box:
+  - - 13.6569755388
+    - 42.47999136
+  - - 19.3904757016
+    - 46.5037509222
+capacity:
+  biomass: 117
+  coal: 217
+  gas: 750
+  geothermal: 10
+  hydro: 1875
+  hydro storage: 281
+  oil: 75
+  solar: 96
+  unknown: 57
+  wind: 925
+contributors:
+  - PaulCornelissen
+  - VIKTORVAV99
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 432.3749444619461
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 401.09274513790626
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 416.31654596995014
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 432.3749444619461
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 401.09274513790626
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 416.31654596995014
+  lifecycle:
+    battery discharge:
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 246.73748589751352
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 240.553727174218
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 262.04822491093
+    hydro discharge:
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 246.73748589751352
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 240.553727174218
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 262.04822491093
+    unknown:
+      source: 2018 average estimated from https://www.hops.hr/page-file/oEvvKj779KAhmQg10Gezt2/temeljni-podaci/Temeljni%20podaci%202018.pdf
+      value: 240
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.00860449726418941
+        coal: 0.08201595126834375
+        gas: 0.048822813898434535
+        geothermal: 4.200934834901891e-06
+        hydro: 0.05142170629526532
+        hydro discharge: 0.0041667385350036695
+        nuclear: 0.10300563080594853
+        oil: 0.0006861086973107164
+        solar: 0.006620346402507932
+        unknown: 0.6092100511579043
+        wind: 0.08536238671980745
+    - _source: electricityMap, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.008024073013781724
+        coal: 0.10075884558259639
+        gas: 0.037259738285381906
+        geothermal: 1.5473282558182092e-05
+        hydro: 0.09525157988798287
+        hydro discharge: 0.007041310703335687
+        nuclear: 0.11336933879195757
+        oil: 0.0004213554343932119
+        solar: 0.014844081202013621
+        unknown: 0.537013705988353
+        wind: 0.08682098911951355
+    - _source: electricityMap, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.006706152412108577
+        coal: 0.13430804448648978
+        gas: 0.030363308351456036
+        geothermal: 1.0004620158264652e-05
+        hydro: 0.10145207709117016
+        hydro discharge: 0.006019928773736032
+        nuclear: 0.08647410649474879
+        oil: 0.0005026087851221749
+        solar: 0.016526841561431888
+        unknown: 0.5232180244972874
+        wind: 0.09443177002227844
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+timezone: Europe/Belgrade

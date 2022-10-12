@@ -16,7 +16,7 @@ import {
   ZONE_HISTORY_FETCH_REQUESTED,
   ZONE_HISTORY_FETCH_SUCCEEDED,
 } from '../helpers/redux';
-import { TIME } from '../helpers/constants';
+import { TIME, failedRequestType } from '../helpers/constants';
 
 const initialState = initDataState();
 
@@ -31,7 +31,10 @@ const reducer = createReducer(initialState, (builder) => {
         if (!state.zones[zoneId]) {
           return;
         }
-        state.zones[zoneId][stateAggregation].overviews = zoneData;
+        state.zones[zoneId][stateAggregation].overviews = zoneData.map((v) => ({
+          ...v,
+          stateDatetime: new Date(v.stateDatetime),
+        }));
         const maxHistoryDatetime = new Date(
           Math.max(...state.zones[zoneId][stateAggregation].details.map((x) => x.stateDatetime))
         );
@@ -52,20 +55,21 @@ const reducer = createReducer(initialState, (builder) => {
 
       state.zoneDatetimes = { ...state.zoneDatetimes, [stateAggregation]: datetimes.map((dt) => new Date(dt)) };
       state.isLoadingGrid = false;
+      state.failedRequestType = null;
       state.hasInitializedGrid = true;
       state.isGridExpired[stateAggregation] = false;
     })
     .addCase(GRID_DATA_FETCH_REQUESTED, (state) => {
       state.isLoadingGrid = true;
-      state.hasConnectionWarning = false;
     })
     .addCase(GRID_DATA_FETCH_FAILED, (state) => {
-      state.hasConnectionWarning = true;
+      state.failedRequestType = failedRequestType.GRID;
       state.isLoadingGrid = false;
     })
     .addCase(ZONE_HISTORY_FETCH_SUCCEEDED, (state, action) => {
       const { stateAggregation, zoneStates, zoneId, hasData } = action.payload;
       state.isLoadingHistories = false;
+      state.failedRequestType = null;
       state.zones[zoneId][stateAggregation] = {
         ...state.zones[zoneId][stateAggregation],
         // TODO: Fix sources in DBT instead of here
@@ -90,6 +94,7 @@ const reducer = createReducer(initialState, (builder) => {
       });
     })
     .addCase(ZONE_HISTORY_FETCH_FAILED, (state) => {
+      state.failedRequestType = failedRequestType.ZONE;
       state.isLoadingHistories = false;
     })
     .addCase(ZONE_HISTORY_FETCH_REQUESTED, (state) => {

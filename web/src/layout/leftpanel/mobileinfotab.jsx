@@ -49,7 +49,7 @@ const MobileInfoTab = () => {
       <div className="socialicons">
         <div
           className="fb-like"
-          data-href="https://www.facebook.com/tmrowco"
+          data-href="https://www.facebook.com/electricitymaps"
           data-layout="button"
           data-action="like"
           data-size="small"
@@ -57,7 +57,7 @@ const MobileInfoTab = () => {
         />
         <a
           className="twitter-share-button"
-          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org"
+          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com"
           target="_blank"
           rel="noreferrer"
         >
@@ -70,11 +70,15 @@ const MobileInfoTab = () => {
         {mobileAppVersion ? <p>{`App version: ${mobileAppVersion}`}</p> : null}
         <p>
           {__('panel-initial-text.thisproject')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib" target="_blank" rel="noreferrer">
+          <a href="https://github.com/electricitymaps/electricitymaps-contrib" target="_blank" rel="noreferrer">
             {__('panel-initial-text.opensource')}
           </a>{' '}
           ({__('panel-initial-text.see')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib#data-sources" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/electricitymaps/electricitymaps-contrib/blob/master/DATA_SOURCES.md#real-time-electricity-data-sources"
+            target="_blank"
+            rel="noreferrer"
+          >
             {__('panel-initial-text.datasources')}
           </a>
           ).{' '}
@@ -82,7 +86,7 @@ const MobileInfoTab = () => {
             dangerouslySetInnerHTML={{
               __html: __(
                 'panel-initial-text.contribute',
-                'https://github.com/tmrowco/electricitymap-contrib/wiki/Getting-started'
+                'https://github.com/electricitymaps/electricitymaps-contrib/wiki/Getting-started'
               ),
             }}
           />
@@ -90,7 +94,11 @@ const MobileInfoTab = () => {
         </p>
         <p>
           {__('footer.foundbugs')}{' '}
-          <a href="https://github.com/tmrowco/electricitymap-contrib/issues/new" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/electricitymaps/electricitymaps-contrib/issues/new"
+            target="_blank"
+            rel="noreferrer"
+          >
             {__('footer.here')}
           </a>
           .

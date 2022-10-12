@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-import datetime as dt
+
 import json
-import logging
 import re
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import requests
 from bs4 import BeautifulSoup
+from requests import Session
 
 from .lib import zonekey
 
@@ -62,17 +64,17 @@ def get_last_data_idx(productions) -> int:
 
 
 def fetch_price(
-    zone_key="TR",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "TR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
     zonekey.assert_zone_key(zone_key, "TR")
 
-    r = session or requests.session()
+    r = session or Session()
     soup = BeautifulSoup(r.get(PRICE_URL).text, "html.parser")
     cells = soup.select(".TexAlCenter")
 
@@ -84,22 +86,25 @@ def fetch_price(
         data.append(cell.text)
 
     dates = [
-        dt.datetime.strptime(val, "%d/%m/%Y").date()
+        datetime.strptime(val, "%d/%m/%Y").date()
         for i, val in enumerate(data)
         if i % 5 == 0
     ]
     times = [
-        dt.datetime.strptime(val, "%H:%M").time()
+        datetime.strptime(val, "%H:%M").time()
         for i, val in enumerate(data)
         if i % 5 == 1
     ]
-    prices = [float(val.replace(",", ".")) for i, val in enumerate(data) if i % 5 == 2]
+    prices = [val.replace(",", ".") for i, val in enumerate(data) if i % 5 == 2]
+    # sometimes the price will now have 2 decimals in it, e.g. 4.299.99
+    # therefore below removes decimals which are not the last one, e.g. changing to 4299.99 to avoid conversion error
+    prices = [float(val.replace(".", "", (val.count(".") - 1))) for val in prices]
 
     datapoints = [
         {
             "zoneKey": "TR",
             "currency": "TRY",
-            "datetime": arrow.get(dt.datetime.combine(date, time))
+            "datetime": arrow.get(datetime.combine(date, time))
             .to("Europe/Istanbul")
             .datetime,
             "price": price,
@@ -111,7 +116,10 @@ def fetch_price(
 
 
 def fetch_production(
-    zone_key="TR", session=None, target_datetime=None, logger=None
+    zone_key: str = "TR",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
@@ -120,7 +128,7 @@ def fetch_production(
     session = (
         None  # Explicitely make a new session to avoid caching from their server...
     )
-    r = session or requests.session()
+    r = session or Session()
     tr_datetime = arrow.now().to("Europe/Istanbul").floor("day")
     response = r.get(URL, verify=False)
     str_data = re.search(SEARCH_DATA, response.text)

@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TIME } from './constants';
 import constructTopos from './topos';
-import zonesConfig from '../../../config/zones.json';
-import exchangesConfig from '../../../config/exchanges.json';
+import zonesConfig from '../config/zones.json';
+import exchangesConfig from '../config/exchanges.json';
 
 const GRID_DATA_FETCH_REQUESTED = createAction('data/grid-fetch-requested');
 const GRID_DATA_FETCH_SUCCEEDED = createAction('data/grid-fetch-succeded');
@@ -63,7 +63,7 @@ function initDataState() {
   });
 
   return {
-    hasConnectionWarning: false,
+    failedRequestType: null,
     hasInitializedGrid: false,
     isLoadingHistories: false,
     isLoadingGrid: false,
@@ -93,7 +93,7 @@ function combineZoneData(zoneData, aggregate) {
   }
 
   const combined = overviews.map((overview, idx) => {
-    return { ...overview, ...details[idx], hasParser, hasData, center };
+    return { ...overview, ...details[idx], hasParser, center };
   });
 
   return combined;

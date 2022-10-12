@@ -1,0 +1,62 @@
+bounding_box:
+  - - -80.26561438699991
+    - 44.49802968400007
+  - - -56.60087602420913
+    - 63.0938174500001
+capacity:
+  biomass: 374
+  coal: 0
+  gas: 436
+  geothermal: 0
+  hydro: 40211
+  nuclear: 0
+  oil: 131
+  solar: 10
+  unknown: 1056
+  wind: 3772
+contributors:
+  - jarek
+  - pjakobsen
+  - madsnedergaard
+  - KabelWlan
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 0.5008101247845609
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 0.5008101247845609
+  lifecycle:
+    battery discharge:
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 28.45400390403145
+    hydro discharge:
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 28.45400390403145
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.021978738337054254
+        coal: 5.629747542273749e-07
+        gas: 0.00020968694448799533
+        geothermal: 0.0
+        hydro: 0.9254093918590359
+        hydro discharge: 0.0
+        nuclear: 0.002598703038954871
+        oil: 2.5275331593384034e-09
+        solar: 2.7587891406117657e-05
+        unknown: 0.0007353539790029252
+        wind: 0.04908312222781087
+flag_file_name: ca.png
+parsers:
+  consumption: CA_QC.fetch_consumption
+  production: CA_QC.fetch_production
+timezone: America/Toronto

@@ -11130,6 +11130,9 @@
       "FO": {
         "unknown": { "value": 1 }
       },
+      "FO-MI": {
+        "unknown": { "value": 1 }
+      },
       "GB-ORK": {
         "unknown": { "value": 1 }
       },
@@ -11191,6 +11194,9 @@
         }
       },
       "UA": {
+        "unknown": { "value": 1 }
+      },
+      "ZA": {
         "unknown": { "value": 1 }
       }
     }
@@ -11284,6 +11290,9 @@
       "FO": {
         "unknown": { "value": 1 }
       },
+      "FO-MI": {
+        "unknown": { "value": 1 }
+      },
       "GB-ORK": {
         "unknown": { "value": 1 }
       },
@@ -11345,6 +11354,9 @@
         }
       },
       "UA": {
+        "unknown": { "value": 1 }
+      },
+      "ZA": {
         "unknown": { "value": 1 }
       }
     }

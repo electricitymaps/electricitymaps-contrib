@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import datetime as dt
-import logging
+from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 # The arrow library is used to handle datetimes
 import arrow
 import pandas as pd
+from requests import Session
 
 from parsers import occtonet
 from parsers.lib.config import refetch_frequency
@@ -37,12 +39,12 @@ sources = {
 ZONES_ONLY_LIVE = ["JP-TK", "JP-CB", "JP-SK"]
 
 
-@refetch_frequency(dt.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="JP-TK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "JP-TK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """
     Calculates production from consumption and imports for a given area
@@ -77,10 +79,10 @@ def fetch_production(
 
 
 def fetch_production_df(
-    zone_key="JP-TK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "JP-TK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """
     Calculates production from consumption and imports for a given area.
@@ -126,7 +128,9 @@ def fetch_production_df(
 
 
 def fetch_consumption_df(
-    zone_key="JP-TK", target_datetime=None, logger=logging.getLogger(__name__)
+    zone_key: str = "JP-TK",
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     """
     Returns the consumption for an area as a pandas DataFrame.
@@ -192,10 +196,10 @@ def fetch_consumption_df(
 
 
 def fetch_consumption_forecast(
-    zone_key="JP-KY",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "JP-KY",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Gets consumption forecast for specified zone."""
     # Currently past dates not implemented for areas with no date in their demand csv files
@@ -269,15 +273,15 @@ def fetch_consumption_forecast(
     return data
 
 
-@refetch_frequency(dt.timedelta(days=1))
+@refetch_frequency(timedelta(days=1))
 def fetch_price(
-    zone_key="JP-TK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "JP-TK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
-        target_datetime = dt.datetime.now() + dt.timedelta(days=1)
+        target_datetime = datetime.now() + timedelta(days=1)
 
     # price files contain data for fiscal year and not calendar year.
     if target_datetime.month <= 3:
@@ -305,7 +309,7 @@ def fetch_price(
     if zone_key not in df.columns[2:]:
         return []
 
-    start = target_datetime - dt.timedelta(days=1)
+    start = target_datetime - timedelta(days=1)
     df["Date"] = pd.to_datetime(df["Date"], format="%Y/%m/%d").dt.date
     df = df[(df["Date"] >= start.date()) & (df["Date"] <= target_datetime.date())]
 

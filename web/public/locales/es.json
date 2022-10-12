@@ -1,6 +1,20 @@
 {
+  "info-modal": {
+    "title": "Info",
+    "intro-text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
+    "open-source-text": "Esta app es de <a href=\"%s\" target=\"_blank\">código abierto</a> (<a href=\"%s\" target=\"_blank\">ver fuentes de datos</a>) e impulsada por la comunidad.",
+    "feedback-button": "Comparte tus comentarios",
+    "github-button": "Visítanos en GitHub",
+    "twitter-button": "Compártelo en Twitter",
+    "slack-button": "Únete a la comunidad en Slack",
+    "privacy-policy": "Política de privacidad",
+    "legal-notice": "Aviso legal"
+  },
+  "settings-modal": {
+    "title": "Configuración"
+  },
   "panel-initial-text": {
-    "thisproject": "Este app es de",
+    "thisproject": "Esta app es de",
     "opensource": "código abierto",
     "see": "ver",
     "datasources": "las fuentes de los datos",
@@ -35,8 +49,19 @@
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
+    "dataIsDelayed": "Los datos para esta región pueden tener hasta %s horas de retraso. Los datos en tiempo real no pueden ser mostrados.",
+    "estimated": "estimados",
+    "aggregated": "agregados",
+    "dataIsEstimated": "Algunos de los datos de esta región son estimados. Lee más sobre la metodología de estimación <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aquí</a>.",
+    "exchangesAreMissing": "Los intercambios son considerados en los cálculos pero no son mostrados actualmente. Lee más acerca de nuestros agregados históricos <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aquí</a>.",
+    "estimatedTooltip": "Los datos en tiempo real para esta zona son estimados basados en datos de las fuentes y suposiciones del modelo.",
+    "aggregatedTooltip": "Los datos para esta zona son agregados basados en valores horarios históricos",
+    "helpUs": "Ayúdanos a identificar el problema revisando los <a href=\"%s\" target=\"_blank\">registros de ejecución</a> o contactando al proveedor de datos.",
     "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>.",
     "now": "Ahora"
+  },
+  "time-controller": {
+    "title": "Mostrar datos del pasado"
   },
   "left-panel": {
     "zone-list-header-title": "Impacto climático por zona",
@@ -44,8 +69,14 @@
     "search": "Buscar zonas"
   },
   "country-history": {
+    "carbonintensity": {
+      "default": "Intensidad de carbono en los últimos %1$s",
+      "hourly": "Intensidad de carbono en las últimas 24 horas",
+      "daily": "Intensidad de carbono en el último mes",
+      "monthly": "Intensidad de carbono en el último año",
+      "yearly": "Intensidad de carbono en los últimos 5 años"
+    },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
-    "carbonintensity": { "hourly": "Intensidad de carbono en las últimas 24 horas" },
     "emissionsorigin": { "hourly": "Origen de las emisiones en las últimas 24 horas" },
     "emissionsproduction": { "hourly": "Emisiones producidas en las últimas 24 horas" },
     "electricityorigin": { "hourly": "Origen de la electricidad en las últimas 24 horas" },
@@ -73,19 +104,28 @@
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
     "ofinstalled": "de la capacidad instalada",
     "utilizing": "utilizando",
+    "representing": "representando",
+    "ofemissions": "de emisiones",
     "withcarbonintensity": "con una intensidad de carbono de",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
     "showWindLayer": "Mostrar las corrientes de aire",
     "hideWindLayer": "Ocultar las corrientes de aire",
     "showSolarLayer": "Mostrar los rayos solares",
     "hideSolarLayer": "Ocultar los rayos solares",
+    "weatherDisabled": "La información del clima no está disponible en este momento",
     "toggleDarkMode": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
     "temporaryDataOutage": "Datos temporalmente no disponibles",
     "production": "producción",
     "consumption": "consumo",
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
+    "aggregated": "agregado",
+    "detailed": "detallado",
+    "aggregateinfo": "Los países con datos zonales no disponibles no pueden ser agregados",
     "selectLanguage": "Cambiar de idioma",
-    "lowCarbDescription": "Incluye renovables y nuclear"
+    "lowCarbDescription": "Incluye renovables y nuclear",
+    "dataIsDelayed": "Datos con retraso"
   },
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
@@ -93,13 +133,17 @@
     "newversion": "¡Hay disponible una nueva versión! Pulsa <a onClick=\"location.reload(true);\">aquí</a> para recargar.",
     "webgl-not-supported": "No se puede mostrar el mapa porque este navegador no es compatible con WebGL.",
     "retrynow": "Vuelve a intentarlo",
-    "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
-    "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
+    "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
+    "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
     "legend": "Leyenda",
-    "faq": "Preguntas frecuentes"
+    "faq": "Preguntas frecuentes",
+    "privacyPolicy": "Política de privacidad",
+    "legalNotice": "Aviso legal"
   },
   "wind": "energía eólica",
+  "windDataError": "Los datos para la energía eólica actualmente no están disponibles",
   "solar": "energía solar",
+  "solarDataError": "Los datos para la energía solar actualmente no están disponibles",
   "hydro": "energía hidráulica",
   "hydro storage": "almac. hidrául.",
   "battery storage": "almac. en baterías",
@@ -141,7 +185,7 @@
     "divideExistingArea-question": "¿Se puede dividir mi zona en partes más pequeñas?",
     "divideExistingArea-answer": "Sí, pero necesitamos datos para cada subdivisión de la zona. Puedes <a href=\"#contribute\" class=\"entry-link\">echarnos una mano añadiendo nuevas fuentes de datos</a>",
     "seeHistoricalData-question": "¿Puedo ver los datos históricos de una zona más allá de las 24 horas que se muestran?",
-    "seeHistoricalData-answer": "Puedes adquirir el acceso a todos los datos históricos que tenemos en nuestra <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>."
+    "seeHistoricalData-answer": "Puedes adquirir el acceso a todos los datos históricos que tenemos en nuestra <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">base de datos</a>."
   },
   "methodology": {
     "groupName": "Nuestros métodos",
@@ -169,22 +213,22 @@
     "dataOrigins-question": "¿De dónde obtenéis los datos?",
     "dataOrigins-answer": "Calculamos la intensidad de carbono con los datos que hacen públicos los operadores de red eléctrica, agencias oficiales y otros. Puedes hacer clic en una zona para ver información específica sobre las fuentes de los datos.",
     "dataDownload-question": "¿Puedo descargarme vuestros datos?",
-    "dataDownload-answer": "Puedes acceder previo pago a todos los datos de nuestra <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">base de datos</a>.",
+    "dataDownload-answer": "Puedes acceder previo pago a todos los datos de nuestra <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">base de datos</a>.",
     "dataIntegration-question": "¿Puedo integrar vuestros datos en tiempo real en mi aplicación o dispositivo?",
-    "dataIntegration-answer": "¡Claro! Puedes adquirir los datos en <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">nuestra API en tiempo real</a>, que incluye pronósticos a veinticuatro horas vista."
+    "dataIntegration-answer": "¡Claro! Puedes adquirir los datos en <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">nuestra API en tiempo real</a>, que incluye pronósticos a veinticuatro horas vista."
   },
   "aboutUs": {
     "groupName": "Sobre nosotros",
     "whoAreYou-question": "¿Quiénes sois?",
-    "whoAreYou-answer": "Electricity Maps ha sido creado y desarrollado por <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, una pequeña <i>start-up</i> de Dinamarca y Francia. Nuestro objetivo es ayudar a la humanidad a alcanzar una existencia sostenible cuantificando y dando a conocer el impacto climático de nuestras decisiones diarias.",
+    "whoAreYou-answer": "Electricity Maps ha sido creado y desarrollado por <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, una pequeña <i>start-up</i> de Dinamarca y Francia. Nuestro objetivo es ayudar a la humanidad a alcanzar una existencia sostenible cuantificando y dando a conocer el impacto climático de nuestras decisiones diarias.",
     "feedback-question": "¿Os puedo dejar algún comentario o crítica?",
     "feedback-answer": "¡Faltaría más! Solo tienes que rellenar <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">este formulario</a> o <a href=\"mailto:hello@electricity.com\">escribirnos un correo!</a>",
     "contribute-question": "¿Puedo contribuir a este proyecto?",
     "contribute-answer": " ¡Claro! Electricity Map es un proyecto de código abierto que mantienen voluntarios. Si quieres ayudarnos a mejorarlo, ya sea añadiendo datos para una zona que no tenga, añadiendo nuevas opciones o arreglando bugs, echa un vistazo al <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a>.",
     "workTogether-question": "¿Podemos trabajar juntos?",
-    "workTogether-answer": "Siempre estamos abiertos a nuevas oportunidades de colaborar. <a href=\"mailto:app@electricitymap.org\">¡Mándanos un correo!</a>",
+    "workTogether-answer": "Siempre estamos abiertos a nuevas oportunidades de colaborar. <a href=\"mailto:app@electricitymaps.com\">¡Mándanos un correo!</a>",
     "disclaimer-question": "Aviso legal",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publica datos e imágenes en el <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> solo con fines informativos. Electricity Maps no se hace responsable de la exactitud de estos datos ni ofrece ningún tipo de garantía, y se reserva el derecho a modificar el contenido del sitio o eliminar parte de él en cualquier momento. Electricity Maps declina toda responsabilidad y no se hace responsable de daños o gastos que resulten de la inexactitud de Electricity Maps, ya sea por un error, falta de datos o presencia de información obsoleta o adelantada.  Esto se aplica a Electricity Maps y a todo producto derivado. Queda prohibido incluir esta página web o cualquiera de sus elementos en otra página sin previo consentimiento escrito de Electricity Maps.<br><br> Todos los derechos de propiedad intelectual pertenecen a los propietarios legales y legítimos de este sitio y a sus licenciatarios. La copia, distribución u otro uso de estos materiales, en particular de los datos sobre energía, están prohibidas sin el consentimiento escrito de Electricity Maps, salvo contraindicación legal (como el derecho de cita), a menos que esto no se especifique en los documentos. <br><br>Esta nota legal puede ser actualizada de vez en cuando."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publica datos e imágenes en el <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> solo con fines informativos. Electricity Maps no se hace responsable de la exactitud de estos datos ni ofrece ningún tipo de garantía, y se reserva el derecho a modificar el contenido del sitio o eliminar parte de él en cualquier momento. Electricity Maps declina toda responsabilidad y no se hace responsable de daños o gastos que resulten de la inexactitud de Electricity Maps, ya sea por un error, falta de datos o presencia de información obsoleta o adelantada.  Esto se aplica a Electricity Maps y a todo producto derivado. Queda prohibido incluir esta página web o cualquiera de sus elementos en otra página sin previo consentimiento escrito de Electricity Maps.<br><br> Todos los derechos de propiedad intelectual pertenecen a los propietarios legales y legítimos de este sitio y a sus licenciatarios. La copia, distribución u otro uso de estos materiales, en particular de los datos sobre energía, están prohibidas sin el consentimiento escrito de Electricity Maps, salvo contraindicación legal (como el derecho de cita), a menos que esto no se especifique en los documentos. <br><br>Esta nota legal puede ser actualizada de vez en cuando."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -282,6 +326,7 @@
     "EH": { "zoneName": "Sahara Occidental" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "España" },
+    "ES-CE": { "countryName": "España", "zoneName": "Ceuta" },
     "ES-IB-FO": { "countryName": "España", "zoneName": "Formentera" },
     "ES-IB-IZ": { "countryName": "España", "zoneName": "Ibiza" },
     "ES-IB-MA": { "countryName": "España", "zoneName": "Mallorca" },
@@ -292,6 +337,7 @@
     "ES-CN-IG": { "countryName": "España", "zoneName": "La Gomera" },
     "ES-CN-LP": { "countryName": "España", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "España", "zoneName": "Tenerife" },
+    "ES-ML": { "countryName": "España", "zoneName": "Melilla" },
     "ET": { "zoneName": "Etiopía" },
     "FI": { "zoneName": "Finlandia" },
     "FJ": { "zoneName": "Fiyi" },

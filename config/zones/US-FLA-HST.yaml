@@ -1,0 +1,33 @@
+bounding_box:
+  - - -81.3738299999999
+    - 24.6374500000001
+  - - -79.61802
+    - 26.47902
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 35.6
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0.1
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: City Of Homestead
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Eastern
