@@ -44,6 +44,43 @@ const mergeExchanges = () => {
   return exchanges;
 };
 
+const mergeRatiosParameters = () => {
+  // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
+  const basePath = path.resolve(__dirname, '../config');
+
+  const defaultParameters = yaml.load(fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8'));
+
+  const zoneFiles = fs.readdirSync(`${basePath}/zones`);
+  const filesWithDir = zoneFiles.map((file) => `${basePath}/zones/${file}`);
+
+  const ratioParameters = {
+    fallbackZoneMixes: {
+      defaults: defaultParameters.fallbackZoneMixes,
+      zoneOverrides: {},
+    },
+    isLowCarbon: {
+      defaults: defaultParameters.isLowCarbon,
+      zoneOverrides: {},
+    },
+    isRenewable: {
+      defaults: defaultParameters.isRenewable,
+      zoneOverrides: {},
+    },
+  };
+
+  filesWithDir.forEach((filepath) => {
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneKey = path.parse(filepath).name;
+    for (const key in ratioParameters) {
+      if (zoneConfig[key] !== undefined) {
+        ratioParameters[key].zoneOverrides[zoneKey] = zoneConfig[key];
+      }
+    }
+  });
+
+  return ratioParameters;
+};
+
 const writeJSON = (fileName, obj, encoding = 'utf8') => {
   const dir = path.resolve(path.dirname(fileName));
 
@@ -78,4 +115,5 @@ writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 module.exports = {
   mergeZones,
   mergeExchanges,
+  mergeRatiosParameters,
 };
