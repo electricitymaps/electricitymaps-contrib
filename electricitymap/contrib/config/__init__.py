@@ -1,7 +1,7 @@
 from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List, NewType, Tuple
+from typing import Any, Dict, List, NewType, Tuple
 
 import yaml
 
@@ -15,9 +15,9 @@ CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resol
 
 defaults = yaml.safe_load(open(CONFIG_DIR.joinpath("defaults.yaml"), encoding="utf-8"))
 
-zones_config = {}
+zones_config: Dict[ZoneKey, Any] = {}
 for zone_path in CONFIG_DIR.joinpath("zones").glob("*.yaml"):
-    zone_key = zone_path.stem
+    zone_key = ZoneKey(zone_path.stem)
     zones_config[zone_key] = yaml.safe_load(open(zone_path, encoding="utf-8"))
 
 exchanges_config = {}
