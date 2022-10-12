@@ -32,6 +32,7 @@ import { CountryHistoryTitle } from '../../components/countryhistorytitle';
 import { getCO2IntensityByMode } from '../../helpers/zonedata';
 import { TimeDisplay } from '../../components/timeDisplay';
 import { LABEL_TYPES, ZoneLabel } from '../../components/zonelabel';
+import { formatDataSources } from '../../helpers/formatting';
 
 // TODO: Move all styles from styles.css to here
 // TODO: Remove all unecessary id and class tags
@@ -192,7 +193,6 @@ const CountryHeader = ({ parentPage, zoneId, data, isMobile, isDataAggregated })
 const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zones }) => {
   const [tooltip, setTooltip] = useState(null);
   const { __, i18n } = useTranslation();
-  const listFormatter = new Intl.ListFormat(i18n.language, { style: 'long', type: 'conjunction' });
   const isLoadingHistories = useSelector((state) => state.data.isLoadingHistories);
 
   // TODO: isLoadingGrid is holding rendering back too much on countryPanel. This should be avoided.
@@ -407,7 +407,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="country-data-source">{listFormatter.format(data.source) || '?'}</span>
+                <span className="country-data-source">{formatDataSources(data.source, i18n.language) || '?'}</span>
               </a>
               <small>
                 {' '}
