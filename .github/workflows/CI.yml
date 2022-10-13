@@ -1,8 +1,6 @@
 name: CI
 on:
   push:
-    branches:
-      - master
   pull_request:
 
 jobs:
@@ -114,3 +112,7 @@ jobs:
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/python.yml
+
+  codeql:
+    name: CodeQL
+    uses: ./.github/workflows/codeql.yml
