@@ -56,7 +56,6 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "CZ": "10YCZ-CEPS-----N",
     "DE": "10Y1001A1001A83F",
     "DE-LU": "10Y1001A1001A82H",
-    "DK": "10Y1001A1001A65H",
     "DK-DK1": "10YDK-1--------W",
     "DK-DK2": "10YDK-2--------M",
     "EE": "10Y1001A1001A39I",
@@ -112,6 +111,11 @@ ENTSOE_DOMAIN_MAPPINGS: Dict[str, str] = {
     "TR": "10YTR-TEIAS----W",
     "UA": "10YUA-WEPS-----0",
     "XK": "10Y1001C--00100H",
+    "DE-ENBW": "10YDE-ENBW-----N",
+    "DE-EON": "10YDE-EON------1",
+    "DE-RWE": "10YDE-RWENET---I",
+    "DE-50HZ": "10YDE-VE-------2",
+    "DK": "10Y1001A1001A796",
 }
 
 # Generation per unit can only be obtained at EIC (Control Area) level
