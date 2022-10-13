@@ -26,10 +26,10 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
     <StyledWrapper hideOnDesktop={hideOnDesktop} hideOnMobile={hideOnMobile}>
       <div>
         {/* Facebook share */}
-        <div className="fb-share-button" data-href="https://app.electricitymap.org/" data-layout="button_count" />
+        <div className="fb-share-button" data-href="https://app.electricitymaps.com/" data-layout="button_count" />
         <a
           className="twitter-share-button"
-          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymap.org"
+          href="https://twitter.com/intent/tweet?url=https://www.app.electricitymaps.com"
           target="_blank"
           rel="noreferrer"
         >
@@ -37,7 +37,7 @@ const SocialButtons = ({ hideOnMobile, hideOnDesktop }) => {
         </a>
         {/* Slack */}
         <span className="slack-button">
-          <a href="https://slack.tmrow.com" target="_blank" className="slack-btn" rel="noreferrer">
+          <a href="https://slack.electricitymaps.com" target="_blank" className="slack-btn" rel="noreferrer">
             <span className="slack-ico" />
             <span className="slack-text">Slack</span>
           </a>

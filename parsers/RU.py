@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import json
+from datetime import datetime
 from functools import reduce
+from logging import Logger, getLogger
+from typing import List, Optional, Union
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session
 
 # RU-1: European and Uralian Market Zone (Price Zone 1)
 # RU-2: Siberian Market Zone (Price Zone 2)
@@ -16,7 +19,7 @@ import requests
 
 # http://br.so-ups.ru is not available outside Russia (sometimes?), use a reverse proxy in Russia
 HOST = "https://858127-cc16935.tmweb.ru"
-BASE_EXCHANGE_URL = f"${HOST}/webapi/api/flowDiagramm/GetData?"
+BASE_EXCHANGE_URL = f"{HOST}/webapi/api/flowDiagramm/GetData?"
 
 MAP_GENERATION_1 = {
     "P_AES": "nuclear",
@@ -56,8 +59,11 @@ tz = "Europe/Moscow"
 
 
 def fetch_production(
-    zone_key="RU", session=None, target_datetime=None, logger=None
-) -> list:
+    zone_key: str = "RU",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> Union[List[dict], dict]:
     """Requests the last known production mix (in MW) of a given country."""
     if zone_key == "RU":
         # Get data for all zones
@@ -99,7 +105,9 @@ def fetch_production(
 
 
 def fetch_production_1st_synchronous_zone(
-    zone_key="RU-1", session=None, target_datetime=None
+    zone_key: str = "RU-1",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
 ) -> list:
     zone_key_price_zone_mapper = {
         "RU-1": 1,
@@ -117,7 +125,7 @@ def fetch_production_1st_synchronous_zone(
     datetime_to_fetch = target_datetime_tz.shift(hours=-1)
     date = datetime_to_fetch.format("YYYY.MM.DD")
 
-    r = session or requests.session()
+    r = session or Session()
 
     price_zone = zone_key_price_zone_mapper[zone_key]
     base_url = "{}/webapi/api/CommonInfo/PowerGeneration?priceZone[]={}".format(
@@ -169,8 +177,10 @@ def fetch_production_1st_synchronous_zone(
 
 
 def fetch_production_2nd_synchronous_zone(
-    zone_key="RU-AS", session=None, target_datetime=None
-) -> dict:
+    zone_key: str = "RU-AS",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+) -> List[dict]:
     if zone_key != "RU-AS":
         raise NotImplementedError("This parser is not able to parse given zone")
 
@@ -182,7 +192,7 @@ def fetch_production_2nd_synchronous_zone(
     datetime_to_fetch = target_datetime_tz.shift(hours=-1)
     date = datetime_to_fetch.format("YYYY.MM.DD")
 
-    r = session or requests.session()
+    r = session or Session()
 
     url = "{}/webapi/api/CommonInfo/GenEquipOptions_Z2?oesTerritory[]=540000&startDate={}".format(
         HOST, date
@@ -255,7 +265,11 @@ def response_checker(json_content) -> bool:
 
 
 def fetch_exchange(
-    zone_key1, zone_key2, session=None, target_datetime=None, logger=None
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     """Requests the last known power exchange (in MW) between two zones."""
     if target_datetime:
@@ -264,7 +278,7 @@ def fetch_exchange(
         today = arrow.utcnow()
 
     date = today.format("YYYY-MM-DD")
-    r = session or requests.session()
+    r = session or Session()
     DATE = "Date={}".format(date)
 
     exchange_urls = []

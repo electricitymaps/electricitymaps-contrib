@@ -30,20 +30,19 @@ steps:
       # Generate icons
       - node_modules/.bin/app-icon generate -i icon_ios.png --platforms=ios
       - node_modules/.bin/app-icon generate -i icon_android_legacy.png --platforms=android --adaptive-icons
-
   deploy:
-    commands:
-      # Prepare
-      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/google-services.json .
-      - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/GoogleService-Info.plist .
-      - cordova prepare
-      # Release to staging
-      - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
-      - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
-      - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
-      # Promote
-      - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
-      - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
+    # commands:
+    # Prepare
+    # - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/google-services.json .
+    # - /root/google-cloud-sdk/bin/gsutil cp gs://electricitymap-secrets/mobileapp/GoogleService-Info.plist .
+    # - cordova prepare
+    # Release to staging
+    # - code-push login --accessKey ${BRICK_CODE_PUSH_ACCESS_KEY:-unknown}
+    # - code-push release-cordova electricitymap-android android --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (Android)'
+    # - code-push release-cordova electricitymap-ios ios --noDuplicateReleaseError --description ${BRICK_DRONE_COMMIT_SHA:-latest} || echo 'WARNING ignoring code push failure (iOS)'
+    # Promote
+    # - code-push promote electricitymap-android Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (Android)'
+    # - code-push promote electricitymap-ios Staging Production --noDuplicateReleaseError || echo 'WARNING ignoring code push promote failure (iOS)'
     secrets:
       gcloud:
         src: ~/.config/gcloud

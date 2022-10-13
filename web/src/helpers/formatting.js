@@ -68,12 +68,20 @@ const formatDate = function (date, lang, time) {
   }
 };
 
-const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) =>
-  new Intl.NumberFormat(lang, {
-    style: 'unit',
-    unit,
-    unitDisplay: unitDisplay || 'long',
-  }).format(range);
+const getLocaleNumberFormat = (lang, { unit, unitDisplay, range }) => {
+  try {
+    return new Intl.NumberFormat(lang, {
+      style: 'unit',
+      unit,
+      unitDisplay: unitDisplay || 'long',
+    }).format(range);
+  } catch (error) {
+    // As Intl.NumberFormat with custom 'unit' is not supported in all browsers, we fallback to
+    // a simple English based implementation
+    const plural = range !== 1 ? 's' : '';
+    return `${range} ${unit}${plural}`;
+  }
+};
 
 const formatTimeRange = (lang, timeAggregate) => {
   // Note that not all browsers fully support all languages
@@ -101,7 +109,7 @@ const formatDateTick = function (date, lang, timeAggregate) {
     case TIME.HOURLY:
       return new Intl.DateTimeFormat(lang, { timeStyle: 'short' }).format(date);
     case TIME.DAILY:
-      return new Intl.DateTimeFormat(lang, { month: 'long', day: 'numeric' }).format(date);
+      return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(date);
     case TIME.MONTHLY:
       return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
     case TIME.YEARLY:

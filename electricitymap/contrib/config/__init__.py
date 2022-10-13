@@ -1,7 +1,10 @@
 import json
+from collections import defaultdict
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List, NewType, Tuple
+from typing import Any, Dict, List, NewType, Tuple
+
+import yaml
 
 ZoneKey = NewType("ZoneKey", str)
 Point = NewType("Point", Tuple[float, float])
@@ -9,27 +12,68 @@ BoundingBox = NewType("BoundingBox", List[Point])
 
 CONFIG_DIR = Path(__file__).parent.parent.parent.parent.joinpath("config").resolve()
 
-# Read JSON files
-ZONES_CONFIG = json.load(open(CONFIG_DIR.joinpath("zones.json"), encoding="utf-8"))
-EXCHANGES_CONFIG = json.load(
-    open(CONFIG_DIR.joinpath("exchanges.json"), encoding="utf-8")
-)
-CO2EQ_PARAMETERS_ALL = json.load(
-    open(CONFIG_DIR.joinpath("co2eq_parameters_all.json"), encoding="utf-8")
-)
-CO2EQ_PARAMETERS_LIFECYCLE = {
-    **CO2EQ_PARAMETERS_ALL,
-    **json.load(
-        open(CONFIG_DIR.joinpath("co2eq_parameters_lifecycle.json"), encoding="utf-8")
-    ),
+defaults = yaml.safe_load(open(CONFIG_DIR.joinpath("defaults.yaml"), encoding="utf-8"))
+
+zones_config: Dict[ZoneKey, Any] = {}
+for zone_path in CONFIG_DIR.joinpath("zones").glob("*.yaml"):
+    zone_key = ZoneKey(zone_path.stem)
+    zones_config[zone_key] = yaml.safe_load(open(zone_path, encoding="utf-8"))
+
+exchanges_config = {}
+for exchange_path in CONFIG_DIR.joinpath("exchanges").glob("*.yaml"):
+    _exchange_key_unicode = exchange_path.stem
+    _zone_keys = _exchange_key_unicode.split("→")
+    assert len(_zone_keys) == 2
+    exchange_key = "->".join(_zone_keys)
+    exchanges_config[exchange_key] = yaml.safe_load(
+        open(exchange_path, encoding="utf-8")
+    )
+
+
+co2eq_parameters_all = {
+    k: {
+        "defaults": defaults[k],
+        "zoneOverrides": {},
+    }
+    for k in ["fallbackZoneMixes", "isLowCarbon", "isRenewable"]
 }
-CO2EQ_PARAMETERS_DIRECT = {
-    **CO2EQ_PARAMETERS_ALL,
-    **json.load(
-        open(CONFIG_DIR.joinpath("co2eq_parameters_direct.json"), encoding="utf-8")
-    ),
+co2eq_parameters_direct = {
+    "emissionFactors": {
+        "defaults": defaults["emissionFactors"]["direct"],
+        "zoneOverrides": {},
+    },
 }
+co2eq_parameters_lifecycle = {
+    "emissionFactors": {
+        "defaults": defaults["emissionFactors"]["lifecycle"],
+        "zoneOverrides": {},
+    },
+}
+# Populate zone overrides
+for zone_key, zone_config in zones_config.items():
+    for k in ["fallbackZoneMixes", "isLowCarbon", "isRenewable"]:
+        if k in zone_config:
+            co2eq_parameters_all[k]["zoneOverrides"][zone_key] = zone_config[k]
+            del zone_config[k]
+    if "emissionFactors" in zone_config:
+        for k in ["direct", "lifecycle"]:
+            if k in zone_config["emissionFactors"]:
+                if k == "direct":
+                    co2eq_parameters_direct["emissionFactors"]["zoneOverrides"][
+                        zone_key
+                    ] = zone_config["emissionFactors"][k]
+                elif k == "lifecycle":
+                    co2eq_parameters_lifecycle["emissionFactors"]["zoneOverrides"][
+                        zone_key
+                    ] = zone_config["emissionFactors"][k]
+        del zone_config["emissionFactors"]
+
+ZONES_CONFIG = deepcopy(zones_config)
+EXCHANGES_CONFIG = deepcopy(exchanges_config)
+CO2EQ_PARAMETERS_DIRECT = {**co2eq_parameters_all, **co2eq_parameters_direct}
+CO2EQ_PARAMETERS_LIFECYCLE = {**co2eq_parameters_all, **co2eq_parameters_lifecycle}
 CO2EQ_PARAMETERS = CO2EQ_PARAMETERS_LIFECYCLE  # Global LCA is the default
+
 
 # Prepare zone bounding boxes
 ZONE_BOUNDING_BOXES: Dict[ZoneKey, BoundingBox] = {}
@@ -44,38 +88,46 @@ for zone_id, zone_config in ZONES_CONFIG.items():
         for sub_zone_id in zone_config["subZoneNames"]:
             ZONE_PARENT[sub_zone_id] = zone_id
 
-# Prepare zone neighbours
-ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = {}
-for k, v in EXCHANGES_CONFIG.items():
-    zone_names = k.split("->")
-    pairs = [(zone_names[0], zone_names[1]), (zone_names[1], zone_names[0])]
-    for zone_name_1, zone_name_2 in pairs:
-        if zone_name_1 not in ZONE_NEIGHBOURS:
-            ZONE_NEIGHBOURS[zone_name_1] = set()
-        ZONE_NEIGHBOURS[zone_name_1].add(zone_name_2)
+# This object represents the edges of the flow-tracing graph
+def generate_zone_neighbours(
+    zones_config, exchanges_config
+) -> Dict[ZoneKey, List[ZoneKey]]:
+    zone_neighbours = defaultdict(set)
+    for k, v in exchanges_config.items():
+        if not v.get("parsers", {}).get("exchange", None):
+            # Interconnector config has no parser, and will therefore not be part
+            # of the flowtracing graph
+            continue
+        zone_1, zone_2 = k.split("->")
+        if zones_config[zone_1].get("subZoneNames") or zones_config[zone_2].get(
+            "subZoneNames"
+        ):
+            # Both zones must not have subzones
+            continue
+        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+        for zone_name_1, zone_name_2 in pairs:
+            zone_neighbours[zone_name_1].add(zone_name_2)
+    # Sort
+    return {k: sorted(v) for k, v in zone_neighbours.items()}
 
-# Find neighbors to subzones and add them to parent zone.
-for zone in ZONES_CONFIG.keys():
-    subzones = ZONES_CONFIG[zone].get("subZoneNames", [])
-    if not subzones:
-        continue
 
-    for subzone in subzones:
-        for subzone_neighbor in ZONE_NEIGHBOURS.get(subzone, []):
-            if subzone_neighbor in subzones:
-                # ignore the neighbours that are within the zone
-                continue
+ZONE_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_zone_neighbours(
+    ZONES_CONFIG, EXCHANGES_CONFIG
+)
 
-            if zone not in ZONE_NEIGHBOURS:
-                ZONE_NEIGHBOURS[zone] = set()
+# This object represents all neighbours regardless of granularity
+def generate_all_neighbours(exchanges_config) -> Dict[ZoneKey, List[ZoneKey]]:
+    zone_neighbours = defaultdict(set)
+    for k, v in exchanges_config.items():
+        zone_1, zone_2 = k.split("->")
+        pairs = [(zone_1, zone_2), (zone_2, zone_1)]
+        for zone_name_1, zone_name_2 in pairs:
+            zone_neighbours[zone_name_1].add(zone_name_2)
+    # Sort
+    return {k: sorted(v) for k, v in zone_neighbours.items()}
 
-            # If neighbor zone is a subzone, we add the exchange to the parent zone
-            neighbor_zone = ZONE_PARENT.get(subzone_neighbor, subzone_neighbor)
-            ZONE_NEIGHBOURS[zone].add(neighbor_zone)
 
-# we want neighbors to always be in the same order
-for zone, neighbors in ZONE_NEIGHBOURS.items():
-    ZONE_NEIGHBOURS[zone] = sorted(neighbors)
+ALL_NEIGHBOURS: Dict[ZoneKey, List[ZoneKey]] = generate_all_neighbours(EXCHANGES_CONFIG)
 
 
 def emission_factors(zone_key: ZoneKey) -> Dict[str, float]:

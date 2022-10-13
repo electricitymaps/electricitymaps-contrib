@@ -1,0 +1,10 @@
+capacity:
+  - -500
+  - 500
+lonlat:
+  - -5.7
+  - 53
+parsers:
+  exchange: ELEXON.fetch_exchange
+  exchangeForecast: ENTSOE.fetch_exchange_forecast
+rotation: -80

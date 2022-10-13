@@ -1,0 +1,31 @@
+bounding_box:
+  - - 15.969981316000087
+    - -47.46575286299992
+  - - 38.47779381600009
+    - -21.626451924999927
+capacity:
+  coal: 38773
+  hydro: 600
+  hydro storage: 2724
+  nuclear: 1860
+  oil: 2409
+contributors:
+  - IV1T3
+fallbackZoneMixes:
+  _source: Our world in data 2019
+  _url: https://ourworldindata.org/grapher/electricity-prod-source-stacked?time=earliest..latest&country=~ZAF
+  powerOriginRatios:
+    value:
+      coal: 0.88
+      nuclear: 0.06
+      solar: 0.03
+      wind: 0.03
+isLowCarbon:
+  unknown:
+    value: 1
+isRenewable:
+  unknown:
+    value: 1
+parsers:
+  production: ZA.fetch_production
+timezone: Africa/Johannesburg

@@ -1,35 +1,35 @@
 #!/usr/bin/env python3
-import logging
+
 import math
-from asyncio.log import logger
 from copy import copy
 from datetime import datetime, timedelta
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
-import numpy as np
 import pandas as pd
-import requests
+import pytz
+from requests import Session, get
 
 from electricitymap.contrib.config import ZONES_CONFIG
+from parsers import DK, ENTSOE
 from parsers.lib.config import refetch_frequency
 
-from . import DK, ENTSOE, statnett
-
 ZONE_CONFIG = ZONES_CONFIG["NL"]
+UTC = pytz.UTC
 
 
 @refetch_frequency(timedelta(days=1))
 def fetch_production(
-    zone_key="NL",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "NL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ):
     if target_datetime is None:
-        target_datetime = arrow.utcnow()
-    else:
-        target_datetime = arrow.get(target_datetime)
-    r = session or requests.session()
+        target_datetime = arrow.utcnow().datetime
+
+    r = session or Session()
 
     consumptions = ENTSOE.fetch_consumption(
         zone_key=zone_key, session=r, target_datetime=target_datetime, logger=logger
@@ -38,11 +38,14 @@ def fetch_production(
         return
     for c in consumptions:
         del c["source"]
-    df_consumptions = pd.DataFrame.from_dict(consumptions).set_index("datetime")
+    df_consumptions = pd.DataFrame.from_dict(consumptions)
+    df_consumptions["datetime"] = df_consumptions["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
 
     # NL has exchanges with BE, DE, NO, GB, DK-DK1
     exchanges = []
-    for exchange_key in ["BE", "DE", "GB"]:
+    for exchange_key in ["BE", "DE", "GB", "NO-NO2"]:
         zone_1, zone_2 = sorted([exchange_key, zone_key])
         exchange = ENTSOE.fetch_exchange(
             zone_key1=zone_1,
@@ -54,27 +57,6 @@ def fetch_production(
         if not exchange:
             return
         exchanges.extend(exchange or [])
-
-    # add NO data, fetch once for every hour
-    # This introduces an error, because it doesn't use the average power flow
-    # during the hour, but rather only the value during the first minute of the
-    # hour!
-    zone_1, zone_2 = sorted(["NO", zone_key])
-    exchange_NO = [
-        statnett.fetch_exchange(
-            zone_key1=zone_1,
-            zone_key2=zone_2,
-            session=r,
-            target_datetime=dt.datetime,
-            logger=logger,
-        )
-        for dt in arrow.Arrow.range(
-            "hour",
-            arrow.get(min([e["datetime"] for e in exchanges])).replace(minute=0),
-            arrow.get(max([e["datetime"] for e in exchanges])).replace(minute=0),
-        )
-    ]
-    exchanges.extend(exchange_NO)
 
     # add DK1 data (only for dates after operation)
     if target_datetime > arrow.get("2019-08-24", "YYYY-MM-DD"):
@@ -114,7 +96,10 @@ def fetch_production(
         del e["source"]
         del e["netFlow"]
 
-    df_exchanges = pd.DataFrame.from_dict(exchanges).set_index("datetime")
+    df_exchanges = pd.DataFrame.from_dict(exchanges)
+    df_exchanges["datetime"] = df_exchanges["datetime"].apply(
+        lambda x: x.replace(tzinfo=UTC)
+    )
     # Sum all exchanges to NL imports
     df_exchanges = df_exchanges.groupby("datetime").sum()
 
@@ -175,7 +160,9 @@ def fetch_production(
 
 
 def fetch_production_energieopwek_nl(
-    session=None, target_datetime=None, logger=logging.getLogger(__name__)
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> list:
     if target_datetime is None:
         target_datetime = arrow.utcnow()
@@ -206,8 +193,8 @@ def fetch_production_energieopwek_nl(
     return output
 
 
-def get_production_data_energieopwek(date, session=None):
-    r = session or requests.session()
+def get_production_data_energieopwek(date, session: Optional[Session] = None):
+    r = session or Session()
 
     # The API returns values per day from local time midnight until the last
     # round 10 minutes if the requested date is today or for the entire day if
@@ -262,10 +249,10 @@ def get_wind_capacities() -> pd.DataFrame:
 
     capacities_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
     try:
-        r = requests.get(url_wind_capacities)
+        r = get(url_wind_capacities)
         per_year_split_capacity = r.json()["combinedPowerPerYearSplitByLandAndSea"]
     except Exception as e:
-        logger.error(f"Error fetching wind capacities: {e}")
+        Logger.error(f"Error fetching wind capacities: {e}")
         return capacities_df
 
     per_year_capacity = {
@@ -298,10 +285,10 @@ def get_solar_capacities() -> pd.DataFrame:
     solar_capacity_df = pd.DataFrame(columns=["datetime", "capacity (MW)"])
 
     try:
-        r = requests.get(url_solar_capacity)
+        r = get(url_solar_capacity)
         per_year_capacity = r.json()["value"]
     except Exception as e:
-        logger.error(f"Error fetching solar capacities: {e}")
+        Logger.error(f"Error fetching solar capacities: {e}")
         return solar_capacity_df
 
     for yearly_row in per_year_capacity:

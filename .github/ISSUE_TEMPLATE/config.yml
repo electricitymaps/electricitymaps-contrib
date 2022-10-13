@@ -1,0 +1,7 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Electricity Maps Slack Channel"
+    url: https://slack.electricitymaps.com/
+    about: |
+      The Electricity Maps Slack Channel is a community for sharing and discussing Electricity Map data.
+      You can use this channel for general questions about Electricity Map.

@@ -97,8 +97,8 @@
     "newversion": "Saadaval on uus versioon! Vajutage ümberlaadimiseks <a onClick=\"location.reload(true);\">siia</a>.",
     "webgl-not-supported": "Kaarti ei saa renderdada, kuna see brauser ei toeta WebGL-i.",
     "retrynow": "Proovi kohe uuesti",
-    "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
-    "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
+    "database-ad": "Otsite ajaloo andmeid? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Vaadake meie andmebaasi!</a>",
+    "api-ad": "Tahate reaalajas andmeid enda rakendusse või seadmesse? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Proovige meie API-t!</a>",
     "legend": "Legend",
     "faq": "Korduma kippuvad küsimused"
   },
@@ -145,7 +145,7 @@
     "divideExistingArea-question": "Kas saate jaotada minu piirkonda väiksemateks osadeks?",
     "divideExistingArea-answer": "Muidugi, kui iga piirkonna osa kohta on olemas eraldi andmeallikad. Teil on võimalik <a href=\"#contribute\" class=\"entry-link\">meid aidata, lisades uued andmeallikaid</a>",
     "seeHistoricalData-question": "Kas ma saan vaadata piirkonna ajalugu kaugemale kui 24 tundi tagasi?",
-    "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
+    "seeHistoricalData-answer": "Saate osta juurdepääsu kõigile meie ajaloo andmetele läbi meie <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">andmebaasi</a>."
   },
   "methodology": {
     "groupName": "Meie meetodid",
@@ -173,22 +173,22 @@
     "dataOrigins-question": "Kuidas te oma andmed saate?",
     "dataOrigins-answer": "Me arvutame kõik oma andmed avalikult kättesaadavate andmete põhjal, mille on avaldanud elektrivõrguettevõtted, ametlikud asutused ja teised. Võite klõpsata piirkonnal, et näha andmete päritolu kohta täpsemat teavet.",
     "dataDownload-question": "Kas ma saan teie andmeid alla laadida?",
-    "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
+    "dataDownload-answer": "Saate osta juurdepääsu kõigile meie andmetele läbi meie <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">andmebaasi</a>.",
     "dataIntegration-question": "Kas ma saan teie andmeid reaalajas enda rakendusse või seadmesse integreerida?",
-    "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
+    "dataIntegration-answer": "Jah! Me müüme juurdepääsu <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">reaalajas API-le</a>, mis sisaldab ka tulevikuprognoose."
   },
   "aboutUs": {
     "groupName": "Meist",
     "whoAreYou-question": "Kes te olete?",
-    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
+    "whoAreYou-answer": "The Electricity Map'i töötas välja ja peab ülal <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, Taani idufirma. Meie eesmärk on aidata inimkonnal jõuda jätkusuutlikule tasemele, mõõtes ja muutes laialdaselt kättesaadavaks meie igapäevaselt tehtud otsuste mõju kliimale.",
     "feedback-question": "Kas ma saan teile saata tagasisidet?",
-    "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymap.org\">saatke meile e-kiri!</a>",
+    "feedback-answer": "Jah, palun! Täitke <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">meie tagasiside vorm</a> või <a href=\"mailto:app@electricitymaps.com\">saatke meile e-kiri!</a>",
     "contribute-question": "Kas ma saan aidata teie projektile kaasa?",
     "contribute-answer": " Jah! The Electricity Map on avatud lähtekoodiga projekt, mille tegid võimalikuks meie vabatahtlikud panustajad. Kui soovite aidata kaardi väljatöötamisel, kas siis lisades uute piirkondadele andmeallikaid, lisades uued funktsioonid või parandades esinevad vead, siis liituge julgelt meie <a href=\"https://github.com/corradio/electricitymap/\" target=\"_blank\">github</a> platvormiga.",
     "workTogether-question": "Kas me saaksime koos töötada?",
-    "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymap.org\">Saatke meile e-kiri!</a>",
+    "workTogether-answer": "Otsime aktiivselt uusi koostöövõimalusi. <a href=\"mailto:app@electricitymaps.com\">Saatke meile e-kiri!</a>",
     "disclaimer-question": "Vastutusest loobumine",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> avaldab andmed ja pildid <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> avaldab andmed ja pildid <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> keskkonnas teavitustöö raames. Sellega ei kinnitata õigsust ega anda garantiid ja jäetakse õigus sisu igal ajal muuta või osasid eemaldada ilma, et peaksime teid sellest teavitama. Electricity Maps ei võta selle eest vastutust ega vastuta kahjude või kulude eest, mis võivad tekkida Electricity Maps'ist või nendest saadud teabe ebatäpsuse, puudulikkuse, enneaegsuse või aegumise tagajärjel.  Ilma ametliku eelneva kirjaliku nõusolekuta ei ole lubatud seda veebisaiti ega selle üksikuid elemente teistele veebisaitidele lisada.<br><br> Kõik omandiõigused kuuluvad õiguslikult omanikele ja selle litsentsiandjatele. Nende materjalide, eriti energiaandmete kopeerimine, levitamine ja mis tahes muu kasutamine ei ole lubatud ilma Electricity Maps'i kirjaliku loata, välja arvatud ja ainult juhul, kui imperatiivsete õigusnormide määrustes on sätestatud teisiti (näiteks õigus tsiteerida), kui ei ole konkreetsete materjalide puhul sätestatud teisiti. <br><br>Seda lahtiütlust võidakse aeg-ajalt uuendada."
   },
   "zoneShortName": {
     "AD": { "zoneName": "Andorra" },
@@ -291,6 +291,7 @@
     "EH": { "zoneName": "Lääne-Sahara" },
     "ER": { "zoneName": "Eritrea" },
     "ES": { "zoneName": "Hispaania" },
+    "ES-CE": { "countryName": "Hispaania", "zoneName": "Ceuta" },
     "ES-IB-FO": { "countryName": "Hispaania", "zoneName": "Formentera" },
     "ES-IB-IZ": { "countryName": "Hispaania", "zoneName": "Ibiza" },
     "ES-IB-MA": { "countryName": "Hispaania", "zoneName": "Mallorca" },
@@ -301,6 +302,7 @@
     "ES-CN-IG": { "countryName": "Hispaania", "zoneName": "Gomera" },
     "ES-CN-LP": { "countryName": "Hispaania", "zoneName": "La Palma" },
     "ES-CN-TE": { "countryName": "Hispaania", "zoneName": "Tenerife" },
+    "ES-ML": { "countryName": "Hispaania", "zoneName": "Melilla" },
     "ET": { "zoneName": "Etioopia" },
     "FI": { "zoneName": "Soome" },
     "FJ": { "zoneName": "Fidži" },

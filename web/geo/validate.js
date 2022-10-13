@@ -89,9 +89,9 @@ function matchesZonesConfig(fc) {
   }
 }
 
-function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES }) {
+function zeroGaps(fc, { ERROR_PATH, MIN_AREA_HOLES, SLIVER_RATIO }) {
   const dissolved = getPolygons(dissolve(getPolygons(fc)));
-  const holes = getHoles(dissolved, MIN_AREA_HOLES);
+  const holes = getHoles(dissolved, MIN_AREA_HOLES, SLIVER_RATIO);
 
   if (holes.features.length > 0) {
     writeJSON(`${ERROR_PATH}/gaps.geojson`, holes);
@@ -132,10 +132,15 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
   // add bbox to features to increase speed
   const features = getPolygons(fc).features.map((ft) => ({ ft, bbox: bboxPolygon(bbox(ft)) }));
 
+  const countriesToIgnore = fc.features.filter((ft) => ft.properties.isCombined).map((ft) => ft.properties.countryKey);
+
   const overlaps = features
     .filter(
       (ft1, idx1) =>
         features.filter((ft2, idx2) => {
+          if (countriesToIgnore.includes(ft1.ft.properties.countryKey)) {
+            return false;
+          }
           if (idx1 !== idx2 && intersect(ft1.bbox, ft2.bbox)) {
             const intersection = intersect(ft1.ft, ft2.ft);
             if (intersection && area(intersection) > MIN_AREA_INTERSECTION) {
@@ -145,8 +150,7 @@ function zeroOverlaps(fc, { MIN_AREA_INTERSECTION }) {
         }).length
     )
     .map(({ ft, _ }) => ft.properties.zoneName);
-
-  if (overlaps.length) {
+  if (overlaps.length > 0) {
     overlaps.forEach((x) => console.error(`${x} overlaps with another feature`));
     throw Error('Feature(s) overlap');
   }

@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import datetime
-import logging
+from datetime import datetime
 from io import StringIO
-from typing import Dict, List, Union
+from logging import Logger, getLogger
+from typing import Dict, List, Optional
 
 import arrow
 import pandas as pd
-import requests
+from requests import Session, cookies
+
+from .lib.exceptions import ParserException
 
 # Abbreviations:
 # JP-HKD : Hokkaido
@@ -49,8 +51,8 @@ EXCHANGE_COLUMNS = ["sortedZoneKeys", "netFlow", "source"]
 
 
 def _fetch_exchange(
-    session: requests.Session, datetime: datetime, sorted_zone_keys: str
-) -> dict:
+    session: Session, datetime: datetime, sorted_zone_keys: str
+) -> List[dict]:
     exch_id = EXCHANGE_MAPPING[sorted_zone_keys]
 
     # This authorises subsequent calls
@@ -84,15 +86,15 @@ def _fetch_exchange(
 
 
 def fetch_exchange(
-    zone_key1="JP-TH",
-    zone_key2="JP-TK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key1: str = "JP-TH",
+    zone_key2: str = "JP-TK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """Requests the last known power exchange (in MW) between two zones."""
     if not session:
-        session = requests.session()
+        session = Session()
 
     query_datetime = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
 
@@ -101,15 +103,15 @@ def fetch_exchange(
 
 
 def fetch_exchange_forecast(
-    zone_key1="JP-TH",
-    zone_key2="JP-TK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
-) -> dict:
+    zone_key1: str = "JP-TH",
+    zone_key2: str = "JP-TK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
+) -> List[dict]:
     """Gets exchange forecast between two specified zones."""
     if not session:
-        session = requests.session()
+        session = Session()
 
     query_datetime = arrow.get(target_datetime).to("Asia/Tokyo").strftime("%Y/%m/%d")
 
@@ -122,18 +124,14 @@ def fetch_exchange_forecast(
     return _fetch_exchange(session, query_datetime, sorted_zone_keys)
 
 
-def get_cookies(
-    session: Union[requests.Session, None] = None
-) -> requests.cookies.RequestsCookieJar:
+def get_cookies(session: Optional[Session] = None) -> cookies.RequestsCookieJar:
     if not session:
-        session = requests.session()
+        session = Session()
     session.get("http://occtonet.occto.or.jp/public/dfw/RP11/OCCTO/SD/LOGIN_login")
     return session.cookies
 
 
-def get_form_data(
-    session: requests.Session, exchange_id: int, datetime: str
-) -> Dict[str, str]:
+def get_form_data(session: Session, exchange_id: int, datetime: str) -> Dict[str, str]:
     form_data = {
         "ajaxToken": "",
         "downloadKey": "",
@@ -165,10 +163,11 @@ def get_form_data(
     response_content = r.json()
 
     if response_content["root"]["errMessage"]:
-        raise RuntimeError(
+        raise ParserException(
+            "occtonet.py",
             "Headers not available due to {}".format(
                 response_content["root"]["errMessage"]
-            )
+            ),
         )
     else:
         form_data["msgArea"] = response_content["root"]["bizRoot"]["header"]["msgArea"][
@@ -192,10 +191,11 @@ def get_form_data(
     response_content = r.json()
 
     if response_content["root"]["errFields"]:
-        raise RuntimeError(
+        raise ParserException(
+            "occtonet.py",
             "Request token not available due to {}".format(
                 response_content["root"]["errFields"]
-            )
+            ),
         )
     else:
         form_data["downloadKey"] = response_content["root"]["bizRoot"]["header"][
@@ -207,9 +207,7 @@ def get_form_data(
     return form_data
 
 
-def _get_exchange(
-    session: requests.Session, form_data: Dict[str, str], columns: List[str]
-):
+def _get_exchange(session: Session, form_data: Dict[str, str], columns: List[str]):
     def parse_dt(str_dt: str) -> datetime:
         return arrow.get(str_dt).replace(tzinfo="Asia/Tokyo").datetime
 
@@ -229,11 +227,11 @@ def _get_exchange(
     return df
 
 
-def get_exchange(session, form_data):
+def get_exchange(session: Session, form_data):
     return _get_exchange(session, form_data, ["対象日付", "対象時刻", "潮流実績"])
 
 
-def get_exchange_fcst(session, form_data):
+def get_exchange_fcst(session: Session, form_data):
     return _get_exchange(session, form_data, ["対象日付", "対象時刻", "計画潮流(順方向)"])
 
 

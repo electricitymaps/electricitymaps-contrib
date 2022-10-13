@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
-import { max as d3Max } from 'd3-array';
+import { max as d3Max, min as d3Min } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
 
 import { getTooltipPosition } from '../helpers/graph';
@@ -15,11 +15,12 @@ const prepareGraphData = (historyData) => {
     return {};
   }
 
-  const currencySymbol = getSymbolFromCurrency(((historyData.at(0) || {}).price || {}).currency);
+  const currencySymbol = getSymbolFromCurrency(historyData.at(0)?.price?.currency);
   const valueAxisLabel = `${currencySymbol || '?'} / MWh`;
 
-  const priceMaxValue = d3Max(historyData.map((d) => (d.price || {}).value));
-  const priceColorScale = scaleLinear().domain([0, priceMaxValue]).range(['yellow', 'red']);
+  const priceMaxValue = d3Max(historyData.map((d) => d.price?.value));
+  const priceMinValue = d3Min(historyData.map((d) => d.price?.value));
+  const priceColorScale = scaleLinear().domain([priceMinValue, priceMaxValue]).range(['lightgray', '#616161']);
 
   const data = historyData.map((d) => ({
     price: d.price && d.price.value,
@@ -29,14 +30,12 @@ const prepareGraphData = (historyData) => {
   }));
 
   const layerKeys = ['price'];
-  const layerStroke = () => 'darkgray';
-  const layerFill = () => '#616161';
+  const layerFill = (key) => (d) => priceColorScale(d.data[key]);
   const markerFill = (key) => (d) => priceColorScale(d.data[key]);
 
   return {
     data,
     layerKeys,
-    layerStroke,
     layerFill,
     markerFill,
     valueAxisLabel,

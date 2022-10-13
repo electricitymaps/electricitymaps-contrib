@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Dict, Optional
+
 from requests import Session
 
 from .lib import IN, web, zonekey
@@ -15,7 +19,10 @@ plants = {
 
 
 def fetch_consumption(
-    zone_key="IN-DL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-DL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi consumption"""
     if target_datetime:
@@ -43,13 +50,16 @@ def fetch_consumption(
 
 
 def fetch_production(
-    zone_key="IN-DL", session=None, target_datetime=None, logger=None
+    zone_key: str = "IN-DL",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Fetch Delhi production"""
     if target_datetime:
         raise NotImplementedError("This parser is not yet able to parse past dates")
 
-    energy = {"Gas": 0, "G2E": 0, "Coal": 0}
+    energy: Dict[str, float] = {"Gas": 0, "G2E": 0, "Coal": 0}
 
     zonekey.assert_zone_key(zone_key, "IN-DL")
 

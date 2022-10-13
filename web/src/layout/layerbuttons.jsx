@@ -51,7 +51,7 @@ export default () => {
 
   return (
     <HiddenOnMobile>
-      <div className="layer-buttons-container">
+      <div className={'layer-buttons-container'}>
         <LanguageSelect />
         <Link to={windToggledLocation} hasError={windDataError || !isWeatherEnabled}>
           <ButtonToggle

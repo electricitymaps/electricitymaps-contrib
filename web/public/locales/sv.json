@@ -58,8 +58,8 @@
     "dataIsDelayed": "Data för denna region kan vara upp till %s timme/timmar fördröjd. Aktuell data kan inte visas.",
     "estimated": "uppskattad",
     "aggregated": "aggregerad",
-    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMap/electricitymap-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
-    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricitymap/electricitymap-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
+    "dataIsEstimated": "En del data för denna region är uppskattad. Läs mer om vår uppskattingsmetodik <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">här</a>.",
+    "exchangesAreMissing": "Överföringar är inkluderade i beräkningarna, men visas för närvarande inte. Läs mer om våra historiska sammanställningar <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">här</a>.",
     "estimatedTooltip": "Realtidsdatan för denna region är uppskattad och baserat på källdata samt antaganden av modellen.",
     "aggregatedTooltip": "Data för denna zon är aggregerad baserat på historiska timvärden",
     "helpUs": "Hjälp oss identifiera problem genom att kolla på <a href=\"%s\" target=\"_blank\">körningsloggarna</a> eller kontakta dataleverantören.",
@@ -165,7 +165,10 @@
     "cpinfo": "<b>konsumtion</b> tar hänsyn till import och export, <b>produktion</b> ignorerar det",
     "selectLanguage": "Välj språk",
     "lowCarbDescription": "Inkluderar förnybart och kärnkraft",
-    "dataIsDelayed": "Data är fördröjd"
+    "dataIsDelayed": "Data är fördröjd",
+    "aggregated": "aggregerad",
+    "detailed": "detaljerad",
+    "aggregateinfo": "Länder med zoner som sakanar data kan inte bli aggregerade"
   },
   "misc": {
     "maintitle": "Aktuellt 24/7 CO₂-utsläpp från elproduktion",
@@ -173,8 +176,8 @@
     "newversion": "En ny version är tillgänglig! Tryck <a onClick=\"location.reload(true);\">här</a> för att ladda om.",
     "webgl-not-supported": "Kartan kan inte renderas då denna webbläsare inte stöder WebGL.",
     "retrynow": "Försök igen",
-    "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
-    "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
+    "database-ad": "Letar du efter historisk data? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Kolla in vår databas!</a>",
+    "api-ad": "Vill ha uppdaterad data i din app eller på din enhet? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prova vårt API!</a>",
     "legend": "Förklaring",
     "faq": "Vanliga frågor",
     "privacyPolicy": "Integritetspolicy",
@@ -225,7 +228,7 @@
     "divideExistingArea-question": "Kan ni dela in min region i mindre delar?",
     "divideExistingArea-answer": "Självklart, om det finns separata datakällor för varje del av regionen. Du kan <a href=\"#contribute\" class=\"entry-link\">hjälpa oss genom att lägga till datakällor</a>",
     "seeHistoricalData-question": "Kan jag se historik för en region längre tillbaka än 24 timmar?",
-    "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>."
+    "seeHistoricalData-answer": "Du kan köpa åtkomst till all vår historiska data från vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databas</a>."
   },
   "methodology": {
     "groupName": "Våra metoder",
@@ -253,22 +256,22 @@
     "dataOrigins-question": "Hur får ni er data?",
     "dataOrigins-answer": "Vi beräknar all vi data från publik tillgänglig data publicerad av elnätsoperatörer, officiella myndigheter eller andra. Du kan klicka på en region för att se mer detaljer om ursprunget för dess data.",
     "dataDownload-question": "Kan jag ladda ned er data?",
-    "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">databas</a>.",
+    "dataDownload-answer": "Du kan köpa åtkomst till all vår data i vår <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">databas</a>.",
     "dataIntegration-question": "Kan jag integrera er live-data i min applikation eller utrustning?",
-    "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://electricitymap.org?utm_source=app.electricitymap.org&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
+    "dataIntegration-answer": "Ja! Vi säljer åtkomst till ett <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">realtids-API</a>, som inkluderar framtida prognoser."
   },
   "aboutUs": {
     "groupName": "Om oss",
     "whoAreYou-question": "Vilka är ni?",
-    "whoAreYou-answer": "Appen är utvecklad och förvaltad av <a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
+    "whoAreYou-answer": "Appen är utvecklad och förvaltad av <a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a>, ett litet danskt nystartat företag. Vårt mål är att hjälpa mänskligheten att nå ett hållbart samhälle genom att samla in och tillgängliggöra klimatpåverkan från våra dagliga val.",
     "feedback-question": "Kan jag ge er någon återkoppling?",
-    "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymap.org\">skicka oss ett e-brev!</a>",
+    "feedback-answer": "Gärna! Fyll i <a href=\"https://forms.gle/VHaeHzXyGodFKZY18\" target=\"_blank\">vårt återkopplingsformulär</a> eller <a href=\"mailto:app@electricitymaps.com\">skicka oss ett e-brev!</a>",
     "contribute-question": "Kan jag bidra till ert projekt?",
-    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricitymap/electricitymap-contrib/\" target=\"_blank\">github</a>.",
+    "contribute-answer": "Ja! Appen är ett öppet källkodsprojekt vilket är möjligt tack vara våra volontärer. Om du vill hjälpa till att utveckla kartan, antingen genom att lägga till datakällor för nya regioner, lägga till nya funktioner eller fixa buggar, är du välkommen att gå med i vår <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/\" target=\"_blank\">github</a>.",
     "workTogether-question": "Kan vi arbeta tillsammans?",
-    "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymap.org\">Skicka oss ett e-brev</a>!",
+    "workTogether-answer": "Vi letar aktivt efter nya möjligheter att samarbeta. <a href=\"mailto:app@electricitymaps.com\">Skicka oss ett e-brev</a>!",
     "disclaimer-question": "Ansvarsfriskrivning",
-    "disclaimer-answer": "<a href=\"https://electricitymap.org/\" target=\"_blank\">Electricity Maps</a> publicerar data och bilder på The <a href=\"https://www.electricitymap.org/\" target=\"_blank\">Electricity Maps</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Electricity Maps påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på Electricity Maps, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Electricity Maps, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
+    "disclaimer-answer": "<a href=\"https://electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> publicerar data och bilder på The <a href=\"https://www.electricitymaps.com/\" target=\"_blank\">Electricity Maps</a> för informationsändamål. Det görs inga påståenden om korrekthet och inte heller lämnas några garantier, och vi förbehåller oss rätten att ändra innehållet när som helst eller ta bort delar utan att behöva informera dig om detta. Electricity Maps påtar sig inget ansvar för några skador eller kostnader som kan förorsakas till följd av felaktigheter, ofullständigheter, otydligheter eller inaktuell data på Electricity Maps, eller information som härrör från den. Det är inte tillåtet att använda denna hemsida, eller dess individuella element, på andra hemsidor, utan formellt skriftligt förhandsgodkännande.<br><br>Alla immateriella rättigheter tillhör de berättigade ägarna och dess licensgivare. Kopiering, distribution och annan användning av dessa material, i synnerhet energidata, är otillåtet utan skriftligt tillstånd från Electricity Maps, utom och endast i den utsträckning som anges i bestämmelser i obligatorisk lagstiftning (så som rätten att citera), om inget annat anges för specifikt material.<br><br>Denna ansvarsfriskrivning kan uppdateras då och då"
   },
   "zoneShortName": {
     "AD": {
@@ -612,6 +615,10 @@
     "ES": {
       "zoneName": "Spanien"
     },
+    "ES-CE": {
+      "countryName": "Spanien",
+      "zoneName": "Ceuta"
+    },
     "ES-IB-FO": {
       "countryName": "Spanien",
       "zoneName": "Formentera"
@@ -652,6 +659,10 @@
       "countryName": "Spanien",
       "zoneName": "Teneriffa"
     },
+    "ES-ML": {
+      "countryName": "Spanien",
+      "zoneName": "Melilla"
+    },
     "ET": {
       "zoneName": "Etiopien"
     },
@@ -669,6 +680,14 @@
     },
     "FO": {
       "zoneName": "Färöarna"
+    },
+    "FO-MI": {
+      "countryName": "Färöarna",
+      "zoneName": "Huvudöarna"
+    },
+    "FO-SI": {
+      "countryName": "Färöarna",
+      "zoneName": "Söderön"
     },
     "FR": {
       "zoneName": "Frankrike"
@@ -1353,6 +1372,22 @@
     },
     "SE": {
       "zoneName": "Sverige"
+    },
+    "SE-SE1": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Sverige"
+    },
+    "SE-SE2": {
+      "countryName": "Sverige",
+      "zoneName": "Norra Mellansverige"
+    },
+    "SE-SE3": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Mellansverige"
+    },
+    "SE-SE4": {
+      "countryName": "Sverige",
+      "zoneName": "Södra Sverige"
     },
     "SG": {
       "zoneName": "Singapore"

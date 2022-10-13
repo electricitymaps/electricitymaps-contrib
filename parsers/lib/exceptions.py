@@ -1,17 +1,20 @@
+from typing import Optional
+
+
 class ParserException(Exception):
     """Parser Exception
 
     Args:
         parser (str): Parser name.
         message (str): String describing the exception.
-        zone_key (str): Country code or sortedZoneKeys.
+        zone_key (str | None): Country code or sortedZoneKeys.
 
     Attributes:
         parser (str): Parser name.
         message (str): String describing the exception.
-        zone_key (str): Country code or sortedZoneKeys."""
+        zone_key (str | None): Country code or sortedZoneKeys."""
 
-    def __init__(self, parser, message, zone_key=None):
+    def __init__(self, parser: str, message: str, zone_key: Optional[str] = None):
         super(ParserException, self).__init__(message)
         self.parser = parser
         self.zone_key = zone_key

@@ -2,12 +2,15 @@
 
 """Parser for the Orkney Islands"""
 
-import logging
+
+from datetime import datetime
+from logging import Logger, getLogger
+from typing import Optional
 
 import arrow
 import dateutil
-import requests
 from bs4 import BeautifulSoup
+from requests import Response, Session
 
 # There is a 2MW storage battery on the islands.
 # http://www.oref.co.uk/orkneys-energy/innovations-2/
@@ -28,7 +31,7 @@ def get_json_data(session):
     Requests json data and extracts generation information.
     Returns a dictionary.
     """
-    s = session or requests.Session()
+    s = session or Session()
     req = s.get(GENERATION_LINK)
     raw_json_data = req.json()
 
@@ -53,8 +56,8 @@ def get_datetime(session):
     Extracts data timestamp from html and checks it's less than 2 hours old.
     Returns an arrow object.
     """
-    s = session or requests.Session()
-    req = s.get(DATETIME_LINK)
+    s = session or Session()
+    req: Response = s.get(DATETIME_LINK)
     soup = BeautifulSoup(req.text, "html.parser")
 
     data_table = soup.find("div", {"class": "Widget-Base Widget-ANMGraph"})
@@ -78,10 +81,10 @@ def get_datetime(session):
 
 
 def fetch_production(
-    zone_key="GB-ORK",
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key: str = "GB-ORK",
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known production mix (in MW) of a given country."""
     if target_datetime:
@@ -111,11 +114,11 @@ def fetch_production(
 
 
 def fetch_exchange(
-    zone_key1,
-    zone_key2,
-    session=None,
-    target_datetime=None,
-    logger=logging.getLogger(__name__),
+    zone_key1: str,
+    zone_key2: str,
+    session: Optional[Session] = None,
+    target_datetime: Optional[datetime] = None,
+    logger: Logger = getLogger(__name__),
 ) -> dict:
     """Requests the last known power exchange (in MW) between two zones."""
     sorted_zone_keys = "->".join(sorted([zone_key1, zone_key2]))

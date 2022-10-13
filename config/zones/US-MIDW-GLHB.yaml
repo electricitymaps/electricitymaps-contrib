@@ -1,0 +1,60 @@
+bounding_box:
+  - - -89.44135
+    - 36.44203
+  - - -87.9829
+    - 37.83698
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 1099.8
+  gas: 301.5
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: GridLiance
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 756.9396739818177
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 744.3764201762978
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 756.9396739818177
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 744.3764201762978
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 816.979962036698
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 804.4231200348241
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 816.979962036698
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 804.4231200348241
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+timezone: US/Central
