@@ -107,7 +107,7 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
             result[generation_type] = int(value)
     except Exception as e:
         raise ValueError(
-            "Data for zone {} could not be retrieved from ENTSOE".format(zone_key), e
+            f"Data for zone {zone_key} could not be retrieved from ENTSOE", e
         )
 
     return result
