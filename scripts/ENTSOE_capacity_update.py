@@ -70,7 +70,7 @@ def parse_from_entsoe_api(zone_key: ZoneKey, token: str) -> dict:
 
     if zone_key not in ENTSOE_DOMAIN_MAPPINGS:
         print(
-            "Zone {} does not exist in the ENTSOE domain mapping".format(zone_key),
+            f"Zone {zone_key} does not exist in the ENTSOE domain mapping",
             file=sys.stderr,
         )
         exit(1)
