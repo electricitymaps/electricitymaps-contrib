@@ -131,5 +131,17 @@ function isValidDate(date) {
 
   return true;
 }
+/**
+ * @param {string[]} dataSources - array of data sources.
+ * @param {string} language - ISO 639-1 language code (`en`) or ISO 639-1 language code + ISO 3166-1 alpha-2 country code (`en-GB`).
+ * @returns {string} formatted string of data sources.
+ */
+function formatDataSources(dataSources, language) {
+  if (typeof Intl.ListFormat !== 'undefined') {
+    return new Intl.ListFormat(language, { style: 'long', type: 'conjunction' }).format(dataSources);
+  } else {
+    return dataSources.join(', ');
+  }
+}
 
-export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick };
+export { formatPower, formatCo2, scalePower, formatDate, formatTimeRange, formatDateTick, formatDataSources };
