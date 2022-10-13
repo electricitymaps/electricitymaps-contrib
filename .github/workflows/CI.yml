@@ -1,8 +1,6 @@
 name: CI
 on:
   push:
-    branches:
-      - master
   pull_request:
 
 jobs:
@@ -24,7 +22,7 @@ jobs:
           fetch-depth: 2
       - name: Check frontend files
         id: check-frontend
-        uses: tj-actions/changed-files@v32.0.0
+        uses: tj-actions/changed-files@v32.1.0
         with:
           files: |
             **/web/**/*
@@ -33,19 +31,19 @@ jobs:
             **/web/**/*.md
       - name: Check markdown files
         id: check-markdown
-        uses: tj-actions/changed-files@v32.0.0
+        uses: tj-actions/changed-files@v32.1.0
         with:
           files: |
             **/*.md
       - name: Check json files
         id: check-json
-        uses: tj-actions/changed-files@v32.0.0
+        uses: tj-actions/changed-files@v32.1.0
         with:
           files: |
             **/*.json
       - name: Check python files
         id: check-python
-        uses: tj-actions/changed-files@v32.0.0
+        uses: tj-actions/changed-files@v32.1.0
         with:
           files: |
             **/*.py
@@ -54,7 +52,7 @@ jobs:
             .python-version
       - name: Check if workflows have changed
         id: check-workflows
-        uses: tj-actions/changed-files@v32.0.0
+        uses: tj-actions/changed-files@v32.1.0
         with:
           files: |
             **/.github/workflows/**/*.yml
@@ -114,3 +112,7 @@ jobs:
     needs: [setup]
     if: needs.setup.outputs.python != 'false' || needs.setup.outputs.workflows != 'false'
     uses: ./.github/workflows/python.yml
+
+  codeql:
+    name: CodeQL
+    uses: ./.github/workflows/codeql.yml
