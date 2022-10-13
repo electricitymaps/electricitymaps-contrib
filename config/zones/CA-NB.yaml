@@ -1,0 +1,31 @@
+_comment: gas includes an 88 MW cogeneration plant
+bounding_box:
+  - - -69.56355977593142
+    - 44.102757112000205
+  - - -63.27110755099994
+    - 48.57514069200005
+capacity:
+  biomass: 38
+  coal: 467
+  gas: 378
+  hydro: 950
+  nuclear: 660
+  oil: 1497
+  wind: 294
+contributors:
+  - jarek
+fallbackZoneMixes:
+  _source: Canada NEB yearly data for 2018
+  _url: https://www.neb-one.gc.ca/nrg/ntgrtd/mrkt/nrgsstmprfls/nb-eng.html
+  powerOriginRatios:
+    value:
+      biomass: 0.03
+      coal: 0.18
+      gas: 0.12
+      hydro: 0.21
+      nuclear: 0.39
+      wind: 0.07
+flag_file_name: ca.png
+parsers:
+  production: CA_NB.fetch_production
+timezone: null

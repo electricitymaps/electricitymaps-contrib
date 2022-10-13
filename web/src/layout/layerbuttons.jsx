@@ -18,7 +18,7 @@ const HiddenOnMobile = styled.div`
   }
 `;
 
-export default ({ aggregatedViewFFEnabled }) => {
+export default () => {
   const { __ } = useTranslation();
   const windEnabled = useWindEnabled();
   const windToggledLocation = useWindToggledLocation();
@@ -51,7 +51,7 @@ export default ({ aggregatedViewFFEnabled }) => {
 
   return (
     <HiddenOnMobile>
-      <div className={aggregatedViewFFEnabled ? 'layer-buttons-container-FF' : 'layer-buttons-container'}>
+      <div className={'layer-buttons-container'}>
         <LanguageSelect />
         <Link to={windToggledLocation} hasError={windDataError || !isWeatherEnabled}>
           <ButtonToggle

@@ -1,0 +1,33 @@
+bounding_box:
+  - - 14.926272420000089
+    - 63.65992801849613
+  - - 24.663413534000114
+    - 69.53635569300009
+capacity:
+  biomass: 271
+  coal: 0
+  gas: 1
+  geothermal: 0
+  hydro: 5271
+  nuclear: 0
+  solar: 19
+  wind: 1927
+emissionFactors:
+  lifecycle:
+    unknown:
+      - _comment: Uses the 2020 (2022 edition) eurostat production values for SE for
+          the sources in unknown
+        _url: https://ec.europa.eu/eurostat/documents/38154/4956218/Energy-Balances-January-2022-edition.zip/2dc71f1b-806a-b9ed-e77d-67b7c705197b?t=1643660477829
+        datetime: '2020-01-01'
+        source: assumes 98.26 % biomass, 1.09% oil based thermal, 0.64% peat, 0.01%
+          coal
+        value: 238.4
+parsers:
+  consumption: ENTSOE.fetch_consumption
+  consumptionForecast: ENTSOE.fetch_consumption_forecast
+  generationForecast: ENTSOE.fetch_generation_forecast
+  price: ENTSOE.fetch_price
+  production: ENTSOE.fetch_production
+  productionPerModeForecast: ENTSOE.fetch_wind_solar_forecasts
+  productionPerUnit: ENTSOE.fetch_production_per_units
+timezone: Europe/Stockholm
