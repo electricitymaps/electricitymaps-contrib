@@ -108,7 +108,7 @@ function removeDuplicateSources(source) {
     ...new Set(
       source
         .split('","')
-        .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
+        .map((x) => x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', '')))
         .flat()
     ),
   ];
