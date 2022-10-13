@@ -152,7 +152,7 @@ def main():
     aggregated_data = aggregate_data(data)
 
     print("Aggregated capacities: {}".format(json.dumps(aggregated_data)))
-    print("Updating zone {}".format(zone_key))
+    print(f"Updating zone {zone_key}")
 
     update_zone(zone_key, aggregated_data)
 
