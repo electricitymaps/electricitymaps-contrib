@@ -10,8 +10,7 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
   position: absolute;
   right: 16px;
-  ${(props) => (props.aggregatedViewFF ? 'top: 115px;' : 'top: 69px;')}
-
+  top: 115px;
   transition: box-shadow 0.4s;
   user-select: none;
 
@@ -36,11 +35,11 @@ const Wrapper = styled.div`
   }
 `;
 
-export const ZoomControls = ({ aggregatedViewFF }) => {
+export const ZoomControls = () => {
   const { __ } = useTranslation();
   return (
     // Note: the id property is being used by Cordova app
-    <Wrapper aggregatedViewFF={aggregatedViewFF} id="zoom-controls">
+    <Wrapper id="zoom-controls">
       <NavigationControl
         showCompass={false}
         zoomInLabel={__('tooltips.zoomIn')}

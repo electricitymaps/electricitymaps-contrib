@@ -1,17 +1,6 @@
 .layer-buttons-container {
   position: absolute;
   right: 16px;
-  top: 151px;
-  display: flex;
-  flex-direction: column;
-
-  @include respond-to('small') {
-    top: 148px;
-  }
-}
-.layer-buttons-container-FF {
-  position: absolute;
-  right: 16px;
   top: 197px;
   display: flex;
   flex-direction: column;

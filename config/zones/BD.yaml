@@ -1,0 +1,11 @@
+bounding_box:
+  - - 87.52178959200009
+    - 20.23871491100003
+  - - 93.14285119700017
+    - 27.123544007000064
+contributors:
+  - systemcatch
+  - alixunderplatz
+parsers:
+  production: BD.fetch_production
+timezone: Asia/Dhaka

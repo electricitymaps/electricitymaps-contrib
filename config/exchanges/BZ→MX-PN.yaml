@@ -1,0 +1,6 @@
+lonlat:
+  - -88.627
+  - 18.24
+parsers:
+  exchange: MX.fetch_exchange
+rotation: 0

@@ -1,0 +1,135 @@
+bounding_box:
+  - - -98.45079
+    - 34.168033532
+  - - -88.5987499999999
+    - 41.779649115
+capacity:
+  battery storage: 0
+  biomass: 4
+  coal: 2481.7
+  gas: 3056.5
+  geothermal: 0
+  hydro: 30
+  hydro storage: 31
+  nuclear: 0
+  oil: 164.7
+  solar: 2.5
+  unknown: 0
+  wind: 941.4
+comment: Associated Electric Cooperative, Inc.
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 571.1170200316024
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 535.3321359247858
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 501.02724448006256
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 506.6284280818978
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 571.1170200316024
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 535.3321359247858
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 501.02724448006256
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 506.6284280818978
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 645.1775663122404
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 608.4636996799436
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 572.1173698720683
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 571.6718662070986
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 645.1775663122404
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 608.4636996799436
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 572.1173698720683
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 571.6718662070986
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 2.4692695506959933e-05
+        coal: 0.5989674586649474
+        gas: 0.2856366012070223
+        geothermal: 7.0462480490700715e-09
+        hydro: 0.033468287479874154
+        hydro discharge: 3.3293522031856087e-07
+        nuclear: 0.006070631590443879
+        oil: 0.0006233692339671433
+        solar: 8.984935121671088e-05
+        unknown: 0.01743212085020029
+        wind: 0.057794605392493634
+    - _source: electricityMap, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.5059671495674565e-05
+        coal: 0.5468990200710003
+        gas: 0.2956119823164832
+        geothermal: 4.0151616314792834e-07
+        hydro: 0.07695060212048178
+        hydro discharge: 5.171632133750016e-07
+        nuclear: 0.0036663649303741953
+        oil: 0.00035797309962984716
+        solar: 5.174750705890969e-05
+        unknown: 0.01774215030486858
+        wind: 0.05877329015727955
+    - _source: electricityMap, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 2.3616055638991148e-05
+        coal: 0.5005910711319919
+        gas: 0.2935864673378297
+        geothermal: 1.4004946023438328e-06
+        hydro: 0.08238610327443742
+        hydro discharge: 1.0945002712031949e-07
+        nuclear: 0.0058941280107024435
+        oil: 0.0006454254126941352
+        solar: 9.2557929104886e-05
+        unknown: 0.020459946739288082
+        wind: 0.09648839182327257
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Central

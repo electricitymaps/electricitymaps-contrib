@@ -1,0 +1,135 @@
+bounding_box:
+  - - -85.65399
+    - 25.7184577510001
+  - - -80.123257233
+    - 31.2115600000001
+capacity:
+  battery storage: 0
+  biomass: 1.6
+  coal: 1429.2
+  gas: 853.3
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: Seminole Electric Cooperative
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  consumption: 30
+  consumptionForecast: 30
+  production: 30
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 370.0559152858642
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 380.9668522198512
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 426.3766914568056
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 576.2028045156524
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 370.0559152858642
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 380.9668522198512
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 426.3766914568056
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 576.2028045156524
+  lifecycle:
+    battery discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 490.04722141921843
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 499.25144515312036
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 537.6180079103034
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 662.5448695260983
+    hydro discharge:
+      - datetime: '2018-01-01'
+        source: electricityMap, 2018 average
+        value: 490.04722141921843
+      - datetime: '2019-01-01'
+        source: electricityMap, 2019 average
+        value: 499.25144515312036
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 537.6180079103034
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 662.5448695260983
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2018 average
+      datetime: '2018-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.314614451395361e-11
+        coal: 0.00014662941738169383
+        gas: 0.9998518285825916
+        geothermal: 0.0
+        hydro: 7.565606167780304e-09
+        hydro discharge: 0.0
+        nuclear: 5.625991140830303e-07
+        oil: 8.696174595980312e-09
+        solar: 1.9609775117851752e-07
+        unknown: 7.65877946702295e-07
+        wind: 6.573072256976805e-11
+    - _source: electricityMap, 2019 average
+      datetime: '2019-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.028225457868818044
+        gas: 0.9713572375859229
+        geothermal: 0.0
+        hydro: 2.0234501004558664e-06
+        hydro discharge: 0.0
+        nuclear: 0.00013581059832576365
+        oil: 1.0960354710802609e-07
+        solar: 8.061087958532763e-05
+        unknown: 0.0001985510411072319
+        wind: 0.0
+    - _source: electricityMap, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 1.3008271287330695e-05
+        coal: 0.14497381773878065
+        gas: 0.8537202371241109
+        geothermal: 2.3097839003180515e-06
+        hydro: 0.0001211955688119052
+        hydro discharge: 0.0
+        nuclear: 0.0002791472760864913
+        oil: 2.3704189393030415e-05
+        solar: 0.0002901129687300479
+        unknown: 0.0005401323025719277
+        wind: 3.543552786783823e-05
+flag_file_name: us.png
+parsers:
+  consumption: EIA.fetch_consumption
+  consumptionForecast: EIA.fetch_consumption_forecast
+  production: EIA.fetch_production_mix
+timezone: US/Eastern
