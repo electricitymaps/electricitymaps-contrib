@@ -101,16 +101,17 @@ function combineZoneData(zoneData, aggregate) {
 
 function removeDuplicateSources(source) {
   if (!source) {
-    return null;
+    return undefined;
   }
+
   const sources = [
     ...new Set(
       source
         .split('","')
-        .map((x) => x.split(',').map((x) => x.replace('\\', '').replace('"', '')))
+        .map((x) => x.split(',').map((x) => x.replaceAll('\\', '').replaceAll('"', '')))
         .flat()
     ),
-  ].join();
+  ];
 
   return sources;
 }
