@@ -12,6 +12,7 @@ import { TIME } from '../../../helpers/constants';
 import { CountryOverview } from './countryOverview';
 import { CountryDetails } from './countryDetails';
 import { CountryHeader } from './countryHeader';
+import { useAggregatesEnabled, useSearchParams } from '../../../hooks/router';
 
 const mapStateToProps = (state) => ({
   electricityMixMode: state.application.electricityMixMode,
@@ -67,6 +68,9 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   const history = useHistory();
   const location = useLocation();
   const { zoneId } = useParams();
+  const isAggregateEnabled = useAggregatesEnabled();
+  const searchParams = useSearchParams();
+
   const timeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
   const data = useCurrentZoneData() || {};
 
@@ -93,6 +97,24 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
   // Redirect to the parent page if the zone is invalid.
   if (!zones[zoneId]) {
     return <Redirect to={parentPage} />;
+  }
+
+  // Redirect to the parent page if the zone is subzone and country view is enabled
+  if (
+    zones[zoneId].geography.properties.isHighestGranularity === true &&
+    zones[zoneId].geography.properties.isAggregatedView === false &&
+    isAggregateEnabled === true
+  ) {
+    searchParams.set('aggregated', true);
+    history.push({ pathname: zones[zoneId].geography.properties.countryKey, search: searchParams.toString() });
+  }
+  // Redirect to the map if the country is aggregated and the zone view is enabled
+  if (
+    zones[zoneId].geography.properties.isHighestGranularity === false &&
+    zones[zoneId].geography.properties.isAggregatedView === true &&
+    isAggregateEnabled === false
+  ) {
+    history.push(parentPage);
   }
 
   const { hasParser } = data;
