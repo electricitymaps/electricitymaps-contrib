@@ -41,3 +41,9 @@ science:
 
 mobile app 📱:
   - mobileapp/**/*
+
+exchange config:
+  - config/exchanges/**/*.yaml
+
+zone config:
+  - config/zones/**/*.yaml

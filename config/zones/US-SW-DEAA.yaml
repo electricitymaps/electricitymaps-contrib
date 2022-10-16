@@ -1,0 +1,29 @@
+bounding_box:
+  - - -113.397006989
+    - 32.8262615200001
+  - - -112.375976563
+    - 33.877473831
+capacity:
+  battery storage: 0
+  biomass: 0
+  coal: 0
+  gas: 713
+  geothermal: 0
+  hydro: 0
+  hydro storage: 0
+  nuclear: 0
+  oil: 0
+  solar: 0
+  unknown: 0
+  wind: 0
+comment: Arlington Valley, Llc - Avba
+contributors:
+  - systemcatch
+  - robertahunt
+  - KabelWlan
+delays:
+  production: 30
+flag_file_name: us.png
+parsers:
+  production: EIA.fetch_production_mix
+timezone: US/Arizona

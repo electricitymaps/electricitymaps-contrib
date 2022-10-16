@@ -1,0 +1,25 @@
+bounding_box:
+  - - 134.24
+    - 33.29
+  - - 136.38
+    - 36.01
+capacity:
+  biomass: 0
+  coal: 2301
+  gas: 17222
+  hydro: 3540
+  hydro storage: 5234
+  nuclear: 9768
+  oil: 7800
+  solar: 4962
+  wind: 146
+contributors:
+  - tmslaine
+  - lorrieq
+  - kongkille
+estimation_method: RECONSTRUCT_BREAKDOWN
+parsers:
+  consumptionForecast: JP.fetch_consumption_forecast
+  price: JP.fetch_price
+  production: JP_KN.fetch_production
+timezone: Asia/Tokyo

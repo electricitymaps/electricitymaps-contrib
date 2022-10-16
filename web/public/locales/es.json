@@ -1,6 +1,20 @@
 {
+  "info-modal": {
+    "title": "Info",
+    "intro-text": "La app Electricity Maps provee información en tiempo real web y móvil para ciudadanos, expertos en energía, ONG y legisladores que promueven un mejor entendimiento de los desafíos de la transición energética.",
+    "open-source-text": "Esta app es de <a href=\"%s\" target=\"_blank\">código abierto</a> (<a href=\"%s\" target=\"_blank\">ver fuentes de datos</a>) e impulsada por la comunidad.",
+    "feedback-button": "Comparte tus comentarios",
+    "github-button": "Visítanos en GitHub",
+    "twitter-button": "Compártelo en Twitter",
+    "slack-button": "Únete a la comunidad en Slack",
+    "privacy-policy": "Política de privacidad",
+    "legal-notice": "Aviso legal"
+  },
+  "settings-modal": {
+    "title": "Configuración"
+  },
   "panel-initial-text": {
-    "thisproject": "Este app es de",
+    "thisproject": "Esta app es de",
     "opensource": "código abierto",
     "see": "ver",
     "datasources": "las fuentes de los datos",
@@ -35,8 +49,19 @@
     "helpfrom": "con la ayuda de",
     "noDataAtTimestamp": "Los datos no están disponibles temporalmente para la hora señalada",
     "noLiveData": "Los datos en tiempo real no están disponibles temporalmente para esta zona",
+    "dataIsDelayed": "Los datos para esta región pueden tener hasta %s horas de retraso. Los datos en tiempo real no pueden ser mostrados.",
+    "estimated": "estimados",
+    "aggregated": "agregados",
+    "dataIsEstimated": "Algunos de los datos de esta región son estimados. Lee más sobre la metodología de estimación <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Estimation-methods\" target=\"_blank\">aquí</a>.",
+    "exchangesAreMissing": "Los intercambios son considerados en los cálculos pero no son mostrados actualmente. Lee más acerca de nuestros agregados históricos <a href=\"https://github.com/electricityMaps/electricitymaps-contrib/wiki/Historical-aggregates\" target=\"_blank\">aquí</a>.",
+    "estimatedTooltip": "Los datos en tiempo real para esta zona son estimados basados en datos de las fuentes y suposiciones del modelo.",
+    "aggregatedTooltip": "Los datos para esta zona son agregados basados en valores horarios históricos",
+    "helpUs": "Ayúdanos a identificar el problema revisando los <a href=\"%s\" target=\"_blank\">registros de ejecución</a> o contactando al proveedor de datos.",
     "noParserInfo": "No tenemos aún información para esta zona.<br/> ¿Quieres ayudarnos a solucionarlo? Contribuye si quieres <a href=\"%s\" target=\"_blank\">añadiendo los datos de la zona</a>.",
     "now": "Ahora"
+  },
+  "time-controller": {
+    "title": "Mostrar datos del pasado"
   },
   "left-panel": {
     "zone-list-header-title": "Impacto climático por zona",
@@ -44,8 +69,14 @@
     "search": "Buscar zonas"
   },
   "country-history": {
+    "carbonintensity": {
+      "default": "Intensidad de carbono en los últimos %1$s",
+      "hourly": "Intensidad de carbono en las últimas 24 horas",
+      "daily": "Intensidad de carbono en el último mes",
+      "monthly": "Intensidad de carbono en el último año",
+      "yearly": "Intensidad de carbono en los últimos 5 años"
+    },
     "Getdata": "Obtener datos históricos por horas y en tiempo real + pronóstico con la API de Electricity Maps",
-    "carbonintensity": { "hourly": "Intensidad de carbono en las últimas 24 horas" },
     "emissionsorigin": { "hourly": "Origen de las emisiones en las últimas 24 horas" },
     "emissionsproduction": { "hourly": "Emisiones producidas en las últimas 24 horas" },
     "electricityorigin": { "hourly": "Origen de la electricidad en las últimas 24 horas" },
@@ -73,19 +104,28 @@
     "carbonintensityexport": "Intensidad de carbono de la energía exportada",
     "ofinstalled": "de la capacidad instalada",
     "utilizing": "utilizando",
+    "representing": "representando",
+    "ofemissions": "de emisiones",
     "withcarbonintensity": "con una intensidad de carbono de",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
     "showWindLayer": "Mostrar las corrientes de aire",
     "hideWindLayer": "Ocultar las corrientes de aire",
     "showSolarLayer": "Mostrar los rayos solares",
     "hideSolarLayer": "Ocultar los rayos solares",
+    "weatherDisabled": "La información del clima no está disponible en este momento",
     "toggleDarkMode": "Modo oscuro",
     "noParserInfo": "No hay datos disponibles",
     "temporaryDataOutage": "Datos temporalmente no disponibles",
     "production": "producción",
     "consumption": "consumo",
     "cpinfo": "El <b>consumo</b> tiene en cuenta las importaciones y exportaciones de energía, la <b>producción</b> no",
+    "aggregated": "agregado",
+    "detailed": "detallado",
+    "aggregateinfo": "Los países con datos zonales no disponibles no pueden ser agregados",
     "selectLanguage": "Cambiar de idioma",
-    "lowCarbDescription": "Incluye renovables y nuclear"
+    "lowCarbDescription": "Incluye renovables y nuclear",
+    "dataIsDelayed": "Datos con retraso"
   },
   "misc": {
     "maintitle": "Emisiones de CO₂ del consumo eléctrico en tiempo real",
@@ -96,10 +136,14 @@
     "database-ad": "¿Buscas datos históricos? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Echa un vistazo a nuestra Base de Datos!</a>",
     "api-ad": "¿Quieres datos en tiempo real en tu app o dispositivo? <a href=\"https://electricitymaps.com?utm_source=app.electricitymaps.com&utm_medium=referral\" target=\"_blank\">Prueba nuestra API!</a>",
     "legend": "Leyenda",
-    "faq": "Preguntas frecuentes"
+    "faq": "Preguntas frecuentes",
+    "privacyPolicy": "Política de privacidad",
+    "legalNotice": "Aviso legal"
   },
   "wind": "energía eólica",
+  "windDataError": "Los datos para la energía eólica actualmente no están disponibles",
   "solar": "energía solar",
+  "solarDataError": "Los datos para la energía solar actualmente no están disponibles",
   "hydro": "energía hidráulica",
   "hydro storage": "almac. hidrául.",
   "battery storage": "almac. en baterías",

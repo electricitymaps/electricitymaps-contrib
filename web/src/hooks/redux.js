@@ -4,6 +4,25 @@ import { useParams } from 'react-router-dom';
 
 import { combineZoneData } from '../helpers/redux';
 import { mapValues } from 'lodash';
+import { useAggregatesEnabled } from '../hooks/router';
+import exchangesToExclude from '../excluded-aggregated-exchanges.json';
+
+const getExchangesToDisplay = (currentZoneKey, isAggregatedToggled, exchangeZoneKeysForCurrentZone) => {
+  const exchangeKeysToRemove = isAggregatedToggled
+    ? exchangesToExclude.exchangesToExcludeCountryView
+    : exchangesToExclude.exchangesToExcludeZoneView;
+
+  const exchangeZoneKeysToRemove = exchangeKeysToRemove.flatMap((exchangeKey) => {
+    const split = exchangeKey.split('->');
+    if (split.includes(currentZoneKey)) {
+      return split.filter((exchangeKey) => exchangeKey !== currentZoneKey);
+    }
+    return [];
+  });
+  return exchangeZoneKeysForCurrentZone
+    ? exchangeZoneKeysForCurrentZone.filter((exchangeZoneKey) => !exchangeZoneKeysToRemove.includes(exchangeZoneKey))
+    : [];
+};
 
 export function useCurrentZoneHistory() {
   const { zoneId } = useParams();
@@ -91,9 +110,11 @@ export function useCurrentZoneData() {
 export function useCurrentZoneExchangeKeys() {
   // Use the whole history (which doesn't depend on timestamp)
   // and fallback on current zone data
+  const { zoneId } = useParams();
   const zoneHistory = useCurrentZoneHistory();
   const currentZoneData = useCurrentZoneData();
   const isConsumption = useSelector((state) => state.application.electricityMixMode === 'consumption');
+  const isAggregated = useAggregatesEnabled();
 
   return useMemo(() => {
     if (!isConsumption || !zoneHistory) {
@@ -106,8 +127,10 @@ export function useCurrentZoneExchangeKeys() {
         Object.keys(zoneData.exchange).forEach((k) => exchangeKeys.add(k));
       }
     });
-    return Array.from(exchangeKeys).sort();
-  }, [isConsumption, zoneHistory, currentZoneData]);
+    const exchangeKeysToDisplay = getExchangesToDisplay(zoneId, isAggregated, Array.from(exchangeKeys).sort());
+
+    return exchangeKeysToDisplay;
+  }, [isConsumption, zoneHistory, currentZoneData, isAggregated, zoneId]);
 }
 
 export function useLoadingOverlayVisible() {

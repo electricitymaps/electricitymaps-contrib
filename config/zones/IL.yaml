@@ -1,0 +1,103 @@
+bounding_box:
+  - - 32.8841
+    - 29.0121
+  - - 37.4557
+    - 34.2585
+capacity:
+  biomass: 27
+  coal: 4840
+  gas: 12143
+  geothermal: 0
+  hydro: 6.72
+  hydro storage: 150
+  nuclear: 0
+  oil: 44
+  solar: 2555
+  unknown: 175
+  wind: 28
+contributors:
+  - alixunderplatz
+  - jarek
+  - yuvalabou
+emissionFactors:
+  direct:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 575.0
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 575.0
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 575.0
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 575.0
+  lifecycle:
+    battery discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 558.0
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 558.0000000000001
+    hydro discharge:
+      - datetime: '2020-01-01'
+        source: electricityMap, 2020 average
+        value: 558.0
+      - datetime: '2021-01-01'
+        source: electricityMap, 2021 average
+        value: 558.0000000000001
+    unknown:
+      _url: https://www.iea.org/fuels-and-technologies/electricity
+      source: IEA 2020; assumes 28.1% coal, 65.3% gas, 0.4% oil, 5.3% solar, 0.3%
+        wind, 0.3% other
+      value: 558
+estimation_method: RECONSTRUCT_BREAKDOWN
+fallbackZoneMixes:
+  powerOriginRatios:
+    - _source: electricityMap, 2020 average
+      datetime: '2020-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 1.0
+        wind: 0.0
+    - _source: electricityMap, 2021 average
+      datetime: '2021-01-01'
+      value:
+        battery discharge: 0.0
+        biomass: 0.0
+        coal: 0.0
+        gas: 0.0
+        geothermal: 0.0
+        hydro: 0.0
+        hydro discharge: 0.0
+        nuclear: 0.0
+        oil: 0.0
+        solar: 0.0
+        unknown: 0.9999999999999999
+        wind: 0.0
+isLowCarbon:
+  unknown:
+    _comment: Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json
+    value: 0.056
+isRenewable:
+  unknown:
+    _comment: Sum of renewable sources in IL unknown production form co2eq_parameters_lifecycle.json
+    value: 0.056
+parsers:
+  consumption: IL.fetch_consumption
+  price: IL.fetch_price
+  production: IL.fetch_production
+timezone: Asia/Jerusalem
