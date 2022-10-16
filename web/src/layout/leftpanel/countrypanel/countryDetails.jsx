@@ -13,6 +13,7 @@ import Countryhistorypricesgraph from '../../../components/countryhistorypricesg
 import CountryDataInfo from '../../../components/countrydatainfo';
 import ContributorList from '../../../components/contributorlist';
 import SocialButtons from '../socialbuttons';
+import { formatDataSources } from '../../../helpers/formatting';
 
 const BySource = styled.div`
   font-size: smaller;
@@ -37,7 +38,7 @@ const StyledSources = styled.div`
 
 export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data }) => {
   const selectedTimeAggregate = useSelector((state) => state.application.selectedTimeAggregate);
-  const { __ } = useTranslation();
+  const { __, i18n } = useTranslation();
 
   // Disable mix graph on aggregated consumption data because we do not
   // show exchanges yet.
@@ -123,7 +124,7 @@ export const CountryDetails = ({ tableDisplayEmissions, electricityMixMode, data
           target="_blank"
           rel="noreferrer"
         >
-          <span className="country-data-source">{data.source || '?'}</span>
+          <span className="country-data-source">{formatDataSources(data.source, i18n.language) || '?'}</span>
         </a>
         <small>
           {' '}
