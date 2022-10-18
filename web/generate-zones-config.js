@@ -36,12 +36,49 @@ const mergeExchanges = () => {
   const filesWithDir = exchangeFiles.map((file) => `${basePath}/${file}`);
 
   const exchanges = filesWithDir.reduce((exchanges, filepath) => {
-    const exchangeKey = path.parse(filepath).name.split('→').join('->');
+    const exchangeKey = path.parse(filepath).name.split('_').join('->');
     Object.assign(exchanges, { [exchangeKey]: yaml.load(fs.readFileSync(filepath, 'utf8')) });
     return exchanges;
   }, {});
 
   return exchanges;
+};
+
+const mergeRatioParameters = () => {
+  // merge the fallbackZoneMixes, isLowCarbon, isRenewable params into a single object
+  const basePath = path.resolve(__dirname, '../config');
+
+  const defaultParameters = yaml.load(fs.readFileSync(`${basePath}/defaults.yaml`, 'utf8'));
+
+  const zoneFiles = fs.readdirSync(`${basePath}/zones`);
+  const filesWithDir = zoneFiles.map((file) => `${basePath}/zones/${file}`);
+
+  const ratioParameters = {
+    fallbackZoneMixes: {
+      defaults: defaultParameters.fallbackZoneMixes,
+      zoneOverrides: {},
+    },
+    isLowCarbon: {
+      defaults: defaultParameters.isLowCarbon,
+      zoneOverrides: {},
+    },
+    isRenewable: {
+      defaults: defaultParameters.isRenewable,
+      zoneOverrides: {},
+    },
+  };
+
+  filesWithDir.forEach((filepath) => {
+    const zoneConfig = yaml.load(fs.readFileSync(filepath, 'utf8'));
+    const zoneKey = path.parse(filepath).name;
+    for (const key in ratioParameters) {
+      if (zoneConfig[key] !== undefined) {
+        ratioParameters[key].zoneOverrides[zoneKey] = zoneConfig[key];
+      }
+    }
+  });
+
+  return ratioParameters;
 };
 
 const writeJSON = (fileName, obj, encoding = 'utf8') => {
@@ -56,9 +93,11 @@ const writeJSON = (fileName, obj, encoding = 'utf8') => {
 const zonesConfig = mergeZones();
 const exchangesConfig = mergeExchanges();
 
+const autogenConfigPath = path.resolve(__dirname, 'src/config');
+
 if (config.verifyNoUpdates) {
-  const zonesConfigPrevious = JSON.parse(fs.readFileSync('src/config/zones.json', 'utf8'));
-  const exchangesConfigPrevious = JSON.parse(fs.readFileSync('src/config/exchanges.json', 'utf8'));
+  const zonesConfigPrevious = JSON.parse(fs.readFileSync(`${autogenConfigPath}/zones.json`, 'utf8'));
+  const exchangesConfigPrevious = JSON.parse(fs.readFileSync(`${autogenConfigPath}/exchanges.json`, 'utf8'));
   if (JSON.stringify(zonesConfigPrevious) !== JSON.stringify(zonesConfig)) {
     console.error('Did not expect any updates to zones.json. Please run "yarn generate-zones-config" to update.');
     process.exit(1);
@@ -69,11 +108,12 @@ if (config.verifyNoUpdates) {
   }
 }
 
-writeJSON('src/config/zones.json', zonesConfig);
-writeJSON('src/config/exchanges.json', exchangesConfig);
+writeJSON(`${autogenConfigPath}/zones.json`, zonesConfig);
+writeJSON(`${autogenConfigPath}/exchanges.json`, exchangesConfig);
 
 // export merge function
 module.exports = {
   mergeZones,
   mergeExchanges,
+  mergeRatioParameters,
 };

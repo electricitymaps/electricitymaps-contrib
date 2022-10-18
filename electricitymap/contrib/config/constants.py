@@ -1,5 +1,7 @@
 # Note: web/src/helpers.js contains some of the same information.
 
+EXCHANGE_FILENAME_ZONE_SEPARATOR = "_"
+
 EXCHANGE_DATA_TYPES = ["exchange", "exchangeForecast"]
 
 WEATHER_GFS_KEYS = ["wind", "solar", "temperature", "dewpoint", "precipitation"]
