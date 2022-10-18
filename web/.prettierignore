@@ -9,3 +9,4 @@ world-aggregated.json
 excluded-aggregated-exchanges.json
 public/dist/
 public/images/
+src/config/
