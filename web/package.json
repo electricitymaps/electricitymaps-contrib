@@ -131,7 +131,7 @@
     "lint": "yarn prebuild && eslint geo src --ext .js,.jsx --cache --cache-location node_modules/.cache/eslint/.eslintcache",
     "update-version": "echo '{\"version\": \"'$COMMIT_SHA'\"}' > public/client-version.json",
     "server-dev": "nodemon --delay 1 server.js",
-    "watch": "yarn generate-zones-config && webpack --watch --progress --mode development",
+    "watch": "yarn generate-zones-config && yarn update-world && webpack --watch --progress --mode development",
     "watch-poll": "yarn generate-zones-config && webpack --watch --watch-poll --progress --mode development",
     "update-world": "node ./geo/update-world.js",
     "verify": "VERIFY_NO_UPDATES=1 yarn update-world",
@@ -145,8 +145,8 @@
     "prettier-fix": "prettier --write . && prettier --write ../config",
     "prettier-check": "prettier --check . && prettier --check ../config",
     "predevelop": "yarn generate-zones-config",
-    "prebuild": "yarn generate-zones-config",
-    "postinstall": "yarn generate-zones-config"
+    "prebuild": "yarn generate-zones-config && yarn update-world",
+    "postinstall": "yarn generate-zones-config && yarn update-world"
   },
   "browserslist": [
     "defaults",
