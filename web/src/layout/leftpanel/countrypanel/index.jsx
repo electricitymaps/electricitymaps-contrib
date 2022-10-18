@@ -99,7 +99,7 @@ const CountryPanel = ({ electricityMixMode, isMobile, tableDisplayEmissions, zon
     return <Redirect to={parentPage} />;
   }
 
-  // Redirect to the parent page if the zone is subzone and country view is enabled
+  // Redirect to the country page if the zone is a subzone and country view is enabled
   if (
     zones[zoneId].geography.properties.isHighestGranularity === true &&
     zones[zoneId].geography.properties.isAggregatedView === false &&
