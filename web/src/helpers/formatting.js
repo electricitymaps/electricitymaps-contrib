@@ -111,7 +111,11 @@ const formatDateTick = function (date, lang, timeAggregate) {
     case TIME.DAILY:
       return new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' }).format(date);
     case TIME.MONTHLY:
-      return new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
+      return lang === 'et'
+        ? new Intl.DateTimeFormat(lang, { month: 'short', day: 'numeric' })
+            .formatToParts(date)
+            .find((part) => part.type === 'month').value
+        : new Intl.DateTimeFormat(lang, { month: 'short' }).format(date);
     case TIME.YEARLY:
       return new Intl.DateTimeFormat(lang, { year: 'numeric' }).format(date);
     default:

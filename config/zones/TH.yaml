@@ -47,11 +47,11 @@ fallbackZoneMixes:
       wind: 0.0165593326852115
 isLowCarbon:
   unknown:
-    _comment: Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json
+    _comment: Sum of renewable sources in TH unknown production
     value: 0.159
 isRenewable:
   unknown:
-    _comment: Sum of renewable sources in TH unknown production from co2eq_parameters_lifecycle.json
+    _comment: Sum of renewable sources in TH unknown production
     value: 0.159
 parsers:
   consumption: TH.fetch_consumption
