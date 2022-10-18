@@ -35,8 +35,12 @@ const generateAggregates = (geojson, zones) => {
     const [multiZoneCountry] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[0]);
     for (let i = 0; i < country.length; i++) {
       const [zoneToAdd] = unCombinedZones.filter((feature) => feature.properties.zoneName === country[i]);
-
-      combinedCountry.geometry = union(combinedCountry.geometry, zoneToAdd.geometry).geometry;
+      if (zoneToAdd) {
+        combinedCountry.geometry = union(combinedCountry.geometry, zoneToAdd.geometry).geometry;
+      } else {
+        process.stdout.write(`ERROR: Could not find a feature for ${country[i]}`);
+        process.exit(1);
+      }
     }
     combinedCountry.properties.countryKey = multiZoneCountry.properties.countryKey;
     combinedCountry.properties.zoneName = multiZoneCountry.properties.countryKey;
