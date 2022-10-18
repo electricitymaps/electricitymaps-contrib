@@ -220,6 +220,7 @@
     "BN": { "zoneName": "Brunei Darussalam" },
     "BO": { "zoneName": "Bolivia" },
     "BQ": { "zoneName": "Bonaire, Sint Eustatius dan Saba" },
+    "BR": { "zoneName": "Brazil" },
     "BR-CS": { "countryName": "Brazil", "zoneName": "Brazil Tengah" },
     "BR-N": { "countryName": "Brazil", "zoneName": "Brazil Utara" },
     "BR-NE": { "countryName": "Brazil", "zoneName": "Brazil Timur-laut" },

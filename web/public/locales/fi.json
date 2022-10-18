@@ -222,6 +222,7 @@
     "BN": { "zoneName": "Brunei" },
     "BO": { "zoneName": "Bolivia" },
     "BQ": { "zoneName": "Alankomaiden Karibia" },
+    "BR": { "zoneName": "Brasilia" },
     "BR-CS": { "countryName": "Brasilia", "zoneName": "Keski-Brasilia" },
     "BR-N": { "countryName": "Brasilia", "zoneName": "Pohjois-Brasilia" },
     "BR-NE": { "countryName": "Brasilia", "zoneName": "Koillis-Brasilia" },

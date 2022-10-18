@@ -365,6 +365,9 @@
     "BQ": {
       "zoneName": "Bonaire, Sint Eustatius and Saba"
     },
+    "BR": {
+      "zoneName": "Brazil"
+    },
     "BR-CS": {
       "countryName": "Brazil",
       "zoneName": "Central Brazil"
