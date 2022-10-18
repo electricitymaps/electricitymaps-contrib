@@ -681,6 +681,11 @@
     },
     "rotation": -25
   },
+  "DK->NO": {
+    "capacity": [-1632, 1632],
+    "lonlat": [8.8, 57.7],
+    "rotation": -25
+  },
   "DK-DK1->SE-SE3": {
     "capacity": [-715, 715],
     "lonlat": [11.556268, 56.857802],
