@@ -29,7 +29,7 @@ class ZonesJsonTestcase(unittest.TestCase):
         non_existing_zone_keys = sorted(world_geometries_zone_keys - all_zone_keys)
         assert (
             len(non_existing_zone_keys) == 0
-        ), f"{non_existing_zone_keys} are defined in world.geojson but not in zones.json"
+        ), f"{non_existing_zone_keys} are defined in world.geojson but not in zones/*.yaml"
 
 
 if __name__ == "__main__":

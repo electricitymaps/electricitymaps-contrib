@@ -150,7 +150,7 @@ Real-time electricity data is obtained using [parsers](https://github.com/tmrowc
 
 ### Production capacity data sources
 
-Production capacities are centralized in the [zones.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/zones.json) file. Values in the `capacity` maps are in MW.
+Production capacities are centralized in the [config/zones](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/zones) folder. Capacities are included in the respective zone configurations. Values in the `capacity` maps are in MW.
 
 #### International sources
 
@@ -402,7 +402,7 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 
 ### Cross-border transmission capacity data sources
 
-Cross-border transmission capacities between the zones are centralized in the [exchanges.json](https://github.com/tmrowco/electricitymap-contrib/blob/master/config/exchanges.json) file. Values in the `capacity` maps are in MW.
+Cross-border transmission capacities between the zones are centralized in the [config/exchanges](https://github.com/electricitymaps/electricitymaps-contrib/tree/master/config/exchanges) folder. Capacities are included in the respective exchange configurations. Values in the `capacity` maps are in MW.
 
 #### For the nordic and baltic countries capacities are availible from [Nord Pool](https://www.nordpoolgroup.com/en/Market-data1/Dayahead/Capacities1/Capacities/KEY/Norway/?view=table)
 

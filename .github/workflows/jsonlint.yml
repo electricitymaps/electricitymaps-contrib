@@ -20,4 +20,4 @@ jobs:
           npm install -g jsonlint-mod
       - name: Lint json
         run: |
-          jsonlint -q config/*.json web/public/locales/*.json
+          jsonlint -q web/public/locales/*.json
