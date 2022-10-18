@@ -437,7 +437,7 @@ VALIDATIONS: Dict[str, Dict[str, Any]] = {
     "SI": {
         # own total generation capacity is around 4 GW
         "required": ["nuclear"],
-        "expected_range": (800, 5000),
+        "expected_range": (140, 5000),
     },
     "SK": {"required": ["nuclear"]},
 }
