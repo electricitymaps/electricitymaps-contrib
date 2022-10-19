@@ -8,7 +8,7 @@ const { mergeZones } = require('../generate-zones-config');
 
 const config = {
   WORLD_PATH: path.resolve(__dirname, './world.geojson'),
-  OUT_PATH: path.resolve(__dirname, '../src/world-aggregated.json'),
+  OUT_PATH: path.resolve(__dirname, '../src/config/world.json'),
   ERROR_PATH: path.resolve(__dirname, '.'),
   MIN_AREA_HOLES: 5000000,
   MAX_CONVEX_DEVIATION: 0.708,
@@ -17,7 +17,7 @@ const config = {
   verifyNoUpdates: process.env.VERIFY_NO_UPDATES !== undefined,
 };
 
-const EXCHANGE_OUT_PATH = path.resolve(__dirname, '../src/excluded-aggregated-exchanges.json');
+const EXCHANGE_OUT_PATH = path.resolve(__dirname, '../src/config/excluded-aggregated-exchanges.json');
 
 const fc = getJSON(config.WORLD_PATH);
 const zoneConfig = mergeZones();
