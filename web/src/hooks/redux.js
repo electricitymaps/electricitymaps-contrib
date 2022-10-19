@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { combineZoneData } from '../helpers/redux';
 import { mapValues } from 'lodash';
 import { useAggregatesEnabled } from '../hooks/router';
-import exchangesToExclude from '../excluded-aggregated-exchanges.json';
+import exchangesToExclude from '../config/excluded-aggregated-exchanges.json';
 
 const getExchangesToDisplay = (currentZoneKey, isAggregatedToggled, exchangeZoneKeysForCurrentZone) => {
   const exchangeKeysToRemove = isAggregatedToggled
