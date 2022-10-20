@@ -219,6 +219,7 @@
   "exchangesToExcludeZoneView": [
     "AT->IT",
     "AX->SE",
+    "CA->US",
     "CH->IT",
     "DE->DK",
     "DE->NO",
@@ -235,6 +236,7 @@
     "IT->MT",
     "IT->SI",
     "LT->SE",
+    "MX->US",
     "NO->RU-1",
     "NO->SE",
     "PL->SE"
