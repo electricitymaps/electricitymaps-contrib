@@ -59,16 +59,15 @@ export function useInterpolatedWindData() {
       return null;
     }
 
-    // eslint-disable-next-line no-console
-    console.log(
+    console.info(
       `#1 wind forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs1[0]),
         new Date(),
         { addSuffix: true }
       )}`
     );
-    // eslint-disable-next-line no-console
-    console.log(
+
+    console.info(
       `#2 wind forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(gribs2[0]),
         new Date(),
@@ -104,16 +103,15 @@ export function useInterpolatedSolarData() {
       return null;
     }
 
-    // eslint-disable-next-line no-console
-    console.log(
+    console.info(
       `#1 solar forecast target ${formatDistance(tBefore, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(grib1),
         new Date(),
         { addSuffix: true }
       )}`
     );
-    // eslint-disable-next-line no-console
-    console.log(
+
+    console.info(
       `#2 solar forecast target ${formatDistance(tAfter, new Date(), { addSuffix: true })} made ${formatDistance(
         getRefTime(grib2),
         new Date(),
