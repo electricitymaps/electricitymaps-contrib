@@ -371,7 +371,9 @@ For many European countries, data is available from [ENTSO-E](https://transparen
 - Switzerland
   - Hydro: [BEF](https://www.bfe.admin.ch/bfe/de/home/versorgung/statistik-und-geodaten/geoinformation/geodaten/wasser/statistik-der-wasserkraftanlagen.html)
   - Other: [UVEK](https://www.uvek-gis.admin.ch/BFE/storymaps/EE_Elektrizitaetsproduktionsanlagen/)
-- Taiwan: [TAIPOWER](http://www.taipower.com.tw/d006/loadGraph/loadGraph/genshx_.html)
+- Taiwan
+  - Renewable: [TAIPOWER](https://www.taipower.com.tw/en/page.aspx?mid=4495)
+  - Other: [TAIPOWER](https://www.taipower.com.tw/en/page.aspx?mid=4488&cid=2793&cchk=4ce0ae20-8549-4207-b5e2-2f0919e749bf)
 - Thailand:
   - EGAT's production capacity: [EGAT](https://www.egat.co.th/home/statistics-all-egat/)
   - EGAT's purchase capacity: [EGAT](https://www.egat.co.th/home/statistics-all-3rdparty/)
