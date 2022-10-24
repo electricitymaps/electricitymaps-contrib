@@ -29,9 +29,8 @@ steps:
       - yarn build-release
       - yarn verify-zones-config
     outputs:
-      - src/world.json
-      - src/world-aggregated.json
-      - src/excluded-aggregated-exchanges.json
+      - src/config/world.json
+      - src/config/excluded-aggregated-exchanges.json
       - public/dist
     tag: eu.gcr.io/tmrow-152415/electricitymap_web
 
